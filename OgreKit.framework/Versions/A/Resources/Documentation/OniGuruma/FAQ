@@ -1,0 +1,35 @@
+FAQ    2005/05/31
+
+1. Lognest match
+
+   You can execute longest match by using ONIG_OPTION_FIND_LONGEST option
+   in onig_new() and onig_recompile().
+
+
+2. Thread safe
+
+   In order to make thread safe, which of (A) or (B) must be done.
+
+   (A) Oniguruma Layer
+
+       Define the macro below at NOT_RUBY case in oniguruma/regint.h.
+
+       USE_MULTI_THREAD_SYSTEM
+       THREAD_ATOMIC_START
+       THREAD_ATOMIC_END
+       THREAD_PASS
+
+   (B) Application Layer
+
+       (B1) The regexp object which is in the midst of searching does not
+            have to be compiled with another thread.
+       (B2) The plural threads should not do simultaneously that making 
+            new regexp objects or re-compiling objects or freeing objects,
+            even if these objects are differ.
+
+
+3. Mailing list
+
+   There is no mailing list about Oniguruma.
+
+// END

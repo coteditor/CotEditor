@@ -1,0 +1,71 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf420
+\readonlydoc1{\fonttbl\f0\fswiss\fcharset77 Helvetica-Bold;\f1\fswiss\fcharset77 Helvetica;\f2\fswiss\fcharset77 Helvetica-Oblique;
+\f3\fnil\fcharset77 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11899\paperh16839\margl1440\margr1440\vieww11040\viewh12000\viewkind0
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f0\b\fs32 \cf0 About The ScriptMenu Folder
+\f1\b0\fs28 \
+
+\fs24 \
+The ScriptMenu folder (~/Library/Application Support/CotEditor/ScriptMenu/) is the folder for CotEditor's Script menu.\
+\
+On launching, CotEditor reads the script files in this folder (file extension: .applescript .scpt .sh .pl .php .rb .py) and make them appear in the Script menu.\
+If you made modifications to the folder while CotEditor is running, you can manually update the menu by choosing Update Script Menu in the Script menu.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f0\b\fs26 \cf0 Notes
+\f1\b0\fs24 \
+\
+* You can line up the menu items in numerical order by adding \'d2number + closing parenthesis ())\'d3 at the head of the file name.\
+The part \'d2number + )\'d3 and the file extension won't be shown in the menu.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f2\i \cf0 example 1.
+\f1\i0 \
+ File name: 01)Open File.applescript\
+ Menu title: Open File\
+\
+\
+* You can assign a keyboard shortcut to the file by adding \'d2dot (.) + modifier-keys + shortcut-key\'d3 in front of the file extension.\
+\
+
+\f2\i example 2.
+\f1\i0 \
+ File name: Insert String.@e.scpt\
+ Menu title: Insert String [
+\f3 \uc0\u8984 
+\f1 E]\
+
+\f2\i \
+example 3.
+\f1\i0 \
+ File name: 03)Insert Date.@Y.scpt\
+ Menu title: Insert Date [
+\f3 \uc0\u8679 \u8984 
+\f1 Y]\
+\
+Modifier-key symbols:\
+ ^ : Control\
+ $ : Shift\
+ ~ : Option\
+ @ : Command\
+\
+Shortcut-keys (e.g. \'d2e\'d3 in the example 2) are case sensitive. The one in uppercase indicates that \'d2the Shift key should be pressed together\'d3 as in the example 3.\
+\
+A shortcut-key must come after modifier-keys, and must be one letter. Thus, you cannot assign the keys such as F1 or Delete to scripts.\
+\
+\
+* A folder named \'d2-\'d3 appears as a separator line in the menu.\
+
+\f2\i \
+example 4.
+\f1\i0 \
+ Folder name: 09)-\
+ Menu title: (separator)\
+\
+}
