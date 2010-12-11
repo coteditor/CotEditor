@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IBClasses</key>
+	<array>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>closeSyntaxEditSheet</key>
+				<string>id</string>
+				<key>closeSyntaxExtensionErrorSheet</key>
+				<string>id</string>
+				<key>setToFactoryDefaults</key>
+				<string>id</string>
+				<key>startSyntaxElementCheck</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>CESyntaxManager</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>_editWindow</key>
+				<string>id</string>
+				<key>_elementPopUpButton</key>
+				<string>id</string>
+				<key>_extensionErrorTextView</key>
+				<string>id</string>
+				<key>_factoryDefaultsButton</key>
+				<string>id</string>
+				<key>_messageField</key>
+				<string>id</string>
+				<key>_styleController</key>
+				<string>id</string>
+				<key>_styleNameField</key>
+				<string>id</string>
+				<key>_syntaxElementCheckTextView</key>
+				<string>id</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>NSObject</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+		</dict>
+	</array>
+	<key>IBVersion</key>
+	<string>1</string>
+</dict>
+</plist>

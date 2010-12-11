@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Classes</key>
+	<dict>
+		<key>CEDocument</key>
+		<dict>
+			<key>Attributes</key>
+			<dict>
+				<key>IANACharSetName</key>
+				<dict>
+					<key>Description</key>
+					<string>The IANA charset name of the document.</string>
+					<key>Name</key>
+					<string>IANA charset</string>
+				</dict>
+				<key>alphaOnlyTextView</key>
+				<dict>
+					<key>Description</key>
+					<string>The transparency effect Only the TextView or not.</string>
+					<key>Name</key>
+					<string>alpha only textView</string>
+				</dict>
+				<key>coloringStyle</key>
+				<dict>
+					<key>Description</key>
+					<string>The syntax coloring style name of the document.</string>
+					<key>Name</key>
+					<string>coloring style</string>
+				</dict>
+				<key>contents</key>
+				<dict>
+					<key>Description</key>
+					<string>The contents of the document.</string>
+					<key>Name</key>
+					<string>contents</string>
+				</dict>
+				<key>encoding</key>
+				<dict>
+					<key>Description</key>
+					<string>The encoding name of the document.</string>
+					<key>Name</key>
+					<string>encoding</string>
+				</dict>
+				<key>length</key>
+				<dict>
+					<key>Description</key>
+					<string>The number of characters of the document.</string>
+					<key>Name</key>
+					<string>length</string>
+				</dict>
+				<key>lineEnding</key>
+				<dict>
+					<key>Description</key>
+					<string>The line ending code of the document.</string>
+					<key>Name</key>
+					<string>line ending</string>
+				</dict>
+				<key>lineSpacing</key>
+				<dict>
+					<key>Description</key>
+					<string>The spacing between of text lines. (from '0.0' to '10.0')</string>
+					<key>Name</key>
+					<string>line spacing</string>
+				</dict>
+				<key>selection</key>
+				<dict>
+					<key>Description</key>
+					<string>The current selection.</string>
+					<key>Name</key>
+					<string>selection</string>
+				</dict>
+				<key>textStorage</key>
+				<dict>
+					<key>Description</key>
+					<string>The text of the document.</string>
+					<key>Name</key>
+					<string>text</string>
+				</dict>
+				<key>transparency</key>
+				<dict>
+					<key>Description</key>
+					<string>The transparency of Window or TextView. (from '0.2' to '1.0')</string>
+					<key>Name</key>
+					<string>transparency</string>
+				</dict>
+				<key>wrapLines</key>
+				<dict>
+					<key>Description</key>
+					<string>Wrap lines or not.</string>
+					<key>Name</key>
+					<string>wrap lines</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>A CotEditor document.</string>
+			<key>Name</key>
+			<string>document</string>
+			<key>PluralName</key>
+			<string>documents</string>
+		</dict>
+		<key>CETextSelection</key>
+		<dict>
+			<key>Attributes</key>
+			<dict>
+				<key>contents</key>
+				<dict>
+					<key>Description</key>
+					<string>The contents of the selection.</string>
+					<key>Name</key>
+					<string>contents</string>
+				</dict>
+				<key>lineRange</key>
+				<dict>
+					<key>Description</key>
+					<string>The range of lines of the selection. The format is "{location, length}".</string>
+					<key>Name</key>
+					<string>line range</string>
+				</dict>
+				<key>range</key>
+				<dict>
+					<key>Description</key>
+					<string>The range of characters in the selection. The format is "{location, length}".</string>
+					<key>Name</key>
+					<string>range</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>A way to refer to the state of the current selection.</string>
+			<key>Name</key>
+			<string>selection-object</string>
+		</dict>
+		<key>NSApplication</key>
+		<dict>
+			<key>Attributes</key>
+			<dict>
+				<key>selection</key>
+				<dict>
+					<key>Description</key>
+					<string>The current selection of front document.</string>
+					<key>Name</key>
+					<string>selection</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>CotEditor's top level scripting object.</string>
+			<key>Name</key>
+			<string>application</string>
+			<key>PluralName</key>
+			<string>applications</string>
+		</dict>
+	</dict>
+	<key>Commands</key>
+	<dict>
+		<key>ChangeCase</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>caseType</key>
+				<dict>
+					<key>Description</key>
+					<string>change case type</string>
+					<key>Name</key>
+					<string>to</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Changes the case of the text.</string>
+			<key>Name</key>
+			<string>change case</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>the selection to change case</string>
+			</dict>
+		</dict>
+		<key>ChangeKana</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>kanaType</key>
+				<dict>
+					<key>Description</key>
+					<string>Change Japanese character mode.</string>
+					<key>Name</key>
+					<string>to</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Changes Japanese "Kana" mode of the selection.</string>
+			<key>Name</key>
+			<string>change kana</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>the selection to change Japanese character mode</string>
+			</dict>
+		</dict>
+		<key>ChangeRomanWidth</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>widthType</key>
+				<dict>
+					<key>Description</key>
+					<string>new text width</string>
+					<key>Name</key>
+					<string>to</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Changes to / from fullwidth or halfwidth japanese roman text.</string>
+			<key>Name</key>
+			<string>change roman width</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>the selection to change width</string>
+			</dict>
+		</dict>
+		<key>Convert</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>lossy</key>
+				<dict>
+					<key>Description</key>
+					<string>allow lossy conversion.</string>
+					<key>Name</key>
+					<string>lossy</string>
+					<key>Number</key>
+					<string>singular</string>
+				</dict>
+				<key>newEncoding</key>
+				<dict>
+					<key>Description</key>
+					<string>new encoding.</string>
+					<key>Name</key>
+					<string>to</string>
+					<key>Number</key>
+					<string>singular</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Convert the document string to new encoding.</string>
+			<key>Name</key>
+			<string>convert</string>
+		</dict>
+		<key>Find</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>backwardsSearch</key>
+				<dict>
+					<key>Description</key>
+					<string>Search backwards. can not use with RE. Default is false.</string>
+					<key>Name</key>
+					<string>backwards</string>
+				</dict>
+				<key>ignoreCase</key>
+				<dict>
+					<key>Description</key>
+					<string>Search with ignore case (case insensitive). Default is false.</string>
+					<key>Name</key>
+					<string>ignore case</string>
+				</dict>
+				<key>regularExpression</key>
+				<dict>
+					<key>Description</key>
+					<string>Search string as RregularExpression. Default is false.</string>
+					<key>Name</key>
+					<string>RE</string>
+				</dict>
+				<key>targetString</key>
+				<dict>
+					<key>Description</key>
+					<string>the string for search</string>
+					<key>Name</key>
+					<string>for</string>
+				</dict>
+				<key>wrapSearch</key>
+				<dict>
+					<key>Description</key>
+					<string>wrap search the document. Default is false.</string>
+					<key>Name</key>
+					<string>wrap</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Search string.</string>
+			<key>Name</key>
+			<string>find</string>
+		</dict>
+		<key>Reinterpret</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>newEncoding</key>
+				<dict>
+					<key>Description</key>
+					<string>new encoding.</string>
+					<key>Name</key>
+					<string>as</string>
+					<key>Number</key>
+					<string>singular</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Reinterpret the document string as new encoding.</string>
+			<key>Name</key>
+			<string>reinterpret</string>
+		</dict>
+		<key>Replace</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>all</key>
+				<dict>
+					<key>Description</key>
+					<string>Replace all of the reference</string>
+					<key>Name</key>
+					<string>all</string>
+				</dict>
+				<key>backwardsSearch</key>
+				<dict>
+					<key>Description</key>
+					<string>Replace backwards. can not use with RE. Default is false.</string>
+					<key>Name</key>
+					<string>backwards</string>
+				</dict>
+				<key>ignoreCase</key>
+				<dict>
+					<key>Description</key>
+					<string>Replace with ignore case (case insensitive). Default is false.</string>
+					<key>Name</key>
+					<string>ignore case</string>
+				</dict>
+				<key>newString</key>
+				<dict>
+					<key>Description</key>
+					<string>The new string</string>
+					<key>Name</key>
+					<string>to</string>
+				</dict>
+				<key>regularExpression</key>
+				<dict>
+					<key>Description</key>
+					<string>Replace string as RregularExpression. Default is false.</string>
+					<key>Name</key>
+					<string>RE</string>
+				</dict>
+				<key>targetString</key>
+				<dict>
+					<key>Description</key>
+					<string>the string for replace</string>
+					<key>Name</key>
+					<string>for</string>
+				</dict>
+				<key>wrapSearch</key>
+				<dict>
+					<key>Description</key>
+					<string>wrap search the document. Default is false.</string>
+					<key>Name</key>
+					<string>wrap</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Replace string.</string>
+			<key>Name</key>
+			<string>replace</string>
+		</dict>
+		<key>Scroll</key>
+		<dict>
+			<key>Arguments</key>
+			<dict/>
+			<key>Description</key>
+			<string>Scroll document to caret or selected text.</string>
+			<key>Name</key>
+			<string>scroll to caret</string>
+		</dict>
+		<key>ShiftLeft</key>
+		<dict>
+			<key>Description</key>
+			<string>Shift selection line to Left.</string>
+			<key>Name</key>
+			<string>shift left</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>the selection in line to shift</string>
+			</dict>
+		</dict>
+		<key>ShiftRight</key>
+		<dict>
+			<key>Description</key>
+			<string>Shift selection line to Right.</string>
+			<key>Name</key>
+			<string>shift right</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>the selection in line to shift</string>
+			</dict>
+		</dict>
+		<key>String</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>range</key>
+				<dict>
+					<key>Description</key>
+					<string>The range of document. The format is "{location, length}".</string>
+					<key>Name</key>
+					<string>in</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>The string in the range.</string>
+			<key>Name</key>
+			<string>string</string>
+		</dict>
+		<key>UnicodeNomalization</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>unfType</key>
+				<dict>
+					<key>Description</key>
+					<string>normalized forms of Unicode text</string>
+					<key>Name</key>
+					<string>to</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>Unicode normalization</string>
+			<key>Name</key>
+			<string>unicode normalization</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>the selection to be normalization</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>CotEditor specific classes.</string>
+	<key>Enumerations</key>
+	<dict>
+		<key>CEChangeCaseType</key>
+		<dict>
+			<key>CECapitalized</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>capitalized</string>
+			</dict>
+			<key>CELowerCase</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>lower</string>
+			</dict>
+			<key>CEUpperCase</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>upper</string>
+			</dict>
+		</dict>
+		<key>CEChangeKanaType</key>
+		<dict>
+			<key>CEHiragana</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>hiragana</string>
+			</dict>
+			<key>CEKatakana</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>katakana</string>
+			</dict>
+		</dict>
+		<key>CEChangeWidthType</key>
+		<dict>
+			<key>CEFullwidth</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>full</string>
+			</dict>
+			<key>CEHalfwidth</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>half</string>
+			</dict>
+		</dict>
+		<key>CELineEndingChar</key>
+		<dict>
+			<key>CELineEndingCR</key>
+			<dict>
+				<key>Description</key>
+				<string>Mac (CR)</string>
+				<key>Name</key>
+				<string>CR</string>
+			</dict>
+			<key>CELineEndingCRLF</key>
+			<dict>
+				<key>Description</key>
+				<string>Win (CR/LF)</string>
+				<key>Name</key>
+				<string>CRLF</string>
+			</dict>
+			<key>CELineEndingLF</key>
+			<dict>
+				<key>Description</key>
+				<string>Unix (LF)</string>
+				<key>Name</key>
+				<string>LF</string>
+			</dict>
+		</dict>
+		<key>CEUNFType</key>
+		<dict>
+			<key>CENFC</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>NFC</string>
+			</dict>
+			<key>CENFD</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>NFD</string>
+			</dict>
+			<key>CENFKC</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>NFKC</string>
+			</dict>
+			<key>CENFKD</key>
+			<dict>
+				<key>Description</key>
+				<string></string>
+				<key>Name</key>
+				<string>NFKD</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Name</key>
+	<string>CotEditor suite</string>
+</dict>
+</plist>
