@@ -1048,7 +1048,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.3.9.sdk/usr/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = CotEditor;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Development;
@@ -1082,7 +1082,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.3.9.sdk/usr/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = CotEditor;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx10.6;
 				SDKROOT_i386 = "";
 				SDKROOT_ppc = "";
 				WRAPPER_EXTENSION = app;
@@ -1108,6 +1108,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.3.9.sdk/usr/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = CotEditor;
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
