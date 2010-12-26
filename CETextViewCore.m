@@ -1050,7 +1050,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSArray *theFiles = [inPboard propertyListForType:NSFilenamesPboardType];
         NSString *theDocPath = [[[[self window] windowController] document] fileName];
         NSString *theAbsolutePath, *theFileName, *theFileNoSuffix, *theDirName;
-        NSString *thePathExtension, *thePathExtensionLower, *thePathExtensionUpper;
+        NSString *thePathExtension = nil, *thePathExtensionLower = nil, *thePathExtensionUpper = nil;
         NSMutableString *theRelativePath = [NSMutableString string];
         NSMutableString *theNewStr = [NSMutableString string];
         int i, theXtsnCount;
@@ -1082,7 +1082,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     NSArray *theDocPathArray = [theDocPath pathComponents];
                     NSArray *thePathArray = [theAbsolutePath pathComponents];
                     NSMutableString *theTmpStr = [NSMutableString string];
-                    int j, theSame, theCount;
+                    int j, theSame = 0, theCount = 0;
                     int theDocArrayCount = (int)[theDocPathArray count];
                     int thePathArrayCount = (int)[thePathArray count];
 
@@ -1853,7 +1853,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     if (theSelected.length > 0) {
-        NSString *theActionName, *theNewStr, *theOrgStr = [[self string] substringWithRange:theSelected];
+        NSString *theActionName = nil, *theNewStr = nil, *theOrgStr = [[self string] substringWithRange:theSelected];
 
         switch (theSwitchType) {
         case 0: // from D
