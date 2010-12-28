@@ -214,6 +214,16 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
+		6C1E211F12C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/DocWindow.nib; sourceTree = "<group>"; };
+		6C1E212012C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/HCCManager.nib; sourceTree = "<group>"; };
+		6C1E212112C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Indicator.nib; sourceTree = "<group>"; };
+		6C1E212212C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6C1E212312C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/KeyBindingManager.nib; sourceTree = "<group>"; };
+		6C1E212412C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6C1E212512C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		6C1E212612C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Preferences.nib; sourceTree = "<group>"; };
+		6C1E212712C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ScriptManager.nib; sourceTree = "<group>"; };
+		6C1E212812C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/SyntaxManager.nib; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
 		8C0A063C0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_PHP.plist; path = SyntaxColorings/defaultSyntaxStyle_PHP.plist; sourceTree = "<group>"; };
 		8C0F52600871861C00ABD124 /* openScriptMenu.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = openScriptMenu.applescript; path = internalScript/openScriptMenu.applescript; sourceTree = "<group>"; };
@@ -940,6 +950,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				089C1660FE840EACC02AAC07 /* English */,
+				6C1E212212C9E65600194313 /* Japanese */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -948,6 +959,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				25859EA6076D8EE80020F779 /* English */,
+				6C1E212612C9E65600194313 /* Japanese */,
 			);
 			name = Preferences.nib;
 			sourceTree = SOURCE_ROOT;
@@ -956,6 +968,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2588E9CD07C4851C0060021D /* English */,
+				6C1E212112C9E65600194313 /* Japanese */,
 			);
 			name = Indicator.nib;
 			sourceTree = "<group>";
@@ -964,6 +977,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				258EF2F9077FEDD000011E52 /* English */,
+				6C1E212812C9E65600194313 /* Japanese */,
 			);
 			name = SyntaxManager.nib;
 			sourceTree = "<group>";
@@ -972,6 +986,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				259C2317077678DE00BA61C5 /* English */,
+				6C1E212412C9E65600194313 /* Japanese */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -980,6 +995,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A37F4B5FDCFA73011CA2CEA /* English */,
+				6C1E211F12C9E65600194313 /* Japanese */,
 			);
 			name = DocWindow.nib;
 			sourceTree = "<group>";
@@ -988,6 +1004,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A37F4B7FDCFA73011CA2CEA /* English */,
+				6C1E212512C9E65600194313 /* Japanese */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -996,6 +1013,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8C28CD2D081101A300733DA7 /* English */,
+				6C1E212712C9E65600194313 /* Japanese */,
 			);
 			name = ScriptManager.nib;
 			sourceTree = "<group>";
@@ -1004,6 +1022,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8C4186CF08864B3E0039FBFC /* English */,
+				6C1E212012C9E65600194313 /* Japanese */,
 			);
 			name = HCCManager.nib;
 			sourceTree = "<group>";
@@ -1012,6 +1031,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8C7400A308C6D93900683672 /* English */,
+				6C1E212312C9E65600194313 /* Japanese */,
 			);
 			name = KeyBindingManager.nib;
 			sourceTree = "<group>";
