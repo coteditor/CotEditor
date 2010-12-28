@@ -87,19 +87,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _headerTwoString = nil;
         _footerOneString = nil;
         _footerTwoString = nil;
-        _headerOneAlignment = nil;
-        _headerTwoAlignment = nil;
-        _footerOneAlignment = nil;
-        _footerTwoAlignment = nil;
+        _headerOneAlignment = 0;
+        _headerTwoAlignment = 0;
+        _footerOneAlignment = 0;
+        _footerTwoAlignment = 0;
         _xOffset = 0.0;
         _readyToPrint = NO; // =ヘッダ／フッタ生成処理などの準備完了フラグ
-        _printLineNum = nil;
-        _printHeader = nil;
-        _printFooter = nil;
-        _printHeaderSeparator = nil;
-        _printFooterSeparator = nil;
-        _readyToDrawPageNum = nil;
-        _showingLineNum = nil;
+        _printLineNum = NO;
+        _printHeader = NO;
+        _printFooter = NO;
+        _printHeaderSeparator = NO;
+        _printFooterSeparator = NO;
+        _readyToDrawPageNum = NO;
+        _showingLineNum = NO;
     }
 
     return self;
