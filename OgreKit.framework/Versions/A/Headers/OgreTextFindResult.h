@@ -16,8 +16,7 @@
 #import <OgreKit/OgreTextFinder.h>
 #import <OgreKit/OgreFindResultLeaf.h>
 #import <OgreKit/OgreFindResultBranch.h>
-
-@protocol OgreTextFindProgressDelegate;
+#import <OgreKit/OgreTextFindProgressDelegate.h>
 
 @protocol OgreTextFindResultDelegateProtocol
 - (void)didUpdateTextFindResult:(id)textFindResult;

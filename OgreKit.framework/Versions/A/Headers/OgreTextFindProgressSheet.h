@@ -13,28 +13,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <OgreKit/OgreTextFinder.h>
-
-// Arranged by nakamuxu(http://www.aynimac.com/) for CotEditor. 
-// コンパイラ警告対策のため、プロトコル宣言を OgreTextFindThread.h から移動
-// 2008.04.20.
-@protocol OgreTextFindProgressDelegate
-// show progress
-- (void)setProgress:(double)progression message:(NSString*)message; // progression < 0: indeterminate
-- (void)setDonePerTotalMessage:(NSString*)message;
-// finish
-- (void)done:(double)progression message:(NSString*)message; // progression < 0: indeterminate
-
-// close
-- (void)close:(id)sender;
-- (void)setReleaseWhenOKButtonClicked:(BOOL)shouldRelease;
-
-// cancel
-- (void)setCancelSelector:(SEL)aSelector toTarget:(id)aTarget withObject:(id)anObject;
-
-// show error alert
-- (void)showErrorAlert:(NSString*)title message:(NSString*)errorMessage;
-@end
-//@protocol OgreTextFindProgressDelegate;
+#import <OgreKit/OgreTextFindProgressDelegate.h>
 
 @interface OgreTextFindProgressSheet : NSObject <OgreTextFindProgressDelegate>
 {

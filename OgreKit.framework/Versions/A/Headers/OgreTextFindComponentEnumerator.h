@@ -18,7 +18,11 @@
 @interface OgreTextFindComponentEnumerator : NSEnumerator
 {
     OgreTextFindBranch	*_branch;
+#ifdef MAC_OS_X_VERSION_10_6
+    NSUInteger			*_indexes, _count;
+#else
     unsigned			*_indexes, _count;
+#endif
 	int					_nextIndex;
     int					_terminalIndex;
     BOOL				_inSelection;

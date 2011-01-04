@@ -31,7 +31,6 @@
 - (void)endEditing;         // end editing
 - (void)beginRegisteringUndoWithCapacity:(unsigned)aCapacity;  // begin resistering undo oprations
 - (void)endRegisteringUndo;  // end resistering undo oprations
-- (void)endRegisteringUndoReplaceAll:(BOOL)inBoolReplaceAll;
 
 - (BOOL)isSelected;
 - (NSRange)selectedRange;

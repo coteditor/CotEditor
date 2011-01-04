@@ -20,10 +20,11 @@
 #endif
 #import <OgreKit/oniguruma.h>
 
+//#define DEBUG_OGRE
 
 /* constants */
-// version
-#define OgreVersionString	@"2.1.1"
+// version string
+#define OgreVersionString	@"2.1.4"
 
 // compile time options:
 extern const unsigned	OgreNoneOption;

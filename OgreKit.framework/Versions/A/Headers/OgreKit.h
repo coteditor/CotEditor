@@ -43,6 +43,7 @@
 #import <OgreKit/OgreTextFindResult.h>
 #import <OgreKit/OgreFindResultLeaf.h>
 #import <OgreKit/OgreFindResultBranch.h>
+#import <OgreKit/OgreTextFindProgressDelegate.h>
 // Views
 #import <OgreKit/OgreTextView.h>
 #import <OgreKit/OgreTableView.h>
