@@ -29,6 +29,8 @@
 		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; };
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; };
+		6C4216A612DDB9180037690E /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 6C42169512DDB9180037690E /* Docs */; };
+		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
 		8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* getInfo.tiff */; };
 		8C0A063D0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A063C0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist */; };
@@ -121,8 +123,6 @@
 		8CCB5C36083F1F3C0022BA2A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CCB5C35083F1F3C0022BA2A /* Credits.rtf */; };
 		8CD5D80707BD044A00BAA31F /* docIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8CD5D80607BD044A00BAA31F /* docIcon.icns */; };
 		8CD5D80A07BD046900BAA31F /* appIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8CD5D80907BD046900BAA31F /* appIcon.icns */; };
-		8CD756830E2CD3CA00FE7A2E /* ReadMe_src-en.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CD756800E2CD3CA00FE7A2E /* ReadMe_src-en.rtf */; };
-		8CD756840E2CD3CA00FE7A2E /* ReadMe_src-jp.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CD756820E2CD3CA00FE7A2E /* ReadMe_src-jp.rtf */; };
 		8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */; };
 		8CE4859908CD617B004817E1 /* CEApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4859708CD617B004817E1 /* CEApplication.m */; };
 		8CE570B508A6E047004A8924 /* defaultSyntaxStyle_C, C++, Objective-C.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE570B408A6E047004A8924 /* defaultSyntaxStyle_C, C++, Objective-C.plist */; };
@@ -225,6 +225,8 @@
 		6C1E212612C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Preferences.nib; sourceTree = "<group>"; };
 		6C1E212712C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ScriptManager.nib; sourceTree = "<group>"; };
 		6C1E212812C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/SyntaxManager.nib; sourceTree = "<group>"; };
+		6C42169512DDB9180037690E /* Docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs; sourceTree = "<group>"; };
+		6C4216B512DDB9EB0037690E /* Docs_for_src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs_for_src; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* Script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Script; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
 		8C0A063C0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_PHP.plist; path = SyntaxColorings/defaultSyntaxStyle_PHP.plist; sourceTree = "<group>"; };
@@ -236,17 +238,6 @@
 		8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
 		8C13A5640A038ABC001EA22F /* defaultSyntaxStyle_eRuby.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_eRuby.plist; path = SyntaxColorings/defaultSyntaxStyle_eRuby.plist; sourceTree = "<group>"; };
 		8C13A5660A038B74001EA22F /* defaultSyntaxStyle_Java.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Java.plist; path = SyntaxColorings/defaultSyntaxStyle_Java.plist; sourceTree = "<group>"; };
-		8C15A7DF0BB63E7700ACC7B9 /* GPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GPL.txt; sourceTree = "<group>"; };
-		8C15A7E00BB63E7700ACC7B9 /* History-en.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "History-en.rtf"; sourceTree = "<group>"; };
-		8C15A7E10BB63E7700ACC7B9 /* Known_problems-en.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Known_problems-en.rtf"; sourceTree = "<group>"; };
-		8C15A7E20BB63E7700ACC7B9 /* ReadMe-en.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "ReadMe-en.rtf"; sourceTree = "<group>"; };
-		8C15A7E40BB63E7700ACC7B9 /* GPL-euc-JP.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GPL-euc-JP.txt"; sourceTree = "<group>"; };
-		8C15A7E50BB63E7700ACC7B9 /* History-jp.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "History-jp.rtf"; sourceTree = "<group>"; };
-		8C15A7E60BB63E7700ACC7B9 /* Known_problems-jp.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Known_problems-jp.rtf"; sourceTree = "<group>"; };
-		8C15A7E70BB63E7700ACC7B9 /* ReadMe-jp.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "ReadMe-jp.rtf"; sourceTree = "<group>"; };
-		8C15A7E80BB63E7700ACC7B9 /* To_0.7.x_Users-jp.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "To_0.7.x_Users-jp.rtf"; sourceTree = "<group>"; };
-		8C15A7E90BB63E7700ACC7B9 /* To_ATOK_Users-jp.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "To_ATOK_Users-jp.rtf"; sourceTree = "<group>"; };
-		8C15A7EA0BB63E7700ACC7B9 /* OgreKit License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "OgreKit License.txt"; sourceTree = "<group>"; };
 		8C18347608D5B29600E8AEE2 /* clearButtonImg.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = clearButtonImg.tiff; path = images/clearButtonImg.tiff; sourceTree = "<group>"; };
 		8C18347708D5B29600E8AEE2 /* editButtonImg.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = editButtonImg.tiff; path = images/editButtonImg.tiff; sourceTree = "<group>"; };
 		8C1FC69B08BDCA6100E4A6EA /* popUpButtonBG_center.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = popUpButtonBG_center.tiff; path = images/popUpButtonBG_center.tiff; sourceTree = "<group>"; };
@@ -345,8 +336,6 @@
 		8CCB5C35083F1F3C0022BA2A /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = credits/Credits.rtf; sourceTree = "<group>"; };
 		8CD5D80607BD044A00BAA31F /* docIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = docIcon.icns; path = icons/docIcon.icns; sourceTree = "<group>"; };
 		8CD5D80907BD046900BAA31F /* appIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appIcon.icns; path = icons/appIcon.icns; sourceTree = "<group>"; };
-		8CD756800E2CD3CA00FE7A2E /* ReadMe_src-en.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "ReadMe_src-en.rtf"; sourceTree = "<group>"; };
-		8CD756820E2CD3CA00FE7A2E /* ReadMe_src-jp.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "ReadMe_src-jp.rtf"; sourceTree = "<group>"; };
 		8CD7A93909CBDDDC00739513 /* CESubSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESubSplitView.h; sourceTree = "<group>"; };
 		8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESubSplitView.m; sourceTree = "<group>"; };
 		8CE4859608CD617B004817E1 /* CEApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEApplication.h; sourceTree = "<group>"; };
@@ -485,8 +474,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
 			isa = PBXGroup;
 			children = (
-				8CD7567E0E2CD3CA00FE7A2E /* Docs_for_src */,
-				8C15A7DD0BB63E7700ACC7B9 /* Docs */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				8C7F74E8091C7344005C7598 /* Import Sources */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
@@ -605,6 +592,8 @@
 				2559AD13079F9A4C0064C718 /* SyntaxColorings */,
 				259B181207E530DA00C5FD26 /* InternalScript */,
 				6CA3B36012E3B59B0019AB2E /* Script */,
+				6C42169512DDB9180037690E /* Docs */,
+				6C4216B512DDB9EB0037690E /* Docs_for_src */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -619,40 +608,6 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8C15A7DD0BB63E7700ACC7B9 /* Docs */ = {
-			isa = PBXGroup;
-			children = (
-				8C15A7DE0BB63E7700ACC7B9 /* EN */,
-				8C15A7E30BB63E7700ACC7B9 /* JP */,
-				8C15A7EA0BB63E7700ACC7B9 /* OgreKit License.txt */,
-			);
-			path = Docs;
-			sourceTree = "<group>";
-		};
-		8C15A7DE0BB63E7700ACC7B9 /* EN */ = {
-			isa = PBXGroup;
-			children = (
-				8C15A7DF0BB63E7700ACC7B9 /* GPL.txt */,
-				8C15A7E00BB63E7700ACC7B9 /* History-en.rtf */,
-				8C15A7E10BB63E7700ACC7B9 /* Known_problems-en.rtf */,
-				8C15A7E20BB63E7700ACC7B9 /* ReadMe-en.rtf */,
-			);
-			path = EN;
-			sourceTree = "<group>";
-		};
-		8C15A7E30BB63E7700ACC7B9 /* JP */ = {
-			isa = PBXGroup;
-			children = (
-				8C15A7E40BB63E7700ACC7B9 /* GPL-euc-JP.txt */,
-				8C15A7E50BB63E7700ACC7B9 /* History-jp.rtf */,
-				8C15A7E60BB63E7700ACC7B9 /* Known_problems-jp.rtf */,
-				8C15A7E70BB63E7700ACC7B9 /* ReadMe-jp.rtf */,
-				8C15A7E80BB63E7700ACC7B9 /* To_0.7.x_Users-jp.rtf */,
-				8C15A7E90BB63E7700ACC7B9 /* To_ATOK_Users-jp.rtf */,
-			);
-			path = JP;
 			sourceTree = "<group>";
 		};
 		8C74014C08C7041A00683672 /* KeyBindings */ = {
@@ -722,31 +677,6 @@
 				8CE68106090A1C6900D50390 /* Pref_Window.tiff */,
 			);
 			name = toolbarIcons;
-			sourceTree = "<group>";
-		};
-		8CD7567E0E2CD3CA00FE7A2E /* Docs_for_src */ = {
-			isa = PBXGroup;
-			children = (
-				8CD7567F0E2CD3CA00FE7A2E /* EN */,
-				8CD756810E2CD3CA00FE7A2E /* JP */,
-			);
-			path = Docs_for_src;
-			sourceTree = "<group>";
-		};
-		8CD7567F0E2CD3CA00FE7A2E /* EN */ = {
-			isa = PBXGroup;
-			children = (
-				8CD756800E2CD3CA00FE7A2E /* ReadMe_src-en.rtf */,
-			);
-			path = EN;
-			sourceTree = "<group>";
-		};
-		8CD756810E2CD3CA00FE7A2E /* JP */ = {
-			isa = PBXGroup;
-			children = (
-				8CD756820E2CD3CA00FE7A2E /* ReadMe_src-jp.rtf */,
-			);
-			path = JP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -891,10 +821,10 @@
 				8CE5D6C80AC80A31005F5FDB /* Pref_Print.tiff in Resources */,
 				8C7D7DB30BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist in Resources */,
 				8C5684CA0C48A36200346FB0 /* defaultSyntaxStyle_Python.plist in Resources */,
-				8CD756830E2CD3CA00FE7A2E /* ReadMe_src-en.rtf in Resources */,
-				8CD756840E2CD3CA00FE7A2E /* ReadMe_src-jp.rtf in Resources */,
 				8C0A063D0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist in Resources */,
 				6CA3B3E312E3B59B0019AB2E /* Script in Resources */,
+				6C4216A612DDB9180037690E /* Docs in Resources */,
+				6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
