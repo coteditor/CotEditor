@@ -31,6 +31,7 @@
 		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; };
 		6C4216A612DDB9180037690E /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 6C42169512DDB9180037690E /* Docs */; };
 		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
+		6C9BF21D12F62D3A0097BFE7 /* CotEditorHelp in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BF21C12F62D3A0097BFE7 /* CotEditorHelp */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
 		8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* getInfo.tiff */; };
 		8C0A063D0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A063C0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist */; };
@@ -227,6 +228,8 @@
 		6C1E212812C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/SyntaxManager.nib; sourceTree = "<group>"; };
 		6C42169512DDB9180037690E /* Docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs; sourceTree = "<group>"; };
 		6C4216B512DDB9EB0037690E /* Docs_for_src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs_for_src; sourceTree = "<group>"; };
+		6C9BF1C412F62D310097BFE7 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/CotEditorHelp; sourceTree = "<group>"; };
+		6C9BF27412F62E210097BFE7 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Japanese; path = Japanese.lproj/CotEditorHelp; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* Script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Script; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
 		8C0A063C0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_PHP.plist; path = SyntaxColorings/defaultSyntaxStyle_PHP.plist; sourceTree = "<group>"; };
@@ -592,6 +595,7 @@
 				2559AD13079F9A4C0064C718 /* SyntaxColorings */,
 				259B181207E530DA00C5FD26 /* InternalScript */,
 				6CA3B36012E3B59B0019AB2E /* Script */,
+				6C9BF21C12F62D3A0097BFE7 /* CotEditorHelp */,
 				6C42169512DDB9180037690E /* Docs */,
 				6C4216B512DDB9EB0037690E /* Docs_for_src */,
 			);
@@ -825,6 +829,7 @@
 				6CA3B3E312E3B59B0019AB2E /* Script in Resources */,
 				6C4216A612DDB9180037690E /* Docs in Resources */,
 				6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */,
+				6C9BF21D12F62D3A0097BFE7 /* CotEditorHelp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,6 +946,15 @@
 				6C1E212512C9E65600194313 /* Japanese */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		6C9BF21C12F62D3A0097BFE7 /* CotEditorHelp */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C9BF1C412F62D310097BFE7 /* English */,
+				6C9BF27412F62E210097BFE7 /* Japanese */,
+			);
+			name = CotEditorHelp;
 			sourceTree = "<group>";
 		};
 		8C28CD2C081101A300733DA7 /* ScriptManager.nib */ = {
