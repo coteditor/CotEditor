@@ -172,12 +172,10 @@ static CEScriptManager *sharedInstance = nil;
         if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not copy.");
         }
-    }
 
-    // 付属の Script をコピー
-    NSString *theSourceDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Script"];
-    NSString *theDestinationDir = [theDirPath stringByAppendingPathComponent:@"/SampleScript"];
-    if (([theFileManager fileExistsAtPath:theSourceDir]) && (![theFileManager fileExistsAtPath:theDestinationDir])) {	
+        // 付属の Script をコピー
+        NSString *theSourceDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Script"];
+        NSString *theDestinationDir = [theDirPath stringByAppendingPathComponent:@"/SampleScript"];
         NSError *error;
         if (![theFileManager copyItemAtPath:theSourceDir toPath:theDestinationDir error:&error]) {
             NSLog(@"Error. AppleScriptFolder sample could not copy.");
