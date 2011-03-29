@@ -987,11 +987,12 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8C71D95408640EDF00C9C0BD /* Development */ = {
+		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = .;
 				GCC_DEBUGGING_SYMBOLS = full;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1001,87 +1002,41 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "\"DEBUGGING\"";
-				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/usr/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.3.9.sdk/usr/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = CotEditor;
-				SDKROOT = macosx10.6;
-				WRAPPER_EXTENSION = app;
+				SDKROOT = macosx10.4;
+				VALID_ARCHS = "i386 ppc";
 			};
-			name = Development;
+			name = Debug;
 		};
-		8C71D95508640EDF00C9C0BD /* Deployment */ = {
+		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = .;
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_FUNCTION = NO;
-				GCC_WARN_UNUSED_LABEL = NO;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VALUE = NO;
-				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/usr/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.3.9.sdk/usr/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = CotEditor;
-				SDKROOT = macosx10.6;
-				SDKROOT_i386 = "";
-				SDKROOT_ppc = "";
-				WRAPPER_EXTENSION = app;
+				SDKROOT = macosx10.4;
+				VALID_ARCHS = "i386 ppc";
 			};
-			name = Deployment;
+			name = Release;
 		};
-		8C71D95608640EDF00C9C0BD /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				FRAMEWORK_SEARCH_PATHS = .;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/usr/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(DEVELOPER_DIR)/SDKs/MacOSX10.3.9.sdk/usr/lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = CotEditor;
-				SDKROOT = macosx10.6;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		8C71D95808640EDF00C9C0BD /* Development */ = {
+		8C71D95808640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -1091,23 +1046,9 @@
 				PREBINDING = NO;
 				SDKROOT = macosx10.4;
 			};
-			name = Development;
+			name = Debug;
 		};
-		8C71D95908640EDF00C9C0BD /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_MODEL_TUNING = G3;
-				GCC_VERSION = 4.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PREBINDING = NO;
-				SDKROOT = macosx10.4;
-				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
-				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
-			};
-			name = Deployment;
-		};
-		8C71D95A08640EDF00C9C0BD /* Default */ = {
+		8C71D95908640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -1117,7 +1058,7 @@
 				PREBINDING = NO;
 				SDKROOT = macosx10.4;
 			};
-			name = Default;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1125,22 +1066,20 @@
 		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8C71D95408640EDF00C9C0BD /* Development */,
-				8C71D95508640EDF00C9C0BD /* Deployment */,
-				8C71D95608640EDF00C9C0BD /* Default */,
+				8C71D95408640EDF00C9C0BD /* Debug */,
+				8C71D95508640EDF00C9C0BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		8C71D95708640EDF00C9C0BD /* Build configuration list for PBXProject "CotEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8C71D95808640EDF00C9C0BD /* Development */,
-				8C71D95908640EDF00C9C0BD /* Deployment */,
-				8C71D95A08640EDF00C9C0BD /* Default */,
+				8C71D95808640EDF00C9C0BD /* Debug */,
+				8C71D95908640EDF00C9C0BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
