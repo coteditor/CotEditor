@@ -265,17 +265,16 @@ static struct {
     int tag;
     NSString *path;
 } k_bundleDocumentList[] = {
-    {100, @"/OgreKit License.txt"},
+    {100, @"/GPL.txt"},
+    {101, @"/OgreKit License.txt"},
     {200, @"/EN/ReadMe-en.rtf"},
     {201, @"/EN/History-en.rtf"},
     {202, @"/EN/Known_problems-en.rtf"},
-    {203, @"/EN/GPL.txt"},
     {300, @"/JP/ReadMe-jp.rtf"},
     {301, @"/JP/History-jp.rtf"},
     {302, @"/JP/Known_problems-jp.rtf"},
     {303, @"/JP/To_ATOK_Users-jp.rtf"},
     {304, @"/JP/To_0.7.x_Users-jp.rtf"},
-    {305, @"/JP/GPL-euc-JP.txt"},
     {0, nil}
 };
 

@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10J567</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">823</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">462.00</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">823</string>
@@ -1636,6 +1636,16 @@
 												<reference key="NSMixedImage" ref="904382673"/>
 												<int key="NSTag">202</int>
 											</object>
+											<object class="NSMenuItem" id="230253917">
+												<reference key="NSMenu" ref="1050906682"/>
+												<bool key="NSIsDisabled">YES</bool>
+												<bool key="NSIsSeparator">YES</bool>
+												<string key="NSTitle"/>
+												<string key="NSKeyEquiv"/>
+												<int key="NSMnemonicLoc">2147483647</int>
+												<reference key="NSOnImage" ref="304758523"/>
+												<reference key="NSMixedImage" ref="904382673"/>
+											</object>
 											<object class="NSMenuItem" id="1019880398">
 												<reference key="NSMenu" ref="1050906682"/>
 												<string key="NSTitle">License</string>
@@ -1643,7 +1653,7 @@
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="304758523"/>
 												<reference key="NSMixedImage" ref="904382673"/>
-												<int key="NSTag">203</int>
+												<int key="NSTag">100</int>
 											</object>
 											<object class="NSMenuItem" id="497831640">
 												<reference key="NSMenu" ref="1050906682"/>
@@ -1652,7 +1662,7 @@
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="304758523"/>
 												<reference key="NSMixedImage" ref="904382673"/>
-												<int key="NSTag">100</int>
+												<int key="NSTag">101</int>
 											</object>
 										</object>
 									</object>
@@ -4857,6 +4867,7 @@
 							<reference ref="213675315"/>
 							<reference ref="282999908"/>
 							<reference ref="497831640"/>
+							<reference ref="230253917"/>
 						</object>
 						<reference key="parent" ref="188361834"/>
 					</object>
@@ -4883,6 +4894,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">824</int>
 						<reference key="object" ref="497831640"/>
+						<reference key="parent" ref="1050906682"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">830</int>
+						<reference key="object" ref="230253917"/>
 						<reference key="parent" ref="1050906682"/>
 					</object>
 				</object>
@@ -5307,6 +5323,7 @@
 					<string>824.IBPluginDependency</string>
 					<string>83.IBPluginDependency</string>
 					<string>83.ImportedFromIB2</string>
+					<string>830.IBPluginDependency</string>
 					<string>92.IBPluginDependency</string>
 					<string>92.ImportedFromIB2</string>
 				</object>
@@ -5316,7 +5333,7 @@
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{684, 631}, {194, 73}}</string>
+					<string>{{719, 631}, {194, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5398,7 +5415,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
-					<string>{{143, 704}, {602, 20}}</string>
+					<string>{{178, 704}, {602, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
@@ -5724,7 +5741,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{878, 581}, {166, 103}}</string>
+					<string>{{913, 571}, {166, 113}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
@@ -5735,6 +5752,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 				</object>
@@ -5755,7 +5773,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">829</int>
+			<int key="maxID">830</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -7973,7 +7991,7 @@
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<integer value="1060" key="NS.object.0"/>
+			<integer value="1040" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
