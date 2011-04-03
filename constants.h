@@ -260,6 +260,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_utilityMenuTag    600
 #define k_scriptMenuTag     800
 
+// Help Document Menu tag and path
+static struct {
+    int tag;
+    NSString *path;
+} k_bundleDocumentList[] = {
+    {100, @"/GPL.txt"},
+    {101, @"/OgreKit License.txt"},
+    {200, @"/EN/ReadMe-en.rtf"},
+    {201, @"/EN/History-en.rtf"},
+    {202, @"/EN/Known_problems-en.rtf"},
+    {300, @"/JP/ReadMe-jp.rtf"},
+    {301, @"/JP/History-jp.rtf"},
+    {302, @"/JP/Known_problems-jp.rtf"},
+    {303, @"/JP/To_ATOK_Users-jp.rtf"},
+    {304, @"/JP/To_0.7.x_Users-jp.rtf"},
+    {0, nil}
+};
+
 // Goto window object index
 #define k_gotoCharacterIndex    0
 #define k_gotoLineIndex         1

@@ -681,7 +681,17 @@ static CESyntaxManager *sharedInstance = nil;
     BOOL theValueIsDir = NO, theValueCreated = NO;
     BOOL theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir];
     if (!theExists) {
-        theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+#if MAC_OS_X_VERSION_10_5 > MAC_OS_X_VERSION_MAX_ALLOWED
+		theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+#else	
+		NSError *createDirError = nil;
+		theValueCreated = [theFileManager createDirectoryAtPath:theDirPath withIntermediateDirectories:NO attributes:nil error:&createDirError];
+		if (createDirError != nil) {
+			NSLog(@"Error. SyntaxStyles directory could not be created.");
+			return;
+		}
+#endif		
+		
     }
     if ((theExists && theValueIsDir) || (theValueCreated)) {
         (void)[self copyDefaultSyntaxStylesTo:theDirPath];
@@ -692,18 +702,31 @@ static CESyntaxManager *sharedInstance = nil;
 
     // styleデータの読み込み
     NSMutableArray *theArray = [NSMutableArray array];
+#if MAC_OS_X_VERSION_10_5 > MAC_OS_X_VERSION_MAX_ALLOWED
     NSArray *theFiles = [theFileManager directoryContentsAtPath:theDirPath];
-    NSString *thePath;
+#else
+	NSError *findFileError = nil;
+    NSArray *theFiles = [theFileManager contentsOfDirectoryAtPath:theDirPath error:	&findFileError];
+	if (findFileError != nil) {
+        NSLog(@"Error on seeking SyntaxStyle Files Directory.");
+        return;		
+	}
+#endif
+    
+	NSString *thePath = nil;
     int i, theCount = [theFiles count];
     for (i = 0; i < theCount; i++) {
         NSString *theFileName = [theFiles objectAtIndex:i];
         if ((![theFileName hasPrefix:@"."]) && ([theFileName hasSuffix:@".plist"])) { // ドットファイル除去
             thePath = [theDirPath stringByAppendingPathComponent:theFileName];
             NSMutableDictionary *theDict = [NSMutableDictionary dictionaryWithContentsOfFile:thePath];
-            // k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
-            [theDict setObject:[[theFileName lastPathComponent] stringByDeletingPathExtension] 
-                        forKey:k_SCKey_styleName];
-            [theArray addObject:theDict];
+			// thePathが無効だった場合などに、theDictがnilになる場合がある
+			if (theDict != nil) {				
+				// k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
+				[theDict setObject:[[theFileName lastPathComponent] stringByDeletingPathExtension] 
+						forKey:k_SCKey_styleName];
+				[theArray addObject:theDict]; // theDictがnilになってここで落ちる（MacBook Airの場合）
+			}
         }
     }
     [theArray retain]; // ===== retain

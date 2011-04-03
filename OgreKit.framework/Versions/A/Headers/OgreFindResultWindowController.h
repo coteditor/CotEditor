@@ -38,6 +38,8 @@
 - (void)show;
 - (void)close;
 
+- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item;
+
 // protected method
 - (void)setupFindResultView;
 

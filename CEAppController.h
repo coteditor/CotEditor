@@ -80,5 +80,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openHexColorCodeEditor:(id)sender;
 - (IBAction)newInDockMenu:(id)sender;
 - (IBAction)openInDockMenu:(id)sender;
+- (IBAction)openBundledDocument:(id)sender;
 
 @end

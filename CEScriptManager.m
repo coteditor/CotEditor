@@ -172,7 +172,15 @@ static CEScriptManager *sharedInstance = nil;
         if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not copy.");
         }
+
+        // 付属の Script をコピー
+        NSString *theSourceDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Script"];
+        NSString *theDestinationDir = [theDirPath stringByAppendingPathComponent:@"/SampleScript"];
+        if (![theFileManager copyPath:theSourceDir toPath:theDestinationDir handler:nil]) {
+            NSLog(@"Error. AppleScriptFolder sample could not copy.");
+        }
     }
+
     // メニューデータの読み込みとメニュー構成
     NSMenu *theASMenu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
     [self removeAllMenuItemsFromParent:theASMenu];
