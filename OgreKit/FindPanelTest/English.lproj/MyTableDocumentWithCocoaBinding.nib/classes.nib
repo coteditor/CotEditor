@@ -1,0 +1,16 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {dump = id; }; 
+            CLASS = MyTableDocumentWithCocoaBinding; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {tableView = NSTableView; }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = MyTableRowModel; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = OgreTableColumn; LANGUAGE = ObjC; SUPERCLASS = NSTableColumn; }, 
+        {CLASS = OgreTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
+    ); 
+    IBVersion = 1; 
+}

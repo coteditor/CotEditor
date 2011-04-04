@@ -1,0 +1,3656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- TiddlyWiki 1.1 copyright by Jeremy Ruston, 5 December 2004 -->
+<!-- jeremy (at) osmosoft (dot) com -->
+<!-- This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike License.
+	 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/2.0/ or send
+	 a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA. -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>TiddlyWiki</title>
+<script type="text/javascript">
+
+// ---------------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------------
+
+// monitoring the changes of the tiddlers
+var addedTiddlers;
+var updatedTiddlers;
+var deletedTiddlers;
+// the separator of the parmaviews
+var parmaSeparator = "|";
+// user info
+var username = "IsaoSonobe";
+var wikiNameRegExp;
+var wikiCodeRegExp;
+var structurePatterns;
+var stylePatterns;
+var objcRegExp;
+var javaRegExp;
+var javadocRegExp;
+var xmlRegExp;
+var xmlTagRegExp;
+var tableRegExp;
+var tableRowColRegExp;
+var invalidPreWikiNameRegexp;
+
+function main()
+{
+	resetDirtyFlags();
+	setupRegexp();
+	restart();
+}
+
+function setupRegexp()
+{
+	// Table rows pattern
+	var rowPattern = "^\\|([^\\n]*\\|)([fhc]?)$";
+	tableRegExp = new RegExp(rowPattern,"mg");
+	
+	// Table columns pattern
+	var elementPattern = "(?:(?:BGCOLOR|bgcolor)\\(([^\\)]+)\\):)?([^\\|]*)\\|";
+	tableRowColRegExp = new RegExp(elementPattern,"g");
+	
+	// Link patterns
+	var upperLetter = "[A-Z]";
+	var lowerLetter = "[a-z_0-9\\-]";
+	var anyLetter = "[A-Za-z_0-9\\-]";
+	var wikiNamePattern = "(?:" + upperLetter + "+" + lowerLetter + "+" + upperLetter + anyLetter + "*)|(?:" + upperLetter + "{2,}" + lowerLetter + "+)";
+	var urlPattern = "(?:http|https|mailto|ftp):[^\\s\"']*";
+	var explicitLinkPattern = "\\[\\[([^\\[\\]\\|]+)\\|([^\\[\\]\\|]+)\\]\\]";
+	var bracketNamePattern = "\\[\\[([^\\]]+)\\]\\]";
+	// Create the RegExp object for matching formatting
+	var patterns = "(" + wikiNamePattern + 
+		")|(" + urlPattern + 
+		")|(?:" + explicitLinkPattern + 
+		")|(?:" + bracketNamePattern + 
+		")";
+	wikiNameRegExp = new RegExp(patterns,"mg");
+	invalidPreWikiNameRegexp = new RegExp(anyLetter,"mg");
+	
+	// Create the RegExp object for matching formatting
+	var patterns = "(" + wikiNamePattern + ")|(" + urlPattern + ")";
+	wikiCodeRegExp = new RegExp(patterns,"mg");
+
+	// structe patterns
+	var breakPattern = "\\n";
+	var horizontalRulePattern = "^----$\\n?";
+	var headerPattern = "^!{1,5}";
+	var bulletListItemPattern = "^\\*+";
+	var numberedListItemPattern = "^#+";
+	var tablePattern = "(?:^\\|[^\\n]*$\\n?)+";
+	var blockquotePattern = "(?:^>[^\\n]*$\\n?)+";
+	var blockquotePattern2 = "^<<<\\n((?:^[^\\n]*\\n)+)(^<<<$\\n?)";
+	var imagePattern = "\\[[Ii][Mm][Gg]\\[(?:([^\\|]+)\\|)?([^\\[\\]\\|]+)\\]\\]";
+	var objcPattern = "(\\[[oO][bB][jJ][cC]\\]\\n?)((?:.|[^.])+?)(\\[/[oO][bB][jJ][cC]\\])";
+	var javaPattern = "(\\[[jJ][aA][vV][aA]\\]\\n?)((?:.|[^.])+?)(\\[/[jJ][aA][vV][aA]\\])";
+	var xmlPattern = "(\\[[xX][mM][lL]\\]\\n?)((?:.|[^.])+?)(\\[/[xX][mM][lL]\\])";
+	//var latexPattern = "\\$\\$[\\n]?((?:.|[^.])+?)\\$\\$";
+	// Create the RegExp object for matching formatting
+	structurePatterns = "(" + breakPattern + 
+		")|(" + horizontalRulePattern + 
+		")|(" + headerPattern + 
+		")|(" + bulletListItemPattern + 
+		")|(" + numberedListItemPattern + 
+		")|(" + tablePattern + 
+		")|(" + blockquotePattern + 
+		")|(?:" + blockquotePattern2 + 
+		")|(?:" + imagePattern + 
+		")|(?:" + objcPattern + 
+		")|(?:" + javaPattern + 
+		")|(?:" + xmlPattern + 
+		//")|(?:" + latexPattern + 
+		")";
+	
+	// style patterns
+	var boldPattern = "''([^']+)''";
+	var strikePattern = "==([^=]+)==";
+	var underlinePattern = "__([^_]+)__";
+	var italicPattern = "//([^/]+)//";
+	var supPattern = "\\^\\^([^\\^]+)\\^\\^";
+	var subPattern = "~~([^~]+)~~";
+	var colorPattern = "@@(?:color\\(([^\\)]+)\\):|bgcolor\\(([^\\)]+)\\):){0,2}([^@]+)@@";
+	// Create the RegExp object for matching formatting
+	stylePatterns = "(?:" + boldPattern + 
+		")|(?:" + strikePattern + 
+		")|(?:" + underlinePattern + 
+		")|(?:" + italicPattern + 
+		")|(?:" + supPattern + 
+		")|(?:" + subPattern + 
+		")|(?:" + colorPattern + 
+		")";
+	
+	// patterns
+	var atKeywordPattern = "@(?:catch|class|defs|encode|end|implementation|interface|private|protected|protocol|public|selector|synchronized|try)\\b";
+	var keywordPattern = "\\b(?:asm|BOOL|Class|IBAction|IBOutlet|IMP|NO|NULL|Nil|SEL|YES|auto|break|bycopy|byref|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|id|if|in|inline|inout|int|long|nil|oneway|out|register|return|self|short|signed|sizeof|static|struct|super|switch|typedef|typeof|union|unsigned|void|volatile|while)\\b";
+	var numberPattern = "(?:0x|0X)[0-9a-fA-F]+|(?:[0-9]+(?:\\.[0-9]*)?|[0-9]*\\.[0-9]+)(?:[eE][\\-\\+]?[0-9]+)?|'[^\\\\']*(?:\\\\.[^\\\\']*)*'";
+	var stringPattern = "@?\"[^\\\\\"]*(?:\\\\.[^\\\\\"]*)*\"";
+	var commentPattern = "/\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/|//[^\\\\\\n]*(?:\\\\[.\\n][^\\\\\\n]*)*";
+	var preprocessPattern = "#[^\\\\\\n]*(?:\\\\[.\\n][^\\\\\\n]*)*";
+	// Create the RegExp object
+	
+	patterns = "(" + atKeywordPattern + 
+		")|(" + keywordPattern + 
+		")|(" + numberPattern + 
+		")|(" + stringPattern + 
+		")|(" + commentPattern + 
+		")|(" + preprocessPattern + ")";
+	objcRegExp = new RegExp(patterns,"mg");
+	
+	// patterns
+	var javaKeywordPattern = "\\b(?:abstract|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|transient|try|void|volatile|while)\\b";
+	var javascriptKeywordPattern = "\\b(?:var|function)\\b";
+	var javaStringPattern = "\"[^\\\\\"]*(?:\\\\.[^\\\\\"]*)*\"";
+	var javaCommentPattern = "/\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/|//[^\\\\\\n]*(?:\\\\[.\\n][^\\\\\\n]*)*";
+	// Create the RegExp object
+	patterns = "(" + javaKeywordPattern + "|" + javascriptKeywordPattern + 
+		")|(" + javaStringPattern + 
+		")|(" + javaCommentPattern + ")";
+	javaRegExp = new RegExp(patterns,"mg");
+	
+	// patterns
+	var javadocKeywordPattern = "@[a-zA-Z][a-zA-Z_0-9\\.\\-]+";
+	var javadocHtmlPattern = "<[^>]+>";
+	// Create the RegExp object
+	patterns = "(" + javadocKeywordPattern + ")|(" + javadocHtmlPattern + ")";
+	javadocRegExp = new RegExp(patterns,"mg");
+	
+	// patterns
+	var tagPattern = "<[^!?>][^>]*>";
+	var commentPattern = "<!(?:--[^\\-]*-+(?:[^\\->][^\\-]*-+)*-|[^>]+)>";
+	var headerPattern = "<\\?[^?]*\\?+(?:[^?>][^?]*\\?+)*>";
+	var entityPattern = "&\\w+;";
+	// Create the RegExp object
+	patterns = "(" + tagPattern + 
+		")|(" + commentPattern + 
+		")|(" + headerPattern + 
+		")|(" + entityPattern + ")";
+	xmlRegExp = new RegExp(patterns,"mg");
+	
+	// patterns
+	var namePattern = "^</?[a-zA-Z][a-zA-Z0-9:\\-_]+";
+	var attrPattern = "[a-zA-Z][a-zA-Z0-9:\\-_]+";
+	var stringPattern = "\"[^\\\\\"]*(?:\\\\.[^\\\\\"]*)*\"|'[^\\\\']*(?:\\\\.[^\\\\']*)*'";
+	// Create the RegExp object
+	patterns = "(" + namePattern + 
+		")|(" + attrPattern + 
+		")|(" + stringPattern + ")";
+	xmlTagRegExp = new RegExp(patterns,"mg");
+}
+
+function resetDirtyFlags()
+{
+	addedTiddlers = new Array();
+	updatedTiddlers = new Array();
+	deletedTiddlers = new Array();
+	refreshSaveButton();
+}
+
+function restart()
+{
+	closeAllTiddlers();
+	hideMessage();
+	refreshAll();
+	var start;
+	if(window.location.hash)
+		displayTiddlers(null,decodeURI(window.location.hash.substr(1)),1,null,null,false);
+	else if(start = getTiddlerText("DefaultTiddlers").replace(new RegExp(" ", "g"), parmaSeparator))
+		displayTiddlers(null,start,1,null,null,false);
+}
+
+// ---------------------------------------------------------------------------------
+// Tiddler functions
+// ---------------------------------------------------------------------------------
+
+// Display a tiddler with animation and scrolling, as though a link to it has been clicked on
+//	src = source element object (eg link) for animation effects and positioning
+//	title = title of tiddler to display
+//	state = 0 is default or current state, 1 is read only and 2 is edittable
+//	highlightText = text to highlight in the displayed tiddler
+//	highlightCaseSensitive = flag for whether the highlight text is case sensitive
+function displayTiddler(src,title,state,highlightText,highlightCaseSensitive,slowly)
+{
+	// Figure out the tiddler this one must go after
+	var after = findContainingTiddler(src);
+	// Create the tiddler if needed
+	var theTiddler = createTiddler(title,state,after,highlightText,highlightCaseSensitive);
+	// Animate from the target of the event that followed the link
+	if(src)
+		{
+		// Start with the tiddler being transparent and fade it up
+		theTiddler.style.opacity = 0;
+		// Set the text of the floater to match the title
+		var floater = document.getElementById("floater");
+		var floaterTitle = document.createTextNode(title);
+		floater.replaceChild(floaterTitle,floater.firstChild);
+		// Animate the floater from the link location to the location of the new tiddler	
+		startZoomer(floater,src,theTiddler,slowly);
+		}
+}
+
+// Display several tiddlers from a list of space separated titles
+function displayTiddlers(src,titles,state,highlightText,highlightCaseSensitive,slowly)
+{
+	var tiddlers = titles.split(parmaSeparator);
+	for(var t=tiddlers.length-1;t>=0;t--)
+		displayTiddler(src,tiddlers[t],state,highlightText,highlightCaseSensitive,slowly);
+}
+
+// Create a tiddler if it doesn't exist (with no fancy animating). The tiddler is invisible unless it was already visible
+//	title = title of tiddler to display
+//	state = 0 is default or current state, 1 is read only and 2 is edittable
+//	after = optional existing tiddler element to put the new one after
+//	highlightText = text to highlight in the displayed tiddler
+//	highlightCaseSensitive = flag for whether the highlight text is case sensitive
+function createTiddler(title,state,after,highlightText,highlightCaseSensitive)
+{
+	// See if the tiddler div is already there
+	var theTiddler = document.getElementById("tiddler" + title);
+	if(!theTiddler)
+		{
+		// If it's not there, create the tiddler header
+		theTiddler = createTiddlerHeader(title,after,highlightText,highlightCaseSensitive);
+		// Create the tiddler body appropriately
+		if(state != 2)
+			createTiddlerBody(theTiddler,title,highlightText,highlightCaseSensitive);
+		else
+			createTiddlerEditor(theTiddler,title);
+		}
+	else
+		{
+		// If the tiddler does exist, make sure that it's in the right state
+		var theBody = document.getElementById("body" + title);
+		var theEditor = document.getElementById("editor" + title);
+		// Create and delete as appropriate
+		switch (state)
+			{
+				case 0: // For default state, leave everything alone
+				break;
+				case 1: // For read-only state, delete any editor
+					if(!theBody)
+						{
+						if(theEditor)
+							theEditor.parentNode.removeChild(theEditor);
+						createTiddlerBody(theTiddler,title,highlightText,highlightCaseSensitive);
+						}
+				break;
+				case 2: // For editor state, delete any read-only body
+					if(!theEditor)
+						{
+						if(theBody)
+							theBody.parentNode.removeChild(theBody);
+						createTiddlerEditor(theTiddler,title);
+						}
+				break;
+			}
+		}
+	// Return the completed tiddler
+	return(theTiddler);
+}
+
+// Create an invisible common header section of a tiddler
+//	title = title of tiddler to display
+//	after = optional existing tiddler element to put the new one after
+function createTiddlerHeader(title,after,highlightText,highlightCaseSensitive)
+{
+	// Create the tiddler div
+	theTiddler = createTiddlyElement(null,"div","tiddler",null);
+	theTiddler.setAttribute("id","tiddler" + title);
+	theTiddler.onmouseover = onMouseOverTiddler;
+	theTiddler.onmouseout = onMouseOutTiddler;
+	theTiddler.ondblclick = onDblClickTiddler;
+	// Link it in
+	var place = document.getElementById("tiddlerDisplay");
+	if(after)
+		{
+		if(after.nextSibling)
+			place.insertBefore(theTiddler,after.nextSibling);
+		else
+			place.appendChild(theTiddler);
+		}
+	else
+		{
+		if(place.firstChild)
+			place.insertBefore(theTiddler,place.firstChild);
+		else
+			place.appendChild(theTiddler);
+		}
+	// Create the anchor
+	var theAnchor = createTiddlyElement(theTiddler,"a",null,null);
+	theAnchor.setAttribute("name","link" + title);
+	// Prepare the regexp for the highlighted selection in the title
+	if(highlightText == "")
+		highlightText = null;
+	var highlightRegExp,highlightMatch;
+	if(highlightText)
+		{
+		highlightRegExp = new RegExp(highlightText,highlightCaseSensitive ? "mg" : "img");
+		highlightMatch = highlightRegExp.exec(title);
+		}
+	// Create the title with optional highlight
+	var theTitle = createTiddlyElement(theTiddler,"div","title",null);
+	highlightMatch = subWikify(theTitle,title,0,title.length,highlightRegExp,highlightMatch);
+	insertSpacer(theTitle);
+	theTitle.setAttribute("id","title" + title);
+	// Get the subtitle
+	var subtitle = getTiddlerSubtitle(title);
+	theTitle.title = subtitle;
+	// Return the created tiddler
+	return(theTiddler);
+}
+
+// Create a tiddler toolbar according to whether it's an editor or not
+function createTiddlerToolbar(title,editor)
+{
+	// Delete any existing toolbar
+	var theToolbar = document.getElementById("toolbar" + title);
+	if(theToolbar)
+		theToolbar.parentNode.removeChild(theToolbar);
+	// Create the toolbar
+	var theTitle = document.getElementById("title" + title);
+	var theToolbar = createTiddlyElement(null,"div","toolbar", null);
+	theTitle.appendChild(theToolbar);
+	theToolbar.setAttribute("id","toolbar" + title);
+	// Create each button in turn
+	insertSpacer(theToolbar);
+	if(!editor)
+		{
+		// Non-editor toolbar
+		createTiddlyButton(theToolbar,
+							 "close",
+							 "Close this tiddler",
+							 onClickToolbarClose);
+		insertSpacer(theToolbar);
+		if(isEditable())
+			{
+			createTiddlyButton(theToolbar,
+								  "edit",
+								  "Edit this tiddler",
+								  onClickToolbarEdit);
+			insertSpacer(theToolbar);
+			}
+		insertSpacer(theToolbar);
+		createTiddlyButton(theToolbar,
+							 "permalink",
+							 "Permalink for this tiddler",
+							 onClickToolbarPermaLink);
+		insertSpacer(theToolbar);
+		createTiddlyButton(theToolbar,
+							 "references",
+							 "Show tiddlers that link to this one",
+							 onClickToolbarBackLink);
+		}
+	else
+		{
+		// Editor toolbar
+		createTiddlyButton(theToolbar,
+							 "done",
+							 "Finish changing this tiddler",
+							 onClickToolbarSave);
+		insertSpacer(theToolbar);
+		createTiddlyButton(theToolbar,
+							 "undo",
+							 "Undo changes to this tiddler",
+							 onClickToolbarUndo);
+		insertSpacer(theToolbar);
+		createTiddlyButton(theToolbar,
+							 "delete",
+							 "Delete this tiddler",
+							 onClickToolbarDelete);
+		}
+	insertSpacer(theToolbar);
+}
+
+// Create the body section of a read-only tiddler
+function createTiddlerBody(place,title,highlightText,highlightCaseSensitive)
+{
+	// Create the toolbar
+	createTiddlerToolbar(title,false);
+	// Get the body of the tiddler
+	var tiddlerText = getTiddlerText(title);
+	var tiddlerExists = (tiddlerText != null);
+	if(!tiddlerExists)
+		tiddlerText = "This tiddler doesn't yet exist. Double-click to create it";
+	// Create the body
+	var theBody = createTiddlyElement(place,"div","body",null);
+	theBody.setAttribute("id","body" + title);
+	if(!tiddlerExists)
+		theBody.style.fontStyle = "italic";
+	// Add the body text wikifing the links
+	wikify(tiddlerText,theBody,highlightText,highlightCaseSensitive);
+}
+
+// Create the body section of a read-only tiddler
+function createTiddlerEditor(place,title)
+{	 
+	// Create the toolbar
+	createTiddlerToolbar(title,true);
+	// Get the body of the tiddler
+	var tiddlerText = getTiddlerText(title);
+	var tiddlerExists = (tiddlerText != null);
+	if(!tiddlerExists)
+		tiddlerText = "Type the text for '" + title + "' here.";
+	// Create the editor div
+	var theEditor = createTiddlyElement(place,"div","editor",null);
+	theEditor.setAttribute("id","editor" + title);
+	// Create the title editor
+	var theTitle = createTiddlyElement(theEditor,"div",null,null);
+	var theTitleBox = createTiddlyElement(theTitle,"input",null,null);
+	theTitleBox.setAttribute("id","editorTitle" + title);
+	theTitleBox.setAttribute("type","text");
+	theTitleBox.value = title;
+	theTitleBox.setAttribute("size","40");
+	// Do the body
+	var theBody = createTiddlyElement(theEditor,"div",null,null);
+	var theBodyBox = createTiddlyElement(theBody,"textarea",null,null);
+	theBodyBox.value = tiddlerText;
+	theBodyBox.setAttribute("id","editorBody" + title);
+	theBodyBox.setAttribute("rows","24");
+	theBodyBox.setAttribute("cols","68");
+}
+
+// Create child text nodes and link elements to represent a wiki-fied version of some text
+function wikify(text,parent,highlightText,highlightCaseSensitive)
+{
+	// Prepare the regexp for the highlighted selection
+	if(highlightText == "")
+		highlightText = null;
+	var highlightRegExp,highlightMatch;
+	if(highlightText)
+		{
+		highlightRegExp = new RegExp(highlightText,highlightCaseSensitive ? "mg" : "img");
+		highlightMatch = highlightRegExp.exec(text);
+		}
+	wikifyStructures(parent,text,text,0,text.length,highlightRegExp,highlightMatch);
+}
+
+
+// Helper for wikify that handles highlights within runs of text
+function subWikify(parent,text,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// Check for highlights
+	while(highlightMatch && (highlightRegExp.lastIndex > startPos) && (highlightMatch.index < endPos) && (startPos < endPos))
+		{
+		// Deal with the plain text before the highlight
+		if(highlightMatch.index > startPos)
+			{
+			parent.appendChild(document.createTextNode(text.substring(startPos,highlightMatch.index)));
+			startPos = highlightMatch.index;
+			}
+		// Deal with the highlight
+		var highlightEnd = Math.min(highlightRegExp.lastIndex,endPos);
+		var theHighlight = createTiddlyElement(parent,"span","highlight",text.substring(startPos,highlightEnd));
+		startPos = highlightEnd;
+		// Nudge along to the next highlight if we're done with this one
+		if(startPos >= highlightRegExp.lastIndex)
+			highlightMatch = highlightRegExp.exec(text);
+		}
+	// Do the unhighlighted text left over
+	if(startPos < endPos)
+		{
+		parent.appendChild(document.createTextNode(text.substring(startPos,endPos)));
+		//startPos = endPos;
+		}
+	return(highlightMatch);
+}
+
+function wikifyLinks(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = wikiNameRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos)
+			highlightMatch = subWikify(parent,text,startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		// Dump out the formatted match
+		if(formatMatch)
+			{
+			// Dump out the link itself in the appropriate format
+			if(formatMatch[1])
+				{
+				var theLink;
+				if(matchPos > 0 && invalidPreWikiNameRegexp.exec(targetText.charAt(matchPos - 1)))
+					{
+					theLink = parent;
+					}
+				else
+					{
+					 theLink = createTiddlyLink(parent,formatMatch[0],false);
+					 }
+				 highlightMatch = subWikify(theLink,text,startPos+matchPos,startPos+wikiNameRegExp.lastIndex,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[2])
+				{
+				var theLink = createExternalLink(parent,formatMatch[0]);
+				highlightMatch = subWikify(theLink,text,startPos+matchPos,startPos+wikiNameRegExp.lastIndex,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[3])
+				{
+				var theLink = createExplicitLink(parent,formatMatch[3],formatMatch[4]);
+				highlightMatch = subWikify(theLink,text,startPos+matchPos+2,startPos+matchPos+2+formatMatch[3].length,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[5])
+				{
+				var theLink = createTiddlyLink(parent,formatMatch[5],false);
+				highlightMatch = subWikify(theLink,text,startPos+matchPos+2,startPos+wikiNameRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			}
+		// Move the next position past the formatting match
+		nextPos = wikiNameRegExp.lastIndex;
+	} while(formatMatch);
+	return highlightMatch;
+}
+
+// ---------------------------------------------------------------------------------
+// Customized wikify functions
+// ---------------------------------------------------------------------------------
+
+function wikifyStructures(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	var body = parent;
+	var structureRegExp = new RegExp(structurePatterns,"mg");
+	var theList = new Array();	// theList[0]: don't use
+	var isInListMode = false;
+	var isInHeaderMode = false;
+	var isNewline = false;
+	
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = structureRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos)
+			{
+			isNewline = false;
+			highlightMatch = wikifyStyles(body,text,targetText.substring(nextPos,matchPos),startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+			}
+		// Dump out the formatted match
+		if(formatMatch)
+			{
+			// Dump out the link itself in the appropriate format
+			if(formatMatch[1])
+				{
+				if(isNewline && isInListMode)
+					{
+					var theList = new Array();
+					body = parent;
+					isInListMode = false;
+					}
+				else if(isInHeaderMode)
+					{
+					body = parent;
+					isInHeaderMode = false;
+					}
+				else
+					{
+					isNewline = true;
+					body.appendChild(document.createElement("br"));
+					}
+				}
+			else if(formatMatch[2])
+				{
+				isNewline = false;
+				body.appendChild(document.createElement("hr"));
+				}
+			else if(formatMatch[3])
+				{
+				var level = formatMatch[3].length + 1;
+				isNewline = false;
+				isInHeaderMode = true;
+				var theHeader = document.createElement("h" + level);
+				parent.appendChild(theHeader);
+				body = theHeader;
+				}
+			else if(formatMatch[4])
+				{
+				var level = formatMatch[4].length;
+				isNewline = false;
+				isInListMode = true;
+				if (theList[level] == null)
+					{
+					theList[level] = document.createElement("ul");
+					body.appendChild(theList[level]);
+					}
+				theList = theList.slice(0,level + 1);
+				body = document.createElement("li");
+				theList[level].appendChild(body);
+				}
+			else if(formatMatch[5])
+				{
+				var level = formatMatch[5].length;
+				isNewline = false;
+				isInListMode = true;
+				if (theList[level] == null)
+					{
+					theList[level] = document.createElement("ol");
+					body.appendChild(theList[level]);
+					}
+				theList = theList.slice(0,level + 1);
+				body = document.createElement("li");
+				theList[level].appendChild(body);
+				}
+			else if(formatMatch[6])
+				{
+				isNewline = false;
+				highlightMatch = wikifyTable(body,text,formatMatch[6],startPos+matchPos,startPos+structureRegExp.lastIndex,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[7])
+				{
+				isNewline = false;
+				var quotedText = formatMatch[7].replace(new RegExp("^>(>*)","mg"),"$1");
+				var theBlockquote = document.createElement("blockquote");
+				var newHighlightRegExp,newHighlightMatch;
+				if (highlightRegExp) {
+					newHighlightRegExp = new RegExp(highlightRegExp.toString(), "img");
+					newHighlightMatch = newHighlightRegExp.exec(quotedText);
+				}
+				wikifyStructures(theBlockquote,quotedText,quotedText,0,quotedText.length,newHighlightRegExp,newHighlightMatch);
+				body.appendChild(theBlockquote);
+				}
+			else if(formatMatch[8])
+				{
+				isNewline = false;
+				var theBlockquote = document.createElement("blockquote");
+				highlightMatch = wikifyStructures(theBlockquote,text,formatMatch[8],startPos+matchPos+4,startPos+structureRegExp.lastIndex-formatMatch[9].length,highlightRegExp,highlightMatch);
+				body.appendChild(theBlockquote);
+				}
+			else if(formatMatch[11])
+				{
+				isNewline = false;
+				var theImage = document.createElement("img");
+				theImage.alt = formatMatch[10];
+				theImage.src = formatMatch[11];
+				body.appendChild(theImage);
+				}
+			else if(formatMatch[12])
+				{
+				isNewline = false;
+				highlightMatch = wikifyObjcCode(body,text,formatMatch[13],startPos+matchPos+formatMatch[12].length,startPos+structureRegExp.lastIndex-formatMatch[14].length,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[15])
+				{
+				isNewline = false;
+				highlightMatch = wikifyJavaCode(body,text,formatMatch[16],startPos+matchPos+formatMatch[15].length,startPos+structureRegExp.lastIndex-formatMatch[17].length,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[18])
+				{
+				isNewline = false;
+				highlightMatch = wikifyXmlCode(body,text,formatMatch[19],startPos+matchPos+formatMatch[18].length,startPos+structureRegExp.lastIndex-formatMatch[20].length,highlightRegExp,highlightMatch);
+				}
+			/*else if(formatMatch[21])
+				{
+				isNewline = false;
+				createLaTeXCode(body,formatMatch[21]);
+				}*/
+			}
+		// Move the next position past the formatting match
+		nextPos = structureRegExp.lastIndex;
+	} while(formatMatch);
+	return highlightMatch;
+}
+
+function wikifyStyles(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	var formatRegExp = new RegExp(stylePatterns,"mg");
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = formatRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos)
+			highlightMatch = wikifyLinks(parent,text,targetText.substring(nextPos,matchPos),startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		// Dump out the formatted match
+		if(formatMatch)
+			{
+			// Dump out the link itself in the appropriate format
+			if(formatMatch[1])
+				{
+				var theBold = createTiddlyElement(parent,"b",null,null);
+				highlightMatch = wikifyStyles(theBold,text,formatMatch[1],startPos+matchPos+2,startPos+formatRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[2])
+				{
+				var theStrike = createTiddlyElement(parent,"strike",null,null);
+				highlightMatch = wikifyStyles(theStrike,text,formatMatch[2],startPos+matchPos+2,startPos+formatRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[3])
+				{
+				var theUnderline = createTiddlyElement(parent,"u",null,null);
+				highlightMatch = wikifyStyles(theUnderline,text,formatMatch[3],startPos+matchPos+2,startPos+formatRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[4])
+				{
+				var theItalic = createTiddlyElement(parent,"i",null,null);
+				highlightMatch = wikifyStyles(theItalic,text,formatMatch[4],startPos+matchPos+2,startPos+formatRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[5])
+				{
+				var theSup = createTiddlyElement(parent,"sup",null,null);
+				highlightMatch = wikifyStyles(theSup,text,formatMatch[5],startPos+matchPos+2,startPos+formatRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[6])
+				{
+				var theSub = createTiddlyElement(parent,"sub",null,null);
+				highlightMatch = wikifyStyles(theSub,text,formatMatch[6],startPos+matchPos+2,startPos+formatRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			else if(formatMatch[9])
+				{
+				var theSpan;
+				if (formatMatch[7] == "" && formatMatch[8] == "" )
+					{
+					theSpan = createTiddlyElement(parent,"span","marked",null);
+					}
+					else
+					{
+					theSpan = createTiddlyElement(parent,"span",null,null);
+					if (formatMatch[7] != "") theSpan.style.color = formatMatch[7];
+					if (formatMatch[8] != "") theSpan.style.background = formatMatch[8];
+					}
+				highlightMatch = wikifyStyles(theSpan,text,formatMatch[9],startPos+formatRegExp.lastIndex-2-formatMatch[9].length,startPos+formatRegExp.lastIndex-2,highlightRegExp,highlightMatch);
+				}
+			}
+		// Move the next position past the formatting match
+		nextPos = formatRegExp.lastIndex;
+	} while(formatMatch);
+	return highlightMatch;
+}
+
+// Create a table 
+function wikifyTable(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	var theTable = document.createElement("table");
+	var bodyRowLen = 0;
+	var headRowLen = 0;
+	var footRowLen = 0;
+	var bodyRows = new Array();
+	var headRows = new Array();
+	var footRows = new Array();
+	var theCaption = null;
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = tableRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Dump out the formatted match
+		if(formatMatch) {
+			if (formatMatch[2] == "c") {
+				var cap = formatMatch[1].substring(0,formatMatch[1].length-1);
+				var theCaption = document.createElement("caption");
+				highlightMatch = wikifyStyles(theCaption,text,cap,startPos+matchPos+1,startPos+cap.length,highlightRegExp,highlightMatch);
+				if (bodyRowLen == 0 && headRowLen == 0 && footRowLen == 0) {
+					theCaption.setAttribute("align", "top");
+				} else {
+					theCaption.setAttribute("align", "bottom");
+				}
+			} else if (formatMatch[2] == "h") {
+				highlightMatch = wikifyTableRow(headRows,headRowLen,text,formatMatch[1],startPos+matchPos,startPos+matchPos+formatMatch[1].length,highlightRegExp,highlightMatch);
+				headRowLen++;
+			} else if (formatMatch[2] == "f") {
+				highlightMatch = wikifyTableRow(footRows,footRowLen,text,formatMatch[1],startPos+matchPos,startPos+matchPos+formatMatch[1].length,highlightRegExp,highlightMatch);
+				footRowLen++;
+			} else {
+				highlightMatch = wikifyTableRow(bodyRows,bodyRowLen,text,formatMatch[1],startPos+matchPos,startPos+matchPos+formatMatch[1].length,highlightRegExp,highlightMatch);
+				bodyRowLen++;
+			}
+		}
+		nextPos = tableRegExp.lastIndex;
+	} while(formatMatch);
+	
+	if (theCaption != null) {
+		theTable.appendChild(theCaption);
+	}
+	
+	if (headRowLen > 0) {
+		var theTableHead = document.createElement("thead");
+		createTableRows(headRows,theTableHead);
+		theTable.appendChild(theTableHead);
+	}
+	
+	if (bodyRowLen > 0) {
+		var theTableBody = document.createElement("tbody");
+		createTableRows(bodyRows,theTableBody);
+		theTable.appendChild(theTableBody);
+	}
+	
+	if (footRowLen > 0) {
+		var theTableFoot = document.createElement("tfoot");
+		createTableRows(footRows,theTableFoot);
+		theTable.appendChild(theTableFoot);
+	}
+	
+	parent.appendChild(theTable);
+	return highlightMatch;
+}
+
+function wikifyTableRow(rows,rowIndex,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var eIndex = 0;
+	var elements = new Array();
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = tableRowColRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		if(formatMatch) {
+			var	eText = formatMatch[2];
+			if (eText == "~" || eText == ">") {
+				elements[eIndex] = eText;
+			} else {
+				var eTextLen = eText.length;
+				var align = "";
+				if (eTextLen >= 1 && eText.charAt(0) == " ") {
+					if (eTextLen >= 3 && eText.charAt(eTextLen - 1) == " ") {
+						align = "center";
+						eText = eText.substring(1,eTextLen - 1);
+						//eTextLen -= 2;
+						eTextLen--;
+					} else {
+						align = "right";
+						eText = eText.substring(1);
+						eTextLen--;
+					}
+				} else if (eTextLen >= 2 && eText.charAt(eTextLen - 1) == " ") {
+					align = "left";
+					eText = eText.substring(0,eTextLen - 1);
+					//eTextLen--;
+				}
+				
+				var theElement;
+				if (eTextLen >= 1 && eText.charAt(0) == "!") {
+					theElement = document.createElement("th");
+					eText = eText.substring(1);
+					eTextLen--;
+				} else {
+					theElement = document.createElement("td");
+				}
+				
+				if (align != "") {
+					theElement.align = align;
+				}
+				
+				if (formatMatch[1]) {
+					theElement.style.background = formatMatch[1];
+				}
+				
+				highlightMatch = wikifyStyles(theElement,text,eText,startPos+tableRowColRegExp.lastIndex-eTextLen,startPos+tableRowColRegExp.lastIndex-1,highlightRegExp,highlightMatch);
+				elements[eIndex] = theElement;
+			}
+			eIndex++;
+		}
+	} while(formatMatch);
+	rows[rowIndex] = elements;
+	return highlightMatch;
+}
+
+function createTableRows(rows,parent)
+{
+	var i, j, k, cols;
+	for (i = 0; i < rows.length; i++) {
+		cols = rows[i];
+		var theRow = document.createElement("tr");
+		for (j = 0; j < cols.length; j++) {
+			if (cols[j] == "~") continue;
+			
+			var rowspan = 1;
+			for (k = i+1; k < rows.length; k++) {
+				if (rows[k][j] != "~") break;
+				rowspan++;
+			}
+			
+			var colspan = 1;
+			for (; j < cols.length - 1; j++) {
+				if (cols[j] != ">") break;
+				colspan++;
+			}
+			
+			var theElement = cols[j];
+			if (rowspan > 1) {
+				theElement.setAttribute("rowspan",rowspan);
+				theElement.valign = "center";
+			}
+			if (colspan > 1) theElement.setAttribute("colspan",colspan);
+			theRow.appendChild(theElement);
+		}
+		parent.appendChild(theRow);
+	}
+}
+
+function createExplicitLink(place,title,url)
+{
+	var theLink = document.createElement("a");
+	theLink.href = url;
+	theLink.title = "External link to " + url;
+	theLink.target = "_blank";
+	place.appendChild(theLink);
+	return(theLink);
+}
+
+function wikifyCodes(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = wikiCodeRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos)
+			highlightMatch = subWikify(parent,text,startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		// Dump out the formatted match
+		if(formatMatch)
+			{
+			// Dump out the link itself in the appropriate format
+			var theLink;
+			if(formatMatch[1])
+				{
+				if(matchPos > 0 && invalidPreWikiNameRegexp.exec(targetText.charAt(matchPos - 1)))
+					{
+					theLink = parent;
+					}
+				else
+					{
+					 theLink = createTiddlyLink(parent,formatMatch[0],false);
+					 }
+				 }
+			else if(formatMatch[2])
+				var theLink = createExternalLink(parent,formatMatch[0]);
+			highlightMatch = subWikify(theLink,text,startPos+matchPos,startPos+wikiCodeRegExp.lastIndex,highlightRegExp,highlightMatch);
+			}
+		// Move the next position past the formatting match
+		nextPos = wikiCodeRegExp.lastIndex;
+	} while(formatMatch);
+	return highlightMatch;
+}
+
+
+// wikify an Objective-C code
+function wikifyObjcCode(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	var theCode = document.createElement("code");
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = objcRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos) {
+			highlightMatch = wikifyCodes(theCode,text,targetText.substring(nextPos,matchPos),startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		}
+		// Dump out the formatted match
+		if(formatMatch) {
+			// Dump out the link itself in the appropriate format
+			var theSubCode;
+			if(formatMatch[1])
+				theSubCode = createCodeClass(theCode,"objc_keyword");
+			else if(formatMatch[2])
+				theSubCode = createCodeClass(theCode,"objc_keyword");
+			else if(formatMatch[3])
+				theSubCode = createCodeClass(theCode,"objc_number");
+			else if(formatMatch[4])
+				theSubCode = createCodeClass(theCode,"objc_string");
+			else if(formatMatch[5])
+				var theSubCode = createCodeClass(theCode,"objc_comment");
+			else if(formatMatch[6])
+				var theSubCode = createCodeClass(theCode,"objc_preprocess");
+			highlightMatch = wikifyCodes(theSubCode,text,formatMatch[0],startPos+matchPos,startPos+objcRegExp.lastIndex,highlightRegExp,highlightMatch);
+		}
+		nextPos = objcRegExp.lastIndex;
+	} while(formatMatch);
+	parent.appendChild(theCode);
+	return highlightMatch;
+}
+
+// Create a Java code
+function wikifyJavaCode(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	var theCode = document.createElement("code");
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = javaRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos) {
+			highlightMatch = wikifyCodes(theCode,text,targetText.substring(nextPos,matchPos),startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		}
+		// Dump out the formatted match
+		if(formatMatch) {
+			// Dump out the link itself in the appropriate format
+			if(formatMatch[1]) {
+				var theSubCode = createCodeClass(theCode,"java_keyword");
+				highlightMatch = wikifyCodes(theSubCode,text,formatMatch[0],startPos+matchPos,startPos+javaRegExp.lastIndex,highlightRegExp,highlightMatch);
+			} else if(formatMatch[2]) {
+				var theSubCode = createCodeClass(theCode,"java_string");
+				highlightMatch = wikifyCodes(theSubCode,text,formatMatch[0],startPos+matchPos,startPos+javaRegExp.lastIndex,highlightRegExp,highlightMatch);
+			} else if(formatMatch[3]) {
+				if(formatMatch[0].charAt(2) == "*") {
+					highlightMatch = wikifyJavadocCode(theCode,text,formatMatch[0],startPos+matchPos,startPos+javaRegExp.lastIndex,highlightRegExp,highlightMatch);
+				} else {
+					var theSubCode = createCodeClass(theCode,"java_comment");
+					highlightMatch = wikifyCodes(theSubCode,text,formatMatch[0],startPos+matchPos,startPos+javaRegExp.lastIndex,highlightRegExp,highlightMatch);
+				}
+			}
+		}
+		nextPos = javaRegExp.lastIndex;
+	} while(formatMatch);
+	parent.appendChild(theCode);
+	return highlightMatch;
+}
+
+// wikify a Javadoc code
+function wikifyJavadocCode(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	var theCode = createCodeClass(parent,"javadoc");
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = javadocRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos) {
+			highlightMatch = wikifyCodes(theCode,text,targetText.substring(nextPos,matchPos),startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		}
+		// Dump out the formatted match
+		if(formatMatch) {
+			// Dump out the link itself in the appropriate format
+			var theSubcode;
+			if(formatMatch[1])
+				theSubcode = createCodeClass(theCode,"javadoc_keyword");
+			else if(formatMatch[2])
+				theSubcode = createCodeClass(theCode,"javadoc_html");
+			highlightMatch = wikifyCodes(theSubcode,text,formatMatch[0],startPos+matchPos,startPos+javadocRegExp.lastIndex,highlightRegExp,highlightMatch);
+		}
+		nextPos = javadocRegExp.lastIndex;
+	} while(formatMatch);
+	return highlightMatch;
+}
+
+// wikify a XML code
+function wikifyXmlCode(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	var theCode = document.createElement("code");
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = xmlRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos) {
+			highlightMatch = wikifyCodes(theCode,text,targetText.substring(nextPos,matchPos),startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		}
+		// Dump out the formatted match
+		if(formatMatch) {
+			// Dump out the link itself in the appropriate format
+			if(formatMatch[1]) {
+				highlightMatch = wikifyXmlTagCode(theCode,text,formatMatch[0],startPos+matchPos,startPos+xmlRegExp.lastIndex,highlightRegExp,highlightMatch);
+			} else if(formatMatch[2]) {
+				var theSubCode = createCodeClass(theCode,"xml_comment");
+				highlightMatch = wikifyCodes(theSubCode,text,formatMatch[0],startPos+matchPos,startPos+xmlRegExp.lastIndex,highlightRegExp,highlightMatch);
+			} else if(formatMatch[3]) {
+				var theSubCode = createCodeClass(theCode,"xml_header");
+				highlightMatch = wikifyCodes(theSubCode,text,formatMatch[0],startPos+matchPos,startPos+xmlRegExp.lastIndex,highlightRegExp,highlightMatch);
+			} else if(formatMatch[4]) {
+				var theSubCode = createCodeClass(theCode,"xml_entity");
+				highlightMatch = wikifyCodes(theSubCode,text,formatMatch[0],startPos+matchPos,startPos+xmlRegExp.lastIndex,highlightRegExp,highlightMatch);
+			}
+		}
+		nextPos = xmlRegExp.lastIndex;
+	} while(formatMatch);
+	parent.appendChild(theCode);
+	return highlightMatch;
+}
+
+// wikify a XML tag code
+function wikifyXmlTagCode(parent,text,targetText,startPos,endPos,highlightRegExp,highlightMatch)
+{
+	// The start of the fragment of the text being considered
+	var nextPos = 0;
+	var theCode = createCodeClass(parent,"xml_tag");
+	// Loop through the bits of the body text
+	do {
+		// Get the next formatting match
+		var formatMatch = xmlTagRegExp.exec(targetText);
+		var matchPos = formatMatch ? formatMatch.index : targetText.length;
+		// Subwikify the plain text before the match
+		if(nextPos < matchPos) {
+			highlightMatch = wikifyCodes(theCode,text,targetText.substring(nextPos,matchPos),startPos+nextPos,startPos+matchPos,highlightRegExp,highlightMatch);
+		}
+		// Dump out the formatted match
+		if(formatMatch) {
+			// Dump out the link itself in the appropriate format
+			var theSubcode;
+			if(formatMatch[1])
+				theSubcode = theCode;
+			else if(formatMatch[2])
+				theSubcode = createCodeClass(theCode,"xml_attribute");
+			else if(formatMatch[3])
+				theSubcode = createCodeClass(theCode,"xml_string");
+			highlightMatch = wikifyCodes(theSubcode,text,formatMatch[0],startPos+matchPos,startPos+xmlTagRegExp.lastIndex,highlightRegExp,highlightMatch);
+		}
+		nextPos = xmlTagRegExp.lastIndex;
+	} while(formatMatch);
+	return highlightMatch;
+}
+
+function createCodeClass(place,codeClass)
+{
+	var theCode = document.createElement("code");
+	theCode.setAttribute("class",codeClass);
+	place.appendChild(theCode);
+	return theCode;
+}
+
+// Create a LaTeX code
+/*function createLaTeXCode(place,text)
+{
+	var theCode = document.createElement("img");
+	theCode.setAttribute("src", "../cgi-bin/mimetex.cgi?" + text);
+	theCode.setAttribute("border", "0");
+	theCode.setAttribute("align", "absmiddle");
+	place.appendChild(theCode);
+}*/
+
+/*
+ *
+ */
+
+function saveTiddler(title)
+{
+	// Get the title and body text
+	var theNewTitle = document.getElementById("editorTitle" + title).value;
+	var theNewBody = document.getElementById("editorBody" + title).value;
+	// Remove any existing entry from the store
+	var theExisting = document.getElementById("store" + theNewTitle);
+	// Cnange the dirty flags
+	if(theExisting) {
+		theExisting.parentNode.removeChild(theExisting);
+		if (addedTiddlers[theNewTitle] == undefined) {
+			updatedTiddlers[theNewTitle] = theNewTitle;
+		}
+	} else {
+		if (deletedTiddlers[theNewTitle]) {
+			updatedTiddlers[theNewTitle] = theNewTitle;
+			delete deletedTiddlers[theNewTitle];
+		} else {
+			addedTiddlers[theNewTitle] = title;
+		}
+	}
+	// Remove any existing entry from the store
+	theExisting = document.getElementById("store" + title);
+	if(theExisting) {
+		theExisting.parentNode.removeChild(theExisting);
+		if (title != theNewTitle) {
+			if (addedTiddlers[title]) {
+				delete addedTiddlers[title];
+			} else {
+				if (updatedTiddlers[title]) {
+					delete updatedTiddlers[title];
+				}
+				deletedTiddlers[title] = title;
+			}
+		}
+	}
+	// Create the new entry in the store
+	var place = document.getElementById("storeArea");
+	var storeItem = createTiddlyElement(place,"div",null,theNewBody);
+	storeItem.setAttribute("id","store" + theNewTitle);
+	var now = new Date();
+	storeItem.setAttribute("modified",ConvertToYYYYMMDDHHMM(now));
+	storeItem.setAttribute("modifier",username);
+	// Display the new tiddler read-only
+	displayTiddler(null,theNewTitle,1,null,null,null,false);
+	// Close the old tiddler if this is a rename
+	if(title != theNewTitle)
+		{
+		var oldTiddler = document.getElementById("tiddler" + title);
+		oldTiddler.parentNode.removeChild(oldTiddler);
+		}
+	// Refresh the menu and sidebars to take it into account
+	refreshAll();
+}
+
+function searchTiddlers(text,caseSensitive,useRegex)
+{
+	var searchText;
+	// Close any open tiddlers
+	closeAllTiddlers();
+	// If the search text is not a regular expression, escape the search text
+	if (useRegex) {
+		searchText = text;
+	} else {
+		searchText = escapeRegExp(text);
+	}
+	// If the search text is actually the full name of a tiddler, make sure that one is
+	// displayed first, and get a reference to it to add the other matches afterwards
+	if(document.getElementById("store" + text))
+		displayTiddler(null,text,1,text,caseSensitive,false);
+	var theTiddler = document.getElementById("tiddler" + text);
+	// Traverse through the store area looking for the text in the title or body
+	var store = document.getElementById("storeArea").childNodes;
+	var c = 0;
+	var regExp = new RegExp(searchText,caseSensitive ? "m" : "im");
+	for(var t = 0; t < store.length; t++)
+		{
+		var e = store[t];
+		if(e.id)
+			if(e.id.substr(0,5) == "store")
+				{
+				if(regExp.exec(e.id.substr(5)) || regExp.exec(e.firstChild.nodeValue))
+					{
+					// Display matching tiddlers
+					displayTiddler(null,e.id.substr(5),1,searchText,caseSensitive,false);
+					c++;
+					}
+				}
+		}
+	// Jam in a message
+	var q;
+	if (useRegex) {
+		q = "/";
+	} else {
+		q = "'";
+	}
+	displayMessage(c + " tiddlers found matching " + q + text + q);
+}
+
+function selectTiddler(title)
+{
+	// Make the toolbar visible
+	e = document.getElementById("toolbar" + title);
+	if(e != null)
+		e.style.visibility = "visible";
+}
+
+function deselectTiddler(title)
+{
+
+	// Make the toolbar invisible
+	e = document.getElementById("toolbar" + title);
+	if(e != null)
+		e.style.visibility = "hidden";
+}
+
+function deleteTiddler(title)
+{
+	// Remove the tiddler from the display
+	closeTiddler(title,false);
+	// Delete it from the store
+	var tiddler = document.getElementById("store" + title);
+	// Change the dirty flags
+	if(tiddler) {
+		tiddler.parentNode.removeChild(tiddler);
+		if (addedTiddlers[title]) {
+			delete addedTiddlers[title];
+		} else {
+			if (updatedTiddlers[title]) {
+				delete updatedTiddlers[title];
+			}
+			deletedTiddlers[title] = title;
+		}
+	}
+	// Refresh the menu and sidebars to take it into account
+	refreshAll();
+}
+
+function closeTiddler(title,slowly)
+{
+	var tiddler = document.getElementById("tiddler" + title);
+	if(tiddler != null)
+		{
+		tiddler.id = "";
+		startCloser(tiddler,slowly);
+		}
+}
+
+function closeAllTiddlers()
+{
+	// Delete all the elements in the displayArea
+	var e = document.getElementById("tiddlerDisplay");
+	while(e.firstChild != null)
+		e.removeChild(e.firstChild);
+	hideMessage();
+}
+
+// ---------------------------------------------------------------------------------
+// Tiddler-related utility functions
+// ---------------------------------------------------------------------------------
+
+function getTiddlerText(title)
+{
+		// Attempt to retrieve it from the store
+		var tiddlerStore = document.getElementById("store" + title);
+		if(tiddlerStore != null)
+			return(tiddlerStore.firstChild.nodeValue);
+		else
+			return(null);
+}
+
+function getTiddlerSubtitle(title)
+{
+	var tiddlerStore = document.getElementById("store" + title);
+	if(tiddlerStore != null)
+		{
+		var theModifier = tiddlerStore.getAttribute("modifier");
+		if(!theModifier)
+			theModifier = "(unknown)";
+		var theModified = tiddlerStore.getAttribute("modified");
+		if(theModified)
+			theModified = ConvertFromYYYYMMDDHHMM(theModified).toString();
+		else
+			theModified = "(unknown)";
+		return(theModifier + ", " + theModified);
+		}
+	else
+		return(null);
+}
+
+function createTiddlyElement(theParent,theElement,theClass,theText)
+{
+	var e = document.createElement(theElement);
+	if(theClass != null)
+		e.className = theClass;
+	if(theText != null)
+		e.appendChild(document.createTextNode(theText));
+	if(theParent != null)
+		theParent.appendChild(e);
+	return(e);
+}
+
+function createTiddlyButton(theParent,theText,theTooltip,theAction)
+{
+	var theButton = document.createElement("a");
+	if(theAction)
+		{
+		theButton.onclick = theAction;
+		theButton.setAttribute("href","JavaScript:;");
+		}
+	theButton.setAttribute("title",theTooltip);
+	if(theText)
+		{
+		theButton.appendChild(document.createTextNode(theText));
+		}
+	theParent.appendChild(theButton);
+	return(theButton);
+}
+
+function createTiddlyLink(place,title,includeText)
+{
+	var btn;
+	var text = includeText ? title : null;
+	var subTitle = getTiddlerSubtitle(title);
+	var theClass = subTitle ? "tiddlyLinkExisting" : "tiddlyLinkNonExisting";
+	if(!subTitle)
+		subTitle = title + " doesn't yet exist";
+	var btn = createTiddlyButton(place,text,subTitle,onClickTiddlerLink);
+	btn.className = theClass;
+	btn.setAttribute("tiddlyLink",title);
+	return(btn);
+}
+
+// Create an external link
+function createExternalLink(place,url)
+{
+	var theLink = document.createElement("a");
+	theLink.href = url;
+	theLink.title = "External link to " + url;
+	theLink.target = "_blank";
+	place.appendChild(theLink);
+	return(theLink);
+}
+
+// Find the tiddler instance (if any) containing a specified element
+function findContainingTiddler(e)
+{
+	if(e == null)
+		return(null);
+	do {
+		if(e != document)
+			{
+			if(e.id)
+				if(e.id.substr(0,7) == "tiddler")
+					return(e);
+			}
+		e = e.parentNode;
+	} while(e != document);
+	return(null);
+}
+
+// Display some text in the message area
+function displayMessage(text)
+{
+	var msgArea = document.getElementById("messageArea");
+	var msg = document.createTextNode(text);
+	msgArea.replaceChild(msg,msgArea.firstChild);
+	msgArea.style.display = "block";
+}
+
+// Hide the message area and clear the search box
+function hideMessage()
+{
+	var msgArea = document.getElementById("messageArea");
+	msgArea.style.display = "none";
+}
+
+// ---------------------------------------------------------------------------------
+// Menu and sidebar functions
+// ---------------------------------------------------------------------------------
+
+var currentTab; // The id of the currently selected tab
+
+// Refresh everything
+function refreshAll()
+{
+	refreshHeader();
+	refreshMenu();
+	refreshSidebar();
+	refreshSaveButton();
+}
+
+// Refresh all parts of the header
+function refreshHeader()
+{
+	// Get the site title and subtitle
+	var theTitle = getTiddlerText("SiteTitle");
+	if(!theTitle) theTitle = "SiteTitle";
+	var theSubtitle = getTiddlerText("SiteSubtitle");
+	if(!theSubtitle) theSubtitle = "SiteSubtitle";
+	// Set the page title
+	document.title = theTitle + " - " + theSubtitle;
+	// Do the title
+	var place = document.getElementById("siteTitle");
+	while(place.firstChild != null)
+		place.removeChild(place.firstChild);
+	place.appendChild(document.createTextNode(theTitle));
+	// Do the subtitle
+	var place = document.getElementById("siteSubtitle");
+	while(place.firstChild != null)
+		place.removeChild(place.firstChild);
+	wikify(theSubtitle,place,null,null);
+}
+
+// Refresh all parts of the main menu
+function refreshMenu()
+{
+	var place = document.getElementById("mainMenu");
+	while(place.firstChild != null)
+		place.removeChild(place.firstChild);
+	var menu = getTiddlerText("MainMenu");
+	if(!menu) menu = "MainMenu";
+	wikify(menu,place,null,null);
+}
+
+// Refresh all parts of the sidebar
+function refreshSidebar()
+{
+	switch(currentTab)
+		{
+			case "tabTimeline":
+				refreshTabTimeline();
+				break;
+			case "tabAll":
+				refreshTabAll();
+				break;
+			case "tabTags":
+				refreshTabTags();
+				break;
+			default:
+				refreshTabTimeline();
+				break;
+		}
+}
+
+// Timeline tab
+function refreshTabTimeline()
+{
+	// Get names and dates of all tiddlers from the store
+	var allTiddlers = new Array(); // Will be an array of 2-entry arrays, where entry 0 = name, 1 = date
+	var storeNodes = document.getElementById("storeArea").childNodes;
+	for (var t = 0; t < storeNodes.length; t++)
+		{
+		var n = storeNodes[t];
+		if(n.id)
+			if(n.id.substr(0,5) == "store")
+				allTiddlers.push(new Array(n.id.substr(5),n.getAttribute("modified")));
+		}
+	// Sort the tiddlers by date
+	allTiddlers.sort(function (a,b) { if(a[1] == b[1]) return(1); else return (a[1] < b[1]) ? +1 : -1; });
+	// Delete any existing entries in the tab
+	var place = document.getElementById("sidebarContent");
+	while(place.firstChild != null)
+		place.removeChild(place.firstChild);
+	// Output the links
+	var lastDay = "";
+	for (t = 0; t < allTiddlers.length; t++)
+		{
+		var theDay = allTiddlers[t][1].substr(0,8);
+		if(theDay != lastDay)
+			{
+			var theDateElement = document.createElement("span");
+			var theDateCaption = ConvertFromYYYYMMDDHHMM(allTiddlers[t][1]).toString();
+			theDateElement.appendChild(document.createTextNode(theDateCaption));
+			theDateElement.className = "sidebarSubHeading";
+			place.appendChild(theDateElement);
+			place.appendChild(document.createElement("br")); 
+			lastDay = theDay;
+			}
+		place.appendChild(document.createTextNode(String.fromCharCode(160)));
+		place.appendChild(document.createTextNode(String.fromCharCode(160)));
+		createTiddlyLink(place,allTiddlers[t][0],true);
+		place.appendChild(document.createElement("br"));
+		}
+}
+
+// All tab
+function refreshTabAll()
+{
+	// Get names and dates of all tiddlers from the store
+	var allTiddlers = new Array(); // Will be an array of 2-entry arrays, where entry 0 = name, 1 = date
+	var storeNodes = document.getElementById("storeArea").childNodes;
+	for (var t = 0; t < storeNodes.length; t++)
+		{
+		var n = storeNodes[t];
+		if(n.id)
+			if(n.id.substr(0,5) == "store")
+				allTiddlers.push(new Array(n.id.substr(5),n.getAttribute("modified")));
+		}
+	// Sort the tiddlers by name
+	allTiddlers.sort(function (a,b) { if(a[0] == b[0]) return(0); else return (a[0] > b[0]) ? +1 : -1; });
+	// Delete any existing entries in the 'all' list
+	var place = document.getElementById("sidebarContent");
+	while(place.firstChild != null)
+		place.removeChild(place.firstChild);
+	// Output the links
+	for (t = 0; t < allTiddlers.length; t++)
+		{
+		createTiddlyLink(place,allTiddlers[t][0],true);
+		place.appendChild(document.createElement("br"));
+		}
+}
+
+// Tags tab
+function refreshTabTags()
+{
+}
+
+// ---------------------------------------------------------------------------------
+// Quine (http://www.google.com/search?q=quine&ie=UTF-8&oe=UTF-8)
+// ---------------------------------------------------------------------------------
+
+// Get the text of the TiddlyWiki HTML file itself, incorporating new edits
+function ShowSource()
+{
+	// Create the popup window
+	var srcWindow = window.open("","sourceWindow","width=700,height=600");
+	var srcDocument = srcWindow.document;
+	// Jam in the text template
+	srcDocument.write("<html><head></head><body>" +
+					  window.document.getElementById("saveMessage").innerHTML +
+					  "</body></html>");
+	srcDocument.close();
+	// Get a reference to the text area
+	var theTextBox = srcDocument.getElementById("source");
+	// Jam in the current source
+	theTextBox.value = window.document.getElementById("storeArea").innerHTML;
+	// Select the text in the textbox
+	theTextBox.focus();
+	theTextBox.select();
+}
+
+function refreshSaveButton()
+{
+	var c = 0;
+	for (var title in addedTiddlers) {
+		c = c + 1;
+		break;
+	}
+	for (var title in updatedTiddlers) {
+		c = c + 1;
+		break;
+	}
+	for (var title in deletedTiddlers) {
+		c = c + 1;
+		break;
+	}
+	
+	var button = document.getElementById("saveButton");
+	if (c > 0) {
+		button.style.fontWeight = "bold";
+	} else {
+		button.style.fontWeight = "none";
+	}
+}
+
+// ---------------------------------------------------------------------------------
+// Event handlers
+// ---------------------------------------------------------------------------------
+
+// Event handler for clicking on the logo
+function onClickLogo(e)
+{
+	restart();
+}
+
+// Event handler for clicking on a tiddly link
+function onClickTiddlerLink(e)
+{
+	if (!e) var e = window.event;
+	hideMessage();
+	// Get the text of the link
+	var title = this.getAttribute("tiddlyLink");
+	// Display that tiddler
+	if(title)
+		displayTiddler(this,title,0,null,null,e.shiftKey || e.altKey);
+}
+
+// Event handler for mouse over a tiddler
+function onMouseOverTiddler(e)
+{
+	// Get the name of this tiddler
+	var tiddler;
+	if(this.id.substr(0,7) == "tiddler")
+		tiddler = this.id.substr(7);
+	// Select that tiddler
+	if(tiddler)
+		selectTiddler(tiddler);
+}
+
+// Event handler for mouse out of a tiddler
+function onMouseOutTiddler(e)
+{
+	// Get the name of this tiddler
+	var tiddler;
+	if(this.id.substr(0,7) == "tiddler")
+		tiddler = this.id.substr(7);
+	// Deselect that tiddler
+	if(tiddler)
+		deselectTiddler(tiddler);
+}
+
+// Event handler for double click on a tiddler
+function onDblClickTiddler(e)
+{
+	if (!isEditable()) {
+		return;
+	}
+	
+	hideMessage();
+	// Empty the current selection
+	if(document.selection)
+		document.selection.empty();
+	// Get the name of this tiddler
+	var tiddler;
+	if(this.id.substr(0,7) == "tiddler")
+		tiddler = this.id.substr(7);
+	// Deselect that tiddler
+	if(tiddler)
+		displayTiddler(null,tiddler,2,null,null,false);
+}
+
+// Event handler for clicking on toolbar close
+function onClickToolbarClose(e)
+{
+	if (!e) var e = window.event;
+	// Close that tiddler
+	hideMessage();
+	if(this.parentNode.id)
+		closeTiddler(this.parentNode.id.substr(7),e.shiftKey || e.altKey);
+}
+
+// Event handler for clicking on toolbar permalink
+function onClickToolbarPermaLink(e)
+{
+	if(this.parentNode.id)
+		window.location.hash = encodeURIComponent(this.parentNode.id.substr(7));
+}
+
+// Event handler for clicking on toolbar close
+function onClickToolbarDelete(e)
+{
+	hideMessage();
+	// Close that tiddler
+	if(this.parentNode.id)
+		deleteTiddler(this.parentNode.id.substr(7));
+}
+
+// Event handler for clicking on the toolbar backlink
+function onClickToolbarBackLink(e)
+{
+	hideMessage();
+	if(this.parentNode.id)
+		searchTiddlers(this.parentNode.id.substr(7),true,false);
+}
+
+// Event handler for clicking on toolbar close
+function onClickToolbarEdit(e)
+{
+	hideMessage();
+	// Edit that tiddler
+	if(this.parentNode.id)
+		displayTiddler(null,this.parentNode.id.substr(7),2,null,null,false);
+}
+
+// Event handler for clicking on toolbar save
+function onClickToolbarSave(e)
+{
+	// Save that tiddler
+	if(this.parentNode.id)
+		saveTiddler(this.parentNode.id.substr(7));
+}
+
+// Event handler for clicking on toolbar save
+function onClickToolbarUndo(e)
+{
+	// Redisplay that tiddler in read-only mode
+	if(this.parentNode.id)
+		displayTiddler(null,this.parentNode.id.substr(7),1,null,null,false);
+}
+
+// Event handler for clicking on toolbar close
+function onClickTab(e)
+{
+	if (!e) var e = window.event;
+	// Get the tab
+	var theTab;
+	if (e.target)
+		theTab = e.target;
+	else if (e.srcElement)
+		theTab = e.srcElement;
+	if (theTab.nodeType == 3) // defeat Safari bug
+		theTab = theTab.parentNode;
+	// Set the current tab
+	currentTab = theTab.id;
+	// Reset the classes of the tabs
+	var tabs = document.getElementById("sidebarTabs").childNodes;
+	for(var i=0;i < tabs.length;i++)
+		if(tabs[i].id)
+			{
+			if(tabs[i].id == currentTab)
+				tabs[i].className = "tabSelected";
+			else
+				tabs[i].className = "tabUnselected";
+			}
+	// Refresh the content
+	refreshSidebar();
+}
+
+// Event handler for typing into the search box. We need to detect when the text of the control actually changes, because we get keypresses
+// for things like cursor keys that we don't want to trigger a search
+
+var lastSearchText = "";
+
+function onSearch(e)
+{
+	// Do nothing if there's less than three characters or if it hasn't changed since last time
+	var text = document.getElementById("searchText").value;
+	if((text.length > 2) && (text != lastSearchText))
+		{
+		searchTiddlers(text,false,false);
+		lastSearchText = text;
+		}
+}
+
+function onClearSearch()
+{
+	var text = document.getElementById("searchText");
+	text.value = "";
+	hideMessage();
+}
+
+// imported from TiddlyWikiPlus
+function openSearchForm() {
+	var searchForm = document.getElementById("searchForm");
+	searchForm.style.display = "block";
+	document.searchFor.searchPhrase.focus();
+	document.searchFor.searchPhrase.select();
+}
+
+// imported from TiddlyWikiPlus
+function closeSearchForm() {
+	var searchForm = document.getElementById("searchForm");
+	searchForm.style.display = "none";
+}
+
+// imported from TiddlyWikiPlus
+function chooseSearch() {
+	var phrase = document.searchFor.searchPhrase.value;
+	lastSearchText = phrase;
+	if (phrase.length > 0) { 
+		closeSearchForm();
+		var caseSensitive = true;
+		if (document.searchFor.ignoreCaseOption.checked) {
+			caseSensitive = false;
+		}
+		var useRegex = false;
+		if (document.searchFor.regexOption.checked) {
+			useRegex = true;
+		}
+		searchTiddlers(phrase, caseSensitive, useRegex);
+	}
+}
+
+// Eek... it's bad that this is done via a function rather than a normal, copy-able href
+function onClickPermaView()
+{
+	var tiddlerDisplay = document.getElementById("tiddlerDisplay");
+	var openTiddlers = "";
+	var separator = "";
+	for(var t=0;t<tiddlerDisplay.childNodes.length;t++)
+		{
+		openTiddlers = openTiddlers + separator + tiddlerDisplay.childNodes[t].id.substr(7);
+		separator = parmaSeparator;
+		}
+	window.location.hash = encodeURIComponent(openTiddlers);
+}
+
+// ---------------------------------------------------------------------------------
+// Animation engine
+// ---------------------------------------------------------------------------------
+
+// Animation housekeeping
+var animating = 0; // Incremented at start of each animation, decremented afterwards. If zero, the interval timer is disabled
+var animaterID; // ID of the timer used for animating
+// 'zoomer' module of the animation engine smoothly moves an element from the position/size of the start element to the target element
+var zoomerElement = null; // Element being shifted; null if none
+var zoomerStart; // Where we're shifting from
+var zoomerTarget; // Where we're shifting to
+var zoomerStartScroll; // Where we're scrolling from
+var zoomerTargetScroll; // Where we're scrolling to
+var zoomerProgress; // 0..1 of how far we are
+var zoomerStep; // 0..1 of how much to shift each step
+// 'closer' module of the animation engine closes an element by smoothly reducing it's height to zero
+var closerElement = null; // Element being closed; null if none
+var closerStartHeight; // Starting height
+var closerProgress; // 0..1 of how far we are
+var closerStep; // 0..1 of how much to shift each step
+
+// Start animation engine
+function startAnimating()
+{
+	if(animating++ == 0)
+		animaterID = window.setInterval("doAnimate();",25);
+}
+
+// Stop animation engine
+function stopAnimating()
+{
+	if(--animating == 0)
+		window.clearInterval(animaterID)
+}
+
+// Perform an animation engine tick, calling each of the known animation modules
+function doAnimate()
+{
+	if(zoomerElement)
+		doZoomer();
+	if(closerElement)
+		doCloser();
+}
+
+// Start moving the element 'e' from the position of the element 'start' to the position of the element 'target'
+function startZoomer(e,start,target,slowly)
+{
+	stopZoomer();
+	zoomerElement = e;
+	zoomerStart = start;
+	zoomerStartScroll = findScrollY();
+	zoomerTargetScroll = ensureVisible(target);
+	zoomerTarget = target;
+	zoomerProgress = 0;
+	zoomerStep = slowly ? 0.01 : 0.20;
+	startAnimating();
+}
+
+// Stop any ongoing zoomer animation
+function stopZoomer()
+{
+	if(zoomerElement)
+		{
+		stopAnimating();
+		zoomerElement.style.visibility = "hidden";
+		zoomerTarget.style.opacity = 1;
+		window.scrollTo(0,zoomerTargetScroll);
+		zoomerElement = null;
+		}
+}
+
+// Perform a tick of the zoomer animation
+function doZoomer()
+{
+	zoomerProgress += zoomerStep;
+	if(zoomerProgress >= 1.0)
+		stopZoomer();
+	else
+		{
+		var f = slowInSlowOut(zoomerProgress);
+		var zoomerStartLeft = findPosX(zoomerStart);
+		var zoomerStartTop = findPosY(zoomerStart);
+		var zoomerStartWidth = zoomerStart.offsetWidth;
+		var zoomerStartHeight = zoomerStart.offsetHeight;
+		var zoomerTargetLeft = findPosX(zoomerTarget);
+		var zoomerTargetTop = findPosY(zoomerTarget);
+		var zoomerTargetWidth = zoomerTarget.offsetWidth;
+		var zoomerTargetHeight = zoomerTarget.offsetHeight;
+		zoomerElement.style.left = zoomerStartLeft + (zoomerTargetLeft-zoomerStartLeft) * f;
+		zoomerElement.style.top = zoomerStartTop + (zoomerTargetTop-zoomerStartTop) * f;
+		zoomerElement.style.width = zoomerStartWidth + (zoomerTargetWidth-zoomerStartWidth) * f;
+		zoomerElement.style.height = zoomerStartHeight + (zoomerTargetHeight-zoomerStartHeight) * f;
+		zoomerElement.style.visibility = "visible";
+		zoomerTarget.style.opacity = zoomerProgress;
+		window.scrollTo(0,zoomerStartScroll + (zoomerTargetScroll-zoomerStartScroll) * f);
+		}
+}
+
+// Start closing an element
+function startCloser(e,slowly)
+{
+	// Stop any existing close operation
+	stopCloser();
+	// Create the wrapper div that doesn't have any padding or margins or anything to confuse offsetWidth vs. style.width
+	var wrapper = createTiddlyElement(e.parentNode,"div",null,null);
+	e.parentNode.insertBefore(wrapper,e);
+	wrapper.appendChild(e);
+	closerElement = wrapper;
+	// Save the information for the close operation
+	closerStartHeight = closerElement.offsetHeight;
+	closerProgress = 0;
+	closerStep = slowly ? 0.01 : 0.20;
+	closerElement.style.overflow = "hidden";
+	startAnimating();
+}
+
+// Stop closing the current element
+function stopCloser()
+{
+	if(closerElement)
+		{
+		stopAnimating();
+		closerElement.parentNode.removeChild(closerElement);
+		closerElement = null;
+		}
+}
+
+// Perform a tick of the closer animation
+function doCloser()
+{
+	closerProgress += closerStep;
+	if(closerProgress > 1.0)
+		stopCloser();
+	else
+		{
+		var f = slowInSlowOut(closerProgress);
+		var h = closerStartHeight * (1-f)
+		closerElement.style.height = (h <= 2) ? 2 : h;
+		closerElement.style.opacity = (1-f);
+		}
+}
+
+// ---------------------------------------------------------------------------------
+// Standalone utility functions
+// ---------------------------------------------------------------------------------
+
+// Escape a string to ensure it doesn't have any RegExp special characters
+function escapeRegExp(s)
+{
+	// Escape any special characters with that character preceded by a backslashes
+	return(s.replace(new RegExp("[\\\\\\^\\$\\*\\+\\?\\(\\)\\=\\!\\|\\,\\{\\}\\[\\]\\.]","g"),"\\$0"));
+}
+
+// Return a date in UTC YYYYMMDDHHMM format
+function ConvertToYYYYMMDDHHMM(d)
+{
+	return(d.getFullYear() + '' + (d.getMonth() <= 8 ? '0' : '') + (d.getMonth() + 1) + '' + (d.getDate() <= 9 ? '0' : '') + d.getDate() + (d.getHours() <= 9 ? '0' : '') + d.getHours() + (d.getMinutes() <= 9 ? '0' : '') + d.getMinutes());
+}
+
+// Convert a date in UTC YYYYMMDDHHMM format to date type
+function ConvertFromYYYYMMDDHHMM(d)
+{
+	var theDate = new Date(parseInt(d.substr(0,4),10),
+							parseInt(d.substr(4,2),10)-1,
+							parseInt(d.substr(6,2),10),
+							parseInt(d.substr(8,2),10),
+							parseInt(d.substr(10,2),10),0,0);
+	return(theDate);
+}
+
+// Map a 0..1 value to 0..1, but slow down at the start and end
+function slowInSlowOut(progress)
+{
+	return(1-((Math.cos(progress * Math.PI)+1)/2));
+}
+
+// Get the scroll position for window.scrollTo necessary to scroll a given element into view
+function ensureVisible(e)
+{
+	var posTop = findPosY(e);
+	var posBot = posTop + e.offsetHeight;
+	var winTop = findScrollY();
+	var winHeight = findWindowHeight();
+	var winBot = winTop + winHeight;
+	if(posTop < winTop)
+		return(posTop);
+	else if(posBot > winBot)
+		{
+		if(e.offsetHeight < winHeight)
+			return(posTop - (winHeight - e.offsetHeight));
+		else
+			return(posTop);
+		}
+	else
+		return(winTop);
+}
+
+function findWindowHeight()
+{
+	return(window.innerHeight ? window.innerHeight : document.body.clientHeight);
+}
+
+function findScrollY()
+{
+	return(window.scrollY ? window.scrollY : document.body.scrollTop);
+}
+
+// From QuirksMode.com
+function findPosX(obj)
+{
+		var curleft = 0;
+		if (obj.offsetParent)
+		{
+				while (obj.offsetParent)
+				{
+						curleft += obj.offsetLeft;
+						obj = obj.offsetParent;
+				}
+		}
+		else if (obj.x)
+				curleft += obj.x;
+		return curleft;
+}
+
+// From QuirksMode.com
+function findPosY(obj)
+{
+		var curtop = 0;
+		if (obj.offsetParent)
+		{
+				while (obj.offsetParent)
+				{
+						curtop += obj.offsetTop;
+						obj = obj.offsetParent;
+				}
+		}
+		else if (obj.y)
+				curtop += obj.y;
+		return curtop;
+}
+
+// Create a non-breaking space
+function insertSpacer(place)
+{
+	place.appendChild(document.createTextNode(String.fromCharCode(160)));
+}
+
+function isEditable()
+{
+	return true;
+}
+
+// ---------------------------------------------------------------------------------
+// End of scripts
+// ---------------------------------------------------------------------------------
+
+</script>
+<style type="text/css">
+
+body {
+	background-color: #ffffff;
+	font-size: 9pt;
+	font-family: verdana, arial, helvetica, "Hiragino Kaku Gothic";
+	margin: 0em 0em 0em 0em;
+	padding: 0em 0em 0em 0em;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	text-decoration: underline;
+}
+
+#header {
+	width: 855px;
+	color: #ffffff;
+	background-color: #000000;
+	margin-bottom: 1em;
+	font-size: 10pt;
+	padding: 1em 1em 1em 1em;
+}
+
+#siteTitle {
+	font-size: 24pt;
+	text-decoration: none;
+	color: #CCFF33;
+}
+
+#siteSubtitle {
+	padding-left: 1em;
+	font-size: 10pt;
+}
+
+#header a {
+	text-decoration: none;
+	color: #CCFF33;
+}
+
+#mainMenu {
+	float:left;
+	width: 11em;
+	height: auto;
+	line-height: 166%;
+	padding: 6px 6px 6px 6px;
+	font-size: 8pt;
+	color: black;
+	text-align: right;
+	border-right: 1px solid #E5E5BF;
+}
+
+#mainMenu a:link, #mainMenu a:visited {
+	text-decoration: none;
+	color: #9f9f10;
+}
+
+#mainMenu a:hover {
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #9f9f10;
+}
+
+#displayArea {
+	float: left;
+	width: 48em;
+	margin: 0em 1em 0em 1em;
+}
+
+#messageArea {
+	background-color: #999999;
+	color: #ffffff;
+	padding: 0.3em 0.3em 0.3em 0.3em;
+	margin: 0em 0em 0.6em 0em;
+	display: none;
+}
+
+.tiddler {
+	padding: 1em 1em 1em 1em;
+	font-size: 9pt;
+}
+
+#displayArea .tiddlyLinkExisting {
+	font-weight: bold;
+}
+
+#displayArea .tiddlyLinkNonExisting {
+	font-style: italic;
+}
+
+.title {
+	font-size: 10pt;
+	font-weight: bold;
+	display: inline;
+	padding-left: 1em;
+	padding-right: 1em;
+	border-top: 1px solid #666666;
+	border-left: 1px solid #666666;
+	border-right: 1px solid #666666;
+	text-shadow: #AAAAAA 3px 3px 3px;
+}
+
+.body {
+	font-size: 9pt;
+	line-height: 150%;
+	border-top: 1px dotted #666666;
+	padding-top: 0.8em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+.body a:link, .body a:visited {
+	text-decoration: none;
+	color: #777700;
+}
+
+.body a:hover {
+	color: #ffffff;
+	background-color: #777700;
+	text-decoration: none;
+}
+
+.body blockquote {
+	font-size: 8pt;
+	line-height: 150%;
+	border-left: 3px solid #666666;
+	padding-left: 0.8em;
+	margin-left: 2.5em;
+}
+
+.body ul {
+	margin-left: 0.5em;
+	padding-left: 1.5em;
+}
+
+.body ol {
+	margin-left: 0.5em;
+	padding-left: 1.5em;
+}
+
+.body h2,h3,h4,h5,h6 {
+	font-weight: bold;
+	//text-shadow: #AAAAAA 4px 4px 4px;
+	text-decoration: underline;
+}
+
+.body h2 {
+	font-size: 12pt;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.body h3 {
+	font-size: 11pt;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.body h4 {
+	font-size: 10pt;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.body h5 {
+	font-size: 9pt;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.body h6 {
+	font-size: 8pt;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.body table {
+	border-collapse: collapse;
+	border: 2px solid #303030;
+	margin-left: 1.0em;
+	margin-right: 1.0em;
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
+}
+
+.body th {
+	background-color: #999966;
+	border: 1px solid #606060;
+	color: #ffffff;
+	padding: 3px;
+}
+
+.body td, tr {
+	border: 1px solid #606060;
+	padding: 3px;
+}
+
+.body caption {
+	padding: 3px;
+}
+
+.body hr {
+	border-top: dashed 1px #606060;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	height: 1px;
+	color: #666666;
+}
+
+.marked {
+	color: #000000;
+	background-color: #ffc866;
+	border-top: solid 1px #ff8000;
+	border-left: solid 1px #ff8000;
+	border-right: solid 1px #ff8000;
+	border-bottom: solid 1px #ff8000;
+}
+
+.highlight {
+	color: #000000;
+	background-color: #ffe72f;
+}
+
+.editor {
+	font-size: 8pt;
+	color: #402C74;
+	font-weight: normal;
+	border-top: 1px dotted #666666;
+}
+
+.toolbar {
+	font-weight: normal;
+	font-size: 8pt;
+	padding: 0em 0em 0em 0em;
+	//background-color: #e7e7d9;
+	color: #aaaaaa;
+	display: inline;
+	visibility: hidden;
+}
+
+.toolbar A {
+	margin: 1px 1px 1px 1px;
+	padding: 0.1em 0.2em 0.1em 0.2em;
+	color: #777700;
+	text-shadow: none;
+}
+
+.toolbar A:hover {
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #777700;
+	text-decoration: none;
+	color: #000000;
+	background-color: #cccc99;
+}
+
+.toolbar A:active {
+	color: #ffffff;
+	background-color: #777700;
+}
+
+#sidebar {
+	float: left;
+	width: 14em;
+	color: #CCFF33;
+	font-size: 8pt;
+	background-color: #ffffff;
+}
+
+.sidebarSubHeading {
+	font-size: 8pt;
+	color: #000000;
+}
+
+#exitPanel {
+	color: #777700;
+	border-bottom: 1px dotted #999966;
+	margin: 0.4em 0em 1em 0em;
+}
+
+#exitPanel P {
+	padding: 0em 0em 0em 0em;
+	margin: 0.4em 0em 0.4em 0em;
+}
+
+#exitPanel A {
+	padding: 0.1em 0.2em 0.1em 0.2em;
+	color: #777700;
+	border: 1px solid #ffffff;
+}
+
+#exitPanel A:hover {
+	border: 1px solid #777700;
+	text-decoration: none;
+	color: #000000;
+	background-color: #cccc99;
+}
+
+#exitPanel A:active {
+	color: #ffffff;
+	background-color: #777700;
+}
+
+#searchPanel {
+	color: #777700;
+}
+
+#searchPanel P {
+	padding: 0em 0em 0em 0em;
+	margin: 0.4em 0em 0.4em 0em;
+}
+
+#searchPanel A {
+	padding: 0.1em 0.2em 0.1em 0.2em;
+	color: #777700;
+	border: 1px solid #ffffff;
+}
+
+#searchPanel A:hover {
+	border: 1px solid #777700;
+	text-decoration: none;
+	color: #000000;
+	background-color: #cccc99;
+}
+
+#searchPanel A:active {
+	color: #ffffff;
+	background-color: #777700;
+}
+
+#commandPanel {
+	padding: 0.5em 0em 0.5em 0em;
+}
+
+#commandPanel A {
+	display: block;
+	padding: 0.2em 0.2em 0.2em 0.2em;
+	border: 1px solid #ffffff;
+	color: #777700;
+}
+
+#commandPanel A:hover {
+	border: 1px solid #777700;
+	text-decoration: none;
+	color: #000000;
+	background-color: #cccc99;
+}
+
+#commandPanel A:active {
+	color: #ffffff;
+	background-color: #777700;
+}
+
+.tabSet {
+	padding-top: 1em;
+}
+
+.tabSet a {
+	color: #ccff66;
+}
+
+.tabSet a:hover {
+	background-color: #e7e7d9;
+	color: #777700;
+	text-decoration: none;
+}
+
+.tabSet a:active {
+	color: #000000;
+}
+
+.tabSelected {
+	font-weight: bold;
+	display: inline;
+	background-color: #999966;
+	border-left: 1px solid #777700;
+	border-top: 1px solid #777700;
+	border-right: 1px solid #777700;
+	padding: 0.3em 0.3em 0.2em 0.3em;
+	margin: 0px 1px 0px 1px;
+}
+
+.tabSelected:hover {
+	color: #000000;
+	text-decoration: none;
+}
+
+.tabUnselected {
+	font-weight: bold;
+	display: inline;
+	background-color: #666600;
+	border-left: 1px solid #777700;
+	border-top: 1px solid #777700;
+	border-right: 1px solid #777700;
+	padding: 2px 3px 1px 3px;
+	margin: 0px 1px 0px 1px;
+}
+
+.tabContent {
+	background-color: #999966;
+	border: 1px solid #777700;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.tabContent a {
+	color: #ffffff;
+}
+
+.tabContent a:hover {
+	color: #000000;
+	background-color: #CCFF33;
+	text-decoration: none;
+}
+
+#licensePanel {
+	padding: 0.5em 0em 0.5em 0em;
+}
+
+#licensePanel A {
+	display: block;
+	padding: 0.2em 0.2em 0.2em 0.2em;
+	border: 1px solid #ffffff;
+	color: #777700;
+}
+
+#licensePanel A:hover {
+	border: 1px solid #777700;
+	text-decoration: none;
+	color: #000000;
+	background-color: #cccc99;
+}
+
+#saveMessage, #storeArea, #copyright {
+	display: none;
+}
+
+#storeArea {
+	display: none;
+}
+
+#floater {
+	font-size: 9pt;
+	visibility: hidden;
+	color: white;
+	background-color: #b8b896;
+	position: absolute;
+	padding: 1em 1em 1em 1em;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+code {
+	line-height: 144%;
+	font-family: "Monaco";
+	font-size: 10px;
+	white-space: pre;
+}
+code.objc_comment { color: #236e25; }
+code.objc_string { color: #891315; }
+code.objc_keyword { color: #760f50; }
+code.objc_number { color: #0000ff; }
+code.objc_preprocess { color: #683821; }
+
+code.java_keyword { color: #7f0055; font-weight: bold; }
+code.java_string { color: #2a00ff; }
+code.java_comment { color: #3f7f5f; }
+code.javadoc { color: #3f5fbf; }
+code.javadoc_html { color: #7f7f9f; }
+code.javadoc_keyword { color: #7f9fbf; font-weight: bold; }
+
+code.xml_header { color: #666666; }
+code.xml_tag { color: #881280; }
+code.xml_attribute { color: #994500; }
+code.xml_string { color: #1a1aa6; }
+code.xml_comment { color: #236e25; }
+code.xml_entity { color: #666666; }
+
+#searchForm {
+	display: none;
+	position: absolute;
+	top: 33%;
+	left: 25%;
+	width:: 50%;
+	z-index: 99;
+	border-top: 1px solid #aaa;
+	border-left: 1px solid #aaa;
+	border-right: 1px solid #444;
+	border-bottom: 1px solid #444;
+	background-color: #d4d0c8;
+}
+
+#curMarker {
+	font: bold 8pt Georgia;
+	color: #777;
+}
+
+#searchForm .form {
+	font: 8pt Georgia, Verdana;
+	text-align: center;
+	padding: 1ex 1em 1ex 1em;
+	background-color: #d4d0c8;
+}
+
+#searchForm .caption {
+	font: bold 8pt Tahoma, Verdana;
+	text-align: center;
+	background-color: #a2b3f9;
+	color: #000;
+	height: 16px;
+}
+
+#searchForm a {
+	padding: 0.2ex 0.5em 0.2ex 0.5em;
+	color: #000;
+	text-decoration: none;
+	font: bold 8pt Verdana;
+	border-top: 1px solid #aaa;
+	border-left: 1px solid #aaa;
+	border-right: 1px solid #444;
+	border-bottom: 1px solid #444;
+}
+
+</style>
+</head>
+<body onload="main()">
+	<div id="copyright">Powered by TiddlyWiki</div>
+	<div id="header">
+		<a id="siteTitle" href="JavaScript:;" onclick="onClickLogo()"></a>
+		<span id="siteSubtitle"></span>
+	</div>
+	<div id="mainMenu">
+	</div>
+	<div id="displayArea">
+		<div id="messageArea">Message Area</div>
+		<div id="tiddlerDisplay"></div>
+		&nbsp;
+	</div>
+		<div id="floater">&nbsp;</div>
+	<div id="sidebar">
+		<div id="searchPanel">
+			<p>
+				<a href="JavaScript:;" onclick="openSearchForm()">search</a>
+				<a href="JavaScript:;" onclick="onClearSearch()">clear</a>
+			</p>
+			<p>
+				<input id="searchText" size=17 onKeyUp="onSearch()" autocomplete=off>
+			</p>
+		</div>
+		<div id="commandPanel">
+			<a href="javascript:closeAllTiddlers()" title="Close all displayed tiddlers">close all</a>
+			<a href="javascript:onClickPermaView()" title="Link to an URL that retrieves all the currently displayed tiddlers">permaview</a>
+			<span id="saveButton"><a href="javascript:ShowSource()" title="Save all tiddlers to create a new TiddlyWiki">save changes</a></span>
+		</div>
+		<div id="sidebarTabs" class="tabSet">
+			<a href="JavaScript:;" onclick="onClickTab(event)" id="tabTimeline" class="tabSelected">Timeline</a>
+			<a href="JavaScript:;" onclick="onClickTab(event)" id="tabAll" class="tabUnselected">All</a>
+		</div>
+		<div id="sidebarContent" class="tabContent">
+		</div>
+		<div id="licensePanel">
+			<a rel="license" href="http://www.tiddlywiki.com/" target="_blank">Powered by TiddlyWiki</a>
+		</div>
+	</div>
+	<div id="saveMessage">
+		<span style="font-size: 10pt; font-family: tahoma,arial,helvetica;">
+				<p style="font-size: 18pt;">Ouch.</p>
+				This is still a bit of a hack. In an ideal world, clicking the save button should just give you
+				a file save dialogue box and let you choose where to save your spanking new personal TiddlyWiki. Unfortunately
+				doing stuff in web browsers is never that easy, and there's a couple of hoops to be jumped through. See below
+				for a quick guide. <br> <br>
+				<textarea id='source' rows='20' cols='80'>(source code goes here)</textarea><br><br>
+				The steps to save your changes as a new, standalone TiddlyWiki are simple, but can be error prone. <br> <br>
+				1. Make sure that all the text is selected in the edit box above. Copy it to the clipboard.<br>
+				2. Go back to the browser window showing your editted TiddlyWiki and save the HTML as a new file. <br>
+				3. Open the HTML file in a text editor like Notepad. Scroll to the bottom and locate the marker lines picked out with a row of asterisks.<br>
+				4. Select the text from just above that marker back up to the previous marker.<br>
+				5. Paste the new text in.<br>
+				6. Save the HTML file.<br>
+				Suggestions or improvements welcome.
+				<br> <br>
+
+				
+		</span>
+	</div>
+	
+	<div id="searchForm">
+		<form name="searchFor" onsubmit="chooseSearch(); return false;">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr><td class="caption" colspan="2">Search</td></tr>
+			<tr><td class="form" colspan="2">Search for:<input name="searchPhrase" type="text"></td></tr>
+			<tr><td class="form"><input name="ignoreCaseOption" type="checkbox" checked>Ignore Case</td>
+			<td class="form"><input name="regexOption" type="checkbox">Regular Expressions</td></tr>
+			<tr>
+				<td class="form"><a href="javascript:;" onclick="chooseSearch()">Search</a></td>
+				<td class="form"><a href="javascript:;" onclick="closeSearchForm()">Cancel</a></td>
+			</tr>
+			</tbody></table>
+		</form>
+	</div>
+	
+	<div id="storeArea">
+<!-- ********************************************************************* -->
+<!-- Paste your TiddlyWiki content between this marker and the one below   -->
+<!-- ********************************************************************* -->
+<DIV id="storeRegularExpressions" modified="200501190000" modifier="IsaoSonobe">OniGurumaでは以下の正規表現が使用できます。(oniguruma/RE.txtからの引用)
+[objc]
+Oniguruma Regular Expressions     2004/08/24
+
+syntax: ONIG_SYNTAX_RUBY (default)
+
+
+1. Syntax elements
+
+  \       escape (enable or disable meta character meaning)
+  |       alternation
+  (...)   group
+  [...]   character class  
+
+
+2. Characters
+
+  \t           horizontal tab (0x09)
+  \v           vertical tab   (0x0B)
+  \n           newline        (0x0A)
+  \r           return         (0x0D)
+  \b           back space     (0x08)
+  \f           form feed      (0x0C)
+  \a           bell           (0x07)
+  \e           escape         (0x1B)
+  \nnn         octal char            (encoded byte value)
+  \xHH         hexadecimal char      (encoded byte value)
+  \x{7HHHHHHH} wide hexadecimal char (character code point value)
+  \cx          control char          (character code point value)
+  \C-x         control char          (character code point value)
+  \M-x         meta  (x|0x80)        (character code point value)
+  \M-\C-x      meta control char     (character code point value)
+
+ (* \b is effective in character class [...] only)
+
+
+3. Character types
+
+  .        any character (except newline)
+  \w       word character
+           (alphanumeric, &quot;_&quot; and multibyte char. See also &quot;A-6. Problems&quot;)
+  \W       non-word char
+  \s       whitespace char (\t, \n, \v, \f, \r, \x20)
+  \S       non-whitespace char
+  \d       digit char
+  \D       non-digit char
+
+
+4. Quantifier
+
+  greedy
+
+    ?       1 or 0 times
+    *       0 or more times
+    +       1 or more times
+    {n,m}   at least n but not more than m times
+    {n,}    at least n times
+    {,n}    at least 0 but not more than n times ({0,n})
+    {n}     n times
+
+  reluctant
+
+    ??      1 or 0 times
+    *?      0 or more times
+    +?      1 or more times
+    {n,m}?  at least n but not more than m times  
+    {n,}?   at least n times
+    {,n}?   at least 0 but not more than n times (== {0,n}?)
+
+  possessive (greedy and does not backtrack after repeated)
+
+    ?+      1 or 0 times
+    *+      0 or more times
+    ++      1 or more times
+
+    ({n,m}+, {n,}+, {n}+ are possessive op. in ONIG_SYNTAX_JAVA only)
+
+    ex. /a*+/ === /(?&gt;a*)/
+
+
+5. Anchors
+
+  ^       beginning of the line
+  $       end of the line
+  \b      word boundary
+  \B      not word boundary
+  \A      beginning of string
+  \Z      end of string, or before newline at the end
+  \z      end of string
+  \G      matching start position
+          (Ruby: previous end-of-match position)
+
+
+6. Character class
+
+  ^...    negative class (lowest precedence operator)
+  x-y     range from x to y
+  [...]   set (character class in character class)
+  ..&amp;&amp;..  intersection (low precedence at the next of ^)
+          
+    ex. [a-w&amp;&amp;[^c-g]z] ==&gt; ([a-w] AND ([^c-g] OR z)) ==&gt; [abh-w]
+
+  * If you want to use &#39;[&#39;, &#39;-&#39;, &#39;]&#39; as a normal character
+    in a character class, you should escape these characters by &#39;\&#39;.  //&#39;
+
+
+  POSIX bracket ([:xxxxx:], negate [:^xxxxx:])
+
+    alnum    alphabet or digit char
+    alpha    alphabet
+    ascii    code value: [0 - 127]
+    blank    \t, \x20
+    cntrl
+    digit    0-9
+    graph
+    lower
+    print
+    punct
+    space    \t, \n, \v, \f, \r, \x20
+    upper
+    xdigit   0-9, a-f, A-F
+
+
+7. Extended groups
+
+  (?#...)            comment
+
+  (?imx-imx)         option on/off
+                         i: ignore case
+                         m: multi-line (dot(.) match newline)
+                         x: extended form
+  (?imx-imx:subexp)  option on/off for subexp
+
+  (?:subexp)         not captured group
+  (subexp)           captured group
+
+  (?=subexp)         look-ahead
+  (?!subexp)         negative look-ahead
+  (?&lt;=subexp)        look-behind
+  (?&lt;!subexp)        negative look-behind
+
+                     Subexp of look-behind must be fixed character length.
+                     But different character length is allowed in top level
+                     alternatives only.
+                     ex. (?&lt;=a|bc) is OK. (?&lt;=aaa(?:b|cd)) is not allowed.
+
+                     In negative-look-behind, captured group isn&#39;t allowed,   //&#39;
+                     but shy group(?:) is allowed.
+
+  (?&gt;subexp)         atomic group
+                     don&#39;t backtrack in subexp.  //&#39;
+
+  (?&lt;name&gt;subexp)    define named group
+                     (All characters of the name must be a word character.
+                     And first character must not be a digit or uppper case)
+
+                     Not only a name but a number is assigned like a captured
+                     group.
+
+                     Assigning the same name as two or more subexps is allowed.
+                     In this case, a subexp call can not be performed although
+                     the back reference is possible.
+
+
+8. Back reference
+
+  \n          back reference by group number (n &gt;= 1)
+  \k&lt;name&gt;    back reference by group name
+
+  In the back reference by the multiplex definition name,
+  a subexp with a large number is referred to preferentially.
+  (When not matched, a group of the small number is referred to.)
+
+  * Back reference by group number is forbidden if named group is defined 
+    in the pattern and ONIG_OPTION_CAPTURE_GROUP is not setted.
+
+
+9. Subexp call (&quot;Tanaka Akira special&quot;)
+
+  \g&lt;name&gt;    call by group name
+  \g&lt;n&gt;       call by group number (n &gt;= 1)
+
+  * left-most recursive call is not allowed.
+     ex. (?&lt;name&gt;a|\g&lt;name&gt;b)   =&gt; error
+         (?&lt;name&gt;a|b\g&lt;name&gt;c)  =&gt; OK
+
+  * Call by group number is forbidden if named group is defined in the pattern
+    and ONIG_OPTION_CAPTURE_GROUP is not setted.
+
+  * If the option status of called group is different from calling position
+    then the group&#39;s option is effective.  //&#39;
+
+    ex. (?-i:\g&lt;name&gt;)(?i:(?&lt;name&gt;a)){0}  match to &quot;A&quot;
+
+
+10. Captured group
+
+  Behavior of the no-named group (...) changes with the following conditions.
+  (But named group is not changed.)
+
+  case 1. /.../     (named group is not used, no option)
+
+     (...) is treated as a captured group.
+
+  case 2. /.../g    (named group is not used, &#39;g&#39; option)
+
+     (...) is treated as a no-captured group (?:...).
+
+  case 3. /..(?&lt;name&gt;..)../   (named group is used, no option)
+
+     (...) is treated as a no-captured group (?:...).
+     numbered-backref/call is not allowed.
+
+  case 4. /..(?&lt;name&gt;..)../G  (named group is used, &#39;G&#39; option)
+
+     (...) is treated as a captured group.
+     numbered-backref/call is allowed.
+
+  where
+    g: ONIG_OPTION_DONT_CAPTURE_GROUP
+    G: ONIG_OPTION_CAPTURE_GROUP
+
+  (&#39;g&#39; and &#39;G&#39; options are argued in ruby-dev ML)
+
+  These options are not implemented in Ruby level.
+
+
+-----------------------------
+A-1. Syntax depend options
+
+   + ONIG_SYNTAX_RUBY
+     (?m): dot(.) match newline
+
+   + ONIG_SYNTAX_PERL and ONIG_SYNTAX_JAVA
+     (?s): dot(.) match newline
+     (?m): ^ match after newline, $ match before newline
+
+
+A-2. Original extensions
+
+   + named group     (?&lt;name&gt;...)
+   + named backref   \k&lt;name&gt;
+   + subexp call     \g&lt;name&gt;, \g&lt;group-num&gt;
+
+
+A-3. Lacked features compare with perl 5.8.0
+
+   + [:word:]
+   + \N{name}
+   + \l,\u,\L,\U, \X, \C
+   + (?{code})
+   + (??{code})
+   + (?(condition)yes-pat|no-pat)
+
+   * \Q...\E
+     This is effective on ONIG_SYNTAX_PERL and ONIG_SYNTAX_JAVA.
+
+   * \p{property}, \P{property}
+     This is effective on ONIG_SYNTAX_PERL and ONIG_SYNTAX_JAVA.
+     Alnum, Alpha, Blank, Cntrl, Digit, Graph, Lower,
+     Print, Punct, Space, Upper, XDigit, ASCII are supported.
+
+     Prefix &#39;Is&#39; of property name is allowed in ONIG_SYNTAX_PERL only.
+     ex. \p{IsXDigit}.
+
+     Negation operator of property is supported in ONIG_SYNTAX_PERL only.
+     \p{^...}, \P{^...}
+
+
+A-4. Differences with Japanized GNU regex(version 0.12) of Ruby
+
+   + add look-behind
+     (?&lt;=fixed-char-length-pattern), (?&lt;!fixed-char-length-pattern)
+   + add possessive quantifier. ?+, *+, ++
+   + add operations in character class. [], &amp;&amp;
+     (&#39;[&#39; must be escaped as an usual char in character class.)
+   + add named group and subexp call.
+   + octal or hexadecimal number sequence can be treated as 
+     a multibyte code char in character class if multibyte encoding
+     is specified.
+     (ex. [\xa1\xa2], [\xa1\xa7-\xa4\xa1])
+   + allow the range of single byte char and multibyte char in character
+     class.
+     ex. /[a-&lt;&lt;any EUC-JP character&gt;&gt;]/ in EUC-JP encoding.
+   + effect range of isolated option is to next &#39;)&#39;.
+     ex. (?:(?i)a|b) is interpreted as (?:(?i:a|b)), not (?:(?i:a)|b).
+   + isolated option is not transparent to previous pattern.
+     ex. a(?i)* is a syntax error pattern.
+   + allowed incompleted left brace as an usual string.
+     ex. /{/, /({)/, /a{2,3/ etc...
+   + negative POSIX bracket [:^xxxx:] is supported.
+   + POSIX bracket [:ascii:] is added.
+   + repeat of look-ahead is not allowed.
+     ex. /(?=a)*/, /(?!b){5}/
+   + Ignore case option is effective to numbered character.
+     ex. /\x61/i =~ &quot;A&quot;
+   + In the range quantifier, the number of the minimum is omissible.
+     /a{,n}/ == /a{0,n}/
+     The simultanious abbreviation of the number of times of the minimum
+     and the maximum is not allowed. (/a{,}/)
+   + /a{n}?/ is not a non-greedy operator.
+     /a{n}?/ == /(?:a{n})?/
+   + Zero-length match in infinite repeat stops the repeat,
+     then changes of the capture group status are checked as stop condition.
+     /(?:()|())*\1\2/ =~ &quot;&quot;
+     /(?:\1a|())*/ =~ &quot;a&quot;
+
+
+A-5. Disabled functions by default syntax
+
+   + capture history
+
+     (?@...) and (?@&lt;name&gt;...)
+
+     ex. /(?@a)*/.match(&quot;aaa&quot;) ==&gt; [&lt;0-1&gt;, &lt;1-2&gt;, &lt;2-3&gt;]
+
+     see sample/listcap.c file.
+
+
+A-6. Problems
+
+   + Invalid encoding byte sequence is not checked in UTF-8.
+
+     * Invalid first byte is treated as a character.
+       /./u =~ &quot;\xa3&quot;
+
+     * Incomplete byte sequence is not checked.
+       /\w+/ =~ &quot;a\xf3\x8ec&quot;
+
+
+   + Character types of multibyte encoded characters are not correct.
+
+     All multibyte encoded characters are treated as word(\w) character.
+     (and POSIX bracket [:graph:], [:print:] type)
+
+     In UTF-8 and UTF-16, only the multibyte character in code point
+     [U+0080 - U+00FF] is correctly judged in a character type.
+
+// END
+[/objc]</DIV><DIV id="storeSampleCodes" modified="200501190000" modifier="IsaoSonobe">#FindSample (検索)
+#ReplaceSample (置換)
+</DIV><DIV id="storeMainMenu" modified="200501190000" modifier="IsaoSonobe">HelloThere
+AboutCreators
+AboutProjects
+RegularExpressions
+ReplaceExpressions
+SampleCodes
+TipsAndTricks
+ToDo
+[[Acknowledgement]]
+
+
+Copyright 2004 
+IsaoSonobe</DIV><DIV id="storeSiteTitle" modified="200501190000" modifier="IsaoSonobe">OgreKit Wiki</DIV><DIV id="storeAcknowledgement" modified="200501190000" modifier="IsaoSonobe">皆様、ご紹介、ご使用、ご意見、ご協力頂きありがとうございます!
+
+Oniguruma作者・小迫様 &lt;[[link|http://www.geocities.jp/kosako1/oniguruma/index.html]]&gt;
+Apple Computer様 &lt;[[link|http://www.apple.com/downloads/macosx/index.html]]&gt;
+アップルコンピュータ様 &lt;[[link|http://www.apple.co.jp/downloads/macosx/index.html]]&gt;
+新しもの好きのダウンロード・早川厚志様 &lt;[[link|http://mac.page.ne.jp/]]&gt;
+日記的「駄目」プログラミング・YOUsuke様 &lt;[[link|http://www.trinity-site.net/diary/]]&gt;
+九龍的家頁・あに様 &lt;[[link|http://www10.plala.or.jp/kowloon/]]&gt;
+HAPPY Macintosh Developing TIME!・木下誠(mkino)様 &lt;[[link|http://homepage.mac.com/mkino2/]]&gt;
+お笑いパソコン日誌・Terry Minamino様 &lt;[[link|http://www2s.biglobe.ne.jp/~chic/pilot.html]]&gt;
+Digitalians&#39; Alchemy・Alchemist様 &lt;[[link|http://homepage1.nifty.com/alchemy/index.html]]&gt;
+MacOSX Freewares様 &lt;[[link|http://www.geocities.jp/akamayu2/]]&gt;
+気まぐれ開発日誌・soleil様 &lt;[[link|http://d.hatena.ne.jp/soleil/]]&gt;
+Cocoa Dev様 &lt;[[link|http://www.cocoadev.com/index.pl?RegularExpressions]]&gt;
+ClassWiki様 &lt;[[link|http://www.cs.uidaho.edu/~bruceb/cgi-bin/ClassWiki/index.cgi?RegularExpressions]]&gt;
+pythonmac.org・Bob Ippolito様 &lt;[[link|http://pythonmac.org/wiki/XcodeIntegration]]&gt;
+Kino様
+かりやん日記・狩野正嗣様 &lt;[[link|http://www2.diary.ne.jp/user/63813]]&gt;
+ヘチマコンピュータ様 &lt;[[link|http://hetima.com/index.html]]&gt;
+Hao Li様 &lt;[[link|http://haoli.dnsalias.com/]]&gt;
+アートマン21・松本慧様 &lt;[[link|http://www.artman21.net/]]&gt;
+whitebug&#39;s Diary・whitebug様 &lt;[[link|http://shaft.dyndns.org/~shaft/diary/]]&gt;
+UTF(OTF) tools &amp; Sasakia(日本語TeXの数式を直にPDF/PNGにできるソフト)・伊東悠様 &lt;[[link|http://www.kawachi.zaq.ne.jp/dpbnk800/]]&gt;
+S. Zenitani のウェブサイト、ＯＷヨＷ 人Ｗ ([[link|http://d.hatena.ne.jp/reconnection/]])・銭谷誠司様 &lt;[[link|http://homepage.mac.com/zenitani/Menu15.html]]&gt;
+Mac Freaks・J-Klein様 &lt;[[link|http://members.jcom.home.ne.jp/j-klein/]]&gt;
+tmaeda日記・tmaeda様 &lt;[[link|http://tmaeda.s45.xrea.com/td/]]&gt;
+GyazMail -- An all-new email client for Mac OS X --・平川剛一様 &lt;[[link|http://gyazsquare.com/gyazmail/]]&gt;
+TeXShop・Richard Koch様はじめ、TeXShop開発者コミュニティの皆様 &lt;[[link|http://www.uoregon.edu/~koch/texshop/texshop.html]]&gt;
+Lightweight Language Magazine、ASCII様
+SubEthaEdit・Martin Pittenauer様、Martin Ott様 &lt;[[link|http://www.codingmonkeys.de/subethaedit/]]&gt;
+fay-erie様 &lt;[[link|http://fay-erie.net/]]&gt;
+SyntaxError・Y. Hanatani様 &lt;[[link|http://www.lab2.kuis.kyoto-u.ac.jp/~hanatani/tdiary/]]&gt;
+MACSTUDIO BLOG・MACSTUDIO NETWORKS様 &lt;[[link|http://www.macstudio.net/blog/]]&gt;
+Cocoa+++ObjectiveC様 &lt;[[link|http://itools.jp/~0003/]]&gt;
+Caffeine, Nicotine and Macintosh・yuichirookada様 &lt;[[link|http://nicotine.exblog.jp/]]&gt;
+DrunkenBlog様 &lt;[[link|http://www.drunkenblog.com/]]&gt;
+iTteyoshi (2ch Browser for Mac OS X)・haneco様 &lt;[[link|http://www.geocities.co.jp/SiliconValley-Sunnyvale/9264/]]&gt;
+Tumult HyperEdit・Jonathan Deutsch様 &lt;[[link|http://www.tumultco.com/HyperEdit/]]&gt;
+Syonan Macintosh Users Group様 &lt;[[link|http://www21.big.or.jp/~simayugu/]]&gt;
+330&#39;s Weblog・三沢徳章様 &lt;[[link|http://www.misawa.net/]]&gt;
+Smultron・Peter Borg様 &lt;[[link|http://sourceforge.net/projects/smultron/]]&gt;
+Pufui・谷津真樹様 &lt;[[link|http://yatsu.info/wiki/Pufui/]]&gt;
+</DIV><DIV id="storeFindPanelModels" modified="200501190000" modifier="IsaoSonobe">FindPanelModelsは検索パネルによる検索操作(TextFindFunctions)、検索対象のラッパー(TextFindComponents)、検索結果(TextFindResults)に関するクラスの集合です。
+</DIV><DIV id="storeOniGuruma" modified="200501190000" modifier="IsaoSonobe">OniGuruma(鬼車)&lt;[[link|http://www.geocities.jp/kosako1/oniguruma/index.html]]&gt;は小迫さんにより開発されている様々な構文や文字エンコーディングを扱える特徴を持った正規表現ライブラリです。
+使用できる正規表現はRegularExpressionsを参照してください。
+OniGurumaはOniGurumaLicenseの下で公開されています。
+</DIV><DIV id="storeAboutCreators" modified="200501190000" modifier="IsaoSonobe">Design and Coding:
+*IsaoSonobe
+
+Localization:
+*Japanese and English: IsaoSonobe
+*German: Martin Kerz
+*Spanish: Juan Luis Varona Malumbres
+
+Thank you very much for your kind cooperation!</DIV><DIV id="storeFoundationLayer" modified="200501190000" modifier="IsaoSonobe">FoundationLayerは正規表現機能を提供する以下のクラスの集合です。
+*OGRegularExpression (正規表現を表す)
+*OGRegularExpressionEnumerator (検索を行う)
+*OGRegularExpressionMatch (検索結果)
+*OGRegularExpressionCapture (検索履歴)
+*OGReplaceExpression (置換を行う)
+*OGRegularExpressionFormatter (正規表現フォーマッタ)
+
+この他に文字列を抽象化したOGStringProtocolやOGMutableStringProtocolもありますが、直接触れることはありません。</DIV><DIV id="storeApplicationLayer" modified="200501190000" modifier="IsaoSonobe">ApplicationLayerは検索パネル機能を提供する多数のクラスの集合です。
+クラスは
+*FindPanelModels (検索操作、検索対象のラッパー、検索結果)
+*FindPanelControllers (検索パネル)
+*FindPanelViews (検索対象ビュー)
+
+に大別できます。</DIV><DIV id="storeTextFindFunctions" modified="200501190000" modifier="IsaoSonobe">検索操作の骨組みの役割を果たすクラスは次のものです。字下げはクラス継承を表しています。
+*OgreTextFinder (検索操作の窓口 (Facade Pattern))
+*OgreTextFindThread (検索操作のテンプレート (Template Method Pattern、Visitor Pattern))
+**OgreFindAllThread (一括検索操作)
+**OgreReplaceAllThread (一括置換操作)
+**OgreHighlightThread (ハイライト操作)
+**OgreUnhighlightThread (ハイライト取り消し操作)
+**OgreFindThread (検索操作)
+***OgreReplaceAndFindThread (置換後検索操作)
+
+OgreTextFindThreadはnon-preemptive multithreadでOgreTextFindComponentをvisitするVisitorです。</DIV><DIV id="storeTextFindComponents" modified="200501190000" modifier="IsaoSonobe">TextFindComponentsは検索対象のラッパーに関するクラスの集合です。
+
+まずは骨組みの役割を果たす抽象クラスやプロトコルは次のものです。字下げはクラス継承やプロトコル適合を表しています。
+*OgreTextFindComponent (検索対象のラッパー要素 (Composite Pattern、Visitor Pattern))
+**OgreTextFindBranch (検索対象のラッパー (枝))
+***OgreTextFindRoot (検索対象のラッパー (根))
+**OgreTextFindLeaf (検索対象のラッパー (葉))
+*OgreTextFindComponentEnumerator (検索対象のラッパーの列挙子)
+**OgreTextFindReverseComponentEnumerator (検索対象のラッパーの逆順列挙子)
+
+現時点で提供されている検索対象のラッパーには
+*NSTextView(OgreTextView)用
+*OgreTableViewとOgreTableColumn用
+*OgreOutlineViewとOgreOutlineColumn用
+
+があります。
+
+NSTextView(OgreTextView)用には
+*プレインテキスト用のOgreTextViewPlainAdapter
+*RTF用のOgreTextViewRichAdapter
+*RTFD用のOgreTextViewGraphicAllowedAdapter
+
+があります。OgreTextViewAdapterはこれらの窓口です。
+また、OgreTextViewUndoerはUndo操作を行うためのユーティリティクラスです。
+
+OgreTableViewとOgreTableColumn用のラッパークラスには、
+#OgreTableViewAdater
+#OgreTableColumnAdapter
+#OgreTableCellAdapter
+
+の順で親子関係があります。
+
+OgreOutlineViewとOgreOutlineColumn用のラッパークラスにもOgreTableViewAdapterと同様の親子関係があります。
+#OgreOutlineViewAdapter
+#OgreOutlineColumnAdapter
+#OgreOutlineItemAdapter (1回以上の繰り返し)
+#OgreOutlineCellAdapter
+
+の順です。ここでOgreOutlineItemAdapterが子要素としてOgreOutlineItemAdapterを持つことがある点がOgreTableCellAdapterの場合と異なります。</DIV><DIV id="storeTiddlyWiki" modified="200501190000" modifier="IsaoSonobe">TiddlyWiki&lt;http://www.tiddlywiki.com/ &gt;はJeremy Ruston氏が開発したWikiシステムです。ひとつのHTMLファイルでデータの出力と入力補助、保持を行えるという特徴を持ちます。従って、特別なサーバを必要とせず、JavaScriptの実行できるWebブラウザとテキストエディタさえあれば容易にWikiを構築できます。閲覧にはSafariをお勧めします。
+
+OgreKit Wikiの構築には私的に機能を追加したCustomizedTiddlyWikiを使用しています。</DIV><DIV id="storeTipsAndTricks" modified="200501190000" modifier="IsaoSonobe">#OgreKitLicense (使用上の注意点)
+#MemoryManagementTips (メモリ管理について)</DIV><DIV id="storeDefaultTiddlers" modified="200501190000" modifier="IsaoSonobe">HelloThere OgreKit IsaoSonobe</DIV><DIV id="storeJavaSyntax" modified="200501190000" modifier="IsaoSonobe">[java]
+import java.lang.*;
+import java.util.*;
+import java.text.*;
+
+/**
+ * This is about &lt;code&gt;ClassName&lt;/code&gt;.
+ * {@link com.yourCompany.aPackage.SuperClass}
+ * @author author
+ */
+class Test {
+  public static void main(String[] args) {
+    Calendar    cal = new GregorianCalendar(new Locale(&quot;ja&quot;, &quot;JP&quot;));
+    DateFormat  dateFormatter = DateFormat.getDateInstance();
+    try {
+      Date  date = dateFormatter.parse(&quot;2004/7/30&quot;);
+      cal.setTime(date);
+      System.out.println(cal.getTime());
+       
+      // day of week
+      Map dayOfWeek = new HashMap();
+      dayOfWeek.put(new Integer(Calendar.SUNDAY), &quot;Sun&quot;);
+      dayOfWeek.put(new Integer(Calendar.MONDAY), &quot;Mon&quot;);
+      dayOfWeek.put(new Integer(Calendar.TUESDAY), &quot;Tue&quot;);
+      dayOfWeek.put(new Integer(Calendar.WEDNESDAY), &quot;Wed&quot;);
+      dayOfWeek.put(new Integer(Calendar.THURSDAY), &quot;Thu&quot;);
+      dayOfWeek.put(new Integer(Calendar.FRIDAY), &quot;Fri&quot;);
+      dayOfWeek.put(new Integer(Calendar.SATURDAY), &quot;Sat&quot;);
+      System.out.println(&quot;day of week: &quot; + 
+        dayOfWeek.get(new Integer(cal.get(Calendar.DAY_OF_WEEK))));
+      
+      System.out.println(&quot;actual minimum of date:&quot; + cal.getActualMinimum(Calendar.DATE));
+      System.out.println(&quot;actual maximum of date:&quot; + cal.getActualMaximum(Calendar.DATE));
+      
+      System.out.println(&quot;week of month:&quot; + cal.get(Calendar.WEEK_OF_MONTH));
+      
+    } catch (ParseException e) {
+      System.out.println(e);
+    }
+  }
+}
+[/java]</DIV><DIV id="storeXMLSyntax" modified="200501190000" modifier="IsaoSonobe">[xml]
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE beans PUBLIC 
+  &quot;-//SPRING//DTD BEAN//EN&quot; 
+  &quot;http://www.springframework.org/dtd/spring-beans.dtd&quot;&gt;
+&lt;beans&gt;
+
+  &lt;!-- DataSource --&gt;
+  &lt;bean id=&quot;dataSource&quot; class=&quot;org.springframework.jndi.JndiObjectFactoryBean&quot;&gt;
+    &lt;property name=&quot;jndiName&quot;&gt;
+      &lt;value&gt;java:comp/env/TiddlyWikiPrimeDataSource&lt;/value&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+  
+  &lt;!-- Hibernate SessionFactory --&gt;
+  &lt;bean id=&quot;sessionFactory&quot; 
+    class=&quot;org.springframework.orm.hibernate.LocalSessionFactoryBean&quot; 
+    destroy-method=&quot;destroy&quot;&gt;
+    
+    &lt;property name=&quot;mappingResources&quot;&gt;
+      &lt;list&gt;
+        &lt;value&gt;app/dao/hibernate/User.hbm.xml&lt;/value&gt;
+        &lt;value&gt;app/dao/hibernate/Category.hbm.xml&lt;/value&gt;
+        &lt;value&gt;app/dao/hibernate/Tiddler.hbm.xml&lt;/value&gt;
+        &lt;value&gt;app/dao/hibernate/RelUserCategory.hbm.xml&lt;/value&gt;
+      &lt;/list&gt;
+    &lt;/property&gt;
+    
+    &lt;property name=&quot;dataSource&quot;&gt;
+      &lt;ref local=&quot;dataSource&quot;/&gt;
+    &lt;/property&gt;
+    
+    &lt;property name=&quot;hibernateProperties&quot;&gt;
+      &lt;props&gt;
+        &lt;prop key=&quot;hibernate.dialect&quot;&gt;
+          net.sf.hibernate.dialect.PostgreSQLDialect
+        &lt;/prop&gt;
+        &lt;prop key=&quot;hibernate.show_sql&quot;&gt;
+          true
+        &lt;/prop&gt;
+        &lt;prop key=&quot;hibernate.use_outer_join&quot;&gt;
+          true
+        &lt;/prop&gt;
+      &lt;/props&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+  
+  &lt;!-- Transaction Manager --&gt;
+  &lt;bean id=&quot;transactionManager&quot;
+    class=&quot;org.springframework.orm.hibernate.HibernateTransactionManager&quot;&gt;
+    
+    &lt;property name=&quot;sessionFactory&quot;&gt;
+      &lt;ref local=&quot;sessionFactory&quot; /&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+  
+  &lt;!-- Business Interface --&gt;
+  &lt;bean id=&quot;adminService&quot;
+    class=&quot;org.springframework.transaction.interceptor.TransactionProxyFactoryBean&quot;&gt;
+    
+    &lt;property name=&quot;transactionManager&quot;&gt;
+      &lt;ref local=&quot;transactionManager&quot;/&gt;
+    &lt;/property&gt;
+    
+    &lt;property name=&quot;target&quot;&gt;
+      &lt;ref local=&quot;adminServiceTarget&quot;/&gt;
+    &lt;/property&gt;
+    
+    &lt;property name=&quot;transactionAttributes&quot;&gt;
+      &lt;props&gt;
+        &lt;prop key=&quot;add*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;
+        &lt;prop key=&quot;find*&quot;&gt;PROPAGATION_REQUIRED,readOnly&lt;/prop&gt;
+        &lt;prop key=&quot;update*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;
+        &lt;prop key=&quot;remove*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;
+      &lt;/props&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+  
+  &lt;bean id=&quot;userService&quot;
+    class=&quot;org.springframework.transaction.interceptor.TransactionProxyFactoryBean&quot;&gt;
+    
+    &lt;property name=&quot;transactionManager&quot;&gt;
+      &lt;ref local=&quot;transactionManager&quot;/&gt;
+    &lt;/property&gt;
+    
+    &lt;property name=&quot;target&quot;&gt;
+      &lt;ref local=&quot;userServiceTarget&quot;/&gt;
+    &lt;/property&gt;
+    
+    &lt;property name=&quot;transactionAttributes&quot;&gt;
+      &lt;props&gt;
+        &lt;prop key=&quot;add*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;
+        &lt;prop key=&quot;find*&quot;&gt;PROPAGATION_REQUIRED,readOnly&lt;/prop&gt;
+        &lt;prop key=&quot;update*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;
+        &lt;prop key=&quot;remove*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;
+      &lt;/props&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+  
+  &lt;!-- Business Object --&gt;
+  &lt;bean id=&quot;adminServiceTarget&quot; class=&quot;app.domain.AdminServiceImpl&quot;&gt;
+    &lt;property name=&quot;userDao&quot;&gt;
+      &lt;ref local=&quot;userDao&quot;/&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;categoryDao&quot;&gt;
+      &lt;ref local=&quot;categoryDao&quot;/&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;tiddlerDao&quot;&gt;
+      &lt;ref local=&quot;tiddlerDao&quot;/&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;relUserCategoryDao&quot;&gt;
+      &lt;ref local=&quot;relUserCategoryDao&quot;/&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+  
+  &lt;bean id=&quot;userServiceTarget&quot; class=&quot;app.domain.UserServiceImpl&quot;&gt;
+    &lt;property name=&quot;userDao&quot;&gt;
+      &lt;ref local=&quot;userDao&quot;/&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;categoryDao&quot;&gt;
+      &lt;ref local=&quot;categoryDao&quot;/&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;tiddlerDao&quot;&gt;
+      &lt;ref local=&quot;tiddlerDao&quot;/&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;relUserCategoryDao&quot;&gt;
+      &lt;ref local=&quot;relUserCategoryDao&quot;/&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+  
+  &lt;!-- Data Access Object --&gt;  
+  &lt;bean id=&quot;userDao&quot; class=&quot;app.dao.hibernate.HibernateUserDao&quot;&gt;
+    &lt;property name=&quot;sessionFactory&quot;&gt;
+      &lt;ref local=&quot;sessionFactory&quot;/&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+
+  &lt;bean id=&quot;categoryDao&quot; class=&quot;app.dao.hibernate.HibernateCategoryDao&quot;&gt;
+    &lt;property name=&quot;sessionFactory&quot;&gt;
+      &lt;ref local=&quot;sessionFactory&quot;/&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+
+  &lt;bean id=&quot;tiddlerDao&quot; class=&quot;app.dao.hibernate.HibernateTiddlerDao&quot;&gt;
+    &lt;property name=&quot;sessionFactory&quot;&gt;
+      &lt;ref local=&quot;sessionFactory&quot;/&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+
+  &lt;bean id=&quot;relUserCategoryDao&quot; class=&quot;app.dao.hibernate.HibernateRelUserCategoryDao&quot;&gt;
+    &lt;property name=&quot;sessionFactory&quot;&gt;
+      &lt;ref local=&quot;sessionFactory&quot;/&gt;
+    &lt;/property&gt;
+  &lt;/bean&gt;
+
+&lt;/beans&gt;
+[/xml]</DIV><DIV id="storeObjective-C Syntax" modified="200501190000" modifier="IsaoSonobe">[objc]
+// create a regular expression object
+OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@&quot;a[^a]*a&quot;];
+
+// get matcher
+NSEnumerator  *matcher = [regex matchEnumeratorInString:@&quot;alphabetagammadelta&quot;];
+
+// get match result objects sequentially
+OGRegularExpressionMatch  *match;
+while ((match = [matcher nextObject]) != nil) {
+  NSLog(@&quot;%@&quot;, [match matchedString]);  // print found string
+}
+
+// LOG:
+//  alpha
+//  aga
+//  adelta
+[/objc]</DIV><DIV id="storeSiteSubtitle" modified="200501190000" modifier="IsaoSonobe">some about a regular expression framework</DIV><DIV id="storeReplaceSample" modified="200501190000" modifier="IsaoSonobe">文字列中の正規表現にマッチした部分すべてを置換する。
+[objc]
+// create a regular expression object
+OGRegularExpression  *regex = [OGRegularExpression regularExpressionWithString:@&quot;a[^a]*a&quot;];
+
+// replaces all occurrences of target string with evaluated replace expressions
+NSLog(@&quot;%@&quot;, [regex replaceAllMatchesInString:@&quot;alphabetagammadelta&quot; withString:@&quot;(\\0)&quot;]);
+
+// LOG: (alpha)bet(aga)mm(adelta)
+[/objc]</DIV><DIV id="storeMemoryManagementTips" modified="200501190000" modifier="IsaoSonobe">マッチ数が多い場合には次のコードのようにautorelease poolを定期的に解放することをお勧めします。
+[objc]
+OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@&quot;a[^a]*a&quot;];
+
+NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+unsigned  autoreleaseCount = 0;
+
+// get too many match result objects sequentially
+NSEnumerator  *matcher = [regex matchEnumeratorInString:@&quot;tooooooLongString&quot;];
+OGRegularExpressionMatch  *match;
+while ((match = [matcher nextObject]) != nil) {
+  NSLog(@&quot;%@&quot;, [match matchedString]);
+  
+  autoreleaseCount++;
+  if (autoreleaseCount == 100) {  // refresh periodically autorelease pool
+    autoreleaseCount = 0;
+    [pool release];
+    pool = [[NSAutoreleasePool alloc] init];
+  }
+}
+
+[pool release];
+[/objc]</DIV><DIV id="storeFindSample" modified="200501190000" modifier="IsaoSonobe">文字列中の正規表現にマッチした部分を順番に得る。
+[objc]
+// create a regular expression object
+OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@&quot;a[^a]*a&quot;];
+
+// get matcher
+NSEnumerator  *matcher = [regex matchEnumeratorInString:@&quot;alphabetagammadelta&quot;];
+
+// get match result objects sequentially
+OGRegularExpressionMatch  *match;
+while ((match = [matcher nextObject]) != nil) {
+  NSLog(@&quot;%@&quot;, [match matchedString]);  // print found string
+}
+
+// LOG:
+//  alpha
+//  aga
+//  adelta
+[/objc]
+マッチ数が多くなる場合にはMemoryManagementTipsのようにautorelease poolを定期的に解放してください。</DIV><DIV id="storeNSEnumerator" modified="200501190000" modifier="IsaoSonobe">-[OGRegularExpression matchEnumeratorInString:]等の戻り値はNSEnumeratorを継承したOGRegularExpressionEnumeratorです。しかし、大概の利用範囲ではオーバーライドしたNSEnumeratorのメソッドnextObjectとallObjectsで十分なことと、何よりOGRegularExpressionEnumeratorは打つのが嫌になるほど長い名前なので
+[objc]NSEnumerator  *matcher = [regex matchEnumeratorInString:@&quot;alphabetagammadelta&quot;];
+[/objc]
+のようにNSEnumeratorとして戻り値を受けることが多いです。</DIV><DIV id="store日本語WikiName" modified="200501190000" modifier="IsaoSonobe">[[日本語WikiName]]も使用できます。</DIV><DIV id="storePeriodicTable" modified="200501190000" modifier="IsaoSonobe">|Standard Periodic Table (ref. Wikipedia)|c
+|| !1 | !2 |!| !3 | !4 | !5 | !6 | !7 | !8 | !9 | !10 | !11 | !12 | !13 | !14 | !15 | !16 | !17 | !18 |
+|!1|bgcolor(#a0ffa0): @@color(red):H@@ |&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;||bgcolor(#c0ffff): @@color(red):He@@ |
+|!2|bgcolor(#ff6666): Li |bgcolor(#ffdead): Be |&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;||bgcolor(#cccc99): B |bgcolor(#a0ffa0): C |bgcolor(#a0ffa0): @@color(red):N@@ |bgcolor(#a0ffa0): @@color(red):O@@ |bgcolor(#ffff99): @@color(red):F@@ |bgcolor(#c0ffff): @@color(red):Ne@@ |
+|!3|bgcolor(#ff6666): Na |bgcolor(#ffdead): Mg |&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;|&gt;||bgcolor(#cccccc): Al |bgcolor(#cccc99): Si |bgcolor(#a0ffa0): P |bgcolor(#a0ffa0): S |bgcolor(#ffff99): @@color(red):Cl@@ |bgcolor(#c0ffff): @@color(red):Ar@@ |
+|!4|bgcolor(#ff6666): K |bgcolor(#ffdead): Ca ||bgcolor(#ffc0c0): Sc |bgcolor(#ffc0c0): Ti |bgcolor(#ffc0c0): V |bgcolor(#ffc0c0): Cr |bgcolor(#ffc0c0): Mn |bgcolor(#ffc0c0): Fe |bgcolor(#ffc0c0): Co |bgcolor(#ffc0c0): Ni |bgcolor(#ffc0c0): Cu |bgcolor(#ffc0c0): Zn |bgcolor(#cccccc): Ga |bgcolor(#cccc99): Ge |bgcolor(#cccc99): As |bgcolor(#a0ffa0): Se |bgcolor(#ffff99): @@color(green):Br@@ |bgcolor(#c0ffff): @@color(red):Kr@@ |
+|!5|bgcolor(#ff6666): Rb |bgcolor(#ffdead): Sr ||bgcolor(#ffc0c0): Y |bgcolor(#ffc0c0): Zr |bgcolor(#ffc0c0): Nb |bgcolor(#ffc0c0): Mo |bgcolor(#ffc0c0): Tc |bgcolor(#ffc0c0): Ru |bgcolor(#ffc0c0): Rh |bgcolor(#ffc0c0): Pd |bgcolor(#ffc0c0): Ag |bgcolor(#ffc0c0): Cd |bgcolor(#cccccc): In |bgcolor(#cccccc): Sn |bgcolor(#cccc99): Sb |bgcolor(#cccc99): Te |bgcolor(#ffff99): I |bgcolor(#c0ffff): @@color(red):Xe@@ |
+|!6|bgcolor(#ff6666): Cs |bgcolor(#ffdead): Ba |bgcolor(#ffbfff):^^*1^^|bgcolor(#ffc0c0): Lu |bgcolor(#ffc0c0): Hf |bgcolor(#ffc0c0): Ta |bgcolor(#ffc0c0): W |bgcolor(#ffc0c0): Re |bgcolor(#ffc0c0): Os |bgcolor(#ffc0c0): Ir |bgcolor(#ffc0c0): Pt |bgcolor(#ffc0c0): Au |bgcolor(#ffc0c0): @@color(green):Hg@@ |bgcolor(#cccccc): Tl |bgcolor(#cccccc): Pb |bgcolor(#cccccc): Bi |bgcolor(#cccc99): Po |bgcolor(#ffff99): At |bgcolor(#c0ffff): @@color(red):Rn@@ |
+|!7|bgcolor(#ff6666): Fr |bgcolor(#ffdead): Ra |bgcolor(#ff99cc):^^*2^^|bgcolor(#ffc0c0): Lr |bgcolor(#ffc0c0): Rf |bgcolor(#ffc0c0): Db |bgcolor(#ffc0c0): Sq |bgcolor(#ffc0c0): Bh |bgcolor(#ffc0c0): Hs |bgcolor(#ffc0c0): Mt |bgcolor(#ffc0c0): Ds |bgcolor(#ffc0c0): Rg |bgcolor(#ffc0c0): @@color(green):Uub@@ |bgcolor(#cccccc): Uut |bgcolor(#cccccc): Uuq |bgcolor(#cccccc): Uup |bgcolor(#cccccc): Uuh |bgcolor(#fcfecc): @@color(#cccccc):Uus@@ |bgcolor(#ecfefc): @@color(#cccccc):Uuo@@ |
+
+| !Lanthanides^^*1^^|bgcolor(#ffbfff): La |bgcolor(#ffbfff): Ce |bgcolor(#ffbfff): Pr |bgcolor(#ffbfff): Nd |bgcolor(#ffbfff): Pm |bgcolor(#ffbfff): Sm |bgcolor(#ffbfff): Eu |bgcolor(#ffbfff): Gd |bgcolor(#ffbfff): Tb |bgcolor(#ffbfff): Dy |bgcolor(#ffbfff): Ho |bgcolor(#ffbfff): Er |bgcolor(#ffbfff): Tm |bgcolor(#ffbfff): Yb |
+| !Actinides^^*2^^|bgcolor(#ff99cc): Ac |bgcolor(#ff99cc): Th |bgcolor(#ff99cc): Pa |bgcolor(#ff99cc): U |bgcolor(#ff99cc): Np |bgcolor(#ff99cc): Pu |bgcolor(#ff99cc): Am |bgcolor(#ff99cc): Cm |bgcolor(#ff99cc): Bk |bgcolor(#ff99cc): Cf |bgcolor(#ff99cc): Es |bgcolor(#ff99cc): Fm |bgcolor(#ff99cc): Md |bgcolor(#ff99cc): No |
+
+*Chemical Series of the Periodic Table
+**@@bgcolor(#ff6666): Alkali metals@@
+**@@bgcolor(#ffdead): Alkaline earth metals@@
+**@@bgcolor(#ffbfff): Lanthanides@@
+**@@bgcolor(#ff99cc): Actinides@@
+**@@bgcolor(#ffc0c0): Transition metals@@
+**@@bgcolor(#cccccc): Poor metals@@
+**@@bgcolor(#cccc99): Metalloids@@
+**@@bgcolor(#a0ffa0): Nonmetals@@
+**@@bgcolor(#ffff99): Halogens@@
+**@@bgcolor(#c0ffff): Noble gases@@
+
+*State at standard temperature and pressure
+**those in @@color(red):red@@ are gases
+**those in @@color(green):green@@ are liquids
+**those in black are solids
+</DIV><DIV id="storeStyles" modified="200501190000" modifier="IsaoSonobe">&#39;&#39;Bold&#39;&#39;
+==Strike==
+__Underline__
+//Italic//
+2^^3^^=8
+a~~ij~~ = -a~~ji~~
+@@highlight@@
+@@color(green):green colored@@
+@@bgcolor(#ff0000):color(#ffffff):red colored@@</DIV><DIV id="storeOgreKit" modified="200501190000" modifier="IsaoSonobe">OgreKit(オウガキット)はCocoa用正規表現フレームワークです。(OgreKitLogo)
+Rubyと同等の正規表現処理機能を提供するFoundationLayerと、高機能検索パネル([[screenshot|/img/TiddlyWikiPrime/OgreKitLShot.png]])を提供するApplicationLayerという2つの階層から構成されています。
+
+使用している正規表現ライブラリは小迫さん作のOniGurumaです。
+OniGurumaはRubyで使用されている正規表現ライブラリです。
+
+ライセンスはOniGurumaのライセンスに準じています。ほぼBSDライセンスです。
+詳しくはOgreKitLicenseを参照してください。</DIV><DIV id="storeIsaoSonobe" modified="200501190000" modifier="IsaoSonobe">OgreKitに関するお問い合わせは園部勲&lt;sonoisa (AT) muse (DOT) ocn (DOT) ne (DOT) jp&gt;までお願いします。</DIV><DIV id="storeOgreKitLicense" modified="200501190000" modifier="IsaoSonobe">OgreKitLicenseはほぼBSDライセンスです。簡単に言えば、OgreKitとOniGurumaの著作権表示(OgreKitLicenseとOniGurumaLicense)さえすれば、商用・非商用、改変の有無、ソースのオープン・クローズドに関わらず使用できるというライセンスです。
+また、GNU GPLライセンスを採用しているソフトに組み込み、配布する事もできます(参考サイト: http://www.gnu.org/licenses/license-list.ja.html#ModifiedBSD )。
+
+[objc]OgreKit License
+---------------
+
+The license of OgreKit follows that of OniGuruma.
+It follows the BSD license in the case of the one except for it.
+
+/*
+ * Copyright (c) 2003 Isao Sonobe &lt;sonoisa (AT) muse (DOT) ocn (DOT) ne (DOT) jp&gt;
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS&#39;&#39; AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */[/objc]</DIV><DIV id="storeOniGurumaLicense" modified="200501190000" modifier="IsaoSonobe">(oniguruma/COPYINGからの引用)
+
+[objc]OniGuruma LICENSE
+-----------------
+
+When this software is partly used or it is distributed with Ruby, 
+this of Ruby follows the license of Ruby.
+It follows the BSD license in the case of the one except for it.
+
+/*-
+ * Copyright (c) 2002-2004  K.Kosako  &lt;sndgk393 AT ybb DOT ne DOT jp&gt;
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS&#39;&#39; AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */[/objc]
+</DIV><DIV id="storeOgreKitLogo" modified="200501190000" modifier="IsaoSonobe">[img[OgreKit Logo|http://www-gauge.scphys.kyoto-u.ac.jp/~sonobe/OgreKit/OgreKitLogo.gif]]
+OniGuruma Regular Expressionの頭文字をとったOGREには英語で鬼の意味があるのでストレートに鬼と書いてみました。OniGuruma(鬼車)の鬼にもかかっています。</DIV><DIV id="storeHelloThere" modified="200501190000" modifier="IsaoSonobe">OgreKit WikiはOgreKitに関する知識をまとめたデータベースです。
+構築には私的に機能を追加したCustomizedTiddlyWikiを使用しています。</DIV><DIV id="storeImages" modified="200501190000" modifier="IsaoSonobe">[img[OgreKit Logo|http://www-gauge.scphys.kyoto-u.ac.jp/~sonobe/OgreKit/OgreKitLogo.gif]]</DIV><DIV id="storeHorizontalLines" modified="200501190000" modifier="IsaoSonobe">
+----
+</DIV><DIV id="storeTables" modified="200501190000" modifier="IsaoSonobe">*sample:
+|!th1111111111|!th2222222222|
+|&gt;| colspan |
+| rowspan |left|
+|~| right|
+|bgcolor(#a0ffa0):colored| center |
+|caption|c
+*another sample: see PeriodicTable.
+</DIV><DIV id="storeBlockQuotes" modified="200501190000" modifier="IsaoSonobe">JeremyRuston saids
+&lt;&lt;&lt;
+A TiddlyWiki is like a blog because it&#39;s divided up into neat little chunks, but it encourages you to read it by hyperlinking rather than sequentially: if you like, a non-linear blog analogue that binds the individual microcontent items into a cohesive whole. I think that TiddlyWiki represents a novel medium for writing, and will promote it&#39;s own distinctive WritingStyle. This is the first version of TiddlyWiki and so, as discussed in TiddlyWikiDev, it&#39;s bound to be FullOfBugs, have many MissingFeatures and fail to meet all of the DesignGoals. And of course there&#39;s NoWarranty, and it might be judged a StupidName.
+&lt;&lt;&lt;
+
+&gt;level 1
+&gt;level 1
+&gt;&gt;level 2
+&gt;&gt;level 2
+&gt;&gt;&gt;level 3
+&gt;&gt;&gt;level 3
+&gt;&gt;level 2
+&gt;level 1
+</DIV><DIV id="storeNumberedLists" modified="200501190000" modifier="IsaoSonobe">start
+#item1
+#item2
+##item2.1
+##item2.2
+##item2.3
+#item3
+##item3.1
+###item3.1.1
+###item3.1.2
+
+end</DIV><DIV id="storeBulletLists" modified="200501190000" modifier="IsaoSonobe">start
+*item1
+**item1.1
+**item1.2
+***item1.2.1
+***item1.2.2
+***item1.2.3
+**item1.3
+**item1.4
+*item2
+
+end</DIV><DIV id="storeHeaders" modified="200501190000" modifier="IsaoSonobe">!Header 1
+!!Header 2
+!!!Header 3
+!!!!Header 4
+!!!!!Header 5
+</DIV><DIV id="storeBracketNames" modified="200501190000" modifier="IsaoSonobe">[[日本語WikiName]]も使用できます。</DIV><DIV id="storeCustomizedTiddlyWiki" modified="200501190000" modifier="IsaoSonobe">カスタマイズした内容
+*BracketNames
+*[[Headers]]
+*BulletLists
+*NumberedLists
+*BlockQuotes
+*[[Tables]]
+*HorizontalLines
+*Syntax Highlighting
+**[[Objective-C Syntax]]
+**JavaSyntax
+**XMLSyntax
+*Search with Regular Expressions (based on [[TiddlyWikiPlus|http://tiddlywiki.nm.ru/]])
+click &#39;search&#39; button on the top right-hand corner of the page.
+*[[Styles]]
+*[[Images]]
+</DIV>
+<!-- ********************************************************************* -->
+<!-- Paste your TiddlyWiki content between this marker and the one above   -->
+<!-- ********************************************************************* -->
+		</div>
+	</body>
+</html>

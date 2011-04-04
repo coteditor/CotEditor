@@ -1,0 +1,18 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {replace = id; }; 
+            CLASS = ReplaceWithAttributesTest; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                escapeCharacterTextField = NSTextField; 
+                findTextView = NSTextView; 
+                replaceTextView = NSTextView; 
+                targetTextView = NSTextView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

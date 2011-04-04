@@ -1,0 +1,19 @@
+/*
+ * Name: InfoPlist.strings
+ * Project: OnigurumaTest
+ *
+ * Creation Date: May 20 2004
+ * Author: Isao Sonobe <sonoisa (AT) muse (DOT) ocn (DOT) ne (DOT) jp>
+ * Copyright: Copyright (c) 2004 Isao Sonobe, All rights reserved.
+ * License: OgreKit License
+ *
+ * Encoding: UTF8
+ * Tabsize: 4
+ */
+ 
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "OnigurumaTest";
+CFBundleShortVersionString = "OnigurumaTest version 1.0.0";
+CFBundleGetInfoString = "OnigurumaTest version 1.0.0.";
+NSHumanReadableCopyright = "";

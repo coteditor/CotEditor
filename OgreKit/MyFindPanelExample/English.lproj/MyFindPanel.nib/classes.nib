@@ -1,0 +1,42 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                findNext = id; 
+                findPrevious = id; 
+                jumpToSelection = id; 
+                replace = id; 
+                replaceAll = id; 
+                replaceAndFind = id; 
+                useSelectionForFind = id; 
+            }; 
+            CLASS = MyFindPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                findTextField = id; 
+                optionIgnoreCase = id; 
+                optionRegex = id; 
+                replaceTextField = id; 
+                scopeMatrix = id; 
+            }; 
+            SUPERCLASS = OgreFindPanelController; 
+        }, 
+        {CLASS = MyTextFinder; LANGUAGE = ObjC; SUPERCLASS = OgreTextFinder; }, 
+        {
+            ACTIONS = {showFindPanel = id; }; 
+            CLASS = OgreFindPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {findPanel = NSPanel; textFinder = OgreTextFinder; }; 
+            SUPERCLASS = NSResponder; 
+        }, 
+        {
+            ACTIONS = {showFindPanel = id; }; 
+            CLASS = OgreTextFinder; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {findMenu = NSMenu; findPanelController = OgreFindPanelController; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

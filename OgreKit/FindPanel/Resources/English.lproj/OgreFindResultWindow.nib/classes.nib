@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = OgreAttachableWindowAcceptee; LANGUAGE = ObjC; SUPERCLASS = NSPanel; }, 
+        {
+            ACTIONS = {updateLiveUpdate = id; }; 
+            CLASS = OgreFindResultWindow; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                findStringField = NSTextField; 
+                grepOutlineView = NSOutlineView; 
+                liveUpdateCheckBox = NSButton; 
+                messageField = NSTextField; 
+                window = NSWindow; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
