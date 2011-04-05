@@ -13,8 +13,8 @@ PPC_CONFIGURE_FLAGS=--disable-dependency-tracking --host=ppc-apple-darwin$(OS_VE
 INTEL_64_SDK=/Developer/SDKs/MacOSX10.6.sdk
 INTEL_64_CC=gcc -arch x86_64 
 
-INTEL_SDK=/Developer/SDKs/MacOSX10.6.sdk
-INTEL_CC=gcc -arch i686
+INTEL_SDK=/Developer/SDKs/MacOSX10.4u.sdk
+INTEL_CC=gcc-4.0 -arch i686 -isystem /Developer/SDKs/MacOSX10.4u.sdk/usr/include/gcc/darwin/4.0 -isystem /Developer/SDKs/MacOSX10.4u.sdk/usr/include 
 
 PPC_SDK=/Developer/SDKs/MacOSX10.4u.sdk
 PPC_CC=gcc-4.0 -arch ppc -isystem /Developer/SDKs/MacOSX10.4u.sdk/usr/include/gcc/darwin/4.0 -isystem /Developer/SDKs/MacOSX10.4u.sdk/usr/include 
@@ -25,8 +25,8 @@ ONIGURUMA=libonig.a
 
 all: $(UNIVERSAL_DIR)/$(ONIGURUMA)
 
-$(UNIVERSAL_DIR)/$(ONIGURUMA): $(UNIVERSAL_DIR) $(PPC_DIR)/$(ONIG_TARGET) $(INTEL_DIR)/$(ONIG_TARGET) $(INTEL_64_DIR)/$(ONIG_TARGET)
-	lipo -create $(INTEL_DIR)/$(LIBS_DIR)/$(@F) $(INTEL_64_DIR)/$(LIBS_DIR)/$(@F) $(PPC_DIR)/$(LIBS_DIR)/$(@F) -output $(UNIVERSAL_DIR)/$(@F)
+$(UNIVERSAL_DIR)/$(ONIGURUMA): $(UNIVERSAL_DIR) $(PPC_DIR)/$(ONIG_TARGET) $(INTEL_DIR)/$(ONIG_TARGET)
+	lipo -create $(INTEL_DIR)/$(LIBS_DIR)/$(@F) $(PPC_DIR)/$(LIBS_DIR)/$(@F) -output $(UNIVERSAL_DIR)/$(@F)
 
 $(INTEL_64_DIR)/$(ONIG_TARGET): $(INTEL_64_DIR)
 	cd $(@D);\
@@ -38,7 +38,7 @@ $(INTEL_64_DIR)/$(ONIG_TARGET): $(INTEL_64_DIR)
 $(INTEL_DIR)/$(ONIG_TARGET): $(INTEL_DIR)
 	cd $(@D);\
 	CC="$(INTEL_CC)" ./configure $(INTEL_CONFIGURE_FLAGS);\
-	perl -pi -e 's@CFLAGS = -isysroot /Developer/SDKs/MacOSX10.6.sdk -arch x86_64@CFLAGS = -isysroot $(INTEL_SDK) -arch i686@' Makefile;\
+	perl -pi -e 's@CFLAGS = -isysroot /Developer/SDKs/MacOSX10.6.sdk -arch x86_64@CFLAGS =@' Makefile;\
 	perl -pi -e 's@-dynamiclib@-dynamiclib -arch i686@g' libtool;\
 	make $(@F)
 
