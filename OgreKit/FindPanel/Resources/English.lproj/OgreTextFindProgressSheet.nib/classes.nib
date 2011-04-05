@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {cancel = id; }; 
+            CLASS = OgreTextFindProgressSheet; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                button = NSButton; 
+                donePerTotalTextField = NSTextField; 
+                progressBar = NSProgressIndicator; 
+                progressTextField = NSTextField; 
+                progressWindow = NSWindow; 
+                titleTextField = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

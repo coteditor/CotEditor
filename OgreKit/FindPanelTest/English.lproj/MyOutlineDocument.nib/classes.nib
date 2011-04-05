@@ -1,0 +1,15 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = MyOutlineDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {myOutlineView = NSOutlineView; }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = MyOutlineView; LANGUAGE = ObjC; SUPERCLASS = OgreOutlineView; }, 
+        {CLASS = OgreOutlineColumn; LANGUAGE = ObjC; SUPERCLASS = NSTableColumn; }, 
+        {CLASS = OgreOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }
+    ); 
+    IBVersion = 1; 
+}
