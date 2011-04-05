@@ -1,0 +1,25 @@
+/*
+ * Name: OgreKit_Prefix.pch
+ * Project: OgreKit
+ *
+ * Creation Date: Sep 6 2003
+ * Author: Isao Sonobe <sonoisa (AT) muse (DOT) ocn (DOT) ne (DOT) jp>
+ * Copyright: Copyright (c) 2003 Isao Sonobe, All rights reserved.
+ * License: OgreKit License
+ *
+ * Encoding: UTF8
+ * Tabsize: 4
+ */
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <AppKit/AppKit.h>
+#endif
+
+// OniGuruma
+#define NOT_RUBY
+#define HAVE_CONFIG_H
+
+// Debug
+//#define DEBUG_OGRE
+//#define DEBUG_OGRE_FIND_PANEL
