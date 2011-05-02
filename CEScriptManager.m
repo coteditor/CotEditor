@@ -180,6 +180,17 @@ static CEScriptManager *sharedInstance = nil;
             NSLog(@"Error. AppleScriptFolder sample could not copy.");
         }
     }
+    else if (([theFileManager fileExistsAtPath:theSource]) &&
+             ([theFileManager fileExistsAtPath:theDestination]) &&
+             (![theFileManager contentsEqualAtPath:theSource andPath:theDestination])) {
+        // About 文書が更新されている場合の対応
+        if (![theFileManager removeFileAtPath:theDestination handler:nil]) {
+            NSLog(@"Error. AppleScriptFolder about document could not remove.");
+        }
+        if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
+            NSLog(@"Error. AppleScriptFolder about document could not copy.");
+        }
+    }
 
     // メニューデータの読み込みとメニュー構成
     NSMenu *theASMenu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
