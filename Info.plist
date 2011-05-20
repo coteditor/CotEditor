@@ -72,5 +72,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>CEApplication</string>
+	<key>SUFeedURL</key>
+	<string>http://coteditor.sourceforge.jp/appcast.xml</string>
 </dict>
 </plist>
