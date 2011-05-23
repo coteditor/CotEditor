@@ -56,6 +56,8 @@
 	<string>CotEditor</string>
 	<key>CFBundleIconFile</key>
 	<string>appIcon</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.2</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.aynimac.CotEditor</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -65,7 +67,7 @@
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.1</string>
+	<string>1.2</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSMainNibFile</key>
