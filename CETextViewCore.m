@@ -317,7 +317,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *theLineStr = [[self string] substringWithRange:
                     NSMakeRange(theLineRange.location, 
                     theLineRange.length - (NSMaxRange(theLineRange) - NSMaxRange(theSelected)))];
-        NSRange theIndentRange = [theLineStr rangeOfRegularExpressionString:@"^[[:blank:]]+"];
+        NSRange theIndentRange = [theLineStr rangeOfRegularExpressionString:@"^[[:blank:]\t]+"];
 
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
         if ((theIndentRange.location != NSNotFound) && 

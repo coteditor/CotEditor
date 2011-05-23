@@ -180,6 +180,17 @@ static CEScriptManager *sharedInstance = nil;
             NSLog(@"Error. AppleScriptFolder sample could not copy.");
         }
     }
+    else if (([theFileManager fileExistsAtPath:theSource]) &&
+             ([theFileManager fileExistsAtPath:theDestination]) &&
+             (![theFileManager contentsEqualAtPath:theSource andPath:theDestination])) {
+        // About 文書が更新されている場合の対応
+        if (![theFileManager removeFileAtPath:theDestination handler:nil]) {
+            NSLog(@"Error. AppleScriptFolder about document could not remove.");
+        }
+        if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
+            NSLog(@"Error. AppleScriptFolder about document could not copy.");
+        }
+    }
 
     // メニューデータの読み込みとメニュー構成
     NSMenu *theASMenu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
@@ -242,6 +253,9 @@ static CEScriptManager *sharedInstance = nil;
         theModifierPressed = YES;
         if (([theXtsn isEqualToString:@"applescript"]) || ([theXtsn isEqualToString:@"scpt"])) {
             theResult = [[NSWorkspace sharedWorkspace] openFile:thePath withApplication:@"Script Editor"];
+            if (!theResult) {
+                theResult = [[NSWorkspace sharedWorkspace] openFile:thePath withApplication:@"AppleScript Editor"];
+            }
         } else if (([theXtsn isEqualToString:@"sh"]) || ([theXtsn isEqualToString:@"pl"]) || 
                 ([theXtsn isEqualToString:@"php"]) || ([theXtsn isEqualToString:@"rb"]) || 
                 ([theXtsn isEqualToString:@"py"])) {
