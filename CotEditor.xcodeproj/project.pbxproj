@@ -1000,10 +1000,6 @@
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1018,24 +1014,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "\"DEBUGGING\"";
-				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = CotEditor;
-				SDKROOT = macosx10.4;
-				VALID_ARCHS = "i386 ppc";
 			};
 			name = Debug;
 		};
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1048,13 +1036,9 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
-				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = CotEditor;
-				SDKROOT = macosx10.4;
-				VALID_ARCHS = "i386 ppc";
 			};
 			name = Release;
 		};
