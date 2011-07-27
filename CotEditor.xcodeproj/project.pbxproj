@@ -1000,7 +1000,10 @@
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					i386,
+					ppc,
+				);
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1029,7 +1032,10 @@
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					i386,
+					ppc,
+				);
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1055,7 +1061,10 @@
 		8C71D95808640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					i386,
+					ppc,
+				);
 				GCC_MODEL_TUNING = G3;
 				GCC_VERSION = 4.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -1067,7 +1076,10 @@
 		8C71D95908640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					i386,
+					ppc,
+				);
 				GCC_MODEL_TUNING = G3;
 				GCC_VERSION = 4.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
