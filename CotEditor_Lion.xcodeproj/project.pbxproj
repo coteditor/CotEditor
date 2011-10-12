@@ -1009,6 +1009,7 @@
 				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "\"DEBUGGING\"";
 				INFOPLIST_FILE = Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Debug;
@@ -1023,6 +1024,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Release;
