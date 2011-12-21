@@ -291,7 +291,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super runModalSavePanelForSaveOperation:inSaveOperation delegate:inDelegate 
             didSaveSelector:inDidSaveSelector contextInfo:inContextInfo];
 
-    // 保存するファイル名の、拡張子をのぞいた部分を選択状態にする
+    // セーブパネル表示時の処理
     NSSavePanel *theSavePanel = (NSSavePanel *)[[_editorView window] attachedSheet];
     if (theSavePanel != nil) {
         NSEnumerator *theEnumerator = [[[theSavePanel contentView] subviews] objectEnumerator];
@@ -308,6 +308,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSText *theText = [theSavePanel fieldEditor:NO forObject:theTextField];
             NSString *theName = [theText string];
 
+            // 保存時に拡張子を追加する
+            id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+            if ([[theValues valueForKey:k_key_appendExtensionAtSaving] boolValue]) {
+                // ファイル名に拡張子がない場合は追加する
+                if ([[theName pathExtension] compare:@""] == NSOrderedSame) {
+                    [theText setString:[theName stringByAppendingPathExtension:@"txt"]];
+                }
+            }
+
+            // 保存するファイル名の、拡張子をのぞいた部分を選択状態にする
             [theText setSelectedRange:NSMakeRange(0, [[theName stringByDeletingPathExtension] length])];
         }
     }

@@ -88,6 +88,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [NSNumber numberWithBool:YES], k_key_countLineEndingAsChar, 
                 [NSNumber numberWithBool:NO], k_key_syncFindPboard, 
                 [NSNumber numberWithBool:NO], k_key_inlineContextualScriptMenu, 
+                [NSNumber numberWithBool:YES], k_key_appendExtensionAtSaving, 
                 [NSNumber numberWithBool:YES], k_key_showStatusBarThousSeparator, 
                 [NSNumber numberWithBool:YES], k_key_showNavigationBar, 
                 [NSNumber numberWithBool:YES], k_key_wrapLines, 
