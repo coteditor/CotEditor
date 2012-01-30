@@ -79,6 +79,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEDocument
 
+#pragma mark ===== Class method =====
+
+// ------------------------------------------------------
++ (BOOL)autosavesInPlace
+// OS X 10.7 AutoSave
+// ------------------------------------------------------
+{
+    return YES;
+}
+
+
+// ------------------------------------------------------
++ (BOOL)preservesVersions
+// OS X 10.7 Versions
+// ------------------------------------------------------
+{
+    return NO;
+}
+
+
 #pragma mark ===== Public method =====
 
 //=======================================================
