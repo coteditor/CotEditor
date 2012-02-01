@@ -86,7 +86,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // OS X 10.7 AutoSave
 // ------------------------------------------------------
 {
-    return YES;
+    return NO;
 }
 
 
