@@ -243,6 +243,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [theDefaults setFloat:theSize forKey:k_key_printFontSize];
         [self setFontFamilyNameAndSize];
     }
+    
+    for (CEDocument *document in [[NSDocumentController sharedDocumentController] documents]) {
+        [document setFontToViewInWindow];
+    }
 }
 
 
