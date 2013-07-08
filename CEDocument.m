@@ -2162,7 +2162,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         alternateButton:nil 
                         otherButton:nil 
                         informativeTextWithFormat:
-                            NSLocalizedString(@"Could Not be released Finder's Lock.\n\nYou can use \"SaveAs\" to save a copy.\n",@"")];
+                            NSLocalizedString(@"Could Not be released Finder's Lock.\n\nYou can use \"Save As\" to save a copy.\n",@"")];
             [theAleart setAlertStyle:NSCriticalAlertStyle];
             (void)[theAleart runModal];
             return NO;
