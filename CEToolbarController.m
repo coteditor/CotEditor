@@ -217,10 +217,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSToolbarItem *outToolbarItem = 
             [[[NSToolbarItem alloc] initWithItemIdentifier:inItemIdentifier] autorelease];
 
-    // GetInfo (target = FirstResponder)
+    // Get Info (target = FirstResponder)
     if ([inItemIdentifier isEqualToString:k_getInfoItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"GetInfo",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"GetInfo",@"")];
+        [outToolbarItem setLabel:NSLocalizedString(@"Get Info",@"")];
+        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Get Info",@"")];
         [outToolbarItem setToolTip:NSLocalizedString(@"Show document information",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"getInfo"]];
         [outToolbarItem setAction:@selector(getInfo:)];
@@ -250,10 +250,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [outToolbarItem setImage:[NSImage imageNamed:@"Save"]];
         [outToolbarItem setAction:@selector(saveDocument:)];
 
-    // SaveAs (target = FirstResponder)
+    // Save As (target = FirstResponder)
     } else if ([inItemIdentifier isEqualToString:k_saveAsItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"SaveAs",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"SaveAs",@"")];
+        [outToolbarItem setLabel:NSLocalizedString(@"Save As",@"")];
+        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Save As",@"")];
         [outToolbarItem setToolTip:NSLocalizedString(@"Save document as other name",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"SaveAs"]];
         [outToolbarItem setAction:@selector(saveDocumentAs:)];
@@ -268,7 +268,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // Open TransparencyPanel (target = FirstResponder(CEDocumentController))
     } else if ([inItemIdentifier isEqualToString:k_openTransparencyPanelItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Trans.Panel",@"")];
+        [outToolbarItem setLabel:NSLocalizedString(@"Trans. Panel",@"")];
         [outToolbarItem setPaletteLabel:NSLocalizedString(@"Transparency Panel",@"")];
         [outToolbarItem setToolTip:NSLocalizedString(@"Open window Transparency Panel",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"TransparencyPanel"]];
