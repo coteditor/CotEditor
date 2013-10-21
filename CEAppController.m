@@ -204,8 +204,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [self factoryDefaultOfTextInsertStringArray], k_key_insertCustomTextArray, 
 
         /* -------- 以下、隠し設定 -------- */
-                [NSString stringWithString:@"Courier"], k_key_statusBarFontName, 
-                [NSNumber numberWithFloat:12.0], k_key_statusBarFontSize, 
+                [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], k_key_statusBarFontName, 
+                [NSNumber numberWithFloat:11.0], k_key_statusBarFontSize, 
                 [NSString stringWithString:@"ArialNarrow"], k_key_lineNumFontName, 
                 [NSNumber numberWithFloat:10.0], k_key_lineNumFontSize, 
                 [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], k_key_lineNumFontColor, 
