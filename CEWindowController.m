@@ -248,7 +248,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [_infoOwnerField setStringValue:@" - "];
     }
-    [_infoPermissionField setStringValue:[NSString stringWithFormat:@"%o",[theFileAttr filePosixPermissions]]];
+    [_infoPermissionField setStringValue:[NSString stringWithFormat:@"%lu",(unsigned long)[theFileAttr filePosixPermissions]]];
     if ([theFileAttr fileIsImmutable]) {
         [_infoFinderLockField setStringValue:NSLocalizedString(@"ON",@"")];
     } else {

@@ -665,13 +665,12 @@ enum { typeFSS = 'fss ' };
         if (inAskLossy) {
             if (![theCurString canBeConvertedToEncoding:inEncoding]) {
                 NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:inEncoding];
-                NSString *theMessage = [NSString stringWithFormat:
-                                NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to change encoding and show incompatible character(s)?\n",@""), theEncodingNameStr];
+                NSString *theMessage = NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to change encoding and show incompatible character(s)?\n",@"");
                 NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
                             defaultButton:NSLocalizedString(@"Cancel",@"") 
                             alternateButton:NSLocalizedString(@"Change Encoding",@"") 
                             otherButton:nil 
-                            informativeTextWithFormat:theMessage];
+                            informativeTextWithFormat:theMessage, theEncodingNameStr];
 
                 theResult = [theAleart runModal];
                 if (theResult == NSAlertDefaultReturn) { // == Cancel
@@ -1359,7 +1358,7 @@ enum { typeFSS = 'fss ' };
                 defaultButton:theDefaultTitle 
                 alternateButton:NSLocalizedString(@"Update",@"") 
                 otherButton:nil 
-                informativeTextWithFormat:theInfoText];
+                informativeTextWithFormat:theInfoText, nil];
 
     // シートが表示中でなければ、表示
     if ([[_editorView window] attachedSheet] == nil) {
@@ -1660,7 +1659,7 @@ enum { typeFSS = 'fss ' };
     NSString *theEncodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
-    if (([[_editorView string] length] < 1) || (![self fileName])) {
+    if (([[_editorView string] length] < 1) || (![self fileURL])) {
         theResult = NSAlertDefaultReturn;
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
@@ -1668,8 +1667,7 @@ enum { typeFSS = 'fss ' };
                     defaultButton:NSLocalizedString(@"Convert",@"") 
                     alternateButton:NSLocalizedString(@"Reinterpret",@"") 
                     otherButton:NSLocalizedString(@"Cancel",@"") 
-                    informativeTextWithFormat:[NSString stringWithFormat:
-                        NSLocalizedString(@"Do you want to convert or reinterpret using \"%@\"?\n",@""), theEncodingName]];
+                    informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret using \"%@\"?\n",@""), theEncodingName];
 
         theResult = [theAleart runModal];
     }
@@ -1692,8 +1690,8 @@ enum { typeFSS = 'fss ' };
                         defaultButton:NSLocalizedString(@"Cancel",@"") 
                         alternateButton:NSLocalizedString(@"Discard Changes",@"") 
                         otherButton:nil 
-                        informativeTextWithFormat:[NSString stringWithFormat:
-                            NSLocalizedString(@"The file \'%@\' has unsaved changes. \n\nDo you want to discard the changes and reset the file encodidng?\n",@""), theFileName]];
+                        informativeTextWithFormat:
+                            NSLocalizedString(@"The file \'%@\' has unsaved changes. \n\nDo you want to discard the changes and reset the file encodidng?\n",@""), theFileName];
 
             int theSecondResult = [theSecondAleart runModal];
             if (theSecondResult != NSAlertAlternateReturn) { // != Discard Change
@@ -1712,8 +1710,7 @@ enum { typeFSS = 'fss ' };
                         defaultButton:NSLocalizedString(@"Done",@"") 
                         alternateButton:nil 
                         otherButton:nil 
-                        informativeTextWithFormat:[NSString stringWithFormat:
-                            NSLocalizedString(@"Sorry, the file \'%@\' could not reinterpret in the new encoding \"%@\".",@""), theFileName, theEncodingName]];
+                        informativeTextWithFormat:NSLocalizedString(@"Sorry, the file \'%@\' could not reinterpret in the new encoding \"%@\".",@""), theFileName, theEncodingName];
             [theThirdAleart setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
@@ -2091,8 +2088,7 @@ enum { typeFSS = 'fss ' };
                     defaultButton:NSLocalizedString(@"Cancel",@"") 
                     alternateButton:NSLocalizedString(@"Continue Saving",@"") 
                     otherButton:nil 
-                    informativeTextWithFormat:[NSString stringWithFormat:
-                        NSLocalizedString(@"The encoding is  \"%@\", but the IANA charset name in text is \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr, theIANANameStr]];
+                    informativeTextWithFormat:NSLocalizedString(@"The encoding is  \"%@\", but the IANA charset name in text is \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr, theIANANameStr];
 
         int theResult = [theAleart runModal];
         if (theResult != NSAlertAlternateReturn) { // == Cancel
@@ -2117,8 +2113,7 @@ enum { typeFSS = 'fss ' };
                     defaultButton:NSLocalizedString(@"Show Incompatible Char(s)",@"") 
                     alternateButton:NSLocalizedString(@"Save Available strings",@"") 
                     otherButton:NSLocalizedString(@"Cancel",@"") 
-                    informativeTextWithFormat:[NSString stringWithFormat:
-                        NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr]];
+                    informativeTextWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr];
 
         int theResult = [theAleart runModal];
         if (theResult != NSAlertAlternateReturn) { // != Save

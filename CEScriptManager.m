@@ -544,7 +544,7 @@ static CEScriptManager *sharedInstance = nil;
                 defaultButton:nil 
                 alternateButton:nil 
                 otherButton:nil 
-                informativeTextWithFormat:inMessage];
+                informativeTextWithFormat:inMessage, nil];
     [theAleart setAlertStyle:NSCriticalAlertStyle];
     (void)[theAleart runModal];
 }

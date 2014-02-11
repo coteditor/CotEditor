@@ -472,8 +472,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     theIndex = NSMaxRange([inWholeString lineRangeForRange:NSMakeRange(theIndex, 0)]);
                 }
                 //行番号（$LN）置換
-                (void)[thePattern replaceOccurrencesOfRegularExpressionString:
-                            [NSString stringWithFormat:@"(?<!\\\\)\\$LN", j] 
+                (void)[thePattern replaceOccurrencesOfRegularExpressionString:[NSString stringWithFormat:@"(?<!\\\\)\\$LN", j]
                         withString:[NSString stringWithFormat:@"%i", theCurLine] options:0 
                         range:NSMakeRange(0, [thePattern length])];
             }

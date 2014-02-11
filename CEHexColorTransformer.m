@@ -88,7 +88,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     [theColor getRed:&theRed green:&theGreen blue:&theBlue alpha:nil];
     // 各色の値を文字列に整形
-    outString = [NSString stringWithFormat:@"%2.2x%2.2x%2.2x", 
+    outString = [NSString stringWithFormat:@"%2.2lx%2.2lx%2.2lx",
             (unsigned long)(theRed*255), (unsigned long)(theGreen*255), (unsigned long)(theBlue*255)];
 
     return outString;

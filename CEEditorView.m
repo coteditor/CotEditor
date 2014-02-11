@@ -797,11 +797,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theBoolDrawerUpdate) {
         theInfoLine = [NSString stringWithFormat:@"%i / %i",theCurLine, theLines];
         [[self windowController] setInfoLine:theInfoLine];
-        theInfoChar = [NSString stringWithFormat:@"%i / %i",theRange.location, theLength];
+        theInfoChar = [NSString stringWithFormat:@"%lu / %i",(unsigned long)theRange.location, theLength];
         [[self windowController] setInfoChar:theInfoChar];
         [[self windowController] setInfoInLine:[NSString stringWithFormat:@"%i", theCountInLine]];
         theInfoSelect = (theRange.length > 0) ? 
-                [NSString stringWithFormat:@"%i", theRange.length] : @" - ";
+                [NSString stringWithFormat:@"%lu", (unsigned long)theRange.length] : @" - ";
         [[self windowController] setInfoSelect:theInfoSelect];
         if (theCharStr != nil) {
             [[self windowController] setInfoSingleChar:theCharStr];
