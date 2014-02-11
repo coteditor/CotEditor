@@ -264,7 +264,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *theStr = [self string];
         NSString *theNumStr;    // a temporary string for Line Number
         NSString *theWrapedLineMark = ([[theValues valueForKey:k_key_showWrappedLineMark] boolValue]) ? 
-                [NSString stringWithString:@"-:"] : [NSString stringWithString:@" "];
+                @"-:" : @" ";
         int theGlyphIndex, theBefore, theGlyphCount; // glyph counter
         int theCharIndex;
         int theLineNum;     // line counter
@@ -421,10 +421,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ヘッダ／フッタの文字属性辞書生成、保持
     NSFont *theHeaderFooterFont = [NSFont fontWithName:[theValues valueForKey:k_key_headerFooterFontName] 
                 size:[[theValues valueForKey:k_key_headerFooterFontSize] floatValue]];
-    _headerFooterAttrs = [[NSDictionary dictionaryWithObjectsAndKeys:
-                    theHeaderFooterFont, NSFontAttributeName, 
-                    [NSColor textColor], NSForegroundColorAttributeName, 
-                    nil] retain]; // ===== retain
+    _headerFooterAttrs = [@{NSFontAttributeName: theHeaderFooterFont, 
+                    NSForegroundColorAttributeName: [NSColor textColor]} retain]; // ===== retain
 
     // 行番号印字の有無をチェック
     if (theLineNumMenuIndex == 1) { // same to view
@@ -439,11 +437,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (_printLineNum) {
         NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_lineNumFontName] 
                             size:[[theValues valueForKey:k_key_lineNumFontSize] floatValue]];
-        _lineNumAttrs = [[NSDictionary dictionaryWithObjectsAndKeys:
-                        theFont, NSFontAttributeName, 
-                        [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_lineNumFontColor]], 
-                            NSForegroundColorAttributeName, 
-                        nil] retain]; // ===== retain
+        _lineNumAttrs = [@{NSFontAttributeName: theFont, 
+                        NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_lineNumFontColor]]} retain]; // ===== retain
         _xOffset = k_printTextHorizontalMargin;
     }
     // ヘッダを設定
@@ -637,7 +632,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         break;
 
     case 5: // == Page num
-        outString = [[[NSAttributedString alloc] initWithString:[NSString stringWithString:@"PAGENUM"] 
+        outString = [[[NSAttributedString alloc] initWithString:@"PAGENUM" 
                         attributes:_headerFooterAttrs] autorelease];
         _readyToDrawPageNum = YES;
         break;

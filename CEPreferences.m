@@ -131,8 +131,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_encodingMenuInNew removeAllItems];
 
     for (i = 0; i < theCount; i++) {
-        [[_encodingMenuInOpen menu] addItem:[[[inMenuItems objectAtIndex:i] copy] autorelease]];
-        [[_encodingMenuInNew menu] addItem:[[[inMenuItems objectAtIndex:i] copy] autorelease]];
+        [[_encodingMenuInOpen menu] addItem:[[inMenuItems[i] copy] autorelease]];
+        [[_encodingMenuInNew menu] addItem:[[inMenuItems[i] copy] autorelease]];
     }
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
@@ -347,7 +347,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             int j, theCount = [theComponents count];        
 
             for (j = 0; j < theCount; j++) {
-                thePartStr = [[theComponents objectAtIndex:j] stringByTrimmingCharactersInSet:theTrimSet];
+                thePartStr = [theComponents[j] stringByTrimmingCharactersInSet:theTrimSet];
                 if ([thePartStr length] > 0) {
                     [theNewComps addObject:thePartStr];
                 }
@@ -513,9 +513,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[CESyntaxManager sharedInstance] isOkButtonPressed]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
         NSString *theNewName = [[CESyntaxManager sharedInstance] editedNewStyleName];
-        NSDictionary *theDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                theOldName, k_key_oldStyleName, 
-                theNewName, k_key_newStyleName, nil];
+        NSDictionary *theDict = @{k_key_oldStyleName: theOldName, 
+                k_key_newStyleName: theNewName};
         [[CEDocumentController sharedDocumentController] 
                 setRecolorFlagToAllDocumentsWithStyleName:theDict];
         [[CESyntaxManager sharedInstance] setEditedNewStyleName:@""];
@@ -592,7 +591,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theOpenPanel setCanChooseDirectories:NO];
     [theOpenPanel beginSheetForDirectory:NSHomeDirectory() 
             file:nil 
-            types:[NSArray arrayWithObject:@"plist"] 
+            types:@[@"plist"] 
             modalForWindow:_prefWindow 
             modalDelegate:self 
             didEndSelector:@selector(importOpenPanelDidEnd:returnCode:contextInfo:) 
@@ -612,7 +611,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theSavePanel setCanCreateDirectories:YES];
     [theSavePanel setCanSelectHiddenExtension:YES];
     [theSavePanel setNameFieldLabel:NSLocalizedString(@"Export As:",@"")];
-    [theSavePanel setAllowedFileTypes:[NSArray arrayWithObject:@"plist"]];
+    [theSavePanel setAllowedFileTypes:@[@"plist"]];
     [theSavePanel beginSheetForDirectory:NSHomeDirectory() 
             file:[[_syntaxStylesPopup title] stringByAppendingPathExtension:@"plist"] 
             modalForWindow:_prefWindow 
@@ -770,11 +769,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSString *theBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
-    NSArray *theAnchorsArray = [NSArray arrayWithObjects:k_helpPrefAnchors, nil];
+    NSArray *theAnchorsArray = @[k_helpPrefAnchors];
     int theTag = [sender tag];
 
     if ((theTag >= 0) && (theTag < [theAnchorsArray count])) {
-        [[NSHelpManager sharedHelpManager] openHelpAnchor:[theAnchorsArray objectAtIndex:theTag] 
+        [[NSHelpManager sharedHelpManager] openHelpAnchor:theAnchorsArray[theTag] 
                     inBook:theBookName];
     }
 }
@@ -967,7 +966,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[_syntaxStylesDefaultPopup menu] addItem:[NSMenuItem separatorItem]];
     
     for (i = 0; i < theCount; i++) {
-        theItem = [[[NSMenuItem alloc] initWithTitle:[theStyleNames objectAtIndex:i] 
+        theItem = [[[NSMenuItem alloc] initWithTitle:theStyleNames[i] 
                     action:nil keyEquivalent:@""] autorelease];
         [[_syntaxStylesPopup menu] addItem:theItem];
         [[_syntaxStylesDefaultPopup menu] addItem:[[theItem copy] autorelease]];
@@ -1032,7 +1031,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (inReturnCode == NSCancelButton) {
         return;
     }
-    NSString *theFileName = [[inSheet filenames] objectAtIndex:0];
+    NSString *theFileName = [inSheet filenames][0];
     NSAlert *theAlert;
 
     // 同名styleが既にあるときは、置換してもいいか確認
@@ -1153,11 +1152,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (!_doDeleteFileDrop) { return; }
 
     NSArray *theSelected = [_fileDropController selectedObjects];
-    NSString *theXtsnStr = [[theSelected objectAtIndex:0] valueForKey:k_key_fileDropExtensions];
+    NSString *theXtsnStr = [theSelected[0] valueForKey:k_key_fileDropExtensions];
     if ([theSelected count] == 0) {
         return;
     } else if (theXtsnStr == nil) {
-        theXtsnStr = [NSString stringWithString:@""];
+        theXtsnStr = @"";
     }
 
     NSString *theMessage = [NSString stringWithFormat:
@@ -1171,7 +1170,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theAlert beginSheetModalForWindow:_prefWindow 
             modalDelegate:self 
             didEndSelector:@selector(deleteFileDropSettingAlertDidEnd:returnCode:contextInfo:) 
-            contextInfo:[NSDictionary dictionaryWithObjectsAndKeys:theXtsnStr, @"theXtsnStr", nil]];
+            contextInfo:@{@"theXtsnStr": theXtsnStr}];
 }
 
 

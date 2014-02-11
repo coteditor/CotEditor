@@ -230,7 +230,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         theMenu = [_outlineMenu menu];
         for (i = 0; i < theCount; i++) {
-            theDict = [inArray objectAtIndex:i];
+            theDict = inArray[i];
             if ([[theDict valueForKey:k_outlineMenuItemTitle] isEqualToString:k_outlineMenuSeparatorSymbol]) {
                 // セパレータ
                 [theMenu addItem:[NSMenuItem separatorItem]];
@@ -242,10 +242,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 theFont = [theManager convertFont:theDefaultFont toHaveTrait:theFontMask];
                 theTitle = [[[NSMutableAttributedString alloc] 
                             initWithString:[theDict valueForKey:k_outlineMenuItemTitle] 
-                            attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                theFont, NSFontAttributeName, 
-                                theUnderlineMaskNumber, NSUnderlineStyleAttributeName, 
-                                nil]] autorelease];
+                            attributes:@{NSFontAttributeName: theFont, 
+                                NSUnderlineStyleAttributeName: theUnderlineMaskNumber}] autorelease];
                 if ([[theDict valueForKey:k_outlineMenuItemFontItalic] boolValue]) {
                     [theTitle addAttribute:NSFontAttributeName 
                             value:[theManager convertFont:theFont toHaveTrait:NSItalicFontMask]

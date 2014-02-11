@@ -249,7 +249,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (_coloringDictionary == nil) { return; }
 
     NSMutableArray *theTmpArray = [NSMutableArray array];
-    NSArray *theCompleteArray = [_coloringDictionary objectForKey:k_SCKey_completionsArray];
+    NSArray *theCompleteArray = _coloringDictionary[k_SCKey_completionsArray];
     NSMutableString *theTmpString = [NSMutableString string];
     NSString *theStr = nil;
     NSCharacterSet *theCharSet;
@@ -260,14 +260,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theCount = [theCompleteArray count];
 
         for (i = 0; i < theCount; i++) {
-            theStr = [[theCompleteArray objectAtIndex:i] valueForKey:k_SCKey_arrayKeyString];
+            theStr = [theCompleteArray[i] valueForKey:k_SCKey_arrayKeyString];
             [theTmpArray addObject:theStr];
             [theTmpString appendString:[theStr substringToIndex:1]];
         }
 
     } else {
 
-        NSArray *theSyntaxArray = [NSArray arrayWithObjects:k_SCKey_allColoringArrays, nil];
+        NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
         NSArray *theArray;
         NSString *theEndStr = nil;
         NSDictionary *theStrDict;
@@ -277,17 +277,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
         for (i = 0; i < theCount; i++) {
-            theArray = [_coloringDictionary objectForKey:[theSyntaxArray objectAtIndex:i]];
+            theArray = _coloringDictionary[theSyntaxArray[i]];
             int theArrayCount = [theArray count];
             for (j = 0; j < theArrayCount; j++) {
-                theStrDict = [theArray objectAtIndex:j];
-                theStr = [[theStrDict objectForKey:k_SCKey_beginString] stringByTrimmingCharactersInSet:
+                theStrDict = theArray[j];
+                theStr = [theStrDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                theEndStr = [[theStrDict objectForKey:k_SCKey_endString] stringByTrimmingCharactersInSet:
+                theEndStr = [theStrDict[k_SCKey_endString] stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 if (([theStr length] > 0) && 
                         ((theEndStr == nil) || ([theEndStr length] < 1)) && 
-                        (![[theStrDict objectForKey:k_SCKey_regularExpression] boolValue])) {
+                        (![theStrDict[k_SCKey_regularExpression] boolValue])) {
                     [theTmpArray addObject:theStr];
                     [theTmpString appendString:[theStr substringToIndex:1]];
                 }
@@ -400,7 +400,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setWholeString:inWholeString];
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *theREStringArray = [_coloringDictionary objectForKey:k_SCKey_outlineMenuArray];
+    NSArray *theREStringArray = _coloringDictionary[k_SCKey_outlineMenuArray];
     NSDictionary *theDict;
     NSMutableString *thePattern; 
     NSString *theTitle, *theMatchedIndexString;
@@ -410,8 +410,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     unsigned int theMenuTitleMaxLength = [[theValues valueForKey:k_key_outlineMenuMaxLength] unsignedIntValue];
 
     for (i = 0; i < theCount; i++) {
-        theDict = [theREStringArray objectAtIndex:i];
-        unsigned int theOption = ([[theDict objectForKey:k_SCKey_ignoreCase] boolValue]) ? 
+        theDict = theREStringArray[i];
+        unsigned int theOption = ([theDict[k_SCKey_ignoreCase] boolValue]) ? 
                         OgreIgnoreCaseOption : OgreNoneOption;
         NSDictionary *theMatchDict;
         OGRegularExpression *theRegex;
@@ -420,7 +420,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         NS_DURING
             theRegex = [OGRegularExpression regularExpressionWithString:
-                        [theDict objectForKey:k_SCKey_beginString] options:theOption];
+                        theDict[k_SCKey_beginString] options:theOption];
         NS_HANDLER
             // 何もしない
             NSLog(@"ERROR in \"outlineMenuArrayWithWholeString:\"");
@@ -432,14 +432,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // マッチした範囲
             theMatchRange = [theMatch rangeOfMatchedString];
             // メニュー項目タイトル
-            thePattern = [[[theDict objectForKey:k_SCKey_arrayKeyString] mutableCopy] autorelease];
+            thePattern = [[theDict[k_SCKey_arrayKeyString] mutableCopy] autorelease];
             if ([thePattern isEqualToString:k_outlineMenuSeparatorSymbol]) {
                 // セパレータのとき
-                theMatchDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSValue valueWithRange:theMatchRange], k_outlineMenuItemRange, 
-                            k_outlineMenuSeparatorSymbol, k_outlineMenuItemTitle, 
-                            [NSNumber numberWithUnsignedInt:theMatchRange.location], k_outlineMenuItemSortKey, 
-                            nil];
+                theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange], 
+                            k_outlineMenuItemTitle: k_outlineMenuSeparatorSymbol, 
+                            k_outlineMenuItemSortKey: [NSNumber numberWithUnsignedInt:theMatchRange.location]};
                 [outArray addObject:theMatchDict];
                 continue;
             } else if ((thePattern == nil) || ([thePattern length] < 1)) {
@@ -500,28 +498,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             unsigned int theUnderlineMask = ([[theDict valueForKey:k_SCKey_underline] boolValue]) ? 
                     (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
             // 辞書生成
-            theMatchDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSValue valueWithRange:theMatchRange], k_outlineMenuItemRange, 
-                        theTitle, k_outlineMenuItemTitle, 
-                        [NSNumber numberWithUnsignedInt:theMatchRange.location], k_outlineMenuItemSortKey, 
-                        [NSNumber numberWithBool:theBoolIsBold], k_outlineMenuItemFontBold, 
-                        [NSNumber numberWithBool:theBoolIsItalic], k_outlineMenuItemFontItalic, 
-                        [NSNumber numberWithUnsignedInt:theUnderlineMask], k_outlineMenuItemUnderlineMask, 
-                        nil];
+            theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange], 
+                        k_outlineMenuItemTitle: theTitle, 
+                        k_outlineMenuItemSortKey: [NSNumber numberWithUnsignedInt:theMatchRange.location], 
+                        k_outlineMenuItemFontBold: @(theBoolIsBold), 
+                        k_outlineMenuItemFontItalic: @(theBoolIsItalic), 
+                        k_outlineMenuItemUnderlineMask: @(theUnderlineMask)};
             [outArray addObject:theMatchDict];
         }
     }
     if ([outArray count] > 0) {
         NSSortDescriptor *theDescriptor = [[[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey 
                     ascending:YES selector:@selector(compare:)] autorelease];
-        [outArray sortUsingDescriptors:[NSArray arrayWithObject:theDescriptor]];
+        [outArray sortUsingDescriptors:@[theDescriptor]];
         // ソート後に、冒頭のアイテムを追加
         [outArray insertObject:
-                [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSValue valueWithRange:NSMakeRange(0, 0)], k_outlineMenuItemRange, 
-                    NSLocalizedString(@"< Outline Menu >",@""), k_outlineMenuItemTitle, 
-                    [NSNumber numberWithUnsignedInt:0], k_outlineMenuItemSortKey, 
-                    nil]
+                @{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)], 
+                    k_outlineMenuItemTitle: NSLocalizedString(@"< Outline Menu >",@""), 
+                    k_outlineMenuItemSortKey: @0U}
                 atIndex:0];
     }
     return outArray;
@@ -586,7 +580,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     int i, theCount = [theArray count];
 
     for (i = 0; i < theCount; i++) {
-        theRange = [[theArray objectAtIndex:i] rangeValue];
+        theRange = [theArray[i] rangeValue];
         theRange.location += _updateRange.location;
 
         if ([self isPrinting]) {
@@ -630,7 +624,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 theLength = [theScanStr length];
                 if (theLength > 0) {
                     theLocation = [theScanner scanLocation];
-                    wordsArray = [inWordsDict objectForKey:[NSNumber numberWithInt:theLength]];
+                    wordsArray = inWordsDict[[NSNumber numberWithInt:theLength]];
                     if ([wordsArray containsObject:theScanStr]) {
                         theAttrRange = NSMakeRange(theLocation - theLength, theLength);
                         [outArray addObject:[NSValue valueWithRange:theAttrRange]];
@@ -684,12 +678,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             if (!inValueDoColoring) {
                 theStartEnd = (inPairKind >= k_QC_CommentBaseNum) ? k_QC_Start : k_notUseStartEnd;
-                [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithUnsignedInt:theStart], k_QCPosition, 
-                        [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                        [NSNumber numberWithUnsignedInt:theStartEnd], k_QCStartEnd, 
-                        [NSNumber numberWithUnsignedInt:theBeginLength], k_QCStrLength, 
-                        nil]];
+                [outArray addObject:@{k_QCPosition: @(theStart), 
+                        k_QCPairKind: @(inPairKind), 
+                        k_QCStartEnd: @(theStartEnd), 
+                        k_QCStrLength: @(theBeginLength)}];
             }
         } else {
             break;
@@ -718,12 +710,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                             [outArray addObject:[NSValue valueWithRange:theAttrRange]];
                         } else {
                             theStartEnd = (inPairKind >= k_QC_CommentBaseNum) ? k_QC_End : k_notUseStartEnd;
-                            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithUnsignedInt:(theEnd - theEndLength)], k_QCPosition, 
-                                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                                    [NSNumber numberWithUnsignedInt:theStartEnd], k_QCStartEnd, 
-                                    [NSNumber numberWithUnsignedInt:theEndLength], k_QCStrLength, 
-                                    nil]];
+                            [outArray addObject:@{k_QCPosition: @(theEnd - theEndLength), 
+                                    k_QCPairKind: @(inPairKind), 
+                                    k_QCStartEnd: @(theStartEnd), 
+                                    k_QCStrLength: @(theEndLength)}];
                         }
                         break;
                     }
@@ -772,25 +762,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
                 return nil;
             }
-            theAttrRange = [[theMatchArray objectAtIndex:i] rangeValue];
+            theAttrRange = [theMatchArray[i] rangeValue];
             if (inPairKind >= k_QC_CommentBaseNum) {
                 theQCStart = k_QC_Start;
                 theQCEnd = k_QC_End;
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:(theAttrRange.location)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCStart], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCEnd], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCStart), 
+                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCEnd), 
+                    k_QCStrLength: @0U}];
         }
         return outArray;
     }
@@ -838,18 +824,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:(theAttrRange.location)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCStart], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCEnd], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCStart), 
+                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCEnd), 
+                    k_QCStrLength: @0U}];
         }
         [thePool release]; // ===== release
     }
@@ -890,7 +872,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
             return nil;
         }
-        theBeginRange = [[theMatchArray objectAtIndex:i] rangeValue];
+        theBeginRange = [theMatchArray[i] rangeValue];
         NS_DURING
             theEndRange = [_localString rangeOfRegex:inEndString 
                         options:theOption 
@@ -917,18 +899,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:(theAttrRange.location)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCStart], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCEnd], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCStart), 
+                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCEnd), 
+                    k_QCStrLength: @0U}];
         }
     }
     return outArray;
@@ -989,18 +967,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:(theAttrRange.location)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCStart], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
-            [outArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], k_QCPosition, 
-                    [NSNumber numberWithUnsignedInt:inPairKind], k_QCPairKind, 
-                    [NSNumber numberWithUnsignedInt:theQCEnd], k_QCStartEnd, 
-                    [NSNumber numberWithUnsignedInt:0], k_QCStrLength, 
-                    nil]];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCStart), 
+                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
+                    k_QCPairKind: @(inPairKind), 
+                    k_QCStartEnd: @(theQCEnd), 
+                    k_QCStrLength: @0U}];
         }
         [thePool release]; // ===== release
     }
@@ -1031,35 +1005,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     for (i = 0; i < theSyntaxCount; i++) {
         if ((_isIndicatorShown) && ((i % 10) == 0) && 
                 ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) { return; }
-        theStrDict = [inArray objectAtIndex:i];
-        theBeginStr = [theStrDict objectForKey:k_SCKey_beginString];
+        theStrDict = inArray[i];
+        theBeginStr = theStrDict[k_SCKey_beginString];
 
         if ([theBeginStr length] < 1) { continue; }
 
-        theEndStr = [theStrDict objectForKey:k_SCKey_endString];
+        theEndStr = theStrDict[k_SCKey_endString];
 
-        if ([[theStrDict objectForKey:k_SCKey_regularExpression] boolValue]) {
+        if ([theStrDict[k_SCKey_regularExpression] boolValue]) {
             if ((theEndStr != nil) && ([theEndStr length] > 0)) {
                 if (_isPanther) {
                     theTmpArray = [self checkRegularExpressionBeginString:theBeginStr 
                             withEndString:theEndStr 
-                            withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                             doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
                 } else {
                     theTmpArray = [self rangesRegularExpressionBeginString:theBeginStr 
                             withEndString:theEndStr 
-                            withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                             doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
                 }
                 [thePosArray addObjectsFromArray:theTmpArray];
             } else {
                 if (_isPanther) {
                     theTmpArray = [self checkRegularExpressionString:theBeginStr 
-                            withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                             doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
                 } else {
                     theTmpArray = [self rangesRegularExpressionString:theBeginStr 
-                            withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                             doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
                 }
                 [thePosArray addObjectsFromArray:theTmpArray];
@@ -1071,12 +1045,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [thePosArray addObjectsFromArray:theTmpArray];
             } else {
                 NSNumber *len = [NSNumber numberWithInt:[theBeginStr length]];
-                id wordsArray = [theSimpleWordsDict objectForKey:len];
+                id wordsArray = theSimpleWordsDict[len];
                 if (wordsArray) {
                     [wordsArray addObject:theBeginStr];
                 } else {
                     wordsArray = [NSMutableArray arrayWithObject:theBeginStr];
-                    [theSimpleWordsDict setObject:wordsArray forKey:len];
+                    theSimpleWordsDict[len] = wordsArray;
                 }
                 [theSimpleWordsChar appendString:theBeginStr];
             }
@@ -1106,7 +1080,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([thePosArray count] < 1) { return; }
     NSSortDescriptor *theDescriptor = 
             [[[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES] autorelease];
-    [thePosArray sortUsingDescriptors:[NSArray arrayWithObject:theDescriptor]];
+    [thePosArray sortUsingDescriptors:@[theDescriptor]];
     theColoringCount = [thePosArray count];
 
     theQCKind = k_notUseKind;
@@ -1116,18 +1090,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             indicatorValue = theBeginDouble + (double)(theIndex / (double)theColoringCount * 200);
             [self setDoubleIndicator:(double)indicatorValue];
         }
-        theCurRecord = [thePosArray objectAtIndex:theIndex];
+        theCurRecord = thePosArray[theIndex];
         if (theQCKind == k_notUseKind) {
-            if ([[theCurRecord objectForKey:k_QCStartEnd] unsignedIntValue] == k_QC_End) {
+            if ([theCurRecord[k_QCStartEnd] unsignedIntValue] == k_QC_End) {
                 theIndex++;
                 continue;
             }
-            theQCKind = [[theCurRecord objectForKey:k_QCPairKind] unsignedIntValue];
-            theStart = [[theCurRecord objectForKey:k_QCPosition] unsignedIntValue];
+            theQCKind = [theCurRecord[k_QCPairKind] unsignedIntValue];
+            theStart = [theCurRecord[k_QCPosition] unsignedIntValue];
             theIndex++;
             continue;
         }
-        if (theQCKind == [[theCurRecord objectForKey:k_QCPairKind] unsignedIntValue]) {
+        if (theQCKind == [theCurRecord[k_QCPairKind] unsignedIntValue]) {
             if (theQCKind == k_QC_SingleQ) {
                 theAttrs = _singleQuotesAttrs;
             } else if (theQCKind == k_QC_DoubleQ) {
@@ -1138,12 +1112,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
                 break;
             }
-            theEnd = [[theCurRecord objectForKey:k_QCPosition] unsignedIntValue] + 
-                    [[theCurRecord objectForKey:k_QCStrLength] unsignedIntValue];
+            theEnd = [theCurRecord[k_QCPosition] unsignedIntValue] + 
+                    [theCurRecord[k_QCStrLength] unsignedIntValue];
             theColoringRange = NSMakeRange(theStart + _updateRange.location, theEnd - theStart);
             if ([self isPrinting]) {
                 [[_layoutManager firstTextView] setTextColor:
-                        [theAttrs objectForKey:NSForegroundColorAttributeName] range:theColoringRange];
+                        theAttrs[NSForegroundColorAttributeName] range:theColoringRange];
             } else {
                 [_layoutManager addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
             }
@@ -1152,9 +1126,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         } else {
             // 「終わり」があるか調べる
             for (j = (theIndex + 1); j < theColoringCount; j++) {
-                theCheckRecord = [thePosArray objectAtIndex:j];
-                if (theQCKind == [[theCheckRecord objectForKey:k_QCPairKind] unsignedIntValue]) {
-                    theCheckStartEnd = [[theCheckRecord objectForKey:k_QCStartEnd] unsignedIntValue];
+                theCheckRecord = thePosArray[j];
+                if (theQCKind == [theCheckRecord[k_QCPairKind] unsignedIntValue]) {
+                    theCheckStartEnd = [theCheckRecord[k_QCStartEnd] unsignedIntValue];
                     if ((theCheckStartEnd == k_notUseStartEnd) || (theCheckStartEnd == k_QC_End)) {
                         theBoolHasEnd = YES;
                         break;
@@ -1180,7 +1154,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         NSMakeRange(theStart + _updateRange.location, NSMaxRange(_updateRange) - theStart);
                 if ([self isPrinting]) {
                     [[_layoutManager firstTextView] setTextColor:
-                            [theAttrs objectForKey:NSForegroundColorAttributeName] range:theColoringRange];
+                            theAttrs[NSForegroundColorAttributeName] range:theColoringRange];
                 } else {
                     [_layoutManager addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
                 }
@@ -1228,7 +1202,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     int theStart, i, theMax;
 
     if (![self isPrinting]) {
-        theAttrs = [NSDictionary dictionaryWithObjectsAndKeys:theColor, NSForegroundColorAttributeName,  nil];
+        theAttrs = @{NSForegroundColorAttributeName: theColor};
     }
 
     while (![theScanner isAtEnd]) {
@@ -1244,13 +1218,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     theMax = [theTargetArray count];
     if ([self isPrinting]) {
         for (i = 0; i < theMax; i++) {
-            theColoringRange = [[theTargetArray objectAtIndex:i] rangeValue];
+            theColoringRange = [theTargetArray[i] rangeValue];
             theColoringRange.location += _updateRange.location;
             [[_layoutManager firstTextView] setTextColor:theColor range:theColoringRange];
         }
     } else {
         for (i = 0; i < theMax; i++) {
-            theColoringRange = [[theTargetArray objectAtIndex:i] rangeValue];
+            theColoringRange = [theTargetArray[i] rangeValue];
             theColoringRange.location += _updateRange.location;
             [_layoutManager addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
         }
@@ -1272,7 +1246,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 現在あるカラーリングを削除、カラーリング不要なら不可視文字のカラーリングだけして戻る
     [_layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:_updateRange];
-    if (([[_coloringDictionary objectForKey:k_SCKey_numOfObjInArray] intValue] == 0) || 
+    if (([_coloringDictionary[k_SCKey_numOfObjInArray] intValue] == 0) || 
             ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None",@"")])) {
         [self setOtherInvisibleCharsAttrs];
         return;
@@ -1302,8 +1276,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _modalSession = [NSApp beginModalSessionForWindow:theSheet];
     }
 
-    NSArray *theColorArray = [NSArray arrayWithObjects:k_key_allSyntaxColors, nil];
-    NSArray *theSyntaxArray = [NSArray arrayWithObjects:k_SCKey_allColoringArrays, nil];
+    NSArray *theColorArray = @[k_key_allSyntaxColors];
+    NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
     NSArray *theArray, *theInArray;
     NSMutableDictionary *theSimpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableString *theSimpleWordsChar = [NSMutableString stringWithString:k_allAlphabetChars];
@@ -1333,7 +1307,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 break;
             }
 
-            theArray = [_coloringDictionary objectForKey:[theSyntaxArray objectAtIndex:i]];
+            theArray = _coloringDictionary[theSyntaxArray[i]];
             theCount = [theArray count];
             if (theCount < 1) {
                 if (_isIndicatorShown) {
@@ -1342,12 +1316,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 continue;
             }
             _textColor = [[NSUnarchiver unarchiveObjectWithData:
-                    [theValues valueForKey:[theColorArray objectAtIndex:i]]] retain]; // ===== retain
-            _currentAttrs = [[NSDictionary dictionaryWithObjectsAndKeys:_textColor, 
-                    NSForegroundColorAttributeName, nil] retain]; // ===== retain
+                    [theValues valueForKey:theColorArray[i]]] retain]; // ===== retain
+            _currentAttrs = [@{NSForegroundColorAttributeName: _textColor} retain]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
-            if ([[theSyntaxArray objectAtIndex:i] isEqualToString:k_SCKey_commentsArray]) {
+            if ([theSyntaxArray[i] isEqualToString:k_SCKey_commentsArray]) {
                 [self setAttrToCommentsWithSyntaxArray:theArray withSingleQuotes:theBoolIsSingleQuotes 
                         withDoubleQuotes:theBoolIsDoubleQuotes updateIndicator:_isIndicatorShown];
                 [_textColor release]; // ===== release
@@ -1364,24 +1337,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSArray *theTmpArray = nil;
             NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
             for (j = 0; j < theCount; j++) {
-                theStrDict = [theArray objectAtIndex:j];
-                theBeginStr = [theStrDict objectForKey:k_SCKey_beginString];
+                theStrDict = theArray[j];
+                theBeginStr = theStrDict[k_SCKey_beginString];
 
                 if ([theBeginStr length] < 1) { continue; }
 
-                theEndStr = [theStrDict objectForKey:k_SCKey_endString];
+                theEndStr = theStrDict[k_SCKey_endString];
 
-                if ([[theStrDict objectForKey:k_SCKey_regularExpression] boolValue]) {
+                if ([theStrDict[k_SCKey_regularExpression] boolValue]) {
                     if ((theEndStr != nil) && ([theEndStr length] > 0)) {
                         if (_isPanther) {
                             theTmpArray = 
                                 [self checkRegularExpressionBeginString:theBeginStr withEndString:theEndStr 
-                                    withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                                    withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                                     doColoring:YES pairStringKind:k_notUseKind];
                         } else {
                             theTmpArray = 
                                 [self rangesRegularExpressionBeginString:theBeginStr withEndString:theEndStr 
-                                    withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                                    withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                                     doColoring:YES pairStringKind:k_notUseKind];
                         }
                         if (theTmpArray != nil) {
@@ -1390,11 +1363,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     } else {
                         if (_isPanther) {
                             theTmpArray = [self checkRegularExpressionString:theBeginStr 
-                                        withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                                        withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                                         doColoring:YES pairStringKind:k_notUseKind];
                         } else {
                             theTmpArray = [self rangesRegularExpressionString:theBeginStr 
-                                        withIgnoreCase:[[theStrDict objectForKey:k_SCKey_ignoreCase] boolValue] 
+                                        withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
                                         doColoring:YES pairStringKind:k_notUseKind];
                         }
                         if (theTmpArray != nil) {
@@ -1425,12 +1398,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         }
                     } else {
                         NSNumber *len = [NSNumber numberWithInt:[theBeginStr length]];
-                        id wordsArray = [theSimpleWordsDict objectForKey:len];
+                        id wordsArray = theSimpleWordsDict[len];
                         if (wordsArray) {
                             [wordsArray addObject:theBeginStr];
                         } else {
                             wordsArray = [NSMutableArray arrayWithObject:theBeginStr];
-                            [theSimpleWordsDict setObject:wordsArray forKey:len];
+                            theSimpleWordsDict[len] = wordsArray;
                         }
                         [theSimpleWordsChar appendString:theBeginStr];
                     }
@@ -1459,7 +1432,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // カラーリング実行
             theTargetCount = [theTargetArray count]; // = 配列内の配列の数
             for (k = 0; k < theTargetCount; k++) {
-                theInArray = [theTargetArray objectAtIndex:k];
+                theInArray = theTargetArray[k];
                 theInArrayCount = [theInArray count];
 
                 // IMP を使ってメソッド呼び出しを高速化
@@ -1469,7 +1442,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     IMP impSetTextColor = [[_layoutManager firstTextView] methodForSelector:
                                             @selector(setTextColor:range:)];
                     for (l = 0; l < theInArrayCount; l++) {
-                        theColoringRange = [[theInArray objectAtIndex:l] rangeValue];
+                        theColoringRange = [theInArray[l] rangeValue];
                         theColoringRange.location += _updateRange.location;
                         impSetTextColor([_layoutManager firstTextView], 
                                     @selector(setTextColor:range:), 
@@ -1479,7 +1452,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     IMP impAddTempAttrs = [_layoutManager methodForSelector:
                                             @selector(addTemporaryAttributes:forCharacterRange:)];
                     for (l = 0; l < theInArrayCount; l++) {
-                        theColoringRange = [[theInArray objectAtIndex:l] rangeValue];
+                        theColoringRange = [theInArray[l] rangeValue];
                         theColoringRange.location += _updateRange.location;
                         impAddTempAttrs(_layoutManager, 
                                     @selector(addTemporaryAttributes:forCharacterRange:), 

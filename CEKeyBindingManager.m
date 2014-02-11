@@ -236,7 +236,7 @@ static CEKeyBindingManager *sharedInstance = nil;
                     isEqualToArray:theInsertTextArray]))];
         [_textOutlineView reloadData];
         for (i = 0; i < theMax; i++) {
-            theDict = [NSMutableDictionary dictionaryWithObject:[theInsertTextArray objectAtIndex:i] 
+            theDict = [NSMutableDictionary dictionaryWithObject:theInsertTextArray[i] 
                         forKey:k_key_insertCustomText];
             [theContentArray addObject:theDict];
         }
@@ -258,7 +258,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
     NSString *theKeySpecChars = [self keySpecCharsFromKeyEquivalent:inString modifierFrags:inModFlags];
 
-    return [_textKeyBindingDict objectForKey:theKeySpecChars];
+    return _textKeyBindingDict[theKeySpecChars];
 }
 
 
@@ -322,9 +322,9 @@ static CEKeyBindingManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     if (inItem == nil) {
-        return [_outlineDataArray objectAtIndex:inIndex];
+        return _outlineDataArray[inIndex];
     } else {
-        return [[inItem valueForKey:k_children] objectAtIndex:inIndex];
+        return [inItem valueForKey:k_children][inIndex];
     }
 }
 
@@ -362,9 +362,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:k_setKeyCatchModeToCatchMenuShortcut 
                 object:self 
-                userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithInt:k_catchMenuShortcut], k_keyCatchMode, 
-                    nil]
+                userInfo:@{k_keyCatchMode: @k_catchMenuShortcut}
                 ];
         if (_outlineMode == k_outlineViewModeMenu) {
             [_menuDeleteKeyButton setEnabled:YES];
@@ -393,24 +391,24 @@ static CEKeyBindingManager *sharedInstance = nil;
         if (([[NSApp currentEvent] type] == NSLeftMouseDown) && 
                 (_outlineMode == k_outlineViewModeMenu) && 
                 ([[_menuDuplicateTextField stringValue] length] > 0)) {
-            [inItem setObject:@"" forKey:theID];
+            inItem[theID] = @"";
             [_menuDuplicateTextField setStringValue:@""];
             (void)[self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:_currentKeySpecChars];
         } else if (([[NSApp currentEvent] type] == NSLeftMouseDown) && 
                 (_outlineMode == k_outlineViewModeText) && 
                 ([[_textDuplicateTextField stringValue] length] > 0)) {
-            [inItem setObject:@"" forKey:theID];
+            inItem[theID] = @"";
             [_textDuplicateTextField setStringValue:@""];
             (void)[self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:_currentKeySpecChars];
         }
     } else {
         // 現在の表示値と違っていたら、セット
-        [inItem setObject:inObject forKey:theID];
+        inItem[theID] = inObject;
         // 他の値とダブっていたら、再び編集状態にする
         if (![self showDuplicateKeySpecCharsMessageWithKeySpecChars:inObject oldChars:_currentKeySpecChars]) {
             [self performSelector:@selector(performEditOutlineViewSelectedKeyBindingKeyColumn) 
                     withObject:nil afterDelay:0 
-                    inModes:[NSArray arrayWithObject:NSModalPanelRunLoopMode]];
+                    inModes:@[NSModalPanelRunLoopMode]];
             theBoolReleaseOldChars = NO;
         }
     }
@@ -451,9 +449,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     // キー取得を停止
     [[NSNotificationCenter defaultCenter] postNotificationName:k_setKeyCatchModeToCatchMenuShortcut 
             object:self 
-            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                [NSNumber numberWithInt:k_keyDownNoCatch], k_keyCatchMode, 
-                nil]
+            userInfo:@{k_keyCatchMode: @k_keyDownNoCatch}
             ];
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if (_outlineMode == k_outlineViewModeText) {
@@ -545,7 +541,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         int i, theMax = [theInsertTextArray count];
 
         for (i = 0; i < theMax; i++) {
-            theDict = [NSMutableDictionary dictionaryWithObject:[theInsertTextArray objectAtIndex:i] 
+            theDict = [NSMutableDictionary dictionaryWithObject:theInsertTextArray[i] 
                         forKey:k_key_insertCustomText];
             [theContentArray addObject:theDict];
         }
@@ -576,9 +572,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     // キー入力取得を停止
     [[NSNotificationCenter defaultCenter] postNotificationName:k_setKeyCatchModeToCatchMenuShortcut 
             object:self 
-            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                [NSNumber numberWithInt:k_keyDownNoCatch], k_keyCatchMode, 
-                nil]
+            userInfo:@{k_keyCatchMode: @k_keyDownNoCatch}
             ];
 
     if ([sender tag] == k_okButtonTag) { // ok のときデータを保存、反映させる
@@ -915,7 +909,7 @@ static CEKeyBindingManager *sharedInstance = nil;
                 theMod = [theMenuItem keyEquivalentModifierMask];
                 theKeySpecChars = [self keySpecCharsFromKeyEquivalent:theKeyEquivalent modifierFrags:theMod];
             } else {
-                theKeySpecChars = [NSString stringWithString:@""];
+                theKeySpecChars = @"";
             }
             theDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                         [theMenuItem title], k_title, 
@@ -955,7 +949,7 @@ static CEKeyBindingManager *sharedInstance = nil;
                 theKeysArray = [_textKeyBindingDict allKeysForObject:theSelector];
             }
             if ((theKeysArray != nil) && ([theKeysArray count] > 0)) {
-                theKey = [theKeysArray objectAtIndex:0];
+                theKey = theKeysArray[0];
                 theDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                             theSelector, k_title, //*****
                             theKey, k_keyBindingKey, 
@@ -986,7 +980,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSString *theKeyStr = [self readableKeyStringsFromKeyEquivalent:theKeyEquivalent];
     BOOL theBoolDrawShift = (isupper([theKeyEquivalent characterAtIndex:0]) == 1);
     NSString *theModKeyStr = 
-            [self readableKeyStringsFromModKeySpecChars:[inString substringToIndex:(theLength - 1)] 
+            [self readableKeyStringsFromModKeySpecChars:[inString substringToIndex:(theLength - 1)]
                 withShiftKey:theBoolDrawShift];
 
     return [NSString stringWithFormat:@"%@%@", theModKeyStr, theKeyStr];
@@ -1071,7 +1065,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 // キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
 //------------------------------------------------------
 {
-    NSString *outString = [_noPrintableKeyDict objectForKey:inIgModChar];
+    NSString *outString = _noPrintableKeyDict[inIgModChar];
 
     return (outString) ? outString : inIgModChar;
 }
@@ -1350,9 +1344,9 @@ static CEKeyBindingManager *sharedInstance = nil;
             int i, theMax = [theContentArray count];
 
             for (i = 0; i < theMax; i++) {
-                theInsertText = [[theContentArray objectAtIndex:i] objectForKey:k_key_insertCustomText];
+                theInsertText = theContentArray[i][k_key_insertCustomText];
                 if (theInsertText == nil) {
-                    theInsertText = [NSString stringWithString:@""];
+                    theInsertText = @"";
                 }
                 [theDefaultsArray addObject:theInsertText];
             }
@@ -1371,7 +1365,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSArray *theKeyArray = [_menuKeyBindingDict allKeysForObject:inSelectorStr];
 
     if ((theKeyArray != nil) && ([theKeyArray count] > 0)) {
-        return (NSString *)[theKeyArray objectAtIndex:0];
+        return (NSString *)theKeyArray[0];
     }
     return @"";
 }
@@ -1385,7 +1379,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSArray *theKeyArray = [_defaultMenuKeyBindingDict allKeysForObject:inSelectorStr];
 
     if ((theKeyArray != nil) && ([theKeyArray count] > 0)) {
-        return (NSString *)[theKeyArray objectAtIndex:0];
+        return (NSString *)theKeyArray[0];
     }
     return @"";
 }
@@ -1453,42 +1447,40 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
 // 下記の情報を参考にさせていただきました (2005.09.05)
 // http://www.cocoabuilder.com/archive/message/2004/3/19/102023
-    NSArray *theVisibleCharArray = [NSArray arrayWithObjects:
-        [NSString stringWithFormat:@"%C", 0x2191], // "↑" NSUpArrowFunctionKey, 
+    NSArray *theVisibleCharArray = @[[NSString stringWithFormat:@"%C", 0x2191], // "↑" NSUpArrowFunctionKey, 
         [NSString stringWithFormat:@"%C", 0x2193], // "↓" NSDownArrowFunctionKey, 
         [NSString stringWithFormat:@"%C", 0x2190], // "←" NSLeftArrowFunctionKey, 
         [NSString stringWithFormat:@"%C", 0x2192], // "→" NSRightArrowFunctionKey, 
-        [NSString stringWithString:@"F1"], // NSF1FunctionKey, 
-        [NSString stringWithString:@"F2"], // NSF2FunctionKey, 
-        [NSString stringWithString:@"F3"], // NSF3FunctionKey, 
-        [NSString stringWithString:@"F4"], // NSF4FunctionKey, 
-        [NSString stringWithString:@"F5"], // NSF5FunctionKey, 
-        [NSString stringWithString:@"F6"], // NSF6FunctionKey, 
-        [NSString stringWithString:@"F7"], // NSF7FunctionKey, 
-        [NSString stringWithString:@"F8"], // NSF8FunctionKey, 
-        [NSString stringWithString:@"F9"], // NSF9FunctionKey, 
-        [NSString stringWithString:@"F10"], // NSF10FunctionKey, 
-        [NSString stringWithString:@"F11"], // NSF11FunctionKey, 
-        [NSString stringWithString:@"F12"], // NSF12FunctionKey, 
-        [NSString stringWithString:@"F13"], // NSF13FunctionKey, 
-        [NSString stringWithString:@"F14"], // NSF14FunctionKey, 
-        [NSString stringWithString:@"F15"], // NSF15FunctionKey, 
-        [NSString stringWithString:@"F16"], // NSF16FunctionKey, 
+        @"F1", // NSF1FunctionKey, 
+        @"F2", // NSF2FunctionKey, 
+        @"F3", // NSF3FunctionKey, 
+        @"F4", // NSF4FunctionKey,
+        @"F5", // NSF5FunctionKey, 
+        @"F6", // NSF6FunctionKey, 
+        @"F7", // NSF7FunctionKey, 
+        @"F8", // NSF8FunctionKey, 
+        @"F9", // NSF9FunctionKey, 
+        @"F10", // NSF10FunctionKey, 
+        @"F11", // NSF11FunctionKey, 
+        @"F12", // NSF12FunctionKey, 
+        @"F13", // NSF13FunctionKey, 
+        @"F14", // NSF14FunctionKey, 
+        @"F15", // NSF15FunctionKey, 
+        @"F16", // NSF16FunctionKey, 
         [NSString stringWithFormat:@"%C", 0x2326], // NSDeleteCharacter = "Delete forward"
         [NSString stringWithFormat:@"%C", 0x2196], // "↖" NSHomeFunctionKey, 
         [NSString stringWithFormat:@"%C", 0x2198], // "↘" NSEndFunctionKey, 
         [NSString stringWithFormat:@"%C", 0x21DE], // "⇞" NSPageUpFunctionKey, 
         [NSString stringWithFormat:@"%C", 0x21DF], // "⇟" NSPageDownFunctionKey, 
         [NSString stringWithFormat:@"%C", 0x2327], // "⌧" NSClearLineFunctionKey, 
-        [NSString stringWithString:@"Help"], // NSHelpFunctionKey, 
-        [NSString stringWithString:@"Space"], // "Space", 
+        @"Help", // NSHelpFunctionKey, 
+        @"Space", // "Space", 
         [NSString stringWithFormat:@"%C", 0x21E5], // "Tab"
         [NSString stringWithFormat:@"%C", 0x21A9], // "Return"
         [NSString stringWithFormat:@"%C", 0x232B], // "⌫" "Backspace"
         [NSString stringWithFormat:@"%C", 0x2305], // "Enter"
         [NSString stringWithFormat:@"%C", 0x21E4], // "Backtab"
-        [NSString stringWithFormat:@"%C", 0x238B], // "Escape"
-        nil];
+        [NSString stringWithFormat:@"%C", 0x238B]];
 
     int theMax = sizeof(k_noPrintableKeyList) / sizeof(unichar);
     if (theMax != [theVisibleCharArray count]) {
@@ -1511,8 +1503,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 // 独自定義のセレクタ名配列を返す
 //------------------------------------------------------
 {
-    NSArray *outArray = [NSArray arrayWithObjects:
-                @"insertCustomText_00:",
+    NSArray *outArray = @[@"insertCustomText_00:",
                 @"insertCustomText_01:",
                 @"insertCustomText_02:",
                 @"insertCustomText_03:",
@@ -1542,8 +1533,7 @@ static CEKeyBindingManager *sharedInstance = nil;
                 @"insertCustomText_27:",
                 @"insertCustomText_28:",
                 @"insertCustomText_29:",
-                @"insertCustomText_30:",
-                nil];
+                @"insertCustomText_30:"];
 
     return outArray;
 }

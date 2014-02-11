@@ -146,7 +146,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     int theLength = [[_editorView stringForSave] length];
 
-    return [NSNumber numberWithInt:theLength];
+    return @(theLength);
 }
 
 
@@ -262,7 +262,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 透明度をtextViewだけに適用するかどうかを返す
 // ------------------------------------------------------
 {
-    return [NSNumber numberWithBool:_alphaOnlyTextViewInThisWindow];
+    return @(_alphaOnlyTextViewInThisWindow);
 }
 
 
@@ -283,7 +283,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     float theAlpha = [self alpha];
 
-    return [NSNumber numberWithFloat:theAlpha];
+    return @(theAlpha);
     // AppleScript で値を得てみると、0.50000000113 とかになってしまう **** 2005.03.04
 }
 
@@ -304,7 +304,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     BOOL theBOOL = [_editorView wrapLines];
 
-    return [NSNumber numberWithBool:theBOOL];
+    return @(theBOOL);
 }
 
 
@@ -324,7 +324,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     float theSpacing = [self lineSpacingInTextView];
 
-    return [NSNumber numberWithFloat:theSpacing];
+    return @(theSpacing);
 }
 
 
@@ -359,7 +359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if (theEncoding == _encoding) {
         theResult = YES;
     } else {
-        NSString *theActionName = [NSString stringWithString:@"TEST"];
+        NSString *theActionName = @"TEST";
         BOOL theLossy = NO;
 
         theLossy = [[theArg valueForKey:@"Lossy"] boolValue];
@@ -367,7 +367,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 askLossy:NO lossy:theLossy asActionName:theActionName];
     }
 
-    return [NSNumber numberWithBool:theResult];
+    return @(theResult);
 }
 
 
@@ -396,7 +396,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theResult = YES;
     }
 
-    return [NSNumber numberWithBool:theResult];
+    return @(theResult);
 }
 
 
@@ -407,7 +407,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *theArg = [inCommand evaluatedArguments];
     NSString *theSearch = [theArg valueForKey:@"targetString"];
-    if ((theSearch == nil) || ([theSearch length] < 1)) { return [NSNumber numberWithBool:NO]; }
+    if ((theSearch == nil) || ([theSearch length] < 1)) { return @NO; }
     BOOL theBoolIsRE = ([theArg valueForKey:@"regularExpression"] != nil) ? 
                [[theArg valueForKey:@"regularExpression"] boolValue] : NO;
     BOOL theBoolIgnoreCase = ([theArg valueForKey:@"ignoreCase"] != nil) ? 
@@ -418,7 +418,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
     NSString *theWholeStr = [_editorView stringForSave];
     int theWholeLength = [theWholeStr length];
-    if (theWholeLength < 1) { return [NSNumber numberWithBool:NO]; }
+    if (theWholeLength < 1) { return @NO; }
     NSRange theSelectionRange = [_editorView selectedRange];
     NSRange theTargetRange;
 
@@ -444,7 +444,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 option:theMask withRegularExpression:theBoolIsRE];
     }
     
-    return [NSNumber numberWithBool:theBoolResult];
+    return @(theBoolResult);
 }
 
 
@@ -455,7 +455,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *theArg = [inCommand evaluatedArguments];
     NSString *theSearch = [theArg valueForKey:@"targetString"];
-    if ((theSearch == nil) || ([theSearch length] < 1)) { return [NSNumber numberWithBool:NO]; }
+    if ((theSearch == nil) || ([theSearch length] < 1)) { return @NO; }
     BOOL theBoolIsRE = ([theArg valueForKey:@"regularExpression"] != nil) ? 
                [[theArg valueForKey:@"regularExpression"] boolValue] : NO;
     BOOL theBoolIgnoreCase = ([theArg valueForKey:@"ignoreCase"] != nil) ? 
@@ -468,9 +468,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
     NSString *theWholeStr = [_editorView stringForSave];
     int theWholeLength = [theWholeStr length];
-    if (theWholeLength < 1) { return [NSNumber numberWithInt:0]; }
+    if (theWholeLength < 1) { return @0; }
     NSString *theNewString = [theArg valueForKey:@"newString"];
-    if ([theSearch isEqualToString:theNewString]) { return [NSNumber numberWithBool:NO]; }
+    if ([theSearch isEqualToString:theNewString]) { return @NO; }
     if (theNewString == nil) { theNewString = @""; }
     NSRange theSelectionRange, theTargetRange;
 
@@ -524,7 +524,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
 
-    return [NSNumber numberWithInt:theResult];
+    return @(theResult);
 }
 
 
@@ -548,9 +548,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange theRange;
 
     if ((theArray == nil) || ([theArray count] < 1)) { return [NSString string]; }
-    theLocation = [[theArray objectAtIndex:0] intValue];
+    theLocation = [theArray[0] intValue];
     theLength = ([theArray count] > 1) ? 
-            [[theArray objectAtIndex:1] intValue] : 1;
+            [theArray[1] intValue] : 1;
     theRange = [self rangeInTextViewWithLocation:theLocation withLength:theLength];
 
     if (NSEqualRanges(NSMakeRange(0, 0), theRange)) {

@@ -441,7 +441,7 @@ static CEScriptManager *sharedInstance = nil;
     int i;
 
     for (i = 0; i < [theFiles count]; i++) {
-        NSString *theFileName = [theFiles objectAtIndex:i];
+        NSString *theFileName = theFiles[i];
         thePath = [inPath stringByAppendingPathComponent:theFileName];
         NSString *theXtsn = [thePath pathExtension];
         NSDictionary *theAttrs = [theFileManager fileAttributesAtPath:thePath traverseLink:NO];
@@ -492,7 +492,7 @@ static CEScriptManager *sharedInstance = nil;
     int i;
 
     for (i = ([theItems count] - 1); i >= 0; i--) {
-        theMenuItem = [theItems objectAtIndex:i];
+        theMenuItem = theItems[i];
         if ((![theMenuItem isSeparatorItem]) && ([theMenuItem hasSubmenu])) {
             [self removeAllMenuItemsFromParent:[theMenuItem submenu]];
         }
@@ -565,7 +565,7 @@ static CEScriptManager *sharedInstance = nil;
 
     while (outString == nil) {
         theEncoding = 
-                CFStringConvertEncodingToNSStringEncoding([[theEncodings objectAtIndex:i] unsignedLongValue]);
+                CFStringConvertEncodingToNSStringEncoding([theEncodings[i] unsignedLongValue]);
         if (theEncoding == NSProprietaryStringEncoding) {
             NSLog(@"theEncoding == NSProprietaryStringEncoding");
             break;
@@ -619,7 +619,7 @@ static CEScriptManager *sharedInstance = nil;
 
     if ([[NSApp orderedDocuments] count] > 0) {
         theBoolDocExists = YES;
-        theDoc = [[NSApp orderedDocuments] objectAtIndex:0];
+        theDoc = [NSApp orderedDocuments][0];
     }
     _outputHandle = [[theOutPipe fileHandleForReading] retain]; // ===== retain
     _errorHandle = [[theErrorPipe fileHandleForReading] retain]; // ===== retain
@@ -712,7 +712,7 @@ static CEScriptManager *sharedInstance = nil;
 // 標準出力を取得
 // ------------------------------------------------------
 {
-    NSData *theOutputData = [[inNotification userInfo] objectForKey:NSFileHandleNotificationDataItem];
+    NSData *theOutputData = [inNotification userInfo][NSFileHandleNotificationDataItem];
     CEDocument *theDoc = nil;
     NSString *theOutputStr = nil;
     NSPasteboard *thePb;
@@ -720,7 +720,7 @@ static CEScriptManager *sharedInstance = nil;
 
     if ([[NSApp orderedDocuments] count] > 0) {
         theBoolDocExists = YES;
-        theDoc = [[NSApp orderedDocuments] objectAtIndex:0];
+        theDoc = [NSApp orderedDocuments][0];
     }
 
     if (theOutputData == nil) { return; }
@@ -743,7 +743,7 @@ static CEScriptManager *sharedInstance = nil;
                 break;
             case k_pasteboard:
                 thePb = [NSPasteboard generalPasteboard];
-                [thePb declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
+                [thePb declareTypes:@[NSStringPboardType] owner:nil];
                 if (![thePb setString:theOutputStr forType:NSStringPboardType]) {
                     NSBeep();
                 }

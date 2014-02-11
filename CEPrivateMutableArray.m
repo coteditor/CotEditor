@@ -116,7 +116,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     unsigned int i, theCount = [inArray count];
     for (i = 0; i < theCount; i++) {
-        [self addObject:[inArray objectAtIndex:i]];
+        [self addObject:inArray[i]];
     }
 }
 

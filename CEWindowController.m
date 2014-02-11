@@ -515,7 +515,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CEEditorView *theEditorView = [[self document] editorView];
-    NSRange theRange = [[[[_listController selectedObjects] objectAtIndex:0] 
+    NSRange theRange = [[[_listController selectedObjects][0] 
                 valueForKey:k_incompatibleRange] rangeValue];
 
     [theEditorView setSelectedRange:theRange];

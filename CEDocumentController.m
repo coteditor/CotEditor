@@ -470,8 +470,8 @@ static NSRect theLatestDocumentWindowFrame;
     CEDocument *theCurDoc = [self currentDocument];
 
     if (([theArray count] > 0) && (theCurDoc)) {
-        int theLocation = [[theArray objectAtIndex:0] intValue];
-        int theLength = ([theArray count] > 1) ? [[theArray objectAtIndex:1] intValue] : 0;
+        int theLocation = [theArray[0] intValue];
+        int theLength = ([theArray count] > 1) ? [theArray[1] intValue] : 0;
 
         [theCurDoc gotoLocation:theLocation withLength:theLength];
     }

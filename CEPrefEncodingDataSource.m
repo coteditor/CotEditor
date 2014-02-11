@@ -109,7 +109,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // tableViewの列・行で指定された内容を返す
 // ------------------------------------------------------
 {
-    CFStringEncoding theCFEncoding = [[_encodingsForTmp objectAtIndex:inRowIndex] unsignedLongValue];
+    CFStringEncoding theCFEncoding = [_encodingsForTmp[inRowIndex] unsignedLongValue];
     NSString *outStr;
 
     if (theCFEncoding == kCFStringEncodingInvalidId) { // = separator
@@ -118,7 +118,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSStringEncoding theEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
         NSString *theIanaName = (NSString *)CFStringConvertEncodingToIANACharSetName(theCFEncoding);
         if (theIanaName == nil) {
-            theIanaName = [NSString stringWithString:@"-"];
+            theIanaName = @"-";
         }
         outStr = [NSString stringWithFormat:@"%@ : [%@]", 
                     [NSString localizedNameOfStringEncoding:theEncoding], theIanaName];
@@ -136,17 +136,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     int i;
 
     // ドラッグ受付タイプを登録
-    [inTableView registerForDraggedTypes:[NSArray arrayWithObject:k_dropMyselfPboardType]];
+    [inTableView registerForDraggedTypes:@[k_dropMyselfPboardType]];
     // すべての選択を解除して、改めてドラッグされる行を選択し直す
     NSMutableIndexSet *theIndexes = [NSMutableIndexSet indexSet];
     [inTableView deselectAll:self];
     for (i = 0; i < [inRows count]; i++) {
-        [theIndexes addIndex:[[inRows objectAtIndex:i] unsignedIntValue]];
+        [theIndexes addIndex:[inRows[i] unsignedIntValue]];
     }
     [inTableView selectRowIndexes:theIndexes byExtendingSelection:YES];
     // ドラッグされる行の保持、Pasteboard の設定
     _draggedItems = inRows; // ドラッグ中にのみ必要なオブジェクトなので、retainしない
-    [ioPboard declareTypes:[NSArray arrayWithObject:k_dropMyselfPboardType] owner:nil];
+    [ioPboard declareTypes:@[k_dropMyselfPboardType] owner:nil];
     [ioPboard setData:[NSData data] forType:k_dropMyselfPboardType];
 
     return YES;
@@ -189,7 +189,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     while (theObject = [theEnumerator nextObject]) {
         if ([theObject unsignedIntValue] < [theNewArray count]) {
             [theDraggingArray addObject:
-                    [[[theNewArray objectAtIndex:[theObject unsignedIntValue]] copy] autorelease]];
+                    [[theNewArray[[theObject unsignedIntValue]] copy] autorelease]];
             [theNewArray removeObjectAtIndex:[theObject unsignedIntValue]];
             if ([theObject intValue] < inRow) { // 下方へドラッグ移動されるときの調整
                 theNewRow--;
@@ -199,10 +199,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     theCount = [theDraggingArray count];
     for (i = 0; i < theCount; i++) {
         if (inRow != k_lastRow) {
-            [theNewArray insertObject:[theDraggingArray objectAtIndex:i] atIndex:theNewRow];
+            [theNewArray insertObject:theDraggingArray[i] atIndex:theNewRow];
             [theSelectIndexSet addIndex:(theNewRow + i)];
         } else {
-            [theNewArray addObject:[theDraggingArray objectAtIndex:(theCount - i - 1)]];
+            [theNewArray addObject:theDraggingArray[(theCount - i - 1)]];
             [theSelectIndexSet addIndex:i];
         }
     }
@@ -237,7 +237,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         unsigned int i;
 
         for (i = 0; i < [_encodingsForTmp count]; i++) {
-            theObject = [_encodingsForTmp objectAtIndex:i];
+            theObject = _encodingsForTmp[i];
             if (([theSelectIndexSet containsIndex:i]) && 
                         ([theObject unsignedLongValue] == kCFStringEncodingInvalidId)) {
                 [_delSeparatorButton setEnabled:YES];
@@ -306,7 +306,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     unsigned int i, theDeleted = 0;
 
     for (i = 0; i < [_encodingsForTmp count]; i++) {
-        theObject = [_encodingsForTmp objectAtIndex:i];
+        theObject = _encodingsForTmp[i];
         if (([theSelectIndexSet containsIndex:i]) && 
                 ([theObject unsignedLongValue] == kCFStringEncodingInvalidId)) {
             theDeleted++;

@@ -109,10 +109,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     (theModFlags & NSShiftKeyMask)) {
                 theModFlags ^= NSShiftKeyMask;
             }
-            NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithUnsignedInt:theModFlags], k_keyBindingModFlags, 
-                        theCharIgnoringMod, k_keyBindingChar, 
-                        nil];
+            NSDictionary *theUserInfo = @{k_keyBindingModFlags: @(theModFlags), 
+                        k_keyBindingChar: theCharIgnoringMod};
             [[NSNotificationCenter defaultCenter] postNotificationName:k_catchMenuShortcutNotification 
                         object:self userInfo:theUserInfo];
             [self setKeyCatchMode:k_keyDownNoCatch];
@@ -148,7 +146,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ノーティフィケーションからキーキャッチモードを設定
 // ------------------------------------------------------
 {
-    int theMode = [[[inNotification userInfo] objectForKey:k_keyCatchMode] intValue];
+    int theMode = [[inNotification userInfo][k_keyCatchMode] intValue];
 
     [self setKeyCatchMode:theMode];
 }

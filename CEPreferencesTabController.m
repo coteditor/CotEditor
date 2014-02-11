@@ -170,16 +170,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ツールバーアイテムデフォルト配列を返す
 // ------------------------------------------------------
 {
-    return [NSArray arrayWithObjects:
-                k_prefGeneralItemID, 
+    return @[k_prefGeneralItemID, 
                 k_prefWindowItemID, 
                 k_prefViewItemID, 
                 k_prefFormatItemID, 
                 k_prefSyntaxItemID, 
                 k_prefFileDropItemID, 
                 k_prefKeyBindingsItemID, 
-                k_prefPrintItemID, 
-                nil];
+                k_prefPrintItemID];
 }
 
 

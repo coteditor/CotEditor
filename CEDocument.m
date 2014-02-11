@@ -272,8 +272,8 @@ enum { typeFSS = 'fss ' };
         if ((theCreator == 0) || (theType == 0)) {
             [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
         } else {
-            [outDict setObject:[_fileAttr objectForKey:NSFileHFSCreatorCode] forKey:NSFileHFSCreatorCode];
-            [outDict setObject:[_fileAttr objectForKey:NSFileHFSTypeCode] forKey:NSFileHFSTypeCode];
+            outDict[NSFileHFSCreatorCode] = _fileAttr[NSFileHFSCreatorCode];
+            outDict[NSFileHFSTypeCode] = _fileAttr[NSFileHFSTypeCode];
         }
     } else if (theSaveTypeCreator == 1) { // = CotEditor's type
         [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
@@ -414,7 +414,7 @@ enum { typeFSS = 'fss ' };
         int i, theCount = [theButtons count];
 
         for (i = 0; i < theCount; i++) {
-            theDontSaveButton = [theButtons objectAtIndex:i];
+            theDontSaveButton = theButtons[i];
             if ([[theDontSaveButton title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
                 [theDontSaveButton setKeyEquivalent:@"d"];
                 [theDontSaveButton setKeyEquivalentModifierMask:NSCommandKeyMask];
@@ -538,7 +538,7 @@ enum { typeFSS = 'fss ' };
 
         while (theStr == nil) {
             ioEncoding = 
-                    CFStringConvertEncodingToNSStringEncoding([[theEncodings objectAtIndex:i] unsignedLongValue]);
+                    CFStringConvertEncodingToNSStringEncoding([theEncodings[i] unsignedLongValue]);
             if ((ioEncoding == NSISO2022JPStringEncoding) && theBoolToSkipISO2022JP) {
                 break;
             } else if ((ioEncoding == NSUTF8StringEncoding) && theBoolToSkipUTF8) {
@@ -629,7 +629,7 @@ enum { typeFSS = 'fss ' };
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
     // テキストビューへフォーカスを移動
-    [[_editorView window] makeFirstResponder:[[[[_editorView splitView] subviews] objectAtIndex:0] textView]];
+    [[_editorView window] makeFirstResponder:[[[_editorView splitView] subviews][0] textView]];
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
     [_editorView updateColoringAndOutlineMenuWithDelay];
@@ -716,7 +716,7 @@ enum { typeFSS = 'fss ' };
 
     for (i = 0; i < theCount; i++) {
         // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
-        [[theManagers objectAtIndex:i] removeTemporaryAttribute:NSBackgroundColorAttributeName 
+        [theManagers[i] removeTemporaryAttribute:NSBackgroundColorAttributeName 
                     forCharacterRange:NSMakeRange(0, [[_editorView string] length])];
     }
 }
@@ -774,9 +774,7 @@ enum { typeFSS = 'fss ' };
                 green:((theBG_G + theF_G) / 2) 
                 blue:((theBG_B + theF_B) / 2) 
                 alpha:1.0];
-    theAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
-            theIncompatibleColor, NSBackgroundColorAttributeName, 
-            nil];
+    theAttrs = @{NSBackgroundColorAttributeName: theIncompatibleColor};
 
     for (i = 0; i < theWholeLength; i++) {
         theWholeUnichar = [theWholeString characterAtIndex:i];
@@ -792,7 +790,7 @@ enum { typeFSS = 'fss ' };
             }
 
             for (j = 0; j < [theManagers count]; j++) {
-                [[theManagers objectAtIndex:j] 
+                [theManagers[j] 
                         addTemporaryAttributes:theAttrs forCharacterRange:NSMakeRange(i, 1)];
             }
             theCurLine = 1;
@@ -805,7 +803,7 @@ enum { typeFSS = 'fss ' };
                 theIndex = NSMaxRange([theWholeString lineRangeForRange:NSMakeRange(theIndex, 0)]);
             }
             [outArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:theCurLine], k_listLineNumber, 
+                    @(theCurLine), k_listLineNumber, 
                     [NSValue valueWithRange:NSMakeRange(i, 1)], k_incompatibleRange, 
                     theCurChar, k_incompatibleChar, 
                     theConvertedChar, k_convertedChar, 
@@ -828,9 +826,9 @@ enum { typeFSS = 'fss ' };
         return;
     }
 
-    NSArray *lineEndingNames = [NSArray arrayWithObjects:k_lineEndingNames, nil];
+    NSArray *lineEndingNames = @[k_lineEndingNames];
     NSString *theActionName = [NSString stringWithFormat:
-                NSLocalizedString(@"Line Endings to \"%@\"",@""),[lineEndingNames objectAtIndex:inNewLineEnding]];
+                NSLocalizedString(@"Line Endings to \"%@\"",@""),lineEndingNames[inNewLineEnding]];
 
     // Undo登録
     NSUndoManager *theUndoManager = [self undoManager];
@@ -1020,8 +1018,8 @@ enum { typeFSS = 'fss ' };
     float theAlpha = [self alpha];
 
     NSMutableDictionary *outDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithFloat:theAlpha], k_key_curWindowAlpha, 
-            [NSNumber numberWithBool:[self alphaOnlyTextViewInThisWindow]], k_key_curAlphaOnlyTextView, 
+            @(theAlpha), k_key_curWindowAlpha, 
+            @([self alphaOnlyTextViewInThisWindow]), k_key_curAlphaOnlyTextView, 
             nil];
     [[CEDocumentController sharedDocumentController] setWindowAlphaControllerDictionary:outDict];
 }
@@ -1142,7 +1140,7 @@ enum { typeFSS = 'fss ' };
             }
             if ((theLocation <= 0) || (theLength <= 0)) { return; }
 
-            OGRegularExpressionMatch *theMatch = [theArray objectAtIndex:(theLocation - 1)];
+            OGRegularExpressionMatch *theMatch = theArray[(theLocation - 1)];
             NSRange theRange = [theMatch rangeOfMatchedString];
             NSRange theTmpRange = theRange;
             int i;
@@ -1247,8 +1245,8 @@ enum { typeFSS = 'fss ' };
 // 指定されたスタイルを適用していたら、WindowController のリカラーフラグを立てる
 // ------------------------------------------------------
 {
-    NSString *theOldName = [inDictionary objectForKey:k_key_oldStyleName];
-    NSString *theNewName = [inDictionary objectForKey:k_key_newStyleName];
+    NSString *theOldName = inDictionary[k_key_oldStyleName];
+    NSString *theNewName = inDictionary[k_key_newStyleName];
     NSString *theCurStyleName = [_editorView syntaxStyleNameToColoring];
 
     if ([theOldName isEqualToString:theCurStyleName]) {
@@ -1891,12 +1889,12 @@ enum { typeFSS = 'fss ' };
     NSData *theData = nil;
 
     // "authopen"コマンドを使って読み込む
-    NSString *theConvertedPath = [NSString stringWithUTF8String:[inFileName UTF8String]];
+    NSString *theConvertedPath = @([inFileName UTF8String]);
     NSTask *theTask = [[[NSTask alloc] init] autorelease];
     int status;
 
     [theTask setLaunchPath:@"/usr/libexec/authopen"];
-    [theTask setArguments:[NSArray arrayWithObjects:theConvertedPath, nil]];
+    [theTask setArguments:@[theConvertedPath]];
     [theTask setStandardOutput:[NSPipe pipe]];
 
     [theTask launch];
@@ -2021,7 +2019,7 @@ enum { typeFSS = 'fss ' };
             int i, theCount = [theEncodings count];
 
             for (i = 0; i < theCount; i++) {
-                theTmpCFEncoding = [[theEncodings objectAtIndex:i] unsignedLongValue];
+                theTmpCFEncoding = [theEncodings[i] unsignedLongValue];
                 if ((theTmpCFEncoding == kCFStringEncodingShiftJIS) || 
                         (theTmpCFEncoding == kCFStringEncodingShiftJIS_X0213_00)) {
                     theCFEncoding = theTmpCFEncoding;
@@ -2066,10 +2064,8 @@ enum { typeFSS = 'fss ' };
 // CotEditor のタイプとクリエータを返す
 // ------------------------------------------------------
 {
-    NSDictionary *outDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedLong:'cEd1'], NSFileHFSCreatorCode, 
-                    [NSNumber numberWithUnsignedLong:'TEXT'], NSFileHFSTypeCode, 
-                    nil];
+    NSDictionary *outDict = @{NSFileHFSCreatorCode: [NSNumber numberWithUnsignedLong:'cEd1'], 
+                    NSFileHFSTypeCode: [NSNumber numberWithUnsignedLong:'TEXT']};
     return outDict;
 }
 
@@ -2163,7 +2159,7 @@ enum { typeFSS = 'fss ' };
         NSDictionary *theAttrs = [self fileAttributesToWriteToFile:inFileName 
                     ofType:inDocType saveOperation:inSaveOperationType];
         NSFileManager *theManager = [NSFileManager defaultManager];
-        NSString *theConvertedPath = [NSString stringWithUTF8String:[inFileName UTF8String]];
+        NSString *theConvertedPath = @([inFileName UTF8String]);
         int status;
         BOOL theFinderLockON = NO;
 
@@ -2183,7 +2179,7 @@ enum { typeFSS = 'fss ' };
         NSTask *theTask = [[[NSTask alloc] init] autorelease];
 
         [theTask setLaunchPath:@"/usr/libexec/authopen"];
-        [theTask setArguments:[NSArray arrayWithObjects:@"-c", @"-w", theConvertedPath, nil]];
+        [theTask setArguments:@[@"-c", @"-w", theConvertedPath]];
         [theTask setStandardInput:[NSPipe pipe]];
 
         [theTask launch];
@@ -2201,8 +2197,7 @@ enum { typeFSS = 'fss ' };
         if (theFinderLockON) {
             // Finder Lock がかかってたなら、再びかける
             BOOL theBoolToGo = [theManager changeFileAttributes:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithBool:YES], NSFileImmutable, nil] atPath:inFileName];
+                    @{NSFileImmutable: @YES} atPath:inFileName];
             outResult = (outResult && theBoolToGo);
         }
     }
@@ -2347,14 +2342,12 @@ enum { typeFSS = 'fss ' };
     if (theFinderLockON) {
         // Finder Lock がかかっていれば、解除
         theBoolToGo = [theManager changeFileAttributes:
-                [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithBool:NO], NSFileImmutable, nil] atPath:inFileName];
+                @{NSFileImmutable: @NO} atPath:inFileName];
         if (theBoolToGo) {
             if (inLockAgain) {
             // フラグが立っていたなら、再びかける
             (void)[theManager changeFileAttributes:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithBool:YES], NSFileImmutable, nil] atPath:inFileName];
+                    @{NSFileImmutable: @YES} atPath:inFileName];
             }
         } else {
             return NO;
@@ -2615,12 +2608,12 @@ enum { typeFSS = 'fss ' };
         NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" 
                     atPath:inFilePath traverseLink:NO];
         NSArray *theArray = [theStr componentsSeparatedByString:@";"];
-        if (([theArray count] >= 2) && ([[theArray objectAtIndex:1] length] > 1)) {
+        if (([theArray count] >= 2) && ([theArray[1] length] > 1)) {
             // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
-            outEncoding = CFStringConvertEncodingToNSStringEncoding([[theArray objectAtIndex:1] intValue]);
-        } else if ([[theArray objectAtIndex:0] length] > 1) {
+            outEncoding = CFStringConvertEncodingToNSStringEncoding([theArray[1] intValue]);
+        } else if ([theArray[0] length] > 1) {
             CFStringEncoding theCFEncoding = 
-                    CFStringConvertIANACharSetNameToEncoding((CFStringRef)[theArray objectAtIndex:0]);
+                    CFStringConvertIANACharSetNameToEncoding((CFStringRef)theArray[0]);
             if (theCFEncoding != kCFStringEncodingInvalidId) {
                 outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
             }

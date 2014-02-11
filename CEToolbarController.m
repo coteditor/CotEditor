@@ -438,8 +438,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 設定画面でのツールバーアイテム配列を返す
 // ------------------------------------------------------
 {
-    return [NSArray arrayWithObjects:
-                k_getInfoItemID, 
+    return @[k_getInfoItemID, 
                 k_showIncompatibleCharItemID, 
                 k_preferencesItemID, 
                 k_saveItemID, 
@@ -467,8 +466,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSToolbarSeparatorItemIdentifier, 
                 NSToolbarFlexibleSpaceItemIdentifier, 
                 NSToolbarSpaceItemIdentifier, 
-                NSToolbarCustomizeToolbarItemIdentifier, 
-                nil];
+                NSToolbarCustomizeToolbarItemIdentifier];
 }
 
 
@@ -477,13 +475,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ツールバーアイテムデフォルト配列を返す
 // ------------------------------------------------------
 {
-    return [NSArray arrayWithObjects:
-                k_lineEndingsItemID, 
+    return @[k_lineEndingsItemID, 
                 k_fileEncodingsItemID, 
                 k_syntaxItemID, 
                 NSToolbarFlexibleSpaceItemIdentifier, 
-                k_getInfoItemID, 
-                nil];
+                k_getInfoItemID];
 }
 
 

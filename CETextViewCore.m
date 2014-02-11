@@ -137,12 +137,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         [theParagraphStyle setDefaultTabInterval:sizeOfTab];
 
-        theAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
-                    theParagraphStyle, NSParagraphStyleAttributeName, 
-                    theFont, NSFontAttributeName, 
-                    [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]], 
-                    NSForegroundColorAttributeName, 
-                    nil];
+        theAttrs = @{NSParagraphStyleAttributeName: theParagraphStyle, 
+                    NSFontAttributeName: theFont, 
+                    NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]]};
         [theParagraphStyle release]; // ===== release
         [self setTypingAttrs:theAttrs];
         [self setEffectTypingAttrs];
@@ -185,9 +182,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setInsertionPointColor:
                 [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_insertionPointColor]]];
         [self setSelectedTextAttributes:
-                [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_selectionColor]], 
-                    NSBackgroundColorAttributeName, nil]];
+                @{NSBackgroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_selectionColor]]}];
         _insertionRect = NSZeroRect;
         _textContainerOriginPoint = 
                     NSMakePoint([[theValues valueForKey:k_key_textContainerInsetWidth] floatValue], 
@@ -516,7 +511,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 日本語フォント名を返してくることがあるため、CELayoutManager からは [textView font] を使わない）
     [(CELayoutManager *)[self layoutManager] setTextFont:inFont];
     [super setFont:inFont];
-    [theAttrs setObject:inFont forKey:NSFontAttributeName];
+    theAttrs[NSFontAttributeName] = inFont;
     [self setTypingAttrs:theAttrs];
     [self setEffectTypingAttrs];
 }
@@ -577,9 +572,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         float theLinePadding = [[self textContainer] lineFragmentPadding];
         float theInsetWidth = [[theValues valueForKey:k_key_textContainerInsetWidth] floatValue];
-        NSString *theTmpStr = [NSString stringWithString:@"M"];
+        NSString *theTmpStr = @"M";
         theColumn *= [theTmpStr sizeWithAttributes:
-                [NSDictionary dictionaryWithObject:[self font] forKey:NSFontAttributeName]].width;
+                @{NSFontAttributeName: [self font]}].width;
 
         // （2ピクセル右に描画してるのは、調整）
         [theLineImg drawInRect:
@@ -833,7 +828,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theArray = [theValues valueForKey:k_key_insertCustomTextArray];
 
     if (inPatternNum < (int)[theArray count]) {
-        NSString *theString = [theArray objectAtIndex:inPatternNum];
+        NSString *theString = theArray[inPatternNum];
         NSRange theSelected = [self selectedRange];
         NSRange theNewRange = NSMakeRange(theSelected.location + [theString length], 0);
 
@@ -876,8 +871,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行末コード置換のためのPasteboardタイプ配列を返す
 // ------------------------------------------------------
 {
-    NSArray *outArray = [NSArray arrayWithObjects:NSStringPboardType, 
-                            [NSString stringWithString:@"public.utf8-plain-text"], nil];
+    NSArray *outArray = @[NSStringPboardType, 
+                            @"public.utf8-plain-text"];
     return outArray;
 }
 
@@ -909,7 +904,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         for (i = 0; i < theCount; i++) {
             NSArray *theArray = [[inDragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
             NSArray *theExtensions = 
-                        [[[theFileDropArray objectAtIndex:i] 
+                        [[theFileDropArray[i] 
                             valueForKey:k_key_fileDropExtensions] componentsSeparatedByString:@", "];
             if ([self draggedItemsArray:theArray containsExtensionInExtensions:theExtensions]) {
                 NSString *theString = [self string];
@@ -1061,10 +1056,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         for (i = 0; i < theFilesCount; i++) {
             theSelected = [self selectedRange];
-            theAbsolutePath = [theFiles objectAtIndex:i];
+            theAbsolutePath = theFiles[i];
             for (theXtsnCount = 0; theXtsnCount < theFileArrayCount; theXtsnCount++) {
                 NSArray *theExtensions = 
-                            [[[theFileDropArray objectAtIndex:theXtsnCount] 
+                            [[theFileDropArray[theXtsnCount] 
                                 valueForKey:k_key_fileDropExtensions] componentsSeparatedByString:@", "];
                 thePathExtension = [theAbsolutePath pathExtension];
                 thePathExtensionLower = [thePathExtension lowercaseString];
@@ -1073,7 +1068,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 if (([theExtensions containsObject:thePathExtensionLower]) 
                         || ([theExtensions containsObject:thePathExtensionUpper])) {
 
-                    [theNewStr setString:[[theFileDropArray objectAtIndex:theXtsnCount] 
+                    [theNewStr setString:[theFileDropArray[theXtsnCount] 
                                 valueForKey:k_key_fileDropFormatString]];
                 } else {
                     continue;
@@ -1089,8 +1084,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     int thePathArrayCount = (int)[thePathArray count];
 
                     for (j = 0; j < theDocArrayCount; j++) {
-                        if (![[theDocPathArray objectAtIndex:j] isEqualToString:
-                                    [thePathArray objectAtIndex:j]]) {
+                        if (![theDocPathArray[j] isEqualToString:
+                                    thePathArray[j]]) {
                             theSame = j;
                             theCount = [theDocPathArray count] - theSame - 1;
                             break;
@@ -1103,7 +1098,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         if ([theTmpStr length] > 0) {
                             [theTmpStr appendString:@"/"];
                         }
-                        [theTmpStr appendString:[thePathArray objectAtIndex:j]];
+                        [theTmpStr appendString:thePathArray[j]];
                     }
                     [theRelativePath setString:[theTmpStr stringByStandardizingPath]];
                 } else {
@@ -1612,13 +1607,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 選択区域を含む行をスキャンし、冒頭のスペース／タブを削除
     for (i = 0; i < theCount; i++) {
-        [theTmpLine setString:[theLines objectAtIndex:i]];
+        [theTmpLine setString:theLines[i]];
         theSpaceDeleted = NO;
         for (j = 0; j < theShiftLength; j++) {
             if ([theTmpLine length] == 0) {
                 break;
             }
-            theStr = [[theLines objectAtIndex:i] substringWithRange:NSMakeRange(j, 1)];
+            theStr = [theLines[i] substringWithRange:NSMakeRange(j, 1)];
             if ([theStr isEqualToString:@"\t"]) {
                 if (!theSpaceDeleted) {
                     [theTmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
@@ -2105,7 +2100,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         while (theXtsn = [theEnumerator nextObject]) {
             for (i = 0; i < theCount; i++) {
-                if ([[[inArray objectAtIndex:i] pathExtension] isEqualToString:theXtsn]) {
+                if ([[inArray[i] pathExtension] isEqualToString:theXtsn]) {
                     return YES;
                 }
             }

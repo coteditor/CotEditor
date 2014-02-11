@@ -195,19 +195,18 @@ static CESyntaxManager *sharedInstance = nil;
         theSelected = inStyleIndex;
         theColoringArray = _coloringStyleArray;
         theName = [self copiedSyntaxName: 
-                    [[theColoringArray objectAtIndex:inStyleIndex] objectForKey:k_SCKey_styleName]];
-        [[theColoringArray objectAtIndex:inStyleIndex] setObject:theName forKey:k_SCKey_styleName];
+                    theColoringArray[inStyleIndex][k_SCKey_styleName]];
+        theColoringArray[inStyleIndex][k_SCKey_styleName] = theName;
 
     } else if (inMode == k_syntaxNewTag) { // New
         theSelected = 0;
-        theColoringArray = [NSArray arrayWithObject:
-                [NSMutableDictionary dictionaryWithDictionary:[self emptyColoringStyle]]];
-        theName = [NSString stringWithString:@""];
+        theColoringArray = @[[NSMutableDictionary dictionaryWithDictionary:[self emptyColoringStyle]]];
+        theName = @"";
 
     } else { // Edit, Delete
         theSelected = inStyleIndex;
         theColoringArray = _coloringStyleArray;
-        theName = [[theColoringArray objectAtIndex:inStyleIndex] objectForKey:k_SCKey_styleName];
+        theName = theColoringArray[inStyleIndex][k_SCKey_styleName];
     }
     if (!theName) { return NO; }
     [theName retain];
@@ -227,7 +226,7 @@ static CESyntaxManager *sharedInstance = nil;
 // 拡張子に応じたstyle名を返す
 // ------------------------------------------------------
 {
-    NSString *outName = [[self xtsnAndStyleTable] objectForKey:inExtension];
+    NSString *outName = [self xtsnAndStyleTable][inExtension];
 
     if (outName == nil) {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
@@ -248,18 +247,18 @@ static CESyntaxManager *sharedInstance = nil;
         NSDictionary *theDict = nil;
         int i, theStyleCount = [_coloringStyleArray count];
         for (i = 0; i < theStyleCount; i++) {
-            theDict = [_coloringStyleArray objectAtIndex:i];
-            if ([[theDict objectForKey:k_SCKey_styleName] isEqualToString:inStyleName]) {
-                NSArray *theSyntaxArray = [NSArray arrayWithObjects:k_SCKey_allColoringArrays, nil];
+            theDict = _coloringStyleArray[i];
+            if ([theDict[k_SCKey_styleName] isEqualToString:inStyleName]) {
+                NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
                 NSArray *theArray;
                 int j, theCount = 0, theSyntaxCount = [theSyntaxArray count];
                 outDict = [NSMutableDictionary dictionaryWithDictionary:theDict];
 
                 for (j = 0; j < theSyntaxCount; j++) {
-                    theArray = [outDict objectForKey:[theSyntaxArray objectAtIndex:j]];
+                    theArray = outDict[theSyntaxArray[j]];
                     theCount = theCount + [theArray count];
                 }
-                [outDict setObject:[NSNumber numberWithInt:theCount] forKey:k_SCKey_numOfObjInArray];
+                outDict[k_SCKey_numOfObjInArray] = @(theCount);
                 return outDict;
             }
         }
@@ -302,9 +301,9 @@ static CESyntaxManager *sharedInstance = nil;
     NSString *theStr = nil;
     int i, thePrefixLength, theCount = [theDefaultArray count];
 
-    thePrefixLength = [[NSString stringWithString:k_bundleSyntaxStyleFilePrefix] length];
+    thePrefixLength = [k_bundleSyntaxStyleFilePrefix length];
     for (i = 0; i < theCount; i++) {
-        theStr = [[theDefaultArray objectAtIndex:i] substringFromIndex:thePrefixLength];
+        theStr = [theDefaultArray[i] substringFromIndex:thePrefixLength];
         [outArray addObject:theStr];
     }
     return outArray;
@@ -363,7 +362,7 @@ static CESyntaxManager *sharedInstance = nil;
     int i, theCount = [_coloringStyleArray count];
 
     for (i = 0; i < theCount; i++) {
-        [outArray addObject:[[_coloringStyleArray objectAtIndex:i] objectForKey:k_SCKey_styleName]];
+        [outArray addObject:_coloringStyleArray[i][k_SCKey_styleName]];
     }
 
     return outArray;
@@ -545,8 +544,7 @@ static CESyntaxManager *sharedInstance = nil;
     NSString *theSourcePath = [theSourceDirPath stringByAppendingFormat:@"/%@%@.plist", 
             k_bundleSyntaxStyleFilePrefix, [self selectedStyleName]];
     if (![[NSFileManager defaultManager] fileExistsAtPath:theSourcePath]) { return; }
-    NSArray *theContents = [NSArray arrayWithObject:
-                [NSMutableDictionary dictionaryWithContentsOfFile:theSourcePath]];
+    NSArray *theContents = @[[NSMutableDictionary dictionaryWithContentsOfFile:theSourcePath]];
 
     // フォーカスを移しておく
     [[sender window] makeFirstResponder:[sender window]];
@@ -651,19 +649,17 @@ static CESyntaxManager *sharedInstance = nil;
 // 空の新規styleを返す
 //------------------------------------------------------
 {
-    NSDictionary *outDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSMutableString stringWithString:@""] , k_SCKey_styleName, 
-                    [NSMutableArray array], k_SCKey_extensions, 
-                    [NSMutableArray array], k_SCKey_keywordsArray, 
-                    [NSMutableArray array], k_SCKey_commandsArray, 
-                    [NSMutableArray array], k_SCKey_valuesArray, 
-                    [NSMutableArray array], k_SCKey_numbersArray, 
-                    [NSMutableArray array], k_SCKey_stringsArray, 
-                    [NSMutableArray array], k_SCKey_charactersArray, 
-                    [NSMutableArray array], k_SCKey_commentsArray, 
-                    [NSMutableArray array], k_SCKey_outlineMenuArray, 
-                    [NSMutableArray array], k_SCKey_completionsArray, 
-                    nil];
+    NSDictionary *outDict = @{k_SCKey_styleName: [NSMutableString stringWithString:@""], 
+                    k_SCKey_extensions: [NSMutableArray array], 
+                    k_SCKey_keywordsArray: [NSMutableArray array], 
+                    k_SCKey_commandsArray: [NSMutableArray array], 
+                    k_SCKey_valuesArray: [NSMutableArray array], 
+                    k_SCKey_numbersArray: [NSMutableArray array], 
+                    k_SCKey_stringsArray: [NSMutableArray array], 
+                    k_SCKey_charactersArray: [NSMutableArray array], 
+                    k_SCKey_commentsArray: [NSMutableArray array], 
+                    k_SCKey_outlineMenuArray: [NSMutableArray array], 
+                    k_SCKey_completionsArray: [NSMutableArray array]};
 
     return outDict;
 }
@@ -716,15 +712,14 @@ static CESyntaxManager *sharedInstance = nil;
 	NSString *thePath = nil;
     int i, theCount = [theFiles count];
     for (i = 0; i < theCount; i++) {
-        NSString *theFileName = [theFiles objectAtIndex:i];
+        NSString *theFileName = theFiles[i];
         if ((![theFileName hasPrefix:@"."]) && ([theFileName hasSuffix:@".plist"])) { // ドットファイル除去
             thePath = [theDirPath stringByAppendingPathComponent:theFileName];
             NSMutableDictionary *theDict = [NSMutableDictionary dictionaryWithContentsOfFile:thePath];
 			// thePathが無効だった場合などに、theDictがnilになる場合がある
 			if (theDict != nil) {				
 				// k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
-				[theDict setObject:[[theFileName lastPathComponent] stringByDeletingPathExtension] 
-						forKey:k_SCKey_styleName];
+				theDict[k_SCKey_styleName] = [[theFileName lastPathComponent] stringByDeletingPathExtension];
 				[theArray addObject:theDict]; // theDictがnilになってここで落ちる（MacBook Airの場合）
 			}
         }
@@ -749,11 +744,11 @@ static CESyntaxManager *sharedInstance = nil;
     int i, theCount;
 
     while (theDict = [theEnumerator nextObject]) {
-        theArray = [theDict objectForKey:k_SCKey_extensions];
+        theArray = theDict[k_SCKey_extensions];
         if (!theArray) { continue; }
         theCount = [theArray count];
         for (i = 0; i < theCount; i++) {
-            theExtension = [[theArray objectAtIndex:i] valueForKey:k_SCKey_arrayKeyString];
+            theExtension = [theArray[i] valueForKey:k_SCKey_arrayKeyString];
             if (theAddedName = [theTable valueForKey:theExtension]) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *theErrorArray = [theErrors valueForKey:theExtension];
                 if (!theErrorArray) {
@@ -790,21 +785,21 @@ static CESyntaxManager *sharedInstance = nil;
     NSString *theDirPath = [self pathOfStyleDirectory]; // データディレクトリパス取得
     NSString *theSaveFile, *theSavePath;
     NSMutableDictionary *theDict;
-    NSArray *theArraysArray = [NSArray arrayWithObjects:k_SCKey_allArrays, nil];
+    NSArray *theArraysArray = @[k_SCKey_allArrays];
     NSMutableArray *theKeyStringArray;
     NSSortDescriptor *theDescriptorOne = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString 
                     ascending:YES selector:@selector(caseInsensitiveCompare:)] autorelease];
     NSSortDescriptor *theDescriptorTwo = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString 
                     ascending:YES selector:@selector(caseInsensitiveCompare:)] autorelease];
-    NSArray *theDescriptors = [NSArray arrayWithObjects:theDescriptorOne, theDescriptorTwo, nil];
+    NSArray *theDescriptors = @[theDescriptorOne, theDescriptorTwo];
     int i;
 
     // _styleController内のコンテンツオブジェクト取得
     NSArray *theContent = [_styleController selectedObjects];
     // styleデータ保存（選択中のオブジェクトはひとつだから、配列の最初の要素のみ処理する 2008.11.02）
-    theDict = [[theContent objectAtIndex:0] mutableCopy]; // ===== mutableCopy
+    theDict = [theContent[0] mutableCopy]; // ===== mutableCopy
     for (i = 0; i < [theArraysArray count]; i++) {
-        theKeyStringArray = [theDict objectForKey:[theArraysArray objectAtIndex:i]];
+        theKeyStringArray = theDict[theArraysArray[i]];
         [theKeyStringArray sortUsingDescriptors:theDescriptors];
     }
     theSaveFile = [self editedNewStyleName];
@@ -847,8 +842,8 @@ static CESyntaxManager *sharedInstance = nil;
     int i;
 
     for (i = 0; i < [theSourceNames count]; i++) {
-        theSource = [theSourceDirPath stringByAppendingPathComponent:[theSourceNames objectAtIndex:i]];
-        theDestination = [inDestinationPath stringByAppendingPathComponent:[theDestNames objectAtIndex:i]];
+        theSource = [theSourceDirPath stringByAppendingPathComponent:theSourceNames[i]];
+        theDestination = [inDestinationPath stringByAppendingPathComponent:theDestNames[i]];
         if (([theFileManager fileExistsAtPath:theSource]) && 
                     (![theFileManager fileExistsAtPath:theDestination])) {
             theValue = [theFileManager copyPath:theSource toPath:theDestination handler:nil];
@@ -922,11 +917,11 @@ static CESyntaxManager *sharedInstance = nil;
         // [NSDictionary descriptionInStringsFileFormat] だと日本語がユニコード16進表示になってしまうので、
         // マニュアルで分解し文字列に変換（もっとうまいやり方あるだろ (-_-; ... 2005.12.03）
         while (theKey = [theEnumerator nextObject]) {
-            theArray = [theErrors objectForKey:theKey];
+            theArray = theErrors[theKey];
             theCount = [theArray count];
             [theStr appendFormat:@"\"%@\" = \"", theKey];
             for (i = 0; i < theCount; i++) {
-                [theStr appendString:[theArray objectAtIndex:i]];
+                [theStr appendString:theArray[i]];
                 if (i < (theCount - 1)) {
                     [theStr appendString:@", "];
                 } else {
@@ -986,7 +981,7 @@ static CESyntaxManager *sharedInstance = nil;
         _addedItemInLeopard = NO;
     }
 
-    NSTableColumn *theColumn = [[inTableView tableColumns] objectAtIndex:0];
+    NSTableColumn *theColumn = [inTableView tableColumns][0];
     int theRow = [inTableView selectedRow];
     id theCell = [theColumn dataCellForRow:theRow];
     if (theCell == nil) { return; }
@@ -1021,28 +1016,28 @@ static CESyntaxManager *sharedInstance = nil;
     int outCount = 0;
 
     if ([theSelectedArray count] == 1) {
-        NSDictionary *theDict = [theSelectedArray objectAtIndex:0];
-        NSArray *theSyntaxArray = [NSArray arrayWithObjects:k_SCKey_syntaxCheckArrays, nil];
+        NSDictionary *theDict = theSelectedArray[0];
+        NSArray *theSyntaxArray = @[k_SCKey_syntaxCheckArrays];
         NSArray *theArray;
         NSString *theBeginStr, *theEndStr, *theTmpBeginStr = nil, *theTmpEndStr = nil;
         NSString *theArrayName = nil, *theArrayNameDeletingArray = nil;
         int i, j, theSyntaxCount = [theSyntaxArray count];
 
         for (i = 0; i < theSyntaxCount; i++) {
-            theArrayName = [theSyntaxArray objectAtIndex:i];
-            theArray = [theDict objectForKey:theArrayName];
+            theArrayName = theSyntaxArray[i];
+            theArray = theDict[theArrayName];
             theArrayNameDeletingArray = [theArrayName substringToIndex:([theArrayName length] - 5)];
             int theArrayCount = [theArray count];
             for (j = 0; j < theArrayCount; j++) {
-                theBeginStr = [[theArray objectAtIndex:j] objectForKey:k_SCKey_beginString];
-                theEndStr = [[theArray objectAtIndex:j] objectForKey:k_SCKey_endString];
+                theBeginStr = theArray[j][k_SCKey_beginString];
+                theEndStr = theArray[j][k_SCKey_endString];
                 if (([theTmpBeginStr isEqualToString:theBeginStr]) && 
                         (((theTmpEndStr == nil) && (theEndStr == nil)) || 
                             ([theTmpEndStr isEqualToString:theEndStr]))) {
                     outCount++;
                     [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n", 
                             outCount, theArrayNameDeletingArray, theBeginStr];
-                } else if ([[[theArray objectAtIndex:j] objectForKey:k_SCKey_regularExpression] boolValue]) {
+                } else if ([theArray[j][k_SCKey_regularExpression] boolValue]) {
                     NS_DURING
                         (void)[OGRegularExpression regularExpressionWithString:theBeginStr];
                     NS_HANDLER
@@ -1104,8 +1099,8 @@ static CESyntaxManager *sharedInstance = nil;
     int outCount = 0;
 
     if ([theSelectedArray count] == 1) {
-        NSDictionary *theDict = [theSelectedArray objectAtIndex:0];
-        NSArray *theSyntaxArray = [NSArray arrayWithObjects:k_SCKey_syntaxCheckArrays, nil];
+        NSDictionary *theDict = theSelectedArray[0];
+        NSArray *theSyntaxArray = @[k_SCKey_syntaxCheckArrays];
         NSArray *theArray;
         NSString *theBeginStr, *theEndStr, *theTmpBeginStr = nil, *theTmpEndStr = nil;
         NSString *theArrayName = nil, *theArrayNameDeletingArray = nil;
@@ -1114,14 +1109,14 @@ static CESyntaxManager *sharedInstance = nil;
         NSError *theError = NULL;
 
         for (i = 0; i < theSyntaxCount; i++) {
-            theArrayName = [theSyntaxArray objectAtIndex:i];
-            theArray = [theDict objectForKey:theArrayName];
+            theArrayName = theSyntaxArray[i];
+            theArray = theDict[theArrayName];
             theArrayNameDeletingArray = [theArrayName substringToIndex:([theArrayName length] - 5)];
             int theArrayCount = [theArray count];
 
             for (j = 0; j < theArrayCount; j++) {
-                theBeginStr = [[theArray objectAtIndex:j] objectForKey:k_SCKey_beginString];
-                theEndStr = [[theArray objectAtIndex:j] objectForKey:k_SCKey_endString];
+                theBeginStr = theArray[j][k_SCKey_beginString];
+                theEndStr = theArray[j][k_SCKey_endString];
 
                 if (([theTmpBeginStr isEqualToString:theBeginStr]) && 
                         (((theTmpEndStr == nil) && (theEndStr == nil)) || 
@@ -1131,7 +1126,7 @@ static CESyntaxManager *sharedInstance = nil;
                     [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n", 
                             outCount, theArrayNameDeletingArray, theBeginStr];
 
-                } else if ([[[theArray objectAtIndex:j] objectForKey:k_SCKey_regularExpression] boolValue]) {
+                } else if ([theArray[j][k_SCKey_regularExpression] boolValue]) {
 
                     theCapCount = 
                             [NSString captureCountForRegex:theBeginStr options:RKLNoOptions error:&theError];
@@ -1139,10 +1134,10 @@ static CESyntaxManager *sharedInstance = nil;
                         outCount++;
                         [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
                                 outCount, theArrayNameDeletingArray, theBeginStr, 
-                                [[theError userInfo] objectForKey:RKLICURegexErrorNameErrorKey], 
-                                [[theError userInfo] objectForKey:RKLICURegexOffsetErrorKey], 
-                                [[theError userInfo] objectForKey:RKLICURegexPreContextErrorKey], 
-                                [[theError userInfo] objectForKey:RKLICURegexPostContextErrorKey]];
+                                [theError userInfo][RKLICURegexErrorNameErrorKey], 
+                                [theError userInfo][RKLICURegexOffsetErrorKey], 
+                                [theError userInfo][RKLICURegexPreContextErrorKey], 
+                                [theError userInfo][RKLICURegexPostContextErrorKey]];
                     }
                     if (theEndStr != nil) {
                         theCapCount = 
@@ -1151,10 +1146,10 @@ static CESyntaxManager *sharedInstance = nil;
                             outCount++;
                             [theResultStr appendFormat:@"%i.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
                                     outCount, theArrayNameDeletingArray, theEndStr, 
-                                    [[theError userInfo] objectForKey:RKLICURegexErrorNameErrorKey], 
-                                    [[theError userInfo] objectForKey:RKLICURegexOffsetErrorKey], 
-                                    [[theError userInfo] objectForKey:RKLICURegexPreContextErrorKey], 
-                                    [[theError userInfo] objectForKey:RKLICURegexPostContextErrorKey]];
+                                    [theError userInfo][RKLICURegexErrorNameErrorKey], 
+                                    [theError userInfo][RKLICURegexOffsetErrorKey], 
+                                    [theError userInfo][RKLICURegexPreContextErrorKey], 
+                                    [theError userInfo][RKLICURegexPostContextErrorKey]];
                         }
                     }
 

@@ -162,10 +162,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theFont == nil) {
         theFont = [NSFont paletteFontOfSize:9];
     }
-    [theAttrs setObject:theFont forKey:NSFontAttributeName];
-    [theAttrs setObject:
-            [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_lineNumFontColor]] 
-            forKey: NSForegroundColorAttributeName];
+    theAttrs[NSFontAttributeName] = theFont;
+    theAttrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_lineNumFontColor]];
 
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
@@ -176,7 +174,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theStr = [_masterView string];
     NSString *theNumStr;    // a temporary string for Line Number
     NSString *theWrapedLineMark = ([[theValues valueForKey:k_key_showWrappedLineMark] boolValue]) ? 
-            [NSString stringWithString:@"-"] : [NSString stringWithString:@" "];
+            @"-" : @" ";
     int theGlyphIndex, theBefore, theGlyphCount; // glyph counter
     int theCharIndex;
     int theLineNum;     // line counter
@@ -243,7 +241,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //    if (!NSEqualRects(theNumRect, NSZeroRect)) {
         theNumStr = (theBefore != theLineNum) ? 
             [NSString stringWithFormat:@"%d", theLineNum] : 
-            [NSString stringWithString:@" "];
+            @" ";
         theReqWidth = charWidth * [theNumStr length];
         theCurWidth = NSWidth([self frame]);
         if ((theCurWidth - k_lineNumPadding) < theReqWidth) {

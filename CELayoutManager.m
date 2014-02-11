@@ -208,9 +208,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSFont *theFont = ([self isPrinting]) ? [[self textStorage] font] : [self textFont];
     NSColor *theColor = 
             [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
-    _attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-            theFont, NSFontAttributeName, 
-            theColor, NSForegroundColorAttributeName,  nil];
+    _attributes = @{NSFontAttributeName: theFont, 
+            NSForegroundColorAttributeName: theColor};
 
     unichar theCharacter;
     NSPoint thePointToDraw;
@@ -261,13 +260,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSGlyphInfo *theGlyphInfo = [NSGlyphInfo glyphInfoWithGlyph:theGlyph
                                     forFont:theReplaceFont baseString:theBaseStr];
                 if (theGlyphInfo != nil) {
-                    NSDictionary *theReplaceAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
-                            theGlyphInfo, NSGlyphInfoAttributeName, 
-                            theReplaceFont , NSFontAttributeName, 
-                            theColor, NSForegroundColorAttributeName,  nil];
+                    NSDictionary *theReplaceAttrs = @{NSGlyphInfoAttributeName: theGlyphInfo, 
+                            NSFontAttributeName: theReplaceFont, 
+                            NSForegroundColorAttributeName: theColor};
                     NSDictionary *theAttrs = 
                             [[self textStorage] attributesAtIndex:theCharIndex effectiveRange:NULL];
-                    if ([theAttrs objectForKey:NSGlyphInfoAttributeName] == nil) {
+                    if (theAttrs[NSGlyphInfoAttributeName] == nil) {
                         [[self textStorage] addAttributes:theReplaceAttrs range:theCharRange];
                     }
                 }

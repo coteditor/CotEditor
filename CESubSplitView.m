@@ -921,9 +921,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         NSColor *theHighlightColor = [[[self textView] highlightLineColor] colorWithAlphaComponent:
                     [[[self textView] backgroundColor] alphaComponent]];
-        NSDictionary *theDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                            theHighlightColor, NSBackgroundColorAttributeName, 
-                            nil];
+        NSDictionary *theDict = @{NSBackgroundColorAttributeName: theHighlightColor};
         // （文字列が削除されたときも実行されるので、範囲を検証しておかないと例外が発生する）
         NSRange theRemoveAttrsRange = NSMakeRange(0, [_textStorage length]);
 

@@ -395,7 +395,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     int i;
 
     for (i = 0; i < [theSubSplitViews count]; i++) {
-        [outArray addObject:[[[theSubSplitViews objectAtIndex:i] textView] layoutManager]];
+        [outArray addObject:[[theSubSplitViews[i] textView] layoutManager]];
     }
     return outArray;
 }
@@ -627,7 +627,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     for (i = 0; i < [theSubSplitViews count]; i++) {
-        [(CETextViewCore *)[[theSubSplitViews objectAtIndex:i] textView] setNewLineString:theNewLineString];
+        [(CETextViewCore *)[theSubSplitViews[i] textView] setNewLineString:theNewLineString];
     }
     if (theBoolUpdate) {
         [self updateLineEndingsInStatusAndInfo:NO];
@@ -801,12 +801,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self windowController] setInfoChar:theInfoChar];
         [[self windowController] setInfoInLine:[NSString stringWithFormat:@"%i", theCountInLine]];
         theInfoSelect = (theRange.length > 0) ? 
-                [NSString stringWithFormat:@"%i", theRange.length] : [NSString stringWithString:@" - "];
+                [NSString stringWithFormat:@"%i", theRange.length] : @" - ";
         [[self windowController] setInfoSelect:theInfoSelect];
         if (theCharStr != nil) {
             [[self windowController] setInfoSingleChar:theCharStr];
         } else {
-            [[self windowController] setInfoSingleChar:[NSString stringWithString:@" - "]];
+            [[self windowController] setInfoSingleChar:@" - "];
         }
     }
 }
@@ -1144,7 +1144,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (theIndex < 0) {
             theIndex = 0;
         }
-        [[self window] makeFirstResponder:[[theSubViews objectAtIndex:theIndex] textView]];
+        [[self window] makeFirstResponder:[theSubViews[theIndex] textView]];
     }
     [theCloseSubSplitView removeFromSuperview];
     [self updateCloseSubSplitViewButton];
@@ -1324,9 +1324,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theIndex < 0) {
         [[self window] makeFirstResponder:[[theSubSplitViews lastObject] textView]];
     } else if (theIndex < theCount) {
-        [[self window] makeFirstResponder:[[theSubSplitViews objectAtIndex:theIndex] textView]];
+        [[self window] makeFirstResponder:[theSubSplitViews[theIndex] textView]];
     } else if (theIndex >= theCount) {
-        [[self window] makeFirstResponder:[[theSubSplitViews objectAtIndex:0] textView]];
+        [[self window] makeFirstResponder:[theSubSplitViews[0] textView]];
     }
 }
 
