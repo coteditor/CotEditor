@@ -86,7 +86,7 @@ static CEATSTypesetter *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (float)lineSpacingAfterGlyphAtIndex:(unsigned)inGlyphIndex withProposedLineFragmentRect:(NSRect)inRect
+- (CGFloat)lineSpacingAfterGlyphAtIndex:(NSUInteger)inGlyphIndex withProposedLineFragmentRect:(NSRect)inRect
 // 行間ピクセル数を返す
 // ------------------------------------------------------
 {

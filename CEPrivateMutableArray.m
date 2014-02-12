@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @implementation CEPrivateMutableArray
 
 
-- (id)initWithCapacity:(unsigned int)inSize
+- (id)initWithCapacity:(NSUInteger)inSize
 {
     [super init];
 
@@ -94,17 +94,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-- (unsigned int)count
+- (NSUInteger)count
 {
     return (_nPointers);
 }
 
 
-- (id)objectAtIndex:(unsigned int)inIndex
+- (id)objectAtIndex:(NSUInteger)inIndex
 {
     if (inIndex >= _nPointers) {
         [NSException raise:NSInvalidArgumentException 
-                    format:@"index %d out of bounds %d", inIndex, _nPointers];
+                    format:@"index %lu out of bounds %d", (unsigned long)inIndex, _nPointers];
     }
 
     return (_pointers[inIndex]);

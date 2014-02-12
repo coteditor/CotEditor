@@ -632,9 +632,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // AppleScript 起動のスピードアップのため一度動かしておく
     if ([[theValues valueForKey:k_key_runAppleScriptInLaunching] boolValue]) {
 
-        NSString *thePath = [[NSBundle mainBundle] pathForResource:@"startup" ofType:@"applescript"];
-        if (thePath == nil) { return; }
-        NSURL *theURL = [NSURL fileURLWithPath:thePath];
+        NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"startup" withExtension:@"applescript"];
+        if (theURL == nil) { return; }
         NSAppleScript *theAppleScript = 
                 [[[NSAppleScript alloc] initWithContentsOfURL:theURL error:nil] autorelease];
 
@@ -730,10 +729,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アップルスクリプト辞書をスクリプトエディタで開く
 // ------------------------------------------------------
 {
-    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"openDictionary" ofType:@"applescript"];
-    NSString *theSource = [NSString stringWithContentsOfFile:thePath];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
     NSDictionary *theErrorInfo;
-    NSAppleScript *theAppleScript = [[[NSAppleScript alloc] initWithSource:theSource] autorelease];
+    NSAppleScript *theAppleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:nil] autorelease];
     (void)[theAppleScript executeAndReturnError:&theErrorInfo];
 }
 
@@ -1039,6 +1037,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSFileManager *theFileManager = [NSFileManager defaultManager];
     NSString *thePath = [NSHomeDirectory( ) 
             stringByAppendingPathComponent:@"Library/Application Support/CotEditor/SyntaxColorings/.plist"];
+
 
     if ([theFileManager fileExistsAtPath:thePath]) {
         (void)[theFileManager removeFileAtPath:thePath handler:nil];

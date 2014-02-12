@@ -366,7 +366,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)insertCompletion:(NSString *)inWord forPartialWordRange:(NSRange)inCharRange 
-        movement:(int)inMovement isFinal:(BOOL)inFlag
+        movement:(NSInteger)inMovement isFinal:(BOOL)inFlag
 // 補完リストの表示、選択候補の入力
 // ------------------------------------------------------
 {
@@ -445,7 +445,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     if (theASSubMenu) {
         NSMenuItem *theDelItem = nil;
-        while (theDelItem = [outMenu itemWithTag:k_scriptMenuTag]) {
+        while ((theDelItem = [outMenu itemWithTag:k_scriptMenuTag])) {
             [outMenu removeItem:theDelItem];
         }
         if ([[theValues valueForKey:k_key_inlineContextualScriptMenu] boolValue]) {
@@ -911,7 +911,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 unsigned int theLength = [theString length];
                 if (theLength > 0) {
                     // 挿入ポイントを自前で描画する
-                    float thePartialFraction;
+                    CGFloat thePartialFraction;
                     NSLayoutManager *theLayoutManager = [self layoutManager];
                     unsigned theGlyphIndex = [theLayoutManager 
                             glyphIndexForPoint:[self convertPoint:[inDragInfo draggingLocation] fromView: nil] 

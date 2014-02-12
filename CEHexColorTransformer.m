@@ -77,7 +77,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     id theColor = [NSUnarchiver unarchiveObjectWithData:inValue];
     if (theColor == nil) { return nil; }
-    float theRed, theGreen, theBlue;
+    CGFloat theRed, theGreen, theBlue;
     NSString *outString = nil, *theColorSpaceName = nil;
 
     // カラースペース名がRGB系でなかったらコンバートする

@@ -378,15 +378,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *theArg = [inCommand evaluatedArguments];
     NSString *theEncodingName = [theArg valueForKey:@"newEncoding"];
-    NSString *theFileName = [self fileName];
     NSStringEncoding theEncoding = [[NSApp delegate] encodingFromName:theEncodingName];
     BOOL theResult = NO;
 
-    if ((theEncoding == NSNotFound) || (theFileName == nil)) {
+    if ((theEncoding == NSNotFound) || ([self fileURL] == nil)) {
         theResult = NO;
     } else if (theEncoding == _encoding) {
         theResult = YES;
-    } else if ([self stringFromData:[NSData dataWithContentsOfFile:theFileName] 
+    } else if ([self stringFromData:[NSData dataWithContentsOfURL:[self fileURL]]
                 encoding:theEncoding xattr:NO]) {
         [self setStringToEditorView];
         // ダーティーフラグをクリア

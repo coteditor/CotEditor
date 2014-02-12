@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-@interface CESubSplitView : NSView
+@interface CESubSplitView : NSView <NSTextViewDelegate>
 {
     CEEditorView *_editorView;
     NSTextStorage *_textStorage;

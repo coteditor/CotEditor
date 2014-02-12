@@ -434,20 +434,21 @@ static CEScriptManager *sharedInstance = nil;
 // ファイルを読み込みメニューアイテムを生成／追加する
 //------------------------------------------------------
 {
+    NSURL *inURL = [NSURL fileURLWithPath:inPath];
     NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSArray *theFiles = [theFileManager directoryContentsAtPath:inPath];
-    NSString *thePath, *theMenuTitle;
+    NSArray *URLs = [theFileManager contentsOfDirectoryAtURL:inURL
+                                  includingPropertiesForKeys:@[NSURLFileResourceTypeKey]
+                                                     options:NSDirectoryEnumerationSkipsPackageDescendants
+                                                       error:nil];
+    NSString *theMenuTitle;
     NSMenuItem *theMenuItem;
-    int i;
-
-    for (i = 0; i < [theFiles count]; i++) {
-        NSString *theFileName = theFiles[i];
-        thePath = [inPath stringByAppendingPathComponent:theFileName];
-        NSString *theXtsn = [thePath pathExtension];
-        NSDictionary *theAttrs = [theFileManager fileAttributesAtPath:thePath traverseLink:NO];
-        if (!theAttrs) { continue; }
-        if ([theAttrs valueForKey:NSFileType] == NSFileTypeDirectory) {
-            theMenuTitle = [self menuTitleFromFileName:theFileName];
+    NSString *resourceType;
+    
+    for (NSURL *URL in URLs) {
+        NSString *theXtsn = [URL pathExtension];
+        [URL getResourceValue:&resourceType forKey:NSURLFileResourceTypeKey error:nil];
+        if ([resourceType isEqualToString:NSURLFileResourceTypeDirectory]) {
+            theMenuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
             if ([theMenuTitle isEqualToString:@"-"]) { // セパレータ
                 [inMenu addItem:[NSMenuItem separatorItem]];
                 continue;
@@ -458,8 +459,8 @@ static CEScriptManager *sharedInstance = nil;
             [theMenuItem setTag:k_scriptMenuDirectoryTag];
             [inMenu addItem:theMenuItem];
             [theMenuItem setSubmenu:theSubMenu];
-            [self addChildFileItemTo:theSubMenu fromDir:thePath];
-        } else if (([theAttrs valueForKey:NSFileType] == NSFileTypeRegular) && 
+            [self addChildFileItemTo:theSubMenu fromDir:[URL path]];
+        } else if ([resourceType isEqualToString:NSURLFileResourceTypeRegular] &&
                 (([theXtsn isEqualToString:@"applescript"]) || 
                 ([theXtsn isEqualToString:@"scpt"]) || 
                 ([theXtsn isEqualToString:@"sh"]) || 
@@ -468,12 +469,12 @@ static CEScriptManager *sharedInstance = nil;
                 ([theXtsn isEqualToString:@"rb"]) || 
                 ([theXtsn isEqualToString:@"py"]))) {
             unsigned int theMod = 0;
-            NSString *theKeyEquivalent = [self keyEquivalentAndModifierMask:&theMod fromFileName:theFileName];
-            theMenuTitle = [self menuTitleFromFileName:theFileName];
+            NSString *theKeyEquivalent = [self keyEquivalentAndModifierMask:&theMod fromFileName:[URL lastPathComponent]];
+            theMenuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
             theMenuItem = [[[NSMenuItem alloc] initWithTitle:theMenuTitle 
                             action:@selector(launchScript:) keyEquivalent:theKeyEquivalent] autorelease];
             [theMenuItem setKeyEquivalentModifierMask:theMod];
-            [theMenuItem setRepresentedObject:thePath];
+            [theMenuItem setRepresentedObject:[URL path]];
             [theMenuItem setTarget:self];
             [theMenuItem setToolTip:NSLocalizedString(@"\"Opt + click\" to open in Script Editor.",@"")];
             [inMenu addItem:theMenuItem];

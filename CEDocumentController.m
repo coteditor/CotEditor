@@ -38,7 +38,8 @@ static NSRect theLatestDocumentWindowFrame;
 
 @implementation CEDocumentController
 
-#pragma mark ===== Public method =====
+#pragma mark -
+#pragma mark Public method
 
 //=======================================================
 // Public method
@@ -57,11 +58,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (id)openUntitledDocumentOfType:(NSString *)inDocType display:(BOOL)inDisplay
+- (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
 // 名称未設定ドキュメントを開き、位置を保存
 // ------------------------------------------------------
 {
-    id outDocument = [super openUntitledDocumentOfType:inDocType display:inDisplay];
+    id outDocument = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
 
     if (outDocument) {
         theLatestDocument = outDocument;
@@ -72,13 +73,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (id)makeDocumentWithContentsOfFile:(NSString *)inFileName ofType:(NSString *)inDocType
+- (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // ファイルからドキュメントを作成
 // ------------------------------------------------------
 {
-    // makeDocumentWithContentsOfFile:ofType: は 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
-    id outDocument = [super makeDocumentWithContentsOfFile:inFileName ofType:inDocType];
+    id outDocument = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
 
     // 自動的に開かれた名称未設定ドキュメントが未変更のままあるときはそれを上書きする（ように見せる）ための設定を行う
     // 実際の位置の変更は CEWindowController で行う
@@ -96,13 +95,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (id)openDocumentWithContentsOfFile:(NSString *)inFileName display:(BOOL)inFlag
+- (id)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument error:(NSError **)outError
 // ファイルを開き、ドキュメントを作成
 // ------------------------------------------------------
 {
-    // openDocumentWithContentsOfFile:display: は 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
-    id outDocument = [super openDocumentWithContentsOfFile:inFileName display:inFlag];
+    id outDocument = [super openDocumentWithContentsOfURL:url display:displayDocument error:outError];
 
     if (outDocument) {
         // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
@@ -142,7 +139,7 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (int)runModalOpenPanel:(NSOpenPanel *)inOpenPanel forTypes:(NSArray *)inExtensions
+- (NSInteger)runModalOpenPanel:(NSOpenPanel *)inOpenPanel forTypes:(NSArray *)inExtensions
 // オープンパネルを開くときにエンコーディング指定メニューを付加する
 // ------------------------------------------------------
 {
@@ -152,15 +149,8 @@ static NSRect theLatestDocumentWindowFrame;
 
     // 非表示ファイルも表示するとき
     if (_isOpenHidden) {
-        // この部分は、Smultron を参考にさせていただきました。(2005.09.18)
-        // This part is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-        // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-        // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
         [inOpenPanel setTreatsFilePackagesAsDirectories:YES];
-        NS_DURING // catch any exceptions if Apple ever changes this undocumented feature
-        [[inOpenPanel _navView] setShowsHiddenFiles:YES]; // 隠しメソッド、バージョンアップに注意
-        NS_HANDLER // if there are any exceptions raised, just ignore including hidden files
-        NS_ENDHANDLER
+        [inOpenPanel setShowsHiddenFiles:YES];
     } else {
         [inOpenPanel setTreatsFilePackagesAsDirectories:NO];
     }
@@ -340,7 +330,8 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark -
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -380,7 +371,8 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark -
+#pragma mark Action messages
 
 //=======================================================
 // Action messages

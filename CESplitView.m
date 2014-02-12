@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)dividerThickness
+- (CGFloat)dividerThickness
 // 分割線の高さを返す
 // ------------------------------------------------------
 {

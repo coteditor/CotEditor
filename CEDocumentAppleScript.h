@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEDocument.h"
 
 
-@interface CEDocument (AdditionalAppleScript)
+@interface CEDocument (AdditionalAppleScript) <NSTextStorageDelegate>
 
 // AppleScript Enum
 typedef enum {

@@ -749,7 +749,7 @@ static CESyntaxManager *sharedInstance = nil;
         theCount = [theArray count];
         for (i = 0; i < theCount; i++) {
             theExtension = [theArray[i] valueForKey:k_SCKey_arrayKeyString];
-            if (theAddedName = [theTable valueForKey:theExtension]) { // 同じ拡張子を持つものがすでにあるとき
+            if ((theAddedName = theTable[theExtension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *theErrorArray = [theErrors valueForKey:theExtension];
                 if (!theErrorArray) {
                     theErrorArray = [NSMutableArray array];

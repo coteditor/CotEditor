@@ -163,7 +163,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSPoint)locationForGlyphAtIndex:(unsigned)inGlyphIndex
+- (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
 // グリフ位置を返す
 // ------------------------------------------------------
 {
@@ -172,13 +172,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）
 
         // フォントサイズは随時変更されるため、表示時に取得する
-        NSPoint outPoint = [super locationForGlyphAtIndex:inGlyphIndex];
+        NSPoint outPoint = [super locationForGlyphAtIndex:glyphIndex];
         outPoint.y = [self textFontGlyphY];
 
         return outPoint;
     }
 
-    return [super locationForGlyphAtIndex:inGlyphIndex];
+    return [super locationForGlyphAtIndex:glyphIndex];
 }
 
 

@@ -598,7 +598,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (NSArray *)textView:(NSTextView *)inTextView completions:(NSArray *)inWordsArray 
-        forPartialWordRange:(NSRange)inCharRange indexOfSelectedItem:(int *)inIndex
+        forPartialWordRange:(NSRange)inCharRange indexOfSelectedItem:(NSInteger *)inIndex
 // 補完候補リストをセット
 // ------------------------------------------------------
 {

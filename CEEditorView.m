@@ -1141,9 +1141,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (theIndex >= theCount) {
             theIndex = theCount - 2;
         }
-        if (theIndex < 0) {
-            theIndex = 0;
-        }
         [[self window] makeFirstResponder:[theSubViews[theIndex] textView]];
     }
     [theCloseSubSplitView removeFromSuperview];

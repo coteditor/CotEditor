@@ -1132,13 +1132,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSFileManager *theFileManager = [NSFileManager defaultManager];
     NSString *theSource = 
             [[CESyntaxManager sharedInstance] filePathOfStyleName:[_syntaxStylesPopup title]];
-    NSString *theDestination = [inSheet filename];
+    NSURL *theDestination = [inSheet URL];
 
     // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
-    if ([theFileManager fileExistsAtPath:theDestination]) {
-        (void)[theFileManager removeFileAtPath:theDestination handler:nil];
+    if ([theFileManager fileExistsAtPath:[theDestination path]]) {
+        (void)[theFileManager removeItemAtURL:theDestination error:nil];
     }
     (void)[theFileManager copyPath:theSource toPath:theDestination handler:nil];
+    (void)[theFileManager copyItemAtURL:[NSURL URLWithString:theSource] toURL:theDestination error:nil];
     [self setupSyntaxMenus]; // *** この更新は必要か？ (2/16)
 }
 

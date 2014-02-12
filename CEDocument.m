@@ -165,8 +165,8 @@ enum { typeFSS = 'fss ' };
     // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // 外部プロセスによるファイルの変更監視を停止
-    if ([self fileName] != nil) {
-        [self stopWatchFile:[self fileName]];
+    if ([self fileURL] != nil) {
+        [self stopWatchFile:[[self fileURL] path]];
     }
     // _initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
     // _selection は既に autorelease されている == "- (void)close"
@@ -200,7 +200,7 @@ enum { typeFSS = 'fss ' };
     // 保存中のフラグを立て、保存実行（自分自身が保存した時のファイル更新通知を区別するため）
     _isSaving = YES;
     // SaveAs のとき古いパスを監視対象から外すために保持
-    NSString *theOldPath = [self fileName];
+    NSString *theOldPath = [[self fileURL] path];
     // 新規書類を最初に保存する場合のフラグをセット
     BOOL theBoolIsFirstSaving = ((theOldPath == nil) || (inSaveOperationType == NSSaveAsOperation));
     // 保存処理実行
@@ -284,19 +284,17 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)revertToSavedFromFile:(NSString *)inFileName ofType:(NSString *)inType
+- (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // セーブ時の状態に戻す
 // ------------------------------------------------------
 {
-    // revertToSavedFromFile:ofType: は 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
     // 認証が必要な時に重なって表示されるのを避けるため、まず復帰確認シートを片づける
     //（外部プロセスによる変更通知アラートシートはそのままに）
     if (!_isRevertingWithUKKQueueNotification) {
         [[[_editorView window] attachedSheet] orderOut:self];
     }
 
-    BOOL outResult = [self readFromFile:inFileName withEncoding:k_autoDetectEncodingMenuTag];
+    BOOL outResult = [self readFromFile:[url path] withEncoding:k_autoDetectEncodingMenuTag];
 
     if (outResult) {
         [self setStringToEditorView];
@@ -397,7 +395,7 @@ enum { typeFSS = 'fss ' };
 
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
     if (([self isDocumentEdited]) && 
-            (![self canReleaseFinderLockOfFile:[self fileName] isLocked:nil lockAgain:YES])) {
+            (![self canReleaseFinderLockOfFile:[[self fileURL] path] isLocked:nil lockAgain:YES])) {
         CanCloseAlertContext *closeContext = malloc(sizeof(CanCloseAlertContext));
         closeContext->delegate = inDelegate;
         closeContext->shouldCloseSelector = inShouldCloseSelector;
@@ -605,12 +603,12 @@ enum { typeFSS = 'fss ' };
 // editorView に文字列をセット
 // ------------------------------------------------------
 {
-    [self setColoringExtension:[[self fileName] pathExtension] coloring:NO];
+    [self setColoringExtension:[[self fileURL] pathExtension] coloring:NO];
     [self setStringToTextView:[self stringToWindowController]];
     if ([_windowController needsIncompatibleCharDrawerUpdate]) {
         [_windowController showIncompatibleCharList];
     }
-    [self setIsWritableToEditorViewWithFileName:[self fileName]];
+    [self setIsWritableToEditorViewWithFileName:[[self fileURL] path]];
 }
 
 
@@ -737,7 +735,7 @@ enum { typeFSS = 'fss ' };
 {
     NSMutableArray *outArray = [NSMutableArray array];
     NSString *theWholeString = [_editorView stringForSave];
-    unsigned int theWholeLength = [theWholeString length];
+    NSUInteger theWholeLength = [theWholeString length];
     NSData *theData = [theWholeString dataUsingEncoding:inEncoding allowLossyConversion:YES];
     NSString *theConvertedString = [[[NSString alloc] initWithData:theData encoding:inEncoding] autorelease];
 
@@ -761,8 +759,8 @@ enum { typeFSS = 'fss ' };
     NSString *theCurChar, *theConvertedChar;
     NSString *theYemMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
     unichar theWholeUnichar, theConvertedUnichar;
-    unsigned int i, j, theLines, theIndex, theCurLine;
-    float theBG_R, theBG_G, theBG_B, theF_R, theF_G, theF_B;
+    NSUInteger i, j, theLines, theIndex, theCurLine;
+    CGFloat theBG_R, theBG_G, theBG_B, theF_R, theF_G, theF_B;
 
     // 文字色と背景色の中間色を得る
     [[theForeColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] 
@@ -1197,8 +1195,8 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSDictionary *theAttr = [theFileManager fileAttributesAtPath:[self fileName] traverseLink:YES];
-
+    NSDictionary *theAttr = [theFileManager attributesOfItemAtPath:[[[self fileURL] URLByResolvingSymlinksInPath] path] error:nil];
+    
     if (theAttr) {
         [theAttr retain];
         [_fileAttr release];
@@ -1525,7 +1523,7 @@ enum { typeFSS = 'fss ' };
 // このメソッドは下記のページの情報を参考にさせていただきました(2005.11.05)
 // http://homepage3.nifty.com/kimuraw/misc/ukkqueue.html
 
-    NSString *thePath = [self fileName];
+    NSString *thePath = [[self fileURL] path];
 
     // UKKQueue からパスを削除
     [[UKKQueue sharedQueue] removePathFromQueue:thePath];
@@ -1682,16 +1680,14 @@ enum { typeFSS = 'fss ' };
 
     } else if (theResult == NSAlertAlternateReturn) { // = Reinterpret 再解釈
 
-        NSString *theFileName = [self fileName];
-
-        if (!theFileName) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
+        if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
             NSAlert *theSecondAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
                         defaultButton:NSLocalizedString(@"Cancel",@"") 
                         alternateButton:NSLocalizedString(@"Discard Changes",@"") 
                         otherButton:nil 
                         informativeTextWithFormat:
-                            NSLocalizedString(@"The file \'%@\' has unsaved changes. \n\nDo you want to discard the changes and reset the file encodidng?\n",@""), theFileName];
+                            NSLocalizedString(@"The file \'%@\' has unsaved changes. \n\nDo you want to discard the changes and reset the file encodidng?\n",@""), [[self fileURL] path]];
 
             int theSecondResult = [theSecondAleart runModal];
             if (theSecondResult != NSAlertAlternateReturn) { // != Discard Change
@@ -1700,7 +1696,7 @@ enum { typeFSS = 'fss ' };
                 return;
             }
         }
-        if ([self readFromFile:theFileName withEncoding:theEncoding]) {
+        if ([self readFromFile:[[self fileURL] path] withEncoding:theEncoding]) {
             [self setStringToEditorView];
             // アンドゥ履歴をクリア
             [[self undoManager] removeAllActions];
@@ -1710,7 +1706,7 @@ enum { typeFSS = 'fss ' };
                         defaultButton:NSLocalizedString(@"Done",@"") 
                         alternateButton:nil 
                         otherButton:nil 
-                        informativeTextWithFormat:NSLocalizedString(@"Sorry, the file \'%@\' could not reinterpret in the new encoding \"%@\".",@""), theFileName, theEncodingName];
+                        informativeTextWithFormat:NSLocalizedString(@"Sorry, the file \'%@\' could not reinterpret in the new encoding \"%@\".",@""), [[self fileURL] path], theEncodingName];
             [theThirdAleart setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
@@ -2212,7 +2208,7 @@ enum { typeFSS = 'fss ' };
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    NSString *thePath = [self fileName];
+    NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
     OSType creatorCode = [_fileSender typeCodeValue];
     if (creatorCode == nil) { return; }
@@ -2241,7 +2237,6 @@ enum { typeFSS = 'fss ' };
     theAppleEvent = [NSAppleEventDescriptor 
             appleEventWithEventClass:kODBEditorSuite eventID:kAEModifiedFile targetDescriptor:theCreator 
             returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
-    theFileSSpec = nil;
     theFileSSpec = [NSAppleEventDescriptor 
             descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
     [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
@@ -2279,7 +2274,7 @@ enum { typeFSS = 'fss ' };
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    NSString *thePath = [self fileName];
+    NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
     OSType creatorCode = [_fileSender typeCodeValue];
     if (creatorCode == nil) { return; }
@@ -2426,9 +2421,9 @@ enum { typeFSS = 'fss ' };
 {
     if (inReturnCode == NSAlertAlternateReturn) { // == Revert
         // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
-        if ([self revertToSavedFromFile:[self fileName] ofType:[self fileType]]) {
+        if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
             // UKKQueue からパスを削除（上記メソッド内で追加しているため、このままだとダブる）
-            [[UKKQueue sharedQueue] removePathFromQueue:[self fileName]]; // （NotifCenter への登録はそのままに）
+            [[UKKQueue sharedQueue] removePathFromQueue:[[self fileURL] path]]; // （NotifCenter への登録はそのままに）
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
         }
@@ -2452,8 +2447,7 @@ enum { typeFSS = 'fss ' };
     NSSize thePaperSize = [thePrintInfo paperSize];
     NSPrintOperation *thePrintOperation;
     NSString *theFilePath = ([[theValues valueForKey:k_key_headerFooterPathAbbreviatingWithTilde] boolValue]) ?
-            [[self fileName] stringByAbbreviatingWithTildeInPath] : [self fileName];
-            // (fileName は 10.4 で廃止されているメソッド。バージョンアップ注意 *****)
+            [[[self fileURL] path] stringByAbbreviatingWithTildeInPath] : [[self fileURL] path];
     CELayoutManager *theLayoutManager = [[[CELayoutManager alloc] init] autorelease];
     CEPrintView *thePrintView;
     CESyntax *thePrintSyntax;
