@@ -321,7 +321,7 @@
 		8C83A48109485F27004E48A8 /* CEATSTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEATSTypesetter.m; sourceTree = "<group>"; };
 		8C8971330902620D0013FA27 /* CEPreferencesTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPreferencesTabController.h; sourceTree = "<group>"; };
 		8C8971340902620D0013FA27 /* CEPreferencesTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPreferencesTabController.m; sourceTree = "<group>"; };
-		8C8977240DCD8AD000DC32FF /* libicucore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = /Developer/SDKs/MacOSX10.4u.sdk/usr/lib/libicucore.dylib; sourceTree = "<absolute>"; };
+		8C8977240DCD8AD000DC32FF /* libicucore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		8C8CCCAE09D6803400A008E5 /* CESplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CESplitView.h; sourceTree = "<group>"; };
 		8C8CCCAF09D6803400A008E5 /* CESplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CESplitView.m; sourceTree = "<group>"; };
 		8C98366608C0211D00746F92 /* IncompatibleChar.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = IncompatibleChar.tiff; path = toolbarIcons/IncompatibleChar.tiff; sourceTree = "<group>"; };
