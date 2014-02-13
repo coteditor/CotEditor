@@ -1092,7 +1092,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CESubSplitView *theMasterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
-            [(CETextViewCore *)[[self window] firstResponder] delegate] : 
+            (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate] :
             [(CENavigationBarView *)[sender superview] masterView];
     if (theMasterView == nil) { return; }
     NSRect theSubSplitFrame = [theMasterView bounds];
@@ -1127,7 +1127,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     BOOL theBoolIsSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
-    CESubSplitView *theFirstResponderSubSplitView = [(CETextViewCore *)[[self window] firstResponder] delegate];
+    CESubSplitView *theFirstResponderSubSplitView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
     CESubSplitView *theCloseSubSplitView = (theBoolIsSenderMenu) ? 
             theFirstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
     if (theCloseSubSplitView == nil) { return; }
@@ -1310,7 +1310,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theSubSplitViews = [[self splitView] subviews];
     int theCount = [theSubSplitViews count];
     if (theCount < 2) { return; }
-    CESubSplitView *theCurView = [(CETextViewCore *)[[self window] firstResponder] delegate];
+    CESubSplitView *theCurView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
     int theIndex = [theSubSplitViews indexOfObject:theCurView];
 
     if (inBool) { // == Next

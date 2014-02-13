@@ -908,7 +908,8 @@ static CESyntaxManager *sharedInstance = nil;
     if ([[self xtsnErrors] count] > 0) {
         NSDictionary *theErrors = [self xtsnErrors];
         NSEnumerator *theEnumerator = [theErrors keyEnumerator];
-        id theKey, theArray;
+        NSArray *theArray;
+        id theKey;
         int i, theCount;
 
         [theStr setString:NSLocalizedString(@"The following Extension list is registered by two or more styles for one extension. \nCotEditor uses the first style.\n\n",@"")];

@@ -527,7 +527,7 @@ static CEKeyBindingManager *sharedInstance = nil;
             _outlineDataArray = theTmpArray;
             [_duplicateKeyCheckArray release];
             _duplicateKeyCheckArray = 
-                    [[self duplicateKeyCheckArrayWithArray:_outlineDataArray] retain]; // ===== retain
+                    [[[self duplicateKeyCheckArrayWithArray:_outlineDataArray] mutableCopy] retain]; // ===== retain
             [_menuEditKeyButton setEnabled:NO];
             [_menuOutlineView deselectAll:nil];
             [_menuOutlineView reloadData];

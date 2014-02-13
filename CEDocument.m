@@ -2211,7 +2211,7 @@ enum { typeFSS = 'fss ' };
     NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
     OSType creatorCode = [_fileSender typeCodeValue];
-    if (creatorCode == nil) { return; }
+    if (creatorCode == 0) { return; }
 
     NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
     AppleEvent *theAppleEventPointer;
@@ -2277,7 +2277,7 @@ enum { typeFSS = 'fss ' };
     NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
     OSType creatorCode = [_fileSender typeCodeValue];
-    if (creatorCode == nil) { return; }
+    if (creatorCode == 0) { return; }
 
     NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
     AppleEvent *theAppleEventPointer;

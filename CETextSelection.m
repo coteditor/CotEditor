@@ -300,7 +300,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *theArg = [inCommand evaluatedArguments];
-    CEChangeKanaType theType = [[theArg valueForKey:@"unfType"] unsignedLongValue];
+    CEUNFType theType = [theArg[@"unfType"] unsignedLongValue];
     int theTypeCode = 0;
 
     switch (theType) {
