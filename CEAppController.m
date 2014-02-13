@@ -258,7 +258,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [theEncodings addObject:[NSNumber numberWithUnsignedInt:theEncoding]];
         }
         _invalidYenEncodings = [theEncodings retain];
-        _thousandsSeparator = [[[NSUserDefaults standardUserDefaults] valueForKey:NSThousandsSeparator] retain];
+        _thousandsSeparator = [[[NSUserDefaults standardUserDefaults] valueForKey:NSLocaleGroupingSeparator] retain];
         _didFinishLaunching = NO;
     }
     return self;
@@ -841,19 +841,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // データ保存用ディレクトリの存在をチェック、なければつくる
 //------------------------------------------------------
 {
-    NSString *theDirPath = [NSHomeDirectory( ) 
-            stringByAppendingPathComponent:@"Library/Application Support/CotEditor"];
     NSFileManager *theFileManager = [NSFileManager defaultManager];
+    NSURL *URL = [[theFileManager URLForDirectory:NSApplicationSupportDirectory
+                                         inDomain:NSUserDomainMask
+                                appropriateForURL:nil
+                                           create:YES
+                                            error:nil]
+                  URLByAppendingPathComponent:@"CotEditor"];
     BOOL theValueIsDir = NO, theValueCreated = NO;
 
-    if (![theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir]) {
-        theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+    if (![theFileManager fileExistsAtPath:[URL path] isDirectory:&theValueIsDir]) {
+        theValueCreated = [theFileManager createDirectoryAtURL:URL
+                                   withIntermediateDirectories:YES
+                                                    attributes:nil
+                                                         error:nil];
         if (!theValueCreated) {
             NSLog(@"Could not create support directory for CotEditor...");
         }
     } else if (!theValueIsDir) {
-        NSLog(@"\"%@\" is not dir.", theDirPath);
+        NSLog(@"\"%@\" is not dir.", [URL path]);
     }
+    
 }
 
 
@@ -1035,12 +1043,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 0.9.5まで、シンタックススタイルシートを新規に作成した場合の処理が不正で「.plist」というファイルが作成されてしまっていた。
     // その「~/Library/Application Support/CotEditor/SyntaxColorings/.plist」を削除する(2008.11.02)
     NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *thePath = [NSHomeDirectory( ) 
-            stringByAppendingPathComponent:@"Library/Application Support/CotEditor/SyntaxColorings/.plist"];
+    NSURL *URL = [theFileManager URLForDirectory:NSApplicationSupportDirectory
+                                        inDomain:NSUserDomainMask
+                               appropriateForURL:nil
+                                          create:NO
+                                           error:nil];
+    URL = [URL URLByAppendingPathComponent:@"CotEditor/SyntaxColorings/.plist"];
 
-
-    if ([theFileManager fileExistsAtPath:thePath]) {
-        (void)[theFileManager removeFileAtPath:thePath handler:nil];
+    if ([theFileManager fileExistsAtPath:[URL path]]) {
+        [theFileManager removeItemAtURL:URL error:nil];
     }
 }
 

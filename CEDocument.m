@@ -2182,13 +2182,13 @@ enum { typeFSS = 'fss ' };
         outResult = (status == 0);
 
         // クリエータなどを設定
-        (void)[theManager changeFileAttributes:theAttrs atPath:inFileName];
+        [theManager setAttributes:theAttrs ofItemAtPath:inFileName error:nil];
+        
         // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存（10.5+）
         [self setComAppleTextEncodingAtPath:inFileName];
         if (theFinderLockON) {
             // Finder Lock がかかってたなら、再びかける
-            BOOL theBoolToGo = [theManager changeFileAttributes:
-                    @{NSFileImmutable: @YES} atPath:inFileName];
+            BOOL theBoolToGo = [theManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:inFileName error:nil];
             outResult = (outResult && theBoolToGo);
         }
     }
@@ -2326,18 +2326,16 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     NSFileManager *theManager = [NSFileManager defaultManager];
-    BOOL theFinderLockON = [[theManager fileAttributesAtPath:inFileName traverseLink:YES] fileIsImmutable];
+    BOOL theFinderLockON = [[theManager attributesOfItemAtPath:[inFileName stringByResolvingSymlinksInPath] error:nil] fileIsImmutable];
     BOOL theBoolToGo = NO;
 
     if (theFinderLockON) {
         // Finder Lock がかかっていれば、解除
-        theBoolToGo = [theManager changeFileAttributes:
-                @{NSFileImmutable: @NO} atPath:inFileName];
+        theBoolToGo = [theManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:inFileName error:nil];
         if (theBoolToGo) {
             if (inLockAgain) {
             // フラグが立っていたなら、再びかける
-            (void)[theManager changeFileAttributes:
-                    @{NSFileImmutable: @YES} atPath:inFileName];
+            [theManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:inFileName error:nil];
             }
         } else {
             return NO;
@@ -2571,17 +2569,8 @@ enum { typeFSS = 'fss ' };
     // プリントオペレーション生成、設定、プリント実行
     thePrintOperation = [NSPrintOperation printOperationWithView:thePrintView printInfo:thePrintInfo];
     // プリントパネルの表示を制御し、プログレスパネルは表示させる
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_3) { // = 10.3.x以前
-        NS_DURING
-        [thePrintOperation _setShowPrintPanel:NO]; // 隠しメソッド
-        [thePrintOperation _setShowProgressPanel:YES]; // 隠しメソッド
-        NS_HANDLER // 例外が発生したら、公開メソッドでパネル表示を制御（10.3ではプログレスパネル表示メソッドはない）
-        [thePrintOperation setShowPanels:NO];
-        NS_ENDHANDLER
-    } else { // 10.4+
-        [thePrintOperation setShowsPrintPanel:NO];
-        [thePrintOperation setShowsProgressPanel:YES];
-    }
+    [thePrintOperation setShowsPrintPanel:NO];
+    [thePrintOperation setShowsProgressPanel:YES];
     [thePrintOperation runOperation];
 }
 

@@ -673,7 +673,10 @@ static CEKeyBindingManager *sharedInstance = nil;
     BOOL theValueIsDir = NO, theValueCreated = NO;
     BOOL theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir];
     if (!theExists) {
-        theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+        theValueCreated = [theFileManager createDirectoryAtPath:theDirPath
+                                    withIntermediateDirectories:YES
+                                                     attributes:nil
+                                                          error:nil];
     }
     if ((theExists && theValueIsDir) || (theValueCreated)) {
         NSString *theSource = [[[NSBundle mainBundle] bundlePath] 
@@ -681,7 +684,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
         if (([theFileManager fileExistsAtPath:theSource]) && 
                     (![theFileManager fileExistsAtPath:theFilePath])) {
-            if (![theFileManager copyPath:theSource toPath:theFilePath handler:nil]) {
+            if (![theFileManager copyItemAtPath:theSource toPath:theFilePath error:nil]) {
                 NSLog(@"Error! Could not copy \"%@\" to \"%@\"...", theSource, theFilePath);
                 return;
             }
@@ -713,7 +716,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     BOOL theValueIsDir = NO, theValueCreated = NO;
     BOOL theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir];
     if (!theExists) {
-        theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+        theValueCreated = [theFileManager createDirectoryAtPath:theDirPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     if ((theExists && theValueIsDir) || (theValueCreated)) {
         NSString *theSource = [[[NSBundle mainBundle] bundlePath] 
@@ -721,7 +724,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
         if (([theFileManager fileExistsAtPath:theSource]) && 
                     (![theFileManager fileExistsAtPath:theFilePath])) {
-            if (![theFileManager copyPath:theSource toPath:theFilePath handler:nil]) {
+            if (![theFileManager copyItemAtPath:theSource toPath:theFilePath error:nil]) {
                 NSLog(@"Error! Could not copy \"%@\" to \"%@\"...", theSource, theFilePath);
                 return;
             }
@@ -1294,7 +1297,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         // ディレクトリの存在チェック
         theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir];
         if (!theExists) {
-            theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+            theValueCreated = [theFileManager createDirectoryAtPath:theDirPath withIntermediateDirectories:YES attributes:nil error:nil];
         }
         if ((theExists && theValueIsDir) || (theValueCreated)) {
             [_menuKeyBindingDict release];
@@ -1322,7 +1325,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         // ディレクトリの存在チェック
         theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir];
         if (!theExists) {
-            theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+            theValueCreated = [theFileManager createDirectoryAtPath:theDirPath withIntermediateDirectories:YES attributes:nil error:nil];
         }
         if ((theExists && theValueIsDir) || (theValueCreated)) {
             [_textKeyBindingDict release];
@@ -1485,7 +1488,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     int theMax = sizeof(k_noPrintableKeyList) / sizeof(unichar);
     if (theMax != [theVisibleCharArray count]) {
         NSLog(@"internal data error! 'k_noPrintableKeyList' and 'theVisibleCharArray' size is different.");
-        return @"";
+        return nil;
     }
     NSMutableArray *theKeyArray = [NSMutableArray array];
     int i;

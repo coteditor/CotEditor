@@ -589,6 +589,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theOpenPanel setResolvesAliases:YES];
     [theOpenPanel setAllowsMultipleSelection:NO];
     [theOpenPanel setCanChooseDirectories:NO];
+    [theOpenPanel setAllowedFileTypes:@[@"plist"]];
     [theOpenPanel beginSheetForDirectory:NSHomeDirectory() 
             file:nil 
             types:@[@"plist"] 
@@ -1031,7 +1032,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (inReturnCode == NSCancelButton) {
         return;
     }
-    NSString *theFileName = [inSheet filenames][0];
+    NSString *theFileName = [[inSheet URLs][0] path];
     NSAlert *theAlert;
 
     // 同名styleが既にあるときは、置換してもいいか確認
@@ -1138,7 +1139,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([theFileManager fileExistsAtPath:[theDestination path]]) {
         (void)[theFileManager removeItemAtURL:theDestination error:nil];
     }
-    (void)[theFileManager copyPath:theSource toPath:theDestination handler:nil];
     (void)[theFileManager copyItemAtURL:[NSURL URLWithString:theSource] toURL:theDestination error:nil];
     [self setupSyntaxMenus]; // *** この更新は必要か？ (2/16)
 }

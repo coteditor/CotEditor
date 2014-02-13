@@ -148,13 +148,16 @@ static CEScriptManager *sharedInstance = nil;
         BOOL theBoolOldIsDir = NO;
         BOOL theBoolOldExists = [theFileManager fileExistsAtPath:theOldPath isDirectory:&theBoolOldIsDir];
         if (theBoolOldExists && theBoolOldIsDir) {
-            theBoolCreated = [theFileManager movePath:theOldPath toPath:theDirPath handler:nil];
+            theBoolCreated = [theFileManager moveItemAtPath:theOldPath toPath:theDirPath error:nil];
             NSString *theOldAboutDocPath = [NSHomeDirectory( ) 
                 stringByAppendingPathComponent:
                 @"Library/Application Support/CotEditor/ScriptMenu/_aboutAppleScriptFolder.rtf"];
-            (void)[theFileManager removeFileAtPath:theOldAboutDocPath handler:nil];
+            [theFileManager removeItemAtPath:theOldAboutDocPath error:nil];
         } else {
-            theBoolCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+            theBoolCreated = [theFileManager createDirectoryAtPath:theDirPath
+                                       withIntermediateDirectories:YES
+                                                        attributes:nil
+                                                             error:nil];
         }
     }
     if ((!theExists) && (!theBoolCreated)) {
@@ -169,14 +172,14 @@ static CEScriptManager *sharedInstance = nil;
     NSString *theDestination = [theDirPath stringByAppendingPathComponent:@"_aboutScriptFolder.rtf"];
     if (([theFileManager fileExistsAtPath:theSource]) && 
                 (![theFileManager fileExistsAtPath:theDestination])) {
-        if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
+        if (![theFileManager copyItemAtPath:theSource toPath:theDestination error:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not copy.");
         }
 
         // 付属の Script をコピー
         NSString *theSourceDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Script"];
         NSString *theDestinationDir = [theDirPath stringByAppendingPathComponent:@"/SampleScript"];
-        if (![theFileManager copyPath:theSourceDir toPath:theDestinationDir handler:nil]) {
+        if (![theFileManager copyItemAtPath:theSourceDir toPath:theDestinationDir error:nil]) {
             NSLog(@"Error. AppleScriptFolder sample could not copy.");
         }
     }
@@ -184,10 +187,10 @@ static CEScriptManager *sharedInstance = nil;
              ([theFileManager fileExistsAtPath:theDestination]) &&
              (![theFileManager contentsEqualAtPath:theSource andPath:theDestination])) {
         // About 文書が更新されている場合の対応
-        if (![theFileManager removeFileAtPath:theDestination handler:nil]) {
+        if (![theFileManager removeItemAtPath:theDestination error:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not remove.");
         }
-        if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
+        if (![theFileManager copyItemAtPath:theSource toPath:theDestination error:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not copy.");
         }
     }

@@ -276,7 +276,7 @@ static CESyntaxManager *sharedInstance = nil;
     NSFileManager *theFileManager = [NSFileManager defaultManager];
     NSString *theSourceDirPath = 
             [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources"];
-    NSEnumerator *theEnumerator = [[theFileManager directoryContentsAtPath:theSourceDirPath] objectEnumerator];
+    NSEnumerator *theEnumerator = [[theFileManager contentsOfDirectoryAtPath:theSourceDirPath error:nil] objectEnumerator];
     // (enumeratorAtPath:はサブディレクトリの内容も返すので、使えない)
     NSMutableArray *outArray = [NSMutableArray array];
     id theFileName;
@@ -418,13 +418,13 @@ static CESyntaxManager *sharedInstance = nil;
 {
     BOOL outBool = NO;
     NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *theDestination = 
-            [[self pathOfStyleDirectory] stringByAppendingPathComponent:[inStyleFileName lastPathComponent]];
+    NSURL *destinationURL = [[NSURL URLWithString:[self pathOfStyleDirectory]] URLByAppendingPathComponent:[inStyleFileName lastPathComponent]];
+    NSURL *styleFileURL = [NSURL URLWithString:inStyleFileName];
 
-    if ([theFileManager fileExistsAtPath:theDestination]) {
-        (void)[theFileManager removeFileAtPath:theDestination handler:nil];
+    if ([theFileManager fileExistsAtPath:[destinationURL path]]) {
+        [theFileManager removeItemAtURL:destinationURL error:nil];
     }
-    outBool = [theFileManager copyPath:inStyleFileName toPath:theDestination handler:nil];
+    outBool = [theFileManager copyItemAtURL:styleFileURL toURL:destinationURL error:nil];
     if (outBool) {
         // 内部で持っているキャッシュ用データを更新
         [self setupColoringStyleArray];
@@ -446,7 +446,7 @@ static CESyntaxManager *sharedInstance = nil;
             [NSString stringWithFormat:@"%@/%@%@", [self pathOfStyleDirectory], inStyleName, @".plist"];
 
     if ([theFileManager fileExistsAtPath:thePath]) {
-        outValue = [theFileManager removeFileAtPath:thePath handler:nil];
+        outValue = [theFileManager removeItemAtPath:thePath error:nil];
         if (outValue) {
             // 内部で持っているキャッシュ用データを更新
             [self setupColoringStyleArray];
@@ -846,7 +846,7 @@ static CESyntaxManager *sharedInstance = nil;
         theDestination = [inDestinationPath stringByAppendingPathComponent:theDestNames[i]];
         if (([theFileManager fileExistsAtPath:theSource]) && 
                     (![theFileManager fileExistsAtPath:theDestination])) {
-            theValue = [theFileManager copyPath:theSource toPath:theDestination handler:nil];
+            theValue = [theFileManager copyItemAtPath:theSource toPath:theDestination error:nil];
             if (!theValue) {
                 NSLog(@"Error. Could not copy \"%@\" to \"%@\"...", theSource, inDestinationPath);
             }
