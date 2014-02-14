@@ -1106,7 +1106,7 @@ static CESyntaxManager *sharedInstance = nil;
         NSString *theBeginStr, *theEndStr, *theTmpBeginStr = nil, *theTmpEndStr = nil;
         NSString *theArrayName = nil, *theArrayNameDeletingArray = nil;
         int i, j, theSyntaxCount = [theSyntaxArray count];
-        int theCapCount;
+        NSInteger theCapCount;
         NSError *theError = NULL;
 
         for (i = 0; i < theSyntaxCount; i++) {
@@ -1129,8 +1129,7 @@ static CESyntaxManager *sharedInstance = nil;
 
                 } else if ([theArray[j][k_SCKey_regularExpression] boolValue]) {
 
-                    theCapCount = 
-                            [NSString captureCountForRegex:theBeginStr options:RKLNoOptions error:&theError];
+                    theCapCount = [theBeginStr captureCountWithOptions:RKLNoOptions error:&theError];
                     if (theCapCount == -1) { // エラーのとき
                         outCount++;
                         [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
@@ -1141,8 +1140,7 @@ static CESyntaxManager *sharedInstance = nil;
                                 [theError userInfo][RKLICURegexPostContextErrorKey]];
                     }
                     if (theEndStr != nil) {
-                        theCapCount = 
-                                [NSString captureCountForRegex:theEndStr options:RKLNoOptions error:&theError];
+                        theCapCount = [theEndStr captureCountWithOptions:RKLNoOptions error:&theError];
                         if (theCapCount == -1) { // エラーのとき
                             outCount++;
                             [theResultStr appendFormat:@"%i.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 

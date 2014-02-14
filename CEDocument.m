@@ -2146,9 +2146,11 @@ enum { typeFSS = 'fss ' };
         theData = [theCurString dataUsingEncoding:_encoding allowLossyConversion:YES];
     }
     if (theData != nil) {
-
-        NSDictionary *theAttrs = [self fileAttributesToWriteToFile:inFileName 
-                    ofType:inDocType saveOperation:inSaveOperationType];
+        NSDictionary *theAttrs = [self fileAttributesToWriteToURL:[NSURL URLWithString:inFileName]
+                                                           ofType:inDocType
+                                                 forSaveOperation:inSaveOperationType
+                                              originalContentsURL:nil
+                                                            error:nil];
         NSFileManager *theManager = [NSFileManager defaultManager];
         NSString *theConvertedPath = @([inFileName UTF8String]);
         int status;
