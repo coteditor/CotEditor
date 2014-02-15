@@ -38,22 +38,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 @interface CEPrintView (Private)
-- (void)setupPrintWithBorderWidth:(float)inBorderWidth;
+- (void)setupPrintWithBorderWidth:(CGFloat)inBorderWidth;
 - (void)setHeaderOneString:(NSAttributedString *)inAttrString;
 - (void)setHeaderTwoString:(NSAttributedString *)inAttrString;
 - (void)setFooterOneString:(NSAttributedString *)inAttrString;
 - (void)setFooterTwoString:(NSAttributedString *)inAttrString;
-- (void)setHeaderOneAlignment:(int)inAlingnType;
-- (void)setHeaderTwoAlignment:(int)inAlingnType;
-- (void)setFooterOneAlignment:(int)inAlingnType;
-- (void)setFooterTwoAlignment:(int)inAlingnType;
+- (void)setHeaderOneAlignment:(NSInteger)inAlingnType;
+- (void)setHeaderTwoAlignment:(NSInteger)inAlingnType;
+- (void)setFooterOneAlignment:(NSInteger)inAlingnType;
+- (void)setFooterTwoAlignment:(NSInteger)inAlingnType;
 - (void)setPrintHeader:(BOOL)inBool;
 - (void)setPrintFooter:(BOOL)inBool;
 - (void)setPrintHeaderSeparator:(BOOL)inBool;
 - (void)setPrintFooterSeparator:(BOOL)inBool;
-- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(int)inIndex maxWidth:(float)inWidth;
-- (float)xValueToDrawOfAttributedString:(NSAttributedString *)inAttrString 
-        borderWidth:(float)inBorderWidth alignment:(int)inAlignType;
+- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(NSInteger)inIndex maxWidth:(CGFloat)inWidth;
+- (CGFloat)xValueToDrawOfAttributedString:(NSAttributedString *)inAttrString
+        borderWidth:(CGFloat)inBorderWidth alignment:(NSInteger)inAlignType;
 @end
 
 
@@ -133,8 +133,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRect theCurrentFrame = [self frame]; // 現在のフレームを退避
     NSAttributedString *thePageString = nil;
     NSPoint thePoint;
-    float theHeaderFooterLineFontSize = [[theValues valueForKey:k_key_headerFooterFontSize] floatValue];
-    float thePadding = k_printHFVerticalMargin;
+    CGFloat theHeaderFooterLineFontSize = [[theValues valueForKey:k_key_headerFooterFontSize] floatValue];
+    CGFloat thePadding = k_printHFVerticalMargin;
 
     // プリントパネルでのカスタム設定を読み取り、保持
     if (_readyToPrint == NO) {
@@ -142,10 +142,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // ページ番号の印字があるなら、準備する
     if (_readyToDrawPageNum) {
-        int thePageNum = [[NSPrintOperation currentOperation] currentPage];
+        NSInteger thePageNum = [[NSPrintOperation currentOperation] currentPage];
 
         thePageString = [[[NSAttributedString alloc] 
-                initWithString:[NSString stringWithFormat:@"- %i -", thePageNum] 
+                initWithString:[NSString stringWithFormat:@"- %li -", (long)thePageNum] 
                 attributes:_headerFooterAttrs] autorelease];
     }
 
@@ -253,11 +253,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 行番号を印字
     if (_printLineNum) {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        float theLineNumFontSize = [[theValues valueForKey:k_key_lineNumFontSize] floatValue];
+        CGFloat theLineNumFontSize = [[theValues valueForKey:k_key_lineNumFontSize] floatValue];
 
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
-        float charWidth = [@"8" sizeWithAttributes:_lineNumAttrs].width;
+        CGFloat charWidth = [@"8" sizeWithAttributes:_lineNumAttrs].width;
 
         // setup the variables we need for the loop
         NSRange theRange;       // a range for counting lines
@@ -265,16 +265,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *theNumStr;    // a temporary string for Line Number
         NSString *theWrapedLineMark = ([[theValues valueForKey:k_key_showWrappedLineMark] boolValue]) ? 
                 @"-:" : @" ";
-        int theGlyphIndex, theBefore, theGlyphCount; // glyph counter
-        int theCharIndex;
-        int theLineNum;     // line counter
-        float theReqWidth;      // width calculator holder -- width needed to show string
-        float theXAdj = 0;       // adjust horizontal value for line number drawing
-        float theYAdj = 0;       // adjust vertical value for line number drawing
+        NSInteger theGlyphIndex, theBefore, theGlyphCount; // glyph counter
+        NSInteger theCharIndex;
+        NSInteger theLineNum;     // line counter
+        CGFloat theReqWidth;      // width calculator holder -- width needed to show string
+        CGFloat theXAdj = 0;       // adjust horizontal value for line number drawing
+        CGFloat theYAdj = 0;       // adjust vertical value for line number drawing
         NSRect theNumRect;      // rectange holder
         NSPoint theNumPoint;    // point holder
         NSLayoutManager *theManager = [self layoutManager]; // get _owner's layout manager.
-        unsigned theNumOfGlyphs = [theManager numberOfGlyphs];
+        NSUInteger theNumOfGlyphs = [theManager numberOfGlyphs];
 
         theBefore = 0;
         theLineNum = 1;
@@ -291,7 +291,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 theNumRect = [theManager lineFragmentRectForGlyphAtIndex:theGlyphCount effectiveRange:&theRange];
                 if (NSPointInRect(theNumRect.origin, inRect)) {
                     if (theBefore != theLineNum) {
-                        theNumStr = [NSString stringWithFormat:@"%d:", theLineNum];
+                        theNumStr = [NSString stringWithFormat:@"%ld:", (long)theLineNum];
                         theReqWidth = charWidth * [theNumStr length];
                     } else {
                         theNumStr = theWrapedLineMark;
@@ -341,7 +341,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)lineSpacing
+- (CGFloat)lineSpacing
 // 行間値を返す
 // ------------------------------------------------------
 {
@@ -350,7 +350,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setLineSpacing:(float)inLineSpacing
+- (void)setLineSpacing:(CGFloat)inLineSpacing
 // 行間値をセット
 // ------------------------------------------------------
 {
@@ -409,14 +409,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)setupPrintWithBorderWidth:(float)inBorderWidth
+- (void)setupPrintWithBorderWidth:(CGFloat)inBorderWidth
 // プリント開始の準備
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSAttributedString *theAttrString = nil;
-    float thePrintWidth = inBorderWidth - k_printHFHorizontalMargin * 2;
-    int theLineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] intValue];
+    CGFloat thePrintWidth = inBorderWidth - k_printHFHorizontalMargin * 2;
+    NSInteger theLineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
 
     // ヘッダ／フッタの文字属性辞書生成、保持
     NSFont *theHeaderFooterFont = [NSFont fontWithName:[theValues valueForKey:k_key_headerFooterFontName] 
@@ -445,15 +445,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[[self printValues] valueForKey:k_printHeader] boolValue]) {
         [self setPrintHeader:YES];
         theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                        [[[self printValues] valueForKey:k_headerOneStringIndex] intValue] 
+                        [[[self printValues] valueForKey:k_headerOneStringIndex] integerValue]
                         maxWidth:thePrintWidth];
         [self setHeaderOneString:theAttrString];
         theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                        [[[self printValues] valueForKey:k_headerTwoStringIndex] intValue] 
+                        [[[self printValues] valueForKey:k_headerTwoStringIndex] integerValue]
                         maxWidth:thePrintWidth];
         [self setHeaderTwoString:theAttrString];
-        [self setHeaderOneAlignment:[[[self printValues] valueForKey:k_headerOneAlignIndex] intValue]];
-        [self setHeaderTwoAlignment:[[[self printValues] valueForKey:k_headerTwoAlignIndex] intValue]];
+        [self setHeaderOneAlignment:[[[self printValues] valueForKey:k_headerOneAlignIndex] integerValue]];
+        [self setHeaderTwoAlignment:[[[self printValues] valueForKey:k_headerTwoAlignIndex] integerValue]];
     } else {
         [self setPrintHeader:NO];
     }
@@ -463,15 +463,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[[self printValues] valueForKey:k_printFooter] boolValue]) {
         [self setPrintFooter:YES];
         theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                        [[[self printValues] valueForKey:k_footerOneStringIndex] intValue] 
+                        [[[self printValues] valueForKey:k_footerOneStringIndex] integerValue]
                         maxWidth:thePrintWidth];
         [self setFooterOneString:theAttrString];
         theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                    [[[self printValues] valueForKey:k_footerTwoStringIndex] intValue] 
+                    [[[self printValues] valueForKey:k_footerTwoStringIndex] integerValue]
                     maxWidth:thePrintWidth];
         [self setFooterTwoString:theAttrString];
-        [self setFooterOneAlignment:[[[self printValues] valueForKey:k_footerOneAlignIndex] intValue]];
-        [self setFooterTwoAlignment:[[[self printValues] valueForKey:k_footerTwoAlignIndex] intValue]];
+        [self setFooterOneAlignment:[[[self printValues] valueForKey:k_footerOneAlignIndex] integerValue]];
+        [self setFooterTwoAlignment:[[[self printValues] valueForKey:k_footerTwoAlignIndex] integerValue]];
     } else {
         [self setPrintFooter:NO];
     }
@@ -525,7 +525,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setHeaderOneAlignment:(int)inAlingnType
+- (void)setHeaderOneAlignment:(NSInteger)inAlingnType
 // ヘッダ1の文字位置タイプをセット
 // ------------------------------------------------------
 {
@@ -534,7 +534,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setHeaderTwoAlignment:(int)inAlingnType
+- (void)setHeaderTwoAlignment:(NSInteger)inAlingnType
 // ヘッダ2の文字位置タイプをセット
 // ------------------------------------------------------
 {
@@ -543,7 +543,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setFooterOneAlignment:(int)inAlingnType
+- (void)setFooterOneAlignment:(NSInteger)inAlingnType
 // フッタ1の文字位置タイプをセット
 // ------------------------------------------------------
 {
@@ -552,7 +552,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setFooterTwoAlignment:(int)inAlingnType
+- (void)setFooterTwoAlignment:(NSInteger)inAlingnType
 // フッタ2の文字位置タイプをセット
 // ------------------------------------------------------
 {
@@ -597,7 +597,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(int)inIndex maxWidth:(float)inWidth
+- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(NSInteger)inIndex maxWidth:(CGFloat)inWidth
 // ヘッダ／フッタに印字する文字列をポップアップメニューインデックスから生成し、返す
 // ------------------------------------------------------
 {
@@ -644,13 +644,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 印字があふれる場合、中ほどを省略する
     if ([outString size].width > inWidth) {
         NSMutableAttributedString *theAttrStr = [[outString mutableCopy] autorelease];
-        int theLength = [theAttrStr length];
-        float theWidth = [theAttrStr size].width;
+        NSInteger theLength = [theAttrStr length];
+        CGFloat theWidth = [theAttrStr size].width;
         if (theLength > 0) {
-            float theAverage = theWidth / theLength;
-            int theDeleteCount = (theWidth - inWidth) / theAverage + 5; // 置き換える5文字の幅をみる
+            CGFloat theAverage = theWidth / theLength;
+            NSInteger theDeleteCount = (theWidth - inWidth) / theAverage + 5; // 置き換える5文字の幅をみる
             NSRange theReplaceRange = 
-                    NSMakeRange((unsigned int)((theLength - theDeleteCount) / 2), theDeleteCount);
+                    NSMakeRange((NSUInteger)((theLength - theDeleteCount) / 2), theDeleteCount);
             [theAttrStr replaceCharactersInRange:theReplaceRange withString:@" ... "];
         }
         return theAttrStr;
@@ -661,12 +661,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)xValueToDrawOfAttributedString:(NSAttributedString *)inAttrString 
-        borderWidth:(float)inBorderWidth alignment:(int)inAlignType
+- (CGFloat)xValueToDrawOfAttributedString:(NSAttributedString *)inAttrString
+        borderWidth:(CGFloat)inBorderWidth alignment:(NSInteger)inAlignType
 // X軸方向の印字開始位置を返す
 // ------------------------------------------------------
 {
-    float outFloat = k_printHFHorizontalMargin;
+    CGFloat outFloat = k_printHFHorizontalMargin;
 
     switch(inAlignType) {
     

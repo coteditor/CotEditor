@@ -607,7 +607,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // http://smultron.sourceforge.net
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    unsigned int theAddingStandard = [[theValues valueForKey:k_key_completeAddStandardWords] unsignedIntValue];
+    NSUInteger theAddingStandard = [[theValues valueForKey:k_key_completeAddStandardWords] unsignedIntegerValue];
     NSMutableArray *outArray = [NSMutableArray arrayWithCapacity:[inWordsArray count]];
     NSEnumerator *theEnumerator;
     NSString *theCurStr = [[inTextView string] substringWithRange:inCharRange];
@@ -708,11 +708,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     NSString *theString = [self string];
-    int theStringLength = [theString length];
+    NSInteger theStringLength = [theString length];
     if (theStringLength == 0) { return; }
     NSRange theSelectedRange = [[self textView] selectedRange];
-    int theLocation = theSelectedRange.location;
-    int theDifference = theLocation - _lastCursorLocation;
+    NSInteger theLocation = theSelectedRange.location;
+    NSInteger theDifference = theLocation - _lastCursorLocation;
     _lastCursorLocation = theLocation;
 
     // Smultron では「if (theDifference != 1 && theDifference != -1)」の条件を使ってキャレットを前方に動かした時も強調表示させているが、CotEditor では Xcode 同様、入力時またはキャレットを後方に動かした時だけに限定した（2006.09.10）
@@ -741,7 +741,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return;
     }
-    unsigned int theSkipMatchingBrace = 0;
+    NSUInteger theSkipMatchingBrace = 0;
     theCurChar = theUnichar;
 
     while (theLocation--) {
@@ -800,7 +800,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ラップする時にサイズを適正化する
 // ------------------------------------------------------
 {
-    int theNewWidth = [[self scrollView] contentSize].width;
+    NSInteger theNewWidth = [[self scrollView] contentSize].width;
 
     theNewWidth -= (NSWidth([[self lineNumView] frame]) + k_lineNumPadding * 2 );
     [[[self textView] textContainer] setContainerSize:NSMakeSize(theNewWidth, FLT_MAX)];
@@ -880,7 +880,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CELayoutManager *theLayoutManager = (CELayoutManager *)[[self textView] layoutManager];
 
 // グリフがないときはそのまま戻ると、全くハイライトされないことと、アンドゥで描画が乱れるため、実行する。2008.06.21.
-//    unsigned int theNumOfGlyphs = [theLayoutManager numberOfGlyphs];
+//    NSUInteger theNumOfGlyphs = [theLayoutManager numberOfGlyphs];
 //    if (theNumOfGlyphs == 0) { return; }
     NSRange theSelectedRange = [[self textView] selectedRange];
     NSRange theLineRange = [[self string] lineRangeForRange:theSelectedRange];
@@ -894,7 +894,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (([[self string] length] == 0) || 
             ((!NSEqualRects(theAttrsRect, NSZeroRect)) && ([[self string] length] > 0))) {
         // 文字背景色を塗っても右側に生じる「空白」の矩形を得る
-        float theAdditionalWidth = [[[self textView] textContainer] containerSize].width
+        CGFloat theAdditionalWidth = [[[self textView] textContainer] containerSize].width
                         - theAttrsRect.size.width - theAttrsRect.origin.x
                         - [[self textView] textContainerInset].width
                         - [[[self textView] textContainer] lineFragmentPadding];

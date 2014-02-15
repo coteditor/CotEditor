@@ -85,15 +85,15 @@ typedef struct {
 - (void)clearAllMarkupForIncompatibleChar;
 - (NSArray *)markupCharCanNotBeConvertedToCurrentEncoding;
 - (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)inEncoding;
-- (void)doSetNewLineEndingCharacterCode:(int)inNewLineEnding;
-- (void)setLineEndingCharToView:(int)inNewLineEnding;
+- (void)doSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding;
+- (void)setLineEndingCharToView:(NSInteger)inNewLineEnding;
 - (void)doSetSyntaxStyle:(NSString *)inName;
 - (void)doSetSyntaxStyle:(NSString *)inName delay:(BOOL)inBoolDelay;
 - (void)setColoringExtension:(NSString *)inExtension coloring:(BOOL)inBoolColoring;
 - (void)setFontToViewInWindow;
 - (BOOL)alphaOnlyTextViewInThisWindow;
-- (float)alpha;
-- (void)setAlpha:(float)inAlpha;
+- (CGFloat)alpha;
+- (void)setAlpha:(CGFloat)inAlpha;
 - (void)setAlphaOnlyTextViewInThisWindow:(BOOL)inBool;
 - (void)setAlphaToWindowAndTextView;
 - (void)setAlphaToWindowAndTextViewDefaultValue;
@@ -102,11 +102,11 @@ typedef struct {
 - (void)setFileSender:(NSAppleEventDescriptor *)inFileSender;
 - (NSAppleEventDescriptor *)fileToken;
 - (void)setFileToken:(NSAppleEventDescriptor *)inFileToken;
-- (NSRange)rangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength;
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength;
-- (void)setSelectedLineRangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength;
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)scrollToCenteringSelection;
-- (void)gotoLocation:(int)inLocation withLength:(int)inLength;
+- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)getFileAttributes;
 - (NSDictionary *)documentFileAttributes;
 - (void)rebuildToolbarEncodingItem;
@@ -120,8 +120,8 @@ typedef struct {
 - (void)setSmartInsertAndDeleteToTextView;
 - (NSString *)currentIANACharSetName;
 - (void)showUpdateAlertWithUKKQueueNotification;
-- (float)lineSpacingInTextView;
-- (void)setCustomLineSpacingToTextView:(float)inSpacing;
+- (CGFloat)lineSpacingInTextView;
+- (void)setCustomLineSpacingToTextView:(CGFloat)inSpacing;
 - (BOOL)canActivateShowInvisibleCharsItem;
 
 // Action Message

@@ -117,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSelectEncoding:(int)inEncoding
+- (void)setSelectEncoding:(NSInteger)inEncoding
 // エンコーディングポップアップの選択項目を設定
 // ------------------------------------------------------
 {
@@ -134,11 +134,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSelectEndingItemIndex:(int)inIndex
+- (void)setSelectEndingItemIndex:(NSInteger)inIndex
 // 行末コードポップアップの選択項目を設定
 // ------------------------------------------------------
 {
-    int theMax = [[_lineEndingPopupButton itemArray] count];
+    NSInteger theMax = [[_lineEndingPopupButton itemArray] count];
     if ((inIndex < 0) || (inIndex >= theMax)) { return; }
 
     [_lineEndingPopupButton selectItemAtIndex:inIndex];

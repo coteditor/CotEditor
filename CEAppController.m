@@ -69,7 +69,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // Encoding list
     NSMutableArray *theEncodings = [NSMutableArray array];
-    int i;
+    NSInteger i;
     for (i = 0; i < sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings); i++) {
         [theEncodings addObject:[NSNumber numberWithUnsignedLong:k_CFStringEncodingList[i]]];
     }
@@ -252,7 +252,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self) {
         NSMutableArray *theEncodings = [NSMutableArray array];
         NSStringEncoding theEncoding;
-        int i;
+        NSInteger i;
         for (i = 0; i < sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings); i++) {
             theEncoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
             [theEncodings addObject:[NSNumber numberWithUnsignedInt:theEncoding]];
@@ -355,12 +355,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleSpaceCharacter:(unsigned int)inIndex
+- (NSString *)invisibleSpaceCharacter:(NSUInteger)inIndex
 // 非表示半角スペース表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleSpaceCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -368,12 +368,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleTabCharacter:(unsigned int)inIndex
+- (NSString *)invisibleTabCharacter:(NSUInteger)inIndex
 // 非表示タブ表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleTabCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleTabCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleTabCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -381,12 +381,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleNewLineCharacter:(unsigned int)inIndex
+- (NSString *)invisibleNewLineCharacter:(NSUInteger)inIndex
 // 非表示改行表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleNewLineCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -394,12 +394,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleFullwidthSpaceCharacter:(unsigned int)inIndex
+- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)inIndex
 // 非表示全角スペース表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleFullwidthSpaceCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -415,7 +415,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
     NSStringEncoding outEncoding;
     BOOL theCorrect = NO;
-    int i, theCount = [theEncodings count];
+    NSInteger i, theCount = [theEncodings count];
 
     for (i = 0; i < theCount; i++) {
         CFStringEncoding theCFEncoding = [theEncodings[i] unsignedLongValue];
@@ -441,13 +441,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask 
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask
         fromString:(NSString *)inString includingCommandKey:(BOOL)inBool
 // 文字列からキーボードショートカット定義を読み取るユーティリティメソッド
 //------------------------------------------------------
 {
     *ioModMask = 0;
-    int theLength = [inString length];
+    NSInteger theLength = [inString length];
     if ((inString == nil) || (theLength < 2)) { return @""; }
 
     NSString *outKey = [inString substringFromIndex:(theLength - 1)];
@@ -493,8 +493,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)stringFromUnsignedInt:(unsigned int)inInt
-// unsigned int を文字列に変換するユーティリティメソッド
+- (NSString *)stringFromUnsignedInt:(NSUInteger)inInt
+// NSUInteger を文字列に変換するユーティリティメソッド
 //------------------------------------------------------
 {
 // このメソッドは、Smultron を参考にさせていただきました。(2006.04.30)
@@ -505,13 +505,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Leopard で検証した限りでは、NSNumberFormatter を使うよりも速い (2008.04.05)
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableString *outString = [NSMutableString stringWithFormat:@"%u", inInt];
+    NSMutableString *outString = [NSMutableString stringWithFormat:@"%lu", (unsigned long)inInt];
 
     if ((![[theValues valueForKey:k_key_showStatusBarThousSeparator] boolValue]) || 
                 (_thousandsSeparator == nil) || ([_thousandsSeparator length] < 1)) {
         return outString;
     }
-    int thePosition = [outString length] - 3;
+    NSInteger thePosition = [outString length] - 3;
 
     while (thePosition > 0) {
         [outString insertString:_thousandsSeparator atIndex:thePosition];
@@ -781,7 +781,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSMenuItem *theMenuItem = (NSMenuItem *)sender;
     NSString *theDocumentPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Docs"];
-    int i;
+    NSInteger i;
     
     for (i = 0; k_bundleDocumentList[i].tag != 0; i++) {
         if (k_bundleDocumentList[i].tag == theMenuItem.tag) {
@@ -875,7 +875,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [[CEDocumentController sharedDocumentController] accessoryEncodingMenu];
     NSMenu *theAccessoryEncodingMenu = [theAccessoryEncodingMenuButton menu];
     NSMenuItem *theItem;
-    int i, theCount = [inArray count];
+    NSInteger i, theCount = [inArray count];
 
     [theAccessoryEncodingMenuButton removeAllItems];
     theItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"") 
@@ -912,7 +912,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenu *theEncodingMenu = [[[NSMenu alloc] initWithTitle:@"ENCODEING"] autorelease];
     NSMenuItem *theFormatMenuItem = 
             [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag];
-    int i, theCount = [inArray count];
+    NSInteger i, theCount = [inArray count];
 
     for (i = 0; i < theCount; i++) {
         CFStringEncoding theCFEncoding = [inArray[i] unsignedLongValue];
@@ -944,7 +944,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenuItem *theMenuItem;
     NSString *theMenuTitle;
     NSArray *theArray = [[CESyntaxManager sharedInstance] styleNames];
-    int i, theCount = [theArray count];
+    NSInteger i, theCount = [theArray count];
     
     [theFormatMenuItem setSubmenu:nil]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
 
@@ -984,7 +984,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSMutableString *theChars = [NSMutableString string];
-    int i;
+    NSInteger i;
 
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
         [theChars appendString:[NSString stringWithCharacters:&k_invisibleSpaceCharList[i] length:1]];
@@ -1021,7 +1021,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSUserDefaults *theUserDefaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *theNewList = [[[theUserDefaults arrayForKey:k_key_encodingList] mutableCopy] autorelease];
         NSNumber *theNum;
-        int i;
+        NSInteger i;
 
         for (i = 0; i < sizeof(k_CFStringEncoding10_4List)/sizeof(CFStringEncodings); i++) {
             theNum = [NSNumber numberWithUnsignedLong:k_CFStringEncoding10_4List[i]];

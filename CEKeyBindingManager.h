@@ -61,7 +61,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSDictionary *_textKeyBindingDict;
     NSDictionary *_noPrintableKeyDict;
     NSString *_currentKeySpecChars;
-    int _outlineMode;
+    NSInteger _outlineMode;
 }
 
 // class method
@@ -69,10 +69,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)setupAtLaunching;
-- (NSWindow *)editSheetWindowOfMode:(int)inMode;
+- (NSWindow *)editSheetWindowOfMode:(NSInteger)inMode;
 - (void)setupKeyBindingDictionary;
-- (BOOL)setupOutlineDataOfMode:(int)inMode;
-- (NSString *)selectorStringWithKeyEquivalent:(NSString *)inString modifierFrags:(unsigned int)inModFlags;
+- (BOOL)setupOutlineDataOfMode:(NSInteger)inMode;
+- (NSString *)selectorStringWithKeyEquivalent:(NSString *)inString modifierFrags:(NSUInteger)inModFlags;
 
 // Action Message
 - (IBAction)editKeyBindingKey:(id)sender;

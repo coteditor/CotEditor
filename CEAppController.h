@@ -63,15 +63,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxMenu:(NSMenu *)inSyntaxMenu;
 - (void)buildAllEncodingMenus;
 - (void)buildAllSyntaxMenus;
-- (NSString *)invisibleSpaceCharacter:(unsigned int)inIndex;
-- (NSString *)invisibleTabCharacter:(unsigned int)inIndex;
-- (NSString *)invisibleNewLineCharacter:(unsigned int)inIndex;
-- (NSString *)invisibleFullwidthSpaceCharacter:(unsigned int)inIndex;
+- (NSString *)invisibleSpaceCharacter:(NSUInteger)inIndex;
+- (NSString *)invisibleTabCharacter:(NSUInteger)inIndex;
+- (NSString *)invisibleNewLineCharacter:(NSUInteger)inIndex;
+- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)inIndex;
 - (NSStringEncoding)encodingFromName:(NSString *)inEncodingName;
 - (BOOL)isInvalidYenEncoding:(NSStringEncoding)inEncoding;
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask 
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask
         fromString:(NSString *)inString includingCommandKey:(BOOL)inBool;
-- (NSString *)stringFromUnsignedInt:(unsigned int)inInt;
+- (NSString *)stringFromUnsignedInt:(NSUInteger)inInt;
 
 // Action Message
 - (IBAction)openPrefWindow:(id)sender;

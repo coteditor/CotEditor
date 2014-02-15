@@ -88,12 +88,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
         NSMutableString *theWidthStr = [[NSMutableString alloc] init]; // ===== alloc
-        unsigned int theNumOfSpaces = [[theValues valueForKey:k_key_tabWidth] intValue];
+        NSUInteger theNumOfSpaces = [[theValues valueForKey:k_key_tabWidth] integerValue];
         while (theNumOfSpaces--) {
             [theWidthStr appendString:@" "];
         }
         NSString *theName = [theValues valueForKey:k_key_fontName];
-        float theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+        CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
         NSFont *theFont = [NSFont fontWithName:theName size:theSize];
         CGFloat sizeOfTab = [theWidthStr sizeWithAttributes:@{NSFontAttributeName:theFont}].width;
 
@@ -231,14 +231,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theCharIgnoringMod = [inEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
     if ((![self hasMarkedText]) && (theCharIgnoringMod != nil)) {
-        unsigned int theModFlags = [inEvent modifierFlags];
+        NSUInteger theModFlags = [inEvent modifierFlags];
         NSString *theSelectorStr = 
                 [[CEKeyBindingManager sharedInstance] selectorStringWithKeyEquivalent:theCharIgnoringMod 
                         modifierFrags:theModFlags];
-        int theLength = [theSelectorStr length];
+        NSInteger theLength = [theSelectorStr length];
         if ((theSelectorStr != nil) && (theLength > 0)) {
             if (([theSelectorStr hasPrefix:@"insertCustomText"]) && (theLength == 20)) {
-                int theNum = [[theSelectorStr substringFromIndex:17] intValue];
+                NSInteger theNum = [[theSelectorStr substringFromIndex:17] integerValue];
                 [self insertCustomTextWithPatternNum:theNum];
             } else {
                 [self doCommandBySelector:NSSelectorFromString(theSelectorStr)];
@@ -259,7 +259,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (([[theValues valueForKey:k_key_swapYenAndBackSlashKey] boolValue]) && ([inString length] == 1)) {
         NSEvent *theEvent = [NSApp currentEvent];
-        unsigned int theFlags = [NSEvent currentCarbonModifierFlags];
+        NSUInteger theFlags = [NSEvent currentCarbonModifierFlags];
 
         if (([theEvent type] == NSKeyDown) && (theFlags == 0)) {
             if ([inString isEqualToString:@"\\"]) {
@@ -283,11 +283,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     if ([[theValues valueForKey:k_key_autoExpandTab] boolValue]) {
-        int theTabWidth = [[theValues valueForKey:k_key_tabWidth] intValue];
+        NSInteger theTabWidth = [[theValues valueForKey:k_key_tabWidth] integerValue];
         NSRange theSelected = [self selectedRange];
         NSRange theLineRange = [[self string] lineRangeForRange:theSelected];
-        int theLocation = theSelected.location - theLineRange.location;
-        int theLength = theTabWidth - ((theLocation + theTabWidth) % theTabWidth);
+        NSInteger theLocation = theSelected.location - theLineRange.location;
+        NSInteger theLength = theTabWidth - ((theLocation + theTabWidth) % theTabWidth);
         NSMutableString *theSpaces = [NSMutableString string];
 
         while (theLength--) {
@@ -338,16 +338,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theSelected.length == 0) {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
         if ([[theValues valueForKey:k_key_autoExpandTab] boolValue]) {
-            int theTabWidth = [[theValues valueForKey:k_key_tabWidth] intValue];
+            NSInteger theTabWidth = [[theValues valueForKey:k_key_tabWidth] integerValue];
             NSRange theLineRange = [[self string] lineRangeForRange:theSelected];
-            int theLocation = theSelected.location - theLineRange.location;
-            int theLength = (theLocation + theTabWidth) % theTabWidth;
-            int theTargetWidth = (theLength == 0) ? theTabWidth : theLength;
-            if ((int)theSelected.location >= theTargetWidth) {
+            NSInteger theLocation = theSelected.location - theLineRange.location;
+            NSInteger theLength = (theLocation + theTabWidth) % theTabWidth;
+            NSInteger theTargetWidth = (theLength == 0) ? theTabWidth : theLength;
+            if ((NSInteger)theSelected.location >= theTargetWidth) {
                 NSRange theTargetRange = NSMakeRange(theSelected.location - theTargetWidth, theTargetWidth);
                 NSString *theTarget = [[self string] substringWithRange:theTargetRange];
                 BOOL theValueToDelete = NO;
-                int i;
+                NSInteger i;
                 for (i = 0; i < theTargetWidth; i++) {
                     theValueToDelete = [[theTarget substringWithRange:NSMakeRange(i, 1)] isEqualToString:@" "];
                     if (!theValueToDelete) {
@@ -428,7 +428,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 既に追加されているかどうかをチェックしている
     if (theSelectAllMenuItem && 
             ([outMenu indexOfItemWithTarget:nil andAction:@selector(selectAll:)] == k_noMenuItem)) {
-        int thePasteIndex = [outMenu indexOfItemWithTarget:nil andAction:@selector(paste:)];
+        NSInteger thePasteIndex = [outMenu indexOfItemWithTarget:nil andAction:@selector(paste:)];
         if (thePasteIndex != k_noMenuItem) {
             [outMenu insertItem:theSelectAllMenuItem atIndex:(thePasteIndex + 1)];
         }
@@ -449,7 +449,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [outMenu removeItem:theDelItem];
         }
         if ([[theValues valueForKey:k_key_inlineContextualScriptMenu] boolValue]) {
-            int i, theCount = [theASSubMenu numberOfItems];
+            NSInteger i, theCount = [theASSubMenu numberOfItems];
             NSMenuItem *theAddItem = nil;
 
             for (i = 0; i < 2; i++) { // セパレータをふたつ追加
@@ -525,7 +525,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theString = [self string];
     NSRange theRange = [super rangeForUserCompletion];
     NSCharacterSet *theCharSet = [(CESubSplitView *)[self delegate] completionsFirstLetterSet];
-    int i, theBegin = theRange.location;
+    NSInteger i, theBegin = theRange.location;
 
     if (theCharSet == nil) { return theRange; }
 
@@ -565,13 +565,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // ページガイド描画
     if ([(CESubSplitView *)[self delegate] showPageGuide]) {
-        float theColumn = [[theValues valueForKey:k_key_pageGuideColumn] floatValue];
+        CGFloat theColumn = [[theValues valueForKey:k_key_pageGuideColumn] floatValue];
         NSImage *theLineImg = [NSImage imageNamed:@"pageGuide"];
         if ((theColumn < k_pageGuideColumnMin) || (theColumn > k_pageGuideColumnMax) || (theLineImg == nil)) {
             return;
         }
-        float theLinePadding = [[self textContainer] lineFragmentPadding];
-        float theInsetWidth = [[theValues valueForKey:k_key_textContainerInsetWidth] floatValue];
+        CGFloat theLinePadding = [[self textContainer] lineFragmentPadding];
+        CGFloat theInsetWidth = [[theValues valueForKey:k_key_textContainerInsetWidth] floatValue];
         NSString *theTmpStr = @"M";
         theColumn *= [theTmpStr sizeWithAttributes:
                 @{NSFontAttributeName: [self font]}].width;
@@ -650,7 +650,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 完全にスクロールさせる
     // （setTextContainerInset で上下に空白領域を挿入している関係で、ちゃんとスクロールしない場合があることへの対策）
-    unsigned int theLength = [[self string] length];
+    NSUInteger theLength = [[self string] length];
     NSRect theRect = NSZeroRect, theConvertedRect;
 
     if (theLength == inRange.location) {
@@ -748,7 +748,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setBackgroundColorWithAlpha:(float)inAlpha
+- (void)setBackgroundColorWithAlpha:(CGFloat)inAlpha
 // 背景色をセット
 // ------------------------------------------------------
 {
@@ -819,7 +819,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)insertCustomTextWithPatternNum:(int)inPatternNum
+- (void)insertCustomTextWithPatternNum:(NSInteger)inPatternNum
 // カスタムキーバインドで文字列入力
 // ------------------------------------------------------
 {
@@ -827,7 +827,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSArray *theArray = [theValues valueForKey:k_key_insertCustomTextArray];
 
-    if (inPatternNum < (int)[theArray count]) {
+    if (inPatternNum < (NSInteger)[theArray count]) {
         NSString *theString = theArray[inPatternNum];
         NSRange theSelected = [self selectedRange];
         NSRange theNewRange = NSMakeRange(theSelected.location + [theString length], 0);
@@ -845,7 +845,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theName = [theValues valueForKey:k_key_fontName];
-    float theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+    CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
 
     [self setFont:theFont];
@@ -891,7 +891,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (unsigned int)dragOperationForDraggingInfo:(id <NSDraggingInfo>)inDragInfo type:(NSString *)inType
+- (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)inDragInfo type:(NSString *)inType
 // 領域内でオブジェクトがドラッグされている
 // ------------------------------------------------------
 {
@@ -900,7 +900,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSArray *theFileDropArray = [theValues valueForKey:k_key_fileDropArray];
         NSColor *theInsertionPointColor = 
                 [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_insertionPointColor]];
-        int i, theCount = [theFileDropArray count];
+        NSInteger i, theCount = [theFileDropArray count];
         for (i = 0; i < theCount; i++) {
             NSArray *theArray = [[inDragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
             NSArray *theExtensions = 
@@ -908,13 +908,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                             valueForKey:k_key_fileDropExtensions] componentsSeparatedByString:@", "];
             if ([self draggedItemsArray:theArray containsExtensionInExtensions:theExtensions]) {
                 NSString *theString = [self string];
-                unsigned int theLength = [theString length];
+                NSUInteger theLength = [theString length];
                 if (theLength > 0) {
                     // 挿入ポイントを自前で描画する
                     CGFloat thePartialFraction;
                     NSLayoutManager *theLayoutManager = [self layoutManager];
-                    unsigned theGlyphIndex = [theLayoutManager 
-                            glyphIndexForPoint:[self convertPoint:[inDragInfo draggingLocation] fromView: nil] 
+                    NSUInteger theGlyphIndex = [theLayoutManager
+                            glyphIndexForPoint:[self convertPoint:[inDragInfo draggingLocation] fromView: nil]
                             inTextContainer:[self textContainer] 
                             fractionOfDistanceThroughGlyph:&thePartialFraction];
                     NSPoint theGlypthIndexPoint;
@@ -1050,9 +1050,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *thePathExtension = nil, *thePathExtensionLower = nil, *thePathExtensionUpper = nil;
         NSMutableString *theRelativePath = [NSMutableString string];
         NSMutableString *theNewStr = [NSMutableString string];
-        int i, theXtsnCount;
-        int theFilesCount = (int)[theFiles count];
-        int theFileArrayCount = (int)[theFileDropArray count];
+        NSInteger i, theXtsnCount;
+        NSInteger theFilesCount = (NSInteger)[theFiles count];
+        NSInteger theFileArrayCount = (NSInteger)[theFileDropArray count];
 
         for (i = 0; i < theFilesCount; i++) {
             theSelected = [self selectedRange];
@@ -1079,9 +1079,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     NSArray *theDocPathArray = [theDocPath pathComponents];
                     NSArray *thePathArray = [theAbsolutePath pathComponents];
                     NSMutableString *theTmpStr = [NSMutableString string];
-                    int j, theSame = 0, theCount = 0;
-                    int theDocArrayCount = (int)[theDocPathArray count];
-                    int thePathArrayCount = (int)[thePathArray count];
+                    NSInteger j, theSame = 0, theCount = 0;
+                    NSInteger theDocArrayCount = (NSInteger)[theDocPathArray count];
+                    NSInteger thePathArrayCount = (NSInteger)[thePathArray count];
 
                     for (j = 0; j < theDocArrayCount; j++) {
                         if (![theDocPathArray[j] isEqualToString:
@@ -1168,14 +1168,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 		return [super selectionRangeForProposedRange:inProposedSelRange granularity:inGranularity];
 	}
 	
-	int location = [super selectionRangeForProposedRange:inProposedSelRange granularity:NSSelectByCharacter].location;
-	int originalLocation = location;
+	NSInteger location = [super selectionRangeForProposedRange:inProposedSelRange granularity:NSSelectByCharacter].location;
+	NSInteger originalLocation = location;
 
 	NSString *completeString = [self string];
 	unichar characterToCheck = [completeString characterAtIndex:location];
-	unsigned short skipMatchingBrace = 0;
-	int lengthOfString = [completeString length];
-	if (lengthOfString == (int)inProposedSelRange.location) { // To avoid crash if a double-click occurs after any text
+	NSUInteger skipMatchingBrace = 0;
+	NSInteger lengthOfString = [completeString length];
+	if (lengthOfString == (NSInteger)inProposedSelRange.location) { // To avoid crash if a double-click occurs after any text
 		return [super selectionRangeForProposedRange:inProposedSelRange granularity:inGranularity];
 	}
 	
@@ -1385,7 +1385,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)lineSpacing
+- (CGFloat)lineSpacing
 // 行間値を返す
 // ------------------------------------------------------
 {
@@ -1394,7 +1394,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setLineSpacing:(float)inLineSpacing
+- (void)setLineSpacing:(CGFloat)inLineSpacing
 // 行間値をセット
 // ------------------------------------------------------
 {
@@ -1403,7 +1403,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setNewLineSpacingAndUpdate:(float)inLineSpacing
+- (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing
 // 行間値をセットし、テキストと行番号を再描画
 // ------------------------------------------------------
 {
@@ -1484,7 +1484,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange theSelected = [self selectedRange];
-    unsigned int theLength = theSelected.length;
+    NSUInteger theLength = theSelected.length;
 
     if (([inMenuItem action] == @selector(exchangeLowercase:)) || 
             ([inMenuItem action] == @selector(exchangeUppercase:)) || 
@@ -1534,9 +1534,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // シフトするために挿入する文字列と長さを得る
     NSMutableString *theShiftStr = [NSMutableString string];
-    unsigned int theShiftLength = 0;
+    NSUInteger theShiftLength = 0;
     if ([[theValues valueForKey:k_key_autoExpandTab] boolValue]) {
-        unsigned int theTabWidth = [[theValues valueForKey:k_key_tabWidth] intValue];
+        NSUInteger theTabWidth = [[theValues valueForKey:k_key_tabWidth] integerValue];
         theShiftLength = theTabWidth;
         while (theTabWidth--) {
             [theShiftStr appendString:@" "];
@@ -1551,11 +1551,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *theNewLine = 
             [NSMutableString stringWithString:[[self string] substringWithRange:theLineRange]];
     NSString *theNewStr = [NSString stringWithFormat:@"%@%@", @"\n", theShiftStr];
-    unsigned int theLines = [theNewLine replaceOccurrencesOfString:@"\n" 
+    NSUInteger theLines = [theNewLine replaceOccurrencesOfString:@"\n"
                     withString:theNewStr options:0 range:NSMakeRange(0, [theNewLine length])];
     [theNewLine insertString:theShiftStr atIndex:0];
     // 置換後の選択位置の調整
-    unsigned int theNewLocation;
+    NSUInteger theNewLocation;
     if ((theLineRange.location == theSelected.location) && (theSelected.length > 0) && 
             ([[[self string] substringWithRange:theSelected] hasSuffix:@"\n"])) {
 
@@ -1591,7 +1591,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theLineRange.length--; // 末尾の改行分を減ずる
     }
     // シフトするために削除するスペースの長さを得る
-    int theShiftLength = [[theValues valueForKey:k_key_tabWidth] intValue];
+    NSInteger theShiftLength = [[theValues valueForKey:k_key_tabWidth] integerValue];
     if (theShiftLength < 1) { return; }
 
     // 置換する行を生成する
@@ -1601,9 +1601,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *theTmpLine = [NSMutableString string];
     NSString *theStr;
     BOOL theSpaceDeleted;
-    unsigned int theNumOfDeleted = 0, theTotalDeleted = 0;
-    int theNewLocation = theSelected.location, theNewLength = theSelected.length;
-    int i, j, theCount = (int)[theLines count];
+    NSUInteger theNumOfDeleted = 0, theTotalDeleted = 0;
+    NSInteger theNewLocation = theSelected.location, theNewLength = theSelected.length;
+    NSInteger i, j, theCount = (NSInteger)[theLines count];
 
     // 選択区域を含む行をスキャンし、冒頭のスペース／タブを削除
     for (i = 0; i < theCount; i++) {
@@ -1631,19 +1631,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // 処理後の選択区域用の値を算出
         if (i == 0) {
             theNewLocation -= theNumOfDeleted;
-            if (theNewLocation < (int)theLineRange.location) {
+            if (theNewLocation < (NSInteger)theLineRange.location) {
                 theNewLength -= (theLineRange.location - theNewLocation);
                 theNewLocation = theLineRange.location;
             }
         } else {
             theNewLength -= theNumOfDeleted;
-            if (theNewLength < (int)theLineRange.location - theNewLocation + (int)[theNewLine length]) {
+            if (theNewLength < (NSInteger)theLineRange.location - theNewLocation + (NSInteger)[theNewLine length]) {
                 theNewLength = theLineRange.location - theNewLocation + [theNewLine length];
             }
         }
         // 冒頭のスペース／タブを削除した行を合成
         [theNewLine appendString:theTmpLine];
-        if (i != ((int)[theLines count] - 1)) {
+        if (i != ((NSInteger)[theLines count] - 1)) {
             [theNewLine appendString:@"\n"];
         }
         theTotalDeleted += theNumOfDeleted;
@@ -1840,12 +1840,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange theSelected = [self selectedRange];
-    int theSwitchType;
+    NSInteger theSwitchType;
 
     if ([sender isKindOfClass:[NSMenuItem class]]) {
         theSwitchType = [sender tag];
     } else if ([sender isKindOfClass:[NSNumber class]]) {
-        theSwitchType = [sender intValue];
+        theSwitchType = [sender integerValue];
     } else {
         return;
     }
@@ -2003,9 +2003,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSMutableString *outString = [NSMutableString string];
-    NSCharacterSet *theLatinCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange((unsigned int)'!', 94)];
+    NSCharacterSet *theLatinCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange((NSUInteger)'!', 94)];
     unichar theChar;
-    int i, theCount = (int)[inString length];
+    NSInteger i, theCount = (NSInteger)[inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2030,7 +2030,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *outString = [NSMutableString string];
     NSCharacterSet *theFullwidthCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(65281, 94)];
     unichar theChar;
-    int i, theCount = (int)[inString length];
+    NSInteger i, theCount = (NSInteger)[inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2052,7 +2052,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *outString = [NSMutableString string];
     NSCharacterSet *theHiraganaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12353, 86)];
     unichar theChar;
-    int i, theCount = (int)[inString length];
+    NSInteger i, theCount = (NSInteger)[inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2074,7 +2074,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *outString = [NSMutableString string];
     NSCharacterSet *theKatakanaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12449, 86)];
     unichar theChar;
-    int i, theCount = (int)[inString length];
+    NSInteger i, theCount = (NSInteger)[inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2096,7 +2096,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([inArray count] > 0) {
         NSEnumerator *theEnumerator = [inExtensions objectEnumerator];
         NSString *theXtsn;
-        int i, theCount = (int)[inArray count];
+        NSInteger i, theCount = (NSInteger)[inArray count];
 
         while (theXtsn = [theEnumerator nextObject]) {
             for (i = 0; i < theCount; i++) {

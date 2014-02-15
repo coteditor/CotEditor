@@ -155,7 +155,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行末コードを返す(enum型)
 // ------------------------------------------------------
 {
-    int theCode = [_editorView lineEndingCharacter];
+    NSInteger theCode = [_editorView lineEndingCharacter];
     CELineEnding outLineEnding;
 
     switch (theCode) {
@@ -178,7 +178,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行末コードをセット
 // ------------------------------------------------------
 {
-    int theCode;
+    NSInteger theCode;
 
     switch (inEnding) {
     case CELineEndingCR:
@@ -281,7 +281,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ウィンドウまたはtextViewの透明度を返す
 // ------------------------------------------------------
 {
-    float theAlpha = [self alpha];
+    CGFloat theAlpha = [self alpha];
 
     return @(theAlpha);
     // AppleScript で値を得てみると、0.50000000113 とかになってしまう **** 2005.03.04
@@ -322,7 +322,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行間値を返す
 // ------------------------------------------------------
 {
-    float theSpacing = [self lineSpacingInTextView];
+    CGFloat theSpacing = [self lineSpacingInTextView];
 
     return @(theSpacing);
 }
@@ -416,7 +416,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL theBoolWrapSearch = ([theArg valueForKey:@"wrapSearch"] != nil) ? 
                [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
     NSString *theWholeStr = [_editorView stringForSave];
-    int theWholeLength = [theWholeStr length];
+    NSInteger theWholeLength = [theWholeStr length];
     if (theWholeLength < 1) { return @NO; }
     NSRange theSelectionRange = [_editorView selectedRange];
     NSRange theTargetRange;
@@ -427,7 +427,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theTargetRange = NSMakeRange(NSMaxRange(theSelectionRange), 
                             theWholeLength - NSMaxRange(theSelectionRange));
     }
-    unsigned theMask = 0;
+    NSUInteger theMask = 0;
     if (theBoolIgnoreCase) {
         theMask |= (theBoolIsRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
@@ -466,7 +466,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL theBoolWrapSearch = ([theArg valueForKey:@"wrapSearch"] != nil) ? 
                [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
     NSString *theWholeStr = [_editorView stringForSave];
-    int theWholeLength = [theWholeStr length];
+    NSInteger theWholeLength = [theWholeStr length];
     if (theWholeLength < 1) { return @0; }
     NSString *theNewString = [theArg valueForKey:@"newString"];
     if ([theSearch isEqualToString:theNewString]) { return @NO; }
@@ -484,7 +484,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 theWholeLength - NSMaxRange(theSelectionRange));
         }
     }
-    unsigned theMask = 0;
+    NSUInteger theMask = 0;
     if (theBoolIgnoreCase) {
         theMask |= (theBoolIsRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
@@ -493,7 +493,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     BOOL theBoolResult = NO;
-    int theResult = 0;
+    NSInteger theResult = 0;
     if (theBoolAll) {
         NSMutableString *theTmpStr = [theWholeStr mutableCopy]; // ===== copy
         if (theBoolIsRE) {
@@ -543,13 +543,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *theArg = [inCommand evaluatedArguments];
     NSArray *theArray = [theArg valueForKey:@"range"];
-    int theLocation, theLength;
+    NSInteger theLocation, theLength;
     NSRange theRange;
 
     if ((theArray == nil) || ([theArray count] < 1)) { return [NSString string]; }
-    theLocation = [theArray[0] intValue];
+    theLocation = [theArray[0] integerValue];
     theLength = ([theArray count] > 1) ? 
-            [theArray[1] intValue] : 1;
+            [theArray[1] integerValue] : 1;
     theRange = [self rangeInTextViewWithLocation:theLocation withLength:theLength];
 
     if (NSEqualRanges(NSMakeRange(0, 0), theRange)) {

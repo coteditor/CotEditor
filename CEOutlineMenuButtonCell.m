@@ -52,7 +52,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSImage *theBackgroundCenterImg = [NSImage imageNamed:@"popUpButtonBG_center"];
     NSImage *theBackgroundLeftImg = [NSImage imageNamed:@"popUpButtonBG_left"];
     NSImage *theArrowImg = [NSImage imageNamed:@"popUpButtonArrow"];
-    float theImgHeight = k_navigationBarHeight - 1;
+    CGFloat theImgHeight = k_navigationBarHeight - 1;
 
     [theBackgroundCenterImg setScalesWhenResized:YES];
     [theBackgroundCenterImg setSize:NSMakeSize(NSWidth(inCellFrame), theImgHeight)];

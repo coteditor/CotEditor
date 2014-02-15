@@ -45,7 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)addChildFileItemTo:(NSMenu *)inMenu fromDir:(NSString *)inPath;
 - (void)removeAllMenuItemsFromParent:(NSMenu *)inMenu;
 - (NSString *)menuTitleFromFileName:(NSString *)inFileName;
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask fromFileName:(NSString *)inFileName;
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask fromFileName:(NSString *)inFileName;
 - (void)showAlert:(NSString *)inMessage;
 - (NSString *)stringOfScript:(NSString *)inPath;
 - (void)doLaunchShellScript:(NSString *)inPath;
@@ -247,7 +247,7 @@ static CEScriptManager *sharedInstance = nil;
     }
 
     // Optキーが押されていたら、アプリでスクリプトを開く
-    unsigned int theFlags = [NSEvent currentCarbonModifierFlags];
+    NSUInteger theFlags = [NSEvent currentCarbonModifierFlags];
     NSString *theXtsn = [thePath pathExtension];
     NSString *theMessage = nil;
     BOOL theModifierPressed = NO;
@@ -304,7 +304,7 @@ static CEScriptManager *sharedInstance = nil;
             [self showAlert:[NSString stringWithFormat:
                     NSLocalizedString(@"%@\nErrorNumber: %i",@""), 
                     [theErrorInfo valueForKey:NSAppleScriptErrorMessage], 
-                    [[theErrorInfo valueForKey:NSAppleScriptErrorNumber] intValue]]];
+                    [[theErrorInfo valueForKey:NSAppleScriptErrorNumber] integerValue]]];
         }
     } else if (([theXtsn isEqualToString:@"sh"]) || ([theXtsn isEqualToString:@"pl"]) || 
             ([theXtsn isEqualToString:@"php"]) || ([theXtsn isEqualToString:@"rb"]) || 
@@ -471,7 +471,7 @@ static CEScriptManager *sharedInstance = nil;
                 ([theXtsn isEqualToString:@"php"]) || 
                 ([theXtsn isEqualToString:@"rb"]) || 
                 ([theXtsn isEqualToString:@"py"]))) {
-            unsigned int theMod = 0;
+            NSUInteger theMod = 0;
             NSString *theKeyEquivalent = [self keyEquivalentAndModifierMask:&theMod fromFileName:[URL lastPathComponent]];
             theMenuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
             theMenuItem = [[[NSMenuItem alloc] initWithTitle:theMenuTitle 
@@ -493,7 +493,7 @@ static CEScriptManager *sharedInstance = nil;
 {
     NSArray *theItems = [inMenu itemArray];
     NSMenuItem *theMenuItem;
-    int i;
+    NSInteger i;
 
     for (i = ([theItems count] - 1); i >= 0; i--) {
         theMenuItem = theItems[i];
@@ -528,7 +528,7 @@ static CEScriptManager *sharedInstance = nil;
 
 
 //------------------------------------------------------
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask fromFileName:(NSString *)inFileName
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask fromFileName:(NSString *)inFileName
 // ファイル名からキーボードショートカット定義を読み取る
 //------------------------------------------------------
 {
@@ -565,7 +565,7 @@ static CEScriptManager *sharedInstance = nil;
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
     NSStringEncoding theEncoding;
-    int i = 0;
+    NSInteger i = 0;
 
     while (outString == nil) {
         theEncoding = 

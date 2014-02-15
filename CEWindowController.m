@@ -81,7 +81,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:_editorView];
     // デフォルト行末コードをセット
-    [[self document] setLineEndingCharToView:[[theValues valueForKey:k_key_defaultLineEndCharCode] intValue]];
+    [[self document] setLineEndingCharToView:[[theValues valueForKey:k_key_defaultLineEndCharCode] integerValue]];
     // 不可視文字の表示／非表示をセット
     [_editorView setShowInvisibleChars:[[self document] canActivateShowInvisibleCharsItem]];
     // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
@@ -135,7 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 文書情報ドローワ内容を更新すべきかを返す
 // ------------------------------------------------------
 {
-    int theDrawerState = [_drawer state];
+    NSInteger theDrawerState = [_drawer state];
     BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
 
     return (theTabState && 
@@ -148,7 +148,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 非互換文字ドローワ内容を更新すべきかを返す
 // ------------------------------------------------------
 {
-    int theDrawerState = [_drawer state];
+    NSInteger theDrawerState = [_drawer state];
     BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
 
     return (theTabState && 
@@ -461,7 +461,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ファイル情報を表示
 // ------------------------------------------------------
 {
-    int theDrawerState = [_drawer state];
+    NSInteger theDrawerState = [_drawer state];
     BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
 
     if ((theDrawerState == NSDrawerClosedState) || (theDrawerState == NSDrawerClosingState)) {
@@ -489,7 +489,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 変換不可文字列リストパネルを開く
 // ------------------------------------------------------
 {
-    int theDrawerState = [_drawer state];
+    NSInteger theDrawerState = [_drawer state];
     BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
 
     if ((theDrawerState == NSDrawerClosedState) || (theDrawerState == NSDrawerClosingState)) {

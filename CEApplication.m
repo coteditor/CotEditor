@@ -91,7 +91,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *theCharIgnoringMod = [inEvent charactersIgnoringModifiers];
         if ((theCharIgnoringMod != nil) && ([theCharIgnoringMod length] > 0)) {
             unichar theChar = [theCharIgnoringMod characterAtIndex:0];
-            unsigned int theModFlags = [inEvent modifierFlags];
+            NSUInteger theModFlags = [inEvent modifierFlags];
             NSCharacterSet *theIgnoringShiftSet = 
                     [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
 
@@ -146,7 +146,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ノーティフィケーションからキーキャッチモードを設定
 // ------------------------------------------------------
 {
-    int theMode = [[inNotification userInfo][k_keyCatchMode] intValue];
+    NSInteger theMode = [[inNotification userInfo][k_keyCatchMode] integerValue];
 
     [self setKeyCatchMode:theMode];
 }

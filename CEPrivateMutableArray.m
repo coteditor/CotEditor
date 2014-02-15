@@ -55,7 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)dealloc
 {
-    unsigned int i;
+    NSUInteger i;
    
     for (i = 0; i < _nPointers; i++) {
         [_pointers[ i] release];
@@ -69,14 +69,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)grow
 {
-    unsigned int newsize;
+    NSUInteger newsize;
 
     if ((newsize = _size + _size) < _size + 4) {
         newsize = _size + 4;
     }
     if (!(_pointers = realloc(_pointers, newsize * sizeof(id)))) {
         [NSException raise:NSMallocException
-                    format:@"%@ can't grow from %u to %u entries", self, _size, newsize];
+                    format:@"%@ can't grow from %lu to %lu entries", self, (unsigned long)_size, (unsigned long)newsize];
     }
     _size = newsize;
 }
@@ -104,7 +104,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (inIndex >= _nPointers) {
         [NSException raise:NSInvalidArgumentException 
-                    format:@"index %lu out of bounds %d", (unsigned long)inIndex, _nPointers];
+                    format:@"index %lu out of bounds %lu", (unsigned long)inIndex, (unsigned long)_nPointers];
     }
 
     return (_pointers[inIndex]);
@@ -114,7 +114,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (!inArray) { return; }
 
-    unsigned int i, theCount = [inArray count];
+    NSUInteger i, theCount = [inArray count];
     for (i = 0; i < theCount; i++) {
         [self addObject:inArray[i]];
     }

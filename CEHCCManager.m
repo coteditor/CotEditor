@@ -412,7 +412,7 @@ static CEHCCManager *sharedInstance = nil;
     if ([theString length] == 6) {
         NSCharacterSet *theSet = 
                 [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
-        int i;
+        NSInteger i;
 
         for (i = 0; i < 6; i++) {
             theBoolIsHex = [theSet characterIsMember:[theString characterAtIndex:i]];
@@ -444,7 +444,7 @@ static CEHCCManager *sharedInstance = nil;
     if ((inString != nil) && ([inString length] == 6)) {
         NSCharacterSet *theSet = 
                 [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
-        int i;
+        NSInteger i;
 
         theBoolIsOk = YES;
         for (i = 0; i < 6; i++) {

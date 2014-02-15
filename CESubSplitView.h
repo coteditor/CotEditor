@@ -56,7 +56,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange _hilightedLineRange;
     NSRect _hilightedLineRect;
 
-    int _lastCursorLocation;
+    NSInteger _lastCursorLocation;
     BOOL _highlightCurrentLine;
     BOOL _setHiliteLineColorToIMChars;
     BOOL _hadMarkedText;

@@ -213,7 +213,7 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (float)windowAlphaControllerValue
+- (CGFloat)windowAlphaControllerValue
 // ウィンドウの透明度設定コントローラの値を返す
 // ------------------------------------------------------
 {
@@ -249,7 +249,7 @@ static NSRect theLatestDocumentWindowFrame;
 // 透明度設定パネルのコントロール類の有効／無効を制御
 // ------------------------------------------------------
 {
-    unsigned int theNum = [[self documents] count];
+    NSUInteger theNum = [[self documents] count];
 
     if (inValue) {
         theNum--;
@@ -277,7 +277,7 @@ static NSRect theLatestDocumentWindowFrame;
 // 文字／行移動パネルのコントロール類の有効／無効を制御
 // ------------------------------------------------------
 {
-    unsigned int theNum = [[self documents] count];
+    NSUInteger theNum = [[self documents] count];
 
     if (inValue) {
         theNum--;
@@ -348,7 +348,7 @@ static NSRect theLatestDocumentWindowFrame;
         if (theCurDoc == nil) {
             return NO;
         } else {
-            float theLineSpacing = [theCurDoc lineSpacingInTextView];
+            CGFloat theLineSpacing = [theCurDoc lineSpacingInTextView];
             BOOL theState = ((theLineSpacing != 0.0) && (theLineSpacing != 0.25) && 
                     (theLineSpacing != 0.5) && (theLineSpacing != 0.75) && 
                     (theLineSpacing != 1.0) && (theLineSpacing != 1.25) && 
@@ -443,7 +443,7 @@ static NSRect theLatestDocumentWindowFrame;
     if ([thePanel isKeyWindow]) {
         // 既に開いてキーになっているときは、文字／行移動をトグルに切り替える
         NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-        int theNewSelect = ([_gotoCharLineMatrix selectedRow] == 0) ? 1 : 0;
+        NSInteger theNewSelect = ([_gotoCharLineMatrix selectedRow] == 0) ? 1 : 0;
         [theDefaults setInteger:theNewSelect forKey:k_key_gotoObjectMenuIndex];
     } else {
         [self setGotoPanelControlsEnabledWithDecrement:NO];
@@ -462,8 +462,8 @@ static NSRect theLatestDocumentWindowFrame;
     CEDocument *theCurDoc = [self currentDocument];
 
     if (([theArray count] > 0) && (theCurDoc)) {
-        int theLocation = [theArray[0] intValue];
-        int theLength = ([theArray count] > 1) ? [theArray[1] intValue] : 0;
+        NSInteger theLocation = [theArray[0] integerValue];
+        NSInteger theLength = ([theArray count] > 1) ? [theArray[1] integerValue] : 0;
 
         [theCurDoc gotoLocation:theLocation withLength:theLength];
     }
@@ -497,7 +497,7 @@ static NSRect theLatestDocumentWindowFrame;
 // ------------------------------------------------------
 {
     CEDocument *theCurDoc = [self currentDocument];
-    float theLineSpacing = [theCurDoc lineSpacingInTextView];
+    CGFloat theLineSpacing = [theCurDoc lineSpacingInTextView];
 
     if (theCurDoc) {
         [_lineSpacingField setStringValue:[NSString stringWithFormat:@"%.2f", theLineSpacing]];

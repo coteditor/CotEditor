@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 @interface CELineNumView (Private)
-- (void)setWidth:(float)inValue;
+- (void)setWidth:(CGFloat)inValue;
 @end
 
 
@@ -151,13 +151,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         toPoint:NSMakePoint(NSMaxX(inRect), NSMinY(inRect))];
     // adjust rect so we won't later draw into the scrollbar area
     if ([[_masterView scrollView] hasHorizontalScroller]) {
-        float theHScrollAdj = NSHeight([[[_masterView scrollView] horizontalScroller] frame]) / 2;
+        CGFloat theHScrollAdj = NSHeight([[[_masterView scrollView] horizontalScroller] frame]) / 2;
         inRect.origin.y += theHScrollAdj; // (shift the drawing frame reference up.)
         inRect.size.height -= theHScrollAdj; // (and shrink it the same distance.)
     }
     // setup drawing attributes for the font size and color. 
     NSMutableDictionary *theAttrs = [[NSMutableDictionary alloc] init]; // ===== init
-    float theLineNumFontSize = [[theValues valueForKey:k_key_lineNumFontSize] floatValue];
+    CGFloat theLineNumFontSize = [[theValues valueForKey:k_key_lineNumFontSize] floatValue];
     NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_lineNumFontName] size:theLineNumFontSize];
     if (theFont == nil) {
         theFont = [NSFont paletteFontOfSize:9];
@@ -167,7 +167,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
-    float charWidth = [@"8" sizeWithAttributes:theAttrs].width;
+    CGFloat charWidth = [@"8" sizeWithAttributes:theAttrs].width;
 
     // setup the variables we need for the loop
     NSRange theRange;       // a range for counting lines
@@ -175,13 +175,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theNumStr;    // a temporary string for Line Number
     NSString *theWrapedLineMark = ([[theValues valueForKey:k_key_showWrappedLineMark] boolValue]) ? 
             @"-" : @" ";
-    int theGlyphIndex, theBefore, theGlyphCount; // glyph counter
-    int theCharIndex;
-    int theLineNum;     // line counter
-    float theReqWidth;      // width calculator holder -- width needed to show string
-    float theCurWidth;      // width calculator holder -- my current width
-    float theAdj = 0;       // adjust vertical value for line number drawing
-    float theInsetAdj = [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue];
+    NSInteger theGlyphIndex, theBefore, theGlyphCount; // glyph counter
+    NSInteger theCharIndex;
+    NSInteger theLineNum;     // line counter
+    CGFloat theReqWidth;      // width calculator holder -- width needed to show string
+    CGFloat theCurWidth;      // width calculator holder -- my current width
+    CGFloat theAdj = 0;       // adjust vertical value for line number drawing
+    CGFloat theInsetAdj = [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue];
     NSRect theNumRect;      // rectange holder
     NSPoint theNumPoint;    // point holder
     CELayoutManager *theManager = (CELayoutManager *)[[_masterView textView] layoutManager]; // get _owner's layout manager.
@@ -190,8 +190,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     theLineNum = 1;
     theGlyphCount = 0;
 
-    float crDistance;
-    unsigned numberOfGlyphs = [theManager numberOfGlyphs];
+    CGFloat crDistance;
+    NSUInteger numberOfGlyphs = [theManager numberOfGlyphs];
 
     if(numberOfGlyphs > 0) {
         //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
@@ -216,7 +216,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             theNumRect.origin.y = crDistance - NSHeight(theNumRect) - theNumRect.origin.y;
             if (NSIntersectsRect(theNumRect, inRect)) {
                 theNumStr = (theBefore != theLineNum) ? 
-                    [NSString stringWithFormat:@"%d", theLineNum] : theWrapedLineMark;
+                    [NSString stringWithFormat:@"%ld", (long)theLineNum] : theWrapedLineMark;
                 theReqWidth = charWidth * [theNumStr length];
                 theCurWidth = NSWidth([self frame]);
                 if ((theCurWidth - k_lineNumPadding) < theReqWidth) {
@@ -240,7 +240,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ((theNumRect.size.width > 0) && (theNumRect.size.height > 0)) {
 //    if (!NSEqualRects(theNumRect, NSZeroRect)) {
         theNumStr = (theBefore != theLineNum) ? 
-            [NSString stringWithFormat:@"%d", theLineNum] : 
+            [NSString stringWithFormat:@"%ld", (long)theLineNum] : 
             @" ";
         theReqWidth = charWidth * [theNumStr length];
         theCurWidth = NSWidth([self frame]);
@@ -278,11 +278,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)setWidth:(float)inValue
+- (void)setWidth:(CGFloat)inValue
 // set view width.
 // ------------------------------------------------------
 {
-    float theAdjWidth = (inValue - NSWidth([self frame]));
+    CGFloat theAdjWidth = (inValue - NSWidth([self frame]));
     NSRect theNewFrame;
 
     // set masterView width

@@ -104,19 +104,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([inValue length] != 6) { return nil; }
 
     unsigned int theInt = 0;
-    float theRed, theGreen, theBlue;
-    int i;
+    CGFloat theRed, theGreen, theBlue;
+    NSInteger i;
 
     NSScanner *theScanner;
     for (i = 0; i < 3; i++) {
         theScanner = [NSScanner scannerWithString:[inValue substringWithRange:NSMakeRange(i * 2, 2)]];
         if ([theScanner scanHexInt:&theInt]) {
             if (i == 0) {
-                theRed = (theInt > 0) ? ((float)theInt / 255) : 0.0;
+                theRed = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
             } else if (i == 1) {
-                theGreen = (theInt > 0) ? ((float)theInt / 255) : 0.0;
+                theGreen = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
             } else if (i == 2) {
-                theBlue = (theInt > 0) ? ((float)theInt / 255) : 0.0;
+                theBlue = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
             }
         }
     }

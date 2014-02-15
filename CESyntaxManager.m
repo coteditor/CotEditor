@@ -48,9 +48,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setExtensionErrorToTextView;
 - (void)setupSyntaxSheetControles;
 - (void)editNewAddedRowOfTableView:(NSTableView *)inTableView;
-- (int)syntaxElementError;
-- (int)syntaxElementCheckInPanter;
-- (int)syntaxElementCheck;
+- (NSInteger)syntaxElementError;
+- (NSInteger)syntaxElementCheckInPanter;
+- (NSInteger)syntaxElementCheck;
 @end
 
 
@@ -182,13 +182,13 @@ static CESyntaxManager *sharedInstance = nil;
 }
 
 // ------------------------------------------------------
-- (BOOL)setSelectionIndexOfStyle:(int)inStyleIndex mode:(int)inMode
+- (BOOL)setSelectionIndexOfStyle:(NSInteger)inStyleIndex mode:(NSInteger)inMode
 // シートの表示に備え、シンタックスカラーリングスタイル定義配列のうちの一つを選択する（バインディングのため）
 // ------------------------------------------------------
 {
     NSArray *theColoringArray;
     NSString *theName;
-    unsigned int theSelected;
+    NSUInteger theSelected;
 
     _sheetOpeningMode = inMode;
     if (inMode == k_syntaxCopyTag) { // Copy
@@ -245,13 +245,13 @@ static CESyntaxManager *sharedInstance = nil;
             (![inStyleName isEqualToString:NSLocalizedString(@"None",@"")])) {
         NSMutableDictionary *outDict;
         NSDictionary *theDict = nil;
-        int i, theStyleCount = [_coloringStyleArray count];
+        NSInteger i, theStyleCount = [_coloringStyleArray count];
         for (i = 0; i < theStyleCount; i++) {
             theDict = _coloringStyleArray[i];
             if ([theDict[k_SCKey_styleName] isEqualToString:inStyleName]) {
                 NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
                 NSArray *theArray;
-                int j, theCount = 0, theSyntaxCount = [theSyntaxArray count];
+                NSInteger j, theCount = 0, theSyntaxCount = [theSyntaxArray count];
                 outDict = [NSMutableDictionary dictionaryWithDictionary:theDict];
 
                 for (j = 0; j < theSyntaxCount; j++) {
@@ -299,7 +299,7 @@ static CESyntaxManager *sharedInstance = nil;
     NSArray *theDefaultArray = [self defaultSyntaxFileNames];
     NSMutableArray *outArray = [NSMutableArray array];
     NSString *theStr = nil;
-    int i, thePrefixLength, theCount = [theDefaultArray count];
+    NSInteger i, thePrefixLength, theCount = [theDefaultArray count];
 
     thePrefixLength = [k_bundleSyntaxStyleFilePrefix length];
     for (i = 0; i < theCount; i++) {
@@ -359,7 +359,7 @@ static CESyntaxManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     NSMutableArray *outArray = [NSMutableArray array];
-    int i, theCount = [_coloringStyleArray count];
+    NSInteger i, theCount = [_coloringStyleArray count];
 
     for (i = 0; i < theCount; i++) {
         [outArray addObject:_coloringStyleArray[i][k_SCKey_styleName]];
@@ -514,7 +514,7 @@ static CESyntaxManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     NSTableView *theTableView = [inNotification object];
-    int theRow = [theTableView selectedRow];
+    NSInteger theRow = [theTableView selectedRow];
 
     // 最下行が選択されたのなら、編集開始のメソッドを呼び出す
     //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
@@ -710,7 +710,7 @@ static CESyntaxManager *sharedInstance = nil;
 #endif
     
 	NSString *thePath = nil;
-    int i, theCount = [theFiles count];
+    NSInteger i, theCount = [theFiles count];
     for (i = 0; i < theCount; i++) {
         NSString *theFileName = theFiles[i];
         if ((![theFileName hasPrefix:@"."]) && ([theFileName hasSuffix:@".plist"])) { // ドットファイル除去
@@ -741,7 +741,7 @@ static CESyntaxManager *sharedInstance = nil;
     NSMutableArray *theExtensions = [NSMutableArray array];
     id theDict, theExtension, theAddedName = nil;
     NSArray *theArray;
-    int i, theCount;
+    NSInteger i, theCount;
 
     while (theDict = [theEnumerator nextObject]) {
         theArray = theDict[k_SCKey_extensions];
@@ -792,7 +792,7 @@ static CESyntaxManager *sharedInstance = nil;
     NSSortDescriptor *theDescriptorTwo = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString 
                     ascending:YES selector:@selector(caseInsensitiveCompare:)] autorelease];
     NSArray *theDescriptors = @[theDescriptorOne, theDescriptorTwo];
-    int i;
+    NSInteger i;
 
     // _styleController内のコンテンツオブジェクト取得
     NSArray *theContent = [_styleController selectedObjects];
@@ -839,7 +839,7 @@ static CESyntaxManager *sharedInstance = nil;
     NSArray *theDestNames = [self defaultSyntaxFileNamesWithoutPrefix];
     NSFileManager *theFileManager = [NSFileManager defaultManager];
     BOOL theValue = NO;
-    int i;
+    NSInteger i;
 
     for (i = 0; i < [theSourceNames count]; i++) {
         theSource = [theSourceDirPath stringByAppendingPathComponent:theSourceNames[i]];
@@ -869,7 +869,7 @@ static CESyntaxManager *sharedInstance = nil;
     NSMutableString *outName = [NSMutableString string];
     NSRange theCopiedStrRange;
     BOOL theCopiedState = NO;
-    int i = 1;
+    NSInteger i = 1;
 
     theCopiedStrRange = [theCompareName rangeOfRegularExpressionString:NSLocalizedString(@" copy$",@"")];
     if (theCopiedStrRange.location != NSNotFound) {
@@ -891,7 +891,7 @@ static CESyntaxManager *sharedInstance = nil;
     [outName appendFormat:@"%@.plist", theCopyName];
     while ([theFileManager fileExistsAtPath:[thePath stringByAppendingPathComponent:outName]]) {
         i++;
-        [outName setString:[NSString stringWithFormat:@"%@ %i", theCopyName, i]];
+        [outName setString:[NSString stringWithFormat:@"%@ %li", theCopyName, (long)i]];
         [outName appendString:@".plist"];
     }
     return [outName stringByDeletingPathExtension];
@@ -910,7 +910,7 @@ static CESyntaxManager *sharedInstance = nil;
         NSEnumerator *theEnumerator = [theErrors keyEnumerator];
         NSArray *theArray;
         id theKey;
-        int i, theCount;
+        NSInteger i, theCount;
 
         [theStr setString:NSLocalizedString(@"The following Extension list is registered by two or more styles for one extension. \nCotEditor uses the first style.\n\n",@"")];
         [theStr appendString:NSLocalizedString(@"\"Extension\" = \"Style Names\"\n  -  -  -  -  -  -  -\n",@"")];
@@ -983,7 +983,7 @@ static CESyntaxManager *sharedInstance = nil;
     }
 
     NSTableColumn *theColumn = [inTableView tableColumns][0];
-    int theRow = [inTableView selectedRow];
+    NSInteger theRow = [inTableView selectedRow];
     id theCell = [theColumn dataCellForRow:theRow];
     if (theCell == nil) { return; }
     NSString *theStr = [theCell stringValue];
@@ -995,7 +995,7 @@ static CESyntaxManager *sharedInstance = nil;
     }
 }
 // ------------------------------------------------------
-- (int)syntaxElementError
+- (NSInteger)syntaxElementError
 // 構文チェック実行
 // ------------------------------------------------------
 {
@@ -1008,13 +1008,13 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (int)syntaxElementCheckInPanter
+- (NSInteger)syntaxElementCheckInPanter
 // 10.3で、正規表現構文と重複のチェック実行
 // ------------------------------------------------------
 {
     NSArray *theSelectedArray = [_styleController selectedObjects];
     NSMutableString *theResultStr = [NSMutableString string];
-    int outCount = 0;
+    NSInteger outCount = 0;
 
     if ([theSelectedArray count] == 1) {
         NSDictionary *theDict = theSelectedArray[0];
@@ -1022,13 +1022,13 @@ static CESyntaxManager *sharedInstance = nil;
         NSArray *theArray;
         NSString *theBeginStr, *theEndStr, *theTmpBeginStr = nil, *theTmpEndStr = nil;
         NSString *theArrayName = nil, *theArrayNameDeletingArray = nil;
-        int i, j, theSyntaxCount = [theSyntaxArray count];
+        NSInteger i, j, theSyntaxCount = [theSyntaxArray count];
 
         for (i = 0; i < theSyntaxCount; i++) {
             theArrayName = theSyntaxArray[i];
             theArray = theDict[theArrayName];
             theArrayNameDeletingArray = [theArrayName substringToIndex:([theArrayName length] - 5)];
-            int theArrayCount = [theArray count];
+            NSInteger theArrayCount = [theArray count];
             for (j = 0; j < theArrayCount; j++) {
                 theBeginStr = theArray[j][k_SCKey_beginString];
                 theEndStr = theArray[j][k_SCKey_endString];
@@ -1036,16 +1036,16 @@ static CESyntaxManager *sharedInstance = nil;
                         (((theTmpEndStr == nil) && (theEndStr == nil)) || 
                             ([theTmpEndStr isEqualToString:theEndStr]))) {
                     outCount++;
-                    [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n", 
-                            outCount, theArrayNameDeletingArray, theBeginStr];
+                    [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n", 
+                            (long)outCount, theArrayNameDeletingArray, theBeginStr];
                 } else if ([theArray[j][k_SCKey_regularExpression] boolValue]) {
                     NS_DURING
                         (void)[OGRegularExpression regularExpressionWithString:theBeginStr];
                     NS_HANDLER
                         // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
                         outCount++;
-                        [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> %@\n\n", 
-                                outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
+                        [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> %@\n\n", 
+                                (long)outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
                     NS_ENDHANDLER
 
                     if (theEndStr != nil) {
@@ -1054,8 +1054,8 @@ static CESyntaxManager *sharedInstance = nil;
                         NS_HANDLER
                             // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
                             outCount++;
-                            [theResultStr appendFormat:@"%i.  %@ :(End string) > %@\n  >>> %@\n\n", 
-                                outCount, theArrayNameDeletingArray, theEndStr, [localException reason]];
+                            [theResultStr appendFormat:@"%li.  %@ :(End string) > %@\n  >>> %@\n\n", 
+                                (long)outCount, theArrayNameDeletingArray, theEndStr, [localException reason]];
                         NS_ENDHANDLER
                     }
                 } else if ([theArrayName isEqualToString:k_SCKey_outlineMenuArray]) {
@@ -1064,8 +1064,8 @@ static CESyntaxManager *sharedInstance = nil;
                     NS_HANDLER
                         // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
                         outCount++;
-                        [theResultStr appendFormat:@"%i.  %@ :(RE string) > %@\n  >>> %@\n\n", 
-                                outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
+                        [theResultStr appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
+                                (long)outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
                     NS_ENDHANDLER
                 }
                 theTmpBeginStr = theBeginStr;
@@ -1091,13 +1091,13 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (int)syntaxElementCheck
+- (NSInteger)syntaxElementCheck
 // 10.4+で、正規表現構文と重複のチェック実行
 // ------------------------------------------------------
 {
     NSArray *theSelectedArray = [_styleController selectedObjects];
     NSMutableString *theResultStr = [NSMutableString string];
-    int outCount = 0;
+    NSInteger outCount = 0;
 
     if ([theSelectedArray count] == 1) {
         NSDictionary *theDict = theSelectedArray[0];
@@ -1105,7 +1105,7 @@ static CESyntaxManager *sharedInstance = nil;
         NSArray *theArray;
         NSString *theBeginStr, *theEndStr, *theTmpBeginStr = nil, *theTmpEndStr = nil;
         NSString *theArrayName = nil, *theArrayNameDeletingArray = nil;
-        int i, j, theSyntaxCount = [theSyntaxArray count];
+        NSInteger i, j, theSyntaxCount = [theSyntaxArray count];
         NSInteger theCapCount;
         NSError *theError = NULL;
 
@@ -1113,7 +1113,7 @@ static CESyntaxManager *sharedInstance = nil;
             theArrayName = theSyntaxArray[i];
             theArray = theDict[theArrayName];
             theArrayNameDeletingArray = [theArrayName substringToIndex:([theArrayName length] - 5)];
-            int theArrayCount = [theArray count];
+            NSInteger theArrayCount = [theArray count];
 
             for (j = 0; j < theArrayCount; j++) {
                 theBeginStr = theArray[j][k_SCKey_beginString];
@@ -1124,16 +1124,16 @@ static CESyntaxManager *sharedInstance = nil;
                             ([theTmpEndStr isEqualToString:theEndStr]))) {
 
                     outCount++;
-                    [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n", 
-                            outCount, theArrayNameDeletingArray, theBeginStr];
+                    [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
+                            (long)outCount, theArrayNameDeletingArray, theBeginStr];
 
                 } else if ([theArray[j][k_SCKey_regularExpression] boolValue]) {
 
                     theCapCount = [theBeginStr captureCountWithOptions:RKLNoOptions error:&theError];
                     if (theCapCount == -1) { // エラーのとき
                         outCount++;
-                        [theResultStr appendFormat:@"%i.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
-                                outCount, theArrayNameDeletingArray, theBeginStr, 
+                        [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
+                                (long)outCount, theArrayNameDeletingArray, theBeginStr,
                                 [theError userInfo][RKLICURegexErrorNameErrorKey], 
                                 [theError userInfo][RKLICURegexOffsetErrorKey], 
                                 [theError userInfo][RKLICURegexPreContextErrorKey], 
@@ -1143,8 +1143,8 @@ static CESyntaxManager *sharedInstance = nil;
                         theCapCount = [theEndStr captureCountWithOptions:RKLNoOptions error:&theError];
                         if (theCapCount == -1) { // エラーのとき
                             outCount++;
-                            [theResultStr appendFormat:@"%i.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
-                                    outCount, theArrayNameDeletingArray, theEndStr, 
+                            [theResultStr appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
+                                    (long)outCount, theArrayNameDeletingArray, theEndStr, 
                                     [theError userInfo][RKLICURegexErrorNameErrorKey], 
                                     [theError userInfo][RKLICURegexOffsetErrorKey], 
                                     [theError userInfo][RKLICURegexPreContextErrorKey], 
@@ -1159,8 +1159,8 @@ static CESyntaxManager *sharedInstance = nil;
                     NS_HANDLER
                         // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
                         outCount++;
-                        [theResultStr appendFormat:@"%i.  %@ :(RE string) > %@\n  >>> %@\n\n", 
-                                outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
+                        [theResultStr appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
+                                (long)outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
                     NS_ENDHANDLER
                 }
                 theTmpBeginStr = theBeginStr;

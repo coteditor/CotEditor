@@ -263,7 +263,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Help Document Menu tag and path
 static struct {
-    int tag;
+    NSInteger tag;
     NSString *path;
 } k_bundleDocumentList[] = {
     {100, @"/GPL.txt"},
@@ -541,7 +541,7 @@ static unichar k_invisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
 static unichar k_invisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
 static unichar k_invisibleFullwidthSpaceCharList[] = {0x25A1, 0x22A0, 0x25A0, 0x2022};
 
-static unsigned int k_modifierKeysList[] = 
+static NSUInteger k_modifierKeysList[] = 
             {NSControlKeyMask, NSAlternateKeyMask, NSShiftKeyMask, NSCommandKeyMask};
 static unichar k_keySpecCharList[] = {0x005E, 0x007E, 0x0024, 0x0040}; // == "^~$@"
 static unichar k_readableKeyStringsList[] = {0x005E, 0x2325, 0x21E7, 0x2318};

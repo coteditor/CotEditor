@@ -94,7 +94,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (int)numberOfRowsInTableView:(NSTableView *)inTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)inTableView
 // tableView の行数を返す
 // ------------------------------------------------------
 {
@@ -105,7 +105,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 - (id)tableView:(NSTableView *)inTableView 
         objectValueForTableColumn:(NSTableColumn *)inTableColumn 
-        row:(int)inRowIndex
+        row:(NSInteger)inRowIndex
 // tableViewの列・行で指定された内容を返す
 // ------------------------------------------------------
 {
@@ -133,7 +133,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドラッグ開始／tableView からのドラッグアイテム内容をセット
 // ------------------------------------------------------
 {
-    int i;
+    NSInteger i;
 
     // ドラッグ受付タイプを登録
     [inTableView registerForDraggedTypes:@[k_dropMyselfPboardType]];
@@ -141,7 +141,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableIndexSet *theIndexes = [NSMutableIndexSet indexSet];
     [inTableView deselectAll:self];
     for (i = 0; i < [inRows count]; i++) {
-        [theIndexes addIndex:[inRows[i] unsignedIntValue]];
+        [theIndexes addIndex:[inRows[i] unsignedIntegerValue]];
     }
     [inTableView selectRowIndexes:theIndexes byExtendingSelection:YES];
     // ドラッグされる行の保持、Pasteboard の設定
@@ -155,7 +155,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (NSDragOperation)tableView:(NSTableView *)inTableView 
-        validateDrop:(id <NSDraggingInfo>)inInfo proposedRow:(int)inRow 
+        validateDrop:(id <NSDraggingInfo>)inInfo proposedRow:(NSInteger)inRow
         proposedDropOperation:(NSTableViewDropOperation)inOperation
 // tableViewへドラッグアイテムが入ってきたときの判定
 // ------------------------------------------------------
@@ -174,7 +174,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (BOOL)tableView:(NSTableView *)inTableView 
-        acceptDrop:(id <NSDraggingInfo>)inInfo row:(int)inRow 
+        acceptDrop:(id <NSDraggingInfo>)inInfo row:(NSInteger)inRow
         dropOperation:(NSTableViewDropOperation)inOperation
 // ドロップの許可、アイテムの移動挿入
 // ------------------------------------------------------
@@ -184,14 +184,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableArray *theDraggingArray = [NSMutableArray array];
     NSMutableArray *theNewArray = [NSMutableArray arrayWithArray:_encodingsForTmp];
     id theObject;
-    int i, theCount, theNewRow = inRow;
+    NSInteger i, theCount, theNewRow = inRow;
 
     while (theObject = [theEnumerator nextObject]) {
-        if ([theObject unsignedIntValue] < [theNewArray count]) {
+        if ([theObject unsignedIntegerValue] < [theNewArray count]) {
             [theDraggingArray addObject:
-                    [[theNewArray[[theObject unsignedIntValue]] copy] autorelease]];
-            [theNewArray removeObjectAtIndex:[theObject unsignedIntValue]];
-            if ([theObject intValue] < inRow) { // 下方へドラッグ移動されるときの調整
+                    [[theNewArray[[theObject unsignedIntegerValue]] copy] autorelease]];
+            [theNewArray removeObjectAtIndex:[theObject unsignedIntegerValue]];
+            if ([theObject integerValue] < inRow) { // 下方へドラッグ移動されるときの調整
                 theNewRow--;
             }
         }
@@ -234,7 +234,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if ([theSelectIndexSet count] > 0) {
         id theObject;
-        unsigned int i;
+        NSUInteger i;
 
         for (i = 0; i < [_encodingsForTmp count]; i++) {
             theObject = _encodingsForTmp[i];
@@ -281,7 +281,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // セパレータ追加
 // ------------------------------------------------------
 {
-    int theIndex, theSelected = [_tableView selectedRow];
+    NSInteger theIndex, theSelected = [_tableView selectedRow];
 
     theIndex = (theSelected < 0) ? 0 : theSelected;
     [_encodingsForTmp insertObject:[NSNumber numberWithUnsignedLong:kCFStringEncodingInvalidId] 
@@ -303,7 +303,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     NSMutableArray *theNewArray = [NSMutableArray array];
     id theObject;
-    unsigned int i, theDeleted = 0;
+    NSUInteger i, theDeleted = 0;
 
     for (i = 0; i < [_encodingsForTmp count]; i++) {
         theObject = _encodingsForTmp[i];

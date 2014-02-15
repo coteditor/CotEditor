@@ -44,21 +44,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)inWordsDict 
             withCharString:(NSMutableString *)inCharString;
 - (NSArray *)rangesBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind;
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
 - (NSArray *)rangesRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind;
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
 - (NSArray *)checkRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind;
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
 - (NSArray *)rangesRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
         withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind;
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
 - (NSArray *)checkRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
         withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind;
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
 - (void)setAttrToCommentsWithSyntaxArray:(NSArray *)inArray 
         withSingleQuotes:(BOOL)inValueSingleQuotes withDoubleQuotes:(BOOL)inValueDoubleQuotes 
         updateIndicator:(BOOL)inValueUpdateIndicator;
-- (unsigned int)numberOfEscapeSequenceInString:(NSString *)inString;
+- (NSUInteger)numberOfEscapeSequenceInString:(NSString *)inString;
 - (void)setOtherInvisibleCharsAttrs;
 - (void)doColoring;
 - (double)doubleValueOfIndicator;
@@ -103,7 +103,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _isPrinting = NO;
         _isPanther = (floor(NSAppKitVersionNumber) <=  NSAppKitVersionNumber10_3);
         _showColoringIndicatorTextLength = 
-                [[theValues valueForKey:k_key_showColoringIndicatorTextLength] unsignedIntValue];
+                [[theValues valueForKey:k_key_showColoringIndicatorTextLength] unsignedIntegerValue];
         [_coloringIndicator setIndeterminate:NO];
     }
     return self;
@@ -145,7 +145,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (unsigned int)wholeStringLength
+- (NSUInteger)wholeStringLength
 // 全文字列の長さを返す
 // ------------------------------------------------------
 {
@@ -253,7 +253,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *theTmpString = [NSMutableString string];
     NSString *theStr = nil;
     NSCharacterSet *theCharSet;
-    int i, theCount;
+    NSInteger i, theCount;
 
     if (theCompleteArray) {
 
@@ -271,14 +271,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSArray *theArray;
         NSString *theEndStr = nil;
         NSDictionary *theStrDict;
-        int j;
+        NSInteger j;
 
         theCount = [theSyntaxArray count];
 
         NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
         for (i = 0; i < theCount; i++) {
             theArray = _coloringDictionary[theSyntaxArray[i]];
-            int theArrayCount = [theArray count];
+            NSInteger theArrayCount = [theArray count];
             for (j = 0; j < theArrayCount; j++) {
                 theStrDict = theArray[j];
                 theStr = [theStrDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:
@@ -350,9 +350,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setWholeString:inWholeString];
 
     NSRange theEffectiveRange;
-    unsigned int theStart = inRange.location;
-    unsigned int theEnd = NSMaxRange(inRange) - 1;
-    unsigned int theWholeLength = [self wholeStringLength];
+    NSUInteger theStart = inRange.location;
+    NSUInteger theEnd = NSMaxRange(inRange) - 1;
+    NSUInteger theWholeLength = [self wholeStringLength];
 
     // 直前／直後が同色ならカラーリング範囲を拡大する（10.5+で実行するならより正確に拡大）
     if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
@@ -405,13 +405,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *thePattern; 
     NSString *theTitle, *theMatchedIndexString;
     NSRange theMatchRange;
-    int i, j, theCount = [theREStringArray count];
-    unsigned int theIndex, theLines, theCurLine, theWholeLength = [inWholeString length];
-    unsigned int theMenuTitleMaxLength = [[theValues valueForKey:k_key_outlineMenuMaxLength] unsignedIntValue];
+    NSInteger i, j, theCount = [theREStringArray count];
+    NSUInteger theIndex, theLines, theCurLine, theWholeLength = [inWholeString length];
+    NSUInteger theMenuTitleMaxLength = [[theValues valueForKey:k_key_outlineMenuMaxLength] unsignedIntegerValue];
 
     for (i = 0; i < theCount; i++) {
         theDict = theREStringArray[i];
-        unsigned int theOption = ([theDict[k_SCKey_ignoreCase] boolValue]) ? 
+        NSUInteger theOption = ([theDict[k_SCKey_ignoreCase] boolValue]) ?
                         OgreIgnoreCaseOption : OgreNoneOption;
         NSDictionary *theMatchDict;
         OGRegularExpression *theRegex;
@@ -456,7 +456,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     theMatchedIndexString = [theMatch substringAtIndex:j];
                     if (theMatchedIndexString != nil) {
                         (void)[thePattern replaceOccurrencesOfRegularExpressionString:
-                                    [NSString stringWithFormat:@"(?<!\\\\)\\$%i", j] 
+                                    [NSString stringWithFormat:@"(?<!\\\\)\\$%li", (long)j] 
                                 withString:theMatchedIndexString options:0 
                                 range:NSMakeRange(0, [thePattern length])];
                     }
@@ -473,7 +473,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
                 //行番号（$LN）置換
                 (void)[thePattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$LN"
-                        withString:[NSString stringWithFormat:@"%i", theCurLine] options:0 
+                        withString:[NSString stringWithFormat:@"%lu", (unsigned long)theCurLine] options:0 
                         range:NSMakeRange(0, [thePattern length])];
             }
             // 改行またはタブをスペースに置換
@@ -494,7 +494,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // イタリック
             BOOL theBoolIsItalic = [[theDict valueForKey:k_SCKey_italic] boolValue];
             // アンダーライン
-            unsigned int theUnderlineMask = ([[theDict valueForKey:k_SCKey_underline] boolValue]) ? 
+            NSUInteger theUnderlineMask = ([[theDict valueForKey:k_SCKey_underline] boolValue]) ?
                     (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
             // 辞書生成
             theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange], 
@@ -576,7 +576,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *theArray = [self rangesSimpleWordsArrayDict:inWordsDict withCharString:inCharString];
     NSRange theRange;
-    int i, theCount = [theArray count];
+    NSInteger i, theCount = [theArray count];
 
     for (i = 0; i < theCount; i++) {
         theRange = [theArray[i] rangeValue];
@@ -603,7 +603,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSCharacterSet *theCharSet;
     NSRange theAttrRange;
     id wordsArray;
-    unsigned int theLocation = 0, theLength = 0;
+    NSUInteger theLocation = 0, theLength = 0;
 
     // 改行、タブ、スペースは無視
     [inCharString chomp];
@@ -643,16 +643,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (NSArray *)rangesBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
 // 指定された開始／終了ペアの文字列を検索し、位置を返す
 // ------------------------------------------------------
 {
     NSString *theESCheckStr = nil;
     NSScanner *theScanner = [NSScanner scannerWithString:_localString];
-    unsigned int theLocalLength = [_localString length];
-    unsigned int theStart = 0, theESNum = 0, theEnd = 0;
-    unsigned int theBeginLength = 0, theEndLength = 0, theESCheckLength;
-    unsigned int theStartEnd = 0;
+    NSUInteger theLocalLength = [_localString length];
+    NSUInteger theStart = 0, theESNum = 0, theEnd = 0;
+    NSUInteger theBeginLength = 0, theEndLength = 0, theESCheckLength;
+    NSUInteger theStartEnd = 0;
     NSRange theAttrRange, theTmpRange;
 
     theBeginLength = [inBeginString length];
@@ -661,7 +661,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theScanner setCharactersToBeSkipped:nil];
     [theScanner setCaseSensitive:YES];
     CEPrivateMutableArray *outArray =  [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
-    int i = 0;
+    NSInteger i = 0;
 
     while (![theScanner isAtEnd]) {
         (void)[theScanner scanUpToString:inBeginString intoString:nil];
@@ -728,7 +728,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (NSArray *)rangesRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
 // 指定された文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
@@ -737,8 +737,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSEnumerator *theEnumerator;
     CEPrivateMutableArray *outArray = nil;
     NSRange theAttrRange;
-    int i, theCount = 0;
-    unsigned int theQCStart = 0, theQCEnd = 0;
+    NSInteger i, theCount = 0;
+    NSUInteger theQCStart = 0, theQCEnd = 0;
 
     NS_DURING
         theEnumerator = [_localString matchEnumeratorWithRegex:inRegexStr options:theOption];
@@ -784,17 +784,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (NSArray *)checkRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
 // 指定された文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
-    unsigned int theOption = (inIgnoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
+    NSUInteger theOption = (inIgnoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
     OGRegularExpression *theRegex;
     NSEnumerator *theEnum;
     OGRegularExpressionMatch *theMatch;
     NSMutableArray *outArray = [NSMutableArray array];
     NSRange theAttrRange;
-    unsigned int theQCStart = 0, theQCEnd = 0;
+    NSUInteger theQCStart = 0, theQCEnd = 0;
 
     NS_DURING
         theRegex = [OGRegularExpression regularExpressionWithString:inRegexStr options:theOption];
@@ -841,7 +841,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 - (NSArray *)rangesRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
         withIgnoreCase:(BOOL)inIgnoreCase
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
 // 指定された開始／終了文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
@@ -850,8 +850,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theMatchArray;
     NSRange theBeginRange, theEndRange, theAttrRange;
     CEPrivateMutableArray *outArray = nil;
-    int i, theCount = 0;
-    unsigned int theQCStart = 0, theQCEnd = 0;
+    NSInteger i, theCount = 0;
+    NSUInteger theQCStart = 0, theQCEnd = 0;
 
     NS_DURING
         theEnumerator = [_localString matchEnumeratorWithRegex:inBeginString options:theOption];
@@ -913,17 +913,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 - (NSArray *)checkRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
         withIgnoreCase:(BOOL)inIgnoreCase
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(unsigned int)inPairKind
+        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
 // 指定された開始／終了文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
-    unsigned int theOption = (inIgnoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
+    NSUInteger theOption = (inIgnoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
     OGRegularExpression *theRegex;
     NSEnumerator *theEnum;
     OGRegularExpressionMatch *theMatch;
     NSRange theBeginRange, theEndRange, theAttrRange;
     NSMutableArray *outArray = [NSMutableArray array];
-    unsigned int theQCStart = 0, theQCEnd = 0;
+    NSUInteger theQCStart = 0, theQCEnd = 0;
 
     NS_DURING
         theRegex = [OGRegularExpression regularExpressionWithString:inBeginString options:theOption];
@@ -995,8 +995,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theBeginStr = nil, *theEndStr = nil;
     NSMutableString *theSimpleWordsChar = [NSMutableString string];
     NSRange theColoringRange;
-    int i, j, theIndex = 0, theSyntaxCount = [inArray count], theColoringCount;
-    unsigned int theQCKind, theStart, theEnd, theCheckStartEnd;
+    NSInteger i, j, theIndex = 0, theSyntaxCount = [inArray count], theColoringCount;
+    NSUInteger theQCKind, theStart, theEnd, theCheckStartEnd;
     double indicatorValue, theOldValue = 0.0, theBeginDouble = [self doubleValueOfIndicator];
     BOOL theBoolHasEnd = NO;
 
@@ -1091,16 +1091,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         theCurRecord = thePosArray[theIndex];
         if (theQCKind == k_notUseKind) {
-            if ([theCurRecord[k_QCStartEnd] unsignedIntValue] == k_QC_End) {
+            if ([theCurRecord[k_QCStartEnd] unsignedIntegerValue] == k_QC_End) {
                 theIndex++;
                 continue;
             }
-            theQCKind = [theCurRecord[k_QCPairKind] unsignedIntValue];
-            theStart = [theCurRecord[k_QCPosition] unsignedIntValue];
+            theQCKind = [theCurRecord[k_QCPairKind] unsignedIntegerValue];
+            theStart = [theCurRecord[k_QCPosition] unsignedIntegerValue];
             theIndex++;
             continue;
         }
-        if (theQCKind == [theCurRecord[k_QCPairKind] unsignedIntValue]) {
+        if (theQCKind == [theCurRecord[k_QCPairKind] unsignedIntegerValue]) {
             if (theQCKind == k_QC_SingleQ) {
                 theAttrs = _singleQuotesAttrs;
             } else if (theQCKind == k_QC_DoubleQ) {
@@ -1111,8 +1111,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
                 break;
             }
-            theEnd = [theCurRecord[k_QCPosition] unsignedIntValue] + 
-                    [theCurRecord[k_QCStrLength] unsignedIntValue];
+            theEnd = [theCurRecord[k_QCPosition] unsignedIntegerValue] +
+                    [theCurRecord[k_QCStrLength] unsignedIntegerValue];
             theColoringRange = NSMakeRange(theStart + _updateRange.location, theEnd - theStart);
             if ([self isPrinting]) {
                 [[_layoutManager firstTextView] setTextColor:
@@ -1126,8 +1126,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // 「終わり」があるか調べる
             for (j = (theIndex + 1); j < theColoringCount; j++) {
                 theCheckRecord = thePosArray[j];
-                if (theQCKind == [theCheckRecord[k_QCPairKind] unsignedIntValue]) {
-                    theCheckStartEnd = [theCheckRecord[k_QCStartEnd] unsignedIntValue];
+                if (theQCKind == [theCheckRecord[k_QCPairKind] unsignedIntegerValue]) {
+                    theCheckStartEnd = [theCheckRecord[k_QCStartEnd] unsignedIntegerValue];
                     if ((theCheckStartEnd == k_notUseStartEnd) || (theCheckStartEnd == k_QC_End)) {
                         theBoolHasEnd = YES;
                         break;
@@ -1165,12 +1165,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (unsigned int)numberOfEscapeSequenceInString:(NSString *)inString
+- (NSUInteger)numberOfEscapeSequenceInString:(NSString *)inString
 // 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
 // ------------------------------------------------------
 {
-    unsigned int outCount = 0, theLength = [inString length];
-    int i;
+    NSUInteger outCount = 0, theLength = [inString length];
+    NSInteger i;
 
     for (i = (theLength - 1); i >= 0; i--) {
         if ([inString characterAtIndex:i] == '\\') {
@@ -1198,7 +1198,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSScanner *theScanner = [NSScanner scannerWithString:_localString];
     NSString *theControlStr;
     NSRange theColoringRange;
-    int theStart, i, theMax;
+    NSInteger theStart, i, theMax;
 
     if (![self isPrinting]) {
         theAttrs = @{NSForegroundColorAttributeName: theColor};
@@ -1238,14 +1238,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    unsigned int theLength = [self wholeStringLength];
+    NSUInteger theLength = [self wholeStringLength];
     if (theLength < 1) { return; }
     [self setLocalString:[_wholeString substringWithRange:_updateRange]]; // カラーリング対象文字列を保持
     if ([_localString length] < 1) { return; }
 
     // 現在あるカラーリングを削除、カラーリング不要なら不可視文字のカラーリングだけして戻る
     [_layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:_updateRange];
-    if (([_coloringDictionary[k_SCKey_numOfObjInArray] intValue] == 0) || 
+    if (([_coloringDictionary[k_SCKey_numOfObjInArray] integerValue] == 0) || 
             ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None",@"")])) {
         [self setOtherInvisibleCharsAttrs];
         return;
@@ -1283,8 +1283,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theBeginStr = nil, *theEndStr = nil;
     NSDictionary *theStrDict;
     NSRange theColoringRange;
-    int i, j, theCount, theSyntaxArrayCount = [theSyntaxArray count];
-    int k,l, theTargetCount, theInArrayCount;
+    NSInteger i, j, theCount, theSyntaxArrayCount = [theSyntaxArray count];
+    NSInteger k,l, theTargetCount, theInArrayCount;
     BOOL theBoolIsSingleQuotes = NO, theBoolIsDoubleQuotes = NO;
     double indicatorValue, theOldValue = 0.0, theBeginDouble = 0.0;
 

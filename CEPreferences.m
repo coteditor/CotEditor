@@ -48,19 +48,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupInvisibleFullwidthSpacePopup;
 - (void)setupSyntaxStylesPopup;
 - (void)deleteStyleAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)importOpenPanelDidEnd:(NSOpenPanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)secondarySheedlDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)autoDetectAlertDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)doImport:(NSString *)inFileName withCurrentSheetWindow:(NSWindow *)inWindow;
 - (void)exportSavePanelDidEnd:(NSSavePanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)doDeleteFileDropSetting;
 - (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)editNewAddedRowOfFileDropTableView;
 @end
 
@@ -119,8 +119,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned long theSelected;
-    int i, theCount = [inMenuItems count];
+    NSUInteger theSelected;
+    NSInteger i, theCount = [inMenuItems count];
 
     [_encodingMenuInOpen removeAllItems];
     theItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"") 
@@ -186,7 +186,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)sampleWidth
+- (CGFloat)sampleWidth
 // サンプルウィンドウの幅を得る
 // ------------------------------------------------------
 {
@@ -195,7 +195,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSampleWidth:(float)inWidth
+- (void)setSampleWidth:(CGFloat)inWidth
 // サンプルウィンドウの幅をセット
 // ------------------------------------------------------
 {
@@ -205,7 +205,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)sampleHeight
+- (CGFloat)sampleHeight
 // サンプルウィンドウの高さをセット
 // ------------------------------------------------------
 {
@@ -214,7 +214,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSampleHeight:(float)inHeight
+- (void)setSampleHeight:(CGFloat)inHeight
 // サンプルウィンドウの高さを得る
 // ------------------------------------------------------
 {
@@ -232,7 +232,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
     NSFont *theNewFont = [sender convertFont:[NSFont systemFontOfSize:0]];
     NSString *theName = [theNewFont fontName];
-    float theSize = [theNewFont pointSize];
+    CGFloat theSize = [theNewFont pointSize];
 
     if ([[[_prefTabView selectedTabViewItem] identifier] isEqualToString:k_prefFormatItemID]) {
         [theDefaults setObject:theName forKey:k_key_fontName];
@@ -344,7 +344,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSArray *theComponents = [theXtsnStr componentsSeparatedByString:@","];
             NSMutableArray *theNewComps = [NSMutableArray array];
             NSString *thePartStr, *theNewXtsnStr;
-            int j, theCount = [theComponents count];        
+            NSInteger j, theCount = [theComponents count];
 
             for (j = 0; j < theCount; j++) {
                 thePartStr = [theComponents[j] stringByTrimmingCharactersInSet:theTrimSet];
@@ -488,7 +488,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーシンタックス編集シートを開き、閉じる
 // ------------------------------------------------------
 {
-    int theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
+    NSInteger theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
     if (([sender tag] != k_syntaxNewTag) && (theSelected < 0)) { return; }
 
     if (![[CESyntaxManager sharedInstance] setSelectionIndexOfStyle:theSelected mode:[sender tag]]) {
@@ -556,7 +556,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイル削除ボタンが押された
 // ------------------------------------------------------
 {
-    int theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2;
+    NSInteger theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2;
 
     if (![[CESyntaxManager sharedInstance] setSelectionIndexOfStyle:theSelected 
             mode:k_syntaxNoSheetTag]) {
@@ -724,7 +724,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // IB で Formatter が設定できないのでメソッドで行ってる。
 
-    float theValue = [sender floatValue];
+    CGFloat theValue = [sender floatValue];
 
     if (theValue < k_lineSpacingMin) { theValue = k_lineSpacingMin; }
     if (theValue > k_lineSpacingMax) { theValue = k_lineSpacingMax; }
@@ -771,7 +771,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *theBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
     NSArray *theAnchorsArray = @[k_helpPrefAnchors];
-    int theTag = [sender tag];
+    NSInteger theTag = [sender tag];
 
     if ((theTag >= 0) && (theTag < [theAnchorsArray count])) {
         [[NSHelpManager sharedHelpManager] openHelpAnchor:theAnchorsArray[theTag] 
@@ -815,7 +815,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     NSString *theName = [theValues valueForKey:k_key_fontName];
-    float theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+    CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
     NSString *theLocalizedName = [theFont displayName];
 
@@ -855,8 +855,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSInteger i;
 
     [_invisibleSpacePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
@@ -866,7 +866,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleSpace] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleSpace] unsignedIntegerValue];
     [_invisibleSpacePopup selectItemAtIndex:theSelected];
 }
 
@@ -879,8 +879,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSInteger i;
 
     [_invisibleTabPopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
@@ -890,7 +890,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleTab] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleTab] unsignedIntegerValue];
     [_invisibleTabPopup selectItemAtIndex:theSelected];
 }
 
@@ -903,8 +903,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSInteger i;
 
     [_invisibleNewLinePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
@@ -914,7 +914,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleNewLine] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleNewLine] unsignedIntegerValue];
     [_invisibleNewLinePopup selectItemAtIndex:theSelected];
 }
 
@@ -927,8 +927,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSInteger i;
 
     [_invisibleFullwidthSpacePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
@@ -938,7 +938,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleFullwidthSpace] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleFullwidthSpace] unsignedIntegerValue];
     [_invisibleFullwidthSpacePopup selectItemAtIndex:theSelected];
 }
 
@@ -952,8 +952,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theStyleNames = [[CESyntaxManager sharedInstance] styleNames];
     NSMenuItem *theItem;
     NSString *theSelectedTitle;
-    unsigned int theSelected;
-    int i, theCount = [theStyleNames count];
+    NSUInteger theSelected;
+    NSInteger i, theCount = [theStyleNames count];
 
     [_syntaxStylesPopup removeAllItems];
     [_syntaxStylesDefaultPopup removeAllItems];
@@ -987,7 +987,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)deleteStyleAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // style削除確認シートが閉じる直前
 // ------------------------------------------------------
 {
@@ -1025,7 +1025,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)importOpenPanelDidEnd:(NSOpenPanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // styleインポートオープンパネルシートが閉じる直前
 // ------------------------------------------------------
 {
@@ -1064,7 +1064,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)secondarySheedlDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // セカンダリシートが閉じる直前
 // ------------------------------------------------------
 {
@@ -1079,7 +1079,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)autoDetectAlertDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // 既存ファイルを開くときのエンコーディングメニューで自動認識以外が
 // 選択されたときの警告シートが閉じる直前
 // ------------------------------------------------------
@@ -1123,7 +1123,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)exportSavePanelDidEnd:(NSSavePanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // styleエクスポートオープンパネルシートが閉じる直前
 // ------------------------------------------------------
 {
@@ -1177,7 +1177,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // ファイルドロップ編集設定削除確認シートが閉じる直前
 // ------------------------------------------------------
 {

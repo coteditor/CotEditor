@@ -50,7 +50,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)inBool;
 - (NSString *)readableKeyStringsFromKeySpecChars:(NSString *)inString;
 - (NSString *)readableKeyStringsFromKeyEquivalent:(NSString *)inString;
-- (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)inString modifierFrags:(unsigned int)inModFlags;
+- (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)inString modifierFrags:(NSUInteger)inModFlags;
 - (NSString *)readableKeyStringsFromModKeySpecChars:(NSString *)inModString withShiftKey:(BOOL)inBool;
 - (NSString *)visibleCharFromIgnoringModChar:(NSString *)inIgModChar;
 - (BOOL)showDuplicateKeySpecCharsMessageWithKeySpecChars:(NSString *)inKeySpec oldChars:(NSString *)inOldSpec;
@@ -170,7 +170,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (NSWindow *)editSheetWindowOfMode:(int)inMode
+- (NSWindow *)editSheetWindowOfMode:(NSInteger)inMode
 // キーバインディング編集シート用ウィンドウを返す
 // ------------------------------------------------------
 {
@@ -194,7 +194,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (BOOL)setupOutlineDataOfMode:(int)inMode
+- (BOOL)setupOutlineDataOfMode:(NSInteger)inMode
 // 環境設定でシートを表示する準備
 // ------------------------------------------------------
 {
@@ -223,7 +223,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         NSArray *theInsertTextArray = [theValues valueForKey:k_key_insertCustomTextArray];
         NSMutableArray *theContentArray = [NSMutableArray array];
         NSMutableDictionary *theDict;
-        int i, theMax = [theInsertTextArray count];
+        NSInteger i, theMax = [theInsertTextArray count];
 
         [_textDuplicateTextField setStringValue:@""];
         _outlineDataArray = 
@@ -252,7 +252,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (NSString *)selectorStringWithKeyEquivalent:(NSString *)inString modifierFrags:(unsigned int)inModFlags
+- (NSString *)selectorStringWithKeyEquivalent:(NSString *)inString modifierFrags:(NSUInteger)inModFlags
 // キー入力に応じたセレクタ文字列を返す
 // ------------------------------------------------------
 {
@@ -290,7 +290,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 //=======================================================
 
 // ------------------------------------------------------
-- (int)outlineView:(NSOutlineView *)inOutlineView numberOfChildrenOfItem:(id)inItem
+- (NSInteger)outlineView:(NSOutlineView *)inOutlineView numberOfChildrenOfItem:(id)inItem
 // 子アイテムの数を返す
 // ------------------------------------------------------
 {
@@ -317,7 +317,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (id)outlineView:(NSOutlineView *)inOutlineView child:(int)inIndex ofItem:(id)inItem
+- (id)outlineView:(NSOutlineView *)inOutlineView child:(NSInteger)inIndex ofItem:(id)inItem
 // 子アイテムオブジェクトを返す
 // ------------------------------------------------------
 {
@@ -454,7 +454,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if (_outlineMode == k_outlineViewModeText) {
         BOOL theBoolIsEnabled = [[inItem valueForKey:k_selectorString] hasPrefix:@"insertCustomText"];
-        unsigned int theIndex = [inOutlineView rowForItem:inItem];
+        NSUInteger theIndex = [inOutlineView rowForItem:inItem];
 
         (void)[_textInsertStringArrayController setSelectionIndex:theIndex];
         [_textInsertStringTextView setEditable:theBoolIsEnabled];
@@ -538,7 +538,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         NSMutableArray *theContentArray = [NSMutableArray array];
         NSArray *theInsertTextArray = [[[NSApp delegate] class] factoryDefaultOfTextInsertStringArray];
         NSMutableDictionary *theDict;
-        int i, theMax = [theInsertTextArray count];
+        NSInteger i, theMax = [theInsertTextArray count];
 
         for (i = 0; i < theMax; i++) {
             theDict = [NSMutableDictionary dictionaryWithObject:theInsertTextArray[i] 
@@ -608,7 +608,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
     if (![sender isKindOfClass:[NSOutlineView class]]) { return; }
 
-    int theSelectedRow = [(NSOutlineView *)sender selectedRow];
+    NSInteger theSelectedRow = [(NSOutlineView *)sender selectedRow];
 
     if (theSelectedRow != -1) {
         id theItem = [(NSOutlineView *)sender itemAtRow:theSelectedRow];
@@ -845,7 +845,7 @@ static CEKeyBindingManager *sharedInstance = nil;
                 continue;
             }
             NSString *theKeySpecChars = [self keySpecCharsInDictionaryFromSelectorString:theSelectorString];
-            unsigned int theMod = 0;
+            NSUInteger theMod = 0;
             NSString *theKeyEquivalent = [[NSApp delegate] keyEquivalentAndModifierMask:&theMod
                             fromString:theKeySpecChars includingCommandKey:YES];
 
@@ -878,7 +878,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSMutableDictionary *theDict;
     NSString *theSelectorString, *theKeyEquivalent, *theKeySpecChars;
     id theMenuItem;
-    unsigned int theMod;
+    NSUInteger theMod;
 
     while (theMenuItem = [theMenuEnum nextObject]) {
         if (([theMenuItem isSeparatorItem]) || ([[theMenuItem title] length] < 1)) {
@@ -977,7 +977,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 // キーバインディング定義文字列から表示用文字列を生成し、返す
 //------------------------------------------------------
 {
-    int theLength = [inString length];
+    NSInteger theLength = [inString length];
     if (theLength < 2) { return @""; }
     NSString *theKeyEquivalent = [inString substringFromIndex:(theLength - 1)];
     NSString *theKeyStr = [self readableKeyStringsFromKeyEquivalent:theKeyEquivalent];
@@ -1007,7 +1007,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 //------------------------------------------------------
-- (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)inString modifierFrags:(unsigned int)inModFlags
+- (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)inString modifierFrags:(NSUInteger)inModFlags
 // メニューのキーボードショートカットからキーバインディング定義文字列を返す
 //------------------------------------------------------
 {
@@ -1016,7 +1016,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSMutableString *outStr = [NSMutableString string];
     unichar theChar = [inString characterAtIndex:0];
     BOOL theBoolShiftPress = NO;
-    int i, theMax = sizeof(k_modifierKeysList) / sizeof(unsigned int);
+    NSInteger i, theMax = sizeof(k_modifierKeysList) / sizeof(NSUInteger);
 
     if (theMax != (sizeof(k_keySpecCharList) / sizeof(unichar))) {
         NSLog(@"internal data error! 'k_modifierKeysList' and 'k_keySpecCharList' size is different.");
@@ -1046,7 +1046,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSCharacterSet *theModStringSet = [NSCharacterSet characterSetWithCharactersInString:inModString];
     NSMutableString *outStr = [NSMutableString string];
     unichar theChar;
-    int i, theMax = sizeof(k_keySpecCharList) / sizeof(unichar);
+    NSInteger i, theMax = sizeof(k_keySpecCharList) / sizeof(unichar);
 
     if (theMax != (sizeof(k_readableKeyStringsList) / sizeof(unichar))) {
         NSLog(@"internal data error! 'k_keySpecCharList' and 'k_readableKeyStringsList' size is different.");
@@ -1092,7 +1092,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     if ((theSheet != nil) && (theOutlineView != nil)) {
 
         NSDictionary *theUserInfo = [inNotification userInfo];
-        unsigned int theModFlags = [[theUserInfo valueForKey:k_keyBindingModFlags] unsignedIntValue];
+        NSUInteger theModFlags = [[theUserInfo valueForKey:k_keyBindingModFlags] unsignedIntegerValue];
         id theFieldEditor = [theSheet fieldEditor:NO forObject:theOutlineView];
         NSString *theCharIgnoringMod = [theUserInfo valueForKey:k_keyBindingChar];
         NSString *theFieldString = 
@@ -1204,7 +1204,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSEnumerator *theEnumerator = [[inMenu itemArray] objectEnumerator];
     NSString *theKeyEquivalent, *theKeySpecChars;
     id theMenuItem;
-    unsigned int theMod;
+    NSUInteger theMod;
 
     while (theMenuItem = [theEnumerator nextObject]) {
         if ([theMenuItem hasSubmenu]) {
@@ -1344,7 +1344,7 @@ static CEKeyBindingManager *sharedInstance = nil;
             NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
             NSMutableArray *theDefaultsArray = [NSMutableArray array];
             NSString *theInsertText;
-            int i, theMax = [theContentArray count];
+            NSInteger i, theMax = [theContentArray count];
 
             for (i = 0; i < theMax; i++) {
                 theInsertText = theContentArray[i][k_key_insertCustomText];
@@ -1423,7 +1423,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     }
     if (theOutlineView == nil) { return; }
 
-    int theSelectedRow = [theOutlineView selectedRow];
+    NSInteger theSelectedRow = [theOutlineView selectedRow];
 
     if (theSelectedRow != -1) {
 
@@ -1485,13 +1485,13 @@ static CEKeyBindingManager *sharedInstance = nil;
                                      [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
                                      [NSString stringWithFormat:@"%C", (unichar)0x238B]];
 
-    int theMax = sizeof(k_noPrintableKeyList) / sizeof(unichar);
+    NSInteger theMax = sizeof(k_noPrintableKeyList) / sizeof(unichar);
     if (theMax != [theVisibleCharArray count]) {
         NSLog(@"internal data error! 'k_noPrintableKeyList' and 'theVisibleCharArray' size is different.");
         return nil;
     }
     NSMutableArray *theKeyArray = [NSMutableArray array];
-    int i;
+    NSInteger i;
 
     for (i = 0; i < theMax; i++) {
         [theKeyArray addObject:[NSString stringWithFormat:@"%C", k_noPrintableKeyList[i]]];

@@ -44,12 +44,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSAttributedString *_headerTwoString;
     NSAttributedString *_footerOneString;
     NSAttributedString *_footerTwoString;
-    int _headerOneAlignment;
-    int _headerTwoAlignment;
-    int _footerOneAlignment;
-    int _footerTwoAlignment;
-    float _lineSpacing;
-    float _xOffset;
+    NSInteger _headerOneAlignment;
+    NSInteger _headerTwoAlignment;
+    NSInteger _footerOneAlignment;
+    NSInteger _footerTwoAlignment;
+    CGFloat _lineSpacing;
+    CGFloat _xOffset;
     BOOL _readyToPrint;
     BOOL _printLineNum;
     BOOL _printHeader;
@@ -62,8 +62,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)setFilePath:(NSString *)inFilePath;
-- (float)lineSpacing;
-- (void)setLineSpacing:(float)inLineSpacing;
+- (CGFloat)lineSpacing;
+- (void)setLineSpacing:(CGFloat)inLineSpacing;
 - (id)printValues;
 - (void)setPrintValues:(id)inValues;
 - (BOOL)isShowingLineNum;

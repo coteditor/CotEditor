@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 @interface CENavigationBarView (Private)
-- (void)setHeight:(float)inValue;
+- (void)setHeight:(CGFloat)inValue;
 @end
 
 
@@ -218,7 +218,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableAttributedString *theTitle;
     NSFontTraitMask theFontMask;
     NSNumber *theUnderlineMaskNumber;
-    int i, theCount = [inArray count];
+    NSInteger i, theCount = [inArray count];
 
     [_outlineMenu removeAllItems];
     if (theCount < 1) {
@@ -281,8 +281,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (![_outlineMenu isEnabled]) { return; }
     NSMenu *theMenu = [_outlineMenu menu];
     id theItem = nil;
-    int i, theCount = [theMenu numberOfItems];
-    unsigned int theMark, theLocation = inRange.location;
+    NSInteger i, theCount = [theMenu numberOfItems];
+    NSUInteger theMark, theLocation = inRange.location;
     if (theCount < 1) { return; }
 
     if (NSEqualRanges(inRange, NSMakeRange(0, 0))) {
@@ -335,7 +335,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self canSelectPrevItem]) {
-        int theTargetIndex = [_outlineMenu indexOfSelectedItem] - 1;
+        NSInteger theTargetIndex = [_outlineMenu indexOfSelectedItem] - 1;
 
         while ([[_outlineMenu itemAtIndex:theTargetIndex] isSeparatorItem]) {
             theTargetIndex--;
@@ -354,8 +354,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self canSelectNextItem]) {
-        int theTargetIndex = [_outlineMenu indexOfSelectedItem] + 1;
-        int theMaxIndex = [_outlineMenu numberOfItems] - 1;
+        NSInteger theTargetIndex = [_outlineMenu indexOfSelectedItem] + 1;
+        NSInteger theMaxIndex = [_outlineMenu numberOfItems] - 1;
 
         while ([[_outlineMenu itemAtIndex:theTargetIndex] isSeparatorItem]) {
             theTargetIndex++;
@@ -385,7 +385,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     BOOL outBool = NO;
-    int i;
+    NSInteger i;
 
     for (i = ([_outlineMenu indexOfSelectedItem] + 1); i < [_outlineMenu numberOfItems]; i++) {
         if (![[_outlineMenu itemAtIndex:i] isSeparatorItem]) {
@@ -433,11 +433,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @implementation CENavigationBarView (Private)
 
 // ------------------------------------------------------
-- (void)setHeight:(float)inValue
+- (void)setHeight:(CGFloat)inValue
 // set view height.
 // ------------------------------------------------------
 {
-    float theAdjHeight = (inValue - NSHeight([self frame]));
+    CGFloat theAdjHeight = (inValue - NSHeight([self frame]));
     NSRect theNewFrame;
 
     // set masterView height
