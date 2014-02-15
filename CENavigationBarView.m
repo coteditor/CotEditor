@@ -235,16 +235,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 // セパレータ
                 [theMenu addItem:[NSMenuItem separatorItem]];
             } else {
-                theUnderlineMaskNumber = 
-                        [[[theDict valueForKey:k_outlineMenuItemUnderlineMask] copy] autorelease];
+                theUnderlineMaskNumber = [[theDict[k_outlineMenuItemUnderlineMask] copy] autorelease];
                 theFontMask = ([[theDict valueForKey:k_outlineMenuItemFontBold] boolValue]) ? 
                         NSBoldFontMask : 0;
                 theFont = [theManager convertFont:theDefaultFont toHaveTrait:theFontMask];
+                
                 theTitle = [[[NSMutableAttributedString alloc] 
-                            initWithString:[theDict valueForKey:k_outlineMenuItemTitle] 
-                            attributes:@{NSFontAttributeName: theFont, 
-                                NSUnderlineStyleAttributeName: theUnderlineMaskNumber}] autorelease];
-                if ([[theDict valueForKey:k_outlineMenuItemFontItalic] boolValue]) {
+                            initWithString:theDict[k_outlineMenuItemTitle]
+                            attributes:@{NSFontAttributeName: theFont}] autorelease];
+                if (theUnderlineMaskNumber) {
+                    [theTitle addAttribute:NSUnderlineStyleAttributeName
+                                     value:theUnderlineMaskNumber
+                                     range:NSMakeRange(0, [theTitle length])];
+                }
+                if ([theDict[k_outlineMenuItemFontItalic] boolValue]) {
                     [theTitle addAttribute:NSFontAttributeName 
                             value:[theManager convertFont:theFont toHaveTrait:NSItalicFontMask]
                             range:NSMakeRange(0, [theTitle length])];
