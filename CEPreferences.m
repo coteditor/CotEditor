@@ -49,15 +49,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSyntaxStylesPopup;
 - (void)deleteStyleAlertDidEnd:(NSAlert *)inAlert 
         returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)importOpenPanelDidEnd:(NSOpenPanel *)inSheet 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)secondarySheedlDidEnd:(NSAlert *)inSheet 
         returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)autoDetectAlertDidEnd:(NSAlert *)inSheet 
         returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)doImport:(NSString *)inFileName withCurrentSheetWindow:(NSWindow *)inWindow;
-- (void)exportSavePanelDidEnd:(NSSavePanel *)inSheet 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
+- (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow;
 - (void)doDeleteFileDropSetting;
 - (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)inAlert 
         returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
@@ -581,21 +577,47 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイルインポートボタンが押された
 // ------------------------------------------------------
 {
-    NSOpenPanel *theOpenPanel = [NSOpenPanel openPanel];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 
     // OpenPanelをセットアップ(既定値を含む)、シートとして開く
-    [theOpenPanel setPrompt:NSLocalizedString(@"Import",@"")];
-    [theOpenPanel setResolvesAliases:YES];
-    [theOpenPanel setAllowsMultipleSelection:NO];
-    [theOpenPanel setCanChooseDirectories:NO];
-    [theOpenPanel setAllowedFileTypes:@[@"plist"]];
-    [theOpenPanel beginSheetForDirectory:NSHomeDirectory() 
-            file:nil 
-            types:@[@"plist"] 
-            modalForWindow:_prefWindow 
-            modalDelegate:self 
-            didEndSelector:@selector(importOpenPanelDidEnd:returnCode:contextInfo:) 
-            contextInfo:NULL];
+    [openPanel setPrompt:NSLocalizedString(@"Import",@"")];
+    [openPanel setResolvesAliases:YES];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setCanChooseDirectories:NO];
+    [openPanel setAllowedFileTypes:@[@"plist"]];
+    
+    [openPanel beginSheetModalForWindow:_prefWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelCancelButton) return;
+        
+        NSURL *URL = [openPanel URLs][0];
+        NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
+        
+        // 同名styleが既にあるときは、置換してもいいか確認
+        if ([[CESyntaxManager sharedInstance] existsStyleFileWithStyleName:styleName]) {
+            // オープンパネルを閉じる
+            [openPanel orderOut:self];
+            [_prefWindow makeKeyAndOrderFront:self];
+            
+            NSAlert *theAlert;
+            NSString *theMessage = [NSString stringWithFormat:
+                                    NSLocalizedString(@"the \"%@\" style already exists.", @""), styleName];
+            theAlert = [NSAlert alertWithMessageText:theMessage
+                                       defaultButton:NSLocalizedString(@"Cancel",@"")
+                                     alternateButton:NSLocalizedString(@"Replace",@"") otherButton:nil
+                           informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.",@"")];
+            // 現行シート値を設定し、確認のためにセカンダリシートを開く
+            _currentSheetCode = k_syntaxImportTag;
+            NSBeep();
+            [theAlert beginSheetModalForWindow:_prefWindow modalDelegate:self
+                                didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
+                                   contextInfo:[URL retain]]; // ===== retain
+            
+        } else {
+            // 重複するファイル名がないとき、インポート実行
+            [self doImport:URL withCurrentSheetWindow:openPanel];
+        }
+    }];
+    
 }
 
 
@@ -605,19 +627,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイルエクスポートボタンが押された
 // ------------------------------------------------------
 {
-    NSSavePanel *theSavePanel = [NSSavePanel savePanel];
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
 
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
-    [theSavePanel setCanCreateDirectories:YES];
-    [theSavePanel setCanSelectHiddenExtension:YES];
-    [theSavePanel setNameFieldLabel:NSLocalizedString(@"Export As:",@"")];
-    [theSavePanel setAllowedFileTypes:@[@"plist"]];
-    [theSavePanel beginSheetForDirectory:NSHomeDirectory() 
-            file:[[_syntaxStylesPopup title] stringByAppendingPathExtension:@"plist"] 
-            modalForWindow:_prefWindow 
-            modalDelegate:self 
-            didEndSelector:@selector(exportSavePanelDidEnd:returnCode:contextInfo:) 
-            contextInfo:NULL];
+    [savePanel setCanCreateDirectories:YES];
+    [savePanel setCanSelectHiddenExtension:YES];
+    [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:",@"")];
+    [savePanel setAllowedFileTypes:@[@"plist"]];
+    
+    [savePanel beginSheetModalForWindow:_prefWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelCancelButton) return;
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSURL *sourceURL = [[CESyntaxManager sharedInstance] URLOfStyle:[_syntaxStylesPopup title]];
+        NSURL *destURL = [savePanel URL];
+        
+        // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
+        if ([fileManager fileExistsAtPath:[destURL path]]) {
+            [fileManager removeItemAtURL:destURL error:nil];
+        }
+        [fileManager copyItemAtURL:sourceURL toURL:destURL error:nil];
+    }];
 }
 
 
@@ -1023,45 +1053,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)importOpenPanelDidEnd:(NSOpenPanel *)inSheet 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
-// styleインポートオープンパネルシートが閉じる直前
-// ------------------------------------------------------
-{
-    if (inReturnCode == NSCancelButton) {
-        return;
-    }
-    NSString *theFileName = [[inSheet URLs][0] path];
-    NSAlert *theAlert;
-
-    // 同名styleが既にあるときは、置換してもいいか確認
-    if ([[CESyntaxManager sharedInstance] existsStyleFileWithStyleName:theFileName]) {
-        // オープンパネルを閉じる
-        [inSheet orderOut:self];
-        [_prefWindow makeKeyAndOrderFront:self];
-
-        NSString *theMessage = [NSString stringWithFormat:
-                    NSLocalizedString(@"the \"%@\" style already exists.", @""), 
-                    [[theFileName lastPathComponent] stringByDeletingPathExtension]];
-        theAlert = [NSAlert alertWithMessageText:theMessage 
-                defaultButton:NSLocalizedString(@"Cancel",@"") 
-                alternateButton:NSLocalizedString(@"Replace",@"") otherButton:nil 
-                informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.",@"")];
-        // 現行シート値を設定し、確認のためにセカンダリシートを開く
-        _currentSheetCode = k_syntaxImportTag;
-        NSBeep();
-        [theAlert beginSheetModalForWindow:_prefWindow modalDelegate:self 
-            didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:) 
-            contextInfo:[theFileName retain]]; // ===== retain
-
-    } else {
-        // 重複するファイル名がないとき、インポート実行
-        [self doImport:theFileName withCurrentSheetWindow:inSheet];
-    }
-}
-
-
-// ------------------------------------------------------
 - (void)secondarySheedlDidEnd:(NSAlert *)inSheet 
         returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // セカンダリシートが閉じる直前
@@ -1071,7 +1062,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (inReturnCode == NSAlertAlternateReturn) { // = Replace
             [self doImport:inContextInfo withCurrentSheetWindow:[inSheet window]];
         }
-        [(NSString *)inContextInfo release]; // ===== release
+        [(NSURL *)inContextInfo release]; // ===== release
     }
 }
 
@@ -1095,11 +1086,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)doImport:(NSString *)inFileName withCurrentSheetWindow:(NSWindow *)inWindow
+- (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow
 // styleインポート実行
 // ------------------------------------------------------
 {
-    if ([[CESyntaxManager sharedInstance] importStyleFile:inFileName]) {
+    if ([[CESyntaxManager sharedInstance] importStyleFile:[fileURL path]]) {
         // インポートに成功したら、メニューとボタンを更新
         [_appController buildAllSyntaxMenus];
     } else {
@@ -1110,36 +1101,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             defaultButton:nil 
             alternateButton:nil otherButton:nil 
             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not import \"%@\".",@""), 
-                    [inFileName lastPathComponent]];
+                    [fileURL lastPathComponent]];
         NSBeep();
         [theAlert beginSheetModalForWindow:_prefWindow modalDelegate:self 
             didEndSelector:NULL 
             contextInfo:NULL];
     }
     _currentSheetCode = k_syntaxNoSheetTag;
-}
-
-
-// ------------------------------------------------------
-- (void)exportSavePanelDidEnd:(NSSavePanel *)inSheet 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
-// styleエクスポートオープンパネルシートが閉じる直前
-// ------------------------------------------------------
-{
-    if (inReturnCode == NSCancelButton) {
-        return;
-    }
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *theSource = 
-            [[CESyntaxManager sharedInstance] filePathOfStyleName:[_syntaxStylesPopup title]];
-    NSURL *theDestination = [inSheet URL];
-
-    // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
-    if ([theFileManager fileExistsAtPath:[theDestination path]]) {
-        (void)[theFileManager removeItemAtURL:theDestination error:nil];
-    }
-    (void)[theFileManager copyItemAtURL:[NSURL URLWithString:theSource] toURL:theDestination error:nil];
-    [self setupSyntaxMenus]; // *** この更新は必要か？ (2/16)
 }
 
 

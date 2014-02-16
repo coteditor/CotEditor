@@ -2143,7 +2143,7 @@ enum { typeFSS = 'fss ' };
         theData = [theCurString dataUsingEncoding:_encoding allowLossyConversion:YES];
     }
     if (theData != nil) {
-        NSDictionary *theAttrs = [self fileAttributesToWriteToURL:[NSURL URLWithString:inFileName]
+        NSDictionary *theAttrs = [self fileAttributesToWriteToURL:[NSURL fileURLWithPath:inFileName]
                                                            ofType:inDocType
                                                  forSaveOperation:inSaveOperationType
                                               originalContentsURL:nil

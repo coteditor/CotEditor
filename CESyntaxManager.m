@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupExtensionAndSyntaxTable;
 - (void)saveColoringStyle;
 - (NSString *)pathOfStyleDirectory;
+- (NSURL *)URLOfStyleDirectory;
 - (BOOL)copyDefaultSyntaxStylesTo:(NSString *)inDestinationPath;
 - (NSString *)copiedSyntaxName:(NSString *)inOriginalName;
 - (void)setExtensionErrorToTextView;
@@ -329,26 +330,23 @@ static CESyntaxManager *sharedInstance = nil;
 {
     if ((inStyleName == nil) || ([inStyleName isEqualToString:@""])) { return NO; }
     NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *theSourceDirPath = 
-            [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources"];
-    NSString *theSourcePath = [theSourceDirPath stringByAppendingFormat:@"/%@%@.plist", 
-            k_bundleSyntaxStyleFilePrefix, inStyleName];
-    NSString *theDestPath = [[self pathOfStyleDirectory] stringByAppendingFormat:@"/%@.plist", inStyleName];
-
-    if ((![theFileManager fileExistsAtPath:theSourcePath]) || 
-                (![theFileManager fileExistsAtPath:theDestPath])) {
+    NSURL *destURL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:inStyleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *sourceDirURL =[[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", k_bundleSyntaxStyleFilePrefix, inStyleName]] URLByAppendingPathExtension:@"plist"];
+    
+    if (![theFileManager fileExistsAtPath:[sourceURL path]] || ![theFileManager fileExistsAtPath:[destURL path]]) {
         return NO;
     }
 
     // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
     // ため、同じではない。ファイル同士を比較する。2008.05.06.
-    NSDictionary *theSourcePList = [NSDictionary dictionaryWithContentsOfFile:theSourcePath];
-    NSDictionary *theDestPList = [NSDictionary dictionaryWithContentsOfFile:theDestPath];
+    NSDictionary *theSourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
+    NSDictionary *theDestPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
 
     return ([theSourcePList isEqualToDictionary:theDestPList]);
 
 // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
-//    return ([theFileManager contentsEqualAtPath:theSourcePath andPath:theDestPath]);
+//    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
 }
 
 
@@ -396,17 +394,13 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 //------------------------------------------------------
-- (BOOL)existsStyleFileWithStyleName:(NSString *)inStyleFileName
-// あるファイル名を持つファイルがstyle保存ディレクトリにあるかどうかを返す（引数はファイルパスまたはstyle名）
+- (BOOL)existsStyleFileWithStyleName:(NSString *)inStyleName
+// ある名前を持つstyleファイルがstyle保存ディレクトリにあるかどうかを返す
 //------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *thePath = [NSString stringWithFormat:@"%@/%@%@", 
-                [self pathOfStyleDirectory], 
-                [[inStyleFileName lastPathComponent] stringByDeletingPathExtension], 
-                @".plist"];
+    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:inStyleName] URLByAppendingPathExtension:@"plist"];
 
-    return ([theFileManager fileExistsAtPath:thePath]);
+    return ([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]);
 }
 
 
@@ -417,8 +411,8 @@ static CESyntaxManager *sharedInstance = nil;
 {
     BOOL outBool = NO;
     NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSURL *destinationURL = [[NSURL URLWithString:[self pathOfStyleDirectory]] URLByAppendingPathComponent:[inStyleFileName lastPathComponent]];
-    NSURL *styleFileURL = [NSURL URLWithString:inStyleFileName];
+    NSURL *styleFileURL = [NSURL fileURLWithPath:inStyleFileName];
+    NSURL *destinationURL = [[self URLOfStyleDirectory] URLByAppendingPathComponent:[styleFileURL lastPathComponent]];
 
     if ([theFileManager fileExistsAtPath:[destinationURL path]]) {
         [theFileManager removeItemAtURL:destinationURL error:nil];
@@ -441,39 +435,32 @@ static CESyntaxManager *sharedInstance = nil;
     BOOL outValue = NO;
     if ([inStyleName length] < 1) { return outValue; }
     NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *thePath = 
-            [NSString stringWithFormat:@"%@/%@%@", [self pathOfStyleDirectory], inStyleName, @".plist"];
+    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:inStyleName] URLByAppendingPathExtension:@"plist"];
 
-    if ([theFileManager fileExistsAtPath:thePath]) {
-        outValue = [theFileManager removeItemAtPath:thePath error:nil];
+    if ([theFileManager fileExistsAtPath:[URL path]]) {
+        outValue = [theFileManager removeItemAtURL:URL error:nil];
         if (outValue) {
             // 内部で持っているキャッシュ用データを更新
             [self setupColoringStyleArray];
             [self setupExtensionAndSyntaxTable];
         } else {
-            NSLog(@"Error. Could not remove \"%@\"", thePath);
+            NSLog(@"Error. Could not remove \"%@\"", [URL path]);
         }
     } else {
-        NSLog(@"Error. Could not be found \"%@\" for remove", thePath);
+        NSLog(@"Error. Could not be found \"%@\" for remove", [URL path]);
     }
     return outValue;
 }
 
 
 //------------------------------------------------------
-- (NSString *)filePathOfStyleName:(NSString *)inStyleName
-// style名からstyle定義ファイルのパスを返す
+- (NSURL *)URLOfStyle:(NSString *)styleName
+// style名からstyle定義ファイルのURLを返す
 //------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *thePath = 
-            [NSString stringWithFormat:@"%@/%@%@", [self pathOfStyleDirectory], inStyleName, @".plist"];
-
-    if ([theFileManager fileExistsAtPath:thePath]) {
-        return thePath;
-    } else {
-        return nil;
-    }
+    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    
+    return ([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]) ? URL : nil;
 }
 
 
@@ -811,10 +798,23 @@ static CESyntaxManager *sharedInstance = nil;
 // styleデータファイル保存用ディレクトリを返す
 //------------------------------------------------------
 {
-    NSString *outPath = [NSHomeDirectory( ) 
-            stringByAppendingPathComponent:@"Library/Application Support/CotEditor/SyntaxColorings"];
+    return [[self URLOfStyleDirectory] path];
+}
 
-    return outPath;
+
+//------------------------------------------------------
+- (NSURL *)URLOfStyleDirectory
+// styleデータファイル保存用ディレクトリをNSURLで返す
+//------------------------------------------------------
+{
+    NSURL *URL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                        inDomain:NSUserDomainMask
+                                               appropriateForURL:nil
+                                                          create:NO
+                                                           error:nil]
+                  URLByAppendingPathComponent:@"CotEditor/SyntaxColorings"];
+    
+    return URL;
 }
 
 

@@ -81,10 +81,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSWindow *)editWindow;
 - (BOOL)isOkButtonPressed;
 - (void)setIsOkButtonPressed:(BOOL)inValue;
-- (BOOL)existsStyleFileWithStyleName:(NSString *)inStyleFileName;
+- (BOOL)existsStyleFileWithStyleName:(NSString *)inStyleName;
 - (BOOL)importStyleFile:(NSString *)inStyleFileName;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)inStyleName;
-- (NSString *)filePathOfStyleName:(NSString *)inStyleName;
+- (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
 - (NSWindow *)extensionErrorWindow;
 
