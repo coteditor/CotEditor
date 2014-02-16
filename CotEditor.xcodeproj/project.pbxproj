@@ -48,6 +48,10 @@
 		2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */; };
 		2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230416D3CF4F00F49864 /* swapArrow.pdf */; };
 		2A07231716D3CF4F00F49864 /* transparencyGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* transparencyGuide.pdf */; };
+		2A6394DA18B0BFA0008D304D /* defaultSyntaxStyle_XML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */; };
+		2A6394DC18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */; };
+		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
+		2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */; };
 		6C4216A612DDB9180037690E /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 6C42169512DDB9180037690E /* Docs */; };
 		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
@@ -238,6 +242,10 @@
 		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_XML.plist; path = SyntaxColorings/defaultSyntaxStyle_XML.plist; sourceTree = "<group>"; };
+		2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Apache.plist; path = SyntaxColorings/defaultSyntaxStyle_Apache.plist; sourceTree = "<group>"; };
+		2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Markdown.plist; path = SyntaxColorings/defaultSyntaxStyle_Markdown.plist; sourceTree = "<group>"; };
+		2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Scala.plist; path = SyntaxColorings/defaultSyntaxStyle_Scala.plist; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/DocWindow.nib; sourceTree = "<group>"; };
 		6C1E212012C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/HCCManager.nib; sourceTree = "<group>"; };
@@ -417,6 +425,7 @@
 		2559AD13079F9A4C0064C718 /* SyntaxColorings */ = {
 			isa = PBXGroup;
 			children = (
+				2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */,
 				8CE570B408A6E047004A8924 /* defaultSyntaxStyle_C, C++, Objective-C.plist */,
 				2589EF5207F247AD003BF861 /* defaultSyntaxStyle_CSS.plist */,
 				8C13A5640A038ABC001EA22F /* defaultSyntaxStyle_eRuby.plist */,
@@ -425,12 +434,15 @@
 				8C13A5660A038B74001EA22F /* defaultSyntaxStyle_Java.plist */,
 				8CB3AF68087F9335004BFDDD /* defaultSyntaxStyle_JavaScript.plist */,
 				8C74017608C7364400683672 /* defaultSyntaxStyle_LaTeX.plist */,
+				2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */,
 				8C9997C00873DB73003F4294 /* defaultSyntaxStyle_Perl.plist */,
 				8C0A063C0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist */,
 				25A1DE2E07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist */,
 				8C5684C90C48A36200346FB0 /* defaultSyntaxStyle_Python.plist */,
 				8C78824608ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist */,
+				2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */,
 				8C9997DC0873EDF6003F4294 /* defaultSyntaxStyle_Shell Script.plist */,
+				2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */,
 			);
 			name = SyntaxColorings;
 			sourceTree = "<group>";
@@ -754,6 +766,7 @@
 				2588E9CE07C4851C0060021D /* Indicator.nib in Resources */,
 				8C28CD2E081101A300733DA7 /* ScriptManager.nib in Resources */,
 				8C4186D008864B3E0039FBFC /* HCCManager.nib in Resources */,
+				2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */,
 				8C7400A408C6D93900683672 /* KeyBindingManager.nib in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
@@ -768,6 +781,7 @@
 				8CA71BCF07D2A79100C146B0 /* smallerFont.tiff in Resources */,
 				2589EF5307F247AD003BF861 /* defaultSyntaxStyle_CSS.plist in Resources */,
 				8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */,
+				2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */,
 				8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */,
 				8C3E2D520808E203009894D1 /* PageSetup.tiff in Resources */,
 				8C3E2D530808E203009894D1 /* Preferences.tiff in Resources */,
@@ -814,6 +828,7 @@
 				8C13A5650A038ABC001EA22F /* defaultSyntaxStyle_eRuby.plist in Resources */,
 				8C13A5670A038B74001EA22F /* defaultSyntaxStyle_Java.plist in Resources */,
 				8CE5D6C80AC80A31005F5FDB /* Pref_Print.tiff in Resources */,
+				2A6394DA18B0BFA0008D304D /* defaultSyntaxStyle_XML.plist in Resources */,
 				8C7D7DB30BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist in Resources */,
 				8C5684CA0C48A36200346FB0 /* defaultSyntaxStyle_Python.plist in Resources */,
 				8C0A063D0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist in Resources */,
@@ -833,6 +848,7 @@
 				2A07230D16D3CF4F00F49864 /* nextButtonImg.pdf in Resources */,
 				2A07230E16D3CF4F00F49864 /* openSplitButtonImg.pdf in Resources */,
 				2A07230F16D3CF4F00F49864 /* pageGuide.pdf in Resources */,
+				2A6394DC18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist in Resources */,
 				2A07231016D3CF4F00F49864 /* popUpButtonArrow.pdf in Resources */,
 				2A07231116D3CF4F00F49864 /* popUpButtonBG_center.pdf in Resources */,
 				2A07231216D3CF4F00F49864 /* popUpButtonBG_left.pdf in Resources */,
