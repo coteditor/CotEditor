@@ -294,8 +294,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRange theRange = NSMakeRange(0, [[[self textStorage] string] length]);
         [[self textStorage] removeAttribute:NSGlyphInfoAttributeName range:theRange];
     }
-    if (([self showOtherInvisibles]) && 
-                (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3)) { // = 10.4+
+    if ([self showOtherInvisibles]) {
         [self setShowsControlCharacters:inValue];
     }
     _showInvisibles = inValue;
@@ -388,11 +387,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // その他の不可視文字を表示するかどうかを設定する
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) { // = 10.4+
-        [self setShowsControlCharacters:inValue];
-    } else {
-        [self setShowsControlCharacters:NO];
-    }
+    [self setShowsControlCharacters:inValue];
     _showOtherInvisibles = inValue;
 }
 
@@ -544,6 +539,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+/*
 // ------------------------------------------------------
 - (void)_clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(NSInteger)fp16
 // 隠しメソッドをオーバーライド。
@@ -556,6 +552,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [super _clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(NSInteger)fp16];
     }
 }
+*/
 
 
 @end

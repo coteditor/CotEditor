@@ -101,7 +101,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _updateRange = NSMakeRange(0, 0);
         _isIndicatorShown = NO;
         _isPrinting = NO;
-        _isPanther = (floor(NSAppKitVersionNumber) <=  NSAppKitVersionNumber10_3);
         _showColoringIndicatorTextLength = 
                 [[theValues valueForKey:k_key_showColoringIndicatorTextLength] unsignedIntegerValue];
         [_coloringIndicator setIndeterminate:NO];
@@ -354,22 +353,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger theEnd = NSMaxRange(inRange) - 1;
     NSUInteger theWholeLength = [self wholeStringLength];
 
-    // 直前／直後が同色ならカラーリング範囲を拡大する（10.5+で実行するならより正確に拡大）
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        (void)[_layoutManager temporaryAttributesAtCharacterIndex:theStart 
-                longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
-    } else {
-        (void)[_layoutManager temporaryAttributesAtCharacterIndex:theStart 
-                effectiveRange:&theEffectiveRange];
-    }
+    // 直前／直後が同色ならカラーリング範囲を拡大する
+    (void)[_layoutManager temporaryAttributesAtCharacterIndex:theStart
+            longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
+
     theStart = theEffectiveRange.location;
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        (void)[_layoutManager temporaryAttributesAtCharacterIndex:theEnd 
-                longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
-    } else {
-        (void)[_layoutManager temporaryAttributesAtCharacterIndex:theEnd 
-                effectiveRange:&theEffectiveRange];
-    }
+    (void)[_layoutManager temporaryAttributesAtCharacterIndex:theEnd
+            longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
+
     theEnd = (NSMaxRange(theEffectiveRange) < theWholeLength) ? 
                 NSMaxRange(theEffectiveRange) : theWholeLength;
 
@@ -1013,28 +1004,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         if ([theStrDict[k_SCKey_regularExpression] boolValue]) {
             if ((theEndStr != nil) && ([theEndStr length] > 0)) {
-                if (_isPanther) {
-                    theTmpArray = [self checkRegularExpressionBeginString:theBeginStr 
-                            withEndString:theEndStr 
-                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                            doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
-                } else {
-                    theTmpArray = [self rangesRegularExpressionBeginString:theBeginStr 
-                            withEndString:theEndStr 
-                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                            doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
-                }
+                theTmpArray = [self rangesRegularExpressionBeginString:theBeginStr
+                                                         withEndString:theEndStr
+                                                        withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
+                                                            doColoring:NO
+                                                        pairStringKind:(k_QC_CommentBaseNum + i)];
                 [thePosArray addObjectsFromArray:theTmpArray];
             } else {
-                if (_isPanther) {
-                    theTmpArray = [self checkRegularExpressionString:theBeginStr 
-                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                            doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
-                } else {
-                    theTmpArray = [self rangesRegularExpressionString:theBeginStr 
-                            withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                            doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
-                }
+                theTmpArray = [self rangesRegularExpressionString:theBeginStr
+                                                   withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
+                                                       doColoring:NO
+                                                   pairStringKind:(k_QC_CommentBaseNum + i)];
                 [thePosArray addObjectsFromArray:theTmpArray];
             }
         } else {
@@ -1345,30 +1325,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
                 if ([theStrDict[k_SCKey_regularExpression] boolValue]) {
                     if ((theEndStr != nil) && ([theEndStr length] > 0)) {
-                        if (_isPanther) {
-                            theTmpArray = 
-                                [self checkRegularExpressionBeginString:theBeginStr withEndString:theEndStr 
-                                    withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                                    doColoring:YES pairStringKind:k_notUseKind];
-                        } else {
-                            theTmpArray = 
-                                [self rangesRegularExpressionBeginString:theBeginStr withEndString:theEndStr 
-                                    withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                                    doColoring:YES pairStringKind:k_notUseKind];
-                        }
+                        theTmpArray = [self rangesRegularExpressionBeginString:theBeginStr
+                                                                 withEndString:theEndStr
+                                                                withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
+                                                                    doColoring:YES
+                                                                pairStringKind:k_notUseKind];
                         if (theTmpArray != nil) {
                             [theTargetArray addObject:theTmpArray];
                         }
                     } else {
-                        if (_isPanther) {
-                            theTmpArray = [self checkRegularExpressionString:theBeginStr 
-                                        withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                                        doColoring:YES pairStringKind:k_notUseKind];
-                        } else {
-                            theTmpArray = [self rangesRegularExpressionString:theBeginStr 
-                                        withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue] 
-                                        doColoring:YES pairStringKind:k_notUseKind];
-                        }
+                        theTmpArray = [self rangesRegularExpressionString:theBeginStr
+                                                           withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
+                                                               doColoring:YES
+                                                           pairStringKind:k_notUseKind];
                         if (theTmpArray != nil) {
                             [theTargetArray addObject:theTmpArray];
                         }

@@ -49,7 +49,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSyntaxSheetControles;
 - (void)editNewAddedRowOfTableView:(NSTableView *)inTableView;
 - (NSInteger)syntaxElementError;
-- (NSInteger)syntaxElementCheckInPanter;
 - (NSInteger)syntaxElementCheck;
 @end
 
@@ -677,16 +676,12 @@ static CESyntaxManager *sharedInstance = nil;
     BOOL theValueIsDir = NO, theValueCreated = NO;
     BOOL theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir];
     if (!theExists) {
-#if MAC_OS_X_VERSION_10_5 > MAC_OS_X_VERSION_MAX_ALLOWED
-		theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
-#else	
 		NSError *createDirError = nil;
 		theValueCreated = [theFileManager createDirectoryAtPath:theDirPath withIntermediateDirectories:NO attributes:nil error:&createDirError];
 		if (createDirError != nil) {
 			NSLog(@"Error. SyntaxStyles directory could not be created.");
 			return;
 		}
-#endif		
 		
     }
     if ((theExists && theValueIsDir) || (theValueCreated)) {
@@ -698,16 +693,12 @@ static CESyntaxManager *sharedInstance = nil;
 
     // styleデータの読み込み
     NSMutableArray *theArray = [NSMutableArray array];
-#if MAC_OS_X_VERSION_10_5 > MAC_OS_X_VERSION_MAX_ALLOWED
-    NSArray *theFiles = [theFileManager directoryContentsAtPath:theDirPath];
-#else
 	NSError *findFileError = nil;
     NSArray *theFiles = [theFileManager contentsOfDirectoryAtPath:theDirPath error:	&findFileError];
 	if (findFileError != nil) {
         NSLog(@"Error on seeking SyntaxStyle Files Directory.");
         return;		
 	}
-#endif
     
 	NSString *thePath = nil;
     NSInteger i, theCount = [theFiles count];
@@ -999,100 +990,12 @@ static CESyntaxManager *sharedInstance = nil;
 // 構文チェック実行
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) <=  NSAppKitVersionNumber10_3) { // = 10.3.x以前
-        return ([self syntaxElementCheckInPanter]);
-    } else {
-        return ([self syntaxElementCheck]);
-    }
+    return ([self syntaxElementCheck]);
 }
-
-
-// ------------------------------------------------------
-- (NSInteger)syntaxElementCheckInPanter
-// 10.3で、正規表現構文と重複のチェック実行
-// ------------------------------------------------------
-{
-    NSArray *theSelectedArray = [_styleController selectedObjects];
-    NSMutableString *theResultStr = [NSMutableString string];
-    NSInteger outCount = 0;
-
-    if ([theSelectedArray count] == 1) {
-        NSDictionary *theDict = theSelectedArray[0];
-        NSArray *theSyntaxArray = @[k_SCKey_syntaxCheckArrays];
-        NSArray *theArray;
-        NSString *theBeginStr, *theEndStr, *theTmpBeginStr = nil, *theTmpEndStr = nil;
-        NSString *theArrayName = nil, *theArrayNameDeletingArray = nil;
-        NSInteger i, j, theSyntaxCount = [theSyntaxArray count];
-
-        for (i = 0; i < theSyntaxCount; i++) {
-            theArrayName = theSyntaxArray[i];
-            theArray = theDict[theArrayName];
-            theArrayNameDeletingArray = [theArrayName substringToIndex:([theArrayName length] - 5)];
-            NSInteger theArrayCount = [theArray count];
-            for (j = 0; j < theArrayCount; j++) {
-                theBeginStr = theArray[j][k_SCKey_beginString];
-                theEndStr = theArray[j][k_SCKey_endString];
-                if (([theTmpBeginStr isEqualToString:theBeginStr]) && 
-                        (((theTmpEndStr == nil) && (theEndStr == nil)) || 
-                            ([theTmpEndStr isEqualToString:theEndStr]))) {
-                    outCount++;
-                    [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n", 
-                            (long)outCount, theArrayNameDeletingArray, theBeginStr];
-                } else if ([theArray[j][k_SCKey_regularExpression] boolValue]) {
-                    NS_DURING
-                        (void)[OGRegularExpression regularExpressionWithString:theBeginStr];
-                    NS_HANDLER
-                        // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                        outCount++;
-                        [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> %@\n\n", 
-                                (long)outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
-                    NS_ENDHANDLER
-
-                    if (theEndStr != nil) {
-                        NS_DURING
-                            (void)[OGRegularExpression regularExpressionWithString:theEndStr];
-                        NS_HANDLER
-                            // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                            outCount++;
-                            [theResultStr appendFormat:@"%li.  %@ :(End string) > %@\n  >>> %@\n\n", 
-                                (long)outCount, theArrayNameDeletingArray, theEndStr, [localException reason]];
-                        NS_ENDHANDLER
-                    }
-                } else if ([theArrayName isEqualToString:k_SCKey_outlineMenuArray]) {
-                    NS_DURING
-                        (void)[OGRegularExpression regularExpressionWithString:theBeginStr];
-                    NS_HANDLER
-                        // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                        outCount++;
-                        [theResultStr appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
-                                (long)outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
-                    NS_ENDHANDLER
-                }
-                theTmpBeginStr = theBeginStr;
-                theTmpEndStr = theEndStr;
-            }
-        }
-        if (outCount == 0) {
-            [theResultStr setString:NSLocalizedString(@"No Error found.",@"")];
-        } else if (outCount == 1) {
-            [theResultStr insertString:NSLocalizedString(@"One Error was Found !\n\n",@"") atIndex:0];
-        } else {
-            [theResultStr insertString:
-                    [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n",@""), outCount] 
-                    atIndex:0];
-        }
-    } else {
-        [theResultStr setString:NSLocalizedString(@"An Error occuerd in Checking.\nNumber of selected object is 2 or more in '_styleController'.",@"")];
-    }
-    [_syntaxElementCheckTextView setString:theResultStr];
-
-    return outCount;
-}
-
 
 // ------------------------------------------------------
 - (NSInteger)syntaxElementCheck
-// 10.4+で、正規表現構文と重複のチェック実行
+// 正規表現構文と重複のチェック実行
 // ------------------------------------------------------
 {
     NSArray *theSelectedArray = [_styleController selectedObjects];

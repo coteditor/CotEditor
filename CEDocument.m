@@ -1181,10 +1181,7 @@ enum { typeFSS = 'fss ' };
         [self setSelectedLineRangeInTextViewWithLocation:inLocation withLength:inLength];
     }
     [self scrollToCenteringSelection]; // 選択範囲が見えるようにスクロール
-    // 10.5+で実行されているときには検索結果表示エフェクトを追加
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        [[_editorView textView] showFindIndicatorForRange:[[_editorView textView] selectedRange]];
-    }
+    [[_editorView textView] showFindIndicatorForRange:[[_editorView textView] selectedRange]];  // 検索結果表示エフェクトを追加
     [[_windowController window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
 }
 
@@ -2579,43 +2576,39 @@ enum { typeFSS = 'fss ' };
 
 // ------------------------------------------------------
 - (NSStringEncoding)encodingFromComAppleTextEncodingAtPath:(NSString *)inFilePath
-// ファイル拡張属性(com.apple.TextEncoding)からエンコーディングを得る（10.5専用）
+// ファイル拡張属性(com.apple.TextEncoding)からエンコーディングを得る
 // ------------------------------------------------------
 {
     NSStringEncoding outEncoding = NSProprietaryStringEncoding;
 
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" 
-                    atPath:inFilePath traverseLink:NO];
-        NSArray *theArray = [theStr componentsSeparatedByString:@";"];
-        if (([theArray count] >= 2) && ([theArray[1] length] > 1)) {
-            // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
-            outEncoding = CFStringConvertEncodingToNSStringEncoding([theArray[1] integerValue]);
-        } else if ([theArray[0] length] > 1) {
-            CFStringEncoding theCFEncoding = 
-                    CFStringConvertIANACharSetNameToEncoding((CFStringRef)theArray[0]);
-            if (theCFEncoding != kCFStringEncodingInvalidId) {
-                outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
-            }
+    NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding"
+                atPath:inFilePath traverseLink:NO];
+    NSArray *theArray = [theStr componentsSeparatedByString:@";"];
+    if (([theArray count] >= 2) && ([theArray[1] length] > 1)) {
+        // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
+        outEncoding = CFStringConvertEncodingToNSStringEncoding([theArray[1] integerValue]);
+    } else if ([theArray[0] length] > 1) {
+        CFStringEncoding theCFEncoding = 
+                CFStringConvertIANACharSetNameToEncoding((CFStringRef)theArray[0]);
+        if (theCFEncoding != kCFStringEncodingInvalidId) {
+            outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
         }
     }
+    
     return outEncoding;
 }
 
 
 // ------------------------------------------------------
 - (void)setComAppleTextEncodingAtPath:(NSString *)inFilePath
-// ファイル拡張属性(com.apple.TextEncoding)にエンコーディングをセット（10.5専用）
+// ファイル拡張属性(com.apple.TextEncoding)にエンコーディングをセット
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
+    NSString *theEncodingStr = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
+                [[NSNumber numberWithInt:CFStringConvertNSStringEncodingToEncoding(_encoding)] stringValue]];
 
-        NSString *theEncodingStr = [[self currentIANACharSetName] stringByAppendingFormat:@";%@", 
-                    [[NSNumber numberWithInt:CFStringConvertNSStringEncodingToEncoding(_encoding)] stringValue]];
-
-        [UKXattrMetadataStore setString:theEncodingStr forKey:@"com.apple.TextEncoding" 
-                atPath:inFilePath traverseLink:NO];
-    }
+    [UKXattrMetadataStore setString:theEncodingStr forKey:@"com.apple.TextEncoding" 
+            atPath:inFilePath traverseLink:NO];
 }
 
 

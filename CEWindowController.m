@@ -522,10 +522,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self window] makeFirstResponder:[theEditorView textView]];
     [[theEditorView textView] scrollRangeToVisible:theRange];
 
-    // 10.5+で実行されているときには検索結果表示エフェクトを追加
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        [[theEditorView textView] showFindIndicatorForRange:theRange];
-    }
+    // 検索結果表示エフェクトを追加
+    [[theEditorView textView] showFindIndicatorForRange:theRange];
 }
 
 
