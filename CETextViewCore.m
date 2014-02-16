@@ -347,7 +347,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSRange theTargetRange = NSMakeRange(theSelected.location - theTargetWidth, theTargetWidth);
                 NSString *theTarget = [[self string] substringWithRange:theTargetRange];
                 BOOL theValueToDelete = NO;
-                NSInteger i;
+                NSUInteger i;
                 for (i = 0; i < theTargetWidth; i++) {
                     theValueToDelete = [[theTarget substringWithRange:NSMakeRange(i, 1)] isEqualToString:@" "];
                     if (!theValueToDelete) {
@@ -449,7 +449,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [outMenu removeItem:theDelItem];
         }
         if ([[theValues valueForKey:k_key_inlineContextualScriptMenu] boolValue]) {
-            NSInteger i, theCount = [theASSubMenu numberOfItems];
+            NSUInteger i, theCount = [theASSubMenu numberOfItems];
             NSMenuItem *theAddItem = nil;
 
             for (i = 0; i < 2; i++) { // セパレータをふたつ追加
@@ -900,11 +900,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSArray *theFileDropArray = [theValues valueForKey:k_key_fileDropArray];
         NSColor *theInsertionPointColor = 
                 [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_insertionPointColor]];
-        NSInteger i, theCount = [theFileDropArray count];
-        for (i = 0; i < theCount; i++) {
+        for (id item in theFileDropArray) {
             NSArray *theArray = [[inDragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
             NSArray *theExtensions = 
-                        [[theFileDropArray[i] 
+                        [[item
                             valueForKey:k_key_fileDropExtensions] componentsSeparatedByString:@", "];
             if ([self draggedItemsArray:theArray containsExtensionInExtensions:theExtensions]) {
                 NSString *theString = [self string];
@@ -1046,17 +1045,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSArray *theFileDropArray = [theValues valueForKey:k_key_fileDropArray];
         NSArray *theFiles = [inPboard propertyListForType:NSFilenamesPboardType];
         NSString *theDocPath = [[[[self window] windowController] document] fileName];
-        NSString *theAbsolutePath, *theFileName, *theFileNoSuffix, *theDirName;
+        NSString *theFileName, *theFileNoSuffix, *theDirName;
         NSString *thePathExtension = nil, *thePathExtensionLower = nil, *thePathExtensionUpper = nil;
         NSMutableString *theRelativePath = [NSMutableString string];
         NSMutableString *theNewStr = [NSMutableString string];
         NSInteger i, theXtsnCount;
-        NSInteger theFilesCount = (NSInteger)[theFiles count];
         NSInteger theFileArrayCount = (NSInteger)[theFileDropArray count];
 
-        for (i = 0; i < theFilesCount; i++) {
+        for (NSString *theAbsolutePath in theFiles) {
             theSelected = [self selectedRange];
-            theAbsolutePath = theFiles[i];
             for (theXtsnCount = 0; theXtsnCount < theFileArrayCount; theXtsnCount++) {
                 NSArray *theExtensions = 
                             [[theFileDropArray[theXtsnCount] 
@@ -2005,7 +2002,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *outString = [NSMutableString string];
     NSCharacterSet *theLatinCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange((NSUInteger)'!', 94)];
     unichar theChar;
-    NSInteger i, theCount = (NSInteger)[inString length];
+    NSUInteger i, theCount = [inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2030,7 +2027,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *outString = [NSMutableString string];
     NSCharacterSet *theFullwidthCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(65281, 94)];
     unichar theChar;
-    NSInteger i, theCount = (NSInteger)[inString length];
+    NSUInteger i, theCount = [inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2052,7 +2049,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *outString = [NSMutableString string];
     NSCharacterSet *theHiraganaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12353, 86)];
     unichar theChar;
-    NSInteger i, theCount = (NSInteger)[inString length];
+    NSUInteger i, theCount = [inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2074,7 +2071,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *outString = [NSMutableString string];
     NSCharacterSet *theKatakanaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12449, 86)];
     unichar theChar;
-    NSInteger i, theCount = (NSInteger)[inString length];
+    NSUInteger i, theCount = [inString length];
 
     for (i = 0; i < theCount; i++) {
         theChar = [inString characterAtIndex:i];
@@ -2096,11 +2093,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([inArray count] > 0) {
         NSEnumerator *theEnumerator = [inExtensions objectEnumerator];
         NSString *theXtsn;
-        NSInteger i, theCount = (NSInteger)[inArray count];
 
         while (theXtsn = [theEnumerator nextObject]) {
-            for (i = 0; i < theCount; i++) {
-                if ([[inArray[i] pathExtension] isEqualToString:theXtsn]) {
+            for (id item in inArray) {
+                if ([[item pathExtension] isEqualToString:theXtsn]) {
                     return YES;
                 }
             }

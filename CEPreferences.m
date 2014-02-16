@@ -116,7 +116,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theTitle;
     NSMenuItem *theItem;
     NSUInteger theSelected;
-    NSInteger i, theCount = [inMenuItems count];
 
     [_encodingMenuInOpen removeAllItems];
     theItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"") 
@@ -126,9 +125,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[_encodingMenuInOpen menu] addItem:[NSMenuItem separatorItem]];
     [_encodingMenuInNew removeAllItems];
 
-    for (i = 0; i < theCount; i++) {
-        [[_encodingMenuInOpen menu] addItem:[[inMenuItems[i] copy] autorelease]];
-        [[_encodingMenuInNew menu] addItem:[[inMenuItems[i] copy] autorelease]];
+    for (NSMenuItem *menuItem in inMenuItems) {
+        [[_encodingMenuInOpen menu] addItem:[[menuItem copy] autorelease]];
+        [[_encodingMenuInNew menu] addItem:[[menuItem copy] autorelease]];
     }
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
@@ -339,10 +338,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSArray *theComponents = [theXtsnStr componentsSeparatedByString:@","];
             NSMutableArray *theNewComps = [NSMutableArray array];
             NSString *thePartStr, *theNewXtsnStr;
-            NSInteger j, theCount = [theComponents count];
 
-            for (j = 0; j < theCount; j++) {
-                thePartStr = [theComponents[j] stringByTrimmingCharactersInSet:theTrimSet];
+            for (NSString *component in theComponents) {
+                thePartStr = [component stringByTrimmingCharactersInSet:theTrimSet];
                 if ([thePartStr length] > 0) {
                     [theNewComps addObject:thePartStr];
                 }
@@ -885,7 +883,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theTitle;
     NSMenuItem *theItem;
     NSUInteger theSelected;
-    NSInteger i;
+    NSUInteger i;
 
     [_invisibleSpacePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
@@ -909,7 +907,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theTitle;
     NSMenuItem *theItem;
     NSUInteger theSelected;
-    NSInteger i;
+    NSUInteger i;
 
     [_invisibleTabPopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
@@ -933,7 +931,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theTitle;
     NSMenuItem *theItem;
     NSUInteger theSelected;
-    NSInteger i;
+    NSUInteger i;
 
     [_invisibleNewLinePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
@@ -957,7 +955,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theTitle;
     NSMenuItem *theItem;
     NSUInteger theSelected;
-    NSInteger i;
+    NSUInteger i;
 
     [_invisibleFullwidthSpacePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
@@ -982,7 +980,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenuItem *theItem;
     NSString *theSelectedTitle;
     NSUInteger theSelected;
-    NSInteger i, theCount = [theStyleNames count];
 
     [_syntaxStylesPopup removeAllItems];
     [_syntaxStylesDefaultPopup removeAllItems];
@@ -995,8 +992,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[_syntaxStylesDefaultPopup menu] addItem:theItem];
     [[_syntaxStylesDefaultPopup menu] addItem:[NSMenuItem separatorItem]];
     
-    for (i = 0; i < theCount; i++) {
-        theItem = [[[NSMenuItem alloc] initWithTitle:theStyleNames[i] 
+    for (NSString *styleName in theStyleNames) {
+        theItem = [[[NSMenuItem alloc] initWithTitle:styleName
                     action:nil keyEquivalent:@""] autorelease];
         [[_syntaxStylesPopup menu] addItem:theItem];
         [[_syntaxStylesDefaultPopup menu] addItem:[[theItem copy] autorelease]];

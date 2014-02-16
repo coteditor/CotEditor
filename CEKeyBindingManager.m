@@ -223,7 +223,6 @@ static CEKeyBindingManager *sharedInstance = nil;
         NSArray *theInsertTextArray = [theValues valueForKey:k_key_insertCustomTextArray];
         NSMutableArray *theContentArray = [NSMutableArray array];
         NSMutableDictionary *theDict;
-        NSInteger i, theMax = [theInsertTextArray count];
 
         [_textDuplicateTextField setStringValue:@""];
         _outlineDataArray = 
@@ -235,9 +234,8 @@ static CEKeyBindingManager *sharedInstance = nil;
                 (![[[[NSApp delegate] class] factoryDefaultOfTextInsertStringArray] 
                     isEqualToArray:theInsertTextArray]))];
         [_textOutlineView reloadData];
-        for (i = 0; i < theMax; i++) {
-            theDict = [NSMutableDictionary dictionaryWithObject:theInsertTextArray[i] 
-                        forKey:k_key_insertCustomText];
+        for (id object in theInsertTextArray) {
+            theDict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
             [theContentArray addObject:theDict];
         }
         [_textInsertStringArrayController setContent:theContentArray];
@@ -538,10 +536,9 @@ static CEKeyBindingManager *sharedInstance = nil;
         NSMutableArray *theContentArray = [NSMutableArray array];
         NSArray *theInsertTextArray = [[[NSApp delegate] class] factoryDefaultOfTextInsertStringArray];
         NSMutableDictionary *theDict;
-        NSInteger i, theMax = [theInsertTextArray count];
 
-        for (i = 0; i < theMax; i++) {
-            theDict = [NSMutableDictionary dictionaryWithObject:theInsertTextArray[i] 
+        for (id object in theInsertTextArray) {
+            theDict = [NSMutableDictionary dictionaryWithObject:object
                         forKey:k_key_insertCustomText];
             [theContentArray addObject:theDict];
         }
@@ -1344,10 +1341,9 @@ static CEKeyBindingManager *sharedInstance = nil;
             NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
             NSMutableArray *theDefaultsArray = [NSMutableArray array];
             NSString *theInsertText;
-            NSInteger i, theMax = [theContentArray count];
-
-            for (i = 0; i < theMax; i++) {
-                theInsertText = theContentArray[i][k_key_insertCustomText];
+            
+            for (NSDictionary *dict in theContentArray) {
+                theInsertText = dict[k_key_insertCustomText];
                 if (theInsertText == nil) {
                     theInsertText = @"";
                 }

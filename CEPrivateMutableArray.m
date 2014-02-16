@@ -114,9 +114,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (!inArray) { return; }
 
-    NSUInteger i, theCount = [inArray count];
-    for (i = 0; i < theCount; i++) {
-        [self addObject:inArray[i]];
+    for (id object in inArray) {
+        [self addObject:object];
     }
 }
 

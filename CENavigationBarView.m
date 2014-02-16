@@ -209,7 +209,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSMenu *theMenu;
     NSMenuItem *theMenuItem;
-    NSDictionary *theDict;
     NSFont *theDefaultFont = [NSFont fontWithName:[theValues valueForKey:k_key_navigationBarFontName] 
                     size:[[theValues valueForKey:k_key_navigationBarFontSize] floatValue]];
 
@@ -218,10 +217,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableAttributedString *theTitle;
     NSFontTraitMask theFontMask;
     NSNumber *theUnderlineMaskNumber;
-    NSInteger i, theCount = [inArray count];
 
     [_outlineMenu removeAllItems];
-    if (theCount < 1) {
+    if ([inArray count] < 1) {
         [_outlineMenu setEnabled:NO];
         [_prevButton setEnabled:NO];
         [_prevButton setImage:nil];
@@ -229,8 +227,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [_nextButton setImage:nil];
     } else {
         theMenu = [_outlineMenu menu];
-        for (i = 0; i < theCount; i++) {
-            theDict = inArray[i];
+        for (NSDictionary *theDict in inArray) {
             if ([[theDict valueForKey:k_outlineMenuItemTitle] isEqualToString:k_outlineMenuSeparatorSymbol]) {
                 // セパレータ
                 [theMenu addItem:[NSMenuItem separatorItem]];

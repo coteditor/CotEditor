@@ -408,11 +408,8 @@ enum { typeFSS = 'fss ' };
                     informativeTextWithFormat:NSLocalizedString(@"Finder's Lock could not be released. So, You can not save your changes on this file, but you will be able to Save a Copy somewhere else. \n\nDo you want to close?\n",@"")
                     ];
         NSArray *theButtons = [theAleart buttons];
-        NSButton *theDontSaveButton = nil;
-        NSInteger i, theCount = [theButtons count];
 
-        for (i = 0; i < theCount; i++) {
-            theDontSaveButton = theButtons[i];
+        for (NSButton *theDontSaveButton in theButtons) {
             if ([[theDontSaveButton title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
                 [theDontSaveButton setKeyEquivalent:@"d"];
                 [theDontSaveButton setKeyEquivalentModifierMask:NSCommandKeyMask];
@@ -708,13 +705,12 @@ enum { typeFSS = 'fss ' };
 // 背景色の変更を取り消し
 // ------------------------------------------------------
 {
-    NSArray *theManagers = [_editorView allLayoutManagers];
-    NSInteger i, theCount = [theManagers count];
+    NSArray *managers = [_editorView allLayoutManagers];
 
-    for (i = 0; i < theCount; i++) {
+    for (NSLayoutManager *manager in managers) {
         // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
-        [theManagers[i] removeTemporaryAttribute:NSBackgroundColorAttributeName 
-                    forCharacterRange:NSMakeRange(0, [[_editorView string] length])];
+        [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                        forCharacterRange:NSMakeRange(0, [[_editorView string] length])];
     }
 }
 
@@ -759,7 +755,7 @@ enum { typeFSS = 'fss ' };
     NSString *theCurChar, *theConvertedChar;
     NSString *theYemMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
     unichar theWholeUnichar, theConvertedUnichar;
-    NSUInteger i, j, theLines, theIndex, theCurLine;
+    NSUInteger i, theLines, theIndex, theCurLine;
     CGFloat theBG_R, theBG_G, theBG_B, theF_R, theF_G, theF_B;
 
     // 文字色と背景色の中間色を得る
@@ -786,9 +782,8 @@ enum { typeFSS = 'fss ' };
                 theConvertedChar = @"\\";
             }
 
-            for (j = 0; j < [theManagers count]; j++) {
-                [theManagers[j] 
-                        addTemporaryAttributes:theAttrs forCharacterRange:NSMakeRange(i, 1)];
+            for (NSLayoutManager *manager in theManagers) {
+                [manager addTemporaryAttributes:theAttrs forCharacterRange:NSMakeRange(i, 1)];
             }
             theCurLine = 1;
             for (theIndex = 0, theLines = 0; theIndex < theWholeLength; theLines++) {
@@ -2006,10 +2001,9 @@ enum { typeFSS = 'fss ' };
             id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
             NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
             CFStringEncoding theTmpCFEncoding;
-            NSInteger i, theCount = [theEncodings count];
 
-            for (i = 0; i < theCount; i++) {
-                theTmpCFEncoding = [theEncodings[i] unsignedLongValue];
+            for (NSNumber *encoding in theEncodings) {
+                theTmpCFEncoding = [encoding unsignedLongValue];
                 if ((theTmpCFEncoding == kCFStringEncodingShiftJIS) || 
                         (theTmpCFEncoding == kCFStringEncodingShiftJIS_X0213_00)) {
                     theCFEncoding = theTmpCFEncoding;

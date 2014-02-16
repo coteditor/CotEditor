@@ -252,34 +252,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *theTmpString = [NSMutableString string];
     NSString *theStr = nil;
     NSCharacterSet *theCharSet;
-    NSInteger i, theCount;
 
     if (theCompleteArray) {
-
-        theCount = [theCompleteArray count];
-
-        for (i = 0; i < theCount; i++) {
-            theStr = [theCompleteArray[i] valueForKey:k_SCKey_arrayKeyString];
+        for (NSDictionary *dict in theCompleteArray) {
+            theStr = dict[k_SCKey_arrayKeyString];
             [theTmpArray addObject:theStr];
             [theTmpString appendString:[theStr substringToIndex:1]];
         }
 
     } else {
-
         NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
         NSArray *theArray;
         NSString *theEndStr = nil;
         NSDictionary *theStrDict;
-        NSInteger j;
+        NSUInteger i, theCount;
 
         theCount = [theSyntaxArray count];
 
         NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
         for (i = 0; i < theCount; i++) {
             theArray = _coloringDictionary[theSyntaxArray[i]];
-            NSInteger theArrayCount = [theArray count];
-            for (j = 0; j < theArrayCount; j++) {
-                theStrDict = theArray[j];
+            for (theStrDict in theArray) {
                 theStr = [theStrDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 theEndStr = [theStrDict[k_SCKey_endString] stringByTrimmingCharactersInSet:
@@ -392,16 +385,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSArray *theREStringArray = _coloringDictionary[k_SCKey_outlineMenuArray];
-    NSDictionary *theDict;
     NSMutableString *thePattern; 
     NSString *theTitle, *theMatchedIndexString;
     NSRange theMatchRange;
-    NSInteger i, j, theCount = [theREStringArray count];
     NSUInteger theIndex, theLines, theCurLine, theWholeLength = [inWholeString length];
     NSUInteger theMenuTitleMaxLength = [[theValues valueForKey:k_key_outlineMenuMaxLength] unsignedIntegerValue];
 
-    for (i = 0; i < theCount; i++) {
-        theDict = theREStringArray[i];
+    for (NSDictionary *theDict in theREStringArray) {
         NSUInteger theOption = ([theDict[k_SCKey_ignoreCase] boolValue]) ?
                         OgreIgnoreCaseOption : OgreNoneOption;
         NSDictionary *theMatchDict;
@@ -443,11 +433,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         withString:[theMatch matchedString] options:0 
                         range:NSMakeRange(0, [thePattern length])];
                 // マッチ部分文字列（$1-9）置換
-                for (j = 1; j < 10; j++) {
-                    theMatchedIndexString = [theMatch substringAtIndex:j];
+                for (NSInteger i = 1; i < 10; i++) {
+                    theMatchedIndexString = [theMatch substringAtIndex:i];
                     if (theMatchedIndexString != nil) {
                         (void)[thePattern replaceOccurrencesOfRegularExpressionString:
-                                    [NSString stringWithFormat:@"(?<!\\\\)\\$%li", (long)j] 
+                                    [NSString stringWithFormat:@"(?<!\\\\)\\$%li", (long)i]
                                 withString:theMatchedIndexString options:0 
                                 range:NSMakeRange(0, [thePattern length])];
                     }
@@ -567,10 +557,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *theArray = [self rangesSimpleWordsArrayDict:inWordsDict withCharString:inCharString];
     NSRange theRange;
-    NSInteger i, theCount = [theArray count];
 
-    for (i = 0; i < theCount; i++) {
-        theRange = [theArray[i] rangeValue];
+    for (NSValue *value in theArray) {
+        theRange = [value rangeValue];
         theRange.location += _updateRange.location;
 
         if ([self isPrinting]) {
@@ -1178,7 +1167,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSScanner *theScanner = [NSScanner scannerWithString:_localString];
     NSString *theControlStr;
     NSRange theColoringRange;
-    NSInteger theStart, i, theMax;
+    NSInteger theStart;
 
     if (![self isPrinting]) {
         theAttrs = @{NSForegroundColorAttributeName: theColor};
@@ -1194,16 +1183,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                             NSMakeRange(theStart, [theControlStr length])]];
         }
     }
-    theMax = [theTargetArray count];
     if ([self isPrinting]) {
-        for (i = 0; i < theMax; i++) {
-            theColoringRange = [theTargetArray[i] rangeValue];
+        for (NSValue *value in theTargetArray) {
+            theColoringRange = [value rangeValue];
             theColoringRange.location += _updateRange.location;
             [[_layoutManager firstTextView] setTextColor:theColor range:theColoringRange];
         }
     } else {
-        for (i = 0; i < theMax; i++) {
-            theColoringRange = [theTargetArray[i] rangeValue];
+        for (NSValue *value in theTargetArray) {
+            theColoringRange = [value rangeValue];
             theColoringRange.location += _updateRange.location;
             [_layoutManager addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
         }

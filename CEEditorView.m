@@ -392,10 +392,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *theSubSplitViews = [[self splitView] subviews];
     NSMutableArray *outArray = [NSMutableArray array];
-    NSInteger i;
 
-    for (i = 0; i < [theSubSplitViews count]; i++) {
-        [outArray addObject:[[theSubSplitViews[i] textView] layoutManager]];
+    for (NSTextContainer *container in theSubSplitViews) {
+        [outArray addObject:[[container textView] layoutManager]];
     }
     return outArray;
 }
@@ -590,7 +589,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theSubSplitViews = [[self splitView] subviews];
     NSString *theNewLineString;
     BOOL theBoolUpdate = ([self lineEndingCharacter] != inNewLineEnding);
-    NSInteger i;
 
     if ((inNewLineEnding > OgreNonbreakingNewlineCharacter) && 
             (inNewLineEnding <= OgreWindowsNewlineCharacter)) {
@@ -626,8 +624,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return;
     }
-    for (i = 0; i < [theSubSplitViews count]; i++) {
-        [(CETextViewCore *)[theSubSplitViews[i] textView] setNewLineString:theNewLineString];
+    for (NSTextContainer *container in theSubSplitViews) {
+        [(CETextViewCore *)[container textView] setNewLineString:theNewLineString];
     }
     if (theBoolUpdate) {
         [self updateLineEndingsInStatusAndInfo:NO];

@@ -69,7 +69,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // Encoding list
     NSMutableArray *theEncodings = [NSMutableArray array];
-    NSInteger i;
+    NSUInteger i;
     for (i = 0; i < sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings); i++) {
         [theEncodings addObject:[NSNumber numberWithUnsignedLong:k_CFStringEncodingList[i]]];
     }
@@ -252,7 +252,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self) {
         NSMutableArray *theEncodings = [NSMutableArray array];
         NSStringEncoding theEncoding;
-        NSInteger i;
+        NSUInteger i;
         for (i = 0; i < sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings); i++) {
             theEncoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
             [theEncodings addObject:[NSNumber numberWithUnsignedInt:theEncoding]];
@@ -415,10 +415,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
     NSStringEncoding outEncoding;
     BOOL theCorrect = NO;
-    NSInteger i, theCount = [theEncodings count];
 
-    for (i = 0; i < theCount; i++) {
-        CFStringEncoding theCFEncoding = [theEncodings[i] unsignedLongValue];
+    for (NSNumber *encoding in theEncodings) {
+        CFStringEncoding theCFEncoding = [encoding unsignedLongValue];
         if (theCFEncoding != kCFStringEncodingInvalidId) { // = separator
             outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
             if ([inEncodingName isEqualToString:[NSString localizedNameOfStringEncoding:outEncoding]]) {
@@ -875,7 +874,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [[CEDocumentController sharedDocumentController] accessoryEncodingMenu];
     NSMenu *theAccessoryEncodingMenu = [theAccessoryEncodingMenuButton menu];
     NSMenuItem *theItem;
-    NSInteger i, theCount = [inArray count];
 
     [theAccessoryEncodingMenuButton removeAllItems];
     theItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"") 
@@ -884,8 +882,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theAccessoryEncodingMenu addItem:theItem];
     [theAccessoryEncodingMenu addItem:[NSMenuItem separatorItem]];
 
-    for (i = 0; i < theCount; i++) {
-        CFStringEncoding theCFEncoding = [inArray[i] unsignedLongValue];
+    for (NSNumber *encoding in inArray) {
+        CFStringEncoding theCFEncoding = [encoding unsignedLongValue];
         if (theCFEncoding == kCFStringEncodingInvalidId) { // set separator
             [theAccessoryEncodingMenu addItem:[NSMenuItem separatorItem]];
             [outArray addObject:[NSMenuItem separatorItem]];
@@ -912,10 +910,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenu *theEncodingMenu = [[[NSMenu alloc] initWithTitle:@"ENCODEING"] autorelease];
     NSMenuItem *theFormatMenuItem = 
             [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag];
-    NSInteger i, theCount = [inArray count];
 
-    for (i = 0; i < theCount; i++) {
-        CFStringEncoding theCFEncoding = [inArray[i] unsignedLongValue];
+    for (NSNumber *encoding in inArray) {
+        CFStringEncoding theCFEncoding = [encoding unsignedLongValue];
         if (theCFEncoding == kCFStringEncodingInvalidId) { // set separator
             [theEncodingMenu addItem:[NSMenuItem separatorItem]];
         } else {
@@ -984,7 +981,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSMutableString *theChars = [NSMutableString string];
-    NSInteger i;
+    NSUInteger i;
 
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
         [theChars appendString:[NSString stringWithCharacters:&k_invisibleSpaceCharList[i] length:1]];
@@ -1021,7 +1018,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSUserDefaults *theUserDefaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *theNewList = [[[theUserDefaults arrayForKey:k_key_encodingList] mutableCopy] autorelease];
         NSNumber *theNum;
-        NSInteger i;
+        NSUInteger i;
 
         for (i = 0; i < sizeof(k_CFStringEncoding10_4List)/sizeof(CFStringEncodings); i++) {
             theNum = [NSNumber numberWithUnsignedLong:k_CFStringEncoding10_4List[i]];

@@ -133,15 +133,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドラッグ開始／tableView からのドラッグアイテム内容をセット
 // ------------------------------------------------------
 {
-    NSInteger i;
-
     // ドラッグ受付タイプを登録
     [inTableView registerForDraggedTypes:@[k_dropMyselfPboardType]];
     // すべての選択を解除して、改めてドラッグされる行を選択し直す
     NSMutableIndexSet *theIndexes = [NSMutableIndexSet indexSet];
     [inTableView deselectAll:self];
-    for (i = 0; i < [inRows count]; i++) {
-        [theIndexes addIndex:[inRows[i] unsignedIntegerValue]];
+    for (NSNumber *index in inRows) {
+        [theIndexes addIndex:[index unsignedIntegerValue]];
     }
     [inTableView selectRowIndexes:theIndexes byExtendingSelection:YES];
     // ドラッグされる行の保持、Pasteboard の設定
