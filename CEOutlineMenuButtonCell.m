@@ -56,12 +56,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [theBackgroundCenterImg setScalesWhenResized:YES];
     [theBackgroundCenterImg setSize:NSMakeSize(NSWidth(inCellFrame), theImgHeight)];
-    [theBackgroundCenterImg compositeToPoint:NSMakePoint(NSMinX(inCellFrame), theImgHeight) 
-            operation:NSCompositeSourceOver];
-    [theBackgroundLeftImg compositeToPoint:NSMakePoint(NSMinX(inCellFrame), theImgHeight) 
-            operation:NSCompositeSourceOver];
-    [theArrowImg compositeToPoint:NSMakePoint(NSMaxX(inCellFrame) - 11.0, theImgHeight) 
-            operation:NSCompositeSourceOver];
+    [theBackgroundCenterImg drawAtPoint:NSMakePoint(NSMinX(inCellFrame), 0)
+                               fromRect:NSZeroRect
+                              operation:NSCompositeSourceOver
+                               fraction:1.0];
+    [theBackgroundLeftImg drawAtPoint:NSMakePoint(NSMinX(inCellFrame), 0)
+                             fromRect:NSZeroRect
+                            operation:NSCompositeSourceOver
+                             fraction:1.0];
+    [theArrowImg drawAtPoint:NSMakePoint(NSMaxX(inCellFrame) - 11.0, 0)
+                    fromRect:NSZeroRect
+                   operation:NSCompositeSourceOver
+                    fraction:1.0];
+    
     [super drawInteriorWithFrame:inCellFrame inView:inControlView];
 }
 
