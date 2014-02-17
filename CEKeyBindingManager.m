@@ -295,8 +295,8 @@ static CEKeyBindingManager *sharedInstance = nil;
     if (inItem == nil) {
         return [_outlineDataArray count];
     } else {
-        id theItem = [inItem valueForKey:k_children];
-        return (theItem != nil) ? [theItem count] : 0;
+        NSMutableArray *children = inItem[k_children];
+        return (children != nil) ? [children count] : 0;
     }
 }
 
@@ -309,7 +309,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     if (inItem == nil) {
         return YES;
     } else {
-        return ([inItem valueForKey:k_children] != nil);
+        return (inItem[k_children] != nil);
     }
 }
 
@@ -322,7 +322,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     if (inItem == nil) {
         return _outlineDataArray[inIndex];
     } else {
-        return [inItem valueForKey:k_children][inIndex];
+        return inItem[k_children][inIndex];
     }
 }
 
@@ -350,7 +350,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     id theID = [inTableColumn identifier];
-    if (([theID isEqualToString:k_keyBindingKey]) && ([inItem valueForKey:k_children] == nil)) {
+    if (([theID isEqualToString:k_keyBindingKey]) && (inItem[k_children] == nil)) {
 
         id theItem = (inItem == nil) ? _outlineDataArray : inItem;
 
@@ -463,7 +463,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         }
     }
     // 編集ボタンを有効化／無効化
-    [theEditButton setEnabled:([inItem valueForKey:k_children] == nil)];
+    [theEditButton setEnabled:(inItem[k_children] == nil)];
 
     return YES;
 }
@@ -1235,7 +1235,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     id theItem, theChildren, theKeySpecChars;
 
     while (theItem = [theEnumerator nextObject]) {
-        theChildren = [theItem valueForKey:k_children];
+        theChildren = theItem[k_children];
         if (theChildren != nil) {
             theChildrenArray = [self duplicateKeyCheckArrayWithArray:theChildren];
             [outArray addObjectsFromArray:theChildrenArray];
@@ -1262,7 +1262,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     id theItem, theChildren, theKeySpecChars, theSelectorStr;
 
     while (theItem = [theEnumerator nextObject]) {
-        theChildren = [theItem valueForKey:k_children];
+        theChildren = theItem[k_children];
         if (theChildren != nil) {
             theChildDict = [self keyBindingDictionaryFromOutlineViewDataArray:theChildren];
             [outDict addEntriesFromDictionary:theChildDict];
@@ -1394,7 +1394,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     id theItem, theSelectorStr, theKeySpecChars;
 
     while (theItem = [theEnumerator nextObject]) {
-        theChildrenArray = [theItem valueForKey:k_children];
+        theChildrenArray = theItem[k_children];
         if (theChildrenArray != nil) {
             [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:theChildrenArray];
         }
