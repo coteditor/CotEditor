@@ -192,8 +192,7 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)writeWithBackupToFile:(NSString *)inFullDocumentPath ofType:(NSString *)inDocType 
-            saveOperation:(NSSaveOperationType)inSaveOperationType
+- (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 // バックアップファイルの保存(保存処理で包括的に呼ばれる)
 // ------------------------------------------------------
 {
@@ -202,16 +201,16 @@ enum { typeFSS = 'fss ' };
     // SaveAs のとき古いパスを監視対象から外すために保持
     NSString *theOldPath = [[self fileURL] path];
     // 新規書類を最初に保存する場合のフラグをセット
-    BOOL theBoolIsFirstSaving = ((theOldPath == nil) || (inSaveOperationType == NSSaveAsOperation));
+    BOOL theBoolIsFirstSaving = ((theOldPath == nil) || (saveOperation == NSSaveAsOperation));
     // 保存処理実行
-    BOOL outResult = [self saveToFile:inFullDocumentPath ofType:inDocType saveOperation:inSaveOperationType];
+    BOOL outResult = [self saveToFile:[url path] ofType:typeName saveOperation:saveOperation];
 
     if (outResult) {
         NSUndoManager *theUndoManager = [self undoManager];
 
         // 新規保存時、カラーリングのために拡張子を保持
         if (theBoolIsFirstSaving) {
-            [self setColoringExtension:[[inFullDocumentPath lastPathComponent] pathExtension] 
+            [self setColoringExtension:[url pathExtension]
                     coloring:YES];
         }
 
@@ -230,18 +229,18 @@ enum { typeFSS = 'fss ' };
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
         // SaveAs のとき古いパスの監視をやめる
-        if ((theOldPath != nil) && (inSaveOperationType == NSSaveAsOperation)) {
+        if ((theOldPath != nil) && (saveOperation == NSSaveAsOperation)) {
             [self stopWatchFile:theOldPath];
         }
         // 外部プロセスによる変更監視を開始
         if (theBoolIsFirstSaving) {
-            [self startWatchFile:inFullDocumentPath];
+            [self startWatchFile:[url path]];
         }
     }
     // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-    [self sendModifiedEventToClientOfFile:inFullDocumentPath operation:inSaveOperationType];
+    [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
     // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
-    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:inFullDocumentPath];
+    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
 
     // ディレイをかけて、保存中フラグをもどす
     [self performSelector:@selector(setIsSavingFlagToNo) withObject:nil afterDelay:0.8];
@@ -355,18 +354,18 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)readFromFile:(NSString *)inFileName ofType:(NSString *)inDocType
+- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // ファイルを読み込み、成功したかどうかを返す
 // ------------------------------------------------------
 {
     // フォルダをアイコンにドロップしても開けないようにする
     BOOL theBoolIsDir = NO;
-    (void)[[NSFileManager defaultManager] fileExistsAtPath:inFileName isDirectory:&theBoolIsDir];
+    (void)[[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&theBoolIsDir];
     if (theBoolIsDir) { return NO; }
 
     NSStringEncoding theEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
-    return [self readFromFile:inFileName withEncoding:theEncoding];
+    return [self readFromFile:[url path] withEncoding:theEncoding];
 }
 
 
@@ -1520,7 +1519,7 @@ enum { typeFSS = 'fss ' };
     // UKKQueue からパスを削除
     [[UKKQueue sharedQueue] removePathFromQueue:thePath];
     // Cocoa アプリで標準的に使われる置き換え保存かどうかを確認する
-    if ([[NSFileManager defaultManager] fileExistsAtPath:thePath]) {
+    if ([[self fileURL] checkResourceIsReachableAndReturnError:nil]) {
         // 置き換え保存なら、上書き保存と同じ処理後、UKKQueue に再登録
         [self fileWritten:inNotification];
         [[UKKQueue sharedQueue] addPathToQueue:thePath 
