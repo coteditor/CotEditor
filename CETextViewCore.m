@@ -95,7 +95,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *theName = [theValues valueForKey:k_key_fontName];
         float theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
         NSFont *theFont = [NSFont fontWithName:theName size:theSize];
-        float sizeOfTab = [theFont widthOfString:theWidthStr];
+        CGFloat sizeOfTab = [theWidthStr sizeWithAttributes:@{NSFontAttributeName:theFont}].width;
+
+        // [追記] widthOfString:メソッドのdeprecatedに従い、Smultronでのコードに書き改めた (2014.02)
         // "widthOfString:" について (2005.02.06)
         // Apple の Xcode ヘルプの widthOfString: の項には、下記のように書かれている。
         // "This method is for backward compatibility only. In new code, use the Application Kit’s 

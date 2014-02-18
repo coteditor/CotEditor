@@ -33,6 +33,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEDocument.h"
 #import "ODBEditorSuite.h"
 
+
+
+//=======================================================
+// not defined in __LP64__
+// 2014-02 by 1024jp
+//=======================================================
+#ifdef __LP64__
+enum { typeFSS = 'fss ' };
+#endif
+
+
+
 //=======================================================
 // Private method
 //
@@ -2239,6 +2251,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     theAppleEvent = [NSAppleEventDescriptor 
             appleEventWithEventClass:kODBEditorSuite eventID:kAEModifiedFile targetDescriptor:theCreator 
             returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
+    theFileSSpec = nil;
     theFileSSpec = [NSAppleEventDescriptor 
             descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
     [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
