@@ -1692,12 +1692,7 @@ static NSString	*OgreAFPCAttributedReplaceHistoryKey = @"AFPC Attributed Replace
 #endif
 	
 	if (aSelector == @selector(insertNewline:)) {
-        if (([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask) == NSShiftKeyMask) {
-            [findNextButton setAction:@selector(findNextAndOrderOut:)];
-        } else {
-            [findNextButton setAction:@selector(findNext:)];
-        }
-		
+		[findNextButton setAction:@selector(findNextAndOrderOut:)];
 		[findNextButton performClick:self]; // Find Next
 		[findNextButton setAction:@selector(findNext:)];
 		//[self findNextAndOrderOut:self];
