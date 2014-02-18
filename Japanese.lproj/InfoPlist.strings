@@ -2,5 +2,3 @@
 
 CFBundleName = "CotEditor";
 NSHumanReadableCopyright = "© nakamuxu, 2005\n© usami-k, 2011";
-CFBundleHelpBookFolder = "CotEditorHelp";
-CFBundleHelpBookName = "CotEditor ヘルプ";

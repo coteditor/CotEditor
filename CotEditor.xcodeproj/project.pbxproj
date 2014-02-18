@@ -52,10 +52,10 @@
 		2A6394DC18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */; };
 		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
 		2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */; };
+		2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A7572BE18B3BBAE00878F66 /* CotEditor.help */; };
 		6C4216A612DDB9180037690E /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 6C42169512DDB9180037690E /* Docs */; };
 		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
-		6C9BF21D12F62D3A0097BFE7 /* CotEditorHelp in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BF21C12F62D3A0097BFE7 /* CotEditorHelp */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
 		6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB074A11373A03B001D0243 /* Sparkle.framework */; };
 		6CB074B11373A0C3001D0243 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6CB074A11373A03B001D0243 /* Sparkle.framework */; };
@@ -246,6 +246,7 @@
 		2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Apache.plist; path = SyntaxColorings/defaultSyntaxStyle_Apache.plist; sourceTree = "<group>"; };
 		2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Markdown.plist; path = SyntaxColorings/defaultSyntaxStyle_Markdown.plist; sourceTree = "<group>"; };
 		2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Scala.plist; path = SyntaxColorings/defaultSyntaxStyle_Scala.plist; sourceTree = "<group>"; };
+		2A7572BE18B3BBAE00878F66 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/DocWindow.nib; sourceTree = "<group>"; };
 		6C1E212012C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/HCCManager.nib; sourceTree = "<group>"; };
@@ -260,8 +261,6 @@
 		6C42169512DDB9180037690E /* Docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs; sourceTree = "<group>"; };
 		6C4216B512DDB9EB0037690E /* Docs_for_src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs_for_src; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		6C9BF1C412F62D310097BFE7 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/CotEditorHelp; sourceTree = "<group>"; };
-		6C9BF27412F62E210097BFE7 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Japanese; path = Japanese.lproj/CotEditorHelp; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* Script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Script; sourceTree = "<group>"; };
 		6CB074A11373A03B001D0243 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
@@ -612,11 +611,11 @@
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */,
 				8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */,
+				2A7572BE18B3BBAE00878F66 /* CotEditor.help */,
 				8C74014C08C7041A00683672 /* KeyBindings */,
 				2559AD13079F9A4C0064C718 /* SyntaxColorings */,
 				259B181207E530DA00C5FD26 /* InternalScript */,
 				6CA3B36012E3B59B0019AB2E /* Script */,
-				6C9BF21C12F62D3A0097BFE7 /* CotEditorHelp */,
 				6C42169512DDB9180037690E /* Docs */,
 				6C4216B512DDB9EB0037690E /* Docs_for_src */,
 			);
@@ -835,7 +834,6 @@
 				6CA3B3E312E3B59B0019AB2E /* Script in Resources */,
 				6C4216A612DDB9180037690E /* Docs in Resources */,
 				6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */,
-				6C9BF21D12F62D3A0097BFE7 /* CotEditorHelp in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */,
 				2A07230616D3CF4F00F49864 /* addButtonImg.pdf in Resources */,
@@ -844,6 +842,7 @@
 				2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */,
 				2A07230A16D3CF4F00F49864 /* editButtonImg.pdf in Resources */,
 				2A07230B16D3CF4F00F49864 /* leftButtonImg.pdf in Resources */,
+				2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */,
 				2A07230C16D3CF4F00F49864 /* lockOnImg.pdf in Resources */,
 				2A07230D16D3CF4F00F49864 /* nextButtonImg.pdf in Resources */,
 				2A07230E16D3CF4F00F49864 /* openSplitButtonImg.pdf in Resources */,
@@ -973,15 +972,6 @@
 				6C1E212512C9E65600194313 /* Japanese */,
 			);
 			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
-		6C9BF21C12F62D3A0097BFE7 /* CotEditorHelp */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6C9BF1C412F62D310097BFE7 /* English */,
-				6C9BF27412F62E210097BFE7 /* Japanese */,
-			);
-			name = CotEditorHelp;
 			sourceTree = "<group>";
 		};
 		8C28CD2C081101A300733DA7 /* ScriptManager.nib */ = {
