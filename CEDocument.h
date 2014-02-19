@@ -63,7 +63,6 @@ typedef struct {
 
     BOOL _alphaOnlyTextViewInThisWindow;
     BOOL _doCascadeWindow;
-    BOOL _isSaving;
     BOOL _showUpdateAlertWithBecomeKey;
     BOOL _isRevertingForExternalFileUpdate;
     BOOL _canActivateShowInvisibleCharsItem;
