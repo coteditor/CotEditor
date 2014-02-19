@@ -261,21 +261,18 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (NSDictionary *)fileAttributesToWriteToFile:(NSString *)inFullDocumentPath 
-        ofType:(NSString *)inDocType 
-        saveOperation:(NSSaveOperationType)inSaveOperationType
+- (NSDictionary *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError **)outError
 // ファイル保存時のクリエータ／タイプなどファイル属性を決定する
 // ------------------------------------------------------
 {
-    // 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableDictionary *outDict = [NSMutableDictionary dictionaryWithDictionary:
-                [super fileAttributesToWriteToFile:inFullDocumentPath 
-                    ofType:inDocType 
-                    saveOperation:inSaveOperationType]];
+    NSMutableDictionary *outDict = [[super fileAttributesToWriteToURL:url
+                                                               ofType:typeName
+                                                     forSaveOperation:saveOperation
+                                                  originalContentsURL:absoluteOriginalContentsURL
+                                                                error:outError] mutableCopy];
     NSUInteger theSaveTypeCreator = [[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue];
-
+    
     if (theSaveTypeCreator == 0) { // = same as original
         OSType theCreator = [_fileAttr fileHFSCreatorCode];
         OSType theType = [_fileAttr fileHFSTypeCode];
@@ -288,7 +285,7 @@ enum { typeFSS = 'fss ' };
     } else if (theSaveTypeCreator == 1) { // = CotEditor's type
         [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
     }
-
+    
     return outDict;
 }
 
