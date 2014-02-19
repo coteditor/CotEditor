@@ -176,6 +176,7 @@ enum { typeFSS = 'fss ' };
     if ([self fileURL]) {
         [[self fileObserver] removeAllPaths];
     }
+    [[self fileObserver] setDelegate:nil];
     [[self fileObserver] release];
     
     // _initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
