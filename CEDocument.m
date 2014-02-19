@@ -53,6 +53,7 @@ enum { typeFSS = 'fss ' };
 @interface CEDocument ()
 
 @property (nonatomic) VDKQueue *fileObserver;
+@property NSUInteger numberOfSavingFlags;
 
 - (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding;
 - (void)doSetEncoding:(NSStringEncoding)inEncoding;
@@ -75,7 +76,6 @@ enum { typeFSS = 'fss ' };
             contextInfo:(void *)inContextInfo;
 - (void)startWatchFile:(NSString *)inFileName;
 - (void)stopWatchFile:(NSString *)inFileName;
-- (void)setIsSavingFlagToNo;
 - (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
             contextInfo:(void *)inContextInfo;
 - (void)printPanelDidEnd:(NSPrintPanel *)inPrintPanel returnCode:(NSInteger)inReturnCode
@@ -141,7 +141,7 @@ enum { typeFSS = 'fss ' };
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
         _fileSender = nil;
         _fileToken = nil;
-        _isSaving = NO;
+        [self setNumberOfSavingFlags:0];
         _showUpdateAlertWithBecomeKey = NO;
         _isRevertingForExternalFileUpdate = NO;
         _canActivateShowInvisibleCharsItem = 
@@ -207,7 +207,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // 保存中のフラグを立て、保存実行（自分自身が保存した時のファイル更新通知を区別するため）
-    _isSaving = YES;
+    [self increaseSavingFlag];
     // SaveAs のとき古いパスを監視対象から外すために保持
     NSString *theOldPath = [[self fileURL] path];
     // 新規書類を最初に保存する場合のフラグをセット
@@ -253,7 +253,7 @@ enum { typeFSS = 'fss ' };
     [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
 
     // ディレイをかけて、保存中フラグをもどす
-    [self performSelector:@selector(setIsSavingFlagToNo) withObject:nil afterDelay:0.8];
+    [self performSelector:@selector(decreaseSavingFlag) withObject:nil afterDelay:0.5];
 
     return outResult;
 }
@@ -1339,7 +1339,6 @@ enum { typeFSS = 'fss ' };
 // 外部プロセスによって更新されたことをシート／ダイアログで通知
 // ------------------------------------------------------
 {
-    if (_isSaving) { return; } // 自身が保存した時の通知は無視
     if (!_showUpdateAlertWithBecomeKey) { return; } // 表示フラグが立っていなければ、もどる
 
     NSAlert *theAleart;
@@ -1514,7 +1513,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // 自分が保存中でないなら、書き込み通知を行う
-    if (!_isSaving) {
+    if ([self numberOfSavingFlags] == 0) {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
         _showUpdateAlertWithBecomeKey = YES;
@@ -2400,11 +2399,24 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)setIsSavingFlagToNo
-// 保存中フラグを戻す
+- (void)increaseSavingFlag
+// 保存中フラグを増やす
 // ------------------------------------------------------
 {
-    _isSaving = NO;
+    @synchronized(self) {
+        self.numberOfSavingFlags++;
+    }
+}
+
+
+// ------------------------------------------------------
+- (void)decreaseSavingFlag
+// 保存中フラグを減らす
+// ------------------------------------------------------
+{
+    @synchronized(self) {
+        self.numberOfSavingFlags--;
+    }
 }
 
 
