@@ -174,7 +174,7 @@ enum { typeFSS = 'fss ' };
     
     // 外部プロセスによるファイルの変更監視を停止
     if ([self fileURL]) {
-        [self stopWatchFile:[[self fileURL] path]];
+        [[self fileObserver] removeAllPaths];
     }
     [[self fileObserver] release];
     
@@ -2378,8 +2378,8 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     if ([[NSFileManager defaultManager] fileExistsAtPath:inFileName]) {
-        // いったんすべての監視削除
-        [[self fileObserver] removePath:inFileName];
+        // いったんすべての監視を削除
+        [[self fileObserver] removeAllPaths];
         
         // VDKQueue に新たにパスを追加
         u_int notificationType = VDKQueueNotifyAboutWrite | VDKQueueNotifyAboutDelete;
