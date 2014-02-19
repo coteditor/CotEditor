@@ -659,7 +659,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // 各ドキュメントに外部プロセスによって変更保存されていた場合の通知を行わせる
     [[[CEDocumentController sharedDocumentController] documents] 
-            makeObjectsPerformSelector:@selector(showUpdateAlertWithUKKQueueNotification)];
+            makeObjectsPerformSelector:@selector(showUpdatedByExternalProcessAlert)];
 }
 
 

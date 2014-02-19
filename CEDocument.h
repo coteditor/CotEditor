@@ -38,8 +38,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEWindowController.h"
 #import "CETextSelection.h"
 #import "CEPrintView.h"
-#import "UKKQueue.h"
 #import "UKXattrMetadataStore.h"
+#import "VDKQueue.h"
 
 @class CEEditorView;
 @class UKXattrMetadataStore;
@@ -50,7 +50,7 @@ typedef struct {
      void *contextInfo;
 } CanCloseAlertContext;
 
-@interface CEDocument : NSDocument
+@interface CEDocument : NSDocument <VDKQueueDelegate>
 {
     CEEditorView *_editorView;
     id _windowController;
@@ -65,7 +65,7 @@ typedef struct {
     BOOL _doCascadeWindow;
     BOOL _isSaving;
     BOOL _showUpdateAlertWithBecomeKey;
-    BOOL _isRevertingWithUKKQueueNotification;
+    BOOL _isRevertingForExternalFileUpdate;
     BOOL _canActivateShowInvisibleCharsItem;
     NSPoint _initTopLeftPoint;
 }
@@ -119,7 +119,7 @@ typedef struct {
 - (void)setInitTopLeftPoint:(NSPoint)inPoint;
 - (void)setSmartInsertAndDeleteToTextView;
 - (NSString *)currentIANACharSetName;
-- (void)showUpdateAlertWithUKKQueueNotification;
+- (void)showUpdatedByExternalProcessAlert;
 - (CGFloat)lineSpacingInTextView;
 - (void)setCustomLineSpacingToTextView:(CGFloat)inSpacing;
 - (BOOL)canActivateShowInvisibleCharsItem;

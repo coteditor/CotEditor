@@ -50,7 +50,10 @@ enum { typeFSS = 'fss ' };
 //
 //=======================================================
 
-@interface CEDocument (Private)
+@interface CEDocument ()
+
+@property (nonatomic) VDKQueue *fileObserver;
+
 - (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding;
 - (void)doSetEncoding:(NSStringEncoding)inEncoding;
 - (void)updateEncodingInToolbarAndInfo;
@@ -140,7 +143,7 @@ enum { typeFSS = 'fss ' };
         _fileToken = nil;
         _isSaving = NO;
         _showUpdateAlertWithBecomeKey = NO;
-        _isRevertingWithUKKQueueNotification = NO;
+        _isRevertingForExternalFileUpdate = NO;
         _canActivateShowInvisibleCharsItem = 
                 ([[theValues valueForKey:k_key_showInvisibleSpace] boolValue] || 
                 [[theValues valueForKey:k_key_showInvisibleTab] boolValue] || 
@@ -152,6 +155,10 @@ enum { typeFSS = 'fss ' };
         [[NSNotificationCenter defaultCenter] addObserver:self 
                 selector:@selector(documentDidFinishOpen:) 
                 name:k_documentDidFinishOpenNotification object:nil];
+        
+        // ファイル変更オブサーバのセット
+        [self setFileObserver:[[VDKQueue alloc] init]];
+        [[self fileObserver] setDelegate:self];
     }
     return self;
 }
@@ -164,10 +171,13 @@ enum { typeFSS = 'fss ' };
 {
     // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     // 外部プロセスによるファイルの変更監視を停止
-    if ([self fileURL] != nil) {
+    if ([self fileURL]) {
         [self stopWatchFile:[[self fileURL] path]];
     }
+    [[self fileObserver] release];
+    
     // _initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
     // _selection は既に autorelease されている == "- (void)close"
     [[_editorView splitView] releaseAllEditorView]; // 各subSplitView が持つ editorView 参照を削除
@@ -289,7 +299,7 @@ enum { typeFSS = 'fss ' };
 {
     // 認証が必要な時に重なって表示されるのを避けるため、まず復帰確認シートを片づける
     //（外部プロセスによる変更通知アラートシートはそのままに）
-    if (!_isRevertingWithUKKQueueNotification) {
+    if (!_isRevertingForExternalFileUpdate) {
         [[[_editorView window] attachedSheet] orderOut:self];
     }
 
@@ -1325,7 +1335,7 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)showUpdateAlertWithUKKQueueNotification
+- (void)showUpdatedByExternalProcessAlert
 // 外部プロセスによって更新されたことをシート／ダイアログで通知
 // ------------------------------------------------------
 {
@@ -1351,19 +1361,19 @@ enum { typeFSS = 'fss ' };
 
     // シートが表示中でなければ、表示
     if ([[_editorView window] attachedSheet] == nil) {
-        _isRevertingWithUKKQueueNotification = YES;
+        _isRevertingForExternalFileUpdate = YES;
         [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
         [theAleart beginSheetModalForWindow:[_editorView window] 
                     modalDelegate:self 
                     didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:) 
                     contextInfo:NULL];
 
-    } else if (_isRevertingWithUKKQueueNotification) {
+    } else if (_isRevertingForExternalFileUpdate) {
         // （同じ外部プロセスによる変更通知アラートシートを表示中の時は、なにもしない）
 
     // 既にシートが出ている時はダイアログで表示
     } else {
-        _isRevertingWithUKKQueueNotification = YES;
+        _isRevertingForExternalFileUpdate = YES;
         [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
         NSInteger theResult = [theAleart runModal]; // アラート表示
         [self alertForModByAnotherProcessDidEnd:theAleart returnCode:theResult contextInfo:NULL];
@@ -1480,12 +1490,26 @@ enum { typeFSS = 'fss ' };
 #pragma mark === Delegate and Notification ===
 
 //=======================================================
-// Notification method (UKKQueue)
-//  <== UKKKqueue
+// Delegate method (VDKQueue)
+//  <== VDKQueue
 //=======================================================
 
 // ------------------------------------------------------
-- (void)fileWritten:(NSNotification *)inNotification
+- (void)VDKQueue:(VDKQueue *)queue receivedNotification:(NSString *)noteName forPath:(NSString *)fpath
+// VDKQueue からファイル変更に関する通知を受信
+// ------------------------------------------------------
+{
+    if ([noteName isEqualToString:VDKQueueWriteNotification]) {
+        [self fileWritten:fpath];
+        
+    } else if ([noteName isEqualToString:VDKQueueDeleteNotification]) {
+        [self fileDeleted:fpath];
+    }
+}
+
+
+// ------------------------------------------------------
+- (void)fileWritten:(NSString *)filePath
 // いま開いているファイルが外部プロセスによって上書き保存された
 // ------------------------------------------------------
 {
@@ -1496,7 +1520,7 @@ enum { typeFSS = 'fss ' };
         _showUpdateAlertWithBecomeKey = YES;
         // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
         if ([NSApp isActive]) {
-            [self showUpdateAlertWithUKKQueueNotification];
+            [self showUpdatedByExternalProcessAlert];
         } else if ([[theValues valueForKey:k_key_notifyEditByAnother] boolValue]) {
             NSInteger theRequestID = [NSApp requestUserAttention:NSInformationalRequest];
             // Dockアイコンジャンプを中止（本来なくてもいいはずだが10.4.3ではジャンプし続けるため、実行）
@@ -1507,26 +1531,18 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)fileDeleted:(NSNotification *)inNotification
+- (void)fileDeleted:(NSString *)filePath
 // いま開いているファイルが外部プロセスによって削除された
 // ------------------------------------------------------
 {
-// このメソッドは下記のページの情報を参考にさせていただきました(2005.11.05)
-// http://homepage3.nifty.com/kimuraw/misc/ukkqueue.html
-
-    NSString *thePath = [[self fileURL] path];
-
-    // UKKQueue からパスを削除
-    [[UKKQueue sharedQueue] removePathFromQueue:thePath];
+    // VDKQueue から一旦パスを削除
+    [[self fileObserver] removeAllPaths];
+    
     // Cocoa アプリで標準的に使われる置き換え保存かどうかを確認する
     if ([[self fileURL] checkResourceIsReachableAndReturnError:nil]) {
-        // 置き換え保存なら、上書き保存と同じ処理後、UKKQueue に再登録
-        [self fileWritten:inNotification];
-        [[UKKQueue sharedQueue] addPathToQueue:thePath 
-                    notifyingAbout:(UKKQueueNotifyAboutWrite | UKKQueueNotifyAboutDelete)];
-    } else {
-        // 単にファイルが削除されたのなら、監視をやめる
-        [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+        // 置き換え保存なら、上書き保存と同じ処理後、VDKQueue に再登録
+        [self fileWritten:[[self fileURL] path]];
+        [self startWatchFile:[[self fileURL] path]];
     }
 }
 
@@ -1810,11 +1826,9 @@ enum { typeFSS = 'fss ' };
 
 
 
-@end
 
-
-
-@implementation CEDocument (Private)
+#pragma mark -
+#pragma mark Private
 
 //=======================================================
 // Private method
@@ -2364,21 +2378,13 @@ enum { typeFSS = 'fss ' };
 // 外部プロセスによるファイルの変更監視を開始
 // ------------------------------------------------------
 {
-// このメソッドは下記のページの情報を参考にさせていただきました(2005.11.05)
-// http://homepage3.nifty.com/kimuraw/misc/ukkqueue.html
-
     if ([[NSFileManager defaultManager] fileExistsAtPath:inFileName]) {
-
-            NSNotificationCenter *theNotifCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
-
-            [theNotifCenter addObserver:self 
-                        selector:@selector(fileWritten:) 
-                        name:UKFileWatcherWriteNotification object:inFileName];
-            [theNotifCenter addObserver:self 
-                        selector:@selector(fileDeleted:) 
-                        name:UKFileWatcherDeleteNotification object:inFileName];
-            [[UKKQueue sharedQueue] addPathToQueue:inFileName 
-                        notifyingAbout:(UKKQueueNotifyAboutWrite | UKKQueueNotifyAboutDelete)];
+        // いったんすべての監視削除
+        [[self fileObserver] removePath:inFileName];
+        
+        // VDKQueue に新たにパスを追加
+        u_int notificationType = VDKQueueNotifyAboutWrite | VDKQueueNotifyAboutDelete;
+        [[self fileObserver] addPath:inFileName notifyingAbout:notificationType];
     }
 }
 
@@ -2388,9 +2394,8 @@ enum { typeFSS = 'fss ' };
 // 外部プロセスによるファイルの変更監視を停止
 // ------------------------------------------------------
 {
-    // UKKQueue からパスを削除、NSWorkspace のノーティフィケーションセンターから自身を削除
-    [[UKKQueue sharedQueue] removePathFromQueue:inFileName];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+    // VDKQueue からパスを削除
+    [[self fileObserver] removePath:inFileName];
 }
 
 
@@ -2412,13 +2417,11 @@ enum { typeFSS = 'fss ' };
     if (inReturnCode == NSAlertAlternateReturn) { // == Revert
         // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
         if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
-            // UKKQueue からパスを削除（上記メソッド内で追加しているため、このままだとダブる）
-            [[UKKQueue sharedQueue] removePathFromQueue:[[self fileURL] path]]; // （NotifCenter への登録はそのままに）
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
         }
     }
-    _isRevertingWithUKKQueueNotification = NO;
+    _isRevertingForExternalFileUpdate = NO;
     _showUpdateAlertWithBecomeKey = NO;
 }
 

@@ -53,6 +53,7 @@
 		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
 		2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */; };
 		2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A7572BE18B3BBAE00878F66 /* CotEditor.help */; };
+		2A9A143318B4E5B2001080D6 /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A143218B4E5B2001080D6 /* VDKQueue.m */; };
 		6C4216A612DDB9180037690E /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 6C42169512DDB9180037690E /* Docs */; };
 		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
@@ -107,11 +108,6 @@
 		8C78824708ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C78824608ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist */; };
 		8C7D7DB30BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D7DB20BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist */; };
 		8C7F74EC091C738C005C7598 /* ODBEditorSuite.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */; };
-		8C7F74EF091C74B7005C7598 /* UKKQueue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F74ED091C74B7005C7598 /* UKKQueue.h */; };
-		8C7F74F0091C74B7005C7598 /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7F74EE091C74B7005C7598 /* UKKQueue.m */; };
-		8C7F74FC091C7575005C7598 /* UKFileWatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F74FB091C7575005C7598 /* UKFileWatcher.h */; };
-		8C7F7503091C7596005C7598 /* UKMainThreadProxy.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F7501091C7596005C7598 /* UKMainThreadProxy.h */; };
-		8C7F7504091C7596005C7598 /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7F7502091C7596005C7598 /* UKMainThreadProxy.m */; };
 		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
 		8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8971340902620D0013FA27 /* CEPreferencesTabController.m */; };
 		8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8977240DCD8AD000DC32FF /* libicucore.dylib */; };
@@ -167,9 +163,6 @@
 			files = (
 				8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */,
 				8C7F74EC091C738C005C7598 /* ODBEditorSuite.h in CopyFiles */,
-				8C7F74EF091C74B7005C7598 /* UKKQueue.h in CopyFiles */,
-				8C7F74FC091C7575005C7598 /* UKFileWatcher.h in CopyFiles */,
-				8C7F7503091C7596005C7598 /* UKMainThreadProxy.h in CopyFiles */,
 				8C38409B0D16B7AC00F76A4C /* UKXattrMetadataStore.h in CopyFiles */,
 				6CB074B11373A0C3001D0243 /* Sparkle.framework in CopyFiles */,
 			);
@@ -247,6 +240,8 @@
 		2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Markdown.plist; path = SyntaxColorings/defaultSyntaxStyle_Markdown.plist; sourceTree = "<group>"; };
 		2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Scala.plist; path = SyntaxColorings/defaultSyntaxStyle_Scala.plist; sourceTree = "<group>"; };
 		2A7572BE18B3BBAE00878F66 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
+		2A9A143118B4E5B2001080D6 /* VDKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = ImportSources/VDKQueue.h; sourceTree = "<group>"; };
+		2A9A143218B4E5B2001080D6 /* VDKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = ImportSources/VDKQueue.m; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/DocWindow.nib; sourceTree = "<group>"; };
 		6C1E212012C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/HCCManager.nib; sourceTree = "<group>"; };
@@ -319,11 +314,6 @@
 		8C78824608ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Ruby.plist; path = SyntaxColorings/defaultSyntaxStyle_Ruby.plist; sourceTree = "<group>"; };
 		8C7D7DB20BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Haskell.plist; path = SyntaxColorings/defaultSyntaxStyle_Haskell.plist; sourceTree = "<group>"; };
 		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODBEditorSuite.h; path = ImportSources/ODBEditorSuite.h; sourceTree = "<group>"; };
-		8C7F74ED091C74B7005C7598 /* UKKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKKQueue.h; path = ImportSources/UKKQueue.h; sourceTree = "<group>"; };
-		8C7F74EE091C74B7005C7598 /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKKQueue.m; path = ImportSources/UKKQueue.m; sourceTree = "<group>"; };
-		8C7F74FB091C7575005C7598 /* UKFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKFileWatcher.h; path = ImportSources/UKFileWatcher.h; sourceTree = "<group>"; };
-		8C7F7501091C7596005C7598 /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKMainThreadProxy.h; path = ImportSources/UKMainThreadProxy.h; sourceTree = "<group>"; };
-		8C7F7502091C7596005C7598 /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKMainThreadProxy.m; path = ImportSources/UKMainThreadProxy.m; sourceTree = "<group>"; };
 		8C83A48009485F27004E48A8 /* CEATSTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEATSTypesetter.h; sourceTree = "<group>"; };
 		8C83A48109485F27004E48A8 /* CEATSTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEATSTypesetter.m; sourceTree = "<group>"; };
 		8C8971330902620D0013FA27 /* CEPreferencesTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPreferencesTabController.h; sourceTree = "<group>"; };
@@ -651,13 +641,10 @@
 				8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */,
 				8C1305B00DC4B83000975AC6 /* RKLMatchEnumerator.h */,
 				8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */,
-				8C7F74FB091C7575005C7598 /* UKFileWatcher.h */,
-				8C7F74ED091C74B7005C7598 /* UKKQueue.h */,
-				8C7F74EE091C74B7005C7598 /* UKKQueue.m */,
-				8C7F7501091C7596005C7598 /* UKMainThreadProxy.h */,
-				8C7F7502091C7596005C7598 /* UKMainThreadProxy.m */,
 				8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */,
 				8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */,
+				2A9A143118B4E5B2001080D6 /* VDKQueue.h */,
+				2A9A143218B4E5B2001080D6 /* VDKQueue.m */,
 			);
 			name = "Import Sources";
 			sourceTree = "<group>";
@@ -896,8 +883,6 @@
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */,
 				8C5853360903C1ED0085BC4F /* CETabItemView.m in Sources */,
-				8C7F74F0091C74B7005C7598 /* UKKQueue.m in Sources */,
-				8C7F7504091C7596005C7598 /* UKMainThreadProxy.m in Sources */,
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
@@ -905,6 +890,7 @@
 				8CBFD5F40DC42B1200EC093D /* CEPrivateMutableArray.m in Sources */,
 				8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */,
 				8C1305B20DC4B83000975AC6 /* RKLMatchEnumerator.m in Sources */,
+				2A9A143318B4E5B2001080D6 /* VDKQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
