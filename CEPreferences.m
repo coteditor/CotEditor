@@ -631,6 +631,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:",@"")];
+    [savePanel setNameFieldStringValue:[_syntaxStylesPopup title]];
     [savePanel setAllowedFileTypes:@[@"plist"]];
     
     [savePanel beginSheetModalForWindow:_prefWindow completionHandler:^(NSInteger result) {
