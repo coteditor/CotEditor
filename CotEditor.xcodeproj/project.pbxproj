@@ -54,6 +54,7 @@
 		2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */; };
 		2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A7572BE18B3BBAE00878F66 /* CotEditor.help */; };
 		2A9A143318B4E5B2001080D6 /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A143218B4E5B2001080D6 /* VDKQueue.m */; };
+		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
 		6C4216A612DDB9180037690E /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 6C42169512DDB9180037690E /* Docs */; };
 		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
@@ -128,8 +129,6 @@
 		8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */; };
 		8CCB5C36083F1F3C0022BA2A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CCB5C35083F1F3C0022BA2A /* Credits.rtf */; };
-		8CD5D80707BD044A00BAA31F /* docIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8CD5D80607BD044A00BAA31F /* docIcon.icns */; };
-		8CD5D80A07BD046900BAA31F /* appIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8CD5D80907BD046900BAA31F /* appIcon.icns */; };
 		8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */; };
 		8CE4859908CD617B004817E1 /* CEApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4859708CD617B004817E1 /* CEApplication.m */; };
 		8CE570B508A6E047004A8924 /* defaultSyntaxStyle_C, C++, Objective-C.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE570B408A6E047004A8924 /* defaultSyntaxStyle_C, C++, Objective-C.plist */; };
@@ -242,6 +241,7 @@
 		2A7572BE18B3BBAE00878F66 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A9A143118B4E5B2001080D6 /* VDKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = ImportSources/VDKQueue.h; sourceTree = "<group>"; };
 		2A9A143218B4E5B2001080D6 /* VDKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = ImportSources/VDKQueue.m; sourceTree = "<group>"; };
+		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/DocWindow.nib; sourceTree = "<group>"; };
 		6C1E212012C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/HCCManager.nib; sourceTree = "<group>"; };
@@ -343,8 +343,6 @@
 		8CC5044308EE829500A525A6 /* CEPrintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintView.m; sourceTree = "<group>"; };
 		8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultMenuKeyBindings.plist; path = KeyBindings/DefaultMenuKeyBindings.plist; sourceTree = "<group>"; };
 		8CCB5C35083F1F3C0022BA2A /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = credits/Credits.rtf; sourceTree = "<group>"; };
-		8CD5D80607BD044A00BAA31F /* docIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = docIcon.icns; path = icons/docIcon.icns; sourceTree = "<group>"; };
-		8CD5D80907BD046900BAA31F /* appIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appIcon.icns; path = icons/appIcon.icns; sourceTree = "<group>"; };
 		8CD7A93909CBDDDC00739513 /* CESubSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESubSplitView.h; sourceTree = "<group>"; };
 		8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESubSplitView.m; sourceTree = "<group>"; };
 		8CE4859608CD617B004817E1 /* CEApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEApplication.h; sourceTree = "<group>"; };
@@ -475,8 +473,6 @@
 		25D4C01C07B87595007CB113 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				8CD5D80907BD046900BAA31F /* appIcon.icns */,
-				8CD5D80607BD044A00BAA31F /* docIcon.icns */,
 				2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */,
 				8C28CD7708110E4A00733DA7 /* cleanButtonIcon.tiff */,
 			);
@@ -592,6 +588,7 @@
 				2588E9CC07C4851C0060021D /* Indicator.nib */,
 				8C28CD2C081101A300733DA7 /* ScriptManager.nib */,
 				8C4186CE08864B3E0039FBFC /* HCCManager.nib */,
+				2A9A144A18B67846001080D6 /* Images.xcassets */,
 				25D4C01C07B87595007CB113 /* icons */,
 				8CB0122007CA0CCD00221EDC /* toolbarIcons */,
 				25972A7107B87293005EB175 /* images */,
@@ -757,8 +754,6 @@
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */,
-				8CD5D80707BD044A00BAA31F /* docIcon.icns in Resources */,
-				8CD5D80A07BD046900BAA31F /* appIcon.icns in Resources */,
 				258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */,
 				8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */,
 				8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */,
@@ -826,6 +821,7 @@
 				2A07230616D3CF4F00F49864 /* addButtonImg.pdf in Resources */,
 				2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */,
 				2A07230816D3CF4F00F49864 /* clearButtonImg.pdf in Resources */,
+				2A9A144B18B67846001080D6 /* Images.xcassets in Resources */,
 				2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */,
 				2A07230A16D3CF4F00F49864 /* editButtonImg.pdf in Resources */,
 				2A07230B16D3CF4F00F49864 /* leftButtonImg.pdf in Resources */,
@@ -993,6 +989,7 @@
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = appIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1022,6 +1019,7 @@
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = appIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
