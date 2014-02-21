@@ -13,7 +13,7 @@ CotEditor (Private Fork)
 
 - 対応OSをMac OS X 10.6以上に変更
 - 64-bit対応
-- ツールバーアイコンなどの画像類のRetina対応
+- アプリケーションアイコンやツールバーアイコンなどの画像類の新調およびRetina対応
 - シンタックス定義の追加および更新（[wolfrosch.com](http://wolfrosch.com/works/goodies/coteditor_syntax)で配布しているものと同一）
     - 追加: Apache, Markdown, Scala, XML
     - 更新: PHP, Python
@@ -67,7 +67,6 @@ twitter: @[1024jp](https://twitter.com/1024jp)
 やるという意味ではありません。だったらいいな、ということです。
 
 - TeXのシンタックス定義をどうにかしたい
-- アプリケーションアイコンをブラッシュアップしたい（万年筆のディティールを変えたい）
 - ARCに移行したい
 - VDKQueueによるファイル更新通知をNSFilePresenterのメソッド `presentedItemDidChange` で置き換えたい（Deployment targetを10.7以降にする必要がある）
 - NSDocumentサブクラスにあるウインドウの透明度関連のコードをNSWindowControllerサブクラスに移したい
