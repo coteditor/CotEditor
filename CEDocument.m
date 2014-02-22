@@ -173,9 +173,7 @@ enum { typeFSS = 'fss ' };
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     // 外部プロセスによるファイルの変更監視を停止
-    if ([self fileURL]) {
-        [[self fileObserver] removeAllPaths];
-    }
+    [[self fileObserver] removeAllPaths];
     [[self fileObserver] setDelegate:nil];
     [[self fileObserver] release];
     
@@ -1510,19 +1508,26 @@ enum { typeFSS = 'fss ' };
 // いま開いているファイルが外部プロセスによって上書き保存された
 // ------------------------------------------------------
 {
+    // セーブ中フラグが立っているときは自身の保存なので無視
+    if ([self numberOfSavingFlags] > 0) return;
+    
+    // ファイルとドキュメントのmodificationDateが同じ場合は無視
+    // ファイルの読み込みや実行など、外部からの書き込み以外のアクセスにときおり反応してしまう問題への対処 (2014-02-22 by 1024jp)
+    // ちなみに、このmodificationDateだけでは上記の自身の保存の判断ができないので別途処理している。
+    NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:nil];
+    if ([[fileAttrs fileModificationDate] isEqualToDate:[self fileModificationDate]]) return;
+    
     // 自分が保存中でないなら、書き込み通知を行う
-    if ([self numberOfSavingFlags] == 0) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-        _showUpdateAlertWithBecomeKey = YES;
-        // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
-        if ([NSApp isActive]) {
-            [self showUpdatedByExternalProcessAlert];
-        } else if ([[theValues valueForKey:k_key_notifyEditByAnother] boolValue]) {
-            NSInteger theRequestID = [NSApp requestUserAttention:NSInformationalRequest];
-            // Dockアイコンジャンプを中止（本来なくてもいいはずだが10.4.3ではジャンプし続けるため、実行）
-            [NSApp cancelUserAttentionRequest:theRequestID];
-        }
+    _showUpdateAlertWithBecomeKey = YES;
+    // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
+    if ([NSApp isActive]) {
+        [self showUpdatedByExternalProcessAlert];
+    } else if ([[theValues valueForKey:k_key_notifyEditByAnother] boolValue]) {
+        NSInteger theRequestID = [NSApp requestUserAttention:NSInformationalRequest];
+        // Dockアイコンジャンプを中止（本来なくてもいいはずだが10.4.3ではジャンプし続けるため、実行）
+        [NSApp cancelUserAttentionRequest:theRequestID];
     }
 }
 
