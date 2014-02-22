@@ -501,43 +501,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *theIdentifer = [inItem itemIdentifier];
+    NSString *imageName;
 
     if ([theIdentifer isEqualToString:k_showNavigationBarItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"NaviBar_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"NaviBar_Hide"]];
-        }
+        imageName = inBool ? @"NaviBar_Show" : @"NaviBar_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showLineNumItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"LineNumber_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"LineNumber_Hide"]];
-        }
+        imageName = inBool ? @"LineNumber_Show" : @"LineNumber_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showStatusBarItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"StatusArea_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"StatusArea_Hide"]];
-        }
+        imageName = inBool ? @"StatusArea_Show" : @"StatusArea_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showInvisibleCharsItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"InvisibleChar_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"InvisibleChar_Hide"]];
-        }
+        imageName = inBool ? @"InvisibleChar_Show" : @"InvisibleChar_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showPageGuideItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"PageGuide_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"PageGuide_Hide"]];
-        }
+        imageName = inBool ? @"PageGuide_Show" : @"PageGuide_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_wrapLinesItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"WrapLines_On"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"WrapLines_Off"]];
-        }
+        imageName = inBool ? @"WrapLines_On" : @"WrapLines_Off";
+    }
+    
+    if (imageName) {
+        [inItem setImage:[NSImage imageNamed:imageName]];
     }
 }
 
