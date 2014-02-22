@@ -502,15 +502,14 @@ static CFStringEncodings k_CFStringEncodingList[] = {
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
     kCFStringEncodingNextStepLatin, // Western (NextStep)
     kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
-};
+    kCFStringEncodingInvalidId, // ----------
 
 // Encodings available 10.4 and later (CotEditor added in 0.8.0)
-static CFStringEncodings k_CFStringEncoding10_4List[] = {
-    0x10000100, // kCFStringEncodingUTF16BE
-    0x14000100, // kCFStringEncodingUTF16LE
-    0x0c000100, // kCFStringEncodingUTF32
-    0x18000100, // kCFStringEncodingUTF32BE
-    0x1c000100, // kCFStringEncodingUTF32LE
+    kCFStringEncodingUTF16BE, // Unicode (UTF-16BE)
+    kCFStringEncodingUTF16LE, // Unicode (UTF-16LE)
+    kCFStringEncodingUTF32, // Unicode (UTF-32)
+    kCFStringEncodingUTF32BE, // Unicode (UTF-32BE)
+    kCFStringEncodingUTF32LE, // Unicode (UTF-16LE)
 };
 
 // Encodings to convert Yen mark to back-slash

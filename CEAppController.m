@@ -43,7 +43,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSupportDirectory;
 - (NSMenu *)buildSyntaxMenu;
 - (void)cacheTheInvisibleGlyph;
-- (void)filterNotAvailableEncoding;
 - (void)deleteWrongDotFile;
 @end
 
@@ -68,20 +67,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // Encoding list
-    NSMutableArray *theEncodings = [NSMutableArray array];
-    NSUInteger i;
-    for (i = 0; i < sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings); i++) {
-        [theEncodings addObject:[NSNumber numberWithUnsignedLong:k_CFStringEncodingList[i]]];
+    NSUInteger numberOfEncodings = sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings);
+    NSMutableArray *theEncodings = [[NSMutableArray alloc] initWithCapacity:numberOfEncodings];
+    for (NSUInteger i = 0; i < numberOfEncodings; i++) {
+        [theEncodings addObject:@(k_CFStringEncodingList[i])];
     }
-    // 10.4+ で実行されていたら、さらにエンコーディングを追加
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) {
-        [theEncodings addObject:[NSNumber numberWithUnsignedLong:kCFStringEncodingInvalidId]]; // セパレータ
-        for (i = 0; i < sizeof(k_CFStringEncoding10_4List)/sizeof(CFStringEncodings); i++) {
-            [theEncodings addObject:[NSNumber numberWithUnsignedLong:k_CFStringEncoding10_4List[i]]];
-        }
-    }
-
-    NSDictionary *theDefaults = @{k_key_showLineNumbers: @YES, 
+    
+    NSDictionary *theDefaults = @{k_key_showLineNumbers: @YES,
                 k_key_showWrappedLineMark: @YES, 
                 k_key_showStatusBar: @YES, 
                 k_key_countLineEndingAsChar: @YES, 
@@ -94,8 +86,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_defaultLineEndCharCode: @0, 
                 k_key_encodingList: theEncodings, 
                 k_key_fontName: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName], 
-                k_key_fontSize: [NSNumber numberWithFloat:[NSFont systemFontSize]], 
-                k_key_encodingInOpen: [NSNumber numberWithUnsignedLong:k_autoDetectEncodingMenuTag], 
+                k_key_fontSize: @([NSFont systemFontSize]),
+                k_key_encodingInOpen: @(k_autoDetectEncodingMenuTag),
                 k_key_encodingInNew: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)), 
                 k_key_referToEncodingTag: @YES, 
                 k_key_createNewAtStartup: @YES, 
@@ -158,7 +150,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_saveUTF8BOM: @NO, 
                 k_key_setPrintFont: @0, 
                 k_key_printFontName: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName], 
-                k_key_printFontSize: [NSNumber numberWithFloat:[NSFont systemFontSize]], 
+                k_key_printFontSize: @([NSFont systemFontSize]),
                 k_printHeader: @YES, 
                 k_headerOneStringIndex: @3, 
                 k_headerTwoStringIndex: @4, 
@@ -218,7 +210,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:theDefaults];
 
     // transformer 登録
-    id theTransformer = [[[CEHexColorTransformer alloc] init] autorelease];
+    CEHexColorTransformer *theTransformer = [[[CEHexColorTransformer alloc] init] autorelease];
     [NSValueTransformer setValueTransformer:theTransformer forName:@"HexColorTransformer"];
 }
 
@@ -535,7 +527,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setupSupportDirectory];
     _preferences = [[CEPreferences alloc] initWithAppController:self];
-    [self filterNotAvailableEncoding];
     [self buildAllEncodingMenus];
     [self setSyntaxMenu:[self buildSyntaxMenu]];
     [[CEScriptManager sharedInstance] buildScriptMenu:nil];
@@ -1004,31 +995,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theLayoutManager addTextContainer:theContainer];
     [theStorage addLayoutManager:theLayoutManager];
     (void)[theLayoutManager glyphRangeForTextContainer:theContainer];
-}
-
-
-//------------------------------------------------------
-- (void)filterNotAvailableEncoding
-// 実行環境で使えないエンコーディングを削除する
-//------------------------------------------------------
-{
-// 新しいバージョンの Mac OS X から古いバージョンへ環境設定ファイルが写された場合への対応
-
-    if (floor(NSAppKitVersionNumber) <=  NSAppKitVersionNumber10_3) { // = 10.3.x以前
-        NSUserDefaults *theUserDefaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *theNewList = [[[theUserDefaults arrayForKey:k_key_encodingList] mutableCopy] autorelease];
-        NSNumber *theNum;
-        NSUInteger i;
-
-        for (i = 0; i < sizeof(k_CFStringEncoding10_4List)/sizeof(CFStringEncodings); i++) {
-            theNum = [NSNumber numberWithUnsignedLong:k_CFStringEncoding10_4List[i]];
-            if ([theNewList containsObject:theNum]) {
-                [theNewList removeObject:theNum];
-            }
-        }
-        [theUserDefaults setObject:theNewList forKey:k_key_encodingList];
-        [theUserDefaults synchronize];
-    }
 }
 
 
