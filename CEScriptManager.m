@@ -377,9 +377,8 @@ static CEScriptManager *sharedInstance = nil;
 // ScriptフォルダウィンドウをFinderで表示
 // ------------------------------------------------------
 {
-    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"openScriptMenu" ofType:@"applescript"];
-    if (thePath == nil) { return; }
-    NSURL *theURL = [NSURL fileURLWithPath:thePath];
+    NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"openScriptMenu" withExtension:@"applescript"];
+    if (theURL == nil) { return; }
     NSAppleScript *theAppleScript = [[[NSAppleScript alloc] initWithContentsOfURL:theURL error:nil] autorelease];
 
     if (theAppleScript != nil) {
@@ -441,7 +440,7 @@ static CEScriptManager *sharedInstance = nil;
     NSFileManager *theFileManager = [NSFileManager defaultManager];
     NSArray *URLs = [theFileManager contentsOfDirectoryAtURL:inURL
                                   includingPropertiesForKeys:@[NSURLFileResourceTypeKey]
-                                                     options:NSDirectoryEnumerationSkipsPackageDescendants
+                                                     options:NSDirectoryEnumerationSkipsPackageDescendants | NSDirectoryEnumerationSkipsHiddenFiles
                                                        error:nil];
     NSString *theMenuTitle;
     NSMenuItem *theMenuItem;
