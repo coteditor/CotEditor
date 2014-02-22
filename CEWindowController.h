@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-@interface CEWindowController : NSWindowController <OgreTextFindDataSource>
+@interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 {
     IBOutlet id _editorView;
     IBOutlet id _drawer;
