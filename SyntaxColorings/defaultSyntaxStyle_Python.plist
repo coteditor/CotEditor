@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>charactersArray</key>
@@ -8,7 +8,21 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>@(?:\w|\.)+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>@abstractmethod</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>@classmethod</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>@property</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -68,6 +82,14 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>__dict__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__dir__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>__div__</string>
 		</dict>
 		<dict>
@@ -76,7 +98,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>__enter__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>__eq__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__exit__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -85,6 +115,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>__floatdiv__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__format__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -108,7 +142,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>__getnewargs__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>__getslice__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__getstate__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -276,6 +318,14 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>__reduce__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__reduce_ex__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>__repr__</string>
 		</dict>
 		<dict>
@@ -340,11 +390,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>__setstate__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>__str__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>__sub__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__subclasses__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -368,11 +426,31 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>all</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>any</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>append</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>apply</string>
+			<string>as_integer_ratio</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ascii</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>bin</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>bit_length</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -380,7 +458,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>buffer</string>
+			<string>bytearray</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>bytes</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -389,6 +471,14 @@
 		<dict>
 			<key>beginString</key>
 			<string>capitalize</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>casefold</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cast</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -413,10 +503,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>cmp</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>coerce</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -488,6 +574,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>exec</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>execfile</string>
 		</dict>
 		<dict>
@@ -524,6 +614,22 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>format</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>format_map</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>from_bytes</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fromhex</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>fromkeys</string>
 		</dict>
 		<dict>
@@ -537,6 +643,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>getattr</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getboolean</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getfloat</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getint</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -588,15 +706,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>intern</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>intersection</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>intersection_update</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>is_integer</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -612,7 +730,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>isdecimal</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>isdigit</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isdisjoint</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -621,6 +747,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>islower</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isnumeric</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -704,6 +834,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>maketrans</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>map</string>
 		</dict>
 		<dict>
@@ -712,7 +846,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>memoryview</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>min</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mro</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -736,6 +878,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>partition</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>pop</string>
 		</dict>
 		<dict>
@@ -745,6 +891,12 @@
 		<dict>
 			<key>beginString</key>
 			<string>pow</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>print(?![\t ]*(\w|['"]))</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -773,6 +925,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>reduce</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>release</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -813,6 +969,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>round</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>rpartition</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -904,6 +1064,14 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>to_bytes</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>tolist</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>translate</string>
 		</dict>
 		<dict>
@@ -945,6 +1113,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>vars</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>viewitems</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>viewkeys</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>viewvalues</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1039,10 +1219,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>exec</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>finally</string>
 		</dict>
 		<dict>
@@ -1079,6 +1255,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>nonlocal</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>not</string>
 		</dict>
 		<dict>
@@ -1092,6 +1272,8 @@
 		<dict>
 			<key>beginString</key>
 			<string>print</string>
+			<key>regularExpression</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1111,6 +1293,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>with</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>yield</string>
 		</dict>
 	</array>
@@ -1118,7 +1304,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(\b\d+\.|(\b\d+)?\.\d+)(e[+-]?\d+)?j?</string>
+			<string>((?&lt;!\w)|[-+])(?:\.\d+|\d+\.|\d+\.\d+|\d+)(e[+-]?\d+)?[jl]?</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1126,7 +1312,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\b(0[0-7]+|[1-9]\d*|0)(e[+-]?\d+|l)?j?\b</string>
+			<string>\b0b[01]+l?</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1134,7 +1320,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\b0x[\da-f]+l?\b</string>
+			<string>\b0o[0-7]+l?</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0x[0-9a-f]+l?</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1145,7 +1339,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^([\t ]*)class[\t ]+(.+?)$</string>
+			<string>^([\t ]*)class[\t ]+(.+?):?[\t]*$</string>
 			<key>bold</key>
 			<true/>
 			<key>keyString</key>
@@ -1155,8 +1349,8 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^([\t ]*)def[\t ]+(.+?)$</string>
-			<key>italic</key>
+			<string>^([\t ]*)def[\t ]+(.+?):?[\t]*$</string>
+			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
 			<string>$1$2</string>
@@ -1166,7 +1360,31 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(r|u|ur)?"""(.|[\r\n])*?"""</string>
+			<string>"</string>
+			<key>endString</key>
+			<string>"</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>"""</string>
+			<key>endString</key>
+			<string>"""</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'</string>
+			<key>endString</key>
+			<string>'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'''</string>
+			<key>endString</key>
+			<string>'''</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b(r|u|ur)['"]</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1174,27 +1392,9 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(r|u|ur)?"(\\.|[^"\r\n])*?"</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(r|u|ur)?'''(.|[\r\n])*?'''</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(r|u|ur)?'(\\.|[^'\r\n])*?'</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>regularExpression</key>
-			<true/>
+			<string>`</string>
+			<key>endString</key>
+			<string>`</string>
 		</dict>
 	</array>
 	<key>styleName</key>
@@ -1203,15 +1403,19 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>__all__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>__bases__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>__class__</string>
+			<string>__cached__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>__dict__</string>
+			<string>__class__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1220,6 +1424,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>__file__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__loader__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1232,6 +1440,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>__name__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__package__</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1248,6 +1460,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>closed</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cls</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1308,10 +1524,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>mode</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>name</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
