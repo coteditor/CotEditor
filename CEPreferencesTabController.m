@@ -170,16 +170,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ツールバーアイテムデフォルト配列を返す
 // ------------------------------------------------------
 {
-    return [NSArray arrayWithObjects:
-                k_prefGeneralItemID, 
+    return @[k_prefGeneralItemID, 
                 k_prefWindowItemID, 
                 k_prefViewItemID, 
                 k_prefFormatItemID, 
                 k_prefSyntaxItemID, 
                 k_prefFileDropItemID, 
                 k_prefKeyBindingsItemID, 
-                k_prefPrintItemID, 
-                nil];
+                k_prefPrintItemID];
 }
 
 
@@ -209,9 +207,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // タブビューは、ウィンドウに対して各辺が10pxずつ小さくなっている状態で配置される必要あり。
         NSRect theFrame = [_prefWindow frame];
         NSRect theContentRect = [_prefWindow contentRectForFrameRect:theFrame];
-        float theOldHeight = NSHeight(theFrame);
-        float theWidthMargin = NSWidth(theFrame) - NSWidth(theContentRect);
-        float theHeightMargin = theOldHeight - NSHeight(theContentRect);
+        CGFloat theOldHeight = NSHeight(theFrame);
+        CGFloat theWidthMargin = NSWidth(theFrame) - NSWidth(theContentRect);
+        CGFloat theHeightMargin = theOldHeight - NSHeight(theContentRect);
 
         theFrame.size.width = NSWidth([theTabItemView frame]) + theWidthMargin;
         theFrame.size.height = NSHeight([theTabItemView frame]) + theHeightMargin;

@@ -392,10 +392,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *theSubSplitViews = [[self splitView] subviews];
     NSMutableArray *outArray = [NSMutableArray array];
-    int i;
 
-    for (i = 0; i < [theSubSplitViews count]; i++) {
-        [outArray addObject:[[[theSubSplitViews objectAtIndex:i] textView] layoutManager]];
+    for (NSTextContainer *container in theSubSplitViews) {
+        [outArray addObject:[[container textView] layoutManager]];
     }
     return outArray;
 }
@@ -574,7 +573,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (int)lineEndingCharacter
+- (NSInteger)lineEndingCharacter
 // 行末コードを返す（OgreNewlineCharacter型）
 // ------------------------------------------------------
 {
@@ -583,21 +582,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setLineEndingCharacter:(int)inNewLineEnding
+- (void)setLineEndingCharacter:(NSInteger)inNewLineEnding
 // 行末コードをセット（OgreNewlineCharacter型）
 // ------------------------------------------------------
 {
     NSArray *theSubSplitViews = [[self splitView] subviews];
     NSString *theNewLineString;
     BOOL theBoolUpdate = ([self lineEndingCharacter] != inNewLineEnding);
-    int i;
 
     if ((inNewLineEnding > OgreNonbreakingNewlineCharacter) && 
             (inNewLineEnding <= OgreWindowsNewlineCharacter)) {
         _lineEndingCharacter = inNewLineEnding;
     } else {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        int theDefaultLineEnd = [[theValues valueForKey:k_key_defaultLineEndCharCode] intValue];
+        NSInteger theDefaultLineEnd = [[theValues valueForKey:k_key_defaultLineEndCharCode] integerValue];
         _lineEndingCharacter = theDefaultLineEnd;
     }
     // set to textViewCore.
@@ -626,8 +624,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return;
     }
-    for (i = 0; i < [theSubSplitViews count]; i++) {
-        [(CETextViewCore *)[[theSubSplitViews objectAtIndex:i] textView] setNewLineString:theNewLineString];
+    for (NSTextContainer *container in theSubSplitViews) {
+        [(CETextViewCore *)[container textView] setNewLineString:theNewLineString];
     }
     if (theBoolUpdate) {
         [self updateLineEndingsInStatusAndInfo:NO];
@@ -732,8 +730,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [self stringForSave] : [self string];
     NSString *theCharStr = nil;
     NSRange theRange = [self selectedRange];
-    unsigned int theLines = 0, theCurLine = 0, theIndex = 0, theLength = [theString length];
-    unsigned int theLineStart = 0, theCountInLine = 0;
+    NSUInteger theLines = 0, theCurLine = 0, theIndex = 0, theLength = [theString length];
+    NSUInteger theLineStart = 0, theCountInLine = 0;
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
     if ([[self textView] hasMarkedText]) {
@@ -795,18 +793,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[_statusBar leftTextField] setStringValue:theStatusStr];
     }
     if (theBoolDrawerUpdate) {
-        theInfoLine = [NSString stringWithFormat:@"%i / %i",theCurLine, theLines];
+        theInfoLine = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)theCurLine, (unsigned long)theLines];
         [[self windowController] setInfoLine:theInfoLine];
-        theInfoChar = [NSString stringWithFormat:@"%i / %i",theRange.location, theLength];
+        theInfoChar = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)theRange.location, (unsigned long)theLength];
         [[self windowController] setInfoChar:theInfoChar];
-        [[self windowController] setInfoInLine:[NSString stringWithFormat:@"%i", theCountInLine]];
+        [[self windowController] setInfoInLine:[NSString stringWithFormat:@"%lu", (unsigned long)theCountInLine]];
         theInfoSelect = (theRange.length > 0) ? 
-                [NSString stringWithFormat:@"%i", theRange.length] : [NSString stringWithString:@" - "];
+                [NSString stringWithFormat:@"%lu", (unsigned long)theRange.length] : @" - ";
         [[self windowController] setInfoSelect:theInfoSelect];
         if (theCharStr != nil) {
             [[self windowController] setInfoSingleChar:theCharStr];
         } else {
-            [[self windowController] setInfoSingleChar:[NSString stringWithString:@" - "]];
+            [[self windowController] setInfoSingleChar:@" - "];
         }
     }
 }
@@ -975,7 +973,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // メニュー項目の有効・無効を制御
 // ------------------------------------------------------
 {
-    int theState = NSOffState;
+    NSInteger theState = NSOffState;
 
     if ([inMenuItem action] == @selector(toggleShowLineNum:)) {
         if ([self showLineNum]) {theState = NSOnState;}
@@ -1092,7 +1090,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CESubSplitView *theMasterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
-            [(CETextViewCore *)[[self window] firstResponder] delegate] : 
+            (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate] :
             [(CENavigationBarView *)[sender superview] masterView];
     if (theMasterView == nil) { return; }
     NSRect theSubSplitFrame = [theMasterView bounds];
@@ -1127,24 +1125,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     BOOL theBoolIsSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
-    CESubSplitView *theFirstResponderSubSplitView = [(CETextViewCore *)[[self window] firstResponder] delegate];
+    CESubSplitView *theFirstResponderSubSplitView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
     CESubSplitView *theCloseSubSplitView = (theBoolIsSenderMenu) ? 
             theFirstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
     if (theCloseSubSplitView == nil) { return; }
     NSArray *theSubViews = [[self splitView] subviews];
-    unsigned int theCount = [theSubViews count];
-    unsigned int theDelIndex = [theSubViews indexOfObject:theCloseSubSplitView];
-    unsigned int theIndex = 0;
+    NSUInteger theCount = [theSubViews count];
+    NSUInteger theDelIndex = [theSubViews indexOfObject:theCloseSubSplitView];
+    NSUInteger theIndex = 0;
 
     if ((theBoolIsSenderMenu) || (theDelIndex == [theSubViews indexOfObject:theFirstResponderSubSplitView])) {
         theIndex = theDelIndex + 1;
         if (theIndex >= theCount) {
             theIndex = theCount - 2;
         }
-        if (theIndex < 0) {
-            theIndex = 0;
-        }
-        [[self window] makeFirstResponder:[[theSubViews objectAtIndex:theIndex] textView]];
+        [[self window] makeFirstResponder:[theSubViews[theIndex] textView]];
     }
     [theCloseSubSplitView removeFromSuperview];
     [self updateCloseSubSplitViewButton];
@@ -1262,10 +1257,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
     if (!NSLocationInRange(theSelectedRange.location, theCharRange)) {
-        int theLocation = theSelectedRange.location - theCharRange.length;
+        NSInteger theLocation = theSelectedRange.location - theCharRange.length;
         if (theLocation < 0) { theLocation = 0; }
-        int theLength = theSelectedRange.length + theCharRange.length;
-        int theMax = [[self string] length] - theLocation;
+        NSInteger theLength = theSelectedRange.length + theCharRange.length;
+        NSInteger theMax = [[self string] length] - theLocation;
         if (theLength > theMax) { theLength = theMax; }
 
         [[self syntax] colorVisibleRange:NSMakeRange(theLocation, theLength) withWholeString:[self string]];
@@ -1311,10 +1306,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSArray *theSubSplitViews = [[self splitView] subviews];
-    int theCount = [theSubSplitViews count];
+    NSInteger theCount = [theSubSplitViews count];
     if (theCount < 2) { return; }
-    CESubSplitView *theCurView = [(CETextViewCore *)[[self window] firstResponder] delegate];
-    int theIndex = [theSubSplitViews indexOfObject:theCurView];
+    CESubSplitView *theCurView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
+    NSInteger theIndex = [theSubSplitViews indexOfObject:theCurView];
 
     if (inBool) { // == Next
         theIndex++;
@@ -1324,9 +1319,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theIndex < 0) {
         [[self window] makeFirstResponder:[[theSubSplitViews lastObject] textView]];
     } else if (theIndex < theCount) {
-        [[self window] makeFirstResponder:[[theSubSplitViews objectAtIndex:theIndex] textView]];
+        [[self window] makeFirstResponder:[theSubSplitViews[theIndex] textView]];
     } else if (theIndex >= theCount) {
-        [[self window] makeFirstResponder:[[theSubSplitViews objectAtIndex:0] textView]];
+        [[self window] makeFirstResponder:[theSubSplitViews[0] textView]];
     }
 }
 

@@ -1,4 +1,4 @@
-Oniguruma API  Version 5.9.2  2008/02/19
+Onigmo (Oniguruma-mod) API  Version 5.11.4  2011/10/08
 
 #include <oniguruma.h>
 
@@ -10,7 +10,7 @@ Oniguruma API  Version 5.9.2  2008/02/19
   You don't have to call it explicitly, because it is called in onig_new().
 
 
-# int onig_error_code_to_str(UChar* err_buf, int err_code, ...)
+# int onig_error_code_to_str(UChar* err_buf, OnigPosition err_code, ...)
 
   Get error message string.
   If this function is used for onig_new(),
@@ -64,7 +64,8 @@ Oniguruma API  Version 5.9.2  2008/02/19
 
       ONIG_OPTION_NONE               no option
       ONIG_OPTION_SINGLELINE         '^' -> '\A', '$' -> '\Z'
-      ONIG_OPTION_MULTILINE          '.' match with newline
+      ONIG_OPTION_DOTALL             '.' match with newline
+      ONIG_OPTION_MULTILINE          same as ONIG_OPTION_DOTALL
       ONIG_OPTION_IGNORECASE         ambiguity match on
       ONIG_OPTION_EXTEND             extended pattern form
       ONIG_OPTION_FIND_LONGEST       find longest match
@@ -72,10 +73,17 @@ Oniguruma API  Version 5.9.2  2008/02/19
       ONIG_OPTION_NEGATE_SINGLELINE
             clear ONIG_OPTION_SINGLELINE which is enabled on
             ONIG_SYNTAX_POSIX_BASIC, ONIG_SYNTAX_POSIX_EXTENDED,
-            ONIG_SYNTAX_PERL, ONIG_SYNTAX_PERL_NG, ONIG_SYNTAX_JAVA
+            ONIG_SYNTAX_PERL, ONIG_SYNTAX_PERL58, ONIG_SYNTAX_PERL58_NG,
+            ONIG_SYNTAX_JAVA, ONIG_SYNTAX_PYTHON
 
       ONIG_OPTION_DONT_CAPTURE_GROUP only named group captured.
       ONIG_OPTION_CAPTURE_GROUP      named and no-named group captured.
+
+      ONIG_OPTION_NEWLINE_CRLF
+            Treat CR+LF as a newline too. (default: LF only)
+            To use this option, you must enable the following line in regenc.h.
+
+            /* #define USE_CRNL_AS_LINE_TERMINATOR */
 
   5 enc:        character encoding.
 
@@ -121,8 +129,10 @@ Oniguruma API  Version 5.9.2  2008/02/19
       ONIG_SYNTAX_GREP              grep
       ONIG_SYNTAX_GNU_REGEX         GNU regex
       ONIG_SYNTAX_JAVA              Java (Sun java.util.regex)
-      ONIG_SYNTAX_PERL              Perl
-      ONIG_SYNTAX_PERL_NG           Perl + named group
+      ONIG_SYNTAX_PERL58            Perl 5.8
+      ONIG_SYNTAX_PERL58_NG         Perl 5.8 + named group
+      ONIG_SYNTAX_PERL              Perl 5.10+
+      ONIG_SYNTAX_PYTHON            Python
       ONIG_SYNTAX_RUBY              Ruby
       ONIG_SYNTAX_DEFAULT           default (== Ruby)
                                    onig_set_default_syntax()
@@ -165,7 +175,7 @@ Oniguruma API  Version 5.9.2  2008/02/19
     ci->target_enc:      target string character encoding.
     ci->syntax:          address of pattern syntax definition.
     ci->option:          compile time option.
-    ci->case_fold_flag:  character matching case fold bit flag for 
+    ci->case_fold_flag:  character matching case fold bit flag for
                          ONIG_OPTION_IGNORECASE mode.
 
        ONIGENC_CASE_FOLD_MIN:           minimum
@@ -205,8 +215,13 @@ Oniguruma API  Version 5.9.2  2008/02/19
   1 reg: regex object.
 
 
-# int onig_search(regex_t* reg, const UChar* str, const UChar* end, const UChar* start,
-                   const UChar* range, OnigRegion* region, OnigOptionType option)
+# OnigPosition onig_search(regex_t* reg, const UChar* str, const UChar* end,
+                   const UChar* start, const UChar* range, OnigRegion* region,
+                   OnigOptionType option)
+# OnigPosition onig_search_gpos(regex_t* reg, const UChar* str, const UChar* end,
+                   const UChar* global_pos,
+                   const UChar* start, const UChar* range, OnigRegion* region,
+                   OnigOptionType option)
 
   Search string and return search result and matching region.
 
@@ -214,23 +229,25 @@ Oniguruma API  Version 5.9.2  2008/02/19
   not found:     ONIG_MISMATCH (< 0)
 
   arguments
-  1 reg:    regex object
-  2 str:    target string
-  3 end:    terminate address of target string
-  4 start:  search start address of target string
-  5 range:  search terminate address of target string
+  1 reg:        regex object
+  2 str:        target string
+  3 end:        terminate address of target string
+  4 global_pos: position of \G
+                if not need, set same value as str.
+  5 start:      search start address of target string
+  6 range:      search terminate address of target string
     in forward search  (start <= searched string < range)
     in backward search (range <= searched string <= start)
-  6 region: address for return group match range info (NULL is allowed)
-  7 option: search time option
+  7 region:     address for return group match range info (NULL is allowed)
+  8 option:     search time option
 
     ONIG_OPTION_NOTBOL        string head(str) isn't considered as begin of line
     ONIG_OPTION_NOTEOL        string end (end) isn't considered as end of line
     ONIG_OPTION_POSIX_REGION  region argument is regmatch_t[] of POSIX API.
 
 
-# int onig_match(regex_t* reg, const UChar* str, const UChar* end, const UChar* at,
-		 OnigRegion* region, OnigOptionType option)
+# OnigPosition onig_match(regex_t* reg, const UChar* str, const UChar* end,
+		 const UChar* at, OnigRegion* region, OnigOptionType option)
 
   Match string and return result and matching region.
 
@@ -394,7 +411,8 @@ Oniguruma API  Version 5.9.2  2008/02/19
 
 
 # int onig_capture_tree_traverse(OnigRegion* region, int at,
-                  int(*func)(int,int,int,int,int,void*), void* arg)
+                  int(*func)(int,OnigPosition,OnigPosition,int,int,void*),
+                  void* arg)
 
  Traverse and callback in capture history data tree.
 
@@ -405,16 +423,16 @@ Oniguruma API  Version 5.9.2  2008/02/19
   1 region:  match region data.
   2 at:      callback position.
 
-    ONIG_TRAVERSE_CALLBACK_AT_FIRST: callback first, then traverse childs.
-    ONIG_TRAVERSE_CALLBACK_AT_LAST:  traverse childs first, then callback.
-    ONIG_TRAVERSE_CALLBACK_AT_BOTH:  callback first, then traverse childs,
+    ONIG_TRAVERSE_CALLBACK_AT_FIRST: callback first, then traverse children.
+    ONIG_TRAVERSE_CALLBACK_AT_LAST:  traverse children first, then callback.
+    ONIG_TRAVERSE_CALLBACK_AT_BOTH:  callback first, then traverse children,
                                      and at last callback again.
 
   3 func:    callback function.
              if func does not return 0, then traverse is stopped.
 
-             int func(int group, int beg, int end, int level, int at,
-                      void* arg)
+             int func(int group, OnigPosition beg, OnigPosition end,
+                      int level, int at, void* arg)
 
                group: group number
                beg:   capture start position
@@ -500,7 +518,7 @@ Oniguruma API  Version 5.9.2  2008/02/19
   1 syntax: address of pattern syntax definition.
 
 
-# void onig_copy_syntax(OnigSyntaxType* to, OnigSyntaxType* from)
+# void onig_copy_syntax(OnigSyntaxType* to, const OnigSyntaxType* from)
 
   Copy syntax.
 

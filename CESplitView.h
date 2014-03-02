@@ -51,6 +51,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxStyleNameToSyntax:(NSString *)inName;
 - (void)recoloringAllTextView;
 - (void)updateAllOutlineMenu;
-- (void)setAllBackgroundColorWithAlpha:(float)inAlpha;
+- (void)setAllBackgroundColorWithAlpha:(CGFloat)inAlpha;
 
 @end

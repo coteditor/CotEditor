@@ -38,9 +38,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation NSEvent (CarbonModFlag)
 
-+ (unsigned int)currentCarbonModifierFlags
++ (NSUInteger)currentCarbonModifierFlags
 {
-    unsigned int cocoaModFlag = 0;
+    NSUInteger cocoaModFlag = 0;
     UInt32 carbonModFlag = GetCurrentEventKeyModifiers();
 
     if (carbonModFlag & cmdKey)      cocoaModFlag |= NSCommandKeyMask;

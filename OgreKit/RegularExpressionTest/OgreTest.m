@@ -84,10 +84,10 @@
 	while((match = [enumerator nextObject]) != nil) {
 		if(matches == 0) {
 			NSRange	range = [match rangeOfPrematchString];
-			[resultTextView insertText: [NSString stringWithFormat:@"prematch string: (%d-%d) \"%@\"\n", range.location, range.location + range.length, [match prematchString]]];
+			[resultTextView insertText: [NSString stringWithFormat:@"prematch string: (%lu-%lu) \"%@\"\n", (unsigned long)range.location, (unsigned long)range.location + range.length, [match prematchString]]];
 		} else {
 			NSRange	range = [match rangeOfStringBetweenMatchAndLastMatch];
-			[resultTextView insertText: [NSString stringWithFormat:@"string between match #%d and match #%d: (%d-%d) \"%@\"\n", matches - 1, matches, range.location, range.location + range.length, [match stringBetweenMatchAndLastMatch]]];
+			[resultTextView insertText: [NSString stringWithFormat:@"string between match #%d and match #%d: (%lu-%lu) \"%@\"\n", matches - 1, matches, (unsigned long)range.location, (unsigned long)range.location + range.length, [match stringBetweenMatchAndLastMatch]]];
 		}
 
 		for (i = 0; i < [match count]; i++) {
@@ -96,7 +96,7 @@
 			if([match nameOfSubstringAtIndex:i] != nil) {
 				[resultTextView insertText:[NSString stringWithFormat:@"(\"%@\")", [match nameOfSubstringAtIndex:i]]];
 			}
-			[resultTextView insertText:[NSString stringWithFormat:@": (%d-%d)", subexpRange.location, subexpRange.location + subexpRange.length]];
+			[resultTextView insertText:[NSString stringWithFormat:@": (%lu-%lu)", (unsigned long)subexpRange.location, (unsigned long)subexpRange.location + subexpRange.length]];
 			if([match substringAtIndex:i] == nil) {
 				[resultTextView insertText:@" no match!\n"];
 			} else {
@@ -123,7 +123,7 @@
 	}
 	if(lastMatch != nil) {
 		NSRange	range = [lastMatch rangeOfPostmatchString];
-		[resultTextView insertText: [NSString stringWithFormat:@"postmatch string: (%d-%d) \"%@\"\n", range.location, range.location + range.length, [lastMatch postmatchString]]];
+		[resultTextView insertText: [NSString stringWithFormat:@"postmatch string: (%lu-%lu) \"%@\"\n", (unsigned long)range.location, (unsigned long)range.location + range.length, [lastMatch postmatchString]]];
 	} else {
 		[resultTextView insertText:@"search fail\n"];
 	}
@@ -202,7 +202,8 @@
 	NSEnumerator				*matcher = [regex matchEnumeratorInString:@"aaaaaaa" range:NSMakeRange(1, 3)];
 	OGRegularExpressionMatch	*match;
 	while ((match = [matcher nextObject]) != nil) {
-		NSLog(@"(%d, %d)", [match rangeOfMatchedString]);
+    NSRange matchRange = [match rangeOfMatchedString];
+		NSLog(@"(%lu, %lu)", (unsigned long)matchRange.location, (unsigned long)matchRange.length);
 	}
 	
 	// デリゲートに処理を委ねた置換
@@ -229,7 +230,7 @@
 		withString:@"F" options:OgreNoneOption range:NSMakeRange(0, [string length])];
 	NSLog(@"%d %@", numberOfReplacement, mstr);
 	NSRange matchRange = [string rangeOfRegularExpressionString:@"\\s*,\\s*"];
-	NSLog(@"(%d, %d)", matchRange.location, matchRange.length);
+	NSLog(@"(%lu, %lu)", (unsigned long)matchRange.location, (unsigned long)matchRange.length);
 }
 
 // 摂氏を華氏に変換する。
@@ -267,8 +268,8 @@
     if([aCapture groupName] != nil) {
         [resultTextView insertText:[NSString stringWithFormat:@"(\"%@\")", [aCapture groupName]]];
     }
-    [resultTextView insertText:[NSString stringWithFormat:@": (%d-%d) \"%@\"\n", 
-        matchRange.location, matchRange.length, 
+    [resultTextView insertText:[NSString stringWithFormat:@": (%lu-%lu) \"%@\"\n",
+        (unsigned long)matchRange.location, (unsigned long)matchRange.length,
         [aCapture string]]];
 }
 

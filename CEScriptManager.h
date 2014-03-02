@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     NSFileHandle *_outputHandle;
     NSFileHandle *_errorHandle;
-    int _outputType;
+    NSInteger _outputType;
 }
 
 // class method

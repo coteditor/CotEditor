@@ -62,9 +62,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL _useAntialias;
     BOOL _isPrinting;
 
-    float _defaultLineHeightForTextFont;
-    float _textFontPointSize;
-    float _textFontGlyphY;
+    CGFloat _defaultLineHeightForTextFont;
+    CGFloat _textFontPointSize;
+    CGFloat _textFontGlyphY;
 }
 
 // Public method
@@ -89,8 +89,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSFont *)textFont;
 - (void)setTextFont:(NSFont *)inFont;
 - (void)setValuesForTextFont:(NSFont *)inFont;
-- (float)defaultLineHeightForTextFont;
-- (float)textFontPointSize;
-- (float)textFontGlyphY;
-- (float)lineHeight;
+- (CGFloat)defaultLineHeightForTextFont;
+- (CGFloat)textFontPointSize;
+- (CGFloat)textFontGlyphY;
+- (CGFloat)lineHeight;
 @end

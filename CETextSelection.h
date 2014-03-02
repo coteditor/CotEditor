@@ -58,7 +58,7 @@ typedef enum {
     CENFKD = 'cNkd',
 } CEUNFType;
 
-@interface CETextSelection : NSObject
+@interface CETextSelection : NSObject <NSTextStorageDelegate>
 {
     CEDocument *_document;
 }

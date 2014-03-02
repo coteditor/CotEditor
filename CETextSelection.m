@@ -137,8 +137,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange theSelectedRange = [[_document editorView] selectedRange];
-    NSArray *outArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:theSelectedRange.location], 
-                [NSNumber numberWithInt:theSelectedRange.length], nil];
+    NSArray *outArray = @[[NSNumber numberWithInt:theSelectedRange.location], 
+                [NSNumber numberWithInt:theSelectedRange.length]];
 
     return outArray;
 }
@@ -150,8 +150,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([inArray count] != 2) { return; }
-    int theLocation = [[inArray objectAtIndex:0] intValue];
-    int theLength = [[inArray objectAtIndex:1] intValue];
+    NSInteger theLocation = [inArray[0] integerValue];
+    NSInteger theLength = [inArray[1] integerValue];
 
     [_document setSelectedCharacterRangeInTextViewWithLocation:theLocation withLength:theLength];
 }
@@ -164,7 +164,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSRange theSelectedRange = [[_document editorView] selectedRange];
     NSString *theString = [[_document editorView] stringForSave];
-    unsigned int theLines = 0, theCurLine = 0, theIndex = 0, theLastLine = 0, theLength = [theString length];
+    NSUInteger theLines = 0, theCurLine = 0, theIndex = 0, theLastLine = 0, theLength = [theString length];
     NSArray *outArray;
 
     if (theLength > 0) {
@@ -178,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             theIndex = NSMaxRange([theString lineRangeForRange:NSMakeRange(theIndex, 0)]);
         }
     }
-    outArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:theCurLine], 
-                [NSNumber numberWithInt:(theLastLine - theCurLine + 1)], nil];
+    outArray = @[[NSNumber numberWithInt:theCurLine], 
+                [NSNumber numberWithInt:(theLastLine - theCurLine + 1)]];
 
     return outArray;
 }
@@ -190,15 +190,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 選択範囲の行の位置と長さをセット
 // ------------------------------------------------------
 {
-    int theLocation;
-    int theLength;
+    NSInteger theLocation;
+    NSInteger theLength;
 
     if ([inArray isKindOfClass:[NSNumber class]]) {
-        theLocation = [(NSNumber *)inArray intValue];
+        theLocation = [(NSNumber *)inArray integerValue];
         theLength = 1;
     } else if([inArray count] == 2) {
-        theLocation = [[inArray objectAtIndex:0] intValue];
-        theLength = [[inArray objectAtIndex:1] intValue];
+        theLocation = [inArray[0] integerValue];
+        theLength = [inArray[1] integerValue];
     } else {
         return;
     }
@@ -300,8 +300,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *theArg = [inCommand evaluatedArguments];
-    CEChangeKanaType theType = [[theArg valueForKey:@"unfType"] unsignedLongValue];
-    int theTypeCode = 0;
+    CEUNFType theType = [theArg[@"unfType"] unsignedLongValue];
+    NSInteger theTypeCode = 0;
 
     switch (theType) {
     case CENFD: theTypeCode = 1; break;
@@ -310,7 +310,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     default:
         break;
     }
-    [[[_document editorView] textView] unicodeNormalization:[NSNumber numberWithInt:theTypeCode]];
+    [[[_document editorView] textView] unicodeNormalization:@(theTypeCode)];
 }
 
 
