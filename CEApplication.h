@@ -36,8 +36,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEApplication : NSApplication
 {
-    int _requestID;
-    int _keyCatchMode;
+    NSInteger _requestID;
+    NSInteger _keyCatchMode;
 }
 
 // Public method

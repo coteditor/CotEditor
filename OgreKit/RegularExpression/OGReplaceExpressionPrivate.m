@@ -17,17 +17,17 @@
 
 @implementation OGReplaceExpression (Private)
 
-- (void)_setCompiledReplaceString:(NSArray*)compiledReplaceString
+- (void)_setCompiledReplaceString:(NSMutableArray*)compiledReplaceString
 {
 	_compiledReplaceString = [compiledReplaceString retain];
 }
 
-- (void)_setCompiledReplaceStringType:(NSArray*)compiledReplaceStringType
+- (void)_setCompiledReplaceStringType:(NSMutableArray*)compiledReplaceStringType
 {
 	_compiledReplaceStringType = [compiledReplaceStringType retain];
 }
 
-- (void)_setNameArray:(NSArray*)nameArray
+- (void)_setNameArray:(NSMutableArray*)nameArray
 {
 	_nameArray = [nameArray retain];
 }

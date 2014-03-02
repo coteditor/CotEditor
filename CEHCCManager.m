@@ -175,8 +175,8 @@ static CEHCCManager *sharedInstance = nil;
     // ArrayController のソート方式をセット
     NSSortDescriptor *theDescriptor = 
             [[[NSSortDescriptor alloc] initWithKey:k_HCCDataControllerKey ascending:YES] autorelease];
-    [_foreColorDataController setSortDescriptors:[NSArray arrayWithObject:theDescriptor]];
-    [_backColorDataController setSortDescriptors:[NSArray arrayWithObject:theDescriptor]];
+    [_foreColorDataController setSortDescriptors:@[theDescriptor]];
+    [_backColorDataController setSortDescriptors:@[theDescriptor]];
 }
 
 
@@ -246,7 +246,7 @@ static CEHCCManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     if ([[NSApp orderedDocuments] count] < 1) { return; }
-    CEDocument *theDoc = [[NSApp orderedDocuments] objectAtIndex:0];
+    CEDocument *theDoc = [NSApp orderedDocuments][0];
     NSString *theCodeStr = nil, *theSelected = nil;
     NSRange theRange;
 
@@ -336,13 +336,11 @@ static CEHCCManager *sharedInstance = nil;
     if (([sender tag] == k_addCodeToForeButtonTag) && 
             ([[theValues valueForKey:k_key_foreColorCBoxIsOk] boolValue])) {
         [_foreColorDataController addObject:
-                [NSDictionary dictionaryWithObjectsAndKeys:
-                    [_foreColorComboBox stringValue], k_HCCDataControllerKey, nil]];
+                @{k_HCCDataControllerKey: [_foreColorComboBox stringValue]}];
     } else if (([sender tag] == k_addCodeToBackButtonTag) && 
             ([[theValues valueForKey:k_key_backgroundColorCBoxIsOk] boolValue])) {
         [_backColorDataController addObject:
-                [NSDictionary dictionaryWithObjectsAndKeys:
-                    [_backgroundColorComboBox stringValue], k_HCCDataControllerKey, nil]];
+                @{k_HCCDataControllerKey: [_backgroundColorComboBox stringValue]}];
     }
 }
 
@@ -414,7 +412,7 @@ static CEHCCManager *sharedInstance = nil;
     if ([theString length] == 6) {
         NSCharacterSet *theSet = 
                 [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
-        int i;
+        NSInteger i;
 
         for (i = 0; i < 6; i++) {
             theBoolIsHex = [theSet characterIsMember:[theString characterAtIndex:i]];
@@ -446,7 +444,7 @@ static CEHCCManager *sharedInstance = nil;
     if ((inString != nil) && ([inString length] == 6)) {
         NSCharacterSet *theSet = 
                 [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
-        int i;
+        NSInteger i;
 
         theBoolIsOk = YES;
         for (i = 0; i < 6; i++) {
@@ -469,7 +467,7 @@ static CEHCCManager *sharedInstance = nil;
         theKeyName = k_key_backgroundColorCBoxIsOk;
     }
     [[[NSUserDefaultsController sharedUserDefaultsController] defaults] 
-        setValue:[NSNumber numberWithBool:theBoolIsOk] forKey:theKeyName];
+        setValue:@(theBoolIsOk) forKey:theKeyName];
 }
 
 

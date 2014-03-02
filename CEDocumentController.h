@@ -57,7 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSStringEncoding)accessorySelectedEncoding;
 - (void)setSelectAccessoryEncoding:(NSStringEncoding)inEncoding;
 - (void)setFontToAllDocuments;
-- (float)windowAlphaControllerValue;
+- (CGFloat)windowAlphaControllerValue;
 - (void)setWindowAlphaControllerDictionary:(NSMutableDictionary *)inDict;
 - (void)setWindowAlphaControllerValueDefault;
 - (void)setTransparencyPanelControlsEnabledWithDecrement:(BOOL)inValue;

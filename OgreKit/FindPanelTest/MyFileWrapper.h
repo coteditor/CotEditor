@@ -16,7 +16,8 @@
 
 @interface MyFileWrapper : NSObject 
 {
-    NSString        *_name, *_path;
+    NSString        *_name;
+    NSString        *_path;
     NSMutableString *_info;
     NSImage         *_icon;
     BOOL            _isDirectory;

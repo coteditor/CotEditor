@@ -1,0 +1,172 @@
+/*
+ * CotEditor Help Standard Style Sheet
+ * $Id$
+ */
+body {
+	margin: 0 0 1em 0;
+	padding: 0;
+	font-family: "Lucida Grande";
+	font-size: 9pt;
+	line-height: 130%;
+}
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+#contents {
+	margin: 3em 1.5em 0 1.5em;
+}
+
+h1 {
+	font-size: 130%;
+	margin: 1em 0;
+}
+h1:before {
+	content: url(../gfx/icon32.png);
+	-webkit-transform: scale(0.5);
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align:9px;
+	margin-right:26px;
+}
+h2 {
+	font-size: 110%;
+	line-height: 110%;
+	margin-top: 1.5em;
+	margin-bottom: 0.5em;
+	clear: both;
+}
+h3 {
+	font-size: 100%;
+	line-height: 110%;
+}
+
+ol, ul, pre {
+	padding: 1em 2em 0.5em 2em;
+	margin: 0;
+	border: 1px solid #cccccc;
+	background-color: #e6edff;
+	clear: both;
+}
+
+ul {
+	list-style-type: square;
+}
+
+li {
+	margin-bottom: 0.5em;
+}
+
+ul ul, ul ol {
+	padding: 0 3em;
+	margin: 0.5em 0;
+	border: none;
+}
+
+ul + ul, ol + ol, ul + ol, ol + ul {
+	margin-top: 1em;
+}
+
+ul.topicbox {
+	background-color: white;
+	border: 1px dotted #999999;
+}
+
+ul.rel_items {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	border: none;
+	background-color: white;
+	font-size: 90%;
+}
+
+p.point {
+	padding: 1em 2em 1em 1.5em;
+	margin: auto -1%;
+	border: 1px solid #cccccc;
+	background-color: #e6edff;
+}
+
+em {
+	font-weight: bold;
+	font-style: normal;
+}
+
+p#relbar {
+	text-align: right;
+}
+
+.figmarker {
+	font-weight: bold;
+	color: red;
+}
+
+#navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: -2px 6px 0;
+	border-bottom: 1px solid #bfbfbf;
+	background-color: #f2f2f2;
+	background-repeat: no-repeat;
+	float: left;
+	font-size: 85%;
+}
+
+#home {
+	position: absolute;
+	top: 2px;
+	left: 10px;
+}
+
+#index {
+	top: 2px;
+	right: 12px;
+	width: auto;
+	padding: 2px 25px 1px 8px;
+	background-color: #f2f2f2;
+	border-left: 1px solid #bfbfbf;
+	float: right;
+}
+
+img.snapshot {
+	float: left;
+	margin: 0 1em 1em 0;
+}
+
+img#h1icon {
+	margin: 0 8px -8px 0;
+}
+
+dt {
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+dd {
+	margin-left: 2.5em;
+}
+
+table {
+	border-collapse: collapse;
+	empty-cells: show;
+}
+th, td {
+	border: 1px solid #cccccc;
+	margin: 0;
+	padding: 3px;
+}
+th {
+	background-color: #e6edff;
+	font-weight: normal;
+	white-space: nowrap;
+}
+th.lh {
+	text-align: left;
+}
+
+tt, pre {
+	font-family: "Courier", "Courier New", monotype;
+}

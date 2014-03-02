@@ -48,19 +48,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupInvisibleFullwidthSpacePopup;
 - (void)setupSyntaxStylesPopup;
 - (void)deleteStyleAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)importOpenPanelDidEnd:(NSOpenPanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)secondarySheedlDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)autoDetectAlertDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)doImport:(NSString *)inFileName withCurrentSheetWindow:(NSWindow *)inWindow;
-- (void)exportSavePanelDidEnd:(NSSavePanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
+- (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow;
 - (void)doDeleteFileDropSetting;
 - (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo;
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
 - (void)editNewAddedRowOfFileDropTableView;
 @end
 
@@ -119,8 +115,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned long theSelected;
-    int i, theCount = [inMenuItems count];
+    NSUInteger theSelected;
 
     [_encodingMenuInOpen removeAllItems];
     theItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"") 
@@ -130,9 +125,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[_encodingMenuInOpen menu] addItem:[NSMenuItem separatorItem]];
     [_encodingMenuInNew removeAllItems];
 
-    for (i = 0; i < theCount; i++) {
-        [[_encodingMenuInOpen menu] addItem:[[[inMenuItems objectAtIndex:i] copy] autorelease]];
-        [[_encodingMenuInNew menu] addItem:[[[inMenuItems objectAtIndex:i] copy] autorelease]];
+    for (NSMenuItem *menuItem in inMenuItems) {
+        [[_encodingMenuInOpen menu] addItem:[[menuItem copy] autorelease]];
+        [[_encodingMenuInNew menu] addItem:[[menuItem copy] autorelease]];
     }
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
@@ -186,7 +181,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)sampleWidth
+- (CGFloat)sampleWidth
 // サンプルウィンドウの幅を得る
 // ------------------------------------------------------
 {
@@ -195,7 +190,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSampleWidth:(float)inWidth
+- (void)setSampleWidth:(CGFloat)inWidth
 // サンプルウィンドウの幅をセット
 // ------------------------------------------------------
 {
@@ -205,7 +200,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)sampleHeight
+- (CGFloat)sampleHeight
 // サンプルウィンドウの高さをセット
 // ------------------------------------------------------
 {
@@ -214,7 +209,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSampleHeight:(float)inHeight
+- (void)setSampleHeight:(CGFloat)inHeight
 // サンプルウィンドウの高さを得る
 // ------------------------------------------------------
 {
@@ -232,7 +227,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
     NSFont *theNewFont = [sender convertFont:[NSFont systemFontOfSize:0]];
     NSString *theName = [theNewFont fontName];
-    float theSize = [theNewFont pointSize];
+    CGFloat theSize = [theNewFont pointSize];
 
     if ([[[_prefTabView selectedTabViewItem] identifier] isEqualToString:k_prefFormatItemID]) {
         [theDefaults setObject:theName forKey:k_key_fontName];
@@ -242,6 +237,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [theDefaults setObject:theName forKey:k_key_printFontName];
         [theDefaults setFloat:theSize forKey:k_key_printFontSize];
         [self setFontFamilyNameAndSize];
+    }
+    
+    for (CEDocument *document in [[NSDocumentController sharedDocumentController] documents]) {
+        [document setFontToViewInWindow];
     }
 }
 
@@ -292,9 +291,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 2008.07.15.
     [_fileDropGlossaryTextView setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.",@"")];
 
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) { // = 10.4+ 
-        [_prefWindow setShowsToolbarButton:NO];
-    }
+    
+    [_prefWindow setShowsToolbarButton:NO];
 }
 
 
@@ -340,10 +338,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSArray *theComponents = [theXtsnStr componentsSeparatedByString:@","];
             NSMutableArray *theNewComps = [NSMutableArray array];
             NSString *thePartStr, *theNewXtsnStr;
-            int j, theCount = [theComponents count];        
 
-            for (j = 0; j < theCount; j++) {
-                thePartStr = [[theComponents objectAtIndex:j] stringByTrimmingCharactersInSet:theTrimSet];
+            for (NSString *component in theComponents) {
+                thePartStr = [component stringByTrimmingCharactersInSet:theTrimSet];
                 if ([thePartStr length] > 0) {
                     [theNewComps addObject:thePartStr];
                 }
@@ -484,7 +481,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーシンタックス編集シートを開き、閉じる
 // ------------------------------------------------------
 {
-    int theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
+    NSInteger theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
     if (([sender tag] != k_syntaxNewTag) && (theSelected < 0)) { return; }
 
     if (![[CESyntaxManager sharedInstance] setSelectionIndexOfStyle:theSelected mode:[sender tag]]) {
@@ -509,9 +506,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[CESyntaxManager sharedInstance] isOkButtonPressed]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
         NSString *theNewName = [[CESyntaxManager sharedInstance] editedNewStyleName];
-        NSDictionary *theDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                theOldName, k_key_oldStyleName, 
-                theNewName, k_key_newStyleName, nil];
+        NSDictionary *theDict = @{k_key_oldStyleName: theOldName, 
+                k_key_newStyleName: theNewName};
         [[CEDocumentController sharedDocumentController] 
                 setRecolorFlagToAllDocumentsWithStyleName:theDict];
         [[CESyntaxManager sharedInstance] setEditedNewStyleName:@""];
@@ -553,7 +549,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイル削除ボタンが押された
 // ------------------------------------------------------
 {
-    int theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2;
+    NSInteger theSelected = [_syntaxStylesPopup indexOfSelectedItem] - 2;
 
     if (![[CESyntaxManager sharedInstance] setSelectionIndexOfStyle:theSelected 
             mode:k_syntaxNoSheetTag]) {
@@ -579,20 +575,47 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイルインポートボタンが押された
 // ------------------------------------------------------
 {
-    NSOpenPanel *theOpenPanel = [NSOpenPanel openPanel];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 
     // OpenPanelをセットアップ(既定値を含む)、シートとして開く
-    [theOpenPanel setPrompt:NSLocalizedString(@"Import",@"")];
-    [theOpenPanel setResolvesAliases:YES];
-    [theOpenPanel setAllowsMultipleSelection:NO];
-    [theOpenPanel setCanChooseDirectories:NO];
-    [theOpenPanel beginSheetForDirectory:NSHomeDirectory() 
-            file:nil 
-            types:[NSArray arrayWithObject:@"plist"] 
-            modalForWindow:_prefWindow 
-            modalDelegate:self 
-            didEndSelector:@selector(importOpenPanelDidEnd:returnCode:contextInfo:) 
-            contextInfo:NULL];
+    [openPanel setPrompt:NSLocalizedString(@"Import",@"")];
+    [openPanel setResolvesAliases:YES];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setCanChooseDirectories:NO];
+    [openPanel setAllowedFileTypes:@[@"plist"]];
+    
+    [openPanel beginSheetModalForWindow:_prefWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelCancelButton) return;
+        
+        NSURL *URL = [openPanel URLs][0];
+        NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
+        
+        // 同名styleが既にあるときは、置換してもいいか確認
+        if ([[CESyntaxManager sharedInstance] existsStyleFileWithStyleName:styleName]) {
+            // オープンパネルを閉じる
+            [openPanel orderOut:self];
+            [_prefWindow makeKeyAndOrderFront:self];
+            
+            NSAlert *theAlert;
+            NSString *theMessage = [NSString stringWithFormat:
+                                    NSLocalizedString(@"the \"%@\" style already exists.", @""), styleName];
+            theAlert = [NSAlert alertWithMessageText:theMessage
+                                       defaultButton:NSLocalizedString(@"Cancel",@"")
+                                     alternateButton:NSLocalizedString(@"Replace",@"") otherButton:nil
+                           informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.",@"")];
+            // 現行シート値を設定し、確認のためにセカンダリシートを開く
+            _currentSheetCode = k_syntaxImportTag;
+            NSBeep();
+            [theAlert beginSheetModalForWindow:_prefWindow modalDelegate:self
+                                didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
+                                   contextInfo:[URL retain]]; // ===== retain
+            
+        } else {
+            // 重複するファイル名がないとき、インポート実行
+            [self doImport:URL withCurrentSheetWindow:openPanel];
+        }
+    }];
+    
 }
 
 
@@ -602,19 +625,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイルエクスポートボタンが押された
 // ------------------------------------------------------
 {
-    NSSavePanel *theSavePanel = [NSSavePanel savePanel];
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
 
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
-    [theSavePanel setCanCreateDirectories:YES];
-    [theSavePanel setCanSelectHiddenExtension:YES];
-    [theSavePanel setNameFieldLabel:NSLocalizedString(@"Export As:",@"")];
-    [theSavePanel setAllowedFileTypes:[NSArray arrayWithObject:@"plist"]];
-    [theSavePanel beginSheetForDirectory:NSHomeDirectory() 
-            file:[[_syntaxStylesPopup title] stringByAppendingPathExtension:@"plist"] 
-            modalForWindow:_prefWindow 
-            modalDelegate:self 
-            didEndSelector:@selector(exportSavePanelDidEnd:returnCode:contextInfo:) 
-            contextInfo:NULL];
+    [savePanel setCanCreateDirectories:YES];
+    [savePanel setCanSelectHiddenExtension:YES];
+    [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:",@"")];
+    [savePanel setNameFieldStringValue:[_syntaxStylesPopup title]];
+    [savePanel setAllowedFileTypes:@[@"plist"]];
+    
+    [savePanel beginSheetModalForWindow:_prefWindow completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelCancelButton) return;
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSURL *sourceURL = [[CESyntaxManager sharedInstance] URLOfStyle:[_syntaxStylesPopup title]];
+        NSURL *destURL = [savePanel URL];
+        
+        // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
+        if ([fileManager fileExistsAtPath:[destURL path]]) {
+            [fileManager removeItemAtURL:destURL error:nil];
+        }
+        [fileManager copyItemAtURL:sourceURL toURL:destURL error:nil];
+    }];
 }
 
 
@@ -720,7 +752,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // IB で Formatter が設定できないのでメソッドで行ってる。
 
-    float theValue = [sender floatValue];
+    CGFloat theValue = [sender floatValue];
 
     if (theValue < k_lineSpacingMin) { theValue = k_lineSpacingMin; }
     if (theValue > k_lineSpacingMax) { theValue = k_lineSpacingMax; }
@@ -766,11 +798,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSString *theBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
-    NSArray *theAnchorsArray = [NSArray arrayWithObjects:k_helpPrefAnchors, nil];
-    int theTag = [sender tag];
+    NSArray *theAnchorsArray = @[k_helpPrefAnchors];
+    NSInteger theTag = [sender tag];
 
     if ((theTag >= 0) && (theTag < [theAnchorsArray count])) {
-        [[NSHelpManager sharedHelpManager] openHelpAnchor:[theAnchorsArray objectAtIndex:theTag] 
+        [[NSHelpManager sharedHelpManager] openHelpAnchor:theAnchorsArray[theTag] 
                     inBook:theBookName];
     }
 }
@@ -811,7 +843,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     NSString *theName = [theValues valueForKey:k_key_fontName];
-    float theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+    CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
     NSString *theLocalizedName = [theFont displayName];
 
@@ -851,8 +883,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSUInteger i;
 
     [_invisibleSpacePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
@@ -862,7 +894,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleSpace] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleSpace] unsignedIntegerValue];
     [_invisibleSpacePopup selectItemAtIndex:theSelected];
 }
 
@@ -875,8 +907,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSUInteger i;
 
     [_invisibleTabPopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
@@ -886,7 +918,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleTab] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleTab] unsignedIntegerValue];
     [_invisibleTabPopup selectItemAtIndex:theSelected];
 }
 
@@ -899,8 +931,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSUInteger i;
 
     [_invisibleNewLinePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
@@ -910,7 +942,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleNewLine] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleNewLine] unsignedIntegerValue];
     [_invisibleNewLinePopup selectItemAtIndex:theSelected];
 }
 
@@ -923,8 +955,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theTitle;
     NSMenuItem *theItem;
-    unsigned int theSelected;
-    int i;
+    NSUInteger theSelected;
+    NSUInteger i;
 
     [_invisibleFullwidthSpacePopup removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
@@ -934,7 +966,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    theSelected = [[theValues valueForKey:k_key_invisibleFullwidthSpace] unsignedIntValue];
+    theSelected = [[theValues valueForKey:k_key_invisibleFullwidthSpace] unsignedIntegerValue];
     [_invisibleFullwidthSpacePopup selectItemAtIndex:theSelected];
 }
 
@@ -948,8 +980,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theStyleNames = [[CESyntaxManager sharedInstance] styleNames];
     NSMenuItem *theItem;
     NSString *theSelectedTitle;
-    unsigned int theSelected;
-    int i, theCount = [theStyleNames count];
+    NSUInteger theSelected;
 
     [_syntaxStylesPopup removeAllItems];
     [_syntaxStylesDefaultPopup removeAllItems];
@@ -962,8 +993,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[_syntaxStylesDefaultPopup menu] addItem:theItem];
     [[_syntaxStylesDefaultPopup menu] addItem:[NSMenuItem separatorItem]];
     
-    for (i = 0; i < theCount; i++) {
-        theItem = [[[NSMenuItem alloc] initWithTitle:[theStyleNames objectAtIndex:i] 
+    for (NSString *styleName in theStyleNames) {
+        theItem = [[[NSMenuItem alloc] initWithTitle:styleName
                     action:nil keyEquivalent:@""] autorelease];
         [[_syntaxStylesPopup menu] addItem:theItem];
         [[_syntaxStylesDefaultPopup menu] addItem:[[theItem copy] autorelease]];
@@ -983,7 +1014,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)deleteStyleAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // style削除確認シートが閉じる直前
 // ------------------------------------------------------
 {
@@ -1020,47 +1051,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)importOpenPanelDidEnd:(NSOpenPanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
-// styleインポートオープンパネルシートが閉じる直前
-// ------------------------------------------------------
-{
-    if (inReturnCode == NSCancelButton) {
-        return;
-    }
-    NSString *theFileName = [[inSheet filenames] objectAtIndex:0];
-    NSAlert *theAlert;
-
-    // 同名styleが既にあるときは、置換してもいいか確認
-    if ([[CESyntaxManager sharedInstance] existsStyleFileWithStyleName:theFileName]) {
-        // オープンパネルを閉じる
-        [inSheet orderOut:self];
-        [_prefWindow makeKeyAndOrderFront:self];
-
-        NSString *theMessage = [NSString stringWithFormat:
-                    NSLocalizedString(@"the \"%@\" style already exists.", @""), 
-                    [[theFileName lastPathComponent] stringByDeletingPathExtension]];
-        theAlert = [NSAlert alertWithMessageText:theMessage 
-                defaultButton:NSLocalizedString(@"Cancel",@"") 
-                alternateButton:NSLocalizedString(@"Replace",@"") otherButton:nil 
-                informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.",@"")];
-        // 現行シート値を設定し、確認のためにセカンダリシートを開く
-        _currentSheetCode = k_syntaxImportTag;
-        NSBeep();
-        [theAlert beginSheetModalForWindow:_prefWindow modalDelegate:self 
-            didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:) 
-            contextInfo:[theFileName retain]]; // ===== retain
-
-    } else {
-        // 重複するファイル名がないとき、インポート実行
-        [self doImport:theFileName withCurrentSheetWindow:inSheet];
-    }
-}
-
-
-// ------------------------------------------------------
 - (void)secondarySheedlDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // セカンダリシートが閉じる直前
 // ------------------------------------------------------
 {
@@ -1068,14 +1060,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (inReturnCode == NSAlertAlternateReturn) { // = Replace
             [self doImport:inContextInfo withCurrentSheetWindow:[inSheet window]];
         }
-        [(NSString *)inContextInfo release]; // ===== release
+        [(NSURL *)inContextInfo release]; // ===== release
     }
 }
 
 
 // ------------------------------------------------------
 - (void)autoDetectAlertDidEnd:(NSAlert *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // 既存ファイルを開くときのエンコーディングメニューで自動認識以外が
 // 選択されたときの警告シートが閉じる直前
 // ------------------------------------------------------
@@ -1092,11 +1084,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)doImport:(NSString *)inFileName withCurrentSheetWindow:(NSWindow *)inWindow
+- (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow
 // styleインポート実行
 // ------------------------------------------------------
 {
-    if ([[CESyntaxManager sharedInstance] importStyleFile:inFileName]) {
+    if ([[CESyntaxManager sharedInstance] importStyleFile:[fileURL path]]) {
         // インポートに成功したら、メニューとボタンを更新
         [_appController buildAllSyntaxMenus];
     } else {
@@ -1107,36 +1099,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             defaultButton:nil 
             alternateButton:nil otherButton:nil 
             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not import \"%@\".",@""), 
-                    [inFileName lastPathComponent]];
+                    [fileURL lastPathComponent]];
         NSBeep();
         [theAlert beginSheetModalForWindow:_prefWindow modalDelegate:self 
             didEndSelector:NULL 
             contextInfo:NULL];
     }
     _currentSheetCode = k_syntaxNoSheetTag;
-}
-
-
-// ------------------------------------------------------
-- (void)exportSavePanelDidEnd:(NSSavePanel *)inSheet 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
-// styleエクスポートオープンパネルシートが閉じる直前
-// ------------------------------------------------------
-{
-    if (inReturnCode == NSCancelButton) {
-        return;
-    }
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *theSource = 
-            [[CESyntaxManager sharedInstance] filePathOfStyleName:[_syntaxStylesPopup title]];
-    NSString *theDestination = [inSheet filename];
-
-    // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
-    if ([theFileManager fileExistsAtPath:theDestination]) {
-        (void)[theFileManager removeFileAtPath:theDestination handler:nil];
-    }
-    (void)[theFileManager copyPath:theSource toPath:theDestination handler:nil];
-    [self setupSyntaxMenus]; // *** この更新は必要か？ (2/16)
 }
 
 
@@ -1149,11 +1118,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (!_doDeleteFileDrop) { return; }
 
     NSArray *theSelected = [_fileDropController selectedObjects];
-    NSString *theXtsnStr = [[theSelected objectAtIndex:0] valueForKey:k_key_fileDropExtensions];
+    NSString *theXtsnStr = [theSelected[0] valueForKey:k_key_fileDropExtensions];
     if ([theSelected count] == 0) {
         return;
     } else if (theXtsnStr == nil) {
-        theXtsnStr = [NSString stringWithString:@""];
+        theXtsnStr = @"";
     }
 
     NSString *theMessage = [NSString stringWithFormat:
@@ -1167,13 +1136,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theAlert beginSheetModalForWindow:_prefWindow 
             modalDelegate:self 
             didEndSelector:@selector(deleteFileDropSettingAlertDidEnd:returnCode:contextInfo:) 
-            contextInfo:[NSDictionary dictionaryWithObjectsAndKeys:theXtsnStr, @"theXtsnStr", nil]];
+            contextInfo:@{@"theXtsnStr": theXtsnStr}];
 }
 
 
 // ------------------------------------------------------
 - (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(int)inReturnCode contextInfo:(void *)inContextInfo
+        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo
 // ファイルドロップ編集設定削除確認シートが閉じる直前
 // ------------------------------------------------------
 {

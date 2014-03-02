@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @class CEDocument;
 
-@interface CEToolbarController : NSObject
+@interface CEToolbarController : NSObject <NSToolbarDelegate>
 {
     IBOutlet id _mainWindow;
     IBOutlet id _lineEndingPopupButton;
@@ -51,8 +51,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupToolbar;
 - (void)updateToggleItem:(NSString *)inIdentifer setOn:(BOOL)inBool;
 - (void)buildEncodingPopupButton;
-- (void)setSelectEncoding:(int)inEncoding;
-- (void)setSelectEndingItemIndex:(int)inIndex;
+- (void)setSelectEncoding:(NSInteger)inEncoding;
+- (void)setSelectEndingItemIndex:(NSInteger)inIndex;
 - (void)buildSyntaxPopupButton;
 - (NSString *)selectedTitleOfSyntaxItem;
 - (void)setSelectSyntaxItemWithTitle:(NSString *)inTitle;

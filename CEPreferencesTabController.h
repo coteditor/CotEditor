@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-@interface CEPreferencesTabController : NSObject
+@interface CEPreferencesTabController : NSObject <NSToolbarDelegate>
 {
     IBOutlet id _prefWindow;
     IBOutlet id _tabView;

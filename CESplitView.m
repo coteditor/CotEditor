@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)dividerThickness
+- (CGFloat)dividerThickness
 // 分割線の高さを返す
 // ------------------------------------------------------
 {
@@ -80,7 +80,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setShowLineNumWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+                        withObject:@(inBool)];
 }
 
 
@@ -90,7 +90,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setShowNavigationBarWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+                        withObject:@(inBool)];
 }
 
 
@@ -100,7 +100,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setWrapLinesWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+                        withObject:@(inBool)];
 }
 
 
@@ -110,7 +110,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setShowInvisiblesWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+                        withObject:@(inBool)];
 }
 
 
@@ -120,7 +120,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setUseAntialiasWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+                        withObject:@(inBool)];
 }
 
 
@@ -130,7 +130,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+                        withObject:@(inBool)];
 }
 
 
@@ -188,12 +188,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setAllBackgroundColorWithAlpha:(float)inAlpha
+- (void)setAllBackgroundColorWithAlpha:(CGFloat)inAlpha
 // 全てのテキストビューの背景透明度を設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:) 
-                        withObject:[NSNumber numberWithFloat:inAlpha]];
+                        withObject:@(inAlpha)];
 }
 
 

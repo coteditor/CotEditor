@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 @interface CEStatusBarView (Private)
-- (void)setHeight:(float)inValue;
+- (void)setHeight:(CGFloat)inValue;
 @end
 
 
@@ -234,11 +234,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @implementation CEStatusBarView (Private)
 
 // ------------------------------------------------------
-- (void)setHeight:(float)inValue
+- (void)setHeight:(CGFloat)inValue
 // 高さをセット
 // ------------------------------------------------------
 {
-    float theAdjHeight = (inValue - NSHeight([self frame]));
+    CGFloat theAdjHeight = (inValue - NSHeight([self frame]));
     NSRect theNewFrame;
 
     // set masterView height

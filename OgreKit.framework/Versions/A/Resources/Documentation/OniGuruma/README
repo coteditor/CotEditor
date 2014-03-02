@@ -1,3 +1,55 @@
+README  2013/03/21
+
+Onigmo (Oniguruma-mod)  --  (C) K.Takata <kentkt AT csc DOT jp>
+
+https://github.com/k-takata/Onigmo
+
+Onigmo is a regular expressions library forked from Oniguruma.
+Some of new features introduced in Perl 5.10+ can be used.
+
+Some patches are merged from Ruby 2.0.0.
+
+
+Main New features:
+  Regular Expressions (depends on the syntax):
+    \K, \R, \X, (?(cond)yes|no)
+    (?adlu), \g{name}, \g{n}, (?&name), (?n), (?R), (?0)
+    (?P<name>...), (?P=name), (?P>name)
+
+  API:
+    onig_search_gpos (for Perl-compatible \G)
+
+  Encoding:
+    CP932
+
+  Syntax:
+    Python
+
+
+New Source Files:
+  enc/cp932.c                   CP932 encoding.
+  enc/unicode/casefold.h        Unicode case folding data.
+  enc/unicode/name2ctype.h      Unicode properties data.
+
+  onig.py                       onig.dll/libonig.so loader.
+  testpy.py                     test program.
+
+  tool/CaseFolding.py           generates casefold.h.
+  tool/convert-name2ctype.sh    converts name2ctype.kwd to name2ctypes.h.
+  tool/enc-unicode.rb           generates name2ctype.kwd.
+
+  win32/makedef.py              creates onig.def.
+  win32/onig.rc                 resource file for onig.dll.
+
+
+ToDo:
+  * Reduce the size of Unicode Character Data.
+  * (?|...)
+  * Improve (?(cond)yes|no). (support look-ahead/behind assertions.)
+
+
+Oniguruma's README follows:
+======================================================================
 README  2007/05/31
 
 Oniguruma  ----   (C) K.Kosako <sndgk393 AT ybb DOT ne DOT jp>
@@ -77,7 +129,7 @@ Usage
   See doc/API for Oniguruma API.
 
   If you want to disable UChar type (== unsigned char) definition
-  in oniguruma.h, define ONIG_ESCAPE_UCHAR_COLLISION and then 
+  in oniguruma.h, define ONIG_ESCAPE_UCHAR_COLLISION and then
   include oniguruma.h.
 
   If you want to disable regex_t type definition in oniguruma.h,

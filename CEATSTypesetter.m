@@ -86,18 +86,18 @@ static CEATSTypesetter *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (float)lineSpacingAfterGlyphAtIndex:(unsigned)inGlyphIndex withProposedLineFragmentRect:(NSRect)inRect
+- (CGFloat)lineSpacingAfterGlyphAtIndex:(NSUInteger)inGlyphIndex withProposedLineFragmentRect:(NSRect)inRect
 // 行間ピクセル数を返す
 // ------------------------------------------------------
 {
     CELayoutManager *theManager = (CELayoutManager *)[self layoutManager];
-    float theLineSpacing = [(CETextViewCore *)[[self currentTextContainer] textView] lineSpacing];
-    float theFontSize;
+    CGFloat theLineSpacing = [(CETextViewCore *)[[self currentTextContainer] textView] lineSpacing];
+    CGFloat theFontSize;
 
     if (([theManager isPrinting]) || (![theManager fixLineHeight])) {
         // 印刷時または複合フォントでの行間固定をしないときは、システム既定値に、設定された行間を追加するだけ
         // （[NSGraphicsContext currentContextDrawingToScreen] が真を返す時があるため、専用フラグで印刷中を確認）
-        float theSpacing = [super lineSpacingAfterGlyphAtIndex:inGlyphIndex withProposedLineFragmentRect:inRect];
+        CGFloat theSpacing = [super lineSpacingAfterGlyphAtIndex:inGlyphIndex withProposedLineFragmentRect:inRect];
         theFontSize = [[[[self currentTextContainer] textView] font] pointSize];
 
         return (theSpacing + theLineSpacing * theFontSize);
@@ -109,7 +109,7 @@ static CEATSTypesetter *sharedInstance = nil;
     // （CETextViewCore で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
     // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
     // 挿入すると行間がズレる」問題が生じる）
-    float theDefaultLineHeight = [theManager defaultLineHeightForTextFont];
+    CGFloat theDefaultLineHeight = [theManager defaultLineHeightForTextFont];
     theFontSize = [theManager textFontPointSize];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める

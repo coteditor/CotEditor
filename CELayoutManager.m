@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 @interface CELayoutManager (Private)
-- (NSPoint)pointToDrawGlyphAtIndex:(unsigned int)inGlyphIndex adjust:(NSSize)inSize;
+- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)inGlyphIndex adjust:(NSSize)inSize;
 @end
 
 
@@ -73,7 +73,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /*
 // 削除しないこと！ ************* (1/12)
         NSString *theName = [theValues valueForKey:k_key_fontName];
-        float theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+        CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
         NSFont *theFont = [NSFont fontWithName:theName size:theSize];
         NSColor *theColor = 
                 [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
@@ -89,13 +89,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _appController = (CEAppController *)[[NSApp delegate] retain]; // ===== retain
 
         _spaceCharacter = [[_appController invisibleSpaceCharacter:
-                [[theValues valueForKey:k_key_invisibleSpace] unsignedIntValue]] retain]; // ===== retain
+                [[theValues valueForKey:k_key_invisibleSpace] unsignedIntegerValue]] retain]; // ===== retain
         _tabCharacter = [[_appController invisibleTabCharacter:
-                [[theValues valueForKey:k_key_invisibleTab] unsignedIntValue]] retain]; // ===== retain
+                [[theValues valueForKey:k_key_invisibleTab] unsignedIntegerValue]] retain]; // ===== retain
         _newLineCharacter = [[_appController invisibleNewLineCharacter:
-                [[theValues valueForKey:k_key_invisibleNewLine] unsignedIntValue]] retain]; // ===== retain
+                [[theValues valueForKey:k_key_invisibleNewLine] unsignedIntegerValue]] retain]; // ===== retain
         _fullwidthSpaceCharacter = [[_appController invisibleFullwidthSpaceCharacter:
-                [[theValues valueForKey:k_key_invisibleFullwidthSpace] unsignedIntValue]] retain]; // ===== retain
+                [[theValues valueForKey:k_key_invisibleFullwidthSpace] unsignedIntegerValue]] retain]; // ===== retain
 
         // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
         [self setFixLineHeight:NO];
@@ -163,7 +163,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSPoint)locationForGlyphAtIndex:(unsigned)inGlyphIndex
+- (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
 // グリフ位置を返す
 // ------------------------------------------------------
 {
@@ -172,13 +172,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）
 
         // フォントサイズは随時変更されるため、表示時に取得する
-        NSPoint outPoint = [super locationForGlyphAtIndex:inGlyphIndex];
+        NSPoint outPoint = [super locationForGlyphAtIndex:glyphIndex];
         outPoint.y = [self textFontGlyphY];
 
         return outPoint;
     }
 
-    return [super locationForGlyphAtIndex:inGlyphIndex];
+    return [super locationForGlyphAtIndex:glyphIndex];
 }
 
 
@@ -192,25 +192,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theCompleteStr = [[self textStorage] string];
-    unsigned int theLengthToRedraw = NSMaxRange(inGlyphRange);
-    unsigned int theGlyphIndex, theCharIndex = 0;
+    NSUInteger theLengthToRedraw = NSMaxRange(inGlyphRange);
+    NSUInteger theGlyphIndex, theCharIndex = 0;
     int theInvisibleCharPrintMenuIndex;
 
     id theView = [self firstTextView];
     if (([self isPrinting]) && ([theView respondsToSelector:@selector(printValues)])) {
         theInvisibleCharPrintMenuIndex = 
-                [[[theView printValues] valueForKey:k_printInvisibleCharIndex] intValue];
+                [[[theView printValues] valueForKey:k_printInvisibleCharIndex] integerValue];
     } else {
-        theInvisibleCharPrintMenuIndex = [[theValues valueForKey:k_printInvisibleCharIndex] intValue];
+        theInvisibleCharPrintMenuIndex = [[theValues valueForKey:k_printInvisibleCharIndex] integerValue];
     }
 
     // フォントサイズは随時変更されるため、表示時に取得する
     NSFont *theFont = ([self isPrinting]) ? [[self textStorage] font] : [self textFont];
     NSColor *theColor = 
             [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
-    _attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-            theFont, NSFontAttributeName, 
-            theColor, NSForegroundColorAttributeName,  nil];
+    _attributes = @{NSFontAttributeName: theFont, 
+            NSForegroundColorAttributeName: theColor};
 
     unichar theCharacter;
     NSPoint thePointToDraw;
@@ -224,8 +223,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     ([self showInvisibles])) || 
             (([self isPrinting]) && (theInvisibleCharPrintMenuIndex == 2))) {
 
-        float theInsetWidth = [[theValues valueForKey:k_key_textContainerInsetWidth] floatValue];
-        float theInsetHeight = [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue];
+        CGFloat theInsetWidth = [[theValues valueForKey:k_key_textContainerInsetWidth] floatValue];
+        CGFloat theInsetHeight = [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue];
         if ([self isPrinting]) {
             NSPoint thePoint = [[self firstTextView] textContainerOrigin];
             theInsetWidth = thePoint.x;
@@ -261,13 +260,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSGlyphInfo *theGlyphInfo = [NSGlyphInfo glyphInfoWithGlyph:theGlyph
                                     forFont:theReplaceFont baseString:theBaseStr];
                 if (theGlyphInfo != nil) {
-                    NSDictionary *theReplaceAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
-                            theGlyphInfo, NSGlyphInfoAttributeName, 
-                            theReplaceFont , NSFontAttributeName, 
-                            theColor, NSForegroundColorAttributeName,  nil];
+                    NSDictionary *theReplaceAttrs = @{NSGlyphInfoAttributeName: theGlyphInfo, 
+                            NSFontAttributeName: theReplaceFont, 
+                            NSForegroundColorAttributeName: theColor};
                     NSDictionary *theAttrs = 
                             [[self textStorage] attributesAtIndex:theCharIndex effectiveRange:NULL];
-                    if ([theAttrs objectForKey:NSGlyphInfoAttributeName] == nil) {
+                    if (theAttrs[NSGlyphInfoAttributeName] == nil) {
                         [[self textStorage] addAttributes:theReplaceAttrs range:theCharRange];
                     }
                 }
@@ -296,8 +294,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRange theRange = NSMakeRange(0, [[[self textStorage] string] length]);
         [[self textStorage] removeAttribute:NSGlyphInfoAttributeName range:theRange];
     }
-    if (([self showOtherInvisibles]) && 
-                (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3)) { // = 10.4+
+    if ([self showOtherInvisibles]) {
         [self setShowsControlCharacters:inValue];
     }
     _showInvisibles = inValue;
@@ -390,11 +387,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // その他の不可視文字を表示するかどうかを設定する
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) { // = 10.4+
-        [self setShowsControlCharacters:inValue];
-    } else {
-        [self setShowsControlCharacters:NO];
-    }
+    [self setShowsControlCharacters:inValue];
     _showOtherInvisibles = inValue;
 }
 
@@ -508,7 +501,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)defaultLineHeightForTextFont
+- (CGFloat)defaultLineHeightForTextFont
 // 表示フォントでの行高を返す
 // ------------------------------------------------------
 {
@@ -517,7 +510,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)textFontPointSize
+- (CGFloat)textFontPointSize
 // 表示フォントサイズを返す
 // ------------------------------------------------------
 {
@@ -526,7 +519,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)textFontGlyphY
+- (CGFloat)textFontGlyphY
 // 表示フォントグリフのY位置を返す
 // ------------------------------------------------------
 {
@@ -535,19 +528,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (float)lineHeight
+- (CGFloat)lineHeight
 // 複合フォントで行の高さがばらつくのを防止するため、規定した行の高さを返す
 // ------------------------------------------------------
 {
-    float theLineSpacing = [(CETextViewCore *)[self firstTextView] lineSpacing];
+    CGFloat theLineSpacing = [(CETextViewCore *)[self firstTextView] lineSpacing];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
     return floor(_defaultLineHeightForTextFont + theLineSpacing * [self textFontPointSize] + 0.5);
 }
 
 
+/*
 // ------------------------------------------------------
-- (void)_clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(int)fp16
+- (void)_clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(NSInteger)fp16
 // 隠しメソッドをオーバーライド。
 // ------------------------------------------------------
 {
@@ -555,9 +549,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 10.5未満で実行されているときまたは小規模の変更のみ、スーパークラスで実行
     // （小規模の変更を通さないと、IMで入力中の変換前文字が直前までその場所にセットされていたattrにカラーリングされてしまう）
     if ((abs(fp16) < 65000) || (floor(NSAppKitVersionNumber) < 949)) { // 949 = LeopardのNSAppKitVersionNumber
-        [super _clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(int)fp16];
+        [super _clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(NSInteger)fp16];
     }
 }
+*/
 
 
 @end
@@ -572,7 +567,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 //------------------------------------------------------
-- (NSPoint)pointToDrawGlyphAtIndex:(unsigned int)inGlyphIndex adjust:(NSSize)inSize
+- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)inGlyphIndex adjust:(NSSize)inSize
 // グリフを描画する位置を返す
 //------------------------------------------------------
 {

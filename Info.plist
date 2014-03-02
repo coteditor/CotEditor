@@ -54,20 +54,24 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>CotEditor</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>CotEditor.help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>com.aynimac.CotEditor.help</string>
 	<key>CFBundleIconFile</key>
 	<string>appIcon</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.3.1</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.aynimac.CotEditor</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.4α mod</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>1.3.1</string>
+	<string>1024.1</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSMainNibFile</key>

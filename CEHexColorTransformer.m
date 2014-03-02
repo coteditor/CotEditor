@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 変換後のオブジェクトのクラスを返す
 // ------------------------------------------------------
 {
-    return [NSString self];
+    return [NSString class];
 }
 
 
@@ -77,7 +77,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     id theColor = [NSUnarchiver unarchiveObjectWithData:inValue];
     if (theColor == nil) { return nil; }
-    float theRed, theGreen, theBlue;
+    CGFloat theRed, theGreen, theBlue;
     NSString *outString = nil, *theColorSpaceName = nil;
 
     // カラースペース名がRGB系でなかったらコンバートする
@@ -88,7 +88,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     [theColor getRed:&theRed green:&theGreen blue:&theBlue alpha:nil];
     // 各色の値を文字列に整形
-    outString = [NSString stringWithFormat:@"%2.2x%2.2x%2.2x", 
+    outString = [NSString stringWithFormat:@"%2.2lx%2.2lx%2.2lx",
             (unsigned long)(theRed*255), (unsigned long)(theGreen*255), (unsigned long)(theBlue*255)];
 
     return outString;
@@ -104,19 +104,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([inValue length] != 6) { return nil; }
 
     unsigned int theInt = 0;
-    float theRed, theGreen, theBlue;
-    int i;
+    CGFloat theRed, theGreen, theBlue;
+    NSInteger i;
 
     NSScanner *theScanner;
     for (i = 0; i < 3; i++) {
         theScanner = [NSScanner scannerWithString:[inValue substringWithRange:NSMakeRange(i * 2, 2)]];
         if ([theScanner scanHexInt:&theInt]) {
             if (i == 0) {
-                theRed = (theInt > 0) ? ((float)theInt / 255) : 0.0;
+                theRed = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
             } else if (i == 1) {
-                theGreen = (theInt > 0) ? ((float)theInt / 255) : 0.0;
+                theGreen = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
             } else if (i == 2) {
-                theBlue = (theInt > 0) ? ((float)theInt / 255) : 0.0;
+                theBlue = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
             }
         }
     }
