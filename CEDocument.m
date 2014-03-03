@@ -967,7 +967,7 @@ enum { typeFSS = 'fss ' };
         [[_windowController window] setAlphaValue:1.0];
         [[_editorView splitView] setAllBackgroundColorWithAlpha:theAlpha];
     } else {
-        [[_windowController window] setBackgroundColor:[NSColor windowBackgroundColor]]; // 通常の背景色をセット
+        [[_windowController window] setBackgroundColor:nil]; // 通常の背景色をセット
         [[_windowController window] setOpaque:YES]; // ウィンドウを不透明にする
         [[_windowController window] setAlphaValue:theAlpha];
         [[_editorView splitView] setAllBackgroundColorWithAlpha:1.0];
