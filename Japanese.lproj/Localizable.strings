@@ -219,27 +219,6 @@ http://www.aynimac.com/
 "Show Incompatible Char(s)" = "非互換文字を表示";
 "Show Incompatible Char for the encoding" = "エンコーディングと非互換の文字を表示";
 
-// Preferences
-"Preferences" = "環境設定";
-"Open Preferences panel" = "環境設定を開く";
-
-// Save
-"Save" = "保存";
-"Save document" = "書類を保存";
-
-// Save As
-"Save As" = "別名で保存";
-"Save document as other name" = "書類を別名で保存";
-
-// PageSetup
-"Page Setup" = "ページ設定";
-"Print page setup" = "プリント設定を開く";
-
-// Open Transparency Panel
-"Trans. Panel" = "透明度";
-"Transparency Panel" = "透明度パネル";
-"Open window Transparency Panel" = "ウインドウ透明度設定パネルを開く";
-
 // Bigger Font
 "Bigger" = "大きく";
 "Bigger Font" = "文字を大きく";
