@@ -233,47 +233,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [outToolbarItem setImage:[NSImage imageNamed:@"IncompatibleChar"]];
         [outToolbarItem setAction:@selector(toggleIncompatibleCharList:)];
 
-    // Preferences
-    } else if ([inItemIdentifier isEqualToString:k_preferencesItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Preferences",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Preferences",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open Preferences panel",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"Preferences"]];
-        [outToolbarItem setTarget:[NSApp delegate]]; // = CEAppController
-        [outToolbarItem setAction:@selector(openPrefWindow:)];
-
-    // Save (target = FirstResponder)
-    } else if ([inItemIdentifier isEqualToString:k_saveItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Save",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Save",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Save document",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"Save"]];
-        [outToolbarItem setAction:@selector(saveDocument:)];
-
-    // Save As (target = FirstResponder)
-    } else if ([inItemIdentifier isEqualToString:k_saveAsItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Save As",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Save As",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Save document as other name",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"SaveAs"]];
-        [outToolbarItem setAction:@selector(saveDocumentAs:)];
-
-    // Page setup (target = FirstResponder)
-    } else if ([inItemIdentifier isEqualToString:k_pageSetupItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Page Setup",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Page Setup",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Print page setup",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"PageSetup"]];
-        [outToolbarItem setAction:@selector(runPageLayout:)];
-
-    // Open TransparencyPanel (target = FirstResponder(CEDocumentController))
-    } else if ([inItemIdentifier isEqualToString:k_openTransparencyPanelItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Trans. Panel",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Transparency Panel",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open window Transparency Panel",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"TransparencyPanel"]];
-        [outToolbarItem setAction:@selector(openTransparencyPanel:)];
-
     // Bigger Font
     } else if ([inItemIdentifier isEqualToString:k_biggerFontItemID]) {
         [outToolbarItem setLabel:NSLocalizedString(@"Bigger",@"")];
@@ -439,13 +398,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     return @[k_getInfoItemID, 
-                k_showIncompatibleCharItemID, 
-                k_preferencesItemID, 
-                k_saveItemID, 
-                k_saveAsItemID, 
-                k_pageSetupItemID, 
-                NSToolbarPrintItemIdentifier, 
-                k_openTransparencyPanelItemID, 
+                k_showIncompatibleCharItemID,
+                NSToolbarPrintItemIdentifier,  
                 NSToolbarShowFontsItemIdentifier, 
                 k_biggerFontItemID, 
                 k_smallerFontItemID, 
