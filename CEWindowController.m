@@ -448,6 +448,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+- (void)windowWillEnterFullScreen:(NSNotification *)notification
+// フルスクリーンを開始
+// ------------------------------------------------------
+{
+    // ウインドウ背景をデフォルトにする（ツールバーの背景に影響）
+    [[self window] setBackgroundColor:nil];
+}
+
+
+// ------------------------------------------------------
+- (void)windowDidExitFullScreen:(NSNotification *)notification
+// フルスクリーンを終了
+// ------------------------------------------------------
+{
+    // ウインドウ背景を戻す
+    if ([[self document] alphaOnlyTextViewInThisWindow]) {
+        [[self window] setBackgroundColor:[NSColor clearColor]];
+    }
+}
+
+
 
 #pragma mark ===== Action messages =====
 
