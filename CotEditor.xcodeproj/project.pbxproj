@@ -1028,7 +1028,7 @@
 			buildSettings = {
 				GCC_MODEL_TUNING = G3;
 				GCC_VERSION = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx;
@@ -1040,7 +1040,7 @@
 			buildSettings = {
 				GCC_MODEL_TUNING = G3;
 				GCC_VERSION = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PREBINDING = NO;
 				SDKROOT = macosx;
 			};
