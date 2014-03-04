@@ -39,7 +39,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CETextSelection.h"
 #import "CEPrintView.h"
 #import "UKXattrMetadataStore.h"
-#import "VDKQueue.h"
 
 @class CEEditorView;
 @class UKXattrMetadataStore;
@@ -50,7 +49,7 @@ typedef struct {
      void *contextInfo;
 } CanCloseAlertContext;
 
-@interface CEDocument : NSDocument <VDKQueueDelegate>
+@interface CEDocument : NSDocument
 {
     CEEditorView *_editorView;
     id _windowController;

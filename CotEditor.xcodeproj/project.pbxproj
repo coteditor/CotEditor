@@ -657,8 +657,6 @@
 				8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */,
 				8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */,
 				8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */,
-				2A9A143118B4E5B2001080D6 /* VDKQueue.h */,
-				2A9A143218B4E5B2001080D6 /* VDKQueue.m */,
 			);
 			name = "Import Sources";
 			sourceTree = "<group>";
@@ -899,7 +897,6 @@
 				8CBFD5F40DC42B1200EC093D /* CEPrivateMutableArray.m in Sources */,
 				8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */,
 				8C1305B20DC4B83000975AC6 /* RKLMatchEnumerator.m in Sources */,
-				2A9A143318B4E5B2001080D6 /* VDKQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
