@@ -95,6 +95,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [_scrollView setHasHorizontalScroller:YES];
         [_scrollView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
         [_scrollView setAutohidesScrollers:NO];
+        [_scrollView setDrawsBackground:NO];
         [[_scrollView contentView] setAutoresizesSubviews:YES];
         // （splitViewをリサイズした時に最後までナビバーを表示させるため、その下に配置する）
         [self addSubview:_scrollView positioned:NSWindowBelow relativeTo:_navigationBar];
