@@ -52,8 +52,6 @@ enum { typeFSS = 'fss ' };
 
 @interface CEDocument ()
 
-@property NSUInteger numberOfSavingFlags;
-
 - (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding;
 - (void)doSetEncoding:(NSStringEncoding)inEncoding;
 - (void)updateEncodingInToolbarAndInfo;
@@ -138,7 +136,6 @@ enum { typeFSS = 'fss ' };
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
         _fileSender = nil;
         _fileToken = nil;
-        [self setNumberOfSavingFlags:0];
         _showUpdateAlertWithBecomeKey = NO;
         _isRevertingForExternalFileUpdate = NO;
         _canActivateShowInvisibleCharsItem = 
@@ -193,8 +190,6 @@ enum { typeFSS = 'fss ' };
 // バックアップファイルの保存(保存処理で包括的に呼ばれる)
 // ------------------------------------------------------
 {
-    // 保存中のフラグを立て、保存実行（自分自身が保存した時のファイル更新通知を区別するため）
-    [self increaseSavingFlag];
     // 新規書類を最初に保存する場合のフラグをセット
     BOOL theBoolIsFirstSaving = (([self fileURL] == nil) || (saveOperation == NSSaveAsOperation));
     // 保存処理実行
@@ -228,9 +223,6 @@ enum { typeFSS = 'fss ' };
     [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
     // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
     [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
-
-    // ディレイをかけて、保存中フラグをもどす
-    [self performSelector:@selector(decreaseSavingFlag) withObject:nil afterDelay:0.5];
 
     return outResult;
 }
@@ -1472,12 +1464,7 @@ enum { typeFSS = 'fss ' };
 // ファイルが変更された
 // ------------------------------------------------------
 {
-    // セーブ中フラグが立っているときは自身の保存なので無視
-    if ([self numberOfSavingFlags] > 0) return;
-    
     // ファイルとドキュメントのmodificationDateが同じ場合は無視
-    // ファイルの読み込みや実行など、外部からの書き込み以外のアクセスにときおり反応してしまう問題への対処 (2014-02-22 by 1024jp)
-    // ちなみに、このmodificationDateだけでは上記の自身の保存の判断ができないので別途処理している。
     NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:nil];
     if ([[fileAttrs fileModificationDate] isEqualToDate:[self fileModificationDate]]) return;
     
@@ -2315,28 +2302,6 @@ enum { typeFSS = 'fss ' };
                 self, theReturn, theContextInfo->contextInfo);
     }
     free(theContextInfo);
-}
-
-
-// ------------------------------------------------------
-- (void)increaseSavingFlag
-// 保存中フラグを増やす
-// ------------------------------------------------------
-{
-    @synchronized(self) {
-        self.numberOfSavingFlags++;
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)decreaseSavingFlag
-// 保存中フラグを減らす
-// ------------------------------------------------------
-{
-    @synchronized(self) {
-        self.numberOfSavingFlags--;
-    }
 }
 
 
