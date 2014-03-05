@@ -1,0 +1,2 @@
+language: objective-c
+xcode_project: CotEditor.xcodeproj
