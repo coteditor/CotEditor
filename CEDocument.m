@@ -1464,9 +1464,18 @@ enum { typeFSS = 'fss ' };
 // ファイルが変更された
 // ------------------------------------------------------
 {
+    // ファイルのmodificationDateを読む
+    __block NSDate *fileModificationDate;
+    NSFileCoordinator *coordinator = [[[NSFileCoordinator alloc] initWithFilePresenter:self] autorelease];
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+    {
+        NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+        fileModificationDate = [fileAttrs fileModificationDate];
+    }];
+    
     // ファイルとドキュメントのmodificationDateが同じ場合は無視
-    NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:nil];
-    if ([[fileAttrs fileModificationDate] isEqualToDate:[self fileModificationDate]]) return;
+    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
     // 書き込み通知を行う
     _showUpdateAlertWithBecomeKey = YES;
