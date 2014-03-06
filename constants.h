@@ -275,7 +275,6 @@ static struct {
     {301, @"/JP/History-jp.rtf"},
     {302, @"/JP/Known_problems-jp.rtf"},
     {303, @"/JP/To_ATOK_Users-jp.rtf"},
-    {304, @"/JP/To_0.7.x_Users-jp.rtf"},
     {0, nil}
 };
 
