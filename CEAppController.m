@@ -769,18 +769,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 付属ドキュメントを開く
 // ------------------------------------------------------
 {
-    NSMenuItem *theMenuItem = (NSMenuItem *)sender;
-    NSString *theDocumentPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Docs"];
-    NSInteger i;
+    NSString *fileName = k_bundleDocumentDict[@([sender tag])];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:nil];
     
-    for (i = 0; k_bundleDocumentList[i].tag != 0; i++) {
-        if (k_bundleDocumentList[i].tag == theMenuItem.tag) {
-            theDocumentPath = [theDocumentPath stringByAppendingPathComponent:k_bundleDocumentList[i].path];
-            break;
-        }
-    }
-
-    [[NSWorkspace sharedWorkspace] openFile:theDocumentPath];
+    [[NSWorkspace sharedWorkspace] openURL:URL];
 }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
+        <deployment defaultVersion="1060" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -722,6 +722,9 @@
                                                 <action selector="openBundledDocument:" target="290" id="828"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="To ATOK Users" tag="203" id="kMD-tc-dg4">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="830"/>
                                         <menuItem title="License" tag="100" id="821">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -787,7 +790,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     <popUpButtonCell key="cell" type="push" title="Auto-Detect" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="340" id="804">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="344">
                             <items>
                                 <menuItem title="Auto-Detect" state="on" id="340"/>
@@ -807,7 +810,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="213" height="113"/>
             <view key="contentView" id="359">
-                <rect key="frame" x="1" y="1" width="296" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="296" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <slider verticalHuggingPriority="750" id="361">

@@ -53,9 +53,14 @@
 		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
 		2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */; };
 		2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A7572BE18B3BBAE00878F66 /* CotEditor.help */; };
+		2A8663AE18C93D2200A6F9CC /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663B018C93D2200A6F9CC /* ReadMe.rtf */; };
+		2A8663B518C93F7300A6F9CC /* Known Problems.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663B718C93F7300A6F9CC /* Known Problems.rtf */; };
+		2A8663C918C93FEB00A6F9CC /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663CB18C93FEB00A6F9CC /* Version History.rtf */; };
+		2A8663CC18C93FEF00A6F9CC /* To ATOK Users.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663CE18C93FEF00A6F9CC /* To ATOK Users.rtf */; };
+		2A8663D518C9406800A6F9CC /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663D718C9406800A6F9CC /* License.txt */; };
+		2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */; };
 		2A9A143318B4E5B2001080D6 /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A143218B4E5B2001080D6 /* VDKQueue.m */; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
-		6C4216A612DDB9180037690E /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = 6C42169512DDB9180037690E /* Docs */; };
 		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
@@ -234,6 +239,16 @@
 		2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Markdown.plist; path = SyntaxColorings/defaultSyntaxStyle_Markdown.plist; sourceTree = "<group>"; };
 		2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Scala.plist; path = SyntaxColorings/defaultSyntaxStyle_Scala.plist; sourceTree = "<group>"; };
 		2A7572BE18B3BBAE00878F66 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
+		2A8663AF18C93D2200A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = English.lproj/ReadMe.rtf; sourceTree = "<group>"; };
+		2A8663B118C93D2500A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = Japanese.lproj/ReadMe.rtf; sourceTree = "<group>"; };
+		2A8663B618C93F7300A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "English.lproj/Known Problems.rtf"; sourceTree = "<group>"; };
+		2A8663B818C93F7900A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "Japanese.lproj/Known Problems.rtf"; sourceTree = "<group>"; };
+		2A8663CA18C93FEB00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "English.lproj/Version History.rtf"; sourceTree = "<group>"; };
+		2A8663CD18C93FEF00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "English.lproj/To ATOK Users.rtf"; sourceTree = "<group>"; };
+		2A8663CF18C93FF200A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "Japanese.lproj/Version History.rtf"; sourceTree = "<group>"; };
+		2A8663D018C93FF600A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "Japanese.lproj/To ATOK Users.rtf"; sourceTree = "<group>"; };
+		2A8663D618C9406800A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = English.lproj/License.txt; sourceTree = "<group>"; };
+		2A8663D918C9406D00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = "English.lproj/OgreKit License.txt"; sourceTree = "<group>"; };
 		2A9A143118B4E5B2001080D6 /* VDKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = ImportSources/VDKQueue.h; sourceTree = "<group>"; };
 		2A9A143218B4E5B2001080D6 /* VDKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = ImportSources/VDKQueue.m; sourceTree = "<group>"; };
 		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -248,7 +263,6 @@
 		6C1E212612C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Preferences.nib; sourceTree = "<group>"; };
 		6C1E212712C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ScriptManager.nib; sourceTree = "<group>"; };
 		6C1E212812C9E65600194313 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/SyntaxManager.nib; sourceTree = "<group>"; };
-		6C42169512DDB9180037690E /* Docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs; sourceTree = "<group>"; };
 		6C4216B512DDB9EB0037690E /* Docs_for_src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs_for_src; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* Script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Script; sourceTree = "<group>"; };
@@ -582,6 +596,7 @@
 				25D4C01C07B87595007CB113 /* icons */,
 				8CB0122007CA0CCD00221EDC /* toolbarIcons */,
 				25972A7107B87293005EB175 /* images */,
+				2A8663B218C93D5700A6F9CC /* Documents */,
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
@@ -593,7 +608,6 @@
 				2559AD13079F9A4C0064C718 /* SyntaxColorings */,
 				259B181207E530DA00C5FD26 /* InternalScript */,
 				6CA3B36012E3B59B0019AB2E /* Script */,
-				6C42169512DDB9180037690E /* Docs */,
 				6C4216B512DDB9EB0037690E /* Docs_for_src */,
 			);
 			name = Resources;
@@ -609,6 +623,19 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2A8663B218C93D5700A6F9CC /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */,
+				2A8663D718C9406800A6F9CC /* License.txt */,
+				2A8663B018C93D2200A6F9CC /* ReadMe.rtf */,
+				2A8663B718C93F7300A6F9CC /* Known Problems.rtf */,
+				2A8663CB18C93FEB00A6F9CC /* Version History.rtf */,
+				2A8663CE18C93FEF00A6F9CC /* To ATOK Users.rtf */,
+			);
+			name = Documents;
 			sourceTree = "<group>";
 		};
 		8C74014C08C7041A00683672 /* KeyBindings */ = {
@@ -712,6 +739,7 @@
 				Japanese,
 				French,
 				German,
+				ja,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			projectDirPath = "";
@@ -740,7 +768,10 @@
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */,
 				258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */,
+				2A8663CC18C93FEF00A6F9CC /* To ATOK Users.rtf in Resources */,
 				8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */,
+				2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */,
+				2A8663D518C9406800A6F9CC /* License.txt in Resources */,
 				8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */,
 				8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */,
 				8CA71BCE07D2A79100C146B0 /* biggerFont.tiff in Resources */,
@@ -749,7 +780,9 @@
 				8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */,
 				2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */,
 				8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */,
+				2A8663B518C93F7300A6F9CC /* Known Problems.rtf in Resources */,
 				8C3E2D560808E203009894D1 /* Shift_Left.tiff in Resources */,
+				2A8663C918C93FEB00A6F9CC /* Version History.rtf in Resources */,
 				8C3E2D570808E203009894D1 /* Shift_Right.tiff in Resources */,
 				8C3E2D5E0808E210009894D1 /* StatusArea_Hide.tiff in Resources */,
 				8C3E2D5F0808E210009894D1 /* StatusArea_Show.tiff in Resources */,
@@ -794,7 +827,6 @@
 				8C5684CA0C48A36200346FB0 /* defaultSyntaxStyle_Python.plist in Resources */,
 				8C0A063D0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist in Resources */,
 				6CA3B3E312E3B59B0019AB2E /* Script in Resources */,
-				6C4216A612DDB9180037690E /* Docs in Resources */,
 				6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */,
@@ -806,6 +838,7 @@
 				2A07230A16D3CF4F00F49864 /* editButtonImg.pdf in Resources */,
 				2A07230B16D3CF4F00F49864 /* leftButtonImg.pdf in Resources */,
 				2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */,
+				2A8663AE18C93D2200A6F9CC /* ReadMe.rtf in Resources */,
 				2A07230C16D3CF4F00F49864 /* lockOnImg.pdf in Resources */,
 				2A07230D16D3CF4F00F49864 /* nextButtonImg.pdf in Resources */,
 				2A07230E16D3CF4F00F49864 /* openSplitButtonImg.pdf in Resources */,
@@ -934,6 +967,58 @@
 				6C1E212512C9E65600194313 /* Japanese */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		2A8663B018C93D2200A6F9CC /* ReadMe.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A8663AF18C93D2200A6F9CC /* en */,
+				2A8663B118C93D2500A6F9CC /* ja */,
+			);
+			name = ReadMe.rtf;
+			sourceTree = "<group>";
+		};
+		2A8663B718C93F7300A6F9CC /* Known Problems.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A8663B618C93F7300A6F9CC /* en */,
+				2A8663B818C93F7900A6F9CC /* ja */,
+			);
+			name = "Known Problems.rtf";
+			sourceTree = "<group>";
+		};
+		2A8663CB18C93FEB00A6F9CC /* Version History.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A8663CA18C93FEB00A6F9CC /* en */,
+				2A8663CF18C93FF200A6F9CC /* ja */,
+			);
+			name = "Version History.rtf";
+			sourceTree = "<group>";
+		};
+		2A8663CE18C93FEF00A6F9CC /* To ATOK Users.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A8663CD18C93FEF00A6F9CC /* en */,
+				2A8663D018C93FF600A6F9CC /* ja */,
+			);
+			name = "To ATOK Users.rtf";
+			sourceTree = "<group>";
+		};
+		2A8663D718C9406800A6F9CC /* License.txt */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A8663D618C9406800A6F9CC /* en */,
+			);
+			name = License.txt;
+			sourceTree = "<group>";
+		};
+		2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A8663D918C9406D00A6F9CC /* en */,
+			);
+			name = "OgreKit License.txt";
 			sourceTree = "<group>";
 		};
 		8C28CD2C081101A300733DA7 /* ScriptManager.nib */ = {
