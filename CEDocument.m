@@ -222,6 +222,13 @@ enum { typeFSS = 'fss ' };
 
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
+        
+        // fileModificationDateを再びセットする (2014-03-07 by 1024jp)
+        // fileModificationDateは自動でセットされているので本来は必要ないはずだが
+        // ときおり変更がないのにファイル保存時に「別のアプリケーション〜」というアラートがでることへの回避策。
+        // ちなみにこのアラートはCotEditorが独自に設置している「別のプロセス〜」とは別モノ。
+        // 来る時が来たら消したい1行ではある。
+        [self setFileModificationDate:[_fileAttr fileModificationDate]];
     }
     // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
     [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
