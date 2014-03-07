@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
+        <deployment defaultVersion="1060" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -704,34 +704,28 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="付属ドキュメント" id="819">
                                     <items>
-                                        <menuItem title="ReadMe" tag="300" id="822">
+                                        <menuItem title="ReadMe" tag="200" id="822">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="827"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="バージョン履歴" tag="301" id="823">
+                                        <menuItem title="バージョン履歴" tag="201" id="823">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="828"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="既知の問題" tag="302" id="825">
+                                        <menuItem title="既知の問題" tag="202" id="825">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="829"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="ATOKユーザの方へ" tag="303" id="826">
+                                        <menuItem title="ATOKユーザの方へ" tag="203" id="826">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="830"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="バージョン 0.7.x 以前のユーザの方へ" tag="304" id="824">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="831"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="835"/>
@@ -799,7 +793,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     <popUpButtonCell key="cell" type="push" title="自動認識" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="340" id="804">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="344">
                             <items>
                                 <menuItem title="自動認識" state="on" id="340"/>
@@ -819,7 +813,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="213" height="113"/>
             <view key="contentView" id="359">
-                <rect key="frame" x="1" y="1" width="296" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="296" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <slider verticalHuggingPriority="750" id="361">
@@ -955,6 +949,7 @@ DQ
             </view>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
+        <customObject id="836" customClass="SUUpdater"/>
         <window title="行間（カスタム）" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="lineSpacingPanel" animationBehavior="default" id="773" userLabel="LineSpacingPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -962,7 +957,7 @@ DQ
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="213" height="113"/>
             <view key="contentView" id="774">
-                <rect key="frame" x="1" y="1" width="226" height="121"/>
+                <rect key="frame" x="0.0" y="0.0" width="226" height="121"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" id="777">
@@ -1026,6 +1021,5 @@ Gw
                 <outlet property="initialFirstResponder" destination="778" id="781"/>
             </connections>
         </window>
-        <customObject id="836" customClass="SUUpdater"/>
     </objects>
 </document>
