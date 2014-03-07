@@ -387,13 +387,12 @@ enum { typeFSS = 'fss ' };
         closeContext->shouldCloseSelector = inShouldCloseSelector;
         closeContext->contextInfo = inContextInfo;
 
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's Lock is ON",@"") 
-                    defaultButton:NSLocalizedString(@"Cancel",@"") 
-                    alternateButton:NSLocalizedString(@"Don't Save, and Close",@"") 
-                    otherButton:nil 
-                    informativeTextWithFormat:NSLocalizedString(@"Finder's Lock could not be released. So, You can not save your changes on this file, but you will be able to Save a Copy somewhere else. \n\nDo you want to close?\n",@"")
-                    ];
-        NSArray *theButtons = [theAleart buttons];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
+                                            defaultButton:NSLocalizedString(@"Cancel", nil)
+                                          alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
+                                              otherButton:nil
+                                informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else. \n\nDo you want to close?", nil)];
+        NSArray *theButtons = [theAlert buttons];
 
         for (NSButton *theDontSaveButton in theButtons) {
             if ([[theDontSaveButton title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
@@ -402,7 +401,7 @@ enum { typeFSS = 'fss ' };
                 break;
             }
         }
-        [theAleart beginSheetModalForWindow:[_editorView window] 
+        [theAlert beginSheetModalForWindow:[_editorView window] 
                     modalDelegate:self 
                     didEndSelector:@selector(alertForNotWritableCloseDocDidEnd:returnCode:contextInfo:) 
                     contextInfo:closeContext];
@@ -646,14 +645,14 @@ enum { typeFSS = 'fss ' };
         if (inAskLossy) {
             if (![theCurString canBeConvertedToEncoding:inEncoding]) {
                 NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:inEncoding];
-                NSString *theMessage = NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to change encoding and show incompatible character(s)?\n",@"");
-                NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                            defaultButton:NSLocalizedString(@"Cancel",@"") 
-                            alternateButton:NSLocalizedString(@"Change Encoding",@"") 
-                            otherButton:nil 
-                            informativeTextWithFormat:theMessage, theEncodingNameStr];
+                NSString *theMessageText = [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), theEncodingNameStr];
+                NSAlert *theAlert = [NSAlert alertWithMessageText:theMessageText
+                                                    defaultButton:NSLocalizedString(@"Cancel", nil)
+                                                  alternateButton:NSLocalizedString(@"Change Encoding", nil)
+                                                      otherButton:nil
+                                        informativeTextWithFormat:NSLocalizedString(@"Do you want to change encoding and show incompatible character(s)?", nil)];
 
-                theResult = [theAleart runModal];
+                theResult = [theAlert runModal];
                 if (theResult == NSAlertDefaultReturn) { // == Cancel
                     return NO;
                 }
@@ -1318,28 +1317,30 @@ enum { typeFSS = 'fss ' };
 {
     if (!_showUpdateAlertWithBecomeKey) { return; } // 表示フラグが立っていなければ、もどる
 
-    NSAlert *theAleart;
-    NSString *theDefaultTitle, *theInfoText;
+    NSAlert *alert;
+    NSString *messageText, *informativeText, *defaultButton;
 
     if ([self isDocumentEdited]) {
-        theDefaultTitle = NSLocalizedString(@"Keep CotEditor Edition",@"");
-        theInfoText = NSLocalizedString(@"The file has been modified by another process.\nThere are also unsaved changes in CotEditor.\n\nDo you want to keep CotEditor Edition or Update to the modified edition?\n",@"");
+        messageText = @"The file has been modified by another process. There are also unsaved changes in CotEditor.";
+        informativeText = @"Do you want to keep CotEditor's edition or update to the modified edition?";
+        defaultButton = @"Keep CotEditor's Edition";
     } else {
-        theDefaultTitle = NSLocalizedString(@"Keep unchanged",@"");
-        theInfoText = NSLocalizedString(@"The file has been modified by another process.\n\nDo you want to keep unchanged or Update to the modified edition?\n",@"");
+        messageText = @"The file has been modified by another process.";
+        informativeText = @"Do you want to keep unchanged or Update to the modified edition?";
+        defaultButton = @"Keep Unchanged";
         [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
     }
-    theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                defaultButton:theDefaultTitle 
-                alternateButton:NSLocalizedString(@"Update",@"") 
-                otherButton:nil 
-                informativeTextWithFormat:theInfoText, nil];
+    alert = [NSAlert alertWithMessageText:NSLocalizedString(messageText, nil)
+                            defaultButton:NSLocalizedString(defaultButton, nil)
+                          alternateButton:NSLocalizedString(@"Update", nil)
+                              otherButton:nil
+                informativeTextWithFormat:NSLocalizedString(informativeText, nil)];
 
     // シートが表示中でなければ、表示
     if ([[_editorView window] attachedSheet] == nil) {
         _isRevertingForExternalFileUpdate = YES;
         [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        [theAleart beginSheetModalForWindow:[_editorView window] 
+        [alert beginSheetModalForWindow:[_editorView window] 
                     modalDelegate:self 
                     didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:) 
                     contextInfo:NULL];
@@ -1351,8 +1352,8 @@ enum { typeFSS = 'fss ' };
     } else {
         _isRevertingForExternalFileUpdate = YES;
         [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        NSInteger theResult = [theAleart runModal]; // アラート表示
-        [self alertForModByAnotherProcessDidEnd:theAleart returnCode:theResult contextInfo:NULL];
+        NSInteger theResult = [alert runModal]; // アラート表示
+        [self alertForModByAnotherProcessDidEnd:alert returnCode:theResult contextInfo:NULL];
     }
 }
 
@@ -1630,13 +1631,13 @@ enum { typeFSS = 'fss ' };
         theResult = NSAlertDefaultReturn;
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"File Encoding",@"") 
-                    defaultButton:NSLocalizedString(@"Convert",@"") 
-                    alternateButton:NSLocalizedString(@"Reinterpret",@"") 
-                    otherButton:NSLocalizedString(@"Cancel",@"") 
-                    informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret using \"%@\"?\n",@""), theEncodingName];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"File encoding", nil)
+                                            defaultButton:NSLocalizedString(@"Convert", nil)
+                                          alternateButton:NSLocalizedString(@"Reinterpret", nil)
+                                              otherButton:NSLocalizedString(@"Cancel", nil)
+                                informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using \"%@\"?", nil), theEncodingName];
 
-        theResult = [theAleart runModal];
+        theResult = [theAlert runModal];
     }
     if (theResult == NSAlertDefaultReturn) { // = Convert 変換
 
@@ -1651,14 +1652,13 @@ enum { typeFSS = 'fss ' };
 
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
-            NSAlert *theSecondAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                        defaultButton:NSLocalizedString(@"Cancel",@"") 
-                        alternateButton:NSLocalizedString(@"Discard Changes",@"") 
-                        otherButton:nil 
-                        informativeTextWithFormat:
-                            NSLocalizedString(@"The file \'%@\' has unsaved changes. \n\nDo you want to discard the changes and reset the file encodidng?\n",@""), [[self fileURL] path]];
+            NSAlert *theSecondAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file \'%@\' has unsaved changes.", nil), [[self fileURL] path]]
+                                                      defaultButton:NSLocalizedString(@"Cancel", nil)
+                                                    alternateButton:NSLocalizedString(@"Discard Changes", nil)
+                                                        otherButton:nil
+                                          informativeTextWithFormat:NSLocalizedString(@"Do you want to discard the changes and reset the file encodidng?", nil)];
 
-            NSInteger theSecondResult = [theSecondAleart runModal];
+            NSInteger theSecondResult = [theSecondAlert runModal];
             if (theSecondResult != NSAlertAlternateReturn) { // != Discard Change
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
                 [[_windowController toolbarController] setSelectEncoding:_encoding];
@@ -1671,15 +1671,15 @@ enum { typeFSS = 'fss ' };
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
         } else {
-            NSAlert *theThirdAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Can Not reinterpret",@"") 
-                        defaultButton:NSLocalizedString(@"Done",@"") 
-                        alternateButton:nil 
-                        otherButton:nil 
-                        informativeTextWithFormat:NSLocalizedString(@"Sorry, the file \'%@\' could not reinterpret in the new encoding \"%@\".",@""), [[self fileURL] path], theEncodingName];
-            [theThirdAleart setAlertStyle:NSCriticalAlertStyle];
+            NSAlert *theThirdAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Can not reinterpret", nil)
+                                                     defaultButton:NSLocalizedString(@"Done", nil)
+                                                   alternateButton:nil
+                                                       otherButton:nil
+                                         informativeTextWithFormat:NSLocalizedString(@"The file \'%@\' could not be reinterpreted using the new encoding \"%@\".", nil), [[self fileURL] path], theEncodingName];
+            [theThirdAlert setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
-            (void)[theThirdAleart runModal];
+            (void)[theThirdAlert runModal];
         }
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
@@ -2047,13 +2047,13 @@ enum { typeFSS = 'fss ' };
 
         NSString *theIANANameStr = [NSString localizedNameOfStringEncoding:theIANACharSetEncoding];
         NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:_encoding];
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Save Warning",@"") 
-                    defaultButton:NSLocalizedString(@"Cancel",@"") 
-                    alternateButton:NSLocalizedString(@"Continue Saving",@"") 
-                    otherButton:nil 
-                    informativeTextWithFormat:NSLocalizedString(@"The encoding is  \"%@\", but the IANA charset name in text is \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr, theIANANameStr];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is \"%@\", but the IANA charset name in text is \"%@\".", nil), theEncodingNameStr, theIANANameStr]
+                                            defaultButton:NSLocalizedString(@"Cancel", nil)
+                                          alternateButton:NSLocalizedString(@"Continue Saving", nil)
+                                              otherButton:nil
+                                informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
 
-        NSInteger theResult = [theAleart runModal];
+        NSInteger theResult = [theAlert runModal];
         if (theResult != NSAlertAlternateReturn) { // == Cancel
             return NO;
         }
@@ -2072,13 +2072,13 @@ enum { typeFSS = 'fss ' };
             withEncoding:_encoding];
     if (![theCurString canBeConvertedToEncoding:_encoding]) {
         NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:_encoding];
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Save Warning",@"") 
-                    defaultButton:NSLocalizedString(@"Show Incompatible Char(s)",@"") 
-                    alternateButton:NSLocalizedString(@"Save Available strings",@"") 
-                    otherButton:NSLocalizedString(@"Cancel",@"") 
-                    informativeTextWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), theEncodingNameStr]
+                                            defaultButton:NSLocalizedString(@"Show Incompatible Char(s)", nil)
+                                          alternateButton:NSLocalizedString(@"Save Available Strings", nil)
+                                              otherButton:NSLocalizedString(@"Cancel", nil)
+                                informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
 
-        NSInteger theResult = [theAleart runModal];
+        NSInteger theResult = [theAlert runModal];
         if (theResult != NSAlertAlternateReturn) { // != Save
             if (theResult == NSAlertDefaultReturn) { // == show incompatible char
                 [_windowController showIncompatibleCharList];
@@ -2125,14 +2125,13 @@ enum { typeFSS = 'fss ' };
 
         if (![self canReleaseFinderLockOfFile:inFileName isLocked:&theFinderLockON lockAgain:NO]) {
             // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
-            NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                        defaultButton:NSLocalizedString(@"OK",@"") 
-                        alternateButton:nil 
-                        otherButton:nil 
-                        informativeTextWithFormat:
-                            NSLocalizedString(@"Could Not be released Finder's Lock.\n\nYou can use \"Save As\" to save a copy.\n",@"")];
-            [theAleart setAlertStyle:NSCriticalAlertStyle];
-            (void)[theAleart runModal];
+            NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
+                                                defaultButton:nil
+                                              alternateButton:nil
+                                                  otherButton:nil
+                                    informativeTextWithFormat:NSLocalizedString(@"You can use \"Save As\" to save a copy.", nil)];
+            [theAlert setAlertStyle:NSCriticalAlertStyle];
+            (void)[theAlert runModal];
             return NO;
         }
         // "authopen"コマンドを使って保存

@@ -242,7 +242,7 @@ static CEScriptManager *sharedInstance = nil;
     // ファイルがない場合は警告して抜ける
     if (![[NSFileManager defaultManager] fileExistsAtPath:thePath]) {
         [self showAlert:[NSString stringWithFormat:
-                NSLocalizedString(@"The Script \"%@\" NOT exists.\n\nCheck it and do \"Update Script Menu\".",@""), thePath]];
+                NSLocalizedString(@"The script \"%@\" does not exist.\n\nCheck it and do \"Update Script Menu\".",@""), thePath]];
         return;
     }
 
@@ -266,15 +266,13 @@ static CEScriptManager *sharedInstance = nil;
                         withApplication:[[NSBundle mainBundle] bundlePath]];
         }
         if (!theResult) {
-            theMessage = [NSString stringWithFormat:
-                    NSLocalizedString(@"The Script file \"%@\" could not open.",@""), thePath];
+            theMessage = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file \"%@\".",@""), thePath];
         }
     } else if (theFlags == (NSAlternateKeyMask | NSShiftKeyMask)) {
         theModifierPressed = YES;
         theResult = [[NSWorkspace sharedWorkspace] selectFile:thePath inFileViewerRootedAtPath:@""];
         if (!theResult) {
-            theMessage = [NSString stringWithFormat:
-                    NSLocalizedString(@"The Script file \"%@\" could not select.",@""), thePath];
+            theMessage = [NSString stringWithFormat:NSLocalizedString(@"Could not select the script file \"%@\".",@""), thePath];
         }
     }
     if ((!theResult) && (theMessage != nil)) {
@@ -313,7 +311,7 @@ static CEScriptManager *sharedInstance = nil;
         // 実行権限がない場合は警告して抜ける
         if (![[NSFileManager defaultManager] isExecutableFileAtPath:thePath]) {
             [self showAlert:[NSString stringWithFormat:
-                    NSLocalizedString(@"The Script \"%@\" NOT be able to execute.\nShell scripts have to have execute permission.\n\nCheck it\'s permission.",@""), thePath]];
+                    NSLocalizedString(@"Cannnot execute the script \"%@\".\nShell scripts have to have the execute permission.\n\nCheck it\'s permission.",@""), thePath]];
             return;
         }
         [self doLaunchShellScript:thePath];
@@ -543,13 +541,13 @@ static CEScriptManager *sharedInstance = nil;
 // エラーアラートを表示
 //------------------------------------------------------
 {
-    NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Script Error",@"") 
-                defaultButton:nil 
-                alternateButton:nil 
-                otherButton:nil 
-                informativeTextWithFormat:inMessage, nil];
-    [theAleart setAlertStyle:NSCriticalAlertStyle];
-    (void)[theAleart runModal];
+    NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Script Error", nil)
+                                     defaultButton:nil
+                                   alternateButton:nil
+                                       otherButton:nil
+                         informativeTextWithFormat:inMessage, nil];
+    [alert setAlertStyle:NSCriticalAlertStyle];
+    (void)[alert runModal];
 }
 
 
@@ -604,8 +602,7 @@ static CEScriptManager *sharedInstance = nil;
 
     // スクリプトファイル内容を得られない場合は警告して抜ける
     if ((theScript == nil) || ([theScript length] < 1)) {
-        [self showAlert:[NSString stringWithFormat:
-                NSLocalizedString(@"The Script \"%@\" could NOT read.",@""), inPath]];
+        [self showAlert:[NSString stringWithFormat:NSLocalizedString(@"Could NOT read the script \"%@\".",@""), inPath]];
         return;
     }
 

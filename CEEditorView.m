@@ -699,14 +699,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if ([[theValues valueForKey:k_key_showAlertForNotWritable] boolValue]) {
 
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"File Is Read Only",@"") 
-                    defaultButton:NSLocalizedString(@"OK",@"") 
-                    alternateButton:nil 
-                    otherButton:nil 
-                    informativeTextWithFormat:NSLocalizedString(@"You may not be able to save your changes, but you will be able to Save a Copy somewhere else.",@"")
+        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"The file is not writable.", nil)
+                                            defaultButton:nil
+                                          alternateButton:nil
+                                              otherButton:nil
+                                informativeTextWithFormat:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)
                     ];
 
-        [theAleart beginSheetModalForWindow:[self window] 
+        [theAlert beginSheetModalForWindow:[self window] 
                     modalDelegate:self 
                     didEndSelector:NULL 
                     contextInfo:NULL];

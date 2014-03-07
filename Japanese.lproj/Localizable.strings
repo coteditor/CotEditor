@@ -32,43 +32,45 @@ http://www.aynimac.com/
 "Encoding to \"%@\"" = "エンコーディングを \"%@\" へ";
 "Line Endings to \"%@\"" = "行末コードを\"%@\"へ";
 // convert or reinterpret alert
-"File Encoding" = "エンコーディング";
+"File encoding" = "エンコーディング";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
 "Cancel" = "キャンセル";
-"Do you want to convert or reinterpret using \"%@\"?\n" = "\"%@\"を使って変換または再解釈しますか？";
+"Do you want to convert or reinterpret it using \"%@\"?" = "\"%@\"を使って変換または再解釈しますか？";
 
-"Warning" = "警告";
-
-"Save Warning" = "「保存」の警告";
-"Save Available strings" = "有効な文字列を保存";
+"Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Char(s)" = "非互換文字を表示";
 
 "Continue Saving" = "保存を続行";
-"The encoding is  \"%@\", but the IANA charset name in text is \"%@\".\n\nDo you want to continue processing?\n" = "エンコーディングは \"%@\" ですが、IANA 文字セット名は \"%@\" です。\n\n続けますか？\n";
+"The encoding is \"%@\", but the IANA charset name in text is \"%@\"." = "エンコーディングは \"%@\" ですが、IANA 文字セット名は \"%@\" です。";
+"Do you want to continue processing?" = "保存作業を続けますか？";
 
-"OK" = "OK";
-"Could Not be released Finder's Lock.\n\nYou can use \"Save As\" to save a copy.\n" = "Finder のロックを解除できませんでした。\n\n「別名で保存」でコピーを保存できます。\n";
+"Finder's lock could not be released." = "Finder のロックを解除できませんでした。";
+"You can use \"Save As\" to save a copy." = "「別名で保存」でコピーを保存できます。";
 
 "Discard Changes" = "変更内容を破棄";
-"The file \'%@\' has unsaved changes. \n\nDo you want to discard the changes and reset the file encodidng?\n" = "ファイル \'%@\' の変更内容は保存されていません。\n\n変更内容を破棄してエンコードをリセットしてもよろしいですか？\n";
+"The file \'%@\' has unsaved changes." = "ファイル \'%@\' の変更内容は保存されていません。";
+"Do you want to discard the changes and reset the file encodidng?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
 
-"Can Not reinterpret" = "再解釈できません";
+"Can not reinterpret" = "再解釈できません。";
 "Done" = "OK";
-"Sorry, the file \'%@\' could not reinterpret in the new encoding \"%@\"." = "ファイル \"%@\" はエンコード \"%@\" で再解釈できませんでした。";
+"The file \'%@\' could not be reinterpreted using the new encoding \"%@\"." = "ファイル \"%@\" はエンコード \"%@\" で再解釈できませんでした。";
 
 "new encoding" = "新しいエンコーディング";
 "Change Encoding" = "エンコーディングを変更";
-"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to continue processing?\n" = "\"%@\"で保存時に一部の文字を変更または削除する必要があります。\n\n保存作業を続けますか？\n";
-"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to change encoding and show incompatible character(s)?\n" = "\"%@\"で保存時に一部の文字を変更または削除する必要があります。\n\nエンコーディングを変更し、非互換文字を表示しますか？\n";
+"The characters would have to be changed or deleted in saving as \"%@\"." = "\"%@\"で保存時に一部の文字を変更または削除する必要があります。";
+"Do you want to continue processing?" = "保存作業を続けますか？";
+"Do you want to change encoding and show incompatible character(s)?" = "エンコーディングを変更し、非互換文字を表示しますか？";
 
 "Printed: %@" = "プリント：%@";
 
-"Keep CotEditor Edition" = "CotEditor の編集内容を保持";
+"Keep CotEditor's Edition" = "CotEditor の編集内容を保持";
 "Update" = "更新";
-"The file has been modified by another process.\nThere are also unsaved changes in CotEditor.\n\nDo you want to keep CotEditor Edition or Update to the modified edition?\n" = "ファイルは別のプロセスによって変更されました。\nCotEditor で加えた編集もまだ保存されていません。\n\nCotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
-"Keep unchanged" = "未編集のままにする";
-"The file has been modified by another process.\n\nDo you want to keep unchanged or Update to the modified edition?\n" = "ファイルは別のプロセスによって変更されました。\n\n未編集のままにしますか、それとも変更された内容に更新しますか？";
+"The file has been modified by another process. There are also unsaved changes in CotEditor." = "ファイルは別のプロセスによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
+"Do you want to keep CotEditor's edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
+"Keep Unchanged" = "未編集のままにする";
+"The file has been modified by another process." = "ファイルは別のプロセスによって変更されました。";
+"Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
 
 /* CEEditorView */
 // undo action name
@@ -99,14 +101,15 @@ http://www.aynimac.com/
 "Select All" = "すべてを選択";
 
 // Alert strings
-"File Is Read Only" = "ファイルは書き込み不可です";
+"The file is not writable." = "このファイルは書き込み不可です。";
 "Allow Editing" = "編集を許可";
 "Cancel" = "キャンセル";
-"This file is not writable. You may not be able to save your changes, but you will be able to Save a Copy somewhere else. \n\nDo you want to edit this file anyway?\n" = "このファイルは書き込み不可で開かれています。このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。\n\n変更しますか？\n";
+"You may not be able to save your changes, but you will be able to save a copy somewhere else. \n\nDo you want to edit this file anyway?" = "このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。\n\n変更しますか？";  // どこで使用されているか不明 (2014-03 by 1024jp)
+"You may not be able to save your changes, but you will be able to save a copy somewhere else." = "このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。";
 
-"Finder's Lock is ON" = "Finder のロックがかかっています";
+"Finder's lock is ON" = "Finder のロックがかかっています";
 "Don't Save, and Close" = "保存しないで閉じる";
-"Finder's Lock could not be released. So, You can not save your changes on this file, but you will be able to Save a Copy somewhere else. \n\nDo you want to close?\n" = "Finder のロックを解除できませんでしたので、編集内容をこのファイルに保存できません。「別名で保存」でコピーを保存できます。\n\nファイルを閉じますか？";
+"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else. \n\nDo you want to close?" = "Finder のロックを解除できませんでしたので、編集内容をこのファイルに保存できません。「別名で保存」でコピーを保存できます。\n\nファイルを閉じますか？";
 
 /* CENavigationBarView */
 // Tooltip
@@ -301,9 +304,9 @@ http://www.aynimac.com/
 "\"Opt + click\" to open in Script Editor." = "スクリプトエディタで開くには、\"Opt + クリック\" します。";
 
 // Alert message
-"The Script \"%@\" NOT exists.\n\nCheck it and do \"Update Script Menu\"." = "スクリプト \"%@\" は存在しません。\n\nファイルを確認し、\"スクリプトメニューを更新\" してください。";
+"The script \"%@\" does not exist.\n\nCheck it and do \"Update Script Menu\"." = "スクリプト \"%@\" は存在しません。\n\nファイルを確認し、\"スクリプトメニューを更新\" してください。";
 "%@\nErrorNumber: %i" = "%@\nエラー番号：%i";
-"The Script file \"%@\" could not open." = "スクリプトファイル \"%@\" を開けません。";
-"The Script file \"%@\" could not select." = "スクリプトファイル \"%@\" を選択できません。";
-"The Script \"%@\" NOT be able to execute.\nShell scripts have to have execute permission.\n\nCheck it\'s permission." = "スクリプト \"%@\" を実行できません。\nシェルスクリプトの場合は Execute 権が必要です。\n\nアクセス権を確認してください。";
-"The Script \"%@\" could NOT read." = "スクリプト\"%@\"を読み込めませんでした。";
+"Could not open the script file \"%@\"." = "スクリプトファイル \"%@\" を開けませんでした。";
+"Could not select the script file \"%@\"." = "スクリプトファイル \"%@\" を選択できませんでした。";
+"Cannnot execute the script \"%@\".\nShell scripts have to have the execute permission.\n\nCheck it\'s permission." = "スクリプト \"%@\" を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
+"Could not read the script \"%@\"." = "スクリプト\"%@\"を読み込めませんでした。";
