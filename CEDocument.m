@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEDocument.h"
 #import "ODBEditorSuite.h"
+#import "NSData+MD5.h"
 
 
 
@@ -51,6 +52,8 @@ enum { typeFSS = 'fss ' };
 //=======================================================
 
 @interface CEDocument ()
+
+@property (atomic, retain) NSString *fileMD5;
 
 - (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding;
 - (void)doSetEncoding:(NSStringEncoding)inEncoding;
@@ -162,6 +165,7 @@ enum { typeFSS = 'fss ' };
     // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+    [[self fileMD5] release];
     // _initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
     // _selection は既に autorelease されている == "- (void)close"
     [[_editorView splitView] releaseAllEditorView]; // 各subSplitView が持つ editorView 参照を削除
@@ -1464,18 +1468,26 @@ enum { typeFSS = 'fss ' };
 // ファイルが変更された
 // ------------------------------------------------------
 {
-    // ファイルのmodificationDateを読む
-    __block NSDate *fileModificationDate;
+    // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
     NSFileCoordinator *coordinator = [[[NSFileCoordinator alloc] initWithFilePresenter:self] autorelease];
+    __block NSDate *fileModificationDate;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
     {
         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
         fileModificationDate = [fileAttrs fileModificationDate];
     }];
-    
-    // ファイルとドキュメントのmodificationDateが同じ場合は無視
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
+    
+    // ファイルのMD5ハッシュが保持しているものと同じ場合は無視
+    __block NSString *MD5;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         NSData *data = [NSData dataWithContentsOfURL:newURL];
+         MD5 = [data MD5];
+     }];
+    if ([MD5 isEqualToString:[self fileMD5]]) { return; }
     
     // 書き込み通知を行う
     _showUpdateAlertWithBecomeKey = YES;
@@ -1841,6 +1853,9 @@ enum { typeFSS = 'fss ' };
     [theTask launch];
     theData = [NSData dataWithData:[[[theTask standardOutput] fileHandleForReading] readDataToEndOfFile]];
     [theTask waitUntilExit];
+    
+    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+    [self setFileMD5:[theData MD5]];
 
     status = [theTask terminationStatus];
     if (status != 0) {
@@ -2128,6 +2143,9 @@ enum { typeFSS = 'fss ' };
         status = [theTask terminationStatus];
         outResult = (status == 0);
 
+        // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+        [self setFileMD5:[theData MD5]];
+        
         // クリエータなどを設定
         [theManager setAttributes:theAttrs ofItemAtPath:inFileName error:nil];
         
