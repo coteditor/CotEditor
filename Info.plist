@@ -30,6 +30,12 @@
 				<string>php3</string>
 				<string>rb</string>
 				<string>sh</string>
+				<string>py</string>
+				<string>markdown</string>
+				<string>md</string>
+				<string>xml</string>
+				<string>scala</string>
+				<string>conf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>docIcon.icns</string>
