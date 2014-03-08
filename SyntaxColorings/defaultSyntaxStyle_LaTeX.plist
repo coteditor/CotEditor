@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>charactersArray</key>
@@ -8,7 +8,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]caption{.+}</string>
+			<string>[\\¥]caption\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -20,13 +20,13 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]cite{([^}])+}</string>
+			<string>[\\¥]cite\{([^}])+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]file{.+}</string>
+			<string>[\\¥]file\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -38,13 +38,13 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]includegraphics(\[.+\])?{.+}</string>
+			<string>[\\¥]includegraphics(\[.+\])?\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]label{.+}</string>
+			<string>[\\¥]label\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -80,7 +80,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]ref{([^}])+}</string>
+			<string>[\\¥]ref\{([^}])+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -98,7 +98,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]text(tt|bf){.+}</string>
+			<string>[\\¥]text(tt|bf)\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -170,25 +170,25 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]author{.*}</string>
+			<string>[\\¥]author\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]begin{.*}</string>
+			<string>[\\¥]begin\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]chapter\*?{.+}</string>
+			<string>[\\¥]chapter\*?\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]date{.*}</string>
+			<string>[\\¥]date\{.*\}</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>regularExpression</key>
@@ -196,25 +196,25 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]documentclass(\[.+\])?{.+}</string>
+			<string>[\\¥]documentclass(\[.+\])?\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]end{.*}</string>
+			<string>[\\¥]end\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]pagestyle{.*}</string>
+			<string>[\\¥]pagestyle\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]part{.+}</string>
+			<string>[\\¥]part\{.+\}</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>regularExpression</key>
@@ -222,31 +222,31 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]section\*?{.*}</string>
+			<string>[\\¥]section\*?\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]subsection\*?{.*}</string>
+			<string>[\\¥]subsection\*?\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]subsubsection\*?{.*}</string>
+			<string>[\\¥]subsubsection\*?\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]title{.*}</string>
+			<string>[\\¥]title\{.*\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]usepackage(\[.+\])?{.+}</string>
+			<string>[\\¥]usepackage(\[.+\])?\{.+\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -255,9 +255,9 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]frac{[^}]+}{[^}]+</string>
+			<string>[\\¥]frac\{[^}]+\}\{[^}]+</string>
 			<key>endString</key>
-			<string>}</string>
+			<string>\}</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -266,13 +266,13 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]chapter\*?{(.*)}</string>
+			<string>[\\¥]chapter\*?\{(.*)\}</string>
 			<key>keyString</key>
 			<string>$1</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]part\*?{(.*)}</string>
+			<string>[\\¥]part\*?\{(.*)\}</string>
 			<key>bold</key>
 			<true/>
 			<key>keyString</key>
@@ -280,19 +280,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]section\*?{(.*)}</string>
+			<string>[\\¥]section\*?\{(.*)\}</string>
 			<key>keyString</key>
 			<string>- $1</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]subsection\*?{(.*)}</string>
+			<string>[\\¥]subsection\*?\{(.*)\}</string>
 			<key>keyString</key>
 			<string>-- $1</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>[\\¥]subsubsection\*?{(.*)}</string>
+			<string>[\\¥]subsubsection\*?\{(.*)\}</string>
 			<key>keyString</key>
 			<string>--- $1</string>
 		</dict>
