@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEDocument.h"
 #import "ODBEditorSuite.h"
+#import "NSData+MD5.h"
 
 
 
@@ -52,8 +53,7 @@ enum { typeFSS = 'fss ' };
 
 @interface CEDocument ()
 
-@property (nonatomic) VDKQueue *fileObserver;
-@property NSUInteger numberOfSavingFlags;
+@property (atomic, retain) NSString *fileMD5;
 
 - (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding;
 - (void)doSetEncoding:(NSStringEncoding)inEncoding;
@@ -74,8 +74,6 @@ enum { typeFSS = 'fss ' };
 - (BOOL)canReleaseFinderLockOfFile:(NSString *)inFileName isLocked:(BOOL *)ioLocked lockAgain:(BOOL)inLockAgain;
 - (void)alertForNotWritableCloseDocDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
             contextInfo:(void *)inContextInfo;
-- (void)startWatchFile:(NSString *)inFileName;
-- (void)stopWatchFile:(NSString *)inFileName;
 - (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
             contextInfo:(void *)inContextInfo;
 - (void)printPanelDidEnd:(NSPrintPanel *)inPrintPanel returnCode:(NSInteger)inReturnCode
@@ -141,7 +139,6 @@ enum { typeFSS = 'fss ' };
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
         _fileSender = nil;
         _fileToken = nil;
-        [self setNumberOfSavingFlags:0];
         _showUpdateAlertWithBecomeKey = NO;
         _isRevertingForExternalFileUpdate = NO;
         _canActivateShowInvisibleCharsItem = 
@@ -155,10 +152,6 @@ enum { typeFSS = 'fss ' };
         [[NSNotificationCenter defaultCenter] addObserver:self 
                 selector:@selector(documentDidFinishOpen:) 
                 name:k_documentDidFinishOpenNotification object:nil];
-        
-        // ファイル変更オブサーバのセット
-        [self setFileObserver:[[VDKQueue alloc] init]];
-        [[self fileObserver] setDelegate:self];
     }
     return self;
 }
@@ -172,11 +165,7 @@ enum { typeFSS = 'fss ' };
     // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    // 外部プロセスによるファイルの変更監視を停止
-    [[self fileObserver] removeAllPaths];
-    [[self fileObserver] setDelegate:nil];
-    [[self fileObserver] release];
-    
+    [[self fileMD5] release];
     // _initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
     // _selection は既に autorelease されている == "- (void)close"
     [[_editorView splitView] releaseAllEditorView]; // 各subSplitView が持つ editorView 参照を削除
@@ -205,12 +194,8 @@ enum { typeFSS = 'fss ' };
 // バックアップファイルの保存(保存処理で包括的に呼ばれる)
 // ------------------------------------------------------
 {
-    // 保存中のフラグを立て、保存実行（自分自身が保存した時のファイル更新通知を区別するため）
-    [self increaseSavingFlag];
-    // SaveAs のとき古いパスを監視対象から外すために保持
-    NSString *theOldPath = [[self fileURL] path];
     // 新規書類を最初に保存する場合のフラグをセット
-    BOOL theBoolIsFirstSaving = ((theOldPath == nil) || (saveOperation == NSSaveAsOperation));
+    BOOL theBoolIsFirstSaving = (([self fileURL] == nil) || (saveOperation == NSSaveAsOperation));
     // 保存処理実行
     BOOL outResult = [self saveToFile:[url path] ofType:typeName saveOperation:saveOperation];
 
@@ -237,22 +222,18 @@ enum { typeFSS = 'fss ' };
 
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
-        // SaveAs のとき古いパスの監視をやめる
-        if ((theOldPath != nil) && (saveOperation == NSSaveAsOperation)) {
-            [self stopWatchFile:theOldPath];
-        }
-        // 外部プロセスによる変更監視を開始
-        if (theBoolIsFirstSaving) {
-            [self startWatchFile:[url path]];
-        }
+        
+        // fileModificationDateを再びセットする (2014-03-07 by 1024jp)
+        // fileModificationDateは自動でセットされているので本来は必要ないはずだが
+        // ときおり変更がないのにファイル保存時に「別のアプリケーション〜」というアラートがでることへの回避策。
+        // ちなみにこのアラートはCotEditorが独自に設置している「別のプロセス〜」とは別モノ。
+        // 来る時が来たら消したい1行ではある。
+        [self setFileModificationDate:[_fileAttr fileModificationDate]];
     }
     // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
     [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
     // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
     [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
-
-    // ディレイをかけて、保存中フラグをもどす
-    [self performSelector:@selector(decreaseSavingFlag) withObject:nil afterDelay:0.5];
 
     return outResult;
 }
@@ -1485,66 +1466,45 @@ enum { typeFSS = 'fss ' };
 #pragma mark === Delegate and Notification ===
 
 //=======================================================
-// Delegate method (VDKQueue)
-//  <== VDKQueue
+// Delegate method (NSFilePresenter)
+//  <== NSFilePresenter
 //=======================================================
 
 // ------------------------------------------------------
-- (void)VDKQueue:(VDKQueue *)queue receivedNotification:(NSString *)noteName forPath:(NSString *)fpath
-// VDKQueue からファイル変更に関する通知を受信
+- (void)presentedItemDidChange
+// ファイルが変更された
 // ------------------------------------------------------
 {
-    if ([noteName isEqualToString:VDKQueueWriteNotification]) {
-        [self fileWritten:fpath];
-        
-    } else if ([noteName isEqualToString:VDKQueueDeleteNotification]) {
-        [self fileDeleted:fpath];
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)fileWritten:(NSString *)filePath
-// いま開いているファイルが外部プロセスによって上書き保存された
-// ------------------------------------------------------
-{
-    // セーブ中フラグが立っているときは自身の保存なので無視
-    if ([self numberOfSavingFlags] > 0) return;
+    // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
+    NSFileCoordinator *coordinator = [[[NSFileCoordinator alloc] initWithFilePresenter:self] autorelease];
+    __block NSDate *fileModificationDate;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+    {
+        NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+        fileModificationDate = [fileAttrs fileModificationDate];
+    }];
+    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
-    // ファイルとドキュメントのmodificationDateが同じ場合は無視
-    // ファイルの読み込みや実行など、外部からの書き込み以外のアクセスにときおり反応してしまう問題への対処 (2014-02-22 by 1024jp)
-    // ちなみに、このmodificationDateだけでは上記の自身の保存の判断ができないので別途処理している。
-    NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:nil];
-    if ([[fileAttrs fileModificationDate] isEqualToDate:[self fileModificationDate]]) return;
+    // ファイルのMD5ハッシュが保持しているものと同じ場合は無視
+    __block NSString *MD5;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         NSData *data = [NSData dataWithContentsOfURL:newURL];
+         MD5 = [data MD5];
+     }];
+    if ([MD5 isEqualToString:[self fileMD5]]) { return; }
     
-    // 自分が保存中でないなら、書き込み通知を行う
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
+    // 書き込み通知を行う
     _showUpdateAlertWithBecomeKey = YES;
+    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
     // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
     if ([NSApp isActive]) {
-        [self showUpdatedByExternalProcessAlert];
-    } else if ([[theValues valueForKey:k_key_notifyEditByAnother] boolValue]) {
-        NSInteger theRequestID = [NSApp requestUserAttention:NSInformationalRequest];
-        // Dockアイコンジャンプを中止（本来なくてもいいはずだが10.4.3ではジャンプし続けるため、実行）
-        [NSApp cancelUserAttentionRequest:theRequestID];
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)fileDeleted:(NSString *)filePath
-// いま開いているファイルが外部プロセスによって削除された
-// ------------------------------------------------------
-{
-    // VDKQueue から一旦パスを削除
-    [[self fileObserver] removeAllPaths];
-    
-    // Cocoa アプリで標準的に使われる置き換え保存かどうかを確認する
-    if ([[self fileURL] checkResourceIsReachableAndReturnError:nil]) {
-        // 置き換え保存なら、上書き保存と同じ処理後、VDKQueue に再登録
-        [self fileWritten:[[self fileURL] path]];
-        [self startWatchFile:[[self fileURL] path]];
+        [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
+        
+    } else if ([[defaults valueForKey:k_key_notifyEditByAnother] boolValue]) {
+        [NSApp requestUserAttention:NSInformationalRequest];
     }
 }
 
@@ -1900,6 +1860,9 @@ enum { typeFSS = 'fss ' };
     [theTask launch];
     theData = [NSData dataWithData:[[[theTask standardOutput] fileHandleForReading] readDataToEndOfFile]];
     [theTask waitUntilExit];
+    
+    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+    [self setFileMD5:[theData MD5]];
 
     status = [theTask terminationStatus];
     if (status != 0) {
@@ -1939,8 +1902,6 @@ enum { typeFSS = 'fss ' };
         outResult = [self stringFromData:theData encoding:theEncoding xattr:theBoolEA];
     }
     if (outResult) {
-        // 外部プロセスによる変更監視を開始
-        [self startWatchFile:inFileName];
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
     }
@@ -2189,6 +2150,9 @@ enum { typeFSS = 'fss ' };
         status = [theTask terminationStatus];
         outResult = (status == 0);
 
+        // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+        [self setFileMD5:[theData MD5]];
+        
         // クリエータなどを設定
         [theManager setAttributes:theAttrs ofItemAtPath:inFileName error:nil];
         
@@ -2372,54 +2336,6 @@ enum { typeFSS = 'fss ' };
                 self, theReturn, theContextInfo->contextInfo);
     }
     free(theContextInfo);
-}
-
-
-// ------------------------------------------------------
-- (void)startWatchFile:(NSString *)inFileName
-// 外部プロセスによるファイルの変更監視を開始
-// ------------------------------------------------------
-{
-    if ([[NSFileManager defaultManager] fileExistsAtPath:inFileName]) {
-        // いったんすべての監視を削除
-        [[self fileObserver] removeAllPaths];
-        
-        // VDKQueue に新たにパスを追加
-        u_int notificationType = VDKQueueNotifyAboutWrite | VDKQueueNotifyAboutDelete;
-        [[self fileObserver] addPath:inFileName notifyingAbout:notificationType];
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)stopWatchFile:(NSString *)inFileName
-// 外部プロセスによるファイルの変更監視を停止
-// ------------------------------------------------------
-{
-    // VDKQueue からパスを削除
-    [[self fileObserver] removePath:inFileName];
-}
-
-
-// ------------------------------------------------------
-- (void)increaseSavingFlag
-// 保存中フラグを増やす
-// ------------------------------------------------------
-{
-    @synchronized(self) {
-        self.numberOfSavingFlags++;
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)decreaseSavingFlag
-// 保存中フラグを減らす
-// ------------------------------------------------------
-{
-    @synchronized(self) {
-        self.numberOfSavingFlags--;
-    }
 }
 
 
