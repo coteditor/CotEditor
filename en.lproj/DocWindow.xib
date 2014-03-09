@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -76,7 +76,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="Doc Info" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="144" id="700">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="143">
                             <items>
                                 <menuItem title="Doc Info" state="on" id="144"/>
@@ -411,11 +411,11 @@
                                         <rect key="frame" x="0.0" y="31" width="210" height="349"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" id="P3B-bn-Nty">
-                                            <rect key="frame" x="1" y="17" width="197" height="320"/>
+                                            <rect key="frame" x="1" y="17" width="197" height="317"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="733" id="122">
-                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="320"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="317"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -479,11 +479,11 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="734">
-                                            <rect key="frame" x="1" y="337" width="197" height="11"/>
+                                            <rect key="frame" x="1" y="334" width="197" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="732">
-                                            <rect key="frame" x="198" y="17" width="11" height="320"/>
+                                            <rect key="frame" x="198" y="17" width="11" height="317"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" id="733">
@@ -594,7 +594,7 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="Black text" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="590" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="587">
                             <items>
                                 <menuItem title="Black text" state="on" id="590"/>
@@ -629,7 +629,7 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="428" id="719">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="425">
                             <items>
                                 <menuItem title="(No print)" state="on" id="428"/>
@@ -656,7 +656,7 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="420" id="717">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="417">
                             <items>
                                 <menuItem title="(No print)" state="on" id="420"/>
@@ -716,6 +716,7 @@
                                     </column>
                                 </cells>
                                 <connections>
+                                    <binding destination="448" name="selectedIndex" keyPath="selection.footerOneAlignIndex" id="468"/>
                                     <binding destination="448" name="enabled2" keyPath="selection.footerOneStringIndex" previousBinding="473" id="475">
                                         <dictionary key="options">
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
@@ -725,7 +726,6 @@
                                         </dictionary>
                                     </binding>
                                     <binding destination="448" name="enabled" keyPath="selection.printFooter" id="473"/>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.footerOneAlignIndex" id="468"/>
                                 </connections>
                             </matrix>
                             <button id="276">
@@ -770,6 +770,7 @@
                                     </column>
                                 </cells>
                                 <connections>
+                                    <binding destination="448" name="selectedIndex" keyPath="selection.footerTwoAlignIndex" id="469"/>
                                     <binding destination="448" name="enabled2" keyPath="selection.footerTwoStringIndex" previousBinding="470" id="472">
                                         <dictionary key="options">
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
@@ -779,7 +780,6 @@
                                         </dictionary>
                                     </binding>
                                     <binding destination="448" name="enabled" keyPath="selection.printFooter" id="470"/>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.footerTwoAlignIndex" id="469"/>
                                 </connections>
                             </matrix>
                             <textField verticalHuggingPriority="750" id="295">
@@ -816,7 +816,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="397" id="714">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="314">
                                         <items>
                                             <menuItem title="(No print)" state="on" id="397"/>
@@ -831,8 +831,8 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="enabled" keyPath="selection.printFooter" id="467"/>
                                     <binding destination="448" name="selectedIndex" keyPath="selection.footerOneStringIndex" id="464"/>
+                                    <binding destination="448" name="enabled" keyPath="selection.printFooter" id="467"/>
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" id="321">
@@ -840,7 +840,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="322">
                                         <items>
                                             <menuItem title="(No print)" state="on" id="399"/>
@@ -855,8 +855,8 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="enabled" keyPath="selection.printFooter" id="466"/>
                                     <binding destination="448" name="selectedIndex" keyPath="selection.footerTwoStringIndex" id="465"/>
+                                    <binding destination="448" name="enabled" keyPath="selection.printFooter" id="466"/>
                                 </connections>
                             </popUpButton>
                         </subviews>
@@ -876,7 +876,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="393" id="704">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="199">
                                         <items>
                                             <menuItem title="(No print)" state="on" id="393"/>
@@ -891,8 +891,8 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="enabled" keyPath="selection.printHeader" id="454"/>
                                     <binding destination="448" name="selectedIndex" keyPath="selection.headerOneStringIndex" id="451"/>
+                                    <binding destination="448" name="enabled" keyPath="selection.printHeader" id="454"/>
                                 </connections>
                             </popUpButton>
                             <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="212">
@@ -926,6 +926,7 @@
                                     </column>
                                 </cells>
                                 <connections>
+                                    <binding destination="448" name="selectedIndex" keyPath="selection.headerOneAlignIndex" id="458"/>
                                     <binding destination="448" name="enabled2" keyPath="selection.headerOneStringIndex" previousBinding="455" id="457">
                                         <dictionary key="options">
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
@@ -935,7 +936,6 @@
                                         </dictionary>
                                     </binding>
                                     <binding destination="448" name="enabled" keyPath="selection.printHeader" id="455"/>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.headerOneAlignIndex" id="458"/>
                                 </connections>
                             </matrix>
                             <button id="216">
@@ -980,6 +980,7 @@
                                     </column>
                                 </cells>
                                 <connections>
+                                    <binding destination="448" name="selectedIndex" keyPath="selection.headerTwoAlignIndex" id="459"/>
                                     <binding destination="448" name="enabled2" keyPath="selection.headerTwoStringIndex" previousBinding="460" id="462">
                                         <dictionary key="options">
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
@@ -989,7 +990,6 @@
                                         </dictionary>
                                     </binding>
                                     <binding destination="448" name="enabled" keyPath="selection.printHeader" id="460"/>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.headerTwoAlignIndex" id="459"/>
                                 </connections>
                             </matrix>
                             <textField verticalHuggingPriority="750" id="256">
@@ -1026,7 +1026,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="395" id="709">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="306">
                                         <items>
                                             <menuItem title="(No print)" state="on" id="395"/>
@@ -1041,8 +1041,8 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="enabled" keyPath="selection.printHeader" id="453"/>
                                     <binding destination="448" name="selectedIndex" keyPath="selection.headerTwoStringIndex" id="452"/>
+                                    <binding destination="448" name="enabled" keyPath="selection.printHeader" id="453"/>
                                 </connections>
                             </popUpButton>
                         </subviews>
