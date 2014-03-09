@@ -716,13 +716,7 @@
                                                 <action selector="openBundledDocument:" target="290" id="827"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Known Problems" tag="202" id="823">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="828"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="To ATOK Users" tag="203" id="kMD-tc-dg4">
+                                        <menuItem title="To ATOK Users" tag="202" id="kMD-tc-dg4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="830"/>

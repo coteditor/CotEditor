@@ -262,7 +262,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_scriptMenuTag     800
 
 // Help Document Menu tag and path
-#define k_bundleDocumentDict @{@100:@"License.txt", @101:@"OgreKit License.txt", @200:@"ReadMe.rtf", @201:@"Version History.rtf", @202:@"Known Problems.rtf", @203:@"To ATOK Users.rtf"}
+#define k_bundleDocumentDict @{@100:@"License.txt", @101:@"OgreKit License.txt", @200:@"ReadMe.rtf", @201:@"Version History.rtf", @202:@"To ATOK Users.rtf"}
 
 // Goto window object index
 #define k_gotoCharacterIndex    0

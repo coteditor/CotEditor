@@ -716,13 +716,7 @@
                                                 <action selector="openBundledDocument:" target="290" id="828"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="既知の問題" tag="202" id="825">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="829"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="ATOKユーザの方へ" tag="203" id="826">
+                                        <menuItem title="ATOKユーザの方へ" tag="202" id="826">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="830"/>
