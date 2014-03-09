@@ -119,7 +119,7 @@ http://www.aynimac.com/
 "Close SplitView" = "分割されたエディタを閉じる";
 
 /* CEStatusBarView */
-"This Doc is ReadOnly" = "書類は書き込み不可です";
+"This Dococument is ReadOnly" = "書類は書き込み不可です";
 /* (code in CEEditorView) */
 " Line: %@ / %@  Char: %@ / %@ (>%@) [:%@]  Unicode: %@" = " 行: %@ / %@  文字: %@ / %@ (>%@) [:%@]  Unicode: %@";
 " Line: %@ / %@  Char: %@ / %@ (>%@) [:%@]" = " 行: %@ / %@  文字: %@ / %@ (>%@) [:%@]";

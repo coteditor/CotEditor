@@ -182,7 +182,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_insertCustomTextArray: [self factoryDefaultOfTextInsertStringArray], 
 
         /* -------- 以下、隠し設定 -------- */
-                k_key_statusBarFontName: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
                 k_key_statusBarFontSize: @11.0f, 
                 k_key_lineNumFontName: @"ArialNarrow",
                 k_key_lineNumFontSize: @10.0f, 

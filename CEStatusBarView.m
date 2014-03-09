@@ -37,15 +37,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEStatusBarView.h"
 #import "CEEditorView.h"
+#import "constants.h"
 
 
-//=======================================================
-// Private method
-//
-//=======================================================
+@interface CEStatusBarView ()
 
-@interface CEStatusBarView (Private)
-- (void)setHeight:(CGFloat)inValue;
+@property (nonatomic, retain, readwrite) NSTextField *leftTextField;
+@property (nonatomic, retain, readwrite) NSTextField *rightTextField;
+
+@property (nonatomic, retain) NSImageView *readOnlyView;
+
 @end
 
 
@@ -53,10 +54,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+#pragma mark -
 
 @implementation CEStatusBarView
 
-#pragma mark ===== Public method =====
+@synthesize showStatusBar = _showStatusBar;
+
+
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -64,57 +69,53 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (id)initWithFrame:(NSRect)frameRect
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frameRect];
     if (self) {
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        // setup TextField
+        CGFloat fontSize = (CGFloat)[[values valueForKey:k_key_statusBarFontSize] doubleValue] ? : 11.0;
+        NSFont *font = [NSFont controlContentFontOfSize:fontSize];
+        
+        NSRect textFieldFrame = frameRect;
+        textFieldFrame.origin.x += k_statusBarReadOnlyWidth;
+        textFieldFrame.origin.y -= (k_statusBarHeight - [font pointSize]) / 4;
+        textFieldFrame.size.width -= [NSScroller scrollerWidth] + k_statusBarReadOnlyWidth + k_statusBarRightPadding;
+        
+        [self setLeftTextField:[[NSTextField allocWithZone:[self zone]] initWithFrame:textFieldFrame]]; // ===== alloc
+        [[self leftTextField] setEditable:NO];
+        [[self leftTextField] setSelectable:NO];
+        [[self leftTextField] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+        [[self leftTextField] setFont:font];
+        [[self leftTextField] setBordered:NO];
+        [[self leftTextField] setDrawsBackground:NO];
+        [[self leftTextField] setAlignment:NSLeftTextAlignment];
 
-        // setup the TextField.
-        NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_statusBarFontName]
-                                          size:(CGFloat)[[theValues valueForKey:k_key_statusBarFontSize] doubleValue]];
-        if (theFont == nil) {
-            theFont = [NSFont controlContentFontOfSize:11.0];
-        }
-        NSRect theTextFieldFrame = inFrame;
-        theTextFieldFrame.origin.x += k_statusBarReadOnlyWidth;
-        theTextFieldFrame.origin.y -= (k_statusBarHeight - [theFont pointSize]) / 4 ;
-        theTextFieldFrame.size.width -= 
-                ([NSScroller scrollerWidth] + k_statusBarReadOnlyWidth + k_statusBarRightPadding);
-        _leftTextField = [[NSTextField allocWithZone:[self zone]] initWithFrame:theTextFieldFrame]; // ===== alloc
-        [_leftTextField setEditable:NO];
-        [_leftTextField setSelectable:NO];
-        [_leftTextField setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-        [_leftTextField setFont:theFont];
-        [_leftTextField setBordered:NO];
-        [_leftTextField setDrawsBackground:NO];
-        [_leftTextField setAlignment:NSLeftTextAlignment];
+        [self setRightTextField:[[NSTextField allocWithZone:[self zone]] initWithFrame:textFieldFrame]]; // ===== alloc
+        [[self rightTextField] setEditable:NO];
+        [[self rightTextField] setSelectable:NO];
+        [[self rightTextField] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+        [[self rightTextField] setFont:font];
+        [[self rightTextField] setBordered:NO];
+        [[self rightTextField] setDrawsBackground:NO];
+        [[self rightTextField] setAlignment:NSRightTextAlignment];
 
-        _rightTextField = [[NSTextField allocWithZone:[self zone]] initWithFrame:theTextFieldFrame]; // ===== alloc
-        [_rightTextField setEditable:NO];
-        [_rightTextField setSelectable:NO];
-        [_rightTextField setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-        [_rightTextField setFont:theFont];
-        [_rightTextField setBordered:NO];
-        [_rightTextField setDrawsBackground:NO];
-        [_rightTextField setAlignment:NSRightTextAlignment];
+        // setup ReadOnly icon
+        NSRect readOnlyFrame = frameRect;
+        readOnlyFrame.size.width = k_statusBarReadOnlyWidth;
+        [self setReadOnlyView:[[NSImageView allocWithZone:[self zone]] initWithFrame:readOnlyFrame]]; // ===== alloc
+        [[self readOnlyView] setAutoresizingMask:NSViewHeightSizable];
 
-
-        // setup the ReadOnly icon.
-        NSRect theReadOnlyFrame = inFrame;
-        theReadOnlyFrame.size.width = k_statusBarReadOnlyWidth;
-        _readOnlyView = 
-                [[NSImageView allocWithZone:[self zone]] initWithFrame:theReadOnlyFrame]; // ===== alloc
-        [_readOnlyView setAutoresizingMask:NSViewHeightSizable];
-
-        [self setReadOnlyIcon:NO];
+        [self setShowsReadOnlyIcon:NO];
         [self setAutoresizingMask:NSViewWidthSizable];
-        [self addSubview:_leftTextField];
-        [self addSubview:_rightTextField];
-        [self addSubview:_readOnlyView];
+        
+        [self addSubview:[self leftTextField]];
+        [self addSubview:[self rightTextField]];
+        [self addSubview:[self readOnlyView]];
     }
     return self;
 }
@@ -126,47 +127,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // _masterView is not retain.
-    [_leftTextField release];
-    [_rightTextField release];
-    [_readOnlyView release];
+    [[self leftTextField] release];
+    [[self rightTextField] release];
+    [[self readOnlyView] release];
 
     [super dealloc];
-}
-
-
-// ------------------------------------------------------
-- (NSTextField *)leftTextField
-// 左側のテキストフィールドを返す
-// ------------------------------------------------------
-{
-    return _leftTextField;
-}
-
-
-// ------------------------------------------------------
-- (NSTextField *)rightTextField
-// 右側のテキストフィールドを返す
-// ------------------------------------------------------
-{
-    return _rightTextField;
-}
-
-
-// ------------------------------------------------------
-- (CEEditorView *)masterView
-// テキストビューを返す
-// ------------------------------------------------------
-{
-    return _masterView; // retain していない
-}
-
-
-// ------------------------------------------------------
-- (void)setMasterView:(CEEditorView *)inView
-// テキストビューをセット。retainしない。
-// ------------------------------------------------------
-{
-    _masterView = inView;
 }
 
 
@@ -180,47 +145,47 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setShowStatusBar:(BOOL)inBool
+- (void)setShowStatusBar:(BOOL)showStatusBar
 // ステータスバー表示の有無をセット
 // ------------------------------------------------------
 {
-    if (inBool != _showStatusBar) {
-        _showStatusBar = !_showStatusBar;
-        if (!_showStatusBar) {
-            [self setHeight:0];
-        } else {
-            [self setHeight:k_statusBarHeight];
-        }
+    if (showStatusBar != _showStatusBar) {
+        _showStatusBar = showStatusBar;
+
+        CGFloat height = [self showStatusBar] ? k_statusBarHeight : 0.0;
+        [self setHeight:height];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)setReadOnlyIcon:(BOOL)inBool
+- (void)setShowsReadOnlyIcon:(BOOL)showsReadOnlyIcon
 // "ReadOnly"アイコン表示の有無をセット
 // ------------------------------------------------------
 {
-    if (inBool) {
-        [_readOnlyView setImage:[NSImage imageNamed:@"lockOnImg"]];
-        [_readOnlyView setToolTip:NSLocalizedString(@"This Doc is ReadOnly",@"")];
+    if (showsReadOnlyIcon) {
+        [[self readOnlyView] setImage:[NSImage imageNamed:@"lockOnImg"]];
+        [[self readOnlyView] setToolTip:NSLocalizedString(@"This Document is ReadOnly", nil)];
     } else {
-        [_readOnlyView setImage:nil];
-        [_readOnlyView setToolTip:nil];
+        [[self readOnlyView] setImage:nil];
+        [[self readOnlyView] setToolTip:nil];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)drawRect:(NSRect)inRect
+- (void)drawRect:(NSRect)dirtyRect
 // 矩形を描画
 // ------------------------------------------------------
 {
-    if ((!_masterView) || (!_showStatusBar)) {
+    if (![self masterView] || ![self showStatusBar]) {
         return;
     }
-    // fill in the background
+    
     [[NSColor gridColor] set];
-    [NSBezierPath fillRect:inRect];
+    // fill in background
+    [NSBezierPath fillRect:dirtyRect];
+    
     // draw frame border
     [[NSColor controlShadowColor] set];
     [NSBezierPath strokeRect:[self frame]];
@@ -228,32 +193,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@end
-
-
-
-@implementation CEStatusBarView (Private)
+#pragma mark -
+#pragma mark Private Methods
 
 // ------------------------------------------------------
-- (void)setHeight:(CGFloat)inValue
+- (void)setHeight:(CGFloat)height
 // 高さをセット
 // ------------------------------------------------------
 {
-    CGFloat theAdjHeight = (inValue - NSHeight([self frame]));
-    NSRect theNewFrame;
+    CGFloat adjHeight = height - NSHeight([self frame]);
+    NSRect newFrame;
 
     // set masterView height
-    theNewFrame = [[_masterView splitView] frame];
-    theNewFrame.origin.y += theAdjHeight;
-    theNewFrame.size.height -= theAdjHeight;
-    [[_masterView splitView] setFrame:theNewFrame];
+    newFrame = [[[self masterView] splitView] frame];
+    newFrame.origin.y += adjHeight;
+    newFrame.size.height -= adjHeight;
+    [[[self masterView] splitView] setFrame:newFrame];
+    
     // set statusBar height
-    theNewFrame = [self frame];
-    theNewFrame.size.height += theAdjHeight;
-    [self setFrame:theNewFrame];
+    newFrame = [self frame];
+    newFrame.size.height += adjHeight;
+    [self setFrame:newFrame];
 
     [[[self window] contentView] setNeedsDisplay:YES];
 }
-
 
 @end
