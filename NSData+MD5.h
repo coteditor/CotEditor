@@ -3,8 +3,8 @@
  NSData+MD5
  (for CotEditor)
  
- Copyright (C) 2014 CotEditor Project.
- https://github.com/coteditor/
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
  =================================================
  
  encoding="UTF-8"
