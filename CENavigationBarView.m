@@ -33,16 +33,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CENavigationBarView.h"
 #import "CEEditorView.h"
+#import "CEOutlineMenuButton.h"
+#import "CEOutlineMenuButtonCell.h"
+#import "constants.h"
 
 
-//=======================================================
-// Private method
-//
-//=======================================================
+@interface CENavigationBarView ()
 
-@interface CENavigationBarView (Private)
-- (void)setHeight:(CGFloat)inValue;
+@property (nonatomic, retain) CEOutlineMenuButton *outlineMenu;
+@property (nonatomic, retain) NSButton *prevButton;
+@property (nonatomic, retain) NSButton *nextButton;
+@property (nonatomic, retain) NSButton *openSplitButton;
+@property (nonatomic, retain) NSButton *closeSplitButton;
+
 @end
+
+#pragma mark -
 
 
 //------------------------------------------------------------------------------------------
@@ -51,93 +57,95 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @implementation CENavigationBarView
+
+@synthesize showNavigationBar = _showNavigationBar;
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (id)initWithFrame:(NSRect)frame
 // initialize
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frame];
     if (self) {
 
         // setup outlineMenu
-        NSRect theOutlineMenuFrame = inFrame;
-        theOutlineMenuFrame.origin.x += k_outlineMenuLeftMargin;
-        theOutlineMenuFrame.origin.y = 0.0;
-        theOutlineMenuFrame.size.width = k_outlineMenuWidth;
-        [self convertRect:theOutlineMenuFrame toView:self];
-        _outlineMenu = [[CEOutlineMenuButton allocWithZone:[self zone]] 
-                    initWithFrame:theOutlineMenuFrame pullsDown:NO]; // ===== alloc
-        [_outlineMenu setAutoresizingMask:NSViewHeightSizable];
+        NSRect outlineMenuFrame = frame;
+        outlineMenuFrame.origin.x += k_outlineMenuLeftMargin;
+        outlineMenuFrame.origin.y = 0.0;
+        outlineMenuFrame.size.width = k_outlineMenuWidth;
+        [self convertRect:outlineMenuFrame toView:self];
+        [self setOutlineMenu:[[CEOutlineMenuButton allocWithZone:[self zone]]
+                              initWithFrame:outlineMenuFrame pullsDown:NO]]; // ===== alloc
+        [[self outlineMenu] setAutoresizingMask:NSViewHeightSizable];
 
         // setup prevButton
-        NSRect thePrevButtonFrame = theOutlineMenuFrame;
-        thePrevButtonFrame.origin.x -= k_outlineButtonWidth;
-        thePrevButtonFrame.origin.y = 1.0;
-        thePrevButtonFrame.size.width = k_outlineButtonWidth;
-        [self convertRect:thePrevButtonFrame toView:self];
-        _prevButton = [[NSButton allocWithZone:[self zone]] initWithFrame:thePrevButtonFrame]; // ===== alloc
-        [_prevButton setButtonType:NSMomentaryPushInButton];
-        [_prevButton setBordered:NO];
-        [_prevButton setImagePosition:NSImageOnly];
-        [_prevButton setAction:@selector(selectPrevItem)];
-        [_prevButton setTarget:self];
-        [_prevButton setToolTip:NSLocalizedString(@"Go Prev item",@"")];
-        [_prevButton setAutoresizingMask:NSViewHeightSizable];
+        NSRect prevButtonFrame = outlineMenuFrame;
+        prevButtonFrame.origin.x -= k_outlineButtonWidth;
+        prevButtonFrame.origin.y = 1.0;
+        prevButtonFrame.size.width = k_outlineButtonWidth;
+        [self convertRect:prevButtonFrame toView:self];
+        [self setPrevButton:[[NSButton allocWithZone:[self zone]] initWithFrame:prevButtonFrame]]; // ===== alloc
+        [[self prevButton] setButtonType:NSMomentaryPushInButton];
+        [[self prevButton] setBordered:NO];
+        [[self prevButton] setImagePosition:NSImageOnly];
+        [[self prevButton] setAction:@selector(selectPrevItem)];
+        [[self prevButton] setTarget:self];
+        [[self prevButton] setToolTip:NSLocalizedString(@"Go Prev item",@"")];
+        [[self prevButton] setAutoresizingMask:NSViewHeightSizable];
 
         // setup nextButton
-        NSRect theNextButtonFrame = theOutlineMenuFrame;
-        theNextButtonFrame.origin.x += NSWidth(theOutlineMenuFrame);
-        theNextButtonFrame.origin.y = 1.0;
-        theNextButtonFrame.size.width = k_outlineButtonWidth;
-        [self convertRect:theNextButtonFrame toView:self];
-        _nextButton = [[NSButton allocWithZone:[self zone]] initWithFrame:theNextButtonFrame]; // ===== alloc
-        [_nextButton setButtonType:NSMomentaryPushInButton];
-        [_nextButton setBordered:NO];
-        [_nextButton setImagePosition:NSImageOnly];
-        [_nextButton setAction:@selector(selectNextItem)];
-        [_nextButton setTarget:self];
-        [_nextButton setToolTip:NSLocalizedString(@"Go Next item",@"")];
-        [_nextButton setAutoresizingMask:NSViewHeightSizable];
+        NSRect nextButtonFrame = outlineMenuFrame;
+        nextButtonFrame.origin.x += NSWidth(outlineMenuFrame);
+        nextButtonFrame.origin.y = 1.0;
+        nextButtonFrame.size.width = k_outlineButtonWidth;
+        [self convertRect:nextButtonFrame toView:self];
+        [self setNextButton:[[NSButton allocWithZone:[self zone]] initWithFrame:nextButtonFrame]]; // ===== alloc
+        [[self nextButton] setButtonType:NSMomentaryPushInButton];
+        [[self nextButton] setBordered:NO];
+        [[self nextButton] setImagePosition:NSImageOnly];
+        [[self nextButton] setAction:@selector(selectNextItem)];
+        [[self nextButton] setTarget:self];
+        [[self nextButton] setToolTip:NSLocalizedString(@"Go Next item",@"")];
+        [[self nextButton] setAutoresizingMask:NSViewHeightSizable];
 
         // setup openSplitButton
-        NSRect theOpenSplitButtonFrame = inFrame;
-        theOpenSplitButtonFrame.origin.x += (NSWidth(inFrame) - [NSScroller scrollerWidth]);
-        theOpenSplitButtonFrame.origin.y = 1.0;
-        theOpenSplitButtonFrame.size.width = [NSScroller scrollerWidth];
-        [self convertRect:theOpenSplitButtonFrame toView:self];
-        _openSplitButton = [[NSButton allocWithZone:[self zone]] initWithFrame:theOpenSplitButtonFrame]; // ===== alloc
-        [_openSplitButton setButtonType:NSMomentaryPushInButton];
-        [_openSplitButton setBordered:NO];
-        [_openSplitButton setImagePosition:NSImageOnly];
-        [_openSplitButton setAction:@selector(openSplitTextView:)];
-        [_openSplitButton setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
-        [_openSplitButton setImage:[NSImage imageNamed:@"openSplitButtonImg"]];
-        [_openSplitButton setToolTip:NSLocalizedString(@"Open SplitView",@"")];
-        [_openSplitButton setEnabled:YES];
+        NSRect openSplitButtonFrame = frame;
+        openSplitButtonFrame.origin.x += (NSWidth(frame) - [NSScroller scrollerWidth]);
+        openSplitButtonFrame.origin.y = 1.0;
+        openSplitButtonFrame.size.width = [NSScroller scrollerWidth];
+        [self convertRect:openSplitButtonFrame toView:self];
+        [self setOpenSplitButton:[[NSButton allocWithZone:[self zone]] initWithFrame:openSplitButtonFrame]]; // ===== alloc
+        [[self openSplitButton] setButtonType:NSMomentaryPushInButton];
+        [[self openSplitButton] setBordered:NO];
+        [[self openSplitButton] setImagePosition:NSImageOnly];
+        [[self openSplitButton] setAction:@selector(openSplitTextView:)];
+        [[self openSplitButton] setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
+        [[self openSplitButton] setImage:[NSImage imageNamed:@"openSplitButtonImg"]];
+        [[self openSplitButton] setToolTip:NSLocalizedString(@"Open SplitView",@"")];
+        [[self openSplitButton] setEnabled:YES];
 
         // setup closeSplitButton
-        NSRect theDelSplitButtonFrame = inFrame;
-        theDelSplitButtonFrame.origin.x += (NSWidth(inFrame) - [NSScroller scrollerWidth] * 2);
-        theDelSplitButtonFrame.origin.y = 1.0;
-        theDelSplitButtonFrame.size.width = [NSScroller scrollerWidth];
-        [self convertRect:theDelSplitButtonFrame toView:self];
-        _closeSplitButton = [[NSButton allocWithZone:[self zone]] initWithFrame:theDelSplitButtonFrame]; // ===== alloc
-        [_closeSplitButton setButtonType:NSMomentaryPushInButton];
-        [_closeSplitButton setBordered:NO];
-        [_closeSplitButton setImagePosition:NSImageOnly];
-        [_closeSplitButton setAction:@selector(closeSplitTextView:)];
-        [_closeSplitButton setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
-        [_closeSplitButton setImage:[NSImage imageNamed:@"closeSplitButtonImg"]];
-        [_closeSplitButton setToolTip:NSLocalizedString(@"Close SplitView",@"")];
-        [_closeSplitButton setHidden:YES];
+        NSRect closeSplitButtonFrame = frame;
+        closeSplitButtonFrame.origin.x += (NSWidth(frame) - [NSScroller scrollerWidth] * 2);
+        closeSplitButtonFrame.origin.y = 1.0;
+        closeSplitButtonFrame.size.width = [NSScroller scrollerWidth];
+        [self convertRect:closeSplitButtonFrame toView:self];
+        [self setCloseSplitButton:[[NSButton allocWithZone:[self zone]] initWithFrame:closeSplitButtonFrame]]; // ===== alloc
+        [[self closeSplitButton] setButtonType:NSMomentaryPushInButton];
+        [[self closeSplitButton] setBordered:NO];
+        [[self closeSplitButton] setImagePosition:NSImageOnly];
+        [[self closeSplitButton] setAction:@selector(closeSplitTextView:)];
+        [[self closeSplitButton] setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
+        [[self closeSplitButton] setImage:[NSImage imageNamed:@"closeSplitButtonImg"]];
+        [[self closeSplitButton] setToolTip:NSLocalizedString(@"Close SplitView",@"")];
+        [[self closeSplitButton] setHidden:YES];
 
 
         [self setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin)];
-        [self addSubview:_outlineMenu];
-        [self addSubview:_prevButton];
-        [self addSubview:_nextButton];
-        [self addSubview:_openSplitButton];
-        [self addSubview:_closeSplitButton];
+        [self addSubview:[self outlineMenu]];
+        [self addSubview:[self prevButton]];
+        [self addSubview:[self nextButton]];
+        [self addSubview:[self openSplitButton]];
+        [self addSubview:[self closeSplitButton]];
     }
     return self;
 }
@@ -148,32 +156,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // clean up
 // ------------------------------------------------------
 {
-    // _masterView is not retain.
-    [_outlineMenu release];
-    [_prevButton release];
-    [_nextButton release];
-    [_openSplitButton release];
-    [_closeSplitButton release];
+    // masterView is not retain.
+    [[self outlineMenu] release];
+    [[self prevButton] release];
+    [[self nextButton] release];
+    [[self openSplitButton] release];
+    [[self closeSplitButton] release];
 
     [super dealloc];
-}
-
-
-// ------------------------------------------------------
-- (CESubSplitView *)masterView
-// return main textView
-// ------------------------------------------------------
-{
-    return _masterView; // not retain
-}
-
-
-// ------------------------------------------------------
-- (void)setMasterView:(CESubSplitView *)inView
-// set main textView in myself. *NOT* retain.
-// ------------------------------------------------------
-{
-    _masterView = inView;
 }
 
 
@@ -187,108 +177,104 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setShowNavigationBar:(BOOL)inBool
+- (void)setShowNavigationBar:(BOOL)showNavigationBar
 // set to show navigation bar.
 // ------------------------------------------------------
 {
-    if (inBool != _showNavigationBar) {
-        _showNavigationBar = !_showNavigationBar;
-        if (!_showNavigationBar) {
-            [self setHeight:0];
-        } else {
-            [self setHeight:k_navigationBarHeight];
-        }
+    if (showNavigationBar != [self showNavigationBar]) {
+        _showNavigationBar = showNavigationBar;
+        
+        CGFloat height = [self showNavigationBar] ? k_navigationBarHeight : 0.0;
+        [self setHeight:height];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)setOutlineMenuArray:(NSArray *)inArray
+- (void)setOutlineMenuArray:(NSArray *)menus
 // 配列を元にアウトラインメニューを生成
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMenu *theMenu;
-    NSMenuItem *theMenuItem;
-    NSFont *theDefaultFont = [NSFont fontWithName:[theValues valueForKey:k_key_navigationBarFontName] 
-                    size:(CGFloat)[[theValues valueForKey:k_key_navigationBarFontSize] doubleValue]];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSMenu *menu;
+    NSMenuItem *menuItem;
+    NSFont *defaultFont = [NSFont fontWithName:[values valueForKey:k_key_navigationBarFontName]
+                                          size:(CGFloat)[[values valueForKey:k_key_navigationBarFontSize] doubleValue]];
 
-    NSFontManager *theManager = [NSFontManager sharedFontManager];
-    NSFont *theFont;
-    NSMutableAttributedString *theTitle;
-    NSFontTraitMask theFontMask;
-    NSNumber *theUnderlineMaskNumber;
+    NSFontManager *fontManager = [NSFontManager sharedFontManager];
+    NSFont *font;
+    NSMutableAttributedString *title;
+    NSFontTraitMask fontMask;
+    NSNumber *underlineMaskNumber;
 
-    [_outlineMenu removeAllItems];
-    if ([inArray count] < 1) {
-        [_outlineMenu setEnabled:NO];
-        [_prevButton setEnabled:NO];
-        [_prevButton setImage:nil];
-        [_nextButton setEnabled:NO];
-        [_nextButton setImage:nil];
+    [[self outlineMenu] removeAllItems];
+    if ([menus count] < 1) {
+        [[self outlineMenu] setEnabled:NO];
+        [[self prevButton] setEnabled:NO];
+        [[self prevButton] setImage:nil];
+        [[self nextButton] setEnabled:NO];
+        [[self nextButton] setImage:nil];
     } else {
-        theMenu = [_outlineMenu menu];
-        for (NSDictionary *theDict in inArray) {
-            if ([[theDict valueForKey:k_outlineMenuItemTitle] isEqualToString:k_outlineMenuSeparatorSymbol]) {
+        menu = [[self outlineMenu] menu];
+        for (NSDictionary *dict in menus) {
+            if ([[dict valueForKey:k_outlineMenuItemTitle] isEqualToString:k_outlineMenuSeparatorSymbol]) {
                 // セパレータ
-                [theMenu addItem:[NSMenuItem separatorItem]];
+                [menu addItem:[NSMenuItem separatorItem]];
             } else {
-                theUnderlineMaskNumber = [[theDict[k_outlineMenuItemUnderlineMask] copy] autorelease];
-                theFontMask = ([[theDict valueForKey:k_outlineMenuItemFontBold] boolValue]) ? 
-                        NSBoldFontMask : 0;
-                theFont = [theManager convertFont:theDefaultFont toHaveTrait:theFontMask];
+                underlineMaskNumber = [[dict[k_outlineMenuItemUnderlineMask] copy] autorelease];
+                fontMask = ([[dict valueForKey:k_outlineMenuItemFontBold] boolValue]) ? NSBoldFontMask : 0;
+                font = [fontManager convertFont:defaultFont toHaveTrait:fontMask];
                 
-                theTitle = [[[NSMutableAttributedString alloc] 
-                            initWithString:theDict[k_outlineMenuItemTitle]
-                            attributes:@{NSFontAttributeName: theFont}] autorelease];
-                if (theUnderlineMaskNumber) {
-                    [theTitle addAttribute:NSUnderlineStyleAttributeName
-                                     value:theUnderlineMaskNumber
-                                     range:NSMakeRange(0, [theTitle length])];
+                title = [[[NSMutableAttributedString alloc] initWithString:dict[k_outlineMenuItemTitle]
+                                                                attributes:@{NSFontAttributeName: font}] autorelease];
+                if (underlineMaskNumber) {
+                    [title addAttribute:NSUnderlineStyleAttributeName
+                                  value:underlineMaskNumber
+                                  range:NSMakeRange(0, [title length])];
                 }
-                if ([theDict[k_outlineMenuItemFontItalic] boolValue]) {
-                    [theTitle addAttribute:NSFontAttributeName 
-                            value:[theManager convertFont:theFont toHaveTrait:NSItalicFontMask]
-                            range:NSMakeRange(0, [theTitle length])];
+                if ([dict[k_outlineMenuItemFontItalic] boolValue]) {
+                    [title addAttribute:NSFontAttributeName
+                                  value:[fontManager convertFont:font toHaveTrait:NSItalicFontMask]
+                                  range:NSMakeRange(0, [title length])];
                 }
-                theMenuItem = [[[NSMenuItem alloc] initWithTitle:@" " 
-                            action:@selector(setSelectedRangeWithNSValue:) keyEquivalent:@""] autorelease];
-                [theMenuItem setTarget:[[self masterView] textView]];
-                [theMenuItem setAttributedTitle:theTitle];
-                [theMenuItem setRepresentedObject:[theDict valueForKey:k_outlineMenuItemRange]];
-                [theMenu addItem:theMenuItem];
+                menuItem = [[[NSMenuItem alloc] initWithTitle:@" "
+                                                       action:@selector(setSelectedRangeWithNSValue:) keyEquivalent:@""] autorelease];
+                [menuItem setTarget:[[self masterView] textView]];
+                [menuItem setAttributedTitle:title];
+                [menuItem setRepresentedObject:[dict valueForKey:k_outlineMenuItemRange]];
+                [menu addItem:menuItem];
             }
         }
         // （メニューの再描画時のちらつき防止のため、ここで選択項目をセットする 2008.05.17.）
-        [self selectOutlineMenuItemWithRange:[[(CESubSplitView *)_masterView editorView] selectedRange]];
-        [_outlineMenu setMenu:theMenu];
-        [_outlineMenu setEnabled:YES];
-        [_prevButton setImage:[NSImage imageNamed:@"prevButtonImg"]];
-        [_prevButton setEnabled:YES];
-        [_nextButton setImage:[NSImage imageNamed:@"nextButtonImg"]];
-        [_nextButton setEnabled:YES];
+        [self selectOutlineMenuItemWithRange:[[[self masterView] editorView] selectedRange]];
+        [[self outlineMenu] setMenu:menu];
+        [[self outlineMenu] setEnabled:YES];
+        [[self prevButton] setImage:[NSImage imageNamed:@"prevButtonImg"]];
+        [[self prevButton] setEnabled:YES];
+        [[self nextButton] setImage:[NSImage imageNamed:@"nextButtonImg"]];
+        [[self nextButton] setEnabled:YES];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)selectOutlineMenuItemWithRange:(NSRange)inRange
+- (void)selectOutlineMenuItemWithRange:(NSRange)range
 // アウトラインメニューの選択項目を設定
 // ------------------------------------------------------
 {
-    if (![_outlineMenu isEnabled]) { return; }
-    NSMenu *theMenu = [_outlineMenu menu];
-    id theItem = nil;
-    NSInteger i, theCount = [theMenu numberOfItems];
-    NSUInteger theMark, theLocation = inRange.location;
-    if (theCount < 1) { return; }
+    if (![[self outlineMenu] isEnabled]) { return; }
+    NSMenu *menu = [[self outlineMenu] menu];
+    id item = nil;
+    NSInteger i, count = [menu numberOfItems];
+    NSUInteger theMark, theLocation = range.location;
+    if (count < 1) { return; }
 
-    if (NSEqualRanges(inRange, NSMakeRange(0, 0))) {
+    if (NSEqualRanges(range, NSMakeRange(0, 0))) {
         i = 1;
     } else {
-        for (i = 1; i < theCount; i++) {
-            theItem = [theMenu itemAtIndex:i];
-            theMark = [[theItem representedObject] rangeValue].location;
+        for (i = 1; i < count; i++) {
+            item = [menu itemAtIndex:i];
+            theMark = [[item representedObject] rangeValue].location;
             if (theMark > theLocation) {
                 break;
             }
@@ -297,23 +283,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ループを抜けた時点で「次のアイテムインデックス」になっているので、減ずる
     i--;
     // セパレータを除外
-    while ([[_outlineMenu itemAtIndex:i] isSeparatorItem]) {
+    while ([[[self outlineMenu] itemAtIndex:i] isSeparatorItem]) {
         i--;
         if (i < 0) {
             break;
         }
     }
-    [_outlineMenu selectItemAtIndex:i];
+    [[self outlineMenu] selectItemAtIndex:i];
     [self updatePrevNextButtonEnabled];
 }
 
 
 // ------------------------------------------------------
-- (void)selectOutlineMenuItemWithRangeValue:(NSValue *)inRangeValue
+- (void)selectOutlineMenuItemWithRangeValue:(NSValue *)rangeValue
 // アウトラインメニューの選択項目を設定
 // ------------------------------------------------------
 {
-    [self selectOutlineMenuItemWithRange:[inRangeValue rangeValue]];
+    [self selectOutlineMenuItemWithRange:[rangeValue rangeValue]];
 }
 
 
@@ -322,8 +308,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 前／次移動ボタンの有効／無効を切り替え
 // ------------------------------------------------------
 {
-    [_prevButton setEnabled:[self canSelectPrevItem]];
-    [_nextButton setEnabled:[self canSelectNextItem]];
+    [[self prevButton] setEnabled:[self canSelectPrevItem]];
+    [[self nextButton] setEnabled:[self canSelectNextItem]];
 }
 
 
@@ -333,15 +319,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self canSelectPrevItem]) {
-        NSInteger theTargetIndex = [_outlineMenu indexOfSelectedItem] - 1;
+        NSInteger targetIndex = [[self outlineMenu] indexOfSelectedItem] - 1;
 
-        while ([[_outlineMenu itemAtIndex:theTargetIndex] isSeparatorItem]) {
-            theTargetIndex--;
-            if (theTargetIndex < 0) {
+        while ([[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
+            targetIndex--;
+            if (targetIndex < 0) {
                 break;
             }
         }
-        [[_outlineMenu menu] performActionForItemAtIndex:theTargetIndex];
+        [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
     }
 }
 
@@ -352,17 +338,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self canSelectNextItem]) {
-        NSInteger theTargetIndex = [_outlineMenu indexOfSelectedItem] + 1;
-        NSInteger theMaxIndex = [_outlineMenu numberOfItems] - 1;
+        NSInteger targetIndex = [[self outlineMenu] indexOfSelectedItem] + 1;
+        NSInteger maxIndex = [[self outlineMenu] numberOfItems] - 1;
 
-        while ([[_outlineMenu itemAtIndex:theTargetIndex] isSeparatorItem]) {
-            theTargetIndex++;
-            if (theTargetIndex > theMaxIndex) {
+        while ([[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
+            targetIndex++;
+            if (targetIndex > maxIndex) {
                 break;
             }
         }
-        if (![[_outlineMenu itemAtIndex:theTargetIndex] isSeparatorItem]) {
-            [[_outlineMenu menu] performActionForItemAtIndex:theTargetIndex];
+        if (![[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
+            [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
         }
     }
 }
@@ -373,7 +359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // can select prev item in outline menu?
 // ------------------------------------------------------
 {
-    return ([_outlineMenu indexOfSelectedItem] > 0);
+    return ([[self outlineMenu] indexOfSelectedItem] > 0);
 }
 
 
@@ -382,77 +368,71 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // can select next item in outline menu?
 // ------------------------------------------------------
 {
-    BOOL outBool = NO;
-    NSInteger i;
-
-    for (i = ([_outlineMenu indexOfSelectedItem] + 1); i < [_outlineMenu numberOfItems]; i++) {
-        if (![[_outlineMenu itemAtIndex:i] isSeparatorItem]) {
-            outBool = YES;
-            break;
+    for (NSInteger i = ([[self outlineMenu] indexOfSelectedItem] + 1); i < [[self outlineMenu] numberOfItems]; i++) {
+        if (![[[self outlineMenu] itemAtIndex:i] isSeparatorItem]) {
+            return YES;
         }
     }
-    return outBool;
+    return NO;
 }
 
 
 // ------------------------------------------------------
-- (void)setCloseSplitButtonEnabled:(BOOL)inBool
+- (void)setCloseSplitButtonEnabled:(BOOL)closeSplitButtonEnabled
 // set closeSplitButton enabled or disabled
 // ------------------------------------------------------
 {
-    [_closeSplitButton setHidden:(!inBool)];
+    [[self closeSplitButton] setHidden:!closeSplitButtonEnabled];
 }
 
 
 // ------------------------------------------------------
-- (void)drawRect:(NSRect)inRect
+- (void)drawRect:(NSRect)dirtyRect
 // draw background.
 // ------------------------------------------------------
 {
-    if ((!_masterView) || (!_showNavigationBar)) {
+    if (![self masterView] || ![self showNavigationBar]) {
         return;
     }
     // fill in the background
     [[NSColor controlColor] set];
-    [NSBezierPath fillRect:inRect];
+    [NSBezierPath fillRect:dirtyRect];
 
     // draw frame border (only bottom line)
     [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(inRect), NSMinY(inRect)) 
-        toPoint:NSMakePoint(NSMaxX(inRect), NSMinY(inRect))];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMinY(dirtyRect))
+                              toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMinY(dirtyRect))];
 }
 
 
 
-@end
 
-
-
-@implementation CENavigationBarView (Private)
+#pragma mark -
+#pragma mark Private Methods
 
 // ------------------------------------------------------
-- (void)setHeight:(CGFloat)inValue
+- (void)setHeight:(CGFloat)height
 // set view height.
 // ------------------------------------------------------
 {
-    CGFloat theAdjHeight = (inValue - NSHeight([self frame]));
-    NSRect theNewFrame;
+    CGFloat adjHeight = height - NSHeight([self frame]);
+    NSRect newFrame;
 
     // set masterView height
-    theNewFrame = [[[self masterView] scrollView] frame];
-    theNewFrame.size.height -= theAdjHeight;
-    [[[self masterView] scrollView] setFrame:theNewFrame];
+    newFrame = [[[self masterView] scrollView] frame];
+    newFrame.size.height -= adjHeight;
+    [[[self masterView] scrollView] setFrame:newFrame];
     
     // set LineNumView height
-    theNewFrame = [[[self masterView] lineNumView] frame];
-    theNewFrame.size.height -= theAdjHeight;
-    [[[self masterView] lineNumView] setFrame:theNewFrame];
+    newFrame = [[[self masterView] lineNumView] frame];
+    newFrame.size.height -= adjHeight;
+    [[[self masterView] lineNumView] setFrame:newFrame];
 
     // set navigationBar height
-    theNewFrame = [self frame];
-    theNewFrame.origin.y -= theAdjHeight;
-    theNewFrame.size.height += theAdjHeight;
-    [self setFrame:theNewFrame];
+    newFrame = [self frame];
+    newFrame.origin.y -= adjHeight;
+    newFrame.size.height += adjHeight;
+    [self setFrame:newFrame];
 
     [[[self window] contentView] setNeedsDisplay:YES];
 }
