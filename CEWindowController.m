@@ -61,8 +61,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSSize theSize = NSMakeSize([[theValues valueForKey:k_key_windowWidth] floatValue],
-                    [[theValues valueForKey:k_key_windowHeight] floatValue]);
+    NSSize theSize = NSMakeSize((CGFloat)[[theValues valueForKey:k_key_windowWidth] doubleValue],
+                                (CGFloat)[[theValues valueForKey:k_key_windowHeight] doubleValue]);
     BOOL theBoolDoCascade = [[self document] doCascadeWindow];
 
     [[self window] setContentSize:theSize];

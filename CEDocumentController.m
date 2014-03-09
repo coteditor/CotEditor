@@ -217,7 +217,7 @@ static NSRect theLatestDocumentWindowFrame;
 // ウィンドウの透明度設定コントローラの値を返す
 // ------------------------------------------------------
 {
-    return [[[_transparencyController content] valueForKey:k_key_curWindowAlpha] floatValue];
+    return (CGFloat)[[[_transparencyController content] valueForKey:k_key_curWindowAlpha] doubleValue];
 }
 
 
@@ -523,7 +523,7 @@ static NSRect theLatestDocumentWindowFrame;
     CEDocument *theCurDoc = [self currentDocument];
 
     if (theCurDoc) {
-        [theCurDoc setCustomLineSpacingToTextView:[_lineSpacingField floatValue]];
+        [theCurDoc setCustomLineSpacingToTextView:(CGFloat)[_lineSpacingField doubleValue]];
     }
     [self closeLineSpacingPanel:nil];
 }

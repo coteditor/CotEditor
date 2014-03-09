@@ -133,7 +133,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRect theCurrentFrame = [self frame]; // 現在のフレームを退避
     NSAttributedString *thePageString = nil;
     NSPoint thePoint;
-    CGFloat theHeaderFooterLineFontSize = [[theValues valueForKey:k_key_headerFooterFontSize] floatValue];
+    CGFloat theHeaderFooterLineFontSize = (CGFloat)[[theValues valueForKey:k_key_headerFooterFontSize] doubleValue];
     CGFloat thePadding = k_printHFVerticalMargin;
 
     // プリントパネルでのカスタム設定を読み取り、保持
@@ -253,7 +253,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 行番号を印字
     if (_printLineNum) {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        CGFloat theLineNumFontSize = [[theValues valueForKey:k_key_lineNumFontSize] floatValue];
+        CGFloat theLineNumFontSize = (CGFloat)[[theValues valueForKey:k_key_lineNumFontSize] doubleValue];
 
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
@@ -419,8 +419,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger theLineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
 
     // ヘッダ／フッタの文字属性辞書生成、保持
-    NSFont *theHeaderFooterFont = [NSFont fontWithName:[theValues valueForKey:k_key_headerFooterFontName] 
-                size:[[theValues valueForKey:k_key_headerFooterFontSize] floatValue]];
+    NSFont *theHeaderFooterFont = [NSFont fontWithName:[theValues valueForKey:k_key_headerFooterFontName]
+                                                  size:(CGFloat)[[theValues valueForKey:k_key_headerFooterFontSize] doubleValue]];
     _headerFooterAttrs = [@{NSFontAttributeName: theHeaderFooterFont, 
                     NSForegroundColorAttributeName: [NSColor textColor]} retain]; // ===== retain
 
@@ -435,8 +435,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 行番号を印字するときは文字属性を保持、パディングを調整
     if (_printLineNum) {
-        NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_lineNumFontName] 
-                            size:[[theValues valueForKey:k_key_lineNumFontSize] floatValue]];
+        NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_lineNumFontName]
+                                          size:(CGFloat)[[theValues valueForKey:k_key_lineNumFontSize] doubleValue]];
         _lineNumAttrs = [@{NSFontAttributeName: theFont, 
                         NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_lineNumFontColor]]} retain]; // ===== retain
         _xOffset = k_printTextHorizontalMargin;

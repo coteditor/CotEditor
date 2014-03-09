@@ -73,7 +73,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /*
 // 削除しないこと！ ************* (1/12)
         NSString *theName = [theValues valueForKey:k_key_fontName];
-        CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+        CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
         NSFont *theFont = [NSFont fontWithName:theName size:theSize];
         NSColor *theColor = 
                 [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
@@ -223,8 +223,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     ([self showInvisibles])) || 
             (([self isPrinting]) && (theInvisibleCharPrintMenuIndex == 2))) {
 
-        CGFloat theInsetWidth = [[theValues valueForKey:k_key_textContainerInsetWidth] floatValue];
-        CGFloat theInsetHeight = [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue];
+        CGFloat theInsetWidth = (CGFloat)[[theValues valueForKey:k_key_textContainerInsetWidth] doubleValue];
+        CGFloat theInsetHeight = (CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightTop] doubleValue];
         if ([self isPrinting]) {
             NSPoint thePoint = [[self firstTextView] textContainerOrigin];
             theInsetWidth = thePoint.x;

@@ -142,14 +142,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // ビューのパラメータをセット
         [_textViewCore setTextContainerInset:
-                NSMakeSize([[theValues valueForKey:k_key_textContainerInsetWidth] floatValue], 
-                    ([[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue] + 
-                    [[theValues valueForKey:k_key_textContainerInsetHeightBottom] floatValue]) / 2
-                    )];
+                NSMakeSize((CGFloat)[[theValues valueForKey:k_key_textContainerInsetWidth] doubleValue],
+                           ((CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightTop] doubleValue] +
+                            (CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightBottom] doubleValue]) / 2
+                           )];
         _lineNumUpdateTimer = nil;
         _outlineMenuTimer = nil;
-        _lineNumUpdateInterval = [[theValues valueForKey:k_key_lineNumUpdateInterval] floatValue];
-        _outlineMenuInterval = [[theValues valueForKey:k_key_outlineMenuInterval] floatValue];
+        _lineNumUpdateInterval = [[theValues valueForKey:k_key_lineNumUpdateInterval] doubleValue];
+        _outlineMenuInterval = [[theValues valueForKey:k_key_outlineMenuInterval] doubleValue];
         _highlightBracesColorDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_selectionColor]], 
                     NSBackgroundColorAttributeName, nil]; // ===== alloc
@@ -537,7 +537,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // テキストビューに背景色をセット
 // ------------------------------------------------------
 {
-    [[self textView] setBackgroundColorWithAlpha:[inNumber floatValue]];
+    [[self textView] setBackgroundColorWithAlpha:(CGFloat)[inNumber doubleValue]];
 }
 
 

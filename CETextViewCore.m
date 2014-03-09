@@ -93,7 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [theWidthStr appendString:@" "];
         }
         NSString *theName = [theValues valueForKey:k_key_fontName];
-        CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+        CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
         NSFont *theFont = [NSFont fontWithName:theName size:theSize];
         CGFloat sizeOfTab = [theWidthStr sizeWithAttributes:@{NSFontAttributeName:theFont}].width;
 
@@ -161,7 +161,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
         [self setAcceptsGlyphInfo:YES];
-        [self setLineSpacing:[[theValues valueForKey:k_key_lineSpacing] floatValue]];
+        [self setLineSpacing:(CGFloat)[[theValues valueForKey:k_key_lineSpacing] doubleValue]];
         [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]]];
         theBackgroundColor = 
                 [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_backgroundColor]];
@@ -171,10 +171,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([[theValues valueForKey:k_key_alphaOnlyTextView] boolValue]) {
             [self setBackgroundColor:
                         [theBackgroundColor colorWithAlphaComponent:
-                            [[theValues valueForKey:k_key_windowAlpha] floatValue]]];
+                            (CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]]];
             [self setHighlightLineColor:
                         [theHighlightLineColor colorWithAlphaComponent:
-                            [[theValues valueForKey:k_key_windowAlpha] floatValue]]];
+                            (CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]]];
         } else {
             [self setBackgroundColor:theBackgroundColor];
             [self setHighlightLineColor:theHighlightLineColor];
@@ -184,9 +184,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setSelectedTextAttributes:
                 @{NSBackgroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_selectionColor]]}];
         _insertionRect = NSZeroRect;
-        _textContainerOriginPoint = 
-                    NSMakePoint([[theValues valueForKey:k_key_textContainerInsetWidth] floatValue], 
-                        [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue]);
+        _textContainerOriginPoint = NSMakePoint((CGFloat)[[theValues valueForKey:k_key_textContainerInsetWidth] doubleValue],
+                                                (CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightTop] doubleValue]);
         [self setIsReCompletion:NO];
         [self setUpdateOutlineMenuItemSelection:YES];
         [self setIsSelfDrop:NO];
@@ -565,16 +564,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // ページガイド描画
     if ([(CESubSplitView *)[self delegate] showPageGuide]) {
-        CGFloat theColumn = [[theValues valueForKey:k_key_pageGuideColumn] floatValue];
+        CGFloat theColumn = (CGFloat)[[theValues valueForKey:k_key_pageGuideColumn] doubleValue];
         NSImage *theLineImg = [NSImage imageNamed:@"pageGuide"];
         if ((theColumn < k_pageGuideColumnMin) || (theColumn > k_pageGuideColumnMax) || (theLineImg == nil)) {
             return;
         }
         CGFloat theLinePadding = [[self textContainer] lineFragmentPadding];
-        CGFloat theInsetWidth = [[theValues valueForKey:k_key_textContainerInsetWidth] floatValue];
+        CGFloat theInsetWidth = (CGFloat)[[theValues valueForKey:k_key_textContainerInsetWidth] doubleValue];
         NSString *theTmpStr = @"M";
-        theColumn *= [theTmpStr sizeWithAttributes:
-                @{NSFontAttributeName: [self font]}].width;
+        theColumn *= [theTmpStr sizeWithAttributes:@{NSFontAttributeName:[self font]}].width;
 
         // （2ピクセル右に描画してるのは、調整）
         [theLineImg drawInRect:
@@ -672,9 +670,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (NSEqualRects(theRect, NSZeroRect)) { return; }
 
     theConvertedRect = [self convertRect:theRect toView:[[self enclosingScrollView] superview]]; //subsplitview
-    if ((theConvertedRect.origin.y >= 0) && 
-            (theConvertedRect.origin.y < 
-                [[theValues valueForKey:k_key_textContainerInsetHeightBottom] floatValue])) {
+    if ((theConvertedRect.origin.y >= 0) &&
+        (theConvertedRect.origin.y < (CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightBottom] doubleValue])
+        ) {
         [self scrollPoint:NSMakePoint(NSMinX(theRect), NSMaxY(theRect))];
     }
 }
@@ -845,7 +843,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theName = [theValues valueForKey:k_key_fontName];
-    CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+    CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
 
     [self setFont:theFont];
@@ -1499,7 +1497,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // （カラーコード編集メニューは常に有効）
 
     } else if ([inMenuItem action] == @selector(setLineSpacingFromMenu:)) {
-        [inMenuItem setState:(([self lineSpacing] == [[inMenuItem title] floatValue]) ? 
+        [inMenuItem setState:(([self lineSpacing] == (CGFloat)[[inMenuItem title] doubleValue]) ?
                 NSOnState : NSOffState)];
     }
 
@@ -1941,7 +1939,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行間設定を変更
 // ------------------------------------------------------
 {
-    [self setNewLineSpacingAndUpdate:[[sender title] floatValue]];
+    [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue]];
 }
 
 

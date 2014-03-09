@@ -438,7 +438,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     *ioModMask = 0;
-    NSInteger theLength = [inString length];
+    NSUInteger theLength = [inString length];
     if ((inString == nil) || (theLength < 2)) { return @""; }
 
     NSString *outKey = [inString substringFromIndex:(theLength - 1)];

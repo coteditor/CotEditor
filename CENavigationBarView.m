@@ -210,7 +210,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenu *theMenu;
     NSMenuItem *theMenuItem;
     NSFont *theDefaultFont = [NSFont fontWithName:[theValues valueForKey:k_key_navigationBarFontName] 
-                    size:[[theValues valueForKey:k_key_navigationBarFontSize] floatValue]];
+                    size:(CGFloat)[[theValues valueForKey:k_key_navigationBarFontSize] doubleValue]];
 
     NSFontManager *theManager = [NSFontManager sharedFontManager];
     NSFont *theFont;

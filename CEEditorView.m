@@ -1209,11 +1209,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     _coloringTimer = nil;
     _infoUpdateTimer = nil;
     _incompatibleCharTimer = nil;
-    _basicColoringDelay = [[theValues valueForKey:k_key_basicColoringDelay] floatValue];
-    _firstColoringDelay = [[theValues valueForKey:k_key_firstColoringDelay] floatValue];
-    _secondColoringDelay = [[theValues valueForKey:k_key_secondColoringDelay] floatValue];
-    _infoUpdateInterval = [[theValues valueForKey:k_key_infoUpdateInterval] floatValue];
-    _incompatibleCharInterval = [[theValues valueForKey:k_key_incompatibleCharInterval] floatValue];
+    _basicColoringDelay = [[theValues valueForKey:k_key_basicColoringDelay] doubleValue];
+    _firstColoringDelay = [[theValues valueForKey:k_key_firstColoringDelay] doubleValue];
+    _secondColoringDelay = [[theValues valueForKey:k_key_secondColoringDelay] doubleValue];
+    _infoUpdateInterval = [[theValues valueForKey:k_key_infoUpdateInterval] doubleValue];
+    _incompatibleCharInterval = [[theValues valueForKey:k_key_incompatibleCharInterval] doubleValue];
 }
 
 

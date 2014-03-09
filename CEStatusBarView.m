@@ -73,8 +73,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
         // setup the TextField.
-        NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_statusBarFontName] 
-                    size:[[theValues valueForKey:k_key_statusBarFontSize] floatValue]];
+        NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_statusBarFontName]
+                                          size:(CGFloat)[[theValues valueForKey:k_key_statusBarFontSize] doubleValue]];
         if (theFont == nil) {
             theFont = [NSFont controlContentFontOfSize:11.0];
         }

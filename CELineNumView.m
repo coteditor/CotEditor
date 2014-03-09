@@ -157,7 +157,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // setup drawing attributes for the font size and color. 
     NSMutableDictionary *theAttrs = [[NSMutableDictionary alloc] init]; // ===== init
-    CGFloat theLineNumFontSize = [[theValues valueForKey:k_key_lineNumFontSize] floatValue];
+    CGFloat theLineNumFontSize = (CGFloat)[[theValues valueForKey:k_key_lineNumFontSize] doubleValue];
     NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_lineNumFontName] size:theLineNumFontSize];
     if (theFont == nil) {
         theFont = [NSFont paletteFontOfSize:9];
@@ -181,7 +181,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat theReqWidth;      // width calculator holder -- width needed to show string
     CGFloat theCurWidth;      // width calculator holder -- my current width
     CGFloat theAdj = 0;       // adjust vertical value for line number drawing
-    CGFloat theInsetAdj = [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue];
+    CGFloat theInsetAdj = (CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightTop] doubleValue];
     NSRect theNumRect;      // rectange holder
     NSPoint theNumPoint;    // point holder
     CELayoutManager *theManager = (CELayoutManager *)[[_masterView textView] layoutManager]; // get _owner's layout manager.

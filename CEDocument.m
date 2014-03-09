@@ -890,7 +890,7 @@ enum { typeFSS = 'fss ' };
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theName = [theValues valueForKey:k_key_fontName];
-    CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+    CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
 
     [_editorView setFont:theFont];
@@ -981,7 +981,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    CGFloat theAlpha = [[theValues valueForKey:k_key_windowAlpha] floatValue];
+    CGFloat theAlpha = (CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue];
 
     [self setAlpha:theAlpha];
 }
@@ -1714,7 +1714,7 @@ enum { typeFSS = 'fss ' };
 // ウィンドウの透明度を設定
 // ------------------------------------------------------
 {
-    CGFloat theAlpha = [sender floatValue];
+    CGFloat theAlpha = (CGFloat)[sender doubleValue];
     
     [self setAlpha:theAlpha];
 }
@@ -2392,7 +2392,7 @@ enum { typeFSS = 'fss ' };
     // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
     if (theTopMargin > k_printHFVerticalMargin) {
         theTopMargin += 
-                ([[theValues valueForKey:k_key_headerFooterFontSize] floatValue] - k_headerFooterLineHeight);
+                ((CGFloat)[[theValues valueForKey:k_key_headerFooterFontSize] doubleValue] - k_headerFooterLineHeight);
         if ([[thePrintValues valueForKey:k_printHeaderSeparator] boolValue]) {
             theTopMargin += k_separatorPadding;
         } else {
@@ -2425,7 +2425,7 @@ enum { typeFSS = 'fss ' };
     NSFont *theFont;
     if ([[theValues valueForKey:k_key_setPrintFont] integerValue] == 1) { // == プリンタ専用フォントで印字
         theFont = [NSFont fontWithName:[theValues valueForKey:k_key_printFontName] 
-                            size:[[theValues valueForKey:k_key_printFontSize] floatValue]];
+                            size:(CGFloat)[[theValues valueForKey:k_key_printFontSize] doubleValue]];
     } else {
         theFont = [_editorView font];
     }

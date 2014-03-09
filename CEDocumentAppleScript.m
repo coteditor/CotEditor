@@ -293,7 +293,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ウィンドウまたはtextViewの透明度を設定
 // ------------------------------------------------------
 {
-    [self setAlpha:[inAlpha floatValue]];
+    [self setAlpha:(CGFloat)[inAlpha doubleValue]];
 }
 
 
@@ -333,7 +333,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行間値をセット
 // ------------------------------------------------------
 {
-    [self setCustomLineSpacingToTextView:[inSpacing floatValue]];
+    [self setCustomLineSpacingToTextView:(CGFloat)[inSpacing doubleValue]];
 }
 
 

@@ -394,10 +394,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if ([[[_prefTabView selectedTabViewItem] identifier] isEqualToString:k_prefPrintItemID]) {
         theFont = [NSFont fontWithName:[theValues valueForKey:k_key_printFontName] 
-                    size:[[theValues valueForKey:k_key_printFontSize] floatValue]];
+                    size:(CGFloat)[[theValues valueForKey:k_key_printFontSize] doubleValue]];
     } else {
         theFont = [NSFont fontWithName:[theValues valueForKey:k_key_fontName] 
-                    size:[[theValues valueForKey:k_key_fontSize] floatValue]];
+                    size:(CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue]];
     }
 
     [_prefWindow makeFirstResponder:_prefWindow];
@@ -446,8 +446,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSSize theSize = NSMakeSize([[theValues valueForKey:k_key_windowWidth] floatValue],
-                    [[theValues valueForKey:k_key_windowHeight] floatValue]);
+    NSSize theSize = NSMakeSize((CGFloat)[[theValues valueForKey:k_key_windowWidth] doubleValue],
+                                (CGFloat)[[theValues valueForKey:k_key_windowHeight] doubleValue]);
 
     [_sizeSampleWindow setContentSize:theSize];
     [_sizeSampleWindow makeKeyAndOrderFront:self];
@@ -752,7 +752,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // IB で Formatter が設定できないのでメソッドで行ってる。
 
-    CGFloat theValue = [sender floatValue];
+    CGFloat theValue = (CGFloat)[sender doubleValue];
 
     if (theValue < k_lineSpacingMin) { theValue = k_lineSpacingMin; }
     if (theValue > k_lineSpacingMax) { theValue = k_lineSpacingMax; }
@@ -843,14 +843,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     NSString *theName = [theValues valueForKey:k_key_fontName];
-    CGFloat theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+    CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
     NSString *theLocalizedName = [theFont displayName];
 
     [_prefFontFamilyNameSize setStringValue:[NSString stringWithFormat:@"%@  (%gpt)",theLocalizedName,theSize]];
 
     theName = [theValues valueForKey:k_key_printFontName];
-    theSize = [[theValues valueForKey:k_key_printFontSize] floatValue];
+    theSize = (CGFloat)[[theValues valueForKey:k_key_printFontSize] doubleValue];
     theFont = [NSFont fontWithName:theName size:theSize];
     theLocalizedName = [theFont displayName];
 
