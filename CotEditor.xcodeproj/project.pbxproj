@@ -77,7 +77,7 @@
 		8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */; };
 		8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */; };
 		8C28CD2E081101A300733DA7 /* ScriptManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptManager.xib */; };
-		8C28CD7808110E4A00733DA7 /* cleanButtonIcon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* cleanButtonIcon.tiff */; };
+		8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */; };
 		8C3289F007A21422001CA481 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		8C3840930D16B75C00F76A4C /* UKXattrMetadataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */; };
@@ -208,7 +208,7 @@
 		25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarView.m; sourceTree = "<group>"; };
 		25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextViewCore.h; sourceTree = "<group>"; };
 		25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextViewCore.m; sourceTree = "<group>"; };
-		2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = scriptMenuIcon.pdf; path = icons/scriptMenuIcon.pdf; sourceTree = "<group>"; };
+		2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = scriptMenuIcon.pdf; path = images/scriptMenuIcon.pdf; sourceTree = "<group>"; };
 		2A0722F416D3CF4F00F49864 /* addButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addButtonImg.pdf; path = images/addButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = centerButtonImg.pdf; path = images/centerButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722F616D3CF4F00F49864 /* clearButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = clearButtonImg.pdf; path = images/clearButtonImg.pdf; sourceTree = "<group>"; };
@@ -234,6 +234,7 @@
 		2A37F4B7FDCFA73011CA2CEA /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptManager.xib; sourceTree = "<group>"; };
 		2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_XML.plist; path = SyntaxColorings/defaultSyntaxStyle_XML.plist; sourceTree = "<group>"; };
 		2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Apache.plist; path = SyntaxColorings/defaultSyntaxStyle_Apache.plist; sourceTree = "<group>"; };
 		2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Markdown.plist; path = SyntaxColorings/defaultSyntaxStyle_Markdown.plist; sourceTree = "<group>"; };
@@ -261,7 +262,6 @@
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C1E212512C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6C1E212612C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Preferences.xib; sourceTree = "<group>"; };
-		6C1E212712C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/ScriptManager.xib; sourceTree = "<group>"; };
 		6C1E212812C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/SyntaxManager.xib; sourceTree = "<group>"; };
 		6C4216B512DDB9EB0037690E /* Docs_for_src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Docs_for_src; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 		8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptTerminology; path = CotEditor.scriptTerminology; sourceTree = "<group>"; };
 		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptSuite; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = en; path = en.lproj/ScriptManager.xib; sourceTree = "<group>"; };
-		8C28CD7708110E4A00733DA7 /* cleanButtonIcon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = cleanButtonIcon.tiff; path = icons/cleanButtonIcon.tiff; sourceTree = "<group>"; };
+		8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Script_CleanButton.tiff; path = toolbarIcons/Script_CleanButton.tiff; sourceTree = "<group>"; };
 		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OgreKit.framework; sourceTree = "<group>"; };
 		8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKXattrMetadataStore.h; path = ImportSources/UKXattrMetadataStore.h; sourceTree = "<group>"; };
 		8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKXattrMetadataStore.m; path = ImportSources/UKXattrMetadataStore.m; sourceTree = "<group>"; };
@@ -441,6 +441,7 @@
 		25972A7107B87293005EB175 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */,
 				2A0722F416D3CF4F00F49864 /* addButtonImg.pdf */,
 				2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */,
 				2A0722F616D3CF4F00F49864 /* clearButtonImg.pdf */,
@@ -472,15 +473,6 @@
 				8C0F52600871861C00ABD124 /* openScriptMenu.applescript */,
 			);
 			name = InternalScript;
-			sourceTree = "<group>";
-		};
-		25D4C01C07B87595007CB113 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */,
-				8C28CD7708110E4A00733DA7 /* cleanButtonIcon.tiff */,
-			);
-			name = icons;
 			sourceTree = "<group>";
 		};
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
@@ -595,7 +587,6 @@
 				8C28CD2C081101A300733DA7 /* ScriptManager.xib */,
 				8C4186CE08864B3E0039FBFC /* HCCManager.xib */,
 				2A9A144A18B67846001080D6 /* Images.xcassets */,
-				25D4C01C07B87595007CB113 /* icons */,
 				8CB0122007CA0CCD00221EDC /* toolbarIcons */,
 				25972A7107B87293005EB175 /* images */,
 				2A8663B218C93D5700A6F9CC /* Documents */,
@@ -695,6 +686,7 @@
 				8CE68105090A1C6900D50390 /* Pref_Syntax.tiff */,
 				8CE68100090A1C6900D50390 /* Pref_View.tiff */,
 				8CE68106090A1C6900D50390 /* Pref_Window.tiff */,
+				8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */,
 			);
 			name = toolbarIcons;
 			sourceTree = "<group>";
@@ -793,7 +785,7 @@
 				8C3A7DEA0867EC9C00ECE052 /* startup.applescript in Resources */,
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
 				8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */,
-				8C28CD7808110E4A00733DA7 /* cleanButtonIcon.tiff in Resources */,
+				8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */,
 				8CCB5C36083F1F3C0022BA2A /* Credits.rtf in Resources */,
 				8C9997C10873DB73003F4294 /* defaultSyntaxStyle_Perl.plist in Resources */,
 				8C9997DD0873EDF6003F4294 /* defaultSyntaxStyle_Shell Script.plist in Resources */,
@@ -1026,7 +1018,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8C28CD2D081101A300733DA7 /* en */,
-				6C1E212712C9E65600194313 /* ja */,
+				2A47A70B18CC8A7C0076B49A /* ja */,
 			);
 			name = ScriptManager.xib;
 			sourceTree = "<group>";

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1060" identifier="macosx"/>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -806,15 +806,15 @@
         <window title="Window Transparency" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="transparencyPanel" animationBehavior="default" id="360" userLabel="TransparencyPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="21" y="309" width="296" height="113"/>
+            <rect key="contentRect" x="21" y="309" width="240" height="133"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="213" height="113"/>
             <view key="contentView" id="359">
-                <rect key="frame" x="0.0" y="0.0" width="296" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="240" height="133"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <slider verticalHuggingPriority="750" id="361">
-                        <rect key="frame" x="61" y="58" width="174" height="26"/>
+                        <rect key="frame" x="18" y="61" width="204" height="26"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" numberOfTickMarks="17" allowsTickMarkValuesOnly="YES" sliderType="linear" id="806">
                             <font key="font" size="12" name="Helvetica"/>
@@ -825,7 +825,7 @@
                         </connections>
                     </slider>
                     <textField verticalHuggingPriority="750" id="371">
-                        <rect key="frame" x="128" y="89" width="40" height="18"/>
+                        <rect key="frame" x="100" y="95" width="40" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="border" alignment="right" title="1.00" id="808">
                             <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.00" negativeFormat="-0.00" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="372">
@@ -851,7 +851,7 @@ IA
                         </connections>
                     </textField>
                     <button id="566">
-                        <rect key="frame" x="60" y="36" width="178" height="18"/>
+                        <rect key="frame" x="17" y="40" width="178" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="check" title="Text view only" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" enabled="NO" inset="2" id="809">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -863,7 +863,7 @@ IA
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="363">
-                        <rect key="frame" x="164" y="14" width="113" height="16"/>
+                        <rect key="frame" x="108" y="19" width="113" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="push" title="Set All Windows" bezelStyle="rounded" alignment="center" controlSize="mini" enabled="NO" borderStyle="border" inset="2" id="807">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -886,15 +886,15 @@ IA
         <window title="Go To" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="gotoWindow" animationBehavior="default" id="547" userLabel="gotoPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="97" y="646" width="258" height="113"/>
+            <rect key="contentRect" x="97" y="646" width="240" height="91"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="213" height="113"/>
             <view key="contentView" id="546">
-                <rect key="frame" x="1" y="9" width="258" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="240" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="549">
-                        <rect key="frame" x="18" y="57" width="92" height="38"/>
+                        <rect key="frame" x="20" y="33" width="92" height="38"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         <size key="cellSize" width="92" height="18"/>
@@ -920,7 +920,7 @@ IA
                         </connections>
                     </matrix>
                     <textField verticalHuggingPriority="750" id="551">
-                        <rect key="frame" x="116" y="66" width="122" height="22"/>
+                        <rect key="frame" x="120" y="49" width="100" height="22"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="810">
                             <font key="font" metaFont="system"/>
@@ -929,7 +929,7 @@ IA
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" id="552">
-                        <rect key="frame" x="134" y="18" width="100" height="32"/>
+                        <rect key="frame" x="126" y="13" width="100" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="811">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -949,15 +949,15 @@ DQ
         <window title="Line Spacing (Custom)" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="lineSpacingPanel" animationBehavior="default" id="773" userLabel="LineSpacingPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="396" y="383" width="226" height="121"/>
+            <rect key="contentRect" x="396" y="383" width="240" height="112"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="213" height="113"/>
             <view key="contentView" id="774">
-                <rect key="frame" x="1" y="1" width="226" height="121"/>
+                <rect key="frame" x="0.0" y="0.0" width="240" height="112"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" id="777">
-                        <rect key="frame" x="140" y="74" width="64" height="14"/>
+                        <rect key="frame" x="141" y="70" width="64" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="line(s)" id="812">
                             <font key="font" metaFont="smallSystem"/>
@@ -966,7 +966,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="778">
-                        <rect key="frame" x="51" y="72" width="84" height="22"/>
+                        <rect key="frame" x="51" y="70" width="84" height="22"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="813">
                             <font key="font" metaFont="system"/>
@@ -975,7 +975,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" id="779">
-                        <rect key="frame" x="112" y="12" width="100" height="32"/>
+                        <rect key="frame" x="126" y="13" width="100" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="814">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -989,7 +989,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="780">
-                        <rect key="frame" x="14" y="12" width="100" height="32"/>
+                        <rect key="frame" x="26" y="13" width="100" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="815">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1003,7 +1003,7 @@ Gw
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="787">
-                        <rect key="frame" x="51" y="57" width="84" height="13"/>
+                        <rect key="frame" x="51" y="49" width="84" height="13"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="( 0 - 10.0 )" id="816">
                             <font key="font" metaFont="label"/>
