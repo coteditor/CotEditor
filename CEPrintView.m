@@ -32,40 +32,49 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEPrintView.h"
+#import "constants.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CEPrintView (Private)
-- (void)setupPrintWithBorderWidth:(CGFloat)inBorderWidth;
-- (void)setHeaderOneString:(NSAttributedString *)inAttrString;
-- (void)setHeaderTwoString:(NSAttributedString *)inAttrString;
-- (void)setFooterOneString:(NSAttributedString *)inAttrString;
-- (void)setFooterTwoString:(NSAttributedString *)inAttrString;
-- (void)setHeaderOneAlignment:(NSInteger)inAlingnType;
-- (void)setHeaderTwoAlignment:(NSInteger)inAlingnType;
-- (void)setFooterOneAlignment:(NSInteger)inAlingnType;
-- (void)setFooterTwoAlignment:(NSInteger)inAlingnType;
-- (void)setPrintHeader:(BOOL)inBool;
-- (void)setPrintFooter:(BOOL)inBool;
-- (void)setPrintHeaderSeparator:(BOOL)inBool;
-- (void)setPrintFooterSeparator:(BOOL)inBool;
-- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(NSInteger)inIndex maxWidth:(CGFloat)inWidth;
-- (CGFloat)xValueToDrawOfAttributedString:(NSAttributedString *)inAttrString
-        borderWidth:(CGFloat)inBorderWidth alignment:(NSInteger)inAlignType;
+typedef enum CEAlignmentType : NSUInteger {
+    CEAlignLeft,
+    CEAlignCenter,
+    CEAlignRight
+} CEAlignmentType;
+
+
+@interface CEPrintView ()
+
+@property (nonatomic, retain) NSAttributedString *headerOneString;
+@property (nonatomic, retain) NSAttributedString *headerTwoString;
+@property (nonatomic, retain) NSAttributedString *footerOneString;
+@property (nonatomic, retain) NSAttributedString *footerTwoString;
+@property (nonatomic, assign) CEAlignmentType headerOneAlignment;
+@property (nonatomic, assign) CEAlignmentType headerTwoAlignment;
+@property (nonatomic, assign) CEAlignmentType footerOneAlignment;
+@property (nonatomic, assign) CEAlignmentType footerTwoAlignment;
+@property (nonatomic, assign) BOOL printsHeader;
+@property (nonatomic, assign) BOOL printsFooter;
+@property (nonatomic, assign) BOOL printsHeaderSeparator;
+@property (nonatomic, assign) BOOL printsFooterSeparator;
+@property (nonatomic, assign) BOOL readyToPrint;
+@property (nonatomic, assign) BOOL printsLineNum;
+@property (nonatomic, assign) BOOL readyToDrawPageNum;
+@property (nonatomic, assign) CGFloat xOffset;
+@property (nonatomic, retain) NSDictionary *headerFooterAttrs;
+@property (nonatomic, retain) NSDictionary *lineNumAttrs;
+
 @end
 
 
 //------------------------------------------------------------------------------------------
 
+#pragma mark -
 
 
 
 @implementation CEPrintView
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -73,34 +82,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (id)initWithFrame:(NSRect)frame
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frame];
 
     if (self) {
-        _filePath = nil;
-        _lineNumAttrs = nil;
-        _headerFooterAttrs = nil;
-        _printValues = nil;
-        _headerOneString = nil;
-        _headerTwoString = nil;
-        _footerOneString = nil;
-        _footerTwoString = nil;
-        _headerOneAlignment = 0;
-        _headerTwoAlignment = 0;
-        _footerOneAlignment = 0;
-        _footerTwoAlignment = 0;
-        _xOffset = 0.0;
-        _readyToPrint = NO; // =ヘッダ／フッタ生成処理などの準備完了フラグ
-        _printLineNum = NO;
-        _printHeader = NO;
-        _printFooter = NO;
-        _printHeaderSeparator = NO;
-        _printFooterSeparator = NO;
-        _readyToDrawPageNum = NO;
-        _showingLineNum = NO;
+        [self setFilePath:nil];
+        [self setLineNumAttrs:nil];
+        [self setHeaderFooterAttrs:nil];
+        [self setPrintValues:nil];
+        [self setHeaderOneString:nil];
+        [self setHeaderTwoString:nil];
+        [self setFooterOneString:nil];
+        [self setFooterTwoString:nil];
+        [self setHeaderOneAlignment:CEAlignLeft];
+        [self setHeaderTwoAlignment:CEAlignLeft];
+        [self setFooterOneAlignment:CEAlignLeft];
+        [self setFooterTwoAlignment:CEAlignLeft];
+        [self setXOffset:0.0];
+        [self setReadyToPrint:NO];  // =ヘッダ／フッタ生成処理などの準備完了フラグ
+        [self setPrintsLineNum:NO];
+        [self setPrintsHeader:NO];  // ヘッダ印刷の有無
+        [self setPrintsFooter:NO];  // フッタ印刷の有無
+        [self setPrintsHeaderSeparator:NO];
+        [self setPrintsFooterSeparator:NO];
+        [self setReadyToDrawPageNum:NO];
+        [self setIsShowingLineNum:NO];
     }
 
     return self;
@@ -112,200 +121,177 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 後片づけ
 // ------------------------------------------------------
 {
-    [_filePath release];
-    [_lineNumAttrs release];
-    [_printValues release];
-    [_headerFooterAttrs release];
-    [_headerOneString release];
-    [_headerTwoString release];
-    [_footerOneString release];
-    [_footerTwoString release];
+    [[self filePath] release];
+    [[self lineNumAttrs] release];
+    [[self printValues] release];
+    [[self headerFooterAttrs] release];
+    [[self headerOneString] release];
+    [[self headerTwoString] release];
+    [[self footerOneString] release];
+    [[self footerTwoString] release];
 
     [super dealloc];
 }
 
 
 // ------------------------------------------------------
-- (void)drawPageBorderWithSize:(NSSize)inBorderSize
+- (void)drawPageBorderWithSize:(NSSize)borderSize
 // ヘッダ／フッタの描画
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSRect theCurrentFrame = [self frame]; // 現在のフレームを退避
-    NSAttributedString *thePageString = nil;
-    NSPoint thePoint;
-    CGFloat theHeaderFooterLineFontSize = (CGFloat)[[theValues valueForKey:k_key_headerFooterFontSize] doubleValue];
-    CGFloat thePadding = k_printHFVerticalMargin;
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSRect currentFrame = [self frame]; // 現在のフレームを退避
+    NSAttributedString *pageString = nil;
+    NSPoint drawPoint = NSMakePoint(0.0, k_printHFVerticalMargin);
+    CGFloat headerFooterLineFontSize = (CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue];
 
     // プリントパネルでのカスタム設定を読み取り、保持
-    if (_readyToPrint == NO) {
-        [self setupPrintWithBorderWidth:inBorderSize.width];
+    if ([self readyToPrint] == NO) {
+        [self setupPrintWithBorderWidth:borderSize.width];
     }
     // ページ番号の印字があるなら、準備する
-    if (_readyToDrawPageNum) {
-        NSInteger thePageNum = [[NSPrintOperation currentOperation] currentPage];
+    if ([self readyToDrawPageNum]) {
+        NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
 
-        thePageString = [[[NSAttributedString alloc] 
-                initWithString:[NSString stringWithFormat:@"- %li -", (long)thePageNum] 
-                attributes:_headerFooterAttrs] autorelease];
+        pageString = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"- %li -", (long)pageNum]
+                                                      attributes:[self headerFooterAttrs]] autorelease];
     }
 
     // フレームを設定
-    [self setFrame:NSMakeRect(0, 0, inBorderSize.width, inBorderSize.height)];
-    // さらに、10.3.x ではフレームを重ねてセットしなければ印字されない ... バグ？（10.4.x では問題なし）
-    // 下記の情報を参考にさせていただきました (2005.09.05)
-    // http://www.cocoabuilder.com/archive/message/cocoa/2005/4/28/134100
-    [self setFrameOrigin:NSZeroPoint];
-    [self setFrameSize:inBorderSize];
+    [self setFrame:NSMakeRect(0, 0, borderSize.width, borderSize.height)];
 
     // 描画開始
     // （このビューは isFlipped が YES なので drawAtPoint: は左上が原点となる）
     [self lockFocus];
 
-    if (_printHeader) {
-        if ((_headerOneString != nil) && ([[_headerOneString string] isEqualToString:@"PAGENUM"])) {
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:thePageString 
-                    borderWidth:inBorderSize.width alignment:_headerOneAlignment], thePadding);
-            [thePageString drawAtPoint:thePoint];
-            thePadding += k_headerFooterLineHeight;
-        } else if (_headerOneString != nil) {
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:_headerOneString 
-                    borderWidth:inBorderSize.width alignment:_headerOneAlignment], thePadding);
-            [_headerOneString drawAtPoint:thePoint];
-            thePadding += k_headerFooterLineHeight;
-        }
-        if (_headerTwoString == nil) {
-            if (_headerOneString != nil) {
-                thePadding += theHeaderFooterLineFontSize - k_headerFooterLineHeight;
+    if ([self printsHeader]) {
+        if ([self headerOneString]) {
+            if ([[[self headerOneString] string] isEqualToString:@"PAGENUM"]) {
+                [self setHeaderOneString:pageString];
             }
-        } else if ((_headerTwoString != nil) && ([[_headerTwoString string] isEqualToString:@"PAGENUM"])) {
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:thePageString 
-                    borderWidth:inBorderSize.width alignment:_headerTwoAlignment], thePadding);
-            [thePageString drawAtPoint:thePoint];
-            thePadding += theHeaderFooterLineFontSize;
-        } else if (_headerTwoString != nil) {
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:_headerTwoString 
-                    borderWidth:inBorderSize.width alignment:_headerTwoAlignment], thePadding);
-            [_headerTwoString drawAtPoint:thePoint];
-            thePadding += theHeaderFooterLineFontSize;
+            drawPoint.x = [self xValueToDrawOfAttributedString:[self headerOneString]
+                                                   borderWidth:borderSize.width alignment:[self headerOneAlignment]];
+            [[self headerOneString] drawAtPoint:drawPoint];
+            drawPoint.y += k_headerFooterLineHeight;
+        }
+        
+        if ([self headerTwoString]) {
+            if ([[[self headerTwoString] string] isEqualToString:@"PAGENUM"]) {
+                [self setHeaderTwoString:pageString];
+            }
+            drawPoint.x = [self xValueToDrawOfAttributedString:[self headerTwoString]
+                                                   borderWidth:borderSize.width alignment:[self headerTwoAlignment]];
+            [[self headerTwoString] drawAtPoint:drawPoint];
+            drawPoint.y += headerFooterLineFontSize;
+            
+        } else {
+            if ([self headerOneString]) {
+                drawPoint.y += headerFooterLineFontSize - k_headerFooterLineHeight;
+            }
         }
     }
-    if (_printHeaderSeparator) {
-        thePadding += (k_separatorPadding / 2);
+    if ([self printsHeaderSeparator]) {
+        drawPoint.y += k_separatorPadding / 2;
         [[NSColor controlShadowColor] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, thePadding) 
-            toPoint:NSMakePoint(inBorderSize.width - k_printHFHorizontalMargin, thePadding)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, drawPoint.y)
+                                  toPoint:NSMakePoint(borderSize.width - k_printHFHorizontalMargin, drawPoint.y)];
     }
 
-    // （thePadding を inBorderSize.height - k_printHFVerticalMargin とすると1ページに満たない書類の印刷時に
+    // （drawPoint.y を borderSize.height - k_printHFVerticalMargin とすると1ページに満たない書類の印刷時に
     // セパレータが印字されないので、フッタ全体を下げる。 2006.02.18）
-    thePadding = inBorderSize.height - k_printHFVerticalMargin + k_separatorPadding;
-    if (_printFooter) {
-        if ((_footerTwoString != nil) && ([[_footerTwoString string] isEqualToString:@"PAGENUM"])) {
-            thePadding -= k_headerFooterLineHeight;
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:thePageString 
-                    borderWidth:inBorderSize.width alignment:_footerTwoAlignment], 
-                    thePadding);
-            [thePageString drawAtPoint:thePoint];
-        } else if (_footerTwoString != nil) {
-            thePadding -= k_headerFooterLineHeight;
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:_footerTwoString 
-                    borderWidth:inBorderSize.width alignment:_footerTwoAlignment], 
-                    thePadding);
-            [_footerTwoString drawAtPoint:thePoint];
-        }
-        if (_footerOneString == nil) {
-            if (_footerTwoString == nil) {
+    drawPoint.y = borderSize.height - k_printHFVerticalMargin + k_separatorPadding;
+    if ([self printsFooter]) {
+        if ([self footerTwoString]) {
+            if ([[[self footerTwoString] string] isEqualToString:@"PAGENUM"]) {
+                [self setFooterTwoString:pageString];
             }
-        } else if ((_footerOneString != nil) && ([[_footerOneString string] isEqualToString:@"PAGENUM"])) {
-            thePadding -= k_headerFooterLineHeight;
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:thePageString 
-                    borderWidth:inBorderSize.width alignment:_footerOneAlignment], 
-                    thePadding);
-            [thePageString drawAtPoint:thePoint];
-        } else if (_footerOneString != nil) {
-            thePadding -= k_headerFooterLineHeight;
-            thePoint = NSMakePoint([self xValueToDrawOfAttributedString:_footerOneString 
-                    borderWidth:inBorderSize.width alignment:_footerOneAlignment], 
-                    thePadding);
-            [_footerOneString drawAtPoint:thePoint];
+            drawPoint.y -= k_headerFooterLineHeight;
+            drawPoint.x = [self xValueToDrawOfAttributedString:[self footerTwoString]
+                                                   borderWidth:borderSize.width alignment:[self footerTwoAlignment]];
+            [[self footerTwoString] drawAtPoint:drawPoint];
+        }
+        
+        if ([self footerOneString]) {
+            if ([[[self footerOneString] string] isEqualToString:@"PAGENUM"]) {
+                [self setFooterOneString:pageString];
+            }
+            drawPoint.y -= k_headerFooterLineHeight;
+            drawPoint.x = [self xValueToDrawOfAttributedString:[self footerOneString]
+                                                   borderWidth:borderSize.width alignment:[self footerOneAlignment]];
+            [[self footerOneString] drawAtPoint:drawPoint];
         }
     }
-    if (_printFooterSeparator) {
-        thePadding -= (k_separatorPadding / 2);
+    if ([self printsFooterSeparator]) {
+        drawPoint.y -= k_separatorPadding / 2;
         [[NSColor controlShadowColor] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, thePadding) 
-                toPoint:NSMakePoint(inBorderSize.width - k_printHFHorizontalMargin, thePadding)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, drawPoint.y)
+                                  toPoint:NSMakePoint(borderSize.width - k_printHFHorizontalMargin, drawPoint.y)];
     }
     [self unlockFocus];
 
     // フレームをもとに戻す
-    [self setFrame:theCurrentFrame];
+    [self setFrame:currentFrame];
 }
 
 
 // ------------------------------------------------------
-- (void)drawRect:(NSRect)inRect
+- (void)drawRect:(NSRect)dirtyRect
 // プリント
 // ------------------------------------------------------
 {
-    [super drawRect:inRect];
+    [super drawRect:dirtyRect];
 
     // 行番号を印字
-    if (_printLineNum) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        CGFloat theLineNumFontSize = (CGFloat)[[theValues valueForKey:k_key_lineNumFontSize] doubleValue];
+    if ([self printsLineNum]) {
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        CGFloat lineNumFontSize = (CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue];
 
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
-        CGFloat charWidth = [@"8" sizeWithAttributes:_lineNumAttrs].width;
+        CGFloat charWidth = [@"8" sizeWithAttributes:[self lineNumAttrs]].width;
 
         // setup the variables we need for the loop
-        NSRange theRange;       // a range for counting lines
-        NSString *theStr = [self string];
-        NSString *theNumStr;    // a temporary string for Line Number
-        NSString *theWrapedLineMark = ([[theValues valueForKey:k_key_showWrappedLineMark] boolValue]) ? 
-                @"-:" : @" ";
-        NSInteger theGlyphIndex, theBefore, theGlyphCount; // glyph counter
-        NSInteger theCharIndex;
-        NSInteger theLineNum;     // line counter
-        CGFloat theReqWidth;      // width calculator holder -- width needed to show string
-        CGFloat theXAdj = 0;       // adjust horizontal value for line number drawing
-        CGFloat theYAdj = 0;       // adjust vertical value for line number drawing
-        NSRect theNumRect;      // rectange holder
-        NSPoint theNumPoint;    // point holder
-        NSLayoutManager *theManager = [self layoutManager]; // get _owner's layout manager.
-        NSUInteger theNumOfGlyphs = [theManager numberOfGlyphs];
+        NSRange range;       // a range for counting lines
+        NSString *str = [self string];
+        NSString *numStr;    // a temporary string for Line Number
+        NSString *wrappedLineMark = [[values valueForKey:k_key_showWrappedLineMark] boolValue] ? @"-:" : @" ";
+        NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
+        NSUInteger charIndex;
+        NSUInteger lineNum;   // line counter
+        CGFloat reqWidth;    // width calculator holder -- width needed to show string
+        CGFloat xAdj = 0.0;    // adjust horizontal value for line number drawing
+        CGFloat yAdj = 0.0;    // adjust vertical value for line number drawing
+        NSRect numRect;      // rectange holder
+        NSPoint numPoint;    // point holder
+        NSLayoutManager *layoutManager = [self layoutManager]; // get _owner's layout manager.
+        NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
 
         theBefore = 0;
-        theLineNum = 1;
-        theGlyphCount = 0;
-        theXAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
-        theYAdj = ([[self font] pointSize] - theLineNumFontSize) / 2;
+        lineNum = 1;
+        glyphCount = 0;
+        xAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
+        yAdj = ([[self font] pointSize] - lineNumFontSize) / 2;
 
-        for (theGlyphIndex = 0; theGlyphIndex < theNumOfGlyphs; theLineNum++) { // count "REAL" lines
-            theCharIndex = [theManager characterIndexForGlyphAtIndex:theGlyphIndex];
-            theGlyphIndex = NSMaxRange([theManager glyphRangeForCharacterRange:
-                                [theStr lineRangeForRange:NSMakeRange(theCharIndex, 0)] 
-                                actualCharacterRange:NULL]);
-            while (theGlyphCount < theGlyphIndex) { // handle "DRAWN" (wrapped) lines
-                theNumRect = [theManager lineFragmentRectForGlyphAtIndex:theGlyphCount effectiveRange:&theRange];
-                if (NSPointInRect(theNumRect.origin, inRect)) {
-                    if (theBefore != theLineNum) {
-                        theNumStr = [NSString stringWithFormat:@"%ld:", (long)theLineNum];
-                        theReqWidth = charWidth * [theNumStr length];
+        for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
+            charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
+            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[str lineRangeForRange:NSMakeRange(charIndex, 0)]
+                                                          actualCharacterRange:NULL]);
+            while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
+                numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+                if (NSPointInRect(numRect.origin, dirtyRect)) {
+                    if (theBefore != lineNum) {
+                        numStr = [NSString stringWithFormat:@"%ld:", (long)lineNum];
+                        reqWidth = charWidth * [numStr length];
                     } else {
-                        theNumStr = theWrapedLineMark;
-                        theReqWidth = 8.0; // @"-:"のときに必要なピクセル値。変更時、注意。*****
+                        numStr = wrappedLineMark;
+                        reqWidth = 8.0; // @"-:"のときに必要なピクセル値。変更時、注意。*****
                     }
-                    theNumPoint = 
-                            NSMakePoint(
-                                (inRect.origin.x - theReqWidth + theXAdj), 
-                                theNumRect.origin.y + theYAdj);
-                    [theNumStr drawAtPoint:theNumPoint withAttributes:_lineNumAttrs]; // draw the line number.
-                    theBefore = theLineNum;
+                    numPoint = NSMakePoint(dirtyRect.origin.x - reqWidth + xAdj,
+                                           numRect.origin.y + yAdj);
+                    [numStr drawAtPoint:numPoint withAttributes:[self lineNumAttrs]]; // draw the line number.
+                    theBefore = lineNum;
                 }
-                theGlyphCount = NSMaxRange(theRange);
+                glyphCount = NSMaxRange(range);
             }
         }
     }
@@ -326,83 +312,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // the top/left point of text container.
 // ------------------------------------------------------
 {
-    return (NSMakePoint(_xOffset, 0.0));
-}
-
-
-// ------------------------------------------------------
-- (void)setFilePath:(NSString *)inFilePath
-// ファイルパスをセット
-// ------------------------------------------------------
-{
-    [inFilePath retain]; // ===== retain
-    [_filePath release];
-    _filePath = inFilePath;
-}
-
-
-// ------------------------------------------------------
-- (CGFloat)lineSpacing
-// 行間値を返す
-// ------------------------------------------------------
-{
-    return _lineSpacing;
-}
-
-
-// ------------------------------------------------------
-- (void)setLineSpacing:(CGFloat)inLineSpacing
-// 行間値をセット
-// ------------------------------------------------------
-{
-    _lineSpacing = inLineSpacing;
-}
-
-
-// ------------------------------------------------------
-- (id)printValues
-// プリンタダイアログでの設定オブジェクトを返す
-// ------------------------------------------------------
-{
-    return _printValues;
-}
-
-
-// ------------------------------------------------------
-- (void)setPrintValues:(id)inValues
-// プリンタダイアログでの設定オブジェクトをセット
-// ------------------------------------------------------
-{
-    [inValues retain];
-    [_printValues release];
-    _printValues = inValues;
-}
-
-
-// ------------------------------------------------------
-- (BOOL)isShowingLineNum
-// CETextViewCoreが行番号を表示しているかを返す
-// ------------------------------------------------------
-{
-    return _showingLineNum;
-}
-
-
-// ------------------------------------------------------
-- (void)setIsShowingLineNum:(BOOL)inValue
-// CETextViewCoreが行番号を表示しているかをセット
-// ------------------------------------------------------
-{
-    _showingLineNum = inValue;
+    return NSMakePoint([self xOffset], 0.0);
 }
 
 
 
-@end
 
-
-
-@implementation CEPrintView (Private)
+#pragma mark -
+#pragma mark Public Methods
 
 //=======================================================
 // Private method
@@ -410,251 +327,129 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)setupPrintWithBorderWidth:(CGFloat)inBorderWidth
+- (void)setupPrintWithBorderWidth:(CGFloat)borderWidth
 // プリント開始の準備
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSAttributedString *theAttrString = nil;
-    CGFloat thePrintWidth = inBorderWidth - k_printHFHorizontalMargin * 2;
-    NSInteger theLineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSAttributedString *attrString = nil;
+    CGFloat printWidth = borderWidth - k_printHFHorizontalMargin * 2;
+    NSInteger lineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
 
     // ヘッダ／フッタの文字属性辞書生成、保持
-    NSFont *theHeaderFooterFont = [NSFont fontWithName:[theValues valueForKey:k_key_headerFooterFontName]
-                                                  size:(CGFloat)[[theValues valueForKey:k_key_headerFooterFontSize] doubleValue]];
-    _headerFooterAttrs = [@{NSFontAttributeName: theHeaderFooterFont, 
-                    NSForegroundColorAttributeName: [NSColor textColor]} retain]; // ===== retain
+    NSFont *headerFooterFont = [NSFont fontWithName:[values valueForKey:k_key_headerFooterFontName]
+                                               size:(CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue]];
+    [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
+                                 NSForegroundColorAttributeName: [NSColor textColor]}]; // ===== retain
 
     // 行番号印字の有無をチェック
-    if (theLineNumMenuIndex == 1) { // same to view
-        _printLineNum = [self isShowingLineNum];
-    } else if (theLineNumMenuIndex == 2) { // print
-        _printLineNum = YES;
+    if (lineNumMenuIndex == 1) { // same to view
+        [self setPrintsLineNum:[self isShowingLineNum]];
+    } else if (lineNumMenuIndex == 2) { // print
+        [self setPrintsLineNum:YES];
     } else {
-        _printLineNum = NO;
+        [self setPrintsLineNum:NO];
     }
 
     // 行番号を印字するときは文字属性を保持、パディングを調整
-    if (_printLineNum) {
-        NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_lineNumFontName]
-                                          size:(CGFloat)[[theValues valueForKey:k_key_lineNumFontSize] doubleValue]];
-        _lineNumAttrs = [@{NSFontAttributeName: theFont, 
-                        NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_lineNumFontColor]]} retain]; // ===== retain
-        _xOffset = k_printTextHorizontalMargin;
+    if ([self printsLineNum]) {
+        NSFont *font = [NSFont fontWithName:[values valueForKey:k_key_lineNumFontName]
+                                       size:(CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue]];
+        [self setLineNumAttrs:@{NSFontAttributeName:font,
+                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_lineNumFontColor]]}]; // ===== retain
+        [self setXOffset:k_printTextHorizontalMargin];
     }
+    
     // ヘッダを設定
     if ([[[self printValues] valueForKey:k_printHeader] boolValue]) {
-        [self setPrintHeader:YES];
-        theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                        [[[self printValues] valueForKey:k_headerOneStringIndex] integerValue]
-                        maxWidth:thePrintWidth];
-        [self setHeaderOneString:theAttrString];
-        theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                        [[[self printValues] valueForKey:k_headerTwoStringIndex] integerValue]
-                        maxWidth:thePrintWidth];
-        [self setHeaderTwoString:theAttrString];
+        [self setPrintsHeader:YES];
+        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_headerOneStringIndex] integerValue]
+                                                             maxWidth:printWidth];
+        [self setHeaderOneString:attrString];
+        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_headerTwoStringIndex] integerValue]
+                                                             maxWidth:printWidth];
+        [self setHeaderTwoString:attrString];
         [self setHeaderOneAlignment:[[[self printValues] valueForKey:k_headerOneAlignIndex] integerValue]];
         [self setHeaderTwoAlignment:[[[self printValues] valueForKey:k_headerTwoAlignIndex] integerValue]];
     } else {
-        [self setPrintHeader:NO];
+        [self setPrintsHeader:NO];
     }
-    [self setPrintHeaderSeparator:[[[self printValues] valueForKey:k_printHeaderSeparator] boolValue]];
+    [self setPrintsHeaderSeparator:[[[self printValues] valueForKey:k_printHeaderSeparator] boolValue]];
 
     // フッタを設定
     if ([[[self printValues] valueForKey:k_printFooter] boolValue]) {
-        [self setPrintFooter:YES];
-        theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                        [[[self printValues] valueForKey:k_footerOneStringIndex] integerValue]
-                        maxWidth:thePrintWidth];
-        [self setFooterOneString:theAttrString];
-        theAttrString = [self attributedStringFromPrintInfoSelectedIndex:
-                    [[[self printValues] valueForKey:k_footerTwoStringIndex] integerValue]
-                    maxWidth:thePrintWidth];
-        [self setFooterTwoString:theAttrString];
+        [self setPrintsFooter:YES];
+        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_footerOneStringIndex] integerValue]
+                                                             maxWidth:printWidth];
+        [self setFooterOneString:attrString];
+        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_footerTwoStringIndex] integerValue]
+                                                             maxWidth:printWidth];
+        [self setFooterTwoString:attrString];
         [self setFooterOneAlignment:[[[self printValues] valueForKey:k_footerOneAlignIndex] integerValue]];
         [self setFooterTwoAlignment:[[[self printValues] valueForKey:k_footerTwoAlignIndex] integerValue]];
     } else {
-        [self setPrintFooter:NO];
+        [self setPrintsFooter:NO];
     }
-    [self setPrintFooterSeparator:[[[self printValues] valueForKey:k_printFooterSeparator] boolValue]];
-    _readyToPrint = YES;
+    [self setPrintsFooterSeparator:[[[self printValues] valueForKey:k_printFooterSeparator] boolValue]];
+    [self setReadyToPrint:YES];
 }
 
 
 // ------------------------------------------------------
-- (void)setHeaderOneString:(NSAttributedString *)inAttrString
-// ヘッダ1の属性付き文字列をセット
-// ------------------------------------------------------
-{
-    [inAttrString retain]; // ===== retain
-    [_headerOneString release];
-    _headerOneString = inAttrString;
-}
-
-
-// ------------------------------------------------------
-- (void)setHeaderTwoString:(NSAttributedString *)inAttrString
-// ヘッダ2の属性付き文字列をセット
-// ------------------------------------------------------
-{
-    [inAttrString retain]; // ===== retain
-    [_headerTwoString release];
-    _headerTwoString = inAttrString;
-}
-
-
-// ------------------------------------------------------
-- (void)setFooterOneString:(NSAttributedString *)inAttrString
-// フッタ1の属性付き文字列をセット
-// ------------------------------------------------------
-{
-    [inAttrString retain]; // ===== retain
-    [_footerOneString release];
-    _footerOneString = inAttrString;
-}
-
-
-// ------------------------------------------------------
-- (void)setFooterTwoString:(NSAttributedString *)inAttrString
-// フッタ2の属性付き文字列をセット
-// ------------------------------------------------------
-{
-    [inAttrString retain]; // ===== retain
-    [_footerTwoString release];
-    _footerTwoString = inAttrString;
-}
-
-
-// ------------------------------------------------------
-- (void)setHeaderOneAlignment:(NSInteger)inAlingnType
-// ヘッダ1の文字位置タイプをセット
-// ------------------------------------------------------
-{
-    _headerOneAlignment = inAlingnType;
-}
-
-
-// ------------------------------------------------------
-- (void)setHeaderTwoAlignment:(NSInteger)inAlingnType
-// ヘッダ2の文字位置タイプをセット
-// ------------------------------------------------------
-{
-    _headerTwoAlignment = inAlingnType;
-}
-
-
-// ------------------------------------------------------
-- (void)setFooterOneAlignment:(NSInteger)inAlingnType
-// フッタ1の文字位置タイプをセット
-// ------------------------------------------------------
-{
-    _footerOneAlignment = inAlingnType;
-}
-
-
-// ------------------------------------------------------
-- (void)setFooterTwoAlignment:(NSInteger)inAlingnType
-// フッタ2の文字位置タイプをセット
-// ------------------------------------------------------
-{
-    _footerTwoAlignment = inAlingnType;
-}
-
-
-// ------------------------------------------------------
-- (void)setPrintHeader:(BOOL)inBool
-// ヘッダ印刷の有無をセット
-// ------------------------------------------------------
-{
-    _printHeader = inBool;
-}
-
-
-// ------------------------------------------------------
-- (void)setPrintFooter:(BOOL)inBool
-// フッタ印刷の有無をセット
-// ------------------------------------------------------
-{
-    _printFooter = inBool;
-}
-
-
-// ------------------------------------------------------
-- (void)setPrintHeaderSeparator:(BOOL)inBool
-// ヘッダセパレータ印刷の有無をセット
-// ------------------------------------------------------
-{
-    _printHeaderSeparator = inBool;
-}
-
-
-// ------------------------------------------------------
-- (void)setPrintFooterSeparator:(BOOL)inBool
-// フッタセパレータ印刷の有無をセット
-// ------------------------------------------------------
-{
-    _printFooterSeparator = inBool;
-}
-
-
-// ------------------------------------------------------
-- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(NSInteger)inIndex maxWidth:(CGFloat)inWidth
+- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(NSInteger)selectedIndex maxWidth:(CGFloat)maxWidth
 // ヘッダ／フッタに印字する文字列をポップアップメニューインデックスから生成し、返す
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSAttributedString *outString = nil;
-    NSString *theDateString;
+    NSString *dateString;
             
-    switch(inIndex) {
+    switch (selectedIndex) {
+        case 2: // == Document Name
+            if ([self filePath]) {
+                outString = [[[NSAttributedString alloc] initWithString:[[self filePath] lastPathComponent]
+                                                             attributes:[self headerFooterAttrs]] autorelease];
+            }
+            break;
 
-    case 2: // == Document Name
-        if (_filePath != nil) {
-            outString = [[[NSAttributedString alloc] 
-                    initWithString:[_filePath lastPathComponent] attributes:_headerFooterAttrs] autorelease];
-        }
-        break;
+        case 3: // == File Path
+            if ([self filePath]) {
+                outString = [[[NSAttributedString alloc] initWithString:[self filePath]
+                                                             attributes:[self headerFooterAttrs]] autorelease];
+            }
+            break;
 
-    case 3: // == File Path
-        if (_filePath != nil) {
-            outString = [[[NSAttributedString alloc] 
-                    initWithString:_filePath attributes:_headerFooterAttrs] autorelease];
-        }
-        break;
+        case 4: // == Print Date
+            dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:[values valueForKey:k_key_headerFooterDateTimeFormat]];
+            if (dateString && ([dateString length] > 0)) {
+                outString = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Printed: %@",@""),
+                                                                         dateString]
+                                                             attributes:[self headerFooterAttrs]] autorelease];
+            }
+            break;
 
-    case 4: // == Print Date
-        theDateString = [[NSCalendarDate calendarDate] 
-                descriptionWithCalendarFormat:[theValues valueForKey:k_key_headerFooterDateTimeFormat]];
-        if ((theDateString != nil) && ([theDateString length] > 0)) {
-            outString = [[[NSAttributedString alloc] initWithString:
-                    [NSString stringWithFormat:NSLocalizedString(@"Printed: %@",@""), theDateString] 
-                    attributes:_headerFooterAttrs] autorelease];
-        }
-        break;
+        case 5: // == Page num
+            outString = [[[NSAttributedString alloc] initWithString:@"PAGENUM"
+                                                         attributes:[self headerFooterAttrs]] autorelease];
+            [self setReadyToDrawPageNum:YES];
+            break;
 
-    case 5: // == Page num
-        outString = [[[NSAttributedString alloc] initWithString:@"PAGENUM" 
-                        attributes:_headerFooterAttrs] autorelease];
-        _readyToDrawPageNum = YES;
-        break;
-
-    default:
-        break;
+        default:
+            break;
     }
 
     // 印字があふれる場合、中ほどを省略する
-    if ([outString size].width > inWidth) {
-        NSMutableAttributedString *theAttrStr = [[outString mutableCopy] autorelease];
-        NSInteger theLength = [theAttrStr length];
-        CGFloat theWidth = [theAttrStr size].width;
-        if (theLength > 0) {
-            CGFloat theAverage = theWidth / theLength;
-            NSInteger theDeleteCount = (theWidth - inWidth) / theAverage + 5; // 置き換える5文字の幅をみる
-            NSRange theReplaceRange = 
-                    NSMakeRange((NSUInteger)((theLength - theDeleteCount) / 2), theDeleteCount);
-            [theAttrStr replaceCharactersInRange:theReplaceRange withString:@" ... "];
+    if ([outString size].width > maxWidth) {
+        NSMutableAttributedString *attrStr = [[outString mutableCopy] autorelease];
+        NSUInteger length = [attrStr length];
+        CGFloat width = [attrStr size].width;
+        if (length > 0) {
+            CGFloat average = width / length;
+            NSInteger deleteCount = (width - maxWidth) / average + 5; // 置き換える5文字の幅をみる
+            NSRange replaceRange = NSMakeRange((NSUInteger)((length - deleteCount) / 2), deleteCount);
+            [attrStr replaceCharactersInRange:replaceRange withString:@" ... "];
         }
-        return theAttrStr;
+        return attrStr;
     }
 
     return outString;
@@ -662,25 +457,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (CGFloat)xValueToDrawOfAttributedString:(NSAttributedString *)inAttrString
-        borderWidth:(CGFloat)inBorderWidth alignment:(NSInteger)inAlignType
+- (CGFloat)xValueToDrawOfAttributedString:(NSAttributedString *)attrString
+                              borderWidth:(CGFloat)borderWidth
+                                alignment:(CEAlignmentType)alignmentType
 // X軸方向の印字開始位置を返す
 // ------------------------------------------------------
 {
-    CGFloat outFloat = k_printHFHorizontalMargin;
-
-    switch(inAlignType) {
-    
-    case 1: // == center
-        outFloat = (inBorderWidth - [inAttrString size].width) / 2;
-        break;
-    case 2: // == right
-        outFloat = inBorderWidth - [inAttrString size].width - k_printHFHorizontalMargin;
-        break;
-    default:
-        break;
+    switch (alignmentType) {
+        case CEAlignCenter:
+            return (borderWidth - [attrString size].width) / 2;
+            break;
+        case CEAlignRight:
+            return (borderWidth - [attrString size].width) - k_printHFHorizontalMargin;
+            break;
+        default:
+            return k_printHFHorizontalMargin;
+            break;
     }
-    return outFloat;
 }
 
 @end

@@ -32,42 +32,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 
 @interface CEPrintView : NSTextView
-{
-    NSString *_filePath;
-    NSDictionary *_lineNumAttrs;
-    NSDictionary *_headerFooterAttrs;
-    id _printValues;
-    NSAttributedString *_headerOneString;
-    NSAttributedString *_headerTwoString;
-    NSAttributedString *_footerOneString;
-    NSAttributedString *_footerTwoString;
-    NSInteger _headerOneAlignment;
-    NSInteger _headerTwoAlignment;
-    NSInteger _footerOneAlignment;
-    NSInteger _footerTwoAlignment;
-    CGFloat _lineSpacing;
-    CGFloat _xOffset;
-    BOOL _readyToPrint;
-    BOOL _printLineNum;
-    BOOL _printHeader;
-    BOOL _printFooter;
-    BOOL _printHeaderSeparator;
-    BOOL _printFooterSeparator;
-    BOOL _readyToDrawPageNum;
-    BOOL _showingLineNum;
-}
 
-// Public method
-- (void)setFilePath:(NSString *)inFilePath;
-- (CGFloat)lineSpacing;
-- (void)setLineSpacing:(CGFloat)inLineSpacing;
-- (id)printValues;
-- (void)setPrintValues:(id)inValues;
-- (BOOL)isShowingLineNum;
-- (void)setIsShowingLineNum:(BOOL)inValue;
+@property (nonatomic, retain) NSString *filePath;
+@property (nonatomic, assign) CGFloat lineSpacing;
+@property (nonatomic, assign) BOOL isShowingLineNum;
+@property (nonatomic, retain) id printValues;
 
 @end
