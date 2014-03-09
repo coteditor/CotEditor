@@ -182,13 +182,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     
-    [[NSColor gridColor] set];
     // fill in background
+    [[NSColor windowBackgroundColor] set];
     [NSBezierPath fillRect:dirtyRect];
     
-    // draw frame border
+    // draw frame border (only top line)
     [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeRect:[self frame]];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]) - 0.5)
+                              toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]) - 0.5)];
 }
 
 
