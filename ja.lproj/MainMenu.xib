@@ -746,6 +746,13 @@
                                     <action selector="openAppleScriptDictionary:" target="290" id="621"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="8P8-nv-417"/>
+                            <menuItem title="CotEditor Web サイト" id="l2O-Zn-Vo0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openWebSite:" target="290" id="yUt-qX-KWm"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

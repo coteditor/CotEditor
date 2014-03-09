@@ -743,6 +743,13 @@
                                     <action selector="openAppleScriptDictionary:" target="290" id="621"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
+                            <menuItem title="CotEditor Web Site" id="g34-YV-E6o">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openWebSite:" target="290" id="04s-Jk-LhF"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -1012,5 +1019,6 @@ Gw
             </connections>
         </window>
         <customObject id="831" customClass="SUUpdater"/>
+        <menuItem isSeparatorItem="YES" id="ohG-o3-P9R"/>
     </objects>
 </document>

@@ -344,6 +344,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Help anchors
 #define k_helpPrefAnchors       @"pref_general", @"pref_window", @"pref_appearance", @"pref_format", @"pref_syntax", @"pref_filedrop", @"pref_keybinding", @"pref_print"
 
+// distribution web site
+#define k_webSiteURL @"http://coteditor.github.io"
+
 // tab item view tag
 #define k_prefTabItemViewTag    3000
 

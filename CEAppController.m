@@ -777,6 +777,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+- (IBAction)openWebSite:(id)sender
+// Webサイト（coteditor.github.io）を開く
+// ------------------------------------------------------
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_webSiteURL]];
+}
+
+
 #pragma mark ===== AppleScript accessor =====
 
 //=======================================================
