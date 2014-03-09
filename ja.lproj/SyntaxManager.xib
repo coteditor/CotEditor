@@ -141,13 +141,13 @@ Gw
                                                                     <binding destination="35" name="value" keyPath="arrangedObjects.endString" id="648"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="22.916999816894531" minWidth="10" maxWidth="1000" id="392">
+                                                            <tableColumn width="22.916999816894531" minWidth="10" maxWidth="1000" headerToolTip="正規表現" id="392">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
-                                                                <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" toolTip="正規表現" inset="2" id="467">
+                                                                <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="467">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="cellTitle"/>
                                                                 </buttonCell>
@@ -155,13 +155,13 @@ Gw
                                                                     <binding destination="35" name="value" keyPath="arrangedObjects.regularExpression" id="485"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="22.778999328613281" minWidth="18.778999328613281" maxWidth="1000" id="461">
+                                                            <tableColumn editable="NO" width="22.778999328613281" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="大文字小文字を無視" id="461">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
-                                                                <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" toolTip="大文字小文字を無視" inset="2" id="375">
+                                                                <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="375">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="cellTitle"/>
                                                                 </buttonCell>
