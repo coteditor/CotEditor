@@ -32,6 +32,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEOutlineMenuButton.h"
+#import "CEOutlineMenuButtonCell.h"
+#import "constants.h"
 
 
 @implementation CEOutlineMenuButton
@@ -61,20 +63,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrameRect pullsDown:(BOOL)inBool
+- (id)initWithFrame:(NSRect)buttonFrame pullsDown:(BOOL)flag
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrameRect pullsDown:inBool];
+    self = [super initWithFrame:buttonFrame pullsDown:flag];
     if (self) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        id theCell = [self cell];
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-        [theCell setFont:
-                [NSFont fontWithName:[theValues valueForKey:k_key_navigationBarFontName] 
-                    size:(CGFloat)[[theValues valueForKey:k_key_navigationBarFontSize] doubleValue]]];
-        [theCell setControlSize:NSSmallControlSize];
-        [theCell setBordered:NO];
+        [[self cell] setFont:[NSFont fontWithName:[values valueForKey:k_key_navigationBarFontName]
+                                             size:(CGFloat)[[values valueForKey:k_key_navigationBarFontSize] doubleValue]]];
+        [[self cell] setControlSize:NSSmallControlSize];
+        [[self cell] setBordered:NO];
     }
     return self;
 }
