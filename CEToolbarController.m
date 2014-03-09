@@ -372,16 +372,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // Edit HexColorCode as Fore (target = FirstResponder)
     } else if ([inItemIdentifier isEqualToString:k_editHexAsForeItemID]) {
         [outToolbarItem setLabel:NSLocalizedString(@"Edit as Fore",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit HexColorCode as Fore",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open HexColorCode Editor to Edit as ForeColor",@"")];
+        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as Fore",@"")];
+        [outToolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as ForeColor",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"EditHexAsFore"]];
         [outToolbarItem setAction:@selector(editHexColorCodeAsForeColor:)];
 
     // Edit HexColorCode as BG (target = FirstResponder)
     } else if ([inItemIdentifier isEqualToString:k_editHexAsBGItemID]) {
         [outToolbarItem setLabel:NSLocalizedString(@"Edit as BG",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit HexColorCode as BG",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open HexColorCode Editor to Edit as BackgroundColor",@"")];
+        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as BG",@"")];
+        [outToolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as BackgroundColor",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"EditHexAsBG"]];
         [outToolbarItem setAction:@selector(editHexColorCodeAsBGColor:)];
 

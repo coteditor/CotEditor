@@ -669,7 +669,7 @@
                                                 <action selector="openGotoPanel:" target="329" id="658"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Hex Color Code Editor" keyEquivalent="3" id="651">
+                                        <menuItem title="Color Code Editor" keyEquivalent="3" id="651">
                                             <connections>
                                                 <action selector="openHexColorCodeEditor:" target="290" id="652"/>
                                             </connections>
