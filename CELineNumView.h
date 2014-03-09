@@ -3,8 +3,9 @@
 CELineNumView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -35,22 +36,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 @class CESubSplitView;
 
 @interface CELineNumView : NSView
-{
-    CESubSplitView *_masterView;
-    
-    BOOL _showLineNum;
-}
+
+@property (nonatomic, assign) CESubSplitView *masterView;
+@property (nonatomic, assign) BOOL showLineNum;
+
 
 // Public method
-- (CESubSplitView *)masterView;
-- (void)setMasterView:(CESubSplitView *)inView;
-- (BOOL)showLineNum;
-- (void)setShowLineNum:(BOOL)inBool;
+
 - (void)updateLineNumber:(id)sender;
 
 @end
