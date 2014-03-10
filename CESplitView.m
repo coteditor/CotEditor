@@ -51,34 +51,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super initWithFrame:frameRect];
     if (self) {
         [self setFinishedOpen:NO];
+        [self setDividerStyle:NSSplitViewDividerStylePaneSplitter];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-- (CGFloat)dividerThickness
-// 分割線の高さを返す
-// ------------------------------------------------------
-{
-    return k_splitDividerThickness;
-}
-
-// ------------------------------------------------------
-- (void)drawDividerInRect:(NSRect)aRect
-// 区切り線を描画
-// ------------------------------------------------------
-{
-// （ウィンドウ背景色をクリアカラーにしているため、オーバーライドしないと区切り線の背景が透明になってしまう）
-
-    // 背景を塗る
-    [[NSColor gridColor] set];
-    [NSBezierPath fillRect:aRect];
-    // 区切り線を縁取る
-    [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeRect:aRect];
-    // 区切り線マークを描画
-    [super drawDividerInRect:aRect];
 }
 
 

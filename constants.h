@@ -291,7 +291,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_outlineMenuLeftMargin     70.0
 #define k_outlineMenuWidth          300.0
 #define k_outlineButtonWidth        20.0
-#define k_splitDividerThickness     7.0
 #define k_outlineMenuSeparatorSymbol    @"-"
 
 
