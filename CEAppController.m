@@ -44,7 +44,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSupportDirectory;
 - (NSMenu *)buildSyntaxMenu;
 - (void)cacheTheInvisibleGlyph;
-- (void)deleteWrongDotFile;
 @end
 
 
@@ -531,7 +530,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setSyntaxMenu:[self buildSyntaxMenu]];
     [[CEScriptManager sharedInstance] buildScriptMenu:nil];
     [self cacheTheInvisibleGlyph];
-    [self deleteWrongDotFile];
 }
 
 
@@ -997,28 +995,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theStorage addLayoutManager:theLayoutManager];
     (void)[theLayoutManager glyphRangeForTextContainer:theContainer];
 }
-
-
-//------------------------------------------------------
-- (void)deleteWrongDotFile
-// 0.9.5までのバグで作成された可能性のある不正なファイルを削除
-//------------------------------------------------------
-{
-    // 0.9.5まで、シンタックススタイルシートを新規に作成した場合の処理が不正で「.plist」というファイルが作成されてしまっていた。
-    // その「~/Library/Application Support/CotEditor/SyntaxColorings/.plist」を削除する(2008.11.02)
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSURL *URL = [theFileManager URLForDirectory:NSApplicationSupportDirectory
-                                        inDomain:NSUserDomainMask
-                               appropriateForURL:nil
-                                          create:NO
-                                           error:nil];
-    URL = [URL URLByAppendingPathComponent:@"CotEditor/SyntaxColorings/.plist"];
-
-    if ([theFileManager fileExistsAtPath:[URL path]]) {
-        [theFileManager removeItemAtURL:URL error:nil];
-    }
-}
-
-
 
 @end
