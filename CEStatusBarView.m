@@ -188,8 +188,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // draw frame border (only top line)
     [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]) - 0.5)
-                              toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]) - 0.5)];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]))
+                              toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]))];
 }
 
 

@@ -34,7 +34,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CENavigationBarView.h"
 #import "CEEditorView.h"
 #import "CEOutlineMenuButton.h"
-#import "CEOutlineMenuButtonCell.h"
 #import "constants.h"
 
 
@@ -65,22 +64,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frame];
+    
     if (self) {
-
         // setup outlineMenu
         NSRect outlineMenuFrame = frame;
         outlineMenuFrame.origin.x += k_outlineMenuLeftMargin;
-        outlineMenuFrame.origin.y = 0.0;
+        outlineMenuFrame.origin.y = 1.0;
+        outlineMenuFrame.size.height -= 1.0;
         outlineMenuFrame.size.width = k_outlineMenuWidth;
         [self convertRect:outlineMenuFrame toView:self];
-        [self setOutlineMenu:[[CEOutlineMenuButton allocWithZone:[self zone]]
-                              initWithFrame:outlineMenuFrame pullsDown:NO]]; // ===== alloc
+        [self setOutlineMenu:[[CEOutlineMenuButton allocWithZone:[self zone]] initWithFrame:outlineMenuFrame pullsDown:NO]]; // ===== alloc
         [[self outlineMenu] setAutoresizingMask:NSViewHeightSizable];
 
         // setup prevButton
         NSRect prevButtonFrame = outlineMenuFrame;
         prevButtonFrame.origin.x -= k_outlineButtonWidth;
-        prevButtonFrame.origin.y = 1.0;
         prevButtonFrame.size.width = k_outlineButtonWidth;
         [self convertRect:prevButtonFrame toView:self];
         [self setPrevButton:[[NSButton allocWithZone:[self zone]] initWithFrame:prevButtonFrame]]; // ===== alloc
@@ -89,13 +87,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self prevButton] setImagePosition:NSImageOnly];
         [[self prevButton] setAction:@selector(selectPrevItem)];
         [[self prevButton] setTarget:self];
-        [[self prevButton] setToolTip:NSLocalizedString(@"Go Prev item",@"")];
+        [[self prevButton] setToolTip:NSLocalizedString(@"Go Prev item", @"")];
         [[self prevButton] setAutoresizingMask:NSViewHeightSizable];
 
         // setup nextButton
         NSRect nextButtonFrame = outlineMenuFrame;
         nextButtonFrame.origin.x += NSWidth(outlineMenuFrame);
-        nextButtonFrame.origin.y = 1.0;
         nextButtonFrame.size.width = k_outlineButtonWidth;
         [self convertRect:nextButtonFrame toView:self];
         [self setNextButton:[[NSButton allocWithZone:[self zone]] initWithFrame:nextButtonFrame]]; // ===== alloc
@@ -104,7 +101,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self nextButton] setImagePosition:NSImageOnly];
         [[self nextButton] setAction:@selector(selectNextItem)];
         [[self nextButton] setTarget:self];
-        [[self nextButton] setToolTip:NSLocalizedString(@"Go Next item",@"")];
+        [[self nextButton] setToolTip:NSLocalizedString(@"Go Next item", @"")];
         [[self nextButton] setAutoresizingMask:NSViewHeightSizable];
 
         // setup openSplitButton
@@ -120,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self openSplitButton] setAction:@selector(openSplitTextView:)];
         [[self openSplitButton] setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
         [[self openSplitButton] setImage:[NSImage imageNamed:@"openSplitButtonImg"]];
-        [[self openSplitButton] setToolTip:NSLocalizedString(@"Open SplitView",@"")];
+        [[self openSplitButton] setToolTip:NSLocalizedString(@"Open SplitView", @"")];
         [[self openSplitButton] setEnabled:YES];
 
         // setup closeSplitButton
@@ -136,7 +133,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self closeSplitButton] setAction:@selector(closeSplitTextView:)];
         [[self closeSplitButton] setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
         [[self closeSplitButton] setImage:[NSImage imageNamed:@"closeSplitButtonImg"]];
-        [[self closeSplitButton] setToolTip:NSLocalizedString(@"Close SplitView",@"")];
+        [[self closeSplitButton] setToolTip:NSLocalizedString(@"Close SplitView", @"")];
         [[self closeSplitButton] setHidden:YES];
 
 
@@ -191,7 +188,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setOutlineMenuArray:(NSArray *)menus
+- (void)setOutlineMenuArray:(NSArray *)outlineMenuArray
 // 配列を元にアウトラインメニューを生成
 // ------------------------------------------------------
 {
@@ -208,7 +205,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSNumber *underlineMaskNumber;
 
     [[self outlineMenu] removeAllItems];
-    if ([menus count] < 1) {
+    if ([outlineMenuArray count] < 1) {
         [[self outlineMenu] setEnabled:NO];
         [[self prevButton] setEnabled:NO];
         [[self prevButton] setImage:nil];
@@ -216,23 +213,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self nextButton] setImage:nil];
     } else {
         menu = [[self outlineMenu] menu];
-        for (NSDictionary *dict in menus) {
-            if ([[dict valueForKey:k_outlineMenuItemTitle] isEqualToString:k_outlineMenuSeparatorSymbol]) {
+        for (NSDictionary *outlineItem in outlineMenuArray) {
+            if ([[outlineItem valueForKey:k_outlineMenuItemTitle] isEqualToString:k_outlineMenuSeparatorSymbol]) {
                 // セパレータ
                 [menu addItem:[NSMenuItem separatorItem]];
             } else {
-                underlineMaskNumber = [[dict[k_outlineMenuItemUnderlineMask] copy] autorelease];
-                fontMask = ([[dict valueForKey:k_outlineMenuItemFontBold] boolValue]) ? NSBoldFontMask : 0;
+                underlineMaskNumber = [[outlineItem[k_outlineMenuItemUnderlineMask] copy] autorelease];
+                fontMask = ([[outlineItem valueForKey:k_outlineMenuItemFontBold] boolValue]) ? NSBoldFontMask : 0;
                 font = [fontManager convertFont:defaultFont toHaveTrait:fontMask];
                 
-                title = [[[NSMutableAttributedString alloc] initWithString:dict[k_outlineMenuItemTitle]
+                title = [[[NSMutableAttributedString alloc] initWithString:outlineItem[k_outlineMenuItemTitle]
                                                                 attributes:@{NSFontAttributeName: font}] autorelease];
                 if (underlineMaskNumber) {
                     [title addAttribute:NSUnderlineStyleAttributeName
                                   value:underlineMaskNumber
                                   range:NSMakeRange(0, [title length])];
                 }
-                if ([dict[k_outlineMenuItemFontItalic] boolValue]) {
+                if ([outlineItem[k_outlineMenuItemFontItalic] boolValue]) {
                     [title addAttribute:NSFontAttributeName
                                   value:[fontManager convertFont:font toHaveTrait:NSItalicFontMask]
                                   range:NSMakeRange(0, [title length])];
@@ -241,7 +238,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                        action:@selector(setSelectedRangeWithNSValue:) keyEquivalent:@""] autorelease];
                 [menuItem setTarget:[[self masterView] textView]];
                 [menuItem setAttributedTitle:title];
-                [menuItem setRepresentedObject:[dict valueForKey:k_outlineMenuItemRange]];
+                [menuItem setRepresentedObject:[outlineItem valueForKey:k_outlineMenuItemRange]];
                 [menu addItem:menuItem];
             }
         }
@@ -263,19 +260,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if (![[self outlineMenu] isEnabled]) { return; }
+    
     NSMenu *menu = [[self outlineMenu] menu];
-    id item = nil;
-    NSInteger i, count = [menu numberOfItems];
-    NSUInteger theMark, theLocation = range.location;
+    NSMenuItem *menuItem;
+    NSInteger i;
+    NSInteger count = [menu numberOfItems];
+    NSUInteger markedLocation;
+    NSUInteger location = range.location;
     if (count < 1) { return; }
 
     if (NSEqualRanges(range, NSMakeRange(0, 0))) {
         i = 1;
     } else {
         for (i = 1; i < count; i++) {
-            item = [menu itemAtIndex:i];
-            theMark = [[item representedObject] rangeValue].location;
-            if (theMark > theLocation) {
+            menuItem = [menu itemAtIndex:i];
+            markedLocation = [[menuItem representedObject] rangeValue].location;
+            if (markedLocation > location) {
                 break;
             }
         }
@@ -378,17 +378,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setCloseSplitButtonEnabled:(BOOL)closeSplitButtonEnabled
+- (void)setCloseSplitButtonEnabled:(BOOL)enabled
 // set closeSplitButton enabled or disabled
 // ------------------------------------------------------
 {
-    [[self closeSplitButton] setHidden:!closeSplitButtonEnabled];
+    [[self closeSplitButton] setHidden:!enabled];
 }
 
 
 // ------------------------------------------------------
 - (void)drawRect:(NSRect)dirtyRect
-// draw background.
+// draw background
 // ------------------------------------------------------
 {
     if (![self masterView] || ![self showNavigationBar]) {
@@ -400,8 +400,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // draw frame border (only bottom line)
     [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMinY(dirtyRect))
-                              toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMinY(dirtyRect))];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
+                              toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
 }
 
 
