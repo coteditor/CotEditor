@@ -23,14 +23,14 @@
         <window title="Color Code Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="hexColorCode" animationBehavior="default" id="5" userLabel="HCCPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="521" y="349" width="240" height="527"/>
+            <rect key="contentRect" x="521" y="349" width="240" height="522"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="527"/>
+                <rect key="frame" x="0.0" y="0.0" width="240" height="522"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="16">
-                        <rect key="frame" x="20" y="279" width="13" height="13"/>
+                        <rect key="frame" x="20" y="274" width="13" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="above" alignment="left" borderStyle="border" inset="2" id="136">
                             <behavior key="behavior" pushIn="YES" changeBackground="YES" changeGray="YES" lightByContents="YES"/>
@@ -41,7 +41,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="36">
-                        <rect key="frame" x="20" y="439" width="200" height="68"/>
+                        <rect key="frame" x="20" y="434" width="200" height="68"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="139">
                             <font key="font" metaFont="system" size="14"/>
@@ -58,7 +58,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" id="48">
-                        <rect key="frame" x="18" y="300" width="110" height="13"/>
+                        <rect key="frame" x="18" y="295" width="110" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Background:" id="141">
                             <font key="font" metaFont="label"/>
@@ -67,7 +67,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="47">
-                        <rect key="frame" x="18" y="418" width="110" height="13"/>
+                        <rect key="frame" x="18" y="413" width="110" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Text:" id="140">
                             <font key="font" metaFont="label"/>
@@ -76,7 +76,7 @@
                         </textFieldCell>
                     </textField>
                     <colorWell id="10">
-                        <rect key="frame" x="20" y="386" width="52" height="24"/>
+                        <rect key="frame" x="20" y="381" width="52" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
@@ -88,7 +88,7 @@
                         </connections>
                     </colorWell>
                     <comboBox verticalHuggingPriority="750" id="18">
-                        <rect key="frame" x="80" y="386" width="100" height="26"/>
+                        <rect key="frame" x="80" y="381" width="100" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="138">
                             <font key="font" size="13" name="Monaco"/>
@@ -107,7 +107,7 @@
                         </connections>
                     </comboBox>
                     <button toolTip="Insert HexColorCode to Document" verticalHuggingPriority="750" tag="1000" id="15">
-                        <rect key="frame" x="145" y="358" width="80" height="28"/>
+                        <rect key="frame" x="145" y="353" width="80" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Insert" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" tag="1000" inset="2" id="135">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -119,7 +119,7 @@
                         </connections>
                     </button>
                     <comboBox verticalHuggingPriority="750" id="17">
-                        <rect key="frame" x="80" y="321" width="100" height="26"/>
+                        <rect key="frame" x="80" y="316" width="100" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="137">
                             <font key="font" size="13" name="Monaco"/>
@@ -138,7 +138,7 @@
                         </connections>
                     </comboBox>
                     <colorWell id="9">
-                        <rect key="frame" x="20" y="321" width="52" height="24"/>
+                        <rect key="frame" x="20" y="316" width="52" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
@@ -150,7 +150,7 @@
                         </connections>
                     </colorWell>
                     <button toolTip="Insert HexColorCode to Document" verticalHuggingPriority="750" tag="2000" id="14">
-                        <rect key="frame" x="145" y="289" width="80" height="28"/>
+                        <rect key="frame" x="145" y="284" width="80" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Insert" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" tag="2000" inset="2" id="134">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -162,7 +162,7 @@
                         </connections>
                     </button>
                     <button id="13">
-                        <rect key="frame" x="38" y="353" width="17" height="25"/>
+                        <rect key="frame" x="38" y="348" width="17" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="swapArrow" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="133">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -173,7 +173,7 @@
                         </connections>
                     </button>
                     <button toolTip="add to list of ComboBox" tag="1001" id="111">
-                        <rect key="frame" x="194" y="389" width="26" height="19"/>
+                        <rect key="frame" x="194" y="384" width="26" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="addButtonImg" imagePosition="only" alignment="center" borderStyle="border" tag="1001" inset="2" id="142">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -185,7 +185,7 @@
                         </connections>
                     </button>
                     <button toolTip="add to list of ComboBox" tag="2001" id="113">
-                        <rect key="frame" x="194" y="324" width="26" height="19"/>
+                        <rect key="frame" x="194" y="319" width="26" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="addButtonImg" imagePosition="only" alignment="center" borderStyle="border" tag="2001" inset="2" id="143">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
