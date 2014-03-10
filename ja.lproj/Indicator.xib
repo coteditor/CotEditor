@@ -16,23 +16,23 @@
         <window title="書類をカラーリングしています..." allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel1" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="180" y="593" width="420" height="131"/>
+            <rect key="contentRect" x="180" y="593" width="404" height="132"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="7">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="131"/>
+                <rect key="frame" x="0.0" y="0.0" width="404" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView id="29">
-                        <rect key="frame" x="24" y="51" width="64" height="64"/>
+                        <rect key="frame" x="20" y="48" width="64" height="64"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="appIcon" id="73"/>
                     </imageView>
                     <progressIndicator verticalHuggingPriority="750" maxValue="800" bezeled="NO" indeterminate="YES" style="bar" id="47">
-                        <rect key="frame" x="110" y="66" width="272" height="20"/>
+                        <rect key="frame" x="104" y="68" width="280" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" id="50">
-                        <rect key="frame" x="119" y="99" width="284" height="17"/>
+                        <rect key="frame" x="102" y="95" width="284" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="テキストのカラーリング中..." id="74">
                             <font key="font" metaFont="system"/>
@@ -41,7 +41,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="51">
-                        <rect key="frame" x="109" y="37" width="274" height="18"/>
+                        <rect key="frame" x="102" y="43" width="274" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="しばらくお待ちください..." id="75">
                             <font key="font" metaFont="smallSystem"/>
@@ -50,7 +50,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" id="58">
-                        <rect key="frame" x="271" y="17" width="118" height="32"/>
+                        <rect key="frame" x="272" y="13" width="118" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="76">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
