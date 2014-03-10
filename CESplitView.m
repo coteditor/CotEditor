@@ -32,18 +32,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESplitView.h"
+#import "constants.h"
 
+
+@interface CESplitView ()
+
+@property (nonatomic, assign) BOOL finishedOpen;
+
+@end
 
 @implementation CESplitView
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (id)initWithFrame:(NSRect)frameRect
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frameRect];
     if (self) {
-        _finishedOpen = NO;
+        [self setFinishedOpen:NO];
     }
     return self;
 }
@@ -58,7 +65,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 // ------------------------------------------------------
-- (void)drawDividerInRect:(NSRect)inRect
+- (void)drawDividerInRect:(NSRect)aRect
 // 区切り線を描画
 // ------------------------------------------------------
 {
@@ -66,72 +73,72 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 背景を塗る
     [[NSColor gridColor] set];
-    [NSBezierPath fillRect:inRect];
+    [NSBezierPath fillRect:aRect];
     // 区切り線を縁取る
     [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeRect:inRect];
+    [NSBezierPath strokeRect:aRect];
     // 区切り線マークを描画
-    [super drawDividerInRect:inRect];
+    [super drawDividerInRect:aRect];
 }
 
 
 // ------------------------------------------------------
-- (void)setShowLineNum:(BOOL)inBool
+- (void)setShowLineNum:(BOOL)showLineNum
 // 行番号表示の有無を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowLineNumWithNumber:) 
-                        withObject:@(inBool)];
+    [[self subviews] makeObjectsPerformSelector:@selector(setShowLineNumWithNumber:)
+                                     withObject:@(showLineNum)];
 }
 
 
 // ------------------------------------------------------
-- (void)setShowNavigationBar:(BOOL)inBool
+- (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ナビゲーションバー描画の有無を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowNavigationBarWithNumber:) 
-                        withObject:@(inBool)];
+    [[self subviews] makeObjectsPerformSelector:@selector(setShowNavigationBarWithNumber:)
+                                     withObject:@(showNavigationBar)];
 }
 
 
 // ------------------------------------------------------
-- (void)setWrapLines:(BOOL)inBool
+- (void)setWrapLines:(BOOL)wrapLines
 // ラップする／しないを設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setWrapLinesWithNumber:) 
-                        withObject:@(inBool)];
+    [[self subviews] makeObjectsPerformSelector:@selector(setWrapLinesWithNumber:)
+                                     withObject:@(wrapLines)];
 }
 
 
 // ------------------------------------------------------
-- (void)setShowInvisibles:(BOOL)inBool
+- (void)setShowInvisibles:(BOOL)showInvisibles
 // 不可視文字の表示／非表示を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowInvisiblesWithNumber:) 
-                        withObject:@(inBool)];
+    [[self subviews] makeObjectsPerformSelector:@selector(setShowInvisiblesWithNumber:)
+                                     withObject:@(showInvisibles)];
 }
 
 
 // ------------------------------------------------------
-- (void)setUseAntialias:(BOOL)inBool
+- (void)setUseAntialias:(BOOL)useAntialias
 // 文字にアンチエイリアスを使うかどうかを設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setUseAntialiasWithNumber:) 
-                        withObject:@(inBool)];
+    [[self subviews] makeObjectsPerformSelector:@selector(setUseAntialiasWithNumber:)
+                                     withObject:@(useAntialias)];
 }
 
 
 // ------------------------------------------------------
-- (void)setCloseSubSplitViewButtonEnabled:(BOOL)inBool
+- (void)setCloseSubSplitViewButtonEnabled:(BOOL)enabled
 // テキストビュー分割削除ボタンを有効／無効を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:) 
-                        withObject:@(inBool)];
+    [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:)
+                                     withObject:@(enabled)];
 }
 
 
@@ -155,13 +162,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSyntaxStyleNameToSyntax:(NSString *)inName
+- (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName
 // シンタックススタイルを設定
 // ------------------------------------------------------
 {
-    if (inName == nil) { return; }
+    if (syntaxName == nil) { return; }
 
-    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxStyleNameToSyntax:) withObject:inName];
+    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxStyleNameToSyntax:) withObject:syntaxName];
 }
 
 
@@ -171,10 +178,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(recoloringAllTextViewString)];
-    if (!_finishedOpen) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:k_documentDidFinishOpenNotification 
-                    object:[self superview]]; // superView = CEEditorView
-        _finishedOpen = YES;
+    if (![self finishedOpen]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:k_documentDidFinishOpenNotification
+                                                            object:[self superview]]; // superView = CEEditorView
+        [self setFinishedOpen:YES];
     }
 }
 
@@ -189,14 +196,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setAllBackgroundColorWithAlpha:(CGFloat)inAlpha
+- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
 // 全てのテキストビューの背景透明度を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:) 
-                        withObject:@(inAlpha)];
+    [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:)
+                                     withObject:@(alpha)];
 }
-
-
 
 @end

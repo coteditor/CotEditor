@@ -39,59 +39,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <Cocoa/Cocoa.h>
 #import "CEATSTypesetter.h"
 #import "CEPrivateMutableArray.h"
-#import "constants.h"
 
 
 @interface CELayoutManager : NSLayoutManager
-{
-    NSDictionary *_attributes;
-    NSString *_spaceCharacter;
-    NSString *_tabCharacter;
-    NSString *_newLineCharacter;
-    NSString *_fullwidthSpaceCharacter;
-    NSFont *_textFont;
-    id _appController;
 
-    BOOL _showInvisibles;
-    BOOL _showSpace;
-    BOOL _showTab;
-    BOOL _showNewLine;
-    BOOL _showFullwidthSpace;
-    BOOL _showOtherInvisibles;
+@property (nonatomic, assign) BOOL showInvisibles;
+@property (nonatomic, assign) BOOL showSpace;
+@property (nonatomic, assign) BOOL showTab;
+@property (nonatomic, assign) BOOL showNewLine;
+@property (nonatomic, assign) BOOL showFullwidthSpace;
+@property (nonatomic, assign) BOOL showOtherInvisibles;
 
-    BOOL _fixLineHeight;
-    BOOL _useAntialias;
-    BOOL _isPrinting;
+@property (nonatomic, assign) BOOL fixLineHeight;  // 行高を固定するか
+@property (nonatomic, assign) BOOL useAntialias;  // アンチエイリアスを適用するかどうか
+@property (nonatomic, assign) BOOL isPrinting;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic, retain) NSFont *textFont;
 
-    CGFloat _defaultLineHeightForTextFont;
-    CGFloat _textFontPointSize;
-    CGFloat _textFontGlyphY;
-}
+@property (nonatomic, assign, readonly) CGFloat textFontPointSize;
+@property (nonatomic, assign, readonly) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高
+@property (nonatomic, assign, readonly) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
 
-// Public method
-- (BOOL)showInvisibles;
-- (void)setShowInvisibles:(BOOL)inValue;
-- (BOOL)showSpace;
-- (void)setShowSpace:(BOOL)inValue;
-- (BOOL)showTab;
-- (void)setShowTab:(BOOL)inValue;
-- (BOOL)showNewLine;
-- (void)setShowNewLine:(BOOL)inValue;
-- (BOOL)showFullwidthSpace;
-- (void)setShowFullwidthSpace:(BOOL)inValue;
-- (BOOL)showOtherInvisibles;
-- (void)setShowOtherInvisibles:(BOOL)inValue;
-- (BOOL)fixLineHeight;
-- (void)setFixLineHeight:(BOOL)inValue;
-- (BOOL)useAntialias;
-- (void)setUseAntialias:(BOOL)inValue;
-- (BOOL)isPrinting;
-- (void)setIsPrinting:(BOOL)inValue;
-- (NSFont *)textFont;
-- (void)setTextFont:(NSFont *)inFont;
-- (void)setValuesForTextFont:(NSFont *)inFont;
-- (CGFloat)defaultLineHeightForTextFont;
-- (CGFloat)textFontPointSize;
-- (CGFloat)textFontGlyphY;
+
+- (void)setValuesForTextFont:(NSFont *)font;
 - (CGFloat)lineHeight;
+
 @end

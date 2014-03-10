@@ -32,26 +32,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 
 @interface CESplitView : NSSplitView
-{
-    BOOL _finishedOpen;
-}
 
-// Public method
-- (void)setShowLineNum:(BOOL)inBool;
-- (void)setShowNavigationBar:(BOOL)inBool;
-- (void)setWrapLines:(BOOL)inBool;
-- (void)setShowInvisibles:(BOOL)inBool;
-- (void)setUseAntialias:(BOOL)inBool;
-- (void)setCloseSubSplitViewButtonEnabled:(BOOL)inBool;
+- (void)setShowLineNum:(BOOL)showLineNum;
+- (void)setShowNavigationBar:(BOOL)showNavigationBar;
+- (void)setWrapLines:(BOOL)wrapLines;
+- (void)setShowInvisibles:(BOOL)showInvisibles;
+- (void)setUseAntialias:(BOOL)useAntialias;
+- (void)setCloseSubSplitViewButtonEnabled:(BOOL)enabled;
 - (void)setAllCaretToBeginning;
 - (void)releaseAllEditorView;
-- (void)setSyntaxStyleNameToSyntax:(NSString *)inName;
+- (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName;
 - (void)recoloringAllTextView;
 - (void)updateAllOutlineMenu;
-- (void)setAllBackgroundColorWithAlpha:(CGFloat)inAlpha;
+- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha;
 
 @end
