@@ -327,7 +327,7 @@
                             <tabViewItem label="Window" identifier="prefWindowItemID" id="608">
                                 <view key="view" id="609">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="741" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="459"/>
@@ -593,7 +593,7 @@
                                                                 </connections>
                                                             </button>
                                                             <imageView id="613">
-                                                                <rect key="frame" x="41" y="23" width="170" height="15"/>
+                                                                <rect key="frame" x="37" y="23" width="175" height="15"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="transparencyGuide" id="3340"/>
                                                             </imageView>
@@ -2892,14 +2892,6 @@ And press "OK" button, this window size will be set to default.</string>
             </connections>
         </customObject>
         <customObject id="3430" customClass="SUUpdater"/>
-        <view id="384">
-            <rect key="frame" x="0.0" y="0.0" width="1" height="111"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
-        <view id="803">
-            <rect key="frame" x="0.0" y="0.0" width="1" height="111"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
     </objects>
     <resources>
         <image name="addButtonImg" width="16" height="16"/>
@@ -2907,6 +2899,6 @@ And press "OK" button, this window size will be set to default.</string>
         <image name="leftButtonImg" width="16" height="16"/>
         <image name="removeButtonImg" width="16" height="16"/>
         <image name="rightButtonImg" width="16" height="16"/>
-        <image name="transparencyGuide" width="135" height="13"/>
+        <image name="transparencyGuide" width="175" height="15"/>
     </resources>
 </document>

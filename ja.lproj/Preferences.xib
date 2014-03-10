@@ -326,8 +326,8 @@
                             </tabViewItem>
                             <tabViewItem label="ウインドウ" identifier="prefWindowItemID" id="608">
                                 <view key="view" id="609">
-                                    <rect key="frame" x="10" y="33" width="654" height="620"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="741" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="459"/>
@@ -593,7 +593,7 @@
                                                                 </connections>
                                                             </button>
                                                             <imageView id="613">
-                                                                <rect key="frame" x="41" y="23" width="170" height="15"/>
+                                                                <rect key="frame" x="37" y="23" width="175" height="15"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="transparencyGuide" id="3340"/>
                                                             </imageView>
@@ -609,8 +609,8 @@
                             </tabViewItem>
                             <tabViewItem label="表示" identifier="prefViewItemID" id="9">
                                 <view key="view" id="7">
-                                    <rect key="frame" x="10" y="33" width="654" height="620"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="744" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="385"/>
@@ -932,7 +932,7 @@
                             <tabViewItem label="フォーマット" identifier="prefFormatItemID" id="11">
                                 <view key="view" id="8">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="745" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="534"/>
@@ -2620,7 +2620,7 @@ The parent directory name of the dropped file.
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="350" height="320"/>
             <view key="contentView" id="37">
-                <rect key="frame" x="1" y="9" width="401" height="350"/>
+                <rect key="frame" x="0.0" y="0.0" width="401" height="350"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="38">
@@ -2628,7 +2628,7 @@ The parent directory name of the dropped file.
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="2RJ-0l-30d">
                             <rect key="frame" x="1" y="1" width="255" height="218"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" id="39">
                                     <rect key="frame" x="0.0" y="0.0" width="255" height="218"/>
@@ -2893,14 +2893,6 @@ Gw
             </connections>
         </customObject>
         <customObject id="3427" customClass="SUUpdater"/>
-        <view id="384">
-            <rect key="frame" x="0.0" y="0.0" width="1" height="111"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
-        <view id="803">
-            <rect key="frame" x="0.0" y="0.0" width="1" height="111"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
     </objects>
     <resources>
         <image name="addButtonImg" width="16" height="16"/>
@@ -2908,6 +2900,6 @@ Gw
         <image name="leftButtonImg" width="16" height="16"/>
         <image name="removeButtonImg" width="16" height="16"/>
         <image name="rightButtonImg" width="16" height="16"/>
-        <image name="transparencyGuide" width="135" height="13"/>
+        <image name="transparencyGuide" width="175" height="15"/>
     </resources>
 </document>
