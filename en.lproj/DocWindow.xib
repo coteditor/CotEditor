@@ -1072,14 +1072,6 @@
                 <string>printColorIndex</string>
             </declaredKeys>
         </objectController>
-        <view id="51">
-            <rect key="frame" x="0.0" y="0.0" width="125" height="1"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
-        <view id="512">
-            <rect key="frame" x="0.0" y="0.0" width="125" height="1"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
     </objects>
     <resources>
         <image name="centerButtonImg" width="16" height="16"/>
