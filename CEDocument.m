@@ -2029,8 +2029,8 @@ enum { typeFSS = 'fss ' };
 // CotEditor のタイプとクリエータを返す
 // ------------------------------------------------------
 {
-    NSDictionary *outDict = @{NSFileHFSCreatorCode: [NSNumber numberWithUnsignedLong:'cEd1'], 
-                    NSFileHFSTypeCode: [NSNumber numberWithUnsignedLong:'TEXT']};
+    NSDictionary *outDict = @{NSFileHFSCreatorCode: @('cEd1'),
+                              NSFileHFSTypeCode: @('TEXT')};
     return outDict;
 }
 
@@ -2536,7 +2536,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     NSString *theEncodingStr = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
-                [[NSNumber numberWithInt:CFStringConvertNSStringEncodingToEncoding(_encoding)] stringValue]];
+                                [@(CFStringConvertNSStringEncodingToEncoding(_encoding)) stringValue]];
 
     [UKXattrMetadataStore setString:theEncodingStr forKey:@"com.apple.TextEncoding" 
             atPath:inFilePath traverseLink:NO];

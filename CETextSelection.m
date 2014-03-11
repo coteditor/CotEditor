@@ -138,8 +138,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange theSelectedRange = [[_document editorView] selectedRange];
-    NSArray *outArray = @[[NSNumber numberWithInt:theSelectedRange.location], 
-                [NSNumber numberWithInt:theSelectedRange.length]];
+    NSArray *outArray = @[@(theSelectedRange.location),
+                          @(theSelectedRange.length)];
 
     return outArray;
 }
@@ -179,8 +179,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             theIndex = NSMaxRange([theString lineRangeForRange:NSMakeRange(theIndex, 0)]);
         }
     }
-    outArray = @[[NSNumber numberWithInt:theCurLine], 
-                [NSNumber numberWithInt:(theLastLine - theCurLine + 1)]];
+    outArray = @[@(theCurLine),
+                 @(theLastLine - theCurLine + 1)];
 
     return outArray;
 }

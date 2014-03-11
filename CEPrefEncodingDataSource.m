@@ -283,8 +283,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger theIndex, theSelected = [_tableView selectedRow];
 
     theIndex = (theSelected < 0) ? 0 : theSelected;
-    [_encodingsForTmp insertObject:[NSNumber numberWithUnsignedLong:kCFStringEncodingInvalidId] 
-                atIndex:theIndex];
+    [_encodingsForTmp insertObject:@(kCFStringEncodingInvalidId) atIndex:theIndex];
     [_tableView reloadData];
     [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:theIndex] byExtendingSelection:NO];
 }

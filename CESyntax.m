@@ -417,9 +417,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             thePattern = [[theDict[k_SCKey_arrayKeyString] mutableCopy] autorelease];
             if ([thePattern isEqualToString:k_outlineMenuSeparatorSymbol]) {
                 // セパレータのとき
-                theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange], 
-                            k_outlineMenuItemTitle: k_outlineMenuSeparatorSymbol, 
-                            k_outlineMenuItemSortKey: [NSNumber numberWithUnsignedInt:theMatchRange.location]};
+                theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange],
+                                 k_outlineMenuItemTitle: k_outlineMenuSeparatorSymbol,
+                                 k_outlineMenuItemSortKey: @(theMatchRange.location)};
                 [outArray addObject:theMatchDict];
                 continue;
             } else if ((thePattern == nil) || ([thePattern length] < 1)) {
@@ -479,12 +479,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSUInteger theUnderlineMask = ([[theDict valueForKey:k_SCKey_underline] boolValue]) ?
                     (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
             // 辞書生成
-            theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange], 
-                        k_outlineMenuItemTitle: theTitle, 
-                        k_outlineMenuItemSortKey: [NSNumber numberWithUnsignedInt:theMatchRange.location], 
-                        k_outlineMenuItemFontBold: @(theBoolIsBold), 
-                        k_outlineMenuItemFontItalic: @(theBoolIsItalic), 
-                        k_outlineMenuItemUnderlineMask: @(theUnderlineMask)};
+            theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange],
+                             k_outlineMenuItemTitle: theTitle,
+                             k_outlineMenuItemSortKey: @(theMatchRange.location),
+                             k_outlineMenuItemFontBold: @(theBoolIsBold),
+                             k_outlineMenuItemFontItalic: @(theBoolIsItalic),
+                             k_outlineMenuItemUnderlineMask: @(theUnderlineMask)};
             [outArray addObject:theMatchDict];
         }
     }
@@ -604,7 +604,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 theLength = [theScanStr length];
                 if (theLength > 0) {
                     theLocation = [theScanner scanLocation];
-                    wordsArray = inWordsDict[[NSNumber numberWithInt:theLength]];
+                    wordsArray = inWordsDict[@(theLength)];
                     if ([wordsArray containsObject:theScanStr]) {
                         theAttrRange = NSMakeRange(theLocation - theLength, theLength);
                         [outArray addObject:[NSValue valueWithRange:theAttrRange]];
@@ -749,14 +749,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCStart), 
-                    k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCEnd), 
-                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: @(theAttrRange.location),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCStart),
+                                  k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCEnd),
+                                  k_QCStrLength: @0U}];
         }
         return outArray;
     }
@@ -804,14 +804,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCStart), 
-                    k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCEnd), 
-                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: @(theAttrRange.location),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCStart),
+                                  k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCEnd),
+                                  k_QCStrLength: @0U}];
         }
         [thePool release]; // ===== release
     }
@@ -879,14 +879,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCStart), 
-                    k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCEnd), 
-                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: @(theAttrRange.location),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCStart),
+                                  k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCEnd),
+                                  k_QCStrLength: @0U}];
         }
     }
     return outArray;
@@ -947,14 +947,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 theQCStart = theQCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:(theAttrRange.location)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCStart), 
-                    k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: [NSNumber numberWithUnsignedInt:NSMaxRange(theAttrRange)], 
-                    k_QCPairKind: @(inPairKind), 
-                    k_QCStartEnd: @(theQCEnd), 
-                    k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition:@(theAttrRange.location),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCStart),
+                                  k_QCStrLength: @0U}];
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
+                                  k_QCPairKind: @(inPairKind),
+                                  k_QCStartEnd: @(theQCEnd),
+                                  k_QCStrLength: @0U}];
         }
         [thePool release]; // ===== release
     }
@@ -1013,7 +1013,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
                 [thePosArray addObjectsFromArray:theTmpArray];
             } else {
-                NSNumber *len = [NSNumber numberWithInt:[theBeginStr length]];
+                NSNumber *len = @([theBeginStr length]);
                 id wordsArray = theSimpleWordsDict[len];
                 if (wordsArray) {
                     [wordsArray addObject:theBeginStr];
@@ -1354,7 +1354,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                             [theTargetArray addObject:theTmpArray];
                         }
                     } else {
-                        NSNumber *len = [NSNumber numberWithInt:[theBeginStr length]];
+                        NSNumber *len = @([theBeginStr length]);
                         id wordsArray = theSimpleWordsDict[len];
                         if (wordsArray) {
                             [wordsArray addObject:theBeginStr];

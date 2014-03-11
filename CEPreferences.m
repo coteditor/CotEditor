@@ -1075,7 +1075,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (inReturnCode == NSAlertDefaultReturn) { // = revert to Auto-Detect
         NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-        [theDefaults setObject:[NSNumber numberWithUnsignedLong:k_autoDetectEncodingMenuTag] 
+        [theDefaults setObject:@(k_autoDetectEncodingMenuTag)
                         forKey:k_key_encodingInOpen];
         // ファイルを開くエンコーディングをセット
         // （オープンダイアログのエンコーディングポップアップメニューが、デフォルトエンコーディング値の格納場所を兼ねている）

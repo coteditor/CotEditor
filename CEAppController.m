@@ -246,7 +246,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSUInteger i;
         for (i = 0; i < sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings); i++) {
             theEncoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
-            [theEncodings addObject:[NSNumber numberWithUnsignedInt:theEncoding]];
+            [theEncodings addObject:@(theEncoding)];
         }
         _invalidYenEncodings = [theEncodings retain];
         _thousandsSeparator = [[[NSUserDefaults standardUserDefaults] valueForKey:NSLocaleGroupingSeparator] retain];
@@ -426,7 +426,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディング名からNSStringEncodingを返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    return ([_invalidYenEncodings containsObject:[NSNumber numberWithUnsignedInt:inEncoding]]);
+    return ([_invalidYenEncodings containsObject:@(inEncoding)]);
 }
 
 
