@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEHexColorTransformer
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 //=======================================================
 // Class method
@@ -62,7 +62,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -70,62 +70,61 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)transformedValue:(id)inValue
+- (id)transformedValue:(id)value
 // 変換された値を返す(NSColor+NSArchiver -> NSString)
 // ------------------------------------------------------
 {
-    if (inValue == nil) { return nil; }
+    if (value == nil) { return nil; }
 
-    id theColor = [NSUnarchiver unarchiveObjectWithData:inValue];
-    if (theColor == nil) { return nil; }
-    CGFloat theRed, theGreen, theBlue;
-    NSString *outString = nil, *theColorSpaceName = nil;
+    NSColor *color = [NSUnarchiver unarchiveObjectWithData:value];
+    
+    if (color == nil) { return nil; }
+    
+    CGFloat red, green, blue;
+    NSString *outString = nil;
+    NSString *colorSpaceName;
 
     // カラースペース名がRGB系でなかったらコンバートする
-    theColorSpaceName = [theColor colorSpaceName];
-    if ((![theColorSpaceName isEqualToString:NSCalibratedRGBColorSpace]) && 
-            (![theColorSpaceName isEqualToString:NSDeviceRGBColorSpace])) {
-        theColor = [theColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    colorSpaceName = [color colorSpaceName];
+    if (![colorSpaceName isEqualToString:NSCalibratedRGBColorSpace] &&
+        ![colorSpaceName isEqualToString:NSDeviceRGBColorSpace]) {
+        color = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     }
-    [theColor getRed:&theRed green:&theGreen blue:&theBlue alpha:nil];
+    [color getRed:&red green:&green blue:&blue alpha:nil];
+    
     // 各色の値を文字列に整形
     outString = [NSString stringWithFormat:@"%2.2lx%2.2lx%2.2lx",
-            (unsigned long)(theRed*255), (unsigned long)(theGreen*255), (unsigned long)(theBlue*255)];
+                 (unsigned long)(red*255), (unsigned long)(green*255), (unsigned long)(blue*255)];
 
     return outString;
 }
 
 
 // ------------------------------------------------------
-- (id)reverseTransformedValue:(id)inValue
+- (id)reverseTransformedValue:(id)value
 // 逆変換された値を返す(NSString -> NSColor+NSArchiver)
 // ------------------------------------------------------
 {
-    if (inValue == nil) { return nil; }
-    if ([inValue length] != 6) { return nil; }
+    if (value == nil) { return nil; }
+    if ([value length] != 6) { return nil; }
 
     unsigned int theInt = 0;
-    CGFloat theRed, theGreen, theBlue;
-    NSInteger i;
+    CGFloat red, green, blue;
 
-    NSScanner *theScanner;
-    for (i = 0; i < 3; i++) {
-        theScanner = [NSScanner scannerWithString:[inValue substringWithRange:NSMakeRange(i * 2, 2)]];
-        if ([theScanner scanHexInt:&theInt]) {
-            if (i == 0) {
-                theRed = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
-            } else if (i == 1) {
-                theGreen = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
-            } else if (i == 2) {
-                theBlue = (theInt > 0) ? ((CGFloat)theInt / 255) : 0.0;
+    NSScanner *scanner;
+    for (NSUInteger i = 0; i < 3; i++) {
+        scanner = [NSScanner scannerWithString:[value substringWithRange:NSMakeRange(i * 2, 2)]];
+        if ([scanner scanHexInt:&theInt]) {
+            switch (i) {
+                case 0: red   = (CGFloat)theInt / 255; break;
+                case 1: green = (CGFloat)theInt / 255; break;
+                case 2: blue  = (CGFloat)theInt / 255; break;
             }
         }
     }
-    NSColor *outColor = [NSColor colorWithCalibratedRed:theRed green:theGreen blue:theBlue alpha:1.0];
+    NSColor *color = [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:1.0];
 
-    return [NSArchiver archivedDataWithRootObject:outColor];
+    return [NSArchiver archivedDataWithRootObject:color];
 }
-
-
 
 @end
