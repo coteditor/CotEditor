@@ -32,16 +32,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 
 @interface CEApplication : NSApplication
-{
-    NSInteger _requestID;
-    NSInteger _keyCatchMode;
-}
 
-// Public method
-- (void)setKeyCatchMode:(int)inMode;
+@property (nonatomic, assign) NSInteger keyCatchMode;
 
 @end
