@@ -75,8 +75,8 @@ enum { typeFSS = 'fss ' };
 - (BOOL)canReleaseFinderLockOfFile:(NSString *)inFileName isLocked:(BOOL *)ioLocked lockAgain:(BOOL)inLockAgain;
 - (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
             contextInfo:(void *)inContextInfo;
-- (void)printPanelDidEnd:(NSPrintPanel *)inPrintPanel returnCode:(NSInteger)inReturnCode
-            contextInfo:(void *)inContextInfo;
+- (void)printPanelDidEnd:(NSPrintPanel *)printPanel returnCode:(NSInteger)returnCode
+            contextInfo:(void *)contextInfo;
 - (NSStringEncoding)encodingFromComAppleTextEncodingAtPath:(NSString *)inFilePath;
 - (void)setComAppleTextEncodingAtPath:(NSString *)inFilePath;
 - (void)setIsWritableToEditorViewWithFileName:(NSString *)inFileName;
@@ -421,8 +421,6 @@ enum { typeFSS = 'fss ' };
     [[self undoManager] removeAllActionsWithTarget:self];
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
     [self sendCloseEventToClient];
-
-    [_selection autorelease]; // （互いに参照しあっているため、dealloc でなく、ここで開放しておく）
     [self removeWindowController:(NSWindowController *)_windowController];
 
     [super close];
@@ -2338,146 +2336,140 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)printPanelDidEnd:(NSPrintPanel *)inPrintPanel returnCode:(NSInteger)inReturnCode
-            contextInfo:(void *)inContextInfo
+- (void)printPanelDidEnd:(NSPrintPanel *)printPanel returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // プリントパネルが閉じた
 // ------------------------------------------------------
 {
-    if (inReturnCode != NSOKButton) { return; }
+    if (returnCode != NSOKButton) { return; }
 
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    id thePrintValues = [_windowController printValues];
-    NSPrintInfo *thePrintInfo = [self printInfo];
-    NSSize thePaperSize = [thePrintInfo paperSize];
-    NSPrintOperation *thePrintOperation;
-    NSString *theFilePath = ([[theValues valueForKey:k_key_headerFooterPathAbbreviatingWithTilde] boolValue]) ?
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id printValues = [_windowController printValues];
+    NSPrintInfo *printInfo = [self printInfo];
+    NSSize paperSize = [printInfo paperSize];
+    NSPrintOperation *printOperation;
+    NSString *filePath = ([[values valueForKey:k_key_headerFooterPathAbbreviatingWithTilde] boolValue]) ?
             [[[self fileURL] path] stringByAbbreviatingWithTildeInPath] : [[self fileURL] path];
-    CELayoutManager *theLayoutManager = [[[CELayoutManager alloc] init] autorelease];
-    CEPrintView *thePrintView;
-    CESyntax *thePrintSyntax;
-    CGFloat theTopMargin = k_printHFVerticalMargin;
-    CGFloat theBottomMargin = k_printHFVerticalMargin;
-    BOOL theBoolDoColoring = ([[thePrintValues valueForKey:k_printColorIndex] integerValue] == 1);
-    BOOL theBoolShowInvisibles = [(CELayoutManager *)[[_editorView textView] layoutManager] showInvisibles];
-    BOOL theBoolShowControls = theBoolShowInvisibles;
+    CELayoutManager *layoutManager = [[[CELayoutManager alloc] init] autorelease];
+    CEPrintView *printView;
+    CESyntax *printSyntax;
+    CGFloat topMargin = k_printHFVerticalMargin;
+    CGFloat bottomMargin = k_printHFVerticalMargin;
+    BOOL doColoring = ([[printValues valueForKey:k_printColorIndex] integerValue] == 1);
+    BOOL showsInvisibles = [(CELayoutManager *)[[_editorView textView] layoutManager] showInvisibles];
+    BOOL showsControls = showsInvisibles;
 
     // ヘッダ／フッタの高さ（文書を印刷しない高さ）を得る
-    if ([[thePrintValues valueForKey:k_printHeader] boolValue]) {
-        if ([[thePrintValues valueForKey:k_headerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
-            theTopMargin += k_headerFooterLineHeight;
+    if ([[printValues valueForKey:k_printHeader] boolValue]) {
+        if ([[printValues valueForKey:k_headerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
+            topMargin += k_headerFooterLineHeight;
         }
-        if ([[thePrintValues valueForKey:k_headerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
-            theTopMargin += k_headerFooterLineHeight;
+        if ([[printValues valueForKey:k_headerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
+            topMargin += k_headerFooterLineHeight;
         }
     }
     // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
-    if (theTopMargin > k_printHFVerticalMargin) {
-        theTopMargin += 
-                ((CGFloat)[[theValues valueForKey:k_key_headerFooterFontSize] doubleValue] - k_headerFooterLineHeight);
-        if ([[thePrintValues valueForKey:k_printHeaderSeparator] boolValue]) {
-            theTopMargin += k_separatorPadding;
+    if (topMargin > k_printHFVerticalMargin) {
+        topMargin += (CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue] - k_headerFooterLineHeight;
+        if ([[printValues valueForKey:k_printHeaderSeparator] boolValue]) {
+            topMargin += k_separatorPadding;
         } else {
-            theTopMargin += k_noSeparatorPadding;
+            topMargin += k_noSeparatorPadding;
         }
     } else {
-        if ([[thePrintValues valueForKey:k_printHeaderSeparator] boolValue]) {
-            theTopMargin += k_separatorPadding;
+        if ([[printValues valueForKey:k_printHeaderSeparator] boolValue]) {
+            topMargin += k_separatorPadding;
         }
     }
-    if ([[thePrintValues valueForKey:k_printFooter] boolValue]) {
-        if ([[thePrintValues valueForKey:k_footerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
-            theBottomMargin += k_headerFooterLineHeight;
+    if ([[printValues valueForKey:k_printFooter] boolValue]) {
+        if ([[printValues valueForKey:k_footerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
         }
-        if ([[thePrintValues valueForKey:k_footerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
-            theBottomMargin += k_headerFooterLineHeight;
+        if ([[printValues valueForKey:k_footerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
         }
     }
-    if ((theBottomMargin == k_printHFVerticalMargin) && 
-                ([[thePrintValues valueForKey:k_printFooterSeparator] boolValue])) {
-        theBottomMargin += k_separatorPadding;
+    if ((bottomMargin == k_printHFVerticalMargin) && [[printValues valueForKey:k_printFooterSeparator] boolValue]) {
+        bottomMargin += k_separatorPadding;
     }
 
     // プリントビュー生成
-    thePrintView = [[[CEPrintView alloc] initWithFrame:
-            NSMakeRect(0, 0, 
-                thePaperSize.width - (k_printTextHorizontalMargin * 2), 
-                thePaperSize.height - theTopMargin - theBottomMargin)] autorelease];
+    printView = [[[CEPrintView alloc] initWithFrame:NSMakeRect(0, 0,
+                                                               paperSize.width - (k_printTextHorizontalMargin * 2),
+                                                               paperSize.height - topMargin - bottomMargin)] autorelease];
     // 設定するフォント
-    NSFont *theFont;
-    if ([[theValues valueForKey:k_key_setPrintFont] integerValue] == 1) { // == プリンタ専用フォントで印字
-        theFont = [NSFont fontWithName:[theValues valueForKey:k_key_printFontName] 
-                            size:(CGFloat)[[theValues valueForKey:k_key_printFontSize] doubleValue]];
+    NSFont *font;
+    if ([[values valueForKey:k_key_setPrintFont] integerValue] == 1) { // == プリンタ専用フォントで印字
+        font = [NSFont fontWithName:[values valueForKey:k_key_printFontName]
+                               size:(CGFloat)[[values valueForKey:k_key_printFontSize] doubleValue]];
     } else {
-        theFont = [_editorView font];
+        font = [_editorView font];
     }
     
     // プリンタダイアログでの設定オブジェクトをコピー
-    [thePrintView setPrintValues:[[[_windowController printValues] copy] autorelease]];
+    [printView setPrintValues:[[[_windowController printValues] copy] autorelease]];
     // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
-    [[thePrintView textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
+    [[printView textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
     // プリントビューに行間値／行番号表示の有無を設定
-    [thePrintView setLineSpacing:[self lineSpacingInTextView]];
-    [thePrintView setIsShowingLineNum:[[self editorView] showLineNum]];
+    [printView setLineSpacing:[self lineSpacingInTextView]];
+    [printView setIsShowingLineNum:[[self editorView] showLineNum]];
     // 制御文字印字を取得
-    if ([[thePrintValues valueForKey:k_printInvisibleCharIndex] integerValue] == 0) { // = No print
-        theBoolShowControls = NO;
-    } else if ([[thePrintValues valueForKey:k_printInvisibleCharIndex] integerValue] == 2) { // = Print all
-        theBoolShowControls = YES;
+    if ([[printValues valueForKey:k_printInvisibleCharIndex] integerValue] == 0) { // = No print
+        showsControls = NO;
+    } else if ([[printValues valueForKey:k_printInvisibleCharIndex] integerValue] == 2) { // = Print all
+        showsControls = YES;
     }
     // layoutManager を入れ替え
-    [theLayoutManager setTextFont:theFont];
-    [theLayoutManager setFixLineHeight:NO];
-    [theLayoutManager setIsPrinting:YES];
-    [theLayoutManager setShowInvisibles:theBoolShowInvisibles];
-    [theLayoutManager setShowsControlCharacters:theBoolShowControls];
-    [[thePrintView textContainer] replaceLayoutManager:theLayoutManager];
+    [layoutManager setTextFont:font];
+    [layoutManager setFixLineHeight:NO];
+    [layoutManager setIsPrinting:YES];
+    [layoutManager setShowInvisibles:showsInvisibles];
+    [layoutManager setShowsControlCharacters:showsControls];
+    [[printView textContainer] replaceLayoutManager:layoutManager];
 
-    if (theBoolDoColoring) {
+    if (doColoring) {
         // カラーリング実行オブジェクトを用意
-        thePrintSyntax = [[[CESyntax allocWithZone:[self zone]] init] autorelease];
-        [thePrintSyntax setSyntaxStyleName:[[_windowController toolbarController] selectedTitleOfSyntaxItem]];
-        [thePrintSyntax setLayoutManager:theLayoutManager];
-        [thePrintSyntax setIsPrinting:YES];
+        printSyntax = [[[CESyntax allocWithZone:[self zone]] init] autorelease];
+        [printSyntax setSyntaxStyleName:[[_windowController toolbarController] selectedTitleOfSyntaxItem]];
+        [printSyntax setLayoutManager:layoutManager];
+        [printSyntax setIsPrinting:YES];
     }
 
     // ドキュメントが未保存ならウィンドウ名をパスとして設定
-    if (theFilePath == nil) {
-        theFilePath = [self displayName];
+    if (filePath == nil) {
+        filePath = [self displayName];
     }
-    [thePrintView setFilePath:theFilePath];
+    [printView setFilePath:filePath];
 
     // PrintInfo 設定
-    [thePrintInfo setHorizontalPagination:NSFitPagination];
-    [thePrintInfo setHorizontallyCentered:NO];
-    [thePrintInfo setVerticallyCentered:NO];
-    [thePrintInfo setLeftMargin:k_printTextHorizontalMargin];
-    [thePrintInfo setRightMargin:k_printTextHorizontalMargin];
-    [thePrintInfo setTopMargin:theTopMargin];
-    [thePrintInfo setBottomMargin:theBottomMargin];
+    [printInfo setHorizontalPagination:NSFitPagination];
+    [printInfo setHorizontallyCentered:NO];
+    [printInfo setVerticallyCentered:NO];
+    [printInfo setLeftMargin:k_printTextHorizontalMargin];
+    [printInfo setRightMargin:k_printTextHorizontalMargin];
+    [printInfo setTopMargin:topMargin];
+    [printInfo setBottomMargin:bottomMargin];
 
     // プリントビューの設定
-    [thePrintView setFont:theFont];
-    if (theBoolDoColoring) { // カラーリングする
-        [thePrintView setTextColor:
-                    [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]]];
-        [thePrintView setBackgroundColor:
-                    [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_backgroundColor]]];
+    [printView setFont:font];
+    if (doColoring) { // カラーリングする
+        [printView setTextColor:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_textColor]]];
+        [printView setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_backgroundColor]]];
     } else {
-        [thePrintView setTextColor:[NSColor blackColor]];
-        [thePrintView setBackgroundColor:[NSColor whiteColor]];
+        [printView setTextColor:[NSColor blackColor]];
+        [printView setBackgroundColor:[NSColor whiteColor]];
     }
     // プリントビューへ文字列を流し込む
-    [thePrintView setString:[_editorView string]];
-    if (theBoolDoColoring) { // カラーリングする
+    [printView setString:[_editorView string]];
+    if (doColoring) { // カラーリングする
 // 現状では、印刷するページ数に関係なく全ページがカラーリングされている。20080104*****
-        [thePrintSyntax colorAllString:[_editorView string]];
+        [printSyntax colorAllString:[_editorView string]];
     }
     // プリントオペレーション生成、設定、プリント実行
-    thePrintOperation = [NSPrintOperation printOperationWithView:thePrintView printInfo:thePrintInfo];
+    printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
     // プリントパネルの表示を制御し、プログレスパネルは表示させる
-    [thePrintOperation setShowsPrintPanel:NO];
-    [thePrintOperation setShowsProgressPanel:YES];
-    [thePrintOperation runOperation];
+    [printOperation setShowsPrintPanel:NO];
+    [printOperation setShowsProgressPanel:YES];
+    [printOperation runOperation];
 }
 
 
