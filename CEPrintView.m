@@ -48,18 +48,18 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 @property (nonatomic, retain) NSAttributedString *headerTwoString;
 @property (nonatomic, retain) NSAttributedString *footerOneString;
 @property (nonatomic, retain) NSAttributedString *footerTwoString;
-@property (nonatomic, assign) CEAlignmentType headerOneAlignment;
-@property (nonatomic, assign) CEAlignmentType headerTwoAlignment;
-@property (nonatomic, assign) CEAlignmentType footerOneAlignment;
-@property (nonatomic, assign) CEAlignmentType footerTwoAlignment;
-@property (nonatomic, assign) BOOL printsHeader;
-@property (nonatomic, assign) BOOL printsFooter;
-@property (nonatomic, assign) BOOL printsHeaderSeparator;
-@property (nonatomic, assign) BOOL printsFooterSeparator;
-@property (nonatomic, assign) BOOL readyToPrint;
-@property (nonatomic, assign) BOOL printsLineNum;
-@property (nonatomic, assign) BOOL readyToDrawPageNum;
-@property (nonatomic, assign) CGFloat xOffset;
+@property (nonatomic) CEAlignmentType headerOneAlignment;
+@property (nonatomic) CEAlignmentType headerTwoAlignment;
+@property (nonatomic) CEAlignmentType footerOneAlignment;
+@property (nonatomic) CEAlignmentType footerTwoAlignment;
+@property (nonatomic) BOOL printsHeader;  // ヘッダ印刷の有無
+@property (nonatomic) BOOL printsFooter;  // フッタ印刷の有無
+@property (nonatomic) BOOL printsHeaderSeparator;
+@property (nonatomic) BOOL printsFooterSeparator;
+@property (nonatomic) BOOL readyToPrint;  // =ヘッダ／フッタ生成処理などの準備完了フラグ
+@property (nonatomic) BOOL printsLineNum;
+@property (nonatomic) BOOL readyToDrawPageNum;
+@property (nonatomic) CGFloat xOffset;
 @property (nonatomic, retain) NSDictionary *headerFooterAttrs;
 @property (nonatomic, retain) NSDictionary *lineNumAttrs;
 
@@ -80,40 +80,6 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 // Public method
 //
 //=======================================================
-
-// ------------------------------------------------------
-- (id)initWithFrame:(NSRect)frame
-// 初期化
-// ------------------------------------------------------
-{
-    self = [super initWithFrame:frame];
-
-    if (self) {
-        [self setFilePath:nil];
-        [self setLineNumAttrs:nil];
-        [self setHeaderFooterAttrs:nil];
-        [self setPrintValues:nil];
-        [self setHeaderOneString:nil];
-        [self setHeaderTwoString:nil];
-        [self setFooterOneString:nil];
-        [self setFooterTwoString:nil];
-        [self setHeaderOneAlignment:CEAlignLeft];
-        [self setHeaderTwoAlignment:CEAlignLeft];
-        [self setFooterOneAlignment:CEAlignLeft];
-        [self setFooterTwoAlignment:CEAlignLeft];
-        [self setXOffset:0.0];
-        [self setReadyToPrint:NO];  // =ヘッダ／フッタ生成処理などの準備完了フラグ
-        [self setPrintsLineNum:NO];
-        [self setPrintsHeader:NO];  // ヘッダ印刷の有無
-        [self setPrintsFooter:NO];  // フッタ印刷の有無
-        [self setPrintsHeaderSeparator:NO];
-        [self setPrintsFooterSeparator:NO];
-        [self setReadyToDrawPageNum:NO];
-        [self setIsShowingLineNum:NO];
-    }
-
-    return self;
-}
 
 
 // ------------------------------------------------------

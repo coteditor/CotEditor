@@ -42,7 +42,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEStatusBarView : NSView
 
 @property (nonatomic, assign) CEEditorView *masterView;
-@property (nonatomic, assign) BOOL showStatusBar;
+@property (nonatomic) BOOL showStatusBar;
 @property (nonatomic, retain, readonly) NSTextField *leftTextField;
 @property (nonatomic, retain, readonly) NSTextField *rightTextField;
 

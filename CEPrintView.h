@@ -37,8 +37,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEPrintView : NSTextView
 
 @property (nonatomic, retain) NSString *filePath;
-@property (nonatomic, assign) CGFloat lineSpacing;
-@property (nonatomic, assign) BOOL isShowingLineNum;
+@property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) BOOL isShowingLineNum;
 @property (nonatomic, retain) id printValues;
 
 @end

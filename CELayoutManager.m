@@ -52,9 +52,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, assign) NSDictionary *attributes;  // not retained
 
 // readonly properties
-@property (nonatomic, assign, readwrite) CGFloat textFontPointSize;
-@property (nonatomic, assign, readwrite) CGFloat defaultLineHeightForTextFont;
-@property (nonatomic, assign, readwrite) CGFloat textFontGlyphY;
+@property (nonatomic, readwrite) CGFloat textFontPointSize;
+@property (nonatomic, readwrite) CGFloat defaultLineHeightForTextFont;
+@property (nonatomic, readwrite) CGFloat textFontGlyphY;
 
 @end
 

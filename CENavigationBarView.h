@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CENavigationBarView : NSView
 
 @property (nonatomic, assign) CESubSplitView *masterView;
-@property (nonatomic, assign) BOOL showNavigationBar;
+@property (nonatomic) BOOL showNavigationBar;
 
 // Public method
 - (void)setOutlineMenuArray:(NSArray *)menus;

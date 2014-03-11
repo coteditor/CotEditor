@@ -36,6 +36,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEApplication : NSApplication
 
-@property (nonatomic, assign) NSInteger keyCatchMode;
+@property (nonatomic) NSInteger keyCatchMode;
 
 @end
