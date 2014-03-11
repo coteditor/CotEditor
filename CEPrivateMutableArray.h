@@ -40,10 +40,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @interface CEPrivateMutableArray : NSMutableArray
-{
-    id *_pointers;
-    NSUInteger _size;
-    NSUInteger _nPointers;
-}
 
 @end
