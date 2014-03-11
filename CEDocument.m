@@ -73,8 +73,6 @@ enum { typeFSS = 'fss ' };
         operation:(NSSaveOperationType)inSaveOperationType;
 - (void)sendCloseEventToClient;
 - (BOOL)canReleaseFinderLockOfFile:(NSString *)inFileName isLocked:(BOOL *)ioLocked lockAgain:(BOOL)inLockAgain;
-- (void)alertForNotWritableCloseDocDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
-            contextInfo:(void *)inContextInfo;
 - (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
             contextInfo:(void *)inContextInfo;
 - (void)printPanelDidEnd:(NSPrintPanel *)inPrintPanel returnCode:(NSInteger)inReturnCode
@@ -373,8 +371,8 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)canCloseDocumentWithDelegate:(id)inDelegate shouldCloseSelector:(SEL)inShouldCloseSelector 
-        contextInfo:(void *)inContextInfo
+- (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector 
+        contextInfo:(void *)contextInfo
 // ドキュメントが閉じられる前に保存のためのダイアログの表示などを行う
 // ------------------------------------------------------
 {
@@ -385,12 +383,8 @@ enum { typeFSS = 'fss ' };
     [[self editorView] stopAllTimer];
 
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
-    if (([self isDocumentEdited]) && 
+    if ([self isDocumentEdited] &&
             (![self canReleaseFinderLockOfFile:[[self fileURL] path] isLocked:nil lockAgain:YES])) {
-        CanCloseAlertContext *closeContext = malloc(sizeof(CanCloseAlertContext));
-        closeContext->delegate = inDelegate;
-        closeContext->shouldCloseSelector = inShouldCloseSelector;
-        closeContext->contextInfo = inContextInfo;
 
         NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
                                             defaultButton:NSLocalizedString(@"Cancel", nil)
@@ -406,13 +400,18 @@ enum { typeFSS = 'fss ' };
                 break;
             }
         }
-        [theAlert beginSheetModalForWindow:[_editorView window] 
-                    modalDelegate:self 
-                    didEndSelector:@selector(alertForNotWritableCloseDocDidEnd:returnCode:contextInfo:) 
-                    contextInfo:closeContext];
+        
+        [theAlert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+            BOOL theReturn = (returnCode != NSAlertDefaultReturn); // YES == Don't Save (Close)
+            
+            if (delegate) {
+                objc_msgSend(delegate, shouldCloseSelector, self, theReturn, contextInfo);
+            }
+        }];
+        
     } else {
-        [super canCloseDocumentWithDelegate:inDelegate shouldCloseSelector:inShouldCloseSelector 
-                contextInfo:inContextInfo];
+        [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector 
+                contextInfo:contextInfo];
     }
 }
 
@@ -2321,25 +2320,6 @@ enum { typeFSS = 'fss ' };
         *ioLocked = theFinderLockON;
     }
     return YES;
-}
-
-
-// ------------------------------------------------------
-- (void)alertForNotWritableCloseDocDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
-            contextInfo:(void *)inContextInfo
-// 書き込み不可ドキュメントが閉じるときの確認アラートが閉じた
-// ------------------------------------------------------
-{
-// このメソッドは下記のページの情報を参考にさせていただきました(2005.07.08)
-// http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
-    CanCloseAlertContext *theContextInfo = inContextInfo;
-    BOOL theReturn = (inReturnCode != NSAlertDefaultReturn); // YES == Don't Save (Close)
-
-    if (theContextInfo->delegate) {
-        objc_msgSend(theContextInfo->delegate, theContextInfo->shouldCloseSelector, 
-                self, theReturn, theContextInfo->contextInfo);
-    }
-    free(theContextInfo);
 }
 
 
