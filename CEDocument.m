@@ -2348,7 +2348,7 @@ enum { typeFSS = 'fss ' };
     NSSize paperSize = [printInfo paperSize];
     NSPrintOperation *printOperation;
     NSString *filePath = ([[values valueForKey:k_key_headerFooterPathAbbreviatingWithTilde] boolValue]) ?
-            [[[self fileURL] path] stringByAbbreviatingWithTildeInPath] : [[self fileURL] path];
+                         [[[self fileURL] path] stringByAbbreviatingWithTildeInPath] : [[self fileURL] path];
     CELayoutManager *layoutManager = [[[CELayoutManager alloc] init] autorelease];
     CEPrintView *printView;
     CESyntax *printSyntax;
@@ -2393,9 +2393,10 @@ enum { typeFSS = 'fss ' };
     }
 
     // プリントビュー生成
-    printView = [[[CEPrintView alloc] initWithFrame:NSMakeRect(0, 0,
-                                                               paperSize.width - (k_printTextHorizontalMargin * 2),
-                                                               paperSize.height - topMargin - bottomMargin)] autorelease];
+    NSRect frame = NSMakeRect(0, 0,
+                              paperSize.width - (k_printTextHorizontalMargin * 2),
+                              paperSize.height - topMargin - bottomMargin);
+    printView = [[[CEPrintView alloc] initWithFrame:frame] autorelease];
     // 設定するフォント
     NSFont *font;
     if ([[values valueForKey:k_key_setPrintFont] integerValue] == 1) { // == プリンタ専用フォントで印字
@@ -2446,8 +2447,9 @@ enum { typeFSS = 'fss ' };
     [printInfo setVerticallyCentered:NO];
     [printInfo setLeftMargin:k_printTextHorizontalMargin];
     [printInfo setRightMargin:k_printTextHorizontalMargin];
-    [printInfo setTopMargin:topMargin];
-    [printInfo setBottomMargin:bottomMargin];
+    // ???: どこかで天地がflipしているのでbottomとtopのmarginを入れ替えている (2014-03-11 by 1024jp)
+    [printInfo setTopMargin:bottomMargin];
+    [printInfo setBottomMargin:topMargin];
 
     // プリントビューの設定
     [printView setFont:font];
