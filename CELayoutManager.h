@@ -37,8 +37,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "CEATSTypesetter.h"
-#import "CEPrivateMutableArray.h"
 
 
 @interface CELayoutManager : NSLayoutManager
