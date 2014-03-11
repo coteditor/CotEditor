@@ -45,7 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic, retain) NSString *spaceCharacter;
 @property (nonatomic, retain) NSString *tabCharacter;
-@property (nonatomic, retain) NSString *newLineCharacter;
+@property (nonatomic, retain, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
 @property (nonatomic, retain) NSString *fullwidthSpaceCharacter;
 @property (nonatomic, retain) CEAppController *appController;
 @property (nonatomic, assign) NSDictionary *attributes;  // not retained
@@ -132,7 +132,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // attributes was not retained.
     [[self spaceCharacter] release];
     [[self tabCharacter] release];
-    [[self newLineCharacter] release];
+    [[self theNewLineCharacter] release];
     [[self fullwidthSpaceCharacter] release];
     [[self textFont] release];
     [[self appController] release];
@@ -257,7 +257,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
             } else if ([self showNewLine] && (character == '\n')) {
                 pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
-                [[self newLineCharacter] drawAtPoint:pointToDraw withAttributes:[self attributes]];
+                [[self theNewLineCharacter] drawAtPoint:pointToDraw withAttributes:[self attributes]];
 
             } else if ([self showFullwidthSpace] && (character == 0x3000)) { // Fullwidth-space (JP)
                 pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
