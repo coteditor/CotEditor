@@ -1,6 +1,6 @@
 /*
 =================================================
-NSEventAdditions
+NSEvent+CarbonModFlag
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -37,6 +37,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import <Carbon/Carbon.h>
 
+
 @interface NSEvent (CarbonModFlag)
+
 + (NSUInteger)currentCarbonModifierFlags;
+
 @end

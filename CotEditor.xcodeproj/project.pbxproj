@@ -94,7 +94,7 @@
 		8C4186C0088648CA0039FBFC /* CEHCCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4186BE088648CA0039FBFC /* CEHCCManager.m */; };
 		8C4186D008864B3E0039FBFC /* HCCManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4186CE08864B3E0039FBFC /* HCCManager.xib */; };
 		8C418721088655E00039FBFC /* CEHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C41871F088655E00039FBFC /* CEHexColorTransformer.m */; };
-		8C49092D07F43DCA0072AAE9 /* NSEventAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C49092B07F43DCA0072AAE9 /* NSEventAdditions.m */; };
+		8C49092D07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C49092B07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m */; };
 		8C49094607F441510072AAE9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C49094507F441510072AAE9 /* Carbon.framework */; };
 		8C4BC92F0895BD3C00F5263E /* EditHexAsBG.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C4BC92D0895BD3C00F5263E /* EditHexAsBG.tiff */; };
 		8C4BC9300895BD3C00F5263E /* EditHexAsFore.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C4BC92E0895BD3C00F5263E /* EditHexAsFore.tiff */; };
@@ -123,7 +123,7 @@
 		8CB0122E07CA0EFA00221EDC /* CEToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */; };
 		8CB3AF69087F9335004BFDDD /* defaultSyntaxStyle_JavaScript.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3AF68087F9335004BFDDD /* defaultSyntaxStyle_JavaScript.plist */; };
 		8CBFD5F40DC42B1200EC093D /* CEPrivateMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */; };
-		8CC1925707E2D84500B54AE4 /* CEDocumentAppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1925507E2D84500B54AE4 /* CEDocumentAppleScript.m */; };
+		8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */; };
 		8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
 		8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */; };
@@ -297,8 +297,8 @@
 		8C4186CF08864B3E0039FBFC /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = en; path = en.lproj/HCCManager.xib; sourceTree = "<group>"; };
 		8C41871E088655E00039FBFC /* CEHexColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEHexColorTransformer.h; sourceTree = "<group>"; };
 		8C41871F088655E00039FBFC /* CEHexColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEHexColorTransformer.m; sourceTree = "<group>"; };
-		8C49092A07F43DCA0072AAE9 /* NSEventAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSEventAdditions.h; sourceTree = "<group>"; };
-		8C49092B07F43DCA0072AAE9 /* NSEventAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSEventAdditions.m; sourceTree = "<group>"; };
+		8C49092A07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEvent+CarbonModFlag.h"; sourceTree = "<group>"; };
+		8C49092B07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEvent+CarbonModFlag.m"; sourceTree = "<group>"; };
 		8C49094507F441510072AAE9 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		8C4BC92D0895BD3C00F5263E /* EditHexAsBG.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EditHexAsBG.tiff; path = toolbarIcons/EditHexAsBG.tiff; sourceTree = "<group>"; };
 		8C4BC92E0895BD3C00F5263E /* EditHexAsFore.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EditHexAsFore.tiff; path = toolbarIcons/EditHexAsFore.tiff; sourceTree = "<group>"; };
@@ -336,8 +336,8 @@
 		8CB3AF68087F9335004BFDDD /* defaultSyntaxStyle_JavaScript.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_JavaScript.plist; path = SyntaxColorings/defaultSyntaxStyle_JavaScript.plist; sourceTree = "<group>"; };
 		8CBFD5F20DC42B1200EC093D /* CEPrivateMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrivateMutableArray.h; sourceTree = "<group>"; };
 		8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrivateMutableArray.m; sourceTree = "<group>"; };
-		8CC1925407E2D84500B54AE4 /* CEDocumentAppleScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDocumentAppleScript.h; sourceTree = "<group>"; };
-		8CC1925507E2D84500B54AE4 /* CEDocumentAppleScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEDocumentAppleScript.m; sourceTree = "<group>"; };
+		8CC1925407E2D84500B54AE4 /* CEDocument+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CEDocument+ScriptingSupport.h"; sourceTree = "<group>"; };
+		8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CEDocument+ScriptingSupport.m"; sourceTree = "<group>"; };
 		8CC1961A07E2E54E00B54AE4 /* CEScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEScriptManager.h; sourceTree = "<group>"; };
 		8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEScriptManager.m; sourceTree = "<group>"; };
 		8CC5044208EE829500A525A6 /* CEPrintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintView.h; sourceTree = "<group>"; };
@@ -504,12 +504,10 @@
 				258D708807D456DF0062A3E5 /* CETextSelection.m */,
 				8CC1961A07E2E54E00B54AE4 /* CEScriptManager.h */,
 				8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */,
-				8C49092A07F43DCA0072AAE9 /* NSEventAdditions.h */,
-				8C49092B07F43DCA0072AAE9 /* NSEventAdditions.m */,
 				2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */,
-				8CC1925407E2D84500B54AE4 /* CEDocumentAppleScript.h */,
-				8CC1925507E2D84500B54AE4 /* CEDocumentAppleScript.m */,
+				8CC1925407E2D84500B54AE4 /* CEDocument+ScriptingSupport.h */,
+				8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */,
 				8C65C0E507927D0F0028D94A /* CELayoutManager.h */,
 				8C65C0E607927D0F0028D94A /* CELayoutManager.m */,
 				8C83A48009485F27004E48A8 /* CEATSTypesetter.h */,
@@ -556,6 +554,8 @@
 				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
 				8CBFD5F20DC42B1200EC093D /* CEPrivateMutableArray.h */,
 				8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */,
+				8C49092A07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.h */,
+				8C49092B07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m */,
 				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
 				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
 			);
@@ -863,11 +863,11 @@
 				2588E9C007C47ACC0060021D /* CEEditorView.m in Sources */,
 				8CB0122E07CA0EFA00221EDC /* CEToolbarController.m in Sources */,
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
-				8CC1925707E2D84500B54AE4 /* CEDocumentAppleScript.m in Sources */,
+				8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
 				258A14D107F3C6BC008E5FA1 /* CEFlippedView.m in Sources */,
-				8C49092D07F43DCA0072AAE9 /* NSEventAdditions.m in Sources */,
+				8C49092D07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,

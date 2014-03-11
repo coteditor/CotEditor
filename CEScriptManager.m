@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEScriptManager.h"
 #import "CEDocument.h"
-#import "NSEventAdditions.h"
+#import "NSEvent+CarbonModFlag.h"
 
 //=======================================================
 // Private method

@@ -1,6 +1,6 @@
 /*
 =================================================
-CEDocument (AdditionalAppleScript)
+CEDocument+ScriptingSupport
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -31,14 +31,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CEDocumentAppleScript.h"
+#import "CEDocument+ScriptingSupport.h"
 
 //=======================================================
 // Private method
 //
 //=======================================================
 
-@interface CEDocument (AdditionalAppleScriptPrivate)
+@interface CEDocument (ScriptingSupportPrivate)
 - (BOOL)doFind:(NSString *)inSearchString range:(NSRange)inRange 
             option:(unsigned)inMask withRegularExpression:(BOOL)inRE;
 @end
@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@implementation CEDocument (AdditionalAppleScript)
+@implementation CEDocument (ScriptingSupport)
 
 #pragma mark ===== Public method =====
 
@@ -566,7 +566,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@implementation CEDocument (AdditionalAppleScriptPrivate)
+@implementation CEDocument (ScriptingSupportPrivate)
 
 //=======================================================
 // Private method
