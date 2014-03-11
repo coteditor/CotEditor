@@ -371,8 +371,7 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector 
-        contextInfo:(void *)contextInfo
+- (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector contextInfo:(void *)contextInfo
 // ドキュメントが閉じられる前に保存のためのダイアログの表示などを行う
 // ------------------------------------------------------
 {
@@ -384,34 +383,31 @@ enum { typeFSS = 'fss ' };
 
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
     if ([self isDocumentEdited] &&
-            (![self canReleaseFinderLockOfFile:[[self fileURL] path] isLocked:nil lockAgain:YES])) {
+        ![self canReleaseFinderLockOfFile:[[self fileURL] path] isLocked:nil lockAgain:YES]) {
 
-        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
-                                            defaultButton:NSLocalizedString(@"Cancel", nil)
-                                          alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
-                                              otherButton:nil
-                                informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else. \n\nDo you want to close?", nil)];
-        NSArray *theButtons = [theAlert buttons];
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
+                                         defaultButton:NSLocalizedString(@"Cancel", nil)
+                                       alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
+                                           otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else. \n\nDo you want to close?", nil)];
 
-        for (NSButton *theDontSaveButton in theButtons) {
-            if ([[theDontSaveButton title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
-                [theDontSaveButton setKeyEquivalent:@"d"];
-                [theDontSaveButton setKeyEquivalentModifierMask:NSCommandKeyMask];
+        for (NSButton *button in [alert buttons]) {
+            if ([[button title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
+                [button setKeyEquivalent:@"d"];
+                [button setKeyEquivalentModifierMask:NSCommandKeyMask];
                 break;
             }
         }
         
-        [theAlert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+        [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse returnCode) {
             BOOL theReturn = (returnCode != NSAlertDefaultReturn); // YES == Don't Save (Close)
             
             if (delegate) {
                 objc_msgSend(delegate, shouldCloseSelector, self, theReturn, contextInfo);
             }
         }];
-        
     } else {
-        [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector 
-                contextInfo:contextInfo];
+        [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
     }
 }
 
