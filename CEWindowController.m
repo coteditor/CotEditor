@@ -225,7 +225,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // すべての文書情報を更新
 // ------------------------------------------------------
 {
-    NSDictionary *theFileAttr = [[self document] documentFileAttributes];
+    NSDictionary *theFileAttr = [[self document] fileAttributes];
     NSDate *theDate = nil;
     NSString *theOwner = nil;
 

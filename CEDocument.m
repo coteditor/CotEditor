@@ -55,32 +55,14 @@ enum { typeFSS = 'fss ' };
 @interface CEDocument ()
 
 @property (atomic, retain) NSString *fileMD5;
+@property (atomic) BOOL showUpdateAlertWithBecomeKey;
+@property (atomic) BOOL isRevertingForExternalFileUpdate;
+@property (retain) NSString *initialString;  // 初期表示文字列に表示する文字列;
 
-- (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding;
-- (void)doSetEncoding:(NSStringEncoding)inEncoding;
-- (void)updateEncodingInToolbarAndInfo;
-- (BOOL)readFromFile:(NSString *)inFileName withEncoding:(NSStringEncoding)inEncoding;
-- (NSStringEncoding)scannedCharsetOrEncodingFromString:(NSString *)inString;
-- (void)redoSetEncoding:(NSStringEncoding)inEncoding updateDocument:(BOOL)inDocUpdate 
-        askLossy:(BOOL)inAskLossy  lossy:(BOOL)inLossy asActionName:(NSString *)inName;
-- (void)redoSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding;
-- (NSDictionary *)myCreatorAndTypeCodeAttributes;
-- (BOOL)acceptSaveDocumentWithIANACharSetName;
-- (BOOL)acceptSaveDocumentToConvertEncoding;
-- (BOOL)saveToFile:(NSString *)inFileName ofType:(NSString *)inDocType 
-            saveOperation:(NSSaveOperationType)inSaveOperationType;
-- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath 
-        operation:(NSSaveOperationType)inSaveOperationType;
-- (void)sendCloseEventToClient;
-- (BOOL)canReleaseFinderLockOfFile:(NSString *)inFileName isLocked:(BOOL *)ioLocked lockAgain:(BOOL)inLockAgain;
-- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
-            contextInfo:(void *)inContextInfo;
-- (void)printPanelDidEnd:(NSPrintPanel *)printPanel returnCode:(NSInteger)returnCode
-            contextInfo:(void *)contextInfo;
-- (NSStringEncoding)encodingFromComAppleTextEncodingAtPath:(NSString *)inFilePath;
-- (void)setComAppleTextEncodingAtPath:(NSString *)inFilePath;
-- (void)setIsWritableToEditorViewWithFileName:(NSString *)inFileName;
-- (void)showAlertForNotWritable;
+@property (readwrite) BOOL canActivateShowInvisibleCharsItem;
+@property (readwrite) NSStringEncoding encodingCode;
+@property (readwrite, retain) NSDictionary *fileAttributes;
+
 @end
 
 
@@ -91,7 +73,7 @@ enum { typeFSS = 'fss ' };
 
 @implementation CEDocument
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 // ------------------------------------------------------
 + (BOOL)autosavesInPlace
@@ -111,7 +93,7 @@ enum { typeFSS = 'fss ' };
 }
 
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -128,29 +110,25 @@ enum { typeFSS = 'fss ' };
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
         [self setHasUndoManager:YES];
-        _initialString = nil;
         _windowController = nil;
         // CotEditor のクリエータ／タイプを使うなら、設定しておく
-        _fileAttr = ([[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue] <= 1) ?
-                [[self myCreatorAndTypeCodeAttributes] retain] : nil;
+        if ([[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue] <= 1) {
+            [self setFileAttributes:[self myCreatorAndTypeCodeAttributes]];
+        }
         (void)[self doSetEncoding:[[theValues valueForKey:k_key_encodingInNew] unsignedLongValue] 
                 updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
-        _fileSender = nil;
-        _fileToken = nil;
-        _showUpdateAlertWithBecomeKey = NO;
-        _isRevertingForExternalFileUpdate = NO;
-        _canActivateShowInvisibleCharsItem = 
-                ([[theValues valueForKey:k_key_showInvisibleSpace] boolValue] || 
+        [self setCanActivateShowInvisibleCharsItem:
+                [[theValues valueForKey:k_key_showInvisibleSpace] boolValue] ||
                 [[theValues valueForKey:k_key_showInvisibleTab] boolValue] || 
                 [[theValues valueForKey:k_key_showInvisibleNewLine] boolValue] || 
                 [[theValues valueForKey:k_key_showInvisibleFullwidthSpace] boolValue] || 
-                [[theValues valueForKey:k_key_showOtherInvisibleChars] boolValue]);
+                [[theValues valueForKey:k_key_showOtherInvisibleChars] boolValue]];
         [self setDoCascadeWindow:YES];
         [self setInitTopLeftPoint:NSZeroPoint];
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                selector:@selector(documentDidFinishOpen:) 
-                name:k_documentDidFinishOpenNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(documentDidFinishOpen:)
+                                                     name:k_documentDidFinishOpenNotification object:nil];
     }
     return self;
 }
@@ -165,14 +143,14 @@ enum { typeFSS = 'fss ' };
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [[self fileMD5] release];
-    // _initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
+    // initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
     // _selection は既に autorelease されている == "- (void)close"
-    [[_editorView splitView] releaseAllEditorView]; // 各subSplitView が持つ editorView 参照を削除
-    [_editorView release]; // 自身のメンバを削除
+    [[[self editorView] splitView] releaseAllEditorView]; // 各subSplitView が持つ editorView 参照を削除
+    [[self editorView] release]; // 自身のメンバを削除
     [_windowController release];
-    [_fileAttr release];
-    [_fileToken release];
-     // _fileSender は既にnilがセットされている == "- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath  operation:(NSSaveOperationType)inSaveOperationType", "- (void)sendCloseEventToClient"
+    [[self fileAttributes] release];
+    [[self fileToken] release];
+     // fileSender は既にnilがセットされている == "- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath  operation:(NSSaveOperationType)inSaveOperationType", "- (void)sendCloseEventToClient"
 
     [super dealloc];
 }
@@ -194,17 +172,16 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // 新規書類を最初に保存する場合のフラグをセット
-    BOOL theBoolIsFirstSaving = (([self fileURL] == nil) || (saveOperation == NSSaveAsOperation));
+    BOOL isFirstSave = (![self fileURL] || (saveOperation == NSSaveAsOperation));
     // 保存処理実行
-    BOOL outResult = [self saveToFile:[url path] ofType:typeName saveOperation:saveOperation];
+    BOOL outResult = [self saveToURL:url ofType:typeName saveOperation:saveOperation];
 
     if (outResult) {
-        NSUndoManager *theUndoManager = [self undoManager];
+        NSUndoManager *undoManager = [self undoManager];
 
         // 新規保存時、カラーリングのために拡張子を保持
-        if (theBoolIsFirstSaving) {
-            [self setColoringExtension:[url pathExtension]
-                    coloring:YES];
+        if (isFirstSave) {
+            [self setColoringExtension:[url pathExtension] coloring:YES];
         }
 
         // 保存の前後で編集内容をグルーピングさせないための処置
@@ -215,9 +192,9 @@ enum { typeFSS = 'fss ' };
         // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
         // CETextViewCore > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
         // ****** 何かもっとうまい回避方法があるはずなんだが … (2005.08.05) *******
-        [theUndoManager beginUndoGrouping];
-        [theUndoManager endUndoGrouping];
-        [theUndoManager undo];
+        [undoManager beginUndoGrouping];
+        [undoManager endUndoGrouping];
+        [undoManager undo];
 
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
@@ -230,7 +207,7 @@ enum { typeFSS = 'fss ' };
         __block CEDocument *blockSelf = self;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [blockSelf getFileAttributes];
-            [blockSelf setFileModificationDate:[_fileAttr fileModificationDate]];
+            [blockSelf setFileModificationDate:[[self fileAttributes] fileModificationDate]];
         });
     }
     // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
@@ -256,13 +233,13 @@ enum { typeFSS = 'fss ' };
     NSUInteger theSaveTypeCreator = [[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue];
     
     if (theSaveTypeCreator == 0) { // = same as original
-        OSType theCreator = [_fileAttr fileHFSCreatorCode];
-        OSType theType = [_fileAttr fileHFSTypeCode];
+        OSType theCreator = [[self fileAttributes] fileHFSCreatorCode];
+        OSType theType = [[self fileAttributes] fileHFSTypeCode];
         if ((theCreator == 0) || (theType == 0)) {
             [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
         } else {
-            outDict[NSFileHFSCreatorCode] = _fileAttr[NSFileHFSCreatorCode];
-            outDict[NSFileHFSTypeCode] = _fileAttr[NSFileHFSTypeCode];
+            outDict[NSFileHFSCreatorCode] = [self fileAttributes][NSFileHFSCreatorCode];
+            outDict[NSFileHFSTypeCode] = [self fileAttributes][NSFileHFSTypeCode];
         }
     } else if (theSaveTypeCreator == 1) { // = CotEditor's type
         [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
@@ -279,8 +256,8 @@ enum { typeFSS = 'fss ' };
 {
     // 認証が必要な時に重なって表示されるのを避けるため、まず復帰確認シートを片づける
     //（外部プロセスによる変更通知アラートシートはそのままに）
-    if (!_isRevertingForExternalFileUpdate) {
-        [[[_editorView window] attachedSheet] orderOut:self];
+    if (![self isRevertingForExternalFileUpdate]) {
+        [[[[self editorView] window] attachedSheet] orderOut:self];
     }
 
     BOOL outResult = [self readFromFile:[url path] withEncoding:k_autoDetectEncodingMenuTag];
@@ -302,16 +279,16 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)inSaveOperation delegate:(id)inDelegate 
-            didSaveSelector:(SEL)inDidSaveSelector contextInfo:(void *)inContextInfo
+- (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate 
+            didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
 // セーブパネルを表示
 // ------------------------------------------------------
 {
-    [super runModalSavePanelForSaveOperation:inSaveOperation delegate:inDelegate 
-            didSaveSelector:inDidSaveSelector contextInfo:inContextInfo];
+    [super runModalSavePanelForSaveOperation:saveOperation delegate:delegate 
+            didSaveSelector:didSaveSelector contextInfo:contextInfo];
 
     // セーブパネル表示時の処理
-    NSSavePanel *theSavePanel = (NSSavePanel *)[[_editorView window] attachedSheet];
+    NSSavePanel *theSavePanel = (NSSavePanel *)[[[self editorView] window] attachedSheet];
     if (theSavePanel != nil) {
         NSEnumerator *theEnumerator = [[[theSavePanel contentView] subviews] objectEnumerator];
         NSTextField *theTextField = nil;
@@ -356,17 +333,6 @@ enum { typeFSS = 'fss ' };
     NSStringEncoding theEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
     return [self readFromFile:[url path] withEncoding:theEncoding];
-}
-
-
-// ------------------------------------------------------
-- (void)setString:(NSMutableString *)inString
-// 初期表示文字列に表示する文字列を保持
-// ------------------------------------------------------
-{
-    [inString retain];
-    [_initialString release];
-    _initialString = inString;
 }
 
 
@@ -428,26 +394,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (CEEditorView *)editorView
-// editorView を返す
-// ------------------------------------------------------
-{
-    return _editorView;
-}
-
-
-// ------------------------------------------------------
-- (void)setEditorView:(CEEditorView *)inEditorView
-// editorView をセット
-// ------------------------------------------------------
-{
-    [inEditorView retain];
-    [_editorView release];
-    _editorView = inEditorView;
-}
-
-
-// ------------------------------------------------------
 - (id)windowController
 // windowController を返す
 // ------------------------------------------------------
@@ -457,7 +403,7 @@ enum { typeFSS = 'fss ' };
 
 
 //------------------------------------------------------
-- (BOOL)stringFromData:(NSData *)inData encoding:(NSStringEncoding)ioEncoding xattr:(BOOL)inBoolXattr
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr
 // データから指定エンコードで文字列を得る
 //------------------------------------------------------
 {
@@ -472,95 +418,95 @@ enum { typeFSS = 'fss ' };
     // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
 
     // 10.5+でのファイル拡張属性(com.apple.TextEncoding)を試す
-    if ((inBoolXattr) && (ioEncoding != k_autoDetectEncodingMenuTag)) {
-        theStr = [[[NSString alloc] initWithData:inData encoding:ioEncoding] autorelease];
+    if ((boolXattr) && (encoding != k_autoDetectEncodingMenuTag)) {
+        theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
         if (theStr == nil) {
-            ioEncoding = k_autoDetectEncodingMenuTag;
+            encoding = k_autoDetectEncodingMenuTag;
         }
     }
 
-    if (([inData length] > 0) && (ioEncoding == k_autoDetectEncodingMenuTag)) {
+    if (([data length] > 0) && (encoding == k_autoDetectEncodingMenuTag)) {
         const char theUtf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         // BOM付きUTF-8判定
-        if (memchr([inData bytes], *theUtf8Bom, 3) != NULL) {
+        if (memchr([data bytes], *theUtf8Bom, 3) != NULL) {
 
             theBoolToSkipUTF8 = YES;
-            theStr = [[[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
             if (theStr != nil) {
-                ioEncoding = NSUTF8StringEncoding;
+                encoding = NSUTF8StringEncoding;
             }
         // UTF-16判定
-        } else if ((memchr([inData bytes], 0xfffe, 2) != NULL) || 
-                    (memchr([inData bytes], 0xfeff, 2) != NULL)) {
+        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) || 
+                    (memchr([data bytes], 0xfeff, 2) != NULL)) {
 
             theBoolToSkipUTF16 = YES;
-            theStr = [[[NSString alloc] initWithData:inData encoding:NSUnicodeStringEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding] autorelease];
             if (theStr != nil) {
-                ioEncoding = NSUnicodeStringEncoding;
+                encoding = NSUnicodeStringEncoding;
             }
 
         // ISO 2022-JP判定
-        } else if (memchr([inData bytes], 0x1b, [inData length]) != NULL) {
+        } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
             theBoolToSkipISO2022JP = YES;
-            theStr = [[[NSString alloc] initWithData:inData encoding:NSISO2022JPStringEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding] autorelease];
             if (theStr != nil) {
-                ioEncoding = NSISO2022JPStringEncoding;
+                encoding = NSISO2022JPStringEncoding;
             }
         }
     }
 
-    if ((theStr == nil) && (ioEncoding == k_autoDetectEncodingMenuTag)) {
+    if ((theStr == nil) && (encoding == k_autoDetectEncodingMenuTag)) {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
         NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
         NSInteger i = 0;
 
         while (theStr == nil) {
-            ioEncoding = 
+            encoding = 
                     CFStringConvertEncodingToNSStringEncoding([theEncodings[i] unsignedLongValue]);
-            if ((ioEncoding == NSISO2022JPStringEncoding) && theBoolToSkipISO2022JP) {
+            if ((encoding == NSISO2022JPStringEncoding) && theBoolToSkipISO2022JP) {
                 break;
-            } else if ((ioEncoding == NSUTF8StringEncoding) && theBoolToSkipUTF8) {
+            } else if ((encoding == NSUTF8StringEncoding) && theBoolToSkipUTF8) {
                 break;
-            } else if ((ioEncoding == NSUnicodeStringEncoding) && theBoolToSkipUTF16) {
+            } else if ((encoding == NSUnicodeStringEncoding) && theBoolToSkipUTF16) {
                 break;
-            } else if (ioEncoding == NSProprietaryStringEncoding) {
+            } else if (encoding == NSProprietaryStringEncoding) {
                 NSLog(@"theEncoding == NSProprietaryStringEncoding");
                 break;
             }
-            theStr = [[[NSString alloc] initWithData:inData encoding:ioEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
             if (theStr != nil) {
                 // "charset="や"encoding="を読んでみて適正なエンコーディングが得られたら、そちらを優先
                 NSStringEncoding theTmpEncoding = [self scannedCharsetOrEncodingFromString:theStr];
-                if ((theTmpEncoding == NSProprietaryStringEncoding) || (theTmpEncoding == ioEncoding)) {
+                if ((theTmpEncoding == NSProprietaryStringEncoding) || (theTmpEncoding == encoding)) {
                     break;
                 }
                 NSString *theTmpStr = 
-                        [[[NSString alloc] initWithData:inData encoding:theTmpEncoding] autorelease];
+                        [[[NSString alloc] initWithData:data encoding:theTmpEncoding] autorelease];
                 if (theTmpStr != nil) {
                     theStr = theTmpStr;
-                    ioEncoding = theTmpEncoding;
+                    encoding = theTmpEncoding;
                 }
             }
             i++;
         }
     } else if (theStr == nil) {
-        theStr = [[[NSString alloc] initWithData:inData encoding:ioEncoding] autorelease];
+        theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
     }
 
-    if ((theStr != nil) && (ioEncoding != k_autoDetectEncodingMenuTag)) {
+    if ((theStr != nil) && (encoding != k_autoDetectEncodingMenuTag)) {
         // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
         // 10.4+ ではスルー（2005.12.25）
         // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
         // (下記の現象と同じ理由で発生していると思われる）
         // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
         if ((floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) || // = 10.4+ 
-                ([inData length] <= 8192) || 
-                (([inData length] > 8192) && ([inData length] != ([theStr length] * 2 + 1)) && 
-                        ([inData length] != ([theStr length] * 2)))) {
+                ([data length] <= 8192) || 
+                (([data length] > 8192) && ([data length] != ([theStr length] * 2 + 1)) && 
+                        ([data length] != ([theStr length] * 2)))) {
 
-            _initialString = [theStr retain]; // ===== retain
-            // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
-            (void)[self doSetEncoding:ioEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+            [self setInitialString:theStr];
+            // (initialString はあとで開放 == "- (NSString *)stringToWindowController".)
+            (void)[self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             return YES;
         }
     }
@@ -574,7 +520,7 @@ enum { typeFSS = 'fss ' };
 // windowController に表示する文字列を返す
 // ------------------------------------------------------
 {
-    return [_initialString autorelease]; // ===== autorelease
+    return [[self initialString] autorelease]; // ===== autorelease
 }
 
 
@@ -588,7 +534,7 @@ enum { typeFSS = 'fss ' };
     if ([_windowController needsIncompatibleCharDrawerUpdate]) {
         [_windowController showIncompatibleCharList];
     }
-    [self setIsWritableToEditorViewWithFileName:[[self fileURL] path]];
+    [self setIsWritableToEditorViewWithURL:[self fileURL]];
 }
 
 
@@ -600,26 +546,17 @@ enum { typeFSS = 'fss ' };
     if (inString) {
         OgreNewlineCharacter theLineEnd = [OGRegularExpression newlineCharacterInString:inString];
         [self setLineEndingCharToView:theLineEnd]; // for update toolbar item
-        [_editorView setString:inString]; // （editorView の setString 内でキャレットを先頭に移動させている）
+        [[self editorView] setString:inString]; // （editorView の setString 内でキャレットを先頭に移動させている）
     } else {
-        [_editorView setString:@""];
+        [[self editorView] setString:@""];
     }
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
     // テキストビューへフォーカスを移動
-    [[_editorView window] makeFirstResponder:[[[_editorView splitView] subviews][0] textView]];
+    [[[self editorView] window] makeFirstResponder:[[[[self editorView] splitView] subviews][0] textView]];
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
-    [_editorView updateColoringAndOutlineMenuWithDelay];
-}
-
-
-// ------------------------------------------------------
-- (NSStringEncoding)encodingCode
-// 表示しているファイルのエンコーディングを返す
-// ------------------------------------------------------
-{
-    return _encoding;
+    [[self editorView] updateColoringAndOutlineMenuWithDelay];
 }
 
 
@@ -629,7 +566,7 @@ enum { typeFSS = 'fss ' };
 // 新規エンコーディングをセット
 // ------------------------------------------------------
 {
-    if (inEncoding == _encoding) {
+    if (inEncoding == [self encodingCode]) {
         return YES;
     }
     NSInteger theResult = NSAlertOtherReturn;
@@ -637,7 +574,7 @@ enum { typeFSS = 'fss ' };
     if (inDocUpdate) {
 
         theBoolNeedsShowList = [_windowController needsIncompatibleCharDrawerUpdate];
-        NSString *theCurString = [_editorView stringForSave];
+        NSString *theCurString = [[self editorView] stringForSave];
         BOOL theAllowLossy = NO;
 
         if (inAskLossy) {
@@ -668,7 +605,7 @@ enum { typeFSS = 'fss ' };
         if (theBoolNeedsShowList) {
             [[theUndoManager prepareWithInvocationTarget:_windowController] showIncompatibleCharList];
         }
-        [[theUndoManager prepareWithInvocationTarget:self] doSetEncoding:_encoding]; // エンコード値設定
+        [[theUndoManager prepareWithInvocationTarget:self] doSetEncoding:[self encodingCode]]; // エンコード値設定
         [[theUndoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCount減値
         if (inName) {
             [theUndoManager setActionName:inName];
@@ -688,12 +625,12 @@ enum { typeFSS = 'fss ' };
 // 背景色の変更を取り消し
 // ------------------------------------------------------
 {
-    NSArray *managers = [_editorView allLayoutManagers];
+    NSArray *managers = [[self editorView] allLayoutManagers];
 
     for (NSLayoutManager *manager in managers) {
         // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
         [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                        forCharacterRange:NSMakeRange(0, [[_editorView string] length])];
+                        forCharacterRange:NSMakeRange(0, [[[self editorView] string] length])];
     }
 }
 
@@ -713,7 +650,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     NSMutableArray *outArray = [NSMutableArray array];
-    NSString *theWholeString = [_editorView stringForSave];
+    NSString *theWholeString = [[self editorView] stringForSave];
     NSUInteger theWholeLength = [theWholeString length];
     NSData *theData = [theWholeString dataUsingEncoding:inEncoding allowLossyConversion:YES];
     NSString *theConvertedString = [[[NSString alloc] initWithData:theData encoding:inEncoding] autorelease];
@@ -728,7 +665,7 @@ enum { typeFSS = 'fss ' };
 
     // 削除／変換される文字をリストアップ
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *theManagers = [_editorView allLayoutManagers];
+    NSArray *theManagers = [[self editorView] allLayoutManagers];
     NSColor *theForeColor = 
             [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]];
     NSColor *theBGColor = 
@@ -794,7 +731,7 @@ enum { typeFSS = 'fss ' };
 // 行末コードを変更する
 // ------------------------------------------------------
 {
-    NSInteger theCurrentEnding = [_editorView lineEndingCharacter];
+    NSInteger theCurrentEnding = [[self editorView] lineEndingCharacter];
 
     // 現在と同じ行末コードなら、何もしない
     if (theCurrentEnding == inNewLineEnding) {
@@ -823,7 +760,7 @@ enum { typeFSS = 'fss ' };
 // 行末コード番号をセット
 // ------------------------------------------------------
 {
-    [_editorView setLineEndingCharacter:inNewLineEnding];
+    [[self editorView] setLineEndingCharacter:inNewLineEnding];
     [[_windowController toolbarController] setSelectEndingItemIndex:inNewLineEnding];
 }
 
@@ -834,7 +771,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     if ([inName length] > 0) {
-        [_editorView setSyntaxStyleNameToColoring:inName recolorNow:YES];
+        [[self editorView] setSyntaxStyleNameToColoring:inName recolorNow:YES];
         [[_windowController toolbarController] setSelectSyntaxItemWithTitle:inName];
     }
 }
@@ -847,7 +784,7 @@ enum { typeFSS = 'fss ' };
 {
     if (inBoolDelay) {
         if ([inName length] > 0) {
-            [_editorView setSyntaxStyleNameToColoring:inName recolorNow:NO];
+            [[self editorView] setSyntaxStyleNameToColoring:inName recolorNow:NO];
             [[_windowController toolbarController] 
                     performSelector:@selector(setSelectSyntaxItemWithTitle:) withObject:inName afterDelay:0];
         }
@@ -866,7 +803,7 @@ enum { typeFSS = 'fss ' };
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     if (![[theValues valueForKey:k_key_doColoring] boolValue]) { return; }
 
-    BOOL theBoolIsUpdated = [_editorView setSyntaxExtension:inExtension];
+    BOOL theBoolIsUpdated = [[self editorView] setSyntaxExtension:inExtension];
 
     if (theBoolIsUpdated) {
         // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
@@ -891,16 +828,7 @@ enum { typeFSS = 'fss ' };
     CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
 
-    [_editorView setFont:theFont];
-}
-
-
-// ------------------------------------------------------
-- (BOOL)alphaOnlyTextViewInThisWindow
-// TextView のみを透過するかどうかを返す
-// ------------------------------------------------------
-{
-    return _alphaOnlyTextViewInThisWindow;
+    [[self editorView] setFont:theFont];
 }
 
 
@@ -911,7 +839,7 @@ enum { typeFSS = 'fss ' };
 {
     CGFloat outAlpha;
     if ([self alphaOnlyTextViewInThisWindow]) {
-        outAlpha = [[[_editorView textView] backgroundColor] alphaComponent];
+        outAlpha = [[[[self editorView] textView] backgroundColor] alphaComponent];
     } else {
         outAlpha = [[_windowController window] alphaValue];
     }
@@ -943,22 +871,13 @@ enum { typeFSS = 'fss ' };
         [[_windowController window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
         [[_windowController window] setOpaque:NO]; // ウィンドウを透明にする
         [[_windowController window] setAlphaValue:1.0];
-        [[_editorView splitView] setAllBackgroundColorWithAlpha:theAlpha];
+        [[[self editorView] splitView] setAllBackgroundColorWithAlpha:theAlpha];
     } else {
         [[_windowController window] setBackgroundColor:nil]; // 通常の背景色をセット
         [[_windowController window] setOpaque:YES]; // ウィンドウを不透明にする
         [[_windowController window] setAlphaValue:theAlpha];
-        [[_editorView splitView] setAllBackgroundColorWithAlpha:1.0];
+        [[[self editorView] splitView] setAllBackgroundColorWithAlpha:1.0];
     }
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaOnlyTextViewInThisWindow:(BOOL)inBool
-// TextView のみを透過するかどうかを保持
-// ------------------------------------------------------
-{
-    _alphaOnlyTextViewInThisWindow = inBool;
 }
 
 
@@ -1001,51 +920,11 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (NSAppleEventDescriptor *)fileSender
-// ODB Editor Suite 対応メソッド。ファイルクライアントのシグネチャを返す。
-// ------------------------------------------------------
-{
-    return _fileSender;
-}
-
-
-// ------------------------------------------------------
-- (void)setFileSender:(NSAppleEventDescriptor *)inFileSender
-// ODB Editor Suite 対応メソッド。ファイルクライアントのシグネチャをセット。
-// ------------------------------------------------------
-{
-    [inFileSender retain];
-    [_fileSender release];
-    _fileSender = inFileSender;
-}
-
-
-// ------------------------------------------------------
-- (NSAppleEventDescriptor *)fileToken
-// ODB Editor Suite 対応メソッド。ファイルクライアントの追加文字列を返す。
-// ------------------------------------------------------
-{
-    return _fileToken;
-}
-
-
-// ------------------------------------------------------
-- (void)setFileToken:(NSAppleEventDescriptor *)inFileToken
-// ODB Editor Suite 対応メソッド。ファイルクライアントの追加文字列をセット。
-// ------------------------------------------------------
-{
-    [inFileToken retain];
-    [_fileToken release];
-    _fileToken = inFileToken;
-}
-
-
-// ------------------------------------------------------
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
 // ------------------------------------------------------
 {
-    CETextViewCore *theTextView = [_editorView textView];
+    CETextViewCore *theTextView = [[self editorView] textView];
     NSUInteger theWholeLength = [[theTextView string] length];
     NSInteger theLocation, theLength;
     NSRange outRange = NSMakeRange(0, 0);
@@ -1076,7 +955,7 @@ enum { typeFSS = 'fss ' };
 {
     NSRange theSelectionRange = [self rangeInTextViewWithLocation:inLocation withLength:inLength];
 
-    [_editorView setSelectedRange:theSelectionRange];
+    [[self editorView] setSelectedRange:theSelectionRange];
 }
 
 
@@ -1085,7 +964,7 @@ enum { typeFSS = 'fss ' };
 // editorView 内部の textView で指定された部分を行単位で選択
 // ------------------------------------------------------
 {
-    CETextViewCore *theTextView = [_editorView textView];
+    CETextViewCore *theTextView = [[self editorView] textView];
     NSUInteger theWholeLength = [[theTextView string] length];
     OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@"^"];
     NSArray *theArray = [regex allMatchesInString:[theTextView string]];
@@ -1141,7 +1020,7 @@ enum { typeFSS = 'fss ' };
 // 選択範囲が見えるようにスクロール
 // ------------------------------------------------------
 {
-    [[_editorView textView] scrollRangeToVisible:[[_editorView textView] selectedRange]];
+    [[[self editorView] textView] scrollRangeToVisible:[[[self editorView] textView] selectedRange]];
 }
 
 
@@ -1159,7 +1038,7 @@ enum { typeFSS = 'fss ' };
         [self setSelectedLineRangeInTextViewWithLocation:inLocation withLength:inLength];
     }
     [self scrollToCenteringSelection]; // 選択範囲が見えるようにスクロール
-    [[_editorView textView] showFindIndicatorForRange:[[_editorView textView] selectedRange]];  // 検索結果表示エフェクトを追加
+    [[[self editorView] textView] showFindIndicatorForRange:[[[self editorView] textView] selectedRange]];  // 検索結果表示エフェクトを追加
     [[_windowController window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
 }
 
@@ -1169,24 +1048,13 @@ enum { typeFSS = 'fss ' };
 // ファイル情報辞書を保持
 // ------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSDictionary *theAttr = [theFileManager attributesOfItemAtPath:[[[self fileURL] URLByResolvingSymlinksInPath] path] error:nil];
-    
-    if (theAttr) {
-        [theAttr retain];
-        [_fileAttr release];
-        _fileAttr = theAttr;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path]
+                                                                                error:nil];
+
+    if (attributes) {
+        [self setFileAttributes:attributes];
         [_windowController updateFileAttrsInformation];
     }
-}
-
-
-// ------------------------------------------------------
-- (NSDictionary *)documentFileAttributes
-// ファイル属性情報辞書を返す
-// ------------------------------------------------------
-{
-    return _fileAttr;
 }
 
 
@@ -1196,7 +1064,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     [[_windowController toolbarController] buildEncodingPopupButton];
-    [[_windowController toolbarController] setSelectEncoding:_encoding];
+    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
 }
 
 
@@ -1219,11 +1087,11 @@ enum { typeFSS = 'fss ' };
 {
     NSString *theOldName = inDictionary[k_key_oldStyleName];
     NSString *theNewName = inDictionary[k_key_newStyleName];
-    NSString *theCurStyleName = [_editorView syntaxStyleNameToColoring];
+    NSString *theCurStyleName = [[self editorView] syntaxStyleNameToColoring];
 
     if ([theOldName isEqualToString:theCurStyleName]) {
         if ((theOldName != nil) && (theNewName != nil) && (![theOldName isEqualToString:theNewName])) {
-            [_editorView setSyntaxStyleNameToColoring:theNewName recolorNow:NO];
+            [[self editorView] setSyntaxStyleNameToColoring:theNewName recolorNow:NO];
         }
         [_windowController setRecolorWithBecomeKey:YES];
     }
@@ -1235,49 +1103,13 @@ enum { typeFSS = 'fss ' };
 // 指定されたスタイルを適用していたら WindowController のリカラーフラグを立て、スタイル名を"None"にする
 // ------------------------------------------------------
 {
-    NSString *theCurStyleName = [_editorView syntaxStyleNameToColoring];
+    NSString *theCurStyleName = [[self editorView] syntaxStyleNameToColoring];
 
     // 指定されたスタイル名と違ったら、無視
     if ([theCurStyleName isEqualToString:inStyleName]) {
         [_windowController setRecolorWithBecomeKey:YES];
-        [_editorView setSyntaxStyleNameToColoring:NSLocalizedString(@"None",@"") recolorNow:NO];
+        [[self editorView] setSyntaxStyleNameToColoring:NSLocalizedString(@"None",@"") recolorNow:NO];
     }
-}
-
-
-// ------------------------------------------------------
-- (BOOL)doCascadeWindow
-// ウィンドウをカスケード表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _doCascadeWindow;
-}
-
-
-// ------------------------------------------------------
-- (void)setDoCascadeWindow:(BOOL)inBool
-// ウィンドウをカスケード表示するかどうかをセット
-// ------------------------------------------------------
-{
-    _doCascadeWindow = inBool;
-}
-
-
-// ------------------------------------------------------
-- (NSPoint)initTopLeftPoint
-// カスケードしないときのウィンドウ左上のポイントを返す
-// ------------------------------------------------------
-{
-    return _initTopLeftPoint;
-}
-
-
-// ------------------------------------------------------
-- (void)setInitTopLeftPoint:(NSPoint)inPoint
-// カスケードしないときのウィンドウ左上のポイントをセット
-// ------------------------------------------------------
-{
-    _initTopLeftPoint = inPoint;
 }
 
 
@@ -1288,7 +1120,7 @@ enum { typeFSS = 'fss ' };
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    [[_editorView textView] setSmartInsertDeleteEnabled:
+    [[[self editorView] textView] setSmartInsertDeleteEnabled:
             [[theValues valueForKey:k_key_smartInsertAndDelete] boolValue]];
 }
 
@@ -1299,7 +1131,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     NSString *outString = nil;
-    CFStringEncoding theCFEncoding = CFStringConvertNSStringEncodingToEncoding(_encoding);
+    CFStringEncoding theCFEncoding = CFStringConvertNSStringEncodingToEncoding([self encodingCode]);
 
     if (theCFEncoding != kCFStringEncodingInvalidId) {
         outString = (NSString *)CFStringConvertEncodingToIANACharSetName(theCFEncoding);
@@ -1313,7 +1145,7 @@ enum { typeFSS = 'fss ' };
 // 外部プロセスによって更新されたことをシート／ダイアログで通知
 // ------------------------------------------------------
 {
-    if (!_showUpdateAlertWithBecomeKey) { return; } // 表示フラグが立っていなければ、もどる
+    if (![self showUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
 
     NSAlert *alert;
     NSString *messageText, *informativeText, *defaultButton;
@@ -1335,21 +1167,21 @@ enum { typeFSS = 'fss ' };
                 informativeTextWithFormat:NSLocalizedString(informativeText, nil)];
 
     // シートが表示中でなければ、表示
-    if ([[_editorView window] attachedSheet] == nil) {
-        _isRevertingForExternalFileUpdate = YES;
-        [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        [alert beginSheetModalForWindow:[_editorView window] 
+    if ([[[self editorView] window] attachedSheet] == nil) {
+        [self setIsRevertingForExternalFileUpdate:YES];
+        [[[self editorView] window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        [alert beginSheetModalForWindow:[[self editorView] window]
                     modalDelegate:self 
                     didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:) 
                     contextInfo:NULL];
 
-    } else if (_isRevertingForExternalFileUpdate) {
+    } else if ([self isRevertingForExternalFileUpdate]) {
         // （同じ外部プロセスによる変更通知アラートシートを表示中の時は、なにもしない）
 
     // 既にシートが出ている時はダイアログで表示
     } else {
-        _isRevertingForExternalFileUpdate = YES;
-        [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        [self setIsRevertingForExternalFileUpdate:YES];
+        [[[self editorView] window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
         NSInteger theResult = [alert runModal]; // アラート表示
         [self alertForModByAnotherProcessDidEnd:alert returnCode:theResult contextInfo:NULL];
     }
@@ -1361,7 +1193,7 @@ enum { typeFSS = 'fss ' };
 // テキストビューに設定されている行間値を返す
 // ------------------------------------------------------
 {
-    return ([[_editorView textView] lineSpacing]);
+    return ([[[self editorView] textView] lineSpacing]);
 }
 
 
@@ -1379,21 +1211,12 @@ enum { typeFSS = 'fss ' };
     } else {
         theSpacing = inSpacing;
     }
-    [[_editorView textView] setNewLineSpacingAndUpdate:theSpacing];
-}
-
-
-// ------------------------------------------------------
-- (BOOL)canActivateShowInvisibleCharsItem
-// 不可視文字表示メニュー／ツールバーアイテムを有効化できるかを返す
-// ------------------------------------------------------
-{
-    return _canActivateShowInvisibleCharsItem;
+    [[[self editorView] textView] setNewLineSpacingAndUpdate:theSpacing];
 }
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocols
 
 //=======================================================
 // NSMenuValidation Protocol
@@ -1410,26 +1233,26 @@ enum { typeFSS = 'fss ' };
 
     if ([inMenuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
-        if ((![_editorView isWritable]) && (![_editorView isAlertedNotWritable])) {
+        if ((![[self editorView] isWritable]) && (![[self editorView] isAlertedNotWritable])) {
             return NO;
         }
     } else if ([inMenuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
-        return ([[_editorView navigationBar] canSelectPrevItem]);
+        return ([[[self editorView] navigationBar] canSelectPrevItem]);
     } else if ([inMenuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
-        return ([[_editorView navigationBar] canSelectNextItem]);
+        return ([[[self editorView] navigationBar] canSelectNextItem]);
     } else if ([inMenuItem action] == @selector(setEncoding:)) {
-        theState = ([inMenuItem tag] == _encoding) ? NSOnState : NSOffState;
+        theState = ([inMenuItem tag] == [self encodingCode]) ? NSOnState : NSOffState;
     } else if (([inMenuItem action] == @selector(setLineEndingCharToLF:)) || 
             ([inMenuItem action] == @selector(setLineEndingCharToCR:)) || 
             ([inMenuItem action] == @selector(setLineEndingCharToCRLF:))) {
-        theState = ([inMenuItem tag] == [_editorView lineEndingCharacter]) ? NSOnState : NSOffState;
+        theState = ([inMenuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
     } else if ([inMenuItem action] == @selector(setSyntaxStyle:)) {
-        theName = [_editorView syntaxStyleNameToColoring];
+        theName = [[self editorView] syntaxStyleNameToColoring];
         if (theName && [[inMenuItem title] isEqualToString:theName]) {
             theState = NSOnState;
         }
     } else if ([inMenuItem action] == @selector(recoloringAllStringOfDocument:)) {
-        theName = [_editorView syntaxStyleNameToColoring];
+        theName = [[self editorView] syntaxStyleNameToColoring];
         if (theName && [theName isEqualToString:NSLocalizedString(@"None",@"")]) {
             return NO;
         }
@@ -1447,13 +1270,13 @@ enum { typeFSS = 'fss ' };
 //=======================================================
 
 // ------------------------------------------------------
--(BOOL)validateToolbarItem:(NSToolbarItem *)inToolbarItem
+-(BOOL)validateToolbarItem:(NSToolbarItem *)theItem
 // ツールバー項目の有効・無効を制御
 // ------------------------------------------------------
 {
-    if ([[inToolbarItem itemIdentifier] isEqualToString:k_syntaxReColorAllItemID]) {
-        NSString *theName = [_editorView syntaxStyleNameToColoring];
-        if (theName && [theName isEqualToString:NSLocalizedString(@"None",@"")]) {
+    if ([[theItem itemIdentifier] isEqualToString:k_syntaxReColorAllItemID]) {
+        NSString *name = [[self editorView] syntaxStyleNameToColoring];
+        if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
     }
@@ -1462,7 +1285,7 @@ enum { typeFSS = 'fss ' };
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notifications
 
 //=======================================================
 // Delegate method (NSFilePresenter)
@@ -1496,7 +1319,7 @@ enum { typeFSS = 'fss ' };
     if ([MD5 isEqualToString:[self fileMD5]]) { return; }
     
     // 書き込み通知を行う
-    _showUpdateAlertWithBecomeKey = YES;
+    [self setShowUpdateAlertWithBecomeKey:YES];
     id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
     // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
     if ([NSApp isActive]) {
@@ -1519,14 +1342,14 @@ enum { typeFSS = 'fss ' };
 // 書類オープン処理が完了した
 // ------------------------------------------------------
 {
-    if ([inNotification object] != _editorView) { return; }
+    if ([inNotification object] != [self editorView]) { return; }
 
     [self showAlertForNotWritable];
 }
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -1565,13 +1388,14 @@ enum { typeFSS = 'fss ' };
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    NSPrintPanel *thePrintPanel = [NSPrintPanel printPanel];
+    NSPrintPanel *printPanel = [NSPrintPanel printPanel];
 
-    [thePrintPanel setAccessoryView:[_windowController printAccessoryView]];
-    [thePrintPanel beginSheetWithPrintInfo:[self printInfo] 
-                modalForWindow:[_editorView window] 
-                delegate:self didEndSelector:@selector(printPanelDidEnd:returnCode:contextInfo:) 
-                contextInfo:NULL];
+    [printPanel setAccessoryView:[_windowController printAccessoryView]];
+    [printPanel beginSheetWithPrintInfo:[self printInfo]
+                         modalForWindow:[[self editorView] window]
+                               delegate:self
+                         didEndSelector:@selector(printPanelDidEnd:returnCode:contextInfo:)
+                            contextInfo:NULL];
 }
 
 
@@ -1618,14 +1442,14 @@ enum { typeFSS = 'fss ' };
 {
     NSStringEncoding theEncoding = [sender tag];
 
-    if ((theEncoding < 1) || (theEncoding == _encoding)) {
+    if ((theEncoding < 1) || (theEncoding == [self encodingCode])) {
         return;
     }
     NSInteger theResult;
     NSString *theEncodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
-    if (([[_editorView string] length] < 1) || (![self fileURL])) {
+    if (([[[self editorView] string] length] < 1) || (![self fileURL])) {
         theResult = NSAlertDefaultReturn;
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
@@ -1659,7 +1483,7 @@ enum { typeFSS = 'fss ' };
             NSInteger theSecondResult = [theSecondAlert runModal];
             if (theSecondResult != NSAlertAlternateReturn) { // != Discard Change
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-                [[_windowController toolbarController] setSelectEncoding:_encoding];
+                [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
                 return;
             }
         }
@@ -1681,7 +1505,7 @@ enum { typeFSS = 'fss ' };
         }
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-    [[_windowController toolbarController] setSelectEncoding:_encoding];
+    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
 }
 
 
@@ -1703,7 +1527,7 @@ enum { typeFSS = 'fss ' };
 // ドキュメント全体を再カラーリング
 // ------------------------------------------------------
 {
-    [_editorView recoloringAllString];
+    [[self editorView] recoloringAllString];
 }
 
 
@@ -1736,7 +1560,7 @@ enum { typeFSS = 'fss ' };
     NSString *theString = [self currentIANACharSetName];
 
     if (theString != nil) {
-        [[_editorView textView] insertText:theString];
+        [[[self editorView] textView] insertText:theString];
     }
 }
 
@@ -1749,7 +1573,7 @@ enum { typeFSS = 'fss ' };
     NSString *theString = [self currentIANACharSetName];
 
     if (theString != nil) {
-        [[_editorView textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", theString]];
+        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", theString]];
     }
 }
 
@@ -1762,7 +1586,7 @@ enum { typeFSS = 'fss ' };
     NSString *theString = [self currentIANACharSetName];
 
     if (theString != nil) {
-        [[_editorView textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", theString]];
+        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", theString]];
     }
 }
 
@@ -1772,7 +1596,7 @@ enum { typeFSS = 'fss ' };
 // アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
 // ------------------------------------------------------
 {
-    [[_editorView navigationBar] selectPrevItem];
+    [[[self editorView] navigationBar] selectPrevItem];
 }
 
 
@@ -1781,14 +1605,14 @@ enum { typeFSS = 'fss ' };
 // アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
 // ------------------------------------------------------
 {
-    [[_editorView navigationBar] selectNextItem];
+    [[[self editorView] navigationBar] selectNextItem];
 }
 
 
 
 
 #pragma mark -
-#pragma mark Private
+#pragma mark Private Methods
 
 //=======================================================
 // Private method
@@ -1821,7 +1645,7 @@ enum { typeFSS = 'fss ' };
 // エンコード値を保存
 // ------------------------------------------------------
 {
-    _encoding = inEncoding;
+    [self setEncodingCode:inEncoding];
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
 }
@@ -1833,9 +1657,9 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
-    [[_windowController toolbarController] setSelectEncoding:_encoding];
+    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
     // ステータスバー、ドローワを更新
-    [_editorView updateLineEndingsInStatusAndInfo:NO];
+    [[self editorView] updateLineEndingsInStatusAndInfo:NO];
 }
 
 
@@ -1883,8 +1707,8 @@ enum { typeFSS = 'fss ' };
         theEncoding = [self encodingFromComAppleTextEncodingAtPath:inFileName];
         if ([theData length] == 0) {
             outResult = YES;
-            _initialString = [[NSMutableString string] retain]; // ===== retain
-            // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
+            [self setInitialString:[NSMutableString string]];
+            // (initialString はあとで開放 == "- (NSString *)stringToWindowController".)
         }
         if (theEncoding != NSProprietaryStringEncoding) {
             if ([theData length] == 0) {
@@ -2034,17 +1858,17 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     NSStringEncoding theIANACharSetEncoding = 
-            [self scannedCharsetOrEncodingFromString:[_editorView stringForSave]];
+            [self scannedCharsetOrEncodingFromString:[[self editorView] stringForSave]];
     NSStringEncoding theShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding theX0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213_00);
 
-    if ((theIANACharSetEncoding != NSProprietaryStringEncoding) && (theIANACharSetEncoding != _encoding) && 
+    if ((theIANACharSetEncoding != NSProprietaryStringEncoding) && (theIANACharSetEncoding != [self encodingCode]) &&
             (!(((theIANACharSetEncoding == theShiftJIS) || (theIANACharSetEncoding == theX0213)) && 
-            ((_encoding == theShiftJIS) || (_encoding == theX0213))))) {
+            (([self encodingCode] == theShiftJIS) || ([self encodingCode] == theX0213))))) {
             // （Shift-JIS の時は要注意 = scannedCharsetOrEncodingFromString: を参照）
 
         NSString *theIANANameStr = [NSString localizedNameOfStringEncoding:theIANACharSetEncoding];
-        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:_encoding];
+        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
         NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is \"%@\", but the IANA charset name in text is \"%@\".", nil), theEncodingNameStr, theIANANameStr]
                                             defaultButton:NSLocalizedString(@"Cancel", nil)
                                           alternateButton:NSLocalizedString(@"Continue Saving", nil)
@@ -2066,10 +1890,10 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *theCurString = [self convertedCharacterString:[_editorView stringForSave] 
-            withEncoding:_encoding];
-    if (![theCurString canBeConvertedToEncoding:_encoding]) {
-        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:_encoding];
+    NSString *theCurString = [self convertedCharacterString:[[self editorView] stringForSave]
+            withEncoding:[self encodingCode]];
+    if (![theCurString canBeConvertedToEncoding:[self encodingCode]]) {
+        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
         NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), theEncodingNameStr]
                                             defaultButton:NSLocalizedString(@"Show Incompatible Char(s)", nil)
                                           alternateButton:NSLocalizedString(@"Save Available Strings", nil)
@@ -2089,39 +1913,39 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)saveToFile:(NSString *)inFileName ofType:(NSString *)inDocType 
-            saveOperation:(NSSaveOperationType)inSaveOperationType
+- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName saveOperation:(NSSaveOperationType)saveOperationType
 // ファイル保存
+// NSDocumentのメソッド saveToURL:ofType:forSaveOperation:error: と名前がそっくりなので注意 (2014-03 by 1024jp)
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *theCurString = [self convertedCharacterString:[_editorView stringForSave] 
-            withEncoding:_encoding];
+    NSString *theCurString = [self convertedCharacterString:[[self editorView] stringForSave]
+            withEncoding:[self encodingCode]];
     NSData *theData;
     BOOL outResult = NO;
 
-    if ((_encoding == NSUTF8StringEncoding) && ([[theValues valueForKey:k_key_saveUTF8BOM] boolValue])) {
+    if (([self encodingCode] == NSUTF8StringEncoding) && ([[theValues valueForKey:k_key_saveUTF8BOM] boolValue])) {
         // UTF-8 BOM追加 2008.12.13
         const char theUtf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         NSMutableData *theMutableData1 = [NSMutableData dataWithBytes:theUtf8Bom length:3];
-        [theMutableData1 appendData:[theCurString dataUsingEncoding:_encoding allowLossyConversion:YES]];
+        [theMutableData1 appendData:[theCurString dataUsingEncoding:[self encodingCode] allowLossyConversion:YES]];
         theData = [NSData dataWithData:theMutableData1];
     } else {
-        theData = [theCurString dataUsingEncoding:_encoding allowLossyConversion:YES];
+        theData = [theCurString dataUsingEncoding:[self encodingCode] allowLossyConversion:YES];
     }
     if (theData != nil) {
-        NSDictionary *theAttrs = [self fileAttributesToWriteToURL:[NSURL fileURLWithPath:inFileName]
-                                                           ofType:inDocType
-                                                 forSaveOperation:inSaveOperationType
+        NSDictionary *theAttrs = [self fileAttributesToWriteToURL:url
+                                                           ofType:typeName
+                                                 forSaveOperation:saveOperationType
                                               originalContentsURL:nil
                                                             error:nil];
         NSFileManager *theManager = [NSFileManager defaultManager];
-        NSString *theConvertedPath = @([inFileName UTF8String]);
+        NSString *theConvertedPath = @([[url path] UTF8String]);
         NSInteger status;
         BOOL theFinderLockON = NO;
 
-        if (![self canReleaseFinderLockOfFile:inFileName isLocked:&theFinderLockON lockAgain:NO]) {
+        if (![self canReleaseFinderLockOfFile:[url path] isLocked:&theFinderLockON lockAgain:NO]) {
             // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
             NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
                                                 defaultButton:nil
@@ -2151,17 +1975,17 @@ enum { typeFSS = 'fss ' };
         [self setFileMD5:[theData MD5]];
         
         // クリエータなどを設定
-        [theManager setAttributes:theAttrs ofItemAtPath:inFileName error:nil];
+        [theManager setAttributes:theAttrs ofItemAtPath:[url path] error:nil];
         
         // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存（10.5+）
-        [self setComAppleTextEncodingAtPath:inFileName];
+        [self setComAppleTextEncodingAtPath:[url path]];
         if (theFinderLockON) {
             // Finder Lock がかかってたなら、再びかける
-            BOOL theBoolToGo = [theManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:inFileName error:nil];
+            BOOL theBoolToGo = [theManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
             outResult = (outResult && theBoolToGo);
         }
     }
-    [self setIsWritableToEditorViewWithFileName:inFileName];
+    [self setIsWritableToEditorViewWithURL:url];
     return outResult;
 }
 
@@ -2179,7 +2003,7 @@ enum { typeFSS = 'fss ' };
 
     NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
-    OSType creatorCode = [_fileSender typeCodeValue];
+    OSType creatorCode = [[self fileSender] typeCodeValue];
     if (creatorCode == 0) { return; }
 
     NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
@@ -2210,8 +2034,8 @@ enum { typeFSS = 'fss ' };
             descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
     [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
     
-    if (_fileToken) {
-        [theAppleEvent setParamDescriptor:_fileToken forKeyword:keySenderToken];
+    if ([self fileToken]) {
+        [theAppleEvent setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
     }
     if (inSaveOperationType == NSSaveAsOperation) {
         theOSStatus = FSPathMakeRef((UInt8 *)[inSaveAsPath UTF8String], &theSaveAsRef, nil);
@@ -2245,7 +2069,7 @@ enum { typeFSS = 'fss ' };
 
     NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
-    OSType creatorCode = [_fileSender typeCodeValue];
+    OSType creatorCode = [[self fileSender] typeCodeValue];
     if (creatorCode == 0) { return; }
 
     NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
@@ -2276,8 +2100,8 @@ enum { typeFSS = 'fss ' };
             descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
     [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
     
-    if (_fileToken) {
-        [theAppleEvent setParamDescriptor:_fileToken forKeyword:keySenderToken];
+    if ([self fileToken]) {
+        [theAppleEvent setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
     }
     
     theAppleEventPointer = (AEDesc *)[theAppleEvent aeDesc];
@@ -2330,8 +2154,8 @@ enum { typeFSS = 'fss ' };
             [self updateChangeCount:NSChangeCleared];
         }
     }
-    _isRevertingForExternalFileUpdate = NO;
-    _showUpdateAlertWithBecomeKey = NO;
+    [self setIsRevertingForExternalFileUpdate:YES];
+    [self setShowUpdateAlertWithBecomeKey:NO];
 }
 
 
@@ -2355,7 +2179,7 @@ enum { typeFSS = 'fss ' };
     CGFloat topMargin = k_printHFVerticalMargin;
     CGFloat bottomMargin = k_printHFVerticalMargin;
     BOOL doColoring = ([[printValues valueForKey:k_printColorIndex] integerValue] == 1);
-    BOOL showsInvisibles = [(CELayoutManager *)[[_editorView textView] layoutManager] showInvisibles];
+    BOOL showsInvisibles = [(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles];
     BOOL showsControls = showsInvisibles;
 
     // ヘッダ／フッタの高さ（文書を印刷しない高さ）を得る
@@ -2403,7 +2227,7 @@ enum { typeFSS = 'fss ' };
         font = [NSFont fontWithName:[values valueForKey:k_key_printFontName]
                                size:(CGFloat)[[values valueForKey:k_key_printFontSize] doubleValue]];
     } else {
-        font = [_editorView font];
+        font = [[self editorView] font];
     }
     
     // プリンタダイアログでの設定オブジェクトをコピー
@@ -2461,10 +2285,10 @@ enum { typeFSS = 'fss ' };
         [printView setBackgroundColor:[NSColor whiteColor]];
     }
     // プリントビューへ文字列を流し込む
-    [printView setString:[_editorView string]];
+    [printView setString:[[self editorView] string]];
     if (doColoring) { // カラーリングする
 // 現状では、印刷するページ数に関係なく全ページがカラーリングされている。20080104*****
-        [printSyntax colorAllString:[_editorView string]];
+        [printSyntax colorAllString:[[self editorView] string]];
     }
     // プリントオペレーション生成、設定、プリント実行
     printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
@@ -2505,26 +2329,25 @@ enum { typeFSS = 'fss ' };
 // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングをセット
 // ------------------------------------------------------
 {
-    NSString *theEncodingStr = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
-                                [@(CFStringConvertNSStringEncodingToEncoding(_encoding)) stringValue]];
+    NSString *encodingStr = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
+                                [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
 
-    [UKXattrMetadataStore setString:theEncodingStr forKey:@"com.apple.TextEncoding" 
-            atPath:inFilePath traverseLink:NO];
+    [UKXattrMetadataStore setString:encodingStr forKey:@"com.apple.TextEncoding"
+                             atPath:inFilePath traverseLink:NO];
 }
 
 
 // ------------------------------------------------------
-- (void)setIsWritableToEditorViewWithFileName:(NSString *)inFileName
+- (void)setIsWritableToEditorViewWithURL:(NSURL *)url
 // 書き込み可能かを EditorView にセット
 // ------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    BOOL theBoolIsWritable = YES; // default = YES
-
-    if ((inFileName) && ([theFileManager fileExistsAtPath:inFileName])) {
-        theBoolIsWritable = [theFileManager isWritableFileAtPath:inFileName];
+    BOOL isWritable = YES; // default = YES
+    
+    if ([url checkResourceIsReachableAndReturnError:nil]) {
+        isWritable = [[NSFileManager defaultManager] isWritableFileAtPath:[url path]];
     }
-    [_editorView setIsWritable:theBoolIsWritable];
+    [[self editorView] setIsWritable:isWritable];
 }
 
 
@@ -2533,7 +2356,7 @@ enum { typeFSS = 'fss ' };
 // EditorView で、書き込み禁止アラートを表示
 // ------------------------------------------------------
 {
-    [_editorView alertForNotWritable];
+    [[self editorView] alertForNotWritable];
 }
 
 

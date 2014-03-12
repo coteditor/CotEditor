@@ -41,39 +41,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEPrintView.h"
 #import "UKXattrMetadataStore.h"
 
+
 @class CEEditorView;
 @class UKXattrMetadataStore;
 
 
 @interface CEDocument : NSDocument
 {
-    CEEditorView *_editorView;
     id _windowController;
-    NSString *_initialString;
-    NSStringEncoding _encoding;
-    NSDictionary *_fileAttr;
     CETextSelection *_selection;
-    NSAppleEventDescriptor *_fileSender;
-    NSAppleEventDescriptor *_fileToken;
-
-    BOOL _alphaOnlyTextViewInThisWindow;
-    BOOL _doCascadeWindow;
-    BOOL _showUpdateAlertWithBecomeKey;
-    BOOL _isRevertingForExternalFileUpdate;
-    BOOL _canActivateShowInvisibleCharsItem;
-    NSPoint _initTopLeftPoint;
 }
 
-// Public method
-- (CEEditorView *)editorView;
-- (void)setEditorView:(CEEditorView *)inEditorView;
-- (id)windowController;
-- (BOOL)stringFromData:(NSData *)inData encoding:(NSStringEncoding)ioEncoding xattr:(BOOL)inBoolXattr;
+@property (retain) CEEditorView *editorView;
+@property BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
+@property NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
+@property BOOL alphaOnlyTextViewInThisWindow;
 
+// readonly properties
+@property (readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
+@property (readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
+@property (readonly, retain) NSDictionary *fileAttributes;  // ファイル属性情報辞書
+
+// ODB Editor Suite 対応プロパティ
+@property (retain) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
+@property (retain) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
+
+// Public methods
+- (id)windowController;
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
 - (NSString *)stringToWindowController;
 - (void)setStringToEditorView;
 - (void)setStringToTextView:(NSString *)inString;
-- (NSStringEncoding)encodingCode;
 - (BOOL)doSetEncoding:(NSStringEncoding)inEncoding updateDocument:(BOOL)inDocUpdate 
         askLossy:(BOOL)inAskLossy  lossy:(BOOL)inLossy asActionName:(NSString *)inName;
 - (void)clearAllMarkupForIncompatibleChar;
@@ -85,38 +83,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)doSetSyntaxStyle:(NSString *)inName delay:(BOOL)inBoolDelay;
 - (void)setColoringExtension:(NSString *)inExtension coloring:(BOOL)inBoolColoring;
 - (void)setFontToViewInWindow;
-- (BOOL)alphaOnlyTextViewInThisWindow;
 - (CGFloat)alpha;
 - (void)setAlpha:(CGFloat)inAlpha;
-- (void)setAlphaOnlyTextViewInThisWindow:(BOOL)inBool;
 - (void)setAlphaToWindowAndTextView;
 - (void)setAlphaToWindowAndTextViewDefaultValue;
 - (void)setAlphaValueToTransparencyController;
-- (NSAppleEventDescriptor *)fileSender;
-- (void)setFileSender:(NSAppleEventDescriptor *)inFileSender;
-- (NSAppleEventDescriptor *)fileToken;
-- (void)setFileToken:(NSAppleEventDescriptor *)inFileToken;
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)scrollToCenteringSelection;
 - (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)getFileAttributes;
-- (NSDictionary *)documentFileAttributes;
 - (void)rebuildToolbarEncodingItem;
 - (void)rebuildToolbarSyntaxItem;
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)inDictionary;
 - (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)inStyleName;
-- (BOOL)doCascadeWindow;
-- (void)setDoCascadeWindow:(BOOL)inBool;
-- (NSPoint)initTopLeftPoint;
-- (void)setInitTopLeftPoint:(NSPoint)inPoint;
 - (void)setSmartInsertAndDeleteToTextView;
 - (NSString *)currentIANACharSetName;
 - (void)showUpdatedByExternalProcessAlert;
 - (CGFloat)lineSpacingInTextView;
 - (void)setCustomLineSpacingToTextView:(CGFloat)inSpacing;
-- (BOOL)canActivateShowInvisibleCharsItem;
 
 // Action Message
 - (IBAction)setLineEndingCharToLF:(id)sender;

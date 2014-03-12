@@ -82,7 +82,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *theNewString = [(NSTextStorage *)[inNotification object] string];
 
-    [[_editorView textView] replaceAllStringTo:theNewString];
+    [[[self editorView] textView] replaceAllStringTo:theNewString];
     [self cleanUpTextStorage:(NSTextStorage *)[inNotification object]];
 }
 
@@ -101,7 +101,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドキュメントの文字列を返す(text型)
 // ------------------------------------------------------
 {
-    NSTextStorage *outStorage = [[[NSTextStorage alloc] initWithString:[_editorView stringForSave]] autorelease];
+    NSTextStorage *outStorage = [[[NSTextStorage alloc] initWithString:[[self editorView] stringForSave]] autorelease];
 
     [outStorage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
@@ -117,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([inObject isKindOfClass:[NSTextStorage class]]) {
-        [[_editorView textView] replaceAllStringTo:[inObject string]];
+        [[[self editorView] textView] replaceAllStringTo:[inObject string]];
     }
 }
 
@@ -145,7 +145,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドキュメントの文字数を返す(integer型)
 // ------------------------------------------------------
 {
-    int theLength = [[_editorView stringForSave] length];
+    int theLength = [[[self editorView] stringForSave] length];
 
     return @(theLength);
 }
@@ -156,7 +156,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行末コードを返す(enum型)
 // ------------------------------------------------------
 {
-    NSInteger theCode = [_editorView lineEndingCharacter];
+    NSInteger theCode = [[self editorView] lineEndingCharacter];
     CELineEnding outLineEnding;
 
     switch (theCode) {
@@ -201,7 +201,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディング名を返す(Unicode text型)
 // ------------------------------------------------------
 {
-    return [NSString localizedNameOfStringEncoding:_encoding];
+    return [NSString localizedNameOfStringEncoding:[self encodingCode]];
 }
 
 
@@ -225,7 +225,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーリングスタイル名を返す(Unicode text型)
 // ------------------------------------------------------
 {
-    return [_editorView syntaxStyleNameToColoring];
+    return [[self editorView] syntaxStyleNameToColoring];
 }
 
 
@@ -263,7 +263,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 透明度をtextViewだけに適用するかどうかを返す
 // ------------------------------------------------------
 {
-    return @(_alphaOnlyTextViewInThisWindow);
+    return @([self alphaOnlyTextViewInThisWindow]);
 }
 
 
@@ -303,7 +303,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ワードラップの状態を返す
 // ------------------------------------------------------
 {
-    BOOL theBOOL = [_editorView wrapLines];
+    BOOL theBOOL = [[self editorView] wrapLines];
 
     return @(theBOOL);
 }
@@ -314,7 +314,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ワードラップを切り替える
 // ------------------------------------------------------
 {
-    [_editorView setWrapLines:[inValue boolValue]];
+    [[self editorView] setWrapLines:[inValue boolValue]];
 }
 
 
@@ -357,7 +357,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (theEncoding == NSNotFound) {
         theResult = NO;
-    } else if (theEncoding == _encoding) {
+    } else if (theEncoding == [self encodingCode]) {
         theResult = YES;
     } else {
         NSString *theActionName = @"TEST";
@@ -384,7 +384,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if ((theEncoding == NSNotFound) || ([self fileURL] == nil)) {
         theResult = NO;
-    } else if (theEncoding == _encoding) {
+    } else if (theEncoding == [self encodingCode]) {
         theResult = YES;
     } else if ([self stringFromData:[NSData dataWithContentsOfURL:[self fileURL]]
                 encoding:theEncoding xattr:NO]) {
@@ -392,7 +392,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // ダーティーフラグをクリア
         [self updateChangeCount:NSChangeCleared];
         // ツールバーアイテムの選択状態をセット
-        [[_windowController toolbarController] setSelectEncoding:_encoding];
+        [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
         theResult = YES;
     }
 
@@ -416,10 +416,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                [[theArg valueForKey:@"backwardsSearch"] boolValue] : NO;
     BOOL theBoolWrapSearch = ([theArg valueForKey:@"wrapSearch"] != nil) ? 
                [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
-    NSString *theWholeStr = [_editorView stringForSave];
+    NSString *theWholeStr = [[self editorView] stringForSave];
     NSInteger theWholeLength = [theWholeStr length];
     if (theWholeLength < 1) { return @NO; }
-    NSRange theSelectionRange = [_editorView selectedRange];
+    NSRange theSelectionRange = [[self editorView] selectedRange];
     NSRange theTargetRange;
 
     if (theBoolBackwards) {
@@ -466,7 +466,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                [[theArg valueForKey:@"backwardsSearch"] boolValue] : NO;
     BOOL theBoolWrapSearch = ([theArg valueForKey:@"wrapSearch"] != nil) ? 
                [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
-    NSString *theWholeStr = [_editorView stringForSave];
+    NSString *theWholeStr = [[self editorView] stringForSave];
     NSInteger theWholeLength = [theWholeStr length];
     if (theWholeLength < 1) { return @0; }
     NSString *theNewString = [theArg valueForKey:@"newString"];
@@ -477,7 +477,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theBoolAll) {
         theTargetRange = NSMakeRange(0, theWholeLength);
     } else {
-        theSelectionRange = [_editorView selectedRange];
+        theSelectionRange = [[self editorView] selectedRange];
         if (theBoolBackwards) {
             theTargetRange = NSMakeRange(0, theSelectionRange.location);
         } else {
@@ -505,8 +505,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                             withString:theNewString options:theMask range:theTargetRange];
         }
         if (theResult > 0) {
-            [[_editorView textView] replaceAllStringTo:theTmpStr];
-            [[_editorView textView] setSelectedRange:NSMakeRange(0,0)];
+            [[[self editorView] textView] replaceAllStringTo:theTmpStr];
+            [[[self editorView] textView] setSelectedRange:NSMakeRange(0,0)];
         }
         [theTmpStr release]; // ===== release
 
@@ -556,7 +556,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (NSEqualRanges(NSMakeRange(0, 0), theRange)) {
         return @"";
     }
-    return [[[_editorView textView] string] substringWithRange:theRange];
+    return [[[[self editorView] textView] string] substringWithRange:theRange];
 }
 
 
@@ -579,7 +579,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 文字列を検索し、見つかったら選択して結果を返す
 // ------------------------------------------------------
 {
-    NSString *theWholeStr = [_editorView stringForSave];
+    NSString *theWholeStr = [[self editorView] stringForSave];
     NSRange theSearchedRange;
 
     if (inRE) {
@@ -589,7 +589,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theSearchedRange = [theWholeStr rangeOfString:inSearchString options:inMask range:inRange];
     }
     if (theSearchedRange.location != NSNotFound) {
-        [_editorView setSelectedRange:theSearchedRange];
+        [[self editorView] setSelectedRange:theSearchedRange];
         return YES;
     }
     return NO;
