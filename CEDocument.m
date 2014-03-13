@@ -260,7 +260,7 @@ enum { typeFSS = 'fss ' };
     // 認証が必要な時に重なって表示されるのを避けるため、まず復帰確認シートを片づける
     //（外部プロセスによる変更通知アラートシートはそのままに）
     if (![self isRevertingForExternalFileUpdate]) {
-        [[[[self editorView] window] attachedSheet] orderOut:self];
+        [[[self windowForSheet] attachedSheet] orderOut:self];
     }
 
     BOOL outResult = [self readFromFile:[url path] withEncoding:k_autoDetectEncodingMenuTag];
@@ -291,7 +291,7 @@ enum { typeFSS = 'fss ' };
             didSaveSelector:didSaveSelector contextInfo:contextInfo];
 
     // セーブパネル表示時の処理
-    NSSavePanel *theSavePanel = (NSSavePanel *)[[[self editorView] window] attachedSheet];
+    NSSavePanel *theSavePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
     if (theSavePanel != nil) {
         NSEnumerator *theEnumerator = [[[theSavePanel contentView] subviews] objectEnumerator];
         NSTextField *theTextField = nil;
@@ -1170,10 +1170,10 @@ enum { typeFSS = 'fss ' };
                 informativeTextWithFormat:NSLocalizedString(informativeText, nil)];
 
     // シートが表示中でなければ、表示
-    if ([[[self editorView] window] attachedSheet] == nil) {
+    if ([[self windowForSheet] attachedSheet] == nil) {
         [self setIsRevertingForExternalFileUpdate:YES];
-        [[[self editorView] window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        [alert beginSheetModalForWindow:[[self editorView] window]
+        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        [alert beginSheetModalForWindow:[self windowForSheet]
                     modalDelegate:self 
                     didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:) 
                     contextInfo:NULL];
@@ -1184,7 +1184,7 @@ enum { typeFSS = 'fss ' };
     // 既にシートが出ている時はダイアログで表示
     } else {
         [self setIsRevertingForExternalFileUpdate:YES];
-        [[[self editorView] window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
         NSInteger theResult = [alert runModal]; // アラート表示
         [self alertForModByAnotherProcessDidEnd:alert returnCode:theResult contextInfo:NULL];
     }
@@ -1395,7 +1395,7 @@ enum { typeFSS = 'fss ' };
 
     [printPanel setAccessoryView:[_windowController printAccessoryView]];
     [printPanel beginSheetWithPrintInfo:[self printInfo]
-                         modalForWindow:[[self editorView] window]
+                         modalForWindow:[self windowForSheet]
                                delegate:self
                          didEndSelector:@selector(printPanelDidEnd:returnCode:contextInfo:)
                             contextInfo:NULL];
