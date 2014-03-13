@@ -173,10 +173,11 @@ enum { typeFSS = 'fss ' };
 {
     // 新規書類を最初に保存する場合のフラグをセット
     BOOL isFirstSave = (![self fileURL] || (saveOperation == NSSaveAsOperation));
+    
     // 保存処理実行
-    BOOL outResult = [self saveToURL:url ofType:typeName saveOperation:saveOperation];
+    BOOL success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
 
-    if (outResult) {
+    if (success) {
         NSUndoManager *undoManager = [self undoManager];
 
         // 新規保存時、カラーリングのために拡張子を保持
@@ -204,7 +205,7 @@ enum { typeFSS = 'fss ' };
     // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
     [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
 
-    return outResult;
+    return success;
 }
 
 
@@ -1902,9 +1903,8 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)saveToURL:(NSURL *)url ofType:(NSString *)typeName saveOperation:(NSSaveOperationType)saveOperationType
-// ファイル保存
-// NSDocumentのメソッド saveToURL:ofType:forSaveOperation:error: と名前がそっくりなので注意 (2014-03 by 1024jp)
+- (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperationType
+// authopenを使ってファイル書き込む
 // ------------------------------------------------------
 {
     BOOL success = NO;
