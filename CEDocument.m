@@ -202,11 +202,13 @@ enum { typeFSS = 'fss ' };
 
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
+        
+        // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
+        [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
+        
+        // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
+        [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
     }
-    // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-    [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
-    // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
-    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
 
     return success;
 }
@@ -1906,7 +1908,7 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperationType
+- (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
 // authopenを使ってファイル書き込む
 // ------------------------------------------------------
 {
@@ -1947,7 +1949,7 @@ enum { typeFSS = 'fss ' };
         // 設定すべきfileAttributesを決めておく
         NSDictionary *attributes = [self fileAttributesToWriteToURL:url
                                                              ofType:typeName
-                                                   forSaveOperation:saveOperationType
+                                                   forSaveOperation:saveOperation
                                                 originalContentsURL:nil
                                                               error:nil];
         
