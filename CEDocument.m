@@ -1968,17 +1968,19 @@ enum { typeFSS = 'fss ' };
 
         int status = [task terminationStatus];
         success = (status == 0);
-
-        // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
-        [self setFileMD5:[data MD5]];
         
-        // クリエータなどを設定
-        [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
-        
-        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
-        NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
-                                     [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
-        [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
+        if (success) {
+            // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+            [self setFileMD5:[data MD5]];
+            
+            // クリエータなどを設定
+            [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
+            
+            // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
+            NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
+                                      [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
+            [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
+        }
         
         // Finder Lock がかかってたなら、再びかける
         if (isFinderLockOn) {
