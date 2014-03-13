@@ -171,9 +171,24 @@ enum { typeFSS = 'fss ' };
 
 // ------------------------------------------------------
 - (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
-// バックアップファイルの保存(保存処理で包括的に呼ばれる)
+// ファイルの保存(保存処理で包括的に呼ばれる)
 // ------------------------------------------------------
 {
+    // 保存の前後で編集内容をグルーピングさせないための処置
+    // ダミーのグループを作り、そのままだと空のアンドゥ内容でダーティーフラグがたってしまうので、アンドゥしておく
+    // ****** 空のアンドゥ履歴が残る問題あり  (2005.08.05) *******
+    // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
+    // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
+    // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
+    // CETextViewCore > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
+    // ****** 何かもっとうまい回避方法があるはずなんだが … (2005.08.05) *******
+    [[self undoManager] beginUndoGrouping];
+    [[self undoManager] endUndoGrouping];
+    [[self undoManager] undo];
+    
+    
+    id token = [self changeCountTokenForSaveOperation:saveOperation];
+    
     // 新規書類を最初に保存する場合のフラグをセット
     BOOL isFirstSave = (![self fileURL] || (saveOperation == NSSaveAsOperation));
     
@@ -181,24 +196,10 @@ enum { typeFSS = 'fss ' };
     BOOL success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
 
     if (success) {
-        NSUndoManager *undoManager = [self undoManager];
-
         // 新規保存時、カラーリングのために拡張子を保持
         if (isFirstSave) {
             [self setColoringExtension:[url pathExtension] coloring:YES];
         }
-
-        // 保存の前後で編集内容をグルーピングさせないための処置
-        // ダミーのグループを作り、そのままだと空のアンドゥ内容でダーティーフラグがたってしまうので、アンドゥしておく
-        // ****** 空のアンドゥ履歴が残る問題あり  (2005.08.05) *******
-        // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
-        // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
-        // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
-        // CETextViewCore > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
-        // ****** 何かもっとうまい回避方法があるはずなんだが … (2005.08.05) *******
-        [undoManager beginUndoGrouping];
-        [undoManager endUndoGrouping];
-        [undoManager undo];
 
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
@@ -208,6 +209,9 @@ enum { typeFSS = 'fss ' };
         
         // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
         [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
+        
+        // changeCountを更新
+        [self updateChangeCountWithToken:token forSaveOperation:saveOperation];
     }
 
     return success;
