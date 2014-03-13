@@ -501,13 +501,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setIsWritable:(BOOL)inBool
+- (void)setIsWritable:(BOOL)isWritable
 // 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
 // ------------------------------------------------------
 {
-    _isWritable = inBool;
-    if ((_statusBar) && ([_statusBar showStatusBar])) {
-        [_statusBar setShowsReadOnlyIcon:(!_isWritable)];
+    _isWritable = isWritable;
+    
+    if (_statusBar) {
+        [_statusBar setShowsReadOnlyIcon:!_isWritable];
     }
 }
 
