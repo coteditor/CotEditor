@@ -1934,6 +1934,13 @@ enum { typeFSS = 'fss ' };
     if (data != nil) {
         BOOL isFinderLockOn = NO;
         
+        // 設定すべきfileAttributesを決めておく
+        NSDictionary *attributes = [self fileAttributesToWriteToURL:url
+                                                             ofType:typeName
+                                                   forSaveOperation:saveOperation
+                                                originalContentsURL:nil
+                                                              error:nil];
+        
         // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
         if (![self canReleaseFinderLockOfFile:[url path] isLocked:&isFinderLockOn lockAgain:NO]) {
             NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
@@ -1945,13 +1952,6 @@ enum { typeFSS = 'fss ' };
             (void)[alert runModal];
             return NO;
         }
-        
-        // 設定すべきfileAttributesを決めておく
-        NSDictionary *attributes = [self fileAttributesToWriteToURL:url
-                                                             ofType:typeName
-                                                   forSaveOperation:saveOperation
-                                                originalContentsURL:nil
-                                                              error:nil];
         
         // "authopen" コマンドを使って保存
         NSString *convertedPath = @([[url path] UTF8String]);
