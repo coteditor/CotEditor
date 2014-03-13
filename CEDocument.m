@@ -73,6 +73,8 @@ enum { typeFSS = 'fss ' };
 
 @implementation CEDocument
 
+@synthesize initialString = _initialString;
+
 #pragma mark Class Methods
 
 // ------------------------------------------------------
@@ -110,6 +112,7 @@ enum { typeFSS = 'fss ' };
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
         [self setHasUndoManager:YES];
+        _initialString = nil;
         _windowController = nil;
         // CotEditor のクリエータ／タイプを使うなら、設定しておく
         if ([[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue] <= 1) {
@@ -503,9 +506,9 @@ enum { typeFSS = 'fss ' };
                 ([data length] <= 8192) || 
                 (([data length] > 8192) && ([data length] != ([theStr length] * 2 + 1)) && 
                         ([data length] != ([theStr length] * 2)))) {
-
-            [self setInitialString:theStr];
-            // (initialString はあとで開放 == "- (NSString *)stringToWindowController".)
+                    
+            _initialString = [theStr retain]; // ===== retain
+            // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
             (void)[self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             return YES;
         }
@@ -520,7 +523,7 @@ enum { typeFSS = 'fss ' };
 // windowController に表示する文字列を返す
 // ------------------------------------------------------
 {
-    return [[self initialString] autorelease]; // ===== autorelease
+    return [_initialString autorelease]; // ===== autorelease
 }
 
 
@@ -1707,8 +1710,8 @@ enum { typeFSS = 'fss ' };
         theEncoding = [self encodingFromComAppleTextEncodingAtPath:inFileName];
         if ([theData length] == 0) {
             outResult = YES;
-            [self setInitialString:[NSMutableString string]];
-            // (initialString はあとで開放 == "- (NSString *)stringToWindowController".)
+            _initialString = [[NSMutableString string] retain]; // ===== retain
+            // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
         }
         if (theEncoding != NSProprietaryStringEncoding) {
             if ([theData length] == 0) {
