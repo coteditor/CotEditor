@@ -207,6 +207,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_runAppleScriptInLaunching: @YES, 
                 k_key_showAlertForNotWritable: @YES, 
                 k_key_notifyEditByAnother: @YES};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:theDefaults];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:theDefaults];
 
     // transformer 登録
