@@ -57,7 +57,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CENavigationBarView
 
-@synthesize showNavigationBar = _showNavigationBar;
 // ------------------------------------------------------
 - (id)initWithFrame:(NSRect)frame
 // initialize
@@ -161,15 +160,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self closeSplitButton] release];
 
     [super dealloc];
-}
-
-
-// ------------------------------------------------------
-- (BOOL)showNavigationBar
-// is set to show navigation bar?
-// ------------------------------------------------------
-{
-    return _showNavigationBar;
 }
 
 
@@ -407,7 +397,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark -
 #pragma mark Private Methods
 
 // ------------------------------------------------------

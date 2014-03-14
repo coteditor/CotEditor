@@ -55,8 +55,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CELineNumView
 
-@synthesize showLineNum = _showLineNum;
-
 #pragma mark Public Methods
 
 //=======================================================
@@ -87,15 +85,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //    masterView was not retained
 
     [super dealloc];
-}
-
-
-// ------------------------------------------------------
-- (BOOL)showLineNum
-// is set to show line numbers?
-// ------------------------------------------------------
-{
-    return _showLineNum;
 }
 
 
@@ -248,8 +237,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 //=======================================================
 // Private method

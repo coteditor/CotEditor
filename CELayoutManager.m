@@ -67,11 +67,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CELayoutManager
 
-@synthesize showInvisibles = _showInvisibles;
-@synthesize showOtherInvisibles = _showOtherInvisibles;
-@synthesize textFont = _textFont;
-
-
 #pragma mark Public Methods
 
 //=======================================================
@@ -286,15 +281,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)showInvisibles
-// 不可視文字を表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _showInvisibles;
-}
-
-
-// ------------------------------------------------------
 - (void)setShowInvisibles:(BOOL)showInvisibles
 // 不可視文字を表示するかどうかを設定する
 // ------------------------------------------------------
@@ -311,34 +297,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)showOtherInvisibles
-// その他の不可視文字を表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _showOtherInvisibles;
-}
-
-
-// ------------------------------------------------------
 - (void)setShowOtherInvisibles:(BOOL)showOtherInvisibles
 // その他の不可視文字を表示するかどうかを設定する
 // ------------------------------------------------------
 {
     [self setShowsControlCharacters:showOtherInvisibles];
     _showOtherInvisibles = showOtherInvisibles;
-}
-
-
-// ------------------------------------------------------
-- (NSFont *)textFont
-// 表示フォントを返す
-// ------------------------------------------------------
-{
-// 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
-// （[[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-// 日本語フォント名を返してくることがあるため、使わない）
-
-    return _textFont;
 }
 
 
@@ -410,8 +374,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 //=======================================================
 // Private method

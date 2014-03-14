@@ -73,8 +73,6 @@ enum { typeFSS = 'fss ' };
 
 @implementation CEDocument
 
-@synthesize initialString = _initialString;
-
 #pragma mark Class Methods
 
 // ------------------------------------------------------
@@ -1649,8 +1647,7 @@ enum { typeFSS = 'fss ' };
 
 
 
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 //=======================================================
 // Private method

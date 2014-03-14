@@ -59,9 +59,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEStatusBarView
 
-@synthesize showStatusBar = _showStatusBar;
-
-
 #pragma mark Public Methods
 
 //=======================================================
@@ -137,20 +134,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)showStatusBar
-// ステータスバーを表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _showStatusBar;
-}
-
-
-// ------------------------------------------------------
 - (void)setShowStatusBar:(BOOL)showStatusBar
 // ステータスバー表示の有無をセット
 // ------------------------------------------------------
 {
-    if (showStatusBar != _showStatusBar) {
+    if (showStatusBar != [self showStatusBar]) {
         _showStatusBar = showStatusBar;
 
         CGFloat height = [self showStatusBar] ? k_statusBarHeight : 0.0;
@@ -195,8 +183,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 // ------------------------------------------------------
 - (void)setHeight:(CGFloat)height
