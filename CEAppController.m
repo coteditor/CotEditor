@@ -44,6 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSupportDirectory;
 - (NSMenu *)buildSyntaxMenu;
 - (void)cacheTheInvisibleGlyph;
+- (void)cleanDeprecatedDefaults;
 @end
 
 
@@ -206,6 +207,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_runAppleScriptInLaunching: @YES, 
                 k_key_showAlertForNotWritable: @YES, 
                 k_key_notifyEditByAnother: @YES};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:theDefaults];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:theDefaults];
 
     // transformer 登録
@@ -636,6 +638,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ファイルを開くデフォルトエンコーディングをセット
     [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
 
+    // 廃止した UserDeafults の値を取り除く
+    [self cleanDeprecatedDefaults];
+    
     // 起動完了フラグをセット
     _didFinishLaunching = YES;
 }
@@ -889,6 +894,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     return outArray;
+}
+
+
+//------------------------------------------------------
+- (void)cleanDeprecatedDefaults
+// 廃止したuserDefaultsのデータをユーザのplistから削除
+//------------------------------------------------------
+{
+    NSArray *deprecatedKeys = @[@"statusAreaFontName"  // deprecated on 1.4
+                                ];
+    
+    for (NSString *key in deprecatedKeys) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    }
 }
 
 
