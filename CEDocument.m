@@ -48,7 +48,7 @@ enum { typeFSS = 'fss ' };
 
 
 //=======================================================
-// Private method
+// Private properties
 //
 //=======================================================
 
@@ -95,10 +95,10 @@ enum { typeFSS = 'fss ' };
 }
 
 
-#pragma mark Public Methods
+#pragma mark NSDocument Methods
 
 //=======================================================
-// Public method
+// NSDocument methods
 //
 //=======================================================
 
@@ -215,6 +215,32 @@ enum { typeFSS = 'fss ' };
     }
 
     return success;
+}
+
+
+// ------------------------------------------------------
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
+// 保存用のデータを生成
+// ------------------------------------------------------
+{
+    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    BOOL shouldAppendBOM = [[defaults valueForKey:k_key_saveUTF8BOM] boolValue];
+    
+    // エンコーディングを見て、半角円マークを変換しておく
+    NSString *string = [self convertedCharacterString:[[self editorView] stringForSave] withEncoding:[self encodingCode]];
+    
+    // stringから保存用のdataを得る
+    NSData *data = [string dataUsingEncoding:[self encodingCode] allowLossyConversion:YES];
+    
+    // 必要であれば UTF-8 BOM 追加 (2008.12.13)
+    if (shouldAppendBOM && ([self encodingCode] == NSUTF8StringEncoding)) {
+        const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
+        NSMutableData *mutableData = [NSMutableData dataWithBytes:utf8Bom length:3];
+        [mutableData appendData:data];
+        data = [NSData dataWithData:mutableData];
+    }
+    
+    return data;
 }
 
 
@@ -391,6 +417,13 @@ enum { typeFSS = 'fss ' };
     [super close];
 }
 
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (id)windowController
@@ -1919,85 +1952,70 @@ enum { typeFSS = 'fss ' };
 
 // ------------------------------------------------------
 - (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
-// authopenを使ってファイル書き込む
+// authopenを使ってファイルを書き込む
 // ------------------------------------------------------
 {
     BOOL success = NO;
+    NSData *data = [self dataOfType:typeName error:nil];
     
-    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    BOOL shouldSaveBOM = [[defaults valueForKey:k_key_saveUTF8BOM] boolValue];
+    if (data == nil) { return NO; }
     
-    // エンコーディングを見て、半角円マークを変換しておく
-    NSString *string = [self convertedCharacterString:[[self editorView] stringForSave] withEncoding:[self encodingCode]];
-    
-    // stringから保存用のdataを得る
-    NSData *data = [string dataUsingEncoding:[self encodingCode] allowLossyConversion:YES];;
 
-    // 必要であれば UTF-8 BOM 追加 (2008.12.13)
-    if (shouldSaveBOM && ([self encodingCode] == NSUTF8StringEncoding)) {
-        const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
-        NSMutableData *mutableData = [NSMutableData dataWithBytes:utf8Bom length:3];
-        [mutableData appendData:data];
-        data = [NSData dataWithData:mutableData];
+    // 設定すべきfileAttributesを準備しておく
+    NSDictionary *attributes = [self fileAttributesToWriteToURL:url
+                                                         ofType:typeName
+                                               forSaveOperation:saveOperation
+                                            originalContentsURL:nil
+                                                          error:nil];
+    
+    // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
+    BOOL isFinderLockOn = NO;
+    if (![self canReleaseFinderLockOfFile:[url path] isLocked:&isFinderLockOn lockAgain:NO]) {
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
+                                         defaultButton:nil
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"You can use \"Save As\" to save a copy.", nil)];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        (void)[alert runModal];
+        return NO;
     }
     
-    if (data != nil) {
-        BOOL isFinderLockOn = NO;
-        
-        // 設定すべきfileAttributesを決めておく
-        NSDictionary *attributes = [self fileAttributesToWriteToURL:url
-                                                             ofType:typeName
-                                                   forSaveOperation:saveOperation
-                                                originalContentsURL:nil
-                                                              error:nil];
-        
-        // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
-        if (![self canReleaseFinderLockOfFile:[url path] isLocked:&isFinderLockOn lockAgain:NO]) {
-            NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
-                                             defaultButton:nil
-                                           alternateButton:nil
-                                               otherButton:nil
-                                 informativeTextWithFormat:NSLocalizedString(@"You can use \"Save As\" to save a copy.", nil)];
-            [alert setAlertStyle:NSCriticalAlertStyle];
-            (void)[alert runModal];
-            return NO;
-        }
-        
-        // "authopen" コマンドを使って保存
-        NSString *convertedPath = @([[url path] UTF8String]);
-        NSTask *task = [[[NSTask alloc] init] autorelease];
+    // "authopen" コマンドを使って保存
+    NSString *convertedPath = @([[url path] UTF8String]);
+    NSTask *task = [[[NSTask alloc] init] autorelease];
 
-        [task setLaunchPath:@"/usr/libexec/authopen"];
-        [task setArguments:@[@"-c", @"-w", convertedPath]];
-        [task setStandardInput:[NSPipe pipe]];
+    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setArguments:@[@"-c", @"-w", convertedPath]];
+    [task setStandardInput:[NSPipe pipe]];
 
-        [task launch];
-        [[[task standardInput] fileHandleForWriting] writeData:data];
-        [[[task standardInput] fileHandleForWriting] closeFile];
-        [task waitUntilExit];
+    [task launch];
+    [[[task standardInput] fileHandleForWriting] writeData:data];
+    [[[task standardInput] fileHandleForWriting] closeFile];
+    [task waitUntilExit];
 
-        int status = [task terminationStatus];
-        success = (status == 0);
+    int status = [task terminationStatus];
+    success = (status == 0);
+    
+    if (success) {
+        // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+        [self setFileMD5:[data MD5]];
         
-        if (success) {
-            // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
-            [self setFileMD5:[data MD5]];
-            
-            // クリエータなどを設定
-            [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
-            
-            // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
-            NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
-                                      [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
-            [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
-        }
+        // クリエータなどを設定
+        [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
         
-        // Finder Lock がかかってたなら、再びかける
-        if (isFinderLockOn) {
-            BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
-            success = (success && lockSuccess);
-        }
+        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
+        NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
+                                  [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
+        [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
     }
+    
+    // Finder Lock がかかってたなら、再びかける
+    if (isFinderLockOn) {
+        BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+        success = (success && lockSuccess);
+    }
+    
     [self setIsWritableToEditorViewWithURL:url];
     
     return success;
