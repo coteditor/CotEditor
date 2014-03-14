@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEApplication">
@@ -266,6 +266,17 @@
                 <menuItem title="表示" id="322">
                     <menu key="submenu" title="表示" id="324">
                         <items>
+                            <menuItem title="ツールバーを隠す" id="612">
+                                <connections>
+                                    <action selector="toggleToolbarShown:" target="-1" id="614"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="ツールバーをカスタマイズ..." id="613">
+                                <connections>
+                                    <action selector="runToolbarCustomizationPalette:" target="-1" id="615"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="OPN-kh-B1v"/>
                             <menuItem title="ナビゲーションバーを表示" id="681">
                                 <connections>
                                     <action selector="toggleShowNavigationBar:" target="-1" id="682"/>
@@ -330,14 +341,10 @@
                             <menuItem isSeparatorItem="YES" id="611">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="ツールバーを隠す" id="612">
+                            <menuItem title="フルスクリーンにする" keyEquivalent="f" id="4mh-0E-3RJ">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="614"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="ツールバーをカスタマイズ..." id="613">
-                                <connections>
-                                    <action selector="runToolbarCustomizationPalette:" target="-1" id="615"/>
+                                    <action selector="toggleFullScreen:" target="-1" id="l6O-NE-BGm"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -807,7 +814,7 @@
                 </popUpButton>
             </subviews>
         </customView>
-        <window title="ウインドウの透明度" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="transparencyPanel" animationBehavior="default" id="360" userLabel="TransparencyPanel" customClass="NSPanel">
+        <window title="ウインドウの透明度" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="transparencyPanel" animationBehavior="default" id="360" userLabel="TransparencyPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="21" y="309" width="240" height="133"/>
@@ -887,7 +894,7 @@ IA
             </declaredKeys>
         </objectController>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
-        <window title="移動" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="gotoWindow" animationBehavior="default" id="547" userLabel="gotoPanel" customClass="NSPanel">
+        <window title="移動" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="gotoWindow" animationBehavior="default" id="547" userLabel="gotoPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="97" y="646" width="240" height="91"/>
@@ -951,7 +958,7 @@ DQ
         </window>
         <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
         <customObject id="836" customClass="SUUpdater"/>
-        <window title="行間（カスタム）" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="lineSpacingPanel" animationBehavior="default" id="773" userLabel="LineSpacingPanel" customClass="NSPanel">
+        <window title="行間（カスタム）" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="lineSpacingPanel" animationBehavior="default" id="773" userLabel="LineSpacingPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="396" y="383" width="226" height="112"/>

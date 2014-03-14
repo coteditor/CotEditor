@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEApplication">
@@ -266,6 +266,17 @@
                 <menuItem title="View" id="322">
                     <menu key="submenu" title="View" id="324">
                         <items>
+                            <menuItem title="Hide Toolbar" id="612">
+                                <connections>
+                                    <action selector="toggleToolbarShown:" target="-1" id="614"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Customize Toolbar..." id="613">
+                                <connections>
+                                    <action selector="runToolbarCustomizationPalette:" target="-1" id="615"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
                             <menuItem title="Show Navigation Bar" id="681">
                                 <connections>
                                     <action selector="toggleShowNavigationBar:" target="-1" id="682"/>
@@ -330,14 +341,10 @@
                             <menuItem isSeparatorItem="YES" id="611">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide Toolbar" id="612">
+                            <menuItem title="Enter Full Screen" keyEquivalent="f" id="2da-fK-Nkg">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="614"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Customize Toolbar..." id="613">
-                                <connections>
-                                    <action selector="runToolbarCustomizationPalette:" target="-1" id="615"/>
+                                    <action selector="toggleFullScreen:" target="-1" id="4d3-Sb-rkx"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -804,7 +811,7 @@
                 </popUpButton>
             </subviews>
         </customView>
-        <window title="Window Transparency" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="transparencyPanel" animationBehavior="default" id="360" userLabel="TransparencyPanel" customClass="NSPanel">
+        <window title="Window Transparency" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="transparencyPanel" animationBehavior="default" id="360" userLabel="TransparencyPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="21" y="309" width="240" height="133"/>
@@ -884,7 +891,7 @@ IA
             </declaredKeys>
         </objectController>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
-        <window title="Go To" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="gotoWindow" animationBehavior="default" id="547" userLabel="gotoPanel" customClass="NSPanel">
+        <window title="Go To" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="gotoWindow" animationBehavior="default" id="547" userLabel="gotoPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="97" y="646" width="240" height="91"/>
@@ -947,7 +954,7 @@ DQ
             </view>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
-        <window title="Line Spacing (Custom)" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="lineSpacingPanel" animationBehavior="default" id="773" userLabel="LineSpacingPanel" customClass="NSPanel">
+        <window title="Line Spacing (Custom)" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="lineSpacingPanel" animationBehavior="default" id="773" userLabel="LineSpacingPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="396" y="383" width="240" height="112"/>
