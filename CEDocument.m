@@ -1307,7 +1307,7 @@ enum { typeFSS = 'fss ' };
     }];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
-    // ファイルのMD5ハッシュが保持しているものと同じ場合は無視
+    // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
     __block NSString *MD5;
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
@@ -1315,7 +1315,13 @@ enum { typeFSS = 'fss ' };
          NSData *data = [NSData dataWithContentsOfURL:newURL];
          MD5 = [data MD5];
      }];
-    if ([MD5 isEqualToString:[self fileMD5]]) { return; }
+    if ([MD5 isEqualToString:[self fileMD5]]) {
+        // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
+        // ここだけで無視してもファイル保存時にアラートが出るのことへの対策
+        [self setFileModificationDate:fileModificationDate];
+        
+        return;
+    }
     
     // 書き込み通知を行う
     [self setShowUpdateAlertWithBecomeKey:YES];
