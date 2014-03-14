@@ -16,6 +16,7 @@ This class is based on Smultron - SMLLayoutManager (written by Peter Borg – ht
 Smultron  Copyright (c) 2004 Peter Borg, All rights reserved.
 Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 arranged by nakamuxu, Jan 2005.
+arranged by 1024jp, Mar 2014.
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or

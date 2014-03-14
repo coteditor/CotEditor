@@ -15,6 +15,7 @@ Created:2005.03.30
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
 arranged by nakamuxu, Dec 2004.
+arranged by 1024jp, Mar 2014.
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
