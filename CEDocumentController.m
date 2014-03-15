@@ -214,32 +214,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (CGFloat)windowAlphaControllerValue
-// ウィンドウの不透明度設定コントローラの値を返す
-// ------------------------------------------------------
-{
-    return (CGFloat)[[[_opacityController content] valueForKey:k_key_curWindowAlpha] doubleValue];
-}
-
-
-// ------------------------------------------------------
 - (void)setWindowAlphaControllerDictionary:(NSMutableDictionary *)inDict
 // ウィンドウの不透明度設定コントローラに値をセット
 // ------------------------------------------------------
 {
     [_opacityController setContent:inDict];
-}
-
-
-// ------------------------------------------------------
-- (void)setWindowAlphaControllerValueDefault
-// ウィンドウの不透明度設定コントローラにデフォルト値をセット
-// ------------------------------------------------------
-{
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
-    [_opacityController setContent:[@{k_key_curWindowAlpha: [theValues valueForKey:k_key_windowAlpha]}
-                                         mutableCopy]];
 }
 
 
@@ -426,8 +405,8 @@ static NSRect theLatestDocumentWindowFrame;
 // すべてのウィンドウの不透明度を設定
 // ------------------------------------------------------
 {
-    for (CEDocument *document in [self documents]) {
-        [[document windowController] setAlphaToTextView];
+    for (id document in [self documents]) {
+        [(CEWindowController *)[document windowController] setAlpha:[self windowAlphaControllerValue]];
     }
 }
 
@@ -528,5 +507,33 @@ static NSRect theLatestDocumentWindowFrame;
 }
 
 
+
+#pragma mark -
+#pragma mark Private Methods
+
+//=======================================================
+// Private Methods
+//
+//=======================================================
+
+// ------------------------------------------------------
+- (CGFloat)windowAlphaControllerValue
+// ウィンドウの不透明度設定コントローラの値を返す
+// ------------------------------------------------------
+{
+    return (CGFloat)[[[_opacityController content] valueForKey:k_key_curWindowAlpha] doubleValue];
+}
+
+
+// ------------------------------------------------------
+- (void)setWindowAlphaControllerValueDefault
+// ウィンドウの不透明度設定コントローラにデフォルト値をセット
+// ------------------------------------------------------
+{
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    
+    [_opacityController setContent:[@{k_key_curWindowAlpha: [values valueForKey:k_key_windowAlpha]}
+                                    mutableCopy]];
+}
 
 @end

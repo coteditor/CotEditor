@@ -318,17 +318,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setAlphaToTextView
-// テキストビューの不透明度を変更する
-// ------------------------------------------------------
-{
-    CGFloat alpha = [[CEDocumentController sharedDocumentController] windowAlphaControllerValue];
-    
-    [self setAlpha:alpha];
-}
-
-
-// ------------------------------------------------------
 - (void)setupPrintValues
 // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
 // ------------------------------------------------------
