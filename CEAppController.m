@@ -911,7 +911,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 廃止したuserDefaultsのデータをユーザのplistから削除
 //------------------------------------------------------
 {
-    NSArray *deprecatedKeys = @[@"statusAreaFontName"  // deprecated on 1.4
+    NSArray *deprecatedKeys = @[@"statusAreaFontName",  // deprecated on 1.4
+                                @"alphaOnlyTextView"    // deprecated on 1.5
                                 ];
     
     for (NSString *key in deprecatedKeys) {
