@@ -1482,7 +1482,7 @@ enum { typeFSS = 'fss ' };
 
 // ------------------------------------------------------
 - (IBAction)setWindowAlpha:(id)sender
-// ウィンドウの透明度を設定
+// ウィンドウの不透明度を設定
 // ------------------------------------------------------
 {
     [(CEWindowController *)[self windowController] setAlpha:(CGFloat)[sender doubleValue]];

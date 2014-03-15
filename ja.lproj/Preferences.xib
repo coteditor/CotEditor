@@ -545,7 +545,7 @@
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
-                                                <box title="ウインドウの透明度" id="610">
+                                                <box title="ウインドウの不透明度" id="610">
                                                     <rect key="frame" x="17" y="43" width="588" height="103"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <view key="contentView">

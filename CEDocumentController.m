@@ -215,37 +215,37 @@ static NSRect theLatestDocumentWindowFrame;
 
 // ------------------------------------------------------
 - (CGFloat)windowAlphaControllerValue
-// ウィンドウの透明度設定コントローラの値を返す
+// ウィンドウの不透明度設定コントローラの値を返す
 // ------------------------------------------------------
 {
-    return (CGFloat)[[[_transparencyController content] valueForKey:k_key_curWindowAlpha] doubleValue];
+    return (CGFloat)[[[_opacityController content] valueForKey:k_key_curWindowAlpha] doubleValue];
 }
 
 
 // ------------------------------------------------------
 - (void)setWindowAlphaControllerDictionary:(NSMutableDictionary *)inDict
-// ウィンドウの透明度設定コントローラに値をセット
+// ウィンドウの不透明度設定コントローラに値をセット
 // ------------------------------------------------------
 {
-    [_transparencyController setContent:inDict];
+    [_opacityController setContent:inDict];
 }
 
 
 // ------------------------------------------------------
 - (void)setWindowAlphaControllerValueDefault
-// ウィンドウの透明度設定コントローラにデフォルト値をセット
+// ウィンドウの不透明度設定コントローラにデフォルト値をセット
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    [_transparencyController setContent:[@{k_key_curWindowAlpha: [theValues valueForKey:k_key_windowAlpha]}
+    [_opacityController setContent:[@{k_key_curWindowAlpha: [theValues valueForKey:k_key_windowAlpha]}
                                          mutableCopy]];
 }
 
 
 // ------------------------------------------------------
-- (void)setTransparencyPanelControlsEnabledWithDecrement:(BOOL)inValue
-// 透明度設定パネルのコントロール類の有効／無効を制御
+- (void)setOpacityPanelControlsEnabledWithDecrement:(BOOL)inValue
+// 不透明度設定パネルのコントロール類の有効／無効を制御
 // ------------------------------------------------------
 {
     NSUInteger theNum = [[self documents] count];
@@ -412,18 +412,18 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (IBAction)openTransparencyPanel:(id)sender
-// 透明度設定パネルを開く
+- (IBAction)openOpacityPanel:(id)sender
+// 不透明度設定パネルを開く
 // ------------------------------------------------------
 {
-    [self setTransparencyPanelControlsEnabledWithDecrement:NO];
+    [self setOpacityPanelControlsEnabledWithDecrement:NO];
     [[_windowAlphaSlider window] makeKeyAndOrderFront:nil];
 }
 
 
 // ------------------------------------------------------
 - (IBAction)setAllWindowAlpha:(id)sender
-// すべてのウィンドウの透明度を設定
+// すべてのウィンドウの不透明度を設定
 // ------------------------------------------------------
 {
     for (CEDocument *document in [self documents]) {

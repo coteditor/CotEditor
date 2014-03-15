@@ -58,7 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)windowDidLoad
-// ウィンドウ表示の準備完了時、サイズを設定し文字列／透明度をセット
+// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
@@ -74,7 +74,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // 背景をセットアップ
     [self setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
-    [[CEDocumentController sharedDocumentController] setTransparencyPanelControlsEnabledWithDecrement:NO];
+    [[CEDocumentController sharedDocumentController] setOpacityPanelControlsEnabledWithDecrement:NO];
     [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:NO];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     [[self window] setOpaque:NO]; // ウィンドウを透明にする
@@ -296,7 +296,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (CGFloat)alpha
-// TextView の透明度を返す
+// テキストビューの不透明度を返す
 // ------------------------------------------------------
 {
     return [[[_editorView textView] backgroundColor] alphaComponent];
@@ -304,7 +304,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)setAlpha:(CGFloat)alpha
-// TextView の透明度を変更する
+// テキストビューの不透明度を変更する
 // ------------------------------------------------------
 {
     CGFloat sanitizedAlpha;
@@ -319,7 +319,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)setAlphaToTextView
-// ウィンドウの透明度を変更する
+// テキストビューの不透明度を変更する
 // ------------------------------------------------------
 {
     CGFloat alpha = [[CEDocumentController sharedDocumentController] windowAlphaControllerValue];
@@ -458,7 +458,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_tabView unbind:@"selectedIndex"];
 
     // パネル類の片づけ
-    [[CEDocumentController sharedDocumentController] setTransparencyPanelControlsEnabledWithDecrement:YES];
+    [[CEDocumentController sharedDocumentController] setOpacityPanelControlsEnabledWithDecrement:YES];
     [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:YES];
 }
 
