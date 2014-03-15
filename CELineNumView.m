@@ -69,6 +69,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        [self setBackgroundAlpha:1.0];
         [self setAutoresizingMask:NSViewHeightSizable];
         [[self enclosingScrollView] setHasHorizontalScroller:NO];
         [[self enclosingScrollView] setHasVerticalScroller:NO];
@@ -114,7 +115,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     // fill in the background
-    [[NSColor controlHighlightColor] set];
+    NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
+    [backgroundColor set];
     [NSBezierPath fillRect:dirtyRect];
     // draw frame border
     [[NSColor controlShadowColor] set];
