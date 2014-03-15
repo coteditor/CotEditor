@@ -43,7 +43,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     IBOutlet id _transparencyController;
     IBOutlet id _windowAlphaSlider;
     IBOutlet id _windowAlphaField;
-    IBOutlet id _windowAlphaTextViewOnlyButton;
     IBOutlet id _windowAlphaSetButton;
     IBOutlet id _gotoIndexField;
     IBOutlet id _gotoSelectButton;

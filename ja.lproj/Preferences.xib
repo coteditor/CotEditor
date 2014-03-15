@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferences">
@@ -35,7 +35,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="CotEditor 環境設定" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="prefWindow">
+        <window title="CotEditor 環境設定" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="prefWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="39" y="165" width="694" height="686"/>
@@ -581,17 +581,6 @@
                                                                     <binding destination="26" name="value" keyPath="values.windowAlpha" id="634"/>
                                                                 </connections>
                                                             </slider>
-                                                            <button id="612">
-                                                                <rect key="frame" x="337" y="41" width="177" height="18"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="テキストビューのみ" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3339">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <binding destination="26" name="value" keyPath="values.alphaOnlyTextView" id="638"/>
-                                                                </connections>
-                                                            </button>
                                                             <imageView id="613">
                                                                 <rect key="frame" x="37" y="23" width="175" height="15"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
@@ -2265,9 +2254,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.footerOneAlignIndex" id="987"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.footerOneStringIndex" previousBinding="985" id="986">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2319,9 +2308,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.footerTwoAlignIndex" id="989"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.footerTwoStringIndex" previousBinding="990" id="991">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2475,9 +2464,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.headerOneAlignIndex" id="966"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.headerOneStringIndex" previousBinding="967" id="968">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2529,9 +2518,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.headerTwoAlignIndex" id="970"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.headerTwoStringIndex" previousBinding="971" id="972">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2613,7 +2602,7 @@ The parent directory name of the dropped file.
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared Defaults"/>
-        <window title="エンコーディングリスト" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="encodingList" animationBehavior="default" id="36" userLabel="encodingWindow">
+        <window title="エンコーディングリスト" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="encodingList" animationBehavior="default" id="36" userLabel="encodingWindow">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="247" y="236" width="401" height="350"/>
@@ -2759,7 +2748,7 @@ DQ
                 <outlet property="_tableView" destination="39" id="59"/>
             </connections>
         </customObject>
-        <window title="ウインドウサイズを決定" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
+        <window title="ウインドウサイズを決定" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="192" y="280" width="480" height="360"/>

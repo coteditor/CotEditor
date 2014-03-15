@@ -125,7 +125,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [theWidthStr release]; // ===== release
 
         NSDictionary *theAttrs;
-        NSColor *theBackgroundColor, *theHighlightLineColor;
+        NSColor *backgroundColor, *highlightLineColor;
         NSMutableParagraphStyle *theParagraphStyle;
         NSTextTab *theTextTabToBeRemoved;
         NSEnumerator *enumerator;
@@ -164,22 +164,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setAcceptsGlyphInfo:YES];
         [self setLineSpacing:(CGFloat)[[theValues valueForKey:k_key_lineSpacing] doubleValue]];
         [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]]];
-        theBackgroundColor = 
-                [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_backgroundColor]];
-        theHighlightLineColor = 
-                [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_highlightLineColor]];
-
-        if ([[theValues valueForKey:k_key_alphaOnlyTextView] boolValue]) {
-            [self setBackgroundColor:
-                        [theBackgroundColor colorWithAlphaComponent:
-                            (CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]]];
-            [self setHighlightLineColor:
-                        [theHighlightLineColor colorWithAlphaComponent:
-                            (CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]]];
-        } else {
-            [self setBackgroundColor:theBackgroundColor];
-            [self setHighlightLineColor:theHighlightLineColor];
-        }
+        backgroundColor = [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_backgroundColor]];
+        highlightLineColor =  [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_highlightLineColor]];
+        [self setBackgroundColor:
+            [backgroundColor colorWithAlphaComponent:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]]];
+        [self setHighlightLineColor:
+            [highlightLineColor colorWithAlphaComponent:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]]];
         [self setInsertionPointColor:
                 [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_insertionPointColor]]];
         [self setSelectedTextAttributes:
@@ -580,9 +570,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSMakeRect(theColumn + theInsetWidth + theLinePadding + 2.0, 0, 1, [self frame].size.height) 
                 fromRect:NSMakeRect(0, 0, 2, 1) operation:NSCompositeSourceOver fraction:0.5];
     }
-    // テキストビューのみ透過させている時に影を更新描画する
-    if (([[self backgroundColor] alphaComponent] < 1.0) && 
-            ([[theValues valueForKey:k_key_alphaOnlyTextView] boolValue])) {
+    // テキストビューを透過させている時に影を更新描画する
+    if ([[self backgroundColor] alphaComponent] < 1.0) {
         [[self window] invalidateShadow];
     }
 }

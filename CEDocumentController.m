@@ -238,10 +238,8 @@ static NSRect theLatestDocumentWindowFrame;
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    [_transparencyController setContent:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-            [theValues valueForKey:k_key_windowAlpha], k_key_curWindowAlpha, 
-            [theValues valueForKey:k_key_alphaOnlyTextView], k_key_curAlphaOnlyTextView, 
-            nil]];
+    [_transparencyController setContent:[@{k_key_curWindowAlpha: [theValues valueForKey:k_key_windowAlpha]}
+                                         mutableCopy]];
 }
 
 
@@ -259,11 +257,9 @@ static NSRect theLatestDocumentWindowFrame;
         [self setWindowAlphaControllerValueDefault];
         [_windowAlphaSlider setEnabled:NO];
         [_windowAlphaField setTextColor:[NSColor disabledControlTextColor]];
-        [_windowAlphaTextViewOnlyButton setEnabled:NO];
     } else if (theNum > 0) {
         [_windowAlphaSlider setEnabled:YES];
         [_windowAlphaField setTextColor:[NSColor controlTextColor]];
-        [_windowAlphaTextViewOnlyButton setEnabled:YES];
         if (theNum > 1) {
             [_windowAlphaSetButton setEnabled:YES];
         } else {
@@ -430,7 +426,7 @@ static NSRect theLatestDocumentWindowFrame;
 // すべてのウィンドウの透明度を設定
 // ------------------------------------------------------
 {
-    [[self documents] makeObjectsPerformSelector:@selector(setAlphaToWindowAndTextView)];
+    [[self documents] makeObjectsPerformSelector:@selector(setAlphaToTextView)];
 }
 
 

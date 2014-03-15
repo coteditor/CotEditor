@@ -72,13 +72,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // カスケードしないときは、位置をずらす
         [[self window] setFrameTopLeftPoint:[[self document] initTopLeftPoint]];
     }
-    [[self document] setAlphaOnlyTextViewInThisWindow:
-            [[theValues valueForKey:k_key_alphaOnlyTextView] boolValue]];
-    [[self document] setAlphaToWindowAndTextViewDefaultValue];
+    // 背景をセットアップ
+    [(CEDocument *)[self document] setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
     [[CEDocumentController sharedDocumentController] setTransparencyPanelControlsEnabledWithDecrement:NO];
     [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:NO];
+    [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
+    [[self window] setOpaque:NO]; // ウィンドウを透明にする
+    
     // ツールバーをセットアップ
     [_toolbarController setupToolbar];
+    
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:_editorView];
     // デフォルト行末コードをセット
@@ -465,9 +468,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // ウインドウ背景を戻す
-    if ([[self document] alphaOnlyTextViewInThisWindow]) {
-        [[self window] setBackgroundColor:[NSColor clearColor]];
-    }
+    [[self window] setBackgroundColor:[NSColor clearColor]];
 }
 
 

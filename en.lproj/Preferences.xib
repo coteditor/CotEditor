@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferences">
@@ -35,7 +35,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="CotEditor Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="prefWindow">
+        <window title="CotEditor Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="prefWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="39" y="165" width="694" height="686"/>
@@ -581,17 +581,6 @@
                                                                     <binding destination="26" name="value" keyPath="values.windowAlpha" id="634"/>
                                                                 </connections>
                                                             </slider>
-                                                            <button id="612">
-                                                                <rect key="frame" x="337" y="41" width="177" height="18"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="Text view only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3339">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <binding destination="26" name="value" keyPath="values.alphaOnlyTextView" id="638"/>
-                                                                </connections>
-                                                            </button>
                                                             <imageView id="613">
                                                                 <rect key="frame" x="37" y="23" width="175" height="15"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
@@ -610,7 +599,7 @@
                             <tabViewItem label="View" identifier="prefViewItemID" id="9">
                                 <view key="view" id="7">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="744" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="385"/>
@@ -1638,7 +1627,7 @@
                             <tabViewItem label="File Drop" identifier="prefFileDropItemID" id="432">
                                 <view key="view" id="433">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="747" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="469"/>
@@ -1669,7 +1658,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="PI9-s6-0DE">
                                                         <rect key="frame" x="1" y="1" width="502" height="83"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="586">
                                                                 <rect key="frame" x="0.0" y="0.0" width="502" height="240"/>
@@ -1717,7 +1706,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="3418">
-                                                        <rect key="frame" x="492" y="1" width="11" height="83"/>
+                                                        <rect key="frame" x="489" y="1" width="14" height="83"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -1792,7 +1781,7 @@ The parent directory name of the dropped file.
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="ybU-5v-A28">
                                                         <rect key="frame" x="1" y="1" width="580" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="532">
                                                                 <rect key="frame" x="0.0" y="0.0" width="580" height="128"/>
@@ -1816,7 +1805,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3416">
-                                                        <rect key="frame" x="566" y="1" width="15" height="128"/>
+                                                        <rect key="frame" x="565" y="1" width="16" height="128"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -1866,17 +1855,17 @@ The parent directory name of the dropped file.
                                                     <rect key="frame" x="20" y="302" width="486" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="9EX-7h-iHb">
-                                                        <rect key="frame" x="1" y="1" width="469" height="94"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <rect key="frame" x="1" y="1" width="484" height="110"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
-                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="94"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="484" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="extensions" width="466" minWidth="40" maxWidth="1000" id="448">
+                                                                    <tableColumn identifier="extensions" width="481" minWidth="40" maxWidth="1000" id="448">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1901,11 +1890,11 @@ The parent directory name of the dropped file.
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3415">
-                                                        <rect key="frame" x="1" y="95" width="469" height="16"/>
+                                                        <rect key="frame" x="1" y="95" width="484" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="470" y="1" width="15" height="94"/>
+                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2262,9 +2251,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.footerOneAlignIndex" id="987"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.footerOneStringIndex" previousBinding="985" id="986">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2316,9 +2305,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.footerTwoAlignIndex" id="989"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.footerTwoStringIndex" previousBinding="990" id="991">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2472,9 +2461,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.headerOneAlignIndex" id="966"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.headerOneStringIndex" previousBinding="967" id="968">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2526,9 +2515,9 @@ The parent directory name of the dropped file.
                                                                     <binding destination="26" name="selectedIndex" keyPath="values.headerTwoAlignIndex" id="970"/>
                                                                     <binding destination="26" name="enabled2" keyPath="values.headerTwoStringIndex" previousBinding="971" id="972">
                                                                         <dictionary key="options">
-                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                                         </dictionary>
                                                                     </binding>
@@ -2610,7 +2599,7 @@ The parent directory name of the dropped file.
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared Defaults"/>
-        <window title="Encoding List" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="encodingList" animationBehavior="default" id="36" userLabel="encodingWindow">
+        <window title="Encoding List" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="encodingList" animationBehavior="default" id="36" userLabel="encodingWindow">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="247" y="236" width="401" height="350"/>
@@ -2756,7 +2745,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                 <outlet property="_tableView" destination="39" id="59"/>
             </connections>
         </customObject>
-        <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
+        <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="192" y="280" width="480" height="360"/>

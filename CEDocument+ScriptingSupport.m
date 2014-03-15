@@ -259,39 +259,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSNumber *)alphaOnlyTextView
-// 透明度をtextViewだけに適用するかどうかを返す
-// ------------------------------------------------------
-{
-    return @([self alphaOnlyTextViewInThisWindow]);
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaOnlyTextView:(NSNumber *)inBoolNum
-// 透明度をtextViewだけに適用するかどうかを設定
-// ------------------------------------------------------
-{
-    [self setAlphaOnlyTextViewInThisWindow:[inBoolNum boolValue]];
-    [self setAlphaToWindowAndTextView];
-}
-
-
-// ------------------------------------------------------
 - (NSNumber *)transparency
-// ウィンドウまたはtextViewの透明度を返す
+// textViewの不透明度を返す
 // ------------------------------------------------------
 {
-    CGFloat theAlpha = [self alpha];
-
-    return @(theAlpha);
+    return @([self alpha]);
     // AppleScript で値を得てみると、0.50000000113 とかになってしまう **** 2005.03.04
 }
 
 
 // ------------------------------------------------------
 - (void)setTransparency:(NSNumber *)inAlpha
-// ウィンドウまたはtextViewの透明度を設定
+// textViewの不透明度を設定
 // ------------------------------------------------------
 {
     [self setAlpha:(CGFloat)[inAlpha doubleValue]];

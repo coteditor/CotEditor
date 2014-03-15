@@ -55,7 +55,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (retain) CEEditorView *editorView;
 @property BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
 @property NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
-@property BOOL alphaOnlyTextViewInThisWindow;
 
 // readonly properties
 @property (readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
@@ -85,8 +84,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setFontToViewInWindow;
 - (CGFloat)alpha;
 - (void)setAlpha:(CGFloat)inAlpha;
-- (void)setAlphaToWindowAndTextView;
-- (void)setAlphaToWindowAndTextViewDefaultValue;
+- (void)setAlphaToTextView;
 - (void)setAlphaValueToTransparencyController;
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
@@ -113,7 +111,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)setSyntaxStyle:(id)sender;
 - (IBAction)recoloringAllStringOfDocument:(id)sender;
 - (IBAction)setWindowAlpha:(id)sender;
-- (IBAction)setTransparencyOnlyTextView:(id)sender;
 - (IBAction)insertIANACharSetName:(id)sender;
 - (IBAction)insertIANACharSetNameWithCharset:(id)sender;
 - (IBAction)insertIANACharSetNameWithEncoding:(id)sender;
