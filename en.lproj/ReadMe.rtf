@@ -8,21 +8,21 @@
 ReadMe\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\qr
 
-\b0\fs24 \cf0 2014.03.02\
+\b0\fs24 \cf0 2014-03-15\
 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b \cf0 About Regular Expression Syntax For Coloring\
+\b \cf0 About Regular Expression Syntax\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b0 \cf0 From version 0.9.5, CotEditor's syntax coloring function uses RegexKitLite instead of OgreKit for its regular expression search in order to improve coloring speed (the Find or Outline Menu functions use OgreKit as before). Their regular expression syntax are slightly different from each other.\
-The default coloring rules are not affected by the differences, but if you have your own rules, see the following references to make sure they work properly.\
+\b0 \cf0 CotEditor's syntax coloring function uses RegexKitLite for its regular expression search and OgreKit for its Find and Outline Menu functions. Please take notice that their regular expression syntax are slightly different from each other.\
+See the following references to make sure they work properly.\
 \
-Oniguruma Regular Expressions (used by OgreKit)\
+Oniguruma Regular Expressions (used on OgreKit)\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 {\field{\*\fldinst{HYPERLINK "http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt"}}{\fldrslt \cf0 http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt}}\
 \
-ICU Regular Expressions (used by RegexKitLite)\
+ICU Regular Expressions (used on RegexKitLite)\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 {\field{\*\fldinst{HYPERLINK "http://regexkit.sourceforge.net/RegexKitLite/#ICURegularExpressionSyntax"}}{\fldrslt \cf0 http://regexkit.sourceforge.net/RegexKitLite/#ICURegularExpressionSyntax}}
 \b \
@@ -30,27 +30,7 @@ ICU Regular Expressions (used by RegexKitLite)\
 \
 Requirements
 \b0 \
-Mac OS X 10.7+\
-\
-\
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-
-\b \cf0 License
-\b0 \
-GPL (GNU GENERAL PUBLIC LICENSE)\
-# This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\
-# Further information is available in the bundled documentation.\
-# OgreKit (http://www8.ocn.ne.jp/~sonoisa/OgreKit/) and Oniguruma (http://www.geocities.jp/kosako3/oniguruma/), the framework and library that CotEditor uses, are under the OgreKit License.
-\f1  
-\f0 See the bundled \'93OgreKit License.txt\'94 for details.\
-\
-\
-
-\b About Source Code
-\b0 \
-# CotEditor source code is available for download at the following site (see the \'93Distribution Site\'94 section below).\
-# CotEditor is written in Objective-C (UTF-8).\
+OS X 10.7+\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 \cf0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
@@ -59,7 +39,6 @@ GPL (GNU GENERAL PUBLIC LICENSE)\
 
 \b \cf0 Development Environment
 \b0 \
-MacBook Air (Late 2010)\
 Mac OS X 10.9\
 Xcode 5\
 \
@@ -70,15 +49,33 @@ Xcode 5\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 {\field{\*\fldinst{HYPERLINK "http://coteditor.github.io"}}{\fldrslt \cf0 http://coteditor.github.io}}\
 \
-\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b \cf0 Copyrights
+\b \cf0 \
+About Source Code
+\b0 \
+CotEditor source code is available for download at the {\field{\*\fldinst{HYPERLINK "https://github.com/coteditor/"}}{\fldrslt CotEditor Project}} page on GitHub.\
+\
+\
+
+\b License
+\b0 \
+GPL (GNU GENERAL PUBLIC LICENSE)\
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\
+Further information is available in the bundled documentation.\
+OgreKit (http://www8.ocn.ne.jp/~sonoisa/OgreKit/) and Oniguruma (http://www.geocities.jp/kosako3/oniguruma/), the framework and library that CotEditor uses, are under the OgreKit License.
+\f1  
+\f0 See the bundled \'93OgreKit License.txt\'94 for details.\
+\
+\
+
+\b Copyrights
 \b0 \
 CotEditor\
 Copyright (c) 2005 nakamuxu\
-Copyright (c) 2011 usami-k\
-Copyright (c) 2014 CotEditor Project\
+Copyright (c) 2011, 2014 usami-k\
+Copyright (c) 2014 1024jp\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 \cf0  All rights reserved.\
 \
@@ -140,6 +137,4 @@ Also, thanks to the information regarding the use of UKKQueue by kimura wataru (
 *  Thanks to the web site HMDT ({\field{\*\fldinst{HYPERLINK "http://hmdt.jp/"}}{\fldrslt http://hmdt.jp/}}) for a lot of useful information.\
 *  Thanks to the web site Cocoabuilder ({\field{\*\fldinst{HYPERLINK "http://www.cocoabuilder.com/"}}{\fldrslt http://www.cocoabuilder.com/}}) for a lot of useful information.\
 *  Thanks to mi by Daisuke Kamiyama ({\field{\*\fldinst{HYPERLINK "http://www.mimikaki.net/"}}{\fldrslt http://www.mimikaki.net/}}) on which the pre-formatted strings of CotEditor's File Drop function are based.\
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf0 \
 }
