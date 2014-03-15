@@ -47,7 +47,7 @@
 		2A07231416D3CF4F00F49864 /* removeButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */; };
 		2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */; };
 		2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230416D3CF4F00F49864 /* swapArrow.pdf */; };
-		2A07231716D3CF4F00F49864 /* transparencyGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* transparencyGuide.pdf */; };
+		2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* opacityGuide.pdf */; };
 		2A6394DA18B0BFA0008D304D /* defaultSyntaxStyle_XML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */; };
 		2A6394DC18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */; };
 		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
@@ -228,7 +228,7 @@
 		2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = removeButtonImg.pdf; path = images/removeButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rightButtonImg.pdf; path = images/rightButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230416D3CF4F00F49864 /* swapArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrow.pdf; path = images/swapArrow.pdf; sourceTree = "<group>"; };
-		2A07230516D3CF4F00F49864 /* transparencyGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = transparencyGuide.pdf; path = images/transparencyGuide.pdf; sourceTree = "<group>"; };
+		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDocument.h; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -465,7 +465,7 @@
 				2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */,
 				2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */,
 				2A07230416D3CF4F00F49864 /* swapArrow.pdf */,
-				2A07230516D3CF4F00F49864 /* transparencyGuide.pdf */,
+				2A07230516D3CF4F00F49864 /* opacityGuide.pdf */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -854,7 +854,7 @@
 				2A07231416D3CF4F00F49864 /* removeButtonImg.pdf in Resources */,
 				2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */,
 				2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */,
-				2A07231716D3CF4F00F49864 /* transparencyGuide.pdf in Resources */,
+				2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

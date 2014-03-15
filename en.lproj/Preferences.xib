@@ -553,13 +553,11 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" id="614">
-                                                                <rect key="frame" x="246" y="42" width="46" height="20"/>
+                                                                <rect key="frame" x="228" y="38" width="39" height="20"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="border" alignment="right" title="1.00" id="3341">
-                                                                    <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.00" negativeFormat="-0.00" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="615">
-                                                                        <attributedString key="attributedStringForZero">
-                                                                            <fragment content="0.00"/>
-                                                                        </attributedString>
+                                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" title="100%" id="3341">
+                                                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="percent" minimumIntegerDigits="1" maximumIntegerDigits="309" id="615">
+                                                                        <integer key="multiplier" value="100"/>
                                                                         <decimal key="minimum" value="0.2"/>
                                                                         <decimal key="maximum" value="1"/>
                                                                     </numberFormatter>
@@ -582,9 +580,9 @@
                                                                 </connections>
                                                             </slider>
                                                             <imageView id="613">
-                                                                <rect key="frame" x="37" y="23" width="175" height="15"/>
+                                                                <rect key="frame" x="27" y="23" width="195" height="15"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="transparencyGuide" id="3340"/>
+                                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="opacityGuide" id="3340"/>
                                                             </imageView>
                                                         </subviews>
                                                     </view>
@@ -1269,7 +1267,7 @@
                             <tabViewItem label="Syntax" identifier="prefSyntaxItemID" id="164">
                                 <view key="view" id="165">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="746" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="487"/>
@@ -1855,17 +1853,17 @@ The parent directory name of the dropped file.
                                                     <rect key="frame" x="20" y="302" width="486" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="9EX-7h-iHb">
-                                                        <rect key="frame" x="1" y="1" width="484" height="110"/>
+                                                        <rect key="frame" x="1" y="1" width="469" height="94"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
-                                                                <rect key="frame" x="0.0" y="0.0" width="484" height="110"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="94"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="extensions" width="481" minWidth="40" maxWidth="1000" id="448">
+                                                                    <tableColumn identifier="extensions" width="466" minWidth="40" maxWidth="1000" id="448">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1890,11 +1888,11 @@ The parent directory name of the dropped file.
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3415">
-                                                        <rect key="frame" x="1" y="95" width="484" height="16"/>
+                                                        <rect key="frame" x="1" y="95" width="469" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="94"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2886,8 +2884,8 @@ And press "OK" button, this window size will be set to default.</string>
         <image name="addButtonImg" width="16" height="16"/>
         <image name="centerButtonImg" width="16" height="16"/>
         <image name="leftButtonImg" width="16" height="16"/>
+        <image name="opacityGuide" width="195" height="15"/>
         <image name="removeButtonImg" width="16" height="16"/>
         <image name="rightButtonImg" width="16" height="16"/>
-        <image name="transparencyGuide" width="175" height="15"/>
     </resources>
 </document>

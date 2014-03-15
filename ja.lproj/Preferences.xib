@@ -553,13 +553,11 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" id="614">
-                                                                <rect key="frame" x="246" y="42" width="46" height="20"/>
+                                                                <rect key="frame" x="228" y="38" width="39" height="20"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="border" alignment="right" title="1.00" id="3341">
-                                                                    <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.00" negativeFormat="-0.00" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="615">
-                                                                        <attributedString key="attributedStringForZero">
-                                                                            <fragment content="0.00"/>
-                                                                        </attributedString>
+                                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" alignment="right" title="100%" id="3341">
+                                                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="percent" minimumIntegerDigits="1" maximumIntegerDigits="309" id="615">
+                                                                        <integer key="multiplier" value="100"/>
                                                                         <decimal key="minimum" value="0.2"/>
                                                                         <decimal key="maximum" value="1"/>
                                                                     </numberFormatter>
@@ -582,9 +580,9 @@
                                                                 </connections>
                                                             </slider>
                                                             <imageView id="613">
-                                                                <rect key="frame" x="37" y="23" width="175" height="15"/>
+                                                                <rect key="frame" x="27" y="23" width="195" height="15"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="transparencyGuide" id="3340"/>
+                                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="opacityGuide" id="3340"/>
                                                             </imageView>
                                                         </subviews>
                                                     </view>
@@ -2887,8 +2885,8 @@ Gw
         <image name="addButtonImg" width="16" height="16"/>
         <image name="centerButtonImg" width="16" height="16"/>
         <image name="leftButtonImg" width="16" height="16"/>
+        <image name="opacityGuide" width="195" height="15"/>
         <image name="removeButtonImg" width="16" height="16"/>
         <image name="rightButtonImg" width="16" height="16"/>
-        <image name="transparencyGuide" width="175" height="15"/>
     </resources>
 </document>
