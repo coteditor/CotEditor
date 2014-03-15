@@ -151,9 +151,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_notifyEditByAnother       @"notifyEditByAnother"
 
 
-// Opacity Controller
-#define k_key_curWindowAlpha    @"curWindowAlpha"
-
 // Tab width values
 #define k_tabWidthMin   1
 #define k_tabWidthMax   99

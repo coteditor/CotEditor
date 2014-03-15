@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEWindowController.h"
 #import "CEDocumentController.h"
+#import "CEOpacityPanelController.h"
 
 @implementation CEWindowController
 
@@ -72,10 +73,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // カスケードしないときは、位置をずらす
         [[self window] setFrameTopLeftPoint:[[self document] initTopLeftPoint]];
     }
+    [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:NO];
     // 背景をセットアップ
     [self setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
-    [[CEDocumentController sharedDocumentController] setOpacityPanelControlsEnabledWithDecrement:NO];
-    [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:NO];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     [[self window] setOpaque:NO]; // ウィンドウを透明にする
     
@@ -415,8 +415,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 不可視文字表示メニューのツールチップを更新
     [theEditorView updateShowInvisibleCharsMenuToolTip];
     // アルファ値を反映
-    NSMutableDictionary *dict = [@{k_key_curWindowAlpha: @([self alpha])} mutableCopy];
-    [[CEDocumentController sharedDocumentController] setWindowAlphaControllerDictionary:dict];
+    [[CEOpacityPanelController sharedController] setOpacity:[self alpha]];
     
 
     // シートを表示していなければ、各種更新実行
@@ -447,7 +446,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_tabView unbind:@"selectedIndex"];
 
     // パネル類の片づけ
-    [[CEDocumentController sharedDocumentController] setOpacityPanelControlsEnabledWithDecrement:YES];
     [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:YES];
 }
 

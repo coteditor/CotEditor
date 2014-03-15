@@ -214,41 +214,6 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (void)setWindowAlphaControllerDictionary:(NSMutableDictionary *)inDict
-// ウィンドウの不透明度設定コントローラに値をセット
-// ------------------------------------------------------
-{
-    [_opacityController setContent:inDict];
-}
-
-
-// ------------------------------------------------------
-- (void)setOpacityPanelControlsEnabledWithDecrement:(BOOL)inValue
-// 不透明度設定パネルのコントロール類の有効／無効を制御
-// ------------------------------------------------------
-{
-    NSUInteger theNum = [[self documents] count];
-
-    if (inValue) {
-        theNum--;
-    }
-    if (theNum ==  0) {
-        [self setWindowAlphaControllerValueDefault];
-        [_windowAlphaSlider setEnabled:NO];
-        [_windowAlphaField setTextColor:[NSColor disabledControlTextColor]];
-    } else if (theNum > 0) {
-        [_windowAlphaSlider setEnabled:YES];
-        [_windowAlphaField setTextColor:[NSColor controlTextColor]];
-        if (theNum > 1) {
-            [_windowAlphaSetButton setEnabled:YES];
-        } else {
-            [_windowAlphaSetButton setEnabled:NO];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
 - (void)setGotoPanelControlsEnabledWithDecrement:(BOOL)inValue
 // 文字／行移動パネルのコントロール類の有効／無効を制御
 // ------------------------------------------------------
@@ -391,27 +356,6 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (IBAction)openOpacityPanel:(id)sender
-// 不透明度設定パネルを開く
-// ------------------------------------------------------
-{
-    [self setOpacityPanelControlsEnabledWithDecrement:NO];
-    [[_windowAlphaSlider window] makeKeyAndOrderFront:nil];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)setAllWindowAlpha:(id)sender
-// すべてのウィンドウの不透明度を設定
-// ------------------------------------------------------
-{
-    for (id document in [self documents]) {
-        [(CEWindowController *)[document windowController] setAlpha:[self windowAlphaControllerValue]];
-    }
-}
-
-
-// ------------------------------------------------------
 - (IBAction)openGotoPanel:(id)sender
 // 文字／行移動パネルを開く
 // ------------------------------------------------------
@@ -504,36 +448,6 @@ static NSRect theLatestDocumentWindowFrame;
         [theCurDoc setCustomLineSpacingToTextView:(CGFloat)[_lineSpacingField doubleValue]];
     }
     [self closeLineSpacingPanel:nil];
-}
-
-
-
-#pragma mark -
-#pragma mark Private Methods
-
-//=======================================================
-// Private Methods
-//
-//=======================================================
-
-// ------------------------------------------------------
-- (CGFloat)windowAlphaControllerValue
-// ウィンドウの不透明度設定コントローラの値を返す
-// ------------------------------------------------------
-{
-    return (CGFloat)[[[_opacityController content] valueForKey:k_key_curWindowAlpha] doubleValue];
-}
-
-
-// ------------------------------------------------------
-- (void)setWindowAlphaControllerValueDefault
-// ウィンドウの不透明度設定コントローラにデフォルト値をセット
-// ------------------------------------------------------
-{
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    
-    [_opacityController setContent:[@{k_key_curWindowAlpha: [values valueForKey:k_key_windowAlpha]}
-                                    mutableCopy]];
 }
 
 @end

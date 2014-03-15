@@ -35,18 +35,16 @@
 #import "constants.h"
 
 
-@interface CEOpacityPanelController ()
-
-@end
-
-
 @implementation CEOpacityPanelController
+
+@synthesize opacity = _opacity;
+
 
 #pragma mark Class Methods
 
 // ------------------------------------------------------
 + (CEOpacityPanelController *)sharedController
-// return shared instance
+// return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
@@ -77,6 +75,18 @@
 }
 
 
+// ------------------------------------------------------
+- (void)setOpacity:(CGFloat)opacity
+// setter for opacity property
+// ------------------------------------------------------
+{
+    _opacity = opacity;
+    
+    // apply to the frontmost document window
+    [[self subjectWindowController] setAlpha:[self opacity]];
+}
+
+
 
 #pragma mark Action Messages
 
@@ -92,7 +102,25 @@
     }
     
     // set as default
-    [[NSUserDefaultsController sharedUserDefaultsController] setObject:@([self opacity]) forKey:k_key_windowAlpha];
+    [[NSUserDefaults standardUserDefaults] setValue:@([self opacity]) forKey:k_key_windowAlpha];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+- (CEWindowController *)subjectWindowController
+// return the frontmost document's window controller (or nil if not exists)
+// ------------------------------------------------------
+{
+    id windowController = [[[NSDocumentController sharedDocumentController] currentDocument] windowControllers][0];
+    
+    if ([windowController isKindOfClass:[CEWindowController class]]) {
+        return windowController;
+    }
+    
+    return nil;
 }
 
 @end

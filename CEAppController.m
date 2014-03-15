@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEAppController.h"
+#import "CEOpacityPanelController.h"
 
 //=======================================================
 // Private method
@@ -743,6 +744,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[CEHCCManager sharedInstance] openHexColorCodeEditor];
+}
+
+
+// ------------------------------------------------------
+- (IBAction)openOpacityPanel:(id)sender
+// 不透明度パネルを開く
+// ------------------------------------------------------
+{
+    [[CEOpacityPanelController sharedController] showWindow:self];
 }
 
 
