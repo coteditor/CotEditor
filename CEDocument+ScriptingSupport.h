@@ -60,8 +60,6 @@ typedef enum {
 - (NSString *)coloringStyle;
 - (void)setColoringStyle:(NSString *)inStyleName;
 - (CETextSelection *)selection;
-- (NSNumber *)transparency;
-- (void)setTransparency:(NSNumber *)inAlpha;
 - (NSNumber *)lineSpacing;
 - (void)setLineSpacing:(NSNumber *)inSpacing;
 

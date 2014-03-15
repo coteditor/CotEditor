@@ -863,50 +863,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (CGFloat)alpha
-// ウィンドウまたは TextView の透明度を返す
-// ------------------------------------------------------
-{
-    return [[[[self editorView] textView] backgroundColor] alphaComponent];
-}
-
-// ------------------------------------------------------
-- (void)setAlpha:(CGFloat)alpha
-// ウィンドウの透明度を変更する
-// ------------------------------------------------------
-{
-    CGFloat sanitizedAlpha;
-
-    sanitizedAlpha = MAX(alpha, 0.2);
-    sanitizedAlpha = MIN(alpha, 1.0);
-    
-    [[_windowController window] invalidateShadow];  // ???: 残す必要があるのか後で検討
-    [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaToTextView
-// ウィンドウの透明度を変更する
-// ------------------------------------------------------
-{
-    CGFloat theAlpha = [[CEDocumentController sharedDocumentController] windowAlphaControllerValue];
-
-    [self setAlpha:theAlpha];
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaValueToTransparencyController
-// 透明度設定パネルに値をセット
-// ------------------------------------------------------
-{
-    NSMutableDictionary *dict = [@{k_key_curWindowAlpha: @([self alpha])} mutableCopy];
-    [[CEDocumentController sharedDocumentController] setWindowAlphaControllerDictionary:dict];
-}
-
-
-// ------------------------------------------------------
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
 // ------------------------------------------------------
@@ -1529,9 +1485,7 @@ enum { typeFSS = 'fss ' };
 // ウィンドウの透明度を設定
 // ------------------------------------------------------
 {
-    CGFloat theAlpha = (CGFloat)[sender doubleValue];
-    
-    [self setAlpha:theAlpha];
+    [(CEWindowController *)[self windowController] setAlpha:(CGFloat)[sender doubleValue]];
 }
 
 

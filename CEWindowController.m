@@ -73,7 +73,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self window] setFrameTopLeftPoint:[[self document] initTopLeftPoint]];
     }
     // 背景をセットアップ
-    [(CEDocument *)[self document] setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
+    [self setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
     [[CEDocumentController sharedDocumentController] setTransparencyPanelControlsEnabledWithDecrement:NO];
     [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:NO];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
@@ -295,6 +295,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+- (CGFloat)alpha
+// TextView の透明度を返す
+// ------------------------------------------------------
+{
+    return [[[_editorView textView] backgroundColor] alphaComponent];
+}
+
+// ------------------------------------------------------
+- (void)setAlpha:(CGFloat)alpha
+// TextView の透明度を変更する
+// ------------------------------------------------------
+{
+    CGFloat sanitizedAlpha;
+    
+    sanitizedAlpha = MAX(alpha, 0.2);
+    sanitizedAlpha = MIN(alpha, 1.0);
+    
+    [[self window] invalidateShadow];  // TODO: 残す必要があるのか後で検討 (2014-03 by 1024jp)
+    [[_editorView splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
+}
+
+
+// ------------------------------------------------------
+- (void)setAlphaToTextView
+// ウィンドウの透明度を変更する
+// ------------------------------------------------------
+{
+    CGFloat alpha = [[CEDocumentController sharedDocumentController] windowAlphaControllerValue];
+    
+    [self setAlpha:alpha];
+}
+
+
+// ------------------------------------------------------
 - (void)setupPrintValues
 // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
 // ------------------------------------------------------
@@ -392,7 +426,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 不可視文字表示メニューのツールチップを更新
     [theEditorView updateShowInvisibleCharsMenuToolTip];
     // アルファ値を反映
-    [[self document] setAlphaValueToTransparencyController];
+    NSMutableDictionary *dict = [@{k_key_curWindowAlpha: @([self alpha])} mutableCopy];
+    [[CEDocumentController sharedDocumentController] setWindowAlphaControllerDictionary:dict];
+    
 
     // シートを表示していなければ、各種更新実行
     if ([[self window] attachedSheet] == nil) {

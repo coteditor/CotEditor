@@ -59,6 +59,7 @@
 		2A8663D518C9406800A6F9CC /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663D718C9406800A6F9CC /* License.txt */; };
 		2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
+		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
 		6C4216BD12DDB9EB0037690E /* Docs_for_src in Resources */ = {isa = PBXBuildFile; fileRef = 6C4216B512DDB9EB0037690E /* Docs_for_src */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
@@ -249,6 +250,8 @@
 		2A8663D918C9406D00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = "en.lproj/OgreKit License.txt"; sourceTree = "<group>"; };
 		2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
+		2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+ScriptingSupport.h"; sourceTree = "<group>"; };
+		2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+ScriptingSupport.m"; sourceTree = "<group>"; };
 		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/DocWindow.xib; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 				8C83A48109485F27004E48A8 /* CEATSTypesetter.m */,
 				25859DEB076D75BC0020F779 /* CEWindowController.h */,
 				25859DEC076D75BC0020F779 /* CEWindowController.m */,
+				2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */,
+				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
 				8CB0122B07CA0EFA00221EDC /* CEToolbarController.h */,
 				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
 				2588E9BD07C47ACC0060021D /* CEEditorView.h */,
@@ -878,6 +883,7 @@
 				8C3BEA2808BDBCA800BC2067 /* CEOutlineMenuButton.m in Sources */,
 				8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */,
 				8CE4859908CD617B004817E1 /* CEApplication.m in Sources */,
+				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */,
 				8C5853360903C1ED0085BC4F /* CETabItemView.m in Sources */,

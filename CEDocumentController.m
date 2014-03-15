@@ -426,7 +426,9 @@ static NSRect theLatestDocumentWindowFrame;
 // すべてのウィンドウの透明度を設定
 // ------------------------------------------------------
 {
-    [[self documents] makeObjectsPerformSelector:@selector(setAlphaToTextView)];
+    for (CEDocument *document in [self documents]) {
+        [[document windowController] setAlphaToTextView];
+    }
 }
 
 
