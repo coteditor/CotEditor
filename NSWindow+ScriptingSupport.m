@@ -55,8 +55,7 @@
 
 
 
-#pragma mark -
-#pragma mark Public Methods
+#pragma mark - Public Methods
 
 //=======================================================
 // Private Methods

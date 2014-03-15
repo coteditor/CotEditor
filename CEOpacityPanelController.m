@@ -39,9 +39,6 @@
 
 @implementation CEOpacityPanelController
 
-@synthesize opacity = _opacity;
-
-
 #pragma mark Class Methods
 
 // ------------------------------------------------------
@@ -70,8 +67,7 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        [self setOpacity:(CGFloat)[[defaults valueForKey:k_key_windowAlpha] doubleValue]];
+        [self setOpacity:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_windowAlpha]];
     }
     return self;
 }
@@ -85,7 +81,7 @@
     _opacity = opacity;
     
     // apply to the frontmost document window
-    [[self subjectWindowController] setAlpha:[self opacity]];
+    [[self subjectWindowController] setAlpha:opacity];
 }
 
 

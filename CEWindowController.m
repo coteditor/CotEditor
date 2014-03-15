@@ -312,7 +312,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     sanitizedAlpha = MAX(alpha, 0.2);
     sanitizedAlpha = MIN(alpha, 1.0);
     
-    [[self window] invalidateShadow];  // TODO: 残す必要があるのか後で検討 (2014-03 by 1024jp)
     [[_editorView splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
 }
 
