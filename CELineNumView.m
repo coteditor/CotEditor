@@ -11,6 +11,8 @@ CELineNumView
 encoding="UTF-8"
 Created:2005.03.30
 
+ ___ARC_enabled___
+ 
 ------------
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
@@ -42,17 +44,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-@interface CELineNumView ()
-
-@end
-
-
-//------------------------------------------------------------------------------------------
-
-
-
-#pragma mark -
-
 @implementation CELineNumView
 
 #pragma mark Public Methods
@@ -79,17 +70,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)dealloc
-// clean up
-// ------------------------------------------------------
-{
-//    masterView was not retained
-
-    [super dealloc];
-}
-
-
-// ------------------------------------------------------
 - (void)setShowLineNum:(BOOL)showLineNum
 // set to show line numbers.
 // ------------------------------------------------------
@@ -97,7 +77,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (showLineNum != [self showLineNum]) {
         _showLineNum = showLineNum;
         
-        CGFloat width = [self showLineNum] ? k_defaultLineNumWidth : 0.0;
+        CGFloat width = showLineNum ? k_defaultLineNumWidth : 0.0;
         [self setWidth:width];
     }
 }
@@ -118,16 +98,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
     [backgroundColor set];
     [NSBezierPath fillRect:dirtyRect];
-    // draw frame border
+    // draw frame border (0.5px)
     [[NSColor controlShadowColor] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect))
                               toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMinY(dirtyRect))];
     
     // adjust rect so we won't later draw into the scrollbar area
     if ([[[self masterView] scrollView] hasHorizontalScroller]) {
-        CGFloat theHScrollAdj = NSHeight([[[[self masterView] scrollView] horizontalScroller] frame]) / 2;
-        dirtyRect.origin.y += theHScrollAdj; // (shift the drawing frame reference up.)
-        dirtyRect.size.height -= theHScrollAdj; // (and shrink it the same distance.)
+        CGFloat horizontalScrollAdj = NSHeight([[[[self masterView] scrollView] horizontalScroller] frame]) / 2;
+        dirtyRect.origin.y += horizontalScrollAdj; // (shift the drawing frame reference up.)
+        dirtyRect.size.height -= horizontalScrollAdj; // (and shrink it the same distance.)
     }
     // setup drawing attributes for the font size and color. 
     NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init]; // ===== init
@@ -173,7 +153,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         numRect = [self convertRect:numRect fromView:[[self masterView] textView]];
         crDistance = numRect.origin.y - crDistance;
     } else {
-        [attrs release]; // ===== release
         return;
     }
     adj = k_lineNumFontDescender - ([[[[self masterView] textView] font] pointSize] + fontSize) / 2 - insetAdj;
@@ -201,7 +180,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the line number.
                 theBefore = lineNum;
             } else if (NSMaxY(numRect) < 0) { // no need to draw
-                [attrs release]; // ===== release
                 return;
             }
             glyphCount = NSMaxRange(range);
@@ -225,7 +203,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                crDistance - numRect.origin.y + adj);
         [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the last line number.
     }
-    [attrs release]; // ===== release
 }
 
 

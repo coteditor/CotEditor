@@ -11,6 +11,8 @@ CELineNumView
 encoding="UTF-8"
 Created:2005.03.30
 
+ ___ARC_enabled___
+ 
 ------------
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
@@ -42,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CELineNumView : NSView
 
-@property (nonatomic, assign) CESubSplitView *masterView;
+@property (nonatomic, weak) CESubSplitView *masterView;
 @property (nonatomic) BOOL showLineNum;
 @property (nonatomic) CGFloat backgroundAlpha;
 

@@ -26,7 +26,7 @@
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25A1DE2E07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist */; };
 		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
-		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; };
+		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; };
 		2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */; };
@@ -59,7 +59,7 @@
 		2A8663D518C9406800A6F9CC /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663D718C9406800A6F9CC /* License.txt */; };
 		2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
-		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
+		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		2A94A46018D0F166009FA90D /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A94A46218D0F166009FA90D /* OpacityPanel.xib */; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
