@@ -65,7 +65,7 @@ typedef enum {
 }
 
 // Public method
-- (id)initWithDocument:(CEDocument *)inDocument;
+- (instancetype)initWithDocument:(CEDocument *)inDocument;
 - (void)cleanUpTextStorage:(NSTextStorage *)inTextStorage;
 
 // for AppleScript accessor

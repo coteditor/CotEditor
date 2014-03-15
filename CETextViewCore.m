@@ -76,7 +76,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame textContainer:(NSTextContainer *)inTextContainer
+- (instancetype)initWithFrame:(NSRect)inFrame textContainer:(NSTextContainer *)inTextContainer
 // 初期化
 // ------------------------------------------------------
 {

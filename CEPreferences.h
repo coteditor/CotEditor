@@ -73,7 +73,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)setupEncodingMenus:(NSArray *)inMenuItems;
-- (id)initWithAppController:(id)inAppontroller;
+- (instancetype)initWithAppController:(id)inAppontroller;
 - (void)setupSyntaxMenus;
 - (void)openPrefWindow;
 - (void)closePrefWindow;
