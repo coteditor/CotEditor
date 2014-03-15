@@ -723,12 +723,6 @@
                                                 <action selector="openBundledDocument:" target="290" id="828"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="ATOKユーザの方へ" tag="202" id="826">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="830"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="835"/>
                                         <menuItem title="ライセンス" tag="100" id="820">
                                             <modifierMask key="keyEquivalentModifierMask"/>

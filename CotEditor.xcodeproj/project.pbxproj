@@ -55,7 +55,6 @@
 		2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A7572BE18B3BBAE00878F66 /* CotEditor.help */; };
 		2A8663AE18C93D2200A6F9CC /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663B018C93D2200A6F9CC /* ReadMe.rtf */; };
 		2A8663C918C93FEB00A6F9CC /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663CB18C93FEB00A6F9CC /* Version History.rtf */; };
-		2A8663CC18C93FEF00A6F9CC /* To ATOK Users.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663CE18C93FEF00A6F9CC /* To ATOK Users.rtf */; };
 		2A8663D518C9406800A6F9CC /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663D718C9406800A6F9CC /* License.txt */; };
 		2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
@@ -241,9 +240,7 @@
 		2A8663AF18C93D2200A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/ReadMe.rtf; sourceTree = "<group>"; };
 		2A8663B118C93D2500A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ReadMe.rtf; sourceTree = "<group>"; };
 		2A8663CA18C93FEB00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "en.lproj/Version History.rtf"; sourceTree = "<group>"; };
-		2A8663CD18C93FEF00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "en.lproj/To ATOK Users.rtf"; sourceTree = "<group>"; };
 		2A8663CF18C93FF200A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/Version History.rtf"; sourceTree = "<group>"; };
-		2A8663D018C93FF600A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/To ATOK Users.rtf"; sourceTree = "<group>"; };
 		2A8663D618C9406800A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/License.txt; sourceTree = "<group>"; };
 		2A8663D918C9406D00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = "en.lproj/OgreKit License.txt"; sourceTree = "<group>"; };
 		2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
@@ -619,7 +616,6 @@
 				2A8663D718C9406800A6F9CC /* License.txt */,
 				2A8663B018C93D2200A6F9CC /* ReadMe.rtf */,
 				2A8663CB18C93FEB00A6F9CC /* Version History.rtf */,
-				2A8663CE18C93FEF00A6F9CC /* To ATOK Users.rtf */,
 			);
 			name = Documents;
 			sourceTree = "<group>";
@@ -754,7 +750,6 @@
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */,
 				258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */,
-				2A8663CC18C93FEF00A6F9CC /* To ATOK Users.rtf in Resources */,
 				8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */,
 				2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */,
 				2A8663D518C9406800A6F9CC /* License.txt in Resources */,
@@ -969,15 +964,6 @@
 				2A8663CF18C93FF200A6F9CC /* ja */,
 			);
 			name = "Version History.rtf";
-			sourceTree = "<group>";
-		};
-		2A8663CE18C93FEF00A6F9CC /* To ATOK Users.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A8663CD18C93FEF00A6F9CC /* en */,
-				2A8663D018C93FF600A6F9CC /* ja */,
-			);
-			name = "To ATOK Users.rtf";
 			sourceTree = "<group>";
 		};
 		2A8663D718C9406800A6F9CC /* License.txt */ = {
