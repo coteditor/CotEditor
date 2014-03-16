@@ -707,38 +707,30 @@
                                     <action selector="showHelp:" target="-1" id="122"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Documents" id="818">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Documents" id="819">
-                                    <items>
-                                        <menuItem title="ReadMe" tag="200" id="820">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="826"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Version History" tag="201" id="822">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="827"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="830"/>
-                                        <menuItem title="Acknowledgements" tag="101" id="824">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="825"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
+                            <menuItem title="AppleScript Dictionary" id="620">
+                                <connections>
+                                    <action selector="openAppleScriptDictionary:" target="290" id="621"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Open Dictionary..." id="620">
+                            <menuItem title="README" tag="200" id="820">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="openAppleScriptDictionary:" target="290" id="621"/>
+                                    <action selector="openBundledDocument:" target="290" id="826"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Version History" tag="201" id="822">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openBundledDocument:" target="290" id="827"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Acknowledgements" tag="101" id="824">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openBundledDocument:" target="290" id="825"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
