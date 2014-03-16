@@ -25,14 +25,16 @@
 *  Change support OS: OS X 10.7 and later.\
 *  Support 64-bit.\
 *  Support Retina display.\
+*  Update regular expression library used on sarch & leplase feature from Oniguruma to Onigmo.\
+	* Now the most regular expression synax defined on Perl 5.10+ like look-behind/look-ahead can also be used.\
 *  Update application, document and toolbar icons.\
 *  Add small size toolbar icons.\
-*  Add new "Apache", "Markdown", "Scala" and "XML" syntax coloring defintions.\uc0\u8317 \'b9\
-*  Update "PHP" syntax coloring definition. \uc0\u8317 \'b9\
+*  Add new "Apache", "Markdown", "Scala" and "XML" syntax coloring defintions.\uc0\u8317 \'b2\
+*  Update "PHP" syntax coloring definition. \uc0\u8317 \'b2\
 	*  Support until PHP5.5.\
 	*  Color properties and numbers.\
 	*  Improve outline menu.\
-*  Update "Python" syntax coloring definition. \uc0\u8317 \'b9\
+*  Update "Python" syntax coloring definition. \uc0\u8317 \'b2\
 	*  Support Python3. (>=3.3)\
 	*  Color decorators.\
 	*  Improve and fix number coloring.\
@@ -58,9 +60,10 @@
 *  Add blank between words on toolbar labels.\
 *  Fixed an issue that RegexKitLite was actually not updated to 4.0 on CotEditor 1.1.
 \fs24 \
-\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf2  1. same as ones that were distributed on {\field{\*\fldinst{HYPERLINK "http://wolfrosch.com/works/goodies/coteditor_syntax"}}{\fldrslt wolfrosch.com}}.\
+\cf2 \
+ 1. \cf2 The regular expression match on the syntax coloring has no effect by this change, \cf2 since ICU library is used for it. \
+ 2. same as ones that were distributed on {\field{\*\fldinst{HYPERLINK "http://wolfrosch.com/works/goodies/coteditor_syntax"}}{\fldrslt wolfrosch.com}}.\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
 \fs26 \cf0 \
