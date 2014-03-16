@@ -724,13 +724,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="835"/>
-                                        <menuItem title="ライセンス" tag="100" id="820">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="832"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="OgreKitライセンス" tag="101" id="833">
+                                        <menuItem title="謝辞" tag="101" id="833">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="834"/>

@@ -29,6 +29,7 @@
 		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; };
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; };
+		2A067B9A18D52F5200546280 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A067B9818D52F5200546280 /* Acknowledgements.rtf */; };
 		2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */; };
 		2A07230616D3CF4F00F49864 /* addButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F416D3CF4F00F49864 /* addButtonImg.pdf */; };
 		2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */; };
@@ -55,8 +56,6 @@
 		2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A7572BE18B3BBAE00878F66 /* CotEditor.help */; };
 		2A8663AE18C93D2200A6F9CC /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663B018C93D2200A6F9CC /* ReadMe.rtf */; };
 		2A8663C918C93FEB00A6F9CC /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663CB18C93FEB00A6F9CC /* Version History.rtf */; };
-		2A8663D518C9406800A6F9CC /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663D718C9406800A6F9CC /* License.txt */; };
-		2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
@@ -125,7 +124,6 @@
 		8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
 		8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */; };
-		8CCB5C36083F1F3C0022BA2A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CCB5C35083F1F3C0022BA2A /* Credits.rtf */; };
 		8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */; };
 		8CE4859908CD617B004817E1 /* CEApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4859708CD617B004817E1 /* CEApplication.m */; };
 		8CE570B508A6E047004A8924 /* defaultSyntaxStyle_C, C++, Objective-C.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE570B408A6E047004A8924 /* defaultSyntaxStyle_C, C++, Objective-C.plist */; };
@@ -205,6 +203,8 @@
 		25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarView.m; sourceTree = "<group>"; };
 		25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextViewCore.h; sourceTree = "<group>"; };
 		25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextViewCore.m; sourceTree = "<group>"; };
+		2A067B9918D52F5200546280 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
+		2A067B9B18D52F5700546280 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
 		2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = scriptMenuIcon.pdf; path = images/scriptMenuIcon.pdf; sourceTree = "<group>"; };
 		2A0722F416D3CF4F00F49864 /* addButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addButtonImg.pdf; path = images/addButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = centerButtonImg.pdf; path = images/centerButtonImg.pdf; sourceTree = "<group>"; };
@@ -241,8 +241,6 @@
 		2A8663B118C93D2500A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ReadMe.rtf; sourceTree = "<group>"; };
 		2A8663CA18C93FEB00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "en.lproj/Version History.rtf"; sourceTree = "<group>"; };
 		2A8663CF18C93FF200A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/Version History.rtf"; sourceTree = "<group>"; };
-		2A8663D618C9406800A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/License.txt; sourceTree = "<group>"; };
-		2A8663D918C9406D00A6F9CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = "en.lproj/OgreKit License.txt"; sourceTree = "<group>"; };
 		2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -338,7 +336,6 @@
 		8CC5044208EE829500A525A6 /* CEPrintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintView.h; sourceTree = "<group>"; };
 		8CC5044308EE829500A525A6 /* CEPrintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintView.m; sourceTree = "<group>"; };
 		8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultMenuKeyBindings.plist; path = KeyBindings/DefaultMenuKeyBindings.plist; sourceTree = "<group>"; };
-		8CCB5C35083F1F3C0022BA2A /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Credits.rtf; path = credits/Credits.rtf; sourceTree = "<group>"; };
 		8CD7A93909CBDDDC00739513 /* CESubSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESubSplitView.h; sourceTree = "<group>"; };
 		8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESubSplitView.m; sourceTree = "<group>"; };
 		8CE4859608CD617B004817E1 /* CEApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEApplication.h; sourceTree = "<group>"; };
@@ -569,7 +566,6 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8CCB5C35083F1F3C0022BA2A /* Credits.rtf */,
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */,
 				2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */,
 				8C7400A208C6D93900683672 /* KeyBindingManager.xib */,
@@ -612,8 +608,7 @@
 		2A8663B218C93D5700A6F9CC /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */,
-				2A8663D718C9406800A6F9CC /* License.txt */,
+				2A067B9818D52F5200546280 /* Acknowledgements.rtf */,
 				2A8663B018C93D2200A6F9CC /* ReadMe.rtf */,
 				2A8663CB18C93FEB00A6F9CC /* Version History.rtf */,
 			);
@@ -751,8 +746,6 @@
 				25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */,
 				258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */,
 				8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */,
-				2A8663D818C9406D00A6F9CC /* OgreKit License.txt in Resources */,
-				2A8663D518C9406800A6F9CC /* License.txt in Resources */,
 				8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */,
 				8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */,
 				8CA71BCE07D2A79100C146B0 /* biggerFont.tiff in Resources */,
@@ -773,7 +766,6 @@
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
 				8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */,
 				8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */,
-				8CCB5C36083F1F3C0022BA2A /* Credits.rtf in Resources */,
 				8C9997C10873DB73003F4294 /* defaultSyntaxStyle_Perl.plist in Resources */,
 				8C9997DD0873EDF6003F4294 /* defaultSyntaxStyle_Shell Script.plist in Resources */,
 				8CB3AF69087F9335004BFDDD /* defaultSyntaxStyle_JavaScript.plist in Resources */,
@@ -787,6 +779,7 @@
 				8C74017708C7364400683672 /* defaultSyntaxStyle_LaTeX.plist in Resources */,
 				8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */,
 				8C0FE15A08D7FDAA00B2B71B /* DefaultTextKeyBindings.plist in Resources */,
+				2A067B9A18D52F5200546280 /* Acknowledgements.rtf in Resources */,
 				8C78824708ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist in Resources */,
 				8CE68107090A1C6900D50390 /* Pref_View.tiff in Resources */,
 				8CE68108090A1C6900D50390 /* Pref_FileDrop.tiff in Resources */,
@@ -930,6 +923,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		2A067B9818D52F5200546280 /* Acknowledgements.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A067B9918D52F5200546280 /* en */,
+				2A067B9B18D52F5700546280 /* ja */,
+			);
+			name = Acknowledgements.rtf;
+			sourceTree = "<group>";
+		};
 		2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -964,22 +966,6 @@
 				2A8663CF18C93FF200A6F9CC /* ja */,
 			);
 			name = "Version History.rtf";
-			sourceTree = "<group>";
-		};
-		2A8663D718C9406800A6F9CC /* License.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A8663D618C9406800A6F9CC /* en */,
-			);
-			name = License.txt;
-			sourceTree = "<group>";
-		};
-		2A8663DA18C9406D00A6F9CC /* OgreKit License.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A8663D918C9406D00A6F9CC /* en */,
-			);
-			name = "OgreKit License.txt";
 			sourceTree = "<group>";
 		};
 		8C28CD2C081101A300733DA7 /* ScriptManager.xib */ = {

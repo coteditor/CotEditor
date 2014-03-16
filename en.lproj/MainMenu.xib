@@ -724,13 +724,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="830"/>
-                                        <menuItem title="License" tag="100" id="821">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openBundledDocument:" target="290" id="829"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="OgreKit License" tag="101" id="824">
+                                        <menuItem title="Acknowledgements" tag="101" id="824">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="825"/>

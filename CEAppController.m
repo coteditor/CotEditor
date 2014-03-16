@@ -773,7 +773,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *fileName = k_bundleDocumentDict[@([sender tag])];
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:nil];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"rtf"];
     
     [[NSWorkspace sharedWorkspace] openURL:URL];
 }
