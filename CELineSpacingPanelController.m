@@ -78,7 +78,7 @@
 // show window
 // ------------------------------------------------------
 {
-    [self setLineSpacing:[[self documentWindowController] lineSpacingInTextView]];
+    [self setLineSpacing:[[[[self documentWindowController] editorView] textView] lineSpacing]];
     
     [super showWindow:sender];
 }
@@ -92,7 +92,7 @@
 // apply to the frontmost document window
 // ------------------------------------------------------
 {
-    [[self documentWindowController] setLineSpacingInTextView:[self lineSpacing]];
+    [[[[self documentWindowController] editorView] textView] setLineSpacing:[self lineSpacing]];
     [[self window] close];
 }
 

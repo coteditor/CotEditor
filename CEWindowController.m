@@ -36,6 +36,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEOpacityPanelController.h"
 #import "CEEditorView.h"
 
+
+@interface CEWindowController ()
+
+@property (nonatomic, assign, readwrite) IBOutlet CEEditorView *editorView;
+
+@end
+
 @implementation CEWindowController
 
 #pragma mark ===== Public method =====
@@ -84,11 +91,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_toolbarController setupToolbar];
     
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
-    [[self document] setEditorView:_editorView];
+    [[self document] setEditorView:[self editorView]];
     // デフォルト行末コードをセット
     [[self document] setLineEndingCharToView:[[theValues valueForKey:k_key_defaultLineEndCharCode] integerValue]];
     // 不可視文字の表示／非表示をセット
-    [_editorView setShowInvisibleChars:[[self document] canActivateShowInvisibleCharsItem]];
+    [[self editorView] setShowInvisibleChars:[[self document] canActivateShowInvisibleCharsItem]];
     // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
     [self setupPrintValues];
     // テキストを表示
@@ -300,7 +307,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // テキストビューの不透明度を返す
 // ------------------------------------------------------
 {
-    return [[[_editorView textView] backgroundColor] alphaComponent];
+    return [[[[self editorView] textView] backgroundColor] alphaComponent];
 }
 
 // ------------------------------------------------------
@@ -313,30 +320,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     sanitizedAlpha = MAX(alpha, 0.2);
     sanitizedAlpha = MIN(alpha, 1.0);
     
-    [[_editorView splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
-}
-
-
-// ------------------------------------------------------
-- (CGFloat)lineSpacingInTextView
-// テキストビューに設定されている行間値を返す
-// ------------------------------------------------------
-{
-    return (CGFloat)[[(CEEditorView *)_editorView textView] lineSpacing];
-}
-
-
-// ------------------------------------------------------
-- (void)setLineSpacingInTextView:(CGFloat)lineSpacing
-// テキストビューにカスタム行間値をセットする
-// ------------------------------------------------------
-{
-    CGFloat sanitizedSpacing = lineSpacing;
-    
-    sanitizedSpacing = MAX(sanitizedSpacing, k_lineSpacingMin);
-    sanitizedSpacing = MIN(sanitizedSpacing, k_lineSpacingMax);
-    
-    [[(CEEditorView *)_editorView textView] setNewLineSpacingAndUpdate:sanitizedSpacing];
+    [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
 }
 
 
@@ -416,7 +400,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // *OgreKit method. to pass the main textView.
 // ------------------------------------------------------
 {
-    [inTextFinder setTargetToFindIn:[_editorView textView]];
+    [inTextFinder setTargetToFindIn:[[self editorView] textView]];
 }
 
 
@@ -448,7 +432,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
         if (_recolorWithBecomeKey) {
             [self setRecolorWithBecomeKey:NO];
-            [[self document] doSetSyntaxStyle:[_editorView syntaxStyleNameToColoring]];
+            [[self document] doSetSyntaxStyle:[[self editorView] syntaxStyleNameToColoring]];
         }
     }
 }
@@ -480,8 +464,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([[inTabViewItem identifier] isEqualToString:k_infoIdentifier]) {
         [self updateFileAttrsInformation];
-        [_editorView updateDocumentInfoStringWithDrawerForceUpdate:YES];
-        [_editorView updateLineEndingsInStatusAndInfo:YES];
+        [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
+        [[self editorView] updateLineEndingsInStatusAndInfo:YES];
     } else if ([[inTabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
         [self updateIncompatibleCharList];
     }
@@ -538,8 +522,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (theTabState) {
             // 情報の更新
             [self updateFileAttrsInformation];
-            [_editorView updateDocumentInfoStringWithDrawerForceUpdate:YES];
-            [_editorView updateLineEndingsInStatusAndInfo:YES];
+            [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
+            [[self editorView] updateLineEndingsInStatusAndInfo:YES];
         } else {
             [_tabView selectTabViewItemWithIdentifier:k_infoIdentifier];
         }
