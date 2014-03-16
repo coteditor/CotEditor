@@ -43,7 +43,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     IBOutlet id _gotoIndexField;
     IBOutlet id _gotoSelectButton;
     IBOutlet id _gotoCharLineMatrix;
-    IBOutlet id _lineSpacingField;
 
     BOOL _isOpenHidden;
 }
@@ -65,8 +64,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)gotoCharacterOrLine:(id)sender;
 - (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender;
 - (IBAction)setSelectAccessoryEncodingMenuToDefault:(id)sender;
-- (IBAction)openLineSpacingPanel:(id)sender;
-- (IBAction)closeLineSpacingPanel:(id)sender;
-- (IBAction)setCustomLineSpacing:(id)sender;
 
 @end

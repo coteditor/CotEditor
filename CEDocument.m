@@ -1131,33 +1131,6 @@ enum { typeFSS = 'fss ' };
 }
 
 
-// ------------------------------------------------------
-- (CGFloat)lineSpacingInTextView
-// テキストビューに設定されている行間値を返す
-// ------------------------------------------------------
-{
-    return ([[[self editorView] textView] lineSpacing]);
-}
-
-
-// ------------------------------------------------------
-- (void)setCustomLineSpacingToTextView:(CGFloat)inSpacing
-// テキストビューにカスタム行間値をセットする
-// ------------------------------------------------------
-{
-    CGFloat theSpacing;
-
-    if (inSpacing < k_lineSpacingMin) {
-        theSpacing = k_lineSpacingMin;
-    } else if (inSpacing > k_lineSpacingMax) {
-        theSpacing = k_lineSpacingMax;
-    } else {
-        theSpacing = inSpacing;
-    }
-    [[[self editorView] textView] setNewLineSpacingAndUpdate:theSpacing];
-}
-
-
 
 #pragma mark Protocols
 
@@ -2165,7 +2138,7 @@ enum { typeFSS = 'fss ' };
     // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
     [[printView textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
     // プリントビューに行間値／行番号表示の有無を設定
-    [printView setLineSpacing:[self lineSpacingInTextView]];
+    [printView setLineSpacing:[[[self editorView] textView] lineSpacing]];
     [printView setIsShowingLineNum:[[self editorView] showLineNum]];
     // 制御文字印字を取得
     if ([[printValues valueForKey:k_printInvisibleCharIndex] integerValue] == 0) { // = No print

@@ -272,47 +272,6 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 #pragma mark -
-#pragma mark Protocol
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-- (BOOL)validateMenuItem:(NSMenuItem *)inMenuItem
-// メニューの有効化／無効化を制御
-// ------------------------------------------------------
-{
-    if ([inMenuItem action] == @selector(openLineSpacingPanel:)) {
-        CEDocument *theCurDoc = [self currentDocument];
-        if (theCurDoc == nil) {
-            return NO;
-        } else {
-            CGFloat theLineSpacing = [theCurDoc lineSpacingInTextView];
-            BOOL theState = ((theLineSpacing != 0.0) && (theLineSpacing != 0.25) && 
-                    (theLineSpacing != 0.5) && (theLineSpacing != 0.75) && 
-                    (theLineSpacing != 1.0) && (theLineSpacing != 1.25) && 
-                    (theLineSpacing != 1.5) && (theLineSpacing != 1.75) && 
-                    (theLineSpacing != 2.0));
-            if (theState) {
-                [inMenuItem setTitle:
-                        [NSString stringWithFormat:NSLocalizedString(@"Custom [%.2f] ...",@""), theLineSpacing]];
-            } else {
-                [inMenuItem setTitle:NSLocalizedString(@"Custom...",@"")];
-            }
-            [inMenuItem setState:theState];
-            return YES;
-        }
-        return ([self currentDocument] != nil);
-    }
-
-    return [super validateMenuItem:inMenuItem];
-}
-
-
-
-#pragma mark -
 #pragma mark Action messages
 
 //=======================================================
@@ -410,44 +369,6 @@ static NSRect theLatestDocumentWindowFrame;
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     [self setSelectAccessoryEncoding:[[theValues valueForKey:k_key_encodingInOpen] unsignedLongValue]];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)openLineSpacingPanel:(id)sender
-// カスタム行間設定パネルを開く
-// ------------------------------------------------------
-{
-    CEDocument *theCurDoc = [self currentDocument];
-    CGFloat theLineSpacing = [theCurDoc lineSpacingInTextView];
-
-    if (theCurDoc) {
-        [_lineSpacingField setStringValue:[NSString stringWithFormat:@"%.2f", theLineSpacing]];
-        [[_lineSpacingField window] makeKeyAndOrderFront:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-- (IBAction)closeLineSpacingPanel:(id)sender
-// カスタム行間設定パネルを閉じる
-// ------------------------------------------------------
-{
-    [[_lineSpacingField window] orderOut:nil];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)setCustomLineSpacing:(id)sender
-// カスタム行間設定を実行
-// ------------------------------------------------------
-{
-    CEDocument *theCurDoc = [self currentDocument];
-
-    if (theCurDoc) {
-        [theCurDoc setCustomLineSpacingToTextView:(CGFloat)[_lineSpacingField doubleValue]];
-    }
-    [self closeLineSpacingPanel:nil];
 }
 
 @end

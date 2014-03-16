@@ -283,18 +283,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行間値を返す
 // ------------------------------------------------------
 {
-    CGFloat theSpacing = [self lineSpacingInTextView];
-
-    return @(theSpacing);
+    return @([[[self editorView] textView] lineSpacing]);
 }
 
 
 // ------------------------------------------------------
-- (void)setLineSpacing:(NSNumber *)inSpacing
+- (void)setLineSpacing:(NSNumber *)lineSpacing
 // 行間値をセット
 // ------------------------------------------------------
 {
-    [self setCustomLineSpacingToTextView:(CGFloat)[inSpacing doubleValue]];
+    [[[self editorView] textView] setLineSpacing:(CGFloat)[lineSpacing doubleValue]];
 }
 
 

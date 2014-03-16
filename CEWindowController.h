@@ -72,6 +72,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 @property (nonatomic) CGFloat alpha;
+@property (nonatomic) CGFloat lineSpacingInTextView;
 
 // Public method
 - (id)toolbarController;

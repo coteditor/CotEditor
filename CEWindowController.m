@@ -34,6 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEWindowController.h"
 #import "CEDocumentController.h"
 #import "CEOpacityPanelController.h"
+#import "CEEditorView.h"
 
 @implementation CEWindowController
 
@@ -313,6 +314,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     sanitizedAlpha = MIN(alpha, 1.0);
     
     [[_editorView splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
+}
+
+
+// ------------------------------------------------------
+- (CGFloat)lineSpacingInTextView
+// テキストビューに設定されている行間値を返す
+// ------------------------------------------------------
+{
+    return (CGFloat)[[(CEEditorView *)_editorView textView] lineSpacing];
+}
+
+
+// ------------------------------------------------------
+- (void)setLineSpacingInTextView:(CGFloat)lineSpacing
+// テキストビューにカスタム行間値をセットする
+// ------------------------------------------------------
+{
+    CGFloat sanitizedSpacing = lineSpacing;
+    
+    sanitizedSpacing = MAX(sanitizedSpacing, k_lineSpacingMin);
+    sanitizedSpacing = MIN(sanitizedSpacing, k_lineSpacingMax);
+    
+    [[(CEEditorView *)_editorView textView] setNewLineSpacingAndUpdate:sanitizedSpacing];
 }
 
 
