@@ -430,14 +430,14 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 // ------------------------------------------------------
 {
     switch (alignmentType) {
+        case CEAlignLeft:
+            return k_printHFHorizontalMargin;
+            break;
         case CEAlignCenter:
             return (borderWidth - [attrString size].width) / 2;
             break;
         case CEAlignRight:
             return (borderWidth - [attrString size].width) - k_printHFHorizontalMargin;
-            break;
-        default:
-            return k_printHFHorizontalMargin;
             break;
     }
 }
