@@ -126,11 +126,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _textViewCore = [[CETextViewCore allocWithZone:[self zone]] 
                     initWithFrame:theTextFrame textContainer:theTextContainer]; // ===== alloc
         [_textViewCore setDelegate:self];
-        // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                    selector:@selector(textDidReplaceAll:) 
-                    name:@"textDidReplaceAllNotification" 
-                    object:_textViewCore];
+        
+//        !!!: OgreKitの改造部分が失われたため現在機能していない (2014-03-16 by 1024jp)
+//        // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
+//        [[NSNotificationCenter defaultCenter] addObserver:self 
+//                    selector:@selector(textDidReplaceAll:) 
+//                    name:@"textDidReplaceAllNotification" 
+//                    object:_textViewCore];
         [_scrollView setDocumentView:_textViewCore];
 
         // slave view をセット
@@ -769,6 +771,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 // Notification method (OgreKit 改)
 //  <== OgreReplaceAllThread
+//  !!!: OgreKitの改造部分が失われたため現在機能していない (2014-03-16 by 1024jp)
 //=======================================================
 
 // ------------------------------------------------------
