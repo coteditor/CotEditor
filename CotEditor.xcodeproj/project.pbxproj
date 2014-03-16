@@ -242,6 +242,7 @@
 		2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineSpacingPanelController.h; sourceTree = "<group>"; };
 		2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineSpacingPanelController.m; sourceTree = "<group>"; };
 		2A5B998A18D61443009C2F4F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LineSpacingPanel.xib; sourceTree = "<group>"; };
+		2A5B998C18D634A3009C2F4F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/LineSpacingPanel.xib; sourceTree = "<group>"; };
 		2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_XML.plist; path = SyntaxColorings/defaultSyntaxStyle_XML.plist; sourceTree = "<group>"; };
 		2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Apache.plist; path = SyntaxColorings/defaultSyntaxStyle_Apache.plist; sourceTree = "<group>"; };
 		2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Markdown.plist; path = SyntaxColorings/defaultSyntaxStyle_Markdown.plist; sourceTree = "<group>"; };
@@ -988,6 +989,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A5B998A18D61443009C2F4F /* en */,
+				2A5B998C18D634A3009C2F4F /* ja */,
 			);
 			name = LineSpacingPanel.xib;
 			sourceTree = "<group>";
