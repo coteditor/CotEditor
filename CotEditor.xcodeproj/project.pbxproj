@@ -49,6 +49,8 @@
 		2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */; };
 		2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230416D3CF4F00F49864 /* swapArrow.pdf */; };
 		2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* opacityGuide.pdf */; };
+		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */; };
 		2A6394DA18B0BFA0008D304D /* defaultSyntaxStyle_XML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */; };
 		2A6394DC18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */; };
 		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
@@ -235,6 +237,10 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptManager.xib; sourceTree = "<group>"; };
+		2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineSpacingPanelController.h; sourceTree = "<group>"; };
+		2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineSpacingPanelController.m; sourceTree = "<group>"; };
+		2A5B998A18D61443009C2F4F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LineSpacingPanel.xib; sourceTree = "<group>"; };
+		2A5B998C18D634A3009C2F4F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/LineSpacingPanel.xib; sourceTree = "<group>"; };
 		2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_XML.plist; path = SyntaxColorings/defaultSyntaxStyle_XML.plist; sourceTree = "<group>"; };
 		2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Apache.plist; path = SyntaxColorings/defaultSyntaxStyle_Apache.plist; sourceTree = "<group>"; };
 		2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Markdown.plist; path = SyntaxColorings/defaultSyntaxStyle_Markdown.plist; sourceTree = "<group>"; };
@@ -499,6 +505,8 @@
 				8C4186BE088648CA0039FBFC /* CEHCCManager.m */,
 				2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */,
 				2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */,
+				2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */,
+				2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */,
 				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
 				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
 				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
@@ -588,6 +596,7 @@
 				8C28CD2C081101A300733DA7 /* ScriptManager.xib */,
 				8C4186CE08864B3E0039FBFC /* HCCManager.xib */,
 				2A94A46218D0F166009FA90D /* OpacityPanel.xib */,
+				2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */,
 				2A9A144A18B67846001080D6 /* Images.xcassets */,
 				8CB0122007CA0CCD00221EDC /* toolbarIcons */,
 				25972A7107B87293005EB175 /* images */,
@@ -816,6 +825,7 @@
 				6CA3B3E312E3B59B0019AB2E /* Script in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */,
+				2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */,
 				2A07230616D3CF4F00F49864 /* addButtonImg.pdf in Resources */,
 				2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */,
 				2A94A46018D0F166009FA90D /* OpacityPanel.xib in Resources */,
@@ -869,6 +879,7 @@
 				8C49092D07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
+				2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,
 				8C4186C0088648CA0039FBFC /* CEHCCManager.m in Sources */,
@@ -965,6 +976,15 @@
 				6C1E212512C9E65600194313 /* ja */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5B998A18D61443009C2F4F /* en */,
+				2A5B998C18D634A3009C2F4F /* ja */,
+			);
+			name = LineSpacingPanel.xib;
 			sourceTree = "<group>";
 		};
 		2A8663B018C93D2200A6F9CC /* ReadMe.rtf */ = {

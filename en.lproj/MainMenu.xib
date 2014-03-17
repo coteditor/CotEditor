@@ -454,7 +454,7 @@
                                         </menuItem>
                                         <menuItem title="Custom..." id="772">
                                             <connections>
-                                                <action selector="openLineSpacingPanel:" target="329" id="784"/>
+                                                <action selector="openLineSpacingPanel:" target="290" id="QKf-LD-jaO"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -754,7 +754,6 @@
                 <outlet property="_gotoCharLineMatrix" destination="549" id="629"/>
                 <outlet property="_gotoIndexField" destination="551" id="558"/>
                 <outlet property="_gotoSelectButton" destination="552" id="563"/>
-                <outlet property="_lineSpacingField" destination="778" id="782"/>
                 <outlet property="_openPanelAccessoryView" destination="339" id="348"/>
             </connections>
         </customObject>
@@ -853,77 +852,6 @@ DQ
             </view>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
-        <window title="Line Spacing (Custom)" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="lineSpacingPanel" animationBehavior="default" id="773" userLabel="LineSpacingPanel" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="396" y="383" width="240" height="112"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="213" height="113"/>
-            <view key="contentView" id="774">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="112"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <textField verticalHuggingPriority="750" id="777">
-                        <rect key="frame" x="141" y="70" width="64" height="14"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="line(s)" id="812">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="778">
-                        <rect key="frame" x="51" y="70" width="84" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="813">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" id="779">
-                        <rect key="frame" x="126" y="13" width="100" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="814">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setCustomLineSpacing:" target="329" id="783"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="780">
-                        <rect key="frame" x="26" y="13" width="100" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="815">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="closeLineSpacingPanel:" target="329" id="785"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" id="787">
-                        <rect key="frame" x="51" y="49" width="84" height="13"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="( 0 - 10.0 )" id="816">
-                            <font key="font" metaFont="label"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                </subviews>
-            </view>
-            <connections>
-                <outlet property="initialFirstResponder" destination="778" id="781"/>
-            </connections>
-        </window>
         <customObject id="831" customClass="SUUpdater"/>
         <menuItem isSeparatorItem="YES" id="ohG-o3-P9R"/>
     </objects>

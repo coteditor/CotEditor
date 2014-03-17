@@ -41,7 +41,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 {
-    IBOutlet id _editorView;
     IBOutlet id _drawer;
     IBOutlet id _tabViewSelectionPopUpButton;
     IBOutlet id _tabView;
@@ -71,6 +70,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL _recolorWithBecomeKey;
 }
 
+@property (nonatomic, assign, readonly) IBOutlet CEEditorView *editorView;
 @property (nonatomic) CGFloat alpha;
 
 // Public method

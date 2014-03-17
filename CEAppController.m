@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEAppController.h"
 #import "CEOpacityPanelController.h"
+#import "CELineSpacingPanelController.h"
 
 //=======================================================
 // Private method
@@ -670,6 +671,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+// ------------------------------------------------------
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// メニューの有効化／無効化を制御
+// ------------------------------------------------------
+{
+    if ([menuItem action] == @selector(openLineSpacingPanel:) ||
+        [menuItem action] == @selector(openOpacityPanel:)) {
+        return ([[CEDocumentController sharedDocumentController] currentDocument] != nil);
+    }
+    
+    return YES;
+}
+
+
+
 #pragma mark ===== Action messages =====
 
 //=======================================================
@@ -721,6 +737,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[CEOpacityPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+- (IBAction)openLineSpacingPanel:(id)sender
+// 行間設定パネルを開く
+// ------------------------------------------------------
+{
+    [[CELineSpacingPanelController sharedController] showWindow:self];
 }
 
 
