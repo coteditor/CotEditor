@@ -251,7 +251,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [theEncodings addObject:@(theEncoding)];
         }
         _invalidYenEncodings = [theEncodings retain];
-        _thousandsSeparator = [[[NSUserDefaults standardUserDefaults] valueForKey:NSLocaleGroupingSeparator] retain];
         _didFinishLaunching = NO;
     }
     return self;
@@ -267,7 +266,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_encodingMenu release];
     [_syntaxMenu release];
     [_invalidYenEncodings release];
-    [_thousandsSeparator release];
 
     [super dealloc];
 }
@@ -480,36 +478,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return @"";
     }
-
-}
-
-
-// ------------------------------------------------------
-- (NSString *)stringFromUnsignedInt:(NSUInteger)inInt
-// NSUInteger を文字列に変換するユーティリティメソッド
-//------------------------------------------------------
-{
-// このメソッドは、Smultron を参考にさせていただきました。(2006.04.30)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
-// Leopard で検証した限りでは、NSNumberFormatter を使うよりも速い (2008.04.05)
-
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableString *outString = [NSMutableString stringWithFormat:@"%lu", (unsigned long)inInt];
-
-    if ((![[theValues valueForKey:k_key_showStatusBarThousSeparator] boolValue]) || 
-                (_thousandsSeparator == nil) || ([_thousandsSeparator length] < 1)) {
-        return outString;
-    }
-    NSInteger thePosition = [outString length] - 3;
-
-    while (thePosition > 0) {
-        [outString insertString:_thousandsSeparator atIndex:thePosition];
-        thePosition -= 3;
-    }
-    return outString;
 }
 
 

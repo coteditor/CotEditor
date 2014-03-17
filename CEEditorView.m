@@ -43,6 +43,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //=======================================================
 
+@interface CEEditorView ()
+
+@property (nonatomic, retain) NSNumberFormatter *decimalFormatter;
+
+@end
+
 @interface CEEditorView (Private)
 - (void)setupViews;
 - (void)setupViewParamsInInit:(BOOL)inBool;
@@ -78,6 +84,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:inFrame];
     if (self) {
+        // set number formatter for status bar
+        [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
+        [[self decimalFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_showStatusBarThousSeparator]) {
+            [[self decimalFormatter] setThousandSeparator:@""];
+        }
+        
         [self setupViews];
     }
     return self;
@@ -94,6 +107,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_textViewCore release];
     [_splitView release];
     [_statusBar release];
+    [_decimalFormatter release];
 
     [super dealloc];
 }
@@ -765,29 +779,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 unichar theCharacter = [theString characterAtIndex:selectedRange.location];
                 singleCharInfo = [NSString stringWithFormat:@"0x%.4X",theCharacter];
                 statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@) [:%@]   Unicode: %@", nil),
-                    [[NSApp delegate] stringFromUnsignedInt:currentLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:numberOfLines], 
-                    [[NSApp delegate] stringFromUnsignedInt:selectedRange.location], 
-                    [[NSApp delegate] stringFromUnsignedInt:length], 
-                    [[NSApp delegate] stringFromUnsignedInt:countInLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:selectedRange.length], 
+                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
+                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
+                    [[self decimalFormatter] stringFromNumber:@(length)],
+                    [[self decimalFormatter] stringFromNumber:@(countInLine)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.length)],
                     singleCharInfo];
             } else {
                 statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@) [:%@]", nil),
-                    [[NSApp delegate] stringFromUnsignedInt:currentLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:numberOfLines], 
-                    [[NSApp delegate] stringFromUnsignedInt:selectedRange.location], 
-                    [[NSApp delegate] stringFromUnsignedInt:length], 
-                    [[NSApp delegate] stringFromUnsignedInt:countInLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:selectedRange.length]];
+                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
+                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
+                    [[self decimalFormatter] stringFromNumber:@(length)],
+                    [[self decimalFormatter] stringFromNumber:@(countInLine)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.length)]];
             }
         } else {
             statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@)", nil),
-                    [[NSApp delegate] stringFromUnsignedInt:currentLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:numberOfLines], 
-                    [[NSApp delegate] stringFromUnsignedInt:selectedRange.location], 
-                    [[NSApp delegate] stringFromUnsignedInt:length], 
-                    [[NSApp delegate] stringFromUnsignedInt:countInLine]];
+                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
+                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
+                    [[self decimalFormatter] stringFromNumber:@(length)],
+                    [[self decimalFormatter] stringFromNumber:@(countInLine)]];
         }
         [[_statusBar leftTextField] setStringValue:statusString];
     }
@@ -1370,7 +1384,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _incompatibleCharTimer = nil;
     }
 }
-
-
 
 @end
