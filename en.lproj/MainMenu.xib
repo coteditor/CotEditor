@@ -853,6 +853,5 @@ DQ
         </window>
         <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
         <customObject id="831" customClass="SUUpdater"/>
-        <menuItem isSeparatorItem="YES" id="ohG-o3-P9R"/>
     </objects>
 </document>
