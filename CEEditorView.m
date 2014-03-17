@@ -591,6 +591,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theSubSplitViews = [[self splitView] subviews];
     NSString *theNewLineString;
     BOOL theBoolUpdate = ([self lineEndingCharacter] != inNewLineEnding);
+    unichar theChar[2];
 
     if ((inNewLineEnding > OgreNonbreakingNewlineCharacter) && 
             (inNewLineEnding <= OgreWindowsNewlineCharacter)) {
@@ -601,30 +602,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _lineEndingCharacter = theDefaultLineEnd;
     }
     // set to textViewCore.
-    if (_lineEndingCharacter == OgreLfNewlineCharacter) {
-        // LF
-        theNewLineString = @"\n";
-    } else if (_lineEndingCharacter == OgreCrNewlineCharacter) {
-        // CR
-        theNewLineString = @"\r";
-    } else if (_lineEndingCharacter == OgreCrLfNewlineCharacter) {
-        // CR+LF
-        theNewLineString = @"\r\n";
-    }  else if (_lineEndingCharacter == OgreUnicodeLineSeparatorNewlineCharacter) {
-        // Unicode line separator
-        unichar theChar[2];
-        theChar[0] = 0x2028; theChar[1] = 0;
-        theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
-    } else if (_lineEndingCharacter == OgreUnicodeParagraphSeparatorNewlineCharacter) {
-        // Unicode paragraph separator
-        unichar theChar[2];
-        theChar[0] = 0x2029; theChar[1] = 0;
-        theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
-    } else if (_lineEndingCharacter == OgreNonbreakingNewlineCharacter) {
-        // 改行なしの場合
-        theNewLineString = @"";
-    } else {
-        return;
+    switch (_lineEndingCharacter) {
+        case OgreLfNewlineCharacter:
+            theNewLineString = @"\n";  // LF
+            break;
+        case OgreCrNewlineCharacter:  // CR
+            theNewLineString = @"\r";
+            break;
+        case OgreCrLfNewlineCharacter:  // CR+LF
+            theNewLineString = @"\r\n";
+            break;
+        case OgreUnicodeLineSeparatorNewlineCharacter:  // Unicode line separator
+            theChar[0] = 0x2028; theChar[1] = 0;
+            theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            break;
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:  // Unicode paragraph separator
+            theChar[0] = 0x2029; theChar[1] = 0;
+            theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            break;
+        case OgreNonbreakingNewlineCharacter:  // 改行なしの場合
+            theNewLineString = @"";
+            break;
+            
+        default:
+            return;
     }
     for (NSTextContainer *container in theSubSplitViews) {
         [(CETextViewCore *)[container textView] setNewLineString:theNewLineString];
@@ -813,24 +814,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     BOOL shouldUpdateStatusBar = [_statusBar showStatusBar];
     BOOL shouldUpdateDrawer = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
-    if ((!shouldUpdateStatusBar) && (!shouldUpdateDrawer)) { return; }
+    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    
     NSString *encodingInfo, *lineEndingsInfo;
-
-    if (_lineEndingCharacter == OgreLfNewlineCharacter) {
-        lineEndingsInfo = @"LF";
-    } else if (_lineEndingCharacter == OgreCrNewlineCharacter) {
-        lineEndingsInfo = @"CR";
-    } else if (_lineEndingCharacter == OgreCrLfNewlineCharacter) {
-        lineEndingsInfo = @"CRLF";
-    }  else if (_lineEndingCharacter == OgreUnicodeLineSeparatorNewlineCharacter) {
-        lineEndingsInfo = @"U-lineSep"; // Unicode line separator
-    } else if (_lineEndingCharacter == OgreUnicodeParagraphSeparatorNewlineCharacter) {
-        lineEndingsInfo = @"U-paraSep"; // Unicode paragraph separator
-    } else if (_lineEndingCharacter == OgreNonbreakingNewlineCharacter) {
-        lineEndingsInfo = @""; // 改行なしの場合
-    } else {
-        return;
+    
+    switch (_lineEndingCharacter) {
+        case OgreLfNewlineCharacter:
+            lineEndingsInfo = @"LF";
+            break;
+        case OgreCrNewlineCharacter:
+            lineEndingsInfo = @"CR";
+            break;
+        case OgreCrLfNewlineCharacter:
+            lineEndingsInfo = @"CRLF";
+            break;
+        case OgreUnicodeLineSeparatorNewlineCharacter:
+            lineEndingsInfo = @"U-lineSep"; // Unicode line separator
+            break;
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:
+            lineEndingsInfo = @"U-paraSep"; // Unicode paragraph separator
+            break;
+        case OgreNonbreakingNewlineCharacter:
+            lineEndingsInfo = @""; // 改行なしの場合
+            break;
+        default:
+            return;
     }
+    
     encodingInfo = [[self document] currentIANACharSetName];
     if (shouldUpdateStatusBar) {
         [[_statusBar rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", encodingInfo, lineEndingsInfo]];
