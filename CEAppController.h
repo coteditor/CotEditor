@@ -48,7 +48,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenu *_encodingMenu;
     NSMenu *_syntaxMenu;
     NSArray *_invalidYenEncodings;
-    NSString *_thousandsSeparator;
 
     BOOL _didFinishLaunching;
 }
@@ -72,7 +71,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)isInvalidYenEncoding:(NSStringEncoding)inEncoding;
 - (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask
         fromString:(NSString *)inString includingCommandKey:(BOOL)inBool;
-- (NSString *)stringFromUnsignedInt:(NSUInteger)inInt;
 
 // Action Message
 - (IBAction)openPrefWindow:(id)sender;

@@ -158,7 +158,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setInfoEncoding:(NSString *)inString
+- (void)setEncodingInfo:(NSString *)inString
 // 文書のエンコーディング情報を設定
 // ------------------------------------------------------
 {
@@ -167,7 +167,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setInfoLineEndings:(NSString *)inString
+- (void)setLineEndingsInfo:(NSString *)inString
 // 文書の行末コード情報を設定
 // ------------------------------------------------------
 {
@@ -176,7 +176,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setInfoLine:(NSString *)inString
+- (void)setLineInfo:(NSString *)inString
 // 文書の行情報を設定
 // ------------------------------------------------------
 {
@@ -185,7 +185,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setInfoChar:(NSString *)inString
+- (void)setCharInfo:(NSString *)inString
 // 文書の文字情報を設定
 // ------------------------------------------------------
 {
@@ -194,7 +194,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setInfoSelect:(NSString *)inString
+- (void)setSelectInfo:(NSString *)inString
 // 文書の選択範囲情報を設定
 // ------------------------------------------------------
 {
@@ -203,7 +203,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setInfoInLine:(NSString *)inString
+- (void)setInLineInfo:(NSString *)inString
 // 文書の行頭からのキャレット位置をセット
 // ------------------------------------------------------
 {
@@ -212,7 +212,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setInfoSingleChar:(NSString *)inString
+- (void)setSingleCharInfo:(NSString *)inString
 // 文書の選択範囲情報を設定
 // ------------------------------------------------------
 {
