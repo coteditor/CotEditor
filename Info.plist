@@ -89,7 +89,7 @@
 	<key>NSPrincipalClass</key>
 	<string>CEApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://coteditor.sourceforge.jp/appcast.xml</string>
+	<string>http://coteditor.github.io/releasenotes/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>
