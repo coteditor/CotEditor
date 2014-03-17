@@ -61,8 +61,9 @@
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		2A94A46018D0F166009FA90D /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A94A46218D0F166009FA90D /* OpacityPanel.xib */; };
+		2A94A46018D0F166009FA90D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
+		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
 		6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB074A11373A03B001D0243 /* Sparkle.framework */; };
@@ -256,9 +257,9 @@
 		2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+ScriptingSupport.m"; sourceTree = "<group>"; };
 		2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOpacityPanelController.h; sourceTree = "<group>"; };
 		2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOpacityPanelController.m; sourceTree = "<group>"; };
-		2A94A46118D0F166009FA90D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
-		2A94A46318D0F16B009FA90D /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2AFFB70618D7BC9300118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
+		2AFFB70818D7BCB300118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/DocWindow.xib; sourceTree = "<group>"; };
 		6C1E212012C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/HCCManager.xib; sourceTree = "<group>"; };
@@ -595,7 +596,7 @@
 				2588E9CC07C4851C0060021D /* Indicator.xib */,
 				8C28CD2C081101A300733DA7 /* ScriptManager.xib */,
 				8C4186CE08864B3E0039FBFC /* HCCManager.xib */,
-				2A94A46218D0F166009FA90D /* OpacityPanel.xib */,
+				2AFFB70518D7BC9300118477 /* OpacityPanel.xib */,
 				2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */,
 				2A9A144A18B67846001080D6 /* Images.xcassets */,
 				8CB0122007CA0CCD00221EDC /* toolbarIcons */,
@@ -766,6 +767,7 @@
 				2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
+				2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */,
 				25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */,
 				258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */,
 				8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */,
@@ -828,7 +830,7 @@
 				2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */,
 				2A07230616D3CF4F00F49864 /* addButtonImg.pdf in Resources */,
 				2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */,
-				2A94A46018D0F166009FA90D /* OpacityPanel.xib in Resources */,
+				2A94A46018D0F166009FA90D /* (null) in Resources */,
 				2A07230816D3CF4F00F49864 /* clearButtonImg.pdf in Resources */,
 				2A9A144B18B67846001080D6 /* Images.xcassets in Resources */,
 				2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */,
@@ -1003,6 +1005,15 @@
 				2A8663CF18C93FF200A6F9CC /* ja */,
 			);
 			name = "Version History.rtf";
+			sourceTree = "<group>";
+		};
+		2AFFB70518D7BC9300118477 /* OpacityPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AFFB70618D7BC9300118477 /* en */,
+				2AFFB70818D7BCB300118477 /* ja */,
+			);
+			name = OpacityPanel.xib;
 			sourceTree = "<group>";
 		};
 		8C28CD2C081101A300733DA7 /* ScriptManager.xib */ = {
