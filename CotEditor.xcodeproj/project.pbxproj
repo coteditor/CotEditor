@@ -26,7 +26,7 @@
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25A1DE2E07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist */; };
 		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
-		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; };
+		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; };
 		2A067B9A18D52F5200546280 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A067B9818D52F5200546280 /* Acknowledgements.rtf */; };
@@ -48,7 +48,7 @@
 		2A07231416D3CF4F00F49864 /* removeButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */; };
 		2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */; };
 		2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230416D3CF4F00F49864 /* swapArrow.pdf */; };
-		2A07231716D3CF4F00F49864 /* transparencyGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* transparencyGuide.pdf */; };
+		2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* opacityGuide.pdf */; };
 		2A6394DA18B0BFA0008D304D /* defaultSyntaxStyle_XML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394D918B0BFA0008D304D /* defaultSyntaxStyle_XML.plist */; };
 		2A6394DC18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DB18B0BFA7008D304D /* defaultSyntaxStyle_Apache.plist */; };
 		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
@@ -57,6 +57,9 @@
 		2A8663AE18C93D2200A6F9CC /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663B018C93D2200A6F9CC /* ReadMe.rtf */; };
 		2A8663C918C93FEB00A6F9CC /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663CB18C93FEB00A6F9CC /* Version History.rtf */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
+		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		2A94A46018D0F166009FA90D /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A94A46218D0F166009FA90D /* OpacityPanel.xib */; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
@@ -223,7 +226,7 @@
 		2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = removeButtonImg.pdf; path = images/removeButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rightButtonImg.pdf; path = images/rightButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230416D3CF4F00F49864 /* swapArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrow.pdf; path = images/swapArrow.pdf; sourceTree = "<group>"; };
-		2A07230516D3CF4F00F49864 /* transparencyGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = transparencyGuide.pdf; path = images/transparencyGuide.pdf; sourceTree = "<group>"; };
+		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDocument.h; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -243,6 +246,12 @@
 		2A8663CF18C93FF200A6F9CC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/Version History.rtf"; sourceTree = "<group>"; };
 		2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
+		2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+ScriptingSupport.h"; sourceTree = "<group>"; };
+		2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+ScriptingSupport.m"; sourceTree = "<group>"; };
+		2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOpacityPanelController.h; sourceTree = "<group>"; };
+		2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOpacityPanelController.m; sourceTree = "<group>"; };
+		2A94A46118D0F166009FA90D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
+		2A94A46318D0F16B009FA90D /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/DocWindow.xib; sourceTree = "<group>"; };
@@ -448,7 +457,7 @@
 				2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */,
 				2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */,
 				2A07230416D3CF4F00F49864 /* swapArrow.pdf */,
-				2A07230516D3CF4F00F49864 /* transparencyGuide.pdf */,
+				2A07230516D3CF4F00F49864 /* opacityGuide.pdf */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -488,6 +497,8 @@
 				258700E4077BAD2200E541BB /* CESyntaxManager.m */,
 				8C4186BD088648CA0039FBFC /* CEHCCManager.h */,
 				8C4186BE088648CA0039FBFC /* CEHCCManager.m */,
+				2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */,
+				2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */,
 				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
 				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
 				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
@@ -506,6 +517,8 @@
 				8C83A48109485F27004E48A8 /* CEATSTypesetter.m */,
 				25859DEB076D75BC0020F779 /* CEWindowController.h */,
 				25859DEC076D75BC0020F779 /* CEWindowController.m */,
+				2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */,
+				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
 				8CB0122B07CA0EFA00221EDC /* CEToolbarController.h */,
 				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
 				2588E9BD07C47ACC0060021D /* CEEditorView.h */,
@@ -574,6 +587,7 @@
 				2588E9CC07C4851C0060021D /* Indicator.xib */,
 				8C28CD2C081101A300733DA7 /* ScriptManager.xib */,
 				8C4186CE08864B3E0039FBFC /* HCCManager.xib */,
+				2A94A46218D0F166009FA90D /* OpacityPanel.xib */,
 				2A9A144A18B67846001080D6 /* Images.xcassets */,
 				8CB0122007CA0CCD00221EDC /* toolbarIcons */,
 				25972A7107B87293005EB175 /* images */,
@@ -804,6 +818,7 @@
 				2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */,
 				2A07230616D3CF4F00F49864 /* addButtonImg.pdf in Resources */,
 				2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */,
+				2A94A46018D0F166009FA90D /* OpacityPanel.xib in Resources */,
 				2A07230816D3CF4F00F49864 /* clearButtonImg.pdf in Resources */,
 				2A9A144B18B67846001080D6 /* Images.xcassets in Resources */,
 				2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */,
@@ -823,7 +838,7 @@
 				2A07231416D3CF4F00F49864 /* removeButtonImg.pdf in Resources */,
 				2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */,
 				2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */,
-				2A07231716D3CF4F00F49864 /* transparencyGuide.pdf in Resources */,
+				2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,6 +867,7 @@
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
 				258A14D107F3C6BC008E5FA1 /* CEFlippedView.m in Sources */,
 				8C49092D07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m in Sources */,
+				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,
@@ -862,6 +878,7 @@
 				8C3BEA2808BDBCA800BC2067 /* CEOutlineMenuButton.m in Sources */,
 				8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */,
 				8CE4859908CD617B004817E1 /* CEApplication.m in Sources */,
+				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */,
 				8C5853360903C1ED0085BC4F /* CETabItemView.m in Sources */,

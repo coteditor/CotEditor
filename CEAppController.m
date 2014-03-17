@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEAppController.h"
+#import "CEOpacityPanelController.h"
 
 //=======================================================
 // Private method
@@ -99,8 +100,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_windowHeight: @450.0f, 
                 k_key_autoExpandTab: @NO, 
                 k_key_tabWidth: @4U, 
-                k_key_windowAlpha: @1.0f, 
-                k_key_alphaOnlyTextView: @YES, 
+                k_key_windowAlpha: @1.0f,  
                 k_key_autoIndent: @YES, 
                 k_key_invisibleCharactersColor: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]], 
                 k_key_showInvisibleSpace: @NO, 
@@ -716,6 +716,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+- (IBAction)openOpacityPanel:(id)sender
+// 不透明度パネルを開く
+// ------------------------------------------------------
+{
+    [[CEOpacityPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
 - (IBAction)newInDockMenu:(id)sender
 // Dockメニューの「新規」メニューアクション（まず自身をアクティベート）
 // ------------------------------------------------------
@@ -870,7 +879,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 廃止したuserDefaultsのデータをユーザのplistから削除
 //------------------------------------------------------
 {
-    NSArray *deprecatedKeys = @[@"statusAreaFontName"  // deprecated on 1.4
+    NSArray *deprecatedKeys = @[@"statusAreaFontName",  // deprecated on 1.4
+                                @"alphaOnlyTextView"    // deprecated on 1.5
                                 ];
     
     for (NSString *key in deprecatedKeys) {

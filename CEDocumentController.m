@@ -214,66 +214,6 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (CGFloat)windowAlphaControllerValue
-// ウィンドウの透明度設定コントローラの値を返す
-// ------------------------------------------------------
-{
-    return (CGFloat)[[[_transparencyController content] valueForKey:k_key_curWindowAlpha] doubleValue];
-}
-
-
-// ------------------------------------------------------
-- (void)setWindowAlphaControllerDictionary:(NSMutableDictionary *)inDict
-// ウィンドウの透明度設定コントローラに値をセット
-// ------------------------------------------------------
-{
-    [_transparencyController setContent:inDict];
-}
-
-
-// ------------------------------------------------------
-- (void)setWindowAlphaControllerValueDefault
-// ウィンドウの透明度設定コントローラにデフォルト値をセット
-// ------------------------------------------------------
-{
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
-    [_transparencyController setContent:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-            [theValues valueForKey:k_key_windowAlpha], k_key_curWindowAlpha, 
-            [theValues valueForKey:k_key_alphaOnlyTextView], k_key_curAlphaOnlyTextView, 
-            nil]];
-}
-
-
-// ------------------------------------------------------
-- (void)setTransparencyPanelControlsEnabledWithDecrement:(BOOL)inValue
-// 透明度設定パネルのコントロール類の有効／無効を制御
-// ------------------------------------------------------
-{
-    NSUInteger theNum = [[self documents] count];
-
-    if (inValue) {
-        theNum--;
-    }
-    if (theNum ==  0) {
-        [self setWindowAlphaControllerValueDefault];
-        [_windowAlphaSlider setEnabled:NO];
-        [_windowAlphaField setTextColor:[NSColor disabledControlTextColor]];
-        [_windowAlphaTextViewOnlyButton setEnabled:NO];
-    } else if (theNum > 0) {
-        [_windowAlphaSlider setEnabled:YES];
-        [_windowAlphaField setTextColor:[NSColor controlTextColor]];
-        [_windowAlphaTextViewOnlyButton setEnabled:YES];
-        if (theNum > 1) {
-            [_windowAlphaSetButton setEnabled:YES];
-        } else {
-            [_windowAlphaSetButton setEnabled:NO];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
 - (void)setGotoPanelControlsEnabledWithDecrement:(BOOL)inValue
 // 文字／行移動パネルのコントロール類の有効／無効を制御
 // ------------------------------------------------------
@@ -416,25 +356,6 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (IBAction)openTransparencyPanel:(id)sender
-// 透明度設定パネルを開く
-// ------------------------------------------------------
-{
-    [self setTransparencyPanelControlsEnabledWithDecrement:NO];
-    [[_windowAlphaSlider window] makeKeyAndOrderFront:nil];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)setAllWindowAlpha:(id)sender
-// すべてのウィンドウの透明度を設定
-// ------------------------------------------------------
-{
-    [[self documents] makeObjectsPerformSelector:@selector(setAlphaToWindowAndTextView)];
-}
-
-
-// ------------------------------------------------------
 - (IBAction)openGotoPanel:(id)sender
 // 文字／行移動パネルを開く
 // ------------------------------------------------------
@@ -528,7 +449,5 @@ static NSRect theLatestDocumentWindowFrame;
     }
     [self closeLineSpacingPanel:nil];
 }
-
-
 
 @end

@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEWindowController.h"
 #import "CEDocumentController.h"
+#import "CEOpacityPanelController.h"
 
 @implementation CEWindowController
 
@@ -58,7 +59,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)windowDidLoad
-// ウィンドウ表示の準備完了時、サイズを設定し文字列／透明度をセット
+// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
@@ -72,13 +73,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // カスケードしないときは、位置をずらす
         [[self window] setFrameTopLeftPoint:[[self document] initTopLeftPoint]];
     }
-    [[self document] setAlphaOnlyTextViewInThisWindow:
-            [[theValues valueForKey:k_key_alphaOnlyTextView] boolValue]];
-    [[self document] setAlphaToWindowAndTextViewDefaultValue];
-    [[CEDocumentController sharedDocumentController] setTransparencyPanelControlsEnabledWithDecrement:NO];
     [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:NO];
+    // 背景をセットアップ
+    [self setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
+    [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
+    [[self window] setOpaque:NO]; // ウィンドウを透明にする
+    
     // ツールバーをセットアップ
     [_toolbarController setupToolbar];
+    
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:_editorView];
     // デフォルト行末コードをセット
@@ -292,6 +295,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+- (CGFloat)alpha
+// テキストビューの不透明度を返す
+// ------------------------------------------------------
+{
+    return [[[_editorView textView] backgroundColor] alphaComponent];
+}
+
+// ------------------------------------------------------
+- (void)setAlpha:(CGFloat)alpha
+// テキストビューの不透明度を変更する
+// ------------------------------------------------------
+{
+    CGFloat sanitizedAlpha;
+    
+    sanitizedAlpha = MAX(alpha, 0.2);
+    sanitizedAlpha = MIN(alpha, 1.0);
+    
+    [[_editorView splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
+}
+
+
+// ------------------------------------------------------
 - (void)setupPrintValues
 // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
 // ------------------------------------------------------
@@ -389,7 +414,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 不可視文字表示メニューのツールチップを更新
     [theEditorView updateShowInvisibleCharsMenuToolTip];
     // アルファ値を反映
-    [[self document] setAlphaValueToTransparencyController];
+    [[CEOpacityPanelController sharedController] setOpacity:[self alpha]];
+    
 
     // シートを表示していなければ、各種更新実行
     if ([[self window] attachedSheet] == nil) {
@@ -419,7 +445,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_tabView unbind:@"selectedIndex"];
 
     // パネル類の片づけ
-    [[CEDocumentController sharedDocumentController] setTransparencyPanelControlsEnabledWithDecrement:YES];
     [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:YES];
 }
 
@@ -465,9 +490,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // ウインドウ背景を戻す
-    if ([[self document] alphaOnlyTextViewInThisWindow]) {
-        [[self window] setBackgroundColor:[NSColor clearColor]];
-    }
+    [[self window] setBackgroundColor:[NSColor clearColor]];
 }
 
 

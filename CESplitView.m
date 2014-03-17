@@ -172,7 +172,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
-// 全てのテキストビューの背景透明度を設定
+// 全てのテキストビューの背景不透明度を設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:)

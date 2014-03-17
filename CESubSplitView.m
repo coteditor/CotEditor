@@ -540,7 +540,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // テキストビューに背景色をセット
 // ------------------------------------------------------
 {
-    [[self textView] setBackgroundColorWithAlpha:(CGFloat)[inNumber doubleValue]];
+    CGFloat alpha = (CGFloat)[inNumber doubleValue];
+    
+    [[self textView] setBackgroundColorWithAlpha:alpha];
+    [[self lineNumView] setBackgroundAlpha:alpha];
+    [[self lineNumView] setNeedsDisplay:YES];
 }
 
 

@@ -60,7 +60,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_autoExpandTab     @"autoExpandTab"
 #define k_key_tabWidth      @"tabWidth"
 #define k_key_windowAlpha   @"windowAlpha"
-#define k_key_alphaOnlyTextView   @"alphaOnlyTextView"
 #define k_key_autoIndent   @"autoIndent"
 #define k_key_invisibleCharactersColor  @"invisibleCharactersColor"
 #define k_key_showInvisibleSpace        @"showInvisibleSpace"
@@ -150,10 +149,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_showAlertForNotWritable       @"showAlertForNotWritable"
 #define k_key_notifyEditByAnother       @"notifyEditByAnother"
 
-
-// transparencyController
-#define k_key_curWindowAlpha    @"curWindowAlpha"
-#define k_key_curAlphaOnlyTextView  @"curAlphaOnlyTextView"
 
 // Tab width values
 #define k_tabWidthMin   1

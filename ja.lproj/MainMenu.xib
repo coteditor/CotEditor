@@ -333,9 +333,9 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="ウインドウの透明度..." keyEquivalent="T" id="367">
+                            <menuItem title="ウインドウの不透明度..." keyEquivalent="T" id="367">
                                 <connections>
-                                    <action selector="openTransparencyPanel:" target="329" id="659"/>
+                                    <action selector="openOpacityPanel:" target="290" id="yHh-1j-g6F"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="611">
@@ -666,9 +666,9 @@
                             <menuItem title="パネル" tag="7999" id="649">
                                 <menu key="submenu" title="パネル" id="650">
                                     <items>
-                                        <menuItem title="透明度パネル" keyEquivalent="1" id="655">
+                                        <menuItem title="不透明度パネル" keyEquivalent="1" id="655">
                                             <connections>
-                                                <action selector="openTransparencyPanel:" target="329" id="657"/>
+                                                <action selector="openOpacityPanel:" target="290" id="Ayh-8i-wKk"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="移動パネル" keyEquivalent="2" id="656">
@@ -756,11 +756,6 @@
                 <outlet property="_gotoSelectButton" destination="552" id="563"/>
                 <outlet property="_lineSpacingField" destination="778" id="782"/>
                 <outlet property="_openPanelAccessoryView" destination="339" id="348"/>
-                <outlet property="_transparencyController" destination="386" id="389"/>
-                <outlet property="_windowAlphaField" destination="371" id="383"/>
-                <outlet property="_windowAlphaSetButton" destination="363" id="384"/>
-                <outlet property="_windowAlphaSlider" destination="361" id="385"/>
-                <outlet property="_windowAlphaTextViewOnlyButton" destination="566" id="573"/>
             </connections>
         </customObject>
         <customView id="339" userLabel="openPanelAccessoryView">
@@ -794,85 +789,6 @@
                 </popUpButton>
             </subviews>
         </customView>
-        <window title="ウインドウの透明度" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="transparencyPanel" animationBehavior="default" id="360" userLabel="TransparencyPanel" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="21" y="309" width="240" height="133"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="213" height="113"/>
-            <view key="contentView" id="359">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="133"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <slider verticalHuggingPriority="750" id="361">
-                        <rect key="frame" x="18" y="61" width="204" height="26"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" numberOfTickMarks="17" allowsTickMarkValuesOnly="YES" sliderType="linear" id="806">
-                            <font key="font" size="12" name="Helvetica"/>
-                        </sliderCell>
-                        <connections>
-                            <action selector="setWindowAlpha:" target="-1" id="557"/>
-                            <binding destination="386" name="value" keyPath="selection.curWindowAlpha" id="387"/>
-                        </connections>
-                    </slider>
-                    <textField verticalHuggingPriority="750" id="371">
-                        <rect key="frame" x="95" y="95" width="40" height="18"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="border" alignment="right" title="1.00" id="808">
-                            <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.00" negativeFormat="-0.00" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="372">
-                                <attributedString key="attributedStringForZero">
-                                    <fragment content="0.00"/>
-                                </attributedString>
-                                <decimal key="minimum" value="NaN"/>
-                                <decimal key="maximum" value="NaN"/>
-                            </numberFormatter>
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="386" name="value" keyPath="selection.curWindowAlpha" id="395">
-                                <dictionary key="options">
-                                    <bool key="NSConditionallySetsEditable" value="NO"/>
-                                    <string key="NSNoSelectionPlaceholder" base64-UTF8="YES">
-IA
-</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </textField>
-                    <button id="566">
-                        <rect key="frame" x="17" y="40" width="178" height="18"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="check" title="テキストビューのみ" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" enabled="NO" inset="2" id="809">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setTransparencyOnlyTextView:" target="-1" id="572"/>
-                            <binding destination="386" name="value" keyPath="selection.curAlphaOnlyTextView" id="571"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="363">
-                        <rect key="frame" x="108" y="19" width="113" height="16"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="push" title="全ウインドウに適用" bezelStyle="rounded" alignment="center" controlSize="mini" enabled="NO" borderStyle="border" inset="2" id="807">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="miniSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setAllWindowAlpha:" target="329" id="559"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-        </window>
-        <objectController id="386" userLabel="TransparencyController">
-            <declaredKeys>
-                <string>curWindowAlpha</string>
-                <string>curAlphaOnlyTextView</string>
-            </declaredKeys>
-        </objectController>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
         <window title="移動" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="gotoWindow" animationBehavior="default" id="547" userLabel="gotoPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>

@@ -71,6 +71,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL _recolorWithBecomeKey;
 }
 
+@property (nonatomic) CGFloat alpha;
+
 // Public method
 - (id)toolbarController;
 - (BOOL)needsInfoDrawerUpdate;

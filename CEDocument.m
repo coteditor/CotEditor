@@ -863,93 +863,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (CGFloat)alpha
-// ウィンドウまたは TextView の透明度を返す
-// ------------------------------------------------------
-{
-    CGFloat outAlpha;
-    if ([self alphaOnlyTextViewInThisWindow]) {
-        outAlpha = [[[[self editorView] textView] backgroundColor] alphaComponent];
-    } else {
-        outAlpha = [[_windowController window] alphaValue];
-    }
-    if (outAlpha < 0.2) {
-        outAlpha = 0.2;
-    } else if (outAlpha > 1.0) {
-        outAlpha = 1.0;
-    }
-
-    return outAlpha;
-}
-
-// ------------------------------------------------------
-- (void)setAlpha:(CGFloat)inAlpha
-// ウィンドウの透明度を変更する
-// ------------------------------------------------------
-{
-    CGFloat theAlpha;
-
-    if (inAlpha < 0.2) {
-        theAlpha = 0.2;
-    } else if (inAlpha > 1.0) {
-        theAlpha = 1.0;
-    } else {
-        theAlpha = inAlpha;
-    }
-    if ([self alphaOnlyTextViewInThisWindow]) {
-        [[_windowController window] invalidateShadow];
-        [[_windowController window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
-        [[_windowController window] setOpaque:NO]; // ウィンドウを透明にする
-        [[_windowController window] setAlphaValue:1.0];
-        [[[self editorView] splitView] setAllBackgroundColorWithAlpha:theAlpha];
-    } else {
-        [[_windowController window] setBackgroundColor:nil]; // 通常の背景色をセット
-        [[_windowController window] setOpaque:YES]; // ウィンドウを不透明にする
-        [[_windowController window] setAlphaValue:theAlpha];
-        [[[self editorView] splitView] setAllBackgroundColorWithAlpha:1.0];
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaToWindowAndTextView
-// ウィンドウの透明度を変更する
-// ------------------------------------------------------
-{
-    CGFloat theAlpha = [[CEDocumentController sharedDocumentController] windowAlphaControllerValue];
-
-    [self setAlpha:theAlpha];
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaToWindowAndTextViewDefaultValue
-// ウィンドウの透明度にデフォルト値をセットする
-// ------------------------------------------------------
-{
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    CGFloat theAlpha = (CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue];
-
-    [self setAlpha:theAlpha];
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaValueToTransparencyController
-// 透明度設定パネルに値をセット
-// ------------------------------------------------------
-{
-    CGFloat theAlpha = [self alpha];
-
-    NSMutableDictionary *outDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-            @(theAlpha), k_key_curWindowAlpha, 
-            @([self alphaOnlyTextViewInThisWindow]), k_key_curAlphaOnlyTextView, 
-            nil];
-    [[CEDocumentController sharedDocumentController] setWindowAlphaControllerDictionary:outDict];
-}
-
-
-// ------------------------------------------------------
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
 // ------------------------------------------------------
@@ -1569,22 +1482,10 @@ enum { typeFSS = 'fss ' };
 
 // ------------------------------------------------------
 - (IBAction)setWindowAlpha:(id)sender
-// ウィンドウの透明度を設定
+// ウィンドウの不透明度を設定
 // ------------------------------------------------------
 {
-    CGFloat theAlpha = (CGFloat)[sender doubleValue];
-    
-    [self setAlpha:theAlpha];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)setTransparencyOnlyTextView:(id)sender
-// 透明度を textView だけに設定するかどうかをセット
-// ------------------------------------------------------
-{
-    [self setAlphaOnlyTextViewInThisWindow:([sender state] == NSOnState)];
-    [self setAlphaToWindowAndTextView];
+    [(CEWindowController *)[self windowController] setAlpha:(CGFloat)[sender doubleValue]];
 }
 
 
