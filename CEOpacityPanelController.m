@@ -81,7 +81,7 @@
     _opacity = opacity;
     
     // apply to the frontmost document window
-    [[self subjectWindowController] setAlpha:opacity];
+    [[self documentWindowController] setAlpha:opacity];
 }
 
 
@@ -108,7 +108,7 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-- (CEWindowController *)subjectWindowController
+- (CEWindowController *)documentWindowController
 // return the frontmost document's window controller (or nil if not exists)
 // ------------------------------------------------------
 {
