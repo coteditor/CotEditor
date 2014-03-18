@@ -1,35 +1,37 @@
 /*
-=================================================
-CEHCCManager
-(for CotEditor)
-
+ =================================================
+ CEHCCManager
+ (for CotEditor)
+ 
  Copyright (C) 2004-2006 nakamuxu.
  Copyright (C) 2014 CotEditor Project
  http://coteditor.github.io
-=================================================
-
-encoding="UTF-8"
-Created:2005.07.14
-
--------------------------------------------------
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. 
-
-
-=================================================
-*/
+ =================================================
+ 
+ encoding="UTF-8"
+ Created:2005.07.14
+ 
+ ___ARC_enabled___
+ 
+ -------------------------------------------------
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ 
+ =================================================
+ */
 
 #import "CEColorCodePanelController.h"
 #import "CEDocument.h"
@@ -38,15 +40,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEColorCodePanelController ()
 
-@property (nonatomic, retain) IBOutlet NSArrayController *foreColorDataController;
-@property (nonatomic, retain) IBOutlet NSArrayController *backColorDataController;
-@property (nonatomic, assign) IBOutlet NSTextField *sampleTextField;
-@property (nonatomic, assign) IBOutlet NSColorWell *foreColorWell;
-@property (nonatomic, assign) IBOutlet NSColorWell *backColorWell;
-@property (nonatomic, assign) IBOutlet NSComboBox *foreColorComboBox;
-@property (nonatomic, assign) IBOutlet NSComboBox *backColorComboBox;
-@property (nonatomic, assign) IBOutlet NSButton *disclosureButton;
-@property (nonatomic, assign) IBOutlet NSBox *optionView;
+@property (nonatomic) IBOutlet NSArrayController *foreColorDataController;
+@property (nonatomic) IBOutlet NSArrayController *backColorDataController;
+@property (nonatomic, weak) IBOutlet NSTextField *sampleTextField;
+@property (nonatomic, weak) IBOutlet NSColorWell *foreColorWell;
+@property (nonatomic, weak) IBOutlet NSColorWell *backColorWell;
+@property (nonatomic, weak) IBOutlet NSComboBox *foreColorComboBox;
+@property (nonatomic, weak) IBOutlet NSComboBox *backColorComboBox;
+@property (nonatomic, weak) IBOutlet NSButton *disclosureButton;
+@property (nonatomic, weak) IBOutlet NSBox *optionView;
 
 @end
 
@@ -113,10 +115,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // NSBundle loadNibNamed: でロードされたオブジェクトを開放
     // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
-    [_foreColorDataController release];
-    [_backColorDataController release];
 
-    [super dealloc];
 }
 
 
@@ -169,7 +168,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self disclosureButton] setState:NSOffState];
     [self toggleDisclosureButton:nil];
     // ArrayController のソート方式をセット
-    NSSortDescriptor *descriptor = [[[NSSortDescriptor alloc] initWithKey:k_HCCDataControllerKey ascending:YES] autorelease];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_HCCDataControllerKey ascending:YES];
     [[self foreColorDataController] setSortDescriptors:@[descriptor]];
     [[self backColorDataController] setSortDescriptors:@[descriptor]];
 }

@@ -98,7 +98,7 @@
 		8C3E2D5F0808E210009894D1 /* StatusArea_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D5A0808E210009894D1 /* StatusArea_Show.tiff */; };
 		8C3E2D610808E210009894D1 /* WrapLines_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D5C0808E210009894D1 /* WrapLines_Off.tiff */; };
 		8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D5D0808E210009894D1 /* WrapLines_On.tiff */; };
-		8C4186C0088648CA0039FBFC /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4186BE088648CA0039FBFC /* CEColorCodePanelController.m */; };
+		8C4186C0088648CA0039FBFC /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4186BE088648CA0039FBFC /* CEColorCodePanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8C4186D008864B3E0039FBFC /* ColorCodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4186CE08864B3E0039FBFC /* ColorCodePanel.xib */; };
 		8C418721088655E00039FBFC /* CEHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C41871F088655E00039FBFC /* CEHexColorTransformer.m */; };
 		8C49092D07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C49092B07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m */; };
@@ -913,10 +913,10 @@
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */,
 				2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */,
+				8C4186C0088648CA0039FBFC /* CEColorCodePanelController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,
-				8C4186C0088648CA0039FBFC /* CEColorCodePanelController.m in Sources */,
 				8C418721088655E00039FBFC /* CEHexColorTransformer.m in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarView.m in Sources */,
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
