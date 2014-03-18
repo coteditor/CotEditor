@@ -42,13 +42,7 @@
 + (CEColorCodePanelController *)sharedController;
 
 // Public method
-- (void)setupHCCValues;
 - (void)importHexColorCodeAsForeColor:(NSString *)codeString;
 - (void)importHexColorCodeAsBackGroundColor:(NSString *)codeString;
-
-// Action Message
-- (IBAction)exportHexColorCode:(id)sender;
-- (IBAction)swapColor:(id)sender;
-- (IBAction)toggleDisclosureButton:(id)sender;
 
 @end

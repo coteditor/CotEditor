@@ -32,9 +32,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEAppController.h"
+#import "CEHexColorTransformer.h"
 #import "CEOpacityPanelController.h"
 #import "CELineSpacingPanelController.h"
 #import "CEGoToPanelController.h"
+#import "CEColorCodePanelController.h"
 
 //=======================================================
 // Private method
@@ -600,8 +602,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             (void)[theAppleScript executeAndReturnError:nil];
         }
     }
-    // HexColorCodeEditorの値を初期化
-    [[CEColorCodePanelController sharedController] setupHCCValues];
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedInstance] setupAtLaunching];
     // ファイルを開くデフォルトエンコーディングをセット

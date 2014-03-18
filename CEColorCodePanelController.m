@@ -115,17 +115,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // NSBundle loadNibNamed: でロードされたオブジェクトを開放
     // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
-
-}
-
-
-// ------------------------------------------------------
-- (void)setupHCCValues
-// パネル位置／内容を初期化
-// ------------------------------------------------------
-{
-    [self setupWindowPosition];
-    [self setupHCCIsOk];
 }
 
 
@@ -162,6 +151,10 @@
 // Nibファイル読み込み直後
 // ------------------------------------------------------
 {
+    // パネル位置／内容を初期化
+    [self setupWindowPosition];
+    [self setupColorCodeValidation];
+    
     // バインディングでは背景色が設定できないので、手動で。
     [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
     // ディスクロージャボタンを初期化
@@ -286,7 +279,7 @@
     [[self backColorComboBox] setStringValue:codeString];
     [[self window] makeFirstResponder:[self foreColorComboBox]];
     // 適正値かどうかの判断基準フラグを初期化
-    [self setupHCCIsOk];
+    [self setupColorCodeValidation];
     // 背景色を強制的に更新
     [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
 }
@@ -357,7 +350,7 @@
 
 
 //------------------------------------------------------
-- (void)setupHCCIsOk
+- (void)setupColorCodeValidation
 // 適正値かどうかの判断基準フラグを初期化
 //------------------------------------------------------
 {
