@@ -1454,15 +1454,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (IBAction)setWindowAlpha:(id)sender
-// ウィンドウの不透明度を設定
-// ------------------------------------------------------
-{
-    [(CEWindowController *)[self windowController] setAlpha:(CGFloat)[sender doubleValue]];
-}
-
-
-// ------------------------------------------------------
 - (IBAction)insertIANACharSetName:(id)sender
 // IANA文字コード名を挿入する
 // ------------------------------------------------------
