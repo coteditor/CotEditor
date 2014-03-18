@@ -10,6 +10,8 @@ CEDocumentController
 
 encoding="UTF-8"
 Created:2004.12.14
+ 
+ ___ARC_enabled___
 
 -------------------------------------------------
 
@@ -33,42 +35,44 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEDocumentController.h"
 
-static CEDocument *theLatestDocument = nil;
-static NSRect theLatestDocumentWindowFrame;
+
+@interface CEDocumentController ()
+
+@property (nonatomic, weak) CEDocument *latestDocument;
+@property (nonatomic) NSRect latestDocumentWindowFrame;
+@property (nonatomic) BOOL isOpenHidden;
+
+@property (nonatomic, weak) IBOutlet NSView *openPanelAccessoryView;
+
+// readonly
+@property (nonatomic, readwrite) IBOutlet NSPopUpButton *accessoryEncodingMenu;
+
+@end
+
+
+#pragma mark -
 
 @implementation CEDocumentController
 
-#pragma mark -
-#pragma mark Public method
+#pragma mark NSDocumentController Methods
 
 //=======================================================
-// Public method
+// NSDocumentController Methods
 //
 //=======================================================
-
-// ------------------------------------------------------
-- (void)dealloc
-// あとかたづけ
-// ------------------------------------------------------
-{
-    theLatestDocument = nil;
-
-    [super dealloc];
-}
-
 
 // ------------------------------------------------------
 - (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
 // 名称未設定ドキュメントを開き、位置を保存
 // ------------------------------------------------------
 {
-    id outDocument = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
+    id document = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
 
-    if (outDocument) {
-        theLatestDocument = outDocument;
-        theLatestDocumentWindowFrame = [[[(CEDocument *)outDocument windowController] window] frame];
+    if (document) {
+        [self setLatestDocument:(CEDocument *)document];
+        [self setLatestDocumentWindowFrame:[[[(CEDocument *)document windowController] window] frame]];
     }
-    return outDocument;
+    return document;
 }
 
 
@@ -77,103 +81,83 @@ static NSRect theLatestDocumentWindowFrame;
 // ファイルからドキュメントを作成
 // ------------------------------------------------------
 {
-    id outDocument = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
+    id document = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
 
-    // 自動的に開かれた名称未設定ドキュメントが未変更のままあるときはそれを上書きする（ように見せる）ための設定を行う
+    // 自動的に開かれた名称未設定ドキュメントが未変更のままあるときはそれを上書きする（ように見せる）
     // 実際の位置の変更は CEWindowController で行う
-    if (outDocument && theLatestDocument && (![(CEDocument *)theLatestDocument isDocumentEdited]) && 
-            NSEqualRects(theLatestDocumentWindowFrame, 
-            [[[(CEDocument *)theLatestDocument windowController] window] frame])) {
+    if (document && [self latestDocument] && ![[self latestDocument] isDocumentEdited] &&
+        NSEqualRects([self latestDocumentWindowFrame], [[[[self latestDocument] windowController] window] frame])) {
         // ウィンドウ位置は、この時点ではまだ新しいドキュメントの windowController がないため、設定できない
-        [outDocument setDoCascadeWindow:NO];
-        [outDocument setInitTopLeftPoint:
-                NSMakePoint(theLatestDocumentWindowFrame.origin.x, NSMaxY(theLatestDocumentWindowFrame))];
+        [document setDoCascadeWindow:NO];
+        [document setInitTopLeftPoint:NSMakePoint(NSMinX([self latestDocumentWindowFrame]),
+                                                  NSMaxY([self latestDocumentWindowFrame]))];
+        [[[[self latestDocument] windowController] window] close];
     }
 
-    return outDocument;
+    return document;
 }
 
 
 // ------------------------------------------------------
-- (id)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument error:(NSError **)outError
-// ファイルを開き、ドキュメントを作成
-// ------------------------------------------------------
-{
-    id outDocument = [super openDocumentWithContentsOfURL:url display:displayDocument error:outError];
-
-    // 自動的に開かれた名称未設定ドキュメントが未変更のままであるときは、それを上書きする（ように見せる）
-    if (outDocument && theLatestDocument && (![(CEDocument *)theLatestDocument isDocumentEdited]) && 
-            NSEqualRects(theLatestDocumentWindowFrame, 
-            [[[(CEDocument *)theLatestDocument windowController] window] frame])) {
-        // 新しく開かれたウィンドウの真下にある名称未設定ドキュメントを閉じる
-        [[[(CEDocument *)theLatestDocument windowController] window] close];
-    }
-
-    return outDocument;
-}
-
-
-// ------------------------------------------------------
-- (NSInteger)runModalOpenPanel:(NSOpenPanel *)inOpenPanel forTypes:(NSArray *)inExtensions
+- (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions
 // オープンパネルを開くときにエンコーディング指定メニューを付加する
 // ------------------------------------------------------
 {
     // エンコーディングメニューの選択を初期化し、ビューをセット
     [self setSelectAccessoryEncodingMenuToDefault:self];
-    [inOpenPanel setAccessoryView:_openPanelAccessoryView];
+    [openPanel setAccessoryView:[self openPanelAccessoryView]];
 
     // 非表示ファイルも表示するとき
-    if (_isOpenHidden) {
-        [inOpenPanel setTreatsFilePackagesAsDirectories:YES];
-        [inOpenPanel setShowsHiddenFiles:YES];
+    if ([self isOpenHidden]) {
+        [openPanel setTreatsFilePackagesAsDirectories:YES];
+        [openPanel setShowsHiddenFiles:YES];
     } else {
-        [inOpenPanel setTreatsFilePackagesAsDirectories:NO];
+        [openPanel setTreatsFilePackagesAsDirectories:NO];
     }
 
-    return [super runModalOpenPanel:inOpenPanel forTypes:inExtensions];
+    return [super runModalOpenPanel:openPanel forTypes:extensions];
 }
 
 
 // ------------------------------------------------------
-- (void)removeDocument:(NSDocument *)inDocument
+- (void)removeDocument:(NSDocument *)document
 // ドキュメントが閉じた
 // ------------------------------------------------------
 {
-    theLatestDocument = nil;
+    [self setLatestDocument:nil];
 
-    [super removeDocument:inDocument];
+    [super removeDocument:document];
 }
 
 
-// ------------------------------------------------------
-- (id)accessoryEncodingMenu
-// ファイルオープンダイアログで表示されるエンコーディングメニューを返す
-// ------------------------------------------------------
-{
-    return _accessoryEncodingMenu;
-}
 
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (NSStringEncoding)accessorySelectedEncoding
 // ファイルオープンダイアログで指定されたエンコーディングを取得
 // ------------------------------------------------------
 {
-    return ([[_accessoryEncodingMenu selectedItem] tag]);
+    return [[[self accessoryEncodingMenu] selectedItem] tag];
 }
 
 
 // ------------------------------------------------------
-- (void)setSelectAccessoryEncoding:(NSStringEncoding)inEncoding
+- (void)setAccessorySelectedEncoding:(NSStringEncoding)encoding
 // ファイルオープンダイアログのエンコーディングの選択項目を設定
 // ------------------------------------------------------
 {
-    NSString *theTitle = (inEncoding == k_autoDetectEncodingMenuTag) ? 
-                NSLocalizedString(@"Auto-Detect",@"") : 
-                [NSString localizedNameOfStringEncoding:inEncoding];
+    NSString *title = (encoding == k_autoDetectEncodingMenuTag) ?
+                      NSLocalizedString(@"Auto-Detect", nil) :
+                      [NSString localizedNameOfStringEncoding:encoding];
 
-    if (theTitle && (![theTitle isEqualToString:@""])) {
-        [_accessoryEncodingMenu selectItemWithTitle:theTitle];
+    if (![title isEqualToString:@""]) {
+        [[self accessoryEncodingMenu] selectItemWithTitle:title];
     }
 }
 
@@ -209,19 +193,18 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (void)setNoneAndRecolorFlagToAllDocumentsWithStyleName:(NSString *)inStyleName
+- (void)setNoneAndRecolorFlagToAllDocumentsWithStyleName:(NSString *)styleName
 // 指定されたスタイルを適用しているドキュメントの適用スタイルを"None"にし、リカラーフラグを立てる
 // ------------------------------------------------------
 {
-    if (inStyleName != nil) {
+    if (styleName != nil) {
         [[self documents] makeObjectsPerformSelector:@selector(setStyleToNoneAndRecolorFlagWithStyleName:) 
-                withObject:inStyleName];
+                withObject:styleName];
     }
 }
 
 
 
-#pragma mark -
 #pragma mark Action messages
 
 //=======================================================
@@ -231,21 +214,21 @@ static NSRect theLatestDocumentWindowFrame;
 
 // ------------------------------------------------------
 - (IBAction)newDocument:(id)sender
-// 新規ドキュメント作成(override)
+// 新規ドキュメント作成 (override)
 // ------------------------------------------------------
 {
     [super newDocument:sender];
 
-    theLatestDocument = nil;
+    [self setLatestDocument:nil];
 }
 
 
 // ------------------------------------------------------
 - (IBAction)openDocument:(id)sender
-// ドキュメントを開く
+// ドキュメントを開く (override)
 // ------------------------------------------------------
 {
-    _isOpenHidden = ([sender tag] == k_openHiddenMenuItemTag);
+    [self setIsOpenHidden:([sender tag] == k_openHiddenMenuItemTag)];
 
     [super openDocument:sender];
     // エンコーディングメニューの選択をリセット
@@ -258,7 +241,7 @@ static NSRect theLatestDocumentWindowFrame;
 // ドキュメントを開く
 // ------------------------------------------------------
 {
-    _isOpenHidden = ([sender tag] == k_openHiddenMenuItemTag);
+    [self setIsOpenHidden:([sender tag] == k_openHiddenMenuItemTag)];
 
     [super openDocument:sender];
 }
@@ -278,9 +261,9 @@ static NSRect theLatestDocumentWindowFrame;
 // エンコーディングメニューの選択を初期化
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];
 
-    [self setSelectAccessoryEncoding:[[theValues valueForKey:k_key_encodingInOpen] unsignedLongValue]];
+    [self setAccessorySelectedEncoding:defaultEncoding];
 }
 
 @end

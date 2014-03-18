@@ -749,9 +749,8 @@
         <customObject id="290" userLabel="CEAppController" customClass="CEAppController"/>
         <customObject id="329" userLabel="CEDocumentController" customClass="CEDocumentController">
             <connections>
-                <outlet property="_accessoryEncodingMenu" destination="343" id="357"/>
-                <outlet property="_appController" destination="290" id="350"/>
-                <outlet property="_openPanelAccessoryView" destination="339" id="348"/>
+                <outlet property="accessoryEncodingMenu" destination="343" id="h7T-Y3-uR9"/>
+                <outlet property="openPanelAccessoryView" destination="339" id="ORE-dm-3Q4"/>
             </connections>
         </customObject>
         <customView id="339" userLabel="openPanelAccessoryView">

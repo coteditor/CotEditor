@@ -38,6 +38,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CETextViewCore.h"
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
+#import "CEHCCManager.h"
+#import "CEKeyBindingManager.h"
 
 //=======================================================
 // Private method

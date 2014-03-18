@@ -10,6 +10,8 @@ CEDocumentController
 
 encoding="UTF-8"
 Created:2004.12.14
+ 
+ ___ARC_enabled___
 
 -------------------------------------------------
 
@@ -35,23 +37,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEAppController.h"
 #import "CEDocument.h"
 
-@interface CEDocumentController : NSDocumentController
-{
-    IBOutlet id _appController;
-    IBOutlet id _openPanelAccessoryView;
-    IBOutlet id _accessoryEncodingMenu;
 
-    BOOL _isOpenHidden;
-}
+@interface CEDocumentController : NSDocumentController
+
+@property (nonatomic, readonly) NSPopUpButton *accessoryEncodingMenu;
+
 
 // Public method
-- (id)accessoryEncodingMenu;
 - (NSStringEncoding)accessorySelectedEncoding;
-- (void)setSelectAccessoryEncoding:(NSStringEncoding)inEncoding;
+- (void)setAccessorySelectedEncoding:(NSStringEncoding)encoding;
 - (void)rebuildAllToolbarsEncodingItem;
 - (void)rebuildAllToolbarsSyntaxItem;
 - (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)inDict;
-- (void)setNoneAndRecolorFlagToAllDocumentsWithStyleName:(NSString *)inStyleName;
+- (void)setNoneAndRecolorFlagToAllDocumentsWithStyleName:(NSString *)styleName;
 
 // Action Message
 - (IBAction)openHiddenDocument:(id)sender;
