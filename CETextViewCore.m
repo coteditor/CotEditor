@@ -1894,6 +1894,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *theCurStr = [[self string] substringWithRange:[self selectedRange]];
 
+    [[CEColorCodePanelController sharedController] showWindow:sender];
     [[CEColorCodePanelController sharedController] importHexColorCodeAsForeColor:theCurStr];
 }
 
@@ -1904,7 +1905,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *theCurStr = [[self string] substringWithRange:[self selectedRange]];
-
+    
+    [[CEColorCodePanelController sharedController] showWindow:sender];
     [[CEColorCodePanelController sharedController] importHexColorCodeAsBackGroundColor:theCurStr];
 }
 
