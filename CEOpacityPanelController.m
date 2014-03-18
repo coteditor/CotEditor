@@ -37,12 +37,21 @@
 #import "constants.h"
 
 
+@interface CEOpacityPanelController ()
+
+@property (nonatomic, weak) CEWindowController *documentWindowController;
+
+@property (nonatomic) CGFloat opacity;
+
+@end
+
+
 @implementation CEOpacityPanelController
 
 #pragma mark Class Methods
 
 // ------------------------------------------------------
-+ (CEOpacityPanelController *)sharedController
++ (instancetype)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
@@ -58,7 +67,7 @@
 
 
 
-#pragma mark Public Methods
+#pragma mark NSWindowController Methods
 
 // ------------------------------------------------------
 - (instancetype)initWithWindow:(NSWindow *)window
@@ -67,21 +76,45 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        [self setOpacity:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_windowAlpha]];
+        // observe key window changing
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowDidBecomeMain:)
+                                                     name:NSWindowDidBecomeMainNotification
+                                                   object:nil];
+        // set current window
+        [self windowDidBecomeMain:nil];
     }
     return self;
 }
 
 
 // ------------------------------------------------------
-- (void)setOpacity:(CGFloat)opacity
-// setter for opacity property
+- (void)dealloc
+// clean up
 // ------------------------------------------------------
 {
-    _opacity = opacity;
-    
-    // apply to the frontmost document window
-    [[self documentWindowController] setAlpha:opacity];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+
+#pragma mark Notifications
+
+//=======================================================
+// Notification method (NSWindow)
+//  <== NSWindow
+//=======================================================
+
+// ------------------------------------------------------
+- (void)windowDidBecomeMain:(NSNotification *)notification
+// notification about main window change
+// ------------------------------------------------------
+{
+    // update properties if the new main window is a document window
+    if ([[[NSApp mainWindow] windowController] isKindOfClass:[CEWindowController class]]) {
+        [self setDocumentWindowController:(CEWindowController *)[[NSApp mainWindow] windowController]];
+        [self setOpacity:[[self documentWindowController] alpha]];
+    }
 }
 
 
@@ -108,17 +141,14 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-- (CEWindowController *)documentWindowController
-// return the frontmost document's window controller (or nil if not exists)
+- (void)setOpacity:(CGFloat)opacity
+// setter for opacity property
 // ------------------------------------------------------
 {
-    id windowController = [[[NSDocumentController sharedDocumentController] currentDocument] windowControllers][0];
+    _opacity = opacity;
     
-    if ([windowController isKindOfClass:[CEWindowController class]]) {
-        return windowController;
-    }
-    
-    return nil;
+    // apply to the frontmost document window
+    [[self documentWindowController] setAlpha:opacity];
 }
 
 @end

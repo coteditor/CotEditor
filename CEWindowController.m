@@ -33,7 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEWindowController.h"
 #import "CEDocumentController.h"
-#import "CEOpacityPanelController.h"
 #import "CEEditorView.h"
 
 
@@ -421,8 +420,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 不可視文字表示メニューのツールチップを更新
     [theEditorView updateShowInvisibleCharsMenuToolTip];
-    // アルファ値を反映
-    [[CEOpacityPanelController sharedController] setOpacity:[self alpha]];
     
 
     // シートを表示していなければ、各種更新実行

@@ -37,8 +37,6 @@
 
 @interface CEOpacityPanelController : NSWindowController <NSWindowDelegate>
 
-@property (nonatomic) CGFloat opacity;
-
-+ (CEOpacityPanelController *)sharedController;
++ (instancetype)sharedController;
 
 @end
