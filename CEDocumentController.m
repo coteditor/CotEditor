@@ -32,7 +32,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEDocumentController.h"
-#import "ODBEditorSuite.h"
 
 static CEDocument *theLatestDocument = nil;
 static NSRect theLatestDocumentWindowFrame;
@@ -102,31 +101,6 @@ static NSRect theLatestDocumentWindowFrame;
 {
     id outDocument = [super openDocumentWithContentsOfURL:url display:displayDocument error:outError];
 
-    if (outDocument) {
-        // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
-        // この部分は、Smultron を参考にさせていただきました。(2005.04.20)
-        // This part is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-        // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-        // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
-        NSAppleEventDescriptor *theDescriptor, *theAEPropDescriptor, *theFileSender, *theFileToken;
-
-        theDescriptor = [[NSAppleEventManager sharedAppleEventManager] currentAppleEvent];
-        theFileSender = [theDescriptor paramDescriptorForKeyword:keyFileSender];
-        if (theFileSender != nil) {
-            theFileToken = [theDescriptor paramDescriptorForKeyword:keyFileSenderToken];
-        } else {
-            theAEPropDescriptor = [theDescriptor paramDescriptorForKeyword:keyAEPropData];
-            theFileSender = [theAEPropDescriptor paramDescriptorForKeyword:keyFileSender];
-            theFileToken = [theAEPropDescriptor paramDescriptorForKeyword:keyFileSenderToken];
-        }
-        if (theFileSender != nil) {
-            [outDocument setFileSender:theFileSender];
-            if (theFileToken != nil) {
-                [outDocument setFileToken:theFileToken];
-            }
-        }
-    }
     // 自動的に開かれた名称未設定ドキュメントが未変更のままであるときは、それを上書きする（ように見せる）
     if (outDocument && theLatestDocument && (![(CEDocument *)theLatestDocument isDocumentEdited]) && 
             NSEqualRects(theLatestDocumentWindowFrame, 

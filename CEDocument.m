@@ -352,7 +352,10 @@ enum { typeFSS = 'fss ' };
     BOOL theBoolIsDir = NO;
     (void)[[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&theBoolIsDir];
     if (theBoolIsDir) { return NO; }
-
+    
+    // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
+    [self setupODB];
+    
     NSStringEncoding theEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
     return [self readFromFile:[url path] withEncoding:theEncoding];
@@ -1871,7 +1874,37 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath 
+- (void)setupODB
+// 外部エディタプロトコル(ODB Editor Suite)用の値をセット
+// ------------------------------------------------------
+{
+// この部分は、Smultron を参考にさせていただきました。(2005.04.20)
+// This part is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
+// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
+// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
+    
+    NSAppleEventDescriptor *descriptor, *AEPropDescriptor, *fileSender, *fileToken;
+    
+    descriptor = [[NSAppleEventManager sharedAppleEventManager] currentAppleEvent];
+    fileSender = [descriptor paramDescriptorForKeyword:keyFileSender];
+    if (fileSender) {
+        fileToken = [descriptor paramDescriptorForKeyword:keyFileSenderToken];
+    } else {
+        AEPropDescriptor = [descriptor paramDescriptorForKeyword:keyAEPropData];
+        fileSender = [AEPropDescriptor paramDescriptorForKeyword:keyFileSender];
+        fileToken = [AEPropDescriptor paramDescriptorForKeyword:keyFileSenderToken];
+    }
+    if (fileSender) {
+        [self setFileSender:fileSender];
+        if (fileToken) {
+            [self setFileToken:fileToken];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath
         operation:(NSSaveOperationType)inSaveOperationType
 // 外部エディタプロトコル(ODB Editor Suite)対応メソッド。ファイルクライアントにファイル更新を通知する。
 // ------------------------------------------------------
