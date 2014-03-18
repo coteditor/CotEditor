@@ -676,9 +676,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // メニューの有効化／無効化を制御
 // ------------------------------------------------------
 {
-    if ([menuItem action] == @selector(openLineSpacingPanel:) ||
-        [menuItem action] == @selector(openOpacityPanel:) ||
-        [menuItem action] == @selector(openGoToPanel:)) {
+    if ([menuItem action] == @selector(openLineSpacingPanel:)) {
         return ([[CEDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
