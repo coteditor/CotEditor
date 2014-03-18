@@ -32,31 +32,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEHCCManager.h"
+#import "CEDocument.h"
+#import "constants.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CEHCCManager (Private)
-- (void)setupWindowPosition;
-- (void)setupHCCIsOk;
-- (void)setSampleTextFieldBackgroundColor:(NSNotification *)inNotification;
-- (void)importHexColorCode:(NSString *)inCodeString to:(id)inControl;
-- (void)checkComboBox:(id)inControl string:(NSString *)inString;
+@interface CEHCCManager ()
+
+@property (nonatomic, retain) IBOutlet NSArrayController *foreColorDataController;
+@property (nonatomic, retain) IBOutlet NSArrayController *backColorDataController;
+@property (nonatomic, assign) IBOutlet NSTextField *sampleTextField;
+@property (nonatomic, assign) IBOutlet NSColorWell *foreColorWell;
+@property (nonatomic, assign) IBOutlet NSColorWell *backColorWell;
+@property (nonatomic, assign) IBOutlet NSComboBox *foreColorComboBox;
+@property (nonatomic, assign) IBOutlet NSComboBox *backColorComboBox;
+@property (nonatomic, assign) IBOutlet NSButton *disclosureButton;
+@property (nonatomic, assign) IBOutlet NSBox *optionView;
+
 @end
 
 
-//------------------------------------------------------------------------------------------
-
-
-
+#pragma mark -
 
 @implementation CEHCCManager
 
-static CEHCCManager *sharedInstance = nil;
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 //=======================================================
 // Class method
@@ -65,15 +65,22 @@ static CEHCCManager *sharedInstance = nil;
 
 // ------------------------------------------------------
 + (CEHCCManager *)sharedInstance
-// 共有インスタンスを返す
+// return singleton instance
 // ------------------------------------------------------
 {
-    return sharedInstance ? sharedInstance : [[self alloc] init];
+    static dispatch_once_t predicate;
+    static CEHCCManager *shared = nil;
+    
+    dispatch_once(&predicate, ^{
+        shared = [[CEHCCManager alloc] initWithWindowNibName:@"HCCManager"];
+    });
+    
+    return shared;
 }
 
 
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -81,21 +88,19 @@ static CEHCCManager *sharedInstance = nil;
 //=======================================================
 
 // ------------------------------------------------------
-- (instancetype)init
+- (instancetype)initWithWindow:(NSWindow *)window
 // 初期化
 // ------------------------------------------------------
 {
-    if (sharedInstance == nil) {
-        self = [super init];
-        (void)[NSBundle loadNibNamed:@"HCCManager" owner:self];
+    self = [super initWithWindow:window];
+    if (self) {
         // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-            selector:@selector(setSampleTextFieldBackgroundColor:) 
-            name:NSColorPanelColorDidChangeNotification 
-            object:nil];
-        sharedInstance = self;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(setSampleTextFieldBackgroundColor:)
+                                                     name:NSColorPanelColorDidChangeNotification
+                                                   object:nil];
     }
-    return sharedInstance;
+    return self;
 }
 
 
@@ -108,7 +113,6 @@ static CEHCCManager *sharedInstance = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // NSBundle loadNibNamed: でロードされたオブジェクトを開放
     // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
-    [[_sampleTextField window] release]; // （コンテントビューは自動解放される）
     [_foreColorDataController release];
     [_backColorDataController release];
 
@@ -127,36 +131,27 @@ static CEHCCManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (void)openHexColorCodeEditor
-// カラーコード編集ウィンドウを表示
-// ------------------------------------------------------
-{
-    [[_sampleTextField window] makeKeyAndOrderFront:self];
-}
-
-
-// ------------------------------------------------------
-- (void)importHexColorCodeAsForeColor:(NSString *)inCodeString
+- (void)importHexColorCodeAsForeColor:(NSString *)codeString
 // 文字列をカラーコードとしてフォアカラーコンボボックスへ取り込む
 // ------------------------------------------------------
 {
-    [self importHexColorCode:inCodeString to:_foreColorComboBox];
+    [self importHexColorCode:codeString to:[self foreColorComboBox]];
 }
 
 
 // ------------------------------------------------------
-- (void)importHexColorCodeAsBackGroundColor:(NSString *)inCodeString
+- (void)importHexColorCodeAsBackGroundColor:(NSString *)codeString
 // 文字列をカラーコードとしてBGカラーコンボボックスへ取り込む
 //------------------------------------------------------
 {
-    [self importHexColorCode:inCodeString to:_backgroundColorComboBox];
+    [self importHexColorCode:codeString to:[self backColorComboBox]];
     // 背景色を強制的に更新
-    [_sampleTextField setBackgroundColor:[_backgroundColorWell color]];
+    [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
 }
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -169,24 +164,23 @@ static CEHCCManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     // バインディングでは背景色が設定できないので、手動で。
-    [_sampleTextField setBackgroundColor:[_backgroundColorWell color]];
+    [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
     // ディスクロージャボタンを初期化
-    [_disclosureButton setState:NSOffState];
+    [[self disclosureButton] setState:NSOffState];
     [self toggleDisclosureButton:nil];
     // ArrayController のソート方式をセット
-    NSSortDescriptor *theDescriptor = 
-            [[[NSSortDescriptor alloc] initWithKey:k_HCCDataControllerKey ascending:YES] autorelease];
-    [_foreColorDataController setSortDescriptors:@[theDescriptor]];
-    [_backColorDataController setSortDescriptors:@[theDescriptor]];
+    NSSortDescriptor *descriptor = [[[NSSortDescriptor alloc] initWithKey:k_HCCDataControllerKey ascending:YES] autorelease];
+    [[self foreColorDataController] setSortDescriptors:@[descriptor]];
+    [[self backColorDataController] setSortDescriptors:@[descriptor]];
 }
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSComboBox)
-//  <== _backgroundColorComboBox
+//  <== backColorComboBox
 //=======================================================
 
 // ------------------------------------------------------
@@ -194,47 +188,47 @@ static CEHCCManager *sharedInstance = nil;
 // コンボボックスへの入力終了直前、入力内容を見て完了の許可を出す
 // ------------------------------------------------------
 {
-    NSString *theCodeStr = [inFieldEditor string];
+    NSString *codeString = [inFieldEditor string];
 
-    [self checkComboBox:inControl string:theCodeStr];
+    [self checkComboBox:inControl string:codeString];
 
     return YES;
 }
 
 
 // ------------------------------------------------------
-- (void)controlTextDidEndEditing:(NSNotification *)inNotification
+- (void)controlTextDidEndEditing:(NSNotification *)aNotification
 // コンボボックスへの入力が終った
 // ------------------------------------------------------
 {
-    if ([[inNotification object] isEqualTo:_backgroundColorComboBox]) {
+    if ([[aNotification object] isEqualTo:[self backColorComboBox]]) {
         // サンプル表示の背景色をセット（バインディングが設定できないので、ノーティフィケーションで行っている）
-        // _backgroundColorComboBox への Hex 値の入力を反映させる
-        [_sampleTextField setBackgroundColor:[_backgroundColorWell color]];
+        // backColorComboBox への Hex 値の入力を反映させる
+        [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)comboBoxSelectionDidChange:(NSNotification *)inNotification
+- (void)comboBoxSelectionDidChange:(NSNotification *)aNotification
 // コンボボックスのリストの選択が変更された
 // ------------------------------------------------------
 {
-    id theComboBox = [inNotification object];
-    NSString *theCodeStr = [theComboBox objectValueOfSelectedItem];
+    NSComboBox *comboBox = [aNotification object];
+    NSString *theCodeStr = [comboBox objectValueOfSelectedItem];
 
-    [self checkComboBox:theComboBox string:[theComboBox objectValueOfSelectedItem]];
-    if ([theComboBox isEqualTo:_backgroundColorComboBox]) {
-        [self importHexColorCode:theCodeStr to:_backgroundColorComboBox];
+    [self checkComboBox:comboBox string:[comboBox objectValueOfSelectedItem]];
+    if ([comboBox isEqualTo:[self backColorComboBox]]) {
+        [self importHexColorCode:theCodeStr to:[self backColorComboBox]];
         // サンプル表示の背景色をセット（バインディングが設定できないので、ノーティフィケーションで行っている）
-        // _backgroundColorComboBox への Hex 値の入力を反映させる
-        [_sampleTextField setBackgroundColor:[_backgroundColorWell color]];
+        // backColorComboBox への Hex 値の入力を反映させる
+        [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
     }
 }
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -247,36 +241,36 @@ static CEHCCManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     if ([[NSApp orderedDocuments] count] < 1) { return; }
-    CEDocument *theDoc = [NSApp orderedDocuments][0];
-    NSString *theCodeStr = nil, *theSelected = nil;
-    NSRange theRange;
+    CEDocument *document = [NSApp orderedDocuments][0];
+    NSString *codeString = nil, *selected = nil;
+    NSRange range;
 
     if ([sender tag] == k_exportForeColorButtonTag) {
-        theCodeStr = [_foreColorComboBox stringValue];
+        codeString = [[self foreColorComboBox] stringValue];
     } else if ([sender tag] == k_exportBGColorButtonTag) {
-        theCodeStr = [_backgroundColorComboBox stringValue];
+        codeString = [[self backColorComboBox] stringValue];
     }
-    if ([theCodeStr length] != 6) {
+    if ([codeString length] != 6) {
         return;
     }
 
-    theRange = [[theDoc editorView] selectedRange];
-    theSelected = [[theDoc editorView] substringWithSelection];
-    if ((([theSelected length] == 7) && 
-            ([[theSelected substringToIndex:1] isEqualToString:@"#"])) || 
-            (theRange.location == 0) || 
-            ((theRange.location > 0) && 
-                (![[[theDoc editorView] substringWithRange:
-                    NSMakeRange(theRange.location - 1, 1)] isEqualToString:@"#"]))) {
+    range = [[document editorView] selectedRange];
+    selected = [[document editorView] substringWithSelection];
+    if ((([selected length] == 7) && 
+            ([[selected substringToIndex:1] isEqualToString:@"#"])) || 
+            (range.location == 0) || 
+            ((range.location > 0) && 
+                (![[[document editorView] substringWithRange:
+                    NSMakeRange(range.location - 1, 1)] isEqualToString:@"#"]))) {
         // ドキュメントで「#」からカラーコードが選択されているとき、
         // または選択範囲の直前が「#」でないときはアタマに「#」を追加して置換／挿入
-        [[theDoc editorView] replaceTextViewSelectedStringTo:
-                [NSString stringWithFormat:@"#%@", theCodeStr] scroll:YES];
+        [[document editorView] replaceTextViewSelectedStringTo:
+                [NSString stringWithFormat:@"#%@", codeString] scroll:YES];
     } else {
-        [[theDoc editorView] replaceTextViewSelectedStringTo:theCodeStr scroll:YES];
+        [[document editorView] replaceTextViewSelectedStringTo:codeString scroll:YES];
     }
     // ドキュメントウィンドウを前面に
-    [[[theDoc editorView] window] makeKeyAndOrderFront:self];
+    [[[document editorView] window] makeKeyAndOrderFront:self];
 }
 
 
@@ -285,17 +279,17 @@ static CEHCCManager *sharedInstance = nil;
 // 文字色／背景色入れ換え
 // ------------------------------------------------------
 {
-    NSString *theCodeStr = [_foreColorComboBox stringValue];
+    NSString *codeString = [[self foreColorComboBox] stringValue];
 
-    [[_foreColorComboBox window] makeFirstResponder:_foreColorComboBox];
-    [_foreColorComboBox setStringValue:[_backgroundColorComboBox stringValue]];
-    [[_backgroundColorComboBox window] makeFirstResponder:_backgroundColorComboBox];
-    [_backgroundColorComboBox setStringValue:theCodeStr];
-    [[_foreColorComboBox window] makeFirstResponder:_foreColorComboBox];
+    [[self window] makeFirstResponder:[self foreColorComboBox]];
+    [[self foreColorComboBox] setStringValue:[[self backColorComboBox] stringValue]];
+    [[self window] makeFirstResponder:[self backColorComboBox]];
+    [[self backColorComboBox] setStringValue:codeString];
+    [[self window] makeFirstResponder:[self foreColorComboBox]];
     // 適正値かどうかの判断基準フラグを初期化
     [self setupHCCIsOk];
     // 背景色を強制的に更新
-    [_sampleTextField setBackgroundColor:[_backgroundColorWell color]];
+    [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
 }
 
 
@@ -304,22 +298,22 @@ static CEHCCManager *sharedInstance = nil;
 // ディスクロージャボタンでの表示切り替え
 // ------------------------------------------------------
 {
-    NSRect theOptionFrame = [_optionView frame];
-    NSRect theWindowFrame = [[_optionView window] frame];
+    NSRect optionFrame = [[self optionView] frame];
+    NSRect windowFrame = [[self window] frame];
 
     if ([sender state] == NSOnState) {
-        theOptionFrame.origin.y -= k_optionViewHeight;
-        theOptionFrame.size.height = k_optionViewHeight;
-        theWindowFrame.origin.y -= k_optionViewHeight;
-        theWindowFrame.size.height += k_optionViewHeight;
+        optionFrame.origin.y -= k_optionViewHeight;
+        optionFrame.size.height = k_optionViewHeight;
+        windowFrame.origin.y -= k_optionViewHeight;
+        windowFrame.size.height += k_optionViewHeight;
     } else {
-        theOptionFrame.origin.y += k_optionViewHeight;
-        theOptionFrame.size.height = 0.0;
-        theWindowFrame.origin.y += k_optionViewHeight;
-        theWindowFrame.size.height -= k_optionViewHeight;
+        optionFrame.origin.y += k_optionViewHeight;
+        optionFrame.size.height = 0.0;
+        windowFrame.origin.y += k_optionViewHeight;
+        windowFrame.size.height -= k_optionViewHeight;
     }
-    [_optionView setFrame:theOptionFrame];
-    [[_optionView window] setFrame:theWindowFrame display:YES animate:NO];
+    [[self optionView] setFrame:optionFrame];
+    [[self window] setFrame:windowFrame display:YES animate:NO];
 }
 
 
@@ -328,28 +322,24 @@ static CEHCCManager *sharedInstance = nil;
 // コンボボックスのリストに現在の値を加える
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     // フォーカスを移して値を確定
     [[sender window] makeFirstResponder:sender];
 
     // 正しい値が入力されているときのみ、リストへの追加を行う
     if (([sender tag] == k_addCodeToForeButtonTag) && 
-            ([[theValues valueForKey:k_key_foreColorCBoxIsOk] boolValue])) {
-        [_foreColorDataController addObject:
-                @{k_HCCDataControllerKey: [_foreColorComboBox stringValue]}];
+            ([[defaults valueForKey:k_key_foreColorCBoxIsOk] boolValue])) {
+        [[self foreColorDataController] addObject:@{k_HCCDataControllerKey: [[self foreColorComboBox] stringValue]}];
     } else if (([sender tag] == k_addCodeToBackButtonTag) && 
-            ([[theValues valueForKey:k_key_backgroundColorCBoxIsOk] boolValue])) {
-        [_backColorDataController addObject:
-                @{k_HCCDataControllerKey: [_backgroundColorComboBox stringValue]}];
+            ([[defaults valueForKey:k_key_backgroundColorCBoxIsOk] boolValue])) {
+        [[self backColorDataController] addObject:@{k_HCCDataControllerKey: [[self backColorComboBox] stringValue]}];
     }
 }
 
 
 
-@end
-
-@implementation CEHCCManager (Private)
+#pragma mark Private Methods
 
 //=======================================================
 // Private method
@@ -361,9 +351,9 @@ static CEHCCManager *sharedInstance = nil;
 // 記憶されたパネル位置を是正（ディスクロージャ矢印で表示される部分だけ下部に長く保存されている）
 //------------------------------------------------------
 {
-    NSPoint theOrigin = [[_sampleTextField window] frame].origin;
-    theOrigin.y -= k_optionViewHeight;
-    [[_sampleTextField window] setFrameOrigin:theOrigin];
+    NSPoint origin = [[self window] frame].origin;
+    origin.y -= k_optionViewHeight;
+    [[self window] setFrameOrigin:origin];
 }
 
 
@@ -372,105 +362,100 @@ static CEHCCManager *sharedInstance = nil;
 // 適正値かどうかの判断基準フラグを初期化
 //------------------------------------------------------
 {
-    [self checkComboBox:_foreColorComboBox string:[_foreColorComboBox stringValue]];
-    [self checkComboBox:_backgroundColorComboBox string:[_backgroundColorComboBox stringValue]];
+    [self checkComboBox:[self foreColorComboBox] string:[[self foreColorComboBox] stringValue]];
+    [self checkComboBox:[self backColorComboBox] string:[[self backColorComboBox] stringValue]];
 }
 
 //------------------------------------------------------
-- (void)setSampleTextFieldBackgroundColor:(NSNotification *)inNotification
+- (void)setSampleTextFieldBackgroundColor:(NSNotification *)aNotification
 // （カラーウェルの変更にともなって）サンプル表示の背景色をセット
 //------------------------------------------------------
 {
     // （バインディングが設定できないので、ノーティフィケーションで行っている）
 
     // 別のカラーウェルのものだったら、無視
-    if ((![[_sampleTextField window] isKeyWindow]) || (![_backgroundColorWell isActive])) {
+    if ((![[self window] isKeyWindow]) || (![[self backColorWell] isActive])) {
         return;
     }
-    id theColorPanel = [inNotification object];
-    NSColor *theColor = [theColorPanel color];
+    id colorPanel = [aNotification object];
+    NSColor *color = [colorPanel color];
 
-    if (theColor != nil) {
-        [_sampleTextField setBackgroundColor:theColor];
+    if (color != nil) {
+        [[self sampleTextField] setBackgroundColor:color];
     }
 }
 
 
 //------------------------------------------------------
-- (void)importHexColorCode:(NSString *)inCodeString to:(id)inControl
+- (void)importHexColorCode:(NSString *)codeString to:(id)control
 // 文字列をカラーコードとしてコンボボックスへ取り込む
 //------------------------------------------------------
 {
-    NSString *theString = nil;
-    BOOL theBoolIsHex = NO;
+    NSString *string = nil;
+    BOOL isHex = NO;
 
-    if (([inCodeString length] == 7) && 
-            ([[inCodeString substringToIndex:1] isEqualToString:@"#"])) {
-        theString = [inCodeString substringFromIndex:1];
-    } else if ([inCodeString length] == 6) {
-        theString = inCodeString;
+    if (([codeString length] == 7) && 
+            ([[codeString substringToIndex:1] isEqualToString:@"#"])) {
+        string = [codeString substringFromIndex:1];
+    } else if ([codeString length] == 6) {
+        string = codeString;
     }
-    if ([theString length] == 6) {
-        NSCharacterSet *theSet = 
-                [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
+    if ([string length] == 6) {
+        NSCharacterSet *theSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
         NSInteger i;
 
         for (i = 0; i < 6; i++) {
-            theBoolIsHex = [theSet characterIsMember:[theString characterAtIndex:i]];
-            if (!theBoolIsHex) {
+            isHex = [theSet characterIsMember:[string characterAtIndex:i]];
+            if (!isHex) {
                 break;
             }
         }
     }
     // 正しいカラーコードのみ取り込む
-    if ((theString != nil) && (theBoolIsHex)) {
-        [[inControl window] makeFirstResponder:inControl];
-        [inControl setStringValue:theString];
+    if ((string != nil) && (isHex)) {
+        [[control window] makeFirstResponder:control];
+        [control setStringValue:string];
         // いったん、レスポンダをウィンドウにして値を確定、他のコントロールに反映させる
-        [[inControl window] makeFirstResponder:[inControl window]];
+        [[control window] makeFirstResponder:[control window]];
     }
-    [[inControl window] makeKeyAndOrderFront:self];
-    [[inControl window] makeFirstResponder:inControl];
+    [[control window] makeKeyAndOrderFront:self];
+    [[control window] makeFirstResponder:control];
 }
 
 
 //------------------------------------------------------
-- (void)checkComboBox:(id)inControl string:(NSString *)inString
+- (void)checkComboBox:(id)control string:(NSString *)string
 // コンボボックスの値をチェック、不正なら背景色を変更する
 //------------------------------------------------------
 {
-    NSString *theKeyName = nil;
-    BOOL theBoolIsOk = NO;
+    NSString *keyName = nil;
+    BOOL isValid = NO;
 
-    if ((inString != nil) && ([inString length] == 6)) {
-        NSCharacterSet *theSet = 
-                [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
+    if ((string != nil) && ([string length] == 6)) {
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"];
         NSInteger i;
 
-        theBoolIsOk = YES;
+        isValid = YES;
         for (i = 0; i < 6; i++) {
-            if (![theSet characterIsMember:[inString characterAtIndex:i]]) {
-                theBoolIsOk = NO;
+            if (![set characterIsMember:[string characterAtIndex:i]]) {
+                isValid = NO;
                 break;
             }
         }
     }
-    if (theBoolIsOk) {
-        [(NSComboBox *)inControl setBackgroundColor:[NSColor controlBackgroundColor]];
+    if (isValid) {
+        [(NSComboBox *)control setBackgroundColor:[NSColor controlBackgroundColor]];
     } else {
-        [(NSComboBox *)inControl setBackgroundColor:
+        [(NSComboBox *)control setBackgroundColor:
                 [NSColor colorWithCalibratedRed:1.0 green:0.0 blue:0.5 alpha:1.0]];
         NSBeep();
     }
-    if ([inControl isEqualTo:_foreColorComboBox]) {
-        theKeyName = k_key_foreColorCBoxIsOk;
-    } else if ([inControl isEqualTo:_backgroundColorComboBox]) {
-        theKeyName = k_key_backgroundColorCBoxIsOk;
+    if ([control isEqualTo:[self foreColorComboBox]]) {
+        keyName = k_key_foreColorCBoxIsOk;
+    } else if ([control isEqualTo:[self backColorComboBox]]) {
+        keyName = k_key_backgroundColorCBoxIsOk;
     }
-    [[[NSUserDefaultsController sharedUserDefaultsController] defaults] 
-        setValue:@(theBoolIsOk) forKey:theKeyName];
+    [[[NSUserDefaultsController sharedUserDefaultsController] defaults] setValue:@(isValid) forKey:keyName];
 }
-
-
 
 @end

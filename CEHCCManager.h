@@ -4,7 +4,8 @@ CEHCCManager
 (for CotEditor)
 
 Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+Copyright (C) 2014 CotEditor Project
+http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -31,30 +32,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "CEDocument.h"
-#import "constants.h"
 
-@interface CEHCCManager : NSObject
-{
-    IBOutlet id _sampleTextField;
-    IBOutlet id _foreColorComboBox;
-    IBOutlet id _foreColorDataController;
-    IBOutlet id _foreColorWell;
-    IBOutlet id _backgroundColorComboBox;
-    IBOutlet id _backColorDataController;
-    IBOutlet id _backgroundColorWell;
-    IBOutlet id _optionView;
-    IBOutlet id _disclosureButton;
-}
+
+@interface CEHCCManager : NSWindowController <NSWindowDelegate, NSComboBoxDelegate>
 
 // class method
 + (CEHCCManager *)sharedInstance;
 
 // Public method
 - (void)setupHCCValues;
-- (void)openHexColorCodeEditor;
-- (void)importHexColorCodeAsForeColor:(NSString *)inCodeString;
-- (void)importHexColorCodeAsBackGroundColor:(NSString *)inCodeString;
+- (void)importHexColorCodeAsForeColor:(NSString *)codeString;
+- (void)importHexColorCodeAsBackGroundColor:(NSString *)codeString;
 
 // Action Message
 - (IBAction)exportHexColorCode:(id)sender;
