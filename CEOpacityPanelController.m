@@ -113,6 +113,8 @@
     // update properties if the new main window is a document window
     if ([[[NSApp mainWindow] windowController] isKindOfClass:[CEWindowController class]]) {
         [self setDocumentWindowController:(CEWindowController *)[[NSApp mainWindow] windowController]];
+        
+        // update value
         [self setOpacity:[[self documentWindowController] alpha]];
     }
 }

@@ -37,8 +37,6 @@
 
 @interface CELineSpacingPanelController : NSWindowController <NSWindowDelegate>
 
-@property (nonatomic) CGFloat lineSpacing;
-
-+ (CELineSpacingPanelController *)sharedController;
++ (instancetype)sharedController;
 
 @end
