@@ -33,10 +33,10 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
+#import "CEPanelController.h"
 
 
-@interface CEColorCodePanelController : NSWindowController <NSWindowDelegate, NSComboBoxDelegate>
+@interface CEColorCodePanelController : CEPanelController <NSComboBoxDelegate>
 
 // class method
 + (CEColorCodePanelController *)sharedController;

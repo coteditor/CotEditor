@@ -34,7 +34,6 @@
  */
 
 #import "CEColorCodePanelController.h"
-#import "CEDocument.h"
 #import "constants.h"
 
 
@@ -96,25 +95,13 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
+        // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼（removeはスーパークラスが行なう）
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(setSampleTextFieldBackgroundColor:)
                                                      name:NSColorPanelColorDidChangeNotification
                                                    object:nil];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// あとかたづけ
-// ------------------------------------------------------
-{
-    // ノーティフィケーションセンタから自身を排除
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // NSBundle loadNibNamed: でロードされたオブジェクトを開放
-    // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
 }
 
 
@@ -232,8 +219,7 @@
 // ドキュメントにカラーコードを書き出す
 // ------------------------------------------------------
 {
-    if ([[NSApp orderedDocuments] count] < 1) { return; }
-    CEDocument *document = [NSApp orderedDocuments][0];
+    if (![self documentWindowController]) { return; }
     NSString *codeString = nil, *selected = nil;
     NSRange range;
 
@@ -246,23 +232,23 @@
         return;
     }
 
-    range = [[document editorView] selectedRange];
-    selected = [[document editorView] substringWithSelection];
+    range = [[[self documentWindowController] editorView] selectedRange];
+    selected = [[[self documentWindowController] editorView] substringWithSelection];
     if ((([selected length] == 7) && 
             ([[selected substringToIndex:1] isEqualToString:@"#"])) || 
             (range.location == 0) || 
             ((range.location > 0) && 
-                (![[[document editorView] substringWithRange:
+                (![[[[self documentWindowController] editorView] substringWithRange:
                     NSMakeRange(range.location - 1, 1)] isEqualToString:@"#"]))) {
         // ドキュメントで「#」からカラーコードが選択されているとき、
         // または選択範囲の直前が「#」でないときはアタマに「#」を追加して置換／挿入
-        [[document editorView] replaceTextViewSelectedStringTo:
+        [[[self documentWindowController] editorView] replaceTextViewSelectedStringTo:
                 [NSString stringWithFormat:@"#%@", codeString] scroll:YES];
     } else {
-        [[document editorView] replaceTextViewSelectedStringTo:codeString scroll:YES];
+        [[[self documentWindowController] editorView] replaceTextViewSelectedStringTo:codeString scroll:YES];
     }
     // ドキュメントウィンドウを前面に
-    [[[document editorView] window] makeKeyAndOrderFront:self];
+    [[[[self documentWindowController] editorView] window] makeKeyAndOrderFront:self];
 }
 
 
