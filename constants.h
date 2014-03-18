@@ -54,7 +54,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_createNewAtStartup    @"createNewAtStartup"
 #define k_key_reopenBlankWindow     @"reopenBlankWindow"
 #define k_key_checkSpellingAsType   @"checkSpellingAsType"
-#define k_key_saveTypeCreator   @"saveTypeCreator"
 #define k_key_windowWidth   @"windowWidth"
 #define k_key_windowHeight  @"windowHeight"
 #define k_key_autoExpandTab     @"autoExpandTab"

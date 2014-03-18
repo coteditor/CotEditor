@@ -99,7 +99,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_createNewAtStartup: @YES, 
                 k_key_reopenBlankWindow: @YES, 
                 k_key_checkSpellingAsType: @NO, 
-                k_key_saveTypeCreator: @0U, 
                 k_key_windowWidth: @600.0f, 
                 k_key_windowHeight: @450.0f, 
                 k_key_autoExpandTab: @NO, 
@@ -873,6 +872,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *deprecatedKeys = @[@"statusAreaFontName",  // deprecated on 1.4
                                 @"alphaOnlyTextView",   // deprecated on 1.5
+                                @"saveTypeCreator",     // deprecated on 1.5
                                 @"gotoObjectMenuIndex"  // deprecated on 1.5
                                 ];
     
