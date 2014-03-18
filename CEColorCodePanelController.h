@@ -1,6 +1,6 @@
 /*
  =================================================
- CEHCCManager
+ CEPanelController
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -36,13 +36,11 @@
 #import "CEPanelController.h"
 
 
-@interface CEColorCodePanelController : CEPanelController <NSComboBoxDelegate>
+@interface CEColorCodePanelController : CEPanelController
 
-// class method
 + (CEColorCodePanelController *)sharedController;
 
-// Public method
 - (void)importHexColorCodeAsForeColor:(NSString *)codeString;
-- (void)importHexColorCodeAsBackGroundColor:(NSString *)codeString;
+- (void)importHexColorCodeAsBackColor:(NSString *)codeString;
 
 @end

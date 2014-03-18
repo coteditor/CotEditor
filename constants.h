@@ -308,13 +308,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_convertedChar         @"convertedChar"
 
 
-// CEHCCManager
+// CEColorCodePanelController
 #define k_exportForeColorButtonTag      1000
 #define k_exportBGColorButtonTag        2000
-#define k_optionViewHeight              250.0
 #define k_addCodeToForeButtonTag        1001
 #define k_addCodeToBackButtonTag        2001
-#define k_HCCDataControllerKey      @"codeString"
+#define k_ColorCodeDataControllerKey    @"codeString"
 
 
 // CEPreferences

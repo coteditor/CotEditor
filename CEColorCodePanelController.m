@@ -1,6 +1,6 @@
 /*
  =================================================
- CEHCCManager
+ CEPanelController
  (for CotEditor)
  
  Copyright (C) 2004-2006 nakamuxu.
@@ -37,7 +37,7 @@
 #import "constants.h"
 
 
-@interface CEColorCodePanelController ()
+@interface CEColorCodePanelController () <NSComboBoxDelegate>
 
 @property (nonatomic) IBOutlet NSArrayController *foreColorDataController;
 @property (nonatomic) IBOutlet NSArrayController *backColorDataController;
@@ -115,7 +115,7 @@
 
 
 // ------------------------------------------------------
-- (void)importHexColorCodeAsBackGroundColor:(NSString *)codeString
+- (void)importHexColorCodeAsBackColor:(NSString *)codeString
 // 文字列をカラーコードとしてBGカラーコンボボックスへ取り込む
 //------------------------------------------------------
 {
@@ -148,7 +148,7 @@
     [[self disclosureButton] setState:NSOffState];
     [self toggleDisclosureButton:nil];
     // ArrayController のソート方式をセット
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_HCCDataControllerKey ascending:YES];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_ColorCodeDataControllerKey ascending:YES];
     [[self foreColorDataController] setSortDescriptors:@[descriptor]];
     [[self backColorDataController] setSortDescriptors:@[descriptor]];
 }
@@ -276,21 +276,18 @@
 // ディスクロージャボタンでの表示切り替え
 // ------------------------------------------------------
 {
-    NSRect optionFrame = [[self optionView] frame];
     NSRect windowFrame = [[self window] frame];
-
+    CGFloat optionHeight = [[self optionView] frame].size.height;
+    
     if ([sender state] == NSOnState) {
-        optionFrame.origin.y -= k_optionViewHeight;
-        optionFrame.size.height = k_optionViewHeight;
-        windowFrame.origin.y -= k_optionViewHeight;
-        windowFrame.size.height += k_optionViewHeight;
+        windowFrame.origin.y -= optionHeight;
+        windowFrame.size.height += optionHeight;
+        [[self optionView] setHidden:NO];
     } else {
-        optionFrame.origin.y += k_optionViewHeight;
-        optionFrame.size.height = 0.0;
-        windowFrame.origin.y += k_optionViewHeight;
-        windowFrame.size.height -= k_optionViewHeight;
+        windowFrame.origin.y += optionHeight;
+        windowFrame.size.height -= optionHeight;
+        [[self optionView] setHidden:YES];
     }
-    [[self optionView] setFrame:optionFrame];
     [[self window] setFrame:windowFrame display:YES animate:NO];
 }
 
@@ -308,10 +305,10 @@
     // 正しい値が入力されているときのみ、リストへの追加を行う
     if (([sender tag] == k_addCodeToForeButtonTag) && 
             ([[defaults valueForKey:k_key_foreColorCBoxIsOk] boolValue])) {
-        [[self foreColorDataController] addObject:@{k_HCCDataControllerKey: [[self foreColorComboBox] stringValue]}];
+        [[self foreColorDataController] addObject:@{k_ColorCodeDataControllerKey: [[self foreColorComboBox] stringValue]}];
     } else if (([sender tag] == k_addCodeToBackButtonTag) && 
             ([[defaults valueForKey:k_key_backgroundColorCBoxIsOk] boolValue])) {
-        [[self backColorDataController] addObject:@{k_HCCDataControllerKey: [[self backColorComboBox] stringValue]}];
+        [[self backColorDataController] addObject:@{k_ColorCodeDataControllerKey: [[self backColorComboBox] stringValue]}];
     }
 }
 
@@ -330,7 +327,7 @@
 //------------------------------------------------------
 {
     NSPoint origin = [[self window] frame].origin;
-    origin.y -= k_optionViewHeight;
+    origin.y -= [[self optionView] frame].size.height;
     [[self window] setFrameOrigin:origin];
 }
 
