@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEHCCManager">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEColorCodePanelController">
             <connections>
                 <outlet property="backColorComboBox" destination="17" id="s6a-0S-dpc"/>
                 <outlet property="backColorDataController" destination="80" id="bQs-35-EKO"/>
@@ -230,17 +230,17 @@
                                     <rect key="frame" x="17" y="157" width="145" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <clipView key="contentView" id="Chz-at-q0S">
-                                        <rect key="frame" x="1" y="1" width="143" height="68"/>
+                                        <rect key="frame" x="1" y="1" width="129" height="68"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="15" id="88">
-                                                <rect key="frame" x="0.0" y="0.0" width="143" height="68"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="68"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 <tableColumns>
-                                                    <tableColumn identifier="codeString" editable="NO" width="140" minWidth="40" maxWidth="1000" id="89">
+                                                    <tableColumn identifier="codeString" editable="NO" width="126" minWidth="40" maxWidth="1000" id="89">
                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -284,17 +284,17 @@
                                     <rect key="frame" x="16" y="64" width="145" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <clipView key="contentView" id="0mv-Jm-fjU">
-                                        <rect key="frame" x="1" y="1" width="143" height="68"/>
+                                        <rect key="frame" x="1" y="1" width="129" height="68"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="15" id="93">
-                                                <rect key="frame" x="0.0" y="0.0" width="143" height="68"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="68"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 <tableColumns>
-                                                    <tableColumn identifier="codeString" editable="NO" width="140" minWidth="40" maxWidth="1000" id="94">
+                                                    <tableColumn identifier="codeString" editable="NO" width="126" minWidth="40" maxWidth="1000" id="94">
                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

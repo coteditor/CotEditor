@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEHCCManager">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEColorCodePanelController">
             <connections>
                 <outlet property="backColorComboBox" destination="17" id="QGG-Sf-hzh"/>
                 <outlet property="backColorDataController" destination="80" id="zK8-am-G7j"/>

@@ -601,7 +601,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     // HexColorCodeEditorの値を初期化
-    [[CEHCCManager sharedInstance] setupHCCValues];
+    [[CEColorCodePanelController sharedController] setupHCCValues];
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedInstance] setupAtLaunching];
     // ファイルを開くデフォルトエンコーディングをセット
@@ -717,7 +717,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーコードウィンドウを表示
 // ------------------------------------------------------
 {
-    [[CEHCCManager sharedInstance] showWindow:self];
+    [[CEColorCodePanelController sharedController] showWindow:self];
 }
 
 

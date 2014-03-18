@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CETextViewCore.h"
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
-#import "CEHCCManager.h"
+#import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
 
 //=======================================================
@@ -1894,7 +1894,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *theCurStr = [[self string] substringWithRange:[self selectedRange]];
 
-    [[CEHCCManager sharedInstance] importHexColorCodeAsForeColor:theCurStr];
+    [[CEColorCodePanelController sharedController] importHexColorCodeAsForeColor:theCurStr];
 }
 
 
@@ -1905,7 +1905,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *theCurStr = [[self string] substringWithRange:[self selectedRange]];
 
-    [[CEHCCManager sharedInstance] importHexColorCodeAsBackGroundColor:theCurStr];
+    [[CEColorCodePanelController sharedController] importHexColorCodeAsBackGroundColor:theCurStr];
 }
 
 

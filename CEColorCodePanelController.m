@@ -31,12 +31,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CEHCCManager.h"
+#import "CEColorCodePanelController.h"
 #import "CEDocument.h"
 #import "constants.h"
 
 
-@interface CEHCCManager ()
+@interface CEColorCodePanelController ()
 
 @property (nonatomic, retain) IBOutlet NSArrayController *foreColorDataController;
 @property (nonatomic, retain) IBOutlet NSArrayController *backColorDataController;
@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma mark -
 
-@implementation CEHCCManager
+@implementation CEColorCodePanelController
 
 
 #pragma mark Class Methods
@@ -64,15 +64,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-+ (CEHCCManager *)sharedInstance
++ (CEColorCodePanelController *)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CEHCCManager *shared = nil;
+    static CEColorCodePanelController *shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEHCCManager alloc] initWithWindowNibName:@"HCCManager"];
+        shared = [[CEColorCodePanelController alloc] initWithWindowNibName:@"ColorCodePanel"];
     });
     
     return shared;

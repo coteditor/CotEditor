@@ -34,10 +34,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <Cocoa/Cocoa.h>
 
 
-@interface CEHCCManager : NSWindowController <NSWindowDelegate, NSComboBoxDelegate>
+@interface CEColorCodePanelController : NSWindowController <NSWindowDelegate, NSComboBoxDelegate>
 
 // class method
-+ (CEHCCManager *)sharedInstance;
++ (CEColorCodePanelController *)sharedController;
 
 // Public method
 - (void)setupHCCValues;
