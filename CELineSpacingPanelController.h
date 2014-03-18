@@ -32,11 +32,11 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
+#import "CEPanelController.h"
 
 
-@interface CELineSpacingPanelController : NSWindowController <NSWindowDelegate>
+@interface CELineSpacingPanelController : CEPanelController
 
-+ (instancetype)sharedController;
++ (CELineSpacingPanelController *)sharedController;
 
 @end

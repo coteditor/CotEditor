@@ -64,6 +64,7 @@
 		2A94A46018D0F166009FA90D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
+		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
 		6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB074A11373A03B001D0243 /* Sparkle.framework */; };
@@ -260,6 +261,8 @@
 		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2AFFB70618D7BC9300118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB70818D7BCB300118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
+		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
+		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/DocWindow.xib; sourceTree = "<group>"; };
 		6C1E212012C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/HCCManager.xib; sourceTree = "<group>"; };
@@ -504,6 +507,8 @@
 				258700E4077BAD2200E541BB /* CESyntaxManager.m */,
 				8C4186BD088648CA0039FBFC /* CEHCCManager.h */,
 				8C4186BE088648CA0039FBFC /* CEHCCManager.m */,
+				2AFFB71418D7DCC000118477 /* CEPanelController.h */,
+				2AFFB71518D7DCC000118477 /* CEPanelController.m */,
 				2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */,
 				2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */,
 				2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */,
@@ -879,9 +884,10 @@
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
 				258A14D107F3C6BC008E5FA1 /* CEFlippedView.m in Sources */,
 				8C49092D07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.m in Sources */,
+				2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
-				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */,
+				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,
 				8C4186C0088648CA0039FBFC /* CEHCCManager.m in Sources */,

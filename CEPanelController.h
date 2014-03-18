@@ -1,6 +1,6 @@
 /*
  =================================================
- CEOpacityPanelController
+ CEPanelController
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -8,9 +8,11 @@
  =================================================
  
  encoding="UTF-8"
- Created:2014-03-12 by 1024jp
+ Created:2014-03-18 by 1024jp
  
  ___ARC_enabled___
+ 
+ This class is an abstract class for panels related to document.
  
  -------------------------------------------------
  
@@ -32,11 +34,16 @@
  =================================================
  */
 
-#import "CEPanelController.h"
+#import <Cocoa/Cocoa.h>
+#import "CEWindowController.h"
 
 
-@interface CEOpacityPanelController : CEPanelController
+@interface CEPanelController : NSWindowController <NSWindowDelegate>
 
-+ (CEOpacityPanelController *)sharedController;
+@property (nonatomic, weak, readonly) CEWindowController *documentWindowController;
+
+
+// (abstract) invoke when frontmost document window changed
+- (void)keyDocumentDidChange;
 
 @end

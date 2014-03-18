@@ -33,25 +33,24 @@
  */
 
 #import "CEOpacityPanelController.h"
-#import "CEWindowController.h"
 #import "constants.h"
 
 
 @interface CEOpacityPanelController ()
-
-@property (nonatomic, weak) CEWindowController *documentWindowController;
 
 @property (nonatomic) CGFloat opacity;
 
 @end
 
 
+#pragma mark -
+
 @implementation CEOpacityPanelController
 
 #pragma mark Class Methods
 
 // ------------------------------------------------------
-+ (instancetype)sharedController
++ (CEOpacityPanelController *)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
@@ -67,56 +66,15 @@
 
 
 
-#pragma mark NSWindowController Methods
+#pragma mark CEPanelController Methods
 
 // ------------------------------------------------------
-- (instancetype)initWithWindow:(NSWindow *)window
-// default initializer
-// ------------------------------------------------------
-{
-    self = [super initWithWindow:window];
-    if (self) {
-        // observe key window changing
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(windowDidBecomeMain:)
-                                                     name:NSWindowDidBecomeMainNotification
-                                                   object:nil];
-        // set current window
-        [self windowDidBecomeMain:nil];
-    }
-    return self;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// clean up
+- (void)keyDocumentDidChange
+// invoke when frontmost document window changed
 // ------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-
-#pragma mark Notifications
-
-//=======================================================
-// Notification method (NSWindow)
-//  <== NSWindow
-//=======================================================
-
-// ------------------------------------------------------
-- (void)windowDidBecomeMain:(NSNotification *)notification
-// notification about main window change
-// ------------------------------------------------------
-{
-    // update properties if the new main window is a document window
-    if ([[[NSApp mainWindow] windowController] isKindOfClass:[CEWindowController class]]) {
-        [self setDocumentWindowController:(CEWindowController *)[[NSApp mainWindow] windowController]];
-        
-        // update value
-        [self setOpacity:[[self documentWindowController] alpha]];
-    }
+    [self setOpacity:[[self documentWindowController] alpha]];
+    
 }
 
 

@@ -33,25 +33,24 @@
  */
 
 #import "CELineSpacingPanelController.h"
-#import "CEWindowController.h"
 #import "constants.h"
 
 
 @interface CELineSpacingPanelController ()
-
-@property (nonatomic, weak) CEWindowController *documentWindowController;
 
 @property (nonatomic) CGFloat lineSpacing;
 
 @end
 
 
+#pragma mark -
+
 @implementation CELineSpacingPanelController
 
 #pragma mark Class Methods
 
 // ------------------------------------------------------
-+ (instancetype)sharedController
++ (CELineSpacingPanelController *)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
@@ -66,48 +65,15 @@
 }
 
 
-
-#pragma mark Public Methods
-
-// ------------------------------------------------------
-- (instancetype)initWithWindow:(NSWindow *)window
-// default initializer
-// ------------------------------------------------------
-{
-    self = [super initWithWindow:window];
-    if (self) {
-        // observe key window changing
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(windowDidBecomeMain:)
-                                                     name:NSWindowDidBecomeMainNotification
-                                                   object:nil];
-        // set current window
-        [self windowDidBecomeMain:nil];
-    }
-    return self;
-}
-
-
-
-#pragma mark Notifications
-
-//=======================================================
-// Notification method (NSWindow)
-//  <== NSWindow
-//=======================================================
+#pragma mark CEPanelController Methods
 
 // ------------------------------------------------------
-- (void)windowDidBecomeMain:(NSNotification *)notification
-// notification about main window change
+- (void)keyDocumentDidChange
+// invoke when frontmost document window changed
 // ------------------------------------------------------
 {
-    // update properties if the new main window is a document window
-    if ([[[NSApp mainWindow] windowController] isKindOfClass:[CEWindowController class]]) {
-        [self setDocumentWindowController:(CEWindowController *)[[NSApp mainWindow] windowController]];
-        
-        // update value
-        [self setLineSpacing:[[[[self documentWindowController] editorView] textView] lineSpacing]];
-    }
+    [self setLineSpacing:[[[[self documentWindowController] editorView] textView] lineSpacing]];
+    
 }
 
 
