@@ -15,3 +15,4 @@ changelog (for developer)
 - AppleScriptに関する変更
 	- documentオブジェクトの `transparency` および `alpha only textView` プロパティの廃止
 	- windowオブジェクトに `view opacity` プロパティを追加
+    - Application直下の `selection` を正式に廃止とした。

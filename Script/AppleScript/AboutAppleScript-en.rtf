@@ -8,14 +8,15 @@
 
 \f0\b\fs32 \cf0 Using AppleScript with CotEditor
 \b0\fs24 \
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf0 \
+\
 \
 - - - - - - - - - - - - - - - - - - - - -\
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\b \cf0 About the terminology changing on CotEditor 1.5:
+\b \cf0 The terminology changing on CotEditor 1.5:
 \b0 \
+\ul \
+Window Transparency\ulnone \
 According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The 
 \b document
 \b0 's properties till on version 1.4:\
@@ -35,12 +36,9 @@ Please note that, \ul there is no backward
 \f1  compatibility\ulnone  with this changing.
 \f0 \
 \
-- - - - - - - - - - - - - - - - - - - - -\
-
-\b Notes:
-\b0 \
-In version 0.6, the initial release of CotEditor, if you didn't specify the \'91selection\'92 object, the frontmost window's contents will be selected. However, the cases where it doesn't work have been reported, and this issue is currently under investigation, not yet solved.\
-This method is kept valid to maintain backwards compatibility, but it might be deprecated in the future. When you write a script getting a \'91selection\'92 object, make sure to specify the target as below.\
+\ul Selection Object direct under the Application\ulnone \
+In version 0.6, the initial release of CotEditor, if you didn't specify the \'91selection\'92 object, the frontmost window's contents will be selected (example 1). But it was actually didn't work correctly and therefore deprecated.  This method was kept valid however to maintain backwards compatibility.\
+On CotEditor 1.5, it is formally removed.  Specify the target as below (example 2), when you get the \'91selection\'92 object.\
 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
@@ -53,7 +51,7 @@ This method is kept valid to maintain backwards compatibility, but it might be d
 \f3\b \ul \ulc2 of front document
 \f2\b0 \ulnone \
 end tell
-\f0 \cf2 \
+\f0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
@@ -71,11 +69,10 @@ end tell
 	end tell
 \f2\b0 \ulnone \
 end tell
-\f0 \cf2 \
+\f0 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf0 - - - - - - - - - - - - - - - - - - - - -\
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf0 \
+\
 \
 \
 \
@@ -89,11 +86,9 @@ end tell
 
 \b \cf0 Application
 \b0  = The CotEditor application.\
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf0 \
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\
 
-\b \cf0 Window
+\b Window
 \b0  = A CotEditor window.\
 	view opacity = The opacity of the view. (real, from \'910.2\'92 to \'911.0\'92)  \cf3 new on CotEditor 1.5\cf0 \
 \
@@ -101,8 +96,7 @@ end tell
 \b Document
 \b0  = A CotEditor document.\
 	contents = The contents of the document. (text)\
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
-\cf0 	text = The text of the document. (text)\
+	text = The text of the document. (text)\
 	length = The number of characters of the document. (int)\
 	selection = The current selection. (selection-object)\
 	encoding = The encoding name of the document. (Unicode text)\
@@ -111,6 +105,7 @@ end tell
 	line spacing = The spacing between lines. (real, from \'910.0\'92 to \'9110.0\'92)\
 	wrap lines = Whether to wrap lines or not. (boolean)\
 	coloring style = The syntax coloring style name of the document. (Unicode text)\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf4 	transparency = The transparency of Window or TextView. (real, from \'910.2\'92 to \'911.0\'92) \cf5 Deprecated on CotEditor 1.5\cf4 \
 	alpha only textView = Whether the transparency setting affects only the TextView or not. (boolean) \cf5 Deprecated on CotEditor 1.5\cf0 \
 	\

@@ -640,15 +640,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)inKey
-// AppleScript へ、対応しているキーかどうかを返す
-// ------------------------------------------------------
-{
-    return [inKey isEqualToString:@"selection"];
-}
-
-
-// ------------------------------------------------------
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 // Dock メニュー生成
 // ------------------------------------------------------
@@ -796,38 +787,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_webSiteURL]];
 }
-
-
-#pragma mark ===== AppleScript accessor =====
-
-//=======================================================
-// AppleScript accessor
-//
-//=======================================================
-
-// ------------------------------------------------------
-- (CETextSelection *)selection
-// 最も前面のドキュメントウィンドウの選択範囲オブジェクトを返す
-// ------------------------------------------------------
-{
-    id theDoc = [NSApp orderedDocuments][0];
-
-    if (theDoc != nil) {
-        return (CETextSelection *)[theDoc selection];
-    }
-    return nil;
-}
-
-
-// ------------------------------------------------------
-- (void)setSelection:(id)inObject
-// 選択範囲へテキストを設定
-// ------------------------------------------------------
-{
-    [[self selection] setContents:inObject];
-}
-
-
 
 @end
 
