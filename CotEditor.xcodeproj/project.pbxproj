@@ -510,22 +510,13 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2AFFB72E18D8E87900118477 /* Panels */,
 				8CE4859608CD617B004817E1 /* CEApplication.h */,
 				8CE4859708CD617B004817E1 /* CEApplication.m */,
 				25859DB2076D65310020F779 /* CEAppController.h */,
 				25859DB1076D65310020F779 /* CEAppController.m */,
 				258700E3077BAD2200E541BB /* CESyntaxManager.h */,
 				258700E4077BAD2200E541BB /* CESyntaxManager.m */,
-				8C4186BD088648CA0039FBFC /* CEHCCManager.h */,
-				8C4186BE088648CA0039FBFC /* CEHCCManager.m */,
-				2AFFB71418D7DCC000118477 /* CEPanelController.h */,
-				2AFFB71518D7DCC000118477 /* CEPanelController.m */,
-				2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */,
-				2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */,
-				2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */,
-				2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */,
-				2AFFB71818D7F18200118477 /* CEGoToPanelController.h */,
-				2AFFB71918D7F18300118477 /* CEGoToPanelController.m */,
 				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
 				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
 				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
@@ -657,6 +648,23 @@
 				2A8663CB18C93FEB00A6F9CC /* Version History.rtf */,
 			);
 			name = Documents;
+			sourceTree = "<group>";
+		};
+		2AFFB72E18D8E87900118477 /* Panels */ = {
+			isa = PBXGroup;
+			children = (
+				2AFFB71418D7DCC000118477 /* CEPanelController.h */,
+				2AFFB71518D7DCC000118477 /* CEPanelController.m */,
+				2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */,
+				2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */,
+				2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */,
+				2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */,
+				2AFFB71818D7F18200118477 /* CEGoToPanelController.h */,
+				2AFFB71918D7F18300118477 /* CEGoToPanelController.m */,
+				8C4186BD088648CA0039FBFC /* CEHCCManager.h */,
+				8C4186BE088648CA0039FBFC /* CEHCCManager.m */,
+			);
+			name = Panels;
 			sourceTree = "<group>";
 		};
 		8C74014C08C7041A00683672 /* KeyBindings */ = {
