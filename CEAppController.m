@@ -34,6 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEAppController.h"
 #import "CEOpacityPanelController.h"
 #import "CELineSpacingPanelController.h"
+#import "CEGoToPanelController.h"
 
 //=======================================================
 // Private method
@@ -170,7 +171,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_printColorIndex: @0, 
 
         /* -------- 以下、環境設定にない設定項目 -------- */
-                k_key_gotoObjectMenuIndex: @1, // in Only goto window (not pref).
                 k_key_HCCBackgroundColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0]], 
                 k_key_HCCForeColor: [NSArchiver archivedDataWithRootObject:
@@ -585,7 +585,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [theFindMenu addItem:[NSMenuItem separatorItem]];
     theMenuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To...",@"") 
-                    action:@selector(openGotoPanel:) keyEquivalent:@"l"] autorelease];
+                    action:@selector(openGoToPanel:) keyEquivalent:@"l"] autorelease];
     [theFindMenu addItem:theMenuItem];
 
     // AppleScript 起動のスピードアップのため一度動かしておく
@@ -677,7 +677,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(openLineSpacingPanel:) ||
-        [menuItem action] == @selector(openOpacityPanel:)) {
+        [menuItem action] == @selector(openOpacityPanel:) ||
+        [menuItem action] == @selector(openGoToPanel:)) {
         return ([[CEDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
@@ -746,6 +747,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[CELineSpacingPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+- (IBAction)openGoToPanel:(id)sender
+// Go Toパネルを開く
+// ------------------------------------------------------
+{
+    [[CEGoToPanelController sharedController] showWindow:self];
 }
 
 
@@ -905,7 +915,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSArray *deprecatedKeys = @[@"statusAreaFontName",  // deprecated on 1.4
-                                @"alphaOnlyTextView"    // deprecated on 1.5
+                                @"alphaOnlyTextView",   // deprecated on 1.5
+                                @"gotoObjectMenuIndex"  // deprecated on 1.5
                                 ];
     
     for (NSString *key in deprecatedKeys) {

@@ -46,6 +46,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @class UKXattrMetadataStore;
 
 
+typedef NS_ENUM(NSUInteger, CEGoToType) {
+    CEGoToLine,
+    CEGoToCharacter
+};
+
+
 @interface CEDocument : NSDocument
 {
     id _windowController;
@@ -86,7 +92,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)scrollToCenteringSelection;
-- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
+- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength type:(CEGoToType)type;
 - (void)getFileAttributes;
 - (void)rebuildToolbarEncodingItem;
 - (void)rebuildToolbarSyntaxItem;

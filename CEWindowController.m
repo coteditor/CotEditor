@@ -80,7 +80,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // カスケードしないときは、位置をずらす
         [[self window] setFrameTopLeftPoint:[[self document] initTopLeftPoint]];
     }
-    [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:NO];
     // 背景をセットアップ
     [self setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
@@ -448,9 +447,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //（自身の変数 _tabViewSelectedIndex を使わせている関係で、放置しておくと自身が retain されたままになる）
     [_tabViewSelectionPopUpButton unbind:@"selectedIndex"];
     [_tabView unbind:@"selectedIndex"];
-
-    // パネル類の片づけ
-    [[CEDocumentController sharedDocumentController] setGotoPanelControlsEnabledWithDecrement:YES];
 }
 
 

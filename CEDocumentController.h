@@ -40,9 +40,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     IBOutlet id _appController;
     IBOutlet id _openPanelAccessoryView;
     IBOutlet id _accessoryEncodingMenu;
-    IBOutlet id _gotoIndexField;
-    IBOutlet id _gotoSelectButton;
-    IBOutlet id _gotoCharLineMatrix;
 
     BOOL _isOpenHidden;
 }
@@ -52,7 +49,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSStringEncoding)accessorySelectedEncoding;
 - (void)setSelectAccessoryEncoding:(NSStringEncoding)inEncoding;
 - (void)setFontToAllDocuments;
-- (void)setGotoPanelControlsEnabledWithDecrement:(BOOL)inValue;
 - (void)rebuildAllToolbarsEncodingItem;
 - (void)rebuildAllToolbarsSyntaxItem;
 - (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)inDict;
@@ -60,8 +56,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Action Message
 - (IBAction)openHiddenDocument:(id)sender;
-- (IBAction)openGotoPanel:(id)sender;
-- (IBAction)gotoCharacterOrLine:(id)sender;
 - (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender;
 - (IBAction)setSelectAccessoryEncodingMenuToDefault:(id)sender;
 

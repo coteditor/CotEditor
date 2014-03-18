@@ -968,17 +968,17 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
+- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength type:(CEGoToType)type
 // 選択範囲を変更する
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSInteger theIndex = [[theValues valueForKey:k_key_gotoObjectMenuIndex] integerValue];
-
-    if (theIndex == k_gotoCharacterIndex) {
-        [self setSelectedCharacterRangeInTextViewWithLocation:inLocation withLength:inLength];
-    } else if (theIndex == k_gotoLineIndex) {
-        [self setSelectedLineRangeInTextViewWithLocation:inLocation withLength:inLength];
+    switch (type) {
+        case CEGoToLine:
+            [self setSelectedLineRangeInTextViewWithLocation:inLocation withLength:inLength];
+            break;
+        case CEGoToCharacter:
+            [self setSelectedCharacterRangeInTextViewWithLocation:inLocation withLength:inLength];
+            break;
     }
     [self scrollToCenteringSelection]; // 選択範囲が見えるようにスクロール
     [[[self editorView] textView] showFindIndicatorForRange:[[[self editorView] textView] selectedRange]];  // 検索結果表示エフェクトを追加

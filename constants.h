@@ -111,7 +111,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_printInvisibleCharIndex   @"printInvisibleCharIndex"
 #define k_printColorIndex       @"printColorIndex"
 //------ 以下、環境設定にない設定項目 ------
-#define k_key_gotoObjectMenuIndex       @"gotoObjectMenuIndex"
 #define k_key_HCCBackgroundColor    @"HCCBackgroundColor"
 #define k_key_HCCForeColor          @"HCCForeColor"
 #define k_key_HCCSampleText         @"HCCSampleText"
@@ -258,10 +257,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Help Document Menu tag and path
 #define k_bundleDocumentDict @{@101:@"Acknowledgements", @200:@"ReadMe", @201:@"Version History"}
-
-// Goto window object index
-#define k_gotoCharacterIndex    0
-#define k_gotoLineIndex         1
 
 
 // CEEditorView and subView's dict key

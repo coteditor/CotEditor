@@ -214,21 +214,6 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (void)setGotoPanelControlsEnabledWithDecrement:(BOOL)inValue
-// 文字／行移動パネルのコントロール類の有効／無効を制御
-// ------------------------------------------------------
-{
-    NSUInteger theNum = [[self documents] count];
-
-    if (inValue) {
-        theNum--;
-    }
-    [_gotoSelectButton setEnabled:(theNum >  0)];
-    [_gotoIndexField setEnabled:(theNum >  0)];
-}
-
-
-// ------------------------------------------------------
 - (void)rebuildAllToolbarsEncodingItem
 // すべてのツールバーのエンコーディングメニューを再生成する
 // ------------------------------------------------------
@@ -311,44 +296,6 @@ static NSRect theLatestDocumentWindowFrame;
     _isOpenHidden = ([sender tag] == k_openHiddenMenuItemTag);
 
     [super openDocument:sender];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)openGotoPanel:(id)sender
-// 文字／行移動パネルを開く
-// ------------------------------------------------------
-{
-    NSWindow *thePanel = [_gotoIndexField window];
-
-    if ([thePanel isKeyWindow]) {
-        // 既に開いてキーになっているときは、文字／行移動をトグルに切り替える
-        NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-        NSInteger theNewSelect = ([_gotoCharLineMatrix selectedRow] == 0) ? 1 : 0;
-        [theDefaults setInteger:theNewSelect forKey:k_key_gotoObjectMenuIndex];
-    } else {
-        [self setGotoPanelControlsEnabledWithDecrement:NO];
-        [thePanel makeKeyAndOrderFront:sender];
-        [thePanel makeFirstResponder:_gotoIndexField];
-    }
-}
-
-
-// ------------------------------------------------------
-- (IBAction)gotoCharacterOrLine:(id)sender
-// 文字／行移動を実行
-// ------------------------------------------------------
-{
-    NSArray *theArray = [[_gotoIndexField stringValue] componentsSeparatedByString:@":"];
-    CEDocument *theCurDoc = [self currentDocument];
-
-    if (([theArray count] > 0) && (theCurDoc)) {
-        NSInteger theLocation = [theArray[0] integerValue];
-        NSInteger theLength = ([theArray count] > 1) ? [theArray[1] integerValue] : 0;
-
-        [theCurDoc gotoLocation:theLocation withLength:theLength];
-    }
-    [[_gotoIndexField window] orderOut:nil];
 }
 
 

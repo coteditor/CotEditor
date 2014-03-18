@@ -666,14 +666,14 @@
                             <menuItem title="Panels" tag="7999" id="649">
                                 <menu key="submenu" title="Panels" id="650">
                                     <items>
-                                        <menuItem title="Window Opacity" keyEquivalent="1" id="655">
+                                        <menuItem title="Window Opacity Panel" keyEquivalent="1" id="655">
                                             <connections>
                                                 <action selector="openOpacityPanel:" target="290" id="fZ3-6h-0om"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="GoTo" keyEquivalent="2" id="656">
+                                        <menuItem title="Go To Panel" keyEquivalent="2" id="656">
                                             <connections>
-                                                <action selector="openGotoPanel:" target="329" id="658"/>
+                                                <action selector="openGoToPanel:" target="290" id="kSu-Ge-YRz"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Color Code Editor" keyEquivalent="3" id="651">
@@ -751,9 +751,6 @@
             <connections>
                 <outlet property="_accessoryEncodingMenu" destination="343" id="357"/>
                 <outlet property="_appController" destination="290" id="350"/>
-                <outlet property="_gotoCharLineMatrix" destination="549" id="629"/>
-                <outlet property="_gotoIndexField" destination="551" id="558"/>
-                <outlet property="_gotoSelectButton" destination="552" id="563"/>
                 <outlet property="_openPanelAccessoryView" destination="339" id="348"/>
             </connections>
         </customObject>
@@ -789,68 +786,6 @@
             </subviews>
         </customView>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
-        <window title="Go To" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="gotoWindow" animationBehavior="default" id="547" userLabel="gotoPanel" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="97" y="646" width="240" height="91"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="213" height="113"/>
-            <view key="contentView" id="546">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="91"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="549">
-                        <rect key="frame" x="20" y="33" width="92" height="38"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        <size key="cellSize" width="92" height="18"/>
-                        <size key="intercellSpacing" width="4" height="2"/>
-                        <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="817">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <cells>
-                            <column>
-                                <buttonCell type="radio" title="Character" imagePosition="left" alignment="left" state="on" inset="2" id="548">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <buttonCell type="radio" title="Line" imagePosition="left" alignment="left" tag="1" inset="2" id="550">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </column>
-                        </cells>
-                        <connections>
-                            <binding destination="554" name="selectedIndex" keyPath="values.gotoObjectMenuIndex" id="556"/>
-                        </connections>
-                    </matrix>
-                    <textField verticalHuggingPriority="750" id="551">
-                        <rect key="frame" x="120" y="49" width="100" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="810">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" id="552">
-                        <rect key="frame" x="126" y="13" width="100" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="811">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="gotoCharacterOrLine:" target="329" id="562"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-        </window>
         <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
         <customObject id="831" customClass="SUUpdater"/>
     </objects>
