@@ -41,14 +41,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEDocumentController : NSDocumentController
 
 @property (nonatomic, readonly) NSPopUpButton *accessoryEncodingMenu;
+@property (nonatomic) NSStringEncoding accessorySelectedEncoding;
 
 
 // Public method
-- (NSStringEncoding)accessorySelectedEncoding;
-- (void)setAccessorySelectedEncoding:(NSStringEncoding)encoding;
 - (void)rebuildAllToolbarsEncodingItem;
 - (void)rebuildAllToolbarsSyntaxItem;
-- (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)inDict;
+- (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)styleNameDict;
 - (void)setNoneAndRecolorFlagToAllDocumentsWithStyleName:(NSString *)styleName;
 
 // Action Message

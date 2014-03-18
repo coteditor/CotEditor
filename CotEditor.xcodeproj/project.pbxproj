@@ -67,6 +67,7 @@
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToPanelController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		2AFFB71D18D7F22E00118477 /* GoToPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToPanel.xib */; };
+		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		6CA3B3E312E3B59B0019AB2E /* Script in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* Script */; };
 		6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB074A11373A03B001D0243 /* Sparkle.framework */; };
@@ -269,6 +270,8 @@
 		2AFFB71918D7F18300118477 /* CEGoToPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGoToPanelController.m; sourceTree = "<group>"; };
 		2AFFB71E18D7F22E00118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GoToPanel.xib; sourceTree = "<group>"; };
 		2AFFB72018D7FC6000118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/GoToPanel.xib; sourceTree = "<group>"; };
+		2AFFB72918D8C7DE00118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
+		2AFFB72B18D8CB7D00118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
 		6C1E211F12C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/DocWindow.xib; sourceTree = "<group>"; };
 		6C1E212012C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/HCCManager.xib; sourceTree = "<group>"; };
@@ -602,6 +605,7 @@
 			isa = PBXGroup;
 			children = (
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */,
+				2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */,
 				2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */,
 				8C7400A208C6D93900683672 /* KeyBindingManager.xib */,
 				25859EA5076D8EE80020F779 /* Preferences.xib */,
@@ -781,6 +785,7 @@
 				2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
+				2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */,
 				2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */,
 				25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */,
 				258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */,
@@ -1040,6 +1045,15 @@
 				2AFFB72018D7FC6000118477 /* ja */,
 			);
 			name = GoToPanel.xib;
+			sourceTree = "<group>";
+		};
+		2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AFFB72918D8C7DE00118477 /* en */,
+				2AFFB72B18D8CB7D00118477 /* ja */,
+			);
+			name = OpenDocumentAccessory.xib;
 			sourceTree = "<group>";
 		};
 		8C28CD2C081101A300733DA7 /* ScriptManager.xib */ = {

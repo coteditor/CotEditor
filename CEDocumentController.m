@@ -42,7 +42,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSRect latestDocumentWindowFrame;
 @property (nonatomic) BOOL isOpenHidden;
 
-@property (nonatomic, weak) IBOutlet NSView *openPanelAccessoryView;
+@property (nonatomic) IBOutlet NSView *openPanelAccessoryView;
 
 // readonly
 @property (nonatomic, readwrite) IBOutlet NSPopUpButton *accessoryEncodingMenu;
@@ -60,6 +60,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // NSDocumentController Methods
 //
 //=======================================================
+
+// ------------------------------------------------------
+- (instancetype)init
+// inizialize instance
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        [[NSBundle mainBundle] loadNibNamed:@"OpenDocumentAccessory" owner:self topLevelObjects:nil];
+    }
+    return self;
+}
 
 // ------------------------------------------------------
 - (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
@@ -138,29 +150,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //=======================================================
 
-// ------------------------------------------------------
-- (NSStringEncoding)accessorySelectedEncoding
-// ファイルオープンダイアログで指定されたエンコーディングを取得
-// ------------------------------------------------------
-{
-    return [[[self accessoryEncodingMenu] selectedItem] tag];
-}
-
-
-// ------------------------------------------------------
-- (void)setAccessorySelectedEncoding:(NSStringEncoding)encoding
-// ファイルオープンダイアログのエンコーディングの選択項目を設定
-// ------------------------------------------------------
-{
-    NSString *title = (encoding == k_autoDetectEncodingMenuTag) ?
-                      NSLocalizedString(@"Auto-Detect", nil) :
-                      [NSString localizedNameOfStringEncoding:encoding];
-
-    if (![title isEqualToString:@""]) {
-        [[self accessoryEncodingMenu] selectItemWithTitle:title];
-    }
-}
-
 
 // ------------------------------------------------------
 - (void)rebuildAllToolbarsEncodingItem
@@ -181,13 +170,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)inDict
+- (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)styleNameDict
 // 指定されたスタイルを適用しているドキュメントのリカラーフラグを立てる
 // ------------------------------------------------------
 {
-    if (inDict != nil) {
+    if (styleNameDict) {
         [[self documents] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:) 
-                withObject:inDict];
+                withObject:styleNameDict];
     }
 }
 

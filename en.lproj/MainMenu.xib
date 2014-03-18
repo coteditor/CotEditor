@@ -747,43 +747,7 @@
         </menu>
         <customObject id="289" userLabel="OgreTextFinder" customClass="OgreTextFinder"/>
         <customObject id="290" userLabel="CEAppController" customClass="CEAppController"/>
-        <customObject id="329" userLabel="CEDocumentController" customClass="CEDocumentController">
-            <connections>
-                <outlet property="accessoryEncodingMenu" destination="343" id="dQI-gj-mG7"/>
-                <outlet property="openPanelAccessoryView" destination="339" id="4iO-tq-OHK"/>
-            </connections>
-        </customObject>
-        <customView id="339" userLabel="openPanelAccessoryView">
-            <rect key="frame" x="0.0" y="0.0" width="435" height="43"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" id="347">
-                    <rect key="frame" x="25" y="14" width="140" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Encoding:" id="805">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="343">
-                    <rect key="frame" x="167" y="8" width="233" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Auto-Detect" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="340" id="804">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="OtherViews" id="344">
-                            <items>
-                                <menuItem title="Auto-Detect" state="on" id="340"/>
-                                <menuItem isSeparatorItem="YES" id="351">
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </menuItem>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                </popUpButton>
-            </subviews>
-        </customView>
+        <customObject id="329" userLabel="CEDocumentController" customClass="CEDocumentController"/>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
         <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
         <customObject id="831" customClass="SUUpdater"/>
