@@ -205,15 +205,6 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (void)setFontToAllDocuments
-// 全ドキュメントにフォント変更通知を送る
-// ------------------------------------------------------
-{
-    [[self documents] makeObjectsPerformSelector:@selector(setFontToViewInWindow)];
-}
-
-
-// ------------------------------------------------------
 - (void)rebuildAllToolbarsEncodingItem
 // すべてのツールバーのエンコーディングメニューを再生成する
 // ------------------------------------------------------

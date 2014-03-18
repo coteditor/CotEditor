@@ -48,7 +48,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (id)accessoryEncodingMenu;
 - (NSStringEncoding)accessorySelectedEncoding;
 - (void)setSelectAccessoryEncoding:(NSStringEncoding)inEncoding;
-- (void)setFontToAllDocuments;
 - (void)rebuildAllToolbarsEncodingItem;
 - (void)rebuildAllToolbarsSyntaxItem;
 - (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)inDict;

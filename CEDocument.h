@@ -87,7 +87,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)doSetSyntaxStyle:(NSString *)inName;
 - (void)doSetSyntaxStyle:(NSString *)inName delay:(BOOL)inBoolDelay;
 - (void)setColoringExtension:(NSString *)inExtension coloring:(BOOL)inBoolColoring;
-- (void)setFontToViewInWindow;
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;

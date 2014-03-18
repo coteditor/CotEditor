@@ -849,20 +849,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)setFontToViewInWindow
-// フォントを変更する
-// ------------------------------------------------------
-{
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSString *theName = [theValues valueForKey:k_key_fontName];
-    CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
-    NSFont *theFont = [NSFont fontWithName:theName size:theSize];
-
-    [[self editorView] setFont:theFont];
-}
-
-
-// ------------------------------------------------------
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
 // ------------------------------------------------------
