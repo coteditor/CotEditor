@@ -1814,11 +1814,11 @@ The parent directory name of the dropped file.
                                                     <rect key="frame" x="20" y="302" width="486" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="8Pf-DD-vMX">
-                                                        <rect key="frame" x="1" y="1" width="484" height="110"/>
+                                                        <rect key="frame" x="1" y="1" width="469" height="94"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
-                                                                <rect key="frame" x="0.0" y="0.0" width="484" height="110"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="94"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1849,11 +1849,11 @@ The parent directory name of the dropped file.
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3415">
-                                                        <rect key="frame" x="1" y="95" width="484" height="16"/>
+                                                        <rect key="frame" x="1" y="95" width="469" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="94"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2699,9 +2699,9 @@ DQ
         </window>
         <customObject id="47" userLabel="CEPrefEncodingDataSource" customClass="CEPrefEncodingDataSource">
             <connections>
-                <outlet property="_delSeparatorButton" destination="55" id="66"/>
-                <outlet property="_revertButton" destination="700" id="702"/>
-                <outlet property="_tableView" destination="39" id="59"/>
+                <outlet property="delSeparatorButton" destination="55" id="qbA-SN-qVo"/>
+                <outlet property="revertButton" destination="700" id="Pu1-Er-NHy"/>
+                <outlet property="tableView" destination="39" id="4mx-Dq-Oyj"/>
             </connections>
         </customObject>
         <window title="ウインドウサイズを決定" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">

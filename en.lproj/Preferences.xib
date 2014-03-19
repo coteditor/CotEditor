@@ -1850,7 +1850,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
+                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2696,9 +2696,9 @@ Auto-Detect tries these encodings from the top of the list.</string>
         </window>
         <customObject id="47" userLabel="CEPrefEncodingDataSource" customClass="CEPrefEncodingDataSource">
             <connections>
-                <outlet property="_delSeparatorButton" destination="55" id="66"/>
-                <outlet property="_revertButton" destination="700" id="702"/>
-                <outlet property="_tableView" destination="39" id="59"/>
+                <outlet property="delSeparatorButton" destination="55" id="hck-pj-wy1"/>
+                <outlet property="revertButton" destination="700" id="wWk-oz-yr2"/>
+                <outlet property="tableView" destination="39" id="nzf-UN-llV"/>
             </connections>
         </customObject>
         <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
