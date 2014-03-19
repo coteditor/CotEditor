@@ -3,8 +3,9 @@
 CETextViewCore
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -35,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "NSEventAdditions.h"
+#import "NSEvent+CarbonModFlag.h"
 #import "constants.h"
 
 @class CEEditorView;
@@ -51,7 +52,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSPoint _textContainerOriginPoint;
     NSRect _highlightLineAdditionalRect;
 
-    float _lineSpacing;
+    CGFloat _lineSpacing;
     BOOL _isReCompletion;
     BOOL _updateOutlineMenuItemSelection;
     BOOL _isSelfDrop;
@@ -71,16 +72,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSDictionary *)typingAttrs;
 - (void)setTypingAttrs:(NSDictionary *)inAttrs;
 - (void)setEffectTypingAttrs;
-- (void)setBackgroundColorWithAlpha:(float)inAlpha;
+- (void)setBackgroundColorWithAlpha:(CGFloat)inAlpha;
 - (void)replaceSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
 - (void)replaceAllStringTo:(NSString *)inString;
 - (void)insertAfterSelection:(NSString *)inString;
 - (void)appendAllString:(NSString *)inString;
-- (void)insertCustomTextWithPatternNum:(int)inPatternNum;
+- (void)insertCustomTextWithPatternNum:(NSInteger)inPatternNum;
 - (void)resetFont:(id)sender;
 - (NSArray *)readablePasteboardTypes;
 - (NSArray *)pasteboardTypesForString;
-- (unsigned int)dragOperationForDraggingInfo:(id <NSDraggingInfo>)inDragInfo type:(NSString *)inType;
+- (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)inDragInfo type:(NSString *)inType;
 - (BOOL)readSelectionFromPasteboard:(NSPasteboard *)inPboard type:(NSString *)inType;
 - (NSRange)selectionRangeForProposedRange:(NSRange)inProposedSelRange
             granularity:(NSSelectionGranularity)inGranularity;
@@ -92,9 +93,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setIsReCompletion:(BOOL)inValue;
 - (BOOL)updateOutlineMenuItemSelection;
 - (void)setUpdateOutlineMenuItemSelection:(BOOL)inValue;
-- (float)lineSpacing;
-- (void)setLineSpacing:(float)inLineSpacing;
-- (void)setNewLineSpacingAndUpdate:(float)inLineSpacing;
+- (CGFloat)lineSpacing;
+- (void)setLineSpacing:(CGFloat)inLineSpacing;
+- (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing;
 - (void)doReplaceString:(NSString *)inString withRange:(NSRange)inRange 
             withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
 - (void)selectTextRangeValue:(NSValue *)inRangeValue;

@@ -3,8 +3,9 @@
 CEDocumentController
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -38,7 +39,8 @@ static NSRect theLatestDocumentWindowFrame;
 
 @implementation CEDocumentController
 
-#pragma mark ===== Public method =====
+#pragma mark -
+#pragma mark Public method
 
 //=======================================================
 // Public method
@@ -57,11 +59,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (id)openUntitledDocumentOfType:(NSString *)inDocType display:(BOOL)inDisplay
+- (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
 // 名称未設定ドキュメントを開き、位置を保存
 // ------------------------------------------------------
 {
-    id outDocument = [super openUntitledDocumentOfType:inDocType display:inDisplay];
+    id outDocument = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
 
     if (outDocument) {
         theLatestDocument = outDocument;
@@ -72,13 +74,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (id)makeDocumentWithContentsOfFile:(NSString *)inFileName ofType:(NSString *)inDocType
+- (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // ファイルからドキュメントを作成
 // ------------------------------------------------------
 {
-    // makeDocumentWithContentsOfFile:ofType: は 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
-    id outDocument = [super makeDocumentWithContentsOfFile:inFileName ofType:inDocType];
+    id outDocument = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
 
     // 自動的に開かれた名称未設定ドキュメントが未変更のままあるときはそれを上書きする（ように見せる）ための設定を行う
     // 実際の位置の変更は CEWindowController で行う
@@ -96,13 +96,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (id)openDocumentWithContentsOfFile:(NSString *)inFileName display:(BOOL)inFlag
+- (id)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument error:(NSError **)outError
 // ファイルを開き、ドキュメントを作成
 // ------------------------------------------------------
 {
-    // openDocumentWithContentsOfFile:display: は 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
-    id outDocument = [super openDocumentWithContentsOfFile:inFileName display:inFlag];
+    id outDocument = [super openDocumentWithContentsOfURL:url display:displayDocument error:outError];
 
     if (outDocument) {
         // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
@@ -142,7 +140,7 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (int)runModalOpenPanel:(NSOpenPanel *)inOpenPanel forTypes:(NSArray *)inExtensions
+- (NSInteger)runModalOpenPanel:(NSOpenPanel *)inOpenPanel forTypes:(NSArray *)inExtensions
 // オープンパネルを開くときにエンコーディング指定メニューを付加する
 // ------------------------------------------------------
 {
@@ -152,15 +150,8 @@ static NSRect theLatestDocumentWindowFrame;
 
     // 非表示ファイルも表示するとき
     if (_isOpenHidden) {
-        // この部分は、Smultron を参考にさせていただきました。(2005.09.18)
-        // This part is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-        // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-        // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
         [inOpenPanel setTreatsFilePackagesAsDirectories:YES];
-        NS_DURING // catch any exceptions if Apple ever changes this undocumented feature
-        [[inOpenPanel _navView] setShowsHiddenFiles:YES]; // 隠しメソッド、バージョンアップに注意
-        NS_HANDLER // if there are any exceptions raised, just ignore including hidden files
-        NS_ENDHANDLER
+        [inOpenPanel setShowsHiddenFiles:YES];
     } else {
         [inOpenPanel setTreatsFilePackagesAsDirectories:NO];
     }
@@ -223,11 +214,11 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 // ------------------------------------------------------
-- (float)windowAlphaControllerValue
+- (CGFloat)windowAlphaControllerValue
 // ウィンドウの透明度設定コントローラの値を返す
 // ------------------------------------------------------
 {
-    return [[[_transparencyController content] valueForKey:k_key_curWindowAlpha] floatValue];
+    return (CGFloat)[[[_transparencyController content] valueForKey:k_key_curWindowAlpha] doubleValue];
 }
 
 
@@ -259,7 +250,7 @@ static NSRect theLatestDocumentWindowFrame;
 // 透明度設定パネルのコントロール類の有効／無効を制御
 // ------------------------------------------------------
 {
-    unsigned int theNum = [[self documents] count];
+    NSUInteger theNum = [[self documents] count];
 
     if (inValue) {
         theNum--;
@@ -287,7 +278,7 @@ static NSRect theLatestDocumentWindowFrame;
 // 文字／行移動パネルのコントロール類の有効／無効を制御
 // ------------------------------------------------------
 {
-    unsigned int theNum = [[self documents] count];
+    NSUInteger theNum = [[self documents] count];
 
     if (inValue) {
         theNum--;
@@ -340,7 +331,8 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark -
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -357,7 +349,7 @@ static NSRect theLatestDocumentWindowFrame;
         if (theCurDoc == nil) {
             return NO;
         } else {
-            float theLineSpacing = [theCurDoc lineSpacingInTextView];
+            CGFloat theLineSpacing = [theCurDoc lineSpacingInTextView];
             BOOL theState = ((theLineSpacing != 0.0) && (theLineSpacing != 0.25) && 
                     (theLineSpacing != 0.5) && (theLineSpacing != 0.75) && 
                     (theLineSpacing != 1.0) && (theLineSpacing != 1.25) && 
@@ -380,7 +372,8 @@ static NSRect theLatestDocumentWindowFrame;
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark -
+#pragma mark Action messages
 
 //=======================================================
 // Action messages
@@ -451,7 +444,7 @@ static NSRect theLatestDocumentWindowFrame;
     if ([thePanel isKeyWindow]) {
         // 既に開いてキーになっているときは、文字／行移動をトグルに切り替える
         NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-        int theNewSelect = ([_gotoCharLineMatrix selectedRow] == 0) ? 1 : 0;
+        NSInteger theNewSelect = ([_gotoCharLineMatrix selectedRow] == 0) ? 1 : 0;
         [theDefaults setInteger:theNewSelect forKey:k_key_gotoObjectMenuIndex];
     } else {
         [self setGotoPanelControlsEnabledWithDecrement:NO];
@@ -470,8 +463,8 @@ static NSRect theLatestDocumentWindowFrame;
     CEDocument *theCurDoc = [self currentDocument];
 
     if (([theArray count] > 0) && (theCurDoc)) {
-        int theLocation = [[theArray objectAtIndex:0] intValue];
-        int theLength = ([theArray count] > 1) ? [[theArray objectAtIndex:1] intValue] : 0;
+        NSInteger theLocation = [theArray[0] integerValue];
+        NSInteger theLength = ([theArray count] > 1) ? [theArray[1] integerValue] : 0;
 
         [theCurDoc gotoLocation:theLocation withLength:theLength];
     }
@@ -505,7 +498,7 @@ static NSRect theLatestDocumentWindowFrame;
 // ------------------------------------------------------
 {
     CEDocument *theCurDoc = [self currentDocument];
-    float theLineSpacing = [theCurDoc lineSpacingInTextView];
+    CGFloat theLineSpacing = [theCurDoc lineSpacingInTextView];
 
     if (theCurDoc) {
         [_lineSpacingField setStringValue:[NSString stringWithFormat:@"%.2f", theLineSpacing]];
@@ -531,7 +524,7 @@ static NSRect theLatestDocumentWindowFrame;
     CEDocument *theCurDoc = [self currentDocument];
 
     if (theCurDoc) {
-        [theCurDoc setCustomLineSpacingToTextView:[_lineSpacingField floatValue]];
+        [theCurDoc setCustomLineSpacingToTextView:(CGFloat)[_lineSpacingField doubleValue]];
     }
     [self closeLineSpacingPanel:nil];
 }

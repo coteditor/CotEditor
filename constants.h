@@ -3,8 +3,9 @@
 constants
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2011, 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -123,7 +124,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_insertCustomText          @"insertCustomText"
 //------ 以下、隠し設定 ------
 //（隠し設定の値は CEAppController の initialize で設定している）
-#define k_key_statusBarFontName    @"statusAreaFontName"
 #define k_key_statusBarFontSize    @"statusAreaFontSize"
 #define k_key_lineNumFontName       @"lineNumFontName"
 #define k_key_lineNumFontSize       @"lineNumFontSize"
@@ -262,22 +262,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_scriptMenuTag     800
 
 // Help Document Menu tag and path
-static struct {
-    int tag;
-    NSString *path;
-} k_bundleDocumentList[] = {
-    {100, @"/GPL.txt"},
-    {101, @"/OgreKit License.txt"},
-    {200, @"/EN/ReadMe-en.rtf"},
-    {201, @"/EN/History-en.rtf"},
-    {202, @"/EN/Known_problems-en.rtf"},
-    {300, @"/JP/ReadMe-jp.rtf"},
-    {301, @"/JP/History-jp.rtf"},
-    {302, @"/JP/Known_problems-jp.rtf"},
-    {303, @"/JP/To_ATOK_Users-jp.rtf"},
-    {304, @"/JP/To_0.7.x_Users-jp.rtf"},
-    {0, nil}
-};
+#define k_bundleDocumentDict @{@101:@"Acknowledgements", @200:@"ReadMe", @201:@"Version History"}
 
 // Goto window object index
 #define k_gotoCharacterIndex    0
@@ -306,7 +291,6 @@ static struct {
 #define k_outlineMenuLeftMargin     70.0
 #define k_outlineMenuWidth          300.0
 #define k_outlineButtonWidth        20.0
-#define k_splitDividerThickness     7.0
 #define k_outlineMenuSeparatorSymbol    @"-"
 
 
@@ -357,6 +341,9 @@ static struct {
 
 // Help anchors
 #define k_helpPrefAnchors       @"pref_general", @"pref_window", @"pref_appearance", @"pref_format", @"pref_syntax", @"pref_filedrop", @"pref_keybinding", @"pref_print"
+
+// distribution web site
+#define k_webSiteURL @"http://coteditor.github.io"
 
 // tab item view tag
 #define k_prefTabItemViewTag    3000
@@ -421,11 +408,6 @@ static struct {
 #define k_docWindowToolbarID    @"docWindowToolbarID"
 #define k_getInfoItemID         @"searchFieldItemID"
 #define k_showIncompatibleCharItemID    @"showIncompatibleCharItemID"
-#define k_preferencesItemID     @"preferencesItemID"
-#define k_saveItemID            @"saveItemID"
-#define k_saveAsItemID          @"saveAsItemID"
-#define k_pageSetupItemID       @"pageSetupItemID"
-#define k_openTransparencyPanelItemID  @"openTransparencyPanelItemID"
 #define k_biggerFontItemID      @"biggerFontItemID"
 #define k_smallerFontItemID     @"smallerFontItemID"
 #define k_shiftLeftItemID       @"shiftLeftItemID"
@@ -502,15 +484,14 @@ static CFStringEncodings k_CFStringEncodingList[] = {
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
     kCFStringEncodingNextStepLatin, // Western (NextStep)
     kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
-};
+    kCFStringEncodingInvalidId, // ----------
 
 // Encodings available 10.4 and later (CotEditor added in 0.8.0)
-static CFStringEncodings k_CFStringEncoding10_4List[] = {
-    0x10000100, // kCFStringEncodingUTF16BE
-    0x14000100, // kCFStringEncodingUTF16LE
-    0x0c000100, // kCFStringEncodingUTF32
-    0x18000100, // kCFStringEncodingUTF32BE
-    0x1c000100, // kCFStringEncodingUTF32LE
+    kCFStringEncodingUTF16BE, // Unicode (UTF-16BE)
+    kCFStringEncodingUTF16LE, // Unicode (UTF-16LE)
+    kCFStringEncodingUTF32, // Unicode (UTF-32)
+    kCFStringEncodingUTF32BE, // Unicode (UTF-32BE)
+    kCFStringEncodingUTF32LE, // Unicode (UTF-16LE)
 };
 
 // Encodings to convert Yen mark to back-slash
@@ -541,7 +522,7 @@ static unichar k_invisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
 static unichar k_invisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
 static unichar k_invisibleFullwidthSpaceCharList[] = {0x25A1, 0x22A0, 0x25A0, 0x2022};
 
-static unsigned int k_modifierKeysList[] = 
+static NSUInteger k_modifierKeysList[] = 
             {NSControlKeyMask, NSAlternateKeyMask, NSShiftKeyMask, NSCommandKeyMask};
 static unichar k_keySpecCharList[] = {0x005E, 0x007E, 0x0024, 0x0040}; // == "^~$@"
 static unichar k_readableKeyStringsList[] = {0x005E, 0x2325, 0x21E7, 0x2318};

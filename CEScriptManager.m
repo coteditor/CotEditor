@@ -3,8 +3,9 @@
 CEScriptManager
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -32,38 +33,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEScriptManager.h"
 #import "CEDocument.h"
-#import "NSEventAdditions.h"
+#import "NSEvent+CarbonModFlag.h"
+#import "constants.h"
 
 //=======================================================
 // Private method
 //
 //=======================================================
 
-@interface CEScriptManager (Private)
-- (void)setupMenuIcon;
-- (NSString *)pathOfScriptDirectory;
-- (void)addChildFileItemTo:(NSMenu *)inMenu fromDir:(NSString *)inPath;
-- (void)removeAllMenuItemsFromParent:(NSMenu *)inMenu;
-- (NSString *)menuTitleFromFileName:(NSString *)inFileName;
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask fromFileName:(NSString *)inFileName;
-- (void)showAlert:(NSString *)inMessage;
-- (NSString *)stringOfScript:(NSString *)inPath;
-- (void)doLaunchShellScript:(NSString *)inPath;
-- (void)availableOutput:(NSNotification *)inNotification;
-- (void)showScriptErrorLog:(NSString *)inLogString;
+@interface CEScriptManager ()
+
+@property (nonatomic, assign) IBOutlet id errorTextView;
+
+@property (nonatomic, retain) NSFileHandle *outputHandle;
+@property (nonatomic, retain) NSFileHandle *errorHandle;
+@property (nonatomic) NSInteger outputType;
+
 @end
 
 
 //------------------------------------------------------------------------------------------
 
 
-
+#pragma mark -
 
 @implementation CEScriptManager
 
 static CEScriptManager *sharedInstance = nil;
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 //=======================================================
 // Class method
@@ -79,8 +77,26 @@ static CEScriptManager *sharedInstance = nil;
 }
 
 
+// ------------------------------------------------------
++ (NSArray *)scriptExtensions
+// 対応しているスクリプトの拡張子
+// ------------------------------------------------------
+{
+    return @[@"sh", @"pl", @"php", @"rb", @"py"];
+}
 
-#pragma mark ===== Public method =====
+
+// ------------------------------------------------------
++ (NSArray *)AppleScriptExtensions
+// 対応しているAppleScriptの拡張子
+// ------------------------------------------------------
+{
+    return @[@"applescript", @"scpt"];
+}
+
+
+
+#pragma mark - Public Methods
 
 //=======================================================
 // Public method
@@ -88,7 +104,7 @@ static CEScriptManager *sharedInstance = nil;
 //=======================================================
 
 // ------------------------------------------------------
-- (id)init
+- (instancetype)init
 // 初期化
 // ------------------------------------------------------
 {
@@ -96,14 +112,12 @@ static CEScriptManager *sharedInstance = nil;
         self = [super init];
         [self setupMenuIcon];
         _outputType = k_noOutput;
-        _outputHandle = nil;
-        _errorHandle = nil;
         (void)[NSBundle loadNibNamed:@"ScriptManager" owner:self];
         // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-            selector:@selector(availableOutput:) 
-            name:NSFileHandleReadToEndOfFileCompletionNotification 
-            object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(availableOutput:)
+                                                     name:NSFileHandleReadToEndOfFileCompletionNotification
+                                                   object:nil];
         sharedInstance = self;
     }
     return sharedInstance;
@@ -135,82 +149,69 @@ static CEScriptManager *sharedInstance = nil;
 // Scriptメニューを生成
 //------------------------------------------------------
 {
-    NSString *theDirPath = [self pathOfScriptDirectory]; // データディレクトリパス取得
+    NSURL *directoryURL = [self scriptDirectoryURL]; // データディレクトリパス取得
+    NSFileManager *fileManager = [NSFileManager defaultManager];
 
     // ディレクトリの存在チェック
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    BOOL theBoolIsDir = NO, theBoolCreated = NO;
-    BOOL theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theBoolIsDir];
-    if (!theExists) {
-        // 0.6.3以前の古いディレクトリ名がある場合はそれをリネームして使う。古いドキュメントは削除する。
-        NSString *theOldPath = [NSHomeDirectory( ) 
-                stringByAppendingPathComponent:@"Library/Application Support/CotEditor/AppleScriptMenu"];
-        BOOL theBoolOldIsDir = NO;
-        BOOL theBoolOldExists = [theFileManager fileExistsAtPath:theOldPath isDirectory:&theBoolOldIsDir];
-        if (theBoolOldExists && theBoolOldIsDir) {
-            theBoolCreated = [theFileManager movePath:theOldPath toPath:theDirPath handler:nil];
-            NSString *theOldAboutDocPath = [NSHomeDirectory( ) 
-                stringByAppendingPathComponent:
-                @"Library/Application Support/CotEditor/ScriptMenu/_aboutAppleScriptFolder.rtf"];
-            (void)[theFileManager removeFileAtPath:theOldAboutDocPath handler:nil];
-        } else {
-            theBoolCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
-        }
+    NSNumber *isDirectory = NO;
+    BOOL didCreated = NO;
+    [directoryURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
+    if (![isDirectory boolValue]) {
+        didCreated = [fileManager createDirectoryAtURL:directoryURL
+                           withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    if ((!theExists) && (!theBoolCreated)) {
+    if (![isDirectory boolValue] && !didCreated) {
         NSLog(@"Error. ScriptMenu directory could not found.");
         return;
     }
 
     // About 文書をコピー
-    NSString *theSource = 
-            [[[NSBundle mainBundle] bundlePath] 
-            stringByAppendingPathComponent:@"/Contents/Resources/_aboutScriptFolder.rtf"];
-    NSString *theDestination = [theDirPath stringByAppendingPathComponent:@"_aboutScriptFolder.rtf"];
-    if (([theFileManager fileExistsAtPath:theSource]) && 
-                (![theFileManager fileExistsAtPath:theDestination])) {
-        if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
+    NSURL *sourceURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/_aboutScriptFolder.rtf"];
+    NSURL *destURL = [directoryURL URLByAppendingPathComponent:@"_aboutScriptFolder.rtf"];
+    if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
+        ![destURL checkResourceIsReachableAndReturnError:nil]) {
+        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not copy.");
         }
 
         // 付属の Script をコピー
-        NSString *theSourceDir = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Script"];
-        NSString *theDestinationDir = [theDirPath stringByAppendingPathComponent:@"/SampleScript"];
-        if (![theFileManager copyPath:theSourceDir toPath:theDestinationDir handler:nil]) {
+        NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/Script"];
+        NSURL *destDirURL = [directoryURL URLByAppendingPathComponent:@"/SampleScript"];
+        if (![fileManager copyItemAtURL:sourceDirURL toURL:destDirURL error:nil]) {
             NSLog(@"Error. AppleScriptFolder sample could not copy.");
         }
     }
-    else if (([theFileManager fileExistsAtPath:theSource]) &&
-             ([theFileManager fileExistsAtPath:theDestination]) &&
-             (![theFileManager contentsEqualAtPath:theSource andPath:theDestination])) {
+    else if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
+             [destURL checkResourceIsReachableAndReturnError:nil] &&
+             ![fileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]) {
         // About 文書が更新されている場合の対応
-        if (![theFileManager removeFileAtPath:theDestination handler:nil]) {
+        if (![fileManager removeItemAtURL:destURL error:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not remove.");
         }
-        if (![theFileManager copyPath:theSource toPath:theDestination handler:nil]) {
+        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
             NSLog(@"Error. AppleScriptFolder about document could not copy.");
         }
     }
 
     // メニューデータの読み込みとメニュー構成
-    NSMenu *theASMenu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
-    [self removeAllMenuItemsFromParent:theASMenu];
-    NSMenuItem *theMenuItem;
+    NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
+    [self removeAllMenuItemsFromParent:menu];
+    NSMenuItem *menuItem;
 
-    [self addChildFileItemTo:theASMenu fromDir:theDirPath]; 
-    if ([theASMenu numberOfItems] > 0) {
-        [theASMenu addItem:[NSMenuItem separatorItem]];
+    [self addChildFileItemTo:menu fromDir:[directoryURL path]];
+    if ([menu numberOfItems] > 0) {
+        [menu addItem:[NSMenuItem separatorItem]];
     }
-    theMenuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder",@"") 
-                action:@selector(openScriptFolder:) 
-                keyEquivalent:@""] autorelease];
-    [theMenuItem setTarget:self];
-    [theASMenu addItem:theMenuItem];
-    theMenuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu",@"") 
-                action:@selector(buildScriptMenu:) 
-                keyEquivalent:@""] autorelease];
-    [theMenuItem setTarget:self];
-    [theASMenu addItem:theMenuItem];
+    menuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", @"")
+                                           action:@selector(openScriptFolder:)
+                                    keyEquivalent:@""] autorelease];
+    [menuItem setTarget:self];
+    [menu addItem:menuItem];
+    menuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", @"")
+                                           action:@selector(buildScriptMenu:)
+                                    keyEquivalent:@""] autorelease];
+    [menuItem setTarget:self];
+    [menu addItem:menuItem];
 }
 
 
@@ -219,9 +220,9 @@ static CEScriptManager *sharedInstance = nil;
 // コンテキストメニュー用のメニューを返す
 //------------------------------------------------------
 {
-    NSMenu *theASMenu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
+    NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
 
-    return [[theASMenu copy] autorelease];
+    return [[menu copy] autorelease];
 }
 
 
@@ -230,90 +231,70 @@ static CEScriptManager *sharedInstance = nil;
 // Script実行
 //------------------------------------------------------
 {
-    NSString *thePath = nil;
+    NSURL *URL;
     if ([sender isMemberOfClass:[NSMenuItem class]]) {
-        thePath = [sender representedObject];
+        URL = [sender representedObject];
     }
-    if (thePath == nil) { return; }
+    if (URL == nil) { return; }
 
     // ファイルがない場合は警告して抜ける
-    if (![[NSFileManager defaultManager] fileExistsAtPath:thePath]) {
-        [self showAlert:[NSString stringWithFormat:
-                NSLocalizedString(@"The Script \"%@\" NOT exists.\n\nCheck it and do \"Update Script Menu\".",@""), thePath]];
+    if (![URL checkResourceIsReachableAndReturnError:nil]) {
+        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script \"%@\" does not exist.\n\nCheck it and do \"Update Script Menu\".", @""), URL]];
         return;
     }
 
     // Optキーが押されていたら、アプリでスクリプトを開く
-    unsigned int theFlags = [NSEvent currentCarbonModifierFlags];
-    NSString *theXtsn = [thePath pathExtension];
-    NSString *theMessage = nil;
-    BOOL theModifierPressed = NO;
-    BOOL theResult = YES;
-    if (theFlags == NSAlternateKeyMask) {
-        theModifierPressed = YES;
-        if (([theXtsn isEqualToString:@"applescript"]) || ([theXtsn isEqualToString:@"scpt"])) {
-            theResult = [[NSWorkspace sharedWorkspace] openFile:thePath withApplication:@"Script Editor"];
-            if (!theResult) {
-                theResult = [[NSWorkspace sharedWorkspace] openFile:thePath withApplication:@"AppleScript Editor"];
-            }
-        } else if (([theXtsn isEqualToString:@"sh"]) || ([theXtsn isEqualToString:@"pl"]) || 
-                ([theXtsn isEqualToString:@"php"]) || ([theXtsn isEqualToString:@"rb"]) || 
-                ([theXtsn isEqualToString:@"py"])) {
-            theResult = [[NSWorkspace sharedWorkspace] openFile:thePath 
-                        withApplication:[[NSBundle mainBundle] bundlePath]];
+    NSUInteger flags = [NSEvent currentCarbonModifierFlags];
+    NSString *extension = [URL pathExtension];
+    NSString *message = nil;
+    BOOL isModifierPressed = NO;
+    BOOL success = YES;
+    if (flags == NSAlternateKeyMask) {
+        isModifierPressed = YES;
+        if ([[CEScriptManager AppleScriptExtensions] containsObject:extension]) {
+            success = [[NSWorkspace sharedWorkspace] openURLs:@[URL]
+                                     withAppBundleIdentifier:@"com.apple.ScriptEditor2"
+                                                     options:0
+                              additionalEventParamDescriptor:nil
+                                           launchIdentifiers:NULL];
+        } else if ([[CEScriptManager scriptExtensions] containsObject:extension]) {
+            success = [[NSWorkspace sharedWorkspace] openFile:[URL path] withApplication:[[NSBundle mainBundle] bundlePath]];
         }
-        if (!theResult) {
-            theMessage = [NSString stringWithFormat:
-                    NSLocalizedString(@"The Script file \"%@\" could not open.",@""), thePath];
+        if (!success) {
+            message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file \"%@\".",@""), URL];
         }
-    } else if (theFlags == (NSAlternateKeyMask | NSShiftKeyMask)) {
-        theModifierPressed = YES;
-        theResult = [[NSWorkspace sharedWorkspace] selectFile:thePath inFileViewerRootedAtPath:@""];
-        if (!theResult) {
-            theMessage = [NSString stringWithFormat:
-                    NSLocalizedString(@"The Script file \"%@\" could not select.",@""), thePath];
-        }
+    } else if (flags == (NSAlternateKeyMask | NSShiftKeyMask)) {
+        isModifierPressed = YES;
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
     }
-    if ((!theResult) && (theMessage != nil)) {
+    if (!success && (message != nil)) {
         // 開けなかったり選択できなければその旨を表示
-        [self showAlert:theMessage];
+        [self showAlertWithMessage:message];
     }
-    if (theModifierPressed) {
-        return;
-    }
+    if (isModifierPressed) { return; }
 
-    if (([theXtsn isEqualToString:@"applescript"]) || ([theXtsn isEqualToString:@"scpt"])) {
-        NSAppleScript *theAppleScript = nil;
-        NSDictionary *theErrorInfo = nil;
-        NSAppleEventDescriptor *theDescriptor;
-        if (([theXtsn isEqualToString:@"applescript"]) || 
-                ([theXtsn isEqualToString:@"scpt"])) {
-            NSURL *theURL = [NSURL fileURLWithPath:thePath];
-            theAppleScript = [[[NSAppleScript alloc] initWithContentsOfURL:theURL 
-                        error:&theErrorInfo] autorelease];
-        }
-
-        if (theAppleScript != nil) {
-            theDescriptor = [theAppleScript executeAndReturnError:&theErrorInfo];
+    if ([[CEScriptManager AppleScriptExtensions] containsObject:extension]) {
+        NSAppleScript *appleScript = nil;
+        NSDictionary *errorInfo = nil;
+        NSAppleEventDescriptor *descriptor;
+        
+        appleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo] autorelease];
+        if (appleScript != nil) {
+            descriptor = [appleScript executeAndReturnError:&errorInfo];
         }
         // エラーが発生したら、表示
-        if (((theAppleScript == nil) || (theDescriptor == nil)) && (theErrorInfo != nil)) {
-            [self showAlert:[NSString stringWithFormat:
-                    NSLocalizedString(@"%@\nErrorNumber: %i",@""), 
-                    [theErrorInfo valueForKey:NSAppleScriptErrorMessage], 
-                    [[theErrorInfo valueForKey:NSAppleScriptErrorNumber] intValue]]];
+        if (((appleScript == nil) || (descriptor == nil)) && (errorInfo != nil)) {
+            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"%@\nErrorNumber: %i",@""),
+                                        [errorInfo valueForKey:NSAppleScriptErrorMessage],
+                                        [[errorInfo valueForKey:NSAppleScriptErrorNumber] integerValue]]];
         }
-    } else if (([theXtsn isEqualToString:@"sh"]) || ([theXtsn isEqualToString:@"pl"]) || 
-            ([theXtsn isEqualToString:@"php"]) || ([theXtsn isEqualToString:@"rb"]) || 
-            ([theXtsn isEqualToString:@"py"])) {
-
+    } else if ([[CEScriptManager scriptExtensions] containsObject:extension]) {
         // 実行権限がない場合は警告して抜ける
-        if (![[NSFileManager defaultManager] isExecutableFileAtPath:thePath]) {
-            [self showAlert:[NSString stringWithFormat:
-                    NSLocalizedString(@"The Script \"%@\" NOT be able to execute.\nShell scripts have to have execute permission.\n\nCheck it\'s permission.",@""), thePath]];
+        if (![[NSFileManager defaultManager] isExecutableFileAtPath:[URL path]]) {
+            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script \"%@\".\nShell scripts have to have the execute permission.\n\nCheck it\'s permission.",@""), URL]];
             return;
         }
-        [self doLaunchShellScript:thePath];
+        [self doLaunchShellScript:URL];
     }
 }
 
@@ -323,12 +304,12 @@ static CEScriptManager *sharedInstance = nil;
 // Scriptエラーウィンドウを表示
 // ------------------------------------------------------
 {
-    [[_errorTextView window] orderFront:self];
+    [[[self errorTextView] window] orderFront:self];
 }
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocols
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -340,10 +321,8 @@ static CEScriptManager *sharedInstance = nil;
 // Nibファイル読み込み直後
 // ------------------------------------------------------
 {
-    // 自動スペルチェックをオフ
-    [_errorTextView setContinuousSpellCheckingEnabled:NO]; // nib での設定が有効にならないため、ここで設定している
     // フォント指定
-    [_errorTextView setFont:[NSFont messageFontOfSize:10]];
+    [[self errorTextView] setFont:[NSFont messageFontOfSize:10]];
 }
 
 
@@ -362,7 +341,7 @@ static CEScriptManager *sharedInstance = nil;
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -374,14 +353,12 @@ static CEScriptManager *sharedInstance = nil;
 // ScriptフォルダウィンドウをFinderで表示
 // ------------------------------------------------------
 {
-    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"openScriptMenu" ofType:@"applescript"];
-    if (thePath == nil) { return; }
-    NSURL *theURL = [NSURL fileURLWithPath:thePath];
-    NSAppleScript *theAppleScript = [[[NSAppleScript alloc] initWithContentsOfURL:theURL error:nil] autorelease];
-
-    if (theAppleScript != nil) {
-        (void)[theAppleScript executeAndReturnError:nil];
-    }
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openScriptMenu" withExtension:@"applescript"];
+    
+    if (URL == nil) { return; }
+    
+    NSAppleScript *appleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:nil] autorelease];
+    (void)[appleScript executeAndReturnError:nil];
 }
 
 
@@ -390,15 +367,14 @@ static CEScriptManager *sharedInstance = nil;
 // Scriptエラーログを削除
 // ------------------------------------------------------
 {
-    [_errorTextView setString:@""];
+    [[self errorTextView] setString:@""];
 }
 
 
 
-@end
 
 
-@implementation CEScriptManager (Private)
+#pragma mark - Private Methods
 
 //=======================================================
 // Private method
@@ -410,22 +386,26 @@ static CEScriptManager *sharedInstance = nil;
 // メニューバーにアイコンを表示
 //------------------------------------------------------
 {
-    NSMenuItem *theASMenuItem = [[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex];
+    NSMenuItem *menuItem = [[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex];
 
-    [theASMenuItem setTitle:NSLocalizedString(@"Script Menu",@"")];
-    [theASMenuItem setImage:[NSImage imageNamed:@"scriptMenuIcon"]];
+    [menuItem setTitle:NSLocalizedString(@"Script Menu", @"")];
+    [menuItem setImage:[NSImage imageNamed:@"scriptMenuIcon"]];
 }
 
 
 //------------------------------------------------------
-- (NSString *)pathOfScriptDirectory
+- (NSURL *)scriptDirectoryURL
 // Scriptファイル保存用ディレクトリを返す
 //------------------------------------------------------
 {
-    NSString *outPath = [NSHomeDirectory( ) 
-            stringByAppendingPathComponent:@"Library/Application Support/CotEditor/ScriptMenu"];
-
-    return outPath;
+    NSURL *URL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                        inDomain:NSUserDomainMask
+                                               appropriateForURL:nil
+                                                          create:YES
+                                                           error:nil]
+                  URLByAppendingPathComponent:@"CotEditor/ScriptMenu"];
+    
+    return URL;
 }
 
 
@@ -434,347 +414,327 @@ static CEScriptManager *sharedInstance = nil;
 // ファイルを読み込みメニューアイテムを生成／追加する
 //------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSArray *theFiles = [theFileManager directoryContentsAtPath:inPath];
-    NSString *thePath, *theMenuTitle;
-    NSMenuItem *theMenuItem;
-    int i;
-
-    for (i = 0; i < [theFiles count]; i++) {
-        NSString *theFileName = [theFiles objectAtIndex:i];
-        thePath = [inPath stringByAppendingPathComponent:theFileName];
-        NSString *theXtsn = [thePath pathExtension];
-        NSDictionary *theAttrs = [theFileManager fileAttributesAtPath:thePath traverseLink:NO];
-        if (!theAttrs) { continue; }
-        if ([theAttrs valueForKey:NSFileType] == NSFileTypeDirectory) {
-            theMenuTitle = [self menuTitleFromFileName:theFileName];
-            if ([theMenuTitle isEqualToString:@"-"]) { // セパレータ
+    NSURL *directoryURL = [NSURL fileURLWithPath:inPath];
+    NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:directoryURL
+                                                  includingPropertiesForKeys:@[NSURLFileResourceTypeKey]
+                                                                     options:NSDirectoryEnumerationSkipsPackageDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                       error:nil];
+    NSString *menuTitle;
+    NSMenuItem *menuItem;
+    NSString *resourceType;
+    
+    for (NSURL *URL in URLs) {
+        NSString *extension = [URL pathExtension];
+        [URL getResourceValue:&resourceType forKey:NSURLFileResourceTypeKey error:nil];
+        if ([resourceType isEqualToString:NSURLFileResourceTypeDirectory]) {
+            menuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
+            if ([menuTitle isEqualToString:@"-"]) { // セパレータ
                 [inMenu addItem:[NSMenuItem separatorItem]];
                 continue;
             }
-            NSMenu *theSubMenu = [[[NSMenu alloc] initWithTitle:theMenuTitle] autorelease];
-            theMenuItem = [[[NSMenuItem alloc] initWithTitle:theMenuTitle 
+            NSMenu *subMenu = [[[NSMenu alloc] initWithTitle:menuTitle] autorelease];
+            menuItem = [[[NSMenuItem alloc] initWithTitle:menuTitle 
                             action:nil keyEquivalent:@""] autorelease];
-            [theMenuItem setTag:k_scriptMenuDirectoryTag];
-            [inMenu addItem:theMenuItem];
-            [theMenuItem setSubmenu:theSubMenu];
-            [self addChildFileItemTo:theSubMenu fromDir:thePath];
-        } else if (([theAttrs valueForKey:NSFileType] == NSFileTypeRegular) && 
-                (([theXtsn isEqualToString:@"applescript"]) || 
-                ([theXtsn isEqualToString:@"scpt"]) || 
-                ([theXtsn isEqualToString:@"sh"]) || 
-                ([theXtsn isEqualToString:@"pl"]) || 
-                ([theXtsn isEqualToString:@"php"]) || 
-                ([theXtsn isEqualToString:@"rb"]) || 
-                ([theXtsn isEqualToString:@"py"]))) {
-            unsigned int theMod = 0;
-            NSString *theKeyEquivalent = [self keyEquivalentAndModifierMask:&theMod fromFileName:theFileName];
-            theMenuTitle = [self menuTitleFromFileName:theFileName];
-            theMenuItem = [[[NSMenuItem alloc] initWithTitle:theMenuTitle 
-                            action:@selector(launchScript:) keyEquivalent:theKeyEquivalent] autorelease];
-            [theMenuItem setKeyEquivalentModifierMask:theMod];
-            [theMenuItem setRepresentedObject:thePath];
-            [theMenuItem setTarget:self];
-            [theMenuItem setToolTip:NSLocalizedString(@"\"Opt + click\" to open in Script Editor.",@"")];
-            [inMenu addItem:theMenuItem];
+            [menuItem setTag:k_scriptMenuDirectoryTag];
+            [inMenu addItem:menuItem];
+            [menuItem setSubmenu:subMenu];
+            [self addChildFileItemTo:subMenu fromDir:[URL path]];
+        } else if ([resourceType isEqualToString:NSURLFileResourceTypeRegular] &&
+                ([[CEScriptManager AppleScriptExtensions] containsObject:extension] ||
+                 [[CEScriptManager scriptExtensions] containsObject:extension])) {
+            NSUInteger modifierMask = 0;
+            NSString *keyEquivalent = [self keyEquivalentAndModifierMask:&modifierMask fromFileName:[URL lastPathComponent]];
+            menuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
+            menuItem = [[[NSMenuItem alloc] initWithTitle:menuTitle
+                                                   action:@selector(launchScript:)
+                                            keyEquivalent:keyEquivalent] autorelease];
+            [menuItem setKeyEquivalentModifierMask:modifierMask];
+            [menuItem setRepresentedObject:URL];
+            [menuItem setTarget:self];
+            [menuItem setToolTip:NSLocalizedString(@"\"Opt + click\" to open in Script Editor.",@"")];
+            [inMenu addItem:menuItem];
         }
     }
 }
 
 
 //------------------------------------------------------
-- (void)removeAllMenuItemsFromParent:(NSMenu *)inMenu
+- (void)removeAllMenuItemsFromParent:(NSMenu *)menu
 // すべてのメニューアイテムを削除
 //------------------------------------------------------
 {
-    NSArray *theItems = [inMenu itemArray];
-    NSMenuItem *theMenuItem;
-    int i;
+    NSArray *items = [menu itemArray];
+    NSMenuItem *menuItem;
+    NSInteger i;
 
-    for (i = ([theItems count] - 1); i >= 0; i--) {
-        theMenuItem = [theItems objectAtIndex:i];
-        if ((![theMenuItem isSeparatorItem]) && ([theMenuItem hasSubmenu])) {
-            [self removeAllMenuItemsFromParent:[theMenuItem submenu]];
+    for (i = ([items count] - 1); i >= 0; i--) {
+        menuItem = items[i];
+        if (![menuItem isSeparatorItem] && [menuItem hasSubmenu]) {
+            [self removeAllMenuItemsFromParent:[menuItem submenu]];
         }
-        [inMenu removeItem:theMenuItem];
+        [menu removeItem:menuItem];
     }
 }
 
 
 //------------------------------------------------------
-- (NSString *)menuTitleFromFileName:(NSString *)inFileName
+- (NSString *)menuTitleFromFileName:(NSString *)fileName
 // ファイル／フォルダ名からメニューアイテムタイトル名を生成
 //------------------------------------------------------
 {
-    NSMutableString *outString = [NSMutableString stringWithString:[inFileName stringByDeletingPathExtension]];
-    NSString *theExtnFirstChar = [[outString pathExtension] substringFromIndex:0];
-    NSCharacterSet *theSpecSet = [NSCharacterSet characterSetWithCharactersInString:@"^~$@"];
+    NSString *menuTitle = [fileName stringByDeletingPathExtension];
+    NSString *extnFirstChar = [[menuTitle pathExtension] substringFromIndex:0];
+    NSCharacterSet *specSet = [NSCharacterSet characterSetWithCharactersInString:@"^~$@"];
 
     // 順番調整の冒頭の番号を削除
-    [outString replaceOccurrencesOfRegularExpressionString:@"^[0-9]+\\)" 
-                withString:@"" options:OgreNoneOption range:NSMakeRange(0, [outString length])];
-
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[0-9]+\\)"
+                                                                           options:0 error:nil];
+    menuTitle = [regex stringByReplacingMatchesInString:menuTitle
+                                                options:0
+                                                  range:NSMakeRange(0, [menuTitle length])
+                                           withTemplate:@""];
+    
     // キーボードショートカット定義があれば、削除して返す
-    if (([theExtnFirstChar length] > 0) && 
-            ([theSpecSet characterIsMember:[theExtnFirstChar characterAtIndex:0]])) {
-        return [outString stringByDeletingPathExtension];
+    if (([extnFirstChar length] > 0) &&
+        [specSet characterIsMember:[extnFirstChar characterAtIndex:0]]) {
+        return [menuTitle stringByDeletingPathExtension];
     }
-    return outString;
+    
+    return menuTitle;
 }
 
 
 //------------------------------------------------------
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask fromFileName:(NSString *)inFileName
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromFileName:(NSString *)fileName
 // ファイル名からキーボードショートカット定義を読み取る
 //------------------------------------------------------
 {
-    NSString *theKeySpec = [[inFileName stringByDeletingPathExtension] pathExtension];
+    NSString *keySpec = [[fileName stringByDeletingPathExtension] pathExtension];
 
-    return [[NSApp delegate] keyEquivalentAndModifierMask:ioModMask 
-        fromString:theKeySpec includingCommandKey:YES];
+    return [[NSApp delegate] keyEquivalentAndModifierMask:modifierMask fromString:keySpec includingCommandKey:YES];
 }
 
 
 //------------------------------------------------------
-- (void)showAlert:(NSString *)inMessage
+- (void)showAlertWithMessage:(NSString *)message
 // エラーアラートを表示
 //------------------------------------------------------
 {
-    NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Script Error",@"") 
-                defaultButton:nil 
-                alternateButton:nil 
-                otherButton:nil 
-                informativeTextWithFormat:inMessage];
-    [theAleart setAlertStyle:NSCriticalAlertStyle];
-    (void)[theAleart runModal];
+    NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Script Error", nil)
+                                     defaultButton:nil
+                                   alternateButton:nil
+                                       otherButton:nil
+                         informativeTextWithFormat:message, nil];
+    [alert setAlertStyle:NSCriticalAlertStyle];
+    (void)[alert runModal];
 }
 
 
 //------------------------------------------------------
-- (NSString *)stringOfScript:(NSString *)inPath
+- (NSString *)stringOfScript:(NSURL *)URL
 // スクリプトの文字列を得る
 //------------------------------------------------------
 {
-    NSString *outString = nil;
-    NSData *theData = [NSData dataWithContentsOfFile:inPath];
-    if ((theData == nil) || ([theData length] < 1)) { return outString; }
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
-    NSStringEncoding theEncoding;
-    int i = 0;
-
-    while (outString == nil) {
-        theEncoding = 
-                CFStringConvertEncodingToNSStringEncoding([[theEncodings objectAtIndex:i] unsignedLongValue]);
-        if (theEncoding == NSProprietaryStringEncoding) {
-            NSLog(@"theEncoding == NSProprietaryStringEncoding");
+    NSString *scriptString = nil;
+    NSData *data = [NSData dataWithContentsOfURL:URL];
+    
+    if ((data == nil) || ([data length] < 1)) { return nil; }
+    
+    NSArray *encodings = [[[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy] autorelease];
+    NSStringEncoding encoding;
+    NSInteger i = 0;
+    while (scriptString == nil) {
+        encoding = CFStringConvertEncodingToNSStringEncoding([encodings[i] unsignedLongValue]);
+        if (encoding == NSProprietaryStringEncoding) {
+            NSLog(@"encoding == NSProprietaryStringEncoding");
             break;
         }
-        outString = [[[NSString alloc] initWithData:theData encoding:theEncoding] autorelease];
-        if (outString != nil) { break; }
+        scriptString = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
+        if (scriptString != nil) { break; }
         i++;
     }
-    if (outString != nil) {
-        // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
-        // 10.4+ ではスルー（2005.12.25）
-        // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
-        // (下記の現象と同じ理由で発生していると思われる）
-        // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
-        if ((floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) || // = 10.4+
-                ([theData length] <= 8192) || 
-                (([theData length] > 8192) && ([theData length] != ([outString length] * 2 + 1)) && 
-                        ([theData length] != ([outString length] * 2)))) {
-
-            return outString;
-        }
-    }
-    return nil;
+    
+    return scriptString;
 }
 
 
 //------------------------------------------------------
-- (void)doLaunchShellScript:(NSString *)inPath
+- (void)doLaunchShellScript:(NSURL *)URL
 // シェルスクリプト実行
 //------------------------------------------------------
 {
-    NSString *theScript = [self stringOfScript:inPath];
+    NSString *script = [self stringOfScript:URL];
 
     // スクリプトファイル内容を得られない場合は警告して抜ける
-    if ((theScript == nil) || ([theScript length] < 1)) {
-        [self showAlert:[NSString stringWithFormat:
-                NSLocalizedString(@"The Script \"%@\" could NOT read.",@""), inPath]];
+    if (!script || ([script length] < 1)) {
+        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could NOT read the script \"%@\".",@""), [URL path]]];
         return;
     }
 
-    CEDocument *theDoc = nil;
-    NSScanner *theScanner = [NSScanner scannerWithString:theScript];
-    NSString *theInputType = nil, *theOutputType = nil;
-    NSString *theInputStr = nil;
-    NSData *theInputData = nil;
-    NSTask *theTask = [[[NSTask alloc] init] autorelease];
-    NSPipe *theOutPipe = [NSPipe pipe];
-    NSPipe *theErrorPipe = [NSPipe pipe];
-    BOOL theBoolDocExists = NO;
-    BOOL theBoolIsError = NO;
+    CEDocument *document = nil;
+    NSScanner *scanner = [NSScanner scannerWithString:script];
+    NSString *inputType = nil;
+    NSString *outputType = nil;
+    NSString *inputString = nil;
+    NSData *inputData = nil;
+    NSTask *task = [[[NSTask alloc] init] autorelease];
+    NSPipe *outPipe = [NSPipe pipe];
+    NSPipe *errorPipe = [NSPipe pipe];
+    BOOL docExists = NO;
+    BOOL hasError = NO;
 
     if ([[NSApp orderedDocuments] count] > 0) {
-        theBoolDocExists = YES;
-        theDoc = [[NSApp orderedDocuments] objectAtIndex:0];
+        docExists = YES;
+        document = [NSApp orderedDocuments][0];
     }
-    _outputHandle = [[theOutPipe fileHandleForReading] retain]; // ===== retain
-    _errorHandle = [[theErrorPipe fileHandleForReading] retain]; // ===== retain
-    [theScanner setCaseSensitive:YES];
-    while (![theScanner isAtEnd]) {
-        (void)[theScanner scanUpToString:@"%%%{CotEditorXInput=" intoString:nil];
-        if ([theScanner scanString:@"%%%{CotEditorXInput=" intoString:nil]) {
-            if ([theScanner scanUpToString:@"}%%%" intoString:&theInputType]) {
+    [self setOutputHandle:[outPipe fileHandleForReading]];
+    [self setErrorHandle:[errorPipe fileHandleForReading]];
+    [scanner setCaseSensitive:YES];
+    while (![scanner isAtEnd]) {
+        (void)[scanner scanUpToString:@"%%%{CotEditorXInput=" intoString:nil];
+        if ([scanner scanString:@"%%%{CotEditorXInput=" intoString:nil]) {
+            if ([scanner scanUpToString:@"}%%%" intoString:&inputType]) {
                 break;
             }
         }
     }
-    if ((theInputType != nil) && ([theInputType isEqualToString:@"Selection"])) {
-        if (theBoolDocExists) {
-            NSRange theSelectedRange = [[[theDoc editorView] textView] selectedRange];
-            theInputStr = [[[theDoc editorView] string] substringWithRange:theSelectedRange];
+    if ((inputType != nil) && ([inputType isEqualToString:@"Selection"])) {
+        if (docExists) {
+            NSRange theSelectedRange = [[[document editorView] textView] selectedRange];
+            inputString = [[[document editorView] string] substringWithRange:theSelectedRange];
             // ([[theDoc editorView] string] は行末コードLFの文字列を返すが、[[theDoc editorView] selectedRange] は
             // 行末コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
             // [[[theDoc editorView] textView] selectedRange] を使う必要がある。2009-04-12
 
         } else {
-            theBoolIsError = YES;
+            hasError = YES;
         }
-    } else if ((theInputType != nil) && ([theInputType isEqualToString:@"AllText"])) {
-        if (theBoolDocExists) {
-            theInputStr = [[theDoc editorView] string];
+    } else if ((inputType != nil) && ([inputType isEqualToString:@"AllText"])) {
+        if (docExists) {
+            inputString = [[document editorView] string];
         } else {
-            theBoolIsError = YES;
+            hasError = YES;
         }
     } else { // == "None"
     }
-    if (theBoolIsError) {
-        [self showScriptErrorLog:
-                [NSString stringWithFormat:@"[ %@ ]\n%@", 
-                    [[NSDate date] description], @"NO document, no Input."]];
+    if (hasError) {
+        [self showScriptErrorLog:[NSString stringWithFormat:@"[ %@ ]\n%@",
+                                  [[NSDate date] description], @"NO document, no Input."]];
         return;
     }
-    if (theInputStr != nil) {
-        theInputData = [theInputStr dataUsingEncoding:NSUTF8StringEncoding];
+    if (inputString != nil) {
+        inputData = [inputString dataUsingEncoding:NSUTF8StringEncoding];
     }
-    [theScanner setScanLocation:0];
-    while (![theScanner isAtEnd]) {
-        (void)[theScanner scanUpToString:@"%%%{CotEditorXOutput=" intoString:nil];
-        if ([theScanner scanString:@"%%%{CotEditorXOutput=" intoString:nil]) {
-            if ([theScanner scanUpToString:@"}%%%" intoString:&theOutputType]) {
+    [scanner setScanLocation:0];
+    while (![scanner isAtEnd]) {
+        (void)[scanner scanUpToString:@"%%%{CotEditorXOutput=" intoString:nil];
+        if ([scanner scanString:@"%%%{CotEditorXOutput=" intoString:nil]) {
+            if ([scanner scanUpToString:@"}%%%" intoString:&outputType]) {
                 break;
             }
         }
     }
-    if (theOutputType == nil) {
-        _outputType = k_noOutput;
-    } else if ([theOutputType isEqualToString:@"ReplaceSelection"]) {
-        _outputType = k_replaceSelection;
-    } else if ([theOutputType isEqualToString:@"ReplaceAllText"]) {
-        _outputType = k_replaceAllText;
-    } else if ([theOutputType isEqualToString:@"InsertAfterSelection"]) {
-        _outputType = k_insertAfterSelection;
-    } else if ([theOutputType isEqualToString:@"AppendToAllText"]) {
-        _outputType = k_appendToAllText;
-    } else if ([theOutputType isEqualToString:@"Pasteboard"]) {
-        _outputType = k_pasteboard;
-    } else if ([theOutputType isEqualToString:@"Pasteboard puts"]) { // 以前の定義文字列。互換性のため。(2007.05.26)
-        _outputType = k_pasteboard;
+    if (outputType == nil) {
+        [self setOutputType:k_noOutput];
+    } else if ([outputType isEqualToString:@"ReplaceSelection"]) {
+        [self setOutputType:k_replaceSelection];
+    } else if ([outputType isEqualToString:@"ReplaceAllText"]) {
+        [self setOutputType:k_replaceAllText];
+    } else if ([outputType isEqualToString:@"InsertAfterSelection"]) {
+        [self setOutputType:k_insertAfterSelection];
+    } else if ([outputType isEqualToString:@"AppendToAllText"]) {
+        [self setOutputType:k_appendToAllText];
+    } else if ([outputType isEqualToString:@"Pasteboard"]) {
+        [self setOutputType:k_pasteboard];
+    } else if ([outputType isEqualToString:@"Pasteboard puts"]) { // 以前の定義文字列。互換性のため。(2007.05.26)
+        [self setOutputType:k_pasteboard];
     } else { // == "Discard"
-        _outputType = k_noOutput;
+        [self setOutputType:k_noOutput];
     }
 
     // タスク実行準備
-    // （theTask に引数をセットすると一部のスクリプトが誤動作する。例えば、Perl 5.8.xで「use encoding 'utf8'」のうえ
+    // （task に引数をセットすると一部のスクリプトが誤動作する。例えば、Perl 5.8.xで「use encoding 'utf8'」のうえ
     // printコマンドを使用すると文字化けすることがある。2009-03-31）
-    [theTask setLaunchPath:inPath];
-    [theTask setCurrentDirectoryPath:NSHomeDirectory()];
-    [theTask setStandardInput:[NSPipe pipe]];
-    [theTask setStandardOutput:theOutPipe];
-    [theTask setStandardError:theErrorPipe];
+    [task setLaunchPath:[URL path]];
+    [task setCurrentDirectoryPath:NSHomeDirectory()];
+    [task setStandardInput:[NSPipe pipe]];
+    [task setStandardOutput:outPipe];
+    [task setStandardError:errorPipe];
     // 出力をバックグラウンドで行うように指示
-    [[[theTask standardOutput] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
-    [[[theTask standardError] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+    [[[task standardOutput] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+    [[[task standardError] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
 
-    [theTask launch];
-    if ((theInputData != nil) && ([theInputData length] > 0)) {
-        [[[theTask standardInput] fileHandleForWriting] writeData:theInputData];
-        [[[theTask standardInput] fileHandleForWriting] closeFile];
+    [task launch];
+    if ((inputData != nil) && ([inputData length] > 0)) {
+        [[[task standardInput] fileHandleForWriting] writeData:inputData];
+        [[[task standardInput] fileHandleForWriting] closeFile];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)availableOutput:(NSNotification *)inNotification
+- (void)availableOutput:(NSNotification *)aNotification
 // 標準出力を取得
 // ------------------------------------------------------
 {
-    NSData *theOutputData = [[inNotification userInfo] objectForKey:NSFileHandleNotificationDataItem];
-    CEDocument *theDoc = nil;
-    NSString *theOutputStr = nil;
-    NSPasteboard *thePb;
-    BOOL theBoolDocExists = NO;
+    NSData *outputData = [aNotification userInfo][NSFileHandleNotificationDataItem];
+    CEDocument *document = nil;
+    NSString *outputString = nil;
+    NSPasteboard *pasteboard;
+    BOOL existsDocument = NO;
 
     if ([[NSApp orderedDocuments] count] > 0) {
-        theBoolDocExists = YES;
-        theDoc = [[NSApp orderedDocuments] objectAtIndex:0];
+        existsDocument = YES;
+        document = [NSApp orderedDocuments][0];
     }
 
-    if (theOutputData == nil) { return; }
-    if ([[inNotification object] isEqualTo:_outputHandle]) {
-        theOutputStr = [[[NSString alloc] initWithData:theOutputData 
-                encoding:NSUTF8StringEncoding] autorelease];
-        if (theOutputStr != nil) {
-            switch (_outputType) {
+    if (outputData == nil) { return; }
+    if ([[aNotification object] isEqualTo:[self outputHandle]]) {
+        outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
+        if (outputString != nil) {
+            switch ([self outputType]) {
             case k_replaceSelection:
-                [[theDoc editorView] replaceTextViewSelectedStringTo:theOutputStr scroll:NO];
+                [[document editorView] replaceTextViewSelectedStringTo:outputString scroll:NO];
                 break;
             case k_replaceAllText:
-                [[theDoc editorView] replaceTextViewAllStringTo:theOutputStr];
+                [[document editorView] replaceTextViewAllStringTo:outputString];
                 break;
             case k_insertAfterSelection:
-                [[theDoc editorView] insertTextViewAfterSelectionStringTo:theOutputStr];
+                [[document editorView] insertTextViewAfterSelectionStringTo:outputString];
                 break;
             case k_appendToAllText:
-                [[theDoc editorView] appendTextViewAfterAllStringTo:theOutputStr];
+                [[document editorView] appendTextViewAfterAllStringTo:outputString];
                 break;
             case k_pasteboard:
-                thePb = [NSPasteboard generalPasteboard];
-                [thePb declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
-                if (![thePb setString:theOutputStr forType:NSStringPboardType]) {
+                pasteboard = [NSPasteboard generalPasteboard];
+                [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
+                if (![pasteboard setString:outputString forType:NSStringPboardType]) {
                     NSBeep();
                 }
                 break;
             }
         }
-        _outputType = k_noOutput;
-        [_outputHandle release];
-        _outputHandle = nil;
-    } else if ([[inNotification object] isEqualTo:_errorHandle]) {
-        theOutputStr = [[[NSString alloc] initWithData:theOutputData 
-                encoding:NSUTF8StringEncoding] autorelease];
-        if ((theOutputStr != nil) && ([theOutputStr length] > 0)) {
-            [self showScriptErrorLog:
-                    [NSString stringWithFormat:@"[ %@ ]\n%@", [[NSDate date] description], theOutputStr]];
+        [self setOutputType:k_noOutput];
+        [self setOutputHandle:nil];
+    } else if ([[aNotification object] isEqualTo:[self errorHandle]]) {
+        outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
+        if ((outputString != nil) && ([outputString length] > 0)) {
+            [self showScriptErrorLog:[NSString stringWithFormat:@"[ %@ ]\n%@", [[NSDate date] description], outputString]];
         }
-        [_errorHandle release];
-        _errorHandle = nil;
+        [self setErrorHandle:nil];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)showScriptErrorLog:(NSString *)inLogString
+- (void)showScriptErrorLog:(NSString *)errorLog
 // スクリプトエラーを追記し、エラーログウィンドウを表示
 // ------------------------------------------------------
 {
-    [_errorTextView setEditable:YES];
-    [_errorTextView setSelectedRange:NSMakeRange([[_errorTextView string] length], 0)];
-    [_errorTextView insertText:inLogString];
-    [_errorTextView setEditable:NO];
+    [[self errorTextView] setEditable:YES];
+    [[self errorTextView] setSelectedRange:NSMakeRange([[[self errorTextView] string] length], 0)];
+    [[self errorTextView] insertText:errorLog];
+    [[self errorTextView] setEditable:NO];
     [self openScriptErrorWindow];
 }
 

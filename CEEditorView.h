@@ -3,8 +3,9 @@
 CEEditorView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -118,8 +119,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)showPageGuide;
 - (void)setShowPageGuide:(BOOL)inBool;
 
-- (int)lineEndingCharacter;
-- (void)setLineEndingCharacter:(int)inNewLineEnding;
+- (NSInteger)lineEndingCharacter;
+- (void)setLineEndingCharacter:(NSInteger)inNewLineEnding;
 - (NSString *)syntaxStyleNameToColoring;
 - (void)setSyntaxStyleNameToColoring:(NSString *)inName recolorNow:(BOOL)inValue;
 - (void)recoloringAllString;

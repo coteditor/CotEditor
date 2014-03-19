@@ -3,8 +3,9 @@
 CEAppController
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -41,13 +42,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEHexColorTransformer.h"
 #import "constants.h"
 
-@interface CEAppController : NSObject
+@interface CEAppController : NSObject <NSApplicationDelegate>
 {
     CEPreferences *_preferences;
     NSMenu *_encodingMenu;
     NSMenu *_syntaxMenu;
     NSArray *_invalidYenEncodings;
-    NSString *_thousandsSeparator;
 
     BOOL _didFinishLaunching;
 }
@@ -63,15 +63,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxMenu:(NSMenu *)inSyntaxMenu;
 - (void)buildAllEncodingMenus;
 - (void)buildAllSyntaxMenus;
-- (NSString *)invisibleSpaceCharacter:(unsigned int)inIndex;
-- (NSString *)invisibleTabCharacter:(unsigned int)inIndex;
-- (NSString *)invisibleNewLineCharacter:(unsigned int)inIndex;
-- (NSString *)invisibleFullwidthSpaceCharacter:(unsigned int)inIndex;
+- (NSString *)invisibleSpaceCharacter:(NSUInteger)inIndex;
+- (NSString *)invisibleTabCharacter:(NSUInteger)inIndex;
+- (NSString *)invisibleNewLineCharacter:(NSUInteger)inIndex;
+- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)inIndex;
 - (NSStringEncoding)encodingFromName:(NSString *)inEncodingName;
 - (BOOL)isInvalidYenEncoding:(NSStringEncoding)inEncoding;
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask 
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask
         fromString:(NSString *)inString includingCommandKey:(BOOL)inBool;
-- (NSString *)stringFromUnsignedInt:(unsigned int)inInt;
 
 // Action Message
 - (IBAction)openPrefWindow:(id)sender;
@@ -81,5 +80,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)newInDockMenu:(id)sender;
 - (IBAction)openInDockMenu:(id)sender;
 - (IBAction)openBundledDocument:(id)sender;
+- (IBAction)openWebSite:(id)sender;
 
 @end

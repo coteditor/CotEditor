@@ -3,8 +3,9 @@
 CETextSelection
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -31,12 +32,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CETextSelection.h"
-#import "CEDocumentAppleScript.h"
+#import "CEDocument+ScriptingSupport.h"
+
+
+@interface CETextSelection ()
+
+@property (nonatomic, retain) CEDocument *document;
+
+@end
+
+#pragma mark -
 
 
 @implementation CETextSelection
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -44,13 +54,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithDocument:(CEDocument *)inDocument
+- (instancetype)initWithDocument:(CEDocument *)document
 // 初期化
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        _document = [inDocument retain];
+        [self setDocument:document];
     }
     return self;
 }
@@ -61,22 +71,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 後片付け
 // ------------------------------------------------------
 {
-    [_document release];
+    [[self document] release];
     [super dealloc];
 }
 
 
 // ------------------------------------------------------
-- (void)cleanUpTextStorage:(NSTextStorage *)inTextStorage
+- (void)cleanUpTextStorage:(NSTextStorage *)textStorage
 // 生成した textStorage のデリゲートであることをやめる
 // ------------------------------------------------------
 {
-    [inTextStorage setDelegate:nil];
+    [textStorage setDelegate:nil];
 }
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notifications
 
 //=======================================================
 // Delegate method (NSTextStorage)
@@ -84,18 +94,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)textStorageDidProcessEditing:(NSNotification *)inNotification
+- (void)textStorageDidProcessEditing:(NSNotification *)aNotification
 // AppleScriptの返り値としてのtextStorageが更新された
 // ------------------------------------------------------
 {
-    NSString *theNewString = [(NSTextStorage *)[inNotification object] string];
+    NSString *newString = [(NSTextStorage *)[aNotification object] string];
 
-    [[[_document editorView] textView] replaceSelectedStringTo:theNewString scroll:NO];
-    [self cleanUpTextStorage:(NSTextStorage *)[inNotification object]];
+    [[[[self document] editorView] textView] replaceSelectedStringTo:newString scroll:NO];
+    [self cleanUpTextStorage:(NSTextStorage *)[aNotification object]];
 }
 
 
-#pragma mark ===== AppleScript accessor =====
+@end
+
+
+
+#pragma mark -
+
+@implementation CETextSelection (ScriptingSupport)
+
+#pragma mark AppleScript Accessors
 
 //=======================================================
 // AppleScript accessor
@@ -107,26 +125,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 選択範囲内の文字列を返す(Unicode text型)
 // ------------------------------------------------------
 {
-    NSString *theString = [[_document editorView] substringWithSelectionForSave];
-    NSTextStorage *outStorage = [[[NSTextStorage alloc] initWithString:theString] autorelease];
+    NSString *string = [[[self document] editorView] substringWithSelectionForSave];
+    NSTextStorage *storage = [[[NSTextStorage alloc] initWithString:string] autorelease];
 
-    [outStorage setDelegate:self];
+    [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    [self performSelector:@selector(cleanUpTextStorage:) withObject:outStorage afterDelay:0.5];
+    [self performSelector:@selector(cleanUpTextStorage:) withObject:storage afterDelay:0.5];
 
-    return outStorage;
+    return storage;
 }
 
 
 // ------------------------------------------------------
-- (void)setContents:(id)inObject
+- (void)setContents:(id)ContentsObject
 // 選択範囲に文字列をセット
 // ------------------------------------------------------
 {
-    if ([inObject isKindOfClass:[NSTextStorage class]]) {
-        [[_document editorView] replaceTextViewSelectedStringTo:[inObject string] scroll:NO];
-    } else if ([inObject isKindOfClass:[NSString class]]) {
-        [[_document editorView] replaceTextViewSelectedStringTo:inObject scroll:NO];
+    if ([ContentsObject isKindOfClass:[NSTextStorage class]]) {
+        [[[self document] editorView] replaceTextViewSelectedStringTo:[ContentsObject string] scroll:NO];
+    } else if ([ContentsObject isKindOfClass:[NSString class]]) {
+        [[[self document] editorView] replaceTextViewSelectedStringTo:ContentsObject scroll:NO];
     }
 }
 
@@ -136,24 +154,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 選択範囲の文字の位置と長さを返す(list型)
 // ------------------------------------------------------
 {
-    NSRange theSelectedRange = [[_document editorView] selectedRange];
-    NSArray *outArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:theSelectedRange.location], 
-                [NSNumber numberWithInt:theSelectedRange.length], nil];
+    NSRange selectedRange = [[[self document] editorView] selectedRange];
+    NSArray *rangeArray = @[@(selectedRange.location),
+                            @(selectedRange.length)];
 
-    return outArray;
+    return rangeArray;
 }
 
 
 // ------------------------------------------------------
-- (void)setRange:(NSArray *)inArray
+- (void)setRange:(NSArray *)rangeArray
 // 選択範囲の文字の位置と長さをセット
 // ------------------------------------------------------
 {
-    if ([inArray count] != 2) { return; }
-    int theLocation = [[inArray objectAtIndex:0] intValue];
-    int theLength = [[inArray objectAtIndex:1] intValue];
+    if ([rangeArray count] != 2) { return; }
+    NSInteger location = [rangeArray[0] integerValue];
+    NSInteger length = [rangeArray[1] integerValue];
 
-    [_document setSelectedCharacterRangeInTextViewWithLocation:theLocation withLength:theLength];
+    [[self document] setSelectedCharacterRangeInTextViewWithLocation:location withLength:length];
 }
 
 
@@ -162,53 +180,53 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 選択範囲の行の位置と長さを返す(list型)
 // ------------------------------------------------------
 {
-    NSRange theSelectedRange = [[_document editorView] selectedRange];
-    NSString *theString = [[_document editorView] stringForSave];
-    unsigned int theLines = 0, theCurLine = 0, theIndex = 0, theLastLine = 0, theLength = [theString length];
-    NSArray *outArray;
+    NSRange selectedRange = [[[self document] editorView] selectedRange];
+    NSString *string = [[[self document] editorView] stringForSave];
+    NSUInteger lines = 0, currentLine = 0, index = 0, lastLine = 0, length = [string length];
+    NSArray *rangeArray;
 
-    if (theLength > 0) {
-        for (theIndex = 0, theLines = 0; theIndex < theLength; theLines++) {
-            if (theIndex <= theSelectedRange.location) {
-                theCurLine = theLines + 1;
+    if (length > 0) {
+        for (index = 0, lines = 0; index < length; lines++) {
+            if (index <= selectedRange.location) {
+                currentLine = lines + 1;
             }
-            if (theIndex < NSMaxRange(theSelectedRange)) {
-                theLastLine = theLines + 1;
+            if (index < NSMaxRange(selectedRange)) {
+                lastLine = lines + 1;
             }
-            theIndex = NSMaxRange([theString lineRangeForRange:NSMakeRange(theIndex, 0)]);
+            index = NSMaxRange([string lineRangeForRange:NSMakeRange(index, 0)]);
         }
     }
-    outArray = [NSArray arrayWithObjects:[NSNumber numberWithInt:theCurLine], 
-                [NSNumber numberWithInt:(theLastLine - theCurLine + 1)], nil];
+    rangeArray = @[@(currentLine),
+                 @(lastLine - currentLine + 1)];
 
-    return outArray;
+    return rangeArray;
 }
 
 
 // ------------------------------------------------------
-- (void)setLineRange:(NSArray *)inArray
+- (void)setLineRange:(NSArray *)rangeArray
 // 選択範囲の行の位置と長さをセット
 // ------------------------------------------------------
 {
-    int theLocation;
-    int theLength;
+    NSInteger location;
+    NSInteger length;
 
-    if ([inArray isKindOfClass:[NSNumber class]]) {
-        theLocation = [(NSNumber *)inArray intValue];
-        theLength = 1;
-    } else if([inArray count] == 2) {
-        theLocation = [[inArray objectAtIndex:0] intValue];
-        theLength = [[inArray objectAtIndex:1] intValue];
+    if ([rangeArray isKindOfClass:[NSNumber class]]) {
+        location = [(NSNumber *)rangeArray integerValue];
+        length = 1;
+    } else if([rangeArray count] == 2) {
+        location = [rangeArray[0] integerValue];
+        length = [rangeArray[1] integerValue];
     } else {
         return;
     }
 
-    [_document setSelectedLineRangeInTextViewWithLocation:theLocation withLength:theLength];
+    [[self document] setSelectedLineRangeInTextViewWithLocation:location withLength:length];
 }
 
 
 
-#pragma mark ===== AppleScript handler =====
+#pragma mark AppleScript Handlers
 
 //=======================================================
 // AppleScript handler
@@ -216,40 +234,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)handleShiftRight:(NSScriptCommand *)inCommand
+- (void)handleShiftRight:(NSScriptCommand *)command
 // 選択範囲を右にシフト
 // ------------------------------------------------------
 {
-    [[[_document editorView] textView] shiftRight:self];
+    [[[[self document] editorView] textView] shiftRight:self];
 }
 
 
 // ------------------------------------------------------
-- (void)handleShiftLeft:(NSScriptCommand *)inCommand
+- (void)handleShiftLeft:(NSScriptCommand *)command
 // 選択範囲を左にシフト
 // ------------------------------------------------------
 {
-    [[[_document editorView] textView] shiftLeft:self];
+    [[[[self document] editorView] textView] shiftLeft:self];
 }
 
 
 // ------------------------------------------------------
-- (void)handleChangeCase:(NSScriptCommand *)inCommand
+- (void)handleChangeCase:(NSScriptCommand *)command
 // 文字列を大文字／小文字／キャピタライズにコンバートし、結果を返す
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    CECaseType theType = [[theArg valueForKey:@"caseType"] unsignedLongValue];
+    NSDictionary *arguments = [command evaluatedArguments];
+    CECaseType caseType = [[arguments valueForKey:@"caseType"] unsignedLongValue];
 
-    switch (theType) {
+    switch (caseType) {
     case CELowerCase:
-        [[[_document editorView] textView] exchangeLowercase:self];
+        [[[[self document] editorView] textView] exchangeLowercase:self];
         break;
     case CEUpperCase:
-        [[[_document editorView] textView] exchangeUppercase:self];
+        [[[[self document] editorView] textView] exchangeUppercase:self];
         break;
     case CECapitalized:
-        [[[_document editorView] textView] exchangeCapitalized:self];
+        [[[[self document] editorView] textView] exchangeCapitalized:self];
         break;
     default:
         break;
@@ -258,19 +276,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)handleChangeWidthRoman:(NSScriptCommand *)inCommand
+- (void)handleChangeWidthRoman:(NSScriptCommand *)command
 // 半角／全角Romanを切り替える
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    CEWidthType theType = [[theArg valueForKey:@"widthType"] unsignedLongValue];
+    NSDictionary *arguments = [command evaluatedArguments];
+    CEWidthType widthType = [[arguments valueForKey:@"widthType"] unsignedLongValue];
 
-    switch (theType) {
+    switch (widthType) {
     case CEFullwidth:
-        [[[_document editorView] textView] exchangeFullwidthRoman:self];
+        [[[[self document] editorView] textView] exchangeFullwidthRoman:self];
         break;
     case CEHalfwidth:
-        [[[_document editorView] textView] exchangeHalfwidthRoman:self];
+        [[[[self document] editorView] textView] exchangeHalfwidthRoman:self];
         break;
     default:
         break;
@@ -279,38 +297,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)handleChangeKana:(NSScriptCommand *)inCommand
+- (void)handleChangeKana:(NSScriptCommand *)command
 // ひらがな／カタカナを切り替える
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    CEChangeKanaType theType = [[theArg valueForKey:@"kanaType"] unsignedLongValue];
+    NSDictionary *arguments = [command evaluatedArguments];
+    CEChangeKanaType changeKanaType = [[arguments valueForKey:@"kanaType"] unsignedLongValue];
 
-    if (theType == CEHiragana) {
-        [[[_document editorView] textView] exchangeHiragana:self];
-    } else if (theType == CEKatakana) {
-        [[[_document editorView] textView] exchangeKatakana:self];
+    if (changeKanaType == CEHiragana) {
+        [[[[self document] editorView] textView] exchangeHiragana:self];
+    } else if (changeKanaType == CEKatakana) {
+        [[[[self document] editorView] textView] exchangeKatakana:self];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)handleUnicodeNomalization:(NSScriptCommand *)inCommand
+- (void)handleUnicodeNomalization:(NSScriptCommand *)command
 // Unicode 正規化
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    CEChangeKanaType theType = [[theArg valueForKey:@"unfType"] unsignedLongValue];
-    int theTypeCode = 0;
+    NSDictionary *arguments = [command evaluatedArguments];
+    CEUNFType UNFType = [arguments[@"unfType"] unsignedLongValue];
+    NSInteger typeCode = 0;
 
-    switch (theType) {
-    case CENFD: theTypeCode = 1; break;
-    case CENFKC: theTypeCode = 2; break;
-    case CENFKD: theTypeCode = 3; break;
+    switch (UNFType) {
+    case CENFD: typeCode = 1; break;
+    case CENFKC: typeCode = 2; break;
+    case CENFKD: typeCode = 3; break;
     default:
         break;
     }
-    [[[_document editorView] textView] unicodeNormalization:[NSNumber numberWithInt:theTypeCode]];
+    [[[[self document] editorView] textView] unicodeNormalization:@(typeCode)];
 }
 
 

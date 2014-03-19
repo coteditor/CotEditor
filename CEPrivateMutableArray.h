@@ -3,8 +3,9 @@
 CEPrivateMutableArray
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -39,10 +40,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @interface CEPrivateMutableArray : NSMutableArray
-{
-    id *_pointers;
-    unsigned int _size;
-    unsigned int _nPointers;
-}
 
 @end

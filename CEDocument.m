@@ -3,8 +3,9 @@
 CEDocument
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2011, 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -32,43 +33,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEDocument.h"
 #import "ODBEditorSuite.h"
+#import "NSData+MD5.h"
+
+
 
 //=======================================================
-// Private method
+// not defined in __LP64__
+// 2014-02 by 1024jp
+//=======================================================
+#ifdef __LP64__
+enum { typeFSS = 'fss ' };
+#endif
+
+
+
+//=======================================================
+// Private properties
 //
 //=======================================================
 
-@interface CEDocument (Private)
-- (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding;
-- (void)doSetEncoding:(NSStringEncoding)inEncoding;
-- (void)updateEncodingInToolbarAndInfo;
-- (BOOL)readFromFile:(NSString *)inFileName withEncoding:(NSStringEncoding)inEncoding;
-- (NSStringEncoding)scannedCharsetOrEncodingFromString:(NSString *)inString;
-- (void)redoSetEncoding:(NSStringEncoding)inEncoding updateDocument:(BOOL)inDocUpdate 
-        askLossy:(BOOL)inAskLossy  lossy:(BOOL)inLossy asActionName:(NSString *)inName;
-- (void)redoSetNewLineEndingCharacterCode:(int)inNewLineEnding;
-- (NSDictionary *)myCreatorAndTypeCodeAttributes;
-- (BOOL)acceptSaveDocumentWithIANACharSetName;
-- (BOOL)acceptSaveDocumentToConvertEncoding;
-- (BOOL)saveToFile:(NSString *)inFileName ofType:(NSString *)inDocType 
-            saveOperation:(NSSaveOperationType)inSaveOperationType;
-- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath 
-        operation:(NSSaveOperationType)inSaveOperationType;
-- (void)sendCloseEventToClient;
-- (BOOL)canReleaseFinderLockOfFile:(NSString *)inFileName isLocked:(BOOL *)ioLocked lockAgain:(BOOL)inLockAgain;
-- (void)alertForNotWritableCloseDocDidEnd:(NSAlert *)inAlert returnCode:(int)inReturnCode 
-            contextInfo:(void *)inContextInfo;
-- (void)startWatchFile:(NSString *)inFileName;
-- (void)stopWatchFile:(NSString *)inFileName;
-- (void)setIsSavingFlagToNo;
-- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(int)inReturnCode 
-            contextInfo:(void *)inContextInfo;
-- (void)printPanelDidEnd:(NSPrintPanel *)inPrintPanel returnCode:(int)inReturnCode 
-            contextInfo:(void *)inContextInfo;
-- (NSStringEncoding)encodingFromComAppleTextEncodingAtPath:(NSString *)inFilePath;
-- (void)setComAppleTextEncodingAtPath:(NSString *)inFilePath;
-- (void)setIsWritableToEditorViewWithFileName:(NSString *)inFileName;
-- (void)showAlertForNotWritable;
+@interface CEDocument ()
+
+@property (atomic, retain) NSString *fileMD5;
+@property (atomic) BOOL showUpdateAlertWithBecomeKey;
+@property (atomic) BOOL isRevertingForExternalFileUpdate;
+@property (retain) NSString *initialString;  // 初期表示文字列に表示する文字列;
+
+@property (readwrite) BOOL canActivateShowInvisibleCharsItem;
+@property (readwrite) NSStringEncoding encodingCode;
+@property (readwrite, retain) NSDictionary *fileAttributes;
+
 @end
 
 
@@ -79,7 +73,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEDocument
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 // ------------------------------------------------------
 + (BOOL)autosavesInPlace
@@ -99,15 +93,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-#pragma mark ===== Public method =====
+#pragma mark NSDocument Methods
 
 //=======================================================
-// Public method
+// NSDocument methods
 //
 //=======================================================
 
 // ------------------------------------------------------
-- (id)init
+- (instancetype)init
 // 初期化
 // ------------------------------------------------------
 {
@@ -119,27 +113,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _initialString = nil;
         _windowController = nil;
         // CotEditor のクリエータ／タイプを使うなら、設定しておく
-        _fileAttr = ([[theValues valueForKey:k_key_saveTypeCreator] unsignedIntValue] <= 1) ? 
-                [[self myCreatorAndTypeCodeAttributes] retain] : nil;
+        if ([[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue] <= 1) {
+            [self setFileAttributes:[self myCreatorAndTypeCodeAttributes]];
+        }
         (void)[self doSetEncoding:[[theValues valueForKey:k_key_encodingInNew] unsignedLongValue] 
                 updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
-        _fileSender = nil;
-        _fileToken = nil;
-        _isSaving = NO;
-        _showUpdateAlertWithBecomeKey = NO;
-        _isRevertingWithUKKQueueNotification = NO;
-        _canActivateShowInvisibleCharsItem = 
-                ([[theValues valueForKey:k_key_showInvisibleSpace] boolValue] || 
+        [self setCanActivateShowInvisibleCharsItem:
+                [[theValues valueForKey:k_key_showInvisibleSpace] boolValue] ||
                 [[theValues valueForKey:k_key_showInvisibleTab] boolValue] || 
                 [[theValues valueForKey:k_key_showInvisibleNewLine] boolValue] || 
                 [[theValues valueForKey:k_key_showInvisibleFullwidthSpace] boolValue] || 
-                [[theValues valueForKey:k_key_showOtherInvisibleChars] boolValue]);
+                [[theValues valueForKey:k_key_showOtherInvisibleChars] boolValue]];
         [self setDoCascadeWindow:YES];
         [self setInitTopLeftPoint:NSZeroPoint];
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                selector:@selector(documentDidFinishOpen:) 
-                name:k_documentDidFinishOpenNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(documentDidFinishOpen:)
+                                                     name:k_documentDidFinishOpenNotification object:nil];
     }
     return self;
 }
@@ -152,18 +142,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // 外部プロセスによるファイルの変更監視を停止
-    if ([self fileName] != nil) {
-        [self stopWatchFile:[self fileName]];
-    }
-    // _initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
+    
+    [[self fileMD5] release];
+    // initialString は既に autorelease されている == "- (NSString *)stringToWindowController"
     // _selection は既に autorelease されている == "- (void)close"
-    [[_editorView splitView] releaseAllEditorView]; // 各subSplitView が持つ editorView 参照を削除
-    [_editorView release]; // 自身のメンバを削除
+    [[[self editorView] splitView] releaseAllEditorView]; // 各subSplitView が持つ editorView 参照を削除
+    [[self editorView] release]; // 自身のメンバを削除
     [_windowController release];
-    [_fileAttr release];
-    [_fileToken release];
-     // _fileSender は既にnilがセットされている == "- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath  operation:(NSSaveOperationType)inSaveOperationType", "- (void)sendCloseEventToClient"
+    [[self fileAttributes] release];
+    [[self fileToken] release];
+     // fileSender は既にnilがセットされている == "- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath  operation:(NSSaveOperationType)inSaveOperationType", "- (void)sendCloseEventToClient"
 
     [super dealloc];
 }
@@ -180,111 +168,122 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)writeWithBackupToFile:(NSString *)inFullDocumentPath ofType:(NSString *)inDocType 
-            saveOperation:(NSSaveOperationType)inSaveOperationType
-// バックアップファイルの保存(保存処理で包括的に呼ばれる)
+- (BOOL)writeSafelyToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
+// ファイルの保存(保存処理で包括的に呼ばれる)
 // ------------------------------------------------------
 {
-    // 保存中のフラグを立て、保存実行（自分自身が保存した時のファイル更新通知を区別するため）
-    _isSaving = YES;
-    // SaveAs のとき古いパスを監視対象から外すために保持
-    NSString *theOldPath = [self fileName];
+    // 保存の前後で編集内容をグルーピングさせないための処置
+    // ダミーのグループを作り、そのままだと空のアンドゥ内容でダーティーフラグがたってしまうので、アンドゥしておく
+    // ****** 空のアンドゥ履歴が残る問題あり  (2005.08.05) *******
+    // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
+    // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
+    // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
+    // CETextViewCore > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
+    // ****** 何かもっとうまい回避方法があるはずなんだが … (2005.08.05) *******
+    [[self undoManager] beginUndoGrouping];
+    [[self undoManager] endUndoGrouping];
+    [[self undoManager] undo];
+    
+    
+    id token = [self changeCountTokenForSaveOperation:saveOperation];
+    
     // 新規書類を最初に保存する場合のフラグをセット
-    BOOL theBoolIsFirstSaving = ((theOldPath == nil) || (inSaveOperationType == NSSaveAsOperation));
+    BOOL isFirstSave = (![self fileURL] || (saveOperation == NSSaveAsOperation));
+    
     // 保存処理実行
-    BOOL outResult = [self saveToFile:inFullDocumentPath ofType:inDocType saveOperation:inSaveOperationType];
+    BOOL success = [self forceWriteToURL:url ofType:typeName forSaveOperation:saveOperation];
 
-    if (outResult) {
-        NSUndoManager *theUndoManager = [self undoManager];
-
+    if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
-        if (theBoolIsFirstSaving) {
-            [self setColoringExtension:[[inFullDocumentPath lastPathComponent] pathExtension] 
-                    coloring:YES];
+        if (isFirstSave) {
+            [self setColoringExtension:[url pathExtension] coloring:YES];
         }
-
-        // 保存の前後で編集内容をグルーピングさせないための処置
-        // ダミーのグループを作り、そのままだと空のアンドゥ内容でダーティーフラグがたってしまうので、アンドゥしておく
-        // ****** 空のアンドゥ履歴が残る問題あり  (2005.08.05) *******
-        // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
-        // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
-        // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
-        // CETextViewCore > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
-        // ****** 何かもっとうまい回避方法があるはずなんだが … (2005.08.05) *******
-        [theUndoManager beginUndoGrouping];
-        [theUndoManager endUndoGrouping];
-        [theUndoManager undo];
 
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
-        // SaveAs のとき古いパスの監視をやめる
-        if ((theOldPath != nil) && (inSaveOperationType == NSSaveAsOperation)) {
-            [self stopWatchFile:theOldPath];
-        }
-        // 外部プロセスによる変更監視を開始
-        if (theBoolIsFirstSaving) {
-            [self startWatchFile:inFullDocumentPath];
-        }
+        
+        // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
+        [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
+        
+        // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
+        [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
+        
+        // changeCountを更新
+        [self updateChangeCountWithToken:token forSaveOperation:saveOperation];
     }
-    // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-    [self sendModifiedEventToClientOfFile:inFullDocumentPath operation:inSaveOperationType];
-    // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
-    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:inFullDocumentPath];
 
-    // ディレイをかけて、保存中フラグをもどす
-    [self performSelector:@selector(setIsSavingFlagToNo) withObject:nil afterDelay:0.8];
-
-    return outResult;
+    return success;
 }
 
 
 // ------------------------------------------------------
-- (NSDictionary *)fileAttributesToWriteToFile:(NSString *)inFullDocumentPath 
-        ofType:(NSString *)inDocType 
-        saveOperation:(NSSaveOperationType)inSaveOperationType
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
+// 保存用のデータを生成
+// ------------------------------------------------------
+{
+    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    BOOL shouldAppendBOM = [[defaults valueForKey:k_key_saveUTF8BOM] boolValue];
+    
+    // エンコーディングを見て、半角円マークを変換しておく
+    NSString *string = [self convertedCharacterString:[[self editorView] stringForSave] withEncoding:[self encodingCode]];
+    
+    // stringから保存用のdataを得る
+    NSData *data = [string dataUsingEncoding:[self encodingCode] allowLossyConversion:YES];
+    
+    // 必要であれば UTF-8 BOM 追加 (2008.12.13)
+    if (shouldAppendBOM && ([self encodingCode] == NSUTF8StringEncoding)) {
+        const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
+        NSMutableData *mutableData = [NSMutableData dataWithBytes:utf8Bom length:3];
+        [mutableData appendData:data];
+        data = [NSData dataWithData:mutableData];
+    }
+    
+    return data;
+}
+
+
+// ------------------------------------------------------
+- (NSDictionary *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError **)outError
 // ファイル保存時のクリエータ／タイプなどファイル属性を決定する
 // ------------------------------------------------------
 {
-    // 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableDictionary *outDict = [NSMutableDictionary dictionaryWithDictionary:
-                [super fileAttributesToWriteToFile:inFullDocumentPath 
-                    ofType:inDocType 
-                    saveOperation:inSaveOperationType]];
-    unsigned int theSaveTypeCreator = [[theValues valueForKey:k_key_saveTypeCreator] unsignedIntValue];
-
+    NSMutableDictionary *outDict = [[super fileAttributesToWriteToURL:url
+                                                               ofType:typeName
+                                                     forSaveOperation:saveOperation
+                                                  originalContentsURL:absoluteOriginalContentsURL
+                                                                error:outError] mutableCopy];
+    NSUInteger theSaveTypeCreator = [[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue];
+    
     if (theSaveTypeCreator == 0) { // = same as original
-        unsigned long theCreator = [_fileAttr fileHFSCreatorCode];
-        unsigned long theType = [_fileAttr fileHFSTypeCode];
+        OSType theCreator = [[self fileAttributes] fileHFSCreatorCode];
+        OSType theType = [[self fileAttributes] fileHFSTypeCode];
         if ((theCreator == 0) || (theType == 0)) {
             [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
         } else {
-            [outDict setObject:[_fileAttr objectForKey:NSFileHFSCreatorCode] forKey:NSFileHFSCreatorCode];
-            [outDict setObject:[_fileAttr objectForKey:NSFileHFSTypeCode] forKey:NSFileHFSTypeCode];
+            outDict[NSFileHFSCreatorCode] = [self fileAttributes][NSFileHFSCreatorCode];
+            outDict[NSFileHFSTypeCode] = [self fileAttributes][NSFileHFSTypeCode];
         }
     } else if (theSaveTypeCreator == 1) { // = CotEditor's type
         [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
     }
-
+    
     return outDict;
 }
 
 
 // ------------------------------------------------------
-- (BOOL)revertToSavedFromFile:(NSString *)inFileName ofType:(NSString *)inType
+- (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // セーブ時の状態に戻す
 // ------------------------------------------------------
 {
-    // revertToSavedFromFile:ofType: は 10.4 で廃止されたメソッド。バージョンアップ注意 *****
-
     // 認証が必要な時に重なって表示されるのを避けるため、まず復帰確認シートを片づける
     //（外部プロセスによる変更通知アラートシートはそのままに）
-    if (!_isRevertingWithUKKQueueNotification) {
-        [[[_editorView window] attachedSheet] orderOut:self];
+    if (![self isRevertingForExternalFileUpdate]) {
+        [[[self windowForSheet] attachedSheet] orderOut:self];
     }
 
-    BOOL outResult = [self readFromFile:inFileName withEncoding:k_autoDetectEncodingMenuTag];
+    BOOL outResult = [self readFromFile:[url path] withEncoding:k_autoDetectEncodingMenuTag];
 
     if (outResult) {
         [self setStringToEditorView];
@@ -303,16 +302,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)inSaveOperation delegate:(id)inDelegate 
-            didSaveSelector:(SEL)inDidSaveSelector contextInfo:(void *)inContextInfo
+- (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate 
+            didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
 // セーブパネルを表示
 // ------------------------------------------------------
 {
-    [super runModalSavePanelForSaveOperation:inSaveOperation delegate:inDelegate 
-            didSaveSelector:inDidSaveSelector contextInfo:inContextInfo];
+    [super runModalSavePanelForSaveOperation:saveOperation delegate:delegate 
+            didSaveSelector:didSaveSelector contextInfo:contextInfo];
 
     // セーブパネル表示時の処理
-    NSSavePanel *theSavePanel = (NSSavePanel *)[[_editorView window] attachedSheet];
+    NSSavePanel *theSavePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
     if (theSavePanel != nil) {
         NSEnumerator *theEnumerator = [[[theSavePanel contentView] subviews] objectEnumerator];
         NSTextField *theTextField = nil;
@@ -345,35 +344,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)readFromFile:(NSString *)inFileName ofType:(NSString *)inDocType
+- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // ファイルを読み込み、成功したかどうかを返す
 // ------------------------------------------------------
 {
     // フォルダをアイコンにドロップしても開けないようにする
     BOOL theBoolIsDir = NO;
-    (void)[[NSFileManager defaultManager] fileExistsAtPath:inFileName isDirectory:&theBoolIsDir];
+    (void)[[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&theBoolIsDir];
     if (theBoolIsDir) { return NO; }
 
     NSStringEncoding theEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
-    return [self readFromFile:inFileName withEncoding:theEncoding];
+    return [self readFromFile:[url path] withEncoding:theEncoding];
 }
 
 
 // ------------------------------------------------------
-- (void)setString:(NSMutableString *)inString
-// 初期表示文字列に表示する文字列を保持
-// ------------------------------------------------------
-{
-    [inString retain];
-    [_initialString release];
-    _initialString = inString;
-}
-
-
-// ------------------------------------------------------
-- (void)canCloseDocumentWithDelegate:(id)inDelegate shouldCloseSelector:(SEL)inShouldCloseSelector 
-        contextInfo:(void *)inContextInfo
+- (void)canCloseDocumentWithDelegate:(id)delegate shouldCloseSelector:(SEL)shouldCloseSelector contextInfo:(void *)contextInfo
 // ドキュメントが閉じられる前に保存のためのダイアログの表示などを行う
 // ------------------------------------------------------
 {
@@ -384,38 +371,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self editorView] stopAllTimer];
 
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
-    if (([self isDocumentEdited]) && 
-            (![self canReleaseFinderLockOfFile:[self fileName] isLocked:nil lockAgain:YES])) {
-        CanCloseAlertContext *closeContext = malloc(sizeof(CanCloseAlertContext));
-        closeContext->delegate = inDelegate;
-        closeContext->shouldCloseSelector = inShouldCloseSelector;
-        closeContext->contextInfo = inContextInfo;
+    if ([self isDocumentEdited] &&
+        ![self canReleaseFinderLockOfFile:[[self fileURL] path] isLocked:nil lockAgain:YES]) {
 
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's Lock is ON",@"") 
-                    defaultButton:NSLocalizedString(@"Cancel",@"") 
-                    alternateButton:NSLocalizedString(@"Don't Save, and Close",@"") 
-                    otherButton:nil 
-                    informativeTextWithFormat:NSLocalizedString(@"Finder's Lock could not be released. So, You can not save your changes on this file, but you will be able to Save a Copy somewhere else. \n\nDo you want to close?\n",@"")
-                    ];
-        NSArray *theButtons = [theAleart buttons];
-        NSButton *theDontSaveButton = nil;
-        int i, theCount = [theButtons count];
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
+                                         defaultButton:NSLocalizedString(@"Cancel", nil)
+                                       alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
+                                           otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else. \n\nDo you want to close?", nil)];
 
-        for (i = 0; i < theCount; i++) {
-            theDontSaveButton = [theButtons objectAtIndex:i];
-            if ([[theDontSaveButton title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
-                [theDontSaveButton setKeyEquivalent:@"d"];
-                [theDontSaveButton setKeyEquivalentModifierMask:NSCommandKeyMask];
+        for (NSButton *button in [alert buttons]) {
+            if ([[button title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
+                [button setKeyEquivalent:@"d"];
+                [button setKeyEquivalentModifierMask:NSCommandKeyMask];
                 break;
             }
         }
-        [theAleart beginSheetModalForWindow:[_editorView window] 
-                    modalDelegate:self 
-                    didEndSelector:@selector(alertForNotWritableCloseDocDidEnd:returnCode:contextInfo:) 
-                    contextInfo:closeContext];
+        
+        [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse returnCode) {
+            BOOL theReturn = (returnCode != NSAlertDefaultReturn); // YES == Don't Save (Close)
+            
+            if (delegate) {
+                objc_msgSend(delegate, shouldCloseSelector, self, theReturn, contextInfo);
+            }
+        }];
     } else {
-        [super canCloseDocumentWithDelegate:inDelegate shouldCloseSelector:inShouldCloseSelector 
-                contextInfo:inContextInfo];
+        [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
     }
 }
 
@@ -429,33 +410,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self undoManager] removeAllActionsWithTarget:self];
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
     [self sendCloseEventToClient];
-
-    [_selection autorelease]; // （互いに参照しあっているため、dealloc でなく、ここで開放しておく）
     [self removeWindowController:(NSWindowController *)_windowController];
 
     [super close];
 }
 
 
-// ------------------------------------------------------
-- (CEEditorView *)editorView
-// editorView を返す
-// ------------------------------------------------------
-{
-    return _editorView;
-}
+#pragma mark Public Methods
 
-
-// ------------------------------------------------------
-- (void)setEditorView:(CEEditorView *)inEditorView
-// editorView をセット
-// ------------------------------------------------------
-{
-    [inEditorView retain];
-    [_editorView release];
-    _editorView = inEditorView;
-}
-
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (id)windowController
@@ -467,7 +433,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-- (BOOL)stringFromData:(NSData *)inData encoding:(NSStringEncoding)ioEncoding xattr:(BOOL)inBoolXattr
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr
 // データから指定エンコードで文字列を得る
 //------------------------------------------------------
 {
@@ -482,95 +448,95 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
 
     // 10.5+でのファイル拡張属性(com.apple.TextEncoding)を試す
-    if ((inBoolXattr) && (ioEncoding != k_autoDetectEncodingMenuTag)) {
-        theStr = [[[NSString alloc] initWithData:inData encoding:ioEncoding] autorelease];
+    if ((boolXattr) && (encoding != k_autoDetectEncodingMenuTag)) {
+        theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
         if (theStr == nil) {
-            ioEncoding = k_autoDetectEncodingMenuTag;
+            encoding = k_autoDetectEncodingMenuTag;
         }
     }
 
-    if (([inData length] > 0) && (ioEncoding == k_autoDetectEncodingMenuTag)) {
+    if (([data length] > 0) && (encoding == k_autoDetectEncodingMenuTag)) {
         const char theUtf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         // BOM付きUTF-8判定
-        if (memchr([inData bytes], *theUtf8Bom, 3) != NULL) {
+        if (memchr([data bytes], *theUtf8Bom, 3) != NULL) {
 
             theBoolToSkipUTF8 = YES;
-            theStr = [[[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
             if (theStr != nil) {
-                ioEncoding = NSUTF8StringEncoding;
+                encoding = NSUTF8StringEncoding;
             }
         // UTF-16判定
-        } else if ((memchr([inData bytes], 0xfffe, 2) != NULL) || 
-                    (memchr([inData bytes], 0xfeff, 2) != NULL)) {
+        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) || 
+                    (memchr([data bytes], 0xfeff, 2) != NULL)) {
 
             theBoolToSkipUTF16 = YES;
-            theStr = [[[NSString alloc] initWithData:inData encoding:NSUnicodeStringEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding] autorelease];
             if (theStr != nil) {
-                ioEncoding = NSUnicodeStringEncoding;
+                encoding = NSUnicodeStringEncoding;
             }
 
         // ISO 2022-JP判定
-        } else if (memchr([inData bytes], 0x1b, [inData length]) != NULL) {
+        } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
             theBoolToSkipISO2022JP = YES;
-            theStr = [[[NSString alloc] initWithData:inData encoding:NSISO2022JPStringEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding] autorelease];
             if (theStr != nil) {
-                ioEncoding = NSISO2022JPStringEncoding;
+                encoding = NSISO2022JPStringEncoding;
             }
         }
     }
 
-    if ((theStr == nil) && (ioEncoding == k_autoDetectEncodingMenuTag)) {
+    if ((theStr == nil) && (encoding == k_autoDetectEncodingMenuTag)) {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
         NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
-        int i = 0;
+        NSInteger i = 0;
 
         while (theStr == nil) {
-            ioEncoding = 
-                    CFStringConvertEncodingToNSStringEncoding([[theEncodings objectAtIndex:i] unsignedLongValue]);
-            if ((ioEncoding == NSISO2022JPStringEncoding) && theBoolToSkipISO2022JP) {
+            encoding = 
+                    CFStringConvertEncodingToNSStringEncoding([theEncodings[i] unsignedLongValue]);
+            if ((encoding == NSISO2022JPStringEncoding) && theBoolToSkipISO2022JP) {
                 break;
-            } else if ((ioEncoding == NSUTF8StringEncoding) && theBoolToSkipUTF8) {
+            } else if ((encoding == NSUTF8StringEncoding) && theBoolToSkipUTF8) {
                 break;
-            } else if ((ioEncoding == NSUnicodeStringEncoding) && theBoolToSkipUTF16) {
+            } else if ((encoding == NSUnicodeStringEncoding) && theBoolToSkipUTF16) {
                 break;
-            } else if (ioEncoding == NSProprietaryStringEncoding) {
+            } else if (encoding == NSProprietaryStringEncoding) {
                 NSLog(@"theEncoding == NSProprietaryStringEncoding");
                 break;
             }
-            theStr = [[[NSString alloc] initWithData:inData encoding:ioEncoding] autorelease];
+            theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
             if (theStr != nil) {
                 // "charset="や"encoding="を読んでみて適正なエンコーディングが得られたら、そちらを優先
                 NSStringEncoding theTmpEncoding = [self scannedCharsetOrEncodingFromString:theStr];
-                if ((theTmpEncoding == NSProprietaryStringEncoding) || (theTmpEncoding == ioEncoding)) {
+                if ((theTmpEncoding == NSProprietaryStringEncoding) || (theTmpEncoding == encoding)) {
                     break;
                 }
                 NSString *theTmpStr = 
-                        [[[NSString alloc] initWithData:inData encoding:theTmpEncoding] autorelease];
+                        [[[NSString alloc] initWithData:data encoding:theTmpEncoding] autorelease];
                 if (theTmpStr != nil) {
                     theStr = theTmpStr;
-                    ioEncoding = theTmpEncoding;
+                    encoding = theTmpEncoding;
                 }
             }
             i++;
         }
     } else if (theStr == nil) {
-        theStr = [[[NSString alloc] initWithData:inData encoding:ioEncoding] autorelease];
+        theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
     }
 
-    if ((theStr != nil) && (ioEncoding != k_autoDetectEncodingMenuTag)) {
+    if ((theStr != nil) && (encoding != k_autoDetectEncodingMenuTag)) {
         // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
         // 10.4+ ではスルー（2005.12.25）
         // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
         // (下記の現象と同じ理由で発生していると思われる）
         // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
         if ((floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) || // = 10.4+ 
-                ([inData length] <= 8192) || 
-                (([inData length] > 8192) && ([inData length] != ([theStr length] * 2 + 1)) && 
-                        ([inData length] != ([theStr length] * 2)))) {
-
+                ([data length] <= 8192) || 
+                (([data length] > 8192) && ([data length] != ([theStr length] * 2 + 1)) && 
+                        ([data length] != ([theStr length] * 2)))) {
+                    
             _initialString = [theStr retain]; // ===== retain
             // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
-            (void)[self doSetEncoding:ioEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+            (void)[self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             return YES;
         }
     }
@@ -593,12 +559,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // editorView に文字列をセット
 // ------------------------------------------------------
 {
-    [self setColoringExtension:[[self fileName] pathExtension] coloring:NO];
+    [self setColoringExtension:[[self fileURL] pathExtension] coloring:NO];
     [self setStringToTextView:[self stringToWindowController]];
     if ([_windowController needsIncompatibleCharDrawerUpdate]) {
         [_windowController showIncompatibleCharList];
     }
-    [self setIsWritableToEditorViewWithFileName:[self fileName]];
+    [self setIsWritableToEditorViewWithURL:[self fileURL]];
 }
 
 
@@ -610,26 +576,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (inString) {
         OgreNewlineCharacter theLineEnd = [OGRegularExpression newlineCharacterInString:inString];
         [self setLineEndingCharToView:theLineEnd]; // for update toolbar item
-        [_editorView setString:inString]; // （editorView の setString 内でキャレットを先頭に移動させている）
+        [[self editorView] setString:inString]; // （editorView の setString 内でキャレットを先頭に移動させている）
     } else {
-        [_editorView setString:@""];
+        [[self editorView] setString:@""];
     }
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
     // テキストビューへフォーカスを移動
-    [[_editorView window] makeFirstResponder:[[[[_editorView splitView] subviews] objectAtIndex:0] textView]];
+    [[[self editorView] window] makeFirstResponder:[[[[self editorView] splitView] subviews][0] textView]];
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
-    [_editorView updateColoringAndOutlineMenuWithDelay];
-}
-
-
-// ------------------------------------------------------
-- (NSStringEncoding)encodingCode
-// 表示しているファイルのエンコーディングを返す
-// ------------------------------------------------------
-{
-    return _encoding;
+    [[self editorView] updateColoringAndOutlineMenuWithDelay];
 }
 
 
@@ -639,29 +596,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 新規エンコーディングをセット
 // ------------------------------------------------------
 {
-    if (inEncoding == _encoding) {
+    if (inEncoding == [self encodingCode]) {
         return YES;
     }
-    int theResult = NSAlertOtherReturn;
+    NSInteger theResult = NSAlertOtherReturn;
     BOOL theBoolNeedsShowList = NO;
     if (inDocUpdate) {
 
         theBoolNeedsShowList = [_windowController needsIncompatibleCharDrawerUpdate];
-        NSString *theCurString = [_editorView stringForSave];
+        NSString *theCurString = [[self editorView] stringForSave];
         BOOL theAllowLossy = NO;
 
         if (inAskLossy) {
             if (![theCurString canBeConvertedToEncoding:inEncoding]) {
                 NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:inEncoding];
-                NSString *theMessage = [NSString stringWithFormat:
-                                NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to change encoding and show incompatible character(s)?\n",@""), theEncodingNameStr];
-                NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                            defaultButton:NSLocalizedString(@"Cancel",@"") 
-                            alternateButton:NSLocalizedString(@"Change Encoding",@"") 
-                            otherButton:nil 
-                            informativeTextWithFormat:theMessage];
+                NSString *theMessageText = [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), theEncodingNameStr];
+                NSAlert *theAlert = [NSAlert alertWithMessageText:theMessageText
+                                                    defaultButton:NSLocalizedString(@"Cancel", nil)
+                                                  alternateButton:NSLocalizedString(@"Change Encoding", nil)
+                                                      otherButton:nil
+                                        informativeTextWithFormat:NSLocalizedString(@"Do you want to change encoding and show incompatible character(s)?", nil)];
 
-                theResult = [theAleart runModal];
+                theResult = [theAlert runModal];
                 if (theResult == NSAlertDefaultReturn) { // == Cancel
                     return NO;
                 }
@@ -679,7 +635,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (theBoolNeedsShowList) {
             [[theUndoManager prepareWithInvocationTarget:_windowController] showIncompatibleCharList];
         }
-        [[theUndoManager prepareWithInvocationTarget:self] doSetEncoding:_encoding]; // エンコード値設定
+        [[theUndoManager prepareWithInvocationTarget:self] doSetEncoding:[self encodingCode]]; // エンコード値設定
         [[theUndoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCount減値
         if (inName) {
             [theUndoManager setActionName:inName];
@@ -699,13 +655,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 背景色の変更を取り消し
 // ------------------------------------------------------
 {
-    NSArray *theManagers = [_editorView allLayoutManagers];
-    int i, theCount = [theManagers count];
+    NSArray *managers = [[self editorView] allLayoutManagers];
 
-    for (i = 0; i < theCount; i++) {
+    for (NSLayoutManager *manager in managers) {
         // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
-        [[theManagers objectAtIndex:i] removeTemporaryAttribute:NSBackgroundColorAttributeName 
-                    forCharacterRange:NSMakeRange(0, [[_editorView string] length])];
+        [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                        forCharacterRange:NSMakeRange(0, [[[self editorView] string] length])];
     }
 }
 
@@ -725,8 +680,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSMutableArray *outArray = [NSMutableArray array];
-    NSString *theWholeString = [_editorView stringForSave];
-    unsigned int theWholeLength = [theWholeString length];
+    NSString *theWholeString = [[self editorView] stringForSave];
+    NSUInteger theWholeLength = [theWholeString length];
     NSData *theData = [theWholeString dataUsingEncoding:inEncoding allowLossyConversion:YES];
     NSString *theConvertedString = [[[NSString alloc] initWithData:theData encoding:inEncoding] autorelease];
 
@@ -740,7 +695,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 削除／変換される文字をリストアップ
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *theManagers = [_editorView allLayoutManagers];
+    NSArray *theManagers = [[self editorView] allLayoutManagers];
     NSColor *theForeColor = 
             [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]];
     NSColor *theBGColor = 
@@ -750,8 +705,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theCurChar, *theConvertedChar;
     NSString *theYemMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
     unichar theWholeUnichar, theConvertedUnichar;
-    unsigned int i, j, theLines, theIndex, theCurLine;
-    float theBG_R, theBG_G, theBG_B, theF_R, theF_G, theF_B;
+    NSUInteger i, theLines, theIndex, theCurLine;
+    CGFloat theBG_R, theBG_G, theBG_B, theF_R, theF_G, theF_B;
 
     // 文字色と背景色の中間色を得る
     [[theForeColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] 
@@ -762,9 +717,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 green:((theBG_G + theF_G) / 2) 
                 blue:((theBG_B + theF_B) / 2) 
                 alpha:1.0];
-    theAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
-            theIncompatibleColor, NSBackgroundColorAttributeName, 
-            nil];
+    theAttrs = @{NSBackgroundColorAttributeName: theIncompatibleColor};
 
     for (i = 0; i < theWholeLength; i++) {
         theWholeUnichar = [theWholeString characterAtIndex:i];
@@ -779,9 +732,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 theConvertedChar = @"\\";
             }
 
-            for (j = 0; j < [theManagers count]; j++) {
-                [[theManagers objectAtIndex:j] 
-                        addTemporaryAttributes:theAttrs forCharacterRange:NSMakeRange(i, 1)];
+            for (NSLayoutManager *manager in theManagers) {
+                [manager addTemporaryAttributes:theAttrs forCharacterRange:NSMakeRange(i, 1)];
             }
             theCurLine = 1;
             for (theIndex = 0, theLines = 0; theIndex < theWholeLength; theLines++) {
@@ -793,7 +745,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 theIndex = NSMaxRange([theWholeString lineRangeForRange:NSMakeRange(theIndex, 0)]);
             }
             [outArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedInt:theCurLine], k_listLineNumber, 
+                    @(theCurLine), k_listLineNumber, 
                     [NSValue valueWithRange:NSMakeRange(i, 1)], k_incompatibleRange, 
                     theCurChar, k_incompatibleChar, 
                     theConvertedChar, k_convertedChar, 
@@ -805,20 +757,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)doSetNewLineEndingCharacterCode:(int)inNewLineEnding
+- (void)doSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding
 // 行末コードを変更する
 // ------------------------------------------------------
 {
-    int theCurrentEnding = [_editorView lineEndingCharacter];
+    NSInteger theCurrentEnding = [[self editorView] lineEndingCharacter];
 
     // 現在と同じ行末コードなら、何もしない
     if (theCurrentEnding == inNewLineEnding) {
         return;
     }
 
-    NSArray *lineEndingNames = [NSArray arrayWithObjects:k_lineEndingNames, nil];
+    NSArray *lineEndingNames = @[k_lineEndingNames];
     NSString *theActionName = [NSString stringWithFormat:
-                NSLocalizedString(@"Line Endings to \"%@\"",@""),[lineEndingNames objectAtIndex:inNewLineEnding]];
+                NSLocalizedString(@"Line Endings to \"%@\"",@""),lineEndingNames[inNewLineEnding]];
 
     // Undo登録
     NSUndoManager *theUndoManager = [self undoManager];
@@ -834,11 +786,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setLineEndingCharToView:(int)inNewLineEnding
+- (void)setLineEndingCharToView:(NSInteger)inNewLineEnding
 // 行末コード番号をセット
 // ------------------------------------------------------
 {
-    [_editorView setLineEndingCharacter:inNewLineEnding];
+    [[self editorView] setLineEndingCharacter:inNewLineEnding];
     [[_windowController toolbarController] setSelectEndingItemIndex:inNewLineEnding];
 }
 
@@ -849,7 +801,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([inName length] > 0) {
-        [_editorView setSyntaxStyleNameToColoring:inName recolorNow:YES];
+        [[self editorView] setSyntaxStyleNameToColoring:inName recolorNow:YES];
         [[_windowController toolbarController] setSelectSyntaxItemWithTitle:inName];
     }
 }
@@ -862,7 +814,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (inBoolDelay) {
         if ([inName length] > 0) {
-            [_editorView setSyntaxStyleNameToColoring:inName recolorNow:NO];
+            [[self editorView] setSyntaxStyleNameToColoring:inName recolorNow:NO];
             [[_windowController toolbarController] 
                     performSelector:@selector(setSelectSyntaxItemWithTitle:) withObject:inName afterDelay:0];
         }
@@ -881,7 +833,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     if (![[theValues valueForKey:k_key_doColoring] boolValue]) { return; }
 
-    BOOL theBoolIsUpdated = [_editorView setSyntaxExtension:inExtension];
+    BOOL theBoolIsUpdated = [[self editorView] setSyntaxExtension:inExtension];
 
     if (theBoolIsUpdated) {
         // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
@@ -903,30 +855,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *theName = [theValues valueForKey:k_key_fontName];
-    float theSize = [[theValues valueForKey:k_key_fontSize] floatValue];
+    CGFloat theSize = (CGFloat)[[theValues valueForKey:k_key_fontSize] doubleValue];
     NSFont *theFont = [NSFont fontWithName:theName size:theSize];
 
-    [_editorView setFont:theFont];
+    [[self editorView] setFont:theFont];
 }
 
 
 // ------------------------------------------------------
-- (BOOL)alphaOnlyTextViewInThisWindow
-// TextView のみを透過するかどうかを返す
-// ------------------------------------------------------
-{
-    return _alphaOnlyTextViewInThisWindow;
-}
-
-
-// ------------------------------------------------------
-- (float)alpha
+- (CGFloat)alpha
 // ウィンドウまたは TextView の透明度を返す
 // ------------------------------------------------------
 {
-    float outAlpha;
+    CGFloat outAlpha;
     if ([self alphaOnlyTextViewInThisWindow]) {
-        outAlpha = [[[_editorView textView] backgroundColor] alphaComponent];
+        outAlpha = [[[[self editorView] textView] backgroundColor] alphaComponent];
     } else {
         outAlpha = [[_windowController window] alphaValue];
     }
@@ -940,11 +883,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 // ------------------------------------------------------
-- (void)setAlpha:(float)inAlpha
+- (void)setAlpha:(CGFloat)inAlpha
 // ウィンドウの透明度を変更する
 // ------------------------------------------------------
 {
-    float theAlpha;
+    CGFloat theAlpha;
 
     if (inAlpha < 0.2) {
         theAlpha = 0.2;
@@ -958,22 +901,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[_windowController window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
         [[_windowController window] setOpaque:NO]; // ウィンドウを透明にする
         [[_windowController window] setAlphaValue:1.0];
-        [[_editorView splitView] setAllBackgroundColorWithAlpha:theAlpha];
+        [[[self editorView] splitView] setAllBackgroundColorWithAlpha:theAlpha];
     } else {
-        [[_windowController window] setBackgroundColor:[NSColor windowBackgroundColor]]; // 通常の背景色をセット
+        [[_windowController window] setBackgroundColor:nil]; // 通常の背景色をセット
         [[_windowController window] setOpaque:YES]; // ウィンドウを不透明にする
         [[_windowController window] setAlphaValue:theAlpha];
-        [[_editorView splitView] setAllBackgroundColorWithAlpha:1.0];
+        [[[self editorView] splitView] setAllBackgroundColorWithAlpha:1.0];
     }
-}
-
-
-// ------------------------------------------------------
-- (void)setAlphaOnlyTextViewInThisWindow:(BOOL)inBool
-// TextView のみを透過するかどうかを保持
-// ------------------------------------------------------
-{
-    _alphaOnlyTextViewInThisWindow = inBool;
 }
 
 
@@ -982,7 +916,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ウィンドウの透明度を変更する
 // ------------------------------------------------------
 {
-    float theAlpha = [[CEDocumentController sharedDocumentController] windowAlphaControllerValue];
+    CGFloat theAlpha = [[CEDocumentController sharedDocumentController] windowAlphaControllerValue];
 
     [self setAlpha:theAlpha];
 }
@@ -994,7 +928,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    float theAlpha = [[theValues valueForKey:k_key_windowAlpha] floatValue];
+    CGFloat theAlpha = (CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue];
 
     [self setAlpha:theAlpha];
 }
@@ -1005,64 +939,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 透明度設定パネルに値をセット
 // ------------------------------------------------------
 {
-    float theAlpha = [self alpha];
+    CGFloat theAlpha = [self alpha];
 
     NSMutableDictionary *outDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithFloat:theAlpha], k_key_curWindowAlpha, 
-            [NSNumber numberWithBool:[self alphaOnlyTextViewInThisWindow]], k_key_curAlphaOnlyTextView, 
+            @(theAlpha), k_key_curWindowAlpha, 
+            @([self alphaOnlyTextViewInThisWindow]), k_key_curAlphaOnlyTextView, 
             nil];
     [[CEDocumentController sharedDocumentController] setWindowAlphaControllerDictionary:outDict];
 }
 
 
 // ------------------------------------------------------
-- (NSAppleEventDescriptor *)fileSender
-// ODB Editor Suite 対応メソッド。ファイルクライアントのシグネチャを返す。
-// ------------------------------------------------------
-{
-    return _fileSender;
-}
-
-
-// ------------------------------------------------------
-- (void)setFileSender:(NSAppleEventDescriptor *)inFileSender
-// ODB Editor Suite 対応メソッド。ファイルクライアントのシグネチャをセット。
-// ------------------------------------------------------
-{
-    [inFileSender retain];
-    [_fileSender release];
-    _fileSender = inFileSender;
-}
-
-
-// ------------------------------------------------------
-- (NSAppleEventDescriptor *)fileToken
-// ODB Editor Suite 対応メソッド。ファイルクライアントの追加文字列を返す。
-// ------------------------------------------------------
-{
-    return _fileToken;
-}
-
-
-// ------------------------------------------------------
-- (void)setFileToken:(NSAppleEventDescriptor *)inFileToken
-// ODB Editor Suite 対応メソッド。ファイルクライアントの追加文字列をセット。
-// ------------------------------------------------------
-{
-    [inFileToken retain];
-    [_fileToken release];
-    _fileToken = inFileToken;
-}
-
-
-// ------------------------------------------------------
-- (NSRange)rangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
 // ------------------------------------------------------
 {
-    CETextViewCore *theTextView = [_editorView textView];
-    unsigned int theWholeLength = [[theTextView string] length];
-    int theLocation, theLength;
+    CETextViewCore *theTextView = [[self editorView] textView];
+    NSUInteger theWholeLength = [[theTextView string] length];
+    NSInteger theLocation, theLength;
     NSRange outRange = NSMakeRange(0, 0);
 
     theLocation = (inLocation < 0) ? (theWholeLength + inLocation) : inLocation;
@@ -1085,34 +979,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // editorView 内部の textView で指定された部分を文字単位で選択
 // ------------------------------------------------------
 {
     NSRange theSelectionRange = [self rangeInTextViewWithLocation:inLocation withLength:inLength];
 
-    [_editorView setSelectedRange:theSelectionRange];
+    [[self editorView] setSelectedRange:theSelectionRange];
 }
 
 
 // ------------------------------------------------------
-- (void)setSelectedLineRangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // editorView 内部の textView で指定された部分を行単位で選択
 // ------------------------------------------------------
 {
-    CETextViewCore *theTextView = [_editorView textView];
-    unsigned int theWholeLength = [[theTextView string] length];
+    CETextViewCore *theTextView = [[self editorView] textView];
+    NSUInteger theWholeLength = [[theTextView string] length];
     OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@"^"];
     NSArray *theArray = [regex allMatchesInString:[theTextView string]];
 
     if (theArray) {
-        int theCount = [theArray count];
+        NSInteger theCount = [theArray count];
         if (inLocation == 0) {
             [theTextView setSelectedRange:NSMakeRange(0, 0)];
         } else if (inLocation > theCount) {
             [theTextView setSelectedRange:NSMakeRange(theWholeLength, 0)];
         } else {
-            int theLocation, theLength;
+            NSInteger theLocation, theLength;
 
             theLocation = (inLocation < 0) ? (theCount + inLocation + 1) : inLocation;
             if (inLength < 0) {
@@ -1130,10 +1024,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             if ((theLocation <= 0) || (theLength <= 0)) { return; }
 
-            OGRegularExpressionMatch *theMatch = [theArray objectAtIndex:(theLocation - 1)];
+            OGRegularExpressionMatch *theMatch = theArray[(theLocation - 1)];
             NSRange theRange = [theMatch rangeOfMatchedString];
             NSRange theTmpRange = theRange;
-            int i;
+            NSInteger i;
 
             for (i = 0; i < theLength; i++) {
                 if (NSMaxRange(theTmpRange) > theWholeLength) {
@@ -1156,17 +1050,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 選択範囲が見えるようにスクロール
 // ------------------------------------------------------
 {
-    [[_editorView textView] scrollRangeToVisible:[[_editorView textView] selectedRange]];
+    [[[self editorView] textView] scrollRangeToVisible:[[[self editorView] textView] selectedRange]];
 }
 
 
 // ------------------------------------------------------
-- (void)gotoLocation:(int)inLocation withLength:(int)inLength
+- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
 // 選択範囲を変更する
 // ------------------------------------------------------
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    int theIndex = [[theValues valueForKey:k_key_gotoObjectMenuIndex] intValue];
+    NSInteger theIndex = [[theValues valueForKey:k_key_gotoObjectMenuIndex] integerValue];
 
     if (theIndex == k_gotoCharacterIndex) {
         [self setSelectedCharacterRangeInTextViewWithLocation:inLocation withLength:inLength];
@@ -1174,10 +1068,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setSelectedLineRangeInTextViewWithLocation:inLocation withLength:inLength];
     }
     [self scrollToCenteringSelection]; // 選択範囲が見えるようにスクロール
-    // 10.5+で実行されているときには検索結果表示エフェクトを追加
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        [[_editorView textView] showFindIndicatorForRange:[[_editorView textView] selectedRange]];
-    }
+    [[[self editorView] textView] showFindIndicatorForRange:[[[self editorView] textView] selectedRange]];  // 検索結果表示エフェクトを追加
     [[_windowController window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
 }
 
@@ -1187,24 +1078,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ファイル情報辞書を保持
 // ------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSDictionary *theAttr = [theFileManager fileAttributesAtPath:[self fileName] traverseLink:YES];
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path]
+                                                                                error:nil];
 
-    if (theAttr) {
-        [theAttr retain];
-        [_fileAttr release];
-        _fileAttr = theAttr;
+    if (attributes) {
+        [self setFileAttributes:attributes];
         [_windowController updateFileAttrsInformation];
     }
-}
-
-
-// ------------------------------------------------------
-- (NSDictionary *)documentFileAttributes
-// ファイル属性情報辞書を返す
-// ------------------------------------------------------
-{
-    return _fileAttr;
 }
 
 
@@ -1214,7 +1094,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[_windowController toolbarController] buildEncodingPopupButton];
-    [[_windowController toolbarController] setSelectEncoding:_encoding];
+    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
 }
 
 
@@ -1235,13 +1115,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 指定されたスタイルを適用していたら、WindowController のリカラーフラグを立てる
 // ------------------------------------------------------
 {
-    NSString *theOldName = [inDictionary objectForKey:k_key_oldStyleName];
-    NSString *theNewName = [inDictionary objectForKey:k_key_newStyleName];
-    NSString *theCurStyleName = [_editorView syntaxStyleNameToColoring];
+    NSString *theOldName = inDictionary[k_key_oldStyleName];
+    NSString *theNewName = inDictionary[k_key_newStyleName];
+    NSString *theCurStyleName = [[self editorView] syntaxStyleNameToColoring];
 
     if ([theOldName isEqualToString:theCurStyleName]) {
         if ((theOldName != nil) && (theNewName != nil) && (![theOldName isEqualToString:theNewName])) {
-            [_editorView setSyntaxStyleNameToColoring:theNewName recolorNow:NO];
+            [[self editorView] setSyntaxStyleNameToColoring:theNewName recolorNow:NO];
         }
         [_windowController setRecolorWithBecomeKey:YES];
     }
@@ -1253,49 +1133,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 指定されたスタイルを適用していたら WindowController のリカラーフラグを立て、スタイル名を"None"にする
 // ------------------------------------------------------
 {
-    NSString *theCurStyleName = [_editorView syntaxStyleNameToColoring];
+    NSString *theCurStyleName = [[self editorView] syntaxStyleNameToColoring];
 
     // 指定されたスタイル名と違ったら、無視
     if ([theCurStyleName isEqualToString:inStyleName]) {
         [_windowController setRecolorWithBecomeKey:YES];
-        [_editorView setSyntaxStyleNameToColoring:NSLocalizedString(@"None",@"") recolorNow:NO];
+        [[self editorView] setSyntaxStyleNameToColoring:NSLocalizedString(@"None",@"") recolorNow:NO];
     }
-}
-
-
-// ------------------------------------------------------
-- (BOOL)doCascadeWindow
-// ウィンドウをカスケード表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _doCascadeWindow;
-}
-
-
-// ------------------------------------------------------
-- (void)setDoCascadeWindow:(BOOL)inBool
-// ウィンドウをカスケード表示するかどうかをセット
-// ------------------------------------------------------
-{
-    _doCascadeWindow = inBool;
-}
-
-
-// ------------------------------------------------------
-- (NSPoint)initTopLeftPoint
-// カスケードしないときのウィンドウ左上のポイントを返す
-// ------------------------------------------------------
-{
-    return _initTopLeftPoint;
-}
-
-
-// ------------------------------------------------------
-- (void)setInitTopLeftPoint:(NSPoint)inPoint
-// カスケードしないときのウィンドウ左上のポイントをセット
-// ------------------------------------------------------
-{
-    _initTopLeftPoint = inPoint;
 }
 
 
@@ -1306,7 +1150,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    [[_editorView textView] setSmartInsertDeleteEnabled:
+    [[[self editorView] textView] setSmartInsertDeleteEnabled:
             [[theValues valueForKey:k_key_smartInsertAndDelete] boolValue]];
 }
 
@@ -1317,7 +1161,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *outString = nil;
-    CFStringEncoding theCFEncoding = CFStringConvertNSStringEncodingToEncoding(_encoding);
+    CFStringEncoding theCFEncoding = CFStringConvertNSStringEncodingToEncoding([self encodingCode]);
 
     if (theCFEncoding != kCFStringEncodingInvalidId) {
         outString = (NSString *)CFStringConvertEncodingToIANACharSetName(theCFEncoding);
@@ -1327,67 +1171,68 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)showUpdateAlertWithUKKQueueNotification
+- (void)showUpdatedByExternalProcessAlert
 // 外部プロセスによって更新されたことをシート／ダイアログで通知
 // ------------------------------------------------------
 {
-    if (_isSaving) { return; } // 自身が保存した時の通知は無視
-    if (!_showUpdateAlertWithBecomeKey) { return; } // 表示フラグが立っていなければ、もどる
+    if (![self showUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
 
-    NSAlert *theAleart;
-    NSString *theDefaultTitle, *theInfoText;
+    NSAlert *alert;
+    NSString *messageText, *informativeText, *defaultButton;
 
     if ([self isDocumentEdited]) {
-        theDefaultTitle = NSLocalizedString(@"Keep CotEditor Edition",@"");
-        theInfoText = NSLocalizedString(@"The file has been modified by another process.\nThere are also unsaved changes in CotEditor.\n\nDo you want to keep CotEditor Edition or Update to the modified edition?\n",@"");
+        messageText = @"The file has been modified by another process. There are also unsaved changes in CotEditor.";
+        informativeText = @"Do you want to keep CotEditor's edition or update to the modified edition?";
+        defaultButton = @"Keep CotEditor's Edition";
     } else {
-        theDefaultTitle = NSLocalizedString(@"Keep unchanged",@"");
-        theInfoText = NSLocalizedString(@"The file has been modified by another process.\n\nDo you want to keep unchanged or Update to the modified edition?\n",@"");
+        messageText = @"The file has been modified by another process.";
+        informativeText = @"Do you want to keep unchanged or Update to the modified edition?";
+        defaultButton = @"Keep Unchanged";
         [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
     }
-    theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                defaultButton:theDefaultTitle 
-                alternateButton:NSLocalizedString(@"Update",@"") 
-                otherButton:nil 
-                informativeTextWithFormat:theInfoText];
+    alert = [NSAlert alertWithMessageText:NSLocalizedString(messageText, nil)
+                            defaultButton:NSLocalizedString(defaultButton, nil)
+                          alternateButton:NSLocalizedString(@"Update", nil)
+                              otherButton:nil
+                informativeTextWithFormat:NSLocalizedString(informativeText, nil)];
 
     // シートが表示中でなければ、表示
-    if ([[_editorView window] attachedSheet] == nil) {
-        _isRevertingWithUKKQueueNotification = YES;
-        [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        [theAleart beginSheetModalForWindow:[_editorView window] 
+    if ([[self windowForSheet] attachedSheet] == nil) {
+        [self setIsRevertingForExternalFileUpdate:YES];
+        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        [alert beginSheetModalForWindow:[self windowForSheet]
                     modalDelegate:self 
                     didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:) 
                     contextInfo:NULL];
 
-    } else if (_isRevertingWithUKKQueueNotification) {
+    } else if ([self isRevertingForExternalFileUpdate]) {
         // （同じ外部プロセスによる変更通知アラートシートを表示中の時は、なにもしない）
 
     // 既にシートが出ている時はダイアログで表示
     } else {
-        _isRevertingWithUKKQueueNotification = YES;
-        [[_editorView window] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        int theResult = [theAleart runModal]; // アラート表示
-        [self alertForModByAnotherProcessDidEnd:theAleart returnCode:theResult contextInfo:NULL];
+        [self setIsRevertingForExternalFileUpdate:YES];
+        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        NSInteger theResult = [alert runModal]; // アラート表示
+        [self alertForModByAnotherProcessDidEnd:alert returnCode:theResult contextInfo:NULL];
     }
 }
 
 
 // ------------------------------------------------------
-- (float)lineSpacingInTextView
+- (CGFloat)lineSpacingInTextView
 // テキストビューに設定されている行間値を返す
 // ------------------------------------------------------
 {
-    return ([[_editorView textView] lineSpacing]);
+    return ([[[self editorView] textView] lineSpacing]);
 }
 
 
 // ------------------------------------------------------
-- (void)setCustomLineSpacingToTextView:(float)inSpacing
+- (void)setCustomLineSpacingToTextView:(CGFloat)inSpacing
 // テキストビューにカスタム行間値をセットする
 // ------------------------------------------------------
 {
-    float theSpacing;
+    CGFloat theSpacing;
 
     if (inSpacing < k_lineSpacingMin) {
         theSpacing = k_lineSpacingMin;
@@ -1396,21 +1241,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         theSpacing = inSpacing;
     }
-    [[_editorView textView] setNewLineSpacingAndUpdate:theSpacing];
-}
-
-
-// ------------------------------------------------------
-- (BOOL)canActivateShowInvisibleCharsItem
-// 不可視文字表示メニュー／ツールバーアイテムを有効化できるかを返す
-// ------------------------------------------------------
-{
-    return _canActivateShowInvisibleCharsItem;
+    [[[self editorView] textView] setNewLineSpacingAndUpdate:theSpacing];
 }
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocols
 
 //=======================================================
 // NSMenuValidation Protocol
@@ -1422,31 +1258,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // メニュー項目の有効・無効を制御
 // ------------------------------------------------------
 {
-    int theState = NSOffState;
+    NSInteger theState = NSOffState;
     NSString *theName;
 
     if ([inMenuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
-        if ((![_editorView isWritable]) && (![_editorView isAlertedNotWritable])) {
+        if ((![[self editorView] isWritable]) && (![[self editorView] isAlertedNotWritable])) {
             return NO;
         }
     } else if ([inMenuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
-        return ([[_editorView navigationBar] canSelectPrevItem]);
+        return ([[[self editorView] navigationBar] canSelectPrevItem]);
     } else if ([inMenuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
-        return ([[_editorView navigationBar] canSelectNextItem]);
+        return ([[[self editorView] navigationBar] canSelectNextItem]);
     } else if ([inMenuItem action] == @selector(setEncoding:)) {
-        theState = ([inMenuItem tag] == _encoding) ? NSOnState : NSOffState;
+        theState = ([inMenuItem tag] == [self encodingCode]) ? NSOnState : NSOffState;
     } else if (([inMenuItem action] == @selector(setLineEndingCharToLF:)) || 
             ([inMenuItem action] == @selector(setLineEndingCharToCR:)) || 
             ([inMenuItem action] == @selector(setLineEndingCharToCRLF:))) {
-        theState = ([inMenuItem tag] == [_editorView lineEndingCharacter]) ? NSOnState : NSOffState;
+        theState = ([inMenuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
     } else if ([inMenuItem action] == @selector(setSyntaxStyle:)) {
-        theName = [_editorView syntaxStyleNameToColoring];
+        theName = [[self editorView] syntaxStyleNameToColoring];
         if (theName && [[inMenuItem title] isEqualToString:theName]) {
             theState = NSOnState;
         }
     } else if ([inMenuItem action] == @selector(recoloringAllStringOfDocument:)) {
-        theName = [_editorView syntaxStyleNameToColoring];
+        theName = [[self editorView] syntaxStyleNameToColoring];
         if (theName && [theName isEqualToString:NSLocalizedString(@"None",@"")]) {
             return NO;
         }
@@ -1464,13 +1300,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
--(BOOL)validateToolbarItem:(NSToolbarItem *)inToolbarItem
+-(BOOL)validateToolbarItem:(NSToolbarItem *)theItem
 // ツールバー項目の有効・無効を制御
 // ------------------------------------------------------
 {
-    if ([[inToolbarItem itemIdentifier] isEqualToString:k_syntaxReColorAllItemID]) {
-        NSString *theName = [_editorView syntaxStyleNameToColoring];
-        if (theName && [theName isEqualToString:NSLocalizedString(@"None",@"")]) {
+    if ([[theItem itemIdentifier] isEqualToString:k_syntaxReColorAllItemID]) {
+        NSString *name = [[self editorView] syntaxStyleNameToColoring];
+        if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
     }
@@ -1479,56 +1315,54 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notifications
 
 //=======================================================
-// Notification method (UKKQueue)
-//  <== UKKKqueue
+// Delegate method (NSFilePresenter)
+//  <== NSFilePresenter
 //=======================================================
 
 // ------------------------------------------------------
-- (void)fileWritten:(NSNotification *)inNotification
-// いま開いているファイルが外部プロセスによって上書き保存された
+- (void)presentedItemDidChange
+// ファイルが変更された
 // ------------------------------------------------------
 {
-    // 自分が保存中でないなら、書き込み通知を行う
-    if (!_isSaving) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
-        _showUpdateAlertWithBecomeKey = YES;
-        // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
-        if ([NSApp isActive]) {
-            [self showUpdateAlertWithUKKQueueNotification];
-        } else if ([[theValues valueForKey:k_key_notifyEditByAnother] boolValue]) {
-            int theRequestID = [NSApp requestUserAttention:NSInformationalRequest];
-            // Dockアイコンジャンプを中止（本来なくてもいいはずだが10.4.3ではジャンプし続けるため、実行）
-            [NSApp cancelUserAttentionRequest:theRequestID];
-        }
+    // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
+    NSFileCoordinator *coordinator = [[[NSFileCoordinator alloc] initWithFilePresenter:self] autorelease];
+    __block NSDate *fileModificationDate;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+    {
+        NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+        fileModificationDate = [fileAttrs fileModificationDate];
+    }];
+    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
+    
+    // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
+    __block NSString *MD5;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         NSData *data = [NSData dataWithContentsOfURL:newURL];
+         MD5 = [data MD5];
+     }];
+    if ([MD5 isEqualToString:[self fileMD5]]) {
+        // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
+        // ここだけで無視してもファイル保存時にアラートが出るのことへの対策
+        [self setFileModificationDate:fileModificationDate];
+        
+        return;
     }
-}
-
-
-// ------------------------------------------------------
-- (void)fileDeleted:(NSNotification *)inNotification
-// いま開いているファイルが外部プロセスによって削除された
-// ------------------------------------------------------
-{
-// このメソッドは下記のページの情報を参考にさせていただきました(2005.11.05)
-// http://homepage3.nifty.com/kimuraw/misc/ukkqueue.html
-
-    NSString *thePath = [self fileName];
-
-    // UKKQueue からパスを削除
-    [[UKKQueue sharedQueue] removePathFromQueue:thePath];
-    // Cocoa アプリで標準的に使われる置き換え保存かどうかを確認する
-    if ([[NSFileManager defaultManager] fileExistsAtPath:thePath]) {
-        // 置き換え保存なら、上書き保存と同じ処理後、UKKQueue に再登録
-        [self fileWritten:inNotification];
-        [[UKKQueue sharedQueue] addPathToQueue:thePath 
-                    notifyingAbout:(UKKQueueNotifyAboutWrite | UKKQueueNotifyAboutDelete)];
-    } else {
-        // 単にファイルが削除されたのなら、監視をやめる
-        [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+    
+    // 書き込み通知を行う
+    [self setShowUpdateAlertWithBecomeKey:YES];
+    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
+    if ([NSApp isActive]) {
+        [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
+        
+    } else if ([[defaults valueForKey:k_key_notifyEditByAnother] boolValue]) {
+        [NSApp requestUserAttention:NSInformationalRequest];
     }
 }
 
@@ -1544,14 +1378,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 書類オープン処理が完了した
 // ------------------------------------------------------
 {
-    if ([inNotification object] != _editorView) { return; }
+    if ([inNotification object] != [self editorView]) { return; }
 
     [self showAlertForNotWritable];
 }
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -1590,13 +1424,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    NSPrintPanel *thePrintPanel = [NSPrintPanel printPanel];
+    NSPrintPanel *printPanel = [NSPrintPanel printPanel];
 
-    [thePrintPanel setAccessoryView:[_windowController printAccessoryView]];
-    [thePrintPanel beginSheetWithPrintInfo:[self printInfo] 
-                modalForWindow:[_editorView window] 
-                delegate:self didEndSelector:@selector(printPanelDidEnd:returnCode:contextInfo:) 
-                contextInfo:NULL];
+    [printPanel setAccessoryView:[_windowController printAccessoryView]];
+    [printPanel beginSheetWithPrintInfo:[self printInfo]
+                         modalForWindow:[self windowForSheet]
+                               delegate:self
+                         didEndSelector:@selector(printPanelDidEnd:returnCode:contextInfo:)
+                            contextInfo:NULL];
 }
 
 
@@ -1643,25 +1478,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSStringEncoding theEncoding = [sender tag];
 
-    if ((theEncoding < 1) || (theEncoding == _encoding)) {
+    if ((theEncoding < 1) || (theEncoding == [self encodingCode])) {
         return;
     }
-    int theResult;
+    NSInteger theResult;
     NSString *theEncodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
-    if (([[_editorView string] length] < 1) || (![self fileName])) {
+    if (([[[self editorView] string] length] < 1) || (![self fileURL])) {
         theResult = NSAlertDefaultReturn;
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"File Encoding",@"") 
-                    defaultButton:NSLocalizedString(@"Convert",@"") 
-                    alternateButton:NSLocalizedString(@"Reinterpret",@"") 
-                    otherButton:NSLocalizedString(@"Cancel",@"") 
-                    informativeTextWithFormat:[NSString stringWithFormat:
-                        NSLocalizedString(@"Do you want to convert or reinterpret using \"%@\"?\n",@""), theEncodingName]];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"File encoding", nil)
+                                            defaultButton:NSLocalizedString(@"Convert", nil)
+                                          alternateButton:NSLocalizedString(@"Reinterpret", nil)
+                                              otherButton:NSLocalizedString(@"Cancel", nil)
+                                informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using \"%@\"?", nil), theEncodingName];
 
-        theResult = [theAleart runModal];
+        theResult = [theAlert runModal];
     }
     if (theResult == NSAlertDefaultReturn) { // = Convert 変換
 
@@ -1674,44 +1508,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     } else if (theResult == NSAlertAlternateReturn) { // = Reinterpret 再解釈
 
-        NSString *theFileName = [self fileName];
-
-        if (!theFileName) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
+        if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
-            NSAlert *theSecondAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                        defaultButton:NSLocalizedString(@"Cancel",@"") 
-                        alternateButton:NSLocalizedString(@"Discard Changes",@"") 
-                        otherButton:nil 
-                        informativeTextWithFormat:[NSString stringWithFormat:
-                            NSLocalizedString(@"The file \'%@\' has unsaved changes. \n\nDo you want to discard the changes and reset the file encodidng?\n",@""), theFileName]];
+            NSAlert *theSecondAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file \'%@\' has unsaved changes.", nil), [[self fileURL] path]]
+                                                      defaultButton:NSLocalizedString(@"Cancel", nil)
+                                                    alternateButton:NSLocalizedString(@"Discard Changes", nil)
+                                                        otherButton:nil
+                                          informativeTextWithFormat:NSLocalizedString(@"Do you want to discard the changes and reset the file encodidng?", nil)];
 
-            int theSecondResult = [theSecondAleart runModal];
+            NSInteger theSecondResult = [theSecondAlert runModal];
             if (theSecondResult != NSAlertAlternateReturn) { // != Discard Change
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-                [[_windowController toolbarController] setSelectEncoding:_encoding];
+                [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
                 return;
             }
         }
-        if ([self readFromFile:theFileName withEncoding:theEncoding]) {
+        if ([self readFromFile:[[self fileURL] path] withEncoding:theEncoding]) {
             [self setStringToEditorView];
             // アンドゥ履歴をクリア
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
         } else {
-            NSAlert *theThirdAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Can Not reinterpret",@"") 
-                        defaultButton:NSLocalizedString(@"Done",@"") 
-                        alternateButton:nil 
-                        otherButton:nil 
-                        informativeTextWithFormat:[NSString stringWithFormat:
-                            NSLocalizedString(@"Sorry, the file \'%@\' could not reinterpret in the new encoding \"%@\".",@""), theFileName, theEncodingName]];
-            [theThirdAleart setAlertStyle:NSCriticalAlertStyle];
+            NSAlert *theThirdAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Can not reinterpret", nil)
+                                                     defaultButton:NSLocalizedString(@"Done", nil)
+                                                   alternateButton:nil
+                                                       otherButton:nil
+                                         informativeTextWithFormat:NSLocalizedString(@"The file \'%@\' could not be reinterpreted using the new encoding \"%@\".", nil), [[self fileURL] path], theEncodingName];
+            [theThirdAlert setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
-            (void)[theThirdAleart runModal];
+            (void)[theThirdAlert runModal];
         }
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-    [[_windowController toolbarController] setSelectEncoding:_encoding];
+    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
 }
 
 
@@ -1733,7 +1563,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドキュメント全体を再カラーリング
 // ------------------------------------------------------
 {
-    [_editorView recoloringAllString];
+    [[self editorView] recoloringAllString];
 }
 
 
@@ -1742,7 +1572,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ウィンドウの透明度を設定
 // ------------------------------------------------------
 {
-    float theAlpha = [sender floatValue];
+    CGFloat theAlpha = (CGFloat)[sender doubleValue];
     
     [self setAlpha:theAlpha];
 }
@@ -1766,7 +1596,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theString = [self currentIANACharSetName];
 
     if (theString != nil) {
-        [[_editorView textView] insertText:theString];
+        [[[self editorView] textView] insertText:theString];
     }
 }
 
@@ -1779,7 +1609,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theString = [self currentIANACharSetName];
 
     if (theString != nil) {
-        [[_editorView textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", theString]];
+        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", theString]];
     }
 }
 
@@ -1792,7 +1622,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theString = [self currentIANACharSetName];
 
     if (theString != nil) {
-        [[_editorView textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", theString]];
+        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", theString]];
     }
 }
 
@@ -1802,7 +1632,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
 // ------------------------------------------------------
 {
-    [[_editorView navigationBar] selectPrevItem];
+    [[[self editorView] navigationBar] selectPrevItem];
 }
 
 
@@ -1811,16 +1641,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
 // ------------------------------------------------------
 {
-    [[_editorView navigationBar] selectNextItem];
+    [[[self editorView] navigationBar] selectNextItem];
 }
 
 
 
-@end
 
-
-
-@implementation CEDocument (Private)
+#pragma mark - Private Methods
 
 //=======================================================
 // Private method
@@ -1832,7 +1659,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 半角円マークを使えないエンコードの時はバックスラッシュに変換した文字列を返す
 // ------------------------------------------------------
 {
-    unsigned int theLength = [inString length];
+    NSUInteger theLength = [inString length];
 
     if (theLength > 0) {
         NSMutableString *outString = [inString mutableCopy]; // ===== mutableCopy
@@ -1853,7 +1680,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコード値を保存
 // ------------------------------------------------------
 {
-    _encoding = inEncoding;
+    [self setEncodingCode:inEncoding];
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
 }
@@ -1865,9 +1692,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
-    [[_windowController toolbarController] setSelectEncoding:_encoding];
+    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
     // ステータスバー、ドローワを更新
-    [_editorView updateLineEndingsInStatusAndInfo:NO];
+    [[self editorView] updateLineEndingsInStatusAndInfo:NO];
 }
 
 
@@ -1879,17 +1706,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSData *theData = nil;
 
     // "authopen"コマンドを使って読み込む
-    NSString *theConvertedPath = [NSString stringWithUTF8String:[inFileName UTF8String]];
+    NSString *theConvertedPath = @([inFileName UTF8String]);
     NSTask *theTask = [[[NSTask alloc] init] autorelease];
-    int status;
+    NSInteger status;
 
     [theTask setLaunchPath:@"/usr/libexec/authopen"];
-    [theTask setArguments:[NSArray arrayWithObjects:theConvertedPath, nil]];
+    [theTask setArguments:@[theConvertedPath]];
     [theTask setStandardOutput:[NSPipe pipe]];
 
     [theTask launch];
     theData = [NSData dataWithData:[[[theTask standardOutput] fileHandleForReading] readDataToEndOfFile]];
     [theTask waitUntilExit];
+    
+    // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+    [self setFileMD5:[theData MD5]];
 
     status = [theTask terminationStatus];
     if (status != 0) {
@@ -1929,8 +1759,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         outResult = [self stringFromData:theData encoding:theEncoding xattr:theBoolEA];
     }
     if (outResult) {
-        // 外部プロセスによる変更監視を開始
-        [self startWatchFile:inFileName];
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
     }
@@ -2006,10 +1834,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
             NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
             CFStringEncoding theTmpCFEncoding;
-            int i, theCount = [theEncodings count];
 
-            for (i = 0; i < theCount; i++) {
-                theTmpCFEncoding = [[theEncodings objectAtIndex:i] unsignedLongValue];
+            for (NSNumber *encoding in theEncodings) {
+                theTmpCFEncoding = [encoding unsignedLongValue];
                 if ((theTmpCFEncoding == kCFStringEncodingShiftJIS) || 
                         (theTmpCFEncoding == kCFStringEncodingShiftJIS_X0213_00)) {
                     theCFEncoding = theTmpCFEncoding;
@@ -2041,7 +1868,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)redoSetNewLineEndingCharacterCode:(int)inNewLineEnding
+- (void)redoSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding
 // 行末コードを変更するアクションのRedo登録
 // ------------------------------------------------------
 {
@@ -2054,10 +1881,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // CotEditor のタイプとクリエータを返す
 // ------------------------------------------------------
 {
-    NSDictionary *outDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithUnsignedLong:'cEd1'], NSFileHFSCreatorCode, 
-                    [NSNumber numberWithUnsignedLong:'TEXT'], NSFileHFSTypeCode, 
-                    nil];
+    NSDictionary *outDict = @{NSFileHFSCreatorCode: @('cEd1'),
+                              NSFileHFSTypeCode: @('TEXT')};
     return outDict;
 }
 
@@ -2068,25 +1893,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSStringEncoding theIANACharSetEncoding = 
-            [self scannedCharsetOrEncodingFromString:[_editorView stringForSave]];
+            [self scannedCharsetOrEncodingFromString:[[self editorView] stringForSave]];
     NSStringEncoding theShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding theX0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213_00);
 
-    if ((theIANACharSetEncoding != NSProprietaryStringEncoding) && (theIANACharSetEncoding != _encoding) && 
+    if ((theIANACharSetEncoding != NSProprietaryStringEncoding) && (theIANACharSetEncoding != [self encodingCode]) &&
             (!(((theIANACharSetEncoding == theShiftJIS) || (theIANACharSetEncoding == theX0213)) && 
-            ((_encoding == theShiftJIS) || (_encoding == theX0213))))) {
+            (([self encodingCode] == theShiftJIS) || ([self encodingCode] == theX0213))))) {
             // （Shift-JIS の時は要注意 = scannedCharsetOrEncodingFromString: を参照）
 
         NSString *theIANANameStr = [NSString localizedNameOfStringEncoding:theIANACharSetEncoding];
-        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:_encoding];
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Save Warning",@"") 
-                    defaultButton:NSLocalizedString(@"Cancel",@"") 
-                    alternateButton:NSLocalizedString(@"Continue Saving",@"") 
-                    otherButton:nil 
-                    informativeTextWithFormat:[NSString stringWithFormat:
-                        NSLocalizedString(@"The encoding is  \"%@\", but the IANA charset name in text is \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr, theIANANameStr]];
+        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is \"%@\", but the IANA charset name in text is \"%@\".", nil), theEncodingNameStr, theIANANameStr]
+                                            defaultButton:NSLocalizedString(@"Cancel", nil)
+                                          alternateButton:NSLocalizedString(@"Continue Saving", nil)
+                                              otherButton:nil
+                                informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
 
-        int theResult = [theAleart runModal];
+        NSInteger theResult = [theAlert runModal];
         if (theResult != NSAlertAlternateReturn) { // == Cancel
             return NO;
         }
@@ -2101,18 +1925,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *theCurString = [self convertedCharacterString:[_editorView stringForSave] 
-            withEncoding:_encoding];
-    if (![theCurString canBeConvertedToEncoding:_encoding]) {
-        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:_encoding];
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Save Warning",@"") 
-                    defaultButton:NSLocalizedString(@"Show Incompatible Char(s)",@"") 
-                    alternateButton:NSLocalizedString(@"Save Available strings",@"") 
-                    otherButton:NSLocalizedString(@"Cancel",@"") 
-                    informativeTextWithFormat:[NSString stringWithFormat:
-                        NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".\n\nDo you want to continue processing?\n",@""), theEncodingNameStr]];
+    NSString *theCurString = [self convertedCharacterString:[[self editorView] stringForSave]
+            withEncoding:[self encodingCode]];
+    if (![theCurString canBeConvertedToEncoding:[self encodingCode]]) {
+        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), theEncodingNameStr]
+                                            defaultButton:NSLocalizedString(@"Show Incompatible Char(s)", nil)
+                                          alternateButton:NSLocalizedString(@"Save Available Strings", nil)
+                                              otherButton:NSLocalizedString(@"Cancel", nil)
+                                informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
 
-        int theResult = [theAleart runModal];
+        NSInteger theResult = [theAlert runModal];
         if (theResult != NSAlertAlternateReturn) { // != Save
             if (theResult == NSAlertDefaultReturn) { // == show incompatible char
                 [_windowController showIncompatibleCharList];
@@ -2125,77 +1948,74 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)saveToFile:(NSString *)inFileName ofType:(NSString *)inDocType 
-            saveOperation:(NSSaveOperationType)inSaveOperationType
-// ファイル保存
+- (BOOL)forceWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation
+// authopenを使ってファイルを書き込む
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    // エンコーディングを見て、半角円マークを変換しておく
-    NSString *theCurString = [self convertedCharacterString:[_editorView stringForSave] 
-            withEncoding:_encoding];
-    NSData *theData;
-    BOOL outResult = NO;
+    BOOL success = NO;
+    NSData *data = [self dataOfType:typeName error:nil];
+    
+    if (data == nil) { return NO; }
+    
 
-    if ((_encoding == NSUTF8StringEncoding) && ([[theValues valueForKey:k_key_saveUTF8BOM] boolValue])) {
-        // UTF-8 BOM追加 2008.12.13
-        const char theUtf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
-        NSMutableData *theMutableData1 = [NSMutableData dataWithBytes:theUtf8Bom length:3];
-        [theMutableData1 appendData:[theCurString dataUsingEncoding:_encoding allowLossyConversion:YES]];
-        theData = [NSData dataWithData:theMutableData1];
-    } else {
-        theData = [theCurString dataUsingEncoding:_encoding allowLossyConversion:YES];
+    // 設定すべきfileAttributesを準備しておく
+    NSDictionary *attributes = [self fileAttributesToWriteToURL:url
+                                                         ofType:typeName
+                                               forSaveOperation:saveOperation
+                                            originalContentsURL:nil
+                                                          error:nil];
+    
+    // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
+    BOOL isFinderLockOn = NO;
+    if (![self canReleaseFinderLockOfFile:[url path] isLocked:&isFinderLockOn lockAgain:NO]) {
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
+                                         defaultButton:nil
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"You can use \"Save As\" to save a copy.", nil)];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        (void)[alert runModal];
+        return NO;
     }
-    if (theData != nil) {
+    
+    // "authopen" コマンドを使って保存
+    NSString *convertedPath = @([[url path] UTF8String]);
+    NSTask *task = [[[NSTask alloc] init] autorelease];
 
-        NSDictionary *theAttrs = [self fileAttributesToWriteToFile:inFileName 
-                    ofType:inDocType saveOperation:inSaveOperationType];
-        NSFileManager *theManager = [NSFileManager defaultManager];
-        NSString *theConvertedPath = [NSString stringWithUTF8String:[inFileName UTF8String]];
-        int status;
-        BOOL theFinderLockON = NO;
+    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setArguments:@[@"-c", @"-w", convertedPath]];
+    [task setStandardInput:[NSPipe pipe]];
 
-        if (![self canReleaseFinderLockOfFile:inFileName isLocked:&theFinderLockON lockAgain:NO]) {
-            // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
-            NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"Warning",@"") 
-                        defaultButton:NSLocalizedString(@"OK",@"") 
-                        alternateButton:nil 
-                        otherButton:nil 
-                        informativeTextWithFormat:
-                            NSLocalizedString(@"Could Not be released Finder's Lock.\n\nYou can use \"SaveAs\" to save a copy.\n",@"")];
-            [theAleart setAlertStyle:NSCriticalAlertStyle];
-            (void)[theAleart runModal];
-            return NO;
-        }
-        // "authopen"コマンドを使って保存
-        NSTask *theTask = [[[NSTask alloc] init] autorelease];
+    [task launch];
+    [[[task standardInput] fileHandleForWriting] writeData:data];
+    [[[task standardInput] fileHandleForWriting] closeFile];
+    [task waitUntilExit];
 
-        [theTask setLaunchPath:@"/usr/libexec/authopen"];
-        [theTask setArguments:[NSArray arrayWithObjects:@"-c", @"-w", theConvertedPath, nil]];
-        [theTask setStandardInput:[NSPipe pipe]];
-
-        [theTask launch];
-        [[[theTask standardInput] fileHandleForWriting] writeData:theData];
-        [[[theTask standardInput] fileHandleForWriting] closeFile];
-        [theTask waitUntilExit];
-
-        status = [theTask terminationStatus];
-        outResult = (status == 0);
-
+    int status = [task terminationStatus];
+    success = (status == 0);
+    
+    if (success) {
+        // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
+        [self setFileMD5:[data MD5]];
+        
         // クリエータなどを設定
-        (void)[theManager changeFileAttributes:theAttrs atPath:inFileName];
-        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存（10.5+）
-        [self setComAppleTextEncodingAtPath:inFileName];
-        if (theFinderLockON) {
-            // Finder Lock がかかってたなら、再びかける
-            BOOL theBoolToGo = [theManager changeFileAttributes:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithBool:YES], NSFileImmutable, nil] atPath:inFileName];
-            outResult = (outResult && theBoolToGo);
-        }
+        [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
+        
+        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
+        NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
+                                  [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
+        [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
     }
-    [self setIsWritableToEditorViewWithFileName:inFileName];
-    return outResult;
+    
+    // Finder Lock がかかってたなら、再びかける
+    if (isFinderLockOn) {
+        BOOL lockSuccess = [[NSFileManager defaultManager] setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
+        success = (success && lockSuccess);
+    }
+    
+    [self setIsWritableToEditorViewWithURL:url];
+    
+    return success;
 }
 
 
@@ -2210,10 +2030,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    NSString *thePath = [self fileName];
+    NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
-    OSType creatorCode = [_fileSender typeCodeValue];
-    if (creatorCode == nil) { return; }
+    OSType creatorCode = [[self fileSender] typeCodeValue];
+    if (creatorCode == 0) { return; }
 
     NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
     AppleEvent *theAppleEventPointer;
@@ -2243,8 +2063,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
     [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
     
-    if (_fileToken) {
-        [theAppleEvent setParamDescriptor:_fileToken forKeyword:keySenderToken];
+    if ([self fileToken]) {
+        [theAppleEvent setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
     }
     if (inSaveOperationType == NSSaveAsOperation) {
         theOSStatus = FSPathMakeRef((UInt8 *)[inSaveAsPath UTF8String], &theSaveAsRef, nil);
@@ -2276,10 +2096,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    NSString *thePath = [self fileName];
+    NSString *thePath = [[self fileURL] path];
     if (thePath == nil) { return; }
-    OSType creatorCode = [_fileSender typeCodeValue];
-    if (creatorCode == nil) { return; }
+    OSType creatorCode = [[self fileSender] typeCodeValue];
+    if (creatorCode == 0) { return; }
 
     NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
     AppleEvent *theAppleEventPointer;
@@ -2309,8 +2129,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
     [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
     
-    if (_fileToken) {
-        [theAppleEvent setParamDescriptor:_fileToken forKeyword:keySenderToken];
+    if ([self fileToken]) {
+        [theAppleEvent setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
     }
     
     theAppleEventPointer = (AEDesc *)[theAppleEvent aeDesc];
@@ -2328,20 +2148,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSFileManager *theManager = [NSFileManager defaultManager];
-    BOOL theFinderLockON = [[theManager fileAttributesAtPath:inFileName traverseLink:YES] fileIsImmutable];
+    BOOL theFinderLockON = [[theManager attributesOfItemAtPath:[inFileName stringByResolvingSymlinksInPath] error:nil] fileIsImmutable];
     BOOL theBoolToGo = NO;
 
     if (theFinderLockON) {
         // Finder Lock がかかっていれば、解除
-        theBoolToGo = [theManager changeFileAttributes:
-                [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithBool:NO], NSFileImmutable, nil] atPath:inFileName];
+        theBoolToGo = [theManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:inFileName error:nil];
         if (theBoolToGo) {
             if (inLockAgain) {
             // フラグが立っていたなら、再びかける
-            (void)[theManager changeFileAttributes:
-                    [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithBool:YES], NSFileImmutable, nil] atPath:inFileName];
+            [theManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:inFileName error:nil];
             }
         } else {
             return NO;
@@ -2355,296 +2171,199 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)alertForNotWritableCloseDocDidEnd:(NSAlert *)inAlert returnCode:(int)inReturnCode 
-            contextInfo:(void *)inContextInfo
-// 書き込み不可ドキュメントが閉じるときの確認アラートが閉じた
-// ------------------------------------------------------
-{
-// このメソッドは下記のページの情報を参考にさせていただきました(2005.07.08)
-// http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
-    CanCloseAlertContext *theContextInfo = inContextInfo;
-    BOOL theReturn = (inReturnCode != NSAlertDefaultReturn); // YES == Don't Save (Close)
-
-    if (theContextInfo->delegate) {
-        objc_msgSend(theContextInfo->delegate, theContextInfo->shouldCloseSelector, 
-                self, theReturn, theContextInfo->contextInfo);
-    }
-    free(theContextInfo);
-}
-
-
-// ------------------------------------------------------
-- (void)startWatchFile:(NSString *)inFileName
-// 外部プロセスによるファイルの変更監視を開始
-// ------------------------------------------------------
-{
-// このメソッドは下記のページの情報を参考にさせていただきました(2005.11.05)
-// http://homepage3.nifty.com/kimuraw/misc/ukkqueue.html
-
-    if ([[NSFileManager defaultManager] fileExistsAtPath:inFileName]) {
-
-            NSNotificationCenter *theNotifCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
-
-            [theNotifCenter addObserver:self 
-                        selector:@selector(fileWritten:) 
-                        name:UKFileWatcherWriteNotification object:inFileName];
-            [theNotifCenter addObserver:self 
-                        selector:@selector(fileDeleted:) 
-                        name:UKFileWatcherDeleteNotification object:inFileName];
-            [[UKKQueue sharedQueue] addPathToQueue:inFileName 
-                        notifyingAbout:(UKKQueueNotifyAboutWrite | UKKQueueNotifyAboutDelete)];
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)stopWatchFile:(NSString *)inFileName
-// 外部プロセスによるファイルの変更監視を停止
-// ------------------------------------------------------
-{
-    // UKKQueue からパスを削除、NSWorkspace のノーティフィケーションセンターから自身を削除
-    [[UKKQueue sharedQueue] removePathFromQueue:inFileName];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
-}
-
-
-// ------------------------------------------------------
-- (void)setIsSavingFlagToNo
-// 保存中フラグを戻す
-// ------------------------------------------------------
-{
-    _isSaving = NO;
-}
-
-
-// ------------------------------------------------------
-- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(int)inReturnCode 
+- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
             contextInfo:(void *)inContextInfo
 // 外部プロセスによる変更の通知アラートが閉じた
 // ------------------------------------------------------
 {
     if (inReturnCode == NSAlertAlternateReturn) { // == Revert
         // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
-        if ([self revertToSavedFromFile:[self fileName] ofType:[self fileType]]) {
-            // UKKQueue からパスを削除（上記メソッド内で追加しているため、このままだとダブる）
-            [[UKKQueue sharedQueue] removePathFromQueue:[self fileName]]; // （NotifCenter への登録はそのままに）
+        if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
         }
     }
-    _isRevertingWithUKKQueueNotification = NO;
-    _showUpdateAlertWithBecomeKey = NO;
+    [self setIsRevertingForExternalFileUpdate:YES];
+    [self setShowUpdateAlertWithBecomeKey:NO];
 }
 
 
 // ------------------------------------------------------
-- (void)printPanelDidEnd:(NSPrintPanel *)inPrintPanel returnCode:(int)inReturnCode 
-            contextInfo:(void *)inContextInfo
+- (void)printPanelDidEnd:(NSPrintPanel *)printPanel returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // プリントパネルが閉じた
 // ------------------------------------------------------
 {
-    if (inReturnCode != NSOKButton) { return; }
+    if (returnCode != NSOKButton) { return; }
 
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    id thePrintValues = [_windowController printValues];
-    NSPrintInfo *thePrintInfo = [self printInfo];
-    NSSize thePaperSize = [thePrintInfo paperSize];
-    NSPrintOperation *thePrintOperation;
-    NSString *theFilePath = ([[theValues valueForKey:k_key_headerFooterPathAbbreviatingWithTilde] boolValue]) ?
-            [[self fileName] stringByAbbreviatingWithTildeInPath] : [self fileName];
-            // (fileName は 10.4 で廃止されているメソッド。バージョンアップ注意 *****)
-    CELayoutManager *theLayoutManager = [[[CELayoutManager alloc] init] autorelease];
-    CEPrintView *thePrintView;
-    CESyntax *thePrintSyntax;
-    float theTopMargin = k_printHFVerticalMargin;
-    float theBottomMargin = k_printHFVerticalMargin;
-    BOOL theBoolDoColoring = ([[thePrintValues valueForKey:k_printColorIndex] intValue] == 1);
-    BOOL theBoolShowInvisibles = [(CELayoutManager *)[[_editorView textView] layoutManager] showInvisibles];
-    BOOL theBoolShowControls = theBoolShowInvisibles;
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id printValues = [_windowController printValues];
+    NSPrintInfo *printInfo = [self printInfo];
+    NSSize paperSize = [printInfo paperSize];
+    NSPrintOperation *printOperation;
+    NSString *filePath = ([[values valueForKey:k_key_headerFooterPathAbbreviatingWithTilde] boolValue]) ?
+                         [[[self fileURL] path] stringByAbbreviatingWithTildeInPath] : [[self fileURL] path];
+    CELayoutManager *layoutManager = [[[CELayoutManager alloc] init] autorelease];
+    CEPrintView *printView;
+    CESyntax *printSyntax;
+    CGFloat topMargin = k_printHFVerticalMargin;
+    CGFloat bottomMargin = k_printHFVerticalMargin;
+    BOOL doColoring = ([[printValues valueForKey:k_printColorIndex] integerValue] == 1);
+    BOOL showsInvisibles = [(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles];
+    BOOL showsControls = showsInvisibles;
 
     // ヘッダ／フッタの高さ（文書を印刷しない高さ）を得る
-    if ([[thePrintValues valueForKey:k_printHeader] boolValue]) {
-        if ([[thePrintValues valueForKey:k_headerOneStringIndex] intValue] > 1) { // 行1 = 印字あり
-            theTopMargin += k_headerFooterLineHeight;
+    if ([[printValues valueForKey:k_printHeader] boolValue]) {
+        if ([[printValues valueForKey:k_headerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
+            topMargin += k_headerFooterLineHeight;
         }
-        if ([[thePrintValues valueForKey:k_headerTwoStringIndex] intValue] > 1) { // 行2 = 印字あり
-            theTopMargin += k_headerFooterLineHeight;
+        if ([[printValues valueForKey:k_headerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
+            topMargin += k_headerFooterLineHeight;
         }
     }
     // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
-    if (theTopMargin > k_printHFVerticalMargin) {
-        theTopMargin += 
-                ([[theValues valueForKey:k_key_headerFooterFontSize] floatValue] - k_headerFooterLineHeight);
-        if ([[thePrintValues valueForKey:k_printHeaderSeparator] boolValue]) {
-            theTopMargin += k_separatorPadding;
+    if (topMargin > k_printHFVerticalMargin) {
+        topMargin += (CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue] - k_headerFooterLineHeight;
+        if ([[printValues valueForKey:k_printHeaderSeparator] boolValue]) {
+            topMargin += k_separatorPadding;
         } else {
-            theTopMargin += k_noSeparatorPadding;
+            topMargin += k_noSeparatorPadding;
         }
     } else {
-        if ([[thePrintValues valueForKey:k_printHeaderSeparator] boolValue]) {
-            theTopMargin += k_separatorPadding;
+        if ([[printValues valueForKey:k_printHeaderSeparator] boolValue]) {
+            topMargin += k_separatorPadding;
         }
     }
-    if ([[thePrintValues valueForKey:k_printFooter] boolValue]) {
-        if ([[thePrintValues valueForKey:k_footerOneStringIndex] intValue] > 1) { // 行1 = 印字あり
-            theBottomMargin += k_headerFooterLineHeight;
+    if ([[printValues valueForKey:k_printFooter] boolValue]) {
+        if ([[printValues valueForKey:k_footerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
         }
-        if ([[thePrintValues valueForKey:k_footerTwoStringIndex] intValue] > 1) { // 行2 = 印字あり
-            theBottomMargin += k_headerFooterLineHeight;
+        if ([[printValues valueForKey:k_footerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
         }
     }
-    if ((theBottomMargin == k_printHFVerticalMargin) && 
-                ([[thePrintValues valueForKey:k_printFooterSeparator] boolValue])) {
-        theBottomMargin += k_separatorPadding;
+    if ((bottomMargin == k_printHFVerticalMargin) && [[printValues valueForKey:k_printFooterSeparator] boolValue]) {
+        bottomMargin += k_separatorPadding;
     }
 
     // プリントビュー生成
-    thePrintView = [[[CEPrintView alloc] initWithFrame:
-            NSMakeRect(0, 0, 
-                thePaperSize.width - (k_printTextHorizontalMargin * 2), 
-                thePaperSize.height - theTopMargin - theBottomMargin)] autorelease];
+    NSRect frame = NSMakeRect(0, 0,
+                              paperSize.width - (k_printTextHorizontalMargin * 2),
+                              paperSize.height - topMargin - bottomMargin);
+    printView = [[[CEPrintView alloc] initWithFrame:frame] autorelease];
     // 設定するフォント
-    NSFont *theFont;
-    if ([[theValues valueForKey:k_key_setPrintFont] intValue] == 1) { // == プリンタ専用フォントで印字
-        theFont = [NSFont fontWithName:[theValues valueForKey:k_key_printFontName] 
-                            size:[[theValues valueForKey:k_key_printFontSize] floatValue]];
+    NSFont *font;
+    if ([[values valueForKey:k_key_setPrintFont] integerValue] == 1) { // == プリンタ専用フォントで印字
+        font = [NSFont fontWithName:[values valueForKey:k_key_printFontName]
+                               size:(CGFloat)[[values valueForKey:k_key_printFontSize] doubleValue]];
     } else {
-        theFont = [_editorView font];
+        font = [[self editorView] font];
     }
     
     // プリンタダイアログでの設定オブジェクトをコピー
-    [thePrintView setPrintValues:[[[_windowController printValues] copy] autorelease]];
+    [printView setPrintValues:[[[_windowController printValues] copy] autorelease]];
     // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
-    [[thePrintView textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
+    [[printView textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
     // プリントビューに行間値／行番号表示の有無を設定
-    [thePrintView setLineSpacing:[self lineSpacingInTextView]];
-    [thePrintView setIsShowingLineNum:[[self editorView] showLineNum]];
+    [printView setLineSpacing:[self lineSpacingInTextView]];
+    [printView setIsShowingLineNum:[[self editorView] showLineNum]];
     // 制御文字印字を取得
-    if ([[thePrintValues valueForKey:k_printInvisibleCharIndex] intValue] == 0) { // = No print
-        theBoolShowControls = NO;
-    } else if ([[thePrintValues valueForKey:k_printInvisibleCharIndex] intValue] == 2) { // = Print all
-        theBoolShowControls = YES;
+    if ([[printValues valueForKey:k_printInvisibleCharIndex] integerValue] == 0) { // = No print
+        showsControls = NO;
+    } else if ([[printValues valueForKey:k_printInvisibleCharIndex] integerValue] == 2) { // = Print all
+        showsControls = YES;
     }
     // layoutManager を入れ替え
-    [theLayoutManager setTextFont:theFont];
-    [theLayoutManager setFixLineHeight:NO];
-    [theLayoutManager setIsPrinting:YES];
-    [theLayoutManager setShowInvisibles:theBoolShowInvisibles];
-    [theLayoutManager setShowsControlCharacters:theBoolShowControls];
-    [[thePrintView textContainer] replaceLayoutManager:theLayoutManager];
+    [layoutManager setTextFont:font];
+    [layoutManager setFixLineHeight:NO];
+    [layoutManager setIsPrinting:YES];
+    [layoutManager setShowInvisibles:showsInvisibles];
+    [layoutManager setShowsControlCharacters:showsControls];
+    [[printView textContainer] replaceLayoutManager:layoutManager];
 
-    if (theBoolDoColoring) {
+    if (doColoring) {
         // カラーリング実行オブジェクトを用意
-        thePrintSyntax = [[[CESyntax allocWithZone:[self zone]] init] autorelease];
-        [thePrintSyntax setSyntaxStyleName:[[_windowController toolbarController] selectedTitleOfSyntaxItem]];
-        [thePrintSyntax setLayoutManager:theLayoutManager];
-        [thePrintSyntax setIsPrinting:YES];
+        printSyntax = [[[CESyntax allocWithZone:[self zone]] init] autorelease];
+        [printSyntax setSyntaxStyleName:[[_windowController toolbarController] selectedTitleOfSyntaxItem]];
+        [printSyntax setLayoutManager:layoutManager];
+        [printSyntax setIsPrinting:YES];
     }
 
     // ドキュメントが未保存ならウィンドウ名をパスとして設定
-    if (theFilePath == nil) {
-        theFilePath = [self displayName];
+    if (filePath == nil) {
+        filePath = [self displayName];
     }
-    [thePrintView setFilePath:theFilePath];
+    [printView setFilePath:filePath];
 
     // PrintInfo 設定
-    [thePrintInfo setHorizontalPagination:NSFitPagination];
-    [thePrintInfo setHorizontallyCentered:NO];
-    [thePrintInfo setVerticallyCentered:NO];
-    [thePrintInfo setLeftMargin:k_printTextHorizontalMargin];
-    [thePrintInfo setRightMargin:k_printTextHorizontalMargin];
-    [thePrintInfo setTopMargin:theTopMargin];
-    [thePrintInfo setBottomMargin:theBottomMargin];
+    [printInfo setHorizontalPagination:NSFitPagination];
+    [printInfo setHorizontallyCentered:NO];
+    [printInfo setVerticallyCentered:NO];
+    [printInfo setLeftMargin:k_printTextHorizontalMargin];
+    [printInfo setRightMargin:k_printTextHorizontalMargin];
+    // ???: どこかで天地がflipしているのでbottomとtopのmarginを入れ替えている (2014-03-11 by 1024jp)
+    [printInfo setTopMargin:bottomMargin];
+    [printInfo setBottomMargin:topMargin];
 
     // プリントビューの設定
-    [thePrintView setFont:theFont];
-    if (theBoolDoColoring) { // カラーリングする
-        [thePrintView setTextColor:
-                    [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]]];
-        [thePrintView setBackgroundColor:
-                    [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_backgroundColor]]];
+    [printView setFont:font];
+    if (doColoring) { // カラーリングする
+        [printView setTextColor:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_textColor]]];
+        [printView setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_backgroundColor]]];
     } else {
-        [thePrintView setTextColor:[NSColor blackColor]];
-        [thePrintView setBackgroundColor:[NSColor whiteColor]];
+        [printView setTextColor:[NSColor blackColor]];
+        [printView setBackgroundColor:[NSColor whiteColor]];
     }
     // プリントビューへ文字列を流し込む
-    [thePrintView setString:[_editorView string]];
-    if (theBoolDoColoring) { // カラーリングする
+    [printView setString:[[self editorView] string]];
+    if (doColoring) { // カラーリングする
 // 現状では、印刷するページ数に関係なく全ページがカラーリングされている。20080104*****
-        [thePrintSyntax colorAllString:[_editorView string]];
+        [printSyntax colorAllString:[[self editorView] string]];
     }
     // プリントオペレーション生成、設定、プリント実行
-    thePrintOperation = [NSPrintOperation printOperationWithView:thePrintView printInfo:thePrintInfo];
+    printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
     // プリントパネルの表示を制御し、プログレスパネルは表示させる
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_3) { // = 10.3.x以前
-        NS_DURING
-        [thePrintOperation _setShowPrintPanel:NO]; // 隠しメソッド
-        [thePrintOperation _setShowProgressPanel:YES]; // 隠しメソッド
-        NS_HANDLER // 例外が発生したら、公開メソッドでパネル表示を制御（10.3ではプログレスパネル表示メソッドはない）
-        [thePrintOperation setShowPanels:NO];
-        NS_ENDHANDLER
-    } else { // 10.4+
-        [thePrintOperation setShowsPrintPanel:NO];
-        [thePrintOperation setShowsProgressPanel:YES];
-    }
-    [thePrintOperation runOperation];
+    [printOperation setShowsPrintPanel:NO];
+    [printOperation setShowsProgressPanel:YES];
+    [printOperation runOperation];
 }
 
 
 // ------------------------------------------------------
 - (NSStringEncoding)encodingFromComAppleTextEncodingAtPath:(NSString *)inFilePath
-// ファイル拡張属性(com.apple.TextEncoding)からエンコーディングを得る（10.5専用）
+// ファイル拡張属性(com.apple.TextEncoding)からエンコーディングを得る
 // ------------------------------------------------------
 {
     NSStringEncoding outEncoding = NSProprietaryStringEncoding;
 
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" 
-                    atPath:inFilePath traverseLink:NO];
-        NSArray *theArray = [theStr componentsSeparatedByString:@";"];
-        if (([theArray count] >= 2) && ([[theArray objectAtIndex:1] length] > 1)) {
-            // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
-            outEncoding = CFStringConvertEncodingToNSStringEncoding([[theArray objectAtIndex:1] intValue]);
-        } else if ([[theArray objectAtIndex:0] length] > 1) {
-            CFStringEncoding theCFEncoding = 
-                    CFStringConvertIANACharSetNameToEncoding((CFStringRef)[theArray objectAtIndex:0]);
-            if (theCFEncoding != kCFStringEncodingInvalidId) {
-                outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
-            }
+    NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding"
+                atPath:inFilePath traverseLink:NO];
+    NSArray *theArray = [theStr componentsSeparatedByString:@";"];
+    if (([theArray count] >= 2) && ([theArray[1] length] > 1)) {
+        // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
+        outEncoding = CFStringConvertEncodingToNSStringEncoding([theArray[1] integerValue]);
+    } else if ([theArray[0] length] > 1) {
+        CFStringEncoding theCFEncoding = 
+                CFStringConvertIANACharSetNameToEncoding((CFStringRef)theArray[0]);
+        if (theCFEncoding != kCFStringEncodingInvalidId) {
+            outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
         }
     }
+    
     return outEncoding;
 }
 
 
 // ------------------------------------------------------
-- (void)setComAppleTextEncodingAtPath:(NSString *)inFilePath
-// ファイル拡張属性(com.apple.TextEncoding)にエンコーディングをセット（10.5専用）
-// ------------------------------------------------------
-{
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-
-        NSString *theEncodingStr = [[self currentIANACharSetName] stringByAppendingFormat:@";%@", 
-                    [[NSNumber numberWithInt:CFStringConvertNSStringEncodingToEncoding(_encoding)] stringValue]];
-
-        [UKXattrMetadataStore setString:theEncodingStr forKey:@"com.apple.TextEncoding" 
-                atPath:inFilePath traverseLink:NO];
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)setIsWritableToEditorViewWithFileName:(NSString *)inFileName
+- (void)setIsWritableToEditorViewWithURL:(NSURL *)url
 // 書き込み可能かを EditorView にセット
 // ------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    BOOL theBoolIsWritable = YES; // default = YES
-
-    if ((inFileName) && ([theFileManager fileExistsAtPath:inFileName])) {
-        theBoolIsWritable = [theFileManager isWritableFileAtPath:inFileName];
+    BOOL isWritable = YES; // default = YES
+    
+    if ([url checkResourceIsReachableAndReturnError:nil]) {
+        isWritable = [[NSFileManager defaultManager] isWritableFileAtPath:[url path]];
     }
-    [_editorView setIsWritable:theBoolIsWritable];
+    [[self editorView] setIsWritable:isWritable];
 }
 
 
@@ -2653,7 +2372,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // EditorView で、書き込み禁止アラートを表示
 // ------------------------------------------------------
 {
-    [_editorView alertForNotWritable];
+    [[self editorView] alertForNotWritable];
 }
 
 

@@ -3,8 +3,9 @@
 CEWindowController
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -38,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-@interface CEWindowController : NSWindowController <OgreTextFindDataSource>
+@interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 {
     IBOutlet id _editorView;
     IBOutlet id _drawer;
@@ -65,7 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     IBOutlet id _printSettingController;
     IBOutlet id _printAccessoryView;
 
-    unsigned _tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
+    NSUInteger _tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 
     BOOL _recolorWithBecomeKey;
 }
@@ -74,13 +75,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (id)toolbarController;
 - (BOOL)needsInfoDrawerUpdate;
 - (BOOL)needsIncompatibleCharDrawerUpdate;
-- (void)setInfoEncoding:(NSString *)inString;
-- (void)setInfoLineEndings:(NSString *)inString;
-- (void)setInfoLine:(NSString *)inString;
-- (void)setInfoChar:(NSString *)inString;
-- (void)setInfoSelect:(NSString *)inString;
-- (void)setInfoInLine:(NSString *)inString;
-- (void)setInfoSingleChar:(NSString *)inString;
+- (void)setEncodingInfo:(NSString *)inString;
+- (void)setLineEndingsInfo:(NSString *)inString;
+- (void)setLineInfo:(NSString *)inString;
+- (void)setCharInfo:(NSString *)inString;
+- (void)setSelectInfo:(NSString *)inString;
+- (void)setInLineInfo:(NSString *)inString;
+- (void)setSingleCharInfo:(NSString *)inString;
 - (void)updateFileAttrsInformation;
 - (void)updateIncompatibleCharList;
 - (void)setRecolorWithBecomeKey:(BOOL)inValue;

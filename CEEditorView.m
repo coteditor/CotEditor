@@ -3,8 +3,9 @@
 CEEditorView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -42,6 +43,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //=======================================================
 
+@interface CEEditorView ()
+
+@property (nonatomic, retain) NSNumberFormatter *decimalFormatter;
+
+@end
+
 @interface CEEditorView (Private)
 - (void)setupViews;
 - (void)setupViewParamsInInit:(BOOL)inBool;
@@ -71,12 +78,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (instancetype)initWithFrame:(NSRect)inFrame
 // 初期化
 // ------------------------------------------------------
 {
     self = [super initWithFrame:inFrame];
     if (self) {
+        // set number formatter for status bar
+        [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
+        [[self decimalFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_showStatusBarThousSeparator]) {
+            [[self decimalFormatter] setThousandSeparator:@""];
+        }
+        
         [self setupViews];
     }
     return self;
@@ -93,6 +107,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_textViewCore release];
     [_splitView release];
     [_statusBar release];
+    [_decimalFormatter release];
 
     [super dealloc];
 }
@@ -392,10 +407,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *theSubSplitViews = [[self splitView] subviews];
     NSMutableArray *outArray = [NSMutableArray array];
-    int i;
 
-    for (i = 0; i < [theSubSplitViews count]; i++) {
-        [outArray addObject:[[[theSubSplitViews objectAtIndex:i] textView] layoutManager]];
+    for (NSTextContainer *container in theSubSplitViews) {
+        [outArray addObject:[[container textView] layoutManager]];
     }
     return outArray;
 }
@@ -501,13 +515,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setIsWritable:(BOOL)inBool
+- (void)setIsWritable:(BOOL)isWritable
 // 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
 // ------------------------------------------------------
 {
-    _isWritable = inBool;
-    if ((_statusBar) && ([_statusBar showStatusBar])) {
-        [_statusBar setReadOnlyIcon:(!_isWritable)];
+    _isWritable = isWritable;
+    
+    if (_statusBar) {
+        [_statusBar setShowsReadOnlyIcon:!_isWritable];
     }
 }
 
@@ -574,7 +589,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (int)lineEndingCharacter
+- (NSInteger)lineEndingCharacter
 // 行末コードを返す（OgreNewlineCharacter型）
 // ------------------------------------------------------
 {
@@ -583,51 +598,51 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setLineEndingCharacter:(int)inNewLineEnding
+- (void)setLineEndingCharacter:(NSInteger)inNewLineEnding
 // 行末コードをセット（OgreNewlineCharacter型）
 // ------------------------------------------------------
 {
     NSArray *theSubSplitViews = [[self splitView] subviews];
     NSString *theNewLineString;
     BOOL theBoolUpdate = ([self lineEndingCharacter] != inNewLineEnding);
-    int i;
+    unichar theChar[2];
 
     if ((inNewLineEnding > OgreNonbreakingNewlineCharacter) && 
             (inNewLineEnding <= OgreWindowsNewlineCharacter)) {
         _lineEndingCharacter = inNewLineEnding;
     } else {
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        int theDefaultLineEnd = [[theValues valueForKey:k_key_defaultLineEndCharCode] intValue];
+        NSInteger theDefaultLineEnd = [[theValues valueForKey:k_key_defaultLineEndCharCode] integerValue];
         _lineEndingCharacter = theDefaultLineEnd;
     }
     // set to textViewCore.
-    if (_lineEndingCharacter == OgreLfNewlineCharacter) {
-        // LF
-        theNewLineString = @"\n";
-    } else if (_lineEndingCharacter == OgreCrNewlineCharacter) {
-        // CR
-        theNewLineString = @"\r";
-    } else if (_lineEndingCharacter == OgreCrLfNewlineCharacter) {
-        // CR+LF
-        theNewLineString = @"\r\n";
-    }  else if (_lineEndingCharacter == OgreUnicodeLineSeparatorNewlineCharacter) {
-        // Unicode line separator
-        unichar theChar[2];
-        theChar[0] = 0x2028; theChar[1] = 0;
-        theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
-    } else if (_lineEndingCharacter == OgreUnicodeParagraphSeparatorNewlineCharacter) {
-        // Unicode paragraph separator
-        unichar theChar[2];
-        theChar[0] = 0x2029; theChar[1] = 0;
-        theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
-    } else if (_lineEndingCharacter == OgreNonbreakingNewlineCharacter) {
-        // 改行なしの場合
-        theNewLineString = @"";
-    } else {
-        return;
+    switch (_lineEndingCharacter) {
+        case OgreLfNewlineCharacter:
+            theNewLineString = @"\n";  // LF
+            break;
+        case OgreCrNewlineCharacter:  // CR
+            theNewLineString = @"\r";
+            break;
+        case OgreCrLfNewlineCharacter:  // CR+LF
+            theNewLineString = @"\r\n";
+            break;
+        case OgreUnicodeLineSeparatorNewlineCharacter:  // Unicode line separator
+            theChar[0] = 0x2028; theChar[1] = 0;
+            theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            break;
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:  // Unicode paragraph separator
+            theChar[0] = 0x2029; theChar[1] = 0;
+            theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            break;
+        case OgreNonbreakingNewlineCharacter:  // 改行なしの場合
+            theNewLineString = @"";
+            break;
+            
+        default:
+            return;
     }
-    for (i = 0; i < [theSubSplitViews count]; i++) {
-        [(CETextViewCore *)[[theSubSplitViews objectAtIndex:i] textView] setNewLineString:theNewLineString];
+    for (NSTextContainer *container in theSubSplitViews) {
+        [(CETextViewCore *)[container textView] setNewLineString:theNewLineString];
     }
     if (theBoolUpdate) {
         [self updateLineEndingsInStatusAndInfo:NO];
@@ -701,14 +716,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if ([[theValues valueForKey:k_key_showAlertForNotWritable] boolValue]) {
 
-        NSAlert *theAleart = [NSAlert alertWithMessageText:NSLocalizedString(@"File Is Read Only",@"") 
-                    defaultButton:NSLocalizedString(@"OK",@"") 
-                    alternateButton:nil 
-                    otherButton:nil 
-                    informativeTextWithFormat:NSLocalizedString(@"You may not be able to save your changes, but you will be able to Save a Copy somewhere else.",@"")
+        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"The file is not writable.", nil)
+                                            defaultButton:nil
+                                          alternateButton:nil
+                                              otherButton:nil
+                                informativeTextWithFormat:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)
                     ];
 
-        [theAleart beginSheetModalForWindow:[self window] 
+        [theAlert beginSheetModalForWindow:[self window] 
                     modalDelegate:self 
                     didEndSelector:NULL 
                     contextInfo:NULL];
@@ -722,92 +737,86 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドローワの文書情報を更新
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
-    BOOL theBoolStatusBarUpdate = [_statusBar showStatusBar];
-    BOOL theBoolDrawerUpdate = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
-    if ((!theBoolStatusBarUpdate) && (!theBoolDrawerUpdate)) { return; }
-    NSString *theStatusStr, *theInfoLine, *theInfoChar, *theInfoSelect;
-    NSString *theString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? 
-                [self stringForSave] : [self string];
-    NSString *theCharStr = nil;
-    NSRange theRange = [self selectedRange];
-    unsigned int theLines = 0, theCurLine = 0, theIndex = 0, theLength = [theString length];
-    unsigned int theLineStart = 0, theCountInLine = 0;
+    BOOL shoudlUpdateStatusBar = [_statusBar showStatusBar];
+    BOOL shouldUpdateDrawer = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
+    if (!shoudlUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    NSString *theString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
+    NSString *singleCharInfo = nil;
+    NSRange selectedRange = [self selectedRange];
+    NSUInteger numberOfLines = 0, currentLine = 0, length = [theString length];
+    NSUInteger lineStart = 0, countInLine = 0;
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
     if ([[self textView] hasMarkedText]) {
-        theRange.length = 0;
+        selectedRange.length = 0;
     }
-    if (theLength > 0) {
+    if (length > 0) {
+        lineStart = [theString lineRangeForRange:selectedRange].location;
+        countInLine = selectedRange.location - lineStart;
 
-        theLineStart = [theString lineRangeForRange:theRange].location;
-        theCountInLine = theRange.location - theLineStart;
-
-        for (theIndex = 0, theLines = 0; theIndex < theLength; theLines++) {
-            if (theIndex <= theRange.location) {
-                theCurLine = theLines + 1;
+        for (NSUInteger index = 0, numberOfLines = 0; index < length; numberOfLines++) {
+            if (index <= selectedRange.location) {
+                currentLine = numberOfLines + 1;
             }
-            theIndex = NSMaxRange([theString lineRangeForRange:NSMakeRange(theIndex, 0)]);
+            index = NSMaxRange([theString lineRangeForRange:NSMakeRange(index, 0)]);
         }
         // 行末コードをカウントしない場合は再計算
-        if (![[theValues valueForKey:k_key_countLineEndingAsChar] boolValue]) {
-            NSString *theLocStr = [theString substringToIndex:theRange.location];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_countLineEndingAsChar]) {
+            NSString *theLocStr = [theString substringToIndex:selectedRange.location];
 
-            theRange.location = [[OGRegularExpression chomp:theLocStr] length];
-            theRange.length = [[OGRegularExpression chomp:[self substringWithSelection]] length];
-            theLength = [[OGRegularExpression chomp:theString] length];
+            selectedRange.location = [[OGRegularExpression chomp:theLocStr] length];
+            selectedRange.length = [[OGRegularExpression chomp:[self substringWithSelection]] length];
+            length = [[OGRegularExpression chomp:theString] length];
         }
     }
+    NSUInteger numberOfWords = [[NSSpellChecker sharedSpellChecker] countWordsInString:theString language:nil];
 
-    if (theBoolStatusBarUpdate) {
-        if (theRange.length > 0) {
-            if (theRange.length == 1) {
-                unichar theCharacter = [theString characterAtIndex:theRange.location];
-                theCharStr = [NSString stringWithFormat:@"0x%.4X",theCharacter];
-                theStatusStr = 
-                    [NSString stringWithFormat:NSLocalizedString(@" Line: %@ / %@  Char: %@ / %@ (>%@) [:%@]  Unicode: %@",@""), 
-                    [[NSApp delegate] stringFromUnsignedInt:theCurLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:theLines], 
-                    [[NSApp delegate] stringFromUnsignedInt:theRange.location], 
-                    [[NSApp delegate] stringFromUnsignedInt:theLength], 
-                    [[NSApp delegate] stringFromUnsignedInt:theCountInLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:theRange.length], 
-                    theCharStr];
+    if (shoudlUpdateStatusBar) {
+        NSString *statusString;
+        
+        if (selectedRange.length > 0) {
+            if (selectedRange.length == 1) {
+                unichar theCharacter = [theString characterAtIndex:selectedRange.location];
+                singleCharInfo = [NSString stringWithFormat:@"0x%.4X",theCharacter];
+                statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@) [:%@]   Unicode: %@", nil),
+                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
+                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
+                    [[self decimalFormatter] stringFromNumber:@(length)],
+                    [[self decimalFormatter] stringFromNumber:@(countInLine)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.length)],
+                    singleCharInfo];
             } else {
-                theStatusStr = 
-                    [NSString stringWithFormat:NSLocalizedString(@" Line: %@ / %@  Char: %@ / %@ (>%@) [:%@]",@""), 
-                    [[NSApp delegate] stringFromUnsignedInt:theCurLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:theLines], 
-                    [[NSApp delegate] stringFromUnsignedInt:theRange.location], 
-                    [[NSApp delegate] stringFromUnsignedInt:theLength], 
-                    [[NSApp delegate] stringFromUnsignedInt:theCountInLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:theRange.length]];
+                statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@) [:%@]", nil),
+                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
+                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
+                    [[self decimalFormatter] stringFromNumber:@(length)],
+                    [[self decimalFormatter] stringFromNumber:@(countInLine)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.length)]];
             }
         } else {
-            theStatusStr = [NSString stringWithFormat:NSLocalizedString(@" Line: %@ / %@  Char: %@ / %@ (>%@)",@""), 
-                    [[NSApp delegate] stringFromUnsignedInt:theCurLine], 
-                    [[NSApp delegate] stringFromUnsignedInt:theLines], 
-                    [[NSApp delegate] stringFromUnsignedInt:theRange.location], 
-                    [[NSApp delegate] stringFromUnsignedInt:theLength], 
-                    [[NSApp delegate] stringFromUnsignedInt:theCountInLine]];
+            statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@)", nil),
+                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
+                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
+                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
+                    [[self decimalFormatter] stringFromNumber:@(length)],
+                    [[self decimalFormatter] stringFromNumber:@(countInLine)]];
         }
-        [[_statusBar leftTextField] setStringValue:theStatusStr];
+        [[_statusBar leftTextField] setStringValue:statusString];
     }
-    if (theBoolDrawerUpdate) {
-        theInfoLine = [NSString stringWithFormat:@"%i / %i",theCurLine, theLines];
-        [[self windowController] setInfoLine:theInfoLine];
-        theInfoChar = [NSString stringWithFormat:@"%i / %i",theRange.location, theLength];
-        [[self windowController] setInfoChar:theInfoChar];
-        [[self windowController] setInfoInLine:[NSString stringWithFormat:@"%i", theCountInLine]];
-        theInfoSelect = (theRange.length > 0) ? 
-                [NSString stringWithFormat:@"%i", theRange.length] : [NSString stringWithString:@" - "];
-        [[self windowController] setInfoSelect:theInfoSelect];
-        if (theCharStr != nil) {
-            [[self windowController] setInfoSingleChar:theCharStr];
-        } else {
-            [[self windowController] setInfoSingleChar:[NSString stringWithString:@" - "]];
-        }
+    if (shouldUpdateDrawer) {
+        NSString *lineInfo, *charInfo, *selectInfo;
+        
+        lineInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)currentLine, (unsigned long)numberOfLines];
+        [[self windowController] setLineInfo:lineInfo];
+        charInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)selectedRange.location, (unsigned long)length];
+        [[self windowController] setCharInfo:charInfo];
+        [[self windowController] setInLineInfo:[NSString stringWithFormat:@"%lu", (unsigned long)countInLine]];
+        selectInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%lu", (unsigned long)selectedRange.length] : @" - ";
+        [[self windowController] setSelectInfo:selectInfo];
+        singleCharInfo = singleCharInfo ? : @" - ";
+        [[self windowController] setSingleCharInfo:singleCharInfo];
     }
 }
 
@@ -817,34 +826,42 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ステータスバーと情報ドローワの行末コード表記を更新
 // ------------------------------------------------------
 {
-    BOOL theBoolStatusBarUpdate = [_statusBar showStatusBar];
-    BOOL theBoolDrawerUpdate = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
-    if ((!theBoolStatusBarUpdate) && (!theBoolDrawerUpdate)) { return; }
-    NSString *theInfoEncodingStr, *theInfoLineEndingsStr;
-
-    if (_lineEndingCharacter == OgreLfNewlineCharacter) {
-        theInfoLineEndingsStr = @"LF";
-    } else if (_lineEndingCharacter == OgreCrNewlineCharacter) {
-        theInfoLineEndingsStr = @"CR";
-    } else if (_lineEndingCharacter == OgreCrLfNewlineCharacter) {
-        theInfoLineEndingsStr = @"CRLF";
-    }  else if (_lineEndingCharacter == OgreUnicodeLineSeparatorNewlineCharacter) {
-        theInfoLineEndingsStr = @"U-lineSep"; // Unicode line separator
-    } else if (_lineEndingCharacter == OgreUnicodeParagraphSeparatorNewlineCharacter) {
-        theInfoLineEndingsStr = @"U-paraSep"; // Unicode paragraph separator
-    } else if (_lineEndingCharacter == OgreNonbreakingNewlineCharacter) {
-        theInfoLineEndingsStr = @""; // 改行なしの場合
-    } else {
-        return;
+    BOOL shouldUpdateStatusBar = [_statusBar showStatusBar];
+    BOOL shouldUpdateDrawer = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
+    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    
+    NSString *encodingInfo, *lineEndingsInfo;
+    
+    switch (_lineEndingCharacter) {
+        case OgreLfNewlineCharacter:
+            lineEndingsInfo = @"LF";
+            break;
+        case OgreCrNewlineCharacter:
+            lineEndingsInfo = @"CR";
+            break;
+        case OgreCrLfNewlineCharacter:
+            lineEndingsInfo = @"CRLF";
+            break;
+        case OgreUnicodeLineSeparatorNewlineCharacter:
+            lineEndingsInfo = @"U-lineSep"; // Unicode line separator
+            break;
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:
+            lineEndingsInfo = @"U-paraSep"; // Unicode paragraph separator
+            break;
+        case OgreNonbreakingNewlineCharacter:
+            lineEndingsInfo = @""; // 改行なしの場合
+            break;
+        default:
+            return;
     }
-    theInfoEncodingStr = [[self document] currentIANACharSetName];
-    if (theBoolStatusBarUpdate) {
-        [[_statusBar rightTextField] setStringValue:
-                [NSString stringWithFormat:@"%@ %@", theInfoEncodingStr, theInfoLineEndingsStr]];
+    
+    encodingInfo = [[self document] currentIANACharSetName];
+    if (shouldUpdateStatusBar) {
+        [[_statusBar rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", encodingInfo, lineEndingsInfo]];
     }
-    if (theBoolDrawerUpdate) {
-        [[self windowController] setInfoEncoding:theInfoEncodingStr];
-        [[self windowController] setInfoLineEndings:theInfoLineEndingsStr];
+    if (shouldUpdateDrawer) {
+        [[self windowController] setEncodingInfo:encodingInfo];
+        [[self windowController] setLineEndingsInfo:lineEndingsInfo];
     }
 }
 
@@ -975,7 +992,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // メニュー項目の有効・無効を制御
 // ------------------------------------------------------
 {
-    int theState = NSOffState;
+    NSInteger theState = NSOffState;
 
     if ([inMenuItem action] == @selector(toggleShowLineNum:)) {
         if ([self showLineNum]) {theState = NSOnState;}
@@ -1092,7 +1109,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CESubSplitView *theMasterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
-            [(CETextViewCore *)[[self window] firstResponder] delegate] : 
+            (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate] :
             [(CENavigationBarView *)[sender superview] masterView];
     if (theMasterView == nil) { return; }
     NSRect theSubSplitFrame = [theMasterView bounds];
@@ -1127,24 +1144,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     BOOL theBoolIsSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
-    CESubSplitView *theFirstResponderSubSplitView = [(CETextViewCore *)[[self window] firstResponder] delegate];
+    CESubSplitView *theFirstResponderSubSplitView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
     CESubSplitView *theCloseSubSplitView = (theBoolIsSenderMenu) ? 
             theFirstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
     if (theCloseSubSplitView == nil) { return; }
     NSArray *theSubViews = [[self splitView] subviews];
-    unsigned int theCount = [theSubViews count];
-    unsigned int theDelIndex = [theSubViews indexOfObject:theCloseSubSplitView];
-    unsigned int theIndex = 0;
+    NSUInteger theCount = [theSubViews count];
+    NSUInteger theDelIndex = [theSubViews indexOfObject:theCloseSubSplitView];
+    NSUInteger theIndex = 0;
 
     if ((theBoolIsSenderMenu) || (theDelIndex == [theSubViews indexOfObject:theFirstResponderSubSplitView])) {
         theIndex = theDelIndex + 1;
         if (theIndex >= theCount) {
             theIndex = theCount - 2;
         }
-        if (theIndex < 0) {
-            theIndex = 0;
-        }
-        [[self window] makeFirstResponder:[[theSubViews objectAtIndex:theIndex] textView]];
+        [[self window] makeFirstResponder:[theSubViews[theIndex] textView]];
     }
     [theCloseSubSplitView removeFromSuperview];
     [self updateCloseSubSplitViewButton];
@@ -1214,11 +1228,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     _coloringTimer = nil;
     _infoUpdateTimer = nil;
     _incompatibleCharTimer = nil;
-    _basicColoringDelay = [[theValues valueForKey:k_key_basicColoringDelay] floatValue];
-    _firstColoringDelay = [[theValues valueForKey:k_key_firstColoringDelay] floatValue];
-    _secondColoringDelay = [[theValues valueForKey:k_key_secondColoringDelay] floatValue];
-    _infoUpdateInterval = [[theValues valueForKey:k_key_infoUpdateInterval] floatValue];
-    _incompatibleCharInterval = [[theValues valueForKey:k_key_incompatibleCharInterval] floatValue];
+    _basicColoringDelay = [[theValues valueForKey:k_key_basicColoringDelay] doubleValue];
+    _firstColoringDelay = [[theValues valueForKey:k_key_firstColoringDelay] doubleValue];
+    _secondColoringDelay = [[theValues valueForKey:k_key_secondColoringDelay] doubleValue];
+    _infoUpdateInterval = [[theValues valueForKey:k_key_infoUpdateInterval] doubleValue];
+    _incompatibleCharInterval = [[theValues valueForKey:k_key_incompatibleCharInterval] doubleValue];
 }
 
 
@@ -1262,10 +1276,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
     if (!NSLocationInRange(theSelectedRange.location, theCharRange)) {
-        int theLocation = theSelectedRange.location - theCharRange.length;
+        NSInteger theLocation = theSelectedRange.location - theCharRange.length;
         if (theLocation < 0) { theLocation = 0; }
-        int theLength = theSelectedRange.length + theCharRange.length;
-        int theMax = [[self string] length] - theLocation;
+        NSInteger theLength = theSelectedRange.length + theCharRange.length;
+        NSInteger theMax = [[self string] length] - theLocation;
         if (theLength > theMax) { theLength = theMax; }
 
         [[self syntax] colorVisibleRange:NSMakeRange(theLocation, theLength) withWholeString:[self string]];
@@ -1311,10 +1325,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSArray *theSubSplitViews = [[self splitView] subviews];
-    int theCount = [theSubSplitViews count];
+    NSInteger theCount = [theSubSplitViews count];
     if (theCount < 2) { return; }
-    CESubSplitView *theCurView = [(CETextViewCore *)[[self window] firstResponder] delegate];
-    int theIndex = [theSubSplitViews indexOfObject:theCurView];
+    CESubSplitView *theCurView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
+    NSInteger theIndex = [theSubSplitViews indexOfObject:theCurView];
 
     if (inBool) { // == Next
         theIndex++;
@@ -1324,9 +1338,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theIndex < 0) {
         [[self window] makeFirstResponder:[[theSubSplitViews lastObject] textView]];
     } else if (theIndex < theCount) {
-        [[self window] makeFirstResponder:[[theSubSplitViews objectAtIndex:theIndex] textView]];
+        [[self window] makeFirstResponder:[theSubSplitViews[theIndex] textView]];
     } else if (theIndex >= theCount) {
-        [[self window] makeFirstResponder:[[theSubSplitViews objectAtIndex:0] textView]];
+        [[self window] makeFirstResponder:[theSubSplitViews[0] textView]];
     }
 }
 
@@ -1370,7 +1384,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _incompatibleCharTimer = nil;
     }
 }
-
-
 
 @end

@@ -3,8 +3,9 @@
 CEApplication
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -31,21 +32,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEApplication.h"
-
-
-@interface CEApplication (Private)
-- (void)setKeyCatchModeWithNotification:(NSNotification *)inNotification;
-@end
-
-
-//------------------------------------------------------------------------------------------
-
-
+#import "constants.h"
 
 
 @implementation CEApplication
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -53,18 +45,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)init
+- (instancetype)init
 // 初期化
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
         [self setKeyCatchMode:k_keyDownNoCatch];
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                selector:@selector(setKeyCatchModeWithNotification:) 
-                name:k_setKeyCatchModeToCatchMenuShortcut object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(setKeyCatchModeWithNotification:)
+                                                     name:k_setKeyCatchModeToCatchMenuShortcut
+                                                   object:nil];
     }
-
     return self;
 }
 
@@ -82,76 +74,61 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)sendEvent:(NSEvent *)inEvent
+- (void)sendEvent:(NSEvent *)anEvent
 // keyDownイベントをキャッチする
 // ------------------------------------------------------
 {
-    if ((_keyCatchMode == k_catchMenuShortcut) && ([inEvent type] == NSKeyDown)) {
-
-        NSString *theCharIgnoringMod = [inEvent charactersIgnoringModifiers];
-        if ((theCharIgnoringMod != nil) && ([theCharIgnoringMod length] > 0)) {
-            unichar theChar = [theCharIgnoringMod characterAtIndex:0];
-            unsigned int theModFlags = [inEvent modifierFlags];
-            NSCharacterSet *theIgnoringShiftSet = 
-                    [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
+    if (([self keyCatchMode] == k_catchMenuShortcut) && ([anEvent type] == NSKeyDown)) {
+        NSString *charIgnoringMod = [anEvent charactersIgnoringModifiers];
+        if ((charIgnoringMod != nil) && ([charIgnoringMod length] > 0)) {
+            unichar theChar = [charIgnoringMod characterAtIndex:0];
+            NSUInteger modifierFlags = [anEvent modifierFlags];
+            NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
 
             // Backspace または delete キーが押されていた時、是正する
             // （return 上の方にあるのが Backspace、テンキーとのあいだにある「delete」の刻印があるのが delete(forword)）
             if (theChar == NSDeleteCharacter) {
-                unichar theBSChar = NSBackspaceCharacter;
-                theCharIgnoringMod = [NSString stringWithCharacters:&theBSChar length:1];
+                unichar BSChar = NSBackspaceCharacter;
+                charIgnoringMod = [NSString stringWithCharacters:&BSChar length:1];
             } else if (theChar == NSDeleteFunctionKey) {
-                unichar theDeleteForwardChar = NSDeleteCharacter;
-                theCharIgnoringMod = [NSString stringWithCharacters:&theDeleteForwardChar length:1];
+                unichar deleteForwardChar = NSDeleteCharacter;
+                charIgnoringMod = [NSString stringWithCharacters:&deleteForwardChar length:1];
             }
             // 不要なシフトを削除
-            if (([theIgnoringShiftSet characterIsMember:[theCharIgnoringMod characterAtIndex:0]]) && 
-                    (theModFlags & NSShiftKeyMask)) {
-                theModFlags ^= NSShiftKeyMask;
+            if ([ignoringShiftSet characterIsMember:[charIgnoringMod characterAtIndex:0]] &&
+                (modifierFlags & NSShiftKeyMask)) {
+                modifierFlags ^= NSShiftKeyMask;
             }
-            NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithUnsignedInt:theModFlags], k_keyBindingModFlags, 
-                        theCharIgnoringMod, k_keyBindingChar, 
-                        nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:k_catchMenuShortcutNotification 
-                        object:self userInfo:theUserInfo];
+            NSDictionary *userInfo = @{k_keyBindingModFlags: @(modifierFlags),
+                                       k_keyBindingChar: charIgnoringMod};
+            [[NSNotificationCenter defaultCenter] postNotificationName:k_catchMenuShortcutNotification
+                                                                object:self
+                                                              userInfo:userInfo];
             [self setKeyCatchMode:k_keyDownNoCatch];
             return;
         }
     }
-    [super sendEvent:inEvent];
-}
-
-
-// ------------------------------------------------------
-- (void)setKeyCatchMode:(int)inMode
-// キーキャッチモード設定
-// ------------------------------------------------------
-{
-    _keyCatchMode = inMode;
+    [super sendEvent:anEvent];
 }
 
 
 
-@end
-
-@implementation CEApplication (Private)
+#pragma mark -
+#pragma mark Private Methods
 
 //=======================================================
 // Private method
 //
 //=======================================================
 
-
 // ------------------------------------------------------
-- (void)setKeyCatchModeWithNotification:(NSNotification *)inNotification
+- (void)setKeyCatchModeWithNotification:(NSNotification *)aNotification
 // ノーティフィケーションからキーキャッチモードを設定
 // ------------------------------------------------------
 {
-    int theMode = [[[inNotification userInfo] objectForKey:k_keyCatchMode] intValue];
+    NSInteger mode = [[aNotification userInfo][k_keyCatchMode] integerValue];
 
-    [self setKeyCatchMode:theMode];
+    [self setKeyCatchMode:mode];
 }
-
 
 @end

@@ -3,8 +3,9 @@
 CELineNumView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -15,7 +16,8 @@ This class is based on JSDTextView (written by James S. Derry – http://www.bal
 JSDTextView is released as public domain.
 arranged by nakamuxu, Dec 2004.
 arranged by Hetima, Aug 2005.
--------------------------------------------------
+arranged by 1024jp, Mar 2014.
+ -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -37,14 +39,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CELineNumView.h"
 #import "CEEditorView.h"
+#import "constants.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CELineNumView (Private)
-- (void)setWidth:(float)inValue;
+@interface CELineNumView ()
+
 @end
 
 
@@ -52,10 +51,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+#pragma mark -
 
 @implementation CELineNumView
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -63,11 +63,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (instancetype)initWithFrame:(NSRect)frameRect
 // initialize
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frameRect];
     if (self) {
         [self setAutoresizingMask:NSViewHeightSizable];
         [[self enclosingScrollView] setHasHorizontalScroller:NO];
@@ -82,179 +82,148 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // clean up
 // ------------------------------------------------------
 {
-//    _masterView was not retained
+//    masterView was not retained
 
     [super dealloc];
 }
 
 
 // ------------------------------------------------------
-- (CESubSplitView *)masterView
-// return main textView
-// ------------------------------------------------------
-{
-    return _masterView; // not retain
-}
-
-
-// ------------------------------------------------------
-- (void)setMasterView:(CESubSplitView *)inView
-// set main textView in myself. *NOT* retain.
-// ------------------------------------------------------
-{
-    _masterView = inView;
-}
-
-
-// ------------------------------------------------------
-- (BOOL)showLineNum
-// is set to show line numbers?
-// ------------------------------------------------------
-{
-    return _showLineNum;
-}
-
-
-// ------------------------------------------------------
-- (void)setShowLineNum:(BOOL)inBool
+- (void)setShowLineNum:(BOOL)showLineNum
 // set to show line numbers.
 // ------------------------------------------------------
 {
-    if (inBool != _showLineNum) {
-        _showLineNum = !_showLineNum;
-        if (!_showLineNum) {
-            [self setWidth:0];
-        } else {
-            [self setWidth:k_defaultLineNumWidth];
-        }
+    if (showLineNum != [self showLineNum]) {
+        _showLineNum = showLineNum;
+        
+        CGFloat width = [self showLineNum] ? k_defaultLineNumWidth : 0.0;
+        [self setWidth:width];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)drawRect:(NSRect)inRect
+- (void)drawRect:(NSRect)dirtyRect
 // draw line numbers.
 // ------------------------------------------------------
 {
-    if ((!_masterView) || (!_showLineNum)) {
+    if (![self masterView] || ![self showLineNum]) {
         return;
     }
 
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
     // fill in the background
     [[NSColor controlHighlightColor] set];
-    [NSBezierPath fillRect:inRect];
+    [NSBezierPath fillRect:dirtyRect];
     // draw frame border
     [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(inRect), NSMaxY(inRect)) 
-        toPoint:NSMakePoint(NSMaxX(inRect), NSMinY(inRect))];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect))
+                              toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMinY(dirtyRect))];
+    
     // adjust rect so we won't later draw into the scrollbar area
-    if ([[_masterView scrollView] hasHorizontalScroller]) {
-        float theHScrollAdj = NSHeight([[[_masterView scrollView] horizontalScroller] frame]) / 2;
-        inRect.origin.y += theHScrollAdj; // (shift the drawing frame reference up.)
-        inRect.size.height -= theHScrollAdj; // (and shrink it the same distance.)
+    if ([[[self masterView] scrollView] hasHorizontalScroller]) {
+        CGFloat theHScrollAdj = NSHeight([[[[self masterView] scrollView] horizontalScroller] frame]) / 2;
+        dirtyRect.origin.y += theHScrollAdj; // (shift the drawing frame reference up.)
+        dirtyRect.size.height -= theHScrollAdj; // (and shrink it the same distance.)
     }
     // setup drawing attributes for the font size and color. 
-    NSMutableDictionary *theAttrs = [[NSMutableDictionary alloc] init]; // ===== init
-    float theLineNumFontSize = [[theValues valueForKey:k_key_lineNumFontSize] floatValue];
-    NSFont *theFont = [NSFont fontWithName:[theValues valueForKey:k_key_lineNumFontName] size:theLineNumFontSize];
-    if (theFont == nil) {
-        theFont = [NSFont paletteFontOfSize:9];
+    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init]; // ===== init
+    CGFloat fontSize = (CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue];
+    NSFont *font = [NSFont fontWithName:[values valueForKey:k_key_lineNumFontName] size:fontSize];
+    if (font == nil) {
+        font = [NSFont paletteFontOfSize:9];
     }
-    [theAttrs setObject:theFont forKey:NSFontAttributeName];
-    [theAttrs setObject:
-            [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_lineNumFontColor]] 
-            forKey: NSForegroundColorAttributeName];
+    attrs[NSFontAttributeName] = font;
+    attrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_lineNumFontColor]];
 
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
-    float charWidth = [@"8" sizeWithAttributes:theAttrs].width;
+    CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
 
     // setup the variables we need for the loop
-    NSRange theRange;       // a range for counting lines
-    NSString *theStr = [_masterView string];
-    NSString *theNumStr;    // a temporary string for Line Number
-    NSString *theWrapedLineMark = ([[theValues valueForKey:k_key_showWrappedLineMark] boolValue]) ? 
-            [NSString stringWithString:@"-"] : [NSString stringWithString:@" "];
-    int theGlyphIndex, theBefore, theGlyphCount; // glyph counter
-    int theCharIndex;
-    int theLineNum;     // line counter
-    float theReqWidth;      // width calculator holder -- width needed to show string
-    float theCurWidth;      // width calculator holder -- my current width
-    float theAdj = 0;       // adjust vertical value for line number drawing
-    float theInsetAdj = [[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue];
-    NSRect theNumRect;      // rectange holder
-    NSPoint theNumPoint;    // point holder
-    CELayoutManager *theManager = (CELayoutManager *)[[_masterView textView] layoutManager]; // get _owner's layout manager.
+    NSRange range;       // a range for counting lines
+    NSString *str = [[self masterView] string];
+    NSString *numStr;    // a temporary string for Line Number
+    NSString *wrappedLineMark = [[values valueForKey:k_key_showWrappedLineMark] boolValue] ? @"-" : @" ";
+    NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
+    NSUInteger charIndex;
+    NSUInteger lineNum;     // line counter
+    CGFloat reqWidth;      // width calculator holder -- width needed to show string
+    CGFloat curWidth;      // width calculator holder -- my current width
+    CGFloat adj = 0;       // adjust vertical value for line number drawing
+    CGFloat insetAdj = (CGFloat)[[values valueForKey:k_key_textContainerInsetHeightTop] doubleValue];
+    NSRect numRect;      // rectange holder
+    NSPoint numPoint;    // point holder
+    CELayoutManager *layoutManager = (CELayoutManager *)[[[self masterView] textView] layoutManager]; // get _owner's layout manager.
 
     theBefore = 0;
-    theLineNum = 1;
-    theGlyphCount = 0;
+    lineNum = 1;
+    glyphCount = 0;
 
-    float crDistance;
-    unsigned numberOfGlyphs = [theManager numberOfGlyphs];
+    CGFloat crDistance;
+    NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
 
     if(numberOfGlyphs > 0) {
         //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
-        theNumRect = [theManager lineFragmentRectForGlyphAtIndex:theGlyphCount effectiveRange:NULL];
-        crDistance = theNumRect.origin.y - NSHeight(theNumRect);
-        theNumRect = [self convertRect:theNumRect fromView:[_masterView textView]];
-        crDistance = theNumRect.origin.y - crDistance;
+        numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:NULL];
+        crDistance = numRect.origin.y - NSHeight(numRect);
+        numRect = [self convertRect:numRect fromView:[[self masterView] textView]];
+        crDistance = numRect.origin.y - crDistance;
     } else {
-        [theAttrs release]; // ===== release
+        [attrs release]; // ===== release
         return;
     }
-    theAdj = k_lineNumFontDescender - ([[[_masterView textView] font] pointSize] + theLineNumFontSize) / 2 - theInsetAdj;
+    adj = k_lineNumFontDescender - ([[[[self masterView] textView] font] pointSize] + fontSize) / 2 - insetAdj;
 
-    for (theGlyphIndex = 0; theGlyphIndex < numberOfGlyphs; theLineNum++) { // count "REAL" lines
-        theCharIndex = [theManager characterIndexForGlyphAtIndex:theGlyphIndex];
-        theGlyphIndex = NSMaxRange([theManager glyphRangeForCharacterRange:
-                            [theStr lineRangeForRange:NSMakeRange(theCharIndex, 0)] 
-                            actualCharacterRange:NULL]);
-        while (theGlyphCount < theGlyphIndex) { // handle "DRAWN" (wrapped) lines
-            theNumRect = [theManager lineFragmentRectForGlyphAtIndex:theGlyphCount effectiveRange:&theRange];
-            theNumRect.origin.x = inRect.origin.x;  // don't care about x -- just force it into the rect
-            theNumRect.origin.y = crDistance - NSHeight(theNumRect) - theNumRect.origin.y;
-            if (NSIntersectsRect(theNumRect, inRect)) {
-                theNumStr = (theBefore != theLineNum) ? 
-                    [NSString stringWithFormat:@"%d", theLineNum] : theWrapedLineMark;
-                theReqWidth = charWidth * [theNumStr length];
-                theCurWidth = NSWidth([self frame]);
-                if ((theCurWidth - k_lineNumPadding) < theReqWidth) {
-                    while ((theCurWidth - k_lineNumPadding) < theReqWidth) { theCurWidth += charWidth;}
-                    [self setWidth:theCurWidth]; // set a wider width if needed.
+    for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
+        charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
+        glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[str lineRangeForRange:NSMakeRange(charIndex, 0)]
+                                                      actualCharacterRange:NULL]);
+        while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
+            numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+            numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
+            numRect.origin.y = crDistance - NSHeight(numRect) - numRect.origin.y;
+            if (NSIntersectsRect(numRect, dirtyRect)) {
+                numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%ld", (long)lineNum] : wrappedLineMark;
+                reqWidth = charWidth * [numStr length];
+                curWidth = NSWidth([self frame]);
+                if ((curWidth - k_lineNumPadding) < reqWidth) {
+                    while ((curWidth - k_lineNumPadding) < reqWidth) {
+                        curWidth += charWidth;
+                    }
+                    [self setWidth:curWidth]; // set a wider width if needed.
                 }
-                theNumPoint = NSMakePoint((theCurWidth - theReqWidth - k_lineNumPadding), 
-                                theNumRect.origin.y + theAdj + NSHeight(theNumRect));
-                [theNumStr drawAtPoint:theNumPoint withAttributes:theAttrs]; // draw the line number.
-                theBefore = theLineNum;
-            } else if (NSMaxY(theNumRect) < 0) { // no need to draw
-                [theAttrs release]; // ===== release
+                numPoint = NSMakePoint(curWidth - reqWidth - k_lineNumPadding,
+                                       numRect.origin.y + adj + NSHeight(numRect));
+                [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the line number.
+                theBefore = lineNum;
+            } else if (NSMaxY(numRect) < 0) { // no need to draw
+                [attrs release]; // ===== release
                 return;
             }
-            theGlyphCount = NSMaxRange(theRange);
+            glyphCount = NSMaxRange(range);
         }
     }
     // Draw the last "extra" line number.
-    theNumRect = [theManager extraLineFragmentRect];
-    // 10.5.1では、1行目が改行だけのときtheNumRect.origin.yに行の高さがセットされてしまうことへ対処（2007.12.01）
-    if ((theNumRect.size.width > 0) && (theNumRect.size.height > 0)) {
-//    if (!NSEqualRects(theNumRect, NSZeroRect)) {
-        theNumStr = (theBefore != theLineNum) ? 
-            [NSString stringWithFormat:@"%d", theLineNum] : 
-            [NSString stringWithString:@" "];
-        theReqWidth = charWidth * [theNumStr length];
-        theCurWidth = NSWidth([self frame]);
-        if ((theCurWidth - k_lineNumPadding) < theReqWidth) {
-            while ((theCurWidth - k_lineNumPadding) < theReqWidth) { theCurWidth += charWidth;}
-            [self setWidth:theCurWidth]; // set a wider width if needed.
+    numRect = [layoutManager extraLineFragmentRect];
+    // 10.5.1では、1行目が改行だけのときnumRect.origin.yに行の高さがセットされてしまうことへ対処（2007.12.01）
+    if ((numRect.size.width > 0) && (numRect.size.height > 0)) {
+//    if (!NSEqualRects(numRect, NSZeroRect)) {
+        numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%ld", (long)lineNum] : @" ";
+        reqWidth = charWidth * [numStr length];
+        curWidth = NSWidth([self frame]);
+        if ((curWidth - k_lineNumPadding) < reqWidth) {
+            while ((curWidth - k_lineNumPadding) < reqWidth) {
+                curWidth += charWidth;
+            }
+            [self setWidth:curWidth]; // set a wider width if needed.
         }
-        theNumPoint = NSMakePoint((theCurWidth - theReqWidth - k_lineNumPadding), 
-                        crDistance - theNumRect.origin.y + theAdj);
-        [theNumStr drawAtPoint:theNumPoint withAttributes:theAttrs]; // draw the last line number.
+        numPoint = NSMakePoint((curWidth - reqWidth - k_lineNumPadding),
+                               crDistance - numRect.origin.y + adj);
+        [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the last line number.
     }
-    [theAttrs release]; // ===== release
+    [attrs release]; // ===== release
 }
 
 
@@ -268,11 +237,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@end
-
-
-
-@implementation CELineNumView (Private)
+#pragma mark - Private Methods
 
 //=======================================================
 // Private method
@@ -280,26 +245,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)setWidth:(float)inValue
+- (void)setWidth:(CGFloat)width
 // set view width.
 // ------------------------------------------------------
 {
-    float theAdjWidth = (inValue - NSWidth([self frame]));
-    NSRect theNewFrame;
+    CGFloat adjWidth = width - NSWidth([self frame]);
+    NSRect newFrame;
 
     // set masterView width
-    theNewFrame = [[[self masterView] scrollView] frame];
-    theNewFrame.origin.x += theAdjWidth;
-    theNewFrame.size.width -= theAdjWidth;
-    [[[self masterView] scrollView] setFrame:theNewFrame];
+    newFrame = [[[self masterView] scrollView] frame];
+    newFrame.origin.x += adjWidth;
+    newFrame.size.width -= adjWidth;
+    [[[self masterView] scrollView] setFrame:newFrame];
     
     // set LineNumView width
-    theNewFrame = [self frame];
-    theNewFrame.size.width += theAdjWidth;
-    [self setFrame:theNewFrame];
+    newFrame = [self frame];
+    newFrame.size.width += adjWidth;
+    [self setFrame:newFrame];
 
     [self setNeedsDisplay:YES];
 }
-
 
 @end

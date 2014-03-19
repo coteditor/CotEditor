@@ -3,8 +3,9 @@
 CEPreferences
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -62,24 +63,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     IBOutlet id _syntaxStyleDeleteButton;
     IBOutlet id _syntaxStyleXtsnErrButton;
 
-    float _sampleWidth;
-    float _sampleHeight;
+    CGFloat _sampleWidth;
+    CGFloat _sampleHeight;
 
     id _appController;
-    int _currentSheetCode;
+    NSInteger _currentSheetCode;
     BOOL _doDeleteFileDrop;
 }
 
 // Public method
 - (void)setupEncodingMenus:(NSArray *)inMenuItems;
-- (id)initWithAppController:(id)inAppontroller;
+- (instancetype)initWithAppController:(id)inAppontroller;
 - (void)setupSyntaxMenus;
 - (void)openPrefWindow;
 - (void)closePrefWindow;
-- (float)sampleWidth;
-- (void)setSampleWidth:(float)inWidth;
-- (float)sampleHeight;
-- (void)setSampleHeight:(float)inHeight;
+- (CGFloat)sampleWidth;
+- (void)setSampleWidth:(CGFloat)inWidth;
+- (CGFloat)sampleHeight;
+- (void)setSampleHeight:(CGFloat)inHeight;
 - (void)changeFont:(id)sender;
 - (void)makeFirstResponderToPrefWindow;
 - (void)writeBackFileDropArray;

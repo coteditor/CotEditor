@@ -3,8 +3,9 @@
 CEPrintView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -31,42 +32,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 
 @interface CEPrintView : NSTextView
-{
-    NSString *_filePath;
-    NSDictionary *_lineNumAttrs;
-    NSDictionary *_headerFooterAttrs;
-    id _printValues;
-    NSAttributedString *_headerOneString;
-    NSAttributedString *_headerTwoString;
-    NSAttributedString *_footerOneString;
-    NSAttributedString *_footerTwoString;
-    int _headerOneAlignment;
-    int _headerTwoAlignment;
-    int _footerOneAlignment;
-    int _footerTwoAlignment;
-    float _lineSpacing;
-    float _xOffset;
-    BOOL _readyToPrint;
-    BOOL _printLineNum;
-    BOOL _printHeader;
-    BOOL _printFooter;
-    BOOL _printHeaderSeparator;
-    BOOL _printFooterSeparator;
-    BOOL _readyToDrawPageNum;
-    BOOL _showingLineNum;
-}
 
-// Public method
-- (void)setFilePath:(NSString *)inFilePath;
-- (float)lineSpacing;
-- (void)setLineSpacing:(float)inLineSpacing;
-- (id)printValues;
-- (void)setPrintValues:(id)inValues;
-- (BOOL)isShowingLineNum;
-- (void)setIsShowingLineNum:(BOOL)inValue;
+@property (nonatomic, retain) NSString *filePath;
+@property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) BOOL isShowingLineNum;
+@property (nonatomic, retain) id printValues;
 
 @end

@@ -3,8 +3,9 @@
 CEAppController
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2011, 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -43,8 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSupportDirectory;
 - (NSMenu *)buildSyntaxMenu;
 - (void)cacheTheInvisibleGlyph;
-- (void)filterNotAvailableEncoding;
-- (void)deleteWrongDotFile;
+- (void)cleanDeprecatedDefaults;
 @end
 
 
@@ -68,174 +68,150 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // Encoding list
-    NSMutableArray *theEncodings = [NSMutableArray array];
-    int i;
-    for (i = 0; i < sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings); i++) {
-        [theEncodings addObject:[NSNumber numberWithUnsignedLong:k_CFStringEncodingList[i]]];
+    NSUInteger numberOfEncodings = sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings);
+    NSMutableArray *theEncodings = [[NSMutableArray alloc] initWithCapacity:numberOfEncodings];
+    for (NSUInteger i = 0; i < numberOfEncodings; i++) {
+        [theEncodings addObject:@(k_CFStringEncodingList[i])];
     }
-    // 10.4+ で実行されていたら、さらにエンコーディングを追加
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) {
-        [theEncodings addObject:[NSNumber numberWithUnsignedLong:kCFStringEncodingInvalidId]]; // セパレータ
-        for (i = 0; i < sizeof(k_CFStringEncoding10_4List)/sizeof(CFStringEncodings); i++) {
-            [theEncodings addObject:[NSNumber numberWithUnsignedLong:k_CFStringEncoding10_4List[i]]];
-        }
-    }
-
-    NSDictionary *theDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                [NSNumber numberWithBool:YES], k_key_showLineNumbers, 
-                [NSNumber numberWithBool:YES], k_key_showWrappedLineMark, 
-                [NSNumber numberWithBool:YES], k_key_showStatusBar, 
-                [NSNumber numberWithBool:YES], k_key_countLineEndingAsChar, 
-                [NSNumber numberWithBool:NO], k_key_syncFindPboard, 
-                [NSNumber numberWithBool:NO], k_key_inlineContextualScriptMenu, 
-                [NSNumber numberWithBool:YES], k_key_appendExtensionAtSaving, 
-                [NSNumber numberWithBool:YES], k_key_showStatusBarThousSeparator, 
-                [NSNumber numberWithBool:YES], k_key_showNavigationBar, 
-                [NSNumber numberWithBool:YES], k_key_wrapLines, 
-                [NSNumber numberWithInt:0], k_key_defaultLineEndCharCode, 
-                theEncodings, k_key_encodingList, 
-                [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName], k_key_fontName, 
-                [NSNumber numberWithFloat:[NSFont systemFontSize]], k_key_fontSize, 
-                [NSNumber numberWithUnsignedLong:k_autoDetectEncodingMenuTag], k_key_encodingInOpen, 
-                [NSNumber 
-                numberWithUnsignedLong:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)], 
-                        k_key_encodingInNew, 
-                [NSNumber numberWithBool:YES], k_key_referToEncodingTag, 
-                [NSNumber numberWithBool:YES], k_key_createNewAtStartup, 
-                [NSNumber numberWithBool:YES], k_key_reopenBlankWindow, 
-                [NSNumber numberWithBool:NO], k_key_checkSpellingAsType, 
-                [NSNumber numberWithUnsignedInt:0], k_key_saveTypeCreator, 
-                [NSNumber numberWithFloat:600.0], k_key_windowWidth, 
-                [NSNumber numberWithFloat:450.0], k_key_windowHeight, 
-                [NSNumber numberWithBool:NO], k_key_autoExpandTab, 
-                [NSNumber numberWithUnsignedInt:4], k_key_tabWidth, 
-                [NSNumber numberWithFloat:1.0], k_key_windowAlpha, 
-                [NSNumber numberWithBool:YES], k_key_alphaOnlyTextView, 
-                [NSNumber numberWithBool:YES], k_key_autoIndent, 
-                [NSArchiver archivedDataWithRootObject:[NSColor grayColor]], k_key_invisibleCharactersColor, 
-                [NSNumber numberWithBool:NO], k_key_showInvisibleSpace, 
-                [NSNumber numberWithUnsignedInt:0], k_key_invisibleSpace, 
-                [NSNumber numberWithBool:NO], k_key_showInvisibleTab, 
-                [NSNumber numberWithUnsignedInt:0], k_key_invisibleTab, 
-                [NSNumber numberWithBool:NO], k_key_showInvisibleNewLine, 
-                [NSNumber numberWithUnsignedInt:0], k_key_invisibleNewLine, 
-                [NSNumber numberWithBool:NO], k_key_showInvisibleFullwidthSpace, 
-                [NSNumber numberWithUnsignedInt:0], k_key_invisibleFullwidthSpace, 
-                [NSNumber numberWithBool:NO], k_key_showOtherInvisibleChars, 
-                [NSNumber numberWithBool:NO], k_key_highlightCurrentLine, 
-                [NSNumber numberWithBool:YES], k_key_setHiliteLineColorToIMChars, 
-                [NSArchiver archivedDataWithRootObject:[NSColor textColor]], k_key_textColor, 
-                [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]], k_key_backgroundColor, 
-                [NSArchiver archivedDataWithRootObject:[NSColor textColor]], k_key_insertionPointColor, 
-                [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]], 
-                        k_key_selectionColor, 
-                [NSArchiver archivedDataWithRootObject:
+    
+    NSDictionary *theDefaults = @{k_key_showLineNumbers: @YES,
+                k_key_showWrappedLineMark: @YES, 
+                k_key_showStatusBar: @YES, 
+                k_key_countLineEndingAsChar: @YES, 
+                k_key_syncFindPboard: @NO, 
+                k_key_inlineContextualScriptMenu: @NO, 
+                k_key_appendExtensionAtSaving: @YES, 
+                k_key_showStatusBarThousSeparator: @YES, 
+                k_key_showNavigationBar: @YES, 
+                k_key_wrapLines: @YES, 
+                k_key_defaultLineEndCharCode: @0, 
+                k_key_encodingList: theEncodings, 
+                k_key_fontName: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName], 
+                k_key_fontSize: @([NSFont systemFontSize]),
+                k_key_encodingInOpen: @(k_autoDetectEncodingMenuTag),
+                k_key_encodingInNew: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)), 
+                k_key_referToEncodingTag: @YES, 
+                k_key_createNewAtStartup: @YES, 
+                k_key_reopenBlankWindow: @YES, 
+                k_key_checkSpellingAsType: @NO, 
+                k_key_saveTypeCreator: @0U, 
+                k_key_windowWidth: @600.0f, 
+                k_key_windowHeight: @450.0f, 
+                k_key_autoExpandTab: @NO, 
+                k_key_tabWidth: @4U, 
+                k_key_windowAlpha: @1.0f, 
+                k_key_alphaOnlyTextView: @YES, 
+                k_key_autoIndent: @YES, 
+                k_key_invisibleCharactersColor: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]], 
+                k_key_showInvisibleSpace: @NO, 
+                k_key_invisibleSpace: @0U, 
+                k_key_showInvisibleTab: @NO, 
+                k_key_invisibleTab: @0U, 
+                k_key_showInvisibleNewLine: @NO, 
+                k_key_invisibleNewLine: @0U, 
+                k_key_showInvisibleFullwidthSpace: @NO, 
+                k_key_invisibleFullwidthSpace: @0U, 
+                k_key_showOtherInvisibleChars: @NO, 
+                k_key_highlightCurrentLine: @NO, 
+                k_key_setHiliteLineColorToIMChars: @YES, 
+                k_key_textColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]], 
+                k_key_backgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]], 
+                k_key_insertionPointColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]], 
+                k_key_selectionColor: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]], 
+                k_key_highlightLineColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0]], 
-                        k_key_highlightLineColor, 
-                [NSArchiver archivedDataWithRootObject:
+                k_key_keywordsColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0]], 
-                        k_key_keywordsColor, 
-                [NSArchiver archivedDataWithRootObject:
+                k_key_commandsColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0]], 
-                        k_key_commandsColor, 
-                [NSArchiver archivedDataWithRootObject:[NSColor blueColor]], k_key_numbersColor, 
-                [NSArchiver archivedDataWithRootObject:
+                k_key_numbersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]], 
+                k_key_valuesColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0]], 
-                        k_key_valuesColor, 
-                [NSArchiver archivedDataWithRootObject:
+                k_key_stringsColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0]], 
-                        k_key_stringsColor, 
-                [NSArchiver archivedDataWithRootObject:[NSColor blueColor]], k_key_charactersColor, 
-                [NSArchiver archivedDataWithRootObject:
+                k_key_charactersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]], 
+                k_key_commentsColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]], 
-                        k_key_commentsColor, 
-                [NSNumber numberWithBool:YES], k_key_doColoring, 
-                NSLocalizedString(@"None",@""), k_key_defaultColoringStyleName, 
-                [NSNumber numberWithBool:NO], k_key_delayColoring, 
-                [NSArray arrayWithObjects: 
-                        [NSDictionary  dictionaryWithObjectsAndKeys:
-                            @"jpg, jpeg, gif, png", k_key_fileDropExtensions, 
-                            @"<img src=\"<<<RELATIVE-PATH>>>\" alt =\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />", k_key_fileDropFormatString, 
-                        nil], nil], k_key_fileDropArray, 
-                [NSNumber numberWithInt:1], k_key_NSDragAndDropTextDelay, 
-                [NSNumber numberWithBool:NO], k_key_smartInsertAndDelete, 
-                [NSNumber numberWithBool:YES], k_key_shouldAntialias, 
-                [NSNumber numberWithUnsignedInt:0], k_key_completeAddStandardWords, 
-                [NSNumber numberWithBool:NO], k_key_showPageGuide, 
-                [NSNumber numberWithInt:80], k_key_pageGuideColumn, 
-                [NSNumber numberWithFloat:0.0], k_key_lineSpacing, 
-                [NSNumber numberWithBool:NO], k_key_swapYenAndBackSlashKey, 
-                [NSNumber numberWithBool:YES], k_key_fixLineHeight, 
-                [NSNumber numberWithBool:YES], k_key_highlightBraces, 
-                [NSNumber numberWithBool:NO], k_key_highlightLtGt, 
-                [NSNumber numberWithBool:NO], k_key_saveUTF8BOM, 
-                [NSNumber numberWithInt:0], k_key_setPrintFont, 
-                [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName], k_key_printFontName, 
-                [NSNumber numberWithFloat:[NSFont systemFontSize]], k_key_printFontSize, 
-                [NSNumber numberWithBool:YES], k_printHeader, 
-                [NSNumber numberWithInt:3], k_headerOneStringIndex, 
-                [NSNumber numberWithInt:4], k_headerTwoStringIndex, 
-                [NSNumber numberWithInt:0], k_headerOneAlignIndex, 
-                [NSNumber numberWithInt:2], k_headerTwoAlignIndex, 
-                [NSNumber numberWithBool:YES], k_printHeaderSeparator, 
-                [NSNumber numberWithBool:YES], k_printFooter, 
-                [NSNumber numberWithInt:0], k_footerOneStringIndex, 
-                [NSNumber numberWithInt:5], k_footerTwoStringIndex, 
-                [NSNumber numberWithInt:0], k_footerOneAlignIndex, 
-                [NSNumber numberWithInt:1], k_footerTwoAlignIndex, 
-                [NSNumber numberWithBool:YES], k_printFooterSeparator, 
-                [NSNumber numberWithInt:0], k_printLineNumIndex, 
-                [NSNumber numberWithInt:0], k_printInvisibleCharIndex, 
-                [NSNumber numberWithInt:0], k_printColorIndex, 
+                k_key_doColoring: @YES, 
+                k_key_defaultColoringStyleName: NSLocalizedString(@"None",@""), 
+                k_key_delayColoring: @NO, 
+                k_key_fileDropArray: @[@{k_key_fileDropExtensions: @"jpg, jpeg, gif, png", 
+                            k_key_fileDropFormatString: @"<img src=\"<<<RELATIVE-PATH>>>\" alt =\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}], 
+                k_key_NSDragAndDropTextDelay: @1, 
+                k_key_smartInsertAndDelete: @NO, 
+                k_key_shouldAntialias: @YES, 
+                k_key_completeAddStandardWords: @0U, 
+                k_key_showPageGuide: @NO, 
+                k_key_pageGuideColumn: @80, 
+                k_key_lineSpacing: @0.0f, 
+                k_key_swapYenAndBackSlashKey: @NO, 
+                k_key_fixLineHeight: @YES, 
+                k_key_highlightBraces: @YES, 
+                k_key_highlightLtGt: @NO, 
+                k_key_saveUTF8BOM: @NO, 
+                k_key_setPrintFont: @0, 
+                k_key_printFontName: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName], 
+                k_key_printFontSize: @([NSFont systemFontSize]),
+                k_printHeader: @YES, 
+                k_headerOneStringIndex: @3, 
+                k_headerTwoStringIndex: @4, 
+                k_headerOneAlignIndex: @0, 
+                k_headerTwoAlignIndex: @2, 
+                k_printHeaderSeparator: @YES, 
+                k_printFooter: @YES, 
+                k_footerOneStringIndex: @0, 
+                k_footerTwoStringIndex: @5, 
+                k_footerOneAlignIndex: @0, 
+                k_footerTwoAlignIndex: @1, 
+                k_printFooterSeparator: @YES, 
+                k_printLineNumIndex: @0, 
+                k_printInvisibleCharIndex: @0, 
+                k_printColorIndex: @0, 
 
         /* -------- 以下、環境設定にない設定項目 -------- */
-                [NSNumber numberWithInt:1], k_key_gotoObjectMenuIndex, // in Only goto window (not pref).
-                [NSArchiver archivedDataWithRootObject:
+                k_key_gotoObjectMenuIndex: @1, // in Only goto window (not pref).
+                k_key_HCCBackgroundColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0]], 
-                        k_key_HCCBackgroundColor, 
-                [NSArchiver archivedDataWithRootObject:
+                k_key_HCCForeColor: [NSArchiver archivedDataWithRootObject:
                         [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:1.0]], 
-                        k_key_HCCForeColor, 
-                [NSString stringWithString:@"Sample Text"], k_key_HCCSampleText, 
-                [NSArray array], k_key_HCCForeComboBoxData, 
-                [NSArray array], k_key_HCCBackComboBoxData, 
-                [NSNumber numberWithBool:NO], k_key_foreColorCBoxIsOk, 
-                [NSNumber numberWithBool:NO], k_key_backgroundColorCBoxIsOk, 
-                [self factoryDefaultOfTextInsertStringArray], k_key_insertCustomTextArray, 
+                k_key_HCCSampleText: @"Sample Text", 
+                k_key_HCCForeComboBoxData: @[],
+                k_key_HCCBackComboBoxData: @[], 
+                k_key_foreColorCBoxIsOk: @NO, 
+                k_key_backgroundColorCBoxIsOk: @NO, 
+                k_key_insertCustomTextArray: [self factoryDefaultOfTextInsertStringArray], 
 
         /* -------- 以下、隠し設定 -------- */
-                [NSString stringWithString:@"Courier"], k_key_statusBarFontName, 
-                [NSNumber numberWithFloat:12.0], k_key_statusBarFontSize, 
-                [NSString stringWithString:@"ArialNarrow"], k_key_lineNumFontName, 
-                [NSNumber numberWithFloat:10.0], k_key_lineNumFontSize, 
-                [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], k_key_lineNumFontColor, 
-                [NSNumber numberWithFloat:0.001], k_key_basicColoringDelay, 
-                [NSNumber numberWithFloat:0.3], k_key_firstColoringDelay, 
-                [NSNumber numberWithFloat:0.7], k_key_secondColoringDelay, 
-                [NSNumber numberWithFloat:0.12], k_key_lineNumUpdateInterval, 
-                [NSNumber numberWithFloat:0.2], k_key_infoUpdateInterval, 
-                [NSNumber numberWithFloat:0.42], k_key_incompatibleCharInterval, 
-                [NSNumber numberWithFloat:0.37], k_key_outlineMenuInterval, 
-                [NSString stringWithString:@"Helvetica"], k_key_navigationBarFontName, 
-                [NSNumber numberWithFloat:11.0], k_key_navigationBarFontSize, 
-                [NSNumber numberWithUnsignedInt:110], k_key_outlineMenuMaxLength, 
-                [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], k_key_headerFooterFontName, 
-                [NSNumber numberWithFloat:10.0], k_key_headerFooterFontSize, 
-                [NSString stringWithString:@"%Y-%m-%d  %H:%M:%S"], k_key_headerFooterDateTimeFormat, 
-                [NSNumber numberWithBool:YES], k_key_headerFooterPathAbbreviatingWithTilde, 
-                [NSNumber numberWithFloat:0.0], k_key_textContainerInsetWidth, 
-                [NSNumber numberWithFloat:4.0], k_key_textContainerInsetHeightTop, 
-                [NSNumber numberWithFloat:16.0], k_key_textContainerInsetHeightBottom, 
-                [NSNumber numberWithUnsignedInt:115000], k_key_showColoringIndicatorTextLength, 
-                [NSNumber numberWithBool:YES], k_key_runAppleScriptInLaunching, 
-                [NSNumber numberWithBool:YES], k_key_showAlertForNotWritable, 
-                [NSNumber numberWithBool:YES], k_key_notifyEditByAnother, // 0.9.4までは環境設定にあった(2008.06.03)
-
-                nil];
+                k_key_statusBarFontSize: @11.0f, 
+                k_key_lineNumFontName: @"ArialNarrow",
+                k_key_lineNumFontSize: @10.0f, 
+                k_key_lineNumFontColor: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
+                k_key_basicColoringDelay: @0.001f, 
+                k_key_firstColoringDelay: @0.3f, 
+                k_key_secondColoringDelay: @0.7f, 
+                k_key_lineNumUpdateInterval: @0.12f, 
+                k_key_infoUpdateInterval: @0.2f, 
+                k_key_incompatibleCharInterval: @0.42f, 
+                k_key_outlineMenuInterval: @0.37f, 
+                k_key_navigationBarFontName: @"Helvetica", 
+                k_key_navigationBarFontSize: @11.0f, 
+                k_key_outlineMenuMaxLength: @110U, 
+                k_key_headerFooterFontName: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
+                k_key_headerFooterFontSize: @10.0f, 
+                k_key_headerFooterDateTimeFormat: @"%Y-%m-%d  %H:%M:%S", 
+                k_key_headerFooterPathAbbreviatingWithTilde: @YES, 
+                k_key_textContainerInsetWidth: @0.0f, 
+                k_key_textContainerInsetHeightTop: @4.0f, 
+                k_key_textContainerInsetHeightBottom: @16.0f, 
+                k_key_showColoringIndicatorTextLength: @115000U, 
+                k_key_runAppleScriptInLaunching: @YES, 
+                k_key_showAlertForNotWritable: @YES, 
+                k_key_notifyEditByAnother: @YES};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:theDefaults];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:theDefaults];
 
     // transformer 登録
-    id theTransformer = [[[CEHexColorTransformer alloc] init] autorelease];
+    CEHexColorTransformer *theTransformer = [[[CEHexColorTransformer alloc] init] autorelease];
     [NSValueTransformer setValueTransformer:theTransformer forName:@"HexColorTransformer"];
 }
 
@@ -246,10 +222,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
 // インデックスが0-30の、合計31個
-    return [NSArray arrayWithObjects:
-                    @"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", 
+    return @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", 
                     @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", 
-                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", nil];
+                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @""];
 }
 
 
@@ -262,7 +237,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)init
+- (instancetype)init
 // 初期化
 // ------------------------------------------------------
 {
@@ -270,13 +245,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self) {
         NSMutableArray *theEncodings = [NSMutableArray array];
         NSStringEncoding theEncoding;
-        int i;
+        NSUInteger i;
         for (i = 0; i < sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings); i++) {
             theEncoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
-            [theEncodings addObject:[NSNumber numberWithUnsignedInt:theEncoding]];
+            [theEncodings addObject:@(theEncoding)];
         }
         _invalidYenEncodings = [theEncodings retain];
-        _thousandsSeparator = [[[NSUserDefaults standardUserDefaults] valueForKey:NSThousandsSeparator] retain];
         _didFinishLaunching = NO;
     }
     return self;
@@ -292,7 +266,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_encodingMenu release];
     [_syntaxMenu release];
     [_invalidYenEncodings release];
-    [_thousandsSeparator release];
 
     [super dealloc];
 }
@@ -373,12 +346,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleSpaceCharacter:(unsigned int)inIndex
+- (NSString *)invisibleSpaceCharacter:(NSUInteger)inIndex
 // 非表示半角スペース表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleSpaceCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -386,12 +359,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleTabCharacter:(unsigned int)inIndex
+- (NSString *)invisibleTabCharacter:(NSUInteger)inIndex
 // 非表示タブ表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleTabCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleTabCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleTabCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -399,12 +372,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleNewLineCharacter:(unsigned int)inIndex
+- (NSString *)invisibleNewLineCharacter:(NSUInteger)inIndex
 // 非表示改行表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleNewLineCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -412,12 +385,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)invisibleFullwidthSpaceCharacter:(unsigned int)inIndex
+- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)inIndex
 // 非表示全角スペース表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    unsigned int theMax = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)) - 1;
-    unsigned int theIndex = (inIndex > theMax) ? theMax : inIndex;
+    NSUInteger theMax = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)) - 1;
+    NSUInteger theIndex = (inIndex > theMax) ? theMax : inIndex;
     unichar theUnichar = k_invisibleFullwidthSpaceCharList[theIndex];
 
     return ([NSString stringWithCharacters:&theUnichar length:1]);
@@ -433,10 +406,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
     NSStringEncoding outEncoding;
     BOOL theCorrect = NO;
-    int i, theCount = [theEncodings count];
 
-    for (i = 0; i < theCount; i++) {
-        CFStringEncoding theCFEncoding = [[theEncodings objectAtIndex:i] unsignedLongValue];
+    for (NSNumber *encoding in theEncodings) {
+        CFStringEncoding theCFEncoding = [encoding unsignedLongValue];
         if (theCFEncoding != kCFStringEncodingInvalidId) { // = separator
             outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
             if ([inEncodingName isEqualToString:[NSString localizedNameOfStringEncoding:outEncoding]]) {
@@ -454,18 +426,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディング名からNSStringEncodingを返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    return ([_invalidYenEncodings containsObject:[NSNumber numberWithUnsignedInt:inEncoding]]);
+    return ([_invalidYenEncodings containsObject:@(inEncoding)]);
 }
 
 
 // ------------------------------------------------------
-- (NSString *)keyEquivalentAndModifierMask:(unsigned int *)ioModMask 
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask
         fromString:(NSString *)inString includingCommandKey:(BOOL)inBool
 // 文字列からキーボードショートカット定義を読み取るユーティリティメソッド
 //------------------------------------------------------
 {
     *ioModMask = 0;
-    int theLength = [inString length];
+    NSUInteger theLength = [inString length];
     if ((inString == nil) || (theLength < 2)) { return @""; }
 
     NSString *outKey = [inString substringFromIndex:(theLength - 1)];
@@ -506,36 +478,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return @"";
     }
-
-}
-
-
-// ------------------------------------------------------
-- (NSString *)stringFromUnsignedInt:(unsigned int)inInt
-// unsigned int を文字列に変換するユーティリティメソッド
-//------------------------------------------------------
-{
-// このメソッドは、Smultron を参考にさせていただきました。(2006.04.30)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
-// Leopard で検証した限りでは、NSNumberFormatter を使うよりも速い (2008.04.05)
-
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableString *outString = [NSMutableString stringWithFormat:@"%u", inInt];
-
-    if ((![[theValues valueForKey:k_key_showStatusBarThousSeparator] boolValue]) || 
-                (_thousandsSeparator == nil) || ([_thousandsSeparator length] < 1)) {
-        return outString;
-    }
-    int thePosition = [outString length] - 3;
-
-    while (thePosition > 0) {
-        [outString insertString:_thousandsSeparator atIndex:thePosition];
-        thePosition -= 3;
-    }
-    return outString;
 }
 
 
@@ -554,12 +496,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setupSupportDirectory];
     _preferences = [[CEPreferences alloc] initWithAppController:self];
-    [self filterNotAvailableEncoding];
     [self buildAllEncodingMenus];
     [self setSyntaxMenu:[self buildSyntaxMenu]];
     [[CEScriptManager sharedInstance] buildScriptMenu:nil];
     [self cacheTheInvisibleGlyph];
-    [self deleteWrongDotFile];
 }
 
 
@@ -650,9 +590,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // AppleScript 起動のスピードアップのため一度動かしておく
     if ([[theValues valueForKey:k_key_runAppleScriptInLaunching] boolValue]) {
 
-        NSString *thePath = [[NSBundle mainBundle] pathForResource:@"startup" ofType:@"applescript"];
-        if (thePath == nil) { return; }
-        NSURL *theURL = [NSURL fileURLWithPath:thePath];
+        NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"startup" withExtension:@"applescript"];
+        if (theURL == nil) { return; }
         NSAppleScript *theAppleScript = 
                 [[[NSAppleScript alloc] initWithContentsOfURL:theURL error:nil] autorelease];
 
@@ -667,6 +606,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ファイルを開くデフォルトエンコーディングをセット
     [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
 
+    // 廃止した UserDeafults の値を取り除く
+    [self cleanDeprecatedDefaults];
+    
     // 起動完了フラグをセット
     _didFinishLaunching = YES;
 }
@@ -679,7 +621,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // 各ドキュメントに外部プロセスによって変更保存されていた場合の通知を行わせる
     [[[CEDocumentController sharedDocumentController] documents] 
-            makeObjectsPerformSelector:@selector(showUpdateAlertWithUKKQueueNotification)];
+            makeObjectsPerformSelector:@selector(showUpdatedByExternalProcessAlert)];
 }
 
 
@@ -748,10 +690,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アップルスクリプト辞書をスクリプトエディタで開く
 // ------------------------------------------------------
 {
-    NSString *thePath = [[NSBundle mainBundle] pathForResource:@"openDictionary" ofType:@"applescript"];
-    NSString *theSource = [NSString stringWithContentsOfFile:thePath];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
     NSDictionary *theErrorInfo;
-    NSAppleScript *theAppleScript = [[[NSAppleScript alloc] initWithSource:theSource] autorelease];
+    NSAppleScript *theAppleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:nil] autorelease];
     (void)[theAppleScript executeAndReturnError:&theErrorInfo];
 }
 
@@ -799,18 +740,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 付属ドキュメントを開く
 // ------------------------------------------------------
 {
-    NSMenuItem *theMenuItem = (NSMenuItem *)sender;
-    NSString *theDocumentPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources/Docs"];
-    int i;
+    NSString *fileName = k_bundleDocumentDict[@([sender tag])];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"rtf"];
     
-    for (i = 0; k_bundleDocumentList[i].tag != 0; i++) {
-        if (k_bundleDocumentList[i].tag == theMenuItem.tag) {
-            theDocumentPath = [theDocumentPath stringByAppendingPathComponent:k_bundleDocumentList[i].path];
-            break;
-        }
-    }
+    [[NSWorkspace sharedWorkspace] openURL:URL];
+}
 
-    [[NSWorkspace sharedWorkspace] openFile:theDocumentPath];
+
+// ------------------------------------------------------
+- (IBAction)openWebSite:(id)sender
+// Webサイト（coteditor.github.io）を開く
+// ------------------------------------------------------
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_webSiteURL]];
 }
 
 
@@ -826,7 +768,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 最も前面のドキュメントウィンドウの選択範囲オブジェクトを返す
 // ------------------------------------------------------
 {
-    id theDoc = [[NSApp orderedDocuments] objectAtIndex:0];
+    id theDoc = [NSApp orderedDocuments][0];
 
     if (theDoc != nil) {
         return (CETextSelection *)[theDoc selection];
@@ -861,19 +803,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // データ保存用ディレクトリの存在をチェック、なければつくる
 //------------------------------------------------------
 {
-    NSString *theDirPath = [NSHomeDirectory( ) 
-            stringByAppendingPathComponent:@"Library/Application Support/CotEditor"];
     NSFileManager *theFileManager = [NSFileManager defaultManager];
+    NSURL *URL = [[theFileManager URLForDirectory:NSApplicationSupportDirectory
+                                         inDomain:NSUserDomainMask
+                                appropriateForURL:nil
+                                           create:YES
+                                            error:nil]
+                  URLByAppendingPathComponent:@"CotEditor"];
     BOOL theValueIsDir = NO, theValueCreated = NO;
 
-    if (![theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir]) {
-        theValueCreated = [theFileManager createDirectoryAtPath:theDirPath attributes:nil];
+    if (![theFileManager fileExistsAtPath:[URL path] isDirectory:&theValueIsDir]) {
+        theValueCreated = [theFileManager createDirectoryAtURL:URL
+                                   withIntermediateDirectories:YES
+                                                    attributes:nil
+                                                         error:nil];
         if (!theValueCreated) {
             NSLog(@"Could not create support directory for CotEditor...");
         }
     } else if (!theValueIsDir) {
-        NSLog(@"\"%@\" is not dir.", theDirPath);
+        NSLog(@"\"%@\" is not dir.", [URL path]);
     }
+    
 }
 
 
@@ -887,7 +837,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [[CEDocumentController sharedDocumentController] accessoryEncodingMenu];
     NSMenu *theAccessoryEncodingMenu = [theAccessoryEncodingMenuButton menu];
     NSMenuItem *theItem;
-    int i, theCount = [inArray count];
 
     [theAccessoryEncodingMenuButton removeAllItems];
     theItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"") 
@@ -896,8 +845,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theAccessoryEncodingMenu addItem:theItem];
     [theAccessoryEncodingMenu addItem:[NSMenuItem separatorItem]];
 
-    for (i = 0; i < theCount; i++) {
-        CFStringEncoding theCFEncoding = [[inArray objectAtIndex:i] unsignedLongValue];
+    for (NSNumber *encoding in inArray) {
+        CFStringEncoding theCFEncoding = [encoding unsignedLongValue];
         if (theCFEncoding == kCFStringEncodingInvalidId) { // set separator
             [theAccessoryEncodingMenu addItem:[NSMenuItem separatorItem]];
             [outArray addObject:[NSMenuItem separatorItem]];
@@ -917,6 +866,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+- (void)cleanDeprecatedDefaults
+// 廃止したuserDefaultsのデータをユーザのplistから削除
+//------------------------------------------------------
+{
+    NSArray *deprecatedKeys = @[@"statusAreaFontName"  // deprecated on 1.4
+                                ];
+    
+    for (NSString *key in deprecatedKeys) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    }
+}
+
+
+//------------------------------------------------------
 - (NSMenu *)buildFormatEncodingMenuFromArray:(NSArray *)inArray
 // フォーマットのエンコーディングメニューアイテムを生成
 //------------------------------------------------------
@@ -924,10 +887,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenu *theEncodingMenu = [[[NSMenu alloc] initWithTitle:@"ENCODEING"] autorelease];
     NSMenuItem *theFormatMenuItem = 
             [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag];
-    int i, theCount = [inArray count];
 
-    for (i = 0; i < theCount; i++) {
-        CFStringEncoding theCFEncoding = [[inArray objectAtIndex:i] unsignedLongValue];
+    for (NSNumber *encoding in inArray) {
+        CFStringEncoding theCFEncoding = [encoding unsignedLongValue];
         if (theCFEncoding == kCFStringEncodingInvalidId) { // set separator
             [theEncodingMenu addItem:[NSMenuItem separatorItem]];
         } else {
@@ -956,7 +918,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenuItem *theMenuItem;
     NSString *theMenuTitle;
     NSArray *theArray = [[CESyntaxManager sharedInstance] styleNames];
-    int i, theCount = [theArray count];
+    NSInteger i, theCount = [theArray count];
     
     [theFormatMenuItem setSubmenu:nil]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
 
@@ -967,7 +929,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if (i == 0) {
                 theMenuTitle = NSLocalizedString(@"None",@"");
             } else {
-                theMenuTitle = [theArray objectAtIndex:(i - 2)];
+                theMenuTitle = theArray[(i - 2)];
             }
             theMenuItem = [[[NSMenuItem alloc] initWithTitle:theMenuTitle 
                             action:@selector(setSyntaxStyle:) keyEquivalent:@""] autorelease];
@@ -996,7 +958,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSMutableString *theChars = [NSMutableString string];
-    int i;
+    NSUInteger i;
 
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
         [theChars appendString:[NSString stringWithCharacters:&k_invisibleSpaceCharList[i] length:1]];
@@ -1020,49 +982,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [theStorage addLayoutManager:theLayoutManager];
     (void)[theLayoutManager glyphRangeForTextContainer:theContainer];
 }
-
-
-//------------------------------------------------------
-- (void)filterNotAvailableEncoding
-// 実行環境で使えないエンコーディングを削除する
-//------------------------------------------------------
-{
-// 新しいバージョンの Mac OS X から古いバージョンへ環境設定ファイルが写された場合への対応
-
-    if (floor(NSAppKitVersionNumber) <=  NSAppKitVersionNumber10_3) { // = 10.3.x以前
-        NSUserDefaults *theUserDefaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *theNewList = [[[theUserDefaults arrayForKey:k_key_encodingList] mutableCopy] autorelease];
-        NSNumber *theNum;
-        int i;
-
-        for (i = 0; i < sizeof(k_CFStringEncoding10_4List)/sizeof(CFStringEncodings); i++) {
-            theNum = [NSNumber numberWithUnsignedLong:k_CFStringEncoding10_4List[i]];
-            if ([theNewList containsObject:theNum]) {
-                [theNewList removeObject:theNum];
-            }
-        }
-        [theUserDefaults setObject:theNewList forKey:k_key_encodingList];
-        [theUserDefaults synchronize];
-    }
-}
-
-
-//------------------------------------------------------
-- (void)deleteWrongDotFile
-// 0.9.5までのバグで作成された可能性のある不正なファイルを削除
-//------------------------------------------------------
-{
-    // 0.9.5まで、シンタックススタイルシートを新規に作成した場合の処理が不正で「.plist」というファイルが作成されてしまっていた。
-    // その「~/Library/Application Support/CotEditor/SyntaxColorings/.plist」を削除する(2008.11.02)
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *thePath = [NSHomeDirectory( ) 
-            stringByAppendingPathComponent:@"Library/Application Support/CotEditor/SyntaxColorings/.plist"];
-
-    if ([theFileManager fileExistsAtPath:thePath]) {
-        (void)[theFileManager removeFileAtPath:thePath handler:nil];
-    }
-}
-
-
 
 @end

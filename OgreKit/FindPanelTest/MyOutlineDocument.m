@@ -52,11 +52,12 @@
         
         openPanel = [NSOpenPanel openPanel];
         [openPanel setCanChooseDirectories:YES];
-        result = [openPanel runModalForDirectory:NSHomeDirectory() file:nil types:nil];
+        [openPanel setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory() isDirectory:YES]];
+        result = [openPanel runModal];
         if(result == NSOKButton) {
-            NSString    *path = [openPanel filename];
+            NSURL    *url = [openPanel URL];
             //NSLog(@"%@", path);
-            _fileWrapper = [[MyFileWrapper alloc] initWithName:[path lastPathComponent] path:path parent:self];
+            _fileWrapper = [[MyFileWrapper alloc] initWithName:[url lastPathComponent] path:[url absoluteString] parent:self];
             //NSLog(@"%@", [_fileWrapper description]);
         }
         [myOutlineView reloadData];

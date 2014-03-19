@@ -3,8 +3,9 @@
 CEDocument
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -38,91 +39,70 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEWindowController.h"
 #import "CETextSelection.h"
 #import "CEPrintView.h"
-#import "UKKQueue.h"
 #import "UKXattrMetadataStore.h"
+
 
 @class CEEditorView;
 @class UKXattrMetadataStore;
 
-typedef struct {
-     id delegate;
-     SEL shouldCloseSelector;
-     void *contextInfo;
-} CanCloseAlertContext;
 
 @interface CEDocument : NSDocument
 {
-    CEEditorView *_editorView;
     id _windowController;
-    NSString *_initialString;
-    NSStringEncoding _encoding;
-    NSDictionary *_fileAttr;
     CETextSelection *_selection;
-    NSAppleEventDescriptor *_fileSender;
-    NSAppleEventDescriptor *_fileToken;
-
-    BOOL _alphaOnlyTextViewInThisWindow;
-    BOOL _doCascadeWindow;
-    BOOL _isSaving;
-    BOOL _showUpdateAlertWithBecomeKey;
-    BOOL _isRevertingWithUKKQueueNotification;
-    BOOL _canActivateShowInvisibleCharsItem;
-    NSPoint _initTopLeftPoint;
 }
 
-// Public method
-- (CEEditorView *)editorView;
-- (void)setEditorView:(CEEditorView *)inEditorView;
-- (id)windowController;
-- (BOOL)stringFromData:(NSData *)inData encoding:(NSStringEncoding)ioEncoding xattr:(BOOL)inBoolXattr;
+@property (retain) CEEditorView *editorView;
+@property BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
+@property NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
+@property BOOL alphaOnlyTextViewInThisWindow;
 
+// readonly properties
+@property (readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
+@property (readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
+@property (readonly, retain) NSDictionary *fileAttributes;  // ファイル属性情報辞書
+
+// ODB Editor Suite 対応プロパティ
+@property (retain) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
+@property (retain) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
+
+// Public methods
+- (id)windowController;
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
 - (NSString *)stringToWindowController;
 - (void)setStringToEditorView;
 - (void)setStringToTextView:(NSString *)inString;
-- (NSStringEncoding)encodingCode;
 - (BOOL)doSetEncoding:(NSStringEncoding)inEncoding updateDocument:(BOOL)inDocUpdate 
         askLossy:(BOOL)inAskLossy  lossy:(BOOL)inLossy asActionName:(NSString *)inName;
 - (void)clearAllMarkupForIncompatibleChar;
 - (NSArray *)markupCharCanNotBeConvertedToCurrentEncoding;
 - (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)inEncoding;
-- (void)doSetNewLineEndingCharacterCode:(int)inNewLineEnding;
-- (void)setLineEndingCharToView:(int)inNewLineEnding;
+- (void)doSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding;
+- (void)setLineEndingCharToView:(NSInteger)inNewLineEnding;
 - (void)doSetSyntaxStyle:(NSString *)inName;
 - (void)doSetSyntaxStyle:(NSString *)inName delay:(BOOL)inBoolDelay;
 - (void)setColoringExtension:(NSString *)inExtension coloring:(BOOL)inBoolColoring;
 - (void)setFontToViewInWindow;
-- (BOOL)alphaOnlyTextViewInThisWindow;
-- (float)alpha;
-- (void)setAlpha:(float)inAlpha;
-- (void)setAlphaOnlyTextViewInThisWindow:(BOOL)inBool;
+- (CGFloat)alpha;
+- (void)setAlpha:(CGFloat)inAlpha;
 - (void)setAlphaToWindowAndTextView;
 - (void)setAlphaToWindowAndTextViewDefaultValue;
 - (void)setAlphaValueToTransparencyController;
-- (NSAppleEventDescriptor *)fileSender;
-- (void)setFileSender:(NSAppleEventDescriptor *)inFileSender;
-- (NSAppleEventDescriptor *)fileToken;
-- (void)setFileToken:(NSAppleEventDescriptor *)inFileToken;
-- (NSRange)rangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength;
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength;
-- (void)setSelectedLineRangeInTextViewWithLocation:(int)inLocation withLength:(int)inLength;
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)scrollToCenteringSelection;
-- (void)gotoLocation:(int)inLocation withLength:(int)inLength;
+- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
 - (void)getFileAttributes;
-- (NSDictionary *)documentFileAttributes;
 - (void)rebuildToolbarEncodingItem;
 - (void)rebuildToolbarSyntaxItem;
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)inDictionary;
 - (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)inStyleName;
-- (BOOL)doCascadeWindow;
-- (void)setDoCascadeWindow:(BOOL)inBool;
-- (NSPoint)initTopLeftPoint;
-- (void)setInitTopLeftPoint:(NSPoint)inPoint;
 - (void)setSmartInsertAndDeleteToTextView;
 - (NSString *)currentIANACharSetName;
-- (void)showUpdateAlertWithUKKQueueNotification;
-- (float)lineSpacingInTextView;
-- (void)setCustomLineSpacingToTextView:(float)inSpacing;
-- (BOOL)canActivateShowInvisibleCharsItem;
+- (void)showUpdatedByExternalProcessAlert;
+- (CGFloat)lineSpacingInTextView;
+- (void)setCustomLineSpacingToTextView:(CGFloat)inSpacing;
 
 // Action Message
 - (IBAction)setLineEndingCharToLF:(id)sender;

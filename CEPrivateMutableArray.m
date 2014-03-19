@@ -3,8 +3,9 @@
 CEPrivateMutableArray
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -38,10 +39,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEPrivateMutableArray.h"
 
 
+@interface CEPrivateMutableArray ()
+{
+    id *_pointers;
+    NSUInteger _size;
+    NSUInteger _nPointers;
+}
+
+@end
+
 @implementation CEPrivateMutableArray
 
 
-- (id)initWithCapacity:(unsigned int)inSize
+- (id)initWithCapacity:(NSUInteger)inSize
 {
     [super init];
 
@@ -55,7 +65,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)dealloc
 {
-    unsigned int i;
+    NSUInteger i;
    
     for (i = 0; i < _nPointers; i++) {
         [_pointers[ i] release];
@@ -69,14 +79,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)grow
 {
-    unsigned int newsize;
+    NSUInteger newsize;
 
     if ((newsize = _size + _size) < _size + 4) {
         newsize = _size + 4;
     }
     if (!(_pointers = realloc(_pointers, newsize * sizeof(id)))) {
         [NSException raise:NSMallocException
-                    format:@"%@ can't grow from %u to %u entries", self, _size, newsize];
+                    format:@"%@ can't grow from %lu to %lu entries", self, (unsigned long)_size, (unsigned long)newsize];
     }
     _size = newsize;
 }
@@ -94,17 +104,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-- (unsigned int)count
+- (NSUInteger)count
 {
     return (_nPointers);
 }
 
 
-- (id)objectAtIndex:(unsigned int)inIndex
+- (id)objectAtIndex:(NSUInteger)inIndex
 {
     if (inIndex >= _nPointers) {
         [NSException raise:NSInvalidArgumentException 
-                    format:@"index %d out of bounds %d", inIndex, _nPointers];
+                    format:@"index %lu out of bounds %lu", (unsigned long)inIndex, (unsigned long)_nPointers];
     }
 
     return (_pointers[inIndex]);
@@ -114,9 +124,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (!inArray) { return; }
 
-    unsigned int i, theCount = [inArray count];
-    for (i = 0; i < theCount; i++) {
-        [self addObject:[inArray objectAtIndex:i]];
+    for (id object in inArray) {
+        [self addObject:object];
     }
 }
 

@@ -3,8 +3,9 @@
 CEToolbarController
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -117,7 +118,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSelectEncoding:(int)inEncoding
+- (void)setSelectEncoding:(NSInteger)inEncoding
 // エンコーディングポップアップの選択項目を設定
 // ------------------------------------------------------
 {
@@ -134,11 +135,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSelectEndingItemIndex:(int)inIndex
+- (void)setSelectEndingItemIndex:(NSInteger)inIndex
 // 行末コードポップアップの選択項目を設定
 // ------------------------------------------------------
 {
-    int theMax = [[_lineEndingPopupButton itemArray] count];
+    NSInteger theMax = [[_lineEndingPopupButton itemArray] count];
     if ((inIndex < 0) || (inIndex >= theMax)) { return; }
 
     [_lineEndingPopupButton selectItemAtIndex:inIndex];
@@ -217,10 +218,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSToolbarItem *outToolbarItem = 
             [[[NSToolbarItem alloc] initWithItemIdentifier:inItemIdentifier] autorelease];
 
-    // GetInfo (target = FirstResponder)
+    // Get Info (target = FirstResponder)
     if ([inItemIdentifier isEqualToString:k_getInfoItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"GetInfo",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"GetInfo",@"")];
+        [outToolbarItem setLabel:NSLocalizedString(@"Get Info",@"")];
+        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Get Info",@"")];
         [outToolbarItem setToolTip:NSLocalizedString(@"Show document information",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"getInfo"]];
         [outToolbarItem setAction:@selector(getInfo:)];
@@ -232,47 +233,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [outToolbarItem setToolTip:NSLocalizedString(@"Show Incompatible Char for the encoding",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"IncompatibleChar"]];
         [outToolbarItem setAction:@selector(toggleIncompatibleCharList:)];
-
-    // Preferences
-    } else if ([inItemIdentifier isEqualToString:k_preferencesItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Preferences",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Preferences",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open Preferences panel",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"Preferences"]];
-        [outToolbarItem setTarget:[NSApp delegate]]; // = CEAppController
-        [outToolbarItem setAction:@selector(openPrefWindow:)];
-
-    // Save (target = FirstResponder)
-    } else if ([inItemIdentifier isEqualToString:k_saveItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Save",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Save",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Save document",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"Save"]];
-        [outToolbarItem setAction:@selector(saveDocument:)];
-
-    // SaveAs (target = FirstResponder)
-    } else if ([inItemIdentifier isEqualToString:k_saveAsItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"SaveAs",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"SaveAs",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Save document as other name",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"SaveAs"]];
-        [outToolbarItem setAction:@selector(saveDocumentAs:)];
-
-    // Page setup (target = FirstResponder)
-    } else if ([inItemIdentifier isEqualToString:k_pageSetupItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Page Setup",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Page Setup",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Print page setup",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"PageSetup"]];
-        [outToolbarItem setAction:@selector(runPageLayout:)];
-
-    // Open TransparencyPanel (target = FirstResponder(CEDocumentController))
-    } else if ([inItemIdentifier isEqualToString:k_openTransparencyPanelItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Trans.Panel",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Transparency Panel",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open window Transparency Panel",@"")];
-        [outToolbarItem setImage:[NSImage imageNamed:@"TransparencyPanel"]];
-        [outToolbarItem setAction:@selector(openTransparencyPanel:)];
 
     // Bigger Font
     } else if ([inItemIdentifier isEqualToString:k_biggerFontItemID]) {
@@ -413,16 +373,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // Edit HexColorCode as Fore (target = FirstResponder)
     } else if ([inItemIdentifier isEqualToString:k_editHexAsForeItemID]) {
         [outToolbarItem setLabel:NSLocalizedString(@"Edit as Fore",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit HexColorCode as Fore",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open HexColorCode Editor to Edit as ForeColor",@"")];
+        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as Fore",@"")];
+        [outToolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as ForeColor",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"EditHexAsFore"]];
         [outToolbarItem setAction:@selector(editHexColorCodeAsForeColor:)];
 
     // Edit HexColorCode as BG (target = FirstResponder)
     } else if ([inItemIdentifier isEqualToString:k_editHexAsBGItemID]) {
         [outToolbarItem setLabel:NSLocalizedString(@"Edit as BG",@"")];
-        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit HexColorCode as BG",@"")];
-        [outToolbarItem setToolTip:NSLocalizedString(@"Open HexColorCode Editor to Edit as BackgroundColor",@"")];
+        [outToolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as BG",@"")];
+        [outToolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as BackgroundColor",@"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"EditHexAsBG"]];
         [outToolbarItem setAction:@selector(editHexColorCodeAsBGColor:)];
 
@@ -438,15 +398,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 設定画面でのツールバーアイテム配列を返す
 // ------------------------------------------------------
 {
-    return [NSArray arrayWithObjects:
-                k_getInfoItemID, 
-                k_showIncompatibleCharItemID, 
-                k_preferencesItemID, 
-                k_saveItemID, 
-                k_saveAsItemID, 
-                k_pageSetupItemID, 
-                NSToolbarPrintItemIdentifier, 
-                k_openTransparencyPanelItemID, 
+    return @[k_getInfoItemID, 
+                k_showIncompatibleCharItemID,
+                NSToolbarPrintItemIdentifier,  
                 NSToolbarShowFontsItemIdentifier, 
                 k_biggerFontItemID, 
                 k_smallerFontItemID, 
@@ -467,8 +421,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSToolbarSeparatorItemIdentifier, 
                 NSToolbarFlexibleSpaceItemIdentifier, 
                 NSToolbarSpaceItemIdentifier, 
-                NSToolbarCustomizeToolbarItemIdentifier, 
-                nil];
+                NSToolbarCustomizeToolbarItemIdentifier];
 }
 
 
@@ -477,13 +430,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ツールバーアイテムデフォルト配列を返す
 // ------------------------------------------------------
 {
-    return [NSArray arrayWithObjects:
-                k_lineEndingsItemID, 
+    return @[k_lineEndingsItemID, 
                 k_fileEncodingsItemID, 
                 k_syntaxItemID, 
                 NSToolbarFlexibleSpaceItemIdentifier, 
-                k_getInfoItemID, 
-                nil];
+                k_getInfoItemID];
 }
 
 
@@ -505,43 +456,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *theIdentifer = [inItem itemIdentifier];
+    NSString *imageName;
 
     if ([theIdentifer isEqualToString:k_showNavigationBarItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"NaviBar_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"NaviBar_Hide"]];
-        }
+        imageName = inBool ? @"NaviBar_Show" : @"NaviBar_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showLineNumItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"LineNumber_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"LineNumber_Hide"]];
-        }
+        imageName = inBool ? @"LineNumber_Show" : @"LineNumber_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showStatusBarItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"StatusArea_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"StatusArea_Hide"]];
-        }
+        imageName = inBool ? @"StatusArea_Show" : @"StatusArea_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showInvisibleCharsItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"InvisibleChar_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"InvisibleChar_Hide"]];
-        }
+        imageName = inBool ? @"InvisibleChar_Show" : @"InvisibleChar_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_showPageGuideItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"PageGuide_Show"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"PageGuide_Hide"]];
-        }
+        imageName = inBool ? @"PageGuide_Show" : @"PageGuide_Hide";
+        
     } else if ([theIdentifer isEqualToString:k_wrapLinesItemID]) {
-        if (inBool) {
-            [inItem setImage:[NSImage imageNamed:@"WrapLines_On"]];
-        } else {
-            [inItem setImage:[NSImage imageNamed:@"WrapLines_Off"]];
-        }
+        imageName = inBool ? @"WrapLines_On" : @"WrapLines_Off";
+    }
+    
+    if (imageName) {
+        [inItem setImage:[NSImage imageNamed:imageName]];
     }
 }
 

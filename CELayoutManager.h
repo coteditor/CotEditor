@@ -3,8 +3,9 @@
 CELayoutManager
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -15,6 +16,7 @@ This class is based on Smultron - SMLLayoutManager (written by Peter Borg – ht
 Smultron  Copyright (c) 2004 Peter Borg, All rights reserved.
 Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 arranged by nakamuxu, Jan 2005.
+arranged by 1024jp, Mar 2014.
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -36,61 +38,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "CEATSTypesetter.h"
-#import "CEPrivateMutableArray.h"
-#import "constants.h"
 
 
 @interface CELayoutManager : NSLayoutManager
-{
-    NSDictionary *_attributes;
-    NSString *_spaceCharacter;
-    NSString *_tabCharacter;
-    NSString *_newLineCharacter;
-    NSString *_fullwidthSpaceCharacter;
-    NSFont *_textFont;
-    id _appController;
 
-    BOOL _showInvisibles;
-    BOOL _showSpace;
-    BOOL _showTab;
-    BOOL _showNewLine;
-    BOOL _showFullwidthSpace;
-    BOOL _showOtherInvisibles;
+@property (nonatomic) BOOL showInvisibles;
+@property (nonatomic) BOOL showSpace;
+@property (nonatomic) BOOL showTab;
+@property (nonatomic) BOOL showNewLine;
+@property (nonatomic) BOOL showFullwidthSpace;
+@property (nonatomic) BOOL showOtherInvisibles;
 
-    BOOL _fixLineHeight;
-    BOOL _useAntialias;
-    BOOL _isPrinting;
+@property (nonatomic) BOOL fixLineHeight;  // 行高を固定するか
+@property (nonatomic) BOOL useAntialias;  // アンチエイリアスを適用するかどうか
+@property (nonatomic) BOOL isPrinting;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic, retain) NSFont *textFont;
 
-    float _defaultLineHeightForTextFont;
-    float _textFontPointSize;
-    float _textFontGlyphY;
-}
+@property (nonatomic, readonly) CGFloat textFontPointSize;
+@property (nonatomic, readonly) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高
+@property (nonatomic, readonly) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
 
-// Public method
-- (BOOL)showInvisibles;
-- (void)setShowInvisibles:(BOOL)inValue;
-- (BOOL)showSpace;
-- (void)setShowSpace:(BOOL)inValue;
-- (BOOL)showTab;
-- (void)setShowTab:(BOOL)inValue;
-- (BOOL)showNewLine;
-- (void)setShowNewLine:(BOOL)inValue;
-- (BOOL)showFullwidthSpace;
-- (void)setShowFullwidthSpace:(BOOL)inValue;
-- (BOOL)showOtherInvisibles;
-- (void)setShowOtherInvisibles:(BOOL)inValue;
-- (BOOL)fixLineHeight;
-- (void)setFixLineHeight:(BOOL)inValue;
-- (BOOL)useAntialias;
-- (void)setUseAntialias:(BOOL)inValue;
-- (BOOL)isPrinting;
-- (void)setIsPrinting:(BOOL)inValue;
-- (NSFont *)textFont;
-- (void)setTextFont:(NSFont *)inFont;
-- (void)setValuesForTextFont:(NSFont *)inFont;
-- (float)defaultLineHeightForTextFont;
-- (float)textFontPointSize;
-- (float)textFontGlyphY;
-- (float)lineHeight;
+
+- (void)setValuesForTextFont:(NSFont *)font;
+- (CGFloat)lineHeight;
+
 @end

@@ -3,8 +3,9 @@
 CENavigationBarView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -31,37 +32,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "CEOutlineMenuButton.h"
-#import "CEOutlineMenuButtonCell.h"
-#import "constants.h"
 
 @class CESubSplitView;
 
 @interface CENavigationBarView : NSView
-{
-    CESubSplitView *_masterView;
-    CEOutlineMenuButton *_outlineMenu;
-    NSButton *_prevButton;
-    NSButton *_nextButton;
-    NSButton *_openSplitButton;
-    NSButton *_closeSplitButton;
 
-    BOOL _showNavigationBar;
-}
+@property (nonatomic, assign) CESubSplitView *masterView;
+@property (nonatomic) BOOL showNavigationBar;
 
 // Public method
-- (CESubSplitView *)masterView;
-- (void)setMasterView:(CESubSplitView *)inView;
-- (BOOL)showNavigationBar;
-- (void)setShowNavigationBar:(BOOL)inBool;
-- (void)setOutlineMenuArray:(NSArray *)inArray;
-- (void)selectOutlineMenuItemWithRange:(NSRange)inRange;
-- (void)selectOutlineMenuItemWithRangeValue:(NSValue *)inRangeValue;
+- (void)setOutlineMenuArray:(NSArray *)menus;
+- (void)selectOutlineMenuItemWithRange:(NSRange)range;
+- (void)selectOutlineMenuItemWithRangeValue:(NSValue *)rangeValue;
 - (void)updatePrevNextButtonEnabled;
 - (void)selectPrevItem;
 - (void)selectNextItem;
 - (BOOL)canSelectPrevItem;
 - (BOOL)canSelectNextItem;
-- (void)setCloseSplitButtonEnabled:(BOOL)inBool;
+- (void)setCloseSplitButtonEnabled:(BOOL)enabled;
 
 @end

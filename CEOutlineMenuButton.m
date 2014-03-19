@@ -3,8 +3,9 @@
 CEOutlineMenuButton
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -31,6 +32,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEOutlineMenuButton.h"
+#import "CEOutlineMenuButtonCell.h"
+#import "constants.h"
 
 
 @implementation CEOutlineMenuButton
@@ -60,20 +63,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrameRect pullsDown:(BOOL)inBool
+- (instancetype)initWithFrame:(NSRect)buttonFrame pullsDown:(BOOL)flag
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrameRect pullsDown:inBool];
+    self = [super initWithFrame:buttonFrame pullsDown:flag];
     if (self) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        id theCell = [self cell];
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-        [theCell setFont:
-                [NSFont fontWithName:[theValues valueForKey:k_key_navigationBarFontName] 
-                    size:[[theValues valueForKey:k_key_navigationBarFontSize] floatValue]]];
-        [theCell setControlSize:NSSmallControlSize];
-        [theCell setBordered:NO];
+        [[self cell] setFont:[NSFont fontWithName:[values valueForKey:k_key_navigationBarFontName]
+                                             size:(CGFloat)[[values valueForKey:k_key_navigationBarFontSize] doubleValue]]];
+        [[self cell] setControlSize:NSSmallControlSize];
+        [[self cell] setBordered:NO];
     }
     return self;
 }

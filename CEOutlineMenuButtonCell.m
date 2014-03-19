@@ -3,8 +3,9 @@
 CEOutlineMenuButtonCell
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -35,34 +36,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEOutlineMenuButtonCell
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
 //
 //=======================================================
 
-
 // ------------------------------------------------------
-- (void)drawWithFrame:(NSRect)inCellFrame inView:(NSView *)inControlView
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 // セルの描画
 // ------------------------------------------------------
 {
     if (![self isEnabled]) { return; }
-    NSImage *theBackgroundCenterImg = [NSImage imageNamed:@"popUpButtonBG_center"];
-    NSImage *theBackgroundLeftImg = [NSImage imageNamed:@"popUpButtonBG_left"];
-    NSImage *theArrowImg = [NSImage imageNamed:@"popUpButtonArrow"];
-    float theImgHeight = k_navigationBarHeight - 1;
-
-    [theBackgroundCenterImg setScalesWhenResized:YES];
-    [theBackgroundCenterImg setSize:NSMakeSize(NSWidth(inCellFrame), theImgHeight)];
-    [theBackgroundCenterImg compositeToPoint:NSMakePoint(NSMinX(inCellFrame), theImgHeight) 
-            operation:NSCompositeSourceOver];
-    [theBackgroundLeftImg compositeToPoint:NSMakePoint(NSMinX(inCellFrame), theImgHeight) 
-            operation:NSCompositeSourceOver];
-    [theArrowImg compositeToPoint:NSMakePoint(NSMaxX(inCellFrame) - 11.0, theImgHeight) 
-            operation:NSCompositeSourceOver];
-    [super drawInteriorWithFrame:inCellFrame inView:inControlView];
+    
+    NSImage *centerImage = [NSImage imageNamed:@"popUpButtonBG_center"];
+    NSImage *leftImage = [NSImage imageNamed:@"popUpButtonBG_left"];
+    NSImage *rightImage= [NSImage imageNamed:@"popUpButtonArrow"];
+    
+    NSDrawThreePartImage(cellFrame, leftImage, centerImage, rightImage, NO, NSCompositeSourceOver, 1.0, YES);
+    
+    [super drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
 @end

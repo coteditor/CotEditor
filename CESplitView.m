@@ -3,8 +3,9 @@
 CESplitView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -31,106 +32,88 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESplitView.h"
+#import "constants.h"
 
+
+@interface CESplitView ()
+
+@property (nonatomic) BOOL finishedOpen;
+
+@end
 
 @implementation CESplitView
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (instancetype)initWithFrame:(NSRect)frameRect
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frameRect];
     if (self) {
-        _finishedOpen = NO;
+        [self setFinishedOpen:NO];
+        [self setDividerStyle:NSSplitViewDividerStylePaneSplitter];
     }
     return self;
 }
 
 
 // ------------------------------------------------------
-- (float)dividerThickness
-// 分割線の高さを返す
-// ------------------------------------------------------
-{
-    return k_splitDividerThickness;
-}
-
-// ------------------------------------------------------
-- (void)drawDividerInRect:(NSRect)inRect
-// 区切り線を描画
-// ------------------------------------------------------
-{
-// （ウィンドウ背景色をクリアカラーにしているため、オーバーライドしないと区切り線の背景が透明になってしまう）
-
-    // 背景を塗る
-    [[NSColor gridColor] set];
-    [NSBezierPath fillRect:inRect];
-    // 区切り線を縁取る
-    [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeRect:inRect];
-    // 区切り線マークを描画
-    [super drawDividerInRect:inRect];
-}
-
-
-// ------------------------------------------------------
-- (void)setShowLineNum:(BOOL)inBool
+- (void)setShowLineNum:(BOOL)showLineNum
 // 行番号表示の有無を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowLineNumWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+    [[self subviews] makeObjectsPerformSelector:@selector(setShowLineNumWithNumber:)
+                                     withObject:@(showLineNum)];
 }
 
 
 // ------------------------------------------------------
-- (void)setShowNavigationBar:(BOOL)inBool
+- (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ナビゲーションバー描画の有無を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowNavigationBarWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+    [[self subviews] makeObjectsPerformSelector:@selector(setShowNavigationBarWithNumber:)
+                                     withObject:@(showNavigationBar)];
 }
 
 
 // ------------------------------------------------------
-- (void)setWrapLines:(BOOL)inBool
+- (void)setWrapLines:(BOOL)wrapLines
 // ラップする／しないを設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setWrapLinesWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+    [[self subviews] makeObjectsPerformSelector:@selector(setWrapLinesWithNumber:)
+                                     withObject:@(wrapLines)];
 }
 
 
 // ------------------------------------------------------
-- (void)setShowInvisibles:(BOOL)inBool
+- (void)setShowInvisibles:(BOOL)showInvisibles
 // 不可視文字の表示／非表示を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowInvisiblesWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+    [[self subviews] makeObjectsPerformSelector:@selector(setShowInvisiblesWithNumber:)
+                                     withObject:@(showInvisibles)];
 }
 
 
 // ------------------------------------------------------
-- (void)setUseAntialias:(BOOL)inBool
+- (void)setUseAntialias:(BOOL)useAntialias
 // 文字にアンチエイリアスを使うかどうかを設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setUseAntialiasWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+    [[self subviews] makeObjectsPerformSelector:@selector(setUseAntialiasWithNumber:)
+                                     withObject:@(useAntialias)];
 }
 
 
 // ------------------------------------------------------
-- (void)setCloseSubSplitViewButtonEnabled:(BOOL)inBool
+- (void)setCloseSubSplitViewButtonEnabled:(BOOL)enabled
 // テキストビュー分割削除ボタンを有効／無効を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:) 
-                        withObject:[NSNumber numberWithBool:inBool]];
+    [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:)
+                                     withObject:@(enabled)];
 }
 
 
@@ -154,13 +137,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSyntaxStyleNameToSyntax:(NSString *)inName
+- (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName
 // シンタックススタイルを設定
 // ------------------------------------------------------
 {
-    if (inName == nil) { return; }
+    if (syntaxName == nil) { return; }
 
-    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxStyleNameToSyntax:) withObject:inName];
+    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxStyleNameToSyntax:) withObject:syntaxName];
 }
 
 
@@ -170,10 +153,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(recoloringAllTextViewString)];
-    if (!_finishedOpen) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:k_documentDidFinishOpenNotification 
-                    object:[self superview]]; // superView = CEEditorView
-        _finishedOpen = YES;
+    if (![self finishedOpen]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:k_documentDidFinishOpenNotification
+                                                            object:[self superview]]; // superView = CEEditorView
+        [self setFinishedOpen:YES];
     }
 }
 
@@ -188,14 +171,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setAllBackgroundColorWithAlpha:(float)inAlpha
+- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
 // 全てのテキストビューの背景透明度を設定
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:) 
-                        withObject:[NSNumber numberWithFloat:inAlpha]];
+    [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:)
+                                     withObject:@(alpha)];
 }
-
-
 
 @end

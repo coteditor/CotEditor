@@ -20,7 +20,7 @@
 #import <OgreKit/OGString.h>
 
 
-// ©g‚ğencoding/decoding‚·‚é‚½‚ß‚Ìkey
+// è‡ªèº«ã‚’encoding/decodingã™ã‚‹ãŸã‚ã®key
 static NSString	* const OgreRegexKey               = @"OgreEnumeratorRegularExpression";
 static NSString	* const OgreSwappedTargetStringKey = @"OgreEnumeratorSwappedTargetString";
 static NSString	* const OgreStartOffsetKey         = @"OgreEnumeratorStartOffset";
@@ -34,7 +34,7 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 
 @implementation OGRegularExpressionEnumerator
 
-// Ÿ‚ğŒŸõ
+// æ¬¡ã‚’æ¤œç´¢
 - (id)nextObject
 {
 	int					r;
@@ -43,9 +43,9 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 	id					match = nil;
 	unsigned			UTF16charlen = 0;
 	
-	/* ‘S–Ê“I‚É‘‚«’¼‚·—\’è */
+	/* å…¨é¢çš„ã«æ›¸ãç›´ã™äºˆå®š */
 	if ( _terminalOfLastMatch == -1 ) {
-		// ƒ}ƒbƒ`I—¹
+		// ãƒãƒƒãƒçµ‚äº†
 		return nil;
 	}
 	
@@ -53,12 +53,12 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 	end = _UTF16TargetString + _lengthOfTargetString; // terminate address of target string
 	range = end;	// search terminate address of target string
 	if (start > range) {
-		// ‚±‚êˆÈãŒŸõ”ÍˆÍ‚Ì‚È‚¢ê‡
+		// ã“ã‚Œä»¥ä¸Šæ¤œç´¢ç¯„å›²ã®ãªã„å ´åˆ
 		_terminalOfLastMatch = -1;
 		return nil;
 	}
 	
-	// compileƒIƒvƒVƒ‡ƒ“(OgreFindNotEmptyOption‚ğ•Ê‚Éˆµ‚¤)
+	// compileã‚ªãƒ—ã‚·ãƒ§ãƒ³(OgreFindNotEmptyOptionã‚’åˆ¥ã«æ‰±ã†)
 	BOOL	findNotEmpty;
 	if (([_regex options] & OgreFindNotEmptyOption) == 0) {
 		findNotEmpty = NO;
@@ -66,7 +66,7 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 		findNotEmpty = YES;
 	}
 	
-	// searchƒIƒvƒVƒ‡ƒ“(OgreFindEmptyOption‚ğ•Ê‚Éˆµ‚¤)
+	// searchã‚ªãƒ—ã‚·ãƒ§ãƒ³(OgreFindEmptyOptionã‚’åˆ¥ã«æ‰±ã†)
 	BOOL		findEmpty;
 	unsigned	searchOptions;
 	if ((_searchOptions & OgreFindEmptyOption) == 0) {
@@ -77,29 +77,29 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 		searchOptions = _searchOptions & ~OgreFindEmptyOption;  // turn off OgreFindEmptyOption
 	}
 	
-	// region‚Ìì¬
+	// regionã®ä½œæˆ
 	region = onig_region_new();
 	if ( region == NULL ) {
-		// ƒƒ‚ƒŠ‚ğŠm•Û‚Å‚«‚È‚©‚Á‚½ê‡A—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã§ããªã‹ã£ãŸå ´åˆã€ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[NSException raise:NSMallocException format:@"fail to create a region"];
 	}
 	
-	/* ŒŸõ */
+	/* æ¤œç´¢ */
 	regex_t*	regexBuffer = [_regex patternBuffer];
 	
 	int	counterOfAutorelease = 0;
 	NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
 	
 	if (!findNotEmpty) {
-		/* ‹ó•¶š—ñ‚Ö‚Ìƒ}ƒbƒ`‚ğ‹–‚·ê‡ */
+		/* ç©ºæ–‡å­—åˆ—ã¸ã®ãƒãƒƒãƒã‚’è¨±ã™å ´åˆ */
 		r = onig_search(regexBuffer, (unsigned char *)_UTF16TargetString, (unsigned char *)end, (unsigned char *)start, (unsigned char *)range, region, searchOptions);
 		
-		// OgreFindEmptyOption‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÅA
-		// ‘O‰ñ‹ó•¶š—ñˆÈŠO‚Éƒ}ƒbƒ`‚µ‚ÄA¡‰ñ‹ó•¶š—ñ‚Éƒ}ƒbƒ`‚µ‚½ê‡A1•¶š‚¸‚ç‚µ‚Ä‚à‚¤1“xƒ}ƒbƒ`‚ğ‚İ‚éB
+		// OgreFindEmptyOptionãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„å ´åˆã§ã€
+		// å‰å›ç©ºæ–‡å­—åˆ—ä»¥å¤–ã«ãƒãƒƒãƒã—ã¦ã€ä»Šå›ç©ºæ–‡å­—åˆ—ã«ãƒãƒƒãƒã—ãŸå ´åˆã€1æ–‡å­—ãšã‚‰ã—ã¦ã‚‚ã†1åº¦ãƒãƒƒãƒã‚’è©¦ã¿ã‚‹ã€‚
 		if (!findEmpty && (!_isLastMatchEmpty) && (r >= 0) && (region->beg[0] == region->end[0]) && (_startLocation > 0)) {
 			if (start < range) {
 				UTF16charlen = Ogre_UTF16charlen(_UTF16TargetString + _startLocation);
-				_startLocation += UTF16charlen; // 1•¶ši‚ß‚é
+				_startLocation += UTF16charlen; // 1æ–‡å­—é€²ã‚ã‚‹
 				start = _UTF16TargetString + _startLocation;
 				r = onig_search(regexBuffer, (unsigned char *)_UTF16TargetString, (unsigned char *)end, (unsigned char *)start, (unsigned char *)range, region, searchOptions);
 			} else {
@@ -108,16 +108,16 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 		}
 		
 	} else {
-		/* ‹ó•¶š—ñ‚Ö‚Ìƒ}ƒbƒ`‚ğ‹–‚³‚È‚¢ê‡ */
+		/* ç©ºæ–‡å­—åˆ—ã¸ã®ãƒãƒƒãƒã‚’è¨±ã•ãªã„å ´åˆ */
 		while (TRUE) {
 			r = onig_search(regexBuffer, (unsigned char *)_UTF16TargetString, (unsigned char *)end, (unsigned char *)start, (unsigned char *)range, region, searchOptions);
 			if ((r >= 0) && (region->beg[0] == region->end[0]) && (start < range)) {
-				// ‹ó•¶š—ñ‚Éƒ}ƒbƒ`‚µ‚½ê‡
+				// ç©ºæ–‡å­—åˆ—ã«ãƒãƒƒãƒã—ãŸå ´åˆ
 				UTF16charlen = Ogre_UTF16charlen(_UTF16TargetString + _startLocation);
-				_startLocation += UTF16charlen;	// 1•¶ši‚ß‚é
+				_startLocation += UTF16charlen;	// 1æ–‡å­—é€²ã‚ã‚‹
 				start = _UTF16TargetString + _startLocation;
 			} else {
-				// ‚±‚êˆÈãi‚ß‚È‚¢ê‡E‹ó•¶š—ñˆÈŠO‚Éƒ}ƒbƒ`‚µ‚½ê‡Eƒ}ƒbƒ`‚É¸”s‚µ‚½ê‡
+				// ã“ã‚Œä»¥ä¸Šé€²ã‚ãªã„å ´åˆãƒ»ç©ºæ–‡å­—åˆ—ä»¥å¤–ã«ãƒãƒƒãƒã—ãŸå ´åˆãƒ»ãƒãƒƒãƒã«å¤±æ•—ã—ãŸå ´åˆ
 				break;
 			}
 		
@@ -128,7 +128,7 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 			}
 		}
 		if ((r >= 0) && (region->beg[0] == region->end[0]) && (start >= range)) {
-			// ÅŒã‚É‹ó•¶š—ñ‚Éƒ}ƒbƒ`‚µ‚½ê‡Bƒ~ƒXƒ}ƒbƒ`ˆµ‚¢‚Æ‚·‚éB
+			// æœ€å¾Œã«ç©ºæ–‡å­—åˆ—ã«ãƒãƒƒãƒã—ãŸå ´åˆã€‚ãƒŸã‚¹ãƒãƒƒãƒæ‰±ã„ã¨ã™ã‚‹ã€‚
 			r = ONIG_MISMATCH;
 		}
 	}
@@ -136,8 +136,8 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 	[pool release];
 	
 	if (r >= 0) {
-		// ƒ}ƒbƒ`‚µ‚½ê‡
-		// matchƒIƒuƒWƒFƒNƒg‚Ìì¬
+		// ãƒãƒƒãƒã—ãŸå ´åˆ
+		// matchã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 		match = [[[OGRegularExpressionMatch allocWithZone:[self zone]] 
 				initWithRegion: region 
 				index: _numberOfMatches
@@ -145,47 +145,47 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 				terminalOfLastMatch: _terminalOfLastMatch
 			] autorelease];
 		
-		_numberOfMatches++;	// ƒ}ƒbƒ`”‚ğ‘‰Á
+		_numberOfMatches++;	// ãƒãƒƒãƒæ•°ã‚’å¢—åŠ 
 		
-		/* ƒ}ƒbƒ`‚µ‚½•¶š—ñ‚ÌI’[ˆÊ’u */
+		/* ãƒãƒƒãƒã—ãŸæ–‡å­—åˆ—ã®çµ‚ç«¯ä½ç½® */
 		if ( (r == _lengthOfTargetString * sizeof(unichar)) && (r == region->end[0]) ) {
-			_terminalOfLastMatch = -1;	// ÅŒã‚É‹ó•¶š—ñ‚Éƒ}ƒbƒ`‚µ‚½ê‡‚ÍA‚±‚êˆÈãƒ}ƒbƒ`‚µ‚È‚¢B
-			_isLastMatchEmpty = YES;	// ‚¢‚ç‚È‚¢‚¾‚ë‚¤‚ª”O‚Ì‚½‚ßB
+			_terminalOfLastMatch = -1;	// æœ€å¾Œã«ç©ºæ–‡å­—åˆ—ã«ãƒãƒƒãƒã—ãŸå ´åˆã¯ã€ã“ã‚Œä»¥ä¸Šãƒãƒƒãƒã—ãªã„ã€‚
+			_isLastMatchEmpty = YES;	// ã„ã‚‰ãªã„ã ã‚ã†ãŒå¿µã®ãŸã‚ã€‚
 
 			return match;
 		} else {
-			_terminalOfLastMatch = region->end[0] / sizeof(unichar);	// ÅŒã‚Éƒ}ƒbƒ`‚µ‚½•¶š—ñ‚ÌI’[ˆÊ’u
+			_terminalOfLastMatch = region->end[0] / sizeof(unichar);	// æœ€å¾Œã«ãƒãƒƒãƒã—ãŸæ–‡å­—åˆ—ã®çµ‚ç«¯ä½ç½®
 		}
 
-		/* Ÿ‰ñ‚Ìƒ}ƒbƒ`ŠJnˆÊ’u‚ğ‹‚ß‚é */
+		/* æ¬¡å›ã®ãƒãƒƒãƒé–‹å§‹ä½ç½®ã‚’æ±‚ã‚ã‚‹ */
 		_startLocation = _terminalOfLastMatch;
 		
-		/* UTF16String‚Å‚ÌŠJnˆÊ’u */
+		/* UTF16Stringã§ã®é–‹å§‹ä½ç½® */
 		if (r == region->end[0]) {
-			// ‹ó•¶š—ñ‚Éƒ}ƒbƒ`‚µ‚½ê‡AŸ‰ñ‚Ìƒ}ƒbƒ`ŠJnˆÊ’u‚ğ1•¶šæ‚Éi‚ß‚éB
+			// ç©ºæ–‡å­—åˆ—ã«ãƒãƒƒãƒã—ãŸå ´åˆã€æ¬¡å›ã®ãƒãƒƒãƒé–‹å§‹ä½ç½®ã‚’1æ–‡å­—å…ˆã«é€²ã‚ã‚‹ã€‚
 			_isLastMatchEmpty = YES;
 			UTF16charlen = Ogre_UTF16charlen(_UTF16TargetString + _terminalOfLastMatch);
 			_startLocation += UTF16charlen;
 		} else {
-			// ‹ó‚Å‚È‚©‚Á‚½ê‡‚Íi‚ß‚È‚¢B
+			// ç©ºã§ãªã‹ã£ãŸå ´åˆã¯é€²ã‚ãªã„ã€‚
 			_isLastMatchEmpty = NO;
 		}
 		
 		return match;
 	}
 	
-	onig_region_free(region, 1 /* free all */);	// ƒ}ƒbƒ`‚µ‚È‚©‚Á‚½•¶š—ñ‚Ìregion‚ğŠJ•úB
+	onig_region_free(region, 1 /* free all */);	// ãƒãƒƒãƒã—ãªã‹ã£ãŸæ–‡å­—åˆ—ã®regionã‚’é–‹æ”¾ã€‚
 	
 	if (r == ONIG_MISMATCH) {
-		// ƒ}ƒbƒ`‚µ‚È‚©‚Á‚½ê‡
+		// ãƒãƒƒãƒã—ãªã‹ã£ãŸå ´åˆ
 		_terminalOfLastMatch = -1;
 	} else {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		unsigned char s[ONIG_MAX_ERROR_MESSAGE_LEN];
 		onig_error_code_to_str(s, r);
 		[NSException raise:OgreEnumeratorException format:@"%s", s];
 	}
-	return nil;	// ƒ}ƒbƒ`‚µ‚È‚©‚Á‚½ê‡
+	return nil;	// ãƒãƒƒãƒã—ãªã‹ã£ãŸå ´åˆ
 }
 
 - (NSArray*)allObjects
@@ -241,14 +241,14 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 #endif
 	//[super encodeWithCoder:encoder]; NSObject does ont respond to method encodeWithCoder:
 	
-	//OGRegularExpression	*_regex;							// ³‹K•\Œ»ƒIƒuƒWƒFƒNƒg
-	//NSString				*_TargetString;				// ŒŸõ‘ÎÛ•¶š—ñ
-	//NSRange				_searchRange;						// ŒŸõ”ÍˆÍ
-	//unsigned              _searchOptions;						// ŒŸõƒIƒvƒVƒ‡ƒ“
-	//int					_terminalOfLastMatch;               // ‘O‰ñ‚Éƒ}ƒbƒ`‚µ‚½•¶š—ñ‚ÌI’[ˆÊ’u (_region->end[0] / sizeof(unichar))
-	//unsigned              _startLocation;						// ƒ}ƒbƒ`ŠJnˆÊ’u
-	//BOOL					_isLastMatchEmpty;					// ‘O‰ñ‚Ìƒ}ƒbƒ`‚ª‹ó•¶š—ñ‚¾‚Á‚½‚©‚Ç‚¤‚©
-    //unsigned              _numberOfMatches;                   // ƒ}ƒbƒ`‚µ‚½”
+	//OGRegularExpression	*_regex;							// æ­£è¦è¡¨ç¾ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	//NSString				*_TargetString;				// æ¤œç´¢å¯¾è±¡æ–‡å­—åˆ—
+	//NSRange				_searchRange;						// æ¤œç´¢ç¯„å›²
+	//unsigned              _searchOptions;						// æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+	//int					_terminalOfLastMatch;               // å‰å›ã«ãƒãƒƒãƒã—ãŸæ–‡å­—åˆ—ã®çµ‚ç«¯ä½ç½® (_region->end[0] / sizeof(unichar))
+	//unsigned              _startLocation;						// ãƒãƒƒãƒé–‹å§‹ä½ç½®
+	//BOOL					_isLastMatchEmpty;					// å‰å›ã®ãƒãƒƒãƒãŒç©ºæ–‡å­—åˆ—ã ã£ãŸã‹ã©ã†ã‹
+    //unsigned              _numberOfMatches;                   // ãƒãƒƒãƒã—ãŸæ•°
     
     if ([encoder allowsKeyedCoding]) {
 		[encoder encodeObject: _regex forKey: OgreRegexKey];
@@ -283,29 +283,29 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 	BOOL	allowsKeyedCoding = [decoder allowsKeyedCoding];
 
 
-	//OGRegularExpression	*_regex;							// ³‹K•\Œ»ƒIƒuƒWƒFƒNƒg
+	//OGRegularExpression	*_regex;							// æ­£è¦è¡¨ç¾ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     if (allowsKeyedCoding) {
 		_regex = [[decoder decodeObjectForKey: OgreRegexKey] retain];
 	} else {
 		_regex = [[decoder decodeObject] retain];
 	}
 	if (_regex == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	
 	
-	//NSString			*_targetString;				// ŒŸõ‘ÎÛ•¶š—ñB\‚ª“ü‚ê‘Ö‚í‚Á‚Ä‚¢‚é(–‚ª‚ ‚é)‚Ì‚Å’ˆÓ
-	//unichar           *_UTF16TargetString;			// UTF16‚Å‚ÌŒŸõ‘ÎÛ•¶š—ñ
+	//NSString			*_targetString;				// æ¤œç´¢å¯¾è±¡æ–‡å­—åˆ—ã€‚Â¥ãŒå…¥ã‚Œæ›¿ã‚ã£ã¦ã„ã‚‹(äº‹ãŒã‚ã‚‹)ã®ã§æ³¨æ„
+	//unichar           *_UTF16TargetString;			// UTF16ã§ã®æ¤œç´¢å¯¾è±¡æ–‡å­—åˆ—
 	//unsigned          _lengthOfTargetString;       // [_targetString length]
     if (allowsKeyedCoding) {
-		_targetString = [[decoder decodeObjectForKey: OgreSwappedTargetStringKey] retain];	// [self targetString]‚Å‚Í‚È‚¢B
+		_targetString = [[decoder decodeObjectForKey: OgreSwappedTargetStringKey] retain];	// [self targetString]ã§ã¯ãªã„ã€‚
 	} else {
 		_targetString = [[decoder decodeObject] retain];
 	}
 	if (_targetString == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
@@ -314,20 +314,20 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
     
 	_UTF16TargetString = (unichar*)NSZoneMalloc([self zone], sizeof(unichar) * _lengthOfTargetString);
     if (_UTF16TargetString == NULL) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
         [self release];
         [NSException raise:NSInvalidUnarchiveOperationException format:@"fail to allocate a memory"];
     }
     [targetPlainString getCharacters:_UTF16TargetString range:NSMakeRange(0, _lengthOfTargetString)];
 	
-	// NSRange				_searchRange;						// ŒŸõ”ÍˆÍ
+	// NSRange				_searchRange;						// æ¤œç´¢ç¯„å›²
     if (allowsKeyedCoding) {
 		anObject = [decoder decodeObjectForKey: OgreStartOffsetKey];
 	} else {
 		anObject = [decoder decodeObject];
 	}
 	if (anObject == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
@@ -336,70 +336,70 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 	
 	
 	
-	// 	_searchOptions;			// ŒŸõƒIƒvƒVƒ‡ƒ“
+	// 	_searchOptions;			// æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³
     if (allowsKeyedCoding) {
 		anObject = [decoder decodeObjectForKey: OgreOptionsKey];
 	} else {
 		anObject = [decoder decodeObject];
 	}
 	if (anObject == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	_searchOptions = [anObject unsignedIntValue];
 	
 	
-	// int	_terminalOfLastMatch;	// ‘O‰ñ‚Éƒ}ƒbƒ`‚µ‚½•¶š—ñ‚ÌI’[ˆÊ’u (_region->end[0] / sizeof(unichar))
+	// int	_terminalOfLastMatch;	// å‰å›ã«ãƒãƒƒãƒã—ãŸæ–‡å­—åˆ—ã®çµ‚ç«¯ä½ç½® (_region->end[0] / sizeof(unichar))
     if (allowsKeyedCoding) {
 		anObject = [decoder decodeObjectForKey: OgreTerminalOfLastMatchKey];
 	} else {
 		anObject = [decoder decodeObject];
 	}
 	if (anObject == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	_terminalOfLastMatch = [anObject intValue];
 	
 	
-	//			_startLocation;						// ƒ}ƒbƒ`ŠJnˆÊ’u
+	//			_startLocation;						// ãƒãƒƒãƒé–‹å§‹ä½ç½®
     if (allowsKeyedCoding) {
 		anObject = [decoder decodeObjectForKey: OgreStartLocationKey];
 	} else {
 		anObject = [decoder decodeObject];
 	}
 	if (anObject == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	_startLocation = [anObject unsignedIntValue];
     	
 
-	//BOOL				_isLastMatchEmpty;					// ‘O‰ñ‚Ìƒ}ƒbƒ`‚ª‹ó•¶š—ñ‚¾‚Á‚½‚©‚Ç‚¤‚©
+	//BOOL				_isLastMatchEmpty;					// å‰å›ã®ãƒãƒƒãƒãŒç©ºæ–‡å­—åˆ—ã ã£ãŸã‹ã©ã†ã‹
     if (allowsKeyedCoding) {
 		anObject = [decoder decodeObjectForKey: OgreIsLastMatchEmptyKey];
 	} else {
 		anObject = [decoder decodeObject];
 	}
 	if (anObject == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	_isLastMatchEmpty = [anObject boolValue];
 	
 	
-	//	unsigned			_numberOfMatches;					// ƒ}ƒbƒ`‚µ‚½”
+	//	unsigned			_numberOfMatches;					// ãƒãƒƒãƒã—ãŸæ•°
     if (allowsKeyedCoding) {
 		anObject = [decoder decodeObjectForKey: OgreNumberOfMatchesKey];
 	} else {
 		anObject = [decoder decodeObject];
 	}
 	if (anObject == nil) {
-		// ƒGƒ‰[B—áŠO‚ğ”­¶‚³‚¹‚éB
+		// ã‚¨ãƒ©ãƒ¼ã€‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
 		[self release];
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
@@ -422,7 +422,7 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 			range: _searchRange 
 			regularExpression: _regex];
 			
-	// ’l‚ÌƒZƒbƒg
+	// å€¤ã®ã‚»ãƒƒãƒˆ
 	[newObject _setTerminalOfLastMatch: _terminalOfLastMatch];
 	[newObject _setStartLocation: _startLocation];
 	[newObject _setIsLastMatchEmpty: _isLastMatchEmpty];
@@ -436,13 +436,13 @@ NSString	* const OgreEnumeratorException = @"OGRegularExpressionEnumeratorExcept
 {
 	NSDictionary	*dictionary = [NSDictionary 
 		dictionaryWithObjects: [NSArray arrayWithObjects: 
-			_regex, 	// ³‹K•\Œ»ƒIƒuƒWƒFƒNƒg
+			_regex, 	// æ­£è¦è¡¨ç¾ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 			_targetString,
-			[NSString stringWithFormat:@"(%d, %d)", _searchRange.location, _searchRange.length], 	// ŒŸõ”ÍˆÍ
-			[[_regex class] stringsForOptions:_searchOptions], 	// ŒŸõƒIƒvƒVƒ‡ƒ“
-			[NSNumber numberWithInt:_terminalOfLastMatch],	// ‘O‰ñ‚Éƒ}ƒbƒ`‚µ‚½•¶š—ñ‚ÌI’[ˆÊ’u‚æ‚è‘O‚Ì•¶š—ñ‚Ì’·‚³
-			[NSNumber numberWithUnsignedInt:_startLocation], 	// ƒ}ƒbƒ`ŠJnˆÊ’u
-			(_isLastMatchEmpty? @"YES" : @"NO"), 	// ‘O‰ñ‚Ìƒ}ƒbƒ`‚ª‹ó•¶š—ñ‚¾‚Á‚½‚©‚Ç‚¤‚©
+			[NSString stringWithFormat:@"(%lu, %lu)", (unsigned long)_searchRange.location, (unsigned long)_searchRange.length], 	// æ¤œç´¢ç¯„å›²
+			[[_regex class] stringsForOptions:_searchOptions], 	// æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+			[NSNumber numberWithInt:_terminalOfLastMatch],	// å‰å›ã«ãƒãƒƒãƒã—ãŸæ–‡å­—åˆ—ã®çµ‚ç«¯ä½ç½®ã‚ˆã‚Šå‰ã®æ–‡å­—åˆ—ã®é•·ã•
+			[NSNumber numberWithUnsignedInt:_startLocation], 	// ãƒãƒƒãƒé–‹å§‹ä½ç½®
+			(_isLastMatchEmpty? @"YES" : @"NO"), 	// å‰å›ã®ãƒãƒƒãƒãŒç©ºæ–‡å­—åˆ—ã ã£ãŸã‹ã©ã†ã‹
 			[NSNumber numberWithUnsignedInt:_numberOfMatches], 
 			nil]
 		forKeys:[NSArray arrayWithObjects: 

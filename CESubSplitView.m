@@ -3,8 +3,9 @@
 CESubSplitView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -62,7 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (id)initWithFrame:(NSRect)inFrame
+- (instancetype)initWithFrame:(NSRect)inFrame
 // 初期化
 // ------------------------------------------------------
 {
@@ -95,6 +96,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [_scrollView setHasHorizontalScroller:YES];
         [_scrollView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
         [_scrollView setAutohidesScrollers:NO];
+        [_scrollView setDrawsBackground:NO];
         [[_scrollView contentView] setAutoresizesSubviews:YES];
         // （splitViewをリサイズした時に最後までナビバーを表示させるため、その下に配置する）
         [self addSubview:_scrollView positioned:NSWindowBelow relativeTo:_navigationBar];
@@ -124,11 +126,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _textViewCore = [[CETextViewCore allocWithZone:[self zone]] 
                     initWithFrame:theTextFrame textContainer:theTextContainer]; // ===== alloc
         [_textViewCore setDelegate:self];
-        // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                    selector:@selector(textDidReplaceAll:) 
-                    name:@"textDidReplaceAllNotification" 
-                    object:_textViewCore];
+        
+//        !!!: OgreKitの改造部分が失われたため現在機能していない (2014-03-16 by 1024jp)
+//        // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
+//        [[NSNotificationCenter defaultCenter] addObserver:self 
+//                    selector:@selector(textDidReplaceAll:) 
+//                    name:@"textDidReplaceAllNotification" 
+//                    object:_textViewCore];
         [_scrollView setDocumentView:_textViewCore];
 
         // slave view をセット
@@ -141,14 +145,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // ビューのパラメータをセット
         [_textViewCore setTextContainerInset:
-                NSMakeSize([[theValues valueForKey:k_key_textContainerInsetWidth] floatValue], 
-                    ([[theValues valueForKey:k_key_textContainerInsetHeightTop] floatValue] + 
-                    [[theValues valueForKey:k_key_textContainerInsetHeightBottom] floatValue]) / 2
-                    )];
+                NSMakeSize((CGFloat)[[theValues valueForKey:k_key_textContainerInsetWidth] doubleValue],
+                           ((CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightTop] doubleValue] +
+                            (CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightBottom] doubleValue]) / 2
+                           )];
         _lineNumUpdateTimer = nil;
         _outlineMenuTimer = nil;
-        _lineNumUpdateInterval = [[theValues valueForKey:k_key_lineNumUpdateInterval] floatValue];
-        _outlineMenuInterval = [[theValues valueForKey:k_key_outlineMenuInterval] floatValue];
+        _lineNumUpdateInterval = [[theValues valueForKey:k_key_lineNumUpdateInterval] doubleValue];
+        _outlineMenuInterval = [[theValues valueForKey:k_key_outlineMenuInterval] doubleValue];
         _highlightBracesColorDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_selectionColor]], 
                     NSBackgroundColorAttributeName, nil]; // ===== alloc
@@ -536,7 +540,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // テキストビューに背景色をセット
 // ------------------------------------------------------
 {
-    [[self textView] setBackgroundColorWithAlpha:[inNumber floatValue]];
+    [[self textView] setBackgroundColorWithAlpha:(CGFloat)[inNumber doubleValue]];
 }
 
 
@@ -598,7 +602,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (NSArray *)textView:(NSTextView *)inTextView completions:(NSArray *)inWordsArray 
-        forPartialWordRange:(NSRange)inCharRange indexOfSelectedItem:(int *)inIndex
+        forPartialWordRange:(NSRange)inCharRange indexOfSelectedItem:(NSInteger *)inIndex
 // 補完候補リストをセット
 // ------------------------------------------------------
 {
@@ -607,7 +611,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // http://smultron.sourceforge.net
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    unsigned int theAddingStandard = [[theValues valueForKey:k_key_completeAddStandardWords] unsignedIntValue];
+    NSUInteger theAddingStandard = [[theValues valueForKey:k_key_completeAddStandardWords] unsignedIntegerValue];
     NSMutableArray *outArray = [NSMutableArray arrayWithCapacity:[inWordsArray count]];
     NSEnumerator *theEnumerator;
     NSString *theCurStr = [[inTextView string] substringWithRange:inCharRange];
@@ -708,11 +712,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     NSString *theString = [self string];
-    int theStringLength = [theString length];
+    NSInteger theStringLength = [theString length];
     if (theStringLength == 0) { return; }
     NSRange theSelectedRange = [[self textView] selectedRange];
-    int theLocation = theSelectedRange.location;
-    int theDifference = theLocation - _lastCursorLocation;
+    NSInteger theLocation = theSelectedRange.location;
+    NSInteger theDifference = theLocation - _lastCursorLocation;
     _lastCursorLocation = theLocation;
 
     // Smultron では「if (theDifference != 1 && theDifference != -1)」の条件を使ってキャレットを前方に動かした時も強調表示させているが、CotEditor では Xcode 同様、入力時またはキャレットを後方に動かした時だけに限定した（2006.09.10）
@@ -741,7 +745,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return;
     }
-    unsigned int theSkipMatchingBrace = 0;
+    NSUInteger theSkipMatchingBrace = 0;
     theCurChar = theUnichar;
 
     while (theLocation--) {
@@ -767,6 +771,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 // Notification method (OgreKit 改)
 //  <== OgreReplaceAllThread
+//  !!!: OgreKitの改造部分が失われたため現在機能していない (2014-03-16 by 1024jp)
 //=======================================================
 
 // ------------------------------------------------------
@@ -800,7 +805,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ラップする時にサイズを適正化する
 // ------------------------------------------------------
 {
-    int theNewWidth = [[self scrollView] contentSize].width;
+    NSInteger theNewWidth = [[self scrollView] contentSize].width;
 
     theNewWidth -= (NSWidth([[self lineNumView] frame]) + k_lineNumPadding * 2 );
     [[[self textView] textContainer] setContainerSize:NSMakeSize(theNewWidth, FLT_MAX)];
@@ -880,7 +885,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CELayoutManager *theLayoutManager = (CELayoutManager *)[[self textView] layoutManager];
 
 // グリフがないときはそのまま戻ると、全くハイライトされないことと、アンドゥで描画が乱れるため、実行する。2008.06.21.
-//    unsigned int theNumOfGlyphs = [theLayoutManager numberOfGlyphs];
+//    NSUInteger theNumOfGlyphs = [theLayoutManager numberOfGlyphs];
 //    if (theNumOfGlyphs == 0) { return; }
     NSRange theSelectedRange = [[self textView] selectedRange];
     NSRange theLineRange = [[self string] lineRangeForRange:theSelectedRange];
@@ -894,7 +899,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (([[self string] length] == 0) || 
             ((!NSEqualRects(theAttrsRect, NSZeroRect)) && ([[self string] length] > 0))) {
         // 文字背景色を塗っても右側に生じる「空白」の矩形を得る
-        float theAdditionalWidth = [[[self textView] textContainer] containerSize].width
+        CGFloat theAdditionalWidth = [[[self textView] textContainer] containerSize].width
                         - theAttrsRect.size.width - theAttrsRect.origin.x
                         - [[self textView] textContainerInset].width
                         - [[[self textView] textContainer] lineFragmentPadding];
@@ -921,9 +926,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         NSColor *theHighlightColor = [[[self textView] highlightLineColor] colorWithAlphaComponent:
                     [[[self textView] backgroundColor] alphaComponent]];
-        NSDictionary *theDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                            theHighlightColor, NSBackgroundColorAttributeName, 
-                            nil];
+        NSDictionary *theDict = @{NSBackgroundColorAttributeName: theHighlightColor};
         // （文字列が削除されたときも実行されるので、範囲を検証しておかないと例外が発生する）
         NSRange theRemoveAttrsRange = NSMakeRange(0, [_textStorage length]);
 

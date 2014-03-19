@@ -3,8 +3,9 @@
 CETextSelection
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -32,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import <Cocoa/Cocoa.h>
 
+
 @class CEDocument;
 
 // AppleScript Enum
@@ -58,26 +60,31 @@ typedef enum {
     CENFKD = 'cNkd',
 } CEUNFType;
 
-@interface CETextSelection : NSObject
-{
-    CEDocument *_document;
-}
+
+@interface CETextSelection : NSObject <NSTextStorageDelegate>
 
 // Public method
-- (id)initWithDocument:(CEDocument *)inDocument;
-- (void)cleanUpTextStorage:(NSTextStorage *)inTextStorage;
+- (instancetype)initWithDocument:(CEDocument *)document;
+- (void)cleanUpTextStorage:(NSTextStorage *)textStorage;
 
-// for AppleScript accessor
+@end
+
+
+@interface CETextSelection (ScriptingSupport)
+
+// AppleScript accessor
 - (NSTextStorage *)contents;
-- (void)setContents:(id)inObject;
+- (void)setContents:(id)contentsObject;
 - (NSArray *)range;
-- (void)setRange:(NSArray *)inArray;
+- (void)setRange:(NSArray *)rangeArray;
+- (NSArray *)lineRange;
+- (void)setLineRange:(NSArray *)RangeArray;
 
-// for AppleScript handler
-- (void)handleShiftRight:(NSScriptCommand *)inCommand;
-- (void)handleShiftLeft:(NSScriptCommand *)inCommand;
-- (void)handleChangeCase:(NSScriptCommand *)inCommand;
-- (void)handleChangeWidthRoman:(NSScriptCommand *)inCommand;
-- (void)handleChangeKana:(NSScriptCommand *)inCommand;
+// AppleScript handler
+- (void)handleShiftRight:(NSScriptCommand *)command;
+- (void)handleShiftLeft:(NSScriptCommand *)command;
+- (void)handleChangeCase:(NSScriptCommand *)command;
+- (void)handleChangeWidthRoman:(NSScriptCommand *)command;
+- (void)handleChangeKana:(NSScriptCommand *)command;
 
 @end

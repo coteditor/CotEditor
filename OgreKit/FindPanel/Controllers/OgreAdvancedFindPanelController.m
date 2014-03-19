@@ -1697,7 +1697,7 @@ static NSString	*OgreAFPCAttributedReplaceHistoryKey = @"AFPC Attributed Replace
         } else {
             [findNextButton setAction:@selector(findNext:)];
         }
-		
+        
 		[findNextButton performClick:self]; // Find Next
 		[findNextButton setAction:@selector(findNext:)];
 		//[self findNextAndOrderOut:self];

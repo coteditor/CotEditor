@@ -3,8 +3,9 @@
 CEStatusBarView
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
@@ -14,6 +15,7 @@ Created:2005.03.30
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
 arranged by nakamuxu, Dec 2004.
+arranged by 1024jp, Mar 2014.
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -35,27 +37,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 @class CEEditorView;
 
 @interface CEStatusBarView : NSView
-{
-    NSTextField *_leftTextField;
-    NSTextField *_rightTextField;
-    NSImageView *_readOnlyView;
-    CEEditorView *_masterView;
 
-    BOOL _showStatusBar;
-}
+@property (nonatomic, assign) CEEditorView *masterView;
+@property (nonatomic) BOOL showStatusBar;
+@property (nonatomic, retain, readonly) NSTextField *leftTextField;
+@property (nonatomic, retain, readonly) NSTextField *rightTextField;
+
 
 // Public method
-- (NSTextField *)leftTextField;
-- (NSTextField *)rightTextField;
-- (CEEditorView *)masterView;
-- (void)setMasterView:(CEEditorView *)inView;
-- (BOOL)showStatusBar;
-- (void)setShowStatusBar:(BOOL)inBool;
-- (void)setReadOnlyIcon:(BOOL)inBool;
+
+- (void)setShowsReadOnlyIcon:(BOOL)showsReadOnlyIcon;
 
 @end
