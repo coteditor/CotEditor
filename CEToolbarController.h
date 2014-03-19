@@ -11,8 +11,6 @@ CEToolbarController
 encoding="UTF-8"
 Created:2005.01.07
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -34,29 +32,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
-@class CEDocument;
 
 @interface CEToolbarController : NSObject <NSToolbarDelegate>
-{
-    IBOutlet id _mainWindow;
-    IBOutlet id _lineEndingPopupButton;
-    IBOutlet id _encodingPopupButton;
-    IBOutlet id _syntaxPopupButton;
-    IBOutlet id _searchMenu;
-
-    NSToolbar *_toolbar;
-}
 
 // Public method
 - (void)setupToolbar;
-- (void)updateToggleItem:(NSString *)inIdentifer setOn:(BOOL)inBool;
+- (void)updateToggleItem:(NSString *)identifer setOn:(BOOL)setOn;
 - (void)buildEncodingPopupButton;
-- (void)setSelectEncoding:(NSInteger)inEncoding;
-- (void)setSelectEndingItemIndex:(NSInteger)inIndex;
+- (void)setSelectEncoding:(NSInteger)encoding;
+- (void)setSelectEndingItemIndex:(NSInteger)index;
 - (void)buildSyntaxPopupButton;
 - (NSString *)selectedTitleOfSyntaxItem;
-- (void)setSelectSyntaxItemWithTitle:(NSString *)inTitle;
+- (void)setSelectSyntaxItemWithTitle:(NSString *)title;
 
 @end
