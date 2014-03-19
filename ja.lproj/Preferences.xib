@@ -56,11 +56,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="743" customClass="CETabItemView">
-                                            <rect key="frame" x="0.0" y="0.0" width="642" height="653"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="642" height="536"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button id="2739">
-                                                    <rect key="frame" x="45" y="306" width="420" height="18"/>
+                                                    <rect key="frame" x="45" y="189" width="420" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="コンテキストメニューに、スクリプトメニューをインラインに追加" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -71,7 +71,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="3441">
-                                                    <rect key="frame" x="45" y="276" width="420" height="18"/>
+                                                    <rect key="frame" x="45" y="159" width="420" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="ファイル保存時に拡張子 &quot;txt&quot; をつける" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3442">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -82,7 +82,7 @@
                                                     </connections>
                                                 </button>
                                                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="1832">
-                                                    <rect key="frame" x="579" y="11" width="25" height="25"/>
+                                                    <rect key="frame" x="579" y="17" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3308">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -93,7 +93,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="1036">
-                                                    <rect key="frame" x="45" y="336" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="219" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="検索文字列を他のアプリと同期" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -104,7 +104,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="1030">
-                                                    <rect key="frame" x="45" y="366" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="249" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="行末コードを文字としてカウントする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -115,7 +115,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="870">
-                                                    <rect key="frame" x="380" y="396" width="180" height="18"/>
+                                                    <rect key="frame" x="380" y="279" width="180" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="&quot;&lt; >&quot;をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -127,7 +127,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="867">
-                                                    <rect key="frame" x="45" y="396" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="279" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="対応するカッコ&quot;( )&quot; &quot;[ ]&quot; &quot;{ }&quot;をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -138,7 +138,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="844">
-                                                    <rect key="frame" x="45" y="426" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="309" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="&quot;¥&quot; と &quot;\&quot; キーを入れ替える" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -149,7 +149,7 @@
                                                     </connections>
                                                 </button>
                                                 <box title="入力補完候補リスト" id="681">
-                                                    <rect key="frame" x="17" y="43" width="588" height="104"/>
+                                                    <rect key="frame" x="17" y="49" width="588" height="104"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="2" y="2" width="584" height="87"/>
@@ -191,7 +191,7 @@
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
                                                 <button id="644">
-                                                    <rect key="frame" x="46" y="516" width="383" height="18"/>
+                                                    <rect key="frame" x="46" y="399" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="スマートインサート／スマートデリート" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -202,50 +202,8 @@
                                                         <binding destination="26" name="value" keyPath="values.smartInsertAndDelete" id="646"/>
                                                     </connections>
                                                 </button>
-                                                <box title="ファイルタイプとクリエータの保存" id="602">
-                                                    <rect key="frame" x="17" y="158" width="588" height="109"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <view key="contentView">
-                                                        <rect key="frame" x="2" y="2" width="584" height="92"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <subviews>
-                                                            <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="374">
-                                                                <rect key="frame" x="38" y="13" width="410" height="68"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="cellSize" width="410" height="21"/>
-                                                                <size key="intercellSpacing" width="4" height="2"/>
-                                                                <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3405">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <cells>
-                                                                    <column>
-                                                                        <buttonCell type="radio" title="オリジナルを保持（無ければ CotEditor のコードを使用）" imagePosition="left" alignment="left" state="on" inset="2" id="376">
-                                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <buttonCell type="radio" title="常に CotEditor のコードをセット" imagePosition="left" alignment="left" tag="1" inset="2" id="377">
-                                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <buttonCell type="radio" title="コードをセットしない" imagePosition="left" alignment="left" inset="2" id="378">
-                                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                    </column>
-                                                                </cells>
-                                                                <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.saveTypeCreator" id="380"/>
-                                                                </connections>
-                                                            </matrix>
-                                                        </subviews>
-                                                    </view>
-                                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </box>
                                                 <button id="598">
-                                                    <rect key="frame" x="45" y="456" width="433" height="18"/>
+                                                    <rect key="frame" x="45" y="339" width="433" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="Carbonのように、選択テキストをすぐにドラッグ開始" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -256,7 +214,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="596">
-                                                    <rect key="frame" x="45" y="486" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="369" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="入力中に自動スペルチェック" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3300">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -267,7 +225,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="594">
-                                                    <rect key="frame" x="45" y="546" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="429" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="リオープンイベントで新規書類を開く" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -278,7 +236,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="106">
-                                                    <rect key="frame" x="45" y="576" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="459" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="起動時に新規書類を開く" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -289,7 +247,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="3424">
-                                                    <rect key="frame" x="45" y="606" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="489" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="自動的にアップデートを確認する" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3425">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -300,7 +258,7 @@
                                                     </connections>
                                                 </button>
                                                 <popUpButton verticalHuggingPriority="750" id="3430">
-                                                    <rect key="frame" x="329" y="601" width="100" height="26"/>
+                                                    <rect key="frame" x="329" y="484" width="100" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <popUpButtonCell key="cell" type="push" title="1週間ごと" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="604800" imageScaling="proportionallyDown" inset="2" selectedItem="3434" id="3431">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -1662,7 +1620,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="502" height="252"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="minSize" width="502" height="83"/>
+                                                                <size key="minSize" width="488" height="83"/>
                                                                 <size key="maxSize" width="586" height="10000000"/>
                                                                 <attributedString key="textStorage">
                                                                     <fragment>
@@ -1696,7 +1654,7 @@ The parent directory name of the dropped file.
                                                                     </fragment>
                                                                 </attributedString>
                                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="502" height="83"/>
+                                                                <size key="minSize" width="488" height="83"/>
                                                                 <size key="maxSize" width="586" height="10000000"/>
                                                             </textView>
                                                         </subviews>
@@ -1707,7 +1665,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="3418">
-                                                        <rect key="frame" x="492" y="1" width="11" height="83"/>
+                                                        <rect key="frame" x="489" y="1" width="14" height="83"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -1788,10 +1746,10 @@ The parent directory name of the dropped file.
                                                                 <rect key="frame" x="0.0" y="0.0" width="580" height="128"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="580" height="128"/>
+                                                                <size key="minSize" width="564" height="128"/>
                                                                 <size key="maxSize" width="582" height="10000000"/>
                                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="580" height="128"/>
+                                                                <size key="minSize" width="564" height="128"/>
                                                                 <size key="maxSize" width="582" height="10000000"/>
                                                                 <connections>
                                                                     <binding destination="451" name="value" keyPath="selection.formatString" id="593"/>
@@ -1806,7 +1764,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3416">
-                                                        <rect key="frame" x="566" y="1" width="15" height="128"/>
+                                                        <rect key="frame" x="565" y="1" width="16" height="128"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -1856,11 +1814,11 @@ The parent directory name of the dropped file.
                                                     <rect key="frame" x="20" y="302" width="486" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="8Pf-DD-vMX">
-                                                        <rect key="frame" x="1" y="1" width="469" height="94"/>
+                                                        <rect key="frame" x="1" y="1" width="484" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
-                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="94"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="484" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1891,11 +1849,11 @@ The parent directory name of the dropped file.
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3415">
-                                                        <rect key="frame" x="1" y="95" width="469" height="16"/>
+                                                        <rect key="frame" x="1" y="95" width="484" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="470" y="1" width="15" height="94"/>
+                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2753,7 +2711,7 @@ DQ
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="126">
-                <rect key="frame" x="1" y="9" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" tag="100" id="128">

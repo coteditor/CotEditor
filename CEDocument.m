@@ -112,10 +112,6 @@ enum { typeFSS = 'fss ' };
         [self setHasUndoManager:YES];
         _initialString = nil;
         _windowController = nil;
-        // CotEditor のクリエータ／タイプを使うなら、設定しておく
-        if ([[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue] <= 1) {
-            [self setFileAttributes:[self myCreatorAndTypeCodeAttributes]];
-        }
         (void)[self doSetEncoding:[[theValues valueForKey:k_key_encodingInNew] unsignedLongValue] 
                 updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
@@ -239,36 +235,6 @@ enum { typeFSS = 'fss ' };
     }
     
     return data;
-}
-
-
-// ------------------------------------------------------
-- (NSDictionary *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError **)outError
-// ファイル保存時のクリエータ／タイプなどファイル属性を決定する
-// ------------------------------------------------------
-{
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableDictionary *outDict = [[super fileAttributesToWriteToURL:url
-                                                               ofType:typeName
-                                                     forSaveOperation:saveOperation
-                                                  originalContentsURL:absoluteOriginalContentsURL
-                                                                error:outError] mutableCopy];
-    NSUInteger theSaveTypeCreator = [[theValues valueForKey:k_key_saveTypeCreator] unsignedIntegerValue];
-    
-    if (theSaveTypeCreator == 0) { // = same as original
-        OSType theCreator = [[self fileAttributes] fileHFSCreatorCode];
-        OSType theType = [[self fileAttributes] fileHFSTypeCode];
-        if ((theCreator == 0) || (theType == 0)) {
-            [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
-        } else {
-            outDict[NSFileHFSCreatorCode] = [self fileAttributes][NSFileHFSCreatorCode];
-            outDict[NSFileHFSTypeCode] = [self fileAttributes][NSFileHFSTypeCode];
-        }
-    } else if (theSaveTypeCreator == 1) { // = CotEditor's type
-        [outDict addEntriesFromDictionary:[self myCreatorAndTypeCodeAttributes]];
-    }
-    
-    return outDict;
 }
 
 
@@ -1727,17 +1693,6 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     [[[self undoManager] prepareWithInvocationTarget:self] doSetNewLineEndingCharacterCode:inNewLineEnding];
-}
-
-
-// ------------------------------------------------------
-- (NSDictionary *)myCreatorAndTypeCodeAttributes
-// CotEditor のタイプとクリエータを返す
-// ------------------------------------------------------
-{
-    NSDictionary *outDict = @{NSFileHFSCreatorCode: @('cEd1'),
-                              NSFileHFSTypeCode: @('TEXT')};
-    return outDict;
 }
 
 
