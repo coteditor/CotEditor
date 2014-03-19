@@ -20,7 +20,7 @@
 		258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258998F407CEED3400098762 /* defaultSyntaxStyle_HTML.plist */; };
 		2589EF5307F247AD003BF861 /* defaultSyntaxStyle_CSS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2589EF5207F247AD003BF861 /* defaultSyntaxStyle_CSS.plist */; };
 		258A14D107F3C6BC008E5FA1 /* CEFlippedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 258A14CF07F3C6BC008E5FA1 /* CEFlippedView.m */; };
-		258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		258EF2FA077FEDD000011E52 /* SyntaxManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxManager.xib */; };
 		259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
@@ -115,7 +115,7 @@
 		8C78824708ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C78824608ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist */; };
 		8C7D7DB30BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D7DB20BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist */; };
 		8C7F74EC091C738C005C7598 /* ODBEditorSuite.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */; };
-		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
 		8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8971340902620D0013FA27 /* CEPreferencesTabController.m */; };
 		8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8977240DCD8AD000DC32FF /* libicucore.dylib */; };
 		8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CCCAF09D6803400A008E5 /* CESplitView.m */; };

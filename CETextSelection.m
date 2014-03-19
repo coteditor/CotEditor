@@ -11,8 +11,6 @@ CETextSelection
 encoding="UTF-8"
 Created:2005.03.01
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -39,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CETextSelection ()
 
-@property (nonatomic, retain) CEDocument *document;
+@property (nonatomic) CEDocument *document;
 
 @end
 
@@ -66,17 +64,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     return self;
 }
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// 後片付け
-// ------------------------------------------------------
-{
-    [[self document] release];
-    [super dealloc];
-}
-
 
 // ------------------------------------------------------
 - (void)cleanUpTextStorage:(NSTextStorage *)textStorage
@@ -128,7 +115,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *string = [[[self document] editorView] substringWithSelectionForSave];
-    NSTextStorage *storage = [[[NSTextStorage alloc] initWithString:string] autorelease];
+    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
     [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
@@ -332,6 +319,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     [[[[self document] editorView] textView] unicodeNormalization:@(typeCode)];
 }
-
 
 @end

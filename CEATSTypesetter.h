@@ -3,14 +3,13 @@
 CEATSTypesetter
 (for CotEditor)
 
-Copyright (C) 2004-2007 nakamuxu.
-http://www.aynimac.com/
+ Copyright (C) 2004-2007 nakamuxu.
+ Copyright (C) 2014 CotEditor Project
+ http://coteditor.github.io
 =================================================
 
 encoding="UTF-8"
 Created:2005.12.08
- 
- -fno-objc-arc
  
 -------------------------------------------------
 
@@ -34,11 +33,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CELayoutManager.h"
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 @interface CEATSTypesetter : NSATSTypesetter
-{
-}
 
 // class method
 + (CEATSTypesetter *)sharedSystemTypesetter;

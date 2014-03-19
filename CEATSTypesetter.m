@@ -11,8 +11,6 @@ CEATSTypesetter
 encoding="UTF-8"
 Created:2005.12.08
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -35,13 +33,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEATSTypesetter.h"
 #import "CETextViewCore.h"
+#import "constants.h"
 
 
 @implementation CEATSTypesetter
 
-static CEATSTypesetter *sharedInstance = nil;
-
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 //=======================================================
 // Class method
@@ -53,12 +50,19 @@ static CEATSTypesetter *sharedInstance = nil;
 // 共有インスタンスを返す
 // ------------------------------------------------------
 {
-    return sharedInstance ? sharedInstance : [[self alloc] init];
+    static dispatch_once_t predicate;
+    static CEATSTypesetter *shared = nil;
+    
+    dispatch_once(&predicate, ^{
+        shared = [[CEATSTypesetter alloc] init];
+    });
+    
+    return shared;
 }
 
 
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -66,44 +70,32 @@ static CEATSTypesetter *sharedInstance = nil;
 //=======================================================
 
 // ------------------------------------------------------
-- (instancetype)init
-// 初期化
-// ------------------------------------------------------
-{
-    if (sharedInstance == nil) {
-        sharedInstance = [super init];
-    }
-    return sharedInstance;
-}
-
-
-// ------------------------------------------------------
 - (BOOL)usesFontLeading
 // フォントの leading 値を反映させるかどうかを返す
 // ------------------------------------------------------
 {
-    CELayoutManager *theManager = (CELayoutManager *)[self layoutManager];
+    CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
 
-    return ([theManager isPrinting] || (!([theManager fixLineHeight])));
+    return ([manager isPrinting] || ![manager fixLineHeight]);
 }
 
 
 // ------------------------------------------------------
-- (CGFloat)lineSpacingAfterGlyphAtIndex:(NSUInteger)inGlyphIndex withProposedLineFragmentRect:(NSRect)inRect
+- (CGFloat)lineSpacingAfterGlyphAtIndex:(NSUInteger)glyphIndex withProposedLineFragmentRect:(NSRect)rect
 // 行間ピクセル数を返す
 // ------------------------------------------------------
 {
-    CELayoutManager *theManager = (CELayoutManager *)[self layoutManager];
-    CGFloat theLineSpacing = [(CETextViewCore *)[[self currentTextContainer] textView] lineSpacing];
-    CGFloat theFontSize;
+    CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
+    CGFloat lineSpacing = [(CETextViewCore *)[[self currentTextContainer] textView] lineSpacing];
+    CGFloat fontSize;
 
-    if (([theManager isPrinting]) || (![theManager fixLineHeight])) {
+    if ([manager isPrinting] || ![manager fixLineHeight]) {
         // 印刷時または複合フォントでの行間固定をしないときは、システム既定値に、設定された行間を追加するだけ
         // （[NSGraphicsContext currentContextDrawingToScreen] が真を返す時があるため、専用フラグで印刷中を確認）
-        CGFloat theSpacing = [super lineSpacingAfterGlyphAtIndex:inGlyphIndex withProposedLineFragmentRect:inRect];
-        theFontSize = [[[[self currentTextContainer] textView] font] pointSize];
+        CGFloat spacing = [super lineSpacingAfterGlyphAtIndex:glyphIndex withProposedLineFragmentRect:rect];
+        fontSize = [[[[self currentTextContainer] textView] font] pointSize];
 
-        return (theSpacing + theLineSpacing * theFontSize);
+        return (spacing + lineSpacing * fontSize);
 
     }
     // 複合フォントで行の高さがばらつくのを防止する
@@ -112,12 +104,11 @@ static CEATSTypesetter *sharedInstance = nil;
     // （CETextViewCore で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
     // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
     // 挿入すると行間がズレる」問題が生じる）
-    CGFloat theDefaultLineHeight = [theManager defaultLineHeightForTextFont];
-    theFontSize = [theManager textFontPointSize];
+    CGFloat defaultLineHeight = [manager defaultLineHeightForTextFont];
+    fontSize = [manager textFontPointSize];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return floor(theDefaultLineHeight - inRect.size.height + theLineSpacing * theFontSize + 0.5);
+    return floor(defaultLineHeight - rect.size.height + lineSpacing * fontSize + 0.5);
 }
-
 
 @end
