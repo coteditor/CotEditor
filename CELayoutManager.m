@@ -10,7 +10,9 @@ CELayoutManager
 
 encoding="UTF-8"
 Created:2005.01.10
-
+ 
+ -fno-objc-arc
+ 
 ------------
 This class is based on Smultron - SMLLayoutManager (written by Peter Borg – http://smultron.sourceforge.net)
 Smultron  Copyright (c) 2004 Peter Borg, All rights reserved.

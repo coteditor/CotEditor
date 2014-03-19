@@ -10,7 +10,9 @@ CEPreferencesTabController
 
 encoding="UTF-8"
 Created:2005.10.16
-
+ 
+ -fno-objc-arc
+ 
 ------------
 This class is based on a sample code written by mkino.
 http://homepage.mac.com/mkino2/cocoaProg/AppKit/NSToolbar/NSToolbar.html

@@ -10,7 +10,9 @@ CEWindowController
 
 encoding="UTF-8"
 Created:2004.12.13
-
+ 
+ -fno-objc-arc
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or

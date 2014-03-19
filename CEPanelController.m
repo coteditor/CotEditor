@@ -10,8 +10,6 @@
  encoding="UTF-8"
  Created:2014-03-18 by 1024jp
  
- ___ARC_enabled___
- 
  This class is an abstract class for panels related to document.
  
  -------------------------------------------------

@@ -10,7 +10,9 @@ CEEditorView
 
 encoding="UTF-8"
 Created:2004.12.08
-
+ 
+ -fno-objc-arc
+ 
 ------------
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.

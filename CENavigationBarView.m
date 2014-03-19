@@ -10,7 +10,7 @@ CENavigationBarView
 
 encoding="UTF-8"
 Created:2005.08.22
-
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -72,7 +72,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         outlineMenuFrame.size.height -= 1.0;
         outlineMenuFrame.size.width = k_outlineMenuWidth;
         [self convertRect:outlineMenuFrame toView:self];
-        [self setOutlineMenu:[[CEOutlineMenuButton allocWithZone:[self zone]] initWithFrame:outlineMenuFrame pullsDown:NO]]; // ===== alloc
+        [self setOutlineMenu:[[CEOutlineMenuButton alloc] initWithFrame:outlineMenuFrame pullsDown:NO]];
         [[self outlineMenu] setAutoresizingMask:NSViewHeightSizable];
 
         // setup prevButton
@@ -80,7 +80,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         prevButtonFrame.origin.x -= k_outlineButtonWidth;
         prevButtonFrame.size.width = k_outlineButtonWidth;
         [self convertRect:prevButtonFrame toView:self];
-        [self setPrevButton:[[NSButton allocWithZone:[self zone]] initWithFrame:prevButtonFrame]]; // ===== alloc
+        [self setPrevButton:[[NSButton alloc] initWithFrame:prevButtonFrame]];
         [[self prevButton] setButtonType:NSMomentaryPushInButton];
         [[self prevButton] setBordered:NO];
         [[self prevButton] setImagePosition:NSImageOnly];
@@ -94,7 +94,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         nextButtonFrame.origin.x += NSWidth(outlineMenuFrame);
         nextButtonFrame.size.width = k_outlineButtonWidth;
         [self convertRect:nextButtonFrame toView:self];
-        [self setNextButton:[[NSButton allocWithZone:[self zone]] initWithFrame:nextButtonFrame]]; // ===== alloc
+        [self setNextButton:[[NSButton alloc] initWithFrame:nextButtonFrame]];
         [[self nextButton] setButtonType:NSMomentaryPushInButton];
         [[self nextButton] setBordered:NO];
         [[self nextButton] setImagePosition:NSImageOnly];
@@ -109,7 +109,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         openSplitButtonFrame.origin.y = 1.0;
         openSplitButtonFrame.size.width = [NSScroller scrollerWidth];
         [self convertRect:openSplitButtonFrame toView:self];
-        [self setOpenSplitButton:[[NSButton allocWithZone:[self zone]] initWithFrame:openSplitButtonFrame]]; // ===== alloc
+        [self setOpenSplitButton:[[NSButton alloc] initWithFrame:openSplitButtonFrame]];
         [[self openSplitButton] setButtonType:NSMomentaryPushInButton];
         [[self openSplitButton] setBordered:NO];
         [[self openSplitButton] setImagePosition:NSImageOnly];
@@ -125,7 +125,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         closeSplitButtonFrame.origin.y = 1.0;
         closeSplitButtonFrame.size.width = [NSScroller scrollerWidth];
         [self convertRect:closeSplitButtonFrame toView:self];
-        [self setCloseSplitButton:[[NSButton allocWithZone:[self zone]] initWithFrame:closeSplitButtonFrame]]; // ===== alloc
+        [self setCloseSplitButton:[[NSButton alloc] initWithFrame:closeSplitButtonFrame]];
         [[self closeSplitButton] setButtonType:NSMomentaryPushInButton];
         [[self closeSplitButton] setBordered:NO];
         [[self closeSplitButton] setImagePosition:NSImageOnly];
@@ -144,22 +144,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self addSubview:[self closeSplitButton]];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// clean up
-// ------------------------------------------------------
-{
-    // masterView is not retain.
-    [[self outlineMenu] release];
-    [[self prevButton] release];
-    [[self nextButton] release];
-    [[self openSplitButton] release];
-    [[self closeSplitButton] release];
-
-    [super dealloc];
 }
 
 
@@ -208,12 +192,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 // セパレータ
                 [menu addItem:[NSMenuItem separatorItem]];
             } else {
-                underlineMaskNumber = [[outlineItem[k_outlineMenuItemUnderlineMask] copy] autorelease];
+                underlineMaskNumber = [outlineItem[k_outlineMenuItemUnderlineMask] copy];
                 fontMask = ([[outlineItem valueForKey:k_outlineMenuItemFontBold] boolValue]) ? NSBoldFontMask : 0;
                 font = [fontManager convertFont:defaultFont toHaveTrait:fontMask];
                 
-                title = [[[NSMutableAttributedString alloc] initWithString:outlineItem[k_outlineMenuItemTitle]
-                                                                attributes:@{NSFontAttributeName: font}] autorelease];
+                title = [[NSMutableAttributedString alloc] initWithString:outlineItem[k_outlineMenuItemTitle]
+                                                               attributes:@{NSFontAttributeName: font}];
                 if (underlineMaskNumber) {
                     [title addAttribute:NSUnderlineStyleAttributeName
                                   value:underlineMaskNumber
@@ -224,8 +208,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                   value:[fontManager convertFont:font toHaveTrait:NSItalicFontMask]
                                   range:NSMakeRange(0, [title length])];
                 }
-                menuItem = [[[NSMenuItem alloc] initWithTitle:@" "
-                                                       action:@selector(setSelectedRangeWithNSValue:) keyEquivalent:@""] autorelease];
+                menuItem = [[NSMenuItem alloc] initWithTitle:@" "
+                                                      action:@selector(setSelectedRangeWithNSValue:) keyEquivalent:@""];
                 [menuItem setTarget:[[self masterView] textView]];
                 [menuItem setAttributedTitle:title];
                 [menuItem setRepresentedObject:[outlineItem valueForKey:k_outlineMenuItemRange]];

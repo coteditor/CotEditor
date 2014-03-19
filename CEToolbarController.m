@@ -10,7 +10,9 @@ CEToolbarController
 
 encoding="UTF-8"
 Created:2005.01.07
-
+ 
+ -fno-objc-arc
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
