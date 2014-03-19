@@ -11,8 +11,6 @@ CEPreferencesTabController
 encoding="UTF-8"
 Created:2005.10.16
  
- -fno-objc-arc
- 
 ------------
 This class is based on a sample code written by mkino.
 http://homepage.mac.com/mkino2/cocoaProg/AppKit/NSToolbar/NSToolbar.html
@@ -40,11 +38,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEPreferencesTabController.h"
+#import "constants.h"
 
+
+@interface CEPreferencesTabController ()
+
+@property (nonatomic) NSToolbar *toolbar;
+
+@property (nonatomic) IBOutlet NSWindow *prefWindow;
+@property (nonatomic) IBOutlet NSTabView *tabView;
+
+@end
+
+
+#pragma mark -
 
 @implementation CEPreferencesTabController
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -56,15 +67,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 後片付け
 // ------------------------------------------------------
 {
-    [_toolbar setDelegate:nil]; // デリゲート解除
-    [_toolbar release];
-
-    [super dealloc];
+    [[self toolbar] setDelegate:nil]; // デリゲート解除
 }
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -76,24 +84,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Nibファイル読み込み直後
 // ------------------------------------------------------
 {
-    _toolbar = [[NSToolbar alloc] initWithIdentifier:k_prefWindowToolbarID]; // ===== alloc
+    [self setToolbar:[[NSToolbar alloc] initWithIdentifier:k_prefWindowToolbarID]]; // ===== alloc
 
     // ユーザカスタマイズ可、コンフィグ内容を保存、アイコン+ラベルに設定
-    [_toolbar setAllowsUserCustomization:NO];
-    [_toolbar setAutosavesConfiguration:NO];
-    [_toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
+    [[self toolbar] setAllowsUserCustomization:NO];
+    [[self toolbar] setAutosavesConfiguration:NO];
+    [[self toolbar] setDisplayMode:NSToolbarDisplayModeIconAndLabel];
     // デリゲートを自身に指定
-    [_toolbar setDelegate:self];
+    [[self toolbar] setDelegate:self];
     // ウィンドウへ接続
-    [_prefWindow setToolbar:_toolbar];
+    [[self prefWindow] setToolbar:[self toolbar]];
     // 初期選択項目を選択、ウィンドウをリサイズ
-    [_toolbar setSelectedItemIdentifier:k_prefGeneralItemID];
-    (void)[self tabView:_tabView shouldSelectTabViewItem:[_tabView selectedTabViewItem]];
+    [[self toolbar] setSelectedItemIdentifier:k_prefGeneralItemID];
+    (void)[self tabView:[self tabView] shouldSelectTabViewItem:[[self tabView] selectedTabViewItem]];
 }
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSToolbar)
@@ -101,55 +109,54 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (NSToolbarItem *)toolbar:(NSToolbar *)inToolbar 
-        itemForItemIdentifier:(NSString *)inItemIdentifier 
-        willBeInsertedIntoToolbar:(BOOL)inFlag
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar
+        itemForItemIdentifier:(NSString *)itemIdentifier 
+        willBeInsertedIntoToolbar:(BOOL)flag
 // ツールバーアイテムを返す
 // ------------------------------------------------------
 {
-    NSToolbarItem *outToolbarItem = 
-            [[[NSToolbarItem alloc] initWithItemIdentifier:inItemIdentifier] autorelease];
+    NSToolbarItem *outToolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [outToolbarItem setTarget:self];
     [outToolbarItem setAction:@selector(selectTab:)];
 
     // General
-    if ([inItemIdentifier isEqualToString:k_prefGeneralItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"General",@"")];
+    if ([itemIdentifier isEqualToString:k_prefGeneralItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"General", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_General"]];
 
     // Window
-    } else if ([inItemIdentifier isEqualToString:k_prefWindowItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Window",@"")];
+    } else if ([itemIdentifier isEqualToString:k_prefWindowItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"Window", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_Window"]];
 
     // View
-    } else if ([inItemIdentifier isEqualToString:k_prefViewItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"View",@"")];
+    } else if ([itemIdentifier isEqualToString:k_prefViewItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"View", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_View"]];
 
     // Format
-    } else if ([inItemIdentifier isEqualToString:k_prefFormatItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Format",@"")];
+    } else if ([itemIdentifier isEqualToString:k_prefFormatItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"Format", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_Format"]];
 
     // Syntax
-    } else if ([inItemIdentifier isEqualToString:k_prefSyntaxItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Syntax",@"")];
+    } else if ([itemIdentifier isEqualToString:k_prefSyntaxItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"Syntax", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_Syntax"]];
 
     // File Drop
-    } else if ([inItemIdentifier isEqualToString:k_prefFileDropItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"File Drop",@"")];
+    } else if ([itemIdentifier isEqualToString:k_prefFileDropItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"File Drop", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_FileDrop"]];
 
     // Key Bindings
-    } else if ([inItemIdentifier isEqualToString:k_prefKeyBindingsItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Key Bindings",@"")];
+    } else if ([itemIdentifier isEqualToString:k_prefKeyBindingsItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"Key Bindings", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_KeyBinding"]];
 
     // Print
-    } else if ([inItemIdentifier isEqualToString:k_prefPrintItemID]) {
-        [outToolbarItem setLabel:NSLocalizedString(@"Print",@"")];
+    } else if ([itemIdentifier isEqualToString:k_prefPrintItemID]) {
+        [outToolbarItem setLabel:NSLocalizedString(@"Print", @"")];
         [outToolbarItem setImage:[NSImage imageNamed:@"Pref_Print"]];
 
     } else {
@@ -160,36 +167,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)inToolbar
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 // 設定画面でのツールバーアイテム配列を返す
 // ------------------------------------------------------
 {
-    return [self toolbarDefaultItemIdentifiers:inToolbar];
+    return [self toolbarDefaultItemIdentifiers:toolbar];
 }
 
 
 // ------------------------------------------------------
-- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)inToolbar
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
 // ツールバーアイテムデフォルト配列を返す
 // ------------------------------------------------------
 {
-    return @[k_prefGeneralItemID, 
-                k_prefWindowItemID, 
-                k_prefViewItemID, 
-                k_prefFormatItemID, 
-                k_prefSyntaxItemID, 
-                k_prefFileDropItemID, 
-                k_prefKeyBindingsItemID, 
-                k_prefPrintItemID];
+    return @[k_prefGeneralItemID,
+             k_prefWindowItemID,
+             k_prefViewItemID,
+             k_prefFormatItemID, 
+             k_prefSyntaxItemID, 
+             k_prefFileDropItemID, 
+             k_prefKeyBindingsItemID, 
+             k_prefPrintItemID];
 }
 
 
 // ------------------------------------------------------
-- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)inToolbar
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
 // 選択可能なツールバーアイテムの配列を返す
 // ------------------------------------------------------
 {
-    return [self toolbarDefaultItemIdentifiers:inToolbar];
+    return [self toolbarDefaultItemIdentifiers:toolbar];
 }
 
 
@@ -199,34 +206,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (BOOL)tabView:(NSTabView *)inTabView shouldSelectTabViewItem:(NSTabViewItem *)inTabViewItem
+- (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem
 // タブの選択変更の許可
 // ------------------------------------------------------
 {
-    id theTabItemView = [[inTabViewItem view] viewWithTag:k_prefTabItemViewTag];
+    id tabItemView = [[tabViewItem view] viewWithTag:k_prefTabItemViewTag];
 
-    if (theTabItemView != nil) {
+    if (tabItemView != nil) {
         // 各タブビューの中に仕込んだカスタムビューの大きさに合わせてウィンドウをリサイズする。
         // タブビューは、ウィンドウに対して各辺が10pxずつ小さくなっている状態で配置される必要あり。
-        NSRect theFrame = [_prefWindow frame];
-        NSRect theContentRect = [_prefWindow contentRectForFrameRect:theFrame];
-        CGFloat theOldHeight = NSHeight(theFrame);
-        CGFloat theWidthMargin = NSWidth(theFrame) - NSWidth(theContentRect);
-        CGFloat theHeightMargin = theOldHeight - NSHeight(theContentRect);
+        NSRect frame = [[self prefWindow] frame];
+        NSRect contentRect = [[self prefWindow] contentRectForFrameRect:frame];
+        CGFloat oldHeight = NSHeight(frame);
+        CGFloat widthMargin = NSWidth(frame) - NSWidth(contentRect);
+        CGFloat heightMargin = oldHeight - NSHeight(contentRect);
 
-        theFrame.size.width = NSWidth([theTabItemView frame]) + theWidthMargin;
-        theFrame.size.height = NSHeight([theTabItemView frame]) + theHeightMargin;
-        theFrame.origin.y += (theOldHeight - theFrame.size.height); // ウィンドウ左上を動かさない
-        [inTabView setHidden:YES];
-        [_prefWindow setFrame:theFrame display:YES animate:YES];
-        [inTabView setHidden:NO];
+        frame.size.width = NSWidth([tabItemView frame]) + widthMargin;
+        frame.size.height = NSHeight([tabItemView frame]) + heightMargin;
+        frame.origin.y += (oldHeight - frame.size.height);  // ウィンドウ左上を動かさない
+        [tabView setHidden:YES];
+        [[self prefWindow] setFrame:frame display:YES animate:YES];
+        [tabView setHidden:NO];
     }
     return YES;
 }
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -238,8 +245,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // タブを選択
 //-------------------------------------------------------
 {
-    [_toolbar setSelectedItemIdentifier:[sender itemIdentifier]]; // ツールバーアイテムを選択し直す（Tab移動とSpaceキーでの決定で選択された時にアイテムが選択状態にならないことへの対策）
-    [_tabView selectTabViewItemWithIdentifier:[sender itemIdentifier]];
+    [[self toolbar] setSelectedItemIdentifier:[sender itemIdentifier]]; // ツールバーアイテムを選択し直す（Tab移動とSpaceキーでの決定で選択された時にアイテムが選択状態にならないことへの対策）
+    [[self tabView] selectTabViewItemWithIdentifier:[sender itemIdentifier]];
 }
 
 

@@ -1620,7 +1620,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="502" height="252"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="minSize" width="488" height="83"/>
+                                                                <size key="minSize" width="502" height="83"/>
                                                                 <size key="maxSize" width="586" height="10000000"/>
                                                                 <attributedString key="textStorage">
                                                                     <fragment>
@@ -1654,7 +1654,7 @@ The parent directory name of the dropped file.
                                                                     </fragment>
                                                                 </attributedString>
                                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="488" height="83"/>
+                                                                <size key="minSize" width="502" height="83"/>
                                                                 <size key="maxSize" width="586" height="10000000"/>
                                                             </textView>
                                                         </subviews>
@@ -1746,10 +1746,10 @@ The parent directory name of the dropped file.
                                                                 <rect key="frame" x="0.0" y="0.0" width="580" height="128"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="564" height="128"/>
+                                                                <size key="minSize" width="580" height="128"/>
                                                                 <size key="maxSize" width="582" height="10000000"/>
                                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="564" height="128"/>
+                                                                <size key="minSize" width="580" height="128"/>
                                                                 <size key="maxSize" width="582" height="10000000"/>
                                                                 <connections>
                                                                     <binding destination="451" name="value" keyPath="selection.formatString" id="593"/>
@@ -1853,7 +1853,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2833,8 +2833,8 @@ Gw
         </arrayController>
         <customObject id="737" userLabel="CEPreferencesTabController" customClass="CEPreferencesTabController">
             <connections>
-                <outlet property="_prefWindow" destination="6" id="738"/>
-                <outlet property="_tabView" destination="10" id="739"/>
+                <outlet property="prefWindow" destination="6" id="zFd-Hh-7Hf"/>
+                <outlet property="tabView" destination="10" id="9UP-b3-ahJ"/>
             </connections>
         </customObject>
         <customObject id="3427" customClass="SUUpdater"/>

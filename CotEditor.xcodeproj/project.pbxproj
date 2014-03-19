@@ -116,7 +116,7 @@
 		8C7D7DB30BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D7DB20BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist */; };
 		8C7F74EC091C738C005C7598 /* ODBEditorSuite.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */; };
 		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8971340902620D0013FA27 /* CEPreferencesTabController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8971340902620D0013FA27 /* CEPreferencesTabController.m */; };
 		8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8977240DCD8AD000DC32FF /* libicucore.dylib */; };
 		8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CCCAF09D6803400A008E5 /* CESplitView.m */; };
 		8C98366708C0211D00746F92 /* IncompatibleChar.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C98366608C0211D00746F92 /* IncompatibleChar.tiff */; };

@@ -1850,7 +1850,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2832,8 +2832,8 @@ And press "OK" button, this window size will be set to default.</string>
         </arrayController>
         <customObject id="737" userLabel="CEPreferencesTabController" customClass="CEPreferencesTabController">
             <connections>
-                <outlet property="_prefWindow" destination="6" id="738"/>
-                <outlet property="_tabView" destination="10" id="739"/>
+                <outlet property="prefWindow" destination="6" id="JO0-oC-8Qm"/>
+                <outlet property="tabView" destination="10" id="J7j-KW-6Pc"/>
             </connections>
         </customObject>
         <customObject id="3430" customClass="SUUpdater"/>
