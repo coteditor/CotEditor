@@ -283,7 +283,7 @@ enum { typeFSS = 'fss ' };
         [[[self windowForSheet] attachedSheet] orderOut:self];
     }
 
-    BOOL outResult = [self readFromFile:[url path] withEncoding:k_autoDetectEncodingMenuTag];
+    BOOL outResult = [self readFromURL:url withEncoding:k_autoDetectEncodingMenuTag];
 
     if (outResult) {
         [self setStringToEditorView];
@@ -358,7 +358,7 @@ enum { typeFSS = 'fss ' };
     
     NSStringEncoding theEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
-    return [self readFromFile:[url path] withEncoding:theEncoding];
+    return [self readFromURL:url withEncoding:theEncoding];
 }
 
 
@@ -375,7 +375,7 @@ enum { typeFSS = 'fss ' };
 
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
     if ([self isDocumentEdited] &&
-        ![self canReleaseFinderLockOfFile:[[self fileURL] path] isLocked:nil lockAgain:YES]) {
+        ![self canReleaseFinderLockAtURL:[self fileURL] isLocked:nil lockAgain:YES]) {
 
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
                                          defaultButton:NSLocalizedString(@"Cancel", nil)
@@ -1398,7 +1398,7 @@ enum { typeFSS = 'fss ' };
                 return;
             }
         }
-        if ([self readFromFile:[[self fileURL] path] withEncoding:theEncoding]) {
+        if ([self readFromURL:[self fileURL] withEncoding:theEncoding]) {
             [self setStringToEditorView];
             // アンドゥ履歴をクリア
             [[self undoManager] removeAllActions];
@@ -1553,14 +1553,14 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)readFromFile:(NSString *)inFileName withEncoding:(NSStringEncoding)inEncoding
+- (BOOL)readFromURL:(NSURL *)url withEncoding:(NSStringEncoding)inEncoding
 // ファイルを読み込み、成功したかどうかを返す
 // ------------------------------------------------------
 {
     NSData *theData = nil;
 
     // "authopen"コマンドを使って読み込む
-    NSString *theConvertedPath = @([inFileName UTF8String]);
+    NSString *theConvertedPath = @([[url path] UTF8String]);
     NSTask *theTask = [[[NSTask alloc] init] autorelease];
     NSInteger status;
 
@@ -1593,7 +1593,7 @@ enum { typeFSS = 'fss ' };
     if (inEncoding == k_autoDetectEncodingMenuTag) {
         // ファイル拡張属性(com.apple.TextEncoding)からエンコーディング値を得る（10.5+）
         // （10.5未満ではNSProprietaryStringEncodingが返ってくる）
-        theEncoding = [self encodingFromComAppleTextEncodingAtPath:inFileName];
+        theEncoding = [self encodingFromComAppleTextEncodingAtURL:url];
         if ([theData length] == 0) {
             outResult = YES;
             _initialString = [[NSMutableString string] retain]; // ===== retain
@@ -1821,7 +1821,7 @@ enum { typeFSS = 'fss ' };
     
     // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
     BOOL isFinderLockOn = NO;
-    if (![self canReleaseFinderLockOfFile:[url path] isLocked:&isFinderLockOn lockAgain:NO]) {
+    if (![self canReleaseFinderLockAtURL:url isLocked:&isFinderLockOn lockAgain:NO]) {
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
                                          defaultButton:nil
                                        alternateButton:nil
@@ -2027,28 +2027,28 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)canReleaseFinderLockOfFile:(NSString *)inFileName isLocked:(BOOL *)ioLocked lockAgain:(BOOL)inLockAgain
-// Finder のロックが解除出来るか試す。inLockAgain が真なら再びロックする。
+- (BOOL)canReleaseFinderLockAtURL:(NSURL *)url isLocked:(BOOL *)ioLocked lockAgain:(BOOL)lockAgain
+// Finder のロックが解除出来るか試す。lockAgain が真なら再びロックする。
 // ------------------------------------------------------
 {
-    NSFileManager *theManager = [NSFileManager defaultManager];
-    BOOL theFinderLockON = [[theManager attributesOfItemAtPath:[inFileName stringByResolvingSymlinksInPath] error:nil] fileIsImmutable];
-    BOOL theBoolToGo = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isFinderLocked = [[fileManager attributesOfItemAtPath:[url path] error:nil] fileIsImmutable];
+    BOOL success = NO;
 
-    if (theFinderLockON) {
+    if (isFinderLocked) {
         // Finder Lock がかかっていれば、解除
-        theBoolToGo = [theManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:inFileName error:nil];
-        if (theBoolToGo) {
-            if (inLockAgain) {
+        success = [fileManager setAttributes:@{NSFileImmutable:@NO} ofItemAtPath:[url path] error:nil];
+        if (success) {
+            if (lockAgain) {
             // フラグが立っていたなら、再びかける
-            [theManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:inFileName error:nil];
+            [fileManager setAttributes:@{NSFileImmutable:@YES} ofItemAtPath:[url path] error:nil];
             }
         } else {
             return NO;
         }
     }
     if (ioLocked != nil) {
-        *ioLocked = theFinderLockON;
+        *ioLocked = isFinderLocked;
     }
     return YES;
 }
@@ -2213,21 +2213,19 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (NSStringEncoding)encodingFromComAppleTextEncodingAtPath:(NSString *)inFilePath
+- (NSStringEncoding)encodingFromComAppleTextEncodingAtURL:(NSURL *)url
 // ファイル拡張属性(com.apple.TextEncoding)からエンコーディングを得る
 // ------------------------------------------------------
 {
     NSStringEncoding outEncoding = NSProprietaryStringEncoding;
 
-    NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding"
-                atPath:inFilePath traverseLink:NO];
+    NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
     NSArray *theArray = [theStr componentsSeparatedByString:@";"];
     if (([theArray count] >= 2) && ([theArray[1] length] > 1)) {
         // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
         outEncoding = CFStringConvertEncodingToNSStringEncoding([theArray[1] integerValue]);
     } else if ([theArray[0] length] > 1) {
-        CFStringEncoding theCFEncoding = 
-                CFStringConvertIANACharSetNameToEncoding((CFStringRef)theArray[0]);
+        CFStringEncoding theCFEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)theArray[0]);
         if (theCFEncoding != kCFStringEncodingInvalidId) {
             outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
         }
