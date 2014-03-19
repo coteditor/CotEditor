@@ -11,8 +11,6 @@ CELayoutManager
 encoding="UTF-8"
 Created:2005.01.10
  
- -fno-objc-arc
- 
 ------------
 This class is based on Smultron - SMLLayoutManager (written by Peter Borg – http://smultron.sourceforge.net)
 Smultron  Copyright (c) 2004 Peter Borg, All rights reserved.
@@ -47,12 +45,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CELayoutManager ()
 
-@property (nonatomic, retain) NSString *spaceCharacter;
-@property (nonatomic, retain) NSString *tabCharacter;
-@property (nonatomic, retain, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
-@property (nonatomic, retain) NSString *fullwidthSpaceCharacter;
-@property (nonatomic, retain) CEAppController *appController;
-@property (nonatomic, assign) NSDictionary *attributes;  // not retained
+@property (nonatomic, strong) NSString *spaceCharacter;
+@property (nonatomic, strong) NSString *tabCharacter;
+@property (nonatomic, strong, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
+@property (nonatomic, strong) NSString *fullwidthSpaceCharacter;
+@property (nonatomic, strong) CEAppController *appController;
+@property (nonatomic) NSDictionary *attributes;
 
 // readonly properties
 @property (nonatomic, readwrite) CGFloat textFontPointSize;
@@ -120,23 +118,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setTypesetter:[CEATSTypesetter sharedSystemTypesetter]];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// 後片付け
-// ------------------------------------------------------
-{
-    // attributes was not retained.
-    [[self spaceCharacter] release];
-    [[self tabCharacter] release];
-    [[self theNewLineCharacter] release];
-    [[self fullwidthSpaceCharacter] release];
-    [[self textFont] release];
-    [[self appController] release];
-
-    [super dealloc];
 }
 
 
@@ -317,8 +298,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // （[[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
 // 日本語フォント名を返してくることがあるため、使わない）
 
-    [textFont retain];
-    [_textFont release];
     _textFont = textFont;
     [self setValuesForTextFont:textFont];
 }
@@ -357,22 +336,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
     return floor([self defaultLineHeightForTextFont] + lineSpacing * [self textFontPointSize] + 0.5);
 }
-
-
-/*
-// ------------------------------------------------------
-- (void)_clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(NSInteger)fp16
-// 隠しメソッドをオーバーライド。
-// ------------------------------------------------------
-{
-// 10.5.1で、大量のtemporaryAttrsが付いたテキストを削除しようとするとしばらく固まることへの対策
-    // 10.5未満で実行されているときまたは小規模の変更のみ、スーパークラスで実行
-    // （小規模の変更を通さないと、IMで入力中の変換前文字が直前までその場所にセットされていたattrにカラーリングされてしまう）
-    if ((abs(fp16) < 65000) || (floor(NSAppKitVersionNumber) < 949)) { // 949 = LeopardのNSAppKitVersionNumber
-        [super _clearTemporaryAttributesForCharacterRange:(struct _NSRange)fp8 changeInLength:(NSInteger)fp16];
-    }
-}
-*/
 
 
 
