@@ -10,7 +10,7 @@ CEPrintView
 
 encoding="UTF-8"
 Created:2005.10.01
-
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -44,10 +44,10 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
 @interface CEPrintView ()
 
-@property (nonatomic, retain) NSAttributedString *headerOneString;
-@property (nonatomic, retain) NSAttributedString *headerTwoString;
-@property (nonatomic, retain) NSAttributedString *footerOneString;
-@property (nonatomic, retain) NSAttributedString *footerTwoString;
+@property (nonatomic) NSAttributedString *headerOneString;
+@property (nonatomic) NSAttributedString *headerTwoString;
+@property (nonatomic) NSAttributedString *footerOneString;
+@property (nonatomic) NSAttributedString *footerTwoString;
 @property (nonatomic) CEAlignmentType headerOneAlignment;
 @property (nonatomic) CEAlignmentType headerTwoAlignment;
 @property (nonatomic) CEAlignmentType footerOneAlignment;
@@ -60,8 +60,8 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 @property (nonatomic) BOOL printsLineNum;
 @property (nonatomic) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
-@property (nonatomic, retain) NSDictionary *headerFooterAttrs;
-@property (nonatomic, retain) NSDictionary *lineNumAttrs;
+@property (nonatomic) NSDictionary *headerFooterAttrs;
+@property (nonatomic) NSDictionary *lineNumAttrs;
 
 @end
 
@@ -80,25 +80,6 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 // Public method
 //
 //=======================================================
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// 後片づけ
-// ------------------------------------------------------
-{
-    [[self filePath] release];
-    [[self lineNumAttrs] release];
-    [[self printValues] release];
-    [[self headerFooterAttrs] release];
-    [[self headerOneString] release];
-    [[self headerTwoString] release];
-    [[self footerOneString] release];
-    [[self footerTwoString] release];
-
-    [super dealloc];
-}
-
 
 // ------------------------------------------------------
 - (void)drawPageBorderWithSize:(NSSize)borderSize
@@ -119,8 +100,8 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
     if ([self readyToDrawPageNum]) {
         NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
 
-        pageString = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"- %li -", (long)pageNum]
-                                                      attributes:[self headerFooterAttrs]] autorelease];
+        pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"- %li -", (long)pageNum]
+                                                     attributes:[self headerFooterAttrs]];
     }
 
     // フレームを設定
@@ -373,30 +354,30 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
     switch (selectedIndex) {
         case 2: // == Document Name
             if ([self filePath]) {
-                outString = [[[NSAttributedString alloc] initWithString:[[self filePath] lastPathComponent]
-                                                             attributes:[self headerFooterAttrs]] autorelease];
+                outString = [[NSAttributedString alloc] initWithString:[[self filePath] lastPathComponent]
+                                                            attributes:[self headerFooterAttrs]];
             }
             break;
 
         case 3: // == File Path
             if ([self filePath]) {
-                outString = [[[NSAttributedString alloc] initWithString:[self filePath]
-                                                             attributes:[self headerFooterAttrs]] autorelease];
+                outString = [[NSAttributedString alloc] initWithString:[self filePath]
+                                                            attributes:[self headerFooterAttrs]];
             }
             break;
 
         case 4: // == Print Date
             dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:[values valueForKey:k_key_headerFooterDateTimeFormat]];
             if (dateString && ([dateString length] > 0)) {
-                outString = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Printed: %@",@""),
+                outString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Printed: %@",@""),
                                                                          dateString]
-                                                             attributes:[self headerFooterAttrs]] autorelease];
+                                                            attributes:[self headerFooterAttrs]];
             }
             break;
 
         case 5: // == Page num
-            outString = [[[NSAttributedString alloc] initWithString:@"PAGENUM"
-                                                         attributes:[self headerFooterAttrs]] autorelease];
+            outString = [[NSAttributedString alloc] initWithString:@"PAGENUM"
+                                                        attributes:[self headerFooterAttrs]];
             [self setReadyToDrawPageNum:YES];
             break;
 
@@ -406,7 +387,7 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
     // 印字があふれる場合、中ほどを省略する
     if ([outString size].width > maxWidth) {
-        NSMutableAttributedString *attrStr = [[outString mutableCopy] autorelease];
+        NSMutableAttributedString *attrStr = [outString mutableCopy];
         NSUInteger length = [attrStr length];
         CGFloat width = [attrStr size].width;
         if (length > 0) {

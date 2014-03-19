@@ -43,10 +43,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEStatusBarView ()
 
-@property (nonatomic, retain, readwrite) NSTextField *leftTextField;
-@property (nonatomic, retain, readwrite) NSTextField *rightTextField;
+@property (nonatomic, readwrite) NSTextField *leftTextField;
+@property (nonatomic, readwrite) NSTextField *rightTextField;
 
-@property (nonatomic, retain) NSImageView *readOnlyView;
+@property (nonatomic) NSImageView *readOnlyView;
 
 @end
 
@@ -84,7 +84,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         textFieldFrame.origin.y -= (k_statusBarHeight - [font pointSize]) / 4;
         textFieldFrame.size.width -= [NSScroller scrollerWidth] + k_statusBarReadOnlyWidth + k_statusBarRightPadding;
         
-        [self setLeftTextField:[[NSTextField allocWithZone:[self zone]] initWithFrame:textFieldFrame]]; // ===== alloc
+        [self setLeftTextField:[[NSTextField allocWithZone:nil] initWithFrame:textFieldFrame]]; // ===== alloc
         [[self leftTextField] setEditable:NO];
         [[self leftTextField] setSelectable:NO];
         [[self leftTextField] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
@@ -93,7 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self leftTextField] setDrawsBackground:NO];
         [[self leftTextField] setAlignment:NSLeftTextAlignment];
 
-        [self setRightTextField:[[NSTextField allocWithZone:[self zone]] initWithFrame:textFieldFrame]]; // ===== alloc
+        [self setRightTextField:[[NSTextField allocWithZone:nil] initWithFrame:textFieldFrame]]; // ===== alloc
         [[self rightTextField] setEditable:NO];
         [[self rightTextField] setSelectable:NO];
         [[self rightTextField] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
@@ -105,7 +105,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // setup ReadOnly icon
         NSRect readOnlyFrame = frameRect;
         readOnlyFrame.size.width = k_statusBarReadOnlyWidth;
-        [self setReadOnlyView:[[NSImageView allocWithZone:[self zone]] initWithFrame:readOnlyFrame]]; // ===== alloc
+        [self setReadOnlyView:[[NSImageView allocWithZone:nil] initWithFrame:readOnlyFrame]]; // ===== alloc
         [[self readOnlyView] setAutoresizingMask:NSViewHeightSizable];
 
         [self setShowsReadOnlyIcon:NO];
@@ -116,20 +116,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self addSubview:[self readOnlyView]];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// 後片付け
-// ------------------------------------------------------
-{
-    // _masterView is not retain.
-    [[self leftTextField] release];
-    [[self rightTextField] release];
-    [[self readOnlyView] release];
-
-    [super dealloc];
 }
 
 

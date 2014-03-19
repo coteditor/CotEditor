@@ -10,7 +10,9 @@ CEPrivateMutableArray
 
 encoding="UTF-8"
 Created:2008.04.27
-
+ 
+ -fno-objc-arc
+ 
 ------------
 ＜要素の追加速度向上を目的としたカスタム配列クラス＞
 こちらの記事を参考にさせていただきました

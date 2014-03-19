@@ -10,7 +10,7 @@ CEPrefEncodingDataSource
 
 encoding="UTF-8"
 Created:2004.12.16
-
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -32,10 +32,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEPrefEncodingDataSource.h"
+#import "constants.h"
+
+
+@interface CEPrefEncodingDataSource ()
+
+@property (nonatomic) NSMutableArray *encodingsForTmp;
+@property (nonatomic, weak) NSArray *draggedItems; // ドラッグ中にのみ必要なオブジェクトなので、retainしない
+
+@property (nonatomic, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, weak) IBOutlet NSButton *delSeparatorButton;
+@property (nonatomic, weak) IBOutlet NSButton *revertButton;
+
+@end
+
+
+#pragma mark -
 
 @implementation CEPrefEncodingDataSource
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -43,32 +59,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)dealloc
-// あとかたづけ
-// ------------------------------------------------------
-{
-    [super dealloc];
-}
-
-
-// ------------------------------------------------------
 - (void)setupEncodingsToEdit
 // 表示／変更のためのエンコーディングリストをセットアップ
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    id theInitValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
-    NSMutableArray *theEncodings = [NSMutableArray arrayWithArray:[theValues valueForKey:k_key_encodingList]];
-    BOOL theBoolNotToRevert = [theEncodings isEqualToArray:
-            (NSArray *)[theInitValues valueForKey:k_key_encodingList]];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
+    NSMutableArray *encodings = [NSMutableArray arrayWithArray:[values valueForKey:k_key_encodingList]];
+    BOOL shouldRevert = ![encodings isEqualToArray:(NSArray *)[initValues valueForKey:k_key_encodingList]];
 
-    [theEncodings retain]; // ===== retain
-    if (_encodingsForTmp) {
-        [_encodingsForTmp release];
-    }
-    _encodingsForTmp = theEncodings;
-    [_revertButton setEnabled:(!theBoolNotToRevert)]; // 出荷時に戻すボタンの有効化／無効化を制御
-    [_tableView reloadData]; // 表示を初期化(これがないとスクロールバーが無効化してしまう)
+    [self setEncodingsForTmp:encodings];
+    [[self revertButton] setEnabled:shouldRevert]; // 出荷時に戻すボタンの有効化／無効化を制御
+    [[self tableView] reloadData]; // 表示を初期化(これがないとスクロールバーが無効化してしまう)
 }
 
 
@@ -77,17 +79,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディングリストを userDefaults に書き戻す
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    if (![_encodingsForTmp isEqualToArray:[theValues valueForKey:k_key_encodingList]]) {
-        NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-        [theDefaults setObject:_encodingsForTmp forKey:k_key_encodingList];
+    if (![[self encodingsForTmp] isEqualToArray:[values valueForKey:k_key_encodingList]]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[self encodingsForTmp] forKey:k_key_encodingList];
     }
 }
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSTableDataSource Protocol
@@ -95,161 +97,155 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)inTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 // tableView の行数を返す
 // ------------------------------------------------------
 {
-    return ([_encodingsForTmp count]);
+    return [[self encodingsForTmp] count];
 }
 
 
 // ------------------------------------------------------
-- (id)tableView:(NSTableView *)inTableView 
-        objectValueForTableColumn:(NSTableColumn *)inTableColumn 
-        row:(NSInteger)inRowIndex
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 // tableViewの列・行で指定された内容を返す
 // ------------------------------------------------------
 {
-    CFStringEncoding theCFEncoding = [_encodingsForTmp[inRowIndex] unsignedLongValue];
-    NSString *outStr;
+    CFStringEncoding cfEncoding = [[self encodingsForTmp][rowIndex] unsignedLongValue];
+    NSString *string;
 
-    if (theCFEncoding == kCFStringEncodingInvalidId) { // = separator
-        outStr = @"-----";
+    if (cfEncoding == kCFStringEncodingInvalidId) { // = separator
+        string = @"-----";
     } else {
-        NSStringEncoding theEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
-        NSString *theIanaName = (NSString *)CFStringConvertEncodingToIANACharSetName(theCFEncoding);
-        if (theIanaName == nil) {
-            theIanaName = @"-";
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+        NSString *ianaName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
+        if (ianaName == nil) {
+            ianaName = @"-";
         }
-        outStr = [NSString stringWithFormat:@"%@ : [%@]", 
-                    [NSString localizedNameOfStringEncoding:theEncoding], theIanaName];
+        string = [NSString stringWithFormat:@"%@ : [%@]", [NSString localizedNameOfStringEncoding:encoding], ianaName];
     }
-    return outStr;
+    return string;
 }
 
 
 // ------------------------------------------------------
-- (BOOL)tableView:(NSTableView *)inTableView 
-        writeRows:(NSArray *)inRows toPasteboard:(NSPasteboard *)ioPboard
+- (BOOL)tableView:(NSTableView *)tableView writeRows:(NSArray *)rows toPasteboard:(NSPasteboard *)pasteboard
 // ドラッグ開始／tableView からのドラッグアイテム内容をセット
 // ------------------------------------------------------
 {
     // ドラッグ受付タイプを登録
-    [inTableView registerForDraggedTypes:@[k_dropMyselfPboardType]];
+    [tableView registerForDraggedTypes:@[k_dropMyselfPboardType]];
     // すべての選択を解除して、改めてドラッグされる行を選択し直す
-    NSMutableIndexSet *theIndexes = [NSMutableIndexSet indexSet];
-    [inTableView deselectAll:self];
-    for (NSNumber *index in inRows) {
-        [theIndexes addIndex:[index unsignedIntegerValue]];
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    [tableView deselectAll:self];
+    for (NSNumber *index in rows) {
+        [indexSet addIndex:[index unsignedIntegerValue]];
     }
-    [inTableView selectRowIndexes:theIndexes byExtendingSelection:YES];
+    [tableView selectRowIndexes:indexSet byExtendingSelection:YES];
     // ドラッグされる行の保持、Pasteboard の設定
-    _draggedItems = inRows; // ドラッグ中にのみ必要なオブジェクトなので、retainしない
-    [ioPboard declareTypes:@[k_dropMyselfPboardType] owner:nil];
-    [ioPboard setData:[NSData data] forType:k_dropMyselfPboardType];
+    [self setDraggedItems:rows];
+    [pasteboard declareTypes:@[k_dropMyselfPboardType] owner:nil];
+    [pasteboard setData:[NSData data] forType:k_dropMyselfPboardType];
 
     return YES;
 }
 
 
 // ------------------------------------------------------
-- (NSDragOperation)tableView:(NSTableView *)inTableView 
-        validateDrop:(id <NSDraggingInfo>)inInfo proposedRow:(NSInteger)inRow
-        proposedDropOperation:(NSTableViewDropOperation)inOperation
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)inOperation
 // tableViewへドラッグアイテムが入ってきたときの判定
 // ------------------------------------------------------
 {
-    if ([inInfo draggingSource]) { // = Local dragging
-        BOOL validity = NO;
+    if ([info draggingSource]) { // = Local dragging
+        BOOL isValid = NO;
 
-        validity = (((inRow == k_lastRow) && (inOperation == NSTableViewDropOn)) || 
-                ((inRow != k_lastRow) && (inOperation == NSTableViewDropAbove)));
+        isValid = (((row == k_lastRow) && (inOperation == NSTableViewDropOn)) ||
+                   ((row != k_lastRow) && (inOperation == NSTableViewDropAbove)));
 
-        return validity ? NSDragOperationGeneric : NSDragOperationNone;
+        return isValid ? NSDragOperationGeneric : NSDragOperationNone;
     }
     return NSDragOperationNone;
 }
 
 
 // ------------------------------------------------------
-- (BOOL)tableView:(NSTableView *)inTableView 
-        acceptDrop:(id <NSDraggingInfo>)inInfo row:(NSInteger)inRow
-        dropOperation:(NSTableViewDropOperation)inOperation
+- (BOOL)tableView:(NSTableView *)tableView 
+        acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row
+        dropOperation:(NSTableViewDropOperation)operation
 // ドロップの許可、アイテムの移動挿入
 // ------------------------------------------------------
 {
-    NSMutableIndexSet *theSelectIndexSet = [NSMutableIndexSet indexSet];
-    NSEnumerator *theEnumerator = [_draggedItems reverseObjectEnumerator];
-    NSMutableArray *theDraggingArray = [NSMutableArray array];
-    NSMutableArray *theNewArray = [NSMutableArray arrayWithArray:_encodingsForTmp];
-    id theObject;
-    NSInteger i, theCount, theNewRow = inRow;
+    NSMutableIndexSet *selectIndexSet = [NSMutableIndexSet indexSet];
+    NSEnumerator *enumerator = [[self draggedItems] reverseObjectEnumerator];
+    NSMutableArray *draggingArray = [NSMutableArray array];
+    NSMutableArray *newArray = [NSMutableArray arrayWithArray:[self encodingsForTmp]];
+    id object;
+    NSInteger i, count, newRow = row;
 
-    while (theObject = [theEnumerator nextObject]) {
-        if ([theObject unsignedIntegerValue] < [theNewArray count]) {
-            [theDraggingArray addObject:
-                    [[theNewArray[[theObject unsignedIntegerValue]] copy] autorelease]];
-            [theNewArray removeObjectAtIndex:[theObject unsignedIntegerValue]];
-            if ([theObject integerValue] < inRow) { // 下方へドラッグ移動されるときの調整
-                theNewRow--;
+    while (object = [enumerator nextObject]) {
+        if ([object unsignedIntegerValue] < [newArray count]) {
+            [draggingArray addObject:[newArray[[object unsignedIntegerValue]] copy]];
+            [newArray removeObjectAtIndex:[object unsignedIntegerValue]];
+            if ([object integerValue] < row) { // 下方へドラッグ移動されるときの調整
+                newRow--;
             }
         }
     }
-    theCount = [theDraggingArray count];
-    for (i = 0; i < theCount; i++) {
-        if (inRow != k_lastRow) {
-            [theNewArray insertObject:theDraggingArray[i] atIndex:theNewRow];
-            [theSelectIndexSet addIndex:(theNewRow + i)];
+    count = [draggingArray count];
+    for (i = 0; i < count; i++) {
+        if (row != k_lastRow) {
+            [newArray insertObject:draggingArray[i] atIndex:newRow];
+            [selectIndexSet addIndex:(newRow + i)];
         } else {
-            [theNewArray addObject:theDraggingArray[(theCount - i - 1)]];
-            [theSelectIndexSet addIndex:i];
+            [newArray addObject:draggingArray[(count - i - 1)]];
+            [selectIndexSet addIndex:i];
         }
     }
 
-    // リストが変更されたら、_encodingsForTmp に書き戻す
-    if (![theNewArray isEqualToArray:_encodingsForTmp]) {
-        [_encodingsForTmp setArray:theNewArray];
+    // リストが変更されたら、encodingsForTmp に書き戻す
+    if (![newArray isEqualToArray:[self encodingsForTmp]]) {
+        [[self encodingsForTmp] setArray:newArray];
     }
-    [inTableView reloadData];
-    [inTableView selectRowIndexes:theSelectIndexSet byExtendingSelection:NO];
+    [tableView reloadData];
+    [tableView selectRowIndexes:selectIndexSet byExtendingSelection:NO];
+    
     return YES;
 }
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSTableView)
-//  <== _tableView
+//  <== tableView
 //=======================================================
 
 // ------------------------------------------------------
-- (void)tableViewSelectionDidChange:(NSNotification *)inNotification
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
 // tableView の選択行が変更される直前にその許可を出す
 // ------------------------------------------------------
 {
-    NSIndexSet *theSelectIndexSet = [_tableView selectedRowIndexes];
+    NSIndexSet *selectIndexSet = [[self tableView] selectedRowIndexes];
 
-    if ([theSelectIndexSet count] > 0) {
-        id theObject;
+    if ([selectIndexSet count] > 0) {
+        id object;
         NSUInteger i;
 
-        for (i = 0; i < [_encodingsForTmp count]; i++) {
-            theObject = _encodingsForTmp[i];
-            if (([theSelectIndexSet containsIndex:i]) && 
-                        ([theObject unsignedLongValue] == kCFStringEncodingInvalidId)) {
-                [_delSeparatorButton setEnabled:YES];
+        for (i = 0; i < [[self encodingsForTmp] count]; i++) {
+            object = [self encodingsForTmp][i];
+            if (([selectIndexSet containsIndex:i]) &&
+                ([object unsignedLongValue] == kCFStringEncodingInvalidId)) {
+                [[self delSeparatorButton] setEnabled:YES];
                 return;
             }
         }
     }
-    [_delSeparatorButton setEnabled:NO];
+    [[self delSeparatorButton] setEnabled:NO];
 }
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -261,17 +257,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // デフォルトのエンコーディング設定に戻す
 // ------------------------------------------------------
 {
-    id theInitValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
-    NSMutableArray *theEncodings = 
-            [NSMutableArray arrayWithArray:[theInitValues valueForKey:k_key_encodingList]];
+    id initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
+    NSMutableArray *encodings = [NSMutableArray arrayWithArray:[initValues valueForKey:k_key_encodingList]];
 
-    [theEncodings retain]; // ===== retain
-    if (_encodingsForTmp) {
-        [_encodingsForTmp release];
-    }
-    _encodingsForTmp = theEncodings;
-    [_tableView reloadData];
-    [_revertButton setEnabled:NO];
+    [self setEncodingsForTmp:encodings];
+    [[self tableView] reloadData];
+    [[self revertButton] setEnabled:NO];
 }
 
 
@@ -280,12 +271,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // セパレータ追加
 // ------------------------------------------------------
 {
-    NSInteger theIndex, theSelected = [_tableView selectedRow];
+    NSInteger index, selectedRow = [[self tableView] selectedRow];
 
-    theIndex = (theSelected < 0) ? 0 : theSelected;
-    [_encodingsForTmp insertObject:@(kCFStringEncodingInvalidId) atIndex:theIndex];
-    [_tableView reloadData];
-    [_tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:theIndex] byExtendingSelection:NO];
+    index = (selectedRow < 0) ? 0 : selectedRow;
+    [[self encodingsForTmp] insertObject:@(kCFStringEncodingInvalidId) atIndex:index];
+    [[self tableView] reloadData];
+    [[self tableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
 }
 
 
@@ -294,34 +285,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // セパレータ削除
 // ------------------------------------------------------
 {
-    NSIndexSet *theSelectIndexSet = [_tableView selectedRowIndexes];
+    NSIndexSet *selectIndexSet = [[self tableView] selectedRowIndexes];
 
-    if ([theSelectIndexSet count] == 0) {
+    if ([selectIndexSet count] == 0) {
         return;
     }
-    NSMutableArray *theNewArray = [NSMutableArray array];
+    NSMutableArray *newArray = [NSMutableArray array];
     id theObject;
-    NSUInteger i, theDeleted = 0;
+    NSUInteger i, deletedCount = 0;
 
-    for (i = 0; i < [_encodingsForTmp count]; i++) {
-        theObject = _encodingsForTmp[i];
-        if (([theSelectIndexSet containsIndex:i]) && 
+    for (i = 0; i < [[self encodingsForTmp] count]; i++) {
+        theObject = [self encodingsForTmp][i];
+        if (([selectIndexSet containsIndex:i]) && 
                 ([theObject unsignedLongValue] == kCFStringEncodingInvalidId)) {
-            theDeleted++;
+            deletedCount++;
             continue;
         }
-        [theNewArray addObject:theObject];
+        [newArray addObject:theObject];
     }
-    if (theDeleted == 0) {
+    if (deletedCount == 0) {
         return;
     }
-    [_tableView deselectAll:self];
-    // リストが変更されたら、_encodingsForTmp に書き戻す
-    if (![theNewArray isEqualToArray:_encodingsForTmp]) {
-        [_encodingsForTmp setArray:theNewArray];
+    [[self tableView] deselectAll:self];
+    // リストが変更されたら、encodingsForTmp に書き戻す
+    if (![newArray isEqualToArray:[self encodingsForTmp]]) {
+        [[self encodingsForTmp] setArray:newArray];
     }
-    [_tableView reloadData];
+    [[self tableView] reloadData];
 }
-
 
 @end

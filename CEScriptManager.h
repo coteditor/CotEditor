@@ -10,7 +10,7 @@ CEScriptManager
 
 encoding="UTF-8"
 Created:2005.03.12
-
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or

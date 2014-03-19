@@ -10,7 +10,7 @@ CELayoutManager
 
 encoding="UTF-8"
 Created:2005.01.10
-
+ 
 ------------
 This class is based on Smultron - SMLLayoutManager (written by Peter Borg – http://smultron.sourceforge.net)
 Smultron  Copyright (c) 2004 Peter Borg, All rights reserved.
@@ -52,7 +52,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL fixLineHeight;  // 行高を固定するか
 @property (nonatomic) BOOL useAntialias;  // アンチエイリアスを適用するかどうか
 @property (nonatomic) BOOL isPrinting;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
-@property (nonatomic, retain) NSFont *textFont;
+@property (nonatomic, strong) NSFont *textFont;
 
 @property (nonatomic, readonly) CGFloat textFontPointSize;
 @property (nonatomic, readonly) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高

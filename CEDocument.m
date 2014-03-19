@@ -10,7 +10,9 @@ CEDocument
 
 encoding="UTF-8"
 Created:2004.12.08
-
+ 
+ -fno-objc-arc
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -59,6 +61,7 @@ enum { typeFSS = 'fss ' };
 @property (atomic) BOOL isRevertingForExternalFileUpdate;
 @property (retain) NSString *initialString;  // 初期表示文字列に表示する文字列;
 
+@property (readwrite) CEWindowController *windowController;
 @property (readwrite) BOOL canActivateShowInvisibleCharsItem;
 @property (readwrite) NSStringEncoding encodingCode;
 @property (readwrite, retain) NSDictionary *fileAttributes;
@@ -107,20 +110,20 @@ enum { typeFSS = 'fss ' };
 {
     self = [super init];
     if (self) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
         [self setHasUndoManager:YES];
-        _initialString = nil;
-        _windowController = nil;
-        (void)[self doSetEncoding:[[theValues valueForKey:k_key_encodingInNew] unsignedLongValue] 
-                updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+        [self setInitialString:nil];
+        [self setWindowController:nil];
+        (void)[self doSetEncoding:[[values valueForKey:k_key_encodingInNew] unsignedLongValue]
+                   updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
         [self setCanActivateShowInvisibleCharsItem:
-                [[theValues valueForKey:k_key_showInvisibleSpace] boolValue] ||
-                [[theValues valueForKey:k_key_showInvisibleTab] boolValue] || 
-                [[theValues valueForKey:k_key_showInvisibleNewLine] boolValue] || 
-                [[theValues valueForKey:k_key_showInvisibleFullwidthSpace] boolValue] || 
-                [[theValues valueForKey:k_key_showOtherInvisibleChars] boolValue]];
+                [[values valueForKey:k_key_showInvisibleSpace] boolValue] ||
+                [[values valueForKey:k_key_showInvisibleTab] boolValue] || 
+                [[values valueForKey:k_key_showInvisibleNewLine] boolValue] || 
+                [[values valueForKey:k_key_showInvisibleFullwidthSpace] boolValue] || 
+                [[values valueForKey:k_key_showOtherInvisibleChars] boolValue]];
         [self setDoCascadeWindow:YES];
         [self setInitTopLeftPoint:NSZeroPoint];
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -158,8 +161,8 @@ enum { typeFSS = 'fss ' };
 // カスタム windowController を生成
 // ------------------------------------------------------
 {
-    _windowController = [[CEWindowController alloc] initWithWindowNibName:@"DocWindow"]; // ===== alloc
-    [self addWindowController:_windowController];
+    [self setWindowController:[[CEWindowController alloc] initWithWindowNibName:@"DocWindow"]]; // ===== alloc
+    [self addWindowController:[self windowController]];
 }
 
 
@@ -217,8 +220,7 @@ enum { typeFSS = 'fss ' };
 // 保存用のデータを生成
 // ------------------------------------------------------
 {
-    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    BOOL shouldAppendBOM = [[defaults valueForKey:k_key_saveUTF8BOM] boolValue];
+    BOOL shouldAppendBOM = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_saveUTF8BOM];
     
     // エンコーディングを見て、半角円マークを変換しておく
     NSString *string = [self convertedCharacterString:[[self editorView] stringForSave] withEncoding:[self encodingCode]];
@@ -268,44 +270,18 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate 
-            didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
-// セーブパネルを表示
+- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
+// セーブパネルを準備
 // ------------------------------------------------------
 {
-    [super runModalSavePanelForSaveOperation:saveOperation delegate:delegate 
-            didSaveSelector:didSaveSelector contextInfo:contextInfo];
-
-    // セーブパネル表示時の処理
-    NSSavePanel *theSavePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
-    if (theSavePanel != nil) {
-        NSEnumerator *theEnumerator = [[[theSavePanel contentView] subviews] objectEnumerator];
-        NSTextField *theTextField = nil;
-        id theView;
-
-        while (theView = [theEnumerator nextObject]) {
-            if ([theView isKindOfClass:[NSTextField class]]) {
-                theTextField = theView;
-                break;
-            }
-        }
-        if (theTextField != nil) {
-            NSText *theText = [theSavePanel fieldEditor:NO forObject:theTextField];
-            NSString *theName = [theText string];
-
-            // 保存時に拡張子を追加する
-            id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-            if ([[theValues valueForKey:k_key_appendExtensionAtSaving] boolValue]) {
-                // ファイル名に拡張子がない場合は追加する
-                if ([[theName pathExtension] compare:@""] == NSOrderedSame) {
-                    [theText setString:[theName stringByAppendingPathExtension:@"txt"]];
-                }
-            }
-
-            // 保存するファイル名の、拡張子をのぞいた部分を選択状態にする
-            [theText setSelectedRange:NSMakeRange(0, [[theName stringByDeletingPathExtension] length])];
+    // ファイル名に拡張子がない場合は追加する
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendExtensionAtSaving]) {
+        if ([[[savePanel nameFieldStringValue] pathExtension] isEqualToString:@""]) {
+            [savePanel setAllowedFileTypes:@[@"txt", @"****"]];  // ****も指定することで別の拡張子を入れたときのアラートを抑制している
         }
     }
+    
+    return [super prepareSavePanel:savePanel];
 }
 
 
@@ -315,16 +291,16 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // フォルダをアイコンにドロップしても開けないようにする
-    BOOL theBoolIsDir = NO;
-    (void)[[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&theBoolIsDir];
-    if (theBoolIsDir) { return NO; }
+    BOOL isDirectory = NO;
+    (void)[[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+    if (isDirectory) { return NO; }
     
     // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
     [self setupODB];
     
-    NSStringEncoding theEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
+    NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
-    return [self readFromURL:url withEncoding:theEncoding];
+    return [self readFromURL:url withEncoding:encoding];
 }
 
 
@@ -379,7 +355,7 @@ enum { typeFSS = 'fss ' };
     [[self undoManager] removeAllActionsWithTarget:self];
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
     [self sendCloseEventToClient];
-    [self removeWindowController:(NSWindowController *)_windowController];
+    [self removeWindowController:(NSWindowController *)[self windowController]];
 
     [super close];
 }
@@ -392,24 +368,15 @@ enum { typeFSS = 'fss ' };
 //
 //=======================================================
 
-// ------------------------------------------------------
-- (id)windowController
-// windowController を返す
-// ------------------------------------------------------
-{
-    return _windowController;
-}
-
-
 //------------------------------------------------------
 - (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr
 // データから指定エンコードで文字列を得る
 //------------------------------------------------------
 {
-    NSString *theStr = nil;
-    BOOL theBoolToSkipISO2022JP = NO;
-    BOOL theBoolToSkipUTF8 = NO;
-    BOOL theBoolToSkipUTF16 = NO;
+    NSString *string = nil;
+    BOOL shouldSkipISO2022JP = NO;
+    BOOL shouldSkipUTF8 = NO;
+    BOOL shouldSkipUTF16 = NO;
 
     // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
     // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
@@ -417,93 +384,89 @@ enum { typeFSS = 'fss ' };
     // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
 
     // 10.5+でのファイル拡張属性(com.apple.TextEncoding)を試す
-    if ((boolXattr) && (encoding != k_autoDetectEncodingMenuTag)) {
-        theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
-        if (theStr == nil) {
+    if (boolXattr && (encoding != k_autoDetectEncodingMenuTag)) {
+        string = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
+        if (string == nil) {
             encoding = k_autoDetectEncodingMenuTag;
         }
     }
 
     if (([data length] > 0) && (encoding == k_autoDetectEncodingMenuTag)) {
-        const char theUtf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
+        const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         // BOM付きUTF-8判定
-        if (memchr([data bytes], *theUtf8Bom, 3) != NULL) {
-
-            theBoolToSkipUTF8 = YES;
-            theStr = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-            if (theStr != nil) {
+        if (memchr([data bytes], *utf8Bom, 3) != NULL) {
+            shouldSkipUTF8 = YES;
+            string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+            if (string != nil) {
                 encoding = NSUTF8StringEncoding;
             }
         // UTF-16判定
-        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) || 
-                    (memchr([data bytes], 0xfeff, 2) != NULL)) {
+        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
+                   (memchr([data bytes], 0xfeff, 2) != NULL)) {
 
-            theBoolToSkipUTF16 = YES;
-            theStr = [[[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding] autorelease];
-            if (theStr != nil) {
+            shouldSkipUTF16 = YES;
+            string = [[[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding] autorelease];
+            if (string != nil) {
                 encoding = NSUnicodeStringEncoding;
             }
 
         // ISO 2022-JP判定
         } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
-            theBoolToSkipISO2022JP = YES;
-            theStr = [[[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding] autorelease];
-            if (theStr != nil) {
+            shouldSkipISO2022JP = YES;
+            string = [[[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding] autorelease];
+            if (string != nil) {
                 encoding = NSISO2022JPStringEncoding;
             }
         }
     }
 
-    if ((theStr == nil) && (encoding == k_autoDetectEncodingMenuTag)) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
+    if ((string == nil) && (encoding == k_autoDetectEncodingMenuTag)) {
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSArray *encodings = [[[values valueForKey:k_key_encodingList] copy] autorelease];
         NSInteger i = 0;
 
-        while (theStr == nil) {
-            encoding = 
-                    CFStringConvertEncodingToNSStringEncoding([theEncodings[i] unsignedLongValue]);
-            if ((encoding == NSISO2022JPStringEncoding) && theBoolToSkipISO2022JP) {
+        while (string == nil) {
+            encoding = CFStringConvertEncodingToNSStringEncoding([encodings[i] unsignedLongValue]);
+            if ((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) {
                 break;
-            } else if ((encoding == NSUTF8StringEncoding) && theBoolToSkipUTF8) {
+            } else if ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) {
                 break;
-            } else if ((encoding == NSUnicodeStringEncoding) && theBoolToSkipUTF16) {
+            } else if ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16) {
                 break;
             } else if (encoding == NSProprietaryStringEncoding) {
                 NSLog(@"theEncoding == NSProprietaryStringEncoding");
                 break;
             }
-            theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
-            if (theStr != nil) {
+            string = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
+            if (string != nil) {
                 // "charset="や"encoding="を読んでみて適正なエンコーディングが得られたら、そちらを優先
-                NSStringEncoding theTmpEncoding = [self scannedCharsetOrEncodingFromString:theStr];
-                if ((theTmpEncoding == NSProprietaryStringEncoding) || (theTmpEncoding == encoding)) {
+                NSStringEncoding tmpEncoding = [self scannedCharsetOrEncodingFromString:string];
+                if ((tmpEncoding == NSProprietaryStringEncoding) || (tmpEncoding == encoding)) {
                     break;
                 }
-                NSString *theTmpStr = 
-                        [[[NSString alloc] initWithData:data encoding:theTmpEncoding] autorelease];
-                if (theTmpStr != nil) {
-                    theStr = theTmpStr;
-                    encoding = theTmpEncoding;
+                NSString *tmpStr = [[[NSString alloc] initWithData:data encoding:tmpEncoding] autorelease];
+                if (tmpStr != nil) {
+                    string = tmpStr;
+                    encoding = tmpEncoding;
                 }
             }
             i++;
         }
-    } else if (theStr == nil) {
-        theStr = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
+    } else if (string == nil) {
+        string = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
     }
 
-    if ((theStr != nil) && (encoding != k_autoDetectEncodingMenuTag)) {
+    if ((string != nil) && (encoding != k_autoDetectEncodingMenuTag)) {
         // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
         // 10.4+ ではスルー（2005.12.25）
         // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
         // (下記の現象と同じ理由で発生していると思われる）
         // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
-        if ((floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3) || // = 10.4+ 
-                ([data length] <= 8192) || 
-                (([data length] > 8192) && ([data length] != ([theStr length] * 2 + 1)) && 
-                        ([data length] != ([theStr length] * 2)))) {
+        if (([data length] <= 8192) ||
+            (([data length] > 8192) && ([data length] != ([string length] * 2 + 1)) &&
+             ([data length] != ([string length] * 2)))) {
                     
-            _initialString = [theStr retain]; // ===== retain
+            [self setInitialString:string];
             // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
             (void)[self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             return YES;
@@ -519,7 +482,7 @@ enum { typeFSS = 'fss ' };
 // windowController に表示する文字列を返す
 // ------------------------------------------------------
 {
-    return [_initialString autorelease]; // ===== autorelease
+    return [[self initialString] autorelease]; // ===== autorelease
 }
 
 
@@ -530,22 +493,22 @@ enum { typeFSS = 'fss ' };
 {
     [self setColoringExtension:[[self fileURL] pathExtension] coloring:NO];
     [self setStringToTextView:[self stringToWindowController]];
-    if ([_windowController needsIncompatibleCharDrawerUpdate]) {
-        [_windowController showIncompatibleCharList];
+    if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
+        [[self windowController] showIncompatibleCharList];
     }
     [self setIsWritableToEditorViewWithURL:[self fileURL]];
 }
 
 
 // ------------------------------------------------------
-- (void)setStringToTextView:(NSString *)inString
+- (void)setStringToTextView:(NSString *)string
 // 新たな文字列をセット
 // ------------------------------------------------------
 {
-    if (inString) {
-        OgreNewlineCharacter theLineEnd = [OGRegularExpression newlineCharacterInString:inString];
-        [self setLineEndingCharToView:theLineEnd]; // for update toolbar item
-        [[self editorView] setString:inString]; // （editorView の setString 内でキャレットを先頭に移動させている）
+    if (string) {
+        OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:string];
+        [self setLineEndingCharToView:lineEnding]; // for update toolbar item
+        [[self editorView] setString:string]; // （editorView の setString 内でキャレットを先頭に移動させている）
     } else {
         [[self editorView] setString:@""];
     }
@@ -560,60 +523,60 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)doSetEncoding:(NSStringEncoding)inEncoding updateDocument:(BOOL)inDocUpdate 
-        askLossy:(BOOL)inAskLossy  lossy:(BOOL)inLossy  asActionName:(NSString *)inName
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
+        askLossy:(BOOL)askLossy  lossy:(BOOL)lossy  asActionName:(NSString *)actionName
 // 新規エンコーディングをセット
 // ------------------------------------------------------
 {
-    if (inEncoding == [self encodingCode]) {
+    if (encoding == [self encodingCode]) {
         return YES;
     }
-    NSInteger theResult = NSAlertOtherReturn;
-    BOOL theBoolNeedsShowList = NO;
-    if (inDocUpdate) {
+    NSInteger result = NSAlertOtherReturn;
+    BOOL shouldShowList = NO;
+    if (updateDocument) {
 
-        theBoolNeedsShowList = [_windowController needsIncompatibleCharDrawerUpdate];
-        NSString *theCurString = [[self editorView] stringForSave];
-        BOOL theAllowLossy = NO;
+        shouldShowList = [[self windowController] needsIncompatibleCharDrawerUpdate];
+        NSString *curString = [[self editorView] stringForSave];
+        BOOL allowsLossy = NO;
 
-        if (inAskLossy) {
-            if (![theCurString canBeConvertedToEncoding:inEncoding]) {
-                NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:inEncoding];
-                NSString *theMessageText = [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), theEncodingNameStr];
-                NSAlert *theAlert = [NSAlert alertWithMessageText:theMessageText
-                                                    defaultButton:NSLocalizedString(@"Cancel", nil)
-                                                  alternateButton:NSLocalizedString(@"Change Encoding", nil)
-                                                      otherButton:nil
-                                        informativeTextWithFormat:NSLocalizedString(@"Do you want to change encoding and show incompatible character(s)?", nil)];
+        if (askLossy) {
+            if (![curString canBeConvertedToEncoding:encoding]) {
+                NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:encoding];
+                NSString *messageText = [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), encodingNameStr];
+                NSAlert *alert = [NSAlert alertWithMessageText:messageText
+                                                 defaultButton:NSLocalizedString(@"Cancel", nil)
+                                               alternateButton:NSLocalizedString(@"Change Encoding", nil)
+                                                   otherButton:nil
+                                     informativeTextWithFormat:NSLocalizedString(@"Do you want to change encoding and show incompatible character(s)?", nil)];
 
-                theResult = [theAlert runModal];
-                if (theResult == NSAlertDefaultReturn) { // == Cancel
+                result = [alert runModal];
+                if (result == NSAlertDefaultReturn) { // == Cancel
                     return NO;
                 }
-                theBoolNeedsShowList = YES;
-                theAllowLossy = YES;
+                shouldShowList = YES;
+                allowsLossy = YES;
             }
         } else {
-            theAllowLossy = inLossy;
+            allowsLossy = lossy;
         }
         // Undo登録
-        NSUndoManager *theUndoManager = [self undoManager];
-        [[theUndoManager prepareWithInvocationTarget:self] 
-                    redoSetEncoding:inEncoding updateDocument:inDocUpdate 
-                    askLossy:NO lossy:theAllowLossy asActionName:inName]; // undo内redo
-        if (theBoolNeedsShowList) {
-            [[theUndoManager prepareWithInvocationTarget:_windowController] showIncompatibleCharList];
+        NSUndoManager *undoManager = [self undoManager];
+        [[undoManager prepareWithInvocationTarget:self]
+                    redoSetEncoding:encoding updateDocument:updateDocument 
+                    askLossy:NO lossy:allowsLossy asActionName:actionName]; // undo内redo
+        if (shouldShowList) {
+            [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
         }
-        [[theUndoManager prepareWithInvocationTarget:self] doSetEncoding:[self encodingCode]]; // エンコード値設定
-        [[theUndoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCount減値
-        if (inName) {
-            [theUndoManager setActionName:inName];
+        [[undoManager prepareWithInvocationTarget:self] doSetEncoding:[self encodingCode]]; // エンコード値設定
+        [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCount減値
+        if (actionName) {
+            [undoManager setActionName:actionName];
         }
         [self updateChangeCount:NSChangeDone];
     }
-    [self doSetEncoding:inEncoding];
-    if (theBoolNeedsShowList) {
-        [_windowController showIncompatibleCharList];
+    [self doSetEncoding:encoding];
+    if (shouldShowList) {
+        [[self windowController] showIncompatibleCharList];
     }
     return YES;
 }
@@ -644,18 +607,17 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)inEncoding
+- (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)encoding
 // 指定されたエンコードにコンバートできない文字列をマークアップし、その配列を返す
 // ------------------------------------------------------
 {
     NSMutableArray *outArray = [NSMutableArray array];
-    NSString *theWholeString = [[self editorView] stringForSave];
-    NSUInteger theWholeLength = [theWholeString length];
-    NSData *theData = [theWholeString dataUsingEncoding:inEncoding allowLossyConversion:YES];
-    NSString *theConvertedString = [[[NSString alloc] initWithData:theData encoding:inEncoding] autorelease];
+    NSString *wholeString = [[self editorView] stringForSave];
+    NSUInteger wholeLength = [wholeString length];
+    NSData *data = [wholeString dataUsingEncoding:encoding allowLossyConversion:YES];
+    NSString *convertedString = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
 
-    if ((theConvertedString == nil) || 
-            ([theConvertedString length] != theWholeLength)) { // 正しいリストが取得できない時
+    if ((convertedString == nil) || ([convertedString length] != wholeLength)) { // 正しいリストが取得できない時
         return nil;
     }
 
@@ -663,62 +625,56 @@ enum { typeFSS = 'fss ' };
     [self clearAllMarkupForIncompatibleChar];
 
     // 削除／変換される文字をリストアップ
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *theManagers = [[self editorView] allLayoutManagers];
-    NSColor *theForeColor = 
-            [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]];
-    NSColor *theBGColor = 
-            [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_backgroundColor]];
-    NSColor *theIncompatibleColor;
-    NSDictionary *theAttrs;
-    NSString *theCurChar, *theConvertedChar;
-    NSString *theYemMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
-    unichar theWholeUnichar, theConvertedUnichar;
-    NSUInteger i, theLines, theIndex, theCurLine;
-    CGFloat theBG_R, theBG_G, theBG_B, theF_R, theF_G, theF_B;
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSArray *managers = [[self editorView] allLayoutManagers];
+    NSColor *foreColor = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_textColor]];
+    NSColor *backColor = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_backgroundColor]];
+    NSColor *incompatibleColor;
+    NSDictionary *attrs;
+    NSString *curChar, *convertedChar;
+    NSString *yenMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
+    unichar wholeUnichar, convertedUnichar;
+    NSUInteger i, lines, index, curLine;
+    CGFloat BG_R, BG_G, BG_B, F_R, F_G, F_B;
 
     // 文字色と背景色の中間色を得る
-    [[theForeColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] 
-            getRed:&theF_R green:&theF_G blue:&theF_B alpha:nil];
-    [[theBGColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] 
-            getRed:&theBG_R green:&theBG_G blue:&theBG_B alpha:nil];
-    theIncompatibleColor = [NSColor colorWithCalibratedRed:((theBG_R + theF_R) / 2) 
-                green:((theBG_G + theF_G) / 2) 
-                blue:((theBG_B + theF_B) / 2) 
-                alpha:1.0];
-    theAttrs = @{NSBackgroundColorAttributeName: theIncompatibleColor};
+    [[foreColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&F_R green:&F_G blue:&F_B alpha:nil];
+    [[backColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&BG_R green:&BG_G blue:&BG_B alpha:nil];
+    incompatibleColor = [NSColor colorWithCalibratedRed:((BG_R + F_R) / 2)
+                                                  green:((BG_G + F_G) / 2)
+                                                   blue:((BG_B + F_B) / 2)
+                                                  alpha:1.0];
+    attrs = @{NSBackgroundColorAttributeName: incompatibleColor};
 
-    for (i = 0; i < theWholeLength; i++) {
-        theWholeUnichar = [theWholeString characterAtIndex:i];
-        theConvertedUnichar = [theConvertedString characterAtIndex:i];
-        if (theWholeUnichar != theConvertedUnichar) {
-            theCurChar = [theWholeString substringWithRange:NSMakeRange(i, 1)];
-            theConvertedChar = [theConvertedString substringWithRange:NSMakeRange(i, 1)];
+    for (i = 0; i < wholeLength; i++) {
+        wholeUnichar = [wholeString characterAtIndex:i];
+        convertedUnichar = [convertedString characterAtIndex:i];
+        if (wholeUnichar != convertedUnichar) {
+            curChar = [wholeString substringWithRange:NSMakeRange(i, 1)];
+            convertedChar = [convertedString substringWithRange:NSMakeRange(i, 1)];
 
-            if (([[NSApp delegate] isInvalidYenEncoding:inEncoding]) && 
-                    ([theCurChar isEqualToString:theYemMarkChar])) {
-                theCurChar = theYemMarkChar;
-                theConvertedChar = @"\\";
+            if (([[NSApp delegate] isInvalidYenEncoding:encoding]) && 
+                    ([curChar isEqualToString:yenMarkChar])) {
+                curChar = yenMarkChar;
+                convertedChar = @"\\";
             }
 
-            for (NSLayoutManager *manager in theManagers) {
-                [manager addTemporaryAttributes:theAttrs forCharacterRange:NSMakeRange(i, 1)];
+            for (NSLayoutManager *manager in managers) {
+                [manager addTemporaryAttributes:attrs forCharacterRange:NSMakeRange(i, 1)];
             }
-            theCurLine = 1;
-            for (theIndex = 0, theLines = 0; theIndex < theWholeLength; theLines++) {
-                if (theIndex <= i) {
-                    theCurLine = theLines + 1;
+            curLine = 1;
+            for (index = 0, lines = 0; index < wholeLength; lines++) {
+                if (index <= i) {
+                    curLine = lines + 1;
                 } else {
                     break;
                 }
-                theIndex = NSMaxRange([theWholeString lineRangeForRange:NSMakeRange(theIndex, 0)]);
+                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
             }
-            [outArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                    @(theCurLine), k_listLineNumber, 
-                    [NSValue valueWithRange:NSMakeRange(i, 1)], k_incompatibleRange, 
-                    theCurChar, k_incompatibleChar, 
-                    theConvertedChar, k_convertedChar, 
-                    nil]];
+            [outArray addObject:[@{k_listLineNumber: @(curLine),
+                                   k_incompatibleRange: [NSValue valueWithRange:NSMakeRange(i, 1)],
+                                   k_incompatibleChar: curChar,
+                                   k_convertedChar: convertedChar} mutableCopy]];
         }
     }
     return outArray;
@@ -726,91 +682,89 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)doSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding
+- (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding
 // 行末コードを変更する
 // ------------------------------------------------------
 {
-    NSInteger theCurrentEnding = [[self editorView] lineEndingCharacter];
+    NSInteger currentEnding = [[self editorView] lineEndingCharacter];
 
     // 現在と同じ行末コードなら、何もしない
-    if (theCurrentEnding == inNewLineEnding) {
+    if (currentEnding == newLineEnding) {
         return;
     }
 
     NSArray *lineEndingNames = @[k_lineEndingNames];
-    NSString *theActionName = [NSString stringWithFormat:
-                NSLocalizedString(@"Line Endings to \"%@\"",@""),lineEndingNames[inNewLineEnding]];
+    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Line Endings to \"%@\"",@""),lineEndingNames[newLineEnding]];
 
     // Undo登録
-    NSUndoManager *theUndoManager = [self undoManager];
-    [[theUndoManager prepareWithInvocationTarget:self] 
-                redoSetNewLineEndingCharacterCode:inNewLineEnding]; // undo内redo
-    [[theUndoManager prepareWithInvocationTarget:self] setLineEndingCharToView:theCurrentEnding]; // 元の行末コード
-    [[theUndoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
-    [theUndoManager setActionName:theActionName];
+    NSUndoManager *undoManager = [self undoManager];
+    [[undoManager prepareWithInvocationTarget:self] 
+                redoSetNewLineEndingCharacterCode:newLineEnding]; // undo内redo
+    [[undoManager prepareWithInvocationTarget:self] setLineEndingCharToView:currentEnding]; // 元の行末コード
+    [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
+    [undoManager setActionName:actionName];
 
-    [self setLineEndingCharToView:inNewLineEnding];
+    [self setLineEndingCharToView:newLineEnding];
     [self updateChangeCount:NSChangeDone]; // changeCountインクリメント
 }
 
 
 // ------------------------------------------------------
-- (void)setLineEndingCharToView:(NSInteger)inNewLineEnding
+- (void)setLineEndingCharToView:(NSInteger)newLineEnding
 // 行末コード番号をセット
 // ------------------------------------------------------
 {
-    [[self editorView] setLineEndingCharacter:inNewLineEnding];
-    [[_windowController toolbarController] setSelectEndingItemIndex:inNewLineEnding];
+    [[self editorView] setLineEndingCharacter:newLineEnding];
+    [[[self windowController] toolbarController] setSelectEndingItemIndex:newLineEnding];
 }
 
 
 // ------------------------------------------------------
-- (void)doSetSyntaxStyle:(NSString *)inName
+- (void)doSetSyntaxStyle:(NSString *)name
 // 新しいシンタックスカラーリングスタイルを適用
 // ------------------------------------------------------
 {
-    if ([inName length] > 0) {
-        [[self editorView] setSyntaxStyleNameToColoring:inName recolorNow:YES];
-        [[_windowController toolbarController] setSelectSyntaxItemWithTitle:inName];
+    if ([name length] > 0) {
+        [[self editorView] setSyntaxStyleNameToColoring:name recolorNow:YES];
+        [[[self windowController] toolbarController] setSelectSyntaxItemWithTitle:name];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)doSetSyntaxStyle:(NSString *)inName delay:(BOOL)inBoolDelay
+- (void)doSetSyntaxStyle:(NSString *)name delay:(BOOL)needsDelay
 // ディレイをかけて新しいシンタックスカラーリングスタイルを適用（ほぼNone専用）
 // ------------------------------------------------------
 {
-    if (inBoolDelay) {
-        if ([inName length] > 0) {
-            [[self editorView] setSyntaxStyleNameToColoring:inName recolorNow:NO];
-            [[_windowController toolbarController] 
-                    performSelector:@selector(setSelectSyntaxItemWithTitle:) withObject:inName afterDelay:0];
+    if (needsDelay) {
+        if ([name length] > 0) {
+            [[self editorView] setSyntaxStyleNameToColoring:name recolorNow:NO];
+            [[[self windowController] toolbarController]
+                    performSelector:@selector(setSelectSyntaxItemWithTitle:) withObject:name afterDelay:0];
         }
     } else {
-        [self doSetSyntaxStyle:inName];
+        [self doSetSyntaxStyle:name];
     }
     
 }
 
 
 // ------------------------------------------------------
-- (void)setColoringExtension:(NSString *)inExtension coloring:(BOOL)inBoolColoring
+- (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring
 // editorViewを通じてcoloringStyleインスタンスにドキュメント拡張子をセット
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    if (![[theValues valueForKey:k_key_doColoring] boolValue]) { return; }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:k_key_doColoring]) { return; }
 
-    BOOL theBoolIsUpdated = [[self editorView] setSyntaxExtension:inExtension];
+    BOOL shouldUpdated = [[self editorView] setSyntaxExtension:extension];
 
-    if (theBoolIsUpdated) {
+    if (shouldUpdated) {
         // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
-        NSString *theName = [[CESyntaxManager sharedInstance] syntaxNameFromExtension:inExtension];
-        theName = ((theName == nil) || ([theName isEqualToString:@""])) ? 
-                    [theValues valueForKey:k_key_defaultColoringStyleName] : theName;
-        [[_windowController toolbarController] setSelectSyntaxItemWithTitle:theName];
-        if (inBoolColoring) {
+        NSString *name = [[CESyntaxManager sharedInstance] syntaxNameFromExtension:extension];
+        name = (!name || [name isEqualToString:@""]) ? [defaults stringForKey:k_key_defaultColoringStyleName]: name;
+        [[[self windowController] toolbarController] setSelectSyntaxItemWithTitle:name];
+        if (doColoring) {
             [self recoloringAllStringOfDocument:nil];
         }
     }
@@ -818,96 +772,96 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length
 // マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
 // ------------------------------------------------------
 {
-    CETextViewCore *theTextView = [[self editorView] textView];
-    NSUInteger theWholeLength = [[theTextView string] length];
-    NSInteger theLocation, theLength;
-    NSRange outRange = NSMakeRange(0, 0);
+    CETextViewCore *textView = [[self editorView] textView];
+    NSUInteger wholeLength = [[textView string] length];
+    NSInteger newLocation, newLength;
+    NSRange range = NSMakeRange(0, 0);
 
-    theLocation = (inLocation < 0) ? (theWholeLength + inLocation) : inLocation;
-    theLength = (inLength < 0) ? (theWholeLength - theLocation + inLength) : inLength;
-    if ((theLocation < theWholeLength) && ((theLocation + theLength) > theWholeLength)) {
-        theLength = theWholeLength - theLocation;
+    newLocation = (location < 0) ? (wholeLength + location) : location;
+    newLength = (length < 0) ? (wholeLength - newLocation + length) : length;
+    if ((newLocation < wholeLength) && ((newLocation + newLength) > wholeLength)) {
+        newLength = wholeLength - newLocation;
     }
-    if ((inLength < 0) && (theLength < 0)) {
-        theLength = 0;
+    if ((length < 0) && (newLength < 0)) {
+        newLength = 0;
     }
-    if ((theLocation < 0) || (theLength < 0)) {
-        return outRange;
+    if ((newLocation < 0) || (newLength < 0)) {
+        return range;
     }
-    outRange = NSMakeRange(theLocation, theLength);
-    if (theWholeLength >= NSMaxRange(outRange)) {
-        return outRange;
+    range = NSMakeRange(newLocation, newLength);
+    if (wholeLength >= NSMaxRange(range)) {
+        return range;
     }
-    return outRange;
+    return range;
 }
 
 
 // ------------------------------------------------------
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length
 // editorView 内部の textView で指定された部分を文字単位で選択
 // ------------------------------------------------------
 {
-    NSRange theSelectionRange = [self rangeInTextViewWithLocation:inLocation withLength:inLength];
+    NSRange selectionRange = [self rangeInTextViewWithLocation:location withLength:length];
 
-    [[self editorView] setSelectedRange:theSelectionRange];
+    [[self editorView] setSelectedRange:selectionRange];
 }
 
 
 // ------------------------------------------------------
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length
 // editorView 内部の textView で指定された部分を行単位で選択
 // ------------------------------------------------------
 {
-    CETextViewCore *theTextView = [[self editorView] textView];
-    NSUInteger theWholeLength = [[theTextView string] length];
+    CETextViewCore *textView = [[self editorView] textView];
+    NSUInteger wholeLength = [[textView string] length];
     OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@"^"];
-    NSArray *theArray = [regex allMatchesInString:[theTextView string]];
+    NSArray *matches = [regex allMatchesInString:[textView string]];
 
-    if (theArray) {
-        NSInteger theCount = [theArray count];
-        if (inLocation == 0) {
-            [theTextView setSelectedRange:NSMakeRange(0, 0)];
-        } else if (inLocation > theCount) {
-            [theTextView setSelectedRange:NSMakeRange(theWholeLength, 0)];
+    if (matches) {
+        NSInteger count = [matches count];
+        if (location == 0) {
+            [textView setSelectedRange:NSMakeRange(0, 0)];
+        } else if (location > count) {
+            [textView setSelectedRange:NSMakeRange(wholeLength, 0)];
         } else {
-            NSInteger theLocation, theLength;
+            NSInteger newLocation, newLength;
 
-            theLocation = (inLocation < 0) ? (theCount + inLocation + 1) : inLocation;
-            if (inLength < 0) {
-                theLength = theCount - theLocation + inLength + 1;
-            } else if (inLength == 0) {
-                theLength = 1;
+            newLocation = (location < 0) ? (count + location + 1) : location;
+            if (length < 0) {
+                newLength = count - newLocation + length + 1;
+            } else if (length == 0) {
+                newLength = 1;
             } else {
-                theLength = inLength;
+                newLength = length;
             }
-            if ((theLocation < theCount) && ((theLocation + theLength - 1) > theCount)) {
-                theLength = theCount - theLocation + 1;
+            if ((newLocation < count) && ((newLocation + newLength - 1) > count)) {
+                newLength = count - newLocation + 1;
             }
-            if ((inLength < 0) && (theLength < 0)) {
-                theLength = 1;
+            if ((length < 0) && (newLength < 0)) {
+                newLength = 1;
             }
-            if ((theLocation <= 0) || (theLength <= 0)) { return; }
+            if ((newLocation <= 0) || (newLength <= 0)) { return; }
 
-            OGRegularExpressionMatch *theMatch = theArray[(theLocation - 1)];
-            NSRange theRange = [theMatch rangeOfMatchedString];
-            NSRange theTmpRange = theRange;
+            OGRegularExpressionMatch *match = matches[(newLocation - 1)];
+            NSRange range = [match rangeOfMatchedString];
+            NSRange tmpRange = range;
             NSInteger i;
 
-            for (i = 0; i < theLength; i++) {
-                if (NSMaxRange(theTmpRange) > theWholeLength) {
+            for (i = 0; i < newLength; i++) {
+                if (NSMaxRange(tmpRange) > wholeLength) {
                     break;
                 }
-                theRange = [[theTextView string] lineRangeForRange:theTmpRange];
-                theTmpRange.length = theRange.length + 1;
+                range = [[textView string] lineRangeForRange:tmpRange];
+                tmpRange.length = range.length + 1;
             }
-            if (theWholeLength < NSMaxRange(theRange)) {
-                theRange.length = theWholeLength - theRange.location;
+            if (wholeLength < NSMaxRange(range)) {
+                range.length = wholeLength - range.location;
             }
-            [theTextView setSelectedRange:theRange];
+            [textView setSelectedRange:range];
         }
     }
 }
@@ -923,21 +877,21 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength type:(CEGoToType)type
+- (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type
 // 選択範囲を変更する
 // ------------------------------------------------------
 {
     switch (type) {
         case CEGoToLine:
-            [self setSelectedLineRangeInTextViewWithLocation:inLocation withLength:inLength];
+            [self setSelectedLineRangeInTextViewWithLocation:location withLength:length];
             break;
         case CEGoToCharacter:
-            [self setSelectedCharacterRangeInTextViewWithLocation:inLocation withLength:inLength];
+            [self setSelectedCharacterRangeInTextViewWithLocation:location withLength:length];
             break;
     }
     [self scrollToCenteringSelection]; // 選択範囲が見えるようにスクロール
     [[[self editorView] textView] showFindIndicatorForRange:[[[self editorView] textView] selectedRange]];  // 検索結果表示エフェクトを追加
-    [[_windowController window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
+    [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
 }
 
 
@@ -951,7 +905,7 @@ enum { typeFSS = 'fss ' };
 
     if (attributes) {
         [self setFileAttributes:attributes];
-        [_windowController updateFileAttrsInformation];
+        [[self windowController] updateFileAttrsInformation];
     }
 }
 
@@ -961,8 +915,8 @@ enum { typeFSS = 'fss ' };
 // toolbar のエンコーディングメニューアイテムを再生成する
 // ------------------------------------------------------
 {
-    [[_windowController toolbarController] buildEncodingPopupButton];
-    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] buildEncodingPopupButton];
+    [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
 }
 
 
@@ -971,41 +925,41 @@ enum { typeFSS = 'fss ' };
 // toolbar のシンタックスカラーリングメニューアイテムを再生成する
 // ------------------------------------------------------
 {
-    NSString *theTitle = [[_windowController toolbarController] selectedTitleOfSyntaxItem];
+    NSString *title = [[[self windowController] toolbarController] selectedTitleOfSyntaxItem];
 
-    [[_windowController toolbarController] buildSyntaxPopupButton];
-    [[_windowController toolbarController] setSelectSyntaxItemWithTitle:theTitle];
+    [[[self windowController] toolbarController] buildSyntaxPopupButton];
+    [[[self windowController] toolbarController] setSelectSyntaxItemWithTitle:title];
 }
 
 
 // ------------------------------------------------------
-- (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)inDictionary
+- (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict
 // 指定されたスタイルを適用していたら、WindowController のリカラーフラグを立てる
 // ------------------------------------------------------
 {
-    NSString *theOldName = inDictionary[k_key_oldStyleName];
-    NSString *theNewName = inDictionary[k_key_newStyleName];
-    NSString *theCurStyleName = [[self editorView] syntaxStyleNameToColoring];
+    NSString *oldName = styleNameDict[k_key_oldStyleName];
+    NSString *newName = styleNameDict[k_key_newStyleName];
+    NSString *curStyleName = [[self editorView] syntaxStyleNameToColoring];
 
-    if ([theOldName isEqualToString:theCurStyleName]) {
-        if ((theOldName != nil) && (theNewName != nil) && (![theOldName isEqualToString:theNewName])) {
-            [[self editorView] setSyntaxStyleNameToColoring:theNewName recolorNow:NO];
+    if ([oldName isEqualToString:curStyleName]) {
+        if (oldName && newName && ![oldName isEqualToString:newName]) {
+            [[self editorView] setSyntaxStyleNameToColoring:newName recolorNow:NO];
         }
-        [_windowController setRecolorWithBecomeKey:YES];
+        [[self windowController] setRecolorWithBecomeKey:YES];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)inStyleName
+- (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName
 // 指定されたスタイルを適用していたら WindowController のリカラーフラグを立て、スタイル名を"None"にする
 // ------------------------------------------------------
 {
-    NSString *theCurStyleName = [[self editorView] syntaxStyleNameToColoring];
+    NSString *curStyleName = [[self editorView] syntaxStyleNameToColoring];
 
     // 指定されたスタイル名と違ったら、無視
-    if ([theCurStyleName isEqualToString:inStyleName]) {
-        [_windowController setRecolorWithBecomeKey:YES];
+    if ([curStyleName isEqualToString:styleName]) {
+        [[self windowController] setRecolorWithBecomeKey:YES];
         [[self editorView] setSyntaxStyleNameToColoring:NSLocalizedString(@"None",@"") recolorNow:NO];
     }
 }
@@ -1016,10 +970,9 @@ enum { typeFSS = 'fss ' };
 // スマートインサート／デリートをするかどうかをテキストビューへ設定
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    [[[self editorView] textView] setSmartInsertDeleteEnabled:
-            [[theValues valueForKey:k_key_smartInsertAndDelete] boolValue]];
+    [[[self editorView] textView] setSmartInsertDeleteEnabled:[[values valueForKey:k_key_smartInsertAndDelete] boolValue]];
 }
 
 
@@ -1028,13 +981,13 @@ enum { typeFSS = 'fss ' };
 // 設定されたエンコーディングの IANA Charset 名を返す
 // ------------------------------------------------------
 {
-    NSString *outString = nil;
-    CFStringEncoding theCFEncoding = CFStringConvertNSStringEncodingToEncoding([self encodingCode]);
+    NSString *charSetName = nil;
+    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encodingCode]);
 
-    if (theCFEncoding != kCFStringEncodingInvalidId) {
-        outString = (NSString *)CFStringConvertEncodingToIANACharSetName(theCFEncoding);
+    if (cfEncoding != kCFStringEncodingInvalidId) {
+        charSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
     }
-    return outString;
+    return charSetName;
 }
 
 
@@ -1095,42 +1048,42 @@ enum { typeFSS = 'fss ' };
 //=======================================================
 
 // ------------------------------------------------------
-- (BOOL)validateMenuItem:(NSMenuItem *)inMenuItem
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // メニュー項目の有効・無効を制御
 // ------------------------------------------------------
 {
-    NSInteger theState = NSOffState;
-    NSString *theName;
+    NSInteger state = NSOffState;
+    NSString *name;
 
-    if ([inMenuItem action] == @selector(saveDocument:)) {
+    if ([menuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
         if ((![[self editorView] isWritable]) && (![[self editorView] isAlertedNotWritable])) {
             return NO;
         }
-    } else if ([inMenuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
+    } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
         return ([[[self editorView] navigationBar] canSelectPrevItem]);
-    } else if ([inMenuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
+    } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
         return ([[[self editorView] navigationBar] canSelectNextItem]);
-    } else if ([inMenuItem action] == @selector(setEncoding:)) {
-        theState = ([inMenuItem tag] == [self encodingCode]) ? NSOnState : NSOffState;
-    } else if (([inMenuItem action] == @selector(setLineEndingCharToLF:)) || 
-            ([inMenuItem action] == @selector(setLineEndingCharToCR:)) || 
-            ([inMenuItem action] == @selector(setLineEndingCharToCRLF:))) {
-        theState = ([inMenuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
-    } else if ([inMenuItem action] == @selector(setSyntaxStyle:)) {
-        theName = [[self editorView] syntaxStyleNameToColoring];
-        if (theName && [[inMenuItem title] isEqualToString:theName]) {
-            theState = NSOnState;
+    } else if ([menuItem action] == @selector(setEncoding:)) {
+        state = ([menuItem tag] == [self encodingCode]) ? NSOnState : NSOffState;
+    } else if (([menuItem action] == @selector(setLineEndingCharToLF:)) ||
+               ([menuItem action] == @selector(setLineEndingCharToCR:)) ||
+               ([menuItem action] == @selector(setLineEndingCharToCRLF:))) {
+        state = ([menuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
+    } else if ([menuItem action] == @selector(setSyntaxStyle:)) {
+        name = [[self editorView] syntaxStyleNameToColoring];
+        if (name && [[menuItem title] isEqualToString:name]) {
+            state = NSOnState;
         }
-    } else if ([inMenuItem action] == @selector(recoloringAllStringOfDocument:)) {
-        theName = [[self editorView] syntaxStyleNameToColoring];
-        if (theName && [theName isEqualToString:NSLocalizedString(@"None",@"")]) {
+    } else if ([menuItem action] == @selector(recoloringAllStringOfDocument:)) {
+        name = [[self editorView] syntaxStyleNameToColoring];
+        if (name && [name isEqualToString:NSLocalizedString(@"None",@"")]) {
             return NO;
         }
     }
-    [inMenuItem setState:theState];
+    [menuItem setState:state];
 
-    return [super validateMenuItem:inMenuItem];
+    return [super validateMenuItem:menuItem];
 }
 
 
@@ -1141,11 +1094,11 @@ enum { typeFSS = 'fss ' };
 //=======================================================
 
 // ------------------------------------------------------
--(BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+-(BOOL)validateToolbarItem:(NSToolbarItem *)item
 // ツールバー項目の有効・無効を制御
 // ------------------------------------------------------
 {
-    if ([[theItem itemIdentifier] isEqualToString:k_syntaxReColorAllItemID]) {
+    if ([[item itemIdentifier] isEqualToString:k_syntaxReColorAllItemID]) {
         NSString *name = [[self editorView] syntaxStyleNameToColoring];
         if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
@@ -1215,11 +1168,11 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)documentDidFinishOpen:(NSNotification *)inNotification
+- (void)documentDidFinishOpen:(NSNotification *)notification
 // 書類オープン処理が完了した
 // ------------------------------------------------------
 {
-    if ([inNotification object] != [self editorView]) { return; }
+    if ([notification object] != [self editorView]) { return; }
 
     [self showAlertForNotWritable];
 }
@@ -1267,7 +1220,7 @@ enum { typeFSS = 'fss ' };
 
     NSPrintPanel *printPanel = [NSPrintPanel printPanel];
 
-    [printPanel setAccessoryView:[_windowController printAccessoryView]];
+    [printPanel setAccessoryView:[[self windowController] printAccessoryView]];
     [printPanel beginSheetWithPrintInfo:[self printInfo]
                          modalForWindow:[self windowForSheet]
                                delegate:self
@@ -1317,72 +1270,70 @@ enum { typeFSS = 'fss ' };
 // ドキュメントに新しいエンコーディングをセットする
 // ------------------------------------------------------
 {
-    NSStringEncoding theEncoding = [sender tag];
+    NSStringEncoding encoding = [sender tag];
 
-    if ((theEncoding < 1) || (theEncoding == [self encodingCode])) {
+    if ((encoding < 1) || (encoding == [self encodingCode])) {
         return;
     }
-    NSInteger theResult;
-    NSString *theEncodingName = [sender title];
+    NSInteger result;
+    NSString *encodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
     if (([[[self editorView] string] length] < 1) || (![self fileURL])) {
-        theResult = NSAlertDefaultReturn;
+        result = NSAlertDefaultReturn;
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
-        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"File encoding", nil)
-                                            defaultButton:NSLocalizedString(@"Convert", nil)
-                                          alternateButton:NSLocalizedString(@"Reinterpret", nil)
-                                              otherButton:NSLocalizedString(@"Cancel", nil)
-                                informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using \"%@\"?", nil), theEncodingName];
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"File encoding", nil)
+                                         defaultButton:NSLocalizedString(@"Convert", nil)
+                                       alternateButton:NSLocalizedString(@"Reinterpret", nil)
+                                           otherButton:NSLocalizedString(@"Cancel", nil)
+                             informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using \"%@\"?", nil), encodingName];
 
-        theResult = [theAlert runModal];
+        result = [alert runModal];
     }
-    if (theResult == NSAlertDefaultReturn) { // = Convert 変換
+    if (result == NSAlertDefaultReturn) { // = Convert 変換
 
-        NSString *theActionName = [NSString stringWithFormat:
-                    NSLocalizedString(@"Encoding to \"%@\"",@""), 
-                    [NSString localizedNameOfStringEncoding:theEncoding]];
+        NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to \"%@\"",@""),
+                    [NSString localizedNameOfStringEncoding:encoding]];
 
-        (void)[self doSetEncoding:theEncoding updateDocument:YES askLossy:YES 
-                    lossy:NO asActionName:theActionName];
+        (void)[self doSetEncoding:encoding updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
 
-    } else if (theResult == NSAlertAlternateReturn) { // = Reinterpret 再解釈
+    } else if (result == NSAlertAlternateReturn) { // = Reinterpret 再解釈
 
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
-            NSAlert *theSecondAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file \'%@\' has unsaved changes.", nil), [[self fileURL] path]]
-                                                      defaultButton:NSLocalizedString(@"Cancel", nil)
-                                                    alternateButton:NSLocalizedString(@"Discard Changes", nil)
-                                                        otherButton:nil
-                                          informativeTextWithFormat:NSLocalizedString(@"Do you want to discard the changes and reset the file encodidng?", nil)];
+            NSAlert *secondAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file \'%@\' has unsaved changes.", nil), [[self fileURL] path]]
+                                                   defaultButton:NSLocalizedString(@"Cancel", nil)
+                                                 alternateButton:NSLocalizedString(@"Discard Changes", nil)
+                                                     otherButton:nil
+                                       informativeTextWithFormat:NSLocalizedString(@"Do you want to discard the changes and reset the file encodidng?", nil)];
 
-            NSInteger theSecondResult = [theSecondAlert runModal];
-            if (theSecondResult != NSAlertAlternateReturn) { // != Discard Change
+            NSInteger secondResult = [secondAlert runModal];
+            if (secondResult != NSAlertAlternateReturn) { // != Discard Change
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-                [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
+                [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
                 return;
             }
         }
-        if ([self readFromURL:[self fileURL] withEncoding:theEncoding]) {
+        if ([self readFromURL:[self fileURL] withEncoding:encoding]) {
             [self setStringToEditorView];
             // アンドゥ履歴をクリア
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
         } else {
-            NSAlert *theThirdAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Can not reinterpret", nil)
-                                                     defaultButton:NSLocalizedString(@"Done", nil)
-                                                   alternateButton:nil
-                                                       otherButton:nil
-                                         informativeTextWithFormat:NSLocalizedString(@"The file \'%@\' could not be reinterpreted using the new encoding \"%@\".", nil), [[self fileURL] path], theEncodingName];
-            [theThirdAlert setAlertStyle:NSCriticalAlertStyle];
+            NSAlert *thirdAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Can not reinterpret", nil)
+                                                  defaultButton:NSLocalizedString(@"Done", nil)
+                                                alternateButton:nil
+                                                    otherButton:nil
+                                      informativeTextWithFormat:NSLocalizedString(@"The file \'%@\' could not be reinterpreted using the new encoding \"%@\".", nil), [[self fileURL] path], encodingName];
+            [thirdAlert setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
-            (void)[theThirdAlert runModal];
+            (void)[thirdAlert runModal];
         }
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
 }
 
 
@@ -1391,10 +1342,10 @@ enum { typeFSS = 'fss ' };
 // 新しいシンタックスカラーリングスタイルを適用
 // ------------------------------------------------------
 {
-    NSString *theName = [sender title];
+    NSString *name = [sender title];
 
-    if ((theName != nil) && ([theName length] > 0)) {
-        [self doSetSyntaxStyle:theName];
+    if (name && ([name length] > 0)) {
+        [self doSetSyntaxStyle:name];
     }
 }
 
@@ -1413,10 +1364,10 @@ enum { typeFSS = 'fss ' };
 // IANA文字コード名を挿入する
 // ------------------------------------------------------
 {
-    NSString *theString = [self currentIANACharSetName];
+    NSString *string = [self currentIANACharSetName];
 
-    if (theString != nil) {
-        [[[self editorView] textView] insertText:theString];
+    if (string) {
+        [[[self editorView] textView] insertText:string];
     }
 }
 
@@ -1426,10 +1377,10 @@ enum { typeFSS = 'fss ' };
 // IANA文字コード名を挿入する
 // ------------------------------------------------------
 {
-    NSString *theString = [self currentIANACharSetName];
+    NSString *string = [self currentIANACharSetName];
 
-    if (theString != nil) {
-        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", theString]];
+    if (string) {
+        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
     }
 }
 
@@ -1439,10 +1390,10 @@ enum { typeFSS = 'fss ' };
 // IANA文字コード名を挿入する
 // ------------------------------------------------------
 {
-    NSString *theString = [self currentIANACharSetName];
+    NSString *string = [self currentIANACharSetName];
 
-    if (theString != nil) {
-        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", theString]];
+    if (string) {
+        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
     }
 }
 
@@ -1475,32 +1426,32 @@ enum { typeFSS = 'fss ' };
 //=======================================================
 
 // ------------------------------------------------------
-- (NSString *)convertedCharacterString:(NSString *)inString withEncoding:(NSStringEncoding)inEncoding
+- (NSString *)convertedCharacterString:(NSString *)string withEncoding:(NSStringEncoding)encoding
 // 半角円マークを使えないエンコードの時はバックスラッシュに変換した文字列を返す
 // ------------------------------------------------------
 {
-    NSUInteger theLength = [inString length];
+    NSUInteger length = [string length];
 
-    if (theLength > 0) {
-        NSMutableString *outString = [inString mutableCopy]; // ===== mutableCopy
-        if ([[NSApp delegate] isInvalidYenEncoding:inEncoding]) {
+    if (length > 0) {
+        NSMutableString *outString = [string mutableCopy]; // ===== mutableCopy
+        if ([[NSApp delegate] isInvalidYenEncoding:encoding]) {
             (void)[outString replaceOccurrencesOfString:
                         [NSString stringWithCharacters:&k_yenMark length:1] withString:@"\\" 
-                        options:0 range:NSMakeRange(0, theLength)];
+                        options:0 range:NSMakeRange(0, length)];
         }
         return [outString autorelease]; // autorelease
     } else {
-        return inString;
+        return string;
     }
 }
 
 
 // ------------------------------------------------------
-- (void)doSetEncoding:(NSStringEncoding)inEncoding
+- (void)doSetEncoding:(NSStringEncoding)encoding
 // エンコード値を保存
 // ------------------------------------------------------
 {
-    [self setEncodingCode:inEncoding];
+    [self setEncodingCode:encoding];
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
 }
@@ -1512,82 +1463,81 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
-    [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
     // ステータスバー、ドローワを更新
     [[self editorView] updateLineEndingsInStatusAndInfo:NO];
 }
 
 
 // ------------------------------------------------------
-- (BOOL)readFromURL:(NSURL *)url withEncoding:(NSStringEncoding)inEncoding
+- (BOOL)readFromURL:(NSURL *)url withEncoding:(NSStringEncoding)encoding
 // ファイルを読み込み、成功したかどうかを返す
 // ------------------------------------------------------
 {
-    NSData *theData = nil;
+    NSData *data = nil;
 
     // "authopen"コマンドを使って読み込む
-    NSString *theConvertedPath = @([[url path] UTF8String]);
-    NSTask *theTask = [[[NSTask alloc] init] autorelease];
+    NSString *convertedPath = @([[url path] UTF8String]);
+    NSTask *task = [[[NSTask alloc] init] autorelease];
     NSInteger status;
 
-    [theTask setLaunchPath:@"/usr/libexec/authopen"];
-    [theTask setArguments:@[theConvertedPath]];
-    [theTask setStandardOutput:[NSPipe pipe]];
+    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setArguments:@[convertedPath]];
+    [task setStandardOutput:[NSPipe pipe]];
 
-    [theTask launch];
-    theData = [NSData dataWithData:[[[theTask standardOutput] fileHandleForReading] readDataToEndOfFile]];
-    [theTask waitUntilExit];
+    [task launch];
+    data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
+    [task waitUntilExit];
     
     // presentedItemDidChangeにて内容の同一性を比較するためにファイルのMD5を保存する
-    [self setFileMD5:[theData MD5]];
+    [self setFileMD5:[data MD5]];
 
-    status = [theTask terminationStatus];
+    status = [task terminationStatus];
     if (status != 0) {
         return NO;
     }
-    if (theData == nil) {
+    if (data == nil) {
         // オープンダイアログでのエラーアラートは CEDocumentController > openDocument: で表示する
         // アプリアイコンへのファイルドロップでのエラーアラートは NSDocumentController (NSApp ?) 内部で表示される
         // 復帰時は NSDocument 内部で表示
         return NO;
     }
 
-    BOOL outResult = NO;
-    BOOL theBoolEA = NO;
-    NSStringEncoding theEncoding = inEncoding;
+    BOOL result = NO;
+    BOOL isEA = NO;
+    NSStringEncoding newEncoding = encoding;
 
-    if (inEncoding == k_autoDetectEncodingMenuTag) {
-        // ファイル拡張属性(com.apple.TextEncoding)からエンコーディング値を得る（10.5+）
-        // （10.5未満ではNSProprietaryStringEncodingが返ってくる）
-        theEncoding = [self encodingFromComAppleTextEncodingAtURL:url];
-        if ([theData length] == 0) {
-            outResult = YES;
-            _initialString = [[NSMutableString string] retain]; // ===== retain
+    if (encoding == k_autoDetectEncodingMenuTag) {
+        // ファイル拡張属性(com.apple.TextEncoding)からエンコーディング値を得る
+        newEncoding = [self encodingFromComAppleTextEncodingAtURL:url];
+        if ([data length] == 0) {
+            result = YES;
+            [self setInitialString:[NSMutableString string] ];
             // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
         }
-        if (theEncoding != NSProprietaryStringEncoding) {
-            if ([theData length] == 0) {
-                (void)[self doSetEncoding:theEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+        if (newEncoding != NSProprietaryStringEncoding) {
+            if ([data length] == 0) {
+                (void)[self doSetEncoding:newEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             } else {
-                theBoolEA = YES;
+                isEA = YES;
             }
         } else {
-            theEncoding = inEncoding;
+            newEncoding = encoding;
         }
     }
-    if (!outResult) {
-        outResult = [self stringFromData:theData encoding:theEncoding xattr:theBoolEA];
+    if (!result) {
+        result = [self stringFromData:data encoding:newEncoding xattr:isEA];
     }
-    if (outResult) {
+    if (result) {
         // 保持しているファイル情報／表示する文書情報を更新
         [self getFileAttributes];
     }
-    return outResult;
+    return result;
 }
 
 
 // ------------------------------------------------------
-- (NSStringEncoding)scannedCharsetOrEncodingFromString:(NSString *)inString
+- (NSStringEncoding)scannedCharsetOrEncodingFromString:(NSString *)string
 // "charset=" "encoding="タグからエンコーディング定義を読み取る
 // ------------------------------------------------------
 {
@@ -1596,103 +1546,100 @@ enum { typeFSS = 'fss ' };
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
-    NSStringEncoding outEncoding = NSProprietaryStringEncoding;
-    if ((![[theValues valueForKey:k_key_referToEncodingTag] boolValue]) || ([inString length] < 9)) {
-        return outEncoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
+    NSStringEncoding encoding = NSProprietaryStringEncoding;
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_referToEncodingTag] || ([string length] < 9)) {
+        return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
     }
-    NSScanner *theScanner = [NSScanner scannerWithString:inString];
-    NSCharacterSet *theStopSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\' </>\n\r"];
-    NSString *theScannedStr = nil;
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    NSCharacterSet *stopSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\' </>\n\r"];
+    NSString *scannedStr = nil;
 
-    [theScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\"\' "]];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\"\' "]];
     // "charset="を探す
-    while (![theScanner isAtEnd]) {
-        (void)[theScanner scanUpToString:@"charset=" intoString:nil];
-        if ([theScanner scanString:@"charset=" intoString:nil]) {
-            if ([theScanner scanUpToCharactersFromSet:theStopSet intoString:&theScannedStr]) {
+    while (![scanner isAtEnd]) {
+        (void)[scanner scanUpToString:@"charset=" intoString:nil];
+        if ([scanner scanString:@"charset=" intoString:nil]) {
+            if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
                 break;
             }
         }
     }
     // "charset="が見つからなければ、"encoding="を探す
-    if (theScannedStr == nil) {
-        [theScanner setScanLocation:0];
-        while (![theScanner isAtEnd]) {
-            (void)[theScanner scanUpToString:@"encoding=" intoString:nil];
-            if ([theScanner scanString:@"encoding=" intoString:nil]) {
-                if ([theScanner scanUpToCharactersFromSet:theStopSet intoString:&theScannedStr]) {
+    if (scannedStr == nil) {
+        [scanner setScanLocation:0];
+        while (![scanner isAtEnd]) {
+            (void)[scanner scanUpToString:@"encoding=" intoString:nil];
+            if ([scanner scanString:@"encoding=" intoString:nil]) {
+                if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
                     break;
                 }
             }
         }
     }
     // 見つからなければ、"@charset"を探す
-    if (theScannedStr == nil) {
-        [theScanner setScanLocation:0];
-        while (![theScanner isAtEnd]) {
-            (void)[theScanner scanUpToString:@"@charset" intoString:nil];
-            if ([theScanner scanString:@"@charset" intoString:nil]) {
-                if ([theScanner scanUpToCharactersFromSet:theStopSet intoString:&theScannedStr]) {
+    if (scannedStr == nil) {
+        [scanner setScanLocation:0];
+        while (![scanner isAtEnd]) {
+            (void)[scanner scanUpToString:@"@charset" intoString:nil];
+            if ([scanner scanString:@"@charset" intoString:nil]) {
+                if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
                     break;
                 }
             }
         }
     }
     // 見つかったら NSStringEncoding に変換して返す
-    if (theScannedStr != nil) {
-        CFStringEncoding theCFEncoding = kCFStringEncodingInvalidId;
+    if (scannedStr != nil) {
+        CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
         // "Shift_JIS"だったら、kCFStringEncodingShiftJIS と kCFStringEncodingShiftJIS_X0213_00 の
         // 優先順位の高いものを取得する
-        if ([[theScannedStr uppercaseString] isEqualToString:@"SHIFT_JIS"]) {
+        if ([[scannedStr uppercaseString] isEqualToString:@"SHIFT_JIS"]) {
             // （theScannedStr をそのまま CFStringConvertIANACharSetNameToEncoding() で変換すると、大文字小文字を問わず
             // 「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
-            // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と 
+            // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
             // kCFStringEncodingShiftJIS_X0213_00 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
             // ための処理）
-            id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-            NSArray *theEncodings = [[[theValues valueForKey:k_key_encodingList] copy] autorelease];
-            CFStringEncoding theTmpCFEncoding;
+            NSArray *theEncodings = [[[[NSUserDefaults standardUserDefaults] valueForKeyPath:k_key_encodingList] copy] autorelease];
+            CFStringEncoding tmpCFEncoding;
 
-            for (NSNumber *encoding in theEncodings) {
-                theTmpCFEncoding = [encoding unsignedLongValue];
-                if ((theTmpCFEncoding == kCFStringEncodingShiftJIS) || 
-                        (theTmpCFEncoding == kCFStringEncodingShiftJIS_X0213_00)) {
-                    theCFEncoding = theTmpCFEncoding;
+            for (NSNumber *encodingNumber in theEncodings) {
+                tmpCFEncoding = [encodingNumber unsignedLongValue];
+                if ((tmpCFEncoding == kCFStringEncodingShiftJIS) ||
+                    (tmpCFEncoding == kCFStringEncodingShiftJIS_X0213_00)) {
+                    cfEncoding = tmpCFEncoding;
                     break;
                 }
             }
         } else {
             // "Shift_JIS" 以外はそのまま変換する
-            theCFEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)theScannedStr);
+            cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)scannedStr);
         }
-        if (theCFEncoding != kCFStringEncodingInvalidId) {
-            outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
+        if (cfEncoding != kCFStringEncodingInvalidId) {
+            encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
         }
     }
-    return outEncoding;
+    return encoding;
 }
 
 
 // ------------------------------------------------------
-- (void)redoSetEncoding:(NSStringEncoding)inEncoding updateDocument:(BOOL)inDocUpdate 
-        askLossy:(BOOL)inAskLossy  lossy:(BOOL)inLossy  asActionName:(NSString *)inName
+- (void)redoSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument 
+        askLossy:(BOOL)askLossy  lossy:(BOOL)lossy  asActionName:(NSString *)actionName
 // エンコードを変更するアクションのRedo登録
 // ------------------------------------------------------
 {
     (void)[[[self undoManager] prepareWithInvocationTarget:self] 
-            doSetEncoding:inEncoding updateDocument:inDocUpdate 
-                askLossy:inAskLossy lossy:inLossy asActionName:inName];
+            doSetEncoding:encoding updateDocument:updateDocument
+                askLossy:askLossy lossy:lossy asActionName:actionName];
 }
 
 
 // ------------------------------------------------------
-- (void)redoSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding
+- (void)redoSetNewLineEndingCharacterCode:(NSInteger)newLineEnding
 // 行末コードを変更するアクションのRedo登録
 // ------------------------------------------------------
 {
-    [[[self undoManager] prepareWithInvocationTarget:self] doSetNewLineEndingCharacterCode:inNewLineEnding];
+    [[[self undoManager] prepareWithInvocationTarget:self] doSetNewLineEndingCharacterCode:newLineEnding];
 }
 
 
@@ -1701,26 +1648,26 @@ enum { typeFSS = 'fss ' };
 // IANA文字コード名を読み、設定されたエンコーディングと矛盾があれば警告する
 // ------------------------------------------------------
 {
-    NSStringEncoding theIANACharSetEncoding = 
+    NSStringEncoding IANACharSetEncoding = 
             [self scannedCharsetOrEncodingFromString:[[self editorView] stringForSave]];
-    NSStringEncoding theShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
-    NSStringEncoding theX0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213_00);
+    NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
+    NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213_00);
 
-    if ((theIANACharSetEncoding != NSProprietaryStringEncoding) && (theIANACharSetEncoding != [self encodingCode]) &&
-            (!(((theIANACharSetEncoding == theShiftJIS) || (theIANACharSetEncoding == theX0213)) && 
-            (([self encodingCode] == theShiftJIS) || ([self encodingCode] == theX0213))))) {
+    if ((IANACharSetEncoding != NSProprietaryStringEncoding) && (IANACharSetEncoding != [self encodingCode]) &&
+        (!(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
+           (([self encodingCode] == ShiftJIS) || ([self encodingCode] == X0213))))) {
             // （Shift-JIS の時は要注意 = scannedCharsetOrEncodingFromString: を参照）
 
-        NSString *theIANANameStr = [NSString localizedNameOfStringEncoding:theIANACharSetEncoding];
-        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
-        NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is \"%@\", but the IANA charset name in text is \"%@\".", nil), theEncodingNameStr, theIANANameStr]
-                                            defaultButton:NSLocalizedString(@"Cancel", nil)
-                                          alternateButton:NSLocalizedString(@"Continue Saving", nil)
-                                              otherButton:nil
-                                informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
+        NSString *IANANameStr = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
+        NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
+        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is \"%@\", but the IANA charset name in text is \"%@\".", nil), encodingNameStr, IANANameStr]
+                                         defaultButton:NSLocalizedString(@"Cancel", nil)
+                                       alternateButton:NSLocalizedString(@"Continue Saving", nil)
+                                           otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
 
-        NSInteger theResult = [theAlert runModal];
-        if (theResult != NSAlertAlternateReturn) { // == Cancel
+        NSInteger result = [alert runModal];
+        if (result != NSAlertAlternateReturn) { // == Cancel
             return NO;
         }
     }
@@ -1734,20 +1681,20 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *theCurString = [self convertedCharacterString:[[self editorView] stringForSave]
-            withEncoding:[self encodingCode]];
-    if (![theCurString canBeConvertedToEncoding:[self encodingCode]]) {
-        NSString *theEncodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
-        NSAlert *theAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), theEncodingNameStr]
-                                            defaultButton:NSLocalizedString(@"Show Incompatible Char(s)", nil)
-                                          alternateButton:NSLocalizedString(@"Save Available Strings", nil)
-                                              otherButton:NSLocalizedString(@"Cancel", nil)
-                                informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
+    NSString *curString = [self convertedCharacterString:[[self editorView] stringForSave]
+                                            withEncoding:[self encodingCode]];
+    if (![curString canBeConvertedToEncoding:[self encodingCode]]) {
+        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encodingCode]];
+        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), encodingName]
+                                         defaultButton:NSLocalizedString(@"Show Incompatible Char(s)", nil)
+                                       alternateButton:NSLocalizedString(@"Save Available Strings", nil)
+                                           otherButton:NSLocalizedString(@"Cancel", nil)
+                             informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
 
-        NSInteger theResult = [theAlert runModal];
-        if (theResult != NSAlertAlternateReturn) { // != Save
-            if (theResult == NSAlertDefaultReturn) { // == show incompatible char
-                [_windowController showIncompatibleCharList];
+        NSInteger result = [alert runModal];
+        if (result != NSAlertAlternateReturn) { // != Save
+            if (result == NSAlertDefaultReturn) { // == show incompatible char
+                [[self windowController] showIncompatibleCharList];
             }
             return NO;
         }
@@ -1859,8 +1806,8 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)sendModifiedEventToClientOfFile:(NSString *)inSaveAsPath
-        operation:(NSSaveOperationType)inSaveOperationType
+- (void)sendModifiedEventToClientOfFile:(NSString *)saveAsPath
+                              operation:(NSSaveOperationType)saveOperationType
 // 外部エディタプロトコル(ODB Editor Suite)対応メソッド。ファイルクライアントにファイル更新を通知する。
 // ------------------------------------------------------
 {
@@ -1905,8 +1852,8 @@ enum { typeFSS = 'fss ' };
     if ([self fileToken]) {
         [theAppleEvent setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
     }
-    if (inSaveOperationType == NSSaveAsOperation) {
-        theOSStatus = FSPathMakeRef((UInt8 *)[inSaveAsPath UTF8String], &theSaveAsRef, nil);
+    if (saveOperationType == NSSaveAsOperation) {
+        theOSStatus = FSPathMakeRef((UInt8 *)[saveAsPath UTF8String], &theSaveAsRef, nil);
         theErr = FSGetCatalogInfo(&theSaveAsRef, kFSCatInfoNone, NULL, NULL, &theSaveAsFSSpec, NULL);
         if ((theOSStatus != noErr) || (theErr != noErr)) {
             NSLog(@"\"SaveAs\" err. \n'kAEModifiedFile' theOSStatus = <%d>\n'kAEModifiedFile' theErr = <%d>", theOSStatus, theErr);
@@ -2010,12 +1957,12 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)inAlert returnCode:(NSInteger)inReturnCode
+- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode
             contextInfo:(void *)inContextInfo
 // 外部プロセスによる変更の通知アラートが閉じた
 // ------------------------------------------------------
 {
-    if (inReturnCode == NSAlertAlternateReturn) { // == Revert
+    if (returnCode == NSAlertAlternateReturn) { // == Revert
         // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
         if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
             [[self undoManager] removeAllActions];
@@ -2035,7 +1982,7 @@ enum { typeFSS = 'fss ' };
     if (returnCode != NSOKButton) { return; }
 
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    id printValues = [_windowController printValues];
+    id printValues = [[self windowController] printValues];
     NSPrintInfo *printInfo = [self printInfo];
     NSSize paperSize = [printInfo paperSize];
     NSPrintOperation *printOperation;
@@ -2099,7 +2046,7 @@ enum { typeFSS = 'fss ' };
     }
     
     // プリンタダイアログでの設定オブジェクトをコピー
-    [printView setPrintValues:[[[_windowController printValues] copy] autorelease]];
+    [printView setPrintValues:[[[[self windowController] printValues] copy] autorelease]];
     // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
     [[printView textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
     // プリントビューに行間値／行番号表示の有無を設定
@@ -2122,7 +2069,7 @@ enum { typeFSS = 'fss ' };
     if (doColoring) {
         // カラーリング実行オブジェクトを用意
         printSyntax = [[[CESyntax allocWithZone:[self zone]] init] autorelease];
-        [printSyntax setSyntaxStyleName:[[_windowController toolbarController] selectedTitleOfSyntaxItem]];
+        [printSyntax setSyntaxStyleName:[[[self windowController] toolbarController] selectedTitleOfSyntaxItem]];
         [printSyntax setLayoutManager:layoutManager];
         [printSyntax setIsPrinting:YES];
     }
@@ -2172,21 +2119,21 @@ enum { typeFSS = 'fss ' };
 // ファイル拡張属性(com.apple.TextEncoding)からエンコーディングを得る
 // ------------------------------------------------------
 {
-    NSStringEncoding outEncoding = NSProprietaryStringEncoding;
+    NSStringEncoding encoding = NSProprietaryStringEncoding;
 
-    NSString *theStr = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
-    NSArray *theArray = [theStr componentsSeparatedByString:@";"];
-    if (([theArray count] >= 2) && ([theArray[1] length] > 1)) {
+    NSString *string = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
+    NSArray *strings = [string componentsSeparatedByString:@";"];
+    if (([strings count] >= 2) && ([strings[1] length] > 1)) {
         // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
-        outEncoding = CFStringConvertEncodingToNSStringEncoding([theArray[1] integerValue]);
-    } else if ([theArray[0] length] > 1) {
-        CFStringEncoding theCFEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)theArray[0]);
-        if (theCFEncoding != kCFStringEncodingInvalidId) {
-            outEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
+        encoding = CFStringConvertEncodingToNSStringEncoding([strings[1] integerValue]);
+    } else if ([strings[0] length] > 1) {
+        CFStringEncoding cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)strings[0]);
+        if (cfEncoding != kCFStringEncodingInvalidId) {
+            encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
         }
     }
     
-    return outEncoding;
+    return encoding;
 }
 
 

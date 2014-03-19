@@ -10,7 +10,7 @@ CEScriptManager
 
 encoding="UTF-8"
 Created:2005.03.12
-
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -43,10 +43,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEScriptManager ()
 
-@property (nonatomic, assign) IBOutlet id errorTextView;
+@property (nonatomic) IBOutlet NSTextView *errorTextView;  // 10.8まではNSTextViewはweak指定ができない
 
-@property (nonatomic, retain) NSFileHandle *outputHandle;
-@property (nonatomic, retain) NSFileHandle *errorHandle;
+@property (nonatomic) NSFileHandle *outputHandle;
+@property (nonatomic) NSFileHandle *errorHandle;
 @property (nonatomic) NSInteger outputType;
 
 @end
@@ -111,7 +111,7 @@ static CEScriptManager *sharedInstance = nil;
     if (sharedInstance == nil) {
         self = [super init];
         [self setupMenuIcon];
-        _outputType = k_noOutput;
+        [self setOutputType:k_noOutput];
         (void)[NSBundle loadNibNamed:@"ScriptManager" owner:self];
         // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -131,16 +131,6 @@ static CEScriptManager *sharedInstance = nil;
 {
     // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // NSBundle loadNibNamed: でロードされたオブジェクトを開放
-    // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
-    [[_errorTextView window] release]; // （コンテントビューは自動解放される）
-
-    [_outputHandle release];
-    [_errorHandle release];
-
-    _errorTextView = nil;
-
-    [super dealloc];
 }
 
 
@@ -202,14 +192,14 @@ static CEScriptManager *sharedInstance = nil;
     if ([menu numberOfItems] > 0) {
         [menu addItem:[NSMenuItem separatorItem]];
     }
-    menuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", @"")
-                                           action:@selector(openScriptFolder:)
-                                    keyEquivalent:@""] autorelease];
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", @"")
+                                          action:@selector(openScriptFolder:)
+                                   keyEquivalent:@""];
     [menuItem setTarget:self];
     [menu addItem:menuItem];
-    menuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", @"")
-                                           action:@selector(buildScriptMenu:)
-                                    keyEquivalent:@""] autorelease];
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", @"")
+                                          action:@selector(buildScriptMenu:)
+                                   keyEquivalent:@""];
     [menuItem setTarget:self];
     [menu addItem:menuItem];
 }
@@ -222,7 +212,7 @@ static CEScriptManager *sharedInstance = nil;
 {
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
 
-    return [[menu copy] autorelease];
+    return [menu copy];
 }
 
 
@@ -278,7 +268,7 @@ static CEScriptManager *sharedInstance = nil;
         NSDictionary *errorInfo = nil;
         NSAppleEventDescriptor *descriptor;
         
-        appleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo] autorelease];
+        appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo];
         if (appleScript != nil) {
             descriptor = [appleScript executeAndReturnError:&errorInfo];
         }
@@ -357,7 +347,7 @@ static CEScriptManager *sharedInstance = nil;
     
     if (URL == nil) { return; }
     
-    NSAppleScript *appleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:nil] autorelease];
+    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     (void)[appleScript executeAndReturnError:nil];
 }
 
@@ -432,9 +422,8 @@ static CEScriptManager *sharedInstance = nil;
                 [inMenu addItem:[NSMenuItem separatorItem]];
                 continue;
             }
-            NSMenu *subMenu = [[[NSMenu alloc] initWithTitle:menuTitle] autorelease];
-            menuItem = [[[NSMenuItem alloc] initWithTitle:menuTitle 
-                            action:nil keyEquivalent:@""] autorelease];
+            NSMenu *subMenu = [[NSMenu alloc] initWithTitle:menuTitle];
+            menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle action:nil keyEquivalent:@""];
             [menuItem setTag:k_scriptMenuDirectoryTag];
             [inMenu addItem:menuItem];
             [menuItem setSubmenu:subMenu];
@@ -445,9 +434,9 @@ static CEScriptManager *sharedInstance = nil;
             NSUInteger modifierMask = 0;
             NSString *keyEquivalent = [self keyEquivalentAndModifierMask:&modifierMask fromFileName:[URL lastPathComponent]];
             menuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
-            menuItem = [[[NSMenuItem alloc] initWithTitle:menuTitle
-                                                   action:@selector(launchScript:)
-                                            keyEquivalent:keyEquivalent] autorelease];
+            menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
+                                                  action:@selector(launchScript:)
+                                           keyEquivalent:keyEquivalent];
             [menuItem setKeyEquivalentModifierMask:modifierMask];
             [menuItem setRepresentedObject:URL];
             [menuItem setTarget:self];
@@ -540,7 +529,7 @@ static CEScriptManager *sharedInstance = nil;
     
     if ((data == nil) || ([data length] < 1)) { return nil; }
     
-    NSArray *encodings = [[[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy] autorelease];
+    NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy];
     NSStringEncoding encoding;
     NSInteger i = 0;
     while (scriptString == nil) {
@@ -549,7 +538,7 @@ static CEScriptManager *sharedInstance = nil;
             NSLog(@"encoding == NSProprietaryStringEncoding");
             break;
         }
-        scriptString = [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
+        scriptString = [[NSString alloc] initWithData:data encoding:encoding];
         if (scriptString != nil) { break; }
         i++;
     }
@@ -577,7 +566,7 @@ static CEScriptManager *sharedInstance = nil;
     NSString *outputType = nil;
     NSString *inputString = nil;
     NSData *inputData = nil;
-    NSTask *task = [[[NSTask alloc] init] autorelease];
+    NSTask *task = [[NSTask alloc] init];
     NSPipe *outPipe = [NSPipe pipe];
     NSPipe *errorPipe = [NSPipe pipe];
     BOOL docExists = NO;
@@ -690,7 +679,7 @@ static CEScriptManager *sharedInstance = nil;
 
     if (outputData == nil) { return; }
     if ([[aNotification object] isEqualTo:[self outputHandle]]) {
-        outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
+        outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
         if (outputString != nil) {
             switch ([self outputType]) {
             case k_replaceSelection:
@@ -717,7 +706,7 @@ static CEScriptManager *sharedInstance = nil;
         [self setOutputType:k_noOutput];
         [self setOutputHandle:nil];
     } else if ([[aNotification object] isEqualTo:[self errorHandle]]) {
-        outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
+        outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
         if ((outputString != nil) && ([outputString length] > 0)) {
             [self showScriptErrorLog:[NSString stringWithFormat:@"[ %@ ]\n%@", [[NSDate date] description], outputString]];
         }

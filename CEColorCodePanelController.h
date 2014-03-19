@@ -11,8 +11,6 @@
  encoding="UTF-8"
  Created:2005.07.14
  
- ___ARC_enabled___
- 
  -------------------------------------------------
  
  This program is free software; you can redistribute it and/or

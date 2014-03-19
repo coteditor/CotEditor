@@ -10,7 +10,7 @@ CEPreferencesTabController
 
 encoding="UTF-8"
 Created:2005.10.16
-
+ 
 ------------
 This class is based on a sample code written by mkino.
 http://homepage.mac.com/mkino2/cocoaProg/AppKit/NSToolbar/NSToolbar.html
@@ -38,15 +38,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "constants.h"
 
 
 @interface CEPreferencesTabController : NSObject <NSToolbarDelegate>
-{
-    IBOutlet id _prefWindow;
-    IBOutlet id _tabView;
-
-    NSToolbar *_toolbar;
-}
 
 @end

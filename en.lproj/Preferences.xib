@@ -2696,9 +2696,9 @@ Auto-Detect tries these encodings from the top of the list.</string>
         </window>
         <customObject id="47" userLabel="CEPrefEncodingDataSource" customClass="CEPrefEncodingDataSource">
             <connections>
-                <outlet property="_delSeparatorButton" destination="55" id="66"/>
-                <outlet property="_revertButton" destination="700" id="702"/>
-                <outlet property="_tableView" destination="39" id="59"/>
+                <outlet property="delSeparatorButton" destination="55" id="hck-pj-wy1"/>
+                <outlet property="revertButton" destination="700" id="wWk-oz-yr2"/>
+                <outlet property="tableView" destination="39" id="nzf-UN-llV"/>
             </connections>
         </customObject>
         <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
@@ -2832,8 +2832,8 @@ And press "OK" button, this window size will be set to default.</string>
         </arrayController>
         <customObject id="737" userLabel="CEPreferencesTabController" customClass="CEPreferencesTabController">
             <connections>
-                <outlet property="_prefWindow" destination="6" id="738"/>
-                <outlet property="_tabView" destination="10" id="739"/>
+                <outlet property="prefWindow" destination="6" id="JO0-oC-8Qm"/>
+                <outlet property="tabView" destination="10" id="J7j-KW-6Pc"/>
             </connections>
         </customObject>
         <customObject id="3430" customClass="SUUpdater"/>

@@ -10,8 +10,6 @@ CEDocumentController
 
 encoding="UTF-8"
 Created:2004.12.14
- 
- ___ARC_enabled___
 
 -------------------------------------------------
 

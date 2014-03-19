@@ -10,8 +10,6 @@
  encoding="UTF-8"
  Created:2014-03-16 by 1024jp
  
- ___ARC_enabled___
- 
  -------------------------------------------------
  
  This program is free software; you can redistribute it and/or

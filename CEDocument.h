@@ -10,7 +10,9 @@ CEDocument
 
 encoding="UTF-8"
 Created:2004.12.08
-
+ 
+ -fno-objc-arc
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -43,6 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @class CEEditorView;
+@class CEWindowController;
 @class UKXattrMetadataStore;
 
 
@@ -54,7 +57,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 @interface CEDocument : NSDocument
 {
-    id _windowController;
     CETextSelection *_selection;
 }
 
@@ -63,6 +65,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
 
 // readonly properties
+@property (readonly) CEWindowController *windowController;
 @property (readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
 @property (readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
 @property (readonly, retain) NSDictionary *fileAttributes;  // ファイル属性情報辞書
@@ -72,31 +75,31 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (retain) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
 
 // Public methods
-- (id)windowController;
+//- (CEWindowController *)windowController;
 - (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
 - (NSString *)stringToWindowController;
 - (void)setStringToEditorView;
-- (void)setStringToTextView:(NSString *)inString;
-- (BOOL)doSetEncoding:(NSStringEncoding)inEncoding updateDocument:(BOOL)inDocUpdate 
-        askLossy:(BOOL)inAskLossy  lossy:(BOOL)inLossy asActionName:(NSString *)inName;
+- (void)setStringToTextView:(NSString *)string;
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
+        askLossy:(BOOL)askLossy  lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 - (void)clearAllMarkupForIncompatibleChar;
 - (NSArray *)markupCharCanNotBeConvertedToCurrentEncoding;
-- (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)inEncoding;
-- (void)doSetNewLineEndingCharacterCode:(NSInteger)inNewLineEnding;
-- (void)setLineEndingCharToView:(NSInteger)inNewLineEnding;
-- (void)doSetSyntaxStyle:(NSString *)inName;
-- (void)doSetSyntaxStyle:(NSString *)inName delay:(BOOL)inBoolDelay;
-- (void)setColoringExtension:(NSString *)inExtension coloring:(BOOL)inBoolColoring;
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)inLocation withLength:(NSInteger)inLength;
+- (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)encoding;
+- (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding;
+- (void)setLineEndingCharToView:(NSInteger)newLineEnding;
+- (void)doSetSyntaxStyle:(NSString *)name;
+- (void)doSetSyntaxStyle:(NSString *)name delay:(BOOL)needsDelay;
+- (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring;
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
 - (void)scrollToCenteringSelection;
-- (void)gotoLocation:(NSInteger)inLocation withLength:(NSInteger)inLength type:(CEGoToType)type;
+- (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
 - (void)getFileAttributes;
 - (void)rebuildToolbarEncodingItem;
 - (void)rebuildToolbarSyntaxItem;
-- (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)inDictionary;
-- (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)inStyleName;
+- (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict;
+- (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName;
 - (void)setSmartInsertAndDeleteToTextView;
 - (NSString *)currentIANACharSetName;
 - (void)showUpdatedByExternalProcessAlert;
