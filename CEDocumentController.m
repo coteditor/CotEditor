@@ -68,7 +68,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        [[NSBundle mainBundle] loadNibNamed:@"OpenDocumentAccessory" owner:self topLevelObjects:nil];
+        [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
     }
     return self;
 }
