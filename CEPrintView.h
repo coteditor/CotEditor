@@ -11,8 +11,6 @@ CEPrintView
 encoding="UTF-8"
 Created:2005.10.01
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -38,9 +36,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEPrintView : NSTextView
 
-@property (nonatomic, retain) NSString *filePath;
+@property (nonatomic, strong) NSString *filePath;
 @property (nonatomic) CGFloat lineSpacing;
 @property (nonatomic) BOOL isShowingLineNum;
-@property (nonatomic, retain) id printValues;
+@property (nonatomic, strong) id printValues;
 
 @end
