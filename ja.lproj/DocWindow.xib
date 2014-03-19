@@ -7,20 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
             <connections>
-                <outlet property="_infoCharsField" destination="49" id="53"/>
-                <outlet property="_infoCreatedField" destination="60" id="64"/>
-                <outlet property="_infoCreatorField" destination="43" id="52"/>
-                <outlet property="_infoEncodingField" destination="508" id="513"/>
-                <outlet property="_infoFinderLockField" destination="110" id="113"/>
-                <outlet property="_infoInLineField" destination="662" id="665"/>
-                <outlet property="_infoLineEndingsField" destination="510" id="514"/>
-                <outlet property="_infoLinesField" destination="48" id="54"/>
-                <outlet property="_infoModifiedField" destination="61" id="65"/>
-                <outlet property="_infoOwnerField" destination="412" id="414"/>
-                <outlet property="_infoPermissionField" destination="101" id="103"/>
-                <outlet property="_infoSelectField" destination="56" id="58"/>
-                <outlet property="_infoSingleCharField" destination="445" id="447"/>
-                <outlet property="_infoTypeField" destination="47" id="55"/>
                 <outlet property="drawer" destination="32" id="hdX-pQ-Ikt"/>
                 <outlet property="editorView" destination="27" id="4FY-gp-UPB"/>
                 <outlet property="listController" destination="127" id="sWK-P1-bdm"/>
@@ -128,6 +114,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="inLineInfo" id="Eau-CP-m8l"/>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="661">
                                                             <rect key="frame" x="0.0" y="300" width="87" height="14"/>
@@ -153,6 +142,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="lineEndingsInfo" id="lN1-Dk-l36"/>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="509">
                                                             <rect key="frame" x="0.0" y="224" width="87" height="14"/>
@@ -171,6 +163,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="encodingInfo" id="gWW-34-O6x"/>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="507">
                                                             <rect key="frame" x="0.0" y="203" width="94" height="14"/>
@@ -198,6 +193,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="singleCharInfo" id="3jg-uf-X1L"/>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="413">
                                                             <rect key="frame" x="0.0" y="128" width="65" height="14"/>
@@ -216,6 +214,13 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="ownerInfo" id="9a5-sb-uk6">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="114">
                                                             <rect key="frame" x="0.0" y="170" width="89" height="14"/>
@@ -234,6 +239,13 @@
                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="finderLockInfo" id="Cdy-t8-YBq">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="40">
                                                             <rect key="frame" x="0.0" y="280" width="48" height="14"/>
@@ -261,6 +273,13 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="permissionInfo" id="gEg-99-Jv4">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="62">
                                                             <rect key="frame" x="0.0" y="86" width="171" height="14"/>
@@ -279,6 +298,13 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="modificatedInfo" id="GR0-Ui-m82">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="60">
                                                             <rect key="frame" x="33" y="63" width="177" height="18"/>
@@ -288,6 +314,13 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="createdInfo" id="zXJ-aA-kio">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="59">
                                                             <rect key="frame" x="0.0" y="49" width="171" height="14"/>
@@ -315,6 +348,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="selectInfo" id="dWp-AT-J2Y"/>
+                                                            </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="50">
                                                             <rect key="frame" x="40" y="191" width="154" height="5"/>
@@ -331,6 +367,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="charsInfo" id="ja7-kw-OyM"/>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="48">
                                                             <rect key="frame" x="60" y="256" width="150" height="18"/>
@@ -340,6 +379,9 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="linesInfo" id="7ve-zS-wID"/>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="42">
                                                             <rect key="frame" x="0.0" y="27" width="82" height="14"/>
@@ -358,6 +400,13 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="typeInfo" id="sRK-qL-YDs">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="43">
                                                             <rect key="frame" x="88" y="4" width="122" height="18"/>
@@ -367,6 +416,13 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="creatorInfo" id="PrS-az-vnU">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="41">
                                                             <rect key="frame" x="0.0" y="6" width="82" height="14"/>

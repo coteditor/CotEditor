@@ -40,22 +40,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 
-@property (nonatomic, assign, readonly) IBOutlet CEEditorView *editorView;
+@property (nonatomic, assign, readonly) CEEditorView *editorView;
+@property (nonatomic, assign, readonly) CEToolbarController *toolbarController;
 @property (nonatomic) CGFloat alpha;
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 @property (nonatomic, retain, readonly) NSView *printAccessoryView;
 
+// focument information (for binding)
+@property (nonatomic, retain) NSString *encodingInfo;// 文書のエンコーディング情報
+@property (nonatomic, retain) NSString *lineEndingsInfo;  // 文書の行末コード情報
+@property (nonatomic, retain) NSString *linesInfo;  // 文書の行情報
+@property (nonatomic, retain) NSString *charsInfo;  // 文書の文字情報
+@property (nonatomic, retain) NSString *selectInfo;  // 文書の選択範囲情報
+@property (nonatomic, retain) NSString *inLineInfo;  // 文書の行頭からのキャレット位置
+@property (nonatomic, retain) NSString *singleCharInfo;  // 文書の選択範囲情報
+
 // Public method
-- (CEToolbarController *)toolbarController;
 - (BOOL)needsInfoDrawerUpdate;
 - (BOOL)needsIncompatibleCharDrawerUpdate;
-- (void)setEncodingInfo:(NSString *)inString;
-- (void)setLineEndingsInfo:(NSString *)inString;
-- (void)setLineInfo:(NSString *)inString;
-- (void)setCharInfo:(NSString *)inString;
-- (void)setSelectInfo:(NSString *)inString;
-- (void)setInLineInfo:(NSString *)inString;
-- (void)setSingleCharInfo:(NSString *)inString;
 - (void)updateFileAttrsInformation;
 - (void)updateIncompatibleCharList;
 - (void)showIncompatibleCharList;

@@ -806,12 +806,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[_statusBar leftTextField] setStringValue:statusString];
     }
     if (shouldUpdateDrawer) {
-        NSString *lineInfo, *charInfo, *selectInfo;
+        NSString *linesInfo, *charsInfo, *selectInfo;
         
-        lineInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)currentLine, (unsigned long)numberOfLines];
-        [[self windowController] setLineInfo:lineInfo];
-        charInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)selectedRange.location, (unsigned long)length];
-        [[self windowController] setCharInfo:charInfo];
+        linesInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)currentLine, (unsigned long)numberOfLines];
+        [[self windowController] setLinesInfo:linesInfo];
+        charsInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)selectedRange.location, (unsigned long)length];
+        [[self windowController] setCharsInfo:charsInfo];
         [[self windowController] setInLineInfo:[NSString stringWithFormat:@"%lu", (unsigned long)countInLine]];
         selectInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%lu", (unsigned long)selectedRange.length] : @" - ";
         [[self windowController] setSelectInfo:selectInfo];

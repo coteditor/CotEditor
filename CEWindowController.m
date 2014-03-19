@@ -37,36 +37,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @interface CEWindowController ()
-{
-    IBOutlet NSTextField *_infoCreatorField;
-    IBOutlet NSTextField *_infoTypeField;
-    IBOutlet NSTextField *_infoCreatedField;
-    IBOutlet NSTextField *_infoModifiedField;
-    IBOutlet NSTextField *_infoOwnerField;
-    IBOutlet NSTextField *_infoPermissionField;
-    IBOutlet NSTextField *_infoFinderLockField;
-    IBOutlet NSTextField *_infoEncodingField;
-    IBOutlet NSTextField *_infoLineEndingsField;
-    IBOutlet NSTextField *_infoLinesField;
-    IBOutlet NSTextField *_infoCharsField;
-    IBOutlet NSTextField *_infoSelectField;
-    IBOutlet NSTextField *_infoInLineField;
-    IBOutlet NSTextField *_infoSingleCharField;
-}
 
-@property (nonatomic, assign, readwrite) IBOutlet CEEditorView *editorView;
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 
-@property (nonatomic, assign) IBOutlet NSTableView *listTableView;
-@property (nonatomic, assign) IBOutlet NSTextField *listErrorTextField;
-@property (nonatomic, retain) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, retain) IBOutlet NSDrawer *drawer;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
-@property (nonatomic, assign) IBOutlet NSTabView *tabView;
+// document information (for binding)
+@property (nonatomic, retain) NSString *createdInfo;
+@property (nonatomic, retain) NSString *modificatedInfo;
+@property (nonatomic, retain) NSString *ownerInfo;
+@property (nonatomic, retain) NSString *typeInfo;
+@property (nonatomic, retain) NSString *creatorInfo;
+@property (nonatomic, retain) NSString *finderLockInfo;
+@property (nonatomic, retain) NSString *permissionInfo;
+
+// IBOutlets
 @property (nonatomic, retain) IBOutlet NSArrayController *listController;
 @property (nonatomic, retain) IBOutlet NSObjectController *printSettingController;
+@property (nonatomic, retain) IBOutlet NSDrawer *drawer;
+@property (nonatomic, assign) IBOutlet NSTabView *tabView;
+@property (nonatomic, assign) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
+@property (nonatomic, assign) IBOutlet NSTableView *listTableView;
+@property (nonatomic, assign) IBOutlet NSTextField *listErrorTextField;
 
 // readonly
+@property (nonatomic, assign, readwrite) IBOutlet CEEditorView *editorView;
+@property (nonatomic, assign, readwrite) IBOutlet CEToolbarController *toolbarController;
 @property (nonatomic, retain, readwrite) IBOutlet NSView *printAccessoryView;
 
 @end
@@ -90,6 +84,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setRecolorWithBecomeKey:NO];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+- (void)dealloc
+// あとかたづけ
+// ------------------------------------------------------
+{
+    [_encodingInfo release];
+    [_lineEndingsInfo release];
+    [_linesInfo release];
+    [_charsInfo release];
+    [_selectInfo release];
+    [_inLineInfo release];
+    [_singleCharInfo release];
+    [_createdInfo release];
+    [_modificatedInfo release];
+    [_ownerInfo release];
+    [_typeInfo release];
+    [_creatorInfo release];
+    [_finderLockInfo release];
+    [_permissionInfo release];
+    
+    [_drawer release];
+    [_listController release];
+    [_printSettingController release];
+    [_printAccessoryView release];
+    
+    [super dealloc];
 }
 
 
@@ -154,103 +177,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setEncodingInfo:(NSString *)inString
-// 文書のエンコーディング情報を設定
-// ------------------------------------------------------
-{
-    [_infoEncodingField setStringValue:inString];
-}
-
-
-// ------------------------------------------------------
-- (void)setLineEndingsInfo:(NSString *)inString
-// 文書の行末コード情報を設定
-// ------------------------------------------------------
-{
-    [_infoLineEndingsField setStringValue:inString];
-}
-
-
-// ------------------------------------------------------
-- (void)setLineInfo:(NSString *)inString
-// 文書の行情報を設定
-// ------------------------------------------------------
-{
-    [_infoLinesField setStringValue:inString];
-}
-
-
-// ------------------------------------------------------
-- (void)setCharInfo:(NSString *)inString
-// 文書の文字情報を設定
-// ------------------------------------------------------
-{
-    [_infoCharsField setStringValue:inString];
-}
-
-
-// ------------------------------------------------------
-- (void)setSelectInfo:(NSString *)inString
-// 文書の選択範囲情報を設定
-// ------------------------------------------------------
-{
-    [_infoSelectField setStringValue:inString];
-}
-
-
-// ------------------------------------------------------
-- (void)setInLineInfo:(NSString *)inString
-// 文書の行頭からのキャレット位置をセット
-// ------------------------------------------------------
-{
-    [_infoInLineField setStringValue:inString];
-}
-
-
-// ------------------------------------------------------
-- (void)setSingleCharInfo:(NSString *)inString
-// 文書の選択範囲情報を設定
-// ------------------------------------------------------
-{
-    [_infoSingleCharField setStringValue:inString];
-}
-
-
-// ------------------------------------------------------
 - (void)updateFileAttrsInformation
 // すべての文書情報を更新
 // ------------------------------------------------------
 {
     NSDictionary *fileAttributes = [[self document] fileAttributes];
-    NSDate *date = nil;
-    NSString *owner = nil;
 
-    [_infoCreatorField setStringValue:NSFileTypeForHFSTypeCode([fileAttributes fileHFSCreatorCode])];
-    [_infoTypeField setStringValue:NSFileTypeForHFSTypeCode([fileAttributes fileHFSTypeCode])];
-    date = [fileAttributes fileCreationDate];
-    if (date) {
-        [_infoCreatedField setStringValue:[date description]];
-    } else {
-        [_infoCreatedField setStringValue:@" - "];
-    }
-    date = [fileAttributes fileModificationDate];
-    if (date) {
-        [_infoModifiedField setStringValue:[date description]];
-    } else {
-        [_infoModifiedField setStringValue:@" - "];
-    }
-    owner = [fileAttributes fileOwnerAccountName];
-    if (owner) {
-        [_infoOwnerField setStringValue:owner];
-    } else {
-        [_infoOwnerField setStringValue:@" - "];
-    }
-    [_infoPermissionField setStringValue:[NSString stringWithFormat:@"%lu",(unsigned long)[fileAttributes filePosixPermissions]]];
-    if ([fileAttributes fileIsImmutable]) {
-        [_infoFinderLockField setStringValue:NSLocalizedString(@"ON",@"")];
-    } else {
-        [_infoFinderLockField setStringValue:@"-"];
-    }
+    [self setCreatorInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSCreatorCode])];
+    [self setTypeInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSTypeCode])];
+    [self setCreatedInfo:[[fileAttributes fileCreationDate] description]];
+    [self setModificatedInfo:[[fileAttributes fileModificationDate] description]];
+    [self setOwnerInfo:[fileAttributes fileOwnerAccountName]];
+    
+    NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON",@"") : nil;
+    [self setFinderLockInfo:finderLockInfo];
+    [self setPermissionInfo:[NSString stringWithFormat:@"%lu", (unsigned long)[fileAttributes filePosixPermissions]]];
 }
 
 
@@ -535,7 +476,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 検索結果表示エフェクトを追加
     [[[self editorView] textView] showFindIndicatorForRange:range];
 }
-
-
 
 @end
