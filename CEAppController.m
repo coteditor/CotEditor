@@ -11,8 +11,6 @@ CEAppController
 encoding="UTF-8"
 Created:2004.12.13
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -213,8 +211,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:defaults];
 
     // transformer 登録
-    CEHexColorTransformer *transformer = [[[CEHexColorTransformer alloc] init] autorelease];
-    [NSValueTransformer setValueTransformer:transformer forName:@"HexColorTransformer"];
+    [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
+                                    forName:@"HexColorTransformer"];
 }
 
 
@@ -258,27 +256,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return self;
 }
 
-
-// ------------------------------------------------------
-- (void)dealloc
-// 後片づけ
-// ------------------------------------------------------
-{
-    [_preferencesController release];
-    [_encodingMenu release];
-    [_syntaxMenu release];
-    [_invalidYenEncodings release];
-
-    [super dealloc];
-}
-
 // ------------------------------------------------------
 - (void)buildAllEncodingMenus
 // すべてのエンコーディングメニューを生成
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *encodings = [[[values valueForKey:k_key_encodingList] copy] autorelease];
+    NSArray *encodings = [[values valueForKey:k_key_encodingList] copy];
 
     [[self preferencesController] setupEncodingMenus:[self encodingMenuNoActionFromArray:encodings]];
     [self setEncodingMenu:[self buildFormatEncodingMenuFromArray:encodings]];
@@ -355,12 +339,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *encodings = [[[values valueForKey:k_key_encodingList] copy] autorelease];
+    NSArray *encodings = [[values valueForKey:k_key_encodingList] copy];
     NSStringEncoding encoding;
     BOOL isValid = NO;
 
-    for (NSNumber *encoding in encodings) {
-        CFStringEncoding cfEncoding = [encoding unsignedLongValue];
+    for (NSNumber __strong *encodingNumber in encodings) {
+        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
         if (cfEncoding != kCFStringEncodingInvalidId) { // = separator
             encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
             if ([encodingName isEqualToString:[NSString localizedNameOfStringEncoding:encoding]]) {
@@ -515,23 +499,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [findMenu addItem:[NSMenuItem separatorItem]];
     unichar upKey = NSUpArrowFunctionKey;
-    menuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Prev Outline Item",@"")
-                                           action:@selector(selectPrevItemOfOutlineMenu:)
-                                    keyEquivalent:[NSString stringWithCharacters:&upKey length:1]] autorelease];
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Prev Outline Item",@"")
+                                          action:@selector(selectPrevItemOfOutlineMenu:)
+                                   keyEquivalent:[NSString stringWithCharacters:&upKey length:1]];
     [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
     [findMenu addItem:menuItem];
 
     unichar theDownKey = NSDownArrowFunctionKey;
-    menuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Next Outline Item",@"")
-                                           action:@selector(selectNextItemOfOutlineMenu:)
-                                    keyEquivalent:[NSString stringWithCharacters:&theDownKey length:1]] autorelease];
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Next Outline Item",@"")
+                                          action:@selector(selectNextItemOfOutlineMenu:)
+                                   keyEquivalent:[NSString stringWithCharacters:&theDownKey length:1]];
     [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
     [findMenu addItem:menuItem];
 
     [findMenu addItem:[NSMenuItem separatorItem]];
-    menuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To...",@"")
-                                           action:@selector(openGoToPanel:)
-                                    keyEquivalent:@"l"] autorelease];
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To...",@"")
+                                          action:@selector(openGoToPanel:)
+                                   keyEquivalent:@"l"];
     [findMenu addItem:menuItem];
 
     // AppleScript 起動のスピードアップのため一度動かしておく
@@ -539,7 +523,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         NSURL *URL = [[NSBundle mainBundle] URLForResource:@"startup" withExtension:@"applescript"];
         if (URL == nil) { return; }
-        NSAppleScript *AppleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:nil] autorelease];
+        NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
 
         if (AppleScript) {
             (void)[AppleScript executeAndReturnError:nil];
@@ -587,11 +571,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Dock メニュー生成
 // ------------------------------------------------------
 {
-    NSMenu *menu = [[[NSMenu alloc] init] autorelease];
-    NSMenuItem *newItem = [[(NSMenuItem *)[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex]
-                                submenu] itemWithTag:k_newMenuItemTag] copy] autorelease];
-    NSMenuItem *openItem = [[(NSMenuItem *)[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex]
-                                submenu] itemWithTag:k_openMenuItemTag] copy] autorelease];
+    NSMenu *menu = [[NSMenu alloc] init];
+    NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_newMenuItemTag] copy];
+    NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_openMenuItemTag] copy];
 
 
     [newItem setAction:@selector(newInDockMenu:)];
@@ -641,7 +623,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
     NSDictionary *errorInfo;
-    NSAppleScript *AppleScript = [[[NSAppleScript alloc] initWithContentsOfURL:URL error:nil] autorelease];
+    NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     (void)[AppleScript executeAndReturnError:&errorInfo];
 }
 
@@ -780,8 +762,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenuItem *item;
 
     [accessoryEncodingMenuButton removeAllItems];
-    item = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"")
-                                       action:nil keyEquivalent:@""] autorelease];
+    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"")
+                                      action:nil keyEquivalent:@""];
     [item setTag:k_autoDetectEncodingMenuTag];
     [accessoryEncodingMenu addItem:item];
     [accessoryEncodingMenu addItem:[NSMenuItem separatorItem]];
@@ -794,8 +776,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         } else {
             NSStringEncoding theEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
             NSString *theMenuTitle = [NSString localizedNameOfStringEncoding:theEncoding];
-            NSMenuItem *theAccessoryMenuItem = [[[NSMenuItem alloc] initWithTitle:theMenuTitle
-                                                                           action:nil keyEquivalent:@""] autorelease];
+            NSMenuItem *theAccessoryMenuItem = [[NSMenuItem alloc] initWithTitle:theMenuTitle
+                                                                          action:nil keyEquivalent:@""];
             [theAccessoryMenuItem setTarget:nil];
             [theAccessoryMenuItem setTag:theEncoding];
             [accessoryEncodingMenu addItem:theAccessoryMenuItem];
@@ -828,7 +810,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // フォーマットのエンコーディングメニューアイテムを生成
 //------------------------------------------------------
 {
-    NSMenu *encodingMenu = [[[NSMenu alloc] initWithTitle:@"ENCODEING"] autorelease];
+    NSMenu *encodingMenu = [[NSMenu alloc] initWithTitle:@"ENCODEING"];
     NSMenuItem *formatMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag];
 
     for (NSNumber *encodingNumber in encodings) {
@@ -838,14 +820,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         } else {
             NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
             NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
-            NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:menuTitle
-                                                               action:@selector(setEncoding:) keyEquivalent:@""] autorelease];
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
+                                                              action:@selector(setEncoding:) keyEquivalent:@""];
             [menuItem setTag:encoding];
             [encodingMenu addItem:menuItem];
         }
     }
     [formatMenuItem setSubmenu:encodingMenu];
-    return [[encodingMenu copy] autorelease];
+    return [encodingMenu copy];
 }
 
 
@@ -854,7 +836,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングメニューを生成
 //------------------------------------------------------
 {
-    NSMenu *coloringMenu = [[[NSMenu alloc] initWithTitle:@"SYNTAX"] autorelease];
+    NSMenu *coloringMenu = [[NSMenu alloc] initWithTitle:@"SYNTAX"];
     NSMenu *menu = nil;
     NSMenuItem *mormatMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
     NSMenuItem *menuItem;
@@ -873,21 +855,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 menuTitle = styleNames[(i - 2)];
             }
-            menuItem = [[[NSMenuItem alloc] initWithTitle:menuTitle
-                                                   action:@selector(setSyntaxStyle:)
-                                            keyEquivalent:@""] autorelease];
+            menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
+                                                  action:@selector(setSyntaxStyle:)
+                                           keyEquivalent:@""];
             [menuItem setTag:i];
             [coloringMenu addItem:menuItem];
         }
     }
-    menu = [[coloringMenu copy] autorelease];
+    menu = [coloringMenu copy];
 
     [coloringMenu addItem:[NSMenuItem separatorItem]];
     // 全文字列を再カラーリングするメニューを追加
     menuTitle = NSLocalizedString(@"Re-color All",@"");
-    menuItem = [[[NSMenuItem alloc] initWithTitle:menuTitle
-                                           action:@selector(recoloringAllStringOfDocument:)
-                                    keyEquivalent:@"r"] autorelease];
+    menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
+                                          action:@selector(recoloringAllStringOfDocument:)
+                                   keyEquivalent:@"r"];
     [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [coloringMenu addItem:menuItem];
     [mormatMenuItem setSubmenu:coloringMenu];
@@ -918,9 +900,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     if ([chars length] < 1) { return; }
 
-    NSTextStorage *storage = [[[NSTextStorage alloc] initWithString:chars] autorelease];
-    CELayoutManager *layoutManager = [[[CELayoutManager alloc] init] autorelease];
-    NSTextContainer *container = [[[NSTextContainer alloc] init] autorelease];
+    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:chars];
+    CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+    NSTextContainer *container = [[NSTextContainer alloc] init];
 
     [layoutManager addTextContainer:container];
     [storage addLayoutManager:layoutManager];

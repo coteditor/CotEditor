@@ -10,7 +10,7 @@
 		2582260107794C2A00A0F8D3 /* CESyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntax.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2585914C080F503A0038F387 /* _aboutScriptFolder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2585914A080F503A0038F387 /* _aboutScriptFolder.rtf */; };
 		2585914D080F503A0038F387 /* openDictionary.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
-		25859DB3076D65310020F779 /* CEAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		25859DB3076D65310020F779 /* CEAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppController.m */; };
 		25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DEC076D75BC0020F779 /* CEWindowController.m */; };
 		25859EA7076D8EE80020F779 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* Preferences.xib */; };
 		25859EC1076D92D60020F779 /* CEPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EBF076D92D60020F779 /* CEPreferences.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
