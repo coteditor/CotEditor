@@ -131,7 +131,7 @@
 		8CB3AF69087F9335004BFDDD /* defaultSyntaxStyle_JavaScript.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CB3AF68087F9335004BFDDD /* defaultSyntaxStyle_JavaScript.plist */; };
 		8CBFD5F40DC42B1200EC093D /* CEPrivateMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
 		8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */; };
 		8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
