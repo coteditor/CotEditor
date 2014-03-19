@@ -352,7 +352,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // ダーティーフラグをクリア
         [self updateChangeCount:NSChangeCleared];
         // ツールバーアイテムの選択状態をセット
-        [[_windowController toolbarController] setSelectEncoding:[self encodingCode]];
+        [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
         theResult = YES;
     }
 
