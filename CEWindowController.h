@@ -11,8 +11,6 @@ CEWindowController
 encoding="UTF-8"
 Created:2004.12.13
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -42,20 +40,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 
-@property (nonatomic, assign, readonly) CEEditorView *editorView;
-@property (nonatomic, assign, readonly) CEToolbarController *toolbarController;
+@property (nonatomic, weak, readonly) CEEditorView *editorView;
+@property (nonatomic, weak, readonly) CEToolbarController *toolbarController;
 @property (nonatomic) CGFloat alpha;
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
-@property (nonatomic, retain, readonly) NSView *printAccessoryView;
+@property (nonatomic, readonly) NSView *printAccessoryView;
 
 // focument information (for binding)
-@property (nonatomic, retain) NSString *encodingInfo;// 文書のエンコーディング情報
-@property (nonatomic, retain) NSString *lineEndingsInfo;  // 文書の行末コード情報
-@property (nonatomic, retain) NSString *linesInfo;  // 文書の行情報
-@property (nonatomic, retain) NSString *charsInfo;  // 文書の文字情報
-@property (nonatomic, retain) NSString *selectInfo;  // 文書の選択範囲情報
-@property (nonatomic, retain) NSString *inLineInfo;  // 文書の行頭からのキャレット位置
-@property (nonatomic, retain) NSString *singleCharInfo;  // 文書の選択範囲情報
+@property (nonatomic, strong) NSString *encodingInfo;// 文書のエンコーディング情報
+@property (nonatomic, strong) NSString *lineEndingsInfo;  // 文書の行末コード情報
+@property (nonatomic, strong) NSString *linesInfo;  // 文書の行情報
+@property (nonatomic, strong) NSString *charsInfo;  // 文書の文字情報
+@property (nonatomic, strong) NSString *selectInfo;  // 文書の選択範囲情報
+@property (nonatomic, strong) NSString *inLineInfo;  // 文書の行頭からのキャレット位置
+@property (nonatomic, strong) NSString *singleCharInfo;  // 文書の選択範囲情報
 
 // Public method
 - (BOOL)needsInfoDrawerUpdate;

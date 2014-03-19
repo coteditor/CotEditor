@@ -11,8 +11,6 @@ CEWindowController
 encoding="UTF-8"
 Created:2004.12.13
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -43,27 +41,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 
 // document information (for binding)
-@property (nonatomic, retain) NSString *createdInfo;
-@property (nonatomic, retain) NSString *modificatedInfo;
-@property (nonatomic, retain) NSString *ownerInfo;
-@property (nonatomic, retain) NSString *typeInfo;
-@property (nonatomic, retain) NSString *creatorInfo;
-@property (nonatomic, retain) NSString *finderLockInfo;
-@property (nonatomic, retain) NSString *permissionInfo;
+@property (nonatomic) NSString *createdInfo;
+@property (nonatomic) NSString *modificatedInfo;
+@property (nonatomic) NSString *ownerInfo;
+@property (nonatomic) NSString *typeInfo;
+@property (nonatomic) NSString *creatorInfo;
+@property (nonatomic) NSString *finderLockInfo;
+@property (nonatomic) NSString *permissionInfo;
 
 // IBOutlets
-@property (nonatomic, retain) IBOutlet NSArrayController *listController;
-@property (nonatomic, retain) IBOutlet NSObjectController *printSettingController;
-@property (nonatomic, retain) IBOutlet NSDrawer *drawer;
-@property (nonatomic, assign) IBOutlet NSTabView *tabView;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
-@property (nonatomic, assign) IBOutlet NSTableView *listTableView;
-@property (nonatomic, assign) IBOutlet NSTextField *listErrorTextField;
+@property (nonatomic) IBOutlet NSArrayController *listController;
+@property (nonatomic) IBOutlet NSObjectController *printSettingController;
+@property (nonatomic) IBOutlet NSDrawer *drawer;
+@property (nonatomic, weak) IBOutlet NSTabView *tabView;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
+@property (nonatomic, weak) IBOutlet NSTableView *listTableView;
+@property (nonatomic, weak) IBOutlet NSTextField *listErrorTextField;
 
 // readonly
-@property (nonatomic, assign, readwrite) IBOutlet CEEditorView *editorView;
-@property (nonatomic, assign, readwrite) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, retain, readwrite) IBOutlet NSView *printAccessoryView;
+@property (nonatomic, weak, readwrite) IBOutlet CEEditorView *editorView;
+@property (nonatomic, weak, readwrite) IBOutlet CEToolbarController *toolbarController;
+@property (nonatomic, readwrite) IBOutlet NSView *printAccessoryView;
 
 @end
 
@@ -86,35 +84,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setRecolorWithBecomeKey:NO];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// あとかたづけ
-// ------------------------------------------------------
-{
-    [_encodingInfo release];
-    [_lineEndingsInfo release];
-    [_linesInfo release];
-    [_charsInfo release];
-    [_selectInfo release];
-    [_inLineInfo release];
-    [_singleCharInfo release];
-    [_createdInfo release];
-    [_modificatedInfo release];
-    [_ownerInfo release];
-    [_typeInfo release];
-    [_creatorInfo release];
-    [_finderLockInfo release];
-    [_permissionInfo release];
-    
-    [_drawer release];
-    [_listController release];
-    [_printSettingController release];
-    [_printAccessoryView release];
-    
-    [super dealloc];
 }
 
 
