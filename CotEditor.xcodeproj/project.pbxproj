@@ -25,7 +25,7 @@
 		259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		25A1DE2F07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25A1DE2E07A0A06500C49AAA /* defaultSyntaxStyle_Plain Text.plist */; };
-		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
 		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; };
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };

@@ -11,8 +11,6 @@ CEPrefEncodingDataSource
 encoding="UTF-8"
 Created:2004.12.16
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -39,12 +37,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEPrefEncodingDataSource ()
 
-@property (nonatomic, retain) NSMutableArray *encodingsForTmp;
-@property (nonatomic, assign) NSArray *draggedItems; // ドラッグ中にのみ必要なオブジェクトなので、retainしない
+@property (nonatomic) NSMutableArray *encodingsForTmp;
+@property (nonatomic, weak) NSArray *draggedItems; // ドラッグ中にのみ必要なオブジェクトなので、retainしない
 
-@property (nonatomic, assign) IBOutlet NSTableView *tableView;
-@property (nonatomic, assign) IBOutlet NSButton *delSeparatorButton;
-@property (nonatomic, assign) IBOutlet NSButton *revertButton;
+@property (nonatomic, weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, weak) IBOutlet NSButton *delSeparatorButton;
+@property (nonatomic, weak) IBOutlet NSButton *revertButton;
 
 @end
 
@@ -59,15 +57,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Public method
 //
 //=======================================================
-
-// ------------------------------------------------------
-- (void)dealloc
-// あとかたづけ
-// ------------------------------------------------------
-{
-    [super dealloc];
-}
-
 
 // ------------------------------------------------------
 - (void)setupEncodingsToEdit
@@ -194,7 +183,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     while (object = [enumerator nextObject]) {
         if ([object unsignedIntegerValue] < [newArray count]) {
-            [draggingArray addObject:[[newArray[[object unsignedIntegerValue]] copy] autorelease]];
+            [draggingArray addObject:[newArray[[object unsignedIntegerValue]] copy]];
             [newArray removeObjectAtIndex:[object unsignedIntegerValue]];
             if ([object integerValue] < row) { // 下方へドラッグ移動されるときの調整
                 newRow--;
