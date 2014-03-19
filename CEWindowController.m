@@ -102,36 +102,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setDocumentEdited:(BOOL)inFlag
-// ダーティーフラグを立てる
-// ------------------------------------------------------
-{
-    [super setDocumentEdited:inFlag];
-
-    // UndoManager 関連で問題があるための対応措置（Mac OS 10.4.8で検証）。
-    // 1. 編集したドキュメントを保存する
-    // 2. アンドゥ
-    // 3. キー入力またはペーストすると、ダーティーフラグが消えてしまう。
-    // その後も、同一行に入力中はダーティーフラグが立たない。アンドゥすると保存直後にアンドゥした状態までは戻るが、
-    // 保存の状態までは戻れない。TextEdit、Xcode 2.4 でも同じ問題が発生する。(2006.09.30)
-
-    // 上記の問題への対処として、「3.」で消えたダーティーフラグを直後に復活させている。保存状態までは戻れない問題は
-    // 残っていて根本的な解決ではないが、ダーティーフラグがないためにユーザが保存状態を勘違いしてドキュメントを
-    // 閉じてしまうよりは、マシかと。(2006.09.30)
-
-    if (!inFlag) {
-        CEDocument *theDoc = [self document];
-
-        if (([[theDoc undoManager] groupingLevel] > 0) && ([[theDoc undoManager] canUndo]) && 
-            (![[theDoc undoManager] isRedoing]) && (![[theDoc undoManager] isUndoing])) {
-            [theDoc updateChangeCount:NSChangeDone];
-            [theDoc updateChangeCount:NSChangeDone];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
 - (id)toolbarController
 // ツールバーコントローラを返す
 // ------------------------------------------------------
