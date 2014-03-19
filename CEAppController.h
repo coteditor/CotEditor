@@ -40,37 +40,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEKeyBindingManager.h"
 #import "CETextSelection.h"
 #import "CEScriptManager.h"
-#import "constants.h"
 
 @interface CEAppController : NSObject <NSApplicationDelegate>
-{
-    CEPreferences *_preferences;
-    NSMenu *_encodingMenu;
-    NSMenu *_syntaxMenu;
-    NSArray *_invalidYenEncodings;
 
-    BOOL _didFinishLaunching;
-}
+@property (nonatomic, retain) NSMenu *encodingMenu;
+@property (nonatomic, retain) NSMenu *syntaxMenu;
+
+@property (nonatomic, retain, readonly) CEPreferences *preferencesController;
+
 
 // class method
 + (NSArray *)factoryDefaultOfTextInsertStringArray;
 
 // Public method
-- (id)preferencesController;
-- (NSMenu *)encodingMenu;
-- (void)setEncodingMenu:(NSMenu *)inEncodingMenu;
-- (NSMenu *)syntaxMenu;
-- (void)setSyntaxMenu:(NSMenu *)inSyntaxMenu;
 - (void)buildAllEncodingMenus;
 - (void)buildAllSyntaxMenus;
-- (NSString *)invisibleSpaceCharacter:(NSUInteger)inIndex;
-- (NSString *)invisibleTabCharacter:(NSUInteger)inIndex;
-- (NSString *)invisibleNewLineCharacter:(NSUInteger)inIndex;
-- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)inIndex;
-- (NSStringEncoding)encodingFromName:(NSString *)inEncodingName;
-- (BOOL)isInvalidYenEncoding:(NSStringEncoding)inEncoding;
-- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)ioModMask
-        fromString:(NSString *)inString includingCommandKey:(BOOL)inBool;
+- (NSString *)invisibleSpaceCharacter:(NSUInteger)index;
+- (NSString *)invisibleTabCharacter:(NSUInteger)index;
+- (NSString *)invisibleNewLineCharacter:(NSUInteger)index;
+- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index;
+- (NSStringEncoding)encodingFromName:(NSString *)encodingName;
+- (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding;
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask
+                                fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey;
 
 // Action Message
 - (IBAction)openPrefWindow:(id)sender;
