@@ -7,7 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
             <connections>
-                <outlet property="_drawer" destination="32" id="38"/>
                 <outlet property="_infoCharsField" destination="49" id="53"/>
                 <outlet property="_infoCreatedField" destination="60" id="64"/>
                 <outlet property="_infoCreatorField" destination="43" id="52"/>
@@ -22,15 +21,16 @@
                 <outlet property="_infoSelectField" destination="56" id="58"/>
                 <outlet property="_infoSingleCharField" destination="445" id="447"/>
                 <outlet property="_infoTypeField" destination="47" id="55"/>
-                <outlet property="_listController" destination="127" id="132"/>
-                <outlet property="_listErrorTextField" destination="150" id="193"/>
-                <outlet property="_listTableView" destination="122" id="192"/>
-                <outlet property="_printAccessoryView" destination="196" id="237"/>
-                <outlet property="_printSettingController" destination="448" id="449"/>
-                <outlet property="_tabView" destination="115" id="133"/>
-                <outlet property="_tabViewSelectionPopUpButton" destination="142" id="185"/>
-                <outlet property="_toolbarController" destination="71" id="73"/>
+                <outlet property="drawer" destination="32" id="hdX-pQ-Ikt"/>
                 <outlet property="editorView" destination="27" id="4FY-gp-UPB"/>
+                <outlet property="listController" destination="127" id="sWK-P1-bdm"/>
+                <outlet property="listErrorTextField" destination="150" id="bxl-75-U0P"/>
+                <outlet property="listTableView" destination="122" id="TYK-vh-DWF"/>
+                <outlet property="printAccessoryView" destination="196" id="2v6-Yi-ons"/>
+                <outlet property="printSettingController" destination="448" id="hMn-s5-1lu"/>
+                <outlet property="tabView" destination="115" id="EWz-wG-pL9"/>
+                <outlet property="tabViewSelectionPopUpButton" destination="142" id="evV-M4-WmC"/>
+                <outlet property="toolbarController" destination="71" id="Tlr-9C-SyN"/>
                 <outlet property="window" destination="5" id="31"/>
             </connections>
         </customObject>
@@ -107,14 +107,14 @@
                         <tabViewItem identifier="info" id="116">
                             <view key="view" id="118">
                                 <rect key="frame" x="10" y="7" width="210" height="388"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="411">
                                         <rect key="frame" x="0.0" y="0.0" width="211" height="388"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" autoresizesSubviews="NO" drawsBackground="NO" copiesOnScroll="NO" id="J3H-Hp-vuT">
                                             <rect key="frame" x="0.0" y="0.0" width="211" height="388"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <customView id="108" customClass="CEFlippedView">
                                                     <rect key="frame" x="0.0" y="0.0" width="211" height="365"/>
@@ -405,17 +405,17 @@
                         <tabViewItem identifier="incompatibleChar" id="117">
                             <view key="view" id="119">
                                 <rect key="frame" x="10" y="7" width="210" height="388"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="121">
                                         <rect key="frame" x="0.0" y="31" width="210" height="349"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" id="aGt-dH-qdm">
-                                            <rect key="frame" x="1" y="17" width="197" height="317"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="1" y="17" width="208" height="331"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="733" id="122">
-                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="317"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="208" height="331"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -453,7 +453,7 @@
                                                                 <binding destination="127" name="value" keyPath="arrangedObjects.incompatibleChar" id="135"/>
                                                             </connections>
                                                         </tableColumn>
-                                                        <tableColumn editable="NO" width="74" minWidth="10" maxWidth="1000" id="186">
+                                                        <tableColumn editable="NO" width="85" minWidth="10" maxWidth="1000" id="186">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="変換後">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -479,15 +479,15 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="734">
-                                            <rect key="frame" x="1" y="334" width="197" height="14"/>
+                                            <rect key="frame" x="1" y="334" width="208" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="732">
-                                            <rect key="frame" x="198" y="17" width="11" height="317"/>
+                                            <rect key="frame" x="195" y="17" width="14" height="331"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" id="733">
-                                            <rect key="frame" x="0.0" y="0.0" width="197" height="17"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="208" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>
@@ -505,7 +505,7 @@
                         </tabViewItem>
                     </tabViewItems>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="_tabViewSelectedIndex" id="182"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="tabViewSelectedIndex" id="FgU-pJ-rGw"/>
                         <outlet property="delegate" destination="-2" id="136"/>
                     </connections>
                 </tabView>

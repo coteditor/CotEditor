@@ -33,12 +33,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEWindowController.h"
 #import "CEDocumentController.h"
-#import "CEEditorView.h"
+#import "constants.h"
 
 
 @interface CEWindowController ()
+{
+    IBOutlet NSTextField *_infoCreatorField;
+    IBOutlet NSTextField *_infoTypeField;
+    IBOutlet NSTextField *_infoCreatedField;
+    IBOutlet NSTextField *_infoModifiedField;
+    IBOutlet NSTextField *_infoOwnerField;
+    IBOutlet NSTextField *_infoPermissionField;
+    IBOutlet NSTextField *_infoFinderLockField;
+    IBOutlet NSTextField *_infoEncodingField;
+    IBOutlet NSTextField *_infoLineEndingsField;
+    IBOutlet NSTextField *_infoLinesField;
+    IBOutlet NSTextField *_infoCharsField;
+    IBOutlet NSTextField *_infoSelectField;
+    IBOutlet NSTextField *_infoInLineField;
+    IBOutlet NSTextField *_infoSingleCharField;
+}
 
 @property (nonatomic, assign, readwrite) IBOutlet CEEditorView *editorView;
+@property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
+
+@property (nonatomic, assign) IBOutlet NSTableView *listTableView;
+@property (nonatomic, assign) IBOutlet NSTextField *listErrorTextField;
+@property (nonatomic, retain) IBOutlet CEToolbarController *toolbarController;
+@property (nonatomic, retain) IBOutlet NSDrawer *drawer;
+@property (nonatomic, assign) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
+@property (nonatomic, assign) IBOutlet NSTabView *tabView;
+@property (nonatomic, retain) IBOutlet NSArrayController *listController;
+@property (nonatomic, retain) IBOutlet NSObjectController *printSettingController;
+
+// readonly
+@property (nonatomic, retain, readwrite) IBOutlet NSView *printAccessoryView;
 
 @end
 
@@ -58,7 +87,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        _recolorWithBecomeKey = NO;
+        [self setRecolorWithBecomeKey:NO];
     }
     return self;
 }
@@ -69,29 +98,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSSize theSize = NSMakeSize((CGFloat)[[theValues valueForKey:k_key_windowWidth] doubleValue],
-                                (CGFloat)[[theValues valueForKey:k_key_windowHeight] doubleValue]);
-    BOOL theBoolDoCascade = [[self document] doCascadeWindow];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:k_key_windowWidth],
+                             (CGFloat)[defaults doubleForKey:k_key_windowHeight]);
+    BOOL shouldCascade = [[self document] doCascadeWindow];
 
-    [[self window] setContentSize:theSize];
-    [self setShouldCascadeWindows:theBoolDoCascade]; // ウィンドウのカスケード表示を制御（未変更のブランクウィンドウを上書き）
-    if (!theBoolDoCascade) {
+    [[self window] setContentSize:size];
+    [self setShouldCascadeWindows:shouldCascade]; // ウィンドウのカスケード表示を制御（未変更のブランクウィンドウを上書き）
+    if (!shouldCascade) {
         // カスケードしないときは、位置をずらす
         [[self window] setFrameTopLeftPoint:[[self document] initTopLeftPoint]];
     }
     // 背景をセットアップ
-    [self setAlpha:(CGFloat)[[theValues valueForKey:k_key_windowAlpha] doubleValue]];
+    [self setAlpha:(CGFloat)[[defaults valueForKey:k_key_windowAlpha] doubleValue]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     [[self window] setOpaque:NO]; // ウィンドウを透明にする
     
     // ツールバーをセットアップ
-    [_toolbarController setupToolbar];
+    [[self toolbarController] setupToolbar];
     
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:[self editorView]];
     // デフォルト行末コードをセット
-    [[self document] setLineEndingCharToView:[[theValues valueForKey:k_key_defaultLineEndCharCode] integerValue]];
+    [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // 不可視文字の表示／非表示をセット
     [[self editorView] setShowInvisibleChars:[[self document] canActivateShowInvisibleCharsItem]];
     // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
@@ -100,26 +129,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self document] setStringToEditorView];
 }
 
-
-// ------------------------------------------------------
-- (id)toolbarController
-// ツールバーコントローラを返す
-// ------------------------------------------------------
-{
-    return _toolbarController;
-}
-
-
 // ------------------------------------------------------
 - (BOOL)needsInfoDrawerUpdate
 // 文書情報ドローワ内容を更新すべきかを返す
 // ------------------------------------------------------
 {
-    NSInteger theDrawerState = [_drawer state];
-    BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
+    NSInteger drawerState = [[self drawer] state];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
 
-    return (theTabState && 
-            ((theDrawerState == NSDrawerOpenState) || (theDrawerState == NSDrawerOpeningState)));
+    return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
 }
 
 
@@ -128,11 +146,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 非互換文字ドローワ内容を更新すべきかを返す
 // ------------------------------------------------------
 {
-    NSInteger theDrawerState = [_drawer state];
-    BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
+    NSInteger drawerState = [[self drawer] state];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
 
-    return (theTabState && 
-            ((theDrawerState == NSDrawerOpenState) || (theDrawerState == NSDrawerOpeningState)));
+    return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
 }
 
 
@@ -204,32 +221,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // すべての文書情報を更新
 // ------------------------------------------------------
 {
-    NSDictionary *theFileAttr = [[self document] fileAttributes];
-    NSDate *theDate = nil;
-    NSString *theOwner = nil;
+    NSDictionary *fileAttributes = [[self document] fileAttributes];
+    NSDate *date = nil;
+    NSString *owner = nil;
 
-    [_infoCreatorField setStringValue:NSFileTypeForHFSTypeCode([theFileAttr fileHFSCreatorCode])];
-    [_infoTypeField setStringValue:NSFileTypeForHFSTypeCode([theFileAttr fileHFSTypeCode])];
-    theDate = [theFileAttr fileCreationDate];
-    if (theDate) {
-        [_infoCreatedField setStringValue:[theDate description]];
+    [_infoCreatorField setStringValue:NSFileTypeForHFSTypeCode([fileAttributes fileHFSCreatorCode])];
+    [_infoTypeField setStringValue:NSFileTypeForHFSTypeCode([fileAttributes fileHFSTypeCode])];
+    date = [fileAttributes fileCreationDate];
+    if (date) {
+        [_infoCreatedField setStringValue:[date description]];
     } else {
         [_infoCreatedField setStringValue:@" - "];
     }
-    theDate = [theFileAttr fileModificationDate];
-    if (theDate) {
-        [_infoModifiedField setStringValue:[theDate description]];
+    date = [fileAttributes fileModificationDate];
+    if (date) {
+        [_infoModifiedField setStringValue:[date description]];
     } else {
         [_infoModifiedField setStringValue:@" - "];
     }
-    theOwner = [theFileAttr fileOwnerAccountName];
-    if (theOwner) {
-        [_infoOwnerField setStringValue:theOwner];
+    owner = [fileAttributes fileOwnerAccountName];
+    if (owner) {
+        [_infoOwnerField setStringValue:owner];
     } else {
         [_infoOwnerField setStringValue:@" - "];
     }
-    [_infoPermissionField setStringValue:[NSString stringWithFormat:@"%lu",(unsigned long)[theFileAttr filePosixPermissions]]];
-    if ([theFileAttr fileIsImmutable]) {
+    [_infoPermissionField setStringValue:[NSString stringWithFormat:@"%lu",(unsigned long)[fileAttributes filePosixPermissions]]];
+    if ([fileAttributes fileIsImmutable]) {
         [_infoFinderLockField setStringValue:NSLocalizedString(@"ON",@"")];
     } else {
         [_infoFinderLockField setStringValue:@"-"];
@@ -242,20 +259,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 変換不可文字列リストを更新
 // ------------------------------------------------------
 {
-    NSArray *theContentArray = [[self document] markupCharCanNotBeConvertedToCurrentEncoding];
+    NSArray *contents = [[self document] markupCharCanNotBeConvertedToCurrentEncoding];
 
-    [_listErrorTextField setHidden:(theContentArray != nil)]; // リストが取得できなかった時のメッセージを表示
+    [[self listErrorTextField] setHidden:(contents != nil)]; // リストが取得できなかった時のメッセージを表示
 
-    [_listController setContent:theContentArray];
-}
-
-
-// ------------------------------------------------------
-- (void)setRecolorWithBecomeKey:(BOOL)inValue
-// ウィンドウがキーになったとき再カラーリングをするかどうかのフラグをセット
-// ------------------------------------------------------
-{
-    _recolorWithBecomeKey = inValue;
+    [[self listController] setContent:contents];
 }
 
 
@@ -265,8 +273,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self updateIncompatibleCharList];
-    [_tabView selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
-    [_drawer open];
+    [[self tabView] selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
+    [[self drawer] open];
 }
 
 
@@ -283,10 +291,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // テキストビューの不透明度を変更する
 // ------------------------------------------------------
 {
-    CGFloat sanitizedAlpha;
+    CGFloat sanitizedAlpha = alpha;
     
-    sanitizedAlpha = MAX(alpha, 0.2);
-    sanitizedAlpha = MIN(alpha, 1.0);
+    sanitizedAlpha = MAX(sanitizedAlpha, 0.2);
+    sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
     
     [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
 }
@@ -297,27 +305,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
     // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-    NSMutableDictionary *theDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    [theValues valueForKey:k_printHeader], k_printHeader, 
-                                    [theValues valueForKey:k_headerOneStringIndex], k_headerOneStringIndex, 
-                                    [theValues valueForKey:k_headerTwoStringIndex], k_headerTwoStringIndex, 
-                                    [theValues valueForKey:k_headerOneAlignIndex], k_headerOneAlignIndex, 
-                                    [theValues valueForKey:k_headerTwoAlignIndex], k_headerTwoAlignIndex, 
-                                    [theValues valueForKey:k_printHeaderSeparator], k_printHeaderSeparator, 
-                                    [theValues valueForKey:k_printFooter], k_printFooter, 
-                                    [theValues valueForKey:k_footerOneStringIndex], k_footerOneStringIndex, 
-                                    [theValues valueForKey:k_footerTwoStringIndex], k_footerTwoStringIndex, 
-                                    [theValues valueForKey:k_footerOneAlignIndex], k_footerOneAlignIndex, 
-                                    [theValues valueForKey:k_footerTwoAlignIndex], k_footerTwoAlignIndex, 
-                                    [theValues valueForKey:k_printFooterSeparator], k_printFooterSeparator, 
-                                    [theValues valueForKey:k_printLineNumIndex], k_printLineNumIndex, 
-                                    [theValues valueForKey:k_printInvisibleCharIndex], k_printInvisibleCharIndex, 
-                                    [theValues valueForKey:k_printColorIndex], k_printColorIndex, 
-                                    nil];
+    NSDictionary *settings = [defaults dictionaryWithValuesForKeys:@[k_printHeader,
+                                                                     k_headerOneStringIndex,
+                                                                     k_headerTwoStringIndex,
+                                                                     k_headerOneAlignIndex,
+                                                                     k_headerTwoAlignIndex,
+                                                                     k_printHeaderSeparator,
+                                                                     k_printFooter,
+                                                                     k_footerOneStringIndex,
+                                                                     k_footerTwoStringIndex,
+                                                                     k_footerOneAlignIndex,
+                                                                     k_footerTwoAlignIndex,
+                                                                     k_printFooterSeparator,
+                                                                     k_printLineNumIndex,
+                                                                     k_printInvisibleCharIndex,
+                                                                     k_printColorIndex]];
 
-    [_printSettingController setContent:theDict];
+    [[self printSettingController] setContent:[settings mutableCopy]];
 }
 
 
@@ -326,16 +332,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // プリンタローカル設定オブジェクトを返す
 // ------------------------------------------------------
 {
-    return [_printSettingController content];
-}
-
-
-// ------------------------------------------------------
-- (NSView *)printAccessoryView
-// プリントアクセサリビューを返す
-// ------------------------------------------------------
-{
-    return _printAccessoryView;
+    return [[self printSettingController] content];
 }
 
 
@@ -353,8 +350,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // クリック時に当該文字列を選択するように設定
-    [_listTableView setTarget:self];
-    [_listTableView setAction:@selector(selectIncompatibleRange:)];
+    [[self listTableView] setTarget:self];
+    [[self listTableView] setAction:@selector(selectIncompatibleRange:)];
 }
 
 
@@ -364,11 +361,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)tellMeTargetToFindIn:(id)inTextFinder
+- (void)tellMeTargetToFindIn:(id)textFinder
 // *OgreKit method. to pass the main textView.
 // ------------------------------------------------------
 {
-    [inTextFinder setTargetToFindIn:[[self editorView] textView]];
+    [textFinder setTargetToFindIn:[[self editorView] textView]];
 }
 
 
@@ -381,14 +378,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)windowDidBecomeKey:(NSNotification *)inNotification
+- (void)windowDidBecomeKey:(NSNotification *)notification
 // ウィンドウがキーになった
 // ------------------------------------------------------
 {
-    CEEditorView *theEditorView = [[self document] editorView];
-
     // 不可視文字表示メニューのツールチップを更新
-    [theEditorView updateShowInvisibleCharsMenuToolTip];
+    [[self editorView] updateShowInvisibleCharsMenuToolTip];
     
 
     // シートを表示していなければ、各種更新実行
@@ -396,7 +391,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // 情報の更新
         [[self document] getFileAttributes];
         // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
-        if (_recolorWithBecomeKey) {
+        if ([self recolorWithBecomeKey]) {
             [self setRecolorWithBecomeKey:NO];
             [[self document] doSetSyntaxStyle:[[self editorView] syntaxStyleNameToColoring]];
         }
@@ -405,38 +400,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)windowWillClose:(NSNotification *)inNotification
+- (void)windowWillClose:(NSNotification *)notification
 // ウィンドウが閉じる直前
 // ------------------------------------------------------
 {
     // デリゲートをやめる
-    [_drawer setDelegate:nil];
-    [_tabView setDelegate:nil];
+    [[self drawer] setDelegate:nil];
+    [[self tabView] setDelegate:nil];
 
     // バインディング停止
-    //（自身の変数 _tabViewSelectedIndex を使わせている関係で、放置しておくと自身が retain されたままになる）
-    [_tabViewSelectionPopUpButton unbind:@"selectedIndex"];
-    [_tabView unbind:@"selectedIndex"];
+    //（自身の変数 tabViewSelectedIndex を使わせている関係で、放置しておくと自身が retain されたままになる）
+    [[self tabViewSelectionPopUpButton] unbind:@"selectedIndex"];
+    [[self tabView] unbind:@"selectedIndex"];
 }
 
 
 // ------------------------------------------------------
-- (void)tabView:(NSTabView *)inTabView willSelectTabViewItem:(NSTabViewItem *)inTabViewItem
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
 // ドローワのタブが切り替えられる直前に内容の更新を行う
 // ------------------------------------------------------
 {
-    if ([[inTabViewItem identifier] isEqualToString:k_infoIdentifier]) {
+    if ([[tabViewItem identifier] isEqualToString:k_infoIdentifier]) {
         [self updateFileAttrsInformation];
         [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
         [[self editorView] updateLineEndingsInStatusAndInfo:YES];
-    } else if ([[inTabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
+    } else if ([[tabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
         [self updateIncompatibleCharList];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)drawerDidClose:(NSNotification *)inNotification
+- (void)drawerDidClose:(NSNotification *)notification
 // ドローワが閉じたらテキストビューのマークアップをクリア
 // ------------------------------------------------------
 {
@@ -466,7 +461,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -478,24 +473,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ファイル情報を表示
 // ------------------------------------------------------
 {
-    NSInteger theDrawerState = [_drawer state];
-    BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
+    NSInteger drawerState = [[self drawer] state];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
 
-    if ((theDrawerState == NSDrawerClosedState) || (theDrawerState == NSDrawerClosingState)) {
-        if (theTabState) {
+    if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
+        if (tabState) {
             // 情報の更新
             [self updateFileAttrsInformation];
             [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
             [[self editorView] updateLineEndingsInStatusAndInfo:YES];
         } else {
-            [_tabView selectTabViewItemWithIdentifier:k_infoIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:k_infoIdentifier];
         }
-        [_drawer open];
+        [[self drawer] open];
     } else {
-        if (theTabState) {
-            [_drawer close];
+        if (tabState) {
+            [[self drawer] close];
         } else {
-            [_tabView selectTabViewItemWithIdentifier:k_infoIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:k_infoIdentifier];
         }
     }
 }
@@ -506,21 +501,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 変換不可文字列リストパネルを開く
 // ------------------------------------------------------
 {
-    NSInteger theDrawerState = [_drawer state];
-    BOOL theTabState = [[[_tabView selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
+    NSInteger drawerState = [[self drawer] state];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
 
-    if ((theDrawerState == NSDrawerClosedState) || (theDrawerState == NSDrawerClosingState)) {
-        if (theTabState) {
+    if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
+        if (tabState) {
             [self updateIncompatibleCharList];
         } else {
-            [_tabView selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
         }
-        [_drawer open];
+        [[self drawer] open];
     } else {
-        if (theTabState) {
-            [_drawer close];
+        if (tabState) {
+            [[self drawer] close];
         } else {
-            [_tabView selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
         }
     }
 }
@@ -531,16 +526,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 文字列を選択
 // ------------------------------------------------------
 {
-    CEEditorView *theEditorView = [[self document] editorView];
-    NSRange theRange = [[[_listController selectedObjects][0] 
-                valueForKey:k_incompatibleRange] rangeValue];
+    NSRange range = [[[[self listController] selectedObjects][0] valueForKey:k_incompatibleRange] rangeValue];
 
-    [theEditorView setSelectedRange:theRange];
-    [[self window] makeFirstResponder:[theEditorView textView]];
-    [[theEditorView textView] scrollRangeToVisible:theRange];
+    [[self editorView] setSelectedRange:range];
+    [[self window] makeFirstResponder:[[self editorView] textView]];
+    [[[self editorView] textView] scrollRangeToVisible:range];
 
     // 検索結果表示エフェクトを追加
-    [[theEditorView textView] showFindIndicatorForRange:theRange];
+    [[[self editorView] textView] showFindIndicatorForRange:range];
 }
 
 
