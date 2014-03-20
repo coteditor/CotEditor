@@ -355,6 +355,8 @@ enum { typeFSS = 'fss ' };
     [[self undoManager] removeAllActionsWithTarget:self];
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
     [self sendCloseEventToClient];
+    
+    [_selection autorelease]; // （互いに参照しあっているため、dealloc でなく、ここで開放しておく）
     [self removeWindowController:(NSWindowController *)[self windowController]];
 
     [super close];
@@ -2080,7 +2082,7 @@ enum { typeFSS = 'fss ' };
 
     if (doColoring) {
         // カラーリング実行オブジェクトを用意
-        printSyntax = [[[CESyntax allocWithZone:[self zone]] init] autorelease];
+        printSyntax = [[[CESyntax alloc] init] autorelease];
         [printSyntax setSyntaxStyleName:[[[self windowController] toolbarController] selectedTitleOfSyntaxItem]];
         [printSyntax setLayoutManager:layoutManager];
         [printSyntax setIsPrinting:YES];
