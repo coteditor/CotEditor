@@ -505,10 +505,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[CESyntaxManager sharedInstance] isOkButtonPressed]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
         NSString *theNewName = [[CESyntaxManager sharedInstance] editedNewStyleName];
-        NSDictionary *theDict = @{k_key_oldStyleName: theOldName, 
-                k_key_newStyleName: theNewName};
-        [[CEDocumentController sharedDocumentController] 
-                setRecolorFlagToAllDocumentsWithStyleName:theDict];
+        NSDictionary *styleNameDict = @{k_key_oldStyleName: theOldName,
+                                        k_key_newStyleName: theNewName};
+        [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
+                                                  withObject:styleNameDict];
+        
         [[CESyntaxManager sharedInstance] setEditedNewStyleName:@""];
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [_appController buildAllSyntaxMenus];
@@ -807,6 +808,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+- (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender
+// すべてのテキストビューのスマートインサート／デリート実行を設定
+// ------------------------------------------------------
+{
+    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setSmartInsertAndDeleteToTextView)];
+}
+
+
 
 @end
 
@@ -1039,8 +1049,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
-    [[CEDocumentController sharedDocumentController] 
-            setNoneAndRecolorFlagToAllDocumentsWithStyleName:theOldSelectedName];
+    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setStyleToNoneAndRecolorFlagWithStyleName:)
+                                              withObject:theOldSelectedName];
+    
     // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
     [_appController buildAllSyntaxMenus];
     // 拡張子重複エラー表示ボタンの有効化を制御

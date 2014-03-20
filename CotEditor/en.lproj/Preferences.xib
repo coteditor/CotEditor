@@ -198,7 +198,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="setSmartInsertAndDeleteToAllTextView:" target="-1" id="647"/>
+                                                        <action selector="setSmartInsertAndDeleteToAllTextView:" target="-2" id="sMT-eA-1x6"/>
                                                         <binding destination="26" name="value" keyPath="values.smartInsertAndDelete" id="646"/>
                                                     </connections>
                                                 </button>
@@ -1822,17 +1822,17 @@ The parent directory name of the dropped file.
                                                     <rect key="frame" x="20" y="302" width="486" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="9EX-7h-iHb">
-                                                        <rect key="frame" x="1" y="1" width="484" height="110"/>
+                                                        <rect key="frame" x="1" y="1" width="469" height="94"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
-                                                                <rect key="frame" x="0.0" y="0.0" width="484" height="110"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="94"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="extensions" width="481" minWidth="40" maxWidth="1000" id="448">
+                                                                    <tableColumn identifier="extensions" width="466" minWidth="40" maxWidth="1000" id="448">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1857,11 +1857,11 @@ The parent directory name of the dropped file.
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3415">
-                                                        <rect key="frame" x="1" y="95" width="484" height="16"/>
+                                                        <rect key="frame" x="1" y="95" width="469" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="94"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>

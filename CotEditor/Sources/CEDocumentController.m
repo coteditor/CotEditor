@@ -141,58 +141,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
-
-
-// ------------------------------------------------------
-- (void)rebuildAllToolbarsEncodingItem
-// すべてのツールバーのエンコーディングメニューを再生成する
-// ------------------------------------------------------
-{
-    [[self documents] makeObjectsPerformSelector:@selector(rebuildToolbarEncodingItem)];
-}
-
-
-// ------------------------------------------------------
-- (void)rebuildAllToolbarsSyntaxItem
-// すべてのツールバーのシンタックスカラーリングスタイルメニューを再生成する
-// ------------------------------------------------------
-{
-    [[self documents] makeObjectsPerformSelector:@selector(rebuildToolbarSyntaxItem)];
-}
-
-
-// ------------------------------------------------------
-- (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)styleNameDict
-// 指定されたスタイルを適用しているドキュメントのリカラーフラグを立てる
-// ------------------------------------------------------
-{
-    if (styleNameDict) {
-        [[self documents] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:) 
-                withObject:styleNameDict];
-    }
-}
-
-
-// ------------------------------------------------------
-- (void)setNoneAndRecolorFlagToAllDocumentsWithStyleName:(NSString *)styleName
-// 指定されたスタイルを適用しているドキュメントの適用スタイルを"None"にし、リカラーフラグを立てる
-// ------------------------------------------------------
-{
-    if (styleName != nil) {
-        [[self documents] makeObjectsPerformSelector:@selector(setStyleToNoneAndRecolorFlagWithStyleName:) 
-                withObject:styleName];
-    }
-}
-
-
-
-#pragma mark Action messages
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -231,15 +180,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setIsOpenHidden:([sender tag] == k_openHiddenMenuItemTag)];
 
     [super openDocument:sender];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender
-// すべてのテキストビューのスマートインサート／デリート実行を設定
-// ------------------------------------------------------
-{
-    [[self documents] makeObjectsPerformSelector:@selector(setSmartInsertAndDeleteToTextView)];
 }
 
 

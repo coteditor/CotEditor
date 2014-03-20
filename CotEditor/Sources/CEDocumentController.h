@@ -41,16 +41,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readonly) NSPopUpButton *accessoryEncodingMenu;
 @property (nonatomic) NSStringEncoding accessorySelectedEncoding;
 
-
-// Public method
-- (void)rebuildAllToolbarsEncodingItem;
-- (void)rebuildAllToolbarsSyntaxItem;
-- (void)setRecolorFlagToAllDocumentsWithStyleName:(NSDictionary *)styleNameDict;
-- (void)setNoneAndRecolorFlagToAllDocumentsWithStyleName:(NSString *)styleName;
-
 // Action Message
 - (IBAction)openHiddenDocument:(id)sender;
-- (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender;
 - (IBAction)setSelectAccessoryEncodingMenuToDefault:(id)sender;
 
 @end

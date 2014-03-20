@@ -196,9 +196,11 @@
                                                     <buttonCell key="cell" type="check" title="スマートインサート／スマートデリートを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" size="13" name="AquaKana"/>
+                                                        <connections>
+                                                            <action selector="setSmartInsertAndDeleteToAllTextView:" target="-2" id="0Sw-IL-ao6"/>
+                                                        </connections>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="setSmartInsertAndDeleteToAllTextView:" target="-1" id="647"/>
                                                         <binding destination="26" name="value" keyPath="values.smartInsertAndDelete" id="646"/>
                                                     </connections>
                                                 </button>

@@ -267,7 +267,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self preferencesController] setupEncodingMenus:[self encodingMenuNoActionFromArray:encodings]];
     [self setEncodingMenu:[self buildFormatEncodingMenuFromArray:encodings]];
-    [[CEDocumentController sharedDocumentController] rebuildAllToolbarsEncodingItem];
+    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(rebuildToolbarEncodingItem)];
 }
 
 
@@ -278,7 +278,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [[self preferencesController] setupSyntaxMenus];
     [self setSyntaxMenu:[self buildSyntaxMenu]];
-    [[CEDocumentController sharedDocumentController] rebuildAllToolbarsSyntaxItem];
+    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(rebuildToolbarSyntaxItem)];
 }
 
 
@@ -549,8 +549,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // 各ドキュメントに外部プロセスによって変更保存されていた場合の通知を行わせる
-    [[[CEDocumentController sharedDocumentController] documents] 
-            makeObjectsPerformSelector:@selector(showUpdatedByExternalProcessAlert)];
+    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(showUpdatedByExternalProcessAlert)];
 }
 
 
