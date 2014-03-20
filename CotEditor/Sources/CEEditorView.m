@@ -735,13 +735,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)inBool
+- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate
 // ドローワの文書情報を更新
 // ------------------------------------------------------
 {
-    BOOL shoudlUpdateStatusBar = [_statusBar showStatusBar];
-    BOOL shouldUpdateDrawer = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
-    if (!shoudlUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    BOOL shouldUpdateStatusBar = [_statusBar showStatusBar];
+    BOOL shouldUpdateDrawer = (doUpdate) ? YES : [[self windowController] needsInfoDrawerUpdate];
+    
+    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    
     NSString *theString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
     NSString *singleCharInfo = nil;
     NSRange selectedRange = [self selectedRange];
@@ -764,16 +766,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         // 行末コードをカウントしない場合は再計算
         if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_countLineEndingAsChar]) {
-            NSString *theLocStr = [theString substringToIndex:selectedRange.location];
+            NSString *locStr = [theString substringToIndex:selectedRange.location];
 
-            selectedRange.location = [[OGRegularExpression chomp:theLocStr] length];
+            selectedRange.location = [[OGRegularExpression chomp:locStr] length];
             selectedRange.length = [[OGRegularExpression chomp:[self substringWithSelection]] length];
             length = [[OGRegularExpression chomp:theString] length];
         }
     }
     NSUInteger numberOfWords = [[NSSpellChecker sharedSpellChecker] countWordsInString:theString language:nil];
 
-    if (shoudlUpdateStatusBar) {
+    if (shouldUpdateStatusBar) {
         NSString *statusString;
         
         if (selectedRange.length > 0) {
@@ -810,14 +812,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldUpdateDrawer) {
         NSString *linesInfo, *charsInfo, *selectInfo;
         
-        linesInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)currentLine, (unsigned long)numberOfLines];
+        linesInfo = [NSString stringWithFormat:@"%ld / %ld", (long)currentLine, (long)numberOfLines];
         [[self windowController] setLinesInfo:linesInfo];
-        charsInfo = [NSString stringWithFormat:@"%lu / %lu",(unsigned long)selectedRange.location, (unsigned long)length];
+        charsInfo = [NSString stringWithFormat:@"%ld / %ld", (long)selectedRange.location, (long)length];
         [[self windowController] setCharsInfo:charsInfo];
-        [[self windowController] setInLineInfo:[NSString stringWithFormat:@"%lu", (unsigned long)countInLine]];
-        selectInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%lu", (unsigned long)selectedRange.length] : @" - ";
+        [[self windowController] setInLineInfo:[NSString stringWithFormat:@"%ld", (long)countInLine]];
+        selectInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld", (long)selectedRange.length] : @" - ";
         [[self windowController] setSelectInfo:selectInfo];
-        singleCharInfo = singleCharInfo ? : @" - ";
         [[self windowController] setSingleCharInfo:singleCharInfo];
     }
 }

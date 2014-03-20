@@ -194,7 +194,11 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="singleCharInfo" id="MYg-rF-RfH"/>
+                                                                <binding destination="-2" name="value" keyPath="singleCharInfo" id="xY5-cU-DUX">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="413">
