@@ -154,6 +154,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_printFontName: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName], 
                 k_key_printFontSize: @([NSFont systemFontSize]),
                 k_printHeader: @YES, 
+                k_key_enableSmartQuotes: @NO,
                 k_headerOneStringIndex: @3, 
                 k_headerTwoStringIndex: @4, 
                 k_headerOneAlignIndex: @0, 

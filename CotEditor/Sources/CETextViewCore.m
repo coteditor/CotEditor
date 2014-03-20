@@ -166,6 +166,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
         [self setAcceptsGlyphInfo:YES];
+        [self setAutomaticQuoteSubstitutionEnabled:[[theValues valueForKeyPath:k_key_enableSmartQuotes] boolValue]];
+        [self setAutomaticDashSubstitutionEnabled:[[theValues valueForKeyPath:k_key_enableSmartQuotes] boolValue]];
         [self setLineSpacing:(CGFloat)[[theValues valueForKey:k_key_lineSpacing] doubleValue]];
         [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_textColor]]];
         backgroundColor = [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_backgroundColor]];
