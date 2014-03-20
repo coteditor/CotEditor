@@ -106,7 +106,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 背景をセットアップ
     [self setAlpha:(CGFloat)[[defaults valueForKey:k_key_windowAlpha] doubleValue]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
-    [[self window] setOpaque:NO]; // ウィンドウを透明にする
     
     // ツールバーをセットアップ
     [[self toolbarController] setupToolbar];
@@ -209,6 +208,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
     
     [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
+    [[self window] setOpaque:(sanitizedAlpha == 1.0)];
 }
 
 
