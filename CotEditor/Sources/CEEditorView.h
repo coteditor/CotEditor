@@ -48,96 +48,68 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntax.h"
 #import "CELayoutManager.h"
 #import "CEScriptManager.h"
-#import "constants.h"
 
 
 @class CEDocument;
 
+
 @interface CEEditorView : NSView
-{
-    CESplitView *_splitView;
-    CETextViewCore *_textViewCore;
-    CEStatusBarView *_statusBar;
-    NSTimer *_coloringTimer;
-    NSTimer *_infoUpdateTimer;
-    NSTimer *_incompatibleCharTimer;
 
-    OgreNewlineCharacter _lineEndingCharacter;
+@property (nonatomic) OgreNewlineCharacter lineEndingCharacter;
 
-    NSTimeInterval _basicColoringDelay;
-    NSTimeInterval _firstColoringDelay;
-    NSTimeInterval _secondColoringDelay;
-    NSTimeInterval _infoUpdateInterval;
-    NSTimeInterval _incompatibleCharInterval;
-    BOOL _showLineNum;
-    BOOL _showNavigationBar;
-    BOOL _wrapLines;
-    BOOL _isWritable;
-    BOOL _alertedNotWritable;
-    BOOL _coloring;
-    BOOL _showPageGuide;
-}
+@property (nonatomic) BOOL showLineNum;
+@property (nonatomic) BOOL showNavigationBar;
+@property (nonatomic) BOOL showStatusBar;
+@property (nonatomic) BOOL wrapLines;
+@property (nonatomic) BOOL isWritable;
+@property (nonatomic) BOOL isAlertedNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
+@property (nonatomic) BOOL showPageGuide;
+@property (nonatomic) BOOL isColoring;
+
+@property (nonatomic, retain) CETextViewCore *textView;
+
+@property (nonatomic, retain, readonly) CESplitView *splitView;
+
 
 // Public method
 - (CEDocument *)document;
 - (id)windowController;
 - (NSTextStorage *)textStorage;
-- (CESplitView *)splitView;
-- (CETextViewCore *)textView;
-- (void)setTextView:(CETextViewCore *)inTextView;
 - (CENavigationBarView *)navigationBar;
 - (CESyntax *)syntax;
-- (BOOL)isColoring;
-- (void)setIsColoring:(BOOL)inBool;
 
 - (NSString *)string;
 - (NSString *)stringForSave;
-- (NSString *)substringWithRange:(NSRange)inRange;
+- (NSString *)substringWithRange:(NSRange)range;
 - (NSString *)substringWithSelection;
 - (NSString *)substringWithSelectionForSave;
 - (void)setString:(NSString *)inString;
-- (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
-- (void)replaceTextViewAllStringTo:(NSString *)inString;
-- (void)insertTextViewAfterSelectionStringTo:(NSString *)inString;
-- (void)appendTextViewAfterAllStringTo:(NSString *)inString;
-- (BOOL)setSyntaxExtension:(NSString *)inExtension;
+- (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)doScroll;
+- (void)replaceTextViewAllStringTo:(NSString *)string;
+- (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
+- (void)appendTextViewAfterAllStringTo:(NSString *)string;
+- (BOOL)setSyntaxExtension:(NSString *)extension;
 - (NSFont *)font;
-- (void)setFont:(NSFont *)inFont;
+- (void)setFont:(NSFont *)font;
 - (NSRange)selectedRange;
-- (void)setSelectedRange:(NSRange)inCharRange;
+- (void)setSelectedRange:(NSRange)charRange;
 - (NSArray *)allLayoutManagers;
 
-- (BOOL)showLineNum;
-- (void)setShowLineNum:(BOOL)inBool;
-- (BOOL)showStatusBar;
-- (void)setShowStatusBar:(BOOL)inBool;
-- (BOOL)showNavigationBar;
-- (void)setShowNavigationBar:(BOOL)inBool;
-- (BOOL)wrapLines;
-- (void)setWrapLines:(BOOL)inBool;
-- (BOOL)isWritable;
-- (void)setIsWritable:(BOOL)inBool;
-- (BOOL)isAlertedNotWritable;
-- (void)setIsAlertedNotWritable:(BOOL)inBool;
 - (BOOL)shouldUseAntialias;
 - (void)toggleShouldUseAntialias;
-- (BOOL)showPageGuide;
-- (void)setShowPageGuide:(BOOL)inBool;
 
-- (NSInteger)lineEndingCharacter;
-- (void)setLineEndingCharacter:(NSInteger)inNewLineEnding;
 - (NSString *)syntaxStyleNameToColoring;
-- (void)setSyntaxStyleNameToColoring:(NSString *)inName recolorNow:(BOOL)inValue;
+- (void)setSyntaxStyleNameToColoring:(NSString *)inName recolorNow:(BOOL)recolorNow;
 - (void)recoloringAllString;
 - (void)updateColoringAndOutlineMenuWithDelay;
 - (void)alertForNotWritable;
 - (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
 - (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
-- (void)setShowInvisibleChars:(BOOL)inBool;
+- (void)setShowInvisibleChars:(BOOL)showInvisibleChars;
 - (void)updateShowInvisibleCharsMenuToolTip;
-- (void)setColoringTimer;
-- (void)setIncompatibleCharTimer;
-- (void)setInfoUpdateTimer;
+- (void)setupColoringTimer;
+- (void)setupIncompatibleCharTimer;
+- (void)setupInfoUpdateTimer;
 - (void)updateCloseSubSplitViewButton;
 - (void)stopAllTimer;
 
@@ -156,5 +128,3 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)focusPrevSplitTextView:(id)sender;
 
 @end
-
-

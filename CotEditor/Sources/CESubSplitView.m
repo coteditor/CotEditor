@@ -678,7 +678,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // カラーリング実行
-    [[self editorView] setColoringTimer];
+    [[self editorView] setupColoringTimer];
 
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
@@ -703,7 +703,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self showHighlightCurrentLine];
 
     // 文書情報更新
-    [[self editorView] setInfoUpdateTimer];
+    [[self editorView] setupInfoUpdateTimer];
 
     // アウトラインメニュー選択項目更新
     [self updateOutlineMenuSelection];
@@ -786,7 +786,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[self editorView] setInfoUpdateTimer];
+    [[self editorView] setupInfoUpdateTimer];
     // 全テキストを再カラーリング
     [self performSelector:@selector(recoloringAllTextViewString) withObject:nil afterDelay:0];
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
@@ -873,7 +873,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     // 非互換文字リスト更新
-    [[self editorView] setIncompatibleCharTimer];
+    [[self editorView] setupIncompatibleCharTimer];
 }
 
 

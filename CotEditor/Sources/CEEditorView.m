@@ -39,40 +39,39 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEEditorView.h"
 #import "CEToolbarController.h"
+#import "constants.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
 @interface CEEditorView ()
 
+@property (nonatomic, retain) CEStatusBarView *statusBar;
+
+@property (nonatomic, retain) NSTimer *coloringTimer;
+@property (nonatomic, retain) NSTimer *infoUpdateTimer;
+@property (nonatomic, retain) NSTimer *incompatibleCharTimer;
+
+@property (nonatomic) NSTimeInterval basicColoringDelay;
+@property (nonatomic) NSTimeInterval firstColoringDelay;
+@property (nonatomic) NSTimeInterval secondColoringDelay;
+@property (nonatomic) NSTimeInterval infoUpdateInterval;
+@property (nonatomic) NSTimeInterval incompatibleCharInterval;
+
 @property (nonatomic, retain) NSNumberFormatter *decimalFormatter;
 
-@end
 
-@interface CEEditorView (Private)
-- (void)setupViews;
-- (void)setupViewParamsInInit:(BOOL)inBool;
-- (void)doColoringNow;
-- (void)doColoringWithTimer:(NSTimer *)inTimer;
-- (void)doUpdateInfoWithTimer:(NSTimer *)inTimer;
-- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)inTimer;
-- (void)focusOtherSplitTextViewOnNext:(BOOL)inBool;
-- (void)stopColoringTimer;
-- (void)stopInfoUpdateTimer;
-- (void)stopIncompatibleCharTimer;
+// readonly
+@property (nonatomic, retain, readwrite) CESplitView *splitView;
+
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
-
+#pragma -
 
 @implementation CEEditorView
 
-#pragma mark ===== Public method =====
+#pragma mark Public methods
 
 //=======================================================
 // Public method
@@ -80,11 +79,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (instancetype)initWithFrame:(NSRect)inFrame
+- (instancetype)initWithFrame:(NSRect)frameRect
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frameRect];
     if (self) {
         // set number formatter for status bar
         [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
@@ -106,7 +105,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self stopAllTimer];
 
-    [_textViewCore release];
+    [_textView release];
     [_splitView release];
     [_statusBar release];
     [_decimalFormatter release];
@@ -116,8 +115,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSUndoManager *)undoManagerForTextView:(NSTextView *)inTextView
-// _textViewCoreのundoManager を返す
+- (NSUndoManager *)undoManagerForTextView:(NSTextView *)textView
+// textViewCoreのundoManager を返す
 // ------------------------------------------------------
 {
     return [[self document] undoManager];
@@ -152,35 +151,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (CESplitView *)splitView
-// splitViewを返す
-// ------------------------------------------------------
-{
-    return _splitView;
-}
-
-
-// ------------------------------------------------------
-- (CETextViewCore *)textView
-// メインtextViewを返す
-// ------------------------------------------------------
-{
-    return _textViewCore;
-}
-
-
-// ------------------------------------------------------
-- (void)setTextView:(CETextViewCore *)inTextView
-// textViewを保持
-// ------------------------------------------------------
-{
-    [inTextView retain];
-    [_textViewCore release];
-    _textViewCore = inTextView;
-}
-
-
-// ------------------------------------------------------
 - (CENavigationBarView *)navigationBar
 // navigationBarを返す
 // ------------------------------------------------------
@@ -199,24 +169,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)isColoring
-// カラーリングしているかどうかを返す
-// ------------------------------------------------------
-{
-    return _coloring;
-}
-
-
-// ------------------------------------------------------
-- (void)setIsColoring:(BOOL)inBool
-// カラーリングする／しないをセット
-// ------------------------------------------------------
-{
-    _coloring = inBool;
-}
-
-
-// ------------------------------------------------------
 - (NSString *)string
 // メインtextViewの文字列を返す（行末コードはLF固定）
 // ------------------------------------------------------
@@ -230,18 +182,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行末コードを指定のものに置換したメインtextViewの文字列を返す
 // ------------------------------------------------------
 {
-    NSString *outString = [OGRegularExpression replaceNewlineCharactersInString:[self string] 
-                    withCharacter:[self lineEndingCharacter]];
-    return outString;
+    return [OGRegularExpression replaceNewlineCharactersInString:[self string]
+                                                   withCharacter:[self lineEndingCharacter]];
 }
 
 
 // ------------------------------------------------------
-- (NSString *)substringWithRange:(NSRange)inRange
+- (NSString *)substringWithRange:(NSRange)range
 // メインtextViewの指定された範囲の文字列を返す
 // ------------------------------------------------------
 {
-    return ([[self string] substringWithRange:inRange]);
+    return [[self string] substringWithRange:range];
 }
 
 
@@ -250,7 +201,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // メインtextViewの選択された文字列を返す
 // ------------------------------------------------------
 {
-    return ([[self string] substringWithRange:[[self textView] selectedRange]]);
+    return [[self string] substringWithRange:[[self textView] selectedRange]];
 }
 
 
@@ -259,16 +210,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // メインtextViewの選択された文字列を、行末コードを指定のものに置換して返す
 // ------------------------------------------------------
 {
-    NSString *theTmpStr = [self substringWithSelection];
-    NSString *outString = [OGRegularExpression replaceNewlineCharactersInString:theTmpStr 
-                    withCharacter:[self lineEndingCharacter]];
-
-    return outString;
+    return [OGRegularExpression replaceNewlineCharactersInString:[self substringWithSelection]
+                                                   withCharacter:[self lineEndingCharacter]];
 }
 
 
 // ------------------------------------------------------
-- (void)setString:(NSString *)inString
+- (void)setString:(NSString *)string
 // メインtextViewに文字列をセット。行末コードはLFに置換される
 // ------------------------------------------------------
 {
@@ -283,67 +231,68 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
-    NSString *theNewLineString = [OGRegularExpression replaceNewlineCharactersInString:inString 
-                    withCharacter:OgreLfNewlineCharacter];
+    NSString *newLineString = [OGRegularExpression replaceNewlineCharactersInString:string
+                                                                      withCharacter:OgreLfNewlineCharacter];
 
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
     // 設定されたフォントでないもので表示されることがあるため、リセットする
     [[self textView] setString:@""];
     [[self textView] setEffectTypingAttrs];
-    [[self textView] setString:theNewLineString];
+    [[self textView] setString:newLineString];
     // キャレットを先頭に移動
-    if ([theNewLineString length] > 0) {
+    if ([newLineString length] > 0) {
         [[self splitView] setAllCaretToBeginning];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll
+- (void)replaceTextViewSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
 // 選択文字列を置換する
 // ------------------------------------------------------
 {
-    [[self textView] replaceSelectedStringTo:inString scroll:inBoolScroll];
+    [[self textView] replaceSelectedStringTo:string scroll:doScroll];
 }
 
 
 // ------------------------------------------------------
-- (void)replaceTextViewAllStringTo:(NSString *)inString
+- (void)replaceTextViewAllStringTo:(NSString *)string
 // 全文字列を置換
 // ------------------------------------------------------
 {
-    [[self textView] replaceAllStringTo:inString];
+    [[self textView] replaceAllStringTo:string];
 }
 
 
 // ------------------------------------------------------
-- (void)insertTextViewAfterSelectionStringTo:(NSString *)inString
+- (void)insertTextViewAfterSelectionStringTo:(NSString *)string
 // 選択範囲の直後に文字列を挿入
 // ------------------------------------------------------
 {
-    [[self textView] insertAfterSelection:inString];
+    [[self textView] insertAfterSelection:string];
 }
 
 
 // ------------------------------------------------------
-- (void)appendTextViewAfterAllStringTo:(NSString *)inString
+- (void)appendTextViewAfterAllStringTo:(NSString *)string
 // 文字列の最後に新たな文字列を追加
 // ------------------------------------------------------
 {
-    [[self textView] appendAllString:inString];
+    [[self textView] appendAllString:string];
 }
 
 
 // ------------------------------------------------------
-- (BOOL)setSyntaxExtension:(NSString *)inExtension
+- (BOOL)setSyntaxExtension:(NSString *)extension
 // 文書の拡張子をCESyntaxへセット
 // ------------------------------------------------------
 {
-    BOOL outBool = [[self syntax] setSyntaxStyleNameFromExtension:inExtension];
-    NSString *theName = [[self syntax] syntaxStyleName];
+    BOOL success = [[self syntax] setSyntaxStyleNameFromExtension:extension];
+    NSString *name = [[self syntax] syntaxStyleName];
 
-    [self setIsColoring:(![theName isEqualToString:NSLocalizedString(@"None",@"")])];
-    return outBool;
+    [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+    
+    return success;
 }
 
 
@@ -371,33 +320,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([[[self textView] newLineString] length] > 1) {
-        NSRange theRange = [[self textView] selectedRange];
-        NSString *theTmpLocStr = [[self string] substringWithRange:NSMakeRange(0, theRange.location)];
-        NSString *theLocStr = [OGRegularExpression replaceNewlineCharactersInString:theTmpLocStr 
-                        withCharacter:[self lineEndingCharacter]];
-        NSString *theLenStr = [self substringWithSelectionForSave];
+        NSRange range = [[self textView] selectedRange];
+        NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
+        NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
+                                                                   withCharacter:[self lineEndingCharacter]];
+        NSString *lenStr = [self substringWithSelectionForSave];
 
-        return (NSMakeRange([theLocStr length], [theLenStr length]));
+        return (NSMakeRange([locStr length], [lenStr length]));
     }
     return ([[self textView] selectedRange]);
 }
 
 
 // ------------------------------------------------------
-- (void)setSelectedRange:(NSRange)inCharRange
+- (void)setSelectedRange:(NSRange)charRange
 // 選択範囲を変更
 // ------------------------------------------------------
 {
     if ([[[self textView] newLineString] length] > 1) {
-        NSString *theTmpLocStr = [[self stringForSave] substringWithRange:NSMakeRange(0, inCharRange.location)];
-        NSString *theLocStr = [OGRegularExpression replaceNewlineCharactersInString:theTmpLocStr 
-                        withCharacter:OgreLfNewlineCharacter];
-        NSString *theTmpLenStr = [[self stringForSave] substringWithRange:inCharRange];
-        NSString *theLenStr = [OGRegularExpression replaceNewlineCharactersInString:theTmpLenStr 
-                        withCharacter:OgreLfNewlineCharacter];
-        [[self textView] setSelectedRange:NSMakeRange([theLocStr length], [theLenStr length])];
+        NSString *tmpLocStr = [[self stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
+        NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
+                                                                   withCharacter:OgreLfNewlineCharacter];
+        NSString *tmpLenStr = [[self stringForSave] substringWithRange:charRange];
+        NSString *lenStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLenStr
+                                                                   withCharacter:OgreLfNewlineCharacter];
+        [[self textView] setSelectedRange:NSMakeRange([locStr length], [lenStr length])];
     } else {
-        [[self textView] setSelectedRange:inCharRange];
+        [[self textView] setSelectedRange:charRange];
     }
 }
 
@@ -407,33 +356,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 全layoutManagerを配列で返す
 // ------------------------------------------------------
 {
-    NSArray *theSubSplitViews = [[self splitView] subviews];
-    NSMutableArray *outArray = [NSMutableArray array];
+    NSArray *subSplitViews = [[self splitView] subviews];
+    NSMutableArray *managers = [NSMutableArray array];
 
-    for (NSTextContainer *container in theSubSplitViews) {
-        [outArray addObject:[[container textView] layoutManager]];
+    for (NSTextContainer *container in subSplitViews) {
+        [managers addObject:[[container textView] layoutManager]];
     }
-    return outArray;
+    return managers;
 }
 
 
 // ------------------------------------------------------
-- (BOOL)showLineNum
-// 行版を表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _showLineNum;
-}
-
-
-// ------------------------------------------------------
-- (void)setShowLineNum:(BOOL)inBool
+- (void)setShowLineNum:(BOOL)showLineNum
 // 行番号の表示をする／しないをセット
 // ------------------------------------------------------
 {
-    _showLineNum = inBool;
-    [[self splitView] setShowLineNum:inBool];
-    [[[self windowController] toolbarController] updateToggleItem:k_showLineNumItemID setOn:inBool];
+    _showLineNum = showLineNum;
+    [[self splitView] setShowLineNum:showLineNum];
+    [[[self windowController] toolbarController] updateToggleItem:k_showLineNumItemID setOn:showLineNum];
 }
 
 
@@ -442,8 +382,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ステータスバーを表示するかどうかを返す
 // ------------------------------------------------------
 {
-    if (_statusBar) {
-        return ([_statusBar showStatusBar]);
+    if ([self statusBar]) {
+        return [[self statusBar] showStatusBar];
     } else {
         return NO;
     }
@@ -451,15 +391,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setShowStatusBar:(BOOL)inBool
+- (void)setShowStatusBar:(BOOL)showStatusBar
 // ステータスバーを表示する／しないをセット
 // ------------------------------------------------------
 {
-    if (_statusBar) {
-        [_statusBar setShowStatusBar:inBool];
-        [[[self windowController] toolbarController] updateToggleItem:k_showStatusBarItemID setOn:inBool];
+    if ([self statusBar]) {
+        [[self statusBar] setShowStatusBar:showStatusBar];
+        [[[self windowController] toolbarController] updateToggleItem:k_showStatusBarItemID setOn:showStatusBar];
         [self updateLineEndingsInStatusAndInfo:NO];
-        if (!_infoUpdateTimer) {
+        if (![self infoUpdateTimer]) {
             [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
         }
     }
@@ -467,52 +407,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)showNavigationBar
-// ナビバーを表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _showNavigationBar;
-}
-
-
-// ------------------------------------------------------
-- (void)setShowNavigationBar:(BOOL)inBool
+- (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ナビバーを表示する／しないをセット
 // ------------------------------------------------------
 {
-    _showNavigationBar = inBool;
-    [[self splitView] setShowNavigationBar:inBool];
-    [[[self windowController] toolbarController] updateToggleItem:k_showNavigationBarItemID setOn:inBool];
+    _showNavigationBar = showNavigationBar;
+    [[self splitView] setShowNavigationBar:showNavigationBar];
+    [[[self windowController] toolbarController] updateToggleItem:k_showNavigationBarItemID setOn:showNavigationBar];
 }
 
 
 // ------------------------------------------------------
-- (BOOL)wrapLines
-// 行をラップするかどうかを返す
-// ------------------------------------------------------
-{
-    return _wrapLines;
-}
-
-
-// ------------------------------------------------------
-- (void)setWrapLines:(BOOL)inBool
+- (void)setWrapLines:(BOOL)wrapLines
 // 行をラップする／しないをセット
 // ------------------------------------------------------
 {
-    _wrapLines = inBool;
-    [[self splitView] setWrapLines:inBool];
+    _wrapLines = wrapLines;
+    [[self splitView] setWrapLines:wrapLines];
     [self setNeedsDisplay:YES];
-    [[[self windowController] toolbarController] updateToggleItem:k_wrapLinesItemID setOn:inBool];
-}
-
-
-// ------------------------------------------------------
-- (BOOL)isWritable
-// 文書への書き込み（ファイル上書き保存）が可能かどうかを返す
-// ------------------------------------------------------
-{
-    return _isWritable;
+    [[[self windowController] toolbarController] updateToggleItem:k_wrapLinesItemID setOn:wrapLines];
 }
 
 
@@ -523,27 +436,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     _isWritable = isWritable;
     
-    if (_statusBar) {
-        [_statusBar setShowsReadOnlyIcon:!_isWritable];
+    if ([self statusBar]) {
+        [[self statusBar] setShowsReadOnlyIcon:!isWritable];
     }
-}
-
-
-// ------------------------------------------------------
-- (BOOL)isAlertedNotWritable
-// 文書が読み込み専用のときにその警告を表示したかどうかを返す
-// ------------------------------------------------------
-{
-    return _alertedNotWritable;
-}
-
-
-// ------------------------------------------------------
-- (void)setIsAlertedNotWritable:(BOOL)inBool
-// 文書が読み込み専用のときにその警告を表示したかどうかをセット
-// ------------------------------------------------------
-{
-    _alertedNotWritable = inBool;
 }
 
 
@@ -552,8 +447,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アンチエイリアスでの描画の許可を得る
 // ------------------------------------------------------
 {
-    CELayoutManager *theManager = (CELayoutManager *)[[self textView] layoutManager];
-    return [theManager useAntialias];
+    CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
+    
+    return [manager useAntialias];
 }
 
 
@@ -562,93 +458,72 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アンチエイリアス適用をトグルに切り替え
 // ------------------------------------------------------
 {
-    CELayoutManager *theManager = (CELayoutManager *)[[self textView] layoutManager];
-    BOOL theBool = [theManager useAntialias];
+    CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
 
-    [[self splitView] setUseAntialias:(!theBool)];
+    [[self splitView] setUseAntialias:![manager useAntialias]];
 }
 
 
 // ------------------------------------------------------
-- (BOOL)showPageGuide
-// ページガイドを表示するかどうかを返す
-// ------------------------------------------------------
-{
-    return _showPageGuide;
-}
-
-
-// ------------------------------------------------------
-- (void)setShowPageGuide:(BOOL)inBool
+- (void)setShowPageGuide:(BOOL)showPageGuide
 // ページガイドを表示する／しないをセット
 // ------------------------------------------------------
 {
-    if (_showPageGuide != inBool) {
-        _showPageGuide = inBool;
-        [[[self windowController] toolbarController] updateToggleItem:k_showPageGuideItemID setOn:inBool];
+    if (_showPageGuide != showPageGuide) {
+        _showPageGuide = showPageGuide;
+        [[[self windowController] toolbarController] updateToggleItem:k_showPageGuideItemID setOn:showPageGuide];
     }
 }
 
 
 // ------------------------------------------------------
-- (NSInteger)lineEndingCharacter
-// 行末コードを返す（OgreNewlineCharacter型）
-// ------------------------------------------------------
-{
-    return _lineEndingCharacter;
-}
-
-
-// ------------------------------------------------------
-- (void)setLineEndingCharacter:(NSInteger)inNewLineEnding
+- (void)setLineEndingCharacter:(OgreNewlineCharacter)lineEndingCharacter
 // 行末コードをセット（OgreNewlineCharacter型）
 // ------------------------------------------------------
 {
-    NSArray *theSubSplitViews = [[self splitView] subviews];
-    NSString *theNewLineString;
-    BOOL theBoolUpdate = ([self lineEndingCharacter] != inNewLineEnding);
+    NSArray *subSplitViews = [[self splitView] subviews];
+    NSString *newLineString;
+    BOOL shouldUpdate = (_lineEndingCharacter != lineEndingCharacter);
     unichar theChar[2];
 
-    if ((inNewLineEnding > OgreNonbreakingNewlineCharacter) && 
-            (inNewLineEnding <= OgreWindowsNewlineCharacter)) {
-        _lineEndingCharacter = inNewLineEnding;
+    if ((lineEndingCharacter > OgreNonbreakingNewlineCharacter) && 
+            (lineEndingCharacter <= OgreWindowsNewlineCharacter)) {
+        _lineEndingCharacter = lineEndingCharacter;
     } else {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        NSInteger theDefaultLineEnd = [[theValues valueForKey:k_key_defaultLineEndCharCode] integerValue];
-        _lineEndingCharacter = theDefaultLineEnd;
+        NSInteger defaultLineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];        _lineEndingCharacter = defaultLineEnding;
     }
     // set to textViewCore.
     switch (_lineEndingCharacter) {
         case OgreLfNewlineCharacter:
-            theNewLineString = @"\n";  // LF
+            newLineString = @"\n";  // LF
             break;
         case OgreCrNewlineCharacter:  // CR
-            theNewLineString = @"\r";
+            newLineString = @"\r";
             break;
         case OgreCrLfNewlineCharacter:  // CR+LF
-            theNewLineString = @"\r\n";
+            newLineString = @"\r\n";
             break;
         case OgreUnicodeLineSeparatorNewlineCharacter:  // Unicode line separator
             theChar[0] = 0x2028; theChar[1] = 0;
-            theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            newLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
             break;
         case OgreUnicodeParagraphSeparatorNewlineCharacter:  // Unicode paragraph separator
             theChar[0] = 0x2029; theChar[1] = 0;
-            theNewLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            newLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
             break;
         case OgreNonbreakingNewlineCharacter:  // 改行なしの場合
-            theNewLineString = @"";
+            newLineString = @"";
             break;
             
         default:
             return;
     }
-    for (NSTextContainer *container in theSubSplitViews) {
-        [(CETextViewCore *)[container textView] setNewLineString:theNewLineString];
+    for (NSTextContainer *container in subSplitViews) {
+        [(CETextViewCore *)[container textView] setNewLineString:newLineString];
     }
-    if (theBoolUpdate) {
+    if (shouldUpdate) {
         [self updateLineEndingsInStatusAndInfo:NO];
-        if (!_infoUpdateTimer) {
+        if (![self infoUpdateTimer]) {
             [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
         }
     }
@@ -660,22 +535,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックススタイル名を返す
 // ------------------------------------------------------
 {
-    if ([self syntax]) {
-        return [[self syntax] syntaxStyleName]; 
-    }
-    return nil;
+    return ([self syntax]) ? [[self syntax] syntaxStyleName] : nil;
 }
 
 
 // ------------------------------------------------------
-- (void)setSyntaxStyleNameToColoring:(NSString *)inName recolorNow:(BOOL)inValue
+- (void)setSyntaxStyleNameToColoring:(NSString *)name recolorNow:(BOOL)recolorNow
 // シンタックススタイル名をセット
 // ------------------------------------------------------
 {
     if ([self syntax]) {
-        [[self splitView] setSyntaxStyleNameToSyntax:inName];
-        [self setIsColoring:(![inName isEqualToString:NSLocalizedString(@"None",@"")])];
-        if (inValue) {
+        [[self splitView] setSyntaxStyleNameToSyntax:name];
+        [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+        if (recolorNow) {
             [self recoloringAllString];
             if ([self showNavigationBar]) {
                 [[self splitView] updateAllOutlineMenu];
@@ -712,23 +584,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 書き込み禁止アラートを表示
 // ------------------------------------------------------
 {
-    if (([self isWritable]) || ([self isAlertedNotWritable])) { return; }
+    if ([self isWritable] || [self isAlertedNotWritable]) { return; }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_showAlertForNotWritable]) {
 
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"The file is not writable.", nil)
+                                         defaultButton:nil
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
 
-    if ([[theValues valueForKey:k_key_showAlertForNotWritable] boolValue]) {
-
-        NSAlert *theAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"The file is not writable.", nil)
-                                            defaultButton:nil
-                                          alternateButton:nil
-                                              otherButton:nil
-                                informativeTextWithFormat:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)
-                    ];
-
-        [theAlert beginSheetModalForWindow:[self window] 
-                    modalDelegate:self 
-                    didEndSelector:NULL 
-                    contextInfo:NULL];
+        [alert beginSheetModalForWindow:[self window]
+                          modalDelegate:self
+                         didEndSelector:NULL
+                            contextInfo:NULL];
     }
     [self setIsAlertedNotWritable:YES];
 }
@@ -739,7 +608,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドローワの文書情報を更新
 // ------------------------------------------------------
 {
-    BOOL shouldUpdateStatusBar = [_statusBar showStatusBar];
+    BOOL shouldUpdateStatusBar = [[self statusBar] showStatusBar];
     BOOL shouldUpdateDrawer = (doUpdate) ? YES : [[self windowController] needsInfoDrawerUpdate];
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
@@ -814,7 +683,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     [[self decimalFormatter] stringFromNumber:@(length)],
                     [[self decimalFormatter] stringFromNumber:@(countInLine)]];
         }
-        [[_statusBar leftTextField] setStringValue:statusString];
+        [[[self statusBar] leftTextField] setStringValue:statusString];
     }
     if (shouldUpdateDrawer) {
         NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo;
@@ -838,13 +707,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ステータスバーと情報ドローワの行末コード表記を更新
 // ------------------------------------------------------
 {
-    BOOL shouldUpdateStatusBar = [_statusBar showStatusBar];
+    BOOL shouldUpdateStatusBar = [[self statusBar] showStatusBar];
     BOOL shouldUpdateDrawer = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
     NSString *encodingInfo, *lineEndingsInfo;
     
-    switch (_lineEndingCharacter) {
+    switch ([self lineEndingCharacter]) {
         case OgreLfNewlineCharacter:
             lineEndingsInfo = @"LF";
             break;
@@ -869,7 +738,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     encodingInfo = [[self document] currentIANACharSetName];
     if (shouldUpdateStatusBar) {
-        [[_statusBar rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", encodingInfo, lineEndingsInfo]];
+        [[[self statusBar] rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", encodingInfo, lineEndingsInfo]];
     }
     if (shouldUpdateDrawer) {
         [[self windowController] setEncodingInfo:encodingInfo];
@@ -879,11 +748,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setShowInvisibleChars:(BOOL)inBool
+- (void)setShowInvisibleChars:(BOOL)showInvisibleChars
 // 不可視文字の表示／非表示を設定
 // ------------------------------------------------------
 {
-    [[self splitView] setShowInvisibles:inBool];
+    [[self splitView] setShowInvisibles:showInvisibleChars];
 }
 
 
@@ -892,43 +761,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 不可視文字表示メニューのツールチップを更新
 // ------------------------------------------------------
 {
-    NSMenuItem *theShowMenuItem = 
-            [[[[NSApp mainMenu] itemAtIndex:k_viewMenuIndex] submenu] itemWithTag:k_showInvisibleCharMenuItemTag];
+    NSMenuItem *menuItem = [[[[NSApp mainMenu] itemAtIndex:k_viewMenuIndex] submenu] itemWithTag:k_showInvisibleCharMenuItemTag];
 
-    if ([[self document] canActivateShowInvisibleCharsItem]) {
-        [theShowMenuItem setToolTip:NSLocalizedString(@"",@"")];
-    } else {
-        [theShowMenuItem setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.",@"")];
+    NSString *toolTip = @"";
+    if (![[self document] canActivateShowInvisibleCharsItem]) {
+        toolTip = @"To display invisible characters, set in Preferences and re-open the document.";
     }
+    [menuItem setToolTip:NSLocalizedString(toolTip, @"")];
 }
 
 
 // ------------------------------------------------------
-- (void)setColoringTimer
+- (void)setupColoringTimer
 // カラーリングタイマーのファイヤーデイトを設定時間後にセット
 // ------------------------------------------------------
 {
     if ([self isColoring]) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
         // 遅延カラーリング
-        if ([[theValues valueForKey:k_key_delayColoring] boolValue]) {
-            if (_coloringTimer) {
-                [_coloringTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_secondColoringDelay]];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_delayColoring]) {
+            if ([self coloringTimer]) {
+                [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self secondColoringDelay]]];
             } else {
-                _coloringTimer = [[NSTimer scheduledTimerWithTimeInterval:_firstColoringDelay 
-                        target:self 
-                        selector:@selector(doColoringWithTimer:) 
-                        userInfo:nil repeats:NO] retain]; // ===== retain
+                [self setColoringTimer:[[NSTimer scheduledTimerWithTimeInterval:[self firstColoringDelay]
+                                                                         target:self
+                                                                       selector:@selector(doColoringWithTimer:)
+                                                                       userInfo:nil repeats:NO] retain]]; // ===== retain
             }
         } else {
-            if (_coloringTimer) {
-                [_coloringTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_basicColoringDelay]];
+            if ([self coloringTimer]) {
+                [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self basicColoringDelay]]];
             } else {
-                _coloringTimer = [[NSTimer scheduledTimerWithTimeInterval:_basicColoringDelay 
-                        target:self 
-                        selector:@selector(doColoringWithTimer:) 
-                        userInfo:nil repeats:NO] retain]; // ===== retain
+                [self setColoringTimer:[[NSTimer scheduledTimerWithTimeInterval:[self basicColoringDelay]
+                                                                         target:self
+                                                                       selector:@selector(doColoringWithTimer:)
+                                                                       userInfo:nil repeats:NO] retain]]; // ===== retain
             }
         }
     }
@@ -936,35 +802,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setIncompatibleCharTimer
+- (void)setupIncompatibleCharTimer
 // 非互換文字更新タイマーのファイヤーデイトを設定時間後にセット
 // ------------------------------------------------------
 {
     if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
-        if (_incompatibleCharTimer) {
-            [_incompatibleCharTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_incompatibleCharInterval]];
+        if ([self incompatibleCharTimer]) {
+            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self incompatibleCharInterval]]];
         } else {
-            _incompatibleCharTimer = [[NSTimer scheduledTimerWithTimeInterval:_incompatibleCharInterval 
-                        target:self 
-                        selector:@selector(doUpdateIncompatibleCharListWithTimer:) 
-                        userInfo:nil repeats:NO] retain]; // ===== retain
+            [self setIncompatibleCharTimer:[[NSTimer scheduledTimerWithTimeInterval:[self incompatibleCharInterval]
+                                                                             target:self
+                                                                           selector:@selector(doUpdateIncompatibleCharListWithTimer:)
+                                                                           userInfo:nil
+                                                                            repeats:NO] retain]]; // ===== retain
         }
     }
 }
 
 
 // ------------------------------------------------------
-- (void)setInfoUpdateTimer
+- (void)setupInfoUpdateTimer
 // 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
 // ------------------------------------------------------
 {
-    if (_infoUpdateTimer) {
-        [_infoUpdateTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_infoUpdateInterval]];
+    if ([self infoUpdateTimer]) {
+        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self infoUpdateInterval]]];
     } else {
-        _infoUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval:_infoUpdateInterval 
-                    target:self 
-                    selector:@selector(doUpdateInfoWithTimer:) userInfo:nil 
-                    repeats:NO] retain]; // ===== retain
+        [self setInfoUpdateTimer:[[NSTimer scheduledTimerWithTimeInterval:[self infoUpdateInterval]
+                                                                   target:self
+                                                                 selector:@selector(doUpdateInfoWithTimer:)
+                                                                 userInfo:nil
+                                                                  repeats:NO] retain]]; // ===== retain
     }
 }
 
@@ -974,9 +842,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // テキストビュー分割削除ボタンの有効／無効を更新
 // ------------------------------------------------------
 {
-    BOOL theBoolEnabeld = [[[self splitView] subviews] count] > 1;
+    BOOL enabled = ([[[self splitView] subviews] count] > 1);
 
-    [[self splitView] setCloseSubSplitViewButtonEnabled:theBoolEnabeld];
+    [[self splitView] setCloseSubSplitViewButtonEnabled:enabled];
 }
 
 
@@ -992,7 +860,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSMenuValidation Protocol
@@ -1000,41 +868,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (BOOL)validateMenuItem:(NSMenuItem *)inMenuItem
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // メニュー項目の有効・無効を制御
 // ------------------------------------------------------
 {
     NSInteger theState = NSOffState;
 
-    if ([inMenuItem action] == @selector(toggleShowLineNum:)) {
+    if ([menuItem action] == @selector(toggleShowLineNum:)) {
         if ([self showLineNum]) {theState = NSOnState;}
-    } else if ([inMenuItem action] == @selector(toggleShowStatusBar:)) {
+    } else if ([menuItem action] == @selector(toggleShowStatusBar:)) {
         if ([self showStatusBar]) {theState = NSOnState;}
-    } else if ([inMenuItem action] == @selector(toggleShowNavigationBar:)) {
+    } else if ([menuItem action] == @selector(toggleShowNavigationBar:)) {
         if ([self showNavigationBar]) {theState = NSOnState;}
-    } else if ([inMenuItem action] == @selector(toggleWrapLines:)) {
+    } else if ([menuItem action] == @selector(toggleWrapLines:)) {
         if ([self wrapLines]) {theState = NSOnState;}
-    } else if ([inMenuItem action] == @selector(toggleUseAntialias:)) {
+    } else if ([menuItem action] == @selector(toggleUseAntialias:)) {
         if ([self shouldUseAntialias]) {theState = NSOnState;}
-    } else if ([inMenuItem action] == @selector(toggleShowInvisibleChars:)) {
+    } else if ([menuItem action] == @selector(toggleShowInvisibleChars:)) {
         if ([(CELayoutManager *)[[self textView] layoutManager] showInvisibles]) {theState = NSOnState;}
-        [inMenuItem setState:theState];
+        [menuItem setState:theState];
         return ([[self document] canActivateShowInvisibleCharsItem]);
-    } else if ([inMenuItem action] == @selector(toggleShowPageGuide:)) {
+    } else if ([menuItem action] == @selector(toggleShowPageGuide:)) {
         if ([self showPageGuide]) {theState = NSOnState;}
-    } else if (([inMenuItem action] == @selector(focusNextSplitTextView:)) || 
-            ([inMenuItem action] == @selector(focusPrevSplitTextView:)) || 
-            ([inMenuItem action] == @selector(closeSplitTextView:))) {
+    } else if (([menuItem action] == @selector(focusNextSplitTextView:)) || 
+            ([menuItem action] == @selector(focusPrevSplitTextView:)) || 
+            ([menuItem action] == @selector(closeSplitTextView:))) {
         return ([[[self splitView] subviews] count] > 1);
     }
-    [inMenuItem setState:theState];
+    [menuItem setState:theState];
 
     return YES;
 }
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -1046,8 +914,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行番号表示をトグルに切り替える
 // ------------------------------------------------------
 {
-    BOOL theBool = [self showLineNum];
-    [self setShowLineNum:(!theBool)];
+    [self setShowLineNum:![self showLineNum]];
 }
 
 
@@ -1056,8 +923,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ステータスバーの表示をトグルに切り替える
 // ------------------------------------------------------
 {
-    BOOL theBool = [self showStatusBar];
-    [self setShowStatusBar:(!theBool)];
+    [self setShowStatusBar:![self showStatusBar]];
 }
 
 
@@ -1066,8 +932,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ナビゲーションバーの表示をトグルに切り替える
 // ------------------------------------------------------
 {
-    BOOL theBool = [self showNavigationBar];
-    [self setShowNavigationBar:(!theBool)];
+    [self setShowNavigationBar:![self showNavigationBar]];
 }
 
 
@@ -1076,8 +941,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ワードラップをトグルに切り替える
 // ------------------------------------------------------
 {
-    BOOL theBool = [self wrapLines];
-    [self setWrapLines:(!theBool)];
+    [self setWrapLines:![self wrapLines]];
 }
 
 
@@ -1095,11 +959,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 不可視文字表示をトグルに切り替える
 // ------------------------------------------------------
 {
-    CELayoutManager *theLayoutManager = (CELayoutManager *)[[self textView] layoutManager];
-    BOOL theBool = [theLayoutManager showInvisibles];
+    CELayoutManager *layoutManager = (CELayoutManager *)[[self textView] layoutManager];
+    BOOL showInvisibles = [layoutManager showInvisibles];
 
-    [[self splitView] setShowInvisibles:(!theBool)];
-    [[[self windowController] toolbarController] updateToggleItem:k_showInvisibleCharsItemID setOn:(!theBool)];
+    [[self splitView] setShowInvisibles:!showInvisibles];
+    [[[self windowController] toolbarController] updateToggleItem:k_showInvisibleCharsItemID setOn:!showInvisibles];
 }
 
 
@@ -1108,9 +972,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ページガイド表示をトグルに切り替える
 // ------------------------------------------------------
 {
-    BOOL theBool = [self showPageGuide];
-
-    [self setShowPageGuide:(!theBool)];
+    [self setShowPageGuide:![self showPageGuide]];
     [[self splitView] setNeedsDisplay:YES];
 }
 
@@ -1120,32 +982,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // テキストビュー分割を行う
 // ------------------------------------------------------
 {
-    CESubSplitView *theMasterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
+    CESubSplitView *masterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
             (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate] :
             [(CENavigationBarView *)[sender superview] masterView];
-    if (theMasterView == nil) { return; }
-    NSRect theSubSplitFrame = [theMasterView bounds];
-    NSRange theSelectedRange = [[theMasterView textView] selectedRange];
-    CESubSplitView *theSubSplitView = 
-            [[[CESubSplitView allocWithZone:[self zone]] initWithFrame:theSubSplitFrame] autorelease];
+    if (masterView == nil) { return; }
+    NSRect subSplitFrame = [masterView bounds];
+    NSRange selectedRange = [[masterView textView] selectedRange];
+    CESubSplitView *subSplitView = 
+            [[[CESubSplitView allocWithZone:[self zone]] initWithFrame:subSplitFrame] autorelease];
 
-    [theSubSplitView replaceTextStorage:[[self textView] textStorage]];
-    [theSubSplitView setEditorView:self];
+    [subSplitView replaceTextStorage:[[self textView] textStorage]];
+    [subSplitView setEditorView:self];
     // あらたなsubViewは、押された追加ボタンが属する（またはフォーカスのある）subSplitViewのすぐ下に挿入する
-    [[self splitView] addSubview:theSubSplitView positioned:NSWindowAbove relativeTo:theMasterView];
+    [[self splitView] addSubview:subSplitView positioned:NSWindowAbove relativeTo:masterView];
     [[self splitView] adjustSubviews];
     [self setupViewParamsInInit:NO];
-    [[theSubSplitView textView] setFont:[[self textView] font]];
-    [[theSubSplitView textView] setLineSpacing:[[self textView] lineSpacing]];
+    [[subSplitView textView] setFont:[[self textView] font]];
+    [[subSplitView textView] setLineSpacing:[[self textView] lineSpacing]];
     [self setShowInvisibleChars:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
-    [[theSubSplitView textView] setSelectedRange:theSelectedRange];
+    [[subSplitView textView] setSelectedRange:selectedRange];
     [[self splitView] adjustSubviews];
-    [theSubSplitView setSyntaxStyleNameToSyntax:[[self syntax] syntaxStyleName]];
-    [[theSubSplitView syntax] colorAllString:[self string]];
+    [subSplitView setSyntaxStyleNameToSyntax:[[self syntax] syntaxStyleName]];
+    [[subSplitView syntax] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
-    [[self window] makeFirstResponder:[theSubSplitView textView]];
+    [[self window] makeFirstResponder:[subSplitView textView]];
     [self setLineEndingCharacter:[self lineEndingCharacter]];
-    [[theSubSplitView textView] centerSelectionInVisibleArea:self];
+    [[subSplitView textView] centerSelectionInVisibleArea:self];
     [self updateCloseSubSplitViewButton];
 }
 
@@ -1155,24 +1017,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 分割されたテキストビューを閉じる
 // ------------------------------------------------------
 {
-    BOOL theBoolIsSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
-    CESubSplitView *theFirstResponderSubSplitView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
-    CESubSplitView *theCloseSubSplitView = (theBoolIsSenderMenu) ? 
-            theFirstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
-    if (theCloseSubSplitView == nil) { return; }
-    NSArray *theSubViews = [[self splitView] subviews];
-    NSUInteger theCount = [theSubViews count];
-    NSUInteger theDelIndex = [theSubViews indexOfObject:theCloseSubSplitView];
-    NSUInteger theIndex = 0;
+    BOOL isSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
+    CESubSplitView *firstResponderSubSplitView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
+    CESubSplitView *subSplitViewToClose = (isSenderMenu) ?
+            firstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
+    if (subSplitViewToClose == nil) { return; }
+    NSArray *subViews = [[self splitView] subviews];
+    NSUInteger count = [subViews count];
+    NSUInteger deleteIndex = [subViews indexOfObject:subSplitViewToClose];
+    NSUInteger index = 0;
 
-    if ((theBoolIsSenderMenu) || (theDelIndex == [theSubViews indexOfObject:theFirstResponderSubSplitView])) {
-        theIndex = theDelIndex + 1;
-        if (theIndex >= theCount) {
-            theIndex = theCount - 2;
+    if (isSenderMenu || (deleteIndex == [subViews indexOfObject:firstResponderSubSplitView])) {
+        index = deleteIndex + 1;
+        if (index >= count) {
+            index = count - 2;
         }
-        [[self window] makeFirstResponder:[theSubViews[theIndex] textView]];
+        [[self window] makeFirstResponder:[subViews[index] textView]];
     }
-    [theCloseSubSplitView removeFromSuperview];
+    [subSplitViewToClose removeFromSuperview];
     [self updateCloseSubSplitViewButton];
 }
 
@@ -1196,11 +1058,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@end
-
-
-
-@implementation CEEditorView (Private)
+#pragma mark Private Methods
 
 //=======================================================
 // Private method
@@ -1212,55 +1070,54 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // サブビューの初期化
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     // Create and configure the statusBar
-    NSRect theStatusFrame = [self bounds];
-    theStatusFrame.size.height = 0.0;
-    _statusBar = [[CEStatusBarView allocWithZone:[self zone]] initWithFrame:theStatusFrame];
-    [_statusBar setMasterView:self];
-    [self addSubview:_statusBar];
+    NSRect statusFrame = [self bounds];
+    statusFrame.size.height = 0.0;
+    [self setStatusBar:[[CEStatusBarView allocWithZone:[self zone]] initWithFrame:statusFrame]];
+    [[self statusBar] setMasterView:self];
+    [self addSubview:[self statusBar]];
 
     // Create CESplitView -- this will enclose everything else.
-    NSRect theSplitFrame = [self bounds];
-    _splitView = [[CESplitView allocWithZone:[self zone]] initWithFrame:theSplitFrame]; // ===== alloc
-    [_splitView setVertical:NO];
-    [_splitView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-    [self addSubview:_splitView];
+    NSRect splitFrame = [self bounds];
+    [self setSplitView:[[CESplitView allocWithZone:[self zone]] initWithFrame:splitFrame]]; // ===== alloc
+    [[self splitView] setVertical:NO];
+    [[self splitView] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+    [self addSubview:[self splitView]];
 
-    NSRect theSubSplitFrame = [self bounds];
-    CESubSplitView *theSubSplitView = 
-            [[[CESubSplitView allocWithZone:[self zone]] initWithFrame:theSubSplitFrame] autorelease];
-    [theSubSplitView setEditorView:self];
-    [self setTextView:[theSubSplitView textView]];
-    [_splitView addSubview:theSubSplitView];
+    NSRect subSplitFrame = [self bounds];
+    CESubSplitView *subSplitView = [[[CESubSplitView allocWithZone:[self zone]] initWithFrame:subSplitFrame] autorelease];
+    [subSplitView setEditorView:self];
+    [self setTextView:[subSplitView textView]];
+    [[self splitView] addSubview:subSplitView];
 
     [self setupViewParamsInInit:YES];
     // （不可視文字の表示／非表示のセットは全て生成が終ってから、CEWindowController > windowDidLoad で行う）
-    _coloringTimer = nil;
-    _infoUpdateTimer = nil;
-    _incompatibleCharTimer = nil;
-    _basicColoringDelay = [[theValues valueForKey:k_key_basicColoringDelay] doubleValue];
-    _firstColoringDelay = [[theValues valueForKey:k_key_firstColoringDelay] doubleValue];
-    _secondColoringDelay = [[theValues valueForKey:k_key_secondColoringDelay] doubleValue];
-    _infoUpdateInterval = [[theValues valueForKey:k_key_infoUpdateInterval] doubleValue];
-    _incompatibleCharInterval = [[theValues valueForKey:k_key_incompatibleCharInterval] doubleValue];
+    [self setColoringTimer:nil];
+    [self setInfoUpdateTimer:nil];
+    [self setInfoUpdateTimer:nil];
+    [self setBasicColoringDelay:[defaults doubleForKey:k_key_basicColoringDelay]];
+    [self setFirstColoringDelay:[defaults doubleForKey:k_key_firstColoringDelay]];
+    [self setSecondColoringDelay:[defaults doubleForKey:k_key_secondColoringDelay]];
+    [self setInfoUpdateInterval:[defaults doubleForKey:k_key_infoUpdateInterval]];
+    [self setIncompatibleCharInterval:[defaults doubleForKey:k_key_incompatibleCharInterval]];
 }
 
 
 // ------------------------------------------------------
-- (void)setupViewParamsInInit:(BOOL)inBool
+- (void)setupViewParamsInInit:(BOOL)isInitial
 // サブビューに初期値を設定
 // ------------------------------------------------------
 {
-    if (inBool) { // == initial
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    if (isInitial) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [self setShowLineNum:[[theValues valueForKey:k_key_showLineNumbers] boolValue]];
-        [self setShowNavigationBar:[[theValues valueForKey:k_key_showNavigationBar] boolValue]];
-        [_statusBar setShowStatusBar:[[theValues valueForKey:k_key_showStatusBar] boolValue]];
-        [self setWrapLines:[[theValues valueForKey:k_key_wrapLines] boolValue]];
-        [self setShowPageGuide:[[theValues valueForKey:k_key_showPageGuide] boolValue]];
+        [self setShowLineNum:[defaults boolForKey:k_key_showLineNumbers]];
+        [self setShowNavigationBar:[defaults boolForKey:k_key_showNavigationBar]];
+        [[self statusBar] setShowStatusBar:[defaults boolForKey:k_key_showStatusBar]];
+        [self setWrapLines:[defaults boolForKey:k_key_wrapLines]];
+        [self setShowPageGuide:[defaults boolForKey:k_key_showPageGuide]];
         [self setIsWritable:YES];
         [self setIsAlertedNotWritable:NO];
     } else {
@@ -1277,32 +1134,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーリング実行
 // ------------------------------------------------------
 {
-    if (_coloringTimer) { return; }
+    if ([self coloringTimer]) { return; }
 
-    NSRect theVisibleRect = [[[[self textView] enclosingScrollView] contentView] documentVisibleRect];
-    NSRange theGlyphRange = [[[self textView] layoutManager] glyphRangeForBoundingRect:theVisibleRect 
-                inTextContainer:[[self textView] textContainer]];
-    NSRange theCharRange = [[[self textView] layoutManager] characterRangeForGlyphRange:theGlyphRange 
-                actualGlyphRange:NULL];
-    NSRange theSelectedRange = [[self textView] selectedRange];
+    NSRect visibleRect = [[[[self textView] enclosingScrollView] contentView] documentVisibleRect];
+    NSRange glyphRange = [[[self textView] layoutManager] glyphRangeForBoundingRect:visibleRect
+                                                                    inTextContainer:[[self textView] textContainer]];
+    NSRange charRange = [[[self textView] layoutManager] characterRangeForGlyphRange:glyphRange
+                                                                    actualGlyphRange:NULL];
+    NSRange selectedRange = [[self textView] selectedRange];
 
     // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
-    if (!NSLocationInRange(theSelectedRange.location, theCharRange)) {
-        NSInteger theLocation = theSelectedRange.location - theCharRange.length;
-        if (theLocation < 0) { theLocation = 0; }
-        NSInteger theLength = theSelectedRange.length + theCharRange.length;
-        NSInteger theMax = [[self string] length] - theLocation;
-        if (theLength > theMax) { theLength = theMax; }
+    if (!NSLocationInRange(selectedRange.location, charRange)) {
+        NSInteger location = selectedRange.location - charRange.length;
+        if (location < 0) { location = 0; }
+        NSInteger length = selectedRange.length + charRange.length;
+        NSInteger max = [[self string] length] - location;
+        length = MIN(length, max);
 
-        [[self syntax] colorVisibleRange:NSMakeRange(theLocation, theLength) withWholeString:[self string]];
+        [[self syntax] colorVisibleRange:NSMakeRange(location, length) withWholeString:[self string]];
     } else {
-        [[self syntax] colorVisibleRange:theCharRange withWholeString:[self string]];
+        [[self syntax] colorVisibleRange:charRange withWholeString:[self string]];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)doColoringWithTimer:(NSTimer *)inTimer
+- (void)doColoringWithTimer:(NSTimer *)timer
 // タイマーの設定時刻に到達、カラーリング実行
 // ------------------------------------------------------
 {
@@ -1312,7 +1169,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)doUpdateInfoWithTimer:(NSTimer *)inTimer
+- (void)doUpdateInfoWithTimer:(NSTimer *)timer
 // タイマーの設定時刻に到達、情報更新
 // ------------------------------------------------------
 {
@@ -1322,7 +1179,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)inTimer
+- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)timer
 // タイマーの設定時刻に到達、非互換文字情報更新
 // ------------------------------------------------------
 {
@@ -1332,27 +1189,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)focusOtherSplitTextViewOnNext:(BOOL)inBool
+- (void)focusOtherSplitTextViewOnNext:(BOOL)isOnNext
 // 分割された前／後のテキストビューにフォーカス移動
 // ------------------------------------------------------
 {
-    NSArray *theSubSplitViews = [[self splitView] subviews];
-    NSInteger theCount = [theSubSplitViews count];
-    if (theCount < 2) { return; }
-    CESubSplitView *theCurView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
-    NSInteger theIndex = [theSubSplitViews indexOfObject:theCurView];
+    NSArray *subSplitViews = [[self splitView] subviews];
+    NSInteger count = [subSplitViews count];
+    if (count < 2) { return; }
+    CESubSplitView *currentView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
+    NSInteger index = [subSplitViews indexOfObject:currentView];
 
-    if (inBool) { // == Next
-        theIndex++;
+    if (isOnNext) { // == Next
+        index++;
     } else { // == Prev
-        theIndex--;
+        index--;
     }
-    if (theIndex < 0) {
-        [[self window] makeFirstResponder:[[theSubSplitViews lastObject] textView]];
-    } else if (theIndex < theCount) {
-        [[self window] makeFirstResponder:[theSubSplitViews[theIndex] textView]];
-    } else if (theIndex >= theCount) {
-        [[self window] makeFirstResponder:[theSubSplitViews[0] textView]];
+    if (index < 0) {
+        [[self window] makeFirstResponder:[[subSplitViews lastObject] textView]];
+    } else if (index < count) {
+        [[self window] makeFirstResponder:[subSplitViews[index] textView]];
+    } else if (index >= count) {
+        [[self window] makeFirstResponder:[subSplitViews[0] textView]];
     }
 }
 
@@ -1364,10 +1221,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーリング更新タイマーを停止
 // ------------------------------------------------------
 {
-    if (_coloringTimer) {
-        [_coloringTimer invalidate];
+    if ([self coloringTimer]) {
+        [[self coloringTimer] invalidate];
         [_coloringTimer release]; // ===== release
-        _coloringTimer = nil;
+        [self setColoringTimer:nil];
     }
 }
 
@@ -1377,10 +1234,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 文書情報更新タイマーを停止
 // ------------------------------------------------------
 {
-    if (_infoUpdateTimer) {
-        [_infoUpdateTimer invalidate];
+    if ([self infoUpdateTimer]) {
+        [[self infoUpdateTimer] invalidate];
         [_infoUpdateTimer release]; // ===== release
-        _infoUpdateTimer = nil;
+        [self setInfoUpdateTimer:nil];
     }
 }
 
@@ -1390,10 +1247,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 非互換文字情報更新タイマーを停止
 // ------------------------------------------------------
 {
-    if (_incompatibleCharTimer) {
-        [_incompatibleCharTimer invalidate];
+    if ([self incompatibleCharTimer]) {
+        [[self incompatibleCharTimer] invalidate];
         [_incompatibleCharTimer release]; // ===== release
-        _incompatibleCharTimer = nil;
+        [self setIncompatibleCharTimer:nil];
     }
 }
 
