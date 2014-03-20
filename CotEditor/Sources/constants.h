@@ -93,6 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_setPrintFont      @"setPrintFont"
 #define k_key_printFontName     @"printFontName"
 #define k_key_printFontSize     @"printFontSize"
+#define k_key_enableSmartQuotes @"enableSmartQuotes"
 // （以下の印刷設定関連キー、当初の隠し設定時に間違えたという「歴史的経緯」により「key_」なし）
 #define k_printHeader           @"printHeader"
 #define k_headerOneStringIndex  @"headerOneStringIndex"

@@ -56,7 +56,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="743" customClass="CETabItemView">
-                                            <rect key="frame" x="0.0" y="0.0" width="642" height="536"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="642" height="566"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button id="2739">
@@ -82,7 +82,7 @@
                                                     </connections>
                                                 </button>
                                                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="1832">
-                                                    <rect key="frame" x="579" y="17" width="25" height="25"/>
+                                                    <rect key="frame" x="579" y="47" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3308">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -191,15 +191,27 @@
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
                                                 <button id="644">
-                                                    <rect key="frame" x="46" y="399" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="429" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="スマートインサート／スマートデリート" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
+                                                    <buttonCell key="cell" type="check" title="スマートインサート／スマートデリートを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" size="13" name="AquaKana"/>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="setSmartInsertAndDeleteToAllTextView:" target="-1" id="647"/>
                                                         <binding destination="26" name="value" keyPath="values.smartInsertAndDelete" id="646"/>
+                                                    </connections>
+                                                </button>
+                                                <button id="cXP-Gq-HRn">
+                                                    <rect key="frame" x="45" y="399" width="383" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="check" title="スマート引用符とスマートダッシュを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Atg-ef-RHm">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" size="13" name="AquaKana"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="setSmartInsertAndDeleteToAllTextView:" target="-1" id="aS2-RR-fHq"/>
+                                                        <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="VNh-0b-Wbo"/>
                                                     </connections>
                                                 </button>
                                                 <button id="598">
@@ -225,7 +237,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="594">
-                                                    <rect key="frame" x="45" y="429" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="459" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="リオープンイベントで新規書類を開く" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -236,7 +248,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="106">
-                                                    <rect key="frame" x="45" y="459" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="489" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="起動時に新規書類を開く" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -247,7 +259,7 @@
                                                     </connections>
                                                 </button>
                                                 <button id="3424">
-                                                    <rect key="frame" x="45" y="489" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="519" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="自動的にアップデートを確認する" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3425">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -258,7 +270,7 @@
                                                     </connections>
                                                 </button>
                                                 <popUpButton verticalHuggingPriority="750" id="3430">
-                                                    <rect key="frame" x="329" y="484" width="100" height="26"/>
+                                                    <rect key="frame" x="329" y="515" width="100" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <popUpButtonCell key="cell" type="push" title="1週間ごと" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="604800" imageScaling="proportionallyDown" inset="2" selectedItem="3434" id="3431">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
