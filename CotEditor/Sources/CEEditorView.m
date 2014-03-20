@@ -744,11 +744,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
+    NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
     NSString *theString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
     NSString *singleCharInfo = nil;
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [theString length];
     NSUInteger lineStart = 0, countInLine = 0, index = 0;
+    NSUInteger numberOfSelectedWords = 0, numberOfWords = [spellChecker countWordsInString:theString language:nil];
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
     if ([[self textView] hasMarkedText]) {
@@ -764,6 +766,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             index = NSMaxRange([theString lineRangeForRange:NSMakeRange(index, 0)]);
         }
+        
+        if (selectedRange.length > 0) {
+            numberOfSelectedWords = [spellChecker countWordsInString:[theString substringWithRange:selectedRange]
+                                                                                          language:nil];
+        }
+        
         // 行末コードをカウントしない場合は再計算
         if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_countLineEndingAsChar]) {
             NSString *locStr = [theString substringToIndex:selectedRange.location];
@@ -773,7 +781,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             length = [[OGRegularExpression chomp:theString] length];
         }
     }
-    NSUInteger numberOfWords = [[NSSpellChecker sharedSpellChecker] countWordsInString:theString language:nil];
 
     if (shouldUpdateStatusBar) {
         NSString *statusString;
@@ -810,7 +817,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[_statusBar leftTextField] setStringValue:statusString];
     }
     if (shouldUpdateDrawer) {
-        NSString *linesInfo, *charsInfo, *selectInfo;
+        NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo;
         
         linesInfo = [NSString stringWithFormat:@"%ld / %ld", (long)currentLine, (long)numberOfLines];
         [[self windowController] setLinesInfo:linesInfo];
@@ -820,6 +827,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         selectInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld", (long)selectedRange.length] : @" - ";
         [[self windowController] setSelectInfo:selectInfo];
         [[self windowController] setSingleCharInfo:singleCharInfo];
+        wordsInfo = [NSString stringWithFormat:@"%ld / %ld", (long)numberOfSelectedWords, (long)numberOfWords];
+        [[self windowController] setWordsInfo:wordsInfo];
     }
 }
 
