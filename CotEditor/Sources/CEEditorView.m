@@ -11,8 +11,6 @@ CEEditorView
 encoding="UTF-8"
 Created:2004.12.08
  
- -fno-objc-arc
- 
 ------------
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
@@ -44,11 +42,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEEditorView ()
 
-@property (nonatomic, retain) CEStatusBarView *statusBar;
+@property (nonatomic) CEStatusBarView *statusBar;
 
-@property (nonatomic, retain) NSTimer *coloringTimer;
-@property (nonatomic, retain) NSTimer *infoUpdateTimer;
-@property (nonatomic, retain) NSTimer *incompatibleCharTimer;
+@property (nonatomic) NSTimer *coloringTimer;
+@property (nonatomic) NSTimer *infoUpdateTimer;
+@property (nonatomic) NSTimer *incompatibleCharTimer;
 
 @property (nonatomic) NSTimeInterval basicColoringDelay;
 @property (nonatomic) NSTimeInterval firstColoringDelay;
@@ -56,11 +54,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSTimeInterval infoUpdateInterval;
 @property (nonatomic) NSTimeInterval incompatibleCharInterval;
 
-@property (nonatomic, retain) NSNumberFormatter *decimalFormatter;
+@property (nonatomic) NSNumberFormatter *decimalFormatter;
 
 
 // readonly
-@property (nonatomic, retain, readwrite) CESplitView *splitView;
+@property (nonatomic, readwrite) CESplitView *splitView;
 
 @end
 
@@ -104,13 +102,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self stopAllTimer];
-
-    [_textView release];
-    [_splitView release];
-    [_statusBar release];
-    [_decimalFormatter release];
-
-    [super dealloc];
 }
 
 
@@ -505,11 +496,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             break;
         case OgreUnicodeLineSeparatorNewlineCharacter:  // Unicode line separator
             theChar[0] = 0x2028; theChar[1] = 0;
-            newLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            newLineString = [[NSString alloc] initWithCharacters:theChar length:1];
             break;
         case OgreUnicodeParagraphSeparatorNewlineCharacter:  // Unicode paragraph separator
             theChar[0] = 0x2029; theChar[1] = 0;
-            newLineString = [[[NSString alloc] initWithCharacters:theChar length:1] autorelease];
+            newLineString = [[NSString alloc] initWithCharacters:theChar length:1];
             break;
         case OgreNonbreakingNewlineCharacter:  // 改行なしの場合
             newLineString = @"";
@@ -782,19 +773,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ([self coloringTimer]) {
                 [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self secondColoringDelay]]];
             } else {
-                [self setColoringTimer:[[NSTimer scheduledTimerWithTimeInterval:[self firstColoringDelay]
-                                                                         target:self
-                                                                       selector:@selector(doColoringWithTimer:)
-                                                                       userInfo:nil repeats:NO] retain]]; // ===== retain
+                [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:[self firstColoringDelay]
+                                                                        target:self
+                                                                      selector:@selector(doColoringWithTimer:)
+                                                                      userInfo:nil repeats:NO]];
             }
         } else {
             if ([self coloringTimer]) {
                 [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self basicColoringDelay]]];
             } else {
-                [self setColoringTimer:[[NSTimer scheduledTimerWithTimeInterval:[self basicColoringDelay]
-                                                                         target:self
-                                                                       selector:@selector(doColoringWithTimer:)
-                                                                       userInfo:nil repeats:NO] retain]]; // ===== retain
+                [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:[self basicColoringDelay]
+                                                                        target:self
+                                                                      selector:@selector(doColoringWithTimer:)
+                                                                      userInfo:nil repeats:NO]];
             }
         }
     }
@@ -810,11 +801,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([self incompatibleCharTimer]) {
             [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self incompatibleCharInterval]]];
         } else {
-            [self setIncompatibleCharTimer:[[NSTimer scheduledTimerWithTimeInterval:[self incompatibleCharInterval]
-                                                                             target:self
-                                                                           selector:@selector(doUpdateIncompatibleCharListWithTimer:)
-                                                                           userInfo:nil
-                                                                            repeats:NO] retain]]; // ===== retain
+            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:[self incompatibleCharInterval]
+                                                                            target:self
+                                                                          selector:@selector(doUpdateIncompatibleCharListWithTimer:)
+                                                                          userInfo:nil
+                                                                           repeats:NO]];
         }
     }
 }
@@ -828,11 +819,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self infoUpdateTimer]) {
         [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self infoUpdateInterval]]];
     } else {
-        [self setInfoUpdateTimer:[[NSTimer scheduledTimerWithTimeInterval:[self infoUpdateInterval]
-                                                                   target:self
-                                                                 selector:@selector(doUpdateInfoWithTimer:)
-                                                                 userInfo:nil
-                                                                  repeats:NO] retain]]; // ===== retain
+        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:[self infoUpdateInterval]
+                                                                  target:self
+                                                                selector:@selector(doUpdateInfoWithTimer:)
+                                                                userInfo:nil
+                                                                 repeats:NO]];
     }
 }
 
@@ -988,8 +979,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (masterView == nil) { return; }
     NSRect subSplitFrame = [masterView bounds];
     NSRange selectedRange = [[masterView textView] selectedRange];
-    CESubSplitView *subSplitView = 
-            [[[CESubSplitView allocWithZone:[self zone]] initWithFrame:subSplitFrame] autorelease];
+    CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:subSplitFrame];
 
     [subSplitView replaceTextStorage:[[self textView] textStorage]];
     [subSplitView setEditorView:self];
@@ -1075,19 +1065,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // Create and configure the statusBar
     NSRect statusFrame = [self bounds];
     statusFrame.size.height = 0.0;
-    [self setStatusBar:[[CEStatusBarView allocWithZone:[self zone]] initWithFrame:statusFrame]];
+    [self setStatusBar:[[CEStatusBarView alloc] initWithFrame:statusFrame]];
     [[self statusBar] setMasterView:self];
     [self addSubview:[self statusBar]];
 
     // Create CESplitView -- this will enclose everything else.
     NSRect splitFrame = [self bounds];
-    [self setSplitView:[[CESplitView allocWithZone:[self zone]] initWithFrame:splitFrame]]; // ===== alloc
+    [self setSplitView:[[CESplitView alloc] initWithFrame:splitFrame]];
     [[self splitView] setVertical:NO];
     [[self splitView] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
     [self addSubview:[self splitView]];
 
     NSRect subSplitFrame = [self bounds];
-    CESubSplitView *subSplitView = [[[CESubSplitView allocWithZone:[self zone]] initWithFrame:subSplitFrame] autorelease];
+    CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:subSplitFrame];
     [subSplitView setEditorView:self];
     [self setTextView:[subSplitView textView]];
     [[self splitView] addSubview:subSplitView];
@@ -1223,7 +1213,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self coloringTimer]) {
         [[self coloringTimer] invalidate];
-        [_coloringTimer release]; // ===== release
         [self setColoringTimer:nil];
     }
 }
@@ -1236,7 +1225,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self infoUpdateTimer]) {
         [[self infoUpdateTimer] invalidate];
-        [_infoUpdateTimer release]; // ===== release
         [self setInfoUpdateTimer:nil];
     }
 }
@@ -1249,7 +1237,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self incompatibleCharTimer]) {
         [[self incompatibleCharTimer] invalidate];
-        [_incompatibleCharTimer release]; // ===== release
         [self setIncompatibleCharTimer:nil];
     }
 }

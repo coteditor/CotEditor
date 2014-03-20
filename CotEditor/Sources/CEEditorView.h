@@ -11,8 +11,6 @@ CEEditorView
 encoding="UTF-8"
 Created:2004.12.08
  
- -fno-objc-arc
- 
 ------------
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
@@ -66,9 +64,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL showPageGuide;
 @property (nonatomic) BOOL isColoring;
 
-@property (nonatomic, retain) CETextViewCore *textView;
+@property (nonatomic, strong) CETextViewCore *textView;
 
-@property (nonatomic, retain, readonly) CESplitView *splitView;
+@property (nonatomic, strong, readonly) CESplitView *splitView;
 
 
 // Public method

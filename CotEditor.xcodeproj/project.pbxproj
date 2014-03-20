@@ -15,7 +15,7 @@
 		25859EA7076D8EE80020F779 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* Preferences.xib */; };
 		25859EC1076D92D60020F779 /* CEPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EBF076D92D60020F779 /* CEPreferences.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258700E4077BAD2200E541BB /* CESyntaxManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2588E9C007C47ACC0060021D /* CEEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2588E9C007C47ACC0060021D /* CEEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorView.m */; };
 		2588E9CE07C4851C0060021D /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* Indicator.xib */; };
 		258998F507CEED3400098762 /* defaultSyntaxStyle_HTML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258998F407CEED3400098762 /* defaultSyntaxStyle_HTML.plist */; };
 		2589EF5307F247AD003BF861 /* defaultSyntaxStyle_CSS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2589EF5207F247AD003BF861 /* defaultSyntaxStyle_CSS.plist */; };
