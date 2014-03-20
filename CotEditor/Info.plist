@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleName</key>
-	<string>CotEditor</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>© nakamuxu, 2005-2009  © usami-k, 2011, 2014  © 1024jp, 2014</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
@@ -74,16 +70,18 @@
 	<string>com.aynimac.CotEditor</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>CotEditor</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4</string>
+	<string>1.5α</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
-	<key>CFBundleVersion</key>
-	<string>1.4</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>© nakamuxu, 2005-2009  © usami-k, 2011, 2014  © 1024jp, 2014</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
