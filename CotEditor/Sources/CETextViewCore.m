@@ -255,7 +255,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (([[theValues valueForKey:k_key_swapYenAndBackSlashKey] boolValue]) && ([inString length] == 1)) {
         NSEvent *theEvent = [NSApp currentEvent];
-        NSUInteger theFlags = [NSEvent currentCarbonModifierFlags];
+        NSUInteger theFlags = [NSEvent modifierFlags];
 
         if (([theEvent type] == NSKeyDown) && (theFlags == 0)) {
             if ([inString isEqualToString:@"\\"]) {

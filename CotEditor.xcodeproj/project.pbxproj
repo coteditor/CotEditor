@@ -101,7 +101,6 @@
 		8C4186C0088648CA0039FBFC /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4186BE088648CA0039FBFC /* CEColorCodePanelController.m */; };
 		8C4186D008864B3E0039FBFC /* ColorCodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4186CE08864B3E0039FBFC /* ColorCodePanel.xib */; };
 		8C418721088655E00039FBFC /* CEHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C41871F088655E00039FBFC /* CEHexColorTransformer.m */; };
-		8C49094607F441510072AAE9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C49094507F441510072AAE9 /* Carbon.framework */; };
 		8C4BC92F0895BD3C00F5263E /* EditHexAsBG.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C4BC92D0895BD3C00F5263E /* EditHexAsBG.tiff */; };
 		8C4BC9300895BD3C00F5263E /* EditHexAsFore.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C4BC92E0895BD3C00F5263E /* EditHexAsFore.tiff */; };
 		8C52080A0880BAAF005734F2 /* RecolorAll.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C5208090880BAAF005734F2 /* RecolorAll.tiff */; };
@@ -318,7 +317,6 @@
 		8C4186CF08864B3E0039FBFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorCodePanel.xib; sourceTree = "<group>"; };
 		8C41871E088655E00039FBFC /* CEHexColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEHexColorTransformer.h; sourceTree = "<group>"; };
 		8C41871F088655E00039FBFC /* CEHexColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEHexColorTransformer.m; sourceTree = "<group>"; };
-		8C49092A07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEvent+CarbonModFlag.h"; sourceTree = "<group>"; };
 		8C49094507F441510072AAE9 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		8C4BC92D0895BD3C00F5263E /* EditHexAsBG.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EditHexAsBG.tiff; path = toolbarIcons/EditHexAsBG.tiff; sourceTree = "<group>"; };
 		8C4BC92E0895BD3C00F5263E /* EditHexAsFore.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EditHexAsFore.tiff; path = toolbarIcons/EditHexAsFore.tiff; sourceTree = "<group>"; };
@@ -395,7 +393,6 @@
 				8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				8C3289F007A21422001CA481 /* OgreKit.framework in Frameworks */,
-				8C49094607F441510072AAE9 /* Carbon.framework in Frameworks */,
 				6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,7 +572,6 @@
 				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
 				8CBFD5F20DC42B1200EC093D /* CEPrivateMutableArray.h */,
 				8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */,
-				8C49092A07F43DCA0072AAE9 /* NSEvent+CarbonModFlag.h */,
 				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
 				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
 			);

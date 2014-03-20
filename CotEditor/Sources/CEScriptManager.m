@@ -33,7 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEScriptManager.h"
 #import "CEDocument.h"
-#import "NSEvent+CarbonModFlag.h"
 #import "constants.h"
 
 //=======================================================
@@ -234,7 +233,7 @@ static CEScriptManager *sharedInstance = nil;
     }
 
     // Optキーが押されていたら、アプリでスクリプトを開く
-    NSUInteger flags = [NSEvent currentCarbonModifierFlags];
+    NSUInteger flags = [NSEvent modifierFlags];
     NSString *extension = [URL pathExtension];
     NSString *message = nil;
     BOOL isModifierPressed = NO;
