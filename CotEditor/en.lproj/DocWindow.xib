@@ -54,11 +54,11 @@
             </connections>
         </drawer>
         <customView id="34" userLabel="InfoView">
-            <rect key="frame" x="0.0" y="0.0" width="230" height="470"/>
+            <rect key="frame" x="0.0" y="0.0" width="230" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" id="142">
-                    <rect key="frame" x="17" y="442" width="196" height="26"/>
+                    <rect key="frame" x="17" y="452" width="196" height="26"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="Doc Info" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="144" id="700">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -86,24 +86,24 @@
                     </connections>
                 </button>
                 <tabView allowsTruncatedLabels="NO" type="noTabsBezelBorder" id="115">
-                    <rect key="frame" x="0.0" y="37" width="230" height="408"/>
+                    <rect key="frame" x="0.0" y="37" width="230" height="418"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <font key="font" metaFont="message"/>
                     <tabViewItems>
                         <tabViewItem identifier="info" id="116">
                             <view key="view" id="118">
-                                <rect key="frame" x="10" y="7" width="210" height="388"/>
+                                <rect key="frame" x="10" y="7" width="210" height="398"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="411">
-                                        <rect key="frame" x="0.0" y="0.0" width="211" height="388"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="211" height="398"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" autoresizesSubviews="NO" drawsBackground="NO" copiesOnScroll="NO" id="xGI-c5-td8">
-                                            <rect key="frame" x="0.0" y="0.0" width="211" height="388"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="211" height="398"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <customView id="108" customClass="CEFlippedView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="211" height="365"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="211" height="390"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" id="662">
@@ -185,6 +185,15 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
+                                                        <textField verticalHuggingPriority="750" id="z2Y-UV-cNg">
+                                                            <rect key="frame" x="0.0" y="363" width="76" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Words:" id="7Eo-jA-QRt">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
                                                         <textField verticalHuggingPriority="750" id="445">
                                                             <rect key="frame" x="88" y="340" width="122" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -194,7 +203,27 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="singleCharInfo" id="MYg-rF-RfH"/>
+                                                                <binding destination="-2" name="value" keyPath="singleCharInfo" id="xY5-cU-DUX">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
+                                                        </textField>
+                                                        <textField verticalHuggingPriority="750" id="0Kr-Eu-Nrg">
+                                                            <rect key="frame" x="88" y="361" width="122" height="18"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" id="mVC-rQ-i21">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="wordsInfo" id="Ch1-cs-GNy">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="413">

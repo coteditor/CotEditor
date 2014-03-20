@@ -131,7 +131,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)recoloringAllString;
 - (void)updateColoringAndOutlineMenuWithDelay;
 - (void)alertForNotWritable;
-- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)inBool;
+- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
 - (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
 - (void)setShowInvisibleChars:(BOOL)inBool;
 - (void)updateShowInvisibleCharsMenuToolTip;

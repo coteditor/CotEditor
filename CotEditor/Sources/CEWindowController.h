@@ -46,7 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 @property (nonatomic, readonly) NSView *printAccessoryView;
 
-// focument information (for binding)
+// document information (for binding in drawer)
 @property (nonatomic, strong) NSString *encodingInfo;// 文書のエンコーディング情報
 @property (nonatomic, strong) NSString *lineEndingsInfo;  // 文書の行末コード情報
 @property (nonatomic, strong) NSString *linesInfo;  // 文書の行情報
@@ -54,6 +54,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, strong) NSString *selectInfo;  // 文書の選択範囲情報
 @property (nonatomic, strong) NSString *inLineInfo;  // 文書の行頭からのキャレット位置
 @property (nonatomic, strong) NSString *singleCharInfo;  // 文書の選択範囲情報
+@property (nonatomic, strong) NSString *wordsInfo;  // 文書の単語数情報
 
 // Public method
 - (BOOL)needsInfoDrawerUpdate;
