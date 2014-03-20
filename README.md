@@ -1,31 +1,33 @@
-About CotEditor Source Code
+
+CotEditor
 =============================
+CotEditor is a lightweight plain-text editor for OS X.
 
-The source code is distributed under the terms of the GNU General Public License. See the bundled "License.txt" for details.
 
-[OgreKit](http://sonoisa.github.io/ogrekit/) and [Onigmo](https://github.com/k-takata/Onigmo)/[Oniguruma](http://www.geocities.jp/kosako3/oniguruma/), the framework and library that CotEditor uses, are distributed under the OgreKit License. See the bundled "OgreKit License.txt" for details.
+About Source Code
+-----------------------------
+The source code is distributed under the terms of the GNU General Public License. See the bundled "LICENSE" for details.
+
+[OgreKit](http://sonoisa.github.io/ogrekit/) and [Onigmo](https://github.com/k-takata/Onigmo)/[Oniguruma](http://www.geocities.jp/kosako3/oniguruma/), the framework and library that CotEditor uses, are distributed under the OgreKit License. See the bundled document in OgreKit for details.
 
 The source code is written in Objective-C (UTF-8).
 
-In the case you get some build errors, try cleaning.
+Currently, ARC and MRC are mixed in this project. Please note that classes, "-fno-objc-arc" is noted in whose header comment, are still under MRC.
 
 
 Development Environment
 -----------------------------
-
 - OS X 10.9.2
 - Xcode 5.1
 
 
 Distribution Site
 -----------------------------
-
 <http://coteditor.github.io>
 
 
 Copyrights
 -----------------------------
-
 ### CotEditor
 - Copyright © 2005 nakamuxu
 - Copyright © 2011 usami-k
@@ -39,7 +41,7 @@ Copyright © 2003-2010 Isao Sonobe. All rights reserved.
 ### Onigmo (Oniguruma-mod)
 <https://github.com/k-takata/Onigmo>
 
-Copyright (c) 2011-2013  K.Takata. All rights reserved. 
+Copyright © 2011-2013  K.Takata. All rights reserved. 
 
 ### Oniguruma
 <http://www.geocities.jp/kosako3/oniguruma/>
