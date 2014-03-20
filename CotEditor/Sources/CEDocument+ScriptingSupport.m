@@ -35,25 +35,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEDocument+ScriptingSupport.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
-
-@interface CEDocument (ScriptingSupportPrivate)
-- (BOOL)doFind:(NSString *)inSearchString range:(NSRange)inRange 
-            option:(unsigned)inMask withRegularExpression:(BOOL)inRE;
-@end
-
-
-//------------------------------------------------------------------------------------------
-
-
-
 
 @implementation CEDocument (ScriptingSupport)
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -61,16 +46,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)cleanUpTextStorage:(NSTextStorage *)inTextStorage
+- (void)cleanUpTextStorage:(NSTextStorage *)textStorage
 // 生成した textStorage のデリゲートであることをやめる
 // ------------------------------------------------------
 {
-    [inTextStorage setDelegate:nil];
+    [textStorage setDelegate:nil];
 }
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSTextStorage)
@@ -78,20 +63,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)textStorageDidProcessEditing:(NSNotification *)inNotification
+- (void)textStorageDidProcessEditing:(NSNotification *)notification
 // AppleScriptの返り値としてのtextStorageが更新された
 // ------------------------------------------------------
 {
-    NSString *theNewString = [(NSTextStorage *)[inNotification object] string];
+    NSString *newString = [(NSTextStorage *)[notification object] string];
 
-    [[[self editorView] textView] replaceAllStringTo:theNewString];
-    [self cleanUpTextStorage:(NSTextStorage *)[inNotification object]];
+    [[[self editorView] textView] replaceAllStringTo:newString];
+    [self cleanUpTextStorage:(NSTextStorage *)[notification object]];
 }
 
 
 
 
-#pragma mark ===== AppleScript accessor =====
+#pragma mark AppleScript Accessores
 
 //=======================================================
 // AppleScript accessor
@@ -103,23 +88,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドキュメントの文字列を返す(text型)
 // ------------------------------------------------------
 {
-    NSTextStorage *outStorage = [[[NSTextStorage alloc] initWithString:[[self editorView] stringForSave]] autorelease];
+    NSTextStorage *storage = [[[NSTextStorage alloc] initWithString:[[self editorView] stringForSave]] autorelease];
 
-    [outStorage setDelegate:self];
+    [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    [self performSelector:@selector(cleanUpTextStorage:) withObject:outStorage afterDelay:0.5];
+    [self performSelector:@selector(cleanUpTextStorage:) withObject:storage afterDelay:0.5];
 
-    return outStorage;
+    return storage;
 }
 
 
 // ------------------------------------------------------
-- (void)setTextStorage:(id)inObject;
+- (void)setTextStorage:(id)object;
 // ドキュメントの文字列をセット（全置換）
 // ------------------------------------------------------
 {
-    if ([inObject isKindOfClass:[NSTextStorage class]]) {
-        [[[self editorView] textView] replaceAllStringTo:[inObject string]];
+    if ([object isKindOfClass:[NSTextStorage class]]) {
+        [[[self editorView] textView] replaceAllStringTo:[object string]];
     }
 }
 
@@ -134,11 +119,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setContents:(id)inObject
+- (void)setContents:(id)object
 // ドキュメントの文字列をセット（全置換）
 // ------------------------------------------------------
 {
-    [self setTextStorage:inObject];
+    [self setTextStorage:object];
 }
 
 
@@ -147,9 +132,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドキュメントの文字数を返す(integer型)
 // ------------------------------------------------------
 {
-    int theLength = [[[self editorView] stringForSave] length];
-
-    return @(theLength);
+    return @([[[self editorView] stringForSave] length]);
 }
 
 
@@ -158,43 +141,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行末コードを返す(enum型)
 // ------------------------------------------------------
 {
-    NSInteger theCode = [[self editorView] lineEndingCharacter];
-    CELineEnding outLineEnding;
+    NSInteger code = [[self editorView] lineEndingCharacter];
 
-    switch (theCode) {
-    case 1:
-        outLineEnding = CELineEndingCR;
-        break;
-    case 2:
-        outLineEnding = CELineEndingCRLF;
-        break;
-    default:
-        outLineEnding = CELineEndingLF;
-        break;
+    switch (code) {
+        case 1:
+            return CELineEndingCR;
+            break;
+        case 2:
+            return CELineEndingCRLF;
+            break;
+        default:
+            return CELineEndingLF;
+            break;
     }
-    return outLineEnding;
 }
 
 
 // ------------------------------------------------------
-- (void)setLineEnding:(CELineEnding)inEnding
+- (void)setLineEnding:(CELineEnding)lineEnding
 // 行末コードをセット
 // ------------------------------------------------------
 {
-    NSInteger theCode;
+    NSInteger code;
 
-    switch (inEnding) {
-    case CELineEndingCR:
-        theCode = 1;
-        break;
-    case CELineEndingCRLF:
-        theCode = 2;
-        break;
-    default:
-        theCode = 0;
-        break;
+    switch (lineEnding) {
+        case CELineEndingCR:
+            code = 1;
+            break;
+        case CELineEndingCRLF:
+            code = 2;
+            break;
+        case CELineEndingLF:
+            code = 0;
+            break;
     }
-    [self doSetNewLineEndingCharacterCode:theCode];
+    [self doSetNewLineEndingCharacterCode:code];
 }
 
 
@@ -212,13 +193,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディング名の IANA Charset 名を返す(Unicode text型)
 // ------------------------------------------------------
 {
-    NSString *outName = [self currentIANACharSetName];
+    NSString *name = [self currentIANACharSetName];
 
     // 得られなければ空文字を返す
-    if (outName == nil) {
-        return @"";
-    }
-    return outName;
+    return (name) ? : @"";
 }
 
 
@@ -232,11 +210,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setColoringStyle:(NSString *)inStyleName
+- (void)setColoringStyle:(NSString *)styleName
 // カラーリングスタイル名をセット
 // ------------------------------------------------------
 {
-    [self doSetSyntaxStyle:inStyleName];
+    [self doSetSyntaxStyle:styleName];
 }
 
 
@@ -250,12 +228,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSelection:(id)inObject
+- (void)setSelection:(id)object
 // 選択範囲へテキストを設定
 // ------------------------------------------------------
 {
-    if ([inObject isKindOfClass:[NSString class]]) {
-        [_selection setContents:inObject];
+    if ([object isKindOfClass:[NSString class]]) {
+        [_selection setContents:object];
     }
 }
 
@@ -265,18 +243,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ワードラップの状態を返す
 // ------------------------------------------------------
 {
-    BOOL theBOOL = [[self editorView] wrapLines];
-
-    return @(theBOOL);
+    return @([[self editorView] wrapLines]);
 }
 
 
 // ------------------------------------------------------
-- (void)setWrapLines:(NSNumber *)inValue
+- (void)setWrapLines:(NSNumber *)wrapLines
 // ワードラップを切り替える
 // ------------------------------------------------------
 {
-    [[self editorView] setWrapLines:[inValue boolValue]];
+    [[self editorView] setWrapLines:[wrapLines boolValue]];
 }
 
 
@@ -298,7 +274,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-#pragma mark ===== AppleScript handler =====
+#pragma mark AppleScript Handlers
 
 //=======================================================
 // AppleScript handler
@@ -306,57 +282,55 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (NSNumber *)handleConvert:(NSScriptCommand *)inCommand
+- (NSNumber *)handleConvert:(NSScriptCommand *)command
 // エンコーディングを変更し、テキストをコンバートする
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    NSString *theEncodingName = [theArg valueForKey:@"newEncoding"];
-    NSStringEncoding theEncoding = [[NSApp delegate] encodingFromName:theEncodingName];
-    BOOL theResult = NO;
+    NSDictionary *arguments = [command evaluatedArguments];
+    NSString *encodingName = arguments[@"newEncoding"];
+    NSStringEncoding encoding = [[NSApp delegate] encodingFromName:encodingName];
+    BOOL success = NO;
 
-    if (theEncoding == NSNotFound) {
-        theResult = NO;
-    } else if (theEncoding == [self encodingCode]) {
-        theResult = YES;
+    if (encoding == NSNotFound) {
+        success = NO;
+    } else if (encoding == [self encodingCode]) {
+        success = YES;
     } else {
-        NSString *theActionName = @"TEST";
-        BOOL theLossy = NO;
+        NSString *actionName = @"TEST";
+        BOOL lossy = NO;
 
-        theLossy = [[theArg valueForKey:@"Lossy"] boolValue];
-        theResult = [self doSetEncoding:theEncoding updateDocument:YES 
-                askLossy:NO lossy:theLossy asActionName:theActionName];
+        lossy = [[arguments valueForKey:@"Lossy"] boolValue];
+        success = [self doSetEncoding:encoding updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
     }
 
-    return @(theResult);
+    return @(success);
 }
 
 
 // ------------------------------------------------------
-- (NSNumber *)handleReinterpret:(NSScriptCommand *)inCommand
+- (NSNumber *)handleReinterpret:(NSScriptCommand *)command
 // エンコーディングを変更し、テキストを再解釈する
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    NSString *theEncodingName = [theArg valueForKey:@"newEncoding"];
-    NSStringEncoding theEncoding = [[NSApp delegate] encodingFromName:theEncodingName];
-    BOOL theResult = NO;
+    NSDictionary *arguments = [command evaluatedArguments];
+    NSString *encodingName = arguments[@"newEncoding"];
+    NSStringEncoding encoding = [[NSApp delegate] encodingFromName:encodingName];
+    BOOL success = NO;
 
-    if ((theEncoding == NSNotFound) || ([self fileURL] == nil)) {
-        theResult = NO;
-    } else if (theEncoding == [self encodingCode]) {
-        theResult = YES;
-    } else if ([self stringFromData:[NSData dataWithContentsOfURL:[self fileURL]]
-                encoding:theEncoding xattr:NO]) {
+    if ((encoding == NSNotFound) || ([self fileURL] == nil)) {
+        success = NO;
+    } else if (encoding == [self encodingCode]) {
+        success = YES;
+    } else if ([self stringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding xattr:NO]) {
         [self setStringToEditorView];
         // ダーティーフラグをクリア
         [self updateChangeCount:NSChangeCleared];
         // ツールバーアイテムの選択状態をセット
         [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
-        theResult = YES;
+        success = YES;
     }
 
-    return @(theResult);
+    return @(success);
 }
 
 
@@ -365,131 +339,118 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 検索
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    NSString *theSearch = [theArg valueForKey:@"targetString"];
+    NSDictionary *arguments = [inCommand evaluatedArguments];
+    NSString *theSearch = arguments[@"targetString"];
     if ((theSearch == nil) || ([theSearch length] < 1)) { return @NO; }
-    BOOL theBoolIsRE = ([theArg valueForKey:@"regularExpression"] != nil) ? 
-               [[theArg valueForKey:@"regularExpression"] boolValue] : NO;
-    BOOL theBoolIgnoreCase = ([theArg valueForKey:@"ignoreCase"] != nil) ? 
-               [[theArg valueForKey:@"ignoreCase"] boolValue] : NO;
-    BOOL theBoolBackwards = ([theArg valueForKey:@"backwardsSearch"] != nil) ? 
-               [[theArg valueForKey:@"backwardsSearch"] boolValue] : NO;
-    BOOL theBoolWrapSearch = ([theArg valueForKey:@"wrapSearch"] != nil) ? 
-               [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
-    NSString *theWholeStr = [[self editorView] stringForSave];
-    NSInteger theWholeLength = [theWholeStr length];
-    if (theWholeLength < 1) { return @NO; }
-    NSRange theSelectionRange = [[self editorView] selectedRange];
-    NSRange theTargetRange;
+    BOOL isRE = (arguments[@"regularExpression"]) ? [arguments[@"regularExpression"] boolValue] : NO;
+    BOOL ignoresCase = (arguments[@"ignoreCase"]) ? [arguments[@"ignoreCase"] boolValue] : NO;
+    BOOL isBackwards = (arguments[@"backwardsSearch"]) ? [arguments[@"backwardsSearch"] boolValue] : NO;
+    BOOL isWrapSearch = (arguments[@"wrapSearch"]) ? [arguments[@"wrapSearch"] boolValue] : NO;
+    NSString *wholeStr = [[self editorView] stringForSave];
+    NSInteger wholeLength = [wholeStr length];
+    if (wholeLength < 1) { return @NO; }
+    NSRange selectionRange = [[self editorView] selectedRange];
+    NSRange targetRange;
 
-    if (theBoolBackwards) {
-        theTargetRange = NSMakeRange(0, theSelectionRange.location);
+    if (isBackwards) {
+        targetRange = NSMakeRange(0, selectionRange.location);
     } else {
-        theTargetRange = NSMakeRange(NSMaxRange(theSelectionRange), 
-                            theWholeLength - NSMaxRange(theSelectionRange));
+        targetRange = NSMakeRange(NSMaxRange(selectionRange), 
+                            wholeLength - NSMaxRange(selectionRange));
     }
-    NSUInteger theMask = 0;
-    if (theBoolIgnoreCase) {
-        theMask |= (theBoolIsRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
+    NSUInteger mask = 0;
+    if (ignoresCase) {
+        mask |= (isRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
-    if (theBoolBackwards) {
-        theMask |= NSBackwardsSearch;
+    if (isBackwards) {
+        mask |= NSBackwardsSearch;
     }
 
-    BOOL theBoolResult = [self doFind:theSearch range:theTargetRange 
-                option:theMask withRegularExpression:theBoolIsRE];
-    if ((theBoolResult == NO) && theBoolWrapSearch) {
-        theTargetRange = NSMakeRange(0, theWholeLength);
-        theBoolResult = [self doFind:theSearch range:theTargetRange 
-                option:theMask withRegularExpression:theBoolIsRE];
+    BOOL success = [self doFind:theSearch range:targetRange option:mask withRegularExpression:isRE];
+    if (!success && isWrapSearch) {
+        targetRange = NSMakeRange(0, wholeLength);
+        success = [self doFind:theSearch range:targetRange option:mask withRegularExpression:isRE];
     }
     
-    return @(theBoolResult);
+    return @(success);
 }
 
 
 // ------------------------------------------------------
-- (NSNumber *)handleReplace:(NSScriptCommand *)inCommand
+- (NSNumber *)handleReplace:(NSScriptCommand *)command
 // 置換
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    NSString *theSearch = [theArg valueForKey:@"targetString"];
-    if ((theSearch == nil) || ([theSearch length] < 1)) { return @NO; }
-    BOOL theBoolIsRE = ([theArg valueForKey:@"regularExpression"] != nil) ? 
-               [[theArg valueForKey:@"regularExpression"] boolValue] : NO;
-    BOOL theBoolIgnoreCase = ([theArg valueForKey:@"ignoreCase"] != nil) ? 
-               [[theArg valueForKey:@"ignoreCase"] boolValue] : NO;
-    BOOL theBoolAll = ([theArg valueForKey:@"all"] != nil) ? 
-               [[theArg valueForKey:@"all"] boolValue] : NO;
-    BOOL theBoolBackwards = ([theArg valueForKey:@"backwardsSearch"] != nil) ? 
-               [[theArg valueForKey:@"backwardsSearch"] boolValue] : NO;
-    BOOL theBoolWrapSearch = ([theArg valueForKey:@"wrapSearch"] != nil) ? 
-               [[theArg valueForKey:@"wrapSearch"] boolValue] : NO;
-    NSString *theWholeStr = [[self editorView] stringForSave];
-    NSInteger theWholeLength = [theWholeStr length];
-    if (theWholeLength < 1) { return @0; }
-    NSString *theNewString = [theArg valueForKey:@"newString"];
-    if ([theSearch isEqualToString:theNewString]) { return @NO; }
-    if (theNewString == nil) { theNewString = @""; }
-    NSRange theSelectionRange, theTargetRange;
+    NSDictionary *arguments = [command evaluatedArguments];
+    NSString *search = arguments[@"targetString"];
+    if ((search == nil) || ([search length] < 1)) { return @NO; }
+    BOOL isRE = (arguments[@"regularExpression"]) ? [arguments[@"regularExpression"] boolValue] : NO;
+    BOOL ignoresCase = (arguments[@"ignoreCase"]) ? [arguments[@"ignoreCase"] boolValue] : NO;
+    BOOL isAll = (arguments[@"all"] != nil) ? [arguments[@"all"] boolValue] : NO;
+    BOOL isBackwards = (arguments[@"backwardsSearch"]) ? [arguments[@"backwardsSearch"] boolValue] : NO;
+    BOOL isWrapSearch = (arguments[@"wrapSearch"]) ? [arguments[@"wrapSearch"] boolValue] : NO;
+    NSString *wholeStr = [[self editorView] stringForSave];
+    NSInteger wholeLength = [wholeStr length];
+    if (wholeLength < 1) { return @0; }
+    NSString *newString = arguments[@"newString"];
+    if ([search isEqualToString:newString]) { return @NO; }
+    if (newString == nil) { newString = @""; }
+    NSRange selectionRange, targetRange;
 
-    if (theBoolAll) {
-        theTargetRange = NSMakeRange(0, theWholeLength);
+    if (isAll) {
+        targetRange = NSMakeRange(0, wholeLength);
     } else {
-        theSelectionRange = [[self editorView] selectedRange];
-        if (theBoolBackwards) {
-            theTargetRange = NSMakeRange(0, theSelectionRange.location);
+        selectionRange = [[self editorView] selectedRange];
+        if (isBackwards) {
+            targetRange = NSMakeRange(0, selectionRange.location);
         } else {
-            theTargetRange = NSMakeRange(NSMaxRange(theSelectionRange), 
-                                theWholeLength - NSMaxRange(theSelectionRange));
+            targetRange = NSMakeRange(NSMaxRange(selectionRange), 
+                                wholeLength - NSMaxRange(selectionRange));
         }
     }
-    NSUInteger theMask = 0;
-    if (theBoolIgnoreCase) {
-        theMask |= (theBoolIsRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
+    NSUInteger mask = 0;
+    if (ignoresCase) {
+        mask |= (isRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
-    if (theBoolBackwards) {
-        theMask |= NSBackwardsSearch;
+    if (isBackwards) {
+        mask |= NSBackwardsSearch;
     }
 
-    BOOL theBoolResult = NO;
-    NSInteger theResult = 0;
-    if (theBoolAll) {
-        NSMutableString *theTmpStr = [theWholeStr mutableCopy]; // ===== copy
-        if (theBoolIsRE) {
-            theResult = [theTmpStr replaceOccurrencesOfRegularExpressionString:theSearch 
-                            withString:theNewString options:theMask range:theTargetRange];
+    BOOL success = NO;
+    NSInteger result = 0;
+    if (isAll) {
+        NSMutableString *tmpStr = [wholeStr mutableCopy]; // ===== copy
+        if (isRE) {
+            result = [tmpStr replaceOccurrencesOfRegularExpressionString:search
+                                                                 withString:newString options:mask range:targetRange];
         } else {
-            theResult = [theTmpStr replaceOccurrencesOfString:theSearch 
-                            withString:theNewString options:theMask range:theTargetRange];
+            result = [tmpStr replaceOccurrencesOfString:search
+                                                withString:newString options:mask range:targetRange];
         }
-        if (theResult > 0) {
-            [[[self editorView] textView] replaceAllStringTo:theTmpStr];
+        if (result > 0) {
+            [[[self editorView] textView] replaceAllStringTo:tmpStr];
             [[[self editorView] textView] setSelectedRange:NSMakeRange(0,0)];
         }
-        [theTmpStr release]; // ===== release
+        [tmpStr release]; // ===== release
 
     } else {
-        theBoolResult = [self doFind:theSearch range:theTargetRange 
-                    option:theMask withRegularExpression:theBoolIsRE];
-        if ((theBoolResult == NO) && theBoolWrapSearch) {
-            theTargetRange = NSMakeRange(0, theWholeLength);
-            theBoolResult = [self doFind:theSearch range:theTargetRange 
-                    option:theMask withRegularExpression:theBoolIsRE];
+        success = [self doFind:search range:targetRange option:mask withRegularExpression:isRE];
+        if ((success == NO) && isWrapSearch) {
+            targetRange = NSMakeRange(0, wholeLength);
+            success = [self doFind:search range:targetRange option:mask withRegularExpression:isRE];
         }
-        if (theBoolResult) {
-            [_selection setContents:theNewString]; // （CETextSelection の setContents: の引数は NSString も可）
-            theResult = 1;
+        if (success) {
+            [_selection setContents:newString]; // （CETextSelection の setContents: の引数は NSString も可）
+            result = 1;
         }
     }
 
-    return @(theResult);
+    return @(result);
 }
 
 
 // ------------------------------------------------------
-- (void)handleScroll:(NSScriptCommand *)inCommand
+- (void)handleScroll:(NSScriptCommand *)command
 // スクロール実行
 // ------------------------------------------------------
 {
@@ -498,35 +459,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSString *)handleString:(NSScriptCommand *)inCommand
+- (NSString *)handleString:(NSScriptCommand *)command
 // 指定された範囲の文字列を返す
 // ------------------------------------------------------
 {
-    NSDictionary *theArg = [inCommand evaluatedArguments];
-    NSArray *theArray = [theArg valueForKey:@"range"];
-    NSInteger theLocation, theLength;
-    NSRange theRange;
+    NSDictionary *arguments = [command evaluatedArguments];
+    NSArray *rangeArray = [arguments valueForKey:@"range"];
+    NSInteger location, length;
+    NSRange range;
 
-    if ((theArray == nil) || ([theArray count] < 1)) { return [NSString string]; }
-    theLocation = [theArray[0] integerValue];
-    theLength = ([theArray count] > 1) ? 
-            [theArray[1] integerValue] : 1;
-    theRange = [self rangeInTextViewWithLocation:theLocation withLength:theLength];
+    if ((rangeArray == nil) || ([rangeArray count] < 1)) { return [NSString string]; }
+    location = [rangeArray[0] integerValue];
+    length = ([rangeArray count] > 1) ? [rangeArray[1] integerValue] : 1;
+    range = [self rangeInTextViewWithLocation:location withLength:length];
 
-    if (NSEqualRanges(NSMakeRange(0, 0), theRange)) {
+    if (NSEqualRanges(NSMakeRange(0, 0), range)) {
         return @"";
     }
-    return [[[[self editorView] textView] string] substringWithRange:theRange];
+    return [[[[self editorView] textView] string] substringWithRange:range];
 }
 
 
 
-@end
-
-
-
-
-@implementation CEDocument (ScriptingSupportPrivate)
+#pragma mark Private Method
 
 //=======================================================
 // Private method
@@ -534,24 +489,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (BOOL)doFind:(NSString *)inSearchString range:(NSRange)inRange 
-            option:(unsigned)inMask withRegularExpression:(BOOL)inRE
+- (BOOL)doFind:(NSString *)searchString range:(NSRange)range 
+            option:(unsigned)option withRegularExpression:(BOOL)RE
 // 文字列を検索し、見つかったら選択して結果を返す
 // ------------------------------------------------------
 {
-    NSString *theWholeStr = [[self editorView] stringForSave];
-    NSRange theSearchedRange;
+    NSString *wholeStr = [[self editorView] stringForSave];
+    NSRange searchedRange;
 
-    if (inRE) {
-        theSearchedRange = 
-                [theWholeStr rangeOfRegularExpressionString:inSearchString options:inMask range:inRange];
+    if (RE) {
+        searchedRange = [wholeStr rangeOfRegularExpressionString:searchString options:option range:range];
     } else {
-        theSearchedRange = [theWholeStr rangeOfString:inSearchString options:inMask range:inRange];
+        searchedRange = [wholeStr rangeOfString:searchString options:option range:range];
     }
-    if (theSearchedRange.location != NSNotFound) {
-        [[self editorView] setSelectedRange:theSearchedRange];
+    if (searchedRange.location != NSNotFound) {
+        [[self editorView] setSelectedRange:searchedRange];
         return YES;
     }
     return NO;
 }
+
 @end

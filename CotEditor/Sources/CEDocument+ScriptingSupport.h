@@ -40,32 +40,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEDocument (ScriptingSupport) <NSTextStorageDelegate>
 
 // AppleScript Enum
-typedef enum {
+typedef NS_ENUM(NSUInteger, CELineEnding) {
     CELineEndingLF = 'leLF',
     CELineEndingCR = 'leCR',
     CELineEndingCRLF = 'leCL'
-} CELineEnding;
+};
 
 // Public method
 - (void)cleanUpTextStorage:(NSTextStorage *)inTextStorage;
 
 // AppleScript accessor
 - (NSTextStorage *)textStorage;
-- (void)setTextStorage:(id)inObject;
+- (void)setTextStorage:(id)object;
 - (NSTextStorage *)contents;
-- (void)setContents:(id)inObject;
+- (void)setContents:(id)object;
 - (NSNumber *)length;
 - (CELineEnding)lineEnding;
-- (void)setLineEnding:(CELineEnding)inEnding;
+- (void)setLineEnding:(CELineEnding)lineEnding;
 - (NSString *)encoding;
 - (NSString *)IANACharSetName;
 - (NSString *)coloringStyle;
-- (void)setColoringStyle:(NSString *)inStyleName;
+- (void)setColoringStyle:(NSString *)styleName;
 - (CETextSelection *)selection;
 - (NSNumber *)lineSpacing;
-- (void)setLineSpacing:(NSNumber *)inSpacing;
-
-
-
+- (void)setLineSpacing:(NSNumber *)lineSpacing;
 
 @end
