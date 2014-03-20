@@ -970,9 +970,21 @@ enum { typeFSS = 'fss ' };
 // スマートインサート／デリートをするかどうかをテキストビューへ設定
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_smartInsertAndDelete];
+    
+    [[[self editorView] textView] setSmartInsertDeleteEnabled:enabled];
+}
 
-    [[[self editorView] textView] setSmartInsertDeleteEnabled:[[values valueForKey:k_key_smartInsertAndDelete] boolValue]];
+
+// ------------------------------------------------------
+- (void)setSmartQuotesToTextView
+// スマート引用符／ダッシュを有効にするかどうかをテキストビューへ設定
+// ------------------------------------------------------
+{
+    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartQuotes];
+    
+    [[[self editorView] textView] setAutomaticQuoteSubstitutionEnabled:enabled];
+    [[[self editorView] textView] setAutomaticDashSubstitutionEnabled:enabled];
 }
 
 

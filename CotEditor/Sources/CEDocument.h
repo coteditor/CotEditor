@@ -101,6 +101,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict;
 - (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName;
 - (void)setSmartInsertAndDeleteToTextView;
+- (void)setSmartQuotesToTextView;
 - (NSString *)currentIANACharSetName;
 - (void)showUpdatedByExternalProcessAlert;
 

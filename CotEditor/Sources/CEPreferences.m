@@ -818,6 +818,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+// ------------------------------------------------------
+- (IBAction)setSmartQuotesToAllTextView:(id)sender
+// すべてのテキストビューのスマート引用符／ダッシュ実行を設定
+// ------------------------------------------------------
+{
+    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setSmartQuotesToTextView)];
+}
+
+
+
 @end
 
 

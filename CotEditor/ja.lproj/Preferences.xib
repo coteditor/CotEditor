@@ -212,7 +212,7 @@
                                                         <font key="font" size="13" name="AquaKana"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="setSmartInsertAndDeleteToAllTextView:" target="-1" id="aS2-RR-fHq"/>
+                                                        <action selector="setSmartQuotesToAllTextView:" target="-2" id="XV8-K2-G8w"/>
                                                         <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="VNh-0b-Wbo"/>
                                                     </connections>
                                                 </button>

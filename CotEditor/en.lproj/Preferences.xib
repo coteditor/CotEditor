@@ -232,6 +232,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
+                                                        <action selector="setSmartQuotesToAllTextView:" target="-2" id="853-ja-uoL"/>
                                                         <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="lE1-jP-Sa0"/>
                                                     </connections>
                                                 </button>
