@@ -38,28 +38,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @interface CESyntaxManager ()
-{
-    IBOutlet NSArrayController *_styleController;
-    IBOutlet NSWindow *_editWindow;
-    IBOutlet NSTextField *_styleNameField;
-    IBOutlet NSTextField *_messageField;
-    IBOutlet NSPopUpButton *_elementPopUpButton;
-    IBOutlet NSButton *_factoryDefaultsButton;
-    IBOutlet NSTextView *_extensionErrorTextView;
-    IBOutlet NSTextView *_syntaxElementCheckTextView;
-    
-    NSString *_selectedStyleName;
-    NSString *_editedNewStyleName;
-    NSArray *_coloringStyleArray;
-    NSDictionary *_xtsnAndStyleTable;
-    NSDictionary *_xtsnErrors;
-    NSArray *_extensions;
-    
-    BOOL _okButtonPressed;
-    BOOL _addedItemInLeopard;
-    NSInteger _sheetOpeningMode;
-    NSUInteger _selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
-}
+
+@property (nonatomic, retain) NSArray *coloringStyleArray;
+@property (nonatomic) BOOL addedItemInLeopard;  // ???: 今でも必要? 1024jp 2014-03
+@property (nonatomic) NSInteger sheetOpeningMode;
+@property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
+
+@property (nonatomic, assign) IBOutlet NSTextField *styleNameField;
+@property (nonatomic, assign) IBOutlet NSTextField *messageField;
+@property (nonatomic, assign) IBOutlet NSPopUpButton *elementPopUpButton;
+@property (nonatomic, assign) IBOutlet NSButton *factoryDefaultsButton;
+@property (nonatomic, retain) IBOutlet NSTextView *extensionErrorTextView;
+@property (nonatomic, assign) IBOutlet NSTextView *syntaxElementCheckTextView;
+
+@property (nonatomic, retain) IBOutlet NSArrayController *styleController;;
+
+// readonly
+@property (nonatomic, retain, readwrite) NSString *selectedStyleName;
+@property (nonatomic, retain, readwrite) NSDictionary *xtsnAndStyleTable;
+@property (nonatomic, retain, readwrite) NSDictionary *xtsnErrors;
+@property (nonatomic, retain, readwrite) NSArray *extensions;
+
+@property (nonatomic, retain, readwrite) IBOutlet NSWindow *editWindow;
 
 @end
 
@@ -88,10 +88,10 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 
-#pragma mark Public Methods
+#pragma mark NSObject Methods
 
 //=======================================================
-// Public method
+// NSObject method
 //
 //=======================================================
 
@@ -103,12 +103,12 @@ static CESyntaxManager *sharedInstance = nil;
     if (sharedInstance == nil) {
         self = [super init];
         (void)[NSBundle loadNibNamed:@"SyntaxManager" owner:self];
-        _selectedStyleName = [[NSString string] retain]; // ===== retain
-        _editedNewStyleName = [[NSString string] retain]; // ===== retain
+        [self setSelectedStyleName:[NSString string]];
+        [self setEditedNewStyleName:[NSString string]];
         [self setupColoringStyleArray];
         [self setupExtensionAndSyntaxTable];
         [self setIsOkButtonPressed:NO];
-        _addedItemInLeopard = NO;
+        [self setAddedItemInLeopard:NO];
         sharedInstance = self;
     }
     return sharedInstance;
@@ -134,137 +134,87 @@ static CESyntaxManager *sharedInstance = nil;
 }
 
 
-// ------------------------------------------------------
-- (NSDictionary *)xtsnAndStyleTable
-// 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)を返す
-// ------------------------------------------------------
-{
-    return _xtsnAndStyleTable;
-}
 
+#pragma mark Public Methods
 
-// ------------------------------------------------------
-- (NSDictionary *)xtsnErrors
-// 拡張子重複エラー辞書を返す
-// ------------------------------------------------------
-{
-    return _xtsnErrors;
-}
-
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
-- (NSArray *)extensions
-// 拡張子配列を返す
-// ------------------------------------------------------
-{
-    return _extensions;
-}
-
-
-// ------------------------------------------------------
-- (NSString *)selectedStyleName
-// 編集対象となっているスタイル名を返す
-// ------------------------------------------------------
-{
-    return _selectedStyleName;
-}
-
-
-// ------------------------------------------------------
-- (NSString *)editedNewStyleName
-// 編集された新しいスタイル名を返す
-// ------------------------------------------------------
-{
-    return _editedNewStyleName;
-}
-
-
-// ------------------------------------------------------
-- (void)setEditedNewStyleName:(NSString *)inString
-// 編集された新しいスタイル名を保持
-// ------------------------------------------------------
-{
-    [inString retain];
-    [_editedNewStyleName release];
-    _editedNewStyleName = inString;
-}
-
-// ------------------------------------------------------
-- (BOOL)setSelectionIndexOfStyle:(NSInteger)inStyleIndex mode:(NSInteger)inMode
+- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode
 // シートの表示に備え、シンタックスカラーリングスタイル定義配列のうちの一つを選択する（バインディングのため）
 // ------------------------------------------------------
 {
-    NSArray *theColoringArray;
-    NSString *theName;
-    NSUInteger theSelected;
+    NSArray *colorings;
+    NSString *name;
+    NSUInteger selected;
 
-    _sheetOpeningMode = inMode;
-    if (inMode == k_syntaxCopyTag) { // Copy
-        theSelected = inStyleIndex;
-        theColoringArray = _coloringStyleArray;
-        theName = [self copiedSyntaxName: 
-                    theColoringArray[inStyleIndex][k_SCKey_styleName]];
-        theColoringArray[inStyleIndex][k_SCKey_styleName] = theName;
-
-    } else if (inMode == k_syntaxNewTag) { // New
-        theSelected = 0;
-        theColoringArray = @[[NSMutableDictionary dictionaryWithDictionary:[self emptyColoringStyle]]];
-        theName = @"";
-
-    } else { // Edit, Delete
-        theSelected = inStyleIndex;
-        theColoringArray = _coloringStyleArray;
-        theName = theColoringArray[inStyleIndex][k_SCKey_styleName];
+    [self setSheetOpeningMode:mode];
+    switch (mode) {
+        case k_syntaxCopyTag: // Copy
+            selected = styleIndex;
+            colorings = [self coloringStyleArray];
+            name = [self copiedSyntaxName:colorings[styleIndex][k_SCKey_styleName]];
+            colorings[styleIndex][k_SCKey_styleName] = name;
+            break;
+            
+        case k_syntaxNewTag: // New
+            selected = 0;
+            colorings = @[[NSMutableDictionary dictionaryWithDictionary:[self emptyColoringStyle]]];
+            name = @"";
+            break;
+            
+        default: // Edit, Delete
+            selected = styleIndex;
+            colorings = [self coloringStyleArray];
+            name = colorings[styleIndex][k_SCKey_styleName];
+            break;
     }
-    if (!theName) { return NO; }
-    [theName retain];
-    [_selectedStyleName release];
-    _selectedStyleName = theName;
-    [_styleController setContent:theColoringArray];
+    if (!name) { return NO; }
+    
+    [self setSelectedStyleName:name];
+    [[self styleController] setContent:colorings];
 
     // シートのコントロール類をセットアップ
     [self setupSyntaxSheetControles];
 
-    return ([_styleController setSelectionIndex:theSelected]);
+    return ([[self styleController] setSelectionIndex:selected]);
 }
 
 
 // ------------------------------------------------------
-- (NSString *)syntaxNameFromExtension:(NSString *)inExtension
+- (NSString *)syntaxNameFromExtension:(NSString *)extension
 // 拡張子に応じたstyle名を返す
 // ------------------------------------------------------
 {
-    NSString *outName = [self xtsnAndStyleTable][inExtension];
+    NSString *syntaxName = [self xtsnAndStyleTable][extension];
 
-    if (outName == nil) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        return [theValues valueForKey:k_key_defaultColoringStyleName];
-    }
-    return outName;
+    return (syntaxName) ? syntaxName : [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
 }
 
 
 // ------------------------------------------------------
-- (NSDictionary *)syntaxWithStyleName:(NSString *)inStyleName
+- (NSDictionary *)syntaxWithStyleName:(NSString *)styleName
 // style名に応じたstyle辞書を返す
 // ------------------------------------------------------
 {
-    if ((![inStyleName isEqualToString:@""]) && 
-            (![inStyleName isEqualToString:NSLocalizedString(@"None",@"")])) {
-        NSMutableDictionary *outDict;
-        for (NSDictionary *theDict in _coloringStyleArray) {
-            if ([theDict[k_SCKey_styleName] isEqualToString:inStyleName]) {
-                NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
+    if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
+        NSMutableDictionary *styleDict;
+        for (NSDictionary *dict in [self coloringStyleArray]) {
+            if ([dict[k_SCKey_styleName] isEqualToString:styleName]) {
+                NSArray *syntaxes = @[k_SCKey_allColoringArrays];
                 NSArray *theArray;
-                NSUInteger theCount = 0;
-                outDict = [NSMutableDictionary dictionaryWithDictionary:theDict];
+                NSUInteger count = 0;
+                styleDict = [dict mutableCopy];
 
-                for (id key in theSyntaxArray) {
-                    theArray = outDict[key];
-                    theCount = theCount + [theArray count];
+                for (id key in syntaxes) {
+                    theArray = styleDict[key];
+                    count = count + [theArray count];
                 }
-                outDict[k_SCKey_numOfObjInArray] = @(theCount);
-                return outDict;
+                styleDict[k_SCKey_numOfObjInArray] = @(count);
+                return styleDict;
             }
         }
     }
@@ -278,21 +228,23 @@ static CESyntaxManager *sharedInstance = nil;
 // バンドルされているシンタックスカラーリングスタイルファイル名配列を返す
 // ------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *theSourceDirPath = 
-            [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources"];
-    NSEnumerator *theEnumerator = [[theFileManager contentsOfDirectoryAtPath:theSourceDirPath error:nil] objectEnumerator];
-    // (enumeratorAtPath:はサブディレクトリの内容も返すので、使えない)
-    NSMutableArray *outArray = [NSMutableArray array];
-    id theFileName;
-
-    while (theFileName = [theEnumerator nextObject]) {
-        if (([theFileName hasPrefix:k_bundleSyntaxStyleFilePrefix]) && 
-                ([[theFileName pathExtension] isEqualToString:@"plist"])) {
-            [outArray addObject:theFileName];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:sourceDirURL
+                                          includingPropertiesForKeys:nil
+                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants
+                                                        errorHandler:nil];
+    NSMutableArray *fileNames = [NSMutableArray array];
+    NSURL *URL;
+    
+    while (URL = [enumerator nextObject]) {
+        if ([[URL lastPathComponent] hasPrefix:k_bundleSyntaxStyleFilePrefix] &&
+            [[URL pathExtension] isEqualToString:@"plist"])
+        {
+            [fileNames addObject:[URL lastPathComponent]];
         }
     }
-    return outArray;
+    return fileNames;
 }
 
 
@@ -301,51 +253,53 @@ static CESyntaxManager *sharedInstance = nil;
 // バンドルされているシンタックスカラーリングスタイルファイル名のプレフィックスを除いた配列を返す
 // ------------------------------------------------------
 {
-    NSArray *theDefaultArray = [self defaultSyntaxFileNames];
-    NSMutableArray *outArray = [NSMutableArray array];
-    NSUInteger thePrefixLength = [k_bundleSyntaxStyleFilePrefix length];
+    NSArray *fileNames = [self defaultSyntaxFileNames];
+    NSMutableArray *fileNamesWithoutPrefix = [NSMutableArray array];
+    NSUInteger prefixLength = [k_bundleSyntaxStyleFilePrefix length];
     
-    for (NSString *fileName in theDefaultArray) {
-        [outArray addObject:[fileName substringFromIndex:thePrefixLength]];
+    for (NSString *fileName in fileNames) {
+        [fileNamesWithoutPrefix addObject:[fileName substringFromIndex:prefixLength]];
     }
-    return outArray;
+    return fileNamesWithoutPrefix;
 }
 
 
 // ------------------------------------------------------
-- (BOOL)isDefaultSyntaxStyle:(NSString *)inStyleName
+- (BOOL)isDefaultSyntaxStyle:(NSString *)styleName
 // あるスタイルネームがデフォルトで用意されているものかどうかを返す
 // ------------------------------------------------------
 {
-    if ((inStyleName == nil) || ([inStyleName isEqualToString:@""])) { return NO; }
-    NSArray *theNames = [self defaultSyntaxFileNamesWithoutPrefix];
-    BOOL outValue = [theNames containsObject:[inStyleName stringByAppendingPathExtension:@"plist"]];
-
-    return outValue;
+    if ([styleName isEqualToString:@""]) { return NO; }
+    
+    NSArray *names = [self defaultSyntaxFileNamesWithoutPrefix];
+    
+    return [names containsObject:[styleName stringByAppendingPathExtension:@"plist"]];
 }
 
 
 // ------------------------------------------------------
-- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)inStyleName
+- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName
 // あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
 // ------------------------------------------------------
 {
-    if ((inStyleName == nil) || ([inStyleName isEqualToString:@""])) { return NO; }
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSURL *destURL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:inStyleName] URLByAppendingPathExtension:@"plist"];
-    NSURL *sourceDirURL =[[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
-    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", k_bundleSyntaxStyleFilePrefix, inStyleName]] URLByAppendingPathExtension:@"plist"];
+    if ([styleName isEqualToString:@""]) { return NO; }
     
-    if (![theFileManager fileExistsAtPath:[sourceURL path]] || ![theFileManager fileExistsAtPath:[destURL path]]) {
+    NSURL *destURL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *sourceDirURL =[[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", k_bundleSyntaxStyleFilePrefix, styleName]] URLByAppendingPathExtension:@"plist"];
+    
+    if (![sourceDirURL checkResourceIsReachableAndReturnError:nil] ||
+        ![destURL checkResourceIsReachableAndReturnError:nil])
+    {
         return NO;
     }
 
     // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
     // ため、同じではない。ファイル同士を比較する。2008.05.06.
-    NSDictionary *theSourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
-    NSDictionary *theDestPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
+    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
+    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
 
-    return ([theSourcePList isEqualToDictionary:theDestPList]);
+    return [sourcePList isEqualToDictionary:destPList];
 
 // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
 //    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
@@ -357,90 +311,63 @@ static CESyntaxManager *sharedInstance = nil;
 // スタイル名配列を返す
 // ------------------------------------------------------
 {
-    NSMutableArray *outArray = [NSMutableArray array];
+    NSMutableArray *styleNames = [NSMutableArray array];
     
-    for (NSDictionary *dict in _coloringStyleArray) {
-        [outArray addObject:dict[k_SCKey_styleName]];
+    for (NSDictionary *dict in [self coloringStyleArray]) {
+        [styleNames addObject:dict[k_SCKey_styleName]];
     }
 
-    return outArray;
-}
-
-
-// ------------------------------------------------------
-- (NSWindow *)editWindow
-// カラーシンタックス編集シート用ウィンドウを返す
-// ------------------------------------------------------
-{
-    return _editWindow;
-}
-
-
-// ------------------------------------------------------
-- (BOOL)isOkButtonPressed
-// シートでOKボタンが押されたかどうかを返す
-// ------------------------------------------------------
-{
-    return _okButtonPressed;
-}
-
-
-// ------------------------------------------------------
-- (void)setIsOkButtonPressed:(BOOL)inValue
-// シートでOKボタンが押されたかどうかをセット
-// ------------------------------------------------------
-{
-    _okButtonPressed = inValue;
+    return styleNames;
 }
 
 
 //------------------------------------------------------
-- (BOOL)existsStyleFileWithStyleName:(NSString *)inStyleName
+- (BOOL)existsStyleFileWithStyleName:(NSString *)styleName
 // ある名前を持つstyleファイルがstyle保存ディレクトリにあるかどうかを返す
 //------------------------------------------------------
 {
-    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:inStyleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
 
-    return ([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]);
+    return [URL checkResourceIsReachableAndReturnError:nil];
 }
 
 
 //------------------------------------------------------
-- (BOOL)importStyleFile:(NSString *)inStyleFileName
+- (BOOL)importStyleFile:(NSString *)styleFileName
 // 外部styleファイルを保存ディレクトリにコピーする
 //------------------------------------------------------
 {
-    BOOL outBool = NO;
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSURL *styleFileURL = [NSURL fileURLWithPath:inStyleFileName];
-    NSURL *destinationURL = [[self URLOfStyleDirectory] URLByAppendingPathComponent:[styleFileURL lastPathComponent]];
+    BOOL success = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *fileURL = [NSURL fileURLWithPath:styleFileName];
+    NSURL *destURL = [[self URLOfStyleDirectory] URLByAppendingPathComponent:[fileURL lastPathComponent]];
 
-    if ([theFileManager fileExistsAtPath:[destinationURL path]]) {
-        [theFileManager removeItemAtURL:destinationURL error:nil];
+    if ([destURL checkResourceIsReachableAndReturnError:nil]) {
+        [fileManager removeItemAtURL:destURL error:nil];
     }
-    outBool = [theFileManager copyItemAtURL:styleFileURL toURL:destinationURL error:nil];
-    if (outBool) {
+    success = [fileManager copyItemAtURL:fileURL toURL:destURL error:nil];
+    if (success) {
         // 内部で持っているキャッシュ用データを更新
         [self setupColoringStyleArray];
         [self setupExtensionAndSyntaxTable];
     }
-    return outBool;
+    return success;
 }
 
 
 //------------------------------------------------------
-- (BOOL)removeStyleFileWithStyleName:(NSString *)inStyleName
+- (BOOL)removeStyleFileWithStyleName:(NSString *)styleName
 // style名に応じたstyleファイルを削除する
 //------------------------------------------------------
 {
-    BOOL outValue = NO;
-    if ([inStyleName length] < 1) { return outValue; }
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:inStyleName] URLByAppendingPathExtension:@"plist"];
+    BOOL success = NO;
+    if ([styleName length] < 1) { return success; }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
 
-    if ([theFileManager fileExistsAtPath:[URL path]]) {
-        outValue = [theFileManager removeItemAtURL:URL error:nil];
-        if (outValue) {
+    if ([URL checkResourceIsReachableAndReturnError:nil]) {
+        success = [fileManager removeItemAtURL:URL error:nil];
+        if (success) {
             // 内部で持っているキャッシュ用データを更新
             [self setupColoringStyleArray];
             [self setupExtensionAndSyntaxTable];
@@ -450,7 +377,7 @@ static CESyntaxManager *sharedInstance = nil;
     } else {
         NSLog(@"Error. Could not be found \"%@\" for remove", [URL path]);
     }
-    return outValue;
+    return success;
 }
 
 
@@ -461,7 +388,7 @@ static CESyntaxManager *sharedInstance = nil;
 {
     NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
     
-    return ([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]) ? URL : nil;
+    return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
 }
 
 
@@ -470,9 +397,7 @@ static CESyntaxManager *sharedInstance = nil;
 // 拡張子重複エラーがあるかどうかを返す
 //------------------------------------------------------
 {
-    BOOL outBool = ([[self xtsnErrors] count] > 0);
-
-    return outBool;
+    return ([[self xtsnErrors] count] > 0);
 }
 
 
@@ -483,7 +408,7 @@ static CESyntaxManager *sharedInstance = nil;
 {
     [self setExtensionErrorToTextView];
 
-    return [_extensionErrorTextView window];
+    return [[self extensionErrorTextView] window];
 }
 
 
@@ -496,18 +421,19 @@ static CESyntaxManager *sharedInstance = nil;
 //=======================================================
 
 // ------------------------------------------------------
-- (void)tableViewSelectionDidChange:(NSNotification *)inNotification
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
 // tableView の選択が変更された
 // ------------------------------------------------------
 {
-    NSTableView *theTableView = [inNotification object];
-    NSInteger theRow = [theTableView selectedRow];
+    NSTableView *tableView = [notification object];
+    NSInteger row = [tableView selectedRow];
 
     // 最下行が選択されたのなら、編集開始のメソッドを呼び出す
     //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
-    if ((theRow + 1) == [theTableView numberOfRows]) {
-        [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:) 
-                withObject:theTableView waitUntilDone:NO];
+    if ((row + 1) == [tableView numberOfRows]) {
+        [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:)
+                               withObject:tableView
+                            waitUntilDone:NO];
     }
 }
 
@@ -526,22 +452,24 @@ static CESyntaxManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     if (![self isDefaultSyntaxStyle:[self selectedStyleName]]) { return; }
-    NSString *theSourceDirPath = 
-            [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources"];
-    NSString *theSourcePath = [theSourceDirPath stringByAppendingFormat:@"/%@%@.plist", 
-            k_bundleSyntaxStyleFilePrefix, [self selectedStyleName]];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:theSourcePath]) { return; }
-    NSArray *theContents = @[[NSMutableDictionary dictionaryWithContentsOfFile:theSourcePath]];
+    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",
+                                                                   k_bundleSyntaxStyleFilePrefix, [self selectedStyleName]]]
+                        URLByAppendingPathExtension:@"plist"];
+    
+    if (![sourceURL checkResourceIsReachableAndReturnError:nil]) { return; }
+    
+    NSArray *contents = @[[NSMutableDictionary dictionaryWithContentsOfURL:sourceURL]];
 
     // フォーカスを移しておく
     [[sender window] makeFirstResponder:[sender window]];
     // コントローラに内容をセット
-    [_styleController setContent:theContents];
-    (void)[_styleController setSelectionIndex:0];
+    [[self styleController] setContent:contents];
+    (void)[[self styleController] setSelectionIndex:0];
     // シートのコントロール類をセットアップ
     [self setupSyntaxSheetControles];
     // デフォルト設定に戻すボタンを無効化
-    [_factoryDefaultsButton setEnabled:NO];
+    [[self factoryDefaultsButton] setEnabled:NO];
 }
 
 
@@ -553,50 +481,45 @@ static CESyntaxManager *sharedInstance = nil;
     // フォーカスを移して入力中の値を確定
     [[sender window] makeFirstResponder:sender];
     // style名から先頭または末尾のスペース／タブ／改行を排除
-    NSMutableString *theStr = [NSMutableString stringWithString:
-            [[_styleNameField stringValue] stringByTrimmingCharactersInSet:
-                    [NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    (void)[theStr replaceOccurrencesOfString:@"\n" 
-                withString:@"" options:0 range:NSMakeRange(0, [theStr length])];
-    (void)[theStr replaceOccurrencesOfString:@"\t" 
-                withString:@"" options:0 range:NSMakeRange(0, [theStr length])];
-    [_styleNameField setStringValue:theStr];
+    NSMutableString *string = [[[[self styleNameField] stringValue] stringByTrimmingCharactersInSet:
+                                [NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
+    (void)[string replaceOccurrencesOfString:@"\n" withString:@"" options:0 range:NSMakeRange(0, [string length])];
+    (void)[string replaceOccurrencesOfString:@"\t" withString:@"" options:0 range:NSMakeRange(0, [string length])];
+    [[self styleNameField] setStringValue:string];
 
     if ([sender tag] == k_okButtonTag) { // ok のときstyleを保存
-        if ((_sheetOpeningMode == k_syntaxCopyTag) || (_sheetOpeningMode == k_syntaxNewTag)) {
-            if ([theStr length] < 1) { // ファイル名としても使われるので、空は不可
-                [_messageField setStringValue:NSLocalizedString(@"Input the Style Name !",@"")];
+        if (([self sheetOpeningMode] == k_syntaxCopyTag) || ([self sheetOpeningMode] == k_syntaxNewTag)) {
+            if ([string length] < 1) { // ファイル名としても使われるので、空は不可
+                [[self messageField] setStringValue:NSLocalizedString(@"Input the Style Name !",@"")];
                 NSBeep();
-                [[_styleNameField window] makeFirstResponder:_styleNameField];
+                [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
                 return;
-            } else if ([self existsStyleFileWithStyleName:theStr]) { // 既にある名前は不可
-                [_messageField setStringValue:[NSString stringWithFormat:
-                            NSLocalizedString(@"\"%@\" is already exist. Input new name.",@""), theStr]];
+            } else if ([self existsStyleFileWithStyleName:string]) { // 既にある名前は不可
+                [[self messageField] setStringValue:[NSString stringWithFormat:
+                            NSLocalizedString(@"\"%@\" is already exist. Input new name.",@""), string]];
                 NSBeep();
-                [[_styleNameField window] makeFirstResponder:_styleNameField];
+                [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
                 return;
             }
             // 入力されたstyle名をコントローラで選択されたものとして保持しておく（ファイル書き込み時の照合のため）
-            [theStr retain];
-            [_selectedStyleName release];
-            _selectedStyleName = theStr;
+            [self setSelectedStyleName:string];
         }
         // エラー未チェックかつエラーがあれば、表示（エラーを表示していてOKボタンを押下したら、そのまま確定）
-        if (([[_syntaxElementCheckTextView string] isEqualToString:@""]) && ([self syntaxElementError] > 0)) {
+        if (([[[self syntaxElementCheckTextView] string] isEqualToString:@""]) && ([self syntaxElementError] > 0)) {
             // 「構文要素チェック」を選択
             // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
             NSBeep();
-            [[_elementPopUpButton menu] performActionForItemAtIndex:11];
+            [[[self elementPopUpButton] menu] performActionForItemAtIndex:11];
             return;
         }
-        [self setEditedNewStyleName:theStr];
+        [self setEditedNewStyleName:string];
         [self setIsOkButtonPressed:YES];
         [self saveColoringStyle];
     }
     // 内部で持っているキャッシュ用データを更新
     [self setupColoringStyleArray];
     [self setupExtensionAndSyntaxTable];
-    [_syntaxElementCheckTextView setString:@""]; // 構文チェック結果文字列を消去
+    [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
     [NSApp stopModal];
 }
 
@@ -633,19 +556,17 @@ static CESyntaxManager *sharedInstance = nil;
 // 空の新規styleを返す
 //------------------------------------------------------
 {
-    NSDictionary *outDict = @{k_SCKey_styleName: [NSMutableString stringWithString:@""], 
-                    k_SCKey_extensions: [NSMutableArray array], 
-                    k_SCKey_keywordsArray: [NSMutableArray array], 
-                    k_SCKey_commandsArray: [NSMutableArray array], 
-                    k_SCKey_valuesArray: [NSMutableArray array], 
-                    k_SCKey_numbersArray: [NSMutableArray array], 
-                    k_SCKey_stringsArray: [NSMutableArray array], 
-                    k_SCKey_charactersArray: [NSMutableArray array], 
-                    k_SCKey_commentsArray: [NSMutableArray array], 
-                    k_SCKey_outlineMenuArray: [NSMutableArray array], 
-                    k_SCKey_completionsArray: [NSMutableArray array]};
-
-    return outDict;
+    return @{k_SCKey_styleName: [@"" mutableCopy],
+             k_SCKey_extensions: [NSMutableArray array], 
+             k_SCKey_keywordsArray: [NSMutableArray array], 
+             k_SCKey_commandsArray: [NSMutableArray array], 
+             k_SCKey_valuesArray: [NSMutableArray array], 
+             k_SCKey_numbersArray: [NSMutableArray array], 
+             k_SCKey_stringsArray: [NSMutableArray array], 
+             k_SCKey_charactersArray: [NSMutableArray array], 
+             k_SCKey_commentsArray: [NSMutableArray array], 
+             k_SCKey_outlineMenuArray: [NSMutableArray array], 
+             k_SCKey_completionsArray: [NSMutableArray array]};
 }
 
 
@@ -654,53 +575,49 @@ static CESyntaxManager *sharedInstance = nil;
 // styleのファイルからのセットアップと読み込み
 //------------------------------------------------------
 {
-    NSString *theDirPath = [self pathOfStyleDirectory]; // データディレクトリパス取得
+    NSURL *dirURL = [self URLOfStyleDirectory]; // データディレクトリパス取得
 
     // ディレクトリの存在チェック
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    BOOL theValueIsDir = NO, theValueCreated = NO;
-    BOOL theExists = [theFileManager fileExistsAtPath:theDirPath isDirectory:&theValueIsDir];
-    if (!theExists) {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDirectory = NO, success = NO;
+    BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
+    if (!exists) {
 		NSError *createDirError = nil;
-		theValueCreated = [theFileManager createDirectoryAtPath:theDirPath withIntermediateDirectories:NO attributes:nil error:&createDirError];
+		success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:NO attributes:nil error:&createDirError];
 		if (createDirError != nil) {
 			NSLog(@"Error. SyntaxStyles directory could not be created.");
 			return;
 		}
 		
     }
-    if ((theExists && theValueIsDir) || (theValueCreated)) {
-        (void)[self copyDefaultSyntaxStylesTo:theDirPath];
+    if ((exists && isDirectory) || (success)) {
+        (void)[self copyDefaultSyntaxStylesTo:dirURL];
     } else {
         NSLog(@"Error. SyntaxStyles directory could not be found.");
         return;
     }
 
     // styleデータの読み込み
-    NSMutableArray *theArray = [NSMutableArray array];
-	NSError *findFileError = nil;
-    NSArray *theFiles = [theFileManager contentsOfDirectoryAtPath:theDirPath error:	&findFileError];
-	if (findFileError != nil) {
-        NSLog(@"Error on seeking SyntaxStyle Files Directory.");
-        return;		
-	}
+    NSMutableArray *styles = [NSMutableArray array];
+    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:dirURL
+                                          includingPropertiesForKeys:nil
+                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                        errorHandler:^BOOL(NSURL *url, NSError *error) {
+                                                            NSLog(@"Error on seeking SyntaxStyle Files Directory.");
+                                                            return YES;
+                                                        }];
     
-	NSString *thePath = nil;
-    for (NSString *fileName in theFiles) {
-        if ((![fileName hasPrefix:@"."]) && ([fileName hasSuffix:@".plist"])) { // ドットファイル除去
-            thePath = [theDirPath stringByAppendingPathComponent:fileName];
-            NSMutableDictionary *theDict = [NSMutableDictionary dictionaryWithContentsOfFile:thePath];
-			// thePathが無効だった場合などに、theDictがnilになる場合がある
-			if (theDict != nil) {
-				// k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
-				theDict[k_SCKey_styleName] = [[fileName lastPathComponent] stringByDeletingPathExtension];
-				[theArray addObject:theDict]; // theDictがnilになってここで落ちる（MacBook Airの場合）
-			}
+    NSURL *URL;
+    while (URL = [enumerator nextObject]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+        // URLが無効だった場合などに、theDictがnilになる場合がある
+        if (dict != nil) {
+            // k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
+            dict[k_SCKey_styleName] = [[URL lastPathComponent] stringByDeletingPathExtension];
+            [styles addObject:dict]; // theDictがnilになってここで落ちる（MacBook Airの場合）
         }
     }
-    [theArray retain]; // ===== retain
-    [_coloringStyleArray release];
-    _coloringStyleArray = theArray;
+    [self setColoringStyleArray:styles];
 }
 
 
@@ -709,43 +626,36 @@ static CESyntaxManager *sharedInstance = nil;
 // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)と、拡張子辞書、拡張子重複エラー辞書を更新
 // ------------------------------------------------------
 {
-    NSEnumerator *theEnumerator = [_coloringStyleArray objectEnumerator];
-    NSMutableDictionary *theTable = [NSMutableDictionary dictionary];
-    NSMutableDictionary *theErrors = [NSMutableDictionary dictionary];
-    NSMutableArray *theExtensions = [NSMutableArray array];
-    id theDict, theExtension, theAddedName = nil;
-    NSArray *theArray;
+    NSMutableDictionary *table = [NSMutableDictionary dictionary];
+    NSMutableDictionary *errorDict = [NSMutableDictionary dictionary];
+    NSMutableArray *extensions = [NSMutableArray array];
+    id styleDict, extension, addedName = nil;
+    NSArray *extensionArray;
 
-    while (theDict = [theEnumerator nextObject]) {
-        theArray = theDict[k_SCKey_extensions];
-        if (!theArray) { continue; }
-        for (NSDictionary *extensionDict in theArray) {
-            theExtension = extensionDict[k_SCKey_arrayKeyString];
-            if ((theAddedName = theTable[theExtension])) { // 同じ拡張子を持つものがすでにあるとき
-                NSMutableArray *theErrorArray = theErrors[theExtension];
-                if (!theErrorArray) {
-                    theErrorArray = [NSMutableArray array];
-                    [theErrors setValue:theErrorArray forKey:theExtension];
+    for (styleDict in [self coloringStyleArray]) {
+        extensionArray = styleDict[k_SCKey_extensions];
+        if (!extensionArray) { continue; }
+        for (NSDictionary *extensionDict in extensionArray) {
+            extension = extensionDict[k_SCKey_arrayKeyString];
+            if ((addedName = table[extension])) { // 同じ拡張子を持つものがすでにあるとき
+                NSMutableArray *errorArray = errorDict[extension];
+                if (!errorArray) {
+                    errorArray = [NSMutableArray array];
+                    [errorDict setValue:errorArray forKey:extension];
                 }
-                if (![theErrorArray containsObject:theAddedName]) {
-                    [theErrorArray addObject:theAddedName];
+                if (![errorArray containsObject:addedName]) {
+                    [errorArray addObject:addedName];
                 }
-                [theErrorArray addObject:theDict[k_SCKey_styleName]];
+                [errorArray addObject:styleDict[k_SCKey_styleName]];
             } else {
-                [theTable setValue:theDict[k_SCKey_styleName] forKey:theExtension];
-                [theExtensions addObject:theExtension];
+                [table setValue:styleDict[k_SCKey_styleName] forKey:extension];
+                [extensions addObject:extension];
             }
         }
     }
-    [theTable retain]; // ===== retain
-    [_xtsnAndStyleTable release];
-    _xtsnAndStyleTable = theTable;
-    [theErrors retain]; // ===== retain
-    [_xtsnErrors release];
-    _xtsnErrors = theErrors;
-    [theExtensions retain]; // ===== retain
-    [_extensions release];
-    _extensions = theExtensions;
+    [self setXtsnAndStyleTable:table];
+    [self setXtsnErrors:errorDict];
+    [self setExtensions:extensions];
 }
 
 
@@ -754,44 +664,38 @@ static CESyntaxManager *sharedInstance = nil;
 // styleのファイルへの保存
 //------------------------------------------------------
 {
-    NSString *theDirPath = [self pathOfStyleDirectory]; // データディレクトリパス取得
-    NSString *theSaveFile, *theSavePath;
-    NSMutableDictionary *theDict;
-    NSArray *theArraysArray = @[k_SCKey_allArrays];
-    NSMutableArray *theKeyStringArray;
-    NSSortDescriptor *theDescriptorOne = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString 
-                    ascending:YES selector:@selector(caseInsensitiveCompare:)] autorelease];
-    NSSortDescriptor *theDescriptorTwo = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString 
-                    ascending:YES selector:@selector(caseInsensitiveCompare:)] autorelease];
-    NSArray *theDescriptors = @[theDescriptorOne, theDescriptorTwo];
+    NSURL *dirURL = [self URLOfStyleDirectory]; // データディレクトリパス取得
+    NSString *styleName;
+    NSURL *saveURL;
+    NSMutableDictionary *dict;
+    NSArray *arraysArray = @[k_SCKey_allArrays];
+    NSMutableArray *keyStrings;
+    NSSortDescriptor *descriptorOne = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
+                                                                   ascending:YES
+                                                                    selector:@selector(caseInsensitiveCompare:)] autorelease];
+    NSSortDescriptor *descriptorTwo = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString
+                                                                   ascending:YES
+                                                                    selector:@selector(caseInsensitiveCompare:)] autorelease];
+    NSArray *descriptors = @[descriptorOne, descriptorTwo];
 
-    // _styleController内のコンテンツオブジェクト取得
-    NSArray *theContent = [_styleController selectedObjects];
+    // styleController内のコンテンツオブジェクト取得
+    NSArray *contents = [[self styleController] selectedObjects];
     // styleデータ保存（選択中のオブジェクトはひとつだから、配列の最初の要素のみ処理する 2008.11.02）
-    theDict = [theContent[0] mutableCopy]; // ===== mutableCopy
-    for (id key in theArraysArray) {
-        theKeyStringArray = theDict[key];
-        [theKeyStringArray sortUsingDescriptors:theDescriptors];
+    dict = [contents[0] mutableCopy]; // ===== mutableCopy
+    for (id key in arraysArray) {
+        keyStrings = dict[key];
+        [keyStrings sortUsingDescriptors:descriptors];
     }
-    theSaveFile = [self editedNewStyleName];
-    if ([theSaveFile length] > 0) {
-        theSavePath = [NSString stringWithFormat:@"%@/%@%@", theDirPath, theSaveFile, @".plist"];
+    styleName = [self editedNewStyleName];
+    if ([styleName length] > 0) {
+        saveURL = [[dirURL URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
         // style名が変更されたときは、古いファイルを削除する
-        if (![theSaveFile isEqualToString:[self selectedStyleName]]) {
+        if (![styleName isEqualToString:[self selectedStyleName]]) {
             (void)[self removeStyleFileWithStyleName:[self selectedStyleName]];
         }
-        [theDict writeToFile:theSavePath atomically:YES];
+        [dict writeToURL:saveURL atomically:YES];
     }
-    [theDict release]; // ===== release
-}
-
-
-//------------------------------------------------------
-- (NSString *)pathOfStyleDirectory
-// styleデータファイル保存用ディレクトリを返す
-//------------------------------------------------------
-{
-    return [[self URLOfStyleDirectory] path];
+    [dict release]; // ===== release
 }
 
 
@@ -800,85 +704,80 @@ static CESyntaxManager *sharedInstance = nil;
 // styleデータファイル保存用ディレクトリをNSURLで返す
 //------------------------------------------------------
 {
-    NSURL *URL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                        inDomain:NSUserDomainMask
-                                               appropriateForURL:nil
-                                                          create:NO
-                                                           error:nil]
-                  URLByAppendingPathComponent:@"CotEditor/SyntaxColorings"];
-    
-    return URL;
+    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                   inDomain:NSUserDomainMask
+                                          appropriateForURL:nil
+                                                     create:NO
+                                                      error:nil]
+             URLByAppendingPathComponent:@"CotEditor/SyntaxColorings"];
 }
 
 
 //------------------------------------------------------
-- (BOOL)copyDefaultSyntaxStylesTo:(NSString *)inDestinationPath
+- (BOOL)copyDefaultSyntaxStylesTo:(NSURL *)destDirURL
 // styleデータファイルを保存用ディレクトリにコピー
 //------------------------------------------------------
 {
-    NSString *theSourceDirPath = 
-            [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/Resources"];
-    NSString *theSource, *theDestination;
-    NSArray *theSourceNames = [self defaultSyntaxFileNames];
-    NSArray *theDestNames = [self defaultSyntaxFileNamesWithoutPrefix];
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    BOOL theValue = NO;
-    NSUInteger i;
+    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceURL, *destURL;
+    NSArray *sourceNames = [self defaultSyntaxFileNames];
+    NSArray *destNames = [self defaultSyntaxFileNamesWithoutPrefix];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL success = NO;
     
-    for (i = 0; i < [theSourceNames count]; i++) {
-        theSource = [theSourceDirPath stringByAppendingPathComponent:theSourceNames[i]];
-        theDestination = [inDestinationPath stringByAppendingPathComponent:theDestNames[i]];
-        if (([theFileManager fileExistsAtPath:theSource]) && 
-                    (![theFileManager fileExistsAtPath:theDestination])) {
-            theValue = [theFileManager copyItemAtPath:theSource toPath:theDestination error:nil];
-            if (!theValue) {
-                NSLog(@"Error. Could not copy \"%@\" to \"%@\"...", theSource, inDestinationPath);
+    for (NSUInteger i = 0; i < [sourceNames count]; i++) {
+        sourceURL = [sourceDirURL URLByAppendingPathComponent:sourceNames[i]];
+        destURL = [destDirURL URLByAppendingPathComponent:destNames[i]];
+        if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
+            ![destURL checkResourceIsReachableAndReturnError:nil])
+        {
+            success = [fileManager copyItemAtURL:sourceURL toURL:destURL error:nil];
+            if (!success) {
+                NSLog(@"Error. Could not copy \"%@\" to \"%@\"...", sourceURL, destURL);
             }
         }
     }
-    return theValue;
+    return success;
 }
 
 
 //------------------------------------------------------
-- (NSString *)copiedSyntaxName:(NSString *)inOriginalName
+- (NSString *)copiedSyntaxName:(NSString *)originalName
 // コピーされたstyle名を返す
 //------------------------------------------------------
 {
-    NSFileManager *theFileManager = [NSFileManager defaultManager];
-    NSString *thePath = [self pathOfStyleDirectory];
-    NSString *theCompareName = [inOriginalName stringByTrimmingCharactersInSet:
-                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *theCopyName;
-    NSMutableString *outName = [NSMutableString string];
-    NSRange theCopiedStrRange;
-    BOOL theCopiedState = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *URL = [self URLOfStyleDirectory];
+    NSString *compareName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *copyName;
+    NSMutableString *copiedSyntaxName = [NSMutableString string];
+    NSRange copiedStrRange;
+    BOOL copiedState = NO;
     NSInteger i = 1;
 
-    theCopiedStrRange = [theCompareName rangeOfRegularExpressionString:NSLocalizedString(@" copy$",@"")];
-    if (theCopiedStrRange.location != NSNotFound) {
-        theCopiedState = YES;
+    copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy$", nil)];
+    if (copiedStrRange.location != NSNotFound) {
+        copiedState = YES;
     } else {
-        theCopiedStrRange = [theCompareName rangeOfRegularExpressionString:
-                            NSLocalizedString(@" copy [0-9]+$",@"")];
-        if (theCopiedStrRange.location != NSNotFound) {
-            theCopiedState = YES;
+        copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy [0-9]+$", nil)];
+        if (copiedStrRange.location != NSNotFound) {
+            copiedState = YES;
         }
     }
-    if (theCopiedState) {
-        theCopyName = [NSString stringWithFormat:@"%@%@", 
-                [theCompareName substringWithRange:NSMakeRange(0, theCopiedStrRange.location)], 
-                NSLocalizedString(@" copy",@"")];
+    if (copiedState) {
+        copyName = [NSString stringWithFormat:@"%@%@",
+                    [compareName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
+                    NSLocalizedString(@" copy",@"")];
     } else {
-        theCopyName = [NSString stringWithFormat:@"%@%@", theCompareName, NSLocalizedString(@" copy",@"")];
+        copyName = [NSString stringWithFormat:@"%@%@", compareName, NSLocalizedString(@" copy", nil)];
     }
-    [outName appendFormat:@"%@.plist", theCopyName];
-    while ([theFileManager fileExistsAtPath:[thePath stringByAppendingPathComponent:outName]]) {
+    [copiedSyntaxName appendFormat:@"%@.plist", copyName];
+    while ([[URL URLByAppendingPathExtension:copiedSyntaxName] checkResourceIsReachableAndReturnError:nil]) {
         i++;
-        [outName setString:[NSString stringWithFormat:@"%@ %li", theCopyName, (long)i]];
-        [outName appendString:@".plist"];
+        [copiedSyntaxName setString:[NSString stringWithFormat:@"%@ %li", copyName, (long)i]];
+        [copiedSyntaxName appendString:@".plist"];
     }
-    return [outName stringByDeletingPathExtension];
+    return [copiedSyntaxName stringByDeletingPathExtension];
 }
 
 
@@ -887,38 +786,38 @@ static CESyntaxManager *sharedInstance = nil;
 // カラーシンタックス拡張子重複エラー表示シートに表示するエラー内容をセット
 //------------------------------------------------------
 {
-    NSMutableString *theStr = [NSMutableString string];
+    NSMutableString *string = [NSMutableString string];
 
     if ([[self xtsnErrors] count] > 0) {
-        NSDictionary *theErrors = [self xtsnErrors];
-        NSEnumerator *theEnumerator = [theErrors keyEnumerator];
-        NSArray *theArray;
-        id theKey;
-        NSInteger i, theCount;
+        NSDictionary *errorDict = [self xtsnErrors];
+        NSEnumerator *enumerator = [errorDict keyEnumerator];
+        NSArray *errors;
+        id key;
+        NSInteger i, count;
 
-        [theStr setString:NSLocalizedString(@"The following Extension list is registered by two or more styles for one extension. \nCotEditor uses the first style.\n\n",@"")];
-        [theStr appendString:NSLocalizedString(@"\"Extension\" = \"Style Names\"\n  -  -  -  -  -  -  -\n",@"")];
+        [string setString:NSLocalizedString(@"The following Extension list is registered by two or more styles for one extension. \nCotEditor uses the first style.\n\n", nil)];
+        [string appendString:NSLocalizedString(@"\"Extension\" = \"Style Names\"\n  -  -  -  -  -  -  -\n", nil)];
 
         // [NSDictionary descriptionInStringsFileFormat] だと日本語がユニコード16進表示になってしまうので、
         // マニュアルで分解し文字列に変換（もっとうまいやり方あるだろ (-_-; ... 2005.12.03）
-        while (theKey = [theEnumerator nextObject]) {
-            theArray = theErrors[theKey];
-            theCount = [theArray count];
-            [theStr appendFormat:@"\"%@\" = \"", theKey];
-            for (i = 0; i < theCount; i++) {
-                [theStr appendString:theArray[i]];
-                if (i < (theCount - 1)) {
-                    [theStr appendString:@", "];
+        while (key = [enumerator nextObject]) {
+            errors = errorDict[key];
+            count = [errors count];
+            [string appendFormat:@"\"%@\" = \"", key];
+            for (i = 0; i < count; i++) {
+                [string appendString:errors[i]];
+                if (i < (count - 1)) {
+                    [string appendString:@", "];
                 } else {
                     break;
                 }
             }
-            [theStr appendString:@"\"\n"];
+            [string appendString:@"\"\n"];
         }
     } else {
-        [theStr setString:NSLocalizedString(@"No Error found.",@"")];
+        [string setString:NSLocalizedString(@"No Error found.",@"")];
     }
-    [_extensionErrorTextView setString:theStr];
+    [[self extensionErrorTextView] setString:string];
 }
 
 
@@ -927,28 +826,28 @@ static CESyntaxManager *sharedInstance = nil;
 // シートのコントロール類をセットアップ
 //------------------------------------------------------
 {
-    BOOL theValue = [self isDefaultSyntaxStyle:[self selectedStyleName]];
+    BOOL isDefaultSyntax = [self isDefaultSyntaxStyle:[self selectedStyleName]];
 
-    [_styleNameField setStringValue:[self selectedStyleName]];
-    [_styleNameField setDrawsBackground:(!theValue)];
-    [_styleNameField setBezeled:(!theValue)];
-    [_styleNameField setSelectable:(!theValue)];
-    [_styleNameField setEditable:(!theValue)];
+    [[self styleNameField] setStringValue:[self selectedStyleName]];
+    [[self styleNameField] setDrawsBackground:(!isDefaultSyntax)];
+    [[self styleNameField] setBezeled:(!isDefaultSyntax)];
+    [[self styleNameField] setSelectable:(!isDefaultSyntax)];
+    [[self styleNameField] setEditable:(!isDefaultSyntax)];
 
-    if (theValue) {
-        [_styleNameField setBordered:YES];
-        [_messageField setStringValue:NSLocalizedString(@"The default style name cannot be changed.",@"")];
-        [_factoryDefaultsButton setEnabled:(![self isEqualToDefaultSyntaxStyle:[self selectedStyleName]])];
+    if (isDefaultSyntax) {
+        [[self styleNameField] setBordered:YES];
+        [[self messageField] setStringValue:NSLocalizedString(@"The default style name cannot be changed.",@"")];
+        [[self factoryDefaultsButton] setEnabled:![self isEqualToDefaultSyntaxStyle:[self selectedStyleName]]];
     } else {
-        [_messageField setStringValue:@""];
-        [_factoryDefaultsButton setEnabled:NO];
+        [[self messageField] setStringValue:@""];
+        [[self factoryDefaultsButton] setEnabled:NO];
     }
     [self setIsOkButtonPressed:NO];
 }
 
 
 //------------------------------------------------------
-- (void)editNewAddedRowOfTableView:(NSTableView *)inTableView
+- (void)editNewAddedRowOfTableView:(NSTableView *)tableView
 // 最下行が選択され、一番左のコラムが入力されていなければ自動的に編集を開始する
 //------------------------------------------------------
 {
@@ -956,25 +855,25 @@ static CESyntaxManager *sharedInstance = nil;
     // [[theColumn dataCellForRow:[inTableView selectedRow]] stringValue] で、
     // 表示上の最下行の内容が返ってくる（更新タイミングが変更された？）ため、「小手先の処理」をおこなう。 2008.05.06.
     if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        if (_addedItemInLeopard == NO) {
-            _addedItemInLeopard = YES;
-            [inTableView scrollRowToVisible:[inTableView selectedRow]];
-            [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:) 
-                    withObject:inTableView waitUntilDone:NO];
+        if ([self addedItemInLeopard] == NO) {
+            [self setAddedItemInLeopard:YES];
+            [tableView scrollRowToVisible:[tableView selectedRow]];
+            [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:)
+                                   withObject:tableView waitUntilDone:NO];
             return;
         }
-        _addedItemInLeopard = NO;
+        [self setAddedItemInLeopard:NO];
     }
 
-    NSTableColumn *theColumn = [inTableView tableColumns][0];
-    NSInteger theRow = [inTableView selectedRow];
-    id theCell = [theColumn dataCellForRow:theRow];
-    if (theCell == nil) { return; }
-    NSString *theStr = [theCell stringValue];
+    NSTableColumn *column = [tableView tableColumns][0];
+    NSInteger row = [tableView selectedRow];
+    id cell = [column dataCellForRow:row];
+    if (cell == nil) { return; }
+    NSString *string = [cell stringValue];
 
-    if ((theStr == nil) || ([theStr isEqualToString:@""])) {
-        if ([[inTableView window] makeFirstResponder:inTableView]) {
-            [inTableView editColumn:0 row:theRow withEvent:nil select:YES];
+    if ([string isEqualToString:@""]) {
+        if ([[tableView window] makeFirstResponder:tableView]) {
+            [tableView editColumn:0 row:row withEvent:nil select:YES];
         }
     }
 }
@@ -983,7 +882,7 @@ static CESyntaxManager *sharedInstance = nil;
 // 構文チェック実行
 // ------------------------------------------------------
 {
-    return ([self syntaxElementCheck]);
+    return [self syntaxElementCheck];
 }
 
 // ------------------------------------------------------
@@ -991,92 +890,88 @@ static CESyntaxManager *sharedInstance = nil;
 // 正規表現構文と重複のチェック実行
 // ------------------------------------------------------
 {
-    NSArray *theSelectedArray = [_styleController selectedObjects];
-    NSMutableString *theResultStr = [NSMutableString string];
+    NSArray *selectedArray = [[self styleController] selectedObjects];
+    NSMutableString *resultStr = [NSMutableString string];
     NSInteger outCount = 0;
 
-    if ([theSelectedArray count] == 1) {
-        NSDictionary *theDict = theSelectedArray[0];
-        NSArray *theSyntaxArray = @[k_SCKey_syntaxCheckArrays];
-        NSArray *theArray;
-        NSString *theBeginStr, *theEndStr, *theTmpBeginStr = nil, *theTmpEndStr = nil;
-        NSString *theArrayNameDeletingArray = nil;
-        NSInteger theCapCount;
-        NSError *theError = nil;
+    if ([selectedArray count] == 1) {
+        NSDictionary *dict = selectedArray[0];
+        NSArray *syntaxes = @[k_SCKey_syntaxCheckArrays];
+        NSArray *array;
+        NSString *beginStr, *endStr, *tmpBeginStr = nil, *tmpEndStr = nil;
+        NSString *arrayNameDeletingArray = nil;
+        NSInteger capCount;
+        NSError *error = nil;
 
-        for (NSString *theArrayName in theSyntaxArray) {
-            theArray = theDict[theArrayName];
-            theArrayNameDeletingArray = [theArrayName substringToIndex:([theArrayName length] - 5)];
+        for (NSString *arrayName in syntaxes) {
+            array = dict[arrayName];
+            arrayNameDeletingArray = [arrayName substringToIndex:([arrayName length] - 5)];
 
-            for (NSDictionary *dict in theArray) {
-                theBeginStr = dict[k_SCKey_beginString];
-                theEndStr = dict[k_SCKey_endString];
+            for (NSDictionary *dict in array) {
+                beginStr = dict[k_SCKey_beginString];
+                endStr = dict[k_SCKey_endString];
 
-                if (([theTmpBeginStr isEqualToString:theBeginStr]) && 
-                        (((theTmpEndStr == nil) && (theEndStr == nil)) || 
-                            ([theTmpEndStr isEqualToString:theEndStr]))) {
+                if ([tmpBeginStr isEqualToString:beginStr] &&
+                    ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
 
                     outCount++;
-                    [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
-                            (long)outCount, theArrayNameDeletingArray, theBeginStr];
+                    [resultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
+                     (long)outCount, arrayNameDeletingArray, beginStr];
 
                 } else if ([dict[k_SCKey_regularExpression] boolValue]) {
-
-                    theCapCount = [theBeginStr captureCountWithOptions:RKLNoOptions error:&theError];
-                    if (theCapCount == -1) { // エラーのとき
+                    capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
+                    if (capCount == -1) { // エラーのとき
                         outCount++;
-                        [theResultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
-                                (long)outCount, theArrayNameDeletingArray, theBeginStr,
-                                [theError userInfo][RKLICURegexErrorNameErrorKey], 
-                                [theError userInfo][RKLICURegexOffsetErrorKey], 
-                                [theError userInfo][RKLICURegexPreContextErrorKey], 
-                                [theError userInfo][RKLICURegexPostContextErrorKey]];
+                        [resultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
+                                (long)outCount, arrayNameDeletingArray, beginStr,
+                                [error userInfo][RKLICURegexErrorNameErrorKey], 
+                                [error userInfo][RKLICURegexOffsetErrorKey], 
+                                [error userInfo][RKLICURegexPreContextErrorKey], 
+                                [error userInfo][RKLICURegexPostContextErrorKey]];
                     }
-                    if (theEndStr != nil) {
-                        theCapCount = [theEndStr captureCountWithOptions:RKLNoOptions error:&theError];
-                        if (theCapCount == -1) { // エラーのとき
+                    if (endStr != nil) {
+                        capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
+                        if (capCount == -1) { // エラーのとき
                             outCount++;
-                            [theResultStr appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
-                                    (long)outCount, theArrayNameDeletingArray, theEndStr, 
-                                    [theError userInfo][RKLICURegexErrorNameErrorKey], 
-                                    [theError userInfo][RKLICURegexOffsetErrorKey], 
-                                    [theError userInfo][RKLICURegexPreContextErrorKey], 
-                                    [theError userInfo][RKLICURegexPostContextErrorKey]];
+                            [resultStr appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
+                                    (long)outCount, arrayNameDeletingArray, endStr, 
+                                    [error userInfo][RKLICURegexErrorNameErrorKey], 
+                                    [error userInfo][RKLICURegexOffsetErrorKey], 
+                                    [error userInfo][RKLICURegexPreContextErrorKey], 
+                                    [error userInfo][RKLICURegexPostContextErrorKey]];
                         }
                     }
 
                 // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
-                } else if ([theArrayName isEqualToString:k_SCKey_outlineMenuArray]) {
+                } else if ([arrayName isEqualToString:k_SCKey_outlineMenuArray]) {
                     NS_DURING
-                        (void)[OGRegularExpression regularExpressionWithString:theBeginStr];
+                        (void)[OGRegularExpression regularExpressionWithString:beginStr];
                     NS_HANDLER
                         // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
                         outCount++;
-                        [theResultStr appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
-                                (long)outCount, theArrayNameDeletingArray, theBeginStr, [localException reason]];
+                        [resultStr appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
+                                (long)outCount, arrayNameDeletingArray, beginStr, [localException reason]];
                     NS_ENDHANDLER
                 }
-                theTmpBeginStr = theBeginStr;
-                theTmpEndStr = theEndStr;
+                tmpBeginStr = beginStr;
+                tmpEndStr = endStr;
             }
         }
         if (outCount == 0) {
-            [theResultStr setString:NSLocalizedString(@"No Error found.",@"")];
+            [resultStr setString:NSLocalizedString(@"No Error found.", nil)];
         } else if (outCount == 1) {
-            [theResultStr insertString:NSLocalizedString(@"One Error was Found !\n\n",@"") atIndex:0];
+            [resultStr insertString:NSLocalizedString(@"One Error was Found !\n\n", nil) atIndex:0];
         } else {
-            [theResultStr insertString:
-                    [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n",@""), outCount] 
+            [resultStr insertString:
+                    [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n", nil), outCount]
                     atIndex:0];
         }
     } else {
-        [theResultStr setString:NSLocalizedString(@"An Error occuerd in Checking.\nNumber of selected object is 2 or more in '_styleController'.",@"")];
+        [resultStr setString:NSLocalizedString(@"An Error occuerd in Checking.\nNumber of selected object is 2 or more in 'styleController'.", nil)];
     }
-    [_syntaxElementCheckTextView setString:theResultStr];
+    [[self syntaxElementCheckTextView] setString:resultStr];
 
     return outCount;
 }
-
-
 
 @end

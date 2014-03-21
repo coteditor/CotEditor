@@ -38,32 +38,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "RegexKitLite.h"
 
 
-@interface CESyntaxManager : NSObject
+@interface CESyntaxManager : NSObject <NSTableViewDelegate>
+
+@property (nonatomic) BOOL isOkButtonPressed;  // シートでOKボタンが押されたかどうか
+
+@property (nonatomic, retain, readonly) NSString *selectedStyleName;  // 編集対象となっているスタイル名
+@property (nonatomic, retain) NSString *editedNewStyleName;  // 編集された新しいスタイル名
+@property (nonatomic, retain, readonly) NSDictionary *xtsnAndStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic, retain, readonly) NSDictionary *xtsnErrors;  // 拡張子重複エラー辞書
+@property (nonatomic, retain, readonly) NSArray *extensions;  // 拡張子配列
+@property (nonatomic, retain, readonly) NSWindow *editWindow;  // カラーシンタックス編集シート用ウィンドウ
+
 
 // class method
 + (CESyntaxManager *)sharedInstance;
 
 // Public method
-- (NSDictionary *)xtsnAndStyleTable;
-- (NSDictionary *)xtsnErrors;
-- (NSArray *)extensions;
-- (NSString *)selectedStyleName;
-- (NSString *)editedNewStyleName;
-- (void)setEditedNewStyleName:(NSString *)inString;
-- (BOOL)setSelectionIndexOfStyle:(NSInteger)inStyleIndex mode:(NSInteger)inMode;
-- (NSString *)syntaxNameFromExtension:(NSString *)inExtension;
-- (NSDictionary *)syntaxWithStyleName:(NSString *)inStyleName;
+- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode;
+- (NSString *)syntaxNameFromExtension:(NSString *)extension;
+- (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
 - (NSArray *)defaultSyntaxFileNames;
 - (NSArray *)defaultSyntaxFileNamesWithoutPrefix;
-- (BOOL)isDefaultSyntaxStyle:(NSString *)inStyleName;
-- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)inStyleName;
+- (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;
+- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName;
 - (NSArray *)styleNames;
 - (NSWindow *)editWindow;
-- (BOOL)isOkButtonPressed;
-- (void)setIsOkButtonPressed:(BOOL)inValue;
-- (BOOL)existsStyleFileWithStyleName:(NSString *)inStyleName;
-- (BOOL)importStyleFile:(NSString *)inStyleFileName;
-- (BOOL)removeStyleFileWithStyleName:(NSString *)inStyleName;
+- (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
+- (BOOL)importStyleFile:(NSString *)styleFileName;
+- (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
 - (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
 - (NSWindow *)extensionErrorWindow;
