@@ -38,24 +38,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @interface CEKeyBindingManager ()
-{
-    IBOutlet NSWindow *_menuEditSheet;
-    IBOutlet NSOutlineView *_menuOutlineView;
-    IBOutlet NSTextField *_menuDuplicateTextField;
-    IBOutlet NSButton *_menuEditKeyButton;
-    IBOutlet NSButton *_menuDeleteKeyButton;
-    IBOutlet NSButton *_menuFactoryDefaultsButton;
-    IBOutlet NSButton *_menuOkButton;
-    IBOutlet NSWindow *_textEditSheet;
-    IBOutlet NSOutlineView *_textOutlineView;
-    IBOutlet NSTextField *_textDuplicateTextField;
-    IBOutlet NSButton *_textEditKeyButton;
-    IBOutlet NSButton *_textDeleteKeyButton;
-    IBOutlet NSButton *_textFactoryDefaultsButton;
-    IBOutlet NSButton *_textOkButton;
-    IBOutlet NSTextView *_textInsertStringTextView;
-    IBOutlet NSArrayController *_textInsertStringArrayController;
-}
+
+@property (nonatomic, retain) IBOutlet NSWindow *menuEditSheet;
+@property (nonatomic, assign) IBOutlet NSOutlineView *menuOutlineView;
+@property (nonatomic, assign) IBOutlet  NSTextField *menuDuplicateTextField;
+@property (nonatomic, assign) IBOutlet NSButton *menuEditKeyButton;
+@property (nonatomic, assign) IBOutlet NSButton *menuDeleteKeyButton;
+@property (nonatomic, assign) IBOutlet NSButton *menuFactoryDefaultsButton;
+@property (nonatomic, assign) IBOutlet NSButton *menuOkButton;
+@property (nonatomic, assign) IBOutlet NSTextView *textInsertStringTextView;
+@property (nonatomic, assign) IBOutlet NSArrayController *textInsertStringArrayController;
+
+@property (nonatomic, retain) IBOutlet NSWindow *textEditSheet;
+@property (nonatomic, assign) IBOutlet NSOutlineView *textOutlineView;
+@property (nonatomic, assign) IBOutlet  NSTextField *textDuplicateTextField;
+@property (nonatomic, assign) IBOutlet NSButton *textEditKeyButton;
+@property (nonatomic, assign) IBOutlet NSButton *textDeleteKeyButton;
+@property (nonatomic, assign) IBOutlet NSButton *textFactoryDefaultsButton;
+@property (nonatomic, assign) IBOutlet NSButton *textOkButton;
+
 
 @property (nonatomic, retain) NSMutableArray *outlineDataArray;
 @property (nonatomic, retain) NSMutableArray *duplicateKeyCheckArray;
@@ -164,8 +165,8 @@ static CEKeyBindingManager *sharedInstance = nil;
     }
 
     // ダブルクリックでトグルに展開するようアクションを設定する
-    [_menuOutlineView setDoubleAction:@selector(doubleClickedOutlineViewRow:)];
-    [_menuOutlineView setTarget:self];
+    [[self menuOutlineView] setDoubleAction:@selector(doubleClickedOutlineViewRow:)];
+    [[self menuOutlineView] setTarget:self];
     [self setupKeyBindingDictionary];
     [self resetAllMenuKeyBindingWithDictionary];
 }
@@ -178,10 +179,10 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
     switch (mode) {
         case k_outlineViewModeMenu: // === Menu
-            return _menuEditSheet;
+            return [self menuEditSheet];
             
         case k_outlineViewModeText: // === Text
-            return _textEditSheet;
+            return [self textEditSheet];
             
         default:
             return nil;
@@ -209,13 +210,13 @@ static CEKeyBindingManager *sharedInstance = nil;
     // モードの保持、データの準備、タイトルとメッセージの差し替え
     [self setOutlineMode:mode];
     if ([self outlineMode] == k_outlineViewModeMenu) { // === Menu
-        [_menuDuplicateTextField setStringValue:@""];
+        [[self menuDuplicateTextField] setStringValue:@""];
         [self setOutlineDataArray:[self mainMenuArrayForOutlineData:[NSApp mainMenu]]];
         [self setDuplicateKeyCheckArray:[self duplicateKeyCheckArrayWithMenu:[NSApp mainMenu]]];
-        [_menuFactoryDefaultsButton setEnabled:
+        [[self menuFactoryDefaultsButton] setEnabled:
                 (![[self menuKeyBindingDict] isEqualToDictionary:[self defaultMenuKeyBindingDict]])];
-        [_menuOutlineView reloadData];
-        [_menuEditKeyButton setEnabled:NO];
+        [[self menuOutlineView] reloadData];
+        [[self menuEditKeyButton] setEnabled:NO];
 
     } else if ([self outlineMode] == k_outlineViewModeText) { // === Text
         id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
@@ -223,24 +224,24 @@ static CEKeyBindingManager *sharedInstance = nil;
         NSMutableArray *contentArray = [NSMutableArray array];
         NSMutableDictionary *dict;
 
-        [_textDuplicateTextField setStringValue:@""];
+        [[self textDuplicateTextField] setStringValue:@""];
         [self setOutlineDataArray:[self textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO]]; // ===== retain
         // （システム標準のキーバインディングとの重複は、チェックしない）
         [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]]; // ===== copy
-        [_textFactoryDefaultsButton setEnabled:
+        [[self textFactoryDefaultsButton] setEnabled:
                 ((![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]]) ||
                 (![[[[NSApp delegate] class] factoryDefaultOfTextInsertStringArray] 
                     isEqualToArray:insertTextArray]))];
-        [_textOutlineView reloadData];
+        [[self textOutlineView] reloadData];
         for (id object in insertTextArray) {
             dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
             [contentArray addObject:dict];
         }
-        [_textInsertStringArrayController setContent:contentArray];
-        [_textInsertStringArrayController setSelectionIndex:NSNotFound]; // 選択なし
-        [_textInsertStringTextView setEditable:NO];
-        [_textInsertStringTextView setBackgroundColor:[NSColor controlHighlightColor]];
-        [_textEditKeyButton setEnabled:NO];
+        [[self textInsertStringArrayController] setContent:contentArray];
+        [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
+        [[self textInsertStringTextView] setEditable:NO];
+        [[self textInsertStringTextView] setBackgroundColor:[NSColor controlHighlightColor]];
+        [[self textEditKeyButton] setEnabled:NO];
     }
 
     return YES;
@@ -359,10 +360,10 @@ static CEKeyBindingManager *sharedInstance = nil;
                                                           userInfo:@{k_keyCatchMode: @k_catchMenuShortcut}];
         switch ([self outlineMode]) {
             case k_outlineViewModeMenu:
-                [_menuDeleteKeyButton setEnabled:YES];
+                [[self menuDeleteKeyButton] setEnabled:YES];
                 break;
             case k_outlineViewModeText:
-                [_textDeleteKeyButton setEnabled:YES];
+                [[self textDeleteKeyButton] setEnabled:YES];
                 break;
         }
         return YES;
@@ -385,18 +386,18 @@ static CEKeyBindingManager *sharedInstance = nil;
         // データソースの値でなく表示値がそのまま入ってきているのは、選択状態になったあと何の編集もされなかった時
         if (([[NSApp currentEvent] type] == NSLeftMouseDown) &&
             ([self outlineMode] == k_outlineViewModeMenu) &&
-            ([[_menuDuplicateTextField stringValue] length] > 0))
+            ([[[self menuDuplicateTextField] stringValue] length] > 0))
         {
             item[identifier] = @"";
-            [_menuDuplicateTextField setStringValue:@""];
+            [[self menuDuplicateTextField] setStringValue:@""];
             (void)[self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
             
         } else if (([[NSApp currentEvent] type] == NSLeftMouseDown) &&
                    ([self outlineMode] == k_outlineViewModeText) &&
-                   ([[_textDuplicateTextField stringValue] length] > 0))
+                   ([[[self textDuplicateTextField] stringValue] length] > 0))
         {
             item[identifier] = @"";
-            [_textDuplicateTextField setStringValue:@""];
+            [[self textDuplicateTextField] setStringValue:@""];
             (void)[self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
         }
         
@@ -412,10 +413,10 @@ static CEKeyBindingManager *sharedInstance = nil;
     }
     switch ([self outlineMode]) {
         case k_outlineViewModeMenu:
-            [_menuDeleteKeyButton setEnabled:NO];
+            [[self menuDeleteKeyButton] setEnabled:NO];
             break;
         case k_outlineViewModeText:
-            [_textDeleteKeyButton setEnabled:NO];
+            [[self textDeleteKeyButton] setEnabled:NO];
             break;
     }
     [self setCurrentKeySpecChars:nil];
@@ -427,7 +428,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 //=======================================================
 // Delegate method (NSOutlineView)
-//  <== _menuOutlineView, _textOutlineView
+//  <== menuOutlineView, textOutlineView
 //=======================================================
 
 // ------------------------------------------------------
@@ -439,10 +440,10 @@ static CEKeyBindingManager *sharedInstance = nil;
 
     switch ([self outlineMode]) {
         case k_outlineViewModeMenu:
-            editButton = _menuEditKeyButton;
+            editButton = [self menuEditKeyButton];
             break;
         case k_outlineViewModeText:
-            editButton = _textEditKeyButton;
+            editButton = [self textEditKeyButton];
             break;
     }
     
@@ -457,10 +458,10 @@ static CEKeyBindingManager *sharedInstance = nil;
         BOOL isEnabled = [[item valueForKey:k_selectorString] hasPrefix:@"insertCustomText"];
         NSUInteger index = [outlineView rowForItem:item];
 
-        (void)[_textInsertStringArrayController setSelectionIndex:index];
-        [_textInsertStringTextView setEditable:isEnabled];
+        (void)[[self textInsertStringArrayController] setSelectionIndex:index];
+        [[self textInsertStringTextView] setEditable:isEnabled];
         NSColor *color = (isEnabled) ? [NSColor controlBackgroundColor] : [NSColor controlHighlightColor];
-        [_textInsertStringTextView setBackgroundColor:color];
+        [[self textInsertStringTextView] setBackgroundColor:color];
     }
     
     // 編集ボタンを有効化／無効化
@@ -497,12 +498,12 @@ static CEKeyBindingManager *sharedInstance = nil;
     
     switch ([self outlineMode]) {
         case k_outlineViewModeMenu:
-            sheet = _menuEditSheet;
-            outlineView = _menuOutlineView;
+            sheet = [self menuEditSheet];
+            outlineView = [self menuOutlineView];
             break;
         case k_outlineViewModeText:
-            sheet = _textEditSheet;
-            outlineView = _textOutlineView;
+            sheet = [self textEditSheet];
+            outlineView = [self textOutlineView];
             break;
         default:
             return;
@@ -530,11 +531,11 @@ static CEKeyBindingManager *sharedInstance = nil;
             [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:tmpArray];
             [self setOutlineDataArray:tmpArray];
             [self setDuplicateKeyCheckArray:[[self duplicateKeyCheckArrayWithArray:[self outlineDataArray]] mutableCopy]]; // ===== retain
-            [_menuEditKeyButton setEnabled:NO];
-            [_menuOutlineView deselectAll:nil];
-            [_menuOutlineView reloadData];
+            [[self menuEditKeyButton] setEnabled:NO];
+            [[self menuOutlineView] deselectAll:nil];
+            [[self menuOutlineView] reloadData];
         }
-        [_menuFactoryDefaultsButton setEnabled:NO];
+        [[self menuFactoryDefaultsButton] setEnabled:NO];
 
     } else if ([self outlineMode] == k_outlineViewModeText) {
         NSMutableArray *contents = [NSMutableArray array];
@@ -545,16 +546,16 @@ static CEKeyBindingManager *sharedInstance = nil;
             dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
             [contents addObject:dict];
         }
-        [_textOutlineView deselectAll:nil];
+        [[self textOutlineView] deselectAll:nil];
         [self setOutlineDataArray:[self textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]]; // ===== retain
         [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]]; // ===== copy
-        [_textInsertStringArrayController setContent:contents];
-        [_textInsertStringArrayController setSelectionIndex:NSNotFound]; // 選択なし
-        [_textEditKeyButton setEnabled:NO];
-        [_textOutlineView reloadData];
-        [_textInsertStringTextView setEditable:NO];
-        [_textInsertStringTextView setBackgroundColor:[NSColor controlHighlightColor]];
-        [_textFactoryDefaultsButton setEnabled:NO];
+        [[self textInsertStringArrayController] setContent:contents];
+        [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
+        [[self textEditKeyButton] setEnabled:NO];
+        [[self textOutlineView] reloadData];
+        [[self textInsertStringTextView] setEditable:NO];
+        [[self textInsertStringTextView] setBackgroundColor:[NSColor controlHighlightColor]];
+        [[self textFactoryDefaultsButton] setEnabled:NO];
     }
 }
 
@@ -583,12 +584,12 @@ static CEKeyBindingManager *sharedInstance = nil;
     
     switch ([self outlineMode]) {
         case k_outlineViewModeMenu:
-            [_menuOutlineView reloadData]; // （ここでリロードしておかないと、選択行が残ったり展開されたままになる）
+            [[self menuOutlineView] reloadData]; // （ここでリロードしておかないと、選択行が残ったり展開されたままになる）
             break;
             
         case k_outlineViewModeText:
-            [_textInsertStringArrayController setContent:nil];
-            [_textOutlineView reloadData]; // （ここでリロードしておかないと、選択行が残ったり展開されたままになる）
+            [[self textInsertStringArrayController] setContent:nil];
+            [[self textOutlineView] reloadData]; // （ここでリロードしておかないと、選択行が残ったり展開されたままになる）
             break;
     }
     
@@ -1034,12 +1035,12 @@ static CEKeyBindingManager *sharedInstance = nil;
     
     switch ([self outlineMode]) {
         case k_outlineViewModeMenu:
-            sheet = _menuEditSheet;
-            theOutlineView = _menuOutlineView;
+            sheet = [self menuEditSheet];
+            theOutlineView = [self menuOutlineView];
             break;
         case k_outlineViewModeText:
-            sheet = _textEditSheet;
-            theOutlineView = _textOutlineView;
+            sheet = [self textEditSheet];
+            theOutlineView = [self textOutlineView];
             break;
         default:
             return;
@@ -1077,15 +1078,15 @@ static CEKeyBindingManager *sharedInstance = nil;
         readableKeyStr = [self readableKeyStringsFromKeySpecChars:keySpec];
         switch ([self outlineMode]) {
             case k_outlineViewModeMenu:
-                [_menuDuplicateTextField setStringValue:[NSString stringWithFormat:
+                [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                          NSLocalizedString(@"'%@' have already been used. Edit it again.",@""), readableKeyStr]];
-                [_menuOkButton setEnabled:NO];
+                [[self menuOkButton] setEnabled:NO];
                 break;
                 
             case k_outlineViewModeText:
-                [_textDuplicateTextField setStringValue:[NSString stringWithFormat:
+                [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                          NSLocalizedString(@"'%@' have already been used. Edit it again.",@""), readableKeyStr]];
-                [_textOkButton setEnabled:NO];
+                [[self textOkButton] setEnabled:NO];
                 break;
         }
         NSBeep();
@@ -1109,15 +1110,15 @@ static CEKeyBindingManager *sharedInstance = nil;
             readableKeyStr = [self readableKeyStringsFromKeySpecChars:keySpec];
             switch ([self outlineMode]) {
                 case k_outlineViewModeMenu:
-                    [_menuDuplicateTextField setStringValue:[NSString stringWithFormat:
+                    [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                              NSLocalizedString(@"'%@' NOT include Command Key. Edit it again.", nil), readableKeyStr]];
-                    [_menuOkButton setEnabled:NO];
+                    [[self menuOkButton] setEnabled:NO];
                     break;
                     
                 case k_outlineViewModeText:
-                    [_textDuplicateTextField setStringValue:[NSString stringWithFormat:
+                    [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                              NSLocalizedString(@"'%@' include Command Key. Edit it again.", nil), readableKeyStr]];
-                    [_textOkButton setEnabled:NO];
+                    [[self textOkButton] setEnabled:NO];
                     break;
             }
             
@@ -1128,13 +1129,13 @@ static CEKeyBindingManager *sharedInstance = nil;
             // メッセージ消去
             switch ([self outlineMode]) {
                 case k_outlineViewModeMenu:
-                    [_menuDuplicateTextField setStringValue:@""];
-                    [_menuOkButton setEnabled:YES];
+                    [[self menuDuplicateTextField] setStringValue:@""];
+                    [[self menuOkButton] setEnabled:YES];
                     break;
                     
                 case k_outlineViewModeText:
-                    [_textDuplicateTextField setStringValue:@""];
-                    [_textOkButton setEnabled:YES];
+                    [[self textDuplicateTextField] setStringValue:@""];
+                    [[self textOkButton] setEnabled:YES];
                     break;
             }
             showsMessage = YES;
@@ -1269,7 +1270,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
     } else if ([self outlineMode] == k_outlineViewModeText) {
         id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        NSArray *contentArray = [[[_textInsertStringArrayController content] copy] autorelease];
+        NSArray *contentArray = [[[[self textInsertStringArrayController] content] copy] autorelease];
 
         fileURL = [self textKeyBindingSettingFileURL]; // データディレクトリパス取得
         dirURL = [fileURL URLByDeletingLastPathComponent];
@@ -1303,7 +1304,7 @@ static CEKeyBindingManager *sharedInstance = nil;
                 [defaultsArray addObject:insertText];
             }
             [defaults setObject:defaultsArray forKey:k_key_insertCustomTextArray];
-            [_textInsertStringArrayController setContent:nil];
+            [[self textInsertStringArrayController] setContent:nil];
         }
     }
 }
@@ -1365,9 +1366,9 @@ static CEKeyBindingManager *sharedInstance = nil;
     id outlineView = nil;
 
     if ([self outlineMode] == k_outlineViewModeMenu) {
-        outlineView = _menuOutlineView;
+        outlineView = [self menuOutlineView];
     } else if ([self outlineMode] == k_outlineViewModeText) {
-        outlineView = _textOutlineView;
+        outlineView = [self textOutlineView];
     }
     if (outlineView == nil) { return; }
 
@@ -1380,9 +1381,9 @@ static CEKeyBindingManager *sharedInstance = nil;
 
         if ([self outlineView:outlineView shouldEditTableColumn:column item:item]) {
             if ([self outlineMode] == k_outlineViewModeMenu) {
-                [_menuDeleteKeyButton setEnabled:YES];
+                [[self menuDeleteKeyButton] setEnabled:YES];
             } else if ([self outlineMode] == k_outlineViewModeText) {
-                [_textDeleteKeyButton setEnabled:YES];
+                [[self textDeleteKeyButton] setEnabled:YES];
             }
             [outlineView editColumn:[outlineView columnWithIdentifier:k_keyBindingKey]
                                 row:selectedRow withEvent:nil select:YES];
