@@ -743,7 +743,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *theString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
     NSString *singleCharInfo = nil;
     NSRange selectedRange = [self selectedRange];
-    NSUInteger numberOfLines = 0, currentLine = 0, length = [theString length];
+    NSUInteger numberOfLines = 0, currentLine = 0, index = 0, length = [theString length];
     NSUInteger lineStart = 0, countInLine = 0;
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
@@ -754,7 +754,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         lineStart = [theString lineRangeForRange:selectedRange].location;
         countInLine = selectedRange.location - lineStart;
 
-        for (NSUInteger index = 0, numberOfLines = 0; index < length; numberOfLines++) {
+        for (index = 0, numberOfLines = 0; index < length; numberOfLines++) {
             if (index <= selectedRange.location) {
                 currentLine = numberOfLines + 1;
             }
