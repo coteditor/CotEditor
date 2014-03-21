@@ -41,14 +41,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntaxManager : NSObject
 {
-    IBOutlet id _styleController;
-    IBOutlet id _editWindow;
-    IBOutlet id _styleNameField;
-    IBOutlet id _messageField;
-    IBOutlet id _elementPopUpButton;
-    IBOutlet id _factoryDefaultsButton;
-    IBOutlet id _extensionErrorTextView;
-    IBOutlet id _syntaxElementCheckTextView;
+    IBOutlet NSArrayController *_styleController;
+    IBOutlet NSWindow *_editWindow;
+    IBOutlet NSTextField *_styleNameField;
+    IBOutlet NSTextField *_messageField;
+    IBOutlet NSPopUpButton *_elementPopUpButton;
+    IBOutlet NSButton *_factoryDefaultsButton;
+    IBOutlet NSTextView *_extensionErrorTextView;
+    IBOutlet NSTextView *_syntaxElementCheckTextView;
 
     NSString *_selectedStyleName;
     NSString *_editedNewStyleName;

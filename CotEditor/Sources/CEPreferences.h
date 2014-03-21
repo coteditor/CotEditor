@@ -40,30 +40,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEPreferences : NSObject
 {
-    IBOutlet id _prefWindow;
-    IBOutlet id _prefTabView;
-    IBOutlet id _prefFontFamilyNameSize;
-    IBOutlet id _printFontFamilyNameSize;
-    IBOutlet id _encodingWindow;
-    IBOutlet id _encodingDataSource;
-    IBOutlet id _encodingMenuInOpen;
-    IBOutlet id _encodingMenuInNew;
-    IBOutlet id _sizeSampleWindow;
-    IBOutlet id _fileDropController;
-    IBOutlet id _fileDropTableView;
-    IBOutlet id _fileDropTextView;
-    IBOutlet id _fileDropGlossaryTextView;
-    IBOutlet id _invisibleSpacePopup;
-    IBOutlet id _invisibleTabPopup;
-    IBOutlet id _invisibleNewLinePopup;
-    IBOutlet id _invisibleFullwidthSpacePopup;
-    IBOutlet id _syntaxStylesPopup;
-    IBOutlet id _syntaxStylesDefaultPopup;
-    IBOutlet id _syntaxStyleEditButton;
-    IBOutlet id _syntaxStyleCopyButton;
-    IBOutlet id _syntaxStyleExportButton;
-    IBOutlet id _syntaxStyleDeleteButton;
-    IBOutlet id _syntaxStyleXtsnErrButton;
+    IBOutlet NSWindow *_prefWindow;
+    IBOutlet NSTabView *_prefTabView;
+    IBOutlet NSTextField *_prefFontFamilyNameSize;
+    IBOutlet NSTextField *_printFontFamilyNameSize;
+    IBOutlet NSWindow *_encodingWindow;
+    IBOutlet CEPrefEncodingDataSource *_encodingDataSource;
+    IBOutlet NSPopUpButton *_encodingMenuInOpen;
+    IBOutlet NSPopUpButton *_encodingMenuInNew;
+    IBOutlet NSWindow *_sizeSampleWindow;
+    IBOutlet NSArrayController *_fileDropController;
+    IBOutlet NSTableView *_fileDropTableView;
+    IBOutlet NSTextView *_fileDropTextView;
+    IBOutlet NSTextView *_fileDropGlossaryTextView;
+    IBOutlet NSPopUpButton *_invisibleSpacePopup;
+    IBOutlet NSPopUpButton *_invisibleTabPopup;
+    IBOutlet NSPopUpButton *_invisibleNewLinePopup;
+    IBOutlet NSPopUpButton *_invisibleFullwidthSpacePopup;
+    IBOutlet NSPopUpButton *_syntaxStylesPopup;
+    IBOutlet NSPopUpButton *_syntaxStylesDefaultPopup;
+    IBOutlet NSButton *_syntaxStyleEditButton;
+    IBOutlet NSButton *_syntaxStyleCopyButton;
+    IBOutlet NSButton *_syntaxStyleExportButton;
+    IBOutlet NSButton *_syntaxStyleDeleteButton;
+    IBOutlet NSButton *_syntaxStyleXtsnErrButton;
 
     CGFloat _sampleWidth;
     CGFloat _sampleHeight;

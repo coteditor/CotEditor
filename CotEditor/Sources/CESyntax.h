@@ -44,8 +44,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntax : NSObject
 {
-    IBOutlet id _coloringIndicator;
-    IBOutlet id _coloringCaption;
+    IBOutlet NSProgressIndicator *_coloringIndicator;
+    IBOutlet NSTextField *_coloringCaption;
 
     CELayoutManager *_layoutManager;
     NSString *_wholeString;

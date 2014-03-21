@@ -40,22 +40,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEKeyBindingManager : NSObject
 {
-    IBOutlet id _menuEditSheet;
-    IBOutlet id _menuOutlineView;
-    IBOutlet id _menuDuplicateTextField;
-    IBOutlet id _menuEditKeyButton;
-    IBOutlet id _menuDeleteKeyButton;
-    IBOutlet id _menuFactoryDefaultsButton;
-    IBOutlet id _menuOkButton;
-    IBOutlet id _textEditSheet;
-    IBOutlet id _textOutlineView;
-    IBOutlet id _textDuplicateTextField;
-    IBOutlet id _textEditKeyButton;
-    IBOutlet id _textDeleteKeyButton;
-    IBOutlet id _textFactoryDefaultsButton;
-    IBOutlet id _textOkButton;
-    IBOutlet id _textInsertStringTextView;
-    IBOutlet id _textInsertStringArrayController;
+    IBOutlet NSWindow *_menuEditSheet;
+    IBOutlet NSOutlineView *_menuOutlineView;
+    IBOutlet NSTextField *_menuDuplicateTextField;
+    IBOutlet NSButton *_menuEditKeyButton;
+    IBOutlet NSButton *_menuDeleteKeyButton;
+    IBOutlet NSButton *_menuFactoryDefaultsButton;
+    IBOutlet NSButton *_menuOkButton;
+    IBOutlet NSWindow *_textEditSheet;
+    IBOutlet NSOutlineView *_textOutlineView;
+    IBOutlet NSTextField *_textDuplicateTextField;
+    IBOutlet NSButton *_textEditKeyButton;
+    IBOutlet NSButton *_textDeleteKeyButton;
+    IBOutlet NSButton *_textFactoryDefaultsButton;
+    IBOutlet NSButton *_textOkButton;
+    IBOutlet NSTextView *_textInsertStringTextView;
+    IBOutlet NSArrayController *_textInsertStringArrayController;
 
     NSMutableArray *_outlineDataArray;
     NSMutableArray *_duplicateKeyCheckArray;
