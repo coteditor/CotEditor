@@ -35,38 +35,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CESyntaxManager.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CESyntaxManager (Private)
-- (NSDictionary *)emptyColoringStyle;
-- (void)setupColoringStyleArray;
-- (void)setupExtensionAndSyntaxTable;
-- (void)saveColoringStyle;
-- (NSString *)pathOfStyleDirectory;
-- (NSURL *)URLOfStyleDirectory;
-- (BOOL)copyDefaultSyntaxStylesTo:(NSString *)inDestinationPath;
-- (NSString *)copiedSyntaxName:(NSString *)inOriginalName;
-- (void)setExtensionErrorToTextView;
-- (void)setupSyntaxSheetControles;
-- (void)editNewAddedRowOfTableView:(NSTableView *)inTableView;
-- (NSInteger)syntaxElementError;
-- (NSInteger)syntaxElementCheck;
+@interface CESyntaxManager ()
+
 @end
 
 
-//------------------------------------------------------------------------------------------
 
-
-
+#pragma mark -
 
 @implementation CESyntaxManager
 
 static CESyntaxManager *sharedInstance = nil;
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 //=======================================================
 // Class method
@@ -83,7 +65,7 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -483,7 +465,7 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSTableView)
@@ -508,7 +490,7 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -615,11 +597,8 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 
-@end
 
-
-
-@implementation CESyntaxManager (Private)
+#pragma mark Private Mthods
 
 //=======================================================
 // Private method

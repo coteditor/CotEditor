@@ -36,42 +36,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEPreferences.h"
 #import "CEAppController.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CEPreferences (Private)
-- (void)updateUserDefaults;
-- (void)setFontFamilyNameAndSize;
-- (void)setContentFileDropController;
-- (void)setupInvisibleSpacePopup;
-- (void)setupInvisibleTabPopup;
-- (void)setupInvisibleNewLinePopup;
-- (void)setupInvisibleFullwidthSpacePopup;
-- (void)setupSyntaxStylesPopup;
-- (void)deleteStyleAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)secondarySheedlDidEnd:(NSAlert *)inSheet 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)autoDetectAlertDidEnd:(NSAlert *)inSheet 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow;
-- (void)doDeleteFileDropSetting;
-- (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)inAlert 
-        returnCode:(NSInteger)inReturnCode contextInfo:(void *)inContextInfo;
-- (void)editNewAddedRowOfFileDropTableView;
+@interface CEPreferences ()
+
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 
+#pragma mark -
 
 @implementation CEPreferences
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -265,7 +243,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -296,7 +274,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Selector for Notification (NSApplication)
@@ -375,7 +353,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -828,11 +806,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@end
-
-
-
-@implementation CEPreferences (Private)
+#pragma mark Private Mthods
 
 //=======================================================
 // Private method

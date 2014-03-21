@@ -35,50 +35,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEKeyBindingManager.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CEKeyBindingManager (Private)
-- (NSString *)pathOfMenuKeyBindingSettingFile;
-- (NSString *)pathOfTextKeyBindingSettingFile;
-- (void)setupMenuKeyBindingDictionary;
-- (void)setupTextKeyBindingDictionary;
-- (void)clearAllMenuKeyBindingOf:(NSMenu *)inMenu;
-- (void)updateMenuValidation:(NSMenu *)inMenu;
-- (void)resetAllMenuKeyBindingWithDictionary;
-- (void)resetKeyBindingWithDictionaryTo:(NSMenu *)inMenu;
-- (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)inMenu;
-- (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)inBool;
-- (NSString *)readableKeyStringsFromKeySpecChars:(NSString *)inString;
-- (NSString *)readableKeyStringsFromKeyEquivalent:(NSString *)inString;
-- (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)inString modifierFrags:(NSUInteger)inModFlags;
-- (NSString *)readableKeyStringsFromModKeySpecChars:(NSString *)inModString withShiftKey:(BOOL)inBool;
-- (NSString *)visibleCharFromIgnoringModChar:(NSString *)inIgModChar;
-- (BOOL)showDuplicateKeySpecCharsMessageWithKeySpecChars:(NSString *)inKeySpec oldChars:(NSString *)inOldSpec;
-- (NSMutableArray *)duplicateKeyCheckArrayWithMenu:(NSMenu *)inMenu;
-- (NSArray *)duplicateKeyCheckArrayWithArray:(NSArray *)inArray;
-- (NSMutableDictionary *)keyBindingDictionaryFromOutlineViewDataArray:(NSArray *)inArray;
-- (void)saveOutlineViewData;
-- (NSString *)keySpecCharsInDictionaryFromSelectorString:(NSString *)inSelectorStr;
-- (void)performEditOutlineViewSelectedKeyBindingKeyColumn;
-- (void)resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:(NSMutableArray *)inArray;
-- (NSDictionary *)noPrintableKeyDictionary;
-- (NSArray *)textKeyBindingSelectorStrArray;
+@interface CEKeyBindingManager ()
+
+
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 
+#pragma mark -
 
 @implementation CEKeyBindingManager
 
 static CEKeyBindingManager *sharedInstance = nil;
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 //=======================================================
 // Class method
@@ -95,7 +68,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -264,7 +237,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -426,7 +399,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSOutlineView)
@@ -473,7 +446,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -624,10 +597,8 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 
 
-@end
 
-
-@implementation CEKeyBindingManager (Private)
+#pragma mark Private Mthods
 
 //=======================================================
 // Private method

@@ -37,47 +37,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEEditorView.h"
 #import "CEPrivateMutableArray.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CESyntax (Private)
-- (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)inWordsDict 
-                withCharString:(NSMutableString *)inCharString;
-- (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)inWordsDict 
-            withCharString:(NSMutableString *)inCharString;
-- (NSArray *)rangesBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
-- (NSArray *)rangesRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
-- (NSArray *)checkRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
-- (NSArray *)rangesRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
-- (NSArray *)checkRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind;
-- (void)setAttrToCommentsWithSyntaxArray:(NSArray *)inArray 
-        withSingleQuotes:(BOOL)inValueSingleQuotes withDoubleQuotes:(BOOL)inValueDoubleQuotes 
-        updateIndicator:(BOOL)inValueUpdateIndicator;
-- (NSUInteger)numberOfEscapeSequenceInString:(NSString *)inString;
-- (void)setOtherInvisibleCharsAttrs;
-- (void)doColoring;
-- (double)doubleValueOfIndicator;
-- (void)setDoubleIndicator:(double)inValue;
+@interface CESyntax ()
+
+
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 
+#pragma mark -
 
 @implementation CESyntax
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -527,7 +501,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -542,11 +516,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [NSApp abortModal];
 }
 
-@end
 
 
-
-@implementation CESyntax (Private)
+#pragma mark Private Mthods
 
 //=======================================================
 // Private method

@@ -35,29 +35,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CESubSplitView.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CESubSplitView (Private)
-- (void)adjustTextFrameSize;
-- (void)doUpdateLineNumberWithTimer:(NSTimer *)inTimer;
-- (void)doUpdateOutlineMenuWithTimer:(NSTimer *)inTimer;
-- (void)resetBackgroundColor:(id)sender;
-- (void)updateInfo;
-- (void)showHighlightCurrentLine;
+@interface CESubSplitView ()
+
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 
+#pragma mark -
 
 @implementation CESubSplitView
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -551,7 +542,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (CETextViewCore)
@@ -795,11 +786,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@end
 
-
-
-@implementation CESubSplitView (Private)
+#pragma mark Private Mthods
 
 //=======================================================
 // Private method

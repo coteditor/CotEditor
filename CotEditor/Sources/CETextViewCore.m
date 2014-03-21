@@ -43,36 +43,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
-@interface CETextViewCore (Private)
-- (void)redoReplaceString:(NSString *)inString withRange:(NSRange)inRange 
-            withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
-- (void)doInsertString:(NSString *)inString withRange:(NSRange)inRange 
-            withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName scroll:(BOOL)inBoolToScroll;
-- (NSString *)halfToFullwidthRomanStringFrom:(NSString *)inString;
-- (NSString *)fullToHalfwidthRomanStringFrom:(NSString *)inString;
-- (NSString *)hiraganaToKatakanaStringFrom:(NSString *)inString;
-- (NSString *)katakanaToHiraganaStringFrom:(NSString *)inString;
-- (BOOL)draggedItemsArray:(NSArray *)inArray containsExtensionInExtensions:(NSArray *)inExtensions;
-- (void)updateLineNumberAndAdjustScroll;
-- (void)replaceLineEndingToDocCharInPboard:(NSPasteboard *)inPboard;
+@interface CETextViewCore ()
+
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 
+#pragma mark -
 
 @implementation CETextViewCore
 
 
 
-#pragma mark ===== Public method =====
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -1462,7 +1448,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -1502,7 +1488,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Action messages =====
+#pragma mark Action Messages
 
 //=======================================================
 // Action messages
@@ -1942,11 +1928,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-@end
 
-
-
-@implementation CETextViewCore (Private)
+#pragma mark Private Mthods
 
 // ------------------------------------------------------
 - (void)redoReplaceString:(NSString *)inString withRange:(NSRange)inRange 
