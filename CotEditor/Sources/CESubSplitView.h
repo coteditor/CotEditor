@@ -11,8 +11,6 @@ CESubSplitView
 encoding="UTF-8"
 Created:2006.03.18
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -43,15 +41,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESubSplitView : NSView <NSTextViewDelegate>
 
-@property (nonatomic, retain) CEEditorView *editorView;
+@property (nonatomic, strong) CEEditorView *editorView;
 
 // readonly
-@property (nonatomic, readonly, retain) NSScrollView *scrollView;
-@property (nonatomic, readonly, retain) CETextViewCore *textView;
-@property (nonatomic, readonly, retain) CELineNumView *lineNumView;
-@property (nonatomic, readonly, retain) CENavigationBarView *navigationBar;
-@property (nonatomic, readonly, retain) CESyntax *syntax;
-@property (nonatomic, readonly, retain) NSDictionary *highlightBracesColorDict;
+@property (nonatomic, readonly, strong) NSScrollView *scrollView;
+@property (nonatomic, readonly, strong) CETextViewCore *textView;
+@property (nonatomic, readonly, strong) CELineNumView *lineNumView;
+@property (nonatomic, readonly, strong) CENavigationBarView *navigationBar;
+@property (nonatomic, readonly, strong) CESyntax *syntax;
+@property (nonatomic, readonly, strong) NSDictionary *highlightBracesColorDict;
 
 
 // Public method

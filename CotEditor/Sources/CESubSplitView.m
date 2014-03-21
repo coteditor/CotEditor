@@ -11,8 +11,6 @@ CESubSplitView
 encoding="UTF-8"
 Created:2006.03.18
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -39,8 +37,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESubSplitView ()
 
-@property (nonatomic, retain) NSTimer *lineNumUpdateTimer;
-@property (nonatomic, retain) NSTimer *outlineMenuTimer;
+@property (nonatomic) NSTimer *lineNumUpdateTimer;
+@property (nonatomic) NSTimer *outlineMenuTimer;
 @property (nonatomic) NSTimeInterval lineNumUpdateInterval;
 @property (nonatomic) NSTimeInterval outlineMenuInterval;
 @property (nonatomic) NSRange hilightedLineRange;
@@ -53,13 +51,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // readonly
-@property (nonatomic, readwrite, retain) NSScrollView *scrollView;
-@property (nonatomic, readwrite, retain) CETextViewCore *textView;
-@property (nonatomic, readwrite, retain) CELineNumView *lineNumView;
-@property (nonatomic, readwrite, retain) CENavigationBarView *navigationBar;
-@property (nonatomic, readwrite, retain) CESyntax *syntax;
-@property (nonatomic, readwrite, retain) NSDictionary *highlightBracesColorDict;
-@property (nonatomic, readwrite, retain) NSTextStorage *textStorage;
+@property (nonatomic, readwrite) NSScrollView *scrollView;
+@property (nonatomic, readwrite) CETextViewCore *textView;
+@property (nonatomic, readwrite) CELineNumView *lineNumView;
+@property (nonatomic, readwrite) CENavigationBarView *navigationBar;
+@property (nonatomic, readwrite) CESyntax *syntax;
+@property (nonatomic, readwrite) NSDictionary *highlightBracesColorDict;
+@property (nonatomic, readwrite) NSTextStorage *textStorage;
 
 @end
 
@@ -105,7 +103,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self navigationBar] setMasterView:self];
         [self addSubview:[self navigationBar]];
 
-        [self setScrollView:[[NSScrollView alloc] initWithFrame:frameRect]]; // ===== alloc
+        [self setScrollView:[[NSScrollView alloc] initWithFrame:frameRect]];
         [[self scrollView] setBorderType:NSNoBorder];
         [[self scrollView] setHasVerticalScroller:YES];
         [[self scrollView] setHasHorizontalScroller:YES];
@@ -117,18 +115,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self addSubview:[self scrollView] positioned:NSWindowBelow relativeTo:[self navigationBar]];
 
         // TextStorage と LayoutManager を生成
-        [self setTextStorage:[[NSTextStorage alloc] init]]; // ===== alloc
-        CELayoutManager *layoutManager = [[CELayoutManager alloc] init]; // ===== alloc
+        [self setTextStorage:[[NSTextStorage alloc] init]];
+        CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [[self textStorage] addLayoutManager:layoutManager];
         [layoutManager setBackgroundLayoutEnabled:YES];
         [layoutManager setUseAntialias:[defaults boolForKey:k_key_shouldAntialias]];
         [layoutManager setFixLineHeight:[defaults boolForKey:k_key_fixLineHeight]];
 
         // NSTextContainer と CESyntax を生成
-        NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // ===== alloc
+        NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
         [layoutManager addTextContainer:container];
 
-        [self setSyntax:[[CESyntax alloc] init]]; // ===== alloc
+        [self setSyntax:[[CESyntax alloc] init]];
         [[self syntax] setSyntaxStyleName:NSLocalizedString(@"None",@"")];
         [[self syntax] setLayoutManager:layoutManager];
         [[self syntax] setIsPrinting:NO];
@@ -137,7 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRect textFrame;
         textFrame.origin = NSZeroPoint;
         textFrame.size = [[self scrollView] contentSize]; // (frame will start at upper left.)
-        [self setTextView:[[CETextViewCore alloc] initWithFrame:textFrame textContainer:container]]; // ===== alloc
+        [self setTextView:[[CETextViewCore alloc] initWithFrame:textFrame textContainer:container]];
         [[self textView] setDelegate:self];
         
 //        !!!: OgreKitの改造部分が失われたため現在機能していない (2014-03-16 by 1024jp)
@@ -168,14 +166,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setOutlineMenuInterval:[defaults doubleForKey:k_key_outlineMenuInterval]];
         [self setHighlightBracesColorDict:[[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_selectionColor]],
-                    NSBackgroundColorAttributeName, nil]]; // ===== alloc
+                    NSBackgroundColorAttributeName, nil]];
         [self setHighlightCurrentLine:[defaults boolForKey:k_key_highlightCurrentLine]];
         [self setSetsHiliteLineColorToIMChars:[defaults boolForKey:k_key_setHiliteLineColorToIMChars]];
         [self setHadMarkedText:NO];
-
-        // システム側で保持されるオブジェクトを解放
-        [layoutManager release]; // ===== release
-        [container release]; // ===== release
 
     }
     return self;
@@ -192,21 +186,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setEditorView:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_syntax release];
 
     [[self textView] setDelegate:nil];
-    [[self textView] release]; // release from myself
-
-    // release "Text System" == NSTextStorage, CELayoutManager, NSTextContainer, CETextViewCore.
-    [_textStorage release];
-
-    [_scrollView release];
-    [_lineNumView release];
-    [_navigationBar release];
-
-    [_highlightBracesColorDict release];
-
-    [super dealloc];
 }
 
 
@@ -256,8 +237,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // TextStorage を置換
 // ------------------------------------------------------
 {
-    [textStorage retain];
-    [_textStorage release];
     _textStorage = textStorage;
     [[[self textView] layoutManager] replaceTextStorage:textStorage];
 }
@@ -454,7 +433,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self lineNumUpdateTimer]) {
         [[self lineNumUpdateTimer] invalidate];
-        [_lineNumUpdateTimer release]; // ===== release
         [self setLineNumUpdateTimer:nil];
     }
 }
@@ -467,7 +445,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self outlineMenuTimer]) {
         [[self outlineMenuTimer] invalidate];
-        [_outlineMenuTimer release]; // ===== release
         [self setOutlineMenuTimer:nil];
     }
 }
@@ -795,22 +772,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self lineNumUpdateTimer]) {
         [[self lineNumUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self lineNumUpdateInterval]]];
     } else {
-        [self setLineNumUpdateTimer:[[NSTimer scheduledTimerWithTimeInterval:[self lineNumUpdateInterval]
-                                                                      target:self
-                                                                    selector:@selector(doUpdateLineNumberWithTimer:)
-                                                                    userInfo:nil
-                                                                     repeats:NO] retain]]; // ===== retain
+        [self setLineNumUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:[self lineNumUpdateInterval]
+                                                                     target:self
+                                                                   selector:@selector(doUpdateLineNumberWithTimer:)
+                                                                   userInfo:nil
+                                                                    repeats:NO]];
     }
 
     // アウトラインメニュー項目更新
     if ([self outlineMenuTimer]) {
         [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self outlineMenuInterval]]];
     } else {
-        [self setOutlineMenuTimer:[[NSTimer scheduledTimerWithTimeInterval:[self outlineMenuInterval]
-                                                                    target:self
-                                                                  selector:@selector(doUpdateOutlineMenuWithTimer:)
-                                                                  userInfo:nil
-                                                                   repeats:NO] retain]]; // ===== retain
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:[self outlineMenuInterval]
+                                                                   target:self
+                                                                 selector:@selector(doUpdateOutlineMenuWithTimer:)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
     }
 
     // 非互換文字リスト更新
