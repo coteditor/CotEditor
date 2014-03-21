@@ -40,7 +40,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CESyntaxManager ()
 
 @property (nonatomic, retain) NSArray *coloringStyleArray;
-@property (nonatomic) BOOL addedItemInLeopard;  // ???: 今でも必要? 1024jp 2014-03
 @property (nonatomic) NSInteger sheetOpeningMode;
 @property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
 
@@ -108,7 +107,6 @@ static CESyntaxManager *sharedInstance = nil;
         [self setupColoringStyleArray];
         [self setupExtensionAndSyntaxTable];
         [self setIsOkButtonPressed:NO];
-        [self setAddedItemInLeopard:NO];
         sharedInstance = self;
     }
     return sharedInstance;
@@ -431,6 +429,7 @@ static CESyntaxManager *sharedInstance = nil;
     // 最下行が選択されたのなら、編集開始のメソッドを呼び出す
     //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
     if ((row + 1) == [tableView numberOfRows]) {
+        [tableView scrollRowToVisible:row];
         [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:)
                                withObject:tableView
                             waitUntilDone:NO];
@@ -851,20 +850,6 @@ static CESyntaxManager *sharedInstance = nil;
 // 最下行が選択され、一番左のコラムが入力されていなければ自動的に編集を開始する
 //------------------------------------------------------
 {
-    // 10.5.2で実行されているとき、selectedRow では実際の選択行番号が返ってくるが、
-    // [[theColumn dataCellForRow:[inTableView selectedRow]] stringValue] で、
-    // 表示上の最下行の内容が返ってくる（更新タイミングが変更された？）ため、「小手先の処理」をおこなう。 2008.05.06.
-    if (floor(NSAppKitVersionNumber) >= 949) { // 949 = LeopardのNSAppKitVersionNumber
-        if ([self addedItemInLeopard] == NO) {
-            [self setAddedItemInLeopard:YES];
-            [tableView scrollRowToVisible:[tableView selectedRow]];
-            [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:)
-                                   withObject:tableView waitUntilDone:NO];
-            return;
-        }
-        [self setAddedItemInLeopard:NO];
-    }
-
     NSTableColumn *column = [tableView tableColumns][0];
     NSInteger row = [tableView selectedRow];
     id cell = [column dataCellForRow:row];
