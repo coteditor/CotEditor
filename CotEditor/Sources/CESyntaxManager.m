@@ -11,8 +11,6 @@ CESyntaxManager
 encoding="UTF-8"
 Created:2004.12.24
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -39,26 +37,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntaxManager ()
 
-@property (nonatomic, retain) NSArray *coloringStyleArray;
+@property (nonatomic) NSArray *coloringStyleArray;
 @property (nonatomic) NSInteger sheetOpeningMode;
 @property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
 
-@property (nonatomic, assign) IBOutlet NSTextField *styleNameField;
-@property (nonatomic, assign) IBOutlet NSTextField *messageField;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *elementPopUpButton;
-@property (nonatomic, assign) IBOutlet NSButton *factoryDefaultsButton;
-@property (nonatomic, retain) IBOutlet NSTextView *extensionErrorTextView;
-@property (nonatomic, assign) IBOutlet NSTextView *syntaxElementCheckTextView;
+@property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
+@property (nonatomic, weak) IBOutlet NSTextField *messageField;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *elementPopUpButton;
+@property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
+@property (nonatomic, strong) IBOutlet NSTextView *extensionErrorTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, strong) IBOutlet NSTextView *syntaxElementCheckTextView;  // on 10.8 NSTextView cannot be weak
 
-@property (nonatomic, retain) IBOutlet NSArrayController *styleController;;
+@property (nonatomic) IBOutlet NSArrayController *styleController;;
 
 // readonly
-@property (nonatomic, retain, readwrite) NSString *selectedStyleName;
-@property (nonatomic, retain, readwrite) NSDictionary *xtsnAndStyleTable;
-@property (nonatomic, retain, readwrite) NSDictionary *xtsnErrors;
-@property (nonatomic, retain, readwrite) NSArray *extensions;
+@property (nonatomic, readwrite) NSString *selectedStyleName;
+@property (nonatomic, readwrite) NSDictionary *xtsnAndStyleTable;
+@property (nonatomic, readwrite) NSDictionary *xtsnErrors;
+@property (nonatomic, readwrite) NSArray *extensions;
 
-@property (nonatomic, retain, readwrite) IBOutlet NSWindow *editWindow;
+@property (nonatomic, readwrite) IBOutlet NSWindow *editWindow;
 
 @end
 
@@ -110,25 +108,6 @@ static CESyntaxManager *sharedInstance = nil;
         sharedInstance = self;
     }
     return sharedInstance;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// あとかたづけ
-// ------------------------------------------------------
-{
-    // NSBundle loadNibNamed: でロードされたオブジェクトを開放
-    // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
-    [_editWindow release]; // （コンテントビューは自動解放される）
-    [_extensionErrorTextView release];
-    [_styleController release];
-
-    [_selectedStyleName release];
-    [_editedNewStyleName release];
-    [_extensions release];
-
-    [super dealloc];
 }
 
 
@@ -669,18 +648,18 @@ static CESyntaxManager *sharedInstance = nil;
     NSMutableDictionary *dict;
     NSArray *arraysArray = @[k_SCKey_allArrays];
     NSMutableArray *keyStrings;
-    NSSortDescriptor *descriptorOne = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
-                                                                   ascending:YES
-                                                                    selector:@selector(caseInsensitiveCompare:)] autorelease];
-    NSSortDescriptor *descriptorTwo = [[[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString
-                                                                   ascending:YES
-                                                                    selector:@selector(caseInsensitiveCompare:)] autorelease];
+    NSSortDescriptor *descriptorOne = [[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
+                                                                  ascending:YES
+                                                                   selector:@selector(caseInsensitiveCompare:)];
+    NSSortDescriptor *descriptorTwo = [[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString
+                                                                  ascending:YES
+                                                                   selector:@selector(caseInsensitiveCompare:)];
     NSArray *descriptors = @[descriptorOne, descriptorTwo];
 
     // styleController内のコンテンツオブジェクト取得
     NSArray *contents = [[self styleController] selectedObjects];
     // styleデータ保存（選択中のオブジェクトはひとつだから、配列の最初の要素のみ処理する 2008.11.02）
-    dict = [contents[0] mutableCopy]; // ===== mutableCopy
+    dict = [contents[0] mutableCopy];
     for (id key in arraysArray) {
         keyStrings = dict[key];
         [keyStrings sortUsingDescriptors:descriptors];
@@ -694,7 +673,6 @@ static CESyntaxManager *sharedInstance = nil;
         }
         [dict writeToURL:saveURL atomically:YES];
     }
-    [dict release]; // ===== release
 }
 
 
