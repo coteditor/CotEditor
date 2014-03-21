@@ -11,8 +11,6 @@ CETextViewCore
 encoding="UTF-8"
 Created:2005.03.30
  
- -fno-objc-arc
- 
 ------------
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
@@ -52,10 +50,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) CGFloat lineSpacing;
 @property (nonatomic) NSRect highlightLineAdditionalRect;  // ハイライト行で追加表示する矩形
 
-@property (nonatomic, assign) NSView *slaveView;  // LineNumView
-@property (nonatomic, retain) NSString *lineEndingString;  // 行末文字
-@property (nonatomic, retain) NSDictionary *typingAttrs;  // キー入力時の文字修飾辞書
-@property (nonatomic, retain) NSColor *highlightLineColor;  // カレント行ハイライト色
+@property (nonatomic, weak) NSView *slaveView;  // LineNumView
+@property (nonatomic, strong) NSString *lineEndingString;  // 行末文字
+@property (nonatomic, strong) NSDictionary *typingAttrs;  // キー入力時の文字修飾辞書
+@property (nonatomic, strong) NSColor *highlightLineColor;  // カレント行ハイライト色
 
 
 // Public method

@@ -11,8 +11,6 @@ CETextViewCore
 encoding="UTF-8"
 Created:2005.03.30
  
- -fno-objc-arc
- 
 ------------
 This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
 JSDTextView is released as public domain.
@@ -90,8 +88,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSFont *font = [NSFont fontWithName:name size:size];
         CGFloat sizeOfTab = [widthStr sizeWithAttributes:@{NSFontAttributeName:font}].width;
 
-        [widthStr release]; // ===== release
-
         NSDictionary *attrs;
         NSColor *backgroundColor, *highlightLineColor;
         NSMutableParagraphStyle *paragraphStyle;
@@ -107,7 +103,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         attrs = @{NSParagraphStyleAttributeName: paragraphStyle,
                   NSFontAttributeName: font,
                   NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_textColor]]};
-        [paragraphStyle release]; // ===== release
         [self setTypingAttrs:attrs];
         [self setEffectTypingAttrs];
         // （NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
@@ -151,20 +146,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     return self;
-}
-
-
-// ------------------------------------------------------
-- (void)dealloc
-// 後片付け
-// ------------------------------------------------------
-{
-//    _slaveViewは保持されていない
-    [_lineEndingString release];
-    [_typingAttrs release];
-    [_highlightLineColor release];
-
-    [super dealloc];
 }
 
 
@@ -359,12 +340,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSMenu *outMenu = [super menuForEvent:theEvent];
-    NSMenuItem *selectAllMenuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select All", nil)
-                                                                action:@selector(selectAll:) keyEquivalent:@""] autorelease];
-    NSMenuItem *utilityMenuItem = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Utility", nil)
-                                                              action:nil keyEquivalent:@""] autorelease];
-    NSMenu *utilityMenu = [[[[[NSApp mainMenu] itemAtIndex:k_utilityMenuIndex] submenu] copy] autorelease];
-    NSMenuItem *ASMenuItem = [[[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""] autorelease];
+    NSMenuItem *selectAllMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select All", nil)
+                                                               action:@selector(selectAll:) keyEquivalent:@""];
+    NSMenuItem *utilityMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Utility", nil)
+                                                             action:nil keyEquivalent:@""];
+    NSMenu *utilityMenu = [[[[NSApp mainMenu] itemAtIndex:k_utilityMenuIndex] submenu] copy];
+    NSMenuItem *ASMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
     NSMenu *ASSubMenu = [[CEScriptManager sharedInstance] contexualMenu];
 
     // 「フォント」メニューおよびサブメニューを削除
@@ -407,7 +388,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 addItem = [(NSMenuItem *)[ASSubMenu itemAtIndex:i] copy]; // ===== copy
                 [addItem setTag:k_scriptMenuTag];
                 [outMenu addItem:addItem];
-                [addItem release]; // ===== release
             }
         } else{
             [ASMenuItem setImage:[NSImage imageNamed:@"scriptMenuIcon"]];
@@ -451,7 +431,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // フォントを設定
 // ------------------------------------------------------
 {
-    NSMutableDictionary *attrs = [[[self typingAttrs] mutableCopy] autorelease];
+    NSMutableDictionary *attrs = [[self typingAttrs] mutableCopy];
 
 // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
 // （CELayoutManager で [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
@@ -1160,7 +1140,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 置換を実行
 // ------------------------------------------------------
 {
-    NSString *newStr = [[string copy] autorelease];
+    NSString *newStr = [string copy];
     NSString *curStr = [[self string] substringWithRange:range];
 
     // regist Undo
@@ -1702,7 +1682,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // CEDocument > writeWithBackupToFile:ofType:saveOperation:でも同様の処理を行っている (2008.06.01)
     [undoManager beginUndoGrouping];
     [self setSelectedRange:range];
-    [super insertText:[[string copy] autorelease]];
+    [super insertText:[string copy]];
     [self setSelectedRange:selection];
     if (doScroll) {
         [self scrollRangeToVisible:selection];
