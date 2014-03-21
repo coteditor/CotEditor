@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEToolbarController ()
 
-@property (nonatomic, retain) NSToolbar *toolbar;
+@property (nonatomic) NSToolbar *toolbar;
 
 @property (nonatomic, weak) IBOutlet NSWindow *mainWindow;
 @property (nonatomic) IBOutlet NSPopUpButton *lineEndingPopupButton;// Outletだが、片付けられてしまうため strong

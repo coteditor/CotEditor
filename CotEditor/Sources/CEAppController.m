@@ -42,11 +42,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEAppController ()
 
-@property (nonatomic, retain) NSArray *invalidYenEncodings;
+@property (nonatomic) NSArray *invalidYenEncodings;
 @property (nonatomic) BOOL didFinishLaunching;
 
 // readonly
-@property (nonatomic, retain, readwrite) CEPreferences *preferencesController;
+@property (nonatomic, strong, readwrite) CEPreferences *preferencesController;
 
 @end
 

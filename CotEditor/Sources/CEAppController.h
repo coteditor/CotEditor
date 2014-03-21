@@ -41,10 +41,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEAppController : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, retain) NSMenu *encodingMenu;
-@property (nonatomic, retain) NSMenu *syntaxMenu;
+@property (nonatomic, strong) NSMenu *encodingMenu;
+@property (nonatomic, strong) NSMenu *syntaxMenu;
 
-@property (nonatomic, retain, readonly) CEPreferences *preferencesController;
+@property (nonatomic, strong, readonly) CEPreferences *preferencesController;
 
 
 // class method

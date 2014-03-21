@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CENavigationBarView : NSView
 
-@property (nonatomic, assign) CESubSplitView *masterView;
+@property (nonatomic, weak) CESubSplitView *masterView;
 @property (nonatomic) BOOL showNavigationBar;
 
 // Public method

@@ -39,11 +39,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CENavigationBarView ()
 
-@property (nonatomic, retain) CEOutlineMenuButton *outlineMenu;
-@property (nonatomic, retain) NSButton *prevButton;
-@property (nonatomic, retain) NSButton *nextButton;
-@property (nonatomic, retain) NSButton *openSplitButton;
-@property (nonatomic, retain) NSButton *closeSplitButton;
+@property (nonatomic) CEOutlineMenuButton *outlineMenu;
+@property (nonatomic) NSButton *prevButton;
+@property (nonatomic) NSButton *nextButton;
+@property (nonatomic) NSButton *openSplitButton;
+@property (nonatomic) NSButton *closeSplitButton;
 
 @end
 
