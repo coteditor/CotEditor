@@ -74,10 +74,10 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
 @implementation CEPrintView
 
-#pragma mark Public Methods
+#pragma mark NSTextView Methods
 
 //=======================================================
-// Public method
+// NSTextView method
 //
 //=======================================================
 
@@ -265,7 +265,6 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
 
 
-#pragma mark -
 #pragma mark Public Methods
 
 //=======================================================

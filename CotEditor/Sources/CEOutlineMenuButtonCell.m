@@ -36,10 +36,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEOutlineMenuButtonCell
 
-#pragma mark Public Methods
+#pragma mark NSPopUpButtonCell Methods
 
 //=======================================================
-// Public method
+// NSPopUpButtonCell method
 //
 //=======================================================
 

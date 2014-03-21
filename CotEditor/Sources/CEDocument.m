@@ -1433,7 +1433,7 @@ enum { typeFSS = 'fss ' };
 
 
 
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 //=======================================================
 // Private method

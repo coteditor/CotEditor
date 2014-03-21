@@ -59,10 +59,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEStatusBarView
 
-#pragma mark Public Methods
+#pragma mark NSView Methods
 
 //=======================================================
-// Public method
+// NSView method
 //
 //=======================================================
 
@@ -120,6 +120,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+- (void)drawRect:(NSRect)dirtyRect
+// 矩形を描画
+// ------------------------------------------------------
+{
+    if (![self masterView] || ![self showStatusBar]) {
+        return;
+    }
+    
+    // fill in background
+    [[NSColor windowBackgroundColor] set];
+    [NSBezierPath fillRect:dirtyRect];
+    
+    // draw frame border (only top line)
+    [[NSColor controlShadowColor] set];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]))
+                              toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]))];
+}
+
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
+
+// ------------------------------------------------------
 - (void)setShowStatusBar:(BOOL)showStatusBar
 // ステータスバー表示の有無をセット
 // ------------------------------------------------------
@@ -148,28 +176,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-- (void)drawRect:(NSRect)dirtyRect
-// 矩形を描画
-// ------------------------------------------------------
-{
-    if (![self masterView] || ![self showStatusBar]) {
-        return;
-    }
-    
-    // fill in background
-    [[NSColor windowBackgroundColor] set];
-    [NSBezierPath fillRect:dirtyRect];
-    
-    // draw frame border (only top line)
-    [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]))
-                              toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]))];
-}
 
+#pragma mark Private Methods
 
-
-#pragma mark - Private Methods
+//=======================================================
+// Private method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (void)setHeight:(CGFloat)height

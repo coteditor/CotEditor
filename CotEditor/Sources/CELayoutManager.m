@@ -67,10 +67,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CELayoutManager
 
-#pragma mark Public Methods
+#pragma mark NSLayoutManager Methods
 
 //=======================================================
-// Public method
+// NSLayoutManager method
 //
 //=======================================================
 
@@ -262,6 +262,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
 }
 
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (void)setShowInvisibles:(BOOL)showInvisibles

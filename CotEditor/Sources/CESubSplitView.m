@@ -70,10 +70,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CESubSplitView
 
-#pragma mark Public Methods
+#pragma mark NSView Methods
 
 //=======================================================
-// Public method
+// NSView method
 //
 //=======================================================
 
@@ -211,6 +211,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super dealloc];
 }
 
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (void)releaseEditorView

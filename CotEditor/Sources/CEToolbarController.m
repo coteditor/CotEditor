@@ -178,7 +178,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -196,7 +196,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSToolbar)
@@ -431,7 +431,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 //=======================================================
 // Private method

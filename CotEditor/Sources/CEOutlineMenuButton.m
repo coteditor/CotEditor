@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEOutlineMenuButton
 
-#pragma mark ===== Class method =====
+#pragma mark Class Methods
 
 //=======================================================
 // Class method
@@ -55,10 +55,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Public method =====
+#pragma mark NSPopUpButton methods
 
 //=======================================================
-// Public method
+// NSPopUpButton method
 //
 //=======================================================
 

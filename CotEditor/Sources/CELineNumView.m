@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CELineNumView
 
-#pragma mark Public Methods
+#pragma mark NSView Methods
 
 //=======================================================
 // Public method
@@ -68,20 +68,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setShowLineNum:(BOOL)showLineNum
-// set to show line numbers.
-// ------------------------------------------------------
-{
-    if (showLineNum != [self showLineNum]) {
-        _showLineNum = showLineNum;
-        
-        CGFloat width = showLineNum ? k_defaultLineNumWidth : 0.0;
-        [self setWidth:width];
-    }
-}
-
-
-// ------------------------------------------------------
 - (void)drawRect:(NSRect)dirtyRect
 // draw line numbers.
 // ------------------------------------------------------
@@ -89,9 +75,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (![self masterView] || ![self showLineNum]) {
         return;
     }
-
+    
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
+    
     // fill in the background
     NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
     [backgroundColor set];
@@ -107,7 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         dirtyRect.origin.y += horizontalScrollAdj; // (shift the drawing frame reference up.)
         dirtyRect.size.height -= horizontalScrollAdj; // (and shrink it the same distance.)
     }
-    // setup drawing attributes for the font size and color. 
+    // setup drawing attributes for the font size and color.
     NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init]; // ===== init
     CGFloat fontSize = (CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue];
     NSFont *font = [NSFont fontWithName:[values valueForKey:k_key_lineNumFontName] size:fontSize];
@@ -116,11 +102,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     attrs[NSFontAttributeName] = font;
     attrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_lineNumFontColor]];
-
+    
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
     CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
-
+    
     // setup the variables we need for the loop
     NSRange range;       // a range for counting lines
     NSString *str = [[self masterView] string];
@@ -136,14 +122,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRect numRect;      // rectange holder
     NSPoint numPoint;    // point holder
     CELayoutManager *layoutManager = (CELayoutManager *)[[[self masterView] textView] layoutManager]; // get _owner's layout manager.
-
+    
     theBefore = 0;
     lineNum = 1;
     glyphCount = 0;
-
+    
     CGFloat crDistance;
     NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
-
+    
     if(numberOfGlyphs > 0) {
         //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
         numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:NULL];
@@ -154,7 +140,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     adj = k_lineNumFontDescender - ([[[[self masterView] textView] font] pointSize] + fontSize) / 2 - insetAdj;
-
+    
     for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
         charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[str lineRangeForRange:NSMakeRange(charIndex, 0)]
@@ -187,7 +173,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     numRect = [layoutManager extraLineFragmentRect];
     // 10.5.1では、1行目が改行だけのときnumRect.origin.yに行の高さがセットされてしまうことへ対処（2007.12.01）
     if ((numRect.size.width > 0) && (numRect.size.height > 0)) {
-//    if (!NSEqualRects(numRect, NSZeroRect)) {
+        //    if (!NSEqualRects(numRect, NSZeroRect)) {
         numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%ld", (long)lineNum] : @" ";
         reqWidth = charWidth * [numStr length];
         curWidth = NSWidth([self frame]);
@@ -204,6 +190,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
+
+// ------------------------------------------------------
+- (void)setShowLineNum:(BOOL)showLineNum
+// set to show line numbers.
+// ------------------------------------------------------
+{
+    if (showLineNum != [self showLineNum]) {
+        _showLineNum = showLineNum;
+        
+        CGFloat width = showLineNum ? k_defaultLineNumWidth : 0.0;
+        [self setWidth:width];
+    }
+}
+
+
 // ------------------------------------------------------
 - (void)updateLineNumber:(id)sender
 // redraw line numbers
@@ -214,7 +222,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 //=======================================================
 // Private method

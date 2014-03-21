@@ -37,10 +37,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEApplication
 
-#pragma mark Public Methods
+#pragma mark NSApplication Methods
 
 //=======================================================
-// Public method
+// NSApplication method
 //
 //=======================================================
 
@@ -111,7 +111,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark -
 #pragma mark Private Methods
 
 //=======================================================

@@ -69,10 +69,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEEditorView
 
-#pragma mark Public methods
+#pragma mark NSView methods
 
 //=======================================================
-// Public method
+// NSView method
 //
 //=======================================================
 
@@ -104,6 +104,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self stopAllTimer];
 }
 
+
+
+#pragma mark Public methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (NSUndoManager *)undoManagerForTextView:(NSTextView *)textView

@@ -65,12 +65,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @end
 
+
+
+
+#pragma mark -
+
 @implementation CEWindowController
 
-#pragma mark ===== Public method =====
+#pragma mark NSWindowController Methods
 
 //=======================================================
-// Public method
+// NSWindowController method
 //
 //=======================================================
 
@@ -121,6 +126,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // テキストを表示
     [[self document] setStringToEditorView];
 }
+
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (BOOL)needsInfoDrawerUpdate
@@ -249,7 +263,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark ===== Protocol =====
+#pragma mark Protocol
 
 //=======================================================
 // NSNibAwaking Protocol
@@ -282,7 +296,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark === Delegate and Notification ===
+#pragma mark Delegate and Notification
 
 //=======================================================
 // Delegate method (NSWindow)

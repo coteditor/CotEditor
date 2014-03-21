@@ -75,10 +75,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark Public Methods
+#pragma mark NSTextView Methods
 
 //=======================================================
-// Public method
+// NSTextView method
 //
 //=======================================================
 
@@ -213,7 +213,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 - (BOOL)becomeFirstResponder
-// first responder になれるかを返す
+// first responder になれるかを返す  !!!: Deprecated on 10.4
 // ------------------------------------------------------
 {
     [(CESubSplitView *)[self delegate] setTextViewToEditorView:self];
@@ -585,6 +585,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 }
 
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (NSColor *)highlightLineColor

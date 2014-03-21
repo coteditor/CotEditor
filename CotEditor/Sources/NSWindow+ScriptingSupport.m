@@ -36,7 +36,17 @@
 
 @implementation NSWindow (ScriptingSupport)
 
+#pragma mark AppleScript Accessores
+
+//=======================================================
+// AppleScript accessor
+//
+//=======================================================
+
+// ------------------------------------------------------
 - (NSNumber *)viewOpacity
+// テキストビューの不透明度を返す
+// ------------------------------------------------------
 {
     if ([self isDocumentWindow]) {
         return @([(CEWindowController *)[self windowController] alpha]);
@@ -46,7 +56,10 @@
     return nil;
 }
 
+// ------------------------------------------------------
 - (void)setViewOpacity:(NSNumber *)viewOpacity
+// テキストビューの不透明度をセット
+// ------------------------------------------------------
 {
     if ([self isDocumentWindow]) {
         [(CEWindowController *)[self windowController] setAlpha:(CGFloat)[viewOpacity doubleValue]];
@@ -55,14 +68,18 @@
 
 
 
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 //=======================================================
 // Private Methods
 //
 //=======================================================
 
-- (BOOL)isDocumentWindow {
+// ------------------------------------------------------
+- (BOOL)isDocumentWindow
+// 自身が CEWindowController の支配下のウインドウかどうか
+// ------------------------------------------------------
+{
     return [[self windowController] isKindOfClass:[CEWindowController class]];
 }
 

@@ -95,7 +95,7 @@ static CEScriptManager *sharedInstance = nil;
 
 
 
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -363,7 +363,7 @@ static CEScriptManager *sharedInstance = nil;
 
 
 
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 //=======================================================
 // Private method

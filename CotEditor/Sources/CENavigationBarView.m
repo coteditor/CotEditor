@@ -47,15 +47,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @end
 
+
+
 #pragma mark -
 
-
-//------------------------------------------------------------------------------------------
-
-
-
-
 @implementation CENavigationBarView
+
+#pragma mark NSView Methods
+
+//=======================================================
+// NSView method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (instancetype)initWithFrame:(NSRect)frame
@@ -146,6 +149,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return self;
 }
 
+
+// ------------------------------------------------------
+- (void)drawRect:(NSRect)dirtyRect
+// draw background
+// ------------------------------------------------------
+{
+    if (![self masterView] || ![self showNavigationBar]) {
+        return;
+    }
+    // fill in the background
+    [[NSColor controlColor] set];
+    [NSBezierPath fillRect:dirtyRect];
+    
+    // draw frame border (only bottom line)
+    [[NSColor controlShadowColor] set];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
+                              toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
+}
+
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (void)setShowNavigationBar:(BOOL)showNavigationBar
@@ -360,28 +390,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-- (void)drawRect:(NSRect)dirtyRect
-// draw background
-// ------------------------------------------------------
-{
-    if (![self masterView] || ![self showNavigationBar]) {
-        return;
-    }
-    // fill in the background
-    [[NSColor controlColor] set];
-    [NSBezierPath fillRect:dirtyRect];
-
-    // draw frame border (only bottom line)
-    [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
-                              toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
-}
-
-
 
 
 #pragma mark Private Methods
+
+//=======================================================
+// Private method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (void)setHeight:(CGFloat)height
