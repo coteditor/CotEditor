@@ -38,27 +38,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @interface CESubSplitView ()
-{
-    CEEditorView *_editorView;
-    NSTextStorage *_textStorage;
-    NSScrollView *_scrollView;
-    CETextViewCore *_textViewCore;
-    CELineNumView *_lineNumView;
-    CENavigationBarView *_navigationBar;
-    CESyntax *_syntax;
-    NSDictionary *_highlightBracesColorDict;
-    NSTimer *_lineNumUpdateTimer;
-    NSTimer *_outlineMenuTimer;
-    NSTimeInterval _lineNumUpdateInterval;
-    NSTimeInterval _outlineMenuInterval;
-    NSRange _hilightedLineRange;
-    NSRect _hilightedLineRect;
-    
-    NSInteger _lastCursorLocation;
-    BOOL _highlightCurrentLine;
-    BOOL _setHiliteLineColorToIMChars;
-    BOOL _hadMarkedText;
-}
+
+@property (nonatomic, retain) NSTimer *lineNumUpdateTimer;
+@property (nonatomic, retain) NSTimer *outlineMenuTimer;
+@property (nonatomic) NSTimeInterval lineNumUpdateInterval;
+@property (nonatomic) NSTimeInterval outlineMenuInterval;
+@property (nonatomic) NSRange hilightedLineRange;
+@property (nonatomic) NSRect hilightedLineRect;
+
+@property (nonatomic) BOOL highlightCurrentLine;
+@property (nonatomic) BOOL setsHiliteLineColorToIMChars;
+@property (nonatomic) BOOL hadMarkedText;
+@property (nonatomic) NSInteger lastCursorLocation;
+
+
+// readonly
+@property (nonatomic, readwrite, retain) NSScrollView *scrollView;
+@property (nonatomic, readwrite, retain) CETextViewCore *textView;
+@property (nonatomic, readwrite, retain) CELineNumView *lineNumView;
+@property (nonatomic, readwrite, retain) CENavigationBarView *navigationBar;
+@property (nonatomic, readwrite, retain) CESyntax *syntax;
+@property (nonatomic, readwrite, retain) NSDictionary *highlightBracesColorDict;
+@property (nonatomic, readwrite, retain) NSTextStorage *textStorage;
 
 @end
 
@@ -78,106 +79,103 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (instancetype)initWithFrame:(NSRect)inFrame
+- (instancetype)initWithFrame:(NSRect)frameRect
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:inFrame];
+    self = [super initWithFrame:frameRect];
 
     if (self) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
-        _lastCursorLocation = 0;
+        [self setLastCursorLocation:0];
 
         // LineNumView 生成
-        NSRect theLineMumFrame = inFrame;
-        theLineMumFrame.size.width = 0.0; // default width (about invisible).
-        _lineNumView = [[CELineNumView allocWithZone:[self zone]] initWithFrame:theLineMumFrame];
-        [_lineNumView setMasterView:self];
-        [self addSubview:_lineNumView];
+        NSRect lineMumFrame = frameRect;
+        lineMumFrame.size.width = 0.0; // default width (about invisible).
+        [self setLineNumView:[[CELineNumView alloc] initWithFrame:lineMumFrame]];
+        [[self lineNumView] setMasterView:self];
+        [self addSubview:[self lineNumView]];
 
         // navigationBar 生成
-        NSRect theNavigationFrame = inFrame;
-        theNavigationFrame.origin.y = NSHeight(theNavigationFrame);
-        theNavigationFrame.size.height = 0.0;
-        _navigationBar = [[CENavigationBarView allocWithZone:[self zone]] initWithFrame:theNavigationFrame];
-        [_navigationBar setMasterView:self];
-        [self addSubview:_navigationBar];
+        NSRect navigationFrame = frameRect;
+        navigationFrame.origin.y = NSHeight(navigationFrame);
+        navigationFrame.size.height = 0.0;
+        [self setNavigationBar:[[CENavigationBarView alloc] initWithFrame:navigationFrame]];
+        [[self navigationBar] setMasterView:self];
+        [self addSubview:[self navigationBar]];
 
-        _scrollView = [[NSScrollView allocWithZone:[self zone]] initWithFrame:inFrame]; // ===== alloc
-        [_scrollView setBorderType:NSNoBorder];
-        [_scrollView setHasVerticalScroller:YES];
-        [_scrollView setHasHorizontalScroller:YES];
-        [_scrollView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-        [_scrollView setAutohidesScrollers:NO];
-        [_scrollView setDrawsBackground:NO];
-        [[_scrollView contentView] setAutoresizesSubviews:YES];
+        [self setScrollView:[[NSScrollView alloc] initWithFrame:frameRect]]; // ===== alloc
+        [[self scrollView] setBorderType:NSNoBorder];
+        [[self scrollView] setHasVerticalScroller:YES];
+        [[self scrollView] setHasHorizontalScroller:YES];
+        [[self scrollView] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+        [[self scrollView] setAutohidesScrollers:NO];
+        [[self scrollView] setDrawsBackground:NO];
+        [[[self scrollView] contentView] setAutoresizesSubviews:YES];
         // （splitViewをリサイズした時に最後までナビバーを表示させるため、その下に配置する）
-        [self addSubview:_scrollView positioned:NSWindowBelow relativeTo:_navigationBar];
+        [self addSubview:[self scrollView] positioned:NSWindowBelow relativeTo:[self navigationBar]];
 
         // TextStorage と LayoutManager を生成
-        _textStorage = [[NSTextStorage allocWithZone:[self zone]] init]; // ===== alloc
-        CELayoutManager *theLayoutManager = [[CELayoutManager allocWithZone:[self zone]] init]; // ===== alloc
-        [_textStorage addLayoutManager:theLayoutManager];
-        [theLayoutManager setBackgroundLayoutEnabled:YES];
-        [theLayoutManager setUseAntialias:[[theValues valueForKey:k_key_shouldAntialias] boolValue]];
-        [theLayoutManager setFixLineHeight:[[theValues valueForKey:k_key_fixLineHeight] boolValue]];
+        [self setTextStorage:[[NSTextStorage alloc] init]]; // ===== alloc
+        CELayoutManager *layoutManager = [[CELayoutManager alloc] init]; // ===== alloc
+        [[self textStorage] addLayoutManager:layoutManager];
+        [layoutManager setBackgroundLayoutEnabled:YES];
+        [layoutManager setUseAntialias:[defaults boolForKey:k_key_shouldAntialias]];
+        [layoutManager setFixLineHeight:[defaults boolForKey:k_key_fixLineHeight]];
 
         // NSTextContainer と CESyntax を生成
-        NSTextContainer *theTextContainer = [[NSTextContainer allocWithZone:[self zone]] 
-                    initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // ===== alloc
-        [theLayoutManager addTextContainer:theTextContainer];
+        NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // ===== alloc
+        [layoutManager addTextContainer:container];
 
-        _syntax = [[CESyntax allocWithZone:[self zone]] init]; // ===== alloc
-        [_syntax setSyntaxStyleName:NSLocalizedString(@"None",@"")];
-        [_syntax setLayoutManager:theLayoutManager];
-        [_syntax setIsPrinting:NO];
+        [self setSyntax:[[CESyntax alloc] init]]; // ===== alloc
+        [[self syntax] setSyntaxStyleName:NSLocalizedString(@"None",@"")];
+        [[self syntax] setLayoutManager:layoutManager];
+        [[self syntax] setIsPrinting:NO];
 
         // TextView 生成
-        NSRect theTextFrame;
-        theTextFrame.origin = NSZeroPoint;
-        theTextFrame.size = [_scrollView contentSize]; // (frame will start at upper left.)
-        _textViewCore = [[CETextViewCore allocWithZone:[self zone]] 
-                    initWithFrame:theTextFrame textContainer:theTextContainer]; // ===== alloc
-        [_textViewCore setDelegate:self];
+        NSRect textFrame;
+        textFrame.origin = NSZeroPoint;
+        textFrame.size = [[self scrollView] contentSize]; // (frame will start at upper left.)
+        [self setTextView:[[CETextViewCore alloc] initWithFrame:textFrame textContainer:container]]; // ===== alloc
+        [[self textView] setDelegate:self];
         
 //        !!!: OgreKitの改造部分が失われたため現在機能していない (2014-03-16 by 1024jp)
 //        // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
 //        [[NSNotificationCenter defaultCenter] addObserver:self 
 //                    selector:@selector(textDidReplaceAll:) 
 //                    name:@"textDidReplaceAllNotification" 
-//                    object:_textViewCore];
-        [_scrollView setDocumentView:_textViewCore];
+//                    object:[self textView]];
+        [[self scrollView] setDocumentView:[self textView]];
 
         // slave view をセット
-        [_textViewCore setSlaveView:_lineNumView]; // (the textview will also update slaveView.)
-        [_textViewCore setPostsBoundsChangedNotifications:YES]; // observer = _lineNumView
-        [[NSNotificationCenter defaultCenter] addObserver:_lineNumView 
-                    selector:@selector(updateLineNumber:) 
-                    name:NSViewBoundsDidChangeNotification 
-                    object:[_scrollView contentView]];
+        [[self textView] setSlaveView:[self lineNumView]]; // (the textview will also update slaveView.)
+        [[self textView] setPostsBoundsChangedNotifications:YES]; // observer = lineNumView
+        [[NSNotificationCenter defaultCenter] addObserver:[self lineNumView]
+                                                 selector:@selector(updateLineNumber:)
+                                                     name:NSViewBoundsDidChangeNotification
+                                                   object:[[self scrollView] contentView]];
 
         // ビューのパラメータをセット
-        [_textViewCore setTextContainerInset:
-                NSMakeSize((CGFloat)[[theValues valueForKey:k_key_textContainerInsetWidth] doubleValue],
-                           ((CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightTop] doubleValue] +
-                            (CGFloat)[[theValues valueForKey:k_key_textContainerInsetHeightBottom] doubleValue]) / 2
+        [[self textView] setTextContainerInset:
+                NSMakeSize((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
+                           ((CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop] +
+                            (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightBottom]) / 2
                            )];
-        _lineNumUpdateTimer = nil;
-        _outlineMenuTimer = nil;
-        _lineNumUpdateInterval = [[theValues valueForKey:k_key_lineNumUpdateInterval] doubleValue];
-        _outlineMenuInterval = [[theValues valueForKey:k_key_outlineMenuInterval] doubleValue];
-        _highlightBracesColorDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_selectionColor]], 
-                    NSBackgroundColorAttributeName, nil]; // ===== alloc
-        _highlightCurrentLine = [[theValues valueForKey:k_key_highlightCurrentLine] boolValue];
-        _setHiliteLineColorToIMChars = [[theValues valueForKey:k_key_setHiliteLineColorToIMChars] boolValue];
-        _hadMarkedText = NO;
+        [self setLineNumUpdateTimer:nil];
+        [self setOutlineMenuTimer:nil];
+        [self setLineNumUpdateInterval:[defaults doubleForKey:k_key_lineNumUpdateInterval]];
+        [self setOutlineMenuInterval:[defaults doubleForKey:k_key_outlineMenuInterval]];
+        [self setHighlightBracesColorDict:[[NSDictionary alloc] initWithObjectsAndKeys:
+                    [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_selectionColor]],
+                    NSBackgroundColorAttributeName, nil]]; // ===== alloc
+        [self setHighlightCurrentLine:[defaults boolForKey:k_key_highlightCurrentLine]];
+        [self setSetsHiliteLineColorToIMChars:[defaults boolForKey:k_key_setHiliteLineColorToIMChars]];
+        [self setHadMarkedText:NO];
 
         // システム側で保持されるオブジェクトを解放
-        [theLayoutManager release]; // ===== release
-        [theTextContainer release]; // ===== release
+        [layoutManager release]; // ===== release
+        [container release]; // ===== release
 
     }
     return self;
@@ -192,7 +190,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self stopUpdateLineNumberTimer];
     [self stopUpdateOutlineMenuTimer];
     [self setEditorView:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:_lineNumView];
+    [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_syntax release];
 
@@ -231,71 +229,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (CEEditorView *)editorView
-// エディタビューを返す
-// ------------------------------------------------------
-{
-    return _editorView;
-}
-
-
-// ------------------------------------------------------
-- (void)setEditorView:(CEEditorView *)inEditorView
-// エディタビューをセット
-// ------------------------------------------------------
-{
-    [inEditorView retain];
-    [_editorView release];
-    _editorView = inEditorView;
-}
-
-
-// ------------------------------------------------------
-- (NSScrollView *)scrollView
-// スクロールビューを返す
-// ------------------------------------------------------
-{
-    return _scrollView;
-}
-
-
-// ------------------------------------------------------
-- (CETextViewCore *)textView
-// テキストビューを返す
-// ------------------------------------------------------
-{
-    return _textViewCore;
-}
-
-
-// ------------------------------------------------------
-- (CELineNumView *)lineNumView
-// 行番号ビューを返す
-// ------------------------------------------------------
-{
-    return _lineNumView;
-}
-
-
-// ------------------------------------------------------
-- (CENavigationBarView *)navigationBar
-// ナビゲーションバービューを返す
-// ------------------------------------------------------
-{
-    return _navigationBar;
-}
-
-
-// ------------------------------------------------------
-- (CESyntax *)syntax
-// syntax を返す
-// ------------------------------------------------------
-{
-    return _syntax;
-}
-
-
-// ------------------------------------------------------
 - (NSString *)string
 // テキストビューの文字列を返す
 // ------------------------------------------------------
@@ -312,22 +245,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ナビゲーションバーを表示させているときにスプリットビューを最小までリサイズしてから広げると、テキストが
     // ナビバーを上書きしてしまうことへの対応措置。
     if ([[self editorView] showNavigationBar]) {
-        [[self scrollView] setFrameSize:
-                NSMakeSize([[self scrollView] frame].size.width, 
-                    [self frame].size.height - k_navigationBarHeight)];
+        [[self scrollView] setFrameSize:NSMakeSize([[self scrollView] frame].size.width,
+                                                   [self frame].size.height - k_navigationBarHeight)];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)replaceTextStorage:(NSTextStorage *)inTextStorage
+- (void)replaceTextStorage:(NSTextStorage *)textStorage
 // TextStorage を置換
 // ------------------------------------------------------
 {
-    [inTextStorage retain];
+    [textStorage retain];
     [_textStorage release];
-    _textStorage = inTextStorage;
-    [[[self textView] layoutManager] replaceTextStorage:inTextStorage];
+    _textStorage = textStorage;
+    [[[self textView] layoutManager] replaceTextStorage:textStorage];
 }
 
 
@@ -350,41 +282,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setTextViewToEditorView:(CETextViewCore *)inTextView
+- (void)setTextViewToEditorView:(CETextViewCore *)textView
 // テキストビューをエディタビューにセット
 // ------------------------------------------------------
 {
-    [[self editorView] setTextView:inTextView];
+    [[self editorView] setTextView:textView];
 }
 
 
 // ------------------------------------------------------
-- (void)setShowLineNumWithNumber:(NSNumber *)inNumber
+- (void)setShowLineNumWithNumber:(NSNumber *)number
 // 行番号表示設定をセット
 // ------------------------------------------------------
 {
-    [[self lineNumView] setShowLineNum:[inNumber boolValue]];
+    [[self lineNumView] setShowLineNum:[number boolValue]];
 }
 
 
 // ------------------------------------------------------
-- (void)setShowNavigationBarWithNumber:(NSNumber *)inNumber
+- (void)setShowNavigationBarWithNumber:(NSNumber *)number
 // ナビゲーションバーを表示／非表示
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShowNavigationBar:[inNumber boolValue]];
-    if (!_outlineMenuTimer) {
+    [[self navigationBar] setShowNavigationBar:[number boolValue]];
+    if (![self outlineMenuTimer]) {
         [self updateOutlineMenu];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)setWrapLinesWithNumber:(NSNumber *)inNumber
+- (void)setWrapLinesWithNumber:(NSNumber *)number
 // ラップする／しないを切り替える
 // ------------------------------------------------------
 {
-    if ([inNumber boolValue]) {
+    if ([number boolValue]) {
         [[[self textView] enclosingScrollView] setHasHorizontalScroller:NO];
         [[self textView] setAutoresizingMask:NSViewWidthSizable];
         [self adjustTextFrameSize];
@@ -403,37 +335,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setShowInvisiblesWithNumber:(NSNumber *)inNumber
+- (void)setShowInvisiblesWithNumber:(NSNumber *)number
 // 不可視文字の表示／非表示を切り替える
 // ------------------------------------------------------
 {
-    NSRange theSelectedRange;
-    BOOL theBoolReSelect = NO;
+    NSRange selectedRange;
+    BOOL shouldReselect = NO;
 
-    if ([inNumber boolValue]) {
-        theBoolReSelect = YES;
-        theSelectedRange = [[self textView] selectedRange];
+    if ([number boolValue]) {
+        shouldReselect = YES;
+        selectedRange = [[self textView] selectedRange];
         [[self textView] setSelectedRange:NSMakeRange(0, 0)]; // （選択範囲をリセットしておき、あとで再選択）
     }
-    [(CELayoutManager *)[[self textView] layoutManager] setShowInvisibles:[inNumber boolValue]];
+    [(CELayoutManager *)[[self textView] layoutManager] setShowInvisibles:[number boolValue]];
     [[self textView] setNeedsDisplay:YES];
-    if (theBoolReSelect) {
+    if (shouldReselect) {
         // （不可視文字が選択状態で表示／非表示を切り替えられた時、不可視文字の背景選択色を描画するための時間差での選択処理）
         // （もっとスマートな解決方法はないものか...？ 2006.09.25）
-        [[self textView] performSelector:@selector(selectTextRangeValue:) 
-                withObject:[NSValue valueWithRange:theSelectedRange] afterDelay:0];
+        [[self textView] performSelector:@selector(selectTextRangeValue:)
+                              withObject:[NSValue valueWithRange:selectedRange]
+                              afterDelay:0];
     }
 }
 
 
 // ------------------------------------------------------
-- (void)setUseAntialiasWithNumber:(NSNumber *)inNumber
+- (void)setUseAntialiasWithNumber:(NSNumber *)number
 // アンチエイリアス適用を切り替える
 // ------------------------------------------------------
 {
-    CELayoutManager *theManager = (CELayoutManager *)[[self textView] layoutManager];
+    CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
 
-    [theManager setUseAntialias:[inNumber boolValue]];
+    [manager setUseAntialias:[number boolValue]];
     [[self textView] setNeedsDisplay:YES];
 }
 
@@ -457,11 +390,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSyntaxStyleNameToSyntax:(NSString *)inName
+- (void)setSyntaxStyleNameToSyntax:(NSString *)styleName
 // シンタックススタイルを設定
 // ------------------------------------------------------
 {
-    [[self syntax] setSyntaxStyleName:inName];
+    [[self syntax] setSyntaxStyleName:styleName];
 }
 
 
@@ -480,8 +413,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self stopUpdateOutlineMenuTimer];
-    [[self navigationBar] setOutlineMenuArray:
-            [[[self editorView] syntax] outlineMenuArrayWithWholeString:[self string]]];
+    [[self navigationBar] setOutlineMenuArray:[[[self editorView] syntax] outlineMenuArrayWithWholeString:[self string]]];
     // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
 }
 
@@ -491,26 +423,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アウトラインメニューの選択項目を更新
 // ------------------------------------------------------
 {
-    if (!_outlineMenuTimer) {
+    if (![self outlineMenuTimer]) {
         if ([[self textView] updateOutlineMenuItemSelection]) {
-            [[self navigationBar] performSelector:@selector(selectOutlineMenuItemWithRangeValue:) 
-                        withObject:[NSValue valueWithRange:[[self textView] selectedRange]] 
-                        afterDelay:0.01];
+            [[self navigationBar] performSelector:@selector(selectOutlineMenuItemWithRangeValue:)
+                                       withObject:[NSValue valueWithRange:[[self textView] selectedRange]]
+                                       afterDelay:0.01];
         } else {
             [[self textView] setUpdateOutlineMenuItemSelection:YES];
-            [[self navigationBar] performSelector:@selector(updatePrevNextButtonEnabled) withObject:nil 
-                        afterDelay:0.01];
+            [[self navigationBar] performSelector:@selector(updatePrevNextButtonEnabled)
+                                       withObject:nil
+                                       afterDelay:0.01];
         }
     }
 }
 
 
 // ------------------------------------------------------
-- (void)updateCloseSubSplitViewButtonWithNumber:(NSNumber *)inNumber
+- (void)updateCloseSubSplitViewButtonWithNumber:(NSNumber *)number
 // テキストビュー分割削除ボタンの有効化／無効化を制御
 // ------------------------------------------------------
 {
-    [[self navigationBar] setCloseSplitButtonEnabled:[inNumber boolValue]];
+    [[self navigationBar] setCloseSplitButtonEnabled:[number boolValue]];
 }
 
 
@@ -519,10 +452,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 行番号更新タイマーを停止
 // ------------------------------------------------------
 {
-    if (_lineNumUpdateTimer) {
-        [_lineNumUpdateTimer invalidate];
+    if ([self lineNumUpdateTimer]) {
+        [[self lineNumUpdateTimer] invalidate];
         [_lineNumUpdateTimer release]; // ===== release
-        _lineNumUpdateTimer = nil;
+        [self setLineNumUpdateTimer:nil];
     }
 }
 
@@ -532,10 +465,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アウトラインメニュー更新タイマーを停止
 // ------------------------------------------------------
 {
-    if (_outlineMenuTimer) {
-        [_outlineMenuTimer invalidate];
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] invalidate];
         [_outlineMenuTimer release]; // ===== release
-        _outlineMenuTimer = nil;
+        [self setOutlineMenuTimer:nil];
     }
 }
 
@@ -550,20 +483,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSDictionary *)highlightBracesColorDict
-// ハイライトカラー辞書を返す
-// ------------------------------------------------------
-{
-    return _highlightBracesColorDict;
-}
-
-
-// ------------------------------------------------------
-- (void)setBackgroundColorAlphaWithNumber:(NSNumber *)inNumber
+- (void)setBackgroundColorAlphaWithNumber:(NSNumber *)number
 // テキストビューに背景色をセット
 // ------------------------------------------------------
 {
-    CGFloat alpha = (CGFloat)[inNumber doubleValue];
+    CGFloat alpha = (CGFloat)[number doubleValue];
     
     [[self textView] setBackgroundColorWithAlpha:alpha];
     [[self lineNumView] setBackgroundAlpha:alpha];
@@ -576,12 +500,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //=======================================================
 // Delegate method (CETextViewCore)
-//  <== _textViewCore
+//  <== textView
 //=======================================================
 
 // ------------------------------------------------------
-- (BOOL)textView:(NSTextView *)inTextView shouldChangeTextInRange:(NSRange)inAffectedCharRange 
-        replacementString:(NSString *)inReplacementString
+- (BOOL)textView:(NSTextView *)aTextView shouldChangeTextInRange:(NSRange)affectedCharRange 
+        replacementString:(NSString *)replacementString
 //  テキストが編集される
 // ------------------------------------------------------
 {
@@ -596,30 +520,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
-    if ((inReplacementString == nil) || // = attributesのみの変更
-            ([inReplacementString length] == 0) || // = 文章の削除
-            ([(CETextViewCore *)inTextView isSelfDrop]) || // = 自己内ドラッグ&ドロップ
-            ([(CETextViewCore *)inTextView isReadingFromPboard]) || // = ペーストまたはドロップ
-            ([[inTextView undoManager] isUndoing])) { return YES; } // = アンドゥ中
+    if ((replacementString == nil) || // = attributesのみの変更
+            ([replacementString length] == 0) || // = 文章の削除
+            ([(CETextViewCore *)aTextView isSelfDrop]) || // = 自己内ドラッグ&ドロップ
+            ([(CETextViewCore *)aTextView isReadingFromPboard]) || // = ペーストまたはドロップ
+            ([[aTextView undoManager] isUndoing])) { return YES; } // = アンドゥ中
 
-    NSString *theNewStr = nil;
+    NSString *newStr = nil;
 
-    if (![inReplacementString isEqualToString:@"\n"]) {
-        OgreNewlineCharacter theReplacementLineEndingChar = 
-                    [OGRegularExpression newlineCharacterInString:inReplacementString];
+    if (![replacementString isEqualToString:@"\n"]) {
+        OgreNewlineCharacter replacementLineEndingChar = [OGRegularExpression newlineCharacterInString:replacementString];
         // 挿入／置換する文字列に行末コードが含まれていたら、LF に置換する
-        if ((theReplacementLineEndingChar != OgreNonbreakingNewlineCharacter) && 
-                (theReplacementLineEndingChar != OgreLfNewlineCharacter)) {
+        if ((replacementLineEndingChar != OgreNonbreakingNewlineCharacter) &&
+            (replacementLineEndingChar != OgreLfNewlineCharacter)) {
             // （theNewStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
-            theNewStr = [OGRegularExpression replaceNewlineCharactersInString:inReplacementString 
-                    withCharacter:OgreLfNewlineCharacter];
+            newStr = [OGRegularExpression replaceNewlineCharactersInString:replacementString
+                                                             withCharacter:OgreLfNewlineCharacter];
         }
     }
-    if (theNewStr != nil) {
+    if (newStr != nil) {
         // （Action名は自動で付けられる？ので、指定しない）
-        [(CETextViewCore *)inTextView doReplaceString:theNewStr withRange:inAffectedCharRange 
-                withSelected:NSMakeRange(inAffectedCharRange.location + [theNewStr length], 0) 
-                withActionName:@""];
+        [(CETextViewCore *)aTextView doReplaceString:newStr
+                                           withRange:affectedCharRange
+                                        withSelected:NSMakeRange(affectedCharRange.location + [newStr length], 0)
+                                      withActionName:@""];
 
         return NO;
     }
@@ -628,8 +552,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSArray *)textView:(NSTextView *)inTextView completions:(NSArray *)inWordsArray 
-        forPartialWordRange:(NSRange)inCharRange indexOfSelectedItem:(NSInteger *)inIndex
+- (NSArray *)textView:(NSTextView *)aTextView completions:(NSArray *)words 
+        forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 // 補完候補リストをセット
 // ------------------------------------------------------
 {
@@ -638,20 +562,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // http://smultron.sourceforge.net
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSUInteger theAddingStandard = [[theValues valueForKey:k_key_completeAddStandardWords] unsignedIntegerValue];
-    NSMutableArray *outArray = [NSMutableArray arrayWithCapacity:[inWordsArray count]];
-    NSEnumerator *theEnumerator;
-    NSString *theCurStr = [[inTextView string] substringWithRange:inCharRange];
-    NSString *theArrayStr;
+    NSUInteger addingStandard = [[theValues valueForKey:k_key_completeAddStandardWords] unsignedIntegerValue];
+    NSMutableArray *outArray = [NSMutableArray arrayWithCapacity:[words count]];
+    NSEnumerator *enumerator;
+    NSString *curStr = [[aTextView string] substringWithRange:charRange];
+    NSString *arrayStr;
 
     //"ファイル中の語彙" を検索して outArray に入れる
     {
         OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: 
-            [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)", 
-                [OGRegularExpression regularizeString:theCurStr]]];
-        theEnumerator = [regex matchEnumeratorInString:[inTextView string]];
+            [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)",
+                [OGRegularExpression regularizeString:curStr]]];
+        enumerator = [regex matchEnumeratorInString:[aTextView string]];
         OGRegularExpressionMatch *match;
-        while (match = [theEnumerator nextObject]) {
+        while (match = [enumerator nextObject]) {
             if (![outArray containsObject:[match matchedString]]) {
                 [outArray addObject:[match matchedString]];
             }
@@ -659,25 +583,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     //"カラーシンタックス辞書の語彙" をコピーする
-    if (theAddingStandard >= 1) {
-        NSArray *syntaxWordsArray = [_syntax completeWordsArray];
-        theEnumerator = [syntaxWordsArray objectEnumerator];
-        while (theArrayStr = [theEnumerator nextObject]) 
-            if ([theArrayStr rangeOfString:theCurStr options:NSCaseInsensitiveSearch 
-                                     range:NSMakeRange(0, [theArrayStr length])].location == 0 && 
-                ![outArray containsObject:theArrayStr]) 
-                [outArray addObject:theArrayStr];
+    if (addingStandard >= 1) {
+        NSArray *syntaxWordsArray = [[self syntax] completeWordsArray];
+        for (arrayStr in syntaxWordsArray) {
+            if ([arrayStr rangeOfString:curStr options:NSCaseInsensitiveSearch
+                                  range:NSMakeRange(0, [arrayStr length])].location == 0 && ![outArray containsObject:arrayStr]) {
+                [outArray addObject:arrayStr];
+            }
+        }
     }
     
     //デフォルトの候補から "一般英単語" をコピーする
-    if (theAddingStandard >= 2) {
-        theEnumerator = [inWordsArray objectEnumerator];
-        while (theArrayStr = [theEnumerator nextObject]) {
+    if (addingStandard >= 2) {
+        for (arrayStr in words) {
             //デフォルトの候補は "ファイル中の語彙" "一般英単語" の順に並んでいる
             //そのうち "ファイル中の語彙" 部分をスキップする
-            if (![outArray containsObject:theArrayStr]) {
-                [outArray addObject:theArrayStr];
-                [outArray addObjectsFromArray:[theEnumerator allObjects]];
+            if (![outArray containsObject:arrayStr]) {
+                [outArray addObject:arrayStr];
+                [outArray addObjectsFromArray:[enumerator allObjects]];
                 break;
             }
         }
@@ -694,7 +617,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)textDidChange:(NSNotification *)inNotification
+- (void)textDidChange:(NSNotification *)aNotification
 // text did edit.
 // ------------------------------------------------------
 {
@@ -714,12 +637,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)textViewDidChangeSelection:(NSNotification *)inNotification
+- (void)textViewDidChangeSelection:(NSNotification *)aNotification
 // the selection of main textView was changed.
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
     // カレント行をハイライト
     [self showHighlightCurrentLine];
 
@@ -735,60 +656,60 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    if ([[theValues valueForKey:k_key_highlightBraces] boolValue] == NO) {
-        return;
-    }
-    NSString *theString = [self string];
-    NSInteger theStringLength = [theString length];
-    if (theStringLength == 0) { return; }
-    NSRange theSelectedRange = [[self textView] selectedRange];
-    NSInteger theLocation = theSelectedRange.location;
-    NSInteger theDifference = theLocation - _lastCursorLocation;
-    _lastCursorLocation = theLocation;
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_highlightBraces]) { return; }
+    
+    NSString *string = [self string];
+    NSInteger stringLength = [string length];
+    if (stringLength == 0) { return; }
+    NSRange selectedRange = [[self textView] selectedRange];
+    NSInteger location = selectedRange.location;
+    NSInteger difference = location - [self lastCursorLocation];
+    [self setLastCursorLocation:location];
 
-    // Smultron では「if (theDifference != 1 && theDifference != -1)」の条件を使ってキャレットを前方に動かした時も強調表示させているが、CotEditor では Xcode 同様、入力時またはキャレットを後方に動かした時だけに限定した（2006.09.10）
-    if (theDifference != 1) {
+    // Smultron では「if (difference != 1 && difference != -1)」の条件を使ってキャレットを前方に動かした時も強調表示させているが、CotEditor では Xcode 同様、入力時またはキャレットを後方に動かした時だけに限定した（2006.09.10）
+    if (difference != 1) {
         return; // If the difference is more than one, they've moved the cursor with the mouse or it has been moved by resetSelectedRange below and we shouldn't check for matching braces then
     }
     
-    if (theDifference == 1) { // Check if the cursor has moved forward
-        theLocation--;
+    if (difference == 1) { // Check if the cursor has moved forward
+        location--;
     }
 
-    if (theLocation == theStringLength) {
+    if (location == stringLength) {
         return;
     }
-
-    unichar theUnichar = [theString characterAtIndex:theLocation];
-    unichar theCurChar, theBraceChar;
+    
+    unichar theUnichar = [string characterAtIndex:location];
+    unichar curChar, braceChar;
     if (theUnichar == ')') {
-        theBraceChar = k_braceCharList[0];
+        braceChar = k_braceCharList[0];
     } else if (theUnichar == ']') {
-        theBraceChar = k_braceCharList[1];
+        braceChar = k_braceCharList[1];
     } else if (theUnichar == '}') {
-        theBraceChar = k_braceCharList[2];
-    } else if ((theUnichar == '>') && ([[theValues valueForKey:k_key_highlightLtGt] boolValue])) {
-        theBraceChar = k_braceCharList[3];
+        braceChar = k_braceCharList[2];
+    } else if ((theUnichar == '>') && [[NSUserDefaults standardUserDefaults] boolForKey:k_key_highlightLtGt]) {
+        braceChar = k_braceCharList[3];
     } else {
         return;
     }
-    NSUInteger theSkipMatchingBrace = 0;
-    theCurChar = theUnichar;
+    NSUInteger skipMatchingBrace = 0;
+    curChar = theUnichar;
 
-    while (theLocation--) {
-        theUnichar = [theString characterAtIndex:theLocation];
-        if (theUnichar == theBraceChar) {
-            if (!theSkipMatchingBrace) {
-                [[[self textView] layoutManager] addTemporaryAttributes:[self highlightBracesColorDict] 
-                        forCharacterRange:NSMakeRange(theLocation, 1)];
-                [self performSelector:@selector(resetBackgroundColor:) 
-                        withObject:NSStringFromRange(NSMakeRange(theLocation, 1)) afterDelay:0.12];
+    while (location--) {
+        theUnichar = [string characterAtIndex:location];
+        if (theUnichar == braceChar) {
+            if (!skipMatchingBrace) {
+                [[[self textView] layoutManager] addTemporaryAttributes:[self highlightBracesColorDict]
+                                                      forCharacterRange:NSMakeRange(location, 1)];
+                [self performSelector:@selector(resetBackgroundColor:)
+                           withObject:NSStringFromRange(NSMakeRange(location, 1))
+                           afterDelay:0.12];
                 return;
             } else {
-                theSkipMatchingBrace--;
+                skipMatchingBrace--;
             }
-        } else if (theUnichar == theCurChar) {
-            theSkipMatchingBrace++;
+        } else if (theUnichar == curChar) {
+            skipMatchingBrace++;
         }
     }
     NSBeep();
@@ -802,7 +723,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)textDidReplaceAll:(NSNotification *)inNotification
+- (void)textDidReplaceAll:(NSNotification *)aNotification
 // did Replace All
 // ------------------------------------------------------
 {
@@ -829,15 +750,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ラップする時にサイズを適正化する
 // ------------------------------------------------------
 {
-    NSInteger theNewWidth = [[self scrollView] contentSize].width;
+    NSInteger newWidth = [[self scrollView] contentSize].width;
 
-    theNewWidth -= (NSWidth([[self lineNumView] frame]) + k_lineNumPadding * 2 );
-    [[[self textView] textContainer] setContainerSize:NSMakeSize(theNewWidth, FLT_MAX)];
+    newWidth -= (NSWidth([[self lineNumView] frame]) + k_lineNumPadding * 2 );
+    [[[self textView] textContainer] setContainerSize:NSMakeSize(newWidth, FLT_MAX)];
 }
 
 
 // ------------------------------------------------------
-- (void)doUpdateLineNumberWithTimer:(NSTimer *)inTimer
+- (void)doUpdateLineNumberWithTimer:(NSTimer *)timer
 // 行番号更新
 // ------------------------------------------------------
 {
@@ -847,7 +768,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)doUpdateOutlineMenuWithTimer:(NSTimer *)inTimer
+- (void)doUpdateOutlineMenuWithTimer:(NSTimer *)timer
 // アウトラインメニュー更新
 // ------------------------------------------------------
 {
@@ -860,8 +781,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 対応カッコハイライト表示をリセット
 // ------------------------------------------------------
 {
-    [[[self textView] layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName 
-            forCharacterRange:NSRangeFromString(sender)];
+    [[[self textView] layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
+                                            forCharacterRange:NSRangeFromString(sender)];
 }
 
 
@@ -871,23 +792,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // 行番号更新
-    if (_lineNumUpdateTimer) {
-        [_lineNumUpdateTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_lineNumUpdateInterval]];
+    if ([self lineNumUpdateTimer]) {
+        [[self lineNumUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self lineNumUpdateInterval]]];
     } else {
-        _lineNumUpdateTimer = [[NSTimer scheduledTimerWithTimeInterval:_lineNumUpdateInterval 
-                    target:self 
-                    selector:@selector(doUpdateLineNumberWithTimer:) 
-                    userInfo:nil repeats:NO] retain]; // ===== retain
+        [self setLineNumUpdateTimer:[[NSTimer scheduledTimerWithTimeInterval:[self lineNumUpdateInterval]
+                                                                      target:self
+                                                                    selector:@selector(doUpdateLineNumberWithTimer:)
+                                                                    userInfo:nil
+                                                                     repeats:NO] retain]]; // ===== retain
     }
 
     // アウトラインメニュー項目更新
-    if (_outlineMenuTimer) {
-        [_outlineMenuTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_outlineMenuInterval]];
+    if ([self outlineMenuTimer]) {
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self outlineMenuInterval]]];
     } else {
-        _outlineMenuTimer = [[NSTimer scheduledTimerWithTimeInterval:_outlineMenuInterval 
-                    target:self 
-                    selector:@selector(doUpdateOutlineMenuWithTimer:) 
-                    userInfo:nil repeats:NO] retain]; // ===== retain
+        [self setOutlineMenuTimer:[[NSTimer scheduledTimerWithTimeInterval:[self outlineMenuInterval]
+                                                                    target:self
+                                                                  selector:@selector(doUpdateOutlineMenuWithTimer:)
+                                                                  userInfo:nil
+                                                                   repeats:NO] retain]]; // ===== retain
     }
 
     // 非互換文字リスト更新
@@ -900,75 +823,73 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カレント行をハイライト表示
 // ------------------------------------------------------
 {
-    if (!_highlightCurrentLine) { return; }
+    if (![self highlightCurrentLine]) { return; }
 
 // IMでの仮名漢字変換中に背景色がカレント行ハイライト色でなくテキスト背景色になることがあるため、行の文字数の変化や追加描画矩形の
 // 比較では、描画をパスできない。
 // hasMarkedText を使っても、変換確定の直前直後の区別がつかないことがあるので、愚直に全工程を実行している。 2008.05.31.
 
-    CELayoutManager *theLayoutManager = (CELayoutManager *)[[self textView] layoutManager];
+    CELayoutManager *layoutManager = (CELayoutManager *)[[self textView] layoutManager];
 
 // グリフがないときはそのまま戻ると、全くハイライトされないことと、アンドゥで描画が乱れるため、実行する。2008.06.21.
-//    NSUInteger theNumOfGlyphs = [theLayoutManager numberOfGlyphs];
-//    if (theNumOfGlyphs == 0) { return; }
-    NSRange theSelectedRange = [[self textView] selectedRange];
-    NSRange theLineRange = [[self string] lineRangeForRange:theSelectedRange];
+//    NSUInteger numOfGlyphs = [layoutManager numberOfGlyphs];
+//    if (numOfGlyphs == 0) { return; }
+    NSRange selectedRange = [[self textView] selectedRange];
+    NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
 
     // 文字背景色でハイライトされる矩形を取得
-    NSRange theGlyphRange = 
-                [theLayoutManager glyphRangeForCharacterRange:theLineRange actualCharacterRange:NULL];
-    NSRect theAttrsRect = [theLayoutManager boundingRectForGlyphRange:theGlyphRange 
-                            inTextContainer:[[self textView] textContainer]];
+    NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL];
+    NSRect attrsRect = [layoutManager boundingRectForGlyphRange:glyphRange
+                                                inTextContainer:[[self textView] textContainer]];
     // 10.5.5でdeleteキーで最終行の文字をすべて削除すると、ハイライトが文頭に移動してしまう。これはboundingRectForGlyphRange:inTextContainer:でZeroRectが返ってきてしまうために起こる。extraLineFragmentRectも試したが、やはりZeroRectしか返ってこなかった。この不具合を迂回するための条件式を設定したが、最後に削除した文字列の背景部分のみハイライトしないままになる問題が残ってる。2008.11.15
-    if (([[self string] length] == 0) || 
-            ((!NSEqualRects(theAttrsRect, NSZeroRect)) && ([[self string] length] > 0))) {
+    if (([[self string] length] == 0) ||
+        ((!NSEqualRects(attrsRect, NSZeroRect)) && ([[self string] length] > 0))) {
         // 文字背景色を塗っても右側に生じる「空白」の矩形を得る
-        CGFloat theAdditionalWidth = [[[self textView] textContainer] containerSize].width
-                        - theAttrsRect.size.width - theAttrsRect.origin.x
+        CGFloat additionalWidth = [[[self textView] textContainer] containerSize].width
+                        - attrsRect.size.width - attrsRect.origin.x
                         - [[self textView] textContainerInset].width
                         - [[[self textView] textContainer] lineFragmentPadding];
-        NSRect theAdditionalRect = NSMakeRect(NSMaxX(theAttrsRect), 
-                    NSMinY(theAttrsRect) + [[self textView] textContainerOrigin].y, theAdditionalWidth, 
-                    [theLayoutManager lineHeight]);
-    //NSLog(NSStringFromRange(theGlyphRange));
-    //NSLog(NSStringFromRect(theAttrsRect));
-    //NSLog(NSStringFromRange(theLineRange));
+        NSRect additionalRect = NSMakeRect(NSMaxX(attrsRect),
+                    NSMinY(attrsRect) + [[self textView] textContainerOrigin].y, additionalWidth, 
+                    [layoutManager lineHeight]);
+    //NSLog(NSStringFromRange(glyphRange));
+    //NSLog(NSStringFromRect(attrsRect));
+    //NSLog(NSStringFromRange(lineRange));
 
         // 追加描画矩形を描画する
-        if (!NSEqualRects([[self textView] highlightLineAdditionalRect], theAdditionalRect)) {
+        if (!NSEqualRects([[self textView] highlightLineAdditionalRect], additionalRect)) {
             [[self textView] setNeedsDisplayInRect:[[self textView] highlightLineAdditionalRect]];
-            [[self textView] setHighlightLineAdditionalRect:theAdditionalRect];
-            [[self textView] setNeedsDisplayInRect:theAdditionalRect];
+            [[self textView] setHighlightLineAdditionalRect:additionalRect];
+            [[self textView] setNeedsDisplayInRect:additionalRect];
         }
     }
 
     // 古い範囲の文字背景色を削除し、新しい範囲にセット
-    BOOL theBoolSetBackgroundColor = _setHiliteLineColorToIMChars ? YES : 
-                    ((_hadMarkedText == [[self textView] hasMarkedText]) && 
-                                    (!NSEqualRanges(_hilightedLineRange, theLineRange)));
-    if (theBoolSetBackgroundColor) {
+    BOOL shouldSetBackgroundColor = [self setsHiliteLineColorToIMChars] ? YES :
+                    (([self hadMarkedText] == [[self textView] hasMarkedText]) &&
+                                    (!NSEqualRanges([self hilightedLineRange], lineRange)));
+    if (shouldSetBackgroundColor) {
 
-        NSColor *theHighlightColor = [[[self textView] highlightLineColor] colorWithAlphaComponent:
+        NSColor *highlightColor = [[[self textView] highlightLineColor] colorWithAlphaComponent:
                     [[[self textView] backgroundColor] alphaComponent]];
-        NSDictionary *theDict = @{NSBackgroundColorAttributeName: theHighlightColor};
+        NSDictionary *dict = @{NSBackgroundColorAttributeName: highlightColor};
         // （文字列が削除されたときも実行されるので、範囲を検証しておかないと例外が発生する）
-        NSRange theRemoveAttrsRange = NSMakeRange(0, [_textStorage length]);
+        NSRange removeAttrsRange = NSMakeRange(0, [[self textStorage] length]);
 
         // 検索パネルのハイライトや非互換文字表示で使っているlayoutManのaddTemporaryAttributesと衝突しないように、
         // NSTextStorageの背景色を使っている。addTemporaryAttributesよりも後ろに描画されるので、
         // これら検索パネルのハイライト／非互換文字表示／カレント行のハイライトが全て表示できる。
         // ただし、テキストビュー分割時にアクティブでないものも含めて全てのテキストビューがハイライトされてしまう。
         // これは、全テキストビューのtextStorageが共通であることに起因するので、構造を変更しない限り解決できない。2008.06.07.
-        [_textStorage beginEditing];
-        if (theRemoveAttrsRange.length > 0) {
-            [_textStorage removeAttribute:NSBackgroundColorAttributeName range:theRemoveAttrsRange];
+        [[self textStorage] beginEditing];
+        if (removeAttrsRange.length > 0) {
+            [[self textStorage] removeAttribute:NSBackgroundColorAttributeName range:removeAttrsRange];
         }
-        [_textStorage addAttributes:theDict range:theLineRange];
-        [_textStorage endEditing];
-        _hilightedLineRange = theLineRange;
-        _hadMarkedText = [[self textView] hasMarkedText];
+        [[self textStorage] addAttributes:dict range:lineRange];
+        [[self textStorage] endEditing];
+        [self setHilightedLineRange:lineRange];
+        [self setHadMarkedText:[[self textView] hasMarkedText]];
     }
 }
-
 
 @end

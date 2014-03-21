@@ -43,15 +43,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESubSplitView : NSView <NSTextViewDelegate>
 
+@property (nonatomic, retain) CEEditorView *editorView;
+
+// readonly
+@property (nonatomic, readonly, retain) NSScrollView *scrollView;
+@property (nonatomic, readonly, retain) CETextViewCore *textView;
+@property (nonatomic, readonly, retain) CELineNumView *lineNumView;
+@property (nonatomic, readonly, retain) CENavigationBarView *navigationBar;
+@property (nonatomic, readonly, retain) CESyntax *syntax;
+@property (nonatomic, readonly, retain) NSDictionary *highlightBracesColorDict;
+
+
 // Public method
 - (void)releaseEditorView;
-- (CEEditorView *)editorView;
-- (void)setEditorView:(CEEditorView *)inEditorView;
-- (NSScrollView *)scrollView;
-- (CETextViewCore *)textView;
-- (CELineNumView *)lineNumView;
-- (CENavigationBarView *)navigationBar;
-- (CESyntax *)syntax;
 - (NSString *)string;
 - (void)viewDidEndLiveResize;
 - (void)replaceTextStorage:(NSTextStorage *)inTextStorage;
@@ -72,7 +76,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)stopUpdateLineNumberTimer;
 - (void)stopUpdateOutlineMenuTimer;
 - (NSCharacterSet *)completionsFirstLetterSet;
-- (NSDictionary *)highlightBracesColorDict;
 - (void)setBackgroundColorAlphaWithNumber:(NSNumber *)inNumber;
 
 @end
