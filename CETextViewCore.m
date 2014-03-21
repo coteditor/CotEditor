@@ -192,6 +192,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setIsSelfDrop:NO];
         [self setIsReadingFromPboard:NO];
         [self setHighlightLineAdditionalRect:NSZeroRect];
+        [self setAutomaticDashSubstitutionEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartQuotes]];
+        [self setAutomaticQuoteSubstitutionEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartQuotes]];
     }
 
     return self;

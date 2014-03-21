@@ -149,6 +149,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_runAppleScriptInLaunching     @"runAppleScriptInLaunching"
 #define k_key_showAlertForNotWritable       @"showAlertForNotWritable"
 #define k_key_notifyEditByAnother       @"notifyEditByAnother"
+#define k_key_enableSmartQuotes         @"enableSmartQuotes"
 
 
 // transparencyController

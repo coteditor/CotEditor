@@ -206,7 +206,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 k_key_showColoringIndicatorTextLength: @115000U, 
                 k_key_runAppleScriptInLaunching: @YES, 
                 k_key_showAlertForNotWritable: @YES, 
-                k_key_notifyEditByAnother: @YES};
+                k_key_notifyEditByAnother: @YES,
+                k_key_enableSmartQuotes: @NO};
     [[NSUserDefaults standardUserDefaults] registerDefaults:theDefaults];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:theDefaults];
 
