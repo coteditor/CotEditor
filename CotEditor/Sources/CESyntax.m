@@ -41,27 +41,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntax ()
 {
-    IBOutlet NSProgressIndicator *_coloringIndicator;
-    IBOutlet NSTextField *_coloringCaption;
-    
-    CELayoutManager *_layoutManager;
-    NSString *_wholeString;
-    NSString *_localString;
-    NSString *_syntaxStyleName;
-    NSDictionary *_coloringDictionary;
     NSDictionary *_currentAttrs;
     NSDictionary *_singleQuotesAttrs;
     NSDictionary *_doubleQuotesAttrs;
     NSColor *_textColor;
-    NSArray *_completeWordsArray;
-    NSCharacterSet *_completeFirstLetterSet;
-    NSRange _updateRange;
-    NSModalSession _modalSession;
-    
-    BOOL _isIndicatorShown;
-    BOOL _isPrinting;
-    NSUInteger _showColoringIndicatorTextLength;
 }
+
+@property (nonatomic) IBOutlet NSProgressIndicator *coloringIndicator;
+@property (nonatomic) IBOutlet NSTextField *coloringCaption;
+
+@property (nonatomic, retain) NSDictionary *coloringDictionary;
+
+@property (nonatomic) NSRange updateRange;
+@property (nonatomic) NSModalSession modalSession;
+
+@property (nonatomic) BOOL isIndicatorShown;
+@property (nonatomic) NSUInteger showColoringIndicatorTextLength;
+
+
+// readonly
+@property (nonatomic, retain, readwrite) NSArray *completeWordsArray;
+@property (nonatomic, retain, readwrite) NSCharacterSet *completeFirstLetterSet;
 
 @end
 
@@ -90,20 +90,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
         (void)[NSBundle loadNibNamed:@"Indicator" owner:self];
-        _wholeString = nil;
-        _localString = nil;
+        [self setWholeString:nil];
+        [self setLocalString:nil];
         _syntaxStyleName = nil;
         _coloringDictionary = nil;
         _singleQuotesAttrs = nil;
         _doubleQuotesAttrs = nil;
-        _completeWordsArray = nil;
-        _completeFirstLetterSet = nil;
-        _updateRange = NSMakeRange(0, 0);
-        _isIndicatorShown = NO;
-        _isPrinting = NO;
-        _showColoringIndicatorTextLength = 
-                [[theValues valueForKey:k_key_showColoringIndicatorTextLength] unsignedIntegerValue];
-        [_coloringIndicator setIndeterminate:NO];
+        [self setCompleteWordsArray:nil];
+        [self setCompleteFirstLetterSet:nil];
+        [self setUpdateRange:NSMakeRange(0, 0)];
+        [self setIsIndicatorShown:NO];
+        [self setIsPrinting:NO];
+        [self setShowColoringIndicatorTextLength:[[theValues valueForKey:k_key_showColoringIndicatorTextLength] unsignedIntegerValue]];
+        [[self coloringIndicator] setIndeterminate:NO];
     }
     return self;
 }
@@ -116,7 +115,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // NSBundle loadNibNamed: でロードされたオブジェクトを開放
     // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
-    [[_coloringIndicator window] release];
+    [[[self coloringIndicator] window] release];
     // （_coloringIndicator はパネルのコンテントビューなのでパネルの解放後に自動開放される）
 
     // （_textColor, _currentAttrs, _singleQuotesAttrs, _doubleQuotesAttrs は保持していない）
@@ -133,53 +132,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setWholeString:(NSString *)inString
-// 全文字列をセット
-// ------------------------------------------------------
-{
-    [inString retain];
-    [_wholeString release];
-    _wholeString = inString;
-}
-
-
-// ------------------------------------------------------
 - (NSUInteger)wholeStringLength
 // 全文字列の長さを返す
 // ------------------------------------------------------
 {
-    return [_wholeString length];
-}
-
-
-// ------------------------------------------------------
-- (void)setLocalString:(NSString *)inString
-// カラーリング対象文字列 をセット
-// ------------------------------------------------------
-{
-    [inString retain];
-    [_localString release];
-    _localString = inString;
-}
-
-
-// ------------------------------------------------------
-- (void)setLayoutManager:(CELayoutManager *)inLayoutManager
-// layoutManagerをセット
-// ------------------------------------------------------
-{
-    [inLayoutManager retain];
-    [_layoutManager release];
-    _layoutManager = inLayoutManager;
-}
-
-
-// ------------------------------------------------------
-- (NSString *)syntaxStyleName
-// style名を返す
-// ------------------------------------------------------
-{
-    return _syntaxStyleName;
+    return [[self wholeString] length];
 }
 
 
@@ -194,9 +151,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (([theNames containsObject:inStyleName]) || 
             ([inStyleName isEqualToString:NSLocalizedString(@"None",@"")])) {
 
-        NSDictionary *theTmpDict = [[theManager syntaxWithStyleName:inStyleName] retain];
-        [_coloringDictionary release];
-        _coloringDictionary = theTmpDict;
+        NSDictionary *theTmpDict = [theManager syntaxWithStyleName:inStyleName];
+        [self setColoringDictionary:theTmpDict];
 
         [self setCompleteWordsArrayFromColoringDictionary];
 
@@ -223,32 +179,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSArray *)completeWordsArray
-// 保持している入力補完文字列配列を返す
-// ------------------------------------------------------
-{
-    return _completeWordsArray;
-}
-
-
-// ------------------------------------------------------
-- (NSCharacterSet *)completeFirstLetterSet
-// 保持している入力補完の最初の1文字のセットを返す
-// ------------------------------------------------------
-{
-    return _completeFirstLetterSet;
-}
-
-
-// ------------------------------------------------------
 - (void)setCompleteWordsArrayFromColoringDictionary
 // 保持しているカラーリング辞書から補完文字列配列を生成
 // ------------------------------------------------------
 {
-    if (_coloringDictionary == nil) { return; }
+    if ([self coloringDictionary] == nil) { return; }
 
     NSMutableArray *theTmpArray = [NSMutableArray array];
-    NSArray *theCompleteArray = _coloringDictionary[k_SCKey_completionsArray];
+    NSArray *theCompleteArray = [self coloringDictionary][k_SCKey_completionsArray];
     NSMutableString *theTmpString = [NSMutableString string];
     NSString *theStr = nil;
     NSCharacterSet *theCharSet;
@@ -271,7 +209,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
         for (i = 0; i < theCount; i++) {
-            theArray = _coloringDictionary[theSyntaxArray[i]];
+            theArray = [self coloringDictionary][theSyntaxArray[i]];
             for (theStrDict in theArray) {
                 theStr = [theStrDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -293,18 +231,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // ソート
         [theTmpArray sortedArrayUsingSelector:@selector(compare:)];
     }
-    // _completeWordsArray を保持する
-    [theTmpArray retain]; // ===== retain
-    [_completeWordsArray release];
-    _completeWordsArray = theTmpArray;
+    // completeWordsArray を保持する
+    [self setCompleteWordsArray:theTmpArray];
 
-    // _completeFirstLetterSet を保持する
-    [_completeFirstLetterSet release];
+    // completeFirstLetterSet を保持する
     if ([theTmpString length] > 0) {
-        theCharSet = [[NSCharacterSet characterSetWithCharactersInString:theTmpString] retain]; // ===== retain
-        _completeFirstLetterSet = theCharSet;
+        theCharSet = [NSCharacterSet characterSetWithCharactersInString:theTmpString];
+        [self setCompleteFirstLetterSet:theCharSet];
     } else {
-        _completeFirstLetterSet = nil;
+        [self setCompleteFirstLetterSet:nil];
     }
 }
 
@@ -318,14 +253,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             ([[self syntaxStyleName] length] < 1)) { return; }
 
     [self setWholeString:inWholeString];
-    _updateRange = NSMakeRange(0, [self wholeStringLength]);
+    [self setUpdateRange:NSMakeRange(0, [self wholeStringLength])];
 
-    if (_coloringDictionary == nil) {
-        _coloringDictionary  = [[[CESyntaxManager sharedInstance] syntaxWithStyleName:
-                    [self syntaxStyleName]] retain]; // ===== retain
+    if ([self coloringDictionary] == nil) {
+        [self setColoringDictionary:[[CESyntaxManager sharedInstance] syntaxWithStyleName:[self syntaxStyleName]]];
         [self setCompleteWordsArrayFromColoringDictionary];
     }
-    if (_coloringDictionary == nil) { return; }
+    if ([self coloringDictionary] == nil) { return; }
 
     [self doColoring];
     [self setWholeString:nil];
@@ -347,23 +281,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger theWholeLength = [self wholeStringLength];
 
     // 直前／直後が同色ならカラーリング範囲を拡大する
-    (void)[_layoutManager temporaryAttributesAtCharacterIndex:theStart
+    (void)[[self layoutManager] temporaryAttributesAtCharacterIndex:theStart
             longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
 
     theStart = theEffectiveRange.location;
-    (void)[_layoutManager temporaryAttributesAtCharacterIndex:theEnd
+    (void)[[self layoutManager] temporaryAttributesAtCharacterIndex:theEnd
             longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
 
     theEnd = (NSMaxRange(theEffectiveRange) < theWholeLength) ? 
                 NSMaxRange(theEffectiveRange) : theWholeLength;
 
-    _updateRange = NSMakeRange(theStart, theEnd - theStart);
-    if (_coloringDictionary == nil) {
-        _coloringDictionary  = [[[CESyntaxManager sharedInstance] syntaxWithStyleName:
-                    [self syntaxStyleName]] retain]; // ===== retain
+    [self setUpdateRange:NSMakeRange(theStart, theEnd - theStart)];
+    if ([self coloringDictionary] == nil) {
+        [self setColoringDictionary:[[CESyntaxManager sharedInstance] syntaxWithStyleName:[self syntaxStyleName]]];
         [self setCompleteWordsArrayFromColoringDictionary];
     }
-    if (_coloringDictionary == nil) { return; }
+    if ([self coloringDictionary] == nil) { return; }
 
     [self doColoring];
     [self setWholeString:nil];
@@ -384,7 +317,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setWholeString:inWholeString];
 
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *theREStringArray = _coloringDictionary[k_SCKey_outlineMenuArray];
+    NSArray *theREStringArray = [self coloringDictionary][k_SCKey_outlineMenuArray];
     NSMutableString *thePattern; 
     NSString *theTitle, *theMatchedIndexString;
     NSRange theMatchRange;
@@ -408,7 +341,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             continue;
         NS_ENDHANDLER
 
-        theEnumerator = [theRegex matchEnumeratorInString:_wholeString];
+        theEnumerator = [theRegex matchEnumeratorInString:[self wholeString]];
         while (theMatch = [theEnumerator nextObject]) {
             // マッチした範囲
             theMatchRange = [theMatch rangeOfMatchedString];
@@ -502,26 +435,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-- (BOOL)isPrinting
-// プリンタ中かどうかを返す
-// ------------------------------------------------------
-{
-    // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
-    return _isPrinting;
-}
-
-
-// ------------------------------------------------------
-- (void)setIsPrinting:(BOOL)inValue
-// プリンタ中かどうかを設定
-// ------------------------------------------------------
-{
-    // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
-    _isPrinting = inValue;
-}
-
-
 
 #pragma mark Action Messages
 
@@ -558,12 +471,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     for (NSValue *value in theArray) {
         theRange = [value rangeValue];
-        theRange.location += _updateRange.location;
+        theRange.location += [self updateRange].location;
 
         if ([self isPrinting]) {
-            [[_layoutManager firstTextView] setTextColor:_textColor range:theRange];
+            [[[self layoutManager] firstTextView] setTextColor:_textColor range:theRange];
         } else {
-            [_layoutManager addTemporaryAttributes:_currentAttrs forCharacterRange:theRange];
+            [[self layoutManager] addTemporaryAttributes:_currentAttrs forCharacterRange:theRange];
         }
     }
 }
@@ -575,7 +488,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 指定された文字列をそのまま検索し、位置を返す
 // ------------------------------------------------------
 {
-    NSScanner *theScanner = [NSScanner scannerWithString:_localString];
+    NSScanner *theScanner = [NSScanner scannerWithString:[self localString]];
     NSString *theScanStr = nil;
     CEPrivateMutableArray *outArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
     NSCharacterSet *theCharSet;
@@ -626,8 +539,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *theESCheckStr = nil;
-    NSScanner *theScanner = [NSScanner scannerWithString:_localString];
-    NSUInteger theLocalLength = [_localString length];
+    NSScanner *theScanner = [NSScanner scannerWithString:[self localString]];
+    NSUInteger theLocalLength = [[self localString] length];
     NSUInteger theStart = 0, theESNum = 0, theEnd = 0;
     NSUInteger theBeginLength = 0, theEndLength = 0, theESCheckLength;
     NSUInteger theStartEnd = 0;
@@ -648,7 +561,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [theScanner setScanLocation:(theStart + theBeginLength)];
             theESCheckLength = (theStart < k_ESCheckLength) ? theStart : k_ESCheckLength;
             theTmpRange = NSMakeRange(theStart - theESCheckLength, theESCheckLength);
-            theESCheckStr = [_localString substringWithRange:theTmpRange];
+            theESCheckStr = [[self localString] substringWithRange:theTmpRange];
             theESNum = [self numberOfEscapeSequenceInString:theESCheckStr];
             if (theESNum % 2 == 1) {
                 continue;
@@ -665,8 +578,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         while (1) {
             i++;
-            if ((_isIndicatorShown) && ((i % 10) == 0) && 
-                    ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
+            if ([self isIndicatorShown] && ((i % 10) == 0) &&
+                    ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
                 return nil;
             }
             (void)[theScanner scanUpToString:inEndString intoString:nil];
@@ -676,7 +589,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 theESCheckLength = ((theEnd - theEndLength) < k_ESCheckLength) ? 
                         (theEnd - theEndLength) : k_ESCheckLength;
                 theTmpRange = NSMakeRange(theEnd - theEndLength - theESCheckLength, theESCheckLength);
-                theESCheckStr = [_localString substringWithRange:theTmpRange];
+                theESCheckStr = [[self localString] substringWithRange:theTmpRange];
                 theESNum = [self numberOfEscapeSequenceInString:theESCheckStr];
                 if (theESNum % 2 == 1) {
                     continue;
@@ -719,7 +632,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger theQCStart = 0, theQCEnd = 0;
 
     NS_DURING
-        theEnumerator = [_localString matchEnumeratorWithRegex:inRegexStr options:theOption];
+        theEnumerator = [[self localString] matchEnumeratorWithRegex:inRegexStr options:theOption];
         theMatchArray = [theEnumerator allObjects];
     NS_HANDLER
         // 何もしない
@@ -735,8 +648,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             outArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
         }
         for (i = 0; i < theCount; i++) {
-            if ((_isIndicatorShown) && ((i % 10) == 0) && 
-                    ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
+            if ([self isIndicatorShown] && ((i % 10) == 0) &&
+                    ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
                 return nil;
             }
             theAttrRange = [theMatchArray[i] rangeValue];
@@ -782,16 +695,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return nil;
     NS_ENDHANDLER
 
-    theEnum = [theRegex matchEnumeratorInString:_localString];
+    theEnum = [theRegex matchEnumeratorInString:[self localString]];
 
     while (theMatch = [theEnum nextObject]) {
-        if ((_isIndicatorShown) && 
-                ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
+        if ([self isIndicatorShown] &&
+                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
         NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
         theAttrRange = [theMatch rangeOfMatchedString];
-        theAttrRange.location += _updateRange.location;
+        theAttrRange.location += [self updateRange].location;
         if (inValueDoColoring) {
             [outArray addObject:[NSValue valueWithRange:theAttrRange]];
         } else {
@@ -832,7 +745,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger theQCStart = 0, theQCEnd = 0;
 
     NS_DURING
-        theEnumerator = [_localString matchEnumeratorWithRegex:inBeginString options:theOption];
+        theEnumerator = [[self localString] matchEnumeratorWithRegex:inBeginString options:theOption];
         theMatchArray = [theEnumerator allObjects];
     NS_HANDLER
         // 何もしない
@@ -845,16 +758,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         outArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
     }
     for (i = 0; i < theCount; i++) {
-        if ((_isIndicatorShown) && ((i % 10) == 0) && 
-                ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
+        if ([self isIndicatorShown] && ((i % 10) == 0) &&
+                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
         theBeginRange = [theMatchArray[i] rangeValue];
         NS_DURING
-            theEndRange = [_localString rangeOfRegex:inEndString 
+            theEndRange = [[self localString] rangeOfRegex:inEndString
                         options:theOption 
                         inRange:NSMakeRange(NSMaxRange(theBeginRange), 
-                            [_localString length] - NSMaxRange(theBeginRange))
+                            [[self localString] length] - NSMaxRange(theBeginRange))
                         capture:0 error:NULL];
         NS_HANDLER
             // 何もしない
@@ -911,27 +824,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return nil;
     NS_ENDHANDLER
 
-    theEnum = [theRegex matchEnumeratorInString:_localString];
+    theEnum = [theRegex matchEnumeratorInString:[self localString]];
 
     while (theMatch = [theEnum nextObject]) {
-        if ((_isIndicatorShown) && 
-                ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
+        if ([self isIndicatorShown] &&
+                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
         NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
         theBeginRange = [theMatch rangeOfMatchedString];
         NS_DURING
-            theEndRange = [_localString rangeOfRegularExpressionString:inEndString 
+            theEndRange = [[self localString] rangeOfRegularExpressionString:inEndString
                         options:theOption 
                         range:NSMakeRange(NSMaxRange(theBeginRange), 
-                            [_localString length] - NSMaxRange(theBeginRange))];
+                            [[self localString] length] - NSMaxRange(theBeginRange))];
         NS_HANDLER
             [thePool release]; // ===== release
             return nil;
         NS_ENDHANDLER
         if (theEndRange.location != NSNotFound) {
             theAttrRange = NSUnionRange(theBeginRange, theEndRange);
-            theAttrRange.location += _updateRange.location;
+            theAttrRange.location += [self updateRange].location;
         } else {
             continue;
         }
@@ -980,8 +893,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // コメント定義の位置配列を生成
     for (i = 0; i < theSyntaxCount; i++) {
-        if ((_isIndicatorShown) && ((i % 10) == 0) && 
-                ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) { return; }
+        if ([self isIndicatorShown] && ((i % 10) == 0) &&
+                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) { return; }
         theStrDict = inArray[i];
         theBeginStr = theStrDict[k_SCKey_beginString];
 
@@ -1080,12 +993,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             theEnd = [theCurRecord[k_QCPosition] unsignedIntegerValue] +
                     [theCurRecord[k_QCStrLength] unsignedIntegerValue];
-            theColoringRange = NSMakeRange(theStart + _updateRange.location, theEnd - theStart);
+            theColoringRange = NSMakeRange(theStart + [self updateRange].location, theEnd - theStart);
             if ([self isPrinting]) {
-                [[_layoutManager firstTextView] setTextColor:
+                [[[self layoutManager] firstTextView] setTextColor:
                         theAttrs[NSForegroundColorAttributeName] range:theColoringRange];
             } else {
-                [_layoutManager addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
+                [[self layoutManager] addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
             }
             theQCKind = k_notUseKind;
             theIndex++;
@@ -1117,12 +1030,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     break;
                 }
                 theColoringRange = 
-                        NSMakeRange(theStart + _updateRange.location, NSMaxRange(_updateRange) - theStart);
+                        NSMakeRange(theStart + [self updateRange].location, NSMaxRange([self updateRange]) - theStart);
                 if ([self isPrinting]) {
-                    [[_layoutManager firstTextView] setTextColor:
+                    [[[self layoutManager] firstTextView] setTextColor:
                             theAttrs[NSForegroundColorAttributeName] range:theColoringRange];
                 } else {
-                    [_layoutManager addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
+                    [[self layoutManager] addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
                 }
                 break;
             }
@@ -1155,14 +1068,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 不可視文字表示時に文字色を変更する
 // ------------------------------------------------------
 {
-    if (![_layoutManager showOtherInvisibles]) { return; }
+    if (![[self layoutManager] showOtherInvisibles]) { return; }
     id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSColor *theColor = 
             [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
-    if ([[_layoutManager firstTextView] textColor] == theColor) { return; }
+    if ([[[self layoutManager] firstTextView] textColor] == theColor) { return; }
     NSDictionary *theAttrs;
     NSMutableArray *theTargetArray = [NSMutableArray array];
-    NSScanner *theScanner = [NSScanner scannerWithString:_localString];
+    NSScanner *theScanner = [NSScanner scannerWithString:[self localString]];
     NSString *theControlStr;
     NSRange theColoringRange;
     NSInteger theStart;
@@ -1184,14 +1097,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self isPrinting]) {
         for (NSValue *value in theTargetArray) {
             theColoringRange = [value rangeValue];
-            theColoringRange.location += _updateRange.location;
-            [[_layoutManager firstTextView] setTextColor:theColor range:theColoringRange];
+            theColoringRange.location += [self updateRange].location;
+            [[[self layoutManager] firstTextView] setTextColor:theColor range:theColoringRange];
         }
     } else {
         for (NSValue *value in theTargetArray) {
             theColoringRange = [value rangeValue];
-            theColoringRange.location += _updateRange.location;
-            [_layoutManager addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
+            theColoringRange.location += [self updateRange].location;
+            [[self layoutManager] addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
         }
     }
 }
@@ -1206,12 +1119,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     NSUInteger theLength = [self wholeStringLength];
     if (theLength < 1) { return; }
-    [self setLocalString:[_wholeString substringWithRange:_updateRange]]; // カラーリング対象文字列を保持
-    if ([_localString length] < 1) { return; }
+    [self setLocalString:[[self wholeString] substringWithRange:[self updateRange]]]; // カラーリング対象文字列を保持
+    if ([[self localString] length] < 1) { return; }
 
     // 現在あるカラーリングを削除、カラーリング不要なら不可視文字のカラーリングだけして戻る
-    [_layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:_updateRange];
-    if (([_coloringDictionary[k_SCKey_numOfObjInArray] integerValue] == 0) || 
+    [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:[self updateRange]];
+    if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) ||
             ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None",@"")])) {
         [self setOtherInvisibleCharsAttrs];
         return;
@@ -1221,24 +1134,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
     NSWindow *theDocWindow = nil;
     NSWindow *theSheet = nil;
-    if ((_showColoringIndicatorTextLength > 0) && 
-                (_updateRange.length > _showColoringIndicatorTextLength)) {
-        _isIndicatorShown = YES;
+    if (([self showColoringIndicatorTextLength] > 0) &&
+                ([self updateRange].length > [self showColoringIndicatorTextLength])) {
+        [self setIsIndicatorShown:YES];
         [self setDoubleIndicator:0];
         if ([self isPrinting]) {
             theDocWindow = [NSApp mainWindow];
-            [_coloringCaption setStringValue:NSLocalizedString(@"Print text Coloring ...",@"")];
+            [[self coloringCaption] setStringValue:NSLocalizedString(@"Print text Coloring ...",@"")];
         } else {
-            theDocWindow = [[_layoutManager firstTextView] window];
-            [_coloringCaption setStringValue:NSLocalizedString(@"Text Coloring ...",@"")];
+            theDocWindow = [[[self layoutManager] firstTextView] window];
+            [[self coloringCaption] setStringValue:NSLocalizedString(@"Text Coloring ...",@"")];
         }
-        theSheet = [_coloringIndicator window];
+        theSheet = [[self coloringIndicator] window];
         [NSApp beginSheet:theSheet 
                 modalForWindow:theDocWindow 
                 modalDelegate:self 
                 didEndSelector:NULL 
                 contextInfo:NULL];
-        _modalSession = [NSApp beginModalSessionForWindow:theSheet];
+        [self setModalSession:[NSApp beginModalSessionForWindow:theSheet]];
     }
 
     NSArray *theColorArray = @[k_key_allSyntaxColors];
@@ -1258,24 +1171,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
         for (i = 0; i < theSyntaxArrayCount; i++) {
 
-            if ((_isIndicatorShown) && ([NSApp runModalSession:_modalSession] != NSRunContinuesResponse)) {
+            if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
                 // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
                 if ([self isPrinting]) {
-                    [[_layoutManager firstTextView] setTextColor:[[_layoutManager firstTextView] textColor] 
-                                range:_updateRange];
+                    [[[self layoutManager] firstTextView] setTextColor:[[[self layoutManager] firstTextView] textColor]
+                                range:[self updateRange]];
                 } else {
-                    [_layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName 
-                                forCharacterRange:_updateRange];
+                    [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
+                                forCharacterRange:[self updateRange]];
                     [[[CEDocumentController sharedDocumentController] documentForWindow:theDocWindow] 
                                     doSetSyntaxStyle:NSLocalizedString(@"None",@"") delay:YES];
                 }
                 break;
             }
 
-            theArray = _coloringDictionary[theSyntaxArray[i]];
+            theArray = [self coloringDictionary][theSyntaxArray[i]];
             theCount = [theArray count];
             if (theCount < 1) {
-                if (_isIndicatorShown) {
+                if ([self isIndicatorShown]) {
                     [self setDoubleIndicator:((i + 1) * 100.0)];
                 }
                 continue;
@@ -1287,14 +1200,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([theSyntaxArray[i] isEqualToString:k_SCKey_commentsArray]) {
                 [self setAttrToCommentsWithSyntaxArray:theArray withSingleQuotes:theBoolIsSingleQuotes 
-                        withDoubleQuotes:theBoolIsDoubleQuotes updateIndicator:_isIndicatorShown];
+                        withDoubleQuotes:theBoolIsDoubleQuotes updateIndicator:[self isIndicatorShown]];
                 [_textColor release]; // ===== release
                 [_currentAttrs release]; // ===== release
                 _currentAttrs = nil;
                 break;
             }
 
-            if (_isIndicatorShown) {
+            if ([self isIndicatorShown]) {
                 theBeginDouble = [self doubleValueOfIndicator];
             }
             CEPrivateMutableArray *theTargetArray = 
@@ -1363,10 +1276,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     }
                 }
                 // インジケータ更新
-                if ((_isIndicatorShown) && ((j % 10) == 0)) {
+                if ([self isIndicatorShown] && ((j % 10) == 0)) {
                     indicatorValue = theBeginDouble + (double)(j / (double)theCount * k_perCompoIncrement);
                     [self setDoubleIndicator:(double)indicatorValue];
-                    [_coloringIndicator displayIfNeeded];
+                    [[self coloringIndicator] displayIfNeeded];
                 }
                 if (j % 100 == 0) {
                     [thePool release]; // ===== release
@@ -1393,28 +1306,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 // http://www.mulle-kybernetik.com/artikel/Optimization/opti-3.html
                 // http://homepage.mac.com/mkino2/spec/optimize/methodCall.html
                 if ([self isPrinting]) {
-                    IMP impSetTextColor = [[_layoutManager firstTextView] methodForSelector:
+                    IMP impSetTextColor = [[[self layoutManager] firstTextView] methodForSelector:
                                             @selector(setTextColor:range:)];
                     for (l = 0; l < theInArrayCount; l++) {
                         theColoringRange = [theInArray[l] rangeValue];
-                        theColoringRange.location += _updateRange.location;
-                        impSetTextColor([_layoutManager firstTextView], 
+                        theColoringRange.location += [self updateRange].location;
+                        impSetTextColor([[self layoutManager] firstTextView],
                                     @selector(setTextColor:range:), 
                                     _textColor, theColoringRange);
                     }
                 } else {
-                    IMP impAddTempAttrs = [_layoutManager methodForSelector:
+                    IMP impAddTempAttrs = [[self layoutManager] methodForSelector:
                                             @selector(addTemporaryAttributes:forCharacterRange:)];
                     for (l = 0; l < theInArrayCount; l++) {
                         theColoringRange = [theInArray[l] rangeValue];
-                        theColoringRange.location += _updateRange.location;
-                        impAddTempAttrs(_layoutManager, 
+                        theColoringRange.location += [self updateRange].location;
+                        impAddTempAttrs([self layoutManager],
                                     @selector(addTemporaryAttributes:forCharacterRange:), 
                                     _currentAttrs, theColoringRange);
                     }
                 }
             }
-            if (_isIndicatorShown) {
+            if ([self isIndicatorShown]) {
                 [self setDoubleIndicator:((i + 1) * 100.0)];
             }
             [_textColor release]; // ===== release
@@ -1428,12 +1341,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NS_ENDHANDLER
 
     // インジーケータシートを片づける
-    if (_isIndicatorShown) {
-        [NSApp endModalSession:_modalSession];
+    if ([self isIndicatorShown]) {
+        [NSApp endModalSession:[self modalSession]];
         [NSApp endSheet:theSheet];
         [theSheet orderOut:self];
-        _isIndicatorShown = NO;
-        _modalSession = nil;
+        [self setIsIndicatorShown:NO];
+        [self setModalSession:nil];
     }
     // 不要な変数を片づける
     if (_singleQuotesAttrs != nil) {
@@ -1453,7 +1366,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーリングインジケータの値を返す
 // ------------------------------------------------------
 {
-    return [_coloringIndicator doubleValue];
+    return [[self coloringIndicator] doubleValue];
 }
 
 
@@ -1462,9 +1375,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーリングインジケータの値を設定
 // ------------------------------------------------------
 {
-    [_coloringIndicator setDoubleValue:inValue];
+    [[self coloringIndicator] setDoubleValue:inValue];
 }
-
-
 
 @end

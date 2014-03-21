@@ -46,16 +46,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntax : NSObject
 
+@property (nonatomic, retain) CELayoutManager *layoutManager;
+@property (nonatomic, retain) NSString *wholeString;
+@property (nonatomic, retain) NSString *localString;  // カラーリング対象文字列
+@property (nonatomic, retain) NSString *syntaxStyleName;
+@property (nonatomic) BOOL isPrinting;  // プリンタ中かどうかを返す
+        // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+
+// readonly
+@property (nonatomic, retain, readonly) NSArray *completeWordsArray;  // 保持している入力補完文字列配列
+@property (nonatomic, retain, readonly) NSCharacterSet *completeFirstLetterSet;  // 保持している入力補完の最初の1文字のセット
+
 // Public method
-- (void)setWholeString:(NSString *)inString;
 - (NSUInteger)wholeStringLength;
-- (void)setLocalString:(NSString *)inString;
-- (void)setLayoutManager:(CELayoutManager *)inLayoutManager;
-- (NSString *)syntaxStyleName;
-- (void)setSyntaxStyleName:(NSString *)inStyleName;
 - (BOOL)setSyntaxStyleNameFromExtension:(NSString *)inExtension;
-- (NSArray *)completeWordsArray;
-- (NSCharacterSet *)completeFirstLetterSet;
 - (void)setCompleteWordsArrayFromColoringDictionary;
 - (void)colorAllString:(NSString *)inWholeString;
 - (void)colorVisibleRange:(NSRange)inRange withWholeString:(NSString *)inWholeString;
