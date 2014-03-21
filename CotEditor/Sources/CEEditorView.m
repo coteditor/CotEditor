@@ -318,7 +318,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 選択範囲を返す
 // ------------------------------------------------------
 {
-    if ([[[self textView] newLineString] length] > 1) {
+    if ([[[self textView] lineEndingString] length] > 1) {
         NSRange range = [[self textView] selectedRange];
         NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
         NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
@@ -336,7 +336,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 選択範囲を変更
 // ------------------------------------------------------
 {
-    if ([[[self textView] newLineString] length] > 1) {
+    if ([[[self textView] lineEndingString] length] > 1) {
         NSString *tmpLocStr = [[self stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
         NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
                                                                    withCharacter:OgreLfNewlineCharacter];
@@ -518,7 +518,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             return;
     }
     for (NSTextContainer *container in subSplitViews) {
-        [(CETextViewCore *)[container textView] setNewLineString:newLineString];
+        [(CETextViewCore *)[container textView] setLineEndingString:newLineString];
     }
     if (shouldUpdate) {
         [self updateLineEndingsInStatusAndInfo:NO];

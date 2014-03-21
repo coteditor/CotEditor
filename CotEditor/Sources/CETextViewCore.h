@@ -45,18 +45,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CETextViewCore : NSTextView
 
+@property (nonatomic) BOOL isReCompletion;  // 再度入力補完をするか
+@property (nonatomic) BOOL updateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
+@property (nonatomic) BOOL isSelfDrop;  // 自己内ドラッグ&ドロップなのか
+@property (nonatomic) BOOL isReadingFromPboard;  // ペーストまたはドロップ実行中なのか
+@property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) NSRect highlightLineAdditionalRect;  // ハイライト行で追加表示する矩形
+
+@property (nonatomic, assign) NSView *slaveView;  // LineNumView
+@property (nonatomic, retain) NSString *lineEndingString;  // 行末文字
+@property (nonatomic, retain) NSDictionary *typingAttrs;  // キー入力時の文字修飾辞書
+@property (nonatomic, retain) NSColor *highlightLineColor;  // カレント行ハイライト色
+
+
 // Public method
-- (NSColor *)highlightLineColor;
-- (void)setHighlightLineColor:(NSColor *)inColor;
 - (void)drawHighlightLineAdditionalRect;
-- (NSRect)highlightLineAdditionalRect;
-- (void)setHighlightLineAdditionalRect:(NSRect)inRect;
-- (NSString *)newLineString;
-- (void)setNewLineString:(NSString *)inString;
-- (NSView *)slaveView;
-- (void)setSlaveView:(NSView *)inView;
-- (NSDictionary *)typingAttrs;
-- (void)setTypingAttrs:(NSDictionary *)inAttrs;
 - (void)setEffectTypingAttrs;
 - (void)setBackgroundColorWithAlpha:(CGFloat)inAlpha;
 - (void)replaceSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
@@ -70,17 +73,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)inDragInfo type:(NSString *)inType;
 - (BOOL)readSelectionFromPasteboard:(NSPasteboard *)inPboard type:(NSString *)inType;
 - (NSRange)selectionRangeForProposedRange:(NSRange)inProposedSelRange
-            granularity:(NSSelectionGranularity)inGranularity;
-- (BOOL)isSelfDrop;
-- (void)setIsSelfDrop:(BOOL)inValue;
-- (BOOL)isReadingFromPboard;
-- (void)setIsReadingFromPboard:(BOOL)inValue;
+                              granularity:(NSSelectionGranularity)inGranularity;
 - (BOOL)isReCompletion;
 - (void)setIsReCompletion:(BOOL)inValue;
-- (BOOL)updateOutlineMenuItemSelection;
-- (void)setUpdateOutlineMenuItemSelection:(BOOL)inValue;
-- (CGFloat)lineSpacing;
-- (void)setLineSpacing:(CGFloat)inLineSpacing;
 - (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing;
 - (void)doReplaceString:(NSString *)inString withRange:(NSRange)inRange 
             withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
