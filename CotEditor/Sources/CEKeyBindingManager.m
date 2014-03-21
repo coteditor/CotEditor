@@ -819,12 +819,12 @@ static CEKeyBindingManager *sharedInstance = nil;
 
             // theKeySpecChars があり Cmd が設定されている場合だけ、反映させる
             if ((keySpecChars != nil) && ([keySpecChars length] > 0) && (modifierMask & NSCommandKeyMask)) {
-                // 日本語リソースが使われたとき、Input BackSlash の keyEquivalent を変更する !!!: おそらく修正する必要がある by 1024jp 2014-03
+                // 日本語リソースが使われたとき、Input BackSlash の keyEquivalent を変更する
                 // （半角円マークのままだと半角カナ「エ」に化けるため）
                 if ([keyEquivalent isEqualToString:[NSString stringWithCharacters:&k_yenMark length:1]] &&
                     [[[[[NSBundle mainBundle] URLForResource:@"InfoPlist" withExtension:@"strings"]
                        URLByDeletingLastPathComponent] lastPathComponent]
-                     isEqualToString:@"Japanese.lproj"])
+                     isEqualToString:@"ja.lproj"])
                 {
                     [menuItem setKeyEquivalent:@"\\"];
                 } else {

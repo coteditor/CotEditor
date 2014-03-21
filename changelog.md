@@ -22,3 +22,5 @@ changelog (for developer)
 	- documentオブジェクトの `transparency` および `alpha only textView` プロパティの廃止
 	- windowオブジェクトに `view opacity` プロパティを追加
     - Application直下の `selection` を正式に廃止とした。
+
+- [fix] 日本語環境でバックスラッシュが含まれたキーバインディングが機能しない不具合を修正
