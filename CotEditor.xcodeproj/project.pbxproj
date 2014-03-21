@@ -108,7 +108,7 @@
 		8C5853360903C1ED0085BC4F /* CETabItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5853340903C1ED0085BC4F /* CETabItemView.m */; };
 		8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C65C0E607927D0F0028D94A /* CELayoutManager.m */; };
 		8C7400A408C6D93900683672 /* KeyBindingManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* KeyBindingManager.xib */; };
-		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
 		8C74017708C7364400683672 /* defaultSyntaxStyle_LaTeX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C74017608C7364400683672 /* defaultSyntaxStyle_LaTeX.plist */; };
 		8C78824708ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C78824608ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist */; };
 		8C7D7DB30BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D7DB20BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist */; };

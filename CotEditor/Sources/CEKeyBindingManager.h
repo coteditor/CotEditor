@@ -11,8 +11,6 @@ CEKeyBindingManager
 encoding="UTF-8"
 Created:2005.09.01
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -44,10 +42,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)setupAtLaunching;
-- (NSWindow *)editSheetWindowOfMode:(NSInteger)inMode;
+- (NSWindow *)editSheetWindowOfMode:(NSInteger)mode;
 - (void)setupKeyBindingDictionary;
-- (BOOL)setupOutlineDataOfMode:(NSInteger)inMode;
-- (NSString *)selectorStringWithKeyEquivalent:(NSString *)inString modifierFrags:(NSUInteger)inModFlags;
+- (BOOL)setupOutlineDataOfMode:(NSInteger)mode;
+- (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 
 // Action Message
 - (IBAction)editKeyBindingKey:(id)sender;

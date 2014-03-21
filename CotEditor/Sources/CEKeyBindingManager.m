@@ -11,8 +11,6 @@ CEKeyBindingManager
 encoding="UTF-8"
 Created:2005.09.01
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -39,32 +37,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEKeyBindingManager ()
 
-@property (nonatomic, retain) IBOutlet NSWindow *menuEditSheet;
-@property (nonatomic, assign) IBOutlet NSOutlineView *menuOutlineView;
-@property (nonatomic, assign) IBOutlet  NSTextField *menuDuplicateTextField;
-@property (nonatomic, assign) IBOutlet NSButton *menuEditKeyButton;
-@property (nonatomic, assign) IBOutlet NSButton *menuDeleteKeyButton;
-@property (nonatomic, assign) IBOutlet NSButton *menuFactoryDefaultsButton;
-@property (nonatomic, assign) IBOutlet NSButton *menuOkButton;
-@property (nonatomic, assign) IBOutlet NSTextView *textInsertStringTextView;
-@property (nonatomic, assign) IBOutlet NSArrayController *textInsertStringArrayController;
+@property (nonatomic) IBOutlet NSWindow *menuEditSheet;
+@property (nonatomic, weak) IBOutlet NSOutlineView *menuOutlineView;
+@property (nonatomic, weak) IBOutlet  NSTextField *menuDuplicateTextField;
+@property (nonatomic, weak) IBOutlet NSButton *menuEditKeyButton;
+@property (nonatomic, weak) IBOutlet NSButton *menuDeleteKeyButton;
+@property (nonatomic, weak) IBOutlet NSButton *menuFactoryDefaultsButton;
+@property (nonatomic, weak) IBOutlet NSButton *menuOkButton;
 
 @property (nonatomic, retain) IBOutlet NSWindow *textEditSheet;
-@property (nonatomic, assign) IBOutlet NSOutlineView *textOutlineView;
-@property (nonatomic, assign) IBOutlet  NSTextField *textDuplicateTextField;
-@property (nonatomic, assign) IBOutlet NSButton *textEditKeyButton;
-@property (nonatomic, assign) IBOutlet NSButton *textDeleteKeyButton;
-@property (nonatomic, assign) IBOutlet NSButton *textFactoryDefaultsButton;
-@property (nonatomic, assign) IBOutlet NSButton *textOkButton;
+@property (nonatomic, weak) IBOutlet NSOutlineView *textOutlineView;
+@property (nonatomic, weak) IBOutlet  NSTextField *textDuplicateTextField;
+@property (nonatomic, weak) IBOutlet NSButton *textEditKeyButton;
+@property (nonatomic, weak) IBOutlet NSButton *textDeleteKeyButton;
+@property (nonatomic, weak) IBOutlet NSButton *textFactoryDefaultsButton;
+@property (nonatomic, weak) IBOutlet NSButton *textOkButton;
+@property (nonatomic) IBOutlet NSTextView *textInsertStringTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, weak) IBOutlet NSArrayController *textInsertStringArrayController;
 
 
-@property (nonatomic, retain) NSMutableArray *outlineDataArray;
-@property (nonatomic, retain) NSMutableArray *duplicateKeyCheckArray;
-@property (nonatomic, retain) NSDictionary *defaultMenuKeyBindingDict;
-@property (nonatomic, retain) NSDictionary *menuKeyBindingDict;
-@property (nonatomic, retain) NSDictionary *textKeyBindingDict;
-@property (nonatomic, retain) NSDictionary *noPrintableKeyDict;
-@property (nonatomic, retain) NSString *currentKeySpecChars;
+@property (nonatomic) NSMutableArray *outlineDataArray;
+@property (nonatomic) NSMutableArray *duplicateKeyCheckArray;
+@property (nonatomic) NSDictionary *defaultMenuKeyBindingDict;
+@property (nonatomic) NSDictionary *menuKeyBindingDict;
+@property (nonatomic) NSDictionary *textKeyBindingDict;
+@property (nonatomic) NSDictionary *noPrintableKeyDict;
+@property (nonatomic) NSString *currentKeySpecChars;
 @property (nonatomic) NSInteger outlineMode;
 
 @end
@@ -136,20 +134,6 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
     // ノーティフィケーションセンタから自身を排除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // NSBundle loadNibNamed: でロードされたオブジェクトを開放
-    // 参考にさせていただきました > http://homepage.mac.com/mkino2/backnumber/2004_10.html#October%2012_1
-    [_menuEditSheet release]; // （コンテントビューは自動解放される）
-    [_textEditSheet release]; // （コンテントビューは自動解放される）
-
-    [_outlineDataArray release];
-    [_duplicateKeyCheckArray release];
-    [_defaultMenuKeyBindingDict release];
-    [_menuKeyBindingDict release];
-    [_textKeyBindingDict release];
-    [_noPrintableKeyDict release];
-    [_currentKeySpecChars release];
-
-    [super dealloc];
 }
 
 
@@ -725,7 +709,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     }
 
     // データ読み込み
-    [self setTextKeyBindingDict:[[NSDictionary allocWithZone:[self zone]] initWithContentsOfURL:fileURL]];
+    [self setTextKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:fileURL]];
 }
 
 
@@ -1270,7 +1254,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
     } else if ([self outlineMode] == k_outlineViewModeText) {
         id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        NSArray *contentArray = [[[[self textInsertStringArrayController] content] copy] autorelease];
+        NSArray *contentArray = [[[self textInsertStringArrayController] content] copy];
 
         fileURL = [self textKeyBindingSettingFileURL]; // データディレクトリパス取得
         dirURL = [fileURL URLByDeletingLastPathComponent];
