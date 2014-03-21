@@ -40,31 +40,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "RKLMatchEnumerator.h"
 #import "DEBUG_macro.h"
 
+
 @class CETextViewCore;
 
+
 @interface CESyntax : NSObject
-{
-    IBOutlet NSProgressIndicator *_coloringIndicator;
-    IBOutlet NSTextField *_coloringCaption;
-
-    CELayoutManager *_layoutManager;
-    NSString *_wholeString;
-    NSString *_localString;
-    NSString *_syntaxStyleName;
-    NSDictionary *_coloringDictionary;
-    NSDictionary *_currentAttrs;
-    NSDictionary *_singleQuotesAttrs;
-    NSDictionary *_doubleQuotesAttrs;
-    NSColor *_textColor;
-    NSArray *_completeWordsArray;
-    NSCharacterSet *_completeFirstLetterSet;
-    NSRange _updateRange;
-    NSModalSession _modalSession;
-
-    BOOL _isIndicatorShown;
-    BOOL _isPrinting;
-    NSUInteger _showColoringIndicatorTextLength;
-}
 
 // Public method
 - (void)setWholeString:(NSString *)inString;

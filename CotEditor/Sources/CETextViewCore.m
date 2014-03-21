@@ -42,9 +42,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
+#import "constants.h"
 
 
 @interface CETextViewCore ()
+{
+    NSView *_slaveView;
+    NSString *_newLineString;
+    NSDictionary *_typingAttrs;
+    NSColor *_highlightLineColor;
+    
+    NSRect _insertionRect;
+    NSPoint _textContainerOriginPoint;
+    NSRect _highlightLineAdditionalRect;
+    
+    CGFloat _lineSpacing;
+    BOOL _isReCompletion;
+    BOOL _updateOutlineMenuItemSelection;
+    BOOL _isSelfDrop;
+    BOOL _isReadingFromPboard;
+}
 
 @end
 

@@ -35,9 +35,43 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEPreferences.h"
 #import "CEAppController.h"
+#import "constants.h"
 
 
 @interface CEPreferences ()
+{
+    IBOutlet NSWindow *_prefWindow;
+    IBOutlet NSTabView *_prefTabView;
+    IBOutlet NSTextField *_prefFontFamilyNameSize;
+    IBOutlet NSTextField *_printFontFamilyNameSize;
+    IBOutlet NSWindow *_encodingWindow;
+    IBOutlet CEPrefEncodingDataSource *_encodingDataSource;
+    IBOutlet NSPopUpButton *_encodingMenuInOpen;
+    IBOutlet NSPopUpButton *_encodingMenuInNew;
+    IBOutlet NSWindow *_sizeSampleWindow;
+    IBOutlet NSArrayController *_fileDropController;
+    IBOutlet NSTableView *_fileDropTableView;
+    IBOutlet NSTextView *_fileDropTextView;
+    IBOutlet NSTextView *_fileDropGlossaryTextView;
+    IBOutlet NSPopUpButton *_invisibleSpacePopup;
+    IBOutlet NSPopUpButton *_invisibleTabPopup;
+    IBOutlet NSPopUpButton *_invisibleNewLinePopup;
+    IBOutlet NSPopUpButton *_invisibleFullwidthSpacePopup;
+    IBOutlet NSPopUpButton *_syntaxStylesPopup;
+    IBOutlet NSPopUpButton *_syntaxStylesDefaultPopup;
+    IBOutlet NSButton *_syntaxStyleEditButton;
+    IBOutlet NSButton *_syntaxStyleCopyButton;
+    IBOutlet NSButton *_syntaxStyleExportButton;
+    IBOutlet NSButton *_syntaxStyleDeleteButton;
+    IBOutlet NSButton *_syntaxStyleXtsnErrButton;
+    
+    CGFloat _sampleWidth;
+    CGFloat _sampleHeight;
+    
+    id _appController;
+    NSInteger _currentSheetCode;
+    BOOL _doDeleteFileDrop;
+}
 
 @end
 

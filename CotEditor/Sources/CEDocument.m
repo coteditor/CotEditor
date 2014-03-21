@@ -36,6 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEDocument.h"
 #import "ODBEditorSuite.h"
 #import "NSData+MD5.h"
+#import "constants.h"
 
 
 

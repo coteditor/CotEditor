@@ -36,32 +36,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <Cocoa/Cocoa.h>
 #import <OgreKit/OgreKit.h>
 #import "RegexKitLite.h"
-#import "constants.h"
 
 
 @interface CESyntaxManager : NSObject
-{
-    IBOutlet NSArrayController *_styleController;
-    IBOutlet NSWindow *_editWindow;
-    IBOutlet NSTextField *_styleNameField;
-    IBOutlet NSTextField *_messageField;
-    IBOutlet NSPopUpButton *_elementPopUpButton;
-    IBOutlet NSButton *_factoryDefaultsButton;
-    IBOutlet NSTextView *_extensionErrorTextView;
-    IBOutlet NSTextView *_syntaxElementCheckTextView;
-
-    NSString *_selectedStyleName;
-    NSString *_editedNewStyleName;
-    NSArray *_coloringStyleArray;
-    NSDictionary *_xtsnAndStyleTable;
-    NSDictionary *_xtsnErrors;
-    NSArray *_extensions;
-
-    BOOL _okButtonPressed;
-    BOOL _addedItemInLeopard;
-    NSInteger _sheetOpeningMode;
-    NSUInteger _selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
-}
 
 // class method
 + (CESyntaxManager *)sharedInstance;

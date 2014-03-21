@@ -34,9 +34,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESubSplitView.h"
+#import "constants.h"
 
 
 @interface CESubSplitView ()
+{
+    CEEditorView *_editorView;
+    NSTextStorage *_textStorage;
+    NSScrollView *_scrollView;
+    CETextViewCore *_textViewCore;
+    CELineNumView *_lineNumView;
+    CENavigationBarView *_navigationBar;
+    CESyntax *_syntax;
+    NSDictionary *_highlightBracesColorDict;
+    NSTimer *_lineNumUpdateTimer;
+    NSTimer *_outlineMenuTimer;
+    NSTimeInterval _lineNumUpdateInterval;
+    NSTimeInterval _outlineMenuInterval;
+    NSRange _hilightedLineRange;
+    NSRect _hilightedLineRect;
+    
+    NSInteger _lastCursorLocation;
+    BOOL _highlightCurrentLine;
+    BOOL _setHiliteLineColorToIMChars;
+    BOOL _hadMarkedText;
+}
 
 @end
 

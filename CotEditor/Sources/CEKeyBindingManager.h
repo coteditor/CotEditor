@@ -35,37 +35,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import <Cocoa/Cocoa.h>
 #import "CEAppController.h"
-#import "constants.h"
 
 
 @interface CEKeyBindingManager : NSObject
-{
-    IBOutlet NSWindow *_menuEditSheet;
-    IBOutlet NSOutlineView *_menuOutlineView;
-    IBOutlet NSTextField *_menuDuplicateTextField;
-    IBOutlet NSButton *_menuEditKeyButton;
-    IBOutlet NSButton *_menuDeleteKeyButton;
-    IBOutlet NSButton *_menuFactoryDefaultsButton;
-    IBOutlet NSButton *_menuOkButton;
-    IBOutlet NSWindow *_textEditSheet;
-    IBOutlet NSOutlineView *_textOutlineView;
-    IBOutlet NSTextField *_textDuplicateTextField;
-    IBOutlet NSButton *_textEditKeyButton;
-    IBOutlet NSButton *_textDeleteKeyButton;
-    IBOutlet NSButton *_textFactoryDefaultsButton;
-    IBOutlet NSButton *_textOkButton;
-    IBOutlet NSTextView *_textInsertStringTextView;
-    IBOutlet NSArrayController *_textInsertStringArrayController;
-
-    NSMutableArray *_outlineDataArray;
-    NSMutableArray *_duplicateKeyCheckArray;
-    NSDictionary *_defaultMenuKeyBindingDict;
-    NSDictionary *_menuKeyBindingDict;
-    NSDictionary *_textKeyBindingDict;
-    NSDictionary *_noPrintableKeyDict;
-    NSString *_currentKeySpecChars;
-    NSInteger _outlineMode;
-}
 
 // class method
 + (CEKeyBindingManager *)sharedInstance;
