@@ -735,18 +735,10 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
     NSString *selectorString;
     id menuItem;
-    NSArray *selectorsToIgnore = @[@"modifyFont:",
-                                   @"setEncoding:",
-                                   @"setSyntaxStyle:",
-                                   @"makeKeyAndOrderFront:",
-                                   @"launchScript:",
-                                   @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」
-                                   @"orderFrontCharacterPalette:"  // = 10.4「特殊文字…」
-                                   ];
 
     for (menuItem in [menu itemArray]) {
         // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
-        if ([selectorsToIgnore containsObject:NSStringFromSelector([menuItem action])] ||
+        if ([[self selectorStringsToIgnore] containsObject:NSStringFromSelector([menuItem action])] ||
             ([menuItem tag] == k_servicesMenuItemTag) ||
             ([menuItem tag] == k_windowPanelsMenuItemTag) ||
             ([menuItem tag] == k_scriptMenuDirectoryTag))
@@ -802,14 +794,6 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
 // NSMenu の indexOfItemWithTarget:andAction: だと取得できないメニューアイテムがあるため、メニューをひとつずつなめる
     id menuItem;
-    NSArray *selectorsToIgnore = @[@"modifyFont:",
-                                   @"setEncoding:",
-                                   @"setSyntaxStyle:",
-                                   @"makeKeyAndOrderFront:",
-                                   @"launchScript:",
-                                   @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」
-                                   @"orderFrontCharacterPalette:"  // = 10.4「特殊文字…」
-                                   ];
 
     for (menuItem in [menu itemArray]) {
         if (([menuItem hasSubmenu]) &&
@@ -821,7 +805,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         } else {
             NSString *selectorString = NSStringFromSelector([menuItem action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
-            if ([selectorsToIgnore containsObject:NSStringFromSelector([menuItem action])] ||
+            if ([[self selectorStringsToIgnore] containsObject:NSStringFromSelector([menuItem action])] ||
                 ([menuItem tag] == k_servicesMenuItemTag) ||
                 ([menuItem tag] == k_windowPanelsMenuItemTag) ||
                 ([menuItem tag] == k_scriptMenuDirectoryTag)) {
@@ -863,14 +847,6 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSString *selectorString, *keyEquivalent, *keySpecChars;
     id menuItem;
     NSUInteger modifierMask;
-    NSArray *selectorsToIgnore = @[@"modifyFont:",
-                                   @"setEncoding:",
-                                   @"setSyntaxStyle:",
-                                   @"makeKeyAndOrderFront:",
-                                   @"launchScript:",
-                                   @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」
-                                   @"orderFrontCharacterPalette:"  // = 10.4「特殊文字…」
-                                   ];
 
     for (menuItem in [menu itemArray]) {
         if ([menuItem isSeparatorItem] || ([[menuItem title] length] < 1)) {
@@ -886,7 +862,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         } else {
             selectorString = NSStringFromSelector([menuItem action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
-            if ([selectorsToIgnore containsObject:selectorString] ||
+            if ([[self selectorStringsToIgnore] containsObject:selectorString] ||
                 ([menuItem tag] == k_servicesMenuItemTag) ||
                 ([menuItem tag] == k_windowPanelsMenuItemTag) ||
                 ([menuItem tag] == k_scriptMenuDirectoryTag))
@@ -1509,6 +1485,21 @@ static CEKeyBindingManager *sharedInstance = nil;
              @"insertCustomText_28:",
              @"insertCustomText_29:",
              @"insertCustomText_30:"];
+}
+
+//------------------------------------------------------
+- (NSArray *)selectorStringsToIgnore
+// 変更しない項目のセレクタ名配列を返す
+//------------------------------------------------------
+{
+    return @[@"modifyFont:",
+             @"setEncoding:",
+             @"setSyntaxStyle:",
+             @"makeKeyAndOrderFront:",
+             @"launchScript:",
+             @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」
+             @"orderFrontCharacterPalette:"  // = 10.4「特殊文字…」
+             ];
 }
 
 @end
