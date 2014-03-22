@@ -18,6 +18,12 @@ changelog (for developer)
 - メニュー項目の「スクリプトエラー」(Script Errors Window) を「スクリプトエラーパネル」(Script Errors Panel)に変更
 - Type/Creatorを参照・付与する機能を廃止
 - アプリケーション起動時の処理内容の見直し
+- 現在では「カーボンのように」の意味が想像しづらいと考えられるため、環境設定の項目名を変更した
+    - 旧: Drag selected text immediately (just like in Carbon applications)
+    - 新: Drag selected text immediately
+    - 旧: Carbonのように、選択テキストをすぐにドラッグ開始
+    - 新: 選択テキストをすぐにドラッグ開始
+
 
 - AppleScriptに関する変更
 	- documentオブジェクトの `transparency` および `alpha only textView` プロパティの廃止

@@ -205,7 +205,7 @@
                                                 <button id="598">
                                                     <rect key="frame" x="45" y="339" width="433" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Drag selected text immediately (just like in Carbon applications)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
+                                                    <buttonCell key="cell" type="check" title="Drag selected text immediately" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>

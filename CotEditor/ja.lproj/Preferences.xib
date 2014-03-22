@@ -219,9 +219,9 @@
                                                 <button id="598">
                                                     <rect key="frame" x="45" y="339" width="433" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Carbonのように、選択テキストをすぐにドラッグ開始" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
+                                                    <buttonCell key="cell" type="check" title="選択テキストをすぐにドラッグ開始" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" size="13" name="AquaKana"/>
                                                     </buttonCell>
                                                     <connections>
                                                         <binding destination="26" name="value" keyPath="values.NSDragAndDropTextDelay" id="601"/>
