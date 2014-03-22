@@ -42,7 +42,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) CGFloat sampleHeight;
 
 
-// Public method
+// Class Methods
++ (instancetype)sharedController;
+
+
+// Public Methods
 - (void)setupEncodingMenus:(NSArray *)menuItems;
 - (void)setupSyntaxMenus;
 - (void)openPrefWindow;

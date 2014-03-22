@@ -413,7 +413,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self setupSupportDirectory];
-    [self setPreferencesController:[[CEPreferences alloc] init]];
+    [self setPreferencesController:[CEPreferences sharedController]];
     [self buildAllEncodingMenus];
     [self setSyntaxMenu:[self buildSyntaxMenu]];
     [[CEScriptManager sharedInstance] buildScriptMenu:nil];

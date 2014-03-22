@@ -77,6 +77,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEPreferences
 
+#pragma mark Class Methods
+
+//=======================================================
+// Class method
+//
+//=======================================================
+
+// ------------------------------------------------------
++ (instancetype)sharedController
+// return singleton instance
+// ------------------------------------------------------
+{
+    static dispatch_once_t predicate;
+    static CEPreferences *shared = nil;
+    
+    dispatch_once(&predicate, ^{
+        shared = [[CEPreferences alloc] init];
+    });
+    
+    return shared;
+}
+
+
+
 #pragma mark Public Methods
 
 //=======================================================
