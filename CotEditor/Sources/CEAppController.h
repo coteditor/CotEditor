@@ -45,8 +45,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, strong) NSMenu *encodingMenu;
 @property (nonatomic, strong) NSMenu *syntaxMenu;
 
-@property (nonatomic, strong, readonly) CEPreferences *preferencesController;
-
 
 // class method
 + (NSArray *)factoryDefaultOfTextInsertStringArray;

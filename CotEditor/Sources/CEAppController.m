@@ -45,8 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSArray *invalidYenEncodings;
 @property (nonatomic) BOOL didFinishLaunching;
 
-// readonly
-@property (nonatomic, strong, readwrite) CEPreferences *preferencesController;
+@property (nonatomic) CEPreferences *preferencesController;
 
 @end
 
