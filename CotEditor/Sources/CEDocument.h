@@ -11,8 +11,6 @@ CEDocument
 encoding="UTF-8"
 Created:2004.12.08
  
- ____This_class_is_under_MRC____
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -57,7 +55,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 @interface CEDocument : NSDocument
 
-@property (retain) CEEditorView *editorView;
+@property (strong) CEEditorView *editorView;
 @property BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
 @property NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
 
@@ -66,12 +64,12 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (readonly) CEWindowController *windowController;
 @property (readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
 @property (readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
-@property (readonly, retain) NSDictionary *fileAttributes;  // ファイル属性情報辞書
-@property (nonatomic, assign, readonly) CETextSelection *selection;
+@property (readonly, strong) NSDictionary *fileAttributes;  // ファイル属性情報辞書
+@property (nonatomic, strong, readonly) CETextSelection *selection;
 
 // ODB Editor Suite 対応プロパティ
-@property (retain) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
-@property (retain) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
+@property (strong) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
+@property (strong) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
 
 // Public methods
 //- (CEWindowController *)windowController;

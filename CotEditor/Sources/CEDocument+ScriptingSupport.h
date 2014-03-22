@@ -11,8 +11,6 @@ CEDocument+ScriptingSupport
 encoding="UTF-8"
 Created:2005.03.12
  
- ____This_class_is_under_MRC____
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or

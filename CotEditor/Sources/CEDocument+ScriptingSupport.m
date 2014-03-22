@@ -11,8 +11,6 @@ CEDocument+ScriptingSupport
 encoding="UTF-8"
 Created:2005.03.12
  
- ____This_class_is_under_MRC____
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -88,7 +86,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ドキュメントの文字列を返す(text型)
 // ------------------------------------------------------
 {
-    NSTextStorage *storage = [[[NSTextStorage alloc] initWithString:[[self editorView] stringForSave]] autorelease];
+    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:[[self editorView] stringForSave]];
 
     [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
@@ -431,7 +429,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [[[self editorView] textView] replaceAllStringTo:tmpStr];
             [[[self editorView] textView] setSelectedRange:NSMakeRange(0,0)];
         }
-        [tmpStr release]; // ===== release
 
     } else {
         success = [self doFind:search range:targetRange option:mask withRegularExpression:isRE];

@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CETextSelection ()
 
-@property (nonatomic) CEDocument *document;
+@property (nonatomic, weak) CEDocument *document;
 
 @end
 
