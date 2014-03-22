@@ -17,7 +17,7 @@ OgreKit ならびに Onigmo, Oniguruma のライセンスの詳細は OgreKit �
 プロジェクト内では ARC が標準となっていますが、以下のクラスに関しては MRC なので注意して下さい。
 
 - CESyntax
-- CEMutableArray
+- CEPrivateMutableArray
 - ImportSources/
 
 
