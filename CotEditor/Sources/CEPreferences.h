@@ -38,18 +38,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntax.h"
 
 
-@interface CEPreferences : NSObject
+@interface CEPreferences : NSObject <NSApplicationDelegate, NSTableViewDelegate>
+
+@property (nonatomic) CGFloat sampleWidth;
+@property (nonatomic) CGFloat sampleHeight;
+
 
 // Public method
-- (void)setupEncodingMenus:(NSArray *)inMenuItems;
 - (instancetype)initWithAppController:(id)inAppontroller;
+- (void)setupEncodingMenus:(NSArray *)menuItems;
 - (void)setupSyntaxMenus;
 - (void)openPrefWindow;
 - (void)closePrefWindow;
-- (CGFloat)sampleWidth;
-- (void)setSampleWidth:(CGFloat)inWidth;
-- (CGFloat)sampleHeight;
-- (void)setSampleHeight:(CGFloat)inHeight;
 - (void)changeFont:(id)sender;
 - (void)makeFirstResponderToPrefWindow;
 - (void)writeBackFileDropArray;

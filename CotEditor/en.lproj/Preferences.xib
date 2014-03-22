@@ -7,30 +7,30 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferences">
             <connections>
-                <outlet property="_encodingDataSource" destination="47" id="58"/>
-                <outlet property="_encodingMenuInNew" destination="80" id="102"/>
-                <outlet property="_encodingMenuInOpen" destination="76" id="101"/>
-                <outlet property="_encodingWindow" destination="36" id="45"/>
-                <outlet property="_fileDropController" destination="451" id="455"/>
-                <outlet property="_fileDropGlossaryTextView" destination="586" id="3080"/>
-                <outlet property="_fileDropTableView" destination="447" id="519"/>
-                <outlet property="_fileDropTextView" destination="532" id="554"/>
-                <outlet property="_invisibleFullwidthSpacePopup" destination="247" id="250"/>
-                <outlet property="_invisibleNewLinePopup" destination="224" id="228"/>
-                <outlet property="_invisibleSpacePopup" destination="236" id="237"/>
-                <outlet property="_invisibleTabPopup" destination="243" id="245"/>
-                <outlet property="_prefFontFamilyNameSize" destination="385" id="390"/>
-                <outlet property="_prefTabView" destination="10" id="999"/>
-                <outlet property="_prefWindow" destination="6" id="29"/>
-                <outlet property="_printFontFamilyNameSize" destination="1007" id="1010"/>
-                <outlet property="_sizeSampleWindow" destination="127" id="132"/>
-                <outlet property="_syntaxStyleCopyButton" destination="346" id="347"/>
-                <outlet property="_syntaxStyleDeleteButton" destination="351" id="353"/>
-                <outlet property="_syntaxStyleEditButton" destination="166" id="342"/>
-                <outlet property="_syntaxStyleExportButton" destination="317" id="343"/>
-                <outlet property="_syntaxStyleXtsnErrButton" destination="356" id="604"/>
-                <outlet property="_syntaxStylesDefaultPopup" destination="727" id="730"/>
-                <outlet property="_syntaxStylesPopup" destination="312" id="341"/>
+                <outlet property="encodingDataSource" destination="47" id="I5y-HN-iWa"/>
+                <outlet property="encodingMenuInNew" destination="80" id="eqc-w1-QrX"/>
+                <outlet property="encodingMenuInOpen" destination="76" id="8DX-cy-t6W"/>
+                <outlet property="encodingWindow" destination="36" id="l8y-TB-2Rf"/>
+                <outlet property="fileDropController" destination="451" id="Do3-c6-cpR"/>
+                <outlet property="fileDropGlossaryTextView" destination="586" id="ieD-hl-bAG"/>
+                <outlet property="fileDropTableView" destination="447" id="xHZ-M3-GTp"/>
+                <outlet property="fileDropTextView" destination="532" id="C5S-P7-taE"/>
+                <outlet property="invisibleFullwidthSpacePopup" destination="236" id="W4K-BK-NFI"/>
+                <outlet property="invisibleNewLinePopup" destination="224" id="RVV-NF-L3I"/>
+                <outlet property="invisibleSpacePopup" destination="236" id="FkD-rR-4rs"/>
+                <outlet property="invisibleTabPopup" destination="243" id="ayj-W2-Wqe"/>
+                <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
+                <outlet property="prefTabView" destination="10" id="zRC-Ni-cde"/>
+                <outlet property="prefWindow" destination="6" id="AQF-X5-gnL"/>
+                <outlet property="printFontFamilyNameSize" destination="385" id="6Mv-Oe-xWO"/>
+                <outlet property="sizeSampleWindow" destination="127" id="2N0-CT-NOC"/>
+                <outlet property="syntaxStyleCopyButton" destination="346" id="ksJ-kH-iSp"/>
+                <outlet property="syntaxStyleDeleteButton" destination="351" id="0pb-Vp-GsP"/>
+                <outlet property="syntaxStyleEditButton" destination="166" id="Gew-43-qGW"/>
+                <outlet property="syntaxStyleExportButton" destination="317" id="zPw-co-dZs"/>
+                <outlet property="syntaxStyleXtsnErrButton" destination="356" id="n5f-gl-qdo"/>
+                <outlet property="syntaxStylesDefaultPopup" destination="727" id="DnT-Hr-kMu"/>
+                <outlet property="syntaxStylesPopup" destination="312" id="WPp-LZ-7YB"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -840,12 +840,12 @@
                                                             <popUpButton verticalHuggingPriority="750" id="247">
                                                                 <rect key="frame" x="165" y="46" width="70" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="246" id="3261">
+                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3261">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="248">
                                                                         <items>
-                                                                            <menuItem title=" " state="on" id="246"/>
+                                                                            <menuItem title=" " id="246"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
@@ -889,7 +889,7 @@
                             <tabViewItem label="Format" identifier="prefFormatItemID" id="11">
                                 <view key="view" id="8">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="745" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="534"/>
@@ -1269,12 +1269,12 @@
                                                 <popUpButton verticalHuggingPriority="750" id="727">
                                                     <rect key="frame" x="357" y="401" width="229" height="26"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="729" id="3328">
+                                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3328">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="728">
                                                             <items>
-                                                                <menuItem title=" " state="on" id="729"/>
+                                                                <menuItem title=" " id="729"/>
                                                             </items>
                                                         </menu>
                                                     </popUpButtonCell>
@@ -1823,17 +1823,17 @@ The parent directory name of the dropped file.
                                                     <rect key="frame" x="20" y="302" width="486" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="9EX-7h-iHb">
-                                                        <rect key="frame" x="1" y="1" width="469" height="94"/>
+                                                        <rect key="frame" x="1" y="1" width="484" height="110"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
-                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="94"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="484" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="extensions" width="466" minWidth="40" maxWidth="1000" id="448">
+                                                                    <tableColumn identifier="extensions" width="481" minWidth="40" maxWidth="1000" id="448">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1858,11 +1858,11 @@ The parent directory name of the dropped file.
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3415">
-                                                        <rect key="frame" x="1" y="95" width="469" height="16"/>
+                                                        <rect key="frame" x="1" y="95" width="484" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="470" y="1" width="15" height="94"/>
+                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2008,7 +2008,7 @@ The parent directory name of the dropped file.
                             <tabViewItem label="Print" identifier="prefPrintItemID" id="880">
                                 <view key="view" id="881">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="882" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="639"/>
