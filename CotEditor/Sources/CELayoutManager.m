@@ -94,7 +94,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 //        [self setDefaultLineHeightForTextFont:0.0];
 //        [self setTextFontPointSize:0.0];
-        [self setTextFont:nil];
 
         [self setAppController:(CEAppController *)[NSApp delegate]];
 

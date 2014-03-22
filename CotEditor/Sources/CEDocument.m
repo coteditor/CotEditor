@@ -114,8 +114,6 @@ enum { typeFSS = 'fss ' };
         id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
         [self setHasUndoManager:YES];
-        [self setInitialString:nil];
-        [self setWindowController:nil];
         (void)[self doSetEncoding:[[values valueForKey:k_key_encodingInNew] unsignedLongValue]
                    updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
