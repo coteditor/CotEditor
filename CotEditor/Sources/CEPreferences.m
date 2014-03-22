@@ -11,8 +11,6 @@ CEPreferences
 encoding="UTF-8"
 Created:2004.12.13
  
- -fno-objc-arc
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -40,34 +38,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEPreferences ()
 
-@property (nonatomic, retain) IBOutlet NSWindow *prefWindow;
-@property (nonatomic, assign) IBOutlet NSTabView *prefTabView;
-@property (nonatomic, assign) IBOutlet NSTextField *prefFontFamilyNameSize;
-@property (nonatomic, assign) IBOutlet NSTextField *printFontFamilyNameSize;
+@property (nonatomic) IBOutlet NSWindow *prefWindow;
+@property (nonatomic, weak) IBOutlet NSTabView *prefTabView;
+@property (nonatomic, weak) IBOutlet NSTextField *prefFontFamilyNameSize;
+@property (nonatomic, weak) IBOutlet NSTextField *printFontFamilyNameSize;
 
-@property (nonatomic, retain) IBOutlet NSWindow *encodingWindow;
-@property (nonatomic, assign) IBOutlet CEPrefEncodingDataSource *encodingDataSource;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *encodingMenuInOpen;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *encodingMenuInNew;
+@property (nonatomic) IBOutlet NSWindow *encodingWindow;
+@property (nonatomic, weak) IBOutlet CEPrefEncodingDataSource *encodingDataSource;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
-@property (nonatomic, retain) IBOutlet NSWindow *sizeSampleWindow;
-@property (nonatomic, retain) IBOutlet NSArrayController *fileDropController;
-@property (nonatomic, assign) IBOutlet NSTableView *fileDropTableView;
-@property (nonatomic, assign) IBOutlet NSTextView *fileDropTextView;
-@property (nonatomic, assign) IBOutlet NSTextView *fileDropGlossaryTextView;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *invisibleSpacePopup;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *invisibleTabPopup;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *invisibleNewLinePopup;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *invisibleFullwidthSpacePopup;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *syntaxStylesPopup;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
-@property (nonatomic, assign) IBOutlet NSButton *syntaxStyleEditButton;
-@property (nonatomic, assign) IBOutlet NSButton *syntaxStyleCopyButton;
-@property (nonatomic, assign) IBOutlet NSButton *syntaxStyleExportButton;
-@property (nonatomic, assign) IBOutlet NSButton *syntaxStyleDeleteButton;
-@property (nonatomic, assign) IBOutlet NSButton *syntaxStyleXtsnErrButton;
+@property (nonatomic) IBOutlet NSWindow *sizeSampleWindow;
+@property (nonatomic) IBOutlet NSArrayController *fileDropController;
+@property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
+@property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, strong) IBOutlet NSTextView *fileDropGlossaryTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleSpacePopup;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleTabPopup;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleNewLinePopup;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleFullwidthSpacePopup;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesPopup;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
+@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleEditButton;
+@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleCopyButton;
+@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleExportButton;
+@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
+@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleXtsnErrButton;
 
-@property (nonatomic, retain) id appController;
+@property (nonatomic, strong) id appController;
 @property (nonatomic) NSInteger currentSheetCode;
 @property (nonatomic) BOOL doDeleteFileDrop;
 
@@ -105,23 +103,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)dealloc
-// あとかたづけ
-// ------------------------------------------------------
-{
-    // NSBundle loadNibNamed: でロードされたオブジェクトを開放
-    [_encodingWindow release]; // （コンテントビューは自動解放される）
-    [_sizeSampleWindow release];
-    [_prefWindow release];
-    [_fileDropController release];
-
-    [_appController release];
-
-    [super dealloc];
-}
-
-
-// ------------------------------------------------------
 - (void)setupEncodingMenus:(NSArray *)menuItems
 // エンコーディング設定メニューを生成
 // ------------------------------------------------------
@@ -132,16 +113,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger selected;
 
     [[self encodingMenuInOpen] removeAllItems];
-    item = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
-                                       action:nil keyEquivalent:@""] autorelease];
+    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
+                                      action:nil keyEquivalent:@""];
     [item setTag:k_autoDetectEncodingMenuTag];
     [[[self encodingMenuInOpen] menu] addItem:item];
     [[[self encodingMenuInOpen] menu] addItem:[NSMenuItem separatorItem]];
     [[self encodingMenuInNew] removeAllItems];
 
     for (NSMenuItem *menuItem in menuItems) {
-        [[[self encodingMenuInOpen] menu] addItem:[[menuItem copy] autorelease]];
-        [[[self encodingMenuInNew] menu] addItem:[[menuItem copy] autorelease]];
+        [[[self encodingMenuInOpen] menu] addItem:[menuItem copy]];
+        [[[self encodingMenuInNew] menu] addItem:[menuItem copy]];
     }
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
@@ -601,7 +582,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSBeep();
             [alert beginSheetModalForWindow:[self prefWindow] modalDelegate:self
                              didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
-                                contextInfo:[URL retain]]; // ===== retain
+                                contextInfo:(__bridge void *)(URL)];
             
         } else {
             // 重複するファイル名がないとき、インポート実行
@@ -879,7 +860,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // http://www.hmdt-web.net/bbs/bbs.cgi?bbsname=mkino&mode=res&no=203&oyano=203&line=0
 
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableArray *fileDropArray = [[[values valueForKey:k_key_fileDropArray] mutableCopy] autorelease];
+    NSMutableArray *fileDropArray = [[values valueForKey:k_key_fileDropArray] mutableCopy];
 
     [[self fileDropController] setContent:fileDropArray];
 }
@@ -899,7 +880,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self invisibleSpacePopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
         title = [[self appController] invisibleSpaceCharacter:i];
-        item = [[[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""] autorelease];
+        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
         [[[self invisibleSpacePopup] menu] addItem:item];
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
@@ -923,7 +904,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self invisibleTabPopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
         title = [[self appController] invisibleTabCharacter:i];
-        item = [[[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""] autorelease];
+        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
         [[[self invisibleTabPopup] menu] addItem:item];
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
@@ -947,7 +928,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self invisibleNewLinePopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
         vitle = [[self appController] invisibleNewLineCharacter:i];
-        item = [[[NSMenuItem alloc] initWithTitle:vitle action:nil keyEquivalent:@""] autorelease];
+        item = [[NSMenuItem alloc] initWithTitle:vitle action:nil keyEquivalent:@""];
         [[[self invisibleNewLinePopup] menu] addItem:item];
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
@@ -971,7 +952,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self invisibleFullwidthSpacePopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
         title = [[self appController] invisibleFullwidthSpaceCharacter:i];
-        item = [[[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""] autorelease];
+        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
         [[[self invisibleFullwidthSpacePopup] menu] addItem:item];
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
@@ -994,20 +975,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self syntaxStylesPopup] removeAllItems];
     [[self syntaxStylesDefaultPopup] removeAllItems];
-    item = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Choose style...", nil)
-                                       action:nil keyEquivalent:@""] autorelease];
+    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Choose style...", nil)
+                                      action:nil keyEquivalent:@""];
     [[[self syntaxStylesPopup] menu] addItem:item];
     [[[self syntaxStylesPopup] menu] addItem:[NSMenuItem separatorItem]];
-    item = [[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
-                                       action:nil keyEquivalent:@""] autorelease];
+    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
+                                      action:nil keyEquivalent:@""];
     [[[self syntaxStylesDefaultPopup] menu] addItem:item];
     [[[self syntaxStylesDefaultPopup] menu] addItem:[NSMenuItem separatorItem]];
     
     for (NSString *styleName in styleNames) {
-        item = [[[NSMenuItem alloc] initWithTitle:styleName
-                    action:nil keyEquivalent:@""] autorelease];
+        item = [[NSMenuItem alloc] initWithTitle:styleName
+                   action:nil keyEquivalent:@""];
         [[[self syntaxStylesPopup] menu] addItem:item];
-        [[[self syntaxStylesDefaultPopup] menu] addItem:[[item copy] autorelease]];
+        [[[self syntaxStylesDefaultPopup] menu] addItem:[item copy]];
     }
     // (デフォルトシンタックスカラーリングスタイル指定ポップアップメニューはバインディングを使っているが、
     // タグの選択がバインディングで行われた後にメニューが追加／削除されるため、結果的に選択がうまく動かない。
@@ -1065,9 +1046,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self currentSheetCode] == k_syntaxImportTag) {
         if (returnCode == NSAlertAlternateReturn) { // = Replace
-            [self doImport:contextInfo withCurrentSheetWindow:[sheet window]];
+            [self doImport:(__bridge NSURL *)(contextInfo) withCurrentSheetWindow:[sheet window]];
         }
-        [(NSURL *)contextInfo release]; // ===== release
     }
 }
 
@@ -1141,7 +1121,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [alert beginSheetModalForWindow:[self prefWindow]
                       modalDelegate:self
                      didEndSelector:@selector(deleteFileDropSettingAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:@{@"theXtsnStr": extension}];
+                        contextInfo:(__bridge void *)(@{@"theXtsnStr": extension})];
 }
 
 
