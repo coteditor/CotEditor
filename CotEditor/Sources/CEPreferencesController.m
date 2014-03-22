@@ -140,7 +140,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディング設定メニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSString *title;
     NSMenuItem *item;
     NSUInteger selected;
@@ -159,15 +158,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[values valueForKey:k_key_encodingInOpen] unsignedLongValue];
+    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];
     if (selected == k_autoDetectEncodingMenuTag) {
         title = NSLocalizedString(@"Auto-Detect", nil);
     } else {
         title = [NSString localizedNameOfStringEncoding:selected];
     }
     [[self encodingMenuInOpen] selectItemWithTitle:title];
-    title = [NSString localizedNameOfStringEncoding:
-                [[values valueForKey:k_key_encodingInNew] unsignedLongValue]];
+    title = [NSString localizedNameOfStringEncoding:[[NSUserDefaults standardUserDefaults]
+                                                     integerForKey:k_key_encodingInNew]];
     [[self encodingMenuInNew] selectItemWithTitle:title];
 }
 
@@ -271,7 +270,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // 編集中の設定値も保存
     [[self window] makeFirstResponder:[self window]];
-    [self updateUserDefaults];
+    [self updateUserDefaults];  // !!!: いまでも必要かあとで調べる [synclonize] 2014jp 2014-03
     // FileDrop 配列コントローラの値を書き戻す
     [self writeBackFileDropArray];
 }
@@ -352,16 +351,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // フォントパネルを表示
 //-------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSFontManager *manager = [NSFontManager sharedFontManager];
     NSFont *font;
 
     if ([[[[self prefTabView] selectedTabViewItem] identifier] isEqualToString:k_prefPrintItemID]) {
-        font = [NSFont fontWithName:[values valueForKey:k_key_printFontName]
-                               size:(CGFloat)[[values valueForKey:k_key_printFontSize] doubleValue]];
+        font = [NSFont fontWithName:[defaults stringForKey:k_key_printFontName]
+                               size:(CGFloat)[defaults doubleForKey:k_key_printFontSize]];
     } else {
-        font = [NSFont fontWithName:[values valueForKey:k_key_fontName]
-                               size:(CGFloat)[[values valueForKey:k_key_fontSize] doubleValue]];
+        font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
+                               size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
     }
 
     [[self window] makeFirstResponder:[self window]];
@@ -409,9 +408,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // サイズ設定のためのサンプルウィンドウを開く
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSSize size = NSMakeSize((CGFloat)[[values valueForKey:k_key_windowWidth] doubleValue],
-                             (CGFloat)[[values valueForKey:k_key_windowHeight] doubleValue]);
+    NSSize size = NSMakeSize((CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_windowWidth],
+                             (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_windowHeight]);
 
     [[self sizeSampleWindow] setContentSize:size];
     [[self sizeSampleWindow] makeKeyAndOrderFront:self];
@@ -856,17 +854,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // メインウィンドウのフォントファミリー名とサイズをprefFontFamilyNameSizeに表示させる
 //------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *name = [values valueForKey:k_key_fontName];
-    CGFloat size = (CGFloat)[[values valueForKey:k_key_fontSize] doubleValue];
+    NSString *name = [defaults stringForKey:k_key_fontName];
+    CGFloat size = (CGFloat)[defaults doubleForKey:k_key_fontSize];
     NSFont *font = [NSFont fontWithName:name size:size];
     NSString *localizedName = [font displayName];
 
     [[self prefFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@  (%gpt)", localizedName, size]];
 
-    name = [values valueForKey:k_key_printFontName];
-    size = (CGFloat)[[values valueForKey:k_key_printFontSize] doubleValue];
+    name = [defaults stringForKey:k_key_printFontName];
+    size = (CGFloat)[defaults doubleForKey:k_key_printFontSize];
     font = [NSFont fontWithName:name size:size];
     localizedName = [font displayName];
 
@@ -884,8 +882,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 起動時に読み込み、変更完了／終了時に下記戻す処理を行う。
 // http://www.hmdt-web.net/bbs/bbs.cgi?bbsname=mkino&mode=res&no=203&oyano=203&line=0
 
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSMutableArray *fileDropArray = [[values valueForKey:k_key_fileDropArray] mutableCopy];
+    NSMutableArray *fileDropArray = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray] mutableCopy];
 
     [[self fileDropController] setContent:fileDropArray];
 }
@@ -896,7 +893,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *title;
     NSMenuItem *item;
@@ -911,7 +907,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[values valueForKey:k_key_invisibleSpace] unsignedIntegerValue];
+    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleSpace];
     [[self invisibleSpacePopup] selectItemAtIndex:selected];
 }
 
@@ -921,7 +917,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *title;
     NSMenuItem *item;
@@ -936,7 +931,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[values valueForKey:k_key_invisibleTab] unsignedIntegerValue];
+    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleTab];
     [[self invisibleTabPopup] selectItemAtIndex:selected];
 }
 
@@ -946,7 +941,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *vitle;
     NSMenuItem *item;
@@ -961,7 +955,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[values valueForKey:k_key_invisibleNewLine] unsignedIntegerValue];
+    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleNewLine];
     [[self invisibleNewLinePopup] selectItemAtIndex:selected];
 }
 
@@ -971,7 +965,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *title;
     NSMenuItem *item;
@@ -986,7 +979,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[values valueForKey:k_key_invisibleFullwidthSpace] unsignedIntegerValue];
+    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleFullwidthSpace];
     [[self invisibleFullwidthSpacePopup] selectItemAtIndex:selected];
 }
 
@@ -996,7 +989,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイル指定ポップアップメニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSArray *styleNames = [[CESyntaxManager sharedInstance] styleNames];
     NSMenuItem *item;
     NSString *selectedTitle;
@@ -1022,7 +1014,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // (デフォルトシンタックスカラーリングスタイル指定ポップアップメニューはバインディングを使っているが、
     // タグの選択がバインディングで行われた後にメニューが追加／削除されるため、結果的に選択がうまく動かない。
     // しかたないので、コードから選択している)
-    selectedTitle = [values valueForKey:k_key_defaultColoringStyleName];
+    selectedTitle = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
     selected = [[self syntaxStylesDefaultPopup] indexOfItemWithTitle:selectedTitle];
     if (selected != -1) { // no selection
         [[self syntaxStylesDefaultPopup] selectItemAtIndex:selected];
@@ -1040,8 +1032,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertDefaultReturn) { // = revert to Auto-Detect
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:@(k_autoDetectEncodingMenuTag) forKey:k_key_encodingInOpen];
+        [[NSUserDefaults standardUserDefaults] setObject:@(k_autoDetectEncodingMenuTag)
+                                                  forKey:k_key_encodingInOpen];
         // ファイルを開くエンコーディングをセット
         // （オープンダイアログのエンコーディングポップアップメニューが、デフォルトエンコーディング値の格納場所を兼ねている）
         [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
