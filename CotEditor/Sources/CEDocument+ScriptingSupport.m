@@ -219,21 +219,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (CETextSelection *)selection
+- (CETextSelection *)selectionObject
 // selection-object を返す
 // ------------------------------------------------------
 {
-    return _selection;
+    return [self selection];
 }
 
 
 // ------------------------------------------------------
-- (void)setSelection:(id)object
+- (void)setSelectionObject:(id)object
 // 選択範囲へテキストを設定
 // ------------------------------------------------------
 {
     if ([object isKindOfClass:[NSString class]]) {
-        [_selection setContents:object];
+        [[self selection] setContents:object];
     }
 }
 
@@ -440,7 +440,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             success = [self doFind:search range:targetRange option:mask withRegularExpression:isRE];
         }
         if (success) {
-            [_selection setContents:newString]; // （CETextSelection の setContents: の引数は NSString も可）
+            [[self selection] setContents:newString]; // （CETextSelection の setContents: の引数は NSString も可）
             result = 1;
         }
     }

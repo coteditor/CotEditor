@@ -56,19 +56,18 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 
 @interface CEDocument : NSDocument
-{
-    CETextSelection *_selection;
-}
 
 @property (retain) CEEditorView *editorView;
 @property BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
 @property NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
+
 
 // readonly properties
 @property (readonly) CEWindowController *windowController;
 @property (readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
 @property (readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
 @property (readonly, retain) NSDictionary *fileAttributes;  // ファイル属性情報辞書
+@property (nonatomic, assign, readonly) CETextSelection *selection;
 
 // ODB Editor Suite 対応プロパティ
 @property (retain) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ

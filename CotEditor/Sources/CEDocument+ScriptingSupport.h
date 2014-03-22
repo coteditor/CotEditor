@@ -61,7 +61,8 @@ typedef NS_ENUM(NSUInteger, CELineEnding) {
 - (NSString *)IANACharSetName;
 - (NSString *)coloringStyle;
 - (void)setColoringStyle:(NSString *)styleName;
-- (CETextSelection *)selection;
+- (CETextSelection *)selectionObject;
+- (void)setSelectionObject:(id)object;
 - (NSNumber *)lineSpacing;
 - (void)setLineSpacing:(NSNumber *)lineSpacing;
 

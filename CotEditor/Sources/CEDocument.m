@@ -66,6 +66,7 @@ enum { typeFSS = 'fss ' };
 @property (readwrite) BOOL canActivateShowInvisibleCharsItem;
 @property (readwrite) NSStringEncoding encodingCode;
 @property (readwrite, retain) NSDictionary *fileAttributes;
+@property (nonatomic, readwrite, assign) CETextSelection *selection;
 
 @end
 
@@ -116,7 +117,7 @@ enum { typeFSS = 'fss ' };
         [self setHasUndoManager:YES];
         (void)[self doSetEncoding:[defaults integerForKey:k_key_encodingInNew]
                    updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
-        _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
+        [self setSelection:[[CETextSelection alloc] initWithDocument:self]]; // ===== alloc
         [self setCanActivateShowInvisibleCharsItem:
                 [defaults boolForKey:k_key_showInvisibleSpace] ||
                 [defaults boolForKey:k_key_showInvisibleTab] ||
