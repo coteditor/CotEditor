@@ -17,6 +17,7 @@ changelog (for developer)
     - ウインドウが不透明のときはウインドウのドロップシャドウが通常のものになるように修正
 - メニュー項目の「スクリプトエラー」(Script Errors Window) を「スクリプトエラーパネル」(Script Errors Panel)に変更
 - Type/Creatorを参照・付与する機能を廃止
+- アプリケーション起動時の処理内容の見直し
 
 - AppleScriptに関する変更
 	- documentオブジェクトの `transparency` および `alpha only textView` プロパティの廃止
