@@ -38,13 +38,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEPreferencesController : NSWindowController <NSApplicationDelegate, NSWindowDelegate, NSTableViewDelegate>
 
-@property (nonatomic) CGFloat sampleWidth;
-@property (nonatomic) CGFloat sampleHeight;
-
-
 // Class Methods
 + (instancetype)sharedController;
-
 
 // Public Methods
 - (void)setupEncodingMenus:(NSArray *)menuItems;
