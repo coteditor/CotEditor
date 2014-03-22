@@ -69,10 +69,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:buttonFrame pullsDown:flag];
     if (self) {
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [[self cell] setFont:[NSFont fontWithName:[values valueForKey:k_key_navigationBarFontName]
-                                             size:(CGFloat)[[values valueForKey:k_key_navigationBarFontSize] doubleValue]]];
+        [[self cell] setFont:[NSFont fontWithName:[defaults stringForKey:k_key_navigationBarFontName]
+                                             size:(CGFloat)[defaults doubleForKey:k_key_navigationBarFontSize]]];
         [[self cell] setControlSize:NSSmallControlSize];
         [[self cell] setBordered:NO];
     }

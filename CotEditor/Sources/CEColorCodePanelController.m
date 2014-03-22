@@ -295,17 +295,15 @@
 // コンボボックスのリストに現在の値を加える
 // ------------------------------------------------------
 {
-    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
     // フォーカスを移して値を確定
     [[sender window] makeFirstResponder:sender];
 
     // 正しい値が入力されているときのみ、リストへの追加を行う
     if (([sender tag] == k_addCodeToForeButtonTag) && 
-            ([[defaults valueForKey:k_key_foreColorCBoxIsOk] boolValue])) {
+            ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_foreColorCBoxIsOk])) {
         [[self foreColorDataController] addObject:@{k_ColorCodeDataControllerKey: [[self foreColorComboBox] stringValue]}];
     } else if (([sender tag] == k_addCodeToBackButtonTag) && 
-            ([[defaults valueForKey:k_key_backgroundColorCBoxIsOk] boolValue])) {
+            ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_backgroundColorCBoxIsOk])) {
         [[self backColorDataController] addObject:@{k_ColorCodeDataControllerKey: [[self backColorComboBox] stringValue]}];
     }
 }
@@ -428,7 +426,7 @@
     } else if ([control isEqualTo:[self backColorComboBox]]) {
         keyName = k_key_backgroundColorCBoxIsOk;
     }
-    [[[NSUserDefaultsController sharedUserDefaultsController] defaults] setValue:@(isValid) forKey:keyName];
+    [[NSUserDefaults standardUserDefaults] setObject:@(isValid) forKey:keyName];
 }
 
 @end

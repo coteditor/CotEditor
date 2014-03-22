@@ -86,11 +86,10 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 // ヘッダ／フッタの描画
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSRect currentFrame = [self frame]; // 現在のフレームを退避
     NSAttributedString *pageString = nil;
     NSPoint drawPoint = NSMakePoint(0.0, k_printHFVerticalMargin);
-    CGFloat headerFooterLineFontSize = (CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue];
+    CGFloat headerFooterLineFontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_headerFooterFontSize];
 
     // プリントパネルでのカスタム設定を読み取り、保持
     if ([self readyToPrint] == NO) {
@@ -190,8 +189,7 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
     // 行番号を印字
     if ([self printsLineNum]) {
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        CGFloat lineNumFontSize = (CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue];
+        CGFloat lineNumFontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_lineNumFontSize];
 
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
@@ -201,7 +199,7 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
         NSRange range;       // a range for counting lines
         NSString *str = [self string];
         NSString *numStr;    // a temporary string for Line Number
-        NSString *wrappedLineMark = [[values valueForKey:k_key_showWrappedLineMark] boolValue] ? @"-:" : @" ";
+        NSString *wrappedLineMark = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showWrappedLineMark] ? @"-:" : @" ";
         NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
         NSUInteger charIndex;
         NSUInteger lineNum;   // line counter
@@ -277,14 +275,14 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 // プリント開始の準備
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSAttributedString *attrString = nil;
     CGFloat printWidth = borderWidth - k_printHFHorizontalMargin * 2;
     NSInteger lineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
 
     // ヘッダ／フッタの文字属性辞書生成、保持
-    NSFont *headerFooterFont = [NSFont fontWithName:[values valueForKey:k_key_headerFooterFontName]
-                                               size:(CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue]];
+    NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName]
+                                               size:(CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize]];
     [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
                                  NSForegroundColorAttributeName: [NSColor textColor]}];
 
@@ -299,10 +297,10 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
     // 行番号を印字するときは文字属性を保持、パディングを調整
     if ([self printsLineNum]) {
-        NSFont *font = [NSFont fontWithName:[values valueForKey:k_key_lineNumFontName]
-                                       size:(CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue]];
+        NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName]
+                                       size:(CGFloat)[defaults doubleForKey:k_key_lineNumFontSize]];
         [self setLineNumAttrs:@{NSFontAttributeName:font,
-                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_lineNumFontColor]]}];
+                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_lineNumFontColor]]}];
         [self setXOffset:k_printTextHorizontalMargin];
     }
     
@@ -346,7 +344,6 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 // ヘッダ／フッタに印字する文字列をポップアップメニューインデックスから生成し、返す
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSAttributedString *outString = nil;
     NSString *dateString;
             
@@ -366,7 +363,8 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
             break;
 
         case 4: // == Print Date
-            dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:[values valueForKey:k_key_headerFooterDateTimeFormat]];
+            dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:[[NSUserDefaults standardUserDefaults]
+                                                                                       stringForKey:k_key_headerFooterDateTimeFormat]];
             if (dateString && ([dateString length] > 0)) {
                 outString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Printed: %@",@""),
                                                                          dateString]

@@ -76,7 +76,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // fill in the background
     NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
@@ -95,13 +95,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // setup drawing attributes for the font size and color.
     NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
-    CGFloat fontSize = (CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue];
-    NSFont *font = [NSFont fontWithName:[values valueForKey:k_key_lineNumFontName] size:fontSize];
+    CGFloat fontSize = (CGFloat)[defaults doubleForKey:k_key_lineNumFontSize];
+    NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize];
     if (font == nil) {
         font = [NSFont paletteFontOfSize:9];
     }
     attrs[NSFontAttributeName] = font;
-    attrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_lineNumFontColor]];
+    attrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_lineNumFontColor]];
     
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
@@ -111,14 +111,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange range;       // a range for counting lines
     NSString *str = [[self masterView] string];
     NSString *numStr;    // a temporary string for Line Number
-    NSString *wrappedLineMark = [[values valueForKey:k_key_showWrappedLineMark] boolValue] ? @"-" : @" ";
+    NSString *wrappedLineMark = [defaults boolForKey:k_key_showWrappedLineMark] ? @"-" : @" ";
     NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
     NSUInteger charIndex;
     NSUInteger lineNum;     // line counter
     CGFloat reqWidth;      // width calculator holder -- width needed to show string
     CGFloat curWidth;      // width calculator holder -- my current width
     CGFloat adj = 0;       // adjust vertical value for line number drawing
-    CGFloat insetAdj = (CGFloat)[[values valueForKey:k_key_textContainerInsetHeightTop] doubleValue];
+    CGFloat insetAdj = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop];
     NSRect numRect;      // rectange holder
     NSPoint numPoint;    // point holder
     CELayoutManager *layoutManager = (CELayoutManager *)[[[self masterView] textView] layoutManager]; // get _owner's layout manager.

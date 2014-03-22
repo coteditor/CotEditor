@@ -1286,8 +1286,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 左へシフト
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
     // 現在の選択区域とシフトする行範囲を得る
     NSRange selectedRange = [self selectedRange];
     NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
@@ -1300,7 +1298,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         lineRange.length--; // 末尾の改行分を減ずる
     }
     // シフトするために削除するスペースの長さを得る
-    NSInteger shiftLength = [[theValues valueForKey:k_key_tabWidth] integerValue];
+    NSInteger shiftLength = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
     if (shiftLength < 1) { return; }
 
     // 置換する行を生成する

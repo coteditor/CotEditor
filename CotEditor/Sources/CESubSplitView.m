@@ -537,8 +537,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //  written by Peter Borg. Copyright (C) 2004 Peter Borg.
     // http://smultron.sourceforge.net
 
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSUInteger addingStandard = [[theValues valueForKey:k_key_completeAddStandardWords] unsignedIntegerValue];
+    NSUInteger addingStandard = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_completeAddStandardWords];
     NSMutableArray *outArray = [NSMutableArray arrayWithCapacity:[words count]];
     NSEnumerator *enumerator;
     NSString *curStr = [[aTextView string] substringWithRange:charRange];

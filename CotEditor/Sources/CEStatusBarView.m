@@ -73,10 +73,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
         // setup TextField
-        CGFloat fontSize = (CGFloat)[[values valueForKey:k_key_statusBarFontSize] doubleValue] ? : 11.0;
+        CGFloat fontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_statusBarFontSize] ? : 11.0;
         NSFont *font = [NSFont controlContentFontOfSize:fontSize];
         
         NSRect textFieldFrame = frameRect;

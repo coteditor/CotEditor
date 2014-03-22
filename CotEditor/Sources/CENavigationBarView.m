@@ -196,11 +196,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 配列を元にアウトラインメニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMenu *menu;
     NSMenuItem *menuItem;
-    NSFont *defaultFont = [NSFont fontWithName:[values valueForKey:k_key_navigationBarFontName]
-                                          size:(CGFloat)[[values valueForKey:k_key_navigationBarFontSize] doubleValue]];
+    NSFont *defaultFont = [NSFont fontWithName:[defaults stringForKey:k_key_navigationBarFontName]
+                                          size:(CGFloat)[defaults doubleForKey:k_key_navigationBarFontSize]];
 
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
     NSFont *font;

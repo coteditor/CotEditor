@@ -231,23 +231,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
 // ------------------------------------------------------
 {
-    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
     // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-    NSDictionary *settings = [defaults dictionaryWithValuesForKeys:@[k_printHeader,
-                                                                     k_headerOneStringIndex,
-                                                                     k_headerTwoStringIndex,
-                                                                     k_headerOneAlignIndex,
-                                                                     k_headerTwoAlignIndex,
-                                                                     k_printHeaderSeparator,
-                                                                     k_printFooter,
-                                                                     k_footerOneStringIndex,
-                                                                     k_footerTwoStringIndex,
-                                                                     k_footerOneAlignIndex,
-                                                                     k_footerTwoAlignIndex,
-                                                                     k_printFooterSeparator,
-                                                                     k_printLineNumIndex,
-                                                                     k_printInvisibleCharIndex,
-                                                                     k_printColorIndex]];
+    NSArray *settingKeys = @[k_printHeader,
+                             k_headerOneStringIndex,
+                             k_headerTwoStringIndex,
+                             k_headerOneAlignIndex,
+                             k_headerTwoAlignIndex,
+                             k_printHeaderSeparator,
+                             k_printFooter,
+                             k_footerOneStringIndex,
+                             k_footerTwoStringIndex,
+                             k_footerOneAlignIndex,
+                             k_footerTwoAlignIndex,
+                             k_printFooterSeparator,
+                             k_printLineNumIndex,
+                             k_printInvisibleCharIndex,
+                             k_printColorIndex];
+    NSDictionary *settings = [[NSUserDefaults standardUserDefaults] dictionaryWithValuesForKeys:settingKeys];
 
     [[self printSettingController] setContent:[settings mutableCopy]];
 }

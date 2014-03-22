@@ -80,7 +80,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if (self = [super init]) {
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
 /*
 // 削除しないこと！ ************* (1/12)
@@ -98,22 +98,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setAppController:(CEAppController *)[NSApp delegate]];
 
         [self setSpaceCharacter:[[self appController] invisibleSpaceCharacter:
-                                 [[values valueForKey:k_key_invisibleSpace] unsignedIntegerValue]]];
+                                 [defaults integerForKey:k_key_invisibleSpace]]];
         [self setTabCharacter:[[self appController] invisibleTabCharacter:
-                               [[values valueForKey:k_key_invisibleTab] unsignedIntegerValue]]];
+                               [defaults integerForKey:k_key_invisibleTab]]];
         [self setNewLineCharacter:[[self appController] invisibleNewLineCharacter:
-                                   [[values valueForKey:k_key_invisibleNewLine] unsignedIntegerValue]]];
+                                   [defaults integerForKey:k_key_invisibleNewLine]]];
         [self setFullwidthSpaceCharacter:[[self appController] invisibleFullwidthSpaceCharacter:
-                                          [[values valueForKey:k_key_invisibleFullwidthSpace] unsignedIntegerValue]]];
+                                          [defaults integerForKey:k_key_invisibleFullwidthSpace]]];
 
         // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
         [self setFixLineHeight:NO];
         [self setIsPrinting:NO];
-        [self setShowSpace:[[values valueForKey:k_key_showInvisibleSpace] boolValue]];
-        [self setShowTab:[[values valueForKey:k_key_showInvisibleTab] boolValue]];
-        [self setShowNewLine:[[values valueForKey:k_key_showInvisibleNewLine] boolValue]];
-        [self setShowFullwidthSpace:[[values valueForKey:k_key_showInvisibleFullwidthSpace] boolValue]];
-        [self setShowOtherInvisibles:[[values valueForKey:k_key_showOtherInvisibleChars] boolValue]];
+        [self setShowSpace:[defaults boolForKey:k_key_showInvisibleSpace]];
+        [self setShowTab:[defaults boolForKey:k_key_showInvisibleTab]];
+        [self setShowNewLine:[defaults boolForKey:k_key_showInvisibleNewLine]];
+        [self setShowFullwidthSpace:[defaults boolForKey:k_key_showInvisibleFullwidthSpace]];
+        [self setShowOtherInvisibles:[defaults boolForKey:k_key_showOtherInvisibleChars]];
         [self setTypesetter:[CEATSTypesetter sharedSystemTypesetter]];
     }
     return self;
@@ -181,7 +181,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // （印刷中の判定は、このメソッド内では [NSGraphicsContext currentContextDrawingToScreen] が使えるが、
     // 他のメソッドでは真を返す時があるため、他にそろえて専用フラグで印刷中を確認するようにしている）
 
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *completeStr = [[self textStorage] string];
     NSUInteger rengthToRedraw = NSMaxRange(glyphsToShow);
     NSUInteger glyphIndex, charIndex = 0;
@@ -191,12 +191,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self isPrinting] && [view respondsToSelector:@selector(printValues)]) {
         invisibleCharPrintMenuIndex = [[[view printValues] valueForKey:k_printInvisibleCharIndex] integerValue];
     } else {
-        invisibleCharPrintMenuIndex = [[values valueForKey:k_printInvisibleCharIndex] integerValue];
+        invisibleCharPrintMenuIndex = [defaults integerForKey:k_printInvisibleCharIndex];
     }
 
     // フォントサイズは随時変更されるため、表示時に取得する
     NSFont *font = [self isPrinting] ? [[self textStorage] font] : [self textFont];
-    NSColor *color = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_invisibleCharactersColor]];
+    NSColor *color = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_invisibleCharactersColor]];
     [self setAttributes:@{NSFontAttributeName: font,
                           NSForegroundColorAttributeName: color}];
 
@@ -211,8 +211,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (((![self isPrinting] || (invisibleCharPrintMenuIndex == 1)) && [self showInvisibles]) ||
         ([self isPrinting] && (invisibleCharPrintMenuIndex == 2))) {
 
-        CGFloat insetWidth = (CGFloat)[[values valueForKey:k_key_textContainerInsetWidth] doubleValue];
-        CGFloat insetHeight = (CGFloat)[[values valueForKey:k_key_textContainerInsetHeightTop] doubleValue];
+        CGFloat insetWidth = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth];
+        CGFloat insetHeight = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop];
         if ([self isPrinting]) {
             NSPoint thePoint = [[self firstTextView] textContainerOrigin];
             insetWidth = thePoint.x;

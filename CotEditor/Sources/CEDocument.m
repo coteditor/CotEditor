@@ -111,18 +111,18 @@ enum { typeFSS = 'fss ' };
 {
     self = [super init];
     if (self) {
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults ];
 
         [self setHasUndoManager:YES];
-        (void)[self doSetEncoding:[[values valueForKey:k_key_encodingInNew] unsignedLongValue]
+        (void)[self doSetEncoding:[defaults integerForKey:k_key_encodingInNew]
                    updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         _selection = [[CETextSelection alloc] initWithDocument:self]; // ===== alloc
         [self setCanActivateShowInvisibleCharsItem:
-                [[values valueForKey:k_key_showInvisibleSpace] boolValue] ||
-                [[values valueForKey:k_key_showInvisibleTab] boolValue] || 
-                [[values valueForKey:k_key_showInvisibleNewLine] boolValue] || 
-                [[values valueForKey:k_key_showInvisibleFullwidthSpace] boolValue] || 
-                [[values valueForKey:k_key_showOtherInvisibleChars] boolValue]];
+                [defaults boolForKey:k_key_showInvisibleSpace] ||
+                [defaults boolForKey:k_key_showInvisibleTab] ||
+                [defaults boolForKey:k_key_showInvisibleNewLine] ||
+                [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
+                [defaults boolForKey:k_key_showOtherInvisibleChars]];
         [self setDoCascadeWindow:YES];
         [self setInitTopLeftPoint:NSZeroPoint];
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -422,8 +422,7 @@ enum { typeFSS = 'fss ' };
     }
 
     if ((string == nil) && (encoding == k_autoDetectEncodingMenuTag)) {
-        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-        NSArray *encodings = [[[values valueForKey:k_key_encodingList] copy] autorelease];
+        NSArray *encodings = [[[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy] autorelease];
         NSInteger i = 0;
 
         while (string == nil) {
@@ -626,10 +625,9 @@ enum { typeFSS = 'fss ' };
     [self clearAllMarkupForIncompatibleChar];
 
     // 削除／変換される文字をリストアップ
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSArray *managers = [[self editorView] allLayoutManagers];
-    NSColor *foreColor = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_textColor]];
-    NSColor *backColor = [NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_backgroundColor]];
+    NSColor *foreColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:k_key_textColor]];
+    NSColor *backColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:k_key_backgroundColor]];
     NSColor *incompatibleColor;
     NSDictionary *attrs;
     NSString *curChar, *convertedChar;
@@ -1163,12 +1161,11 @@ enum { typeFSS = 'fss ' };
     
     // 書き込み通知を行う
     [self setShowUpdateAlertWithBecomeKey:YES];
-    id defaults = [[NSUserDefaultsController sharedUserDefaultsController] values];
     // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
     if ([NSApp isActive]) {
         [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
         
-    } else if ([[defaults valueForKey:k_key_notifyEditByAnother] boolValue]) {
+    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_notifyEditByAnother]) {
         [NSApp requestUserAttention:NSInformationalRequest];
     }
 }
@@ -1994,12 +1991,12 @@ enum { typeFSS = 'fss ' };
 {
     if (returnCode != NSOKButton) { return; }
 
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id printValues = [[self windowController] printValues];
     NSPrintInfo *printInfo = [self printInfo];
     NSSize paperSize = [printInfo paperSize];
     NSPrintOperation *printOperation;
-    NSString *filePath = ([[values valueForKey:k_key_headerFooterPathAbbreviatingWithTilde] boolValue]) ?
+    NSString *filePath = ([defaults boolForKey:k_key_headerFooterPathAbbreviatingWithTilde]) ?
                          [[[self fileURL] path] stringByAbbreviatingWithTildeInPath] : [[self fileURL] path];
     CELayoutManager *layoutManager = [[[CELayoutManager alloc] init] autorelease];
     CEPrintView *printView;
@@ -2021,7 +2018,7 @@ enum { typeFSS = 'fss ' };
     }
     // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
     if (topMargin > k_printHFVerticalMargin) {
-        topMargin += (CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue] - k_headerFooterLineHeight;
+        topMargin += (CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize] - k_headerFooterLineHeight;
         if ([[printValues valueForKey:k_printHeaderSeparator] boolValue]) {
             topMargin += k_separatorPadding;
         } else {
@@ -2051,9 +2048,9 @@ enum { typeFSS = 'fss ' };
     printView = [[[CEPrintView alloc] initWithFrame:frame] autorelease];
     // 設定するフォント
     NSFont *font;
-    if ([[values valueForKey:k_key_setPrintFont] integerValue] == 1) { // == プリンタ専用フォントで印字
-        font = [NSFont fontWithName:[values valueForKey:k_key_printFontName]
-                               size:(CGFloat)[[values valueForKey:k_key_printFontSize] doubleValue]];
+    if ([defaults integerForKey:k_key_setPrintFont] == 1) { // == プリンタ専用フォントで印字
+        font = [NSFont fontWithName:[defaults valueForKey:k_key_printFontName]
+                               size:(CGFloat)[defaults doubleForKey:k_key_printFontSize]];
     } else {
         font = [[self editorView] font];
     }
@@ -2106,8 +2103,8 @@ enum { typeFSS = 'fss ' };
     // プリントビューの設定
     [printView setFont:font];
     if (doColoring) { // カラーリングする
-        [printView setTextColor:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_textColor]]];
-        [printView setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_backgroundColor]]];
+        [printView setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_textColor]]];
+        [printView setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_backgroundColor]]];
     } else {
         [printView setTextColor:[NSColor blackColor]];
         [printView setBackgroundColor:[NSColor whiteColor]];
