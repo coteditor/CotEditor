@@ -21,7 +21,6 @@
                 <outlet property="invisibleTabPopup" destination="243" id="ayj-W2-Wqe"/>
                 <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
                 <outlet property="prefTabView" destination="10" id="zRC-Ni-cde"/>
-                <outlet property="prefWindow" destination="6" id="AQF-X5-gnL"/>
                 <outlet property="printFontFamilyNameSize" destination="385" id="6Mv-Oe-xWO"/>
                 <outlet property="sizeSampleWindow" destination="127" id="2N0-CT-NOC"/>
                 <outlet property="syntaxStyleCopyButton" destination="346" id="ksJ-kH-iSp"/>
@@ -31,6 +30,7 @@
                 <outlet property="syntaxStyleXtsnErrButton" destination="356" id="n5f-gl-qdo"/>
                 <outlet property="syntaxStylesDefaultPopup" destination="727" id="DnT-Hr-kMu"/>
                 <outlet property="syntaxStylesPopup" destination="312" id="WPp-LZ-7YB"/>
+                <outlet property="window" destination="6" id="Pbb-7O-dH4"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -1862,7 +1862,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>

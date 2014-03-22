@@ -93,10 +93,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     static CEPreferences *shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEPreferences alloc] init];
+        shared = [[CEPreferences alloc] initWithWindowNibName:@"Preferences"];
     });
     
     return shared;
+}
+
+
+
+#pragma mark NSWindowController Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
+
+// ------------------------------------------------------
+- (IBAction)showWindow:(id)sender
+// 環境設定パネルを開く
+// ------------------------------------------------------
+{
+    if (![[self window] isVisible]) {
+        [self setFontFamilyNameAndSize];
+        // 拡張子重複エラー表示ボタンの有効化を制御
+        [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedInstance] existsExtensionError]];
+        
+        [[self window] center];
+    }
+    [super showWindow:sender];
 }
 
 
@@ -107,19 +131,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Public method
 //
 //=======================================================
-
-// ------------------------------------------------------
-- (instancetype)init
-// 初期化
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        (void)[NSBundle loadNibNamed:@"Preferences" owner:self];
-    }
-    return self;
-}
-
 
 // ------------------------------------------------------
 - (void)setupEncodingMenus:(NSArray *)menuItems
@@ -165,31 +176,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setupSyntaxStylesPopup];
     [self changedSyntaxStylesPopup:self];
-}
-
-
-// ------------------------------------------------------
-- (void)openPrefWindow
-// 環境設定パネルを開く
-// ------------------------------------------------------
-{
-    if (![[self prefWindow] isVisible]) {
-        [self setFontFamilyNameAndSize];
-        // 拡張子重複エラー表示ボタンの有効化を制御
-        [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedInstance] existsExtensionError]];
-
-        [[self prefWindow] center];
-    }
-    [[self prefWindow] makeKeyAndOrderFront:self];
-}
-
-
-// ------------------------------------------------------
-- (void)closePrefWindow
-// 環境設定パネルを閉じる
-// ------------------------------------------------------
-{
-    [[self prefWindow] close];
 }
 
 
@@ -241,7 +227,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // prefWindow を FirstResponder にする
 // ------------------------------------------------------
 {
-    [[self prefWindow] makeFirstResponder:[self prefWindow]];
+    [[self window] makeFirstResponder:[self window]];
     [self updateUserDefaults];
 }
 
@@ -283,7 +269,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
 
     
-    [[self prefWindow] setShowsToolbarButton:NO];
+    [[self window] setShowsToolbarButton:NO];
 }
 
 
@@ -391,7 +377,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                size:(CGFloat)[[values valueForKey:k_key_fontSize] doubleValue]];
     }
 
-    [[self prefWindow] makeFirstResponder:[self prefWindow]];
+    [[self window] makeFirstResponder:[self window]];
     [manager setSelectedFont:font isMultiple:NO];
     [manager orderFrontFontPanel:sender];
 }
@@ -405,7 +391,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // データソースをセットアップ、シートを表示してモーダルループに入る(閉じる命令は closeEncodingEditSheet: で)
     [[self encodingDataSource] setupEncodingsToEdit];
     [NSApp beginSheet:[self encodingWindow]
-       modalForWindow:[self prefWindow]
+       modalForWindow:[self window]
         modalDelegate:self
        didEndSelector:NULL
           contextInfo:NULL];
@@ -414,7 +400,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // シートを閉じる
     [NSApp endSheet:[self encodingWindow]];
     [[self encodingWindow] orderOut:self];
-    [[self prefWindow] makeKeyAndOrderFront:self];
+    [[self window] makeKeyAndOrderFront:self];
 }
 
 
@@ -447,7 +433,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // サンプルウィンドウを閉じる
     [[self sizeSampleWindow] orderOut:self];
-    [[self prefWindow] makeKeyAndOrderFront:self];
+    [[self window] makeKeyAndOrderFront:self];
 
 }
 
@@ -485,7 +471,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSWindow *sheet = [[CESyntaxManager sharedInstance] editWindow];
 
     [NSApp beginSheet:sheet
-       modalForWindow:[self prefWindow]
+       modalForWindow:[self window]
         modalDelegate:self
        didEndSelector:NULL
           contextInfo:NULL];
@@ -512,7 +498,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // シートを閉じる
     [NSApp endSheet:sheet];
     [sheet orderOut:self];
-    [[self prefWindow] makeKeyAndOrderFront:self];
+    [[self window] makeKeyAndOrderFront:self];
 }
 
 
@@ -556,7 +542,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                          informativeTextWithFormat:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
 
     __block typeof(self) blockSelf = self;
-    [alert beginSheetModalForWindow:[self prefWindow] completionHandler:^(NSModalResponse returnCode) {
+    [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
         if (returnCode != NSAlertAlternateReturn) { return; } // != Delete
         
         NSString *oldSelectedName = [[CESyntaxManager sharedInstance] selectedStyleName];
@@ -600,7 +586,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [openPanel setAllowedFileTypes:@[@"plist"]];
     
     __block typeof(self) blockSelf = self;
-    [openPanel beginSheetModalForWindow:[self prefWindow] completionHandler:^(NSInteger result) {
+    [openPanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) return;
         
         NSURL *URL = [openPanel URLs][0];
@@ -621,7 +607,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
             
-            [alert beginSheetModalForWindow:[self prefWindow] completionHandler:^(NSModalResponse returnCode) {
+            [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
                 if (returnCode == NSAlertAlternateReturn) { // = Replace
                     [blockSelf doImport:URL withCurrentSheetWindow:[alert window]];
                 }
@@ -650,7 +636,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [savePanel setNameFieldStringValue:[[self syntaxStylesPopup] title]];
     [savePanel setAllowedFileTypes:@[@"plist"]];
     
-    [savePanel beginSheetModalForWindow:[self prefWindow] completionHandler:^(NSInteger result) {
+    [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) return;
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -676,7 +662,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSWindow *sheet = [[CESyntaxManager sharedInstance] extensionErrorWindow];
 
     [NSApp beginSheet:sheet
-       modalForWindow:[self prefWindow]
+       modalForWindow:[self window]
         modalDelegate:self
        didEndSelector:NULL
           contextInfo:NULL];
@@ -686,7 +672,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // シートを閉じる
     [NSApp endSheet:sheet];
     [sheet orderOut:self];
-    [[self prefWindow] makeKeyAndOrderFront:self];
+    [[self window] makeKeyAndOrderFront:self];
 }
 
 
@@ -698,7 +684,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *title = [(NSMenuItem *)sender title];
 
     if (title) {
-        [[self prefWindow] makeFirstResponder:[self fileDropTextView]];
+        [[self window] makeFirstResponder:[self fileDropTextView]];
         [[self fileDropTextView] insertText:title];
     }
 }
@@ -712,7 +698,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // フォーカスを移し、値入力を確定
     [[sender window] makeFirstResponder:sender];
 
-    [[self prefWindow] makeFirstResponder:[self fileDropTableView]];
+    [[self window] makeFirstResponder:[self fileDropTableView]];
     [[self fileDropController] add:self];
 
     // ディレイをかけて fileDropController からのバインディングによる行追加を先に実行させる
@@ -747,7 +733,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[CEKeyBindingManager sharedInstance] setupOutlineDataOfMode:[sender tag]])
     {
         [NSApp beginSheet:sheet
-           modalForWindow:[self prefWindow]
+           modalForWindow:[self window]
             modalDelegate:self
            didEndSelector:NULL
               contextInfo:NULL];
@@ -759,7 +745,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // シートを閉じる
     [NSApp endSheet:sheet];
     [sheet orderOut:self];
-    [[self prefWindow] makeKeyAndOrderFront:self];
+    [[self window] makeKeyAndOrderFront:self];
 }
 
 
@@ -804,7 +790,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                          informativeTextWithFormat:NSLocalizedString(@"The default \"Auto-Detect\" is recommended for most cases.",nil)];
 
     NSBeep();
-    [alert beginSheetModalForWindow:[self prefWindow]
+    [alert beginSheetModalForWindow:[self window]
                       modalDelegate:self
                      didEndSelector:@selector(autoDetectAlertDidEnd:returnCode:contextInfo:)
                         contextInfo:NULL];
@@ -1078,13 +1064,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         // インポートできなかったときは、セカンダリシートを閉じ、メッセージシートを表示
         [inWindow orderOut:self];
-        [[self prefWindow] makeKeyAndOrderFront:self];
+        [[self window] makeKeyAndOrderFront:self];
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
                                          defaultButton:nil
                                        alternateButton:nil otherButton:nil
                              informativeTextWithFormat:NSLocalizedString(@"Sorry, could not import \"%@\".", nil), [fileURL lastPathComponent]];
         NSBeep();
-        [alert beginSheetModalForWindow:[self prefWindow] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+        [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
 }
 
@@ -1112,7 +1098,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                          informativeTextWithFormat:NSLocalizedString(@"Deleted setting cannot be restored.", nil)];
     
     __block typeof(self) blockSelf = self;
-    [alert beginSheetModalForWindow:[self prefWindow] completionHandler:^(NSModalResponse returnCode) {
+    [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
         if (returnCode != NSAlertAlternateReturn) { return; } // != Delete
         
         if ([[blockSelf fileDropController] selectionIndex] == NSNotFound) { return; }
