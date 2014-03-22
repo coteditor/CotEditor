@@ -11,7 +11,7 @@ CESyntax
 encoding="UTF-8"
 Created:2004.12.22
  
- -fno-objc-arc
+ ____This_class_is_under_MRC____
  
 -------------------------------------------------
 
@@ -87,8 +87,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
         (void)[NSBundle loadNibNamed:@"Indicator" owner:self];
         [self setWholeString:nil];
         [self setLocalString:nil];
@@ -101,7 +99,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setUpdateRange:NSMakeRange(0, 0)];
         [self setIsIndicatorShown:NO];
         [self setIsPrinting:NO];
-        [self setShowColoringIndicatorTextLength:[[theValues valueForKey:k_key_showColoringIndicatorTextLength] unsignedIntegerValue]];
+        [self setShowColoringIndicatorTextLength:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength]];
         [[self coloringIndicator] setIndeterminate:NO];
     }
     return self;
@@ -141,37 +139,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setSyntaxStyleName:(NSString *)inStyleName
+- (void)setSyntaxStyleName:(NSString *)styleName
 // 保持するstyle名をセット
 // ------------------------------------------------------
 {
-    CESyntaxManager *theManager = [CESyntaxManager sharedInstance];
-    NSArray *theNames = [theManager styleNames];
+    CESyntaxManager *manager = [CESyntaxManager sharedInstance];
+    NSArray *names = [manager styleNames];
 
-    if (([theNames containsObject:inStyleName]) || 
-            ([inStyleName isEqualToString:NSLocalizedString(@"None",@"")])) {
-
-        NSDictionary *theTmpDict = [theManager syntaxWithStyleName:inStyleName];
-        [self setColoringDictionary:theTmpDict];
+    if ([names containsObject:styleName] || [styleName isEqualToString:NSLocalizedString(@"None",@"")]) {
+        [self setColoringDictionary:[manager syntaxWithStyleName:styleName]];
 
         [self setCompleteWordsArrayFromColoringDictionary];
 
-        [inStyleName retain];
+        [styleName retain];
         [_syntaxStyleName release];
-        _syntaxStyleName = inStyleName;
+        _syntaxStyleName = styleName;
     }
 }
 
 
 // ------------------------------------------------------
-- (BOOL)setSyntaxStyleNameFromExtension:(NSString *)inExtension
+- (BOOL)setSyntaxStyleNameFromExtension:(NSString *)extension
 // 拡張子からstyle名をセット
 // ------------------------------------------------------
 {
-    NSString *theName = [[CESyntaxManager sharedInstance] syntaxNameFromExtension:inExtension];
+    NSString *name = [[CESyntaxManager sharedInstance] syntaxNameFromExtension:extension];
 
-    if ((theName) && (![[self syntaxStyleName] isEqualToString:theName])) {
-        [self setSyntaxStyleName:theName];
+    if (name && ![[self syntaxStyleName] isEqualToString:name]) {
+        [self setSyntaxStyleName:name];
         return YES;
     }
     return NO;
@@ -185,59 +180,58 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self coloringDictionary] == nil) { return; }
 
-    NSMutableArray *theTmpArray = [NSMutableArray array];
-    NSArray *theCompleteArray = [self coloringDictionary][k_SCKey_completionsArray];
-    NSMutableString *theTmpString = [NSMutableString string];
-    NSString *theStr = nil;
-    NSCharacterSet *theCharSet;
+    NSMutableArray *tmpArray = [NSMutableArray array];
+    NSArray *completeArray = [self coloringDictionary][k_SCKey_completionsArray];
+    NSMutableString *tmpString = [NSMutableString string];
+    NSString *string = nil;
+    NSCharacterSet *charSet;
 
-    if (theCompleteArray) {
-        for (NSDictionary *dict in theCompleteArray) {
-            theStr = dict[k_SCKey_arrayKeyString];
-            [theTmpArray addObject:theStr];
-            [theTmpString appendString:[theStr substringToIndex:1]];
+    if (completeArray) {
+        for (NSDictionary *dict in completeArray) {
+            string = dict[k_SCKey_arrayKeyString];
+            [tmpArray addObject:string];
+            [tmpString appendString:[string substringToIndex:1]];
         }
 
     } else {
-        NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
-        NSArray *theArray;
-        NSString *theEndStr = nil;
-        NSDictionary *theStrDict;
-        NSUInteger i, theCount;
+        NSArray *syntaxArray = @[k_SCKey_allColoringArrays];
+        NSArray *array;
+        NSString *endStr = nil;
+        NSDictionary *strDict;
+        NSUInteger i, count;
 
-        theCount = [theSyntaxArray count];
+        count = [syntaxArray count];
 
-        NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-        for (i = 0; i < theCount; i++) {
-            theArray = [self coloringDictionary][theSyntaxArray[i]];
-            for (theStrDict in theArray) {
-                theStr = [theStrDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:
-                                    [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                theEndStr = [theStrDict[k_SCKey_endString] stringByTrimmingCharactersInSet:
-                                    [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                if (([theStr length] > 0) && 
-                        ((theEndStr == nil) || ([theEndStr length] < 1)) && 
-                        (![theStrDict[k_SCKey_regularExpression] boolValue])) {
-                    [theTmpArray addObject:theStr];
-                    [theTmpString appendString:[theStr substringToIndex:1]];
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
+        for (i = 0; i < count; i++) {
+            array = [self coloringDictionary][syntaxArray[i]];
+            for (strDict in array) {
+                string = [strDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                endStr = [strDict[k_SCKey_endString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                if (([string length] > 0) &&
+                    ((endStr == nil) || ([endStr length] < 1)) &&
+                    (![strDict[k_SCKey_regularExpression] boolValue]))
+                {
+                    [tmpArray addObject:string];
+                    [tmpString appendString:[string substringToIndex:1]];
                 }
             }
             if (i % 100 == 0) {
-                [thePool release]; // ===== release
-                thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
+                [pool release]; // ===== release
+                pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
             }
         }
-        [thePool release]; // ===== release
+        [pool release]; // ===== release
         // ソート
-        [theTmpArray sortedArrayUsingSelector:@selector(compare:)];
+        [tmpArray sortedArrayUsingSelector:@selector(compare:)];
     }
     // completeWordsArray を保持する
-    [self setCompleteWordsArray:theTmpArray];
+    [self setCompleteWordsArray:tmpArray];
 
     // completeFirstLetterSet を保持する
-    if ([theTmpString length] > 0) {
-        theCharSet = [NSCharacterSet characterSetWithCharactersInString:theTmpString];
-        [self setCompleteFirstLetterSet:theCharSet];
+    if ([tmpString length] > 0) {
+        charSet = [NSCharacterSet characterSetWithCharactersInString:tmpString];
+        [self setCompleteFirstLetterSet:charSet];
     } else {
         [self setCompleteFirstLetterSet:nil];
     }
@@ -245,14 +239,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)colorAllString:(NSString *)inWholeString
+- (void)colorAllString:(NSString *)wholeString
 // 全体をカラーリング
 // ------------------------------------------------------
 {
-    if ((inWholeString == nil) || ([inWholeString length] < 1) || 
+    if ((wholeString == nil) || ([wholeString length] < 1) || 
             ([[self syntaxStyleName] length] < 1)) { return; }
 
-    [self setWholeString:inWholeString];
+    [self setWholeString:wholeString];
     [self setUpdateRange:NSMakeRange(0, [self wholeStringLength])];
 
     if ([self coloringDictionary] == nil) {
@@ -267,31 +261,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)colorVisibleRange:(NSRange)inRange withWholeString:(NSString *)inWholeString
+- (void)colorVisibleRange:(NSRange)range withWholeString:(NSString *)wholeString
 // 表示されている部分をカラーリング
 // ------------------------------------------------------
 {
-    if ((inWholeString == nil) || ([inWholeString length] < 1) || 
+    if ((wholeString == nil) || ([wholeString length] < 1) || 
             ([[self syntaxStyleName] length] < 1)) { return; }
-    [self setWholeString:inWholeString];
+    [self setWholeString:wholeString];
 
-    NSRange theEffectiveRange;
-    NSUInteger theStart = inRange.location;
-    NSUInteger theEnd = NSMaxRange(inRange) - 1;
-    NSUInteger theWholeLength = [self wholeStringLength];
+    NSRange effectiveRange;
+    NSUInteger start = range.location;
+    NSUInteger end = NSMaxRange(range) - 1;
+    NSUInteger wholeLength = [self wholeStringLength];
 
     // 直前／直後が同色ならカラーリング範囲を拡大する
-    (void)[[self layoutManager] temporaryAttributesAtCharacterIndex:theStart
-            longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
+    (void)[[self layoutManager] temporaryAttributesAtCharacterIndex:start
+                                              longestEffectiveRange:&effectiveRange
+                                                            inRange:NSMakeRange(0, [self wholeStringLength])];
 
-    theStart = theEffectiveRange.location;
-    (void)[[self layoutManager] temporaryAttributesAtCharacterIndex:theEnd
-            longestEffectiveRange:&theEffectiveRange inRange:NSMakeRange(0, [self wholeStringLength])];
+    start = effectiveRange.location;
+    (void)[[self layoutManager] temporaryAttributesAtCharacterIndex:end
+                                              longestEffectiveRange:&effectiveRange
+                                                            inRange:NSMakeRange(0, [self wholeStringLength])];
 
-    theEnd = (NSMaxRange(theEffectiveRange) < theWholeLength) ? 
-                NSMaxRange(theEffectiveRange) : theWholeLength;
+    end = (NSMaxRange(effectiveRange) < wholeLength) ? NSMaxRange(effectiveRange) : wholeLength;
 
-    [self setUpdateRange:NSMakeRange(theStart, theEnd - theStart)];
+    [self setUpdateRange:NSMakeRange(start, end - start)];
     if ([self coloringDictionary] == nil) {
         [self setColoringDictionary:[[CESyntaxManager sharedInstance] syntaxWithStyleName:[self syntaxStyleName]]];
         [self setCompleteWordsArrayFromColoringDictionary];
@@ -304,134 +299,136 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSArray *)outlineMenuArrayWithWholeString:(NSString *)inWholeString
+- (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString
 // アウトラインメニュー用の配列を生成し、返す
 // ------------------------------------------------------
 {
 // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
-    NSMutableArray *outArray = [NSMutableArray array];
-    if ((inWholeString == nil) || ([inWholeString length] < 1) || 
-            ([[self syntaxStyleName] length] < 1)) {
-        return outArray;
+    NSMutableArray *outlineMenuDicts = [NSMutableArray array];
+    if ((wholeString == nil) || ([wholeString length] < 1) || ([[self syntaxStyleName] length] < 1)) {
+        return outlineMenuDicts;
     }
-    [self setWholeString:inWholeString];
+    [self setWholeString:wholeString];
 
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *theREStringArray = [self coloringDictionary][k_SCKey_outlineMenuArray];
-    NSMutableString *thePattern; 
-    NSString *theTitle, *theMatchedIndexString;
-    NSRange theMatchRange;
-    NSUInteger theIndex, theLines, theCurLine, theWholeLength = [inWholeString length];
-    NSUInteger theMenuTitleMaxLength = [[theValues valueForKey:k_key_outlineMenuMaxLength] unsignedIntegerValue];
+    NSArray *REStringArray = [self coloringDictionary][k_SCKey_outlineMenuArray];
+    NSMutableString *pattern; 
+    NSString *title, *matchedIndexString;
+    NSRange matchRange;
+    NSUInteger index, lines, curLine, wholeLength = [wholeString length];
+    NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_outlineMenuMaxLength];
 
-    for (NSDictionary *theDict in theREStringArray) {
-        NSUInteger theOption = ([theDict[k_SCKey_ignoreCase] boolValue]) ?
-                        OgreIgnoreCaseOption : OgreNoneOption;
-        NSDictionary *theMatchDict;
-        OGRegularExpression *theRegex;
-        NSEnumerator *theEnumerator;
-        OGRegularExpressionMatch *theMatch;
+    for (NSDictionary *dict in REStringArray) {
+        NSUInteger options = ([dict[k_SCKey_ignoreCase] boolValue]) ?  OgreIgnoreCaseOption : OgreNoneOption;
+        NSDictionary *matchDict;
+        OGRegularExpression *regex;
+        NSEnumerator *enumerator;
+        OGRegularExpressionMatch *match;
 
         NS_DURING
-            theRegex = [OGRegularExpression regularExpressionWithString:
-                        theDict[k_SCKey_beginString] options:theOption];
+            regex = [OGRegularExpression regularExpressionWithString:dict[k_SCKey_beginString] options:options];
         NS_HANDLER
             // 何もしない
             NSLog(@"ERROR in \"outlineMenuArrayWithWholeString:\"");
             continue;
         NS_ENDHANDLER
 
-        theEnumerator = [theRegex matchEnumeratorInString:[self wholeString]];
-        while (theMatch = [theEnumerator nextObject]) {
+        enumerator = [regex matchEnumeratorInString:[self wholeString]];
+        while (match = [enumerator nextObject]) {
             // マッチした範囲
-            theMatchRange = [theMatch rangeOfMatchedString];
+            matchRange = [match rangeOfMatchedString];
             // メニュー項目タイトル
-            thePattern = [[theDict[k_SCKey_arrayKeyString] mutableCopy] autorelease];
-            if ([thePattern isEqualToString:k_outlineMenuSeparatorSymbol]) {
+            pattern = [[dict[k_SCKey_arrayKeyString] mutableCopy] autorelease];
+            if ([pattern isEqualToString:k_outlineMenuSeparatorSymbol]) {
                 // セパレータのとき
-                theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange],
-                                 k_outlineMenuItemTitle: k_outlineMenuSeparatorSymbol,
-                                 k_outlineMenuItemSortKey: @(theMatchRange.location)};
-                [outArray addObject:theMatchDict];
+                matchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:matchRange],
+                              k_outlineMenuItemTitle: k_outlineMenuSeparatorSymbol,
+                              k_outlineMenuItemSortKey: @(matchRange.location)};
+                [outlineMenuDicts addObject:matchDict];
                 continue;
-            } else if ((thePattern == nil) || ([thePattern length] < 1)) {
+            } else if ((pattern == nil) || ([pattern length] < 1)) {
                 // パターン定義なし
-                thePattern = [[[theMatch matchedString] mutableCopy] autorelease];
+                pattern = [[[match matchedString] mutableCopy] autorelease];
             } else {
                 // マッチ文字列（$0, $&）置換
-                (void)[thePattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$0" 
-                        withString:[theMatch matchedString] options:0 
-                        range:NSMakeRange(0, [thePattern length])];
-                (void)[thePattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$&" 
-                        withString:[theMatch matchedString] options:0 
-                        range:NSMakeRange(0, [thePattern length])];
+                (void)[pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$0"
+                                                                withString:[match matchedString]
+                                                                   options:0
+                                                                     range:NSMakeRange(0, [pattern length])];
+                (void)[pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$&"
+                                                                withString:[match matchedString]
+                                                                   options:0
+                                                                     range:NSMakeRange(0, [pattern length])];
                 // マッチ部分文字列（$1-9）置換
                 for (NSInteger i = 1; i < 10; i++) {
-                    theMatchedIndexString = [theMatch substringAtIndex:i];
-                    if (theMatchedIndexString != nil) {
-                        (void)[thePattern replaceOccurrencesOfRegularExpressionString:
-                                    [NSString stringWithFormat:@"(?<!\\\\)\\$%li", (long)i]
-                                withString:theMatchedIndexString options:0 
-                                range:NSMakeRange(0, [thePattern length])];
+                    matchedIndexString = [match substringAtIndex:i];
+                    if (matchedIndexString != nil) {
+                        (void)[pattern replaceOccurrencesOfRegularExpressionString:[NSString stringWithFormat:@"(?<!\\\\)\\$%li", (long)i]
+                                                                        withString:matchedIndexString
+                                                                           options:0
+                                                                             range:NSMakeRange(0, [pattern length])];
                     }
                 }
                 // マッチした範囲の開始位置の行
-                theCurLine = 1;
-                for (theIndex = 0, theLines = 0; theIndex < theWholeLength; theLines++) {
-                    if (theIndex <= theMatchRange.location) {
-                        theCurLine = theLines + 1;
+                curLine = 1;
+                for (index = 0, lines = 0; index < wholeLength; lines++) {
+                    if (index <= matchRange.location) {
+                        curLine = lines + 1;
                     } else {
                         break;
                     }
-                    theIndex = NSMaxRange([inWholeString lineRangeForRange:NSMakeRange(theIndex, 0)]);
+                    index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
                 }
                 //行番号（$LN）置換
-                (void)[thePattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$LN"
-                        withString:[NSString stringWithFormat:@"%lu", (unsigned long)theCurLine] options:0 
-                        range:NSMakeRange(0, [thePattern length])];
+                (void)[pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$LN"
+                                                                withString:[NSString stringWithFormat:@"%lu", (unsigned long)curLine]
+                                                                   options:0
+                                                                     range:NSMakeRange(0, [pattern length])];
             }
             // 改行またはタブをスペースに置換
-            (void)[thePattern replaceOccurrencesOfRegularExpressionString:@"[\n\t]" 
-                    withString:@" " options:0 range:NSMakeRange(0, [thePattern length])];
+            (void)[pattern replaceOccurrencesOfRegularExpressionString:@"[\n\t]"
+                                                            withString:@" "
+                                                               options:0
+                                                                 range:NSMakeRange(0, [pattern length])];
             // エスケープされた「$」を置換
-            (void)[thePattern replaceOccurrencesOfRegularExpressionString:@"\\\\\\$(?=([0-9&]|LN))" 
-                    withString:@"$" options:0 range:NSMakeRange(0, [thePattern length])];
+            (void)[pattern replaceOccurrencesOfRegularExpressionString:@"\\\\\\$(?=([0-9&]|LN))"
+                                                            withString:@"$"
+                                                               options:0
+                                                                 range:NSMakeRange(0, [pattern length])];
             // タイトル確定
-            if ([thePattern length] > theMenuTitleMaxLength) {
-                theTitle = [NSString stringWithFormat:@"%@ ...", 
-                        [thePattern substringToIndex:theMenuTitleMaxLength]];
+            if ([pattern length] > menuTitleMaxLength) {
+                title = [NSString stringWithFormat:@"%@ ...", [pattern substringToIndex:menuTitleMaxLength]];
             } else {
-                theTitle = [NSString stringWithString:thePattern];
+                title = [NSString stringWithString:pattern];
             }
             // ボールド
-            BOOL theBoolIsBold = [[theDict valueForKey:k_SCKey_bold] boolValue];
+            BOOL isBold = [[dict valueForKey:k_SCKey_bold] boolValue];
             // イタリック
-            BOOL theBoolIsItalic = [[theDict valueForKey:k_SCKey_italic] boolValue];
+            BOOL isItalic = [[dict valueForKey:k_SCKey_italic] boolValue];
             // アンダーライン
-            NSUInteger theUnderlineMask = ([[theDict valueForKey:k_SCKey_underline] boolValue]) ?
+            NSUInteger theUnderlineMask = ([[dict valueForKey:k_SCKey_underline] boolValue]) ?
                     (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
             // 辞書生成
-            theMatchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:theMatchRange],
-                             k_outlineMenuItemTitle: theTitle,
-                             k_outlineMenuItemSortKey: @(theMatchRange.location),
-                             k_outlineMenuItemFontBold: @(theBoolIsBold),
-                             k_outlineMenuItemFontItalic: @(theBoolIsItalic),
-                             k_outlineMenuItemUnderlineMask: @(theUnderlineMask)};
-            [outArray addObject:theMatchDict];
+            matchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:matchRange],
+                          k_outlineMenuItemTitle: title,
+                          k_outlineMenuItemSortKey: @(matchRange.location),
+                          k_outlineMenuItemFontBold: @(isBold),
+                          k_outlineMenuItemFontItalic: @(isItalic),
+                          k_outlineMenuItemUnderlineMask: @(theUnderlineMask)};
+            [outlineMenuDicts addObject:matchDict];
         }
     }
-    if ([outArray count] > 0) {
-        NSSortDescriptor *theDescriptor = [[[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey 
-                    ascending:YES selector:@selector(compare:)] autorelease];
-        [outArray sortUsingDescriptors:@[theDescriptor]];
+    if ([outlineMenuDicts count] > 0) {
+        NSSortDescriptor *theDescriptor = [[[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey
+                                                                       ascending:YES
+                                                                        selector:@selector(compare:)] autorelease];
+        [outlineMenuDicts sortUsingDescriptors:@[theDescriptor]];
         // ソート後に、冒頭のアイテムを追加
-        [outArray insertObject:
-                @{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)], 
-                    k_outlineMenuItemTitle: NSLocalizedString(@"< Outline Menu >",@""), 
-                    k_outlineMenuItemSortKey: @0U}
-                atIndex:0];
+        [outlineMenuDicts insertObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)],
+                                         k_outlineMenuItemTitle: NSLocalizedString(@"< Outline Menu >",@""),
+                                         k_outlineMenuItemSortKey: @0U}
+                               atIndex:0];
     }
-    return outArray;
+    return outlineMenuDicts;
 }
 
 
@@ -461,63 +458,59 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)inWordsDict 
-                withCharString:(NSMutableString *)inCharString
+- (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSMutableString *)charString
 // 指定された文字列をそのまま検索し、カラーリング
 // ------------------------------------------------------
 {
-    NSArray *theArray = [self rangesSimpleWordsArrayDict:inWordsDict withCharString:inCharString];
-    NSRange theRange;
+    NSArray *array = [self rangesSimpleWordsArrayDict:wordsDict withCharString:charString];
+    NSRange range;
 
-    for (NSValue *value in theArray) {
-        theRange = [value rangeValue];
-        theRange.location += [self updateRange].location;
+    for (NSValue *value in array) {
+        range = [value rangeValue];
+        range.location += [self updateRange].location;
 
         if ([self isPrinting]) {
-            [[[self layoutManager] firstTextView] setTextColor:_textColor range:theRange];
+            [[[self layoutManager] firstTextView] setTextColor:_textColor range:range];
         } else {
-            [[self layoutManager] addTemporaryAttributes:_currentAttrs forCharacterRange:theRange];
+            [[self layoutManager] addTemporaryAttributes:_currentAttrs forCharacterRange:range];
         }
     }
 }
 
 
 // ------------------------------------------------------
-- (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)inWordsDict 
-            withCharString:(NSMutableString *)inCharString
+- (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSMutableString *)charString
 // 指定された文字列をそのまま検索し、位置を返す
 // ------------------------------------------------------
 {
-    NSScanner *theScanner = [NSScanner scannerWithString:[self localString]];
-    NSString *theScanStr = nil;
+    NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
+    NSString *scanStr = nil;
     CEPrivateMutableArray *outArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
-    NSCharacterSet *theCharSet;
-    NSRange theAttrRange;
+    NSCharacterSet *charSet;
+    NSRange attrRange;
     id wordsArray;
-    NSUInteger theLocation = 0, theLength = 0;
+    NSUInteger location = 0, length = 0;
 
     // 改行、タブ、スペースは無視
-    [inCharString chomp];
-    (void)[inCharString replaceOccurrencesOfString:@"\t"
-                withString:@"" options:0 range:NSMakeRange(0, [inCharString length])];
-    (void)[inCharString replaceOccurrencesOfString:@" "
-                withString:@"" options:0 range:NSMakeRange(0, [inCharString length])];
+    [charString chomp];
+    (void)[charString replaceOccurrencesOfString:@"\t" withString:@"" options:0 range:NSMakeRange(0, [charString length])];
+    (void)[charString replaceOccurrencesOfString:@" " withString:@"" options:0 range:NSMakeRange(0, [charString length])];
 
-    theCharSet = [NSCharacterSet characterSetWithCharactersInString:inCharString];
-    [theScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
-    [theScanner setCaseSensitive:YES];
+    charSet = [NSCharacterSet characterSetWithCharactersInString:charString];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
+    [scanner setCaseSensitive:YES];
 
     NS_DURING
-        while (![theScanner isAtEnd]) {
-            (void)[theScanner scanUpToCharactersFromSet:theCharSet intoString:NULL];
-            if ([theScanner scanCharactersFromSet:theCharSet intoString:&theScanStr]) {
-                theLength = [theScanStr length];
-                if (theLength > 0) {
-                    theLocation = [theScanner scanLocation];
-                    wordsArray = inWordsDict[@(theLength)];
-                    if ([wordsArray containsObject:theScanStr]) {
-                        theAttrRange = NSMakeRange(theLocation - theLength, theLength);
-                        [outArray addObject:[NSValue valueWithRange:theAttrRange]];
+        while (![scanner isAtEnd]) {
+            (void)[scanner scanUpToCharactersFromSet:charSet intoString:NULL];
+            if ([scanner scanCharactersFromSet:charSet intoString:&scanStr]) {
+                length = [scanStr length];
+                if (length > 0) {
+                    location = [scanner scanLocation];
+                    wordsArray = wordsDict[@(length)];
+                    if ([wordsArray containsObject:scanStr]) {
+                        attrRange = NSMakeRange(location - length, length);
+                        [outArray addObject:[NSValue valueWithRange:attrRange]];
                     }
                 }
             }
@@ -533,45 +526,45 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSArray *)rangesBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
+- (NSArray *)rangesBeginString:(NSString *)beginString withEndString:(NSString *)endString
+                    doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // 指定された開始／終了ペアの文字列を検索し、位置を返す
 // ------------------------------------------------------
 {
-    NSString *theESCheckStr = nil;
-    NSScanner *theScanner = [NSScanner scannerWithString:[self localString]];
-    NSUInteger theLocalLength = [[self localString] length];
-    NSUInteger theStart = 0, theESNum = 0, theEnd = 0;
-    NSUInteger theBeginLength = 0, theEndLength = 0, theESCheckLength;
-    NSUInteger theStartEnd = 0;
-    NSRange theAttrRange, theTmpRange;
+    NSString *ESCheckStr = nil;
+    NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
+    NSUInteger localLength = [[self localString] length];
+    NSUInteger start = 0, ESNum = 0, end = 0;
+    NSUInteger beginLength = 0, endLength = 0, ESCheckLength;
+    NSUInteger startEnd = 0;
+    NSRange attrRange, tmpRange;
 
-    theBeginLength = [inBeginString length];
-    if (theBeginLength < 1) { return nil; }
-    theEndLength = [inEndString length];
-    [theScanner setCharactersToBeSkipped:nil];
-    [theScanner setCaseSensitive:YES];
-    CEPrivateMutableArray *outArray =  [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
+    beginLength = [beginString length];
+    if (beginLength < 1) { return nil; }
+    endLength = [endString length];
+    [scanner setCharactersToBeSkipped:nil];
+    [scanner setCaseSensitive:YES];
+    CEPrivateMutableArray *outArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
     NSInteger i = 0;
 
-    while (![theScanner isAtEnd]) {
-        (void)[theScanner scanUpToString:inBeginString intoString:nil];
-        theStart = [theScanner scanLocation];
-        if (theStart + theBeginLength < theLocalLength) {
-            [theScanner setScanLocation:(theStart + theBeginLength)];
-            theESCheckLength = (theStart < k_ESCheckLength) ? theStart : k_ESCheckLength;
-            theTmpRange = NSMakeRange(theStart - theESCheckLength, theESCheckLength);
-            theESCheckStr = [[self localString] substringWithRange:theTmpRange];
-            theESNum = [self numberOfEscapeSequenceInString:theESCheckStr];
-            if (theESNum % 2 == 1) {
+    while (![scanner isAtEnd]) {
+        (void)[scanner scanUpToString:beginString intoString:nil];
+        start = [scanner scanLocation];
+        if (start + beginLength < localLength) {
+            [scanner setScanLocation:(start + beginLength)];
+            ESCheckLength = (start < k_ESCheckLength) ? start : k_ESCheckLength;
+            tmpRange = NSMakeRange(start - ESCheckLength, ESCheckLength);
+            ESCheckStr = [[self localString] substringWithRange:tmpRange];
+            ESNum = [self numberOfEscapeSequenceInString:ESCheckStr];
+            if (ESNum % 2 == 1) {
                 continue;
             }
-            if (!inValueDoColoring) {
-                theStartEnd = (inPairKind >= k_QC_CommentBaseNum) ? k_QC_Start : k_notUseStartEnd;
-                [outArray addObject:@{k_QCPosition: @(theStart), 
-                        k_QCPairKind: @(inPairKind), 
-                        k_QCStartEnd: @(theStartEnd), 
-                        k_QCStrLength: @(theBeginLength)}];
+            if (!doColoring) {
+                startEnd = (pairKind >= k_QC_CommentBaseNum) ? k_QC_Start : k_notUseStartEnd;
+                [outArray addObject:@{k_QCPosition: @(start),
+                                      k_QCPairKind: @(pairKind),
+                                      k_QCStartEnd: @(startEnd),
+                                      k_QCStrLength: @(beginLength)}];
             }
         } else {
             break;
@@ -579,31 +572,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         while (1) {
             i++;
             if ([self isIndicatorShown] && ((i % 10) == 0) &&
-                    ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
+                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse))
+            {
                 return nil;
             }
-            (void)[theScanner scanUpToString:inEndString intoString:nil];
-            theEnd = [theScanner scanLocation] + theEndLength;
-            if (theEnd <= theLocalLength) {
-                [theScanner setScanLocation:theEnd];
-                theESCheckLength = ((theEnd - theEndLength) < k_ESCheckLength) ? 
-                        (theEnd - theEndLength) : k_ESCheckLength;
-                theTmpRange = NSMakeRange(theEnd - theEndLength - theESCheckLength, theESCheckLength);
-                theESCheckStr = [[self localString] substringWithRange:theTmpRange];
-                theESNum = [self numberOfEscapeSequenceInString:theESCheckStr];
-                if (theESNum % 2 == 1) {
+            (void)[scanner scanUpToString:endString intoString:nil];
+            end = [scanner scanLocation] + endLength;
+            if (end <= localLength) {
+                [scanner setScanLocation:end];
+                ESCheckLength = ((end - endLength) < k_ESCheckLength) ? (end - endLength) : k_ESCheckLength;
+                tmpRange = NSMakeRange(end - endLength - ESCheckLength, ESCheckLength);
+                ESCheckStr = [[self localString] substringWithRange:tmpRange];
+                ESNum = [self numberOfEscapeSequenceInString:ESCheckStr];
+                if (ESNum % 2 == 1) {
                     continue;
                 } else {
-                    if (theStart < theEnd) {
-                        if (inValueDoColoring) {
-                            theAttrRange = NSMakeRange(theStart, theEnd - theStart);
-                            [outArray addObject:[NSValue valueWithRange:theAttrRange]];
+                    if (start < end) {
+                        if (doColoring) {
+                            attrRange = NSMakeRange(start, end - start);
+                            [outArray addObject:[NSValue valueWithRange:attrRange]];
                         } else {
-                            theStartEnd = (inPairKind >= k_QC_CommentBaseNum) ? k_QC_End : k_notUseStartEnd;
-                            [outArray addObject:@{k_QCPosition: @(theEnd - theEndLength), 
-                                    k_QCPairKind: @(inPairKind), 
-                                    k_QCStartEnd: @(theStartEnd), 
-                                    k_QCStrLength: @(theEndLength)}];
+                            startEnd = (pairKind >= k_QC_CommentBaseNum) ? k_QC_End : k_notUseStartEnd;
+                            [outArray addObject:@{k_QCPosition: @(end - endLength),
+                                                  k_QCPairKind: @(pairKind),
+                                                  k_QCStartEnd: @(startEnd),
+                                                  k_QCStrLength: @(endLength)}];
                         }
                         break;
                     }
@@ -612,60 +605,59 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 break;
             }
         } // end-while (1)
-    } // end-while (![theScanner isAtEnd])
+    } // end-while (![scanner isAtEnd])
     return outArray;
 }
 
 
 // ------------------------------------------------------
-- (NSArray *)rangesRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
+- (NSArray *)rangesRegularExpressionString:(NSString *)regexStr withIgnoreCase:(BOOL)ignoreCase
+                                doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // 指定された文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
-    uint32_t theOption = (inIgnoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
-    NSArray *theMatchArray;
-    NSEnumerator *theEnumerator;
+    uint32_t options = (ignoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
+    NSArray *matchArray;
+    NSEnumerator *enumerator;
     CEPrivateMutableArray *outArray = nil;
-    NSRange theAttrRange;
-    NSInteger i, theCount = 0;
-    NSUInteger theQCStart = 0, theQCEnd = 0;
+    NSRange attrRange;
+    NSInteger i, count = 0;
+    NSUInteger QCStart = 0, QCEnd = 0;
 
     NS_DURING
-        theEnumerator = [[self localString] matchEnumeratorWithRegex:inRegexStr options:theOption];
-        theMatchArray = [theEnumerator allObjects];
+        enumerator = [[self localString] matchEnumeratorWithRegex:regexStr options:options];
+        matchArray = [enumerator allObjects];
     NS_HANDLER
         // 何もしない
         NSLog(@"ERROR in \"rangesRegularExpressionString:withIgnoreCase:doColoring:pairStringKind:\"");
         return nil;
     NS_ENDHANDLER
 
-    if (inValueDoColoring) {
-        return theMatchArray;
+    if (doColoring) {
+        return matchArray;
     } else {
-        theCount = [theMatchArray count];
-        if (theCount > 0) {
+        count = [matchArray count];
+        if (count > 0) {
             outArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
         }
-        for (i = 0; i < theCount; i++) {
-            if ([self isIndicatorShown] && ((i % 10) == 0) &&
-                    ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
+        for (i = 0; i < count; i++) {
+            if ([self isIndicatorShown] && ((i % 10) == 0) && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
                 return nil;
             }
-            theAttrRange = [theMatchArray[i] rangeValue];
-            if (inPairKind >= k_QC_CommentBaseNum) {
-                theQCStart = k_QC_Start;
-                theQCEnd = k_QC_End;
+            attrRange = [matchArray[i] rangeValue];
+            if (pairKind >= k_QC_CommentBaseNum) {
+                QCStart = k_QC_Start;
+                QCEnd = k_QC_End;
             } else {
-                theQCStart = theQCEnd = k_notUseStartEnd;
+                QCStart = QCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition: @(theAttrRange.location),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCStart),
+            [outArray addObject:@{k_QCPosition: @(attrRange.location),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCStart),
                                   k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCEnd),
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCEnd),
                                   k_QCStrLength: @0U}];
         }
         return outArray;
@@ -674,368 +666,358 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSArray *)checkRegularExpressionString:(NSString *)inRegexStr withIgnoreCase:(BOOL)inIgnoreCase 
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
+- (NSArray *)checkRegularExpressionString:(NSString *)regexStr withIgnoreCase:(BOOL)ignoreCase
+                               doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // 指定された文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
-    NSUInteger theOption = (inIgnoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
-    OGRegularExpression *theRegex;
-    NSEnumerator *theEnum;
-    OGRegularExpressionMatch *theMatch;
+    NSUInteger options = (ignoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
+    OGRegularExpression *regex;
+    NSEnumerator *enumerator;
+    OGRegularExpressionMatch *match;
     NSMutableArray *outArray = [NSMutableArray array];
-    NSRange theAttrRange;
-    NSUInteger theQCStart = 0, theQCEnd = 0;
+    NSRange attrRange;
+    NSUInteger QCStart = 0, QCEnd = 0;
 
     NS_DURING
-        theRegex = [OGRegularExpression regularExpressionWithString:inRegexStr options:theOption];
+        regex = [OGRegularExpression regularExpressionWithString:regexStr options:options];
     NS_HANDLER
         // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
         // 何もしない
         return nil;
     NS_ENDHANDLER
 
-    theEnum = [theRegex matchEnumeratorInString:[self localString]];
+    enumerator = [regex matchEnumeratorInString:[self localString]];
 
-    while (theMatch = [theEnum nextObject]) {
-        if ([self isIndicatorShown] &&
-                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
+    while (match = [enumerator nextObject]) {
+        if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
-        NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-        theAttrRange = [theMatch rangeOfMatchedString];
-        theAttrRange.location += [self updateRange].location;
-        if (inValueDoColoring) {
-            [outArray addObject:[NSValue valueWithRange:theAttrRange]];
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
+        attrRange = [match rangeOfMatchedString];
+        attrRange.location += [self updateRange].location;
+        if (doColoring) {
+            [outArray addObject:[NSValue valueWithRange:attrRange]];
         } else {
-            if (inPairKind >= k_QC_CommentBaseNum) {
-                theQCStart = k_QC_Start;
-                theQCEnd = k_QC_End;
+            if (pairKind >= k_QC_CommentBaseNum) {
+                QCStart = k_QC_Start;
+                QCEnd = k_QC_End;
             } else {
-                theQCStart = theQCEnd = k_notUseStartEnd;
+                QCStart = QCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition: @(theAttrRange.location),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCStart),
+            [outArray addObject:@{k_QCPosition: @(attrRange.location),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCStart),
                                   k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCEnd),
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCEnd),
                                   k_QCStrLength: @0U}];
         }
-        [thePool release]; // ===== release
+        [pool release]; // ===== release
     }
     return outArray;
 }
 
 
 // ------------------------------------------------------
-- (NSArray *)rangesRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        withIgnoreCase:(BOOL)inIgnoreCase
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
+- (NSArray *)rangesRegularExpressionBeginString:(NSString *)beginString withEndString:(NSString *)endString withIgnoreCase:(BOOL)ignoreCase
+                                     doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // 指定された開始／終了文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
-    uint32_t theOption = (inIgnoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
-    NSEnumerator *theEnumerator;
-    NSArray *theMatchArray;
-    NSRange theBeginRange, theEndRange, theAttrRange;
+    uint32_t options = (ignoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
+    NSEnumerator *enumerator;
+    NSArray *matchArray;
+    NSRange beginRange, endRange, attrRange;
     CEPrivateMutableArray *outArray = nil;
-    NSInteger i, theCount = 0;
-    NSUInteger theQCStart = 0, theQCEnd = 0;
+    NSInteger i, count = 0;
+    NSUInteger QCStart = 0, QCEnd = 0;
 
     NS_DURING
-        theEnumerator = [[self localString] matchEnumeratorWithRegex:inBeginString options:theOption];
-        theMatchArray = [theEnumerator allObjects];
+        enumerator = [[self localString] matchEnumeratorWithRegex:beginString options:options];
+        matchArray = [enumerator allObjects];
     NS_HANDLER
         // 何もしない
         NSLog(@"ERROR in \"rangesRegularExpressionBeginString:withEndString:withIgnoreCase:doColoring:pairStringKind:\" first NS_DURING");
         return nil;
     NS_ENDHANDLER
 
-    theCount = [theMatchArray count];
-    if (theCount > 0) {
+    count = [matchArray count];
+    if (count > 0) {
         outArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
     }
-    for (i = 0; i < theCount; i++) {
-        if ([self isIndicatorShown] && ((i % 10) == 0) &&
-                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
+    for (i = 0; i < count; i++) {
+        if ([self isIndicatorShown] && ((i % 10) == 0) && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
-        theBeginRange = [theMatchArray[i] rangeValue];
+        beginRange = [matchArray[i] rangeValue];
         NS_DURING
-            theEndRange = [[self localString] rangeOfRegex:inEndString
-                        options:theOption 
-                        inRange:NSMakeRange(NSMaxRange(theBeginRange), 
-                            [[self localString] length] - NSMaxRange(theBeginRange))
-                        capture:0 error:NULL];
+            endRange = [[self localString] rangeOfRegex:endString
+                                                options:options
+                                                inRange:NSMakeRange(NSMaxRange(beginRange),
+                                                                    [[self localString] length] - NSMaxRange(beginRange))
+                                                capture:0 error:NULL];
         NS_HANDLER
             // 何もしない
             NSLog(@"ERROR in \"rangesRegularExpressionBeginString:withEndString:withIgnoreCase:doColoring:pairStringKind:\" second NS_DURING");
             return nil;
         NS_ENDHANDLER
 
-        if (theEndRange.location != NSNotFound) {
-            theAttrRange = NSUnionRange(theBeginRange, theEndRange);
+        if (endRange.location != NSNotFound) {
+            attrRange = NSUnionRange(beginRange, endRange);
         } else {
             continue;
         }
-        if (inValueDoColoring) {
-            [outArray addObject:[NSValue valueWithRange:theAttrRange]];
+        if (doColoring) {
+            [outArray addObject:[NSValue valueWithRange:attrRange]];
         } else {
-            if (inPairKind >= k_QC_CommentBaseNum) {
-                theQCStart = k_QC_Start;
-                theQCEnd = k_QC_End;
+            if (pairKind >= k_QC_CommentBaseNum) {
+                QCStart = k_QC_Start;
+                QCEnd = k_QC_End;
             } else {
-                theQCStart = theQCEnd = k_notUseStartEnd;
+                QCStart = QCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition: @(theAttrRange.location),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCStart),
+            [outArray addObject:@{k_QCPosition: @(attrRange.location),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCStart),
                                   k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCEnd),
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCEnd),
                                   k_QCStrLength: @0U}];
         }
     }
     return outArray;
 }
 // ------------------------------------------------------
-- (NSArray *)checkRegularExpressionBeginString:(NSString *)inBeginString withEndString:(NSString *)inEndString 
-        withIgnoreCase:(BOOL)inIgnoreCase
-        doColoring:(BOOL)inValueDoColoring pairStringKind:(NSUInteger)inPairKind
+- (NSArray *)checkRegularExpressionBeginString:(NSString *)beginString withEndString:(NSString *)endString withIgnoreCase:(BOOL)ignoreCase
+                                    doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // 指定された開始／終了文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
-    NSUInteger theOption = (inIgnoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
-    OGRegularExpression *theRegex;
-    NSEnumerator *theEnum;
-    OGRegularExpressionMatch *theMatch;
-    NSRange theBeginRange, theEndRange, theAttrRange;
+    NSUInteger options = (ignoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
+    OGRegularExpression *regex;
+    NSEnumerator *enumerator;
+    OGRegularExpressionMatch *match;
+    NSRange beginRange, endRange, attrRange;
     NSMutableArray *outArray = [NSMutableArray array];
-    NSUInteger theQCStart = 0, theQCEnd = 0;
+    NSUInteger QCStart = 0, QCEnd = 0;
 
     NS_DURING
-        theRegex = [OGRegularExpression regularExpressionWithString:inBeginString options:theOption];
+        regex = [OGRegularExpression regularExpressionWithString:beginString options:options];
     NS_HANDLER
         // 構文エラーなど例外は無視 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
         // 何もしない
         return nil;
     NS_ENDHANDLER
 
-    theEnum = [theRegex matchEnumeratorInString:[self localString]];
+    enumerator = [regex matchEnumeratorInString:[self localString]];
 
-    while (theMatch = [theEnum nextObject]) {
-        if ([self isIndicatorShown] &&
-                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
+    while (match = [enumerator nextObject]) {
+        if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
-        NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-        theBeginRange = [theMatch rangeOfMatchedString];
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
+        beginRange = [match rangeOfMatchedString];
         NS_DURING
-            theEndRange = [[self localString] rangeOfRegularExpressionString:inEndString
-                        options:theOption 
-                        range:NSMakeRange(NSMaxRange(theBeginRange), 
-                            [[self localString] length] - NSMaxRange(theBeginRange))];
+            endRange = [[self localString] rangeOfRegularExpressionString:endString
+                                                                  options:options
+                                                                    range:NSMakeRange(NSMaxRange(beginRange),
+                                                                                      [[self localString] length] - NSMaxRange(beginRange))];
         NS_HANDLER
-            [thePool release]; // ===== release
+            [pool release]; // ===== release
             return nil;
         NS_ENDHANDLER
-        if (theEndRange.location != NSNotFound) {
-            theAttrRange = NSUnionRange(theBeginRange, theEndRange);
-            theAttrRange.location += [self updateRange].location;
+        if (endRange.location != NSNotFound) {
+            attrRange = NSUnionRange(beginRange, endRange);
+            attrRange.location += [self updateRange].location;
         } else {
             continue;
         }
-        if (inValueDoColoring) {
-            [outArray addObject:[NSValue valueWithRange:theAttrRange]];
+        if (doColoring) {
+            [outArray addObject:[NSValue valueWithRange:attrRange]];
         } else {
-            if (inPairKind >= k_QC_CommentBaseNum) {
-                theQCStart = k_QC_Start;
-                theQCEnd = k_QC_End;
+            if (pairKind >= k_QC_CommentBaseNum) {
+                QCStart = k_QC_Start;
+                QCEnd = k_QC_End;
             } else {
-                theQCStart = theQCEnd = k_notUseStartEnd;
+                QCStart = QCEnd = k_notUseStartEnd;
             }
-            [outArray addObject:@{k_QCPosition:@(theAttrRange.location),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCStart),
+            [outArray addObject:@{k_QCPosition:@(attrRange.location),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCStart),
                                   k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(theAttrRange)),
-                                  k_QCPairKind: @(inPairKind),
-                                  k_QCStartEnd: @(theQCEnd),
+            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                  k_QCPairKind: @(pairKind),
+                                  k_QCStartEnd: @(QCEnd),
                                   k_QCStrLength: @0U}];
         }
-        [thePool release]; // ===== release
+        [pool release]; // ===== release
     }
     return outArray;
 }
 
 
 // ------------------------------------------------------
-- (void)setAttrToCommentsWithSyntaxArray:(NSArray *)inArray 
-        withSingleQuotes:(BOOL)inValueSingleQuotes withDoubleQuotes:(BOOL)inValueDoubleQuotes 
-        updateIndicator:(BOOL)inValueUpdateIndicator
+- (void)setAttrToCommentsWithSyntaxArray:(NSArray *)syntaxArray
+                        withSingleQuotes:(BOOL)withSingleQuotes withDoubleQuotes:(BOOL)withDoubleQuotes
+                         updateIndicator:(BOOL)updateIndicator
 // コメントをカラーリング
 // ------------------------------------------------------
 {
-    NSMutableArray *thePosArray = [NSMutableArray array];
-    NSMutableDictionary *theSimpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    NSArray *theTmpArray = nil;
-    NSDictionary *theStrDict, *theCurRecord, *theCheckRecord, *theAttrs;
-    NSString *theBeginStr = nil, *theEndStr = nil;
-    NSMutableString *theSimpleWordsChar = [NSMutableString string];
-    NSRange theColoringRange;
-    NSInteger i, j, theIndex = 0, theSyntaxCount = [inArray count], theColoringCount;
-    NSUInteger theQCKind, theStart, theEnd, theCheckStartEnd;
-    double indicatorValue, theOldValue = 0.0, theBeginDouble = [self doubleValueOfIndicator];
-    BOOL theBoolHasEnd = NO;
+    NSMutableArray *posArray = [NSMutableArray array];
+    NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
+    NSArray *tmpArray = nil;
+    NSDictionary *strDict, *curRecord, *checkRecord, *attrs;
+    NSString *beginStr = nil, *endStr = nil;
+    NSMutableString *simpleWordsChar = [NSMutableString string];
+    NSRange coloringRange;
+    NSInteger i, j, index = 0, syntaxCount = [syntaxArray count], coloringCount;
+    NSUInteger QCKind, start, end, checkStartEnd;
+    double indicatorValue, beginDouble = [self doubleValueOfIndicator];
+    BOOL hasEnd = NO;
 
     // コメント定義の位置配列を生成
-    for (i = 0; i < theSyntaxCount; i++) {
+    for (i = 0; i < syntaxCount; i++) {
         if ([self isIndicatorShown] && ((i % 10) == 0) &&
-                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) { return; }
-        theStrDict = inArray[i];
-        theBeginStr = theStrDict[k_SCKey_beginString];
+            ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) { return; }
+        strDict = syntaxArray[i];
+        beginStr = strDict[k_SCKey_beginString];
 
-        if ([theBeginStr length] < 1) { continue; }
+        if ([beginStr length] < 1) { continue; }
 
-        theEndStr = theStrDict[k_SCKey_endString];
+        endStr = strDict[k_SCKey_endString];
 
-        if ([theStrDict[k_SCKey_regularExpression] boolValue]) {
-            if ((theEndStr != nil) && ([theEndStr length] > 0)) {
-                theTmpArray = [self rangesRegularExpressionBeginString:theBeginStr
-                                                         withEndString:theEndStr
-                                                        withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
-                                                            doColoring:NO
-                                                        pairStringKind:(k_QC_CommentBaseNum + i)];
-                [thePosArray addObjectsFromArray:theTmpArray];
+        if ([strDict[k_SCKey_regularExpression] boolValue]) {
+            if ((endStr != nil) && ([endStr length] > 0)) {
+                tmpArray = [self rangesRegularExpressionBeginString:beginStr
+                                                      withEndString:endStr
+                                                     withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                         doColoring:NO
+                                                     pairStringKind:(k_QC_CommentBaseNum + i)];
+                [posArray addObjectsFromArray:tmpArray];
             } else {
-                theTmpArray = [self rangesRegularExpressionString:theBeginStr
-                                                   withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
-                                                       doColoring:NO
-                                                   pairStringKind:(k_QC_CommentBaseNum + i)];
-                [thePosArray addObjectsFromArray:theTmpArray];
+                tmpArray = [self rangesRegularExpressionString:beginStr
+                                                withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                    doColoring:NO
+                                                pairStringKind:(k_QC_CommentBaseNum + i)];
+                [posArray addObjectsFromArray:tmpArray];
             }
         } else {
-            if ((theEndStr != nil) && ([theEndStr length] > 0)) {
-                theTmpArray = [self rangesBeginString:theBeginStr withEndString:theEndStr 
-                        doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
-                [thePosArray addObjectsFromArray:theTmpArray];
+            if ((endStr != nil) && ([endStr length] > 0)) {
+                tmpArray = [self rangesBeginString:beginStr withEndString:endStr
+                                        doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
+                [posArray addObjectsFromArray:tmpArray];
             } else {
-                NSNumber *len = @([theBeginStr length]);
-                id wordsArray = theSimpleWordsDict[len];
+                NSNumber *len = @([beginStr length]);
+                id wordsArray = simpleWordsDict[len];
                 if (wordsArray) {
-                    [wordsArray addObject:theBeginStr];
+                    [wordsArray addObject:beginStr];
                 } else {
-                    wordsArray = [NSMutableArray arrayWithObject:theBeginStr];
-                    theSimpleWordsDict[len] = wordsArray;
+                    wordsArray = [NSMutableArray arrayWithObject:beginStr];
+                    simpleWordsDict[len] = wordsArray;
                 }
-                [theSimpleWordsChar appendString:theBeginStr];
+                [simpleWordsChar appendString:beginStr];
             }
         }
     } // end-for
     // シングルクォート定義があれば位置配列を生成、マージ
-    if (inValueSingleQuotes) {
-        [thePosArray addObjectsFromArray:
-                [self rangesBeginString:@"\'" withEndString:@"\'" 
-                    doColoring:NO pairStringKind:k_QC_SingleQ]];
+    if (withSingleQuotes) {
+        [posArray addObjectsFromArray:[self rangesBeginString:@"\'" withEndString:@"\'"
+                                                   doColoring:NO pairStringKind:k_QC_SingleQ]];
     }
     // ダブルクォート定義があれば位置配列を生成、マージ
-    if (inValueDoubleQuotes) {
-        [thePosArray addObjectsFromArray:
-                [self rangesBeginString:@"\"" withEndString:@"\"" 
-                    doColoring:NO pairStringKind:k_QC_DoubleQ]];
+    if (withDoubleQuotes) {
+        [posArray addObjectsFromArray:[self rangesBeginString:@"\"" withEndString:@"\""
+                                                   doColoring:NO pairStringKind:k_QC_DoubleQ]];
     }
     // コメントもクォートもなければ、もどる
-    if (([thePosArray count] < 1) && ([theSimpleWordsDict count] < 1)) { return; }
+    if (([posArray count] < 1) && ([simpleWordsDict count] < 1)) { return; }
 
     // まず、開始文字列だけのコメント定義があればカラーリング
-    if (([theSimpleWordsDict count]) > 0) {
-        [self setAttrToSimpleWordsArrayDict:theSimpleWordsDict withCharString:theSimpleWordsChar];
+    if (([simpleWordsDict count]) > 0) {
+        [self setAttrToSimpleWordsArrayDict:simpleWordsDict withCharString:simpleWordsChar];
     }
 
     // カラーリング対象がなければ、もどる
-    if ([thePosArray count] < 1) { return; }
-    NSSortDescriptor *theDescriptor = 
-            [[[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES] autorelease];
-    [thePosArray sortUsingDescriptors:@[theDescriptor]];
-    theColoringCount = [thePosArray count];
+    if ([posArray count] < 1) { return; }
+    NSSortDescriptor *theDescriptor = [[[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES] autorelease];
+    [posArray sortUsingDescriptors:@[theDescriptor]];
+    coloringCount = [posArray count];
 
-    theQCKind = k_notUseKind;
-    while (theIndex < theColoringCount) {
+    QCKind = k_notUseKind;
+    while (index < coloringCount) {
         // インジケータ更新
-        if ((inValueUpdateIndicator) && ((theIndex % 10) == 0)) {
-            indicatorValue = theBeginDouble + (double)(theIndex / (double)theColoringCount * 200);
+        if ((updateIndicator) && ((index % 10) == 0)) {
+            indicatorValue = beginDouble + (double)(index / (double)coloringCount * 200);
             [self setDoubleIndicator:(double)indicatorValue];
         }
-        theCurRecord = thePosArray[theIndex];
-        if (theQCKind == k_notUseKind) {
-            if ([theCurRecord[k_QCStartEnd] unsignedIntegerValue] == k_QC_End) {
-                theIndex++;
+        curRecord = posArray[index];
+        if (QCKind == k_notUseKind) {
+            if ([curRecord[k_QCStartEnd] unsignedIntegerValue] == k_QC_End) {
+                index++;
                 continue;
             }
-            theQCKind = [theCurRecord[k_QCPairKind] unsignedIntegerValue];
-            theStart = [theCurRecord[k_QCPosition] unsignedIntegerValue];
-            theIndex++;
+            QCKind = [curRecord[k_QCPairKind] unsignedIntegerValue];
+            start = [curRecord[k_QCPosition] unsignedIntegerValue];
+            index++;
             continue;
         }
-        if (theQCKind == [theCurRecord[k_QCPairKind] unsignedIntegerValue]) {
-            if (theQCKind == k_QC_SingleQ) {
-                theAttrs = _singleQuotesAttrs;
-            } else if (theQCKind == k_QC_DoubleQ) {
-                theAttrs = _doubleQuotesAttrs;
-            } else if (theQCKind >= k_QC_CommentBaseNum) {
-                theAttrs = _currentAttrs;
+        if (QCKind == [curRecord[k_QCPairKind] unsignedIntegerValue]) {
+            if (QCKind == k_QC_SingleQ) {
+                attrs = _singleQuotesAttrs;
+            } else if (QCKind == k_QC_DoubleQ) {
+                attrs = _doubleQuotesAttrs;
+            } else if (QCKind >= k_QC_CommentBaseNum) {
+                attrs = _currentAttrs;
             } else {
                 NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
                 break;
             }
-            theEnd = [theCurRecord[k_QCPosition] unsignedIntegerValue] +
-                    [theCurRecord[k_QCStrLength] unsignedIntegerValue];
-            theColoringRange = NSMakeRange(theStart + [self updateRange].location, theEnd - theStart);
+            end = [curRecord[k_QCPosition] unsignedIntegerValue] +
+                  [curRecord[k_QCStrLength] unsignedIntegerValue];
+            coloringRange = NSMakeRange(start + [self updateRange].location, end - start);
             if ([self isPrinting]) {
-                [[[self layoutManager] firstTextView] setTextColor:
-                        theAttrs[NSForegroundColorAttributeName] range:theColoringRange];
+                [[[self layoutManager] firstTextView] setTextColor:attrs[NSForegroundColorAttributeName] range:coloringRange];
             } else {
-                [[self layoutManager] addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
+                [[self layoutManager] addTemporaryAttributes:attrs forCharacterRange:coloringRange];
             }
-            theQCKind = k_notUseKind;
-            theIndex++;
+            QCKind = k_notUseKind;
+            index++;
         } else {
             // 「終わり」があるか調べる
-            for (j = (theIndex + 1); j < theColoringCount; j++) {
-                theCheckRecord = thePosArray[j];
-                if (theQCKind == [theCheckRecord[k_QCPairKind] unsignedIntegerValue]) {
-                    theCheckStartEnd = [theCheckRecord[k_QCStartEnd] unsignedIntegerValue];
-                    if ((theCheckStartEnd == k_notUseStartEnd) || (theCheckStartEnd == k_QC_End)) {
-                        theBoolHasEnd = YES;
+            for (j = (index + 1); j < coloringCount; j++) {
+                checkRecord = posArray[j];
+                if (QCKind == [checkRecord[k_QCPairKind] unsignedIntegerValue]) {
+                    checkStartEnd = [checkRecord[k_QCStartEnd] unsignedIntegerValue];
+                    if ((checkStartEnd == k_notUseStartEnd) || (checkStartEnd == k_QC_End)) {
+                        hasEnd = YES;
                         break;
                     }
                 }
-                theBoolHasEnd = NO;
+                hasEnd = NO;
             }
             // 「終わり」があればそこへジャンプ、なければ最後までカラーリングして、抜ける
-            if (theBoolHasEnd) {
-                theIndex = j;
+            if (hasEnd) {
+                index = j;
             } else {
-                if (theQCKind == k_QC_SingleQ) {
-                    theAttrs = _singleQuotesAttrs;
-                } else if (theQCKind == k_QC_DoubleQ) {
-                    theAttrs = _doubleQuotesAttrs;
-                } else if (theQCKind >= k_QC_CommentBaseNum) {
-                    theAttrs = _currentAttrs;
+                if (QCKind == k_QC_SingleQ) {
+                    attrs = _singleQuotesAttrs;
+                } else if (QCKind == k_QC_DoubleQ) {
+                    attrs = _doubleQuotesAttrs;
+                } else if (QCKind >= k_QC_CommentBaseNum) {
+                    attrs = _currentAttrs;
                 } else {
                     NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
                     break;
                 }
-                theColoringRange = 
-                        NSMakeRange(theStart + [self updateRange].location, NSMaxRange([self updateRange]) - theStart);
+                coloringRange = NSMakeRange(start + [self updateRange].location, NSMaxRange([self updateRange]) - start);
                 if ([self isPrinting]) {
                     [[[self layoutManager] firstTextView] setTextColor:
-                            theAttrs[NSForegroundColorAttributeName] range:theColoringRange];
+                     attrs[NSForegroundColorAttributeName] range:coloringRange];
                 } else {
-                    [[self layoutManager] addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
+                    [[self layoutManager] addTemporaryAttributes:attrs forCharacterRange:coloringRange];
                 }
                 break;
             }
@@ -1045,21 +1027,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSUInteger)numberOfEscapeSequenceInString:(NSString *)inString
+- (NSUInteger)numberOfEscapeSequenceInString:(NSString *)string
 // 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
 // ------------------------------------------------------
 {
-    NSUInteger outCount = 0, theLength = [inString length];
+    NSUInteger numberOfEscapeSequence = 0, length = [string length];
     NSInteger i;
 
-    for (i = (theLength - 1); i >= 0; i--) {
-        if ([inString characterAtIndex:i] == '\\') {
-            outCount++;
+    for (i = (length - 1); i >= 0; i--) {
+        if ([string characterAtIndex:i] == '\\') {
+            numberOfEscapeSequence++;
         } else {
             break;
         }
     }
-    return outCount;
+    return numberOfEscapeSequence;
 }
 
 
@@ -1069,42 +1051,39 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if (![[self layoutManager] showOtherInvisibles]) { return; }
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSColor *theColor = 
-            [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
-    if ([[[self layoutManager] firstTextView] textColor] == theColor) { return; }
-    NSDictionary *theAttrs;
-    NSMutableArray *theTargetArray = [NSMutableArray array];
-    NSScanner *theScanner = [NSScanner scannerWithString:[self localString]];
-    NSString *theControlStr;
-    NSRange theColoringRange;
-    NSInteger theStart;
+    NSColor *color = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]
+                                                            valueForKey:k_key_invisibleCharactersColor]];
+    if ([[[self layoutManager] firstTextView] textColor] == color) { return; }
+    NSDictionary *attrs;
+    NSMutableArray *targetArray = [NSMutableArray array];
+    NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
+    NSString *controlStr;
+    NSRange coloringRange;
+    NSInteger start;
 
     if (![self isPrinting]) {
-        theAttrs = @{NSForegroundColorAttributeName: theColor};
+        attrs = @{NSForegroundColorAttributeName: color};
     }
 
-    while (![theScanner isAtEnd]) {
-        (void)[theScanner scanUpToCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:nil];
-        theStart = [theScanner scanLocation];
-        if ([theScanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet] 
-                    intoString:&theControlStr]) {
-            [theTargetArray addObject:
-                        [NSValue valueWithRange:
-                            NSMakeRange(theStart, [theControlStr length])]];
+    while (![scanner isAtEnd]) {
+        (void)[scanner scanUpToCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:nil];
+        start = [scanner scanLocation];
+        if ([scanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet]
+                                intoString:&controlStr]) {
+            [targetArray addObject:[NSValue valueWithRange:NSMakeRange(start, [controlStr length])]];
         }
     }
     if ([self isPrinting]) {
-        for (NSValue *value in theTargetArray) {
-            theColoringRange = [value rangeValue];
-            theColoringRange.location += [self updateRange].location;
-            [[[self layoutManager] firstTextView] setTextColor:theColor range:theColoringRange];
+        for (NSValue *value in targetArray) {
+            coloringRange = [value rangeValue];
+            coloringRange.location += [self updateRange].location;
+            [[[self layoutManager] firstTextView] setTextColor:color range:coloringRange];
         }
     } else {
-        for (NSValue *value in theTargetArray) {
-            theColoringRange = [value rangeValue];
-            theColoringRange.location += [self updateRange].location;
-            [[self layoutManager] addTemporaryAttributes:theAttrs forCharacterRange:theColoringRange];
+        for (NSValue *value in targetArray) {
+            coloringRange = [value rangeValue];
+            coloringRange.location += [self updateRange].location;
+            [[self layoutManager] addTemporaryAttributes:attrs forCharacterRange:coloringRange];
         }
     }
 }
@@ -1115,92 +1094,90 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーリングを実行
 // ------------------------------------------------------
 {
-    id theValues = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
-    NSUInteger theLength = [self wholeStringLength];
-    if (theLength < 1) { return; }
+    NSUInteger length = [self wholeStringLength];
+    if (length < 1) { return; }
     [self setLocalString:[[self wholeString] substringWithRange:[self updateRange]]]; // カラーリング対象文字列を保持
     if ([[self localString] length] < 1) { return; }
 
     // 現在あるカラーリングを削除、カラーリング不要なら不可視文字のカラーリングだけして戻る
     [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:[self updateRange]];
     if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) ||
-            ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None",@"")])) {
+        ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None",@"")]))
+    {
         [self setOtherInvisibleCharsAttrs];
         return;
     }
 
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
-    NSWindow *theDocWindow = nil;
-    NSWindow *theSheet = nil;
-    if (([self showColoringIndicatorTextLength] > 0) &&
-                ([self updateRange].length > [self showColoringIndicatorTextLength])) {
+    NSWindow *documentWindow = nil;
+    NSWindow *sheet = nil;
+    if (([self showColoringIndicatorTextLength] > 0) && ([self updateRange].length > [self showColoringIndicatorTextLength])) {
         [self setIsIndicatorShown:YES];
         [self setDoubleIndicator:0];
         if ([self isPrinting]) {
-            theDocWindow = [NSApp mainWindow];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Print text Coloring ...",@"")];
+            documentWindow = [NSApp mainWindow];
+            [[self coloringCaption] setStringValue:NSLocalizedString(@"Print text Coloring ...", nil)];
         } else {
-            theDocWindow = [[[self layoutManager] firstTextView] window];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Text Coloring ...",@"")];
+            documentWindow = [[[self layoutManager] firstTextView] window];
+            [[self coloringCaption] setStringValue:NSLocalizedString(@"Text Coloring ...", nil)];
         }
-        theSheet = [[self coloringIndicator] window];
-        [NSApp beginSheet:theSheet 
-                modalForWindow:theDocWindow 
-                modalDelegate:self 
-                didEndSelector:NULL 
-                contextInfo:NULL];
-        [self setModalSession:[NSApp beginModalSessionForWindow:theSheet]];
+        sheet = [[self coloringIndicator] window];
+        [NSApp beginSheet:sheet
+           modalForWindow:documentWindow
+            modalDelegate:self
+           didEndSelector:NULL
+              contextInfo:NULL];
+        [self setModalSession:[NSApp beginModalSessionForWindow:sheet]];
     }
 
-    NSArray *theColorArray = @[k_key_allSyntaxColors];
-    NSArray *theSyntaxArray = @[k_SCKey_allColoringArrays];
-    NSArray *theArray, *theInArray;
-    NSMutableDictionary *theSimpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    NSMutableString *theSimpleWordsChar = [NSMutableString stringWithString:k_allAlphabetChars];
-    NSString *theBeginStr = nil, *theEndStr = nil;
-    NSDictionary *theStrDict;
-    NSRange theColoringRange;
-    NSInteger i, j, theCount, theSyntaxArrayCount = [theSyntaxArray count];
-    NSInteger k,l, theTargetCount, theInArrayCount;
-    BOOL theBoolIsSingleQuotes = NO, theBoolIsDoubleQuotes = NO;
-    double indicatorValue, theOldValue = 0.0, theBeginDouble = 0.0;
+    NSArray *colorArray = @[k_key_allSyntaxColors];
+    NSArray *syntaxArray = @[k_SCKey_allColoringArrays];
+    NSArray *array, *inArray;
+    NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
+    NSMutableString *simpleWordsChar = [NSMutableString stringWithString:k_allAlphabetChars];
+    NSString *beginStr = nil, *endStr = nil;
+    NSDictionary *strDict;
+    NSRange coloringRange;
+    NSInteger i, j, count, syntaxArrayCount = [syntaxArray count];
+    NSInteger k,l, targetCount, inArrayCount;
+    BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
+    double indicatorValue, beginDouble = 0.0;
 
     NS_DURING
         // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
-        for (i = 0; i < theSyntaxArrayCount; i++) {
+        for (i = 0; i < syntaxArrayCount; i++) {
 
             if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
                 // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
                 if ([self isPrinting]) {
                     [[[self layoutManager] firstTextView] setTextColor:[[[self layoutManager] firstTextView] textColor]
-                                range:[self updateRange]];
+                                                                 range:[self updateRange]];
                 } else {
                     [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
-                                forCharacterRange:[self updateRange]];
-                    [[[CEDocumentController sharedDocumentController] documentForWindow:theDocWindow] 
-                                    doSetSyntaxStyle:NSLocalizedString(@"None",@"") delay:YES];
+                                                 forCharacterRange:[self updateRange]];
+                    [[[CEDocumentController sharedDocumentController] documentForWindow:documentWindow]
+                     doSetSyntaxStyle:NSLocalizedString(@"None",@"") delay:YES];
                 }
                 break;
             }
 
-            theArray = [self coloringDictionary][theSyntaxArray[i]];
-            theCount = [theArray count];
-            if (theCount < 1) {
+            array = [self coloringDictionary][syntaxArray[i]];
+            count = [array count];
+            if (count < 1) {
                 if ([self isIndicatorShown]) {
                     [self setDoubleIndicator:((i + 1) * 100.0)];
                 }
                 continue;
             }
             _textColor = [[NSUnarchiver unarchiveObjectWithData:
-                    [theValues valueForKey:theColorArray[i]]] retain]; // ===== retain
+                           [[NSUserDefaults standardUserDefaults] valueForKey:colorArray[i]]] retain]; // ===== retain
             _currentAttrs = [@{NSForegroundColorAttributeName: _textColor} retain]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
-            if ([theSyntaxArray[i] isEqualToString:k_SCKey_commentsArray]) {
-                [self setAttrToCommentsWithSyntaxArray:theArray withSingleQuotes:theBoolIsSingleQuotes 
-                        withDoubleQuotes:theBoolIsDoubleQuotes updateIndicator:[self isIndicatorShown]];
+            if ([syntaxArray[i] isEqualToString:k_SCKey_commentsArray]) {
+                [self setAttrToCommentsWithSyntaxArray:array withSingleQuotes:isSingleQuotes
+                                      withDoubleQuotes:isDoubleQuotes updateIndicator:[self isIndicatorShown]];
                 [_textColor release]; // ===== release
                 [_currentAttrs release]; // ===== release
                 _currentAttrs = nil;
@@ -1208,122 +1185,118 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
 
             if ([self isIndicatorShown]) {
-                theBeginDouble = [self doubleValueOfIndicator];
+                beginDouble = [self doubleValueOfIndicator];
             }
-            CEPrivateMutableArray *theTargetArray = 
-                        [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
-            NSArray *theTmpArray = nil;
-            NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-            for (j = 0; j < theCount; j++) {
-                theStrDict = theArray[j];
-                theBeginStr = theStrDict[k_SCKey_beginString];
+            CEPrivateMutableArray *theTargetArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
+            NSArray *tmpArray = nil;
+            NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
+            for (j = 0; j < count; j++) {
+                strDict = array[j];
+                beginStr = strDict[k_SCKey_beginString];
 
-                if ([theBeginStr length] < 1) { continue; }
+                if ([beginStr length] < 1) { continue; }
 
-                theEndStr = theStrDict[k_SCKey_endString];
+                endStr = strDict[k_SCKey_endString];
 
-                if ([theStrDict[k_SCKey_regularExpression] boolValue]) {
-                    if ((theEndStr != nil) && ([theEndStr length] > 0)) {
-                        theTmpArray = [self rangesRegularExpressionBeginString:theBeginStr
-                                                                 withEndString:theEndStr
-                                                                withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
-                                                                    doColoring:YES
-                                                                pairStringKind:k_notUseKind];
-                        if (theTmpArray != nil) {
-                            [theTargetArray addObject:theTmpArray];
+                if ([strDict[k_SCKey_regularExpression] boolValue]) {
+                    if ((endStr != nil) && ([endStr length] > 0)) {
+                        tmpArray = [self rangesRegularExpressionBeginString:beginStr
+                                                              withEndString:endStr
+                                                             withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                                 doColoring:YES
+                                                             pairStringKind:k_notUseKind];
+                        if (tmpArray != nil) {
+                            [theTargetArray addObject:tmpArray];
                         }
                     } else {
-                        theTmpArray = [self rangesRegularExpressionString:theBeginStr
-                                                           withIgnoreCase:[theStrDict[k_SCKey_ignoreCase] boolValue]
-                                                               doColoring:YES
-                                                           pairStringKind:k_notUseKind];
-                        if (theTmpArray != nil) {
-                            [theTargetArray addObject:theTmpArray];
+                        tmpArray = [self rangesRegularExpressionString:beginStr
+                                                        withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                            doColoring:YES
+                                                        pairStringKind:k_notUseKind];
+                        if (tmpArray != nil) {
+                            [theTargetArray addObject:tmpArray];
                         }
                     }
                 } else {
-                    if ((theEndStr != nil) && ([theEndStr length] > 0)) {
+                    if ((endStr != nil) && ([endStr length] > 0)) {
                         // 開始／終了ともに入力されていたらクォートかどうかをチェック、最初に出てきたクォートのみを把握
-                        if ([theBeginStr isEqualToString:@"\'"] && [theEndStr isEqualToString:@"\'"]) {
-                            if (!theBoolIsSingleQuotes) {
-                                theBoolIsSingleQuotes = YES;
+                        if ([beginStr isEqualToString:@"\'"] && [endStr isEqualToString:@"\'"]) {
+                            if (!isSingleQuotes) {
+                                isSingleQuotes = YES;
                                 _singleQuotesAttrs = [_currentAttrs retain]; // ===== retain
                             }
                             continue;
                         }
-                        if ([theBeginStr isEqualToString:@"\""] && [theEndStr isEqualToString:@"\""]) {
-                            if (!theBoolIsDoubleQuotes) {
-                                theBoolIsDoubleQuotes = YES;
+                        if ([beginStr isEqualToString:@"\""] && [endStr isEqualToString:@"\""]) {
+                            if (!isDoubleQuotes) {
+                                isDoubleQuotes = YES;
                                 _doubleQuotesAttrs = [_currentAttrs retain]; // ===== retain
                             }
                             continue;
                         }
-                        theTmpArray = [self rangesBeginString:theBeginStr withEndString:theEndStr 
-                                    doColoring:YES pairStringKind:k_notUseKind];
-                        if (theTmpArray != nil) {
-                            [theTargetArray addObject:theTmpArray];
+                        tmpArray = [self rangesBeginString:beginStr withEndString:endStr
+                                                doColoring:YES pairStringKind:k_notUseKind];
+                        if (tmpArray != nil) {
+                            [theTargetArray addObject:tmpArray];
                         }
                     } else {
-                        NSNumber *len = @([theBeginStr length]);
-                        id wordsArray = theSimpleWordsDict[len];
+                        NSNumber *len = @([beginStr length]);
+                        id wordsArray = simpleWordsDict[len];
                         if (wordsArray) {
-                            [wordsArray addObject:theBeginStr];
+                            [wordsArray addObject:beginStr];
                         } else {
-                            wordsArray = [NSMutableArray arrayWithObject:theBeginStr];
-                            theSimpleWordsDict[len] = wordsArray;
+                            wordsArray = [NSMutableArray arrayWithObject:beginStr];
+                            simpleWordsDict[len] = wordsArray;
                         }
-                        [theSimpleWordsChar appendString:theBeginStr];
+                        [simpleWordsChar appendString:beginStr];
                     }
                 }
                 // インジケータ更新
                 if ([self isIndicatorShown] && ((j % 10) == 0)) {
-                    indicatorValue = theBeginDouble + (double)(j / (double)theCount * k_perCompoIncrement);
+                    indicatorValue = beginDouble + (double)(j / (double)count * k_perCompoIncrement);
                     [self setDoubleIndicator:(double)indicatorValue];
                     [[self coloringIndicator] displayIfNeeded];
                 }
                 if (j % 100 == 0) {
-                    [thePool release]; // ===== release
-                    thePool = [[NSAutoreleasePool alloc] init]; // ===== alloc
+                    [pool release]; // ===== release
+                    pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
                 }
             } // end-for (j)
-            [thePool release]; // ===== release
-            if (([theSimpleWordsDict count]) > 0) {
-                theTmpArray = [self rangesSimpleWordsArrayDict:theSimpleWordsDict 
-                            withCharString:theSimpleWordsChar];
-                if (theTmpArray != nil) {
-                    [theTargetArray addObject:theTmpArray];
+            [pool release]; // ===== release
+            if (([simpleWordsDict count]) > 0) {
+                tmpArray = [self rangesSimpleWordsArrayDict:simpleWordsDict withCharString:simpleWordsChar];
+                if (tmpArray != nil) {
+                    [theTargetArray addObject:tmpArray];
                 }
-                [theSimpleWordsDict removeAllObjects];
-                [theSimpleWordsChar setString:k_allAlphabetChars];
+                [simpleWordsDict removeAllObjects];
+                [simpleWordsChar setString:k_allAlphabetChars];
             }
             // カラーリング実行
-            theTargetCount = [theTargetArray count]; // = 配列内の配列の数
-            for (k = 0; k < theTargetCount; k++) {
-                theInArray = theTargetArray[k];
-                theInArrayCount = [theInArray count];
+            targetCount = [theTargetArray count]; // = 配列内の配列の数
+            for (k = 0; k < targetCount; k++) {
+                inArray = theTargetArray[k];
+                inArrayCount = [inArray count];
 
                 // IMP を使ってメソッド呼び出しを高速化
                 // http://www.mulle-kybernetik.com/artikel/Optimization/opti-3.html
                 // http://homepage.mac.com/mkino2/spec/optimize/methodCall.html
                 if ([self isPrinting]) {
-                    IMP impSetTextColor = [[[self layoutManager] firstTextView] methodForSelector:
-                                            @selector(setTextColor:range:)];
-                    for (l = 0; l < theInArrayCount; l++) {
-                        theColoringRange = [theInArray[l] rangeValue];
-                        theColoringRange.location += [self updateRange].location;
+                    IMP impSetTextColor = [[[self layoutManager] firstTextView] methodForSelector:@selector(setTextColor:range:)];
+                    for (l = 0; l < inArrayCount; l++) {
+                        coloringRange = [inArray[l] rangeValue];
+                        coloringRange.location += [self updateRange].location;
                         impSetTextColor([[self layoutManager] firstTextView],
-                                    @selector(setTextColor:range:), 
-                                    _textColor, theColoringRange);
+                                        @selector(setTextColor:range:),
+                                        _textColor, coloringRange);
                     }
                 } else {
-                    IMP impAddTempAttrs = [[self layoutManager] methodForSelector:
-                                            @selector(addTemporaryAttributes:forCharacterRange:)];
-                    for (l = 0; l < theInArrayCount; l++) {
-                        theColoringRange = [theInArray[l] rangeValue];
-                        theColoringRange.location += [self updateRange].location;
+                    IMP impAddTempAttrs = [[self layoutManager] methodForSelector:@selector(addTemporaryAttributes:forCharacterRange:)];
+                    for (l = 0; l < inArrayCount; l++) {
+                        coloringRange = [inArray[l] rangeValue];
+                        coloringRange.location += [self updateRange].location;
                         impAddTempAttrs([self layoutManager],
-                                    @selector(addTemporaryAttributes:forCharacterRange:), 
-                                    _currentAttrs, theColoringRange);
+                                        @selector(addTemporaryAttributes:forCharacterRange:),
+                                        _currentAttrs, coloringRange);
                     }
                 }
             }
@@ -1343,8 +1316,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // インジーケータシートを片づける
     if ([self isIndicatorShown]) {
         [NSApp endModalSession:[self modalSession]];
-        [NSApp endSheet:theSheet];
-        [theSheet orderOut:self];
+        [NSApp endSheet:sheet];
+        [sheet orderOut:self];
         [self setIsIndicatorShown:NO];
         [self setModalSession:nil];
     }
@@ -1371,11 +1344,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)setDoubleIndicator:(double)inValue
+- (void)setDoubleIndicator:(double)doubleIndicator
 // カラーリングインジケータの値を設定
 // ------------------------------------------------------
 {
-    [[self coloringIndicator] setDoubleValue:inValue];
+    [[self coloringIndicator] setDoubleValue:doubleIndicator];
 }
 
 @end

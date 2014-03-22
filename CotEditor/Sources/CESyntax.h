@@ -11,7 +11,7 @@ CESyntax
 encoding="UTF-8"
 Created:2004.12.22
  
- -fno-objc-arc
+ ____This_class_is_under_MRC____
  
 -------------------------------------------------
 
@@ -57,15 +57,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, retain, readonly) NSArray *completeWordsArray;  // 保持している入力補完文字列配列
 @property (nonatomic, retain, readonly) NSCharacterSet *completeFirstLetterSet;  // 保持している入力補完の最初の1文字のセット
 
+
 // Public method
 - (NSUInteger)wholeStringLength;
-- (BOOL)setSyntaxStyleNameFromExtension:(NSString *)inExtension;
+- (BOOL)setSyntaxStyleNameFromExtension:(NSString *)extension;
 - (void)setCompleteWordsArrayFromColoringDictionary;
-- (void)colorAllString:(NSString *)inWholeString;
-- (void)colorVisibleRange:(NSRange)inRange withWholeString:(NSString *)inWholeString;
-- (NSArray *)outlineMenuArrayWithWholeString:(NSString *)inWholeString;
-- (BOOL)isPrinting;
-- (void)setIsPrinting:(BOOL)inValue;
+- (void)colorAllString:(NSString *)wholeString;
+- (void)colorVisibleRange:(NSRange)range withWholeString:(NSString *)wholeString;
+- (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString;
 
 // Action Message
 - (IBAction)cancelColoring:(id)sender;
