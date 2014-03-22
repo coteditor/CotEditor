@@ -510,6 +510,44 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+- (void)scrollRangeToVisible:(NSRange)range
+// 特定の範囲が見えるようにスクロール
+// ------------------------------------------------------
+{
+    [super scrollRangeToVisible:range];
+    
+    // 完全にスクロールさせる
+    // （setTextContainerInset で上下に空白領域を挿入している関係で、ちゃんとスクロールしない場合があることへの対策）
+    NSUInteger length = [[self string] length];
+    NSRect rect = NSZeroRect, convertedRect;
+    
+    if (length == range.location) {
+        rect = [[self layoutManager] extraLineFragmentRect];
+    } else if (length > range.location) {
+        NSString *tailStr = [[self string] substringFromIndex:range.location];
+        if ([tailStr newlineCharacter] != OgreNonbreakingNewlineCharacter) {
+            return;
+        }
+    }
+    
+    if (NSEqualRects(rect, NSZeroRect)) {
+        NSRange targetRange = [[self string] lineRangeForRange:range];
+        NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:targetRange actualCharacterRange:nil];
+        rect = [[self layoutManager] lineFragmentRectForGlyphAtIndex:(NSMaxRange(glyphRange) - 1)
+                                                      effectiveRange:nil];
+    }
+    if (NSEqualRects(rect, NSZeroRect)) { return; }
+    
+    convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //subsplitview
+    if ((convertedRect.origin.y >= 0) &&
+        (convertedRect.origin.y < (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightBottom]))
+    {
+        [self scrollPoint:NSMakePoint(NSMinX(rect), NSMaxY(rect))];
+    }
+}
+
+
 
 #pragma mark Public Methods
 
@@ -528,44 +566,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[[self highlightLineColor] colorWithAlphaComponent:[[self backgroundColor] alphaComponent]] set];
     [NSBezierPath fillRect:[self highlightLineAdditionalRect]];
-}
-
-
-// ------------------------------------------------------
-- (void)scrollRangeToVisible:(NSRange)range
-// 特定の範囲が見えるようにスクロール
-// ------------------------------------------------------
-{
-    [super scrollRangeToVisible:range];
-
-    // 完全にスクロールさせる
-    // （setTextContainerInset で上下に空白領域を挿入している関係で、ちゃんとスクロールしない場合があることへの対策）
-    NSUInteger length = [[self string] length];
-    NSRect rect = NSZeroRect, convertedRect;
-
-    if (length == range.location) {
-        rect = [[self layoutManager] extraLineFragmentRect];
-    } else if (length > range.location) {
-        NSString *tailStr = [[self string] substringFromIndex:range.location];
-        if ([tailStr newlineCharacter] != OgreNonbreakingNewlineCharacter) {
-            return;
-        }
-    }
-
-    if (NSEqualRects(rect, NSZeroRect)) {
-        NSRange targetRange = [[self string] lineRangeForRange:range];
-        NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:targetRange actualCharacterRange:nil];
-        rect = [[self layoutManager] lineFragmentRectForGlyphAtIndex:(NSMaxRange(glyphRange) - 1) 
-                    effectiveRange:nil];
-    }
-    if (NSEqualRects(rect, NSZeroRect)) { return; }
-
-    convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //subsplitview
-    if ((convertedRect.origin.y >= 0) &&
-        (convertedRect.origin.y < (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightBottom]))
-    {
-        [self scrollPoint:NSMakePoint(NSMinX(rect), NSMaxY(rect))];
-    }
 }
 
 
