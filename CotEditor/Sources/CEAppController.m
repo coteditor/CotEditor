@@ -207,7 +207,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_showAlertForNotWritable: @YES, 
                                k_key_notifyEditByAnother: @YES};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
-    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:defaults];
+    
+    // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
+    NSArray *resettableKeys = @[k_key_encodingList,
+                                k_key_insertCustomTextArray];
+    NSDictionary *initialValuesDict=[defaults dictionaryWithValuesForKeys:resettableKeys];
+    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValuesDict];
 
     // transformer 登録
     [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
