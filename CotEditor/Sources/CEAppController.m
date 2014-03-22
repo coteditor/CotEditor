@@ -132,7 +132,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_commentsColor: [NSArchiver archivedDataWithRootObject:
                                                      [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]],
                                k_key_doColoring: @YES,
-                               k_key_defaultColoringStyleName: NSLocalizedString(@"None",@""),
+                               k_key_defaultColoringStyleName: NSLocalizedString(@"None", nil),
                                k_key_delayColoring: @NO,
                                k_key_fileDropArray: @[@{k_key_fileDropExtensions: @"jpg, jpeg, gif, png",
                                                         k_key_fileDropFormatString: @"<img src=\"<<<RELATIVE-PATH>>>\" alt =\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
@@ -169,10 +169,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_printColorIndex: @0,
                                
                                /* -------- 以下、環境設定にない設定項目 -------- */
-                               k_key_HCCBackgroundColor: [NSArchiver archivedDataWithRootObject:
-                                                          [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0]],
-                               k_key_HCCForeColor: [NSArchiver archivedDataWithRootObject:
-                                                    [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:1.0]],
+                               k_key_HCCBackgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor whiteColor]],
+                               k_key_HCCForeColor: [NSArchiver archivedDataWithRootObject:[NSColor blackColor]],
                                k_key_HCCSampleText: @"Sample Text",
                                k_key_HCCForeComboBoxData: @[],
                                k_key_HCCBackComboBoxData: @[],
@@ -240,7 +238,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [encodings addObject:@(encoding)];
         }
         [self setInvalidYenEncodings:encodings];
-        [self setDidFinishLaunching:NO];
     }
     return self;
 }
