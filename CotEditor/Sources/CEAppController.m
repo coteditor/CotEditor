@@ -250,8 +250,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // すべてのエンコーディングメニューを生成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *encodings = [[values valueForKey:k_key_encodingList] copy];
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
 
     [[self preferencesController] setupEncodingMenus:[self encodingMenuNoActionFromArray:encodings]];
     [self setEncodingMenu:[self buildFormatEncodingMenuFromArray:encodings]];
@@ -327,8 +326,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディング名からNSStringEncodingを返すユーティリティメソッド
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    NSArray *encodings = [[values valueForKey:k_key_encodingList] copy];
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
     NSStringEncoding encoding;
     BOOL isValid = NO;
 
@@ -436,10 +434,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アプリ起動時に新規ドキュメント作成
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
     if (![self didFinishLaunching]) {
-        return ([[values valueForKey:k_key_createNewAtStartup] boolValue]);
+        return [[NSUserDefaults standardUserDefaults] boolForKey:k_key_createNewAtStartup];
     }
     return YES;
 }
@@ -450,8 +446,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Re-Open AppleEvents へ対応してウィンドウを開くかどうかを返す
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-    BOOL shouldReopen = [[values valueForKey:k_key_reopenBlankWindow] boolValue];
+    BOOL shouldReopen = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_reopenBlankWindow];
 
     if (shouldReopen) {
         return YES;
@@ -477,8 +472,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // アプリ起動直後
 // ------------------------------------------------------
 {
-    id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
-
     // （CEKeyBindingManagerによって、キーボードショートカット設定は上書きされる。
     // アプリに内包する DefaultMenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
 
@@ -508,8 +501,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [findMenu addItem:menuItem];
 
     // AppleScript 起動のスピードアップのため一度動かしておく
-    if ([[values valueForKey:k_key_runAppleScriptInLaunching] boolValue]) {
-
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_runAppleScriptInLaunching]) {
         NSURL *URL = [[NSBundle mainBundle] URLForResource:@"startup" withExtension:@"applescript"];
         if (URL == nil) { return; }
         NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];

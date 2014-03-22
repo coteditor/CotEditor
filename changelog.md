@@ -24,3 +24,4 @@ changelog (for developer)
     - Application直下の `selection` を正式に廃止とした。
 
 - [fix] 日本語環境でバックスラッシュが含まれたキーバインディングが機能しない不具合を修正
+- [fix] 置換後、再カラーリングが実行されない不具合を修正
