@@ -94,7 +94,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         dirtyRect.size.height -= horizontalScrollAdj; // (and shrink it the same distance.)
     }
     // setup drawing attributes for the font size and color.
-    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init]; // ===== init
+    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
     CGFloat fontSize = (CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue];
     NSFont *font = [NSFont fontWithName:[values valueForKey:k_key_lineNumFontName] size:fontSize];
     if (font == nil) {

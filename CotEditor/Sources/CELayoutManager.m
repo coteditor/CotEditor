@@ -89,23 +89,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSFont *font = [NSFont fontWithName:fontName size:fontSize];
         NSColor *color = [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
         [self setAttributes:@{NSFontAttributeName:font,
-                              NSForegroundColorAttributeName:color}]; // ===== alloc
+                              NSForegroundColorAttributeName:color}];
 
 */
 //        [self setDefaultLineHeightForTextFont:0.0];
 //        [self setTextFontPointSize:0.0];
         [self setTextFont:nil];
 
-        [self setAppController:(CEAppController *)[NSApp delegate]]; // ===== retain
+        [self setAppController:(CEAppController *)[NSApp delegate]];
 
         [self setSpaceCharacter:[[self appController] invisibleSpaceCharacter:
-                                 [[values valueForKey:k_key_invisibleSpace] unsignedIntegerValue]]]; // ===== retain
+                                 [[values valueForKey:k_key_invisibleSpace] unsignedIntegerValue]]];
         [self setTabCharacter:[[self appController] invisibleTabCharacter:
-                               [[values valueForKey:k_key_invisibleTab] unsignedIntegerValue]]]; // ===== retain
+                               [[values valueForKey:k_key_invisibleTab] unsignedIntegerValue]]];
         [self setNewLineCharacter:[[self appController] invisibleNewLineCharacter:
-                                   [[values valueForKey:k_key_invisibleNewLine] unsignedIntegerValue]]]; // ===== retain
+                                   [[values valueForKey:k_key_invisibleNewLine] unsignedIntegerValue]]];
         [self setFullwidthSpaceCharacter:[[self appController] invisibleFullwidthSpaceCharacter:
-                                          [[values valueForKey:k_key_invisibleFullwidthSpace] unsignedIntegerValue]]]; // ===== retain
+                                          [[values valueForKey:k_key_invisibleFullwidthSpace] unsignedIntegerValue]]];
 
         // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
         [self setFixLineHeight:NO];

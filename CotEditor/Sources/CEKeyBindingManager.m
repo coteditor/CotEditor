@@ -45,7 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSButton *menuFactoryDefaultsButton;
 @property (nonatomic, weak) IBOutlet NSButton *menuOkButton;
 
-@property (nonatomic, retain) IBOutlet NSWindow *textEditSheet;
+@property (nonatomic) IBOutlet NSWindow *textEditSheet;
 @property (nonatomic, weak) IBOutlet NSOutlineView *textOutlineView;
 @property (nonatomic, weak) IBOutlet  NSTextField *textDuplicateTextField;
 @property (nonatomic, weak) IBOutlet NSButton *textEditKeyButton;
@@ -145,7 +145,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     NSURL *URL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/DefaultMenuKeyBindings.plist"];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        [self setDefaultMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:URL]]; // ===== alloc
+        [self setDefaultMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:URL]];
     }
 
     // ダブルクリックでトグルに展開するようアクションを設定する
@@ -209,9 +209,9 @@ static CEKeyBindingManager *sharedInstance = nil;
         NSMutableDictionary *dict;
 
         [[self textDuplicateTextField] setStringValue:@""];
-        [self setOutlineDataArray:[self textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO]]; // ===== retain
+        [self setOutlineDataArray:[self textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO]];
         // （システム標準のキーバインディングとの重複は、チェックしない）
-        [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]]; // ===== copy
+        [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]];
         [[self textFactoryDefaultsButton] setEnabled:
                 ((![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]]) ||
                 (![[[[NSApp delegate] class] factoryDefaultOfTextInsertStringArray] 
@@ -337,7 +337,7 @@ static CEKeyBindingManager *sharedInstance = nil;
 
         if ([self currentKeySpecChars] == nil) {
             // （値が既にセットされている時は更新しない）
-            [self setCurrentKeySpecChars:[theItem valueForKey:identifier]]; // ===== retain
+            [self setCurrentKeySpecChars:[theItem valueForKey:identifier]];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:k_setKeyCatchModeToCatchMenuShortcut
                                                             object:self
@@ -510,11 +510,11 @@ static CEKeyBindingManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     if ([self outlineMode] == k_outlineViewModeMenu) {
-        NSMutableArray *tmpArray = [[self outlineDataArray] mutableCopy]; // ===== copy
+        NSMutableArray *tmpArray = [[self outlineDataArray] mutableCopy];
         if (tmpArray != nil) {
             [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:tmpArray];
             [self setOutlineDataArray:tmpArray];
-            [self setDuplicateKeyCheckArray:[[self duplicateKeyCheckArrayWithArray:[self outlineDataArray]] mutableCopy]]; // ===== retain
+            [self setDuplicateKeyCheckArray:[[self duplicateKeyCheckArrayWithArray:[self outlineDataArray]] mutableCopy]];
             [[self menuEditKeyButton] setEnabled:NO];
             [[self menuOutlineView] deselectAll:nil];
             [[self menuOutlineView] reloadData];
@@ -531,8 +531,8 @@ static CEKeyBindingManager *sharedInstance = nil;
             [contents addObject:dict];
         }
         [[self textOutlineView] deselectAll:nil];
-        [self setOutlineDataArray:[self textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]]; // ===== retain
-        [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]]; // ===== copy
+        [self setOutlineDataArray:[self textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
+        [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]];
         [[self textInsertStringArrayController] setContent:contents];
         [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
         [[self textEditKeyButton] setEnabled:NO];
@@ -673,7 +673,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     }
 
     // データ読み込み
-    [self setMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:fileURL]]; // ===== alloc
+    [self setMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:fileURL]];
 }
 
 
@@ -1265,7 +1265,7 @@ static CEKeyBindingManager *sharedInstance = nil;
             success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
         }
         if ((exists && isDirectory) || (success)) {
-            [self setTextKeyBindingDict:[self keyBindingDictionaryFromOutlineViewDataArray:[self outlineDataArray]]]; // ===== retain
+            [self setTextKeyBindingDict:[self keyBindingDictionaryFromOutlineViewDataArray:[self outlineDataArray]]];
 
             if (![[self textKeyBindingDict] writeToURL:fileURL atomically:YES]) {
                 NSLog(@"Error! Could not save the Text keyBindings setting file...");

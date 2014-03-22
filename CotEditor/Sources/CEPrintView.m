@@ -286,7 +286,7 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
     NSFont *headerFooterFont = [NSFont fontWithName:[values valueForKey:k_key_headerFooterFontName]
                                                size:(CGFloat)[[values valueForKey:k_key_headerFooterFontSize] doubleValue]];
     [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
-                                 NSForegroundColorAttributeName: [NSColor textColor]}]; // ===== retain
+                                 NSForegroundColorAttributeName: [NSColor textColor]}];
 
     // 行番号印字の有無をチェック
     if (lineNumMenuIndex == 1) { // same to view
@@ -302,7 +302,7 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
         NSFont *font = [NSFont fontWithName:[values valueForKey:k_key_lineNumFontName]
                                        size:(CGFloat)[[values valueForKey:k_key_lineNumFontSize] doubleValue]];
         [self setLineNumAttrs:@{NSFontAttributeName:font,
-                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_lineNumFontColor]]}]; // ===== retain
+                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[values valueForKey:k_key_lineNumFontColor]]}];
         [self setXOffset:k_printTextHorizontalMargin];
     }
     

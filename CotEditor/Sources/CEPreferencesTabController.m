@@ -84,7 +84,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Nibファイル読み込み直後
 // ------------------------------------------------------
 {
-    [self setToolbar:[[NSToolbar alloc] initWithIdentifier:k_prefWindowToolbarID]]; // ===== alloc
+    [self setToolbar:[[NSToolbar alloc] initWithIdentifier:k_prefWindowToolbarID]];
 
     // ユーザカスタマイズ可、コンフィグ内容を保存、アイコン+ラベルに設定
     [[self toolbar] setAllowsUserCustomization:NO];

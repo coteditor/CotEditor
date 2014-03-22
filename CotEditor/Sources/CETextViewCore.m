@@ -78,7 +78,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // http://smultron.sourceforge.net
     // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSMutableString *widthStr = [[NSMutableString alloc] init]; // ===== alloc
+        NSMutableString *widthStr = [[NSMutableString alloc] init];
         NSUInteger numberOfSpaces = [defaults integerForKey:k_key_tabWidth];
         while (numberOfSpaces--) {
             [widthStr appendString:@" "];
@@ -93,7 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSMutableParagraphStyle *paragraphStyle;
         NSTextTab *textTabToBeRemoved;
 
-        paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy]; // ===== copy
+        paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         for (textTabToBeRemoved in [paragraphStyle tabStops]) {
             [paragraphStyle removeTabStop:textTabToBeRemoved];
         }
@@ -385,7 +385,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:k_scriptMenuTag];
             }
             for (i = 0; i < count; i++) {
-                addItem = [(NSMenuItem *)[ASSubMenu itemAtIndex:i] copy]; // ===== copy
+                addItem = [(NSMenuItem *)[ASSubMenu itemAtIndex:i] copy];
                 [addItem setTag:k_scriptMenuTag];
                 [outMenu addItem:addItem];
             }
