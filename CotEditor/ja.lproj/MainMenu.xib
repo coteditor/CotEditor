@@ -34,7 +34,7 @@
                             </menuItem>
                             <menuItem title="環境設定..." keyEquivalent="," id="129">
                                 <connections>
-                                    <action selector="openPrefWindow:" target="290" id="293"/>
+                                    <action selector="openPreferences:" target="290" id="bVR-8R-fPb"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">

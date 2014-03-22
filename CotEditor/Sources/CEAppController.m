@@ -45,7 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSArray *invalidYenEncodings;
 @property (nonatomic) BOOL didFinishLaunching;
 
-@property (nonatomic) CEPreferences *preferencesController;
+@property (nonatomic) CEPreferencesController *preferencesController;
 
 @end
 
@@ -579,7 +579,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (IBAction)openPrefWindow:(id)sender
+- (IBAction)openPreferences:(id)sender
 // 環境設定ウィンドウを開く
 // ------------------------------------------------------
 {
@@ -587,7 +587,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self preferencesController] showWindow:self];
     } else {
         // setup preferences controller at first time
-        [self setPreferencesController:[CEPreferences sharedController]];
+        [self setPreferencesController:[CEPreferencesController sharedController]];
         [[self preferencesController] showWindow:self];
         [[self preferencesController] setupEncodingMenus:[self encodingMenuNoAction]];
     }

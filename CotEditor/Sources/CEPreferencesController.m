@@ -31,12 +31,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CEPreferences.h"
+#import "CEPreferencesController.h"
 #import "CEAppController.h"
 #import "constants.h"
 
 
-@interface CEPreferences ()
+@interface CEPreferencesController ()
 
 @property (nonatomic) IBOutlet NSWindow *prefWindow;
 @property (nonatomic, weak) IBOutlet NSTabView *prefTabView;
@@ -75,7 +75,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma mark -
 
-@implementation CEPreferences
+@implementation CEPreferencesController
 
 #pragma mark Class Methods
 
@@ -90,10 +90,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CEPreferences *shared = nil;
+    static CEPreferencesController *shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEPreferences alloc] initWithWindowNibName:@"Preferences"];
+        shared = [[CEPreferencesController alloc] initWithWindowNibName:@"Preferences"];
     });
     
     return shared;

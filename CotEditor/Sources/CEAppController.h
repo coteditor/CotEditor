@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import <Cocoa/Cocoa.h>
 #import "CEDocumentController.h"
-#import "CEPreferences.h"
+#import "CEPreferencesController.h"
 #import "CESyntaxManager.h"
 #import "CEKeyBindingManager.h"
 #import "CETextSelection.h"
@@ -59,7 +59,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey;
 
 // Action Message
-- (IBAction)openPrefWindow:(id)sender;
+- (IBAction)openPreferences:(id)sender;
 - (IBAction)openAppleScriptDictionary:(id)sender;
 - (IBAction)openScriptErrorWindow:(id)sender;
 - (IBAction)openHexColorCodeEditor:(id)sender;
