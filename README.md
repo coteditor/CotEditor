@@ -12,7 +12,11 @@ The source code is distributed under the terms of the GNU General Public License
 
 The source code is written in Objective-C (UTF-8).
 
-Currently, ARC and MRC are mixed in this project. Please note that classes, "This_class_is_under_MRC" is noted in whose header comment, are still under MRC.
+This project uses ARC currently. However, please note that the following classes are still under MRC.
+
+- CESyntax
+- CEMutableArray
+- ImportSources/
 
 
 Development Environment
