@@ -50,8 +50,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupEncodingMenus:(NSArray *)menuItems;
 - (void)setupSyntaxMenus;
 - (void)changeFont:(id)sender;
-- (void)makeFirstResponderToPrefWindow;
-- (void)writeBackFileDropArray;
 
 // Action Message
 - (IBAction)showFonts:(id)sender;

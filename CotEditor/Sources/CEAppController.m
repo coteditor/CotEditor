@@ -252,7 +252,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
 
-    [[self preferencesController] setupEncodingMenus:[self encodingMenuNoActionFromArray:encodings]];
+    if ([self preferencesController]) {
+        [[self preferencesController] setupEncodingMenus:[self encodingMenuNoAction]];
+    }
     [self setEncodingMenu:[self buildFormatEncodingMenuFromArray:encodings]];
     [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(rebuildToolbarEncodingItem)];
 }
@@ -263,7 +265,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // すべてのシンタックスカラーリングメニューを生成
 // ------------------------------------------------------
 {
-    [[self preferencesController] setupSyntaxMenus];
+    if ([self preferencesController]) {
+        [[self preferencesController] setupSyntaxMenus];
+    }
     [self setSyntaxMenu:[self buildSyntaxMenu]];
     [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(rebuildToolbarSyntaxItem)];
 }
@@ -413,7 +417,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self setupSupportDirectory];
-    [self setPreferencesController:[CEPreferences sharedController]];
     [self buildAllEncodingMenus];
     [self setSyntaxMenu:[self buildSyntaxMenu]];
     [[CEScriptManager sharedInstance] buildScriptMenu:nil];
@@ -534,19 +537,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (void)applicationWillTerminate:(NSNotification *)notification
-// アプリ終了の許可を返す
-// ------------------------------------------------------
-{
-    // 環境設定の FileDrop タブ「Insert string format:」テキストビューにフォーカスがあるまま終了すると
-    // 内容が保存されない問題への対処
-    [[self preferencesController] makeFirstResponderToPrefWindow];
-    // 環境設定の FileDrop 配列コントローラの値を書き戻す
-    [[self preferencesController] writeBackFileDropArray];
-}
-
-
-// ------------------------------------------------------
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 // Dock メニュー生成
 // ------------------------------------------------------
@@ -593,7 +583,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 環境設定ウィンドウを開く
 // ------------------------------------------------------
 {
-    [[self preferencesController] showWindow:self];
+    if ([self preferencesController]) {
+        [[self preferencesController] showWindow:self];
+    } else {
+        // setup preferences controller at first time
+        [self setPreferencesController:[CEPreferences sharedController]];
+        [[self preferencesController] showWindow:self];
+        [[self preferencesController] setupEncodingMenus:[self encodingMenuNoAction]];
+    }
 }
 
 // ------------------------------------------------------
@@ -730,10 +727,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-- (NSArray *)encodingMenuNoActionFromArray:(NSArray *)encodings
+- (NSArray *)encodingMenuNoAction
 // エンコーディングメニューアイテムを生成
 //------------------------------------------------------
 {
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
+    
     NSMutableArray *menuItems = [NSMutableArray array];
     NSPopUpButton *accessoryEncodingMenuButton = [[CEDocumentController sharedDocumentController] accessoryEncodingMenu];
     NSMenu *accessoryEncodingMenu = [accessoryEncodingMenuButton menu];

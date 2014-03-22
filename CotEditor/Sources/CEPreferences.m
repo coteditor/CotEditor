@@ -222,26 +222,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-- (void)makeFirstResponderToPrefWindow
-// prefWindow を FirstResponder にする
-// ------------------------------------------------------
-{
-    [[self window] makeFirstResponder:[self window]];
-    [self updateUserDefaults];
-}
-
-
-// ------------------------------------------------------
-- (void)writeBackFileDropArray
-// FileDrop 設定を UserDefaults に書き戻す
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[[self fileDropController] content] forKey:k_key_fileDropArray];
-}
-
-
 
 #pragma mark Protocol
 
@@ -282,11 +262,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (void)windowDidResignKey:(NSNotification *)notification
-// prefWindow がキーウィンドウではなくなった
+- (void)windowWillClose:(NSNotification *)notification
+// ウインドウが閉じる
 // ------------------------------------------------------
 {
-    [self makeFirstResponderToPrefWindow]; // 編集中の設定値も保存
+    // 編集中の設定値も保存
+    [[self window] makeFirstResponder:[self window]];
+    [self updateUserDefaults];
+    // FileDrop 配列コントローラの値を書き戻す
+    [self writeBackFileDropArray];
 }
 
 
@@ -839,6 +823,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+- (void)writeBackFileDropArray
+// FileDrop 設定を UserDefaults に書き戻す
+// ------------------------------------------------------
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:k_key_fileDropArray];
+}
+
 
 //------------------------------------------------------
 - (void)updateUserDefaults
