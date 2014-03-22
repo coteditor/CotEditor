@@ -178,7 +178,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_HCCBackComboBoxData: @[],
                                k_key_foreColorCBoxIsOk: @NO,
                                k_key_backgroundColorCBoxIsOk: @NO,
-                               k_key_insertCustomTextArray: [self factoryDefaultOfTextInsertStringArray], 
+                               k_key_insertCustomTextArray: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
+                                                              @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
+                                                              @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
                                
                                /* -------- 以下、隠し設定 -------- */
                                k_key_statusBarFontSize: @11.0f, 
@@ -212,18 +214,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // transformer 登録
     [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
                                     forName:@"HexColorTransformer"];
-}
-
-
-// ------------------------------------------------------
-+ (NSArray *)factoryDefaultOfTextInsertStringArray
-// 文字列挿入メソッドの標準設定配列を返す
-// ------------------------------------------------------
-{
-// インデックスが0-30の、合計31個
-    return @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"", 
-             @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
-             @"", @"", @"", @"", @"", @"", @"", @"", @"", @""];
 }
 
 

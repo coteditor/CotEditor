@@ -205,6 +205,7 @@ static CEKeyBindingManager *sharedInstance = nil;
     } else if ([self outlineMode] == k_outlineViewModeText) { // === Text
         id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
         NSArray *insertTextArray = [values valueForKey:k_key_insertCustomTextArray];
+        NSArray *factoryDefaultsOfInsertTextArray = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
         NSMutableArray *contentArray = [NSMutableArray array];
         NSMutableDictionary *dict;
 
@@ -214,8 +215,7 @@ static CEKeyBindingManager *sharedInstance = nil;
         [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]];
         [[self textFactoryDefaultsButton] setEnabled:
                 ((![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]]) ||
-                (![[[[NSApp delegate] class] factoryDefaultOfTextInsertStringArray] 
-                    isEqualToArray:insertTextArray]))];
+                (![factoryDefaultsOfInsertTextArray isEqualToArray:insertTextArray]))];
         [[self textOutlineView] reloadData];
         for (id object in insertTextArray) {
             dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
@@ -523,10 +523,10 @@ static CEKeyBindingManager *sharedInstance = nil;
 
     } else if ([self outlineMode] == k_outlineViewModeText) {
         NSMutableArray *contents = [NSMutableArray array];
-        NSArray *insertTexts = [[[NSApp delegate] class] factoryDefaultOfTextInsertStringArray];
+        NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
         NSMutableDictionary *dict;
 
-        for (id object in insertTexts) {
+        for (id object in defaultInsertTexts) {
             dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
             [contents addObject:dict];
         }
