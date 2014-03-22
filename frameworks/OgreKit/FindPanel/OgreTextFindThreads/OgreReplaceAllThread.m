@@ -120,6 +120,13 @@
     
     if ([self numberOfMatches] > 0) [[self result] setType:OgreTextFindResultSuccess];
     
+    // Send a notification about the termination of replacement
+    // Mod on 2014-03-22 by 1024jp for CotEditor
+    if ([self numberOfMatches] > 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"textDidReplaceAllNotification"
+                                                            object:self];
+    }
+    
     [self finish];
 }
 
