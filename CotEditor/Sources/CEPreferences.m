@@ -65,7 +65,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleXtsnErrButton;
 
-@property (nonatomic, strong) id appController;
 @property (nonatomic) BOOL doDeleteFileDrop;
 
 @end
@@ -86,13 +85,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (instancetype)initWithAppController:(id)appController
+- (instancetype)init
 // 初期化
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        [self setAppController:appController];
         (void)[NSBundle loadNibNamed:@"Preferences" owner:self];
     }
     return self;
@@ -403,7 +401,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([sender tag] == k_okButtonTag) { // ok のとき
         [[self encodingDataSource] writeEncodingsToUserDefaults]; // エンコーディングを保存
-        [[self appController] buildAllEncodingMenus];
+        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllEncodingMenus];
     }
     [NSApp stopModal];
 }
@@ -482,7 +480,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         [[CESyntaxManager sharedInstance] setEditedNewStyleName:@""];
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
-        [[self appController] buildAllSyntaxMenus];
+        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
         // 拡張子重複エラー表示ボタンの有効化を制御
         [[self syntaxStyleXtsnErrButton] setEnabled:
                 [[CESyntaxManager sharedInstance] existsExtensionError]];
@@ -556,7 +554,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                   withObject:oldSelectedName];
         
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
-        [[blockSelf appController] buildAllSyntaxMenus];
+        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
         // 拡張子重複エラー表示ボタンの有効化を制御
         [[blockSelf syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedInstance] existsExtensionError]];
     }];
@@ -893,6 +891,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *title;
     NSMenuItem *item;
     NSUInteger selected;
@@ -900,7 +899,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self invisibleSpacePopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
-        title = [[self appController] invisibleSpaceCharacter:i];
+        title = [appDelegate invisibleSpaceCharacter:i];
         item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
         [[[self invisibleSpacePopup] menu] addItem:item];
     }
@@ -917,6 +916,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *title;
     NSMenuItem *item;
     NSUInteger selected;
@@ -924,7 +924,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self invisibleTabPopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
-        title = [[self appController] invisibleTabCharacter:i];
+        title = [appDelegate invisibleTabCharacter:i];
         item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
         [[[self invisibleTabPopup] menu] addItem:item];
     }
@@ -941,6 +941,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *vitle;
     NSMenuItem *item;
     NSUInteger selected;
@@ -948,7 +949,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self invisibleNewLinePopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
-        vitle = [[self appController] invisibleNewLineCharacter:i];
+        vitle = [appDelegate invisibleNewLineCharacter:i];
         item = [[NSMenuItem alloc] initWithTitle:vitle action:nil keyEquivalent:@""];
         [[[self invisibleNewLinePopup] menu] addItem:item];
     }
@@ -965,6 +966,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
     NSString *title;
     NSMenuItem *item;
     NSUInteger selected;
@@ -972,7 +974,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self invisibleFullwidthSpacePopup] removeAllItems];
     for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
-        title = [[self appController] invisibleFullwidthSpaceCharacter:i];
+        title = [appDelegate invisibleFullwidthSpaceCharacter:i];
         item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
         [[[self invisibleFullwidthSpacePopup] menu] addItem:item];
     }
@@ -1048,7 +1050,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([[CESyntaxManager sharedInstance] importStyleFile:[fileURL path]]) {
         // インポートに成功したら、メニューとボタンを更新
-        [[self appController] buildAllSyntaxMenus];
+        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
     } else {
         // インポートできなかったときは、セカンダリシートを閉じ、メッセージシートを表示
         [inWindow orderOut:self];
