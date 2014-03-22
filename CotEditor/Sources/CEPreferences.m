@@ -66,7 +66,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleXtsnErrButton;
 
 @property (nonatomic, strong) id appController;
-@property (nonatomic) NSInteger currentSheetCode;  // !!!: いらないのでは？ 2014-03-22 by 1024jp
 @property (nonatomic) BOOL doDeleteFileDrop;
 
 @end
@@ -94,9 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super init];
     if (self) {
         [self setAppController:appController];
-        [self setCurrentSheetCode:k_syntaxNoSheetTag];
         (void)[NSBundle loadNibNamed:@"Preferences" owner:self];
-        [self setDoDeleteFileDrop:NO];
     }
     return self;
 }
@@ -600,14 +597,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                   alternateButton:NSLocalizedString(@"Replace", nil) otherButton:nil
                         informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
-            [self setCurrentSheetCode:k_syntaxImportTag];
             NSBeep();
             
             [alert beginSheetModalForWindow:[self prefWindow] completionHandler:^(NSModalResponse returnCode) {
-                if ([blockSelf currentSheetCode] == k_syntaxImportTag) {
-                    if (returnCode == NSAlertAlternateReturn) { // = Replace
-                        [blockSelf doImport:URL withCurrentSheetWindow:[alert window]];
-                    }
+                if (returnCode == NSAlertAlternateReturn) { // = Replace
+                    [blockSelf doImport:URL withCurrentSheetWindow:[alert window]];
                 }
             }];
             
@@ -1066,7 +1060,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSBeep();
         [alert beginSheetModalForWindow:[self prefWindow] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
-    [self setCurrentSheetCode:k_syntaxNoSheetTag];
 }
 
 
