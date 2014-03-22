@@ -12,7 +12,7 @@ The source code is distributed under the terms of the GNU General Public License
 
 The source code is written in Objective-C (UTF-8).
 
-Currently, ARC and MRC are mixed in this project. Please note that classes, "-fno-objc-arc" is noted in whose header comment, are still under MRC.
+Currently, ARC and MRC are mixed in this project. Please note that classes, "This_class_is_under_MRC" is noted in whose header comment, are still under MRC.
 
 
 Development Environment

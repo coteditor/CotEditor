@@ -11,7 +11,7 @@ CEDocument+ScriptingSupport
 encoding="UTF-8"
 Created:2005.03.12
  
- -fno-objc-arc
+ ____This_class_is_under_MRC____
  
 -------------------------------------------------
 

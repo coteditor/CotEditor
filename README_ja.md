@@ -14,7 +14,7 @@ OgreKit ならびに Onigmo, Oniguruma のライセンスの詳細は OgreKit �
 
 言語は Objective-C、文字コードは UTF-8 で書かれています。
 
-現在プロジェクト内に ARC と MRC が混在しています。コメントヘッダに "-fno-objc-arc" と記されているクラスは MRC が使われいることに留意して下さい。
+現在プロジェクト内に ARC と MRC が混在しています。コメントヘッダに "This_class_is_under_MRC" と記されているクラスは MRC が使われいることに留意して下さい。
 
 
 開発環境

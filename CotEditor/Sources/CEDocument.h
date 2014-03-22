@@ -11,7 +11,7 @@ CEDocument
 encoding="UTF-8"
 Created:2004.12.08
  
- -fno-objc-arc
+ ____This_class_is_under_MRC____
  
 -------------------------------------------------
 

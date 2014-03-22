@@ -11,7 +11,7 @@ CEPrivateMutableArray
 encoding="UTF-8"
 Created:2008.04.27
  
- -fno-objc-arc
+ ____This_class_is_under_MRC____
  
 ------------
 ＜要素の追加速度向上を目的としたカスタム配列クラス＞
