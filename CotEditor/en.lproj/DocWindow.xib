@@ -71,7 +71,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="_tabViewSelectedIndex" id="184"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="tabViewSelectedIndex" id="mnu-ci-yDG"/>
                     </connections>
                 </popUpButton>
                 <button verticalHuggingPriority="750" id="140">
