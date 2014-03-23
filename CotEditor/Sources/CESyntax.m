@@ -1140,7 +1140,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSDictionary *strDict;
     NSRange coloringRange;
     NSInteger i, j, count, syntaxArrayCount = [syntaxArray count];
-    NSInteger k,l, targetCount, inArrayCount;
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
     double indicatorValue, beginDouble = 0.0;
 
@@ -1187,7 +1186,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ([self isIndicatorShown]) {
                 beginDouble = [self doubleValueOfIndicator];
             }
-            CEPrivateMutableArray *theTargetArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
+            CEPrivateMutableArray *targetArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
             NSArray *tmpArray = nil;
             NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
             for (j = 0; j < count; j++) {
@@ -1206,7 +1205,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                  doColoring:YES
                                                              pairStringKind:k_notUseKind];
                         if (tmpArray != nil) {
-                            [theTargetArray addObject:tmpArray];
+                            [targetArray addObject:tmpArray];
                         }
                     } else {
                         tmpArray = [self rangesRegularExpressionString:beginStr
@@ -1214,7 +1213,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                             doColoring:YES
                                                         pairStringKind:k_notUseKind];
                         if (tmpArray != nil) {
-                            [theTargetArray addObject:tmpArray];
+                            [targetArray addObject:tmpArray];
                         }
                     }
                 } else {
@@ -1237,7 +1236,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         tmpArray = [self rangesBeginString:beginStr withEndString:endStr
                                                 doColoring:YES pairStringKind:k_notUseKind];
                         if (tmpArray != nil) {
-                            [theTargetArray addObject:tmpArray];
+                            [targetArray addObject:tmpArray];
                         }
                     } else {
                         NSNumber *len = @([beginStr length]);
@@ -1266,24 +1265,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if (([simpleWordsDict count]) > 0) {
                 tmpArray = [self rangesSimpleWordsArrayDict:simpleWordsDict withCharString:simpleWordsChar];
                 if (tmpArray != nil) {
-                    [theTargetArray addObject:tmpArray];
+                    [targetArray addObject:tmpArray];
                 }
                 [simpleWordsDict removeAllObjects];
                 [simpleWordsChar setString:k_allAlphabetChars];
             }
             // カラーリング実行
-            targetCount = [theTargetArray count]; // = 配列内の配列の数
-            for (k = 0; k < targetCount; k++) {
-                inArray = theTargetArray[k];
-                inArrayCount = [inArray count];
-
+            for (inArray in targetArray) {
                 // IMP を使ってメソッド呼び出しを高速化
                 // http://www.mulle-kybernetik.com/artikel/Optimization/opti-3.html
                 // http://homepage.mac.com/mkino2/spec/optimize/methodCall.html
                 if ([self isPrinting]) {
                     IMP impSetTextColor = [[[self layoutManager] firstTextView] methodForSelector:@selector(setTextColor:range:)];
-                    for (l = 0; l < inArrayCount; l++) {
-                        coloringRange = [inArray[l] rangeValue];
+                    for (NSValue *value in inArray) {
+                        coloringRange = [value rangeValue];
                         coloringRange.location += [self updateRange].location;
                         impSetTextColor([[self layoutManager] firstTextView],
                                         @selector(setTextColor:range:),
@@ -1291,8 +1286,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     }
                 } else {
                     IMP impAddTempAttrs = [[self layoutManager] methodForSelector:@selector(addTemporaryAttributes:forCharacterRange:)];
-                    for (l = 0; l < inArrayCount; l++) {
-                        coloringRange = [inArray[l] rangeValue];
+                    for (NSValue *value in inArray) {
+                        coloringRange = [value rangeValue];
                         coloringRange.location += [self updateRange].location;
                         impAddTempAttrs([self layoutManager],
                                         @selector(addTemporaryAttributes:forCharacterRange:),
