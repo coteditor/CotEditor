@@ -723,7 +723,6 @@ static CESyntaxManager *sharedInstance = nil;
 // コピーされたstyle名を返す
 //------------------------------------------------------
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *URL = [self URLOfStyleDirectory];
     NSString *compareName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *copyName;

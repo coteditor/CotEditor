@@ -669,10 +669,8 @@ static CEScriptManager *sharedInstance = nil;
     CEDocument *document = nil;
     NSString *outputString = nil;
     NSPasteboard *pasteboard;
-    BOOL existsDocument = NO;
 
     if ([[NSApp orderedDocuments] count] > 0) {
-        existsDocument = YES;
         document = [NSApp orderedDocuments][0];
     }
 

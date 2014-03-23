@@ -356,7 +356,6 @@ static CEKeyBindingManager *sharedInstance = nil;
 // ------------------------------------------------------
 {
     id identifier = [tableColumn identifier];
-    BOOL areReleaseOldChars = YES;
 
     // 現在の表示値との比較
     if ([object isEqualToString:[self outlineView:outlineView objectValueForTableColumn:tableColumn byItem:item]]) {
@@ -385,7 +384,6 @@ static CEKeyBindingManager *sharedInstance = nil;
         if (![self showDuplicateKeySpecCharsMessageWithKeySpecChars:object oldChars:[self currentKeySpecChars]]) {
             [self performSelector:@selector(performEditOutlineViewSelectedKeyBindingKeyColumn)
                        withObject:nil afterDelay:0 inModes:@[NSModalPanelRunLoopMode]];
-            areReleaseOldChars = NO;
         }
     }
     switch ([self outlineMode]) {

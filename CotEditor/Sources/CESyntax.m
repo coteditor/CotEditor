@@ -1054,7 +1054,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSColor *color = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]
                                                             valueForKey:k_key_invisibleCharactersColor]];
     if ([[[self layoutManager] firstTextView] textColor] == color) { return; }
-    NSDictionary *attrs;
+    NSDictionary *attrs = @{};
     NSMutableArray *targetArray = [NSMutableArray array];
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
     NSString *controlStr;
