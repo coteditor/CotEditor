@@ -617,7 +617,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *singleCharInfo = nil;
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [theString length];
-    NSUInteger lineStart = 0, countInLine = 0, index = 0;
+    NSUInteger lineStart = 0, column = 0, index = 0;
     NSUInteger numberOfSelectedWords = 0, numberOfWords = [spellChecker countWordsInString:theString language:nil];
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
@@ -626,7 +626,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     if (length > 0) {
         lineStart = [theString lineRangeForRange:selectedRange].location;
-        countInLine = selectedRange.location - lineStart;
+        column = selectedRange.location - lineStart;
 
         for (index = 0, numberOfLines = 0; index < length; numberOfLines++) {
             if (index <= selectedRange.location) {
@@ -651,37 +651,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     if (shouldUpdateStatusBar) {
-        NSString *statusString;
+        NSMutableString *statusString = [@"" mutableCopy];
+        NSNumberFormatter *formatter = [self decimalFormatter];
         
+        [statusString appendFormat:NSLocalizedString(@"Num Lines: %@", nil), [formatter stringFromNumber:@(numberOfLines)]];
+        [statusString appendFormat:NSLocalizedString(@"   Num Chars: %@", nil), [formatter stringFromNumber:@(length)]];
         if (selectedRange.length > 0) {
-            if (selectedRange.length == 1) {
-                unichar theCharacter = [theString characterAtIndex:selectedRange.location];
-                singleCharInfo = [NSString stringWithFormat:@"0x%.4X",theCharacter];
-                statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@) [:%@]   Unicode: %@", nil),
-                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
-                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
-                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
-                    [[self decimalFormatter] stringFromNumber:@(length)],
-                    [[self decimalFormatter] stringFromNumber:@(countInLine)],
-                    [[self decimalFormatter] stringFromNumber:@(selectedRange.length)],
-                    singleCharInfo];
-            } else {
-                statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@) [:%@]", nil),
-                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
-                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
-                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
-                    [[self decimalFormatter] stringFromNumber:@(length)],
-                    [[self decimalFormatter] stringFromNumber:@(countInLine)],
-                    [[self decimalFormatter] stringFromNumber:@(selectedRange.length)]];
-            }
-        } else {
-            statusString = [NSString stringWithFormat:NSLocalizedString(@"Line: %@ / %@   Char: %@ / %@ (>%@)", nil),
-                    [[self decimalFormatter] stringFromNumber:@(currentLine)],
-                    [[self decimalFormatter] stringFromNumber:@(numberOfLines)],
-                    [[self decimalFormatter] stringFromNumber:@(selectedRange.location)],
-                    [[self decimalFormatter] stringFromNumber:@(length)],
-                    [[self decimalFormatter] stringFromNumber:@(countInLine)]];
+            [statusString appendFormat:NSLocalizedString(@" (%@)", nil), [formatter stringFromNumber:@(selectedRange.length)]];
         }
+        [statusString appendFormat:NSLocalizedString(@"   Location: %@", nil), [formatter stringFromNumber:@(selectedRange.location)]];
+        [statusString appendFormat:NSLocalizedString(@"   Line: %@", nil), [formatter stringFromNumber:@(currentLine)]];
+        [statusString appendFormat:NSLocalizedString(@"   Column: %@", nil), [formatter stringFromNumber:@(column)]];
+        
         [[[self statusBar] leftTextField] setStringValue:statusString];
     }
     if (shouldUpdateDrawer) {
@@ -691,7 +672,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self windowController] setLinesInfo:linesInfo];
         charsInfo = [NSString stringWithFormat:@"%ld / %ld", (long)selectedRange.location, (long)length];
         [[self windowController] setCharsInfo:charsInfo];
-        [[self windowController] setInLineInfo:[NSString stringWithFormat:@"%ld", (long)countInLine]];
+        [[self windowController] setInLineInfo:[NSString stringWithFormat:@"%ld", (long)column]];
         selectInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld", (long)selectedRange.length] : @" - ";
         [[self windowController] setSelectInfo:selectInfo];
         [[self windowController] setSingleCharInfo:singleCharInfo];

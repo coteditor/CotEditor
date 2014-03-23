@@ -121,9 +121,11 @@ http://www.aynimac.com/
 /* CEStatusBarView */
 "This Dococument is ReadOnly" = "書類は書き込み不可です";
 /* (code in CEEditorView) */
-" Line: %@ / %@  Char: %@ / %@ (>%@) [:%@]  Unicode: %@" = " 行: %@ / %@  文字: %@ / %@ (>%@) [:%@]  Unicode: %@";
-" Line: %@ / %@  Char: %@ / %@ (>%@) [:%@]" = " 行: %@ / %@  文字: %@ / %@ (>%@) [:%@]";
-" Line: %@ / %@  Char: %@ / %@ (>%@)" = " 行: %@ / %@  文字: %@ / %@ (>%@)";
+"Num Lines: %@" = "行数：";
+"   Num Chars: %@" = "   文字数：%@";
+"   Location: %@" = "   位置：%@";
+"   Line: %@" = "   行：%@";
+"   Column: %@" = "   列：%@";
 
 /* CESyntax */
 // Outline Menu title
