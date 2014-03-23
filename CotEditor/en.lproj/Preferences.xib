@@ -15,13 +15,13 @@
                 <outlet property="fileDropGlossaryTextView" destination="586" id="ieD-hl-bAG"/>
                 <outlet property="fileDropTableView" destination="447" id="xHZ-M3-GTp"/>
                 <outlet property="fileDropTextView" destination="532" id="C5S-P7-taE"/>
-                <outlet property="invisibleFullwidthSpacePopup" destination="236" id="W4K-BK-NFI"/>
-                <outlet property="invisibleNewLinePopup" destination="224" id="RVV-NF-L3I"/>
-                <outlet property="invisibleSpacePopup" destination="236" id="FkD-rR-4rs"/>
-                <outlet property="invisibleTabPopup" destination="243" id="ayj-W2-Wqe"/>
+                <outlet property="invisibleFullwidthSpacePopup" destination="247" id="J3B-ji-Yqu"/>
+                <outlet property="invisibleNewLinePopup" destination="224" id="nZp-DQ-kUj"/>
+                <outlet property="invisibleSpacePopup" destination="236" id="Ted-p3-b15"/>
+                <outlet property="invisibleTabPopup" destination="243" id="5hM-TE-wWu"/>
                 <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
                 <outlet property="prefTabView" destination="10" id="zRC-Ni-cde"/>
-                <outlet property="printFontFamilyNameSize" destination="385" id="6Mv-Oe-xWO"/>
+                <outlet property="printFontFamilyNameSize" destination="1007" id="Pj9-wE-bsR"/>
                 <outlet property="sizeSampleWindow" destination="127" id="2N0-CT-NOC"/>
                 <outlet property="syntaxStyleCopyButton" destination="346" id="ksJ-kH-iSp"/>
                 <outlet property="syntaxStyleDeleteButton" destination="351" id="0pb-Vp-GsP"/>
@@ -767,12 +767,12 @@
                                                             <popUpButton verticalHuggingPriority="750" id="224">
                                                                 <rect key="frame" x="165" y="102" width="70" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="222" id="3256">
+                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3256">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="225">
                                                                         <items>
-                                                                            <menuItem title=" " state="on" id="222"/>
+                                                                            <menuItem title=" " id="222"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
@@ -812,12 +812,12 @@
                                                             <popUpButton verticalHuggingPriority="750" id="243">
                                                                 <rect key="frame" x="165" y="138" width="70" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="242" id="3259">
+                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3259">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="241">
                                                                         <items>
-                                                                            <menuItem title=" " state="on" id="242"/>
+                                                                            <menuItem title=" " id="242"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>

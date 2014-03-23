@@ -38,7 +38,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEPreferencesController ()
 
-@property (nonatomic) IBOutlet NSWindow *prefWindow;
 @property (nonatomic, weak) IBOutlet NSTabView *prefTabView;
 @property (nonatomic, weak) IBOutlet NSTextField *prefFontFamilyNameSize;
 @property (nonatomic, weak) IBOutlet NSTextField *printFontFamilyNameSize;
@@ -535,13 +534,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (![[CESyntaxManager sharedInstance] removeStyleFileWithStyleName:[[blockSelf syntaxStylesPopup] title]]) {
             // 削除できなければ、その旨をユーザに通知
             [[alert window] orderOut:blockSelf];
-            [[blockSelf prefWindow] makeKeyAndOrderFront:blockSelf];
+            [[blockSelf window] makeKeyAndOrderFront:blockSelf];
             NSAlert *newAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
                                                 defaultButton:nil alternateButton:nil otherButton:nil
                                     informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil),
                                  [[blockSelf syntaxStylesPopup] title]];
             NSBeep();
-            [newAlert beginSheetModalForWindow:[blockSelf prefWindow] completionHandler:nil];
+            [newAlert beginSheetModalForWindow:[blockSelf window] completionHandler:nil];
             return;
         }
         // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
@@ -581,7 +580,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([[CESyntaxManager sharedInstance] existsStyleFileWithStyleName:styleName]) {
             // オープンパネルを閉じる
             [openPanel orderOut:blockSelf];
-            [[blockSelf prefWindow] makeKeyAndOrderFront:blockSelf];
+            [[blockSelf window] makeKeyAndOrderFront:blockSelf];
             
             NSAlert *alert;
             NSString *message = [NSString stringWithFormat:NSLocalizedString(@"the \"%@\" style already exists.", nil), styleName];
