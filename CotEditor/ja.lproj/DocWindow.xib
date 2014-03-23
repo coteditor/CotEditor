@@ -109,7 +109,7 @@
                                                         <textField verticalHuggingPriority="750" id="662">
                                                             <rect key="frame" x="99" y="298" width="111" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" id="697">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" title="52" id="697">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -137,7 +137,7 @@
                                                         <textField verticalHuggingPriority="750" id="510">
                                                             <rect key="frame" x="99" y="222" width="111" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" id="695">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="utf-8" id="695">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -158,7 +158,7 @@
                                                         <textField verticalHuggingPriority="750" id="508">
                                                             <rect key="frame" x="93" y="201" width="117" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" id="693">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="LF" id="693">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -188,7 +188,7 @@
                                                         <textField verticalHuggingPriority="750" id="445">
                                                             <rect key="frame" x="88" y="340" width="122" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" id="690">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" title="0x0058" id="690">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -213,7 +213,7 @@
                                                         <textField verticalHuggingPriority="750" id="7Qg-K6-7MT">
                                                             <rect key="frame" x="88" y="361" width="122" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" id="zVg-ou-gZ9">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" title="20 / 1024" id="zVg-ou-gZ9">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -238,7 +238,7 @@
                                                         <textField verticalHuggingPriority="750" id="412">
                                                             <rect key="frame" x="77" y="126" width="133" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" id="688">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" title="nakamuxu" id="688">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -263,7 +263,7 @@
                                                         <textField verticalHuggingPriority="750" id="110">
                                                             <rect key="frame" x="112" y="168" width="98" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" id="686">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" title="-" id="686">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -297,7 +297,7 @@
                                                         <textField verticalHuggingPriority="750" id="101">
                                                             <rect key="frame" x="107" y="147" width="103" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" id="684">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="center" title="420" id="684">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -322,7 +322,7 @@
                                                         <textField verticalHuggingPriority="750" id="61">
                                                             <rect key="frame" x="33" y="101" width="177" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" id="682">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="2014-03-19 00:00:00" id="682">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -338,7 +338,7 @@
                                                         <textField verticalHuggingPriority="750" id="60">
                                                             <rect key="frame" x="33" y="63" width="177" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" id="681">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="2005-03-19 00:00:00" id="681">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -372,7 +372,7 @@
                                                         <textField verticalHuggingPriority="750" id="56">
                                                             <rect key="frame" x="99" y="319" width="111" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" id="678">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" title="1" id="678">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -391,7 +391,7 @@
                                                         <textField verticalHuggingPriority="750" id="49">
                                                             <rect key="frame" x="60" y="277" width="150" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" id="677">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" title="93 / 1848" id="677">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -403,7 +403,7 @@
                                                         <textField verticalHuggingPriority="750" id="48">
                                                             <rect key="frame" x="60" y="256" width="150" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" id="676">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="right" title="4 / 57" id="676">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -424,7 +424,7 @@
                                                         <textField verticalHuggingPriority="750" id="47">
                                                             <rect key="frame" x="88" y="25" width="122" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" id="675">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="TEXT" id="675">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -440,7 +440,7 @@
                                                         <textField verticalHuggingPriority="750" id="43">
                                                             <rect key="frame" x="88" y="4" width="122" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" id="674">
+                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="cEd1" id="674">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
