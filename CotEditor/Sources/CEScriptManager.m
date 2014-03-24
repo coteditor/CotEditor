@@ -187,7 +187,7 @@ static CEScriptManager *sharedInstance = nil;
     [self removeAllMenuItemsFromParent:menu];
     NSMenuItem *menuItem;
 
-    [self addChildFileItemTo:menu fromDir:[directoryURL path]];
+    [self addChildFileItemTo:menu fromDir:directoryURL];
     if ([menu numberOfItems] > 0) {
         [menu addItem:[NSMenuItem separatorItem]];
     }
@@ -399,11 +399,10 @@ static CEScriptManager *sharedInstance = nil;
 
 
 //------------------------------------------------------
-- (void)addChildFileItemTo:(NSMenu *)inMenu fromDir:(NSString *)inPath
+- (void)addChildFileItemTo:(NSMenu *)inMenu fromDir:(NSURL *)directoryURL
 // ファイルを読み込みメニューアイテムを生成／追加する
 //------------------------------------------------------
 {
-    NSURL *directoryURL = [NSURL fileURLWithPath:inPath];
     NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:directoryURL
                                                   includingPropertiesForKeys:@[NSURLFileResourceTypeKey]
                                                                      options:NSDirectoryEnumerationSkipsPackageDescendants | NSDirectoryEnumerationSkipsHiddenFiles
@@ -426,7 +425,7 @@ static CEScriptManager *sharedInstance = nil;
             [menuItem setTag:k_scriptMenuDirectoryTag];
             [inMenu addItem:menuItem];
             [menuItem setSubmenu:subMenu];
-            [self addChildFileItemTo:subMenu fromDir:[URL path]];
+            [self addChildFileItemTo:subMenu fromDir:URL];
         } else if ([resourceType isEqualToString:NSURLFileResourceTypeRegular] &&
                 ([[CEScriptManager AppleScriptExtensions] containsObject:extension] ||
                  [[CEScriptManager scriptExtensions] containsObject:extension])) {
