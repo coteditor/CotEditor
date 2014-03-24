@@ -157,7 +157,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [statusString appendFormat:NSLocalizedString(@"Num Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
     [statusString appendFormat:NSLocalizedString(@"   Num Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
     if ([self selectedCharsInfo] > 0) {
-        [statusString appendFormat:NSLocalizedString(@" (%@)", nil), [formatter stringFromNumber:@([self selectedCharsInfo])]];
+        [statusString appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedCharsInfo])]];
     }
     [statusString appendFormat:NSLocalizedString(@"   Location: %@", nil), [formatter stringFromNumber:@([self locationInfo])]];
     [statusString appendFormat:NSLocalizedString(@"   Line: %@", nil), [formatter stringFromNumber:@([self lineInfo])]];

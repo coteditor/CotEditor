@@ -278,7 +278,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="lineEndingsInfo" id="lN1-Dk-l36"/>
+                                                                <binding destination="-2" name="value" keyPath="encodingInfo" id="gDD-Wp-GMQ"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="509">
@@ -299,7 +299,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="encodingInfo" id="gWW-34-O6x"/>
+                                                                <binding destination="-2" name="value" keyPath="lineEndingsInfo" id="izu-Fd-2op"/>
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="511">
@@ -375,7 +375,7 @@
                                                         <textField verticalHuggingPriority="750" id="57">
                                                             <rect key="frame" x="-2" y="323" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="位置：" id="679">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="行：" id="679">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -390,36 +390,26 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="locationInfo" id="p9l-xQ-KVa"/>
+                                                                <binding destination="-2" name="value" keyPath="lineInfo" id="N8B-B1-dsM"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="fzI-io-QGK">
                                                             <rect key="frame" x="-2" y="344" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="行：" id="5cT-m2-0Zc">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="位置：" id="5cT-m2-0Zc">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" id="7Qg-K6-7MT">
+                                                        <textField verticalHuggingPriority="750" id="0l3-lK-pDP">
                                                             <rect key="frame" x="106" y="344" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="512" id="zVg-ou-gZ9">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="512" id="E06-MA-ecv">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="borderColor" value="YES"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <binding destination="-2" name="value" keyPath="lineInfo" id="HoU-u9-Udd">
-                                                                    <dictionary key="options">
-                                                                        <string key="NSNullPlaceholder"> - </string>
-                                                                    </dictionary>
-                                                                </binding>
-                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="446">
                                                             <rect key="frame" x="-2" y="365" width="104" height="14"/>

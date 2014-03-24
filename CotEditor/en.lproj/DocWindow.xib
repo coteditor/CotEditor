@@ -278,7 +278,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="lineEndingsInfo" id="LNi-o4-ojq"/>
+                                                                <binding destination="-2" name="value" keyPath="encodingInfo" id="2ek-BM-fOa"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="509">
@@ -299,7 +299,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="encodingInfo" id="Re2-5A-i1k"/>
+                                                                <binding destination="-2" name="value" keyPath="lineEndingsInfo" id="uag-xy-sgL"/>
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="511">
