@@ -256,18 +256,34 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
-// セーブパネルを準備
+- (void)runModalSavePanelForSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate
+                          didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
+// セーブパネルを表示
 // ------------------------------------------------------
 {
+    [super runModalSavePanelForSaveOperation:saveOperation delegate:delegate
+                             didSaveSelector:didSaveSelector contextInfo:contextInfo];
+    
     // ファイル名に拡張子がない場合は追加する
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendExtensionAtSaving]) {
-        if ([[[savePanel nameFieldStringValue] pathExtension] isEqualToString:@""]) {
-            [savePanel setAllowedFileTypes:@[@"txt", @"****"]];  // ****も指定することで別の拡張子を入れたときのアラートを抑制している
+        NSSavePanel *savePanel = (NSSavePanel *)[[[self editorView] window] attachedSheet];
+        NSString *fileName = [savePanel nameFieldStringValue];
+        
+        if (![[fileName pathExtension] isEqualToString:@""]) { return; }
+        
+        NSText *text;
+        for (id view in [[savePanel contentView] subviews]) {
+            if ([view isKindOfClass:[NSTextField class]]) {
+                text = [savePanel fieldEditor:NO forObject:view];
+                break;
+            }
+        }
+        if (text) {
+            [text setString:[fileName stringByAppendingPathExtension:@"txt"]];
+            // 拡張子をのぞいた部分を選択状態にする
+            [text setSelectedRange:NSMakeRange(0, [[fileName stringByDeletingPathExtension] length])];
         }
     }
-    
-    return [super prepareSavePanel:savePanel];
 }
 
 
