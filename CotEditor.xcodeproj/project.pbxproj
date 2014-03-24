@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2582260107794C2A00A0F8D3 /* CESyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntax.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2582260107794C2A00A0F8D3 /* CESyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntax.m */; };
 		2585914C080F503A0038F387 /* _aboutScriptFolder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2585914A080F503A0038F387 /* _aboutScriptFolder.rtf */; };
 		2585914D080F503A0038F387 /* openDictionary.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
 		25859DB3076D65310020F779 /* CEAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppController.m */; };

@@ -11,8 +11,6 @@ CESyntax
 encoding="UTF-8"
 Created:2004.12.22
  
- ____This_class_is_under_MRC____
- 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -46,16 +44,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntax : NSObject
 
-@property (nonatomic, retain) CELayoutManager *layoutManager;
-@property (nonatomic, retain) NSString *wholeString;
-@property (nonatomic, retain) NSString *localString;  // カラーリング対象文字列
-@property (nonatomic, retain) NSString *syntaxStyleName;
+@property (nonatomic, strong) CELayoutManager *layoutManager;
+@property (nonatomic, strong) NSString *wholeString;
+@property (nonatomic, strong) NSString *localString;  // カラーリング対象文字列
+@property (nonatomic, strong) NSString *syntaxStyleName;
 @property (nonatomic) BOOL isPrinting;  // プリンタ中かどうかを返す
         // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
 // readonly
-@property (nonatomic, retain, readonly) NSArray *completeWordsArray;  // 保持している入力補完文字列配列
-@property (nonatomic, retain, readonly) NSCharacterSet *completeFirstLetterSet;  // 保持している入力補完の最初の1文字のセット
+@property (nonatomic, strong, readonly) NSArray *completeWordsArray;  // 保持している入力補完文字列配列
+@property (nonatomic, strong, readonly) NSCharacterSet *completeFirstLetterSet;  // 保持している入力補完の最初の1文字のセット
 
 
 // Public method

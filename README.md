@@ -16,7 +16,6 @@ The source code is written in Objective-C (UTF-8).
 
 This project uses ARC currently. However, please note that the following classes are still under MRC:
 
-- CESyntax
 - CEPrivateMutableArray
 - ImportSources/
 

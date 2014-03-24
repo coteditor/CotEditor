@@ -15,7 +15,6 @@ CotEditor は OS X で動く軽量なプレーンテキストエディタです�
 
 プロジェクト内では ARC が標準となっていますが、以下のクラスに関しては MRC なので注意して下さい。
 
-- CESyntax
 - CEPrivateMutableArray
 - ImportSources/
 
