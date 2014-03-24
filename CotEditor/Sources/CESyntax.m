@@ -40,17 +40,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @interface CESyntax ()
-{
-    NSDictionary *_currentAttrs;
-    NSDictionary *_singleQuotesAttrs;
-    NSDictionary *_doubleQuotesAttrs;
-    NSColor *_textColor;
-}
 
 @property (nonatomic) IBOutlet NSProgressIndicator *coloringIndicator;
 @property (nonatomic) IBOutlet NSTextField *coloringCaption;
 
 @property (nonatomic, retain) NSDictionary *coloringDictionary;
+@property (nonatomic, retain) NSDictionary *currentAttrs;
+@property (nonatomic, retain) NSDictionary *singleQuotesAttrs;
+@property (nonatomic, retain) NSDictionary *doubleQuotesAttrs;
+@property (nonatomic, retain) NSColor *textColor;
 
 @property (nonatomic) NSRange updateRange;
 @property (nonatomic) NSModalSession modalSession;
@@ -90,10 +88,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         (void)[NSBundle loadNibNamed:@"Indicator" owner:self];
         [self setWholeString:nil];
         [self setLocalString:nil];
-        _syntaxStyleName = nil;
-        _coloringDictionary = nil;
-        _singleQuotesAttrs = nil;
-        _doubleQuotesAttrs = nil;
+        [self setSyntaxStyleName:nil];
+        [self setColoringDictionary:nil];
+        [self setSingleQuotesAttrs:nil];
+        [self setDoubleQuotesAttrs:nil];
         [self setCompleteWordsArray:nil];
         [self setCompleteFirstLetterSet:nil];
         [self setUpdateRange:NSMakeRange(0, 0)];
@@ -464,9 +462,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         range.location += [self updateRange].location;
 
         if ([self isPrinting]) {
-            [[[self layoutManager] firstTextView] setTextColor:_textColor range:range];
+            [[[self layoutManager] firstTextView] setTextColor:[self textColor] range:range];
         } else {
-            [[self layoutManager] addTemporaryAttributes:_currentAttrs forCharacterRange:range];
+            [[self layoutManager] addTemporaryAttributes:[self currentAttrs] forCharacterRange:range];
         }
     }
 }
@@ -960,11 +958,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         if (QCKind == [curRecord[k_QCPairKind] unsignedIntegerValue]) {
             if (QCKind == k_QC_SingleQ) {
-                attrs = _singleQuotesAttrs;
+                attrs = [self singleQuotesAttrs];
             } else if (QCKind == k_QC_DoubleQ) {
-                attrs = _doubleQuotesAttrs;
+                attrs = [self doubleQuotesAttrs];
             } else if (QCKind >= k_QC_CommentBaseNum) {
-                attrs = _currentAttrs;
+                attrs = [self currentAttrs];
             } else {
                 NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
                 break;
@@ -997,11 +995,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 index = j;
             } else {
                 if (QCKind == k_QC_SingleQ) {
-                    attrs = _singleQuotesAttrs;
+                    attrs = [self singleQuotesAttrs];
                 } else if (QCKind == k_QC_DoubleQ) {
-                    attrs = _doubleQuotesAttrs;
+                    attrs = [self doubleQuotesAttrs];
                 } else if (QCKind >= k_QC_CommentBaseNum) {
-                    attrs = _currentAttrs;
+                    attrs = [self currentAttrs];
                 } else {
                     NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
                     break;
@@ -1163,17 +1161,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
                 continue;
             }
-            _textColor = [[NSUnarchiver unarchiveObjectWithData:
-                           [[NSUserDefaults standardUserDefaults] valueForKey:colorArray[i]]] retain]; // ===== retain
-            _currentAttrs = [@{NSForegroundColorAttributeName: _textColor} retain]; // ===== retain
+            [self setTextColor:[NSUnarchiver unarchiveObjectWithData:
+                                [[NSUserDefaults standardUserDefaults] valueForKey:colorArray[i]]]]; // ===== retain
+            [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxArray[i] isEqualToString:k_SCKey_commentsArray]) {
                 [self setAttrToCommentsWithSyntaxArray:array withSingleQuotes:isSingleQuotes
                                       withDoubleQuotes:isDoubleQuotes updateIndicator:[self isIndicatorShown]];
-                [_textColor release]; // ===== release
-                [_currentAttrs release]; // ===== release
-                _currentAttrs = nil;
+                [self setTextColor:nil]; // ===== release
+                [self setCurrentAttrs:nil]; // ===== release
                 break;
             }
 
@@ -1216,14 +1213,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                             if ([beginStr isEqualToString:@"\'"] && [endStr isEqualToString:@"\'"]) {
                                 if (!isSingleQuotes) {
                                     isSingleQuotes = YES;
-                                    _singleQuotesAttrs = [_currentAttrs retain]; // ===== retain
+                                    [self setSingleQuotesAttrs:[self currentAttrs]]; // ===== retain
                                 }
                                 continue;
                             }
                             if ([beginStr isEqualToString:@"\""] && [endStr isEqualToString:@"\""]) {
                                 if (!isDoubleQuotes) {
                                     isDoubleQuotes = YES;
-                                    _doubleQuotesAttrs = [_currentAttrs retain]; // ===== retain
+                                    [self setDoubleQuotesAttrs:[self currentAttrs]]; // ===== retain
                                 }
                                 continue;
                             }
@@ -1272,7 +1269,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         coloringRange.location += [self updateRange].location;
                         impSetTextColor([[self layoutManager] firstTextView],
                                         @selector(setTextColor:range:),
-                                        _textColor, coloringRange);
+                                        [self textColor], coloringRange);
                     }
                 } else {
                     IMP impAddTempAttrs = [[self layoutManager] methodForSelector:@selector(addTemporaryAttributes:forCharacterRange:)];
@@ -1281,16 +1278,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         coloringRange.location += [self updateRange].location;
                         impAddTempAttrs([self layoutManager],
                                         @selector(addTemporaryAttributes:forCharacterRange:),
-                                        _currentAttrs, coloringRange);
+                                        [self currentAttrs], coloringRange);
                     }
                 }
             }
             if ([self isIndicatorShown]) {
                 [self setDoubleIndicator:((i + 1) * 100.0)];
             }
-            [_textColor release]; // ===== release
-            [_currentAttrs release]; // ===== release
-            _currentAttrs = nil;
+            [self setTextColor:nil];  // ===== release
+            [self setCurrentAttrs:nil];
         } // end-for (i)
         [self setOtherInvisibleCharsAttrs];
     NS_HANDLER
@@ -1307,14 +1303,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setModalSession:nil];
     }
     // 不要な変数を片づける
-    if (_singleQuotesAttrs != nil) {
-        [_singleQuotesAttrs release];
-        _singleQuotesAttrs = nil;
-    }
-    if (_doubleQuotesAttrs != nil) {
-        [_doubleQuotesAttrs release];
-        _doubleQuotesAttrs = nil;
-    }
+    [self setSingleQuotesAttrs:nil];
+    [self setDoubleQuotesAttrs:nil];
     [self setLocalString:nil];
 }
 
