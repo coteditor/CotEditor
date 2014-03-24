@@ -181,7 +181,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                               @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
                                
                                /* -------- 以下、隠し設定 -------- */
-                               k_key_statusBarFontSize: @11.0f, 
                                k_key_lineNumFontName: @"ArialNarrow",
                                k_key_lineNumFontSize: @10.0f, 
                                k_key_lineNumFontColor: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
@@ -775,7 +774,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *deprecatedKeys = @[@"statusAreaFontName",  // deprecated on 1.4
                                 @"alphaOnlyTextView",   // deprecated on 1.5
                                 @"saveTypeCreator",     // deprecated on 1.5
-                                @"gotoObjectMenuIndex"  // deprecated on 1.5
+                                @"gotoObjectMenuIndex", // deprecated on 1.5
+                                @"statusAreaFontSize"   // deprecated on 1.5
                                 ];
     
     for (NSString *key in deprecatedKeys) {

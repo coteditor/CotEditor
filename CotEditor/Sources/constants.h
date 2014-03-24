@@ -122,7 +122,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_insertCustomText          @"insertCustomText"
 //------ 以下、隠し設定 ------
 //（隠し設定の値は CEAppController の initialize で設定している）
-#define k_key_statusBarFontSize    @"statusAreaFontSize"
 #define k_key_lineNumFontName       @"lineNumFontName"
 #define k_key_lineNumFontSize       @"lineNumFontSize"
 #define k_key_lineNumFontColor      @"lineNumFontColor"

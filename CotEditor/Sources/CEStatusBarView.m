@@ -83,8 +83,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         // setup TextField
-        CGFloat fontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_statusBarFontSize] ? : 11.0;
-        NSFont *font = [NSFont controlContentFontOfSize:fontSize];
+        NSFont *font = [NSFont controlContentFontOfSize:[NSFont smallSystemFontSize]];
         
         NSRect textFieldFrame = frameRect;
         textFieldFrame.origin.x += k_statusBarReadOnlyWidth;
