@@ -51,7 +51,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // IBOutlets
 @property (nonatomic) IBOutlet NSArrayController *listController;
-@property (nonatomic) IBOutlet NSObjectController *printSettingController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
 @property (nonatomic, weak) IBOutlet NSTabView *tabView;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
@@ -61,7 +60,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // readonly
 @property (nonatomic, weak, readwrite) IBOutlet CEEditorView *editorView;
 @property (nonatomic, weak, readwrite) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, readwrite) IBOutlet NSView *printAccessoryView;
 
 @end
 
@@ -121,8 +119,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // 不可視文字の表示／非表示をセット
     [[self editorView] setShowInvisibleChars:[[self document] canActivateShowInvisibleCharsItem]];
-    // プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
-    [self setupPrintValues];
     // テキストを表示
     [[self document] setStringToEditorView];
 }
@@ -223,42 +219,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
     [[self window] setOpaque:(sanitizedAlpha == 1.0)];
-}
-
-
-// ------------------------------------------------------
-- (void)setupPrintValues
-// プリントダイアログでの設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
-// ------------------------------------------------------
-{
-    // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-    NSArray *settingKeys = @[k_printHeader,
-                             k_headerOneStringIndex,
-                             k_headerTwoStringIndex,
-                             k_headerOneAlignIndex,
-                             k_headerTwoAlignIndex,
-                             k_printHeaderSeparator,
-                             k_printFooter,
-                             k_footerOneStringIndex,
-                             k_footerTwoStringIndex,
-                             k_footerOneAlignIndex,
-                             k_footerTwoAlignIndex,
-                             k_printFooterSeparator,
-                             k_printLineNumIndex,
-                             k_printInvisibleCharIndex,
-                             k_printColorIndex];
-    NSDictionary *settings = [[NSUserDefaults standardUserDefaults] dictionaryWithValuesForKeys:settingKeys];
-
-    [[self printSettingController] setContent:[settings mutableCopy]];
-}
-
-
-// ------------------------------------------------------
-- (id)printValues
-// プリンタローカル設定オブジェクトを返す
-// ------------------------------------------------------
-{
-    return [[self printSettingController] content];
 }
 
 

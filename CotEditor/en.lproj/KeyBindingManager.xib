@@ -385,7 +385,7 @@ DQ
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="168">
-                            <rect key="frame" x="414" y="17" width="15" height="107"/>
+                            <rect key="frame" x="413" y="17" width="16" height="107"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="167">

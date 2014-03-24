@@ -30,6 +30,8 @@
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; };
 		2A067B9A18D52F5200546280 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A067B9818D52F5200546280 /* Acknowledgements.rtf */; };
+		2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
+		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
 		2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */; };
 		2A07230616D3CF4F00F49864 /* addButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F416D3CF4F00F49864 /* addButtonImg.pdf */; };
 		2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */; };
@@ -213,6 +215,10 @@
 		25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextViewCore.m; sourceTree = "<group>"; };
 		2A067B9918D52F5200546280 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
 		2A067B9B18D52F5700546280 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
+		2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPanelAccessoryController.h; sourceTree = "<group>"; };
+		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
+		2A07202D18E0E421006F3A43 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
+		2A07202F18E0E8B8006F3A43 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
 		2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = scriptMenuIcon.pdf; path = images/scriptMenuIcon.pdf; sourceTree = "<group>"; };
 		2A0722F416D3CF4F00F49864 /* addButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = addButtonImg.pdf; path = images/addButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = centerButtonImg.pdf; path = images/centerButtonImg.pdf; sourceTree = "<group>"; };
@@ -549,6 +555,8 @@
 				8CF02E1408B9B9F8004044EB /* CENavigationBarView.m */,
 				258225FE07794C2A00A0F8D3 /* CESyntax.h */,
 				258225FF07794C2A00A0F8D3 /* CESyntax.m */,
+				2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */,
+				2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */,
 				8CC5044208EE829500A525A6 /* CEPrintView.h */,
 				8CC5044308EE829500A525A6 /* CEPrintView.m */,
 				258A14CE07F3C6BC008E5FA1 /* CEFlippedView.h */,
@@ -594,6 +602,7 @@
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */,
 				2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */,
 				2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */,
+				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
 				8C7400A208C6D93900683672 /* KeyBindingManager.xib */,
 				25859EA5076D8EE80020F779 /* Preferences.xib */,
 				258EF2F8077FEDD000011E52 /* SyntaxManager.xib */,
@@ -826,6 +835,7 @@
 				8C99DD5208BD561B001F618C /* NaviBar_Show.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChar.tiff in Resources */,
 				8C74017708C7364400683672 /* defaultSyntaxStyle_LaTeX.plist in Resources */,
+				2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */,
 				8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */,
 				8C0FE15A08D7FDAA00B2B71B /* DefaultTextKeyBindings.plist in Resources */,
 				2A067B9A18D52F5200546280 /* Acknowledgements.rtf in Resources */,
@@ -906,6 +916,7 @@
 				2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */,
+				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */,
 				8C4186C0088648CA0039FBFC /* CEColorCodePanelController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
@@ -987,6 +998,15 @@
 				2A067B9B18D52F5700546280 /* ja */,
 			);
 			name = Acknowledgements.rtf;
+			sourceTree = "<group>";
+		};
+		2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A07202D18E0E421006F3A43 /* en */,
+				2A07202F18E0E8B8006F3A43 /* ja */,
+			);
+			name = PrintPanelAccessory.xib;
 			sourceTree = "<group>";
 		};
 		2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */ = {

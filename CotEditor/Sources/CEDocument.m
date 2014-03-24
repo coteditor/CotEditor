@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEDocument.h"
+#import "CEPrintPanelAccessoryController.h"
 #import "ODBEditorSuite.h"
 #import "NSData+MD5.h"
 #import "constants.h"
@@ -54,6 +55,8 @@ enum { typeFSS = 'fss ' };
 //=======================================================
 
 @interface CEDocument ()
+
+@property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
 @property (atomic) NSString *fileMD5;
 @property (atomic) BOOL showUpdateAlertWithBecomeKey;
@@ -1230,9 +1233,13 @@ enum { typeFSS = 'fss ' };
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
+    if (![self printPanelAccessoryController]) {
+        [self setPrintPanelAccessoryController:
+         [[CEPrintPanelAccessoryController alloc] initWithNibName:@"PrintPanelAccessory" bundle:nil]];
+    }
+    
     NSPrintPanel *printPanel = [NSPrintPanel printPanel];
-
-    [printPanel setAccessoryView:[[self windowController] printAccessoryView]];
+    [printPanel addAccessoryController:[self printPanelAccessoryController]];
     [printPanel beginSheetWithPrintInfo:[self printInfo]
                          modalForWindow:[self windowForSheet]
                                delegate:self
@@ -1994,7 +2001,7 @@ enum { typeFSS = 'fss ' };
     if (returnCode != NSOKButton) { return; }
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    id printValues = [[self windowController] printValues];
+    id printValues = [[self printPanelAccessoryController] values];
     NSPrintInfo *printInfo = [self printInfo];
     NSSize paperSize = [printInfo paperSize];
     NSPrintOperation *printOperation;
@@ -2058,7 +2065,7 @@ enum { typeFSS = 'fss ' };
     }
     
     // プリンタダイアログでの設定オブジェクトをコピー
-    [printView setPrintValues:[[[self windowController] printValues] copy]];
+    [printView setPrintValues:[[[self printPanelAccessoryController] values] copy]];
     // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
     [[printView textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
     // プリントビューに行間値／行番号表示の有無を設定
