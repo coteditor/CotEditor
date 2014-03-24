@@ -205,9 +205,9 @@
                                                     </connections>
                                                 </button>
                                                 <button id="cXP-Gq-HRn">
-                                                    <rect key="frame" x="45" y="399" width="383" height="18"/>
+                                                    <rect key="frame" x="45" y="399" width="494" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="スマート引用符とスマートダッシュを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Atg-ef-RHm">
+                                                    <buttonCell key="cell" type="check" title="スマート引用符とスマートダッシュを有効にする（Mavericks以上）" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Atg-ef-RHm">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" size="13" name="AquaKana"/>
                                                     </buttonCell>

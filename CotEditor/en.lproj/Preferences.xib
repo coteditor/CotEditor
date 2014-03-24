@@ -227,7 +227,7 @@
                                                 <button id="mK4-4e-plf">
                                                     <rect key="frame" x="45" y="399" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Enable smart quotes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
+                                                    <buttonCell key="cell" type="check" title="Enable smart quotes (on Mavericks and later)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
