@@ -58,12 +58,12 @@ enum { typeFSS = 'fss ' };
 @property (atomic) NSString *fileMD5;
 @property (atomic) BOOL showUpdateAlertWithBecomeKey;
 @property (atomic) BOOL isRevertingForExternalFileUpdate;
-@property NSString *initialString;  // 初期表示文字列に表示する文字列;
+@property (nonatomic) NSString *initialString;  // 初期表示文字列に表示する文字列;
 
-@property (readwrite) CEWindowController *windowController;
-@property (readwrite) BOOL canActivateShowInvisibleCharsItem;
-@property (readwrite) NSStringEncoding encodingCode;
-@property (readwrite) NSDictionary *fileAttributes;
+@property (nonatomic, readwrite) CEWindowController *windowController;
+@property (nonatomic, readwrite) BOOL canActivateShowInvisibleCharsItem;
+@property (nonatomic, readwrite) NSStringEncoding encodingCode;
+@property (nonatomic, readwrite) NSDictionary *fileAttributes;
 @property (nonatomic, readwrite) CETextSelection *selection;
 
 @end

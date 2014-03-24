@@ -55,21 +55,21 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 @interface CEDocument : NSDocument
 
-@property CEEditorView *editorView;
-@property BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
-@property NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
+@property (nonatomic) CEEditorView *editorView;
+@property (nonatomic) BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
+@property (nonatomic) NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
 
 
 // readonly properties
-@property (readonly) CEWindowController *windowController;
-@property (readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
-@property (readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
-@property (readonly) NSDictionary *fileAttributes;  // ファイル属性情報辞書
+@property (nonatomic, readonly) CEWindowController *windowController;
+@property (nonatomic, readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
+@property (nonatomic, readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
+@property (nonatomic, readonly) NSDictionary *fileAttributes;  // ファイル属性情報辞書
 @property (nonatomic, readonly) CETextSelection *selection;
 
 // ODB Editor Suite 対応プロパティ
-@property NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
-@property NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
+@property (nonatomic) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
+@property (nonatomic) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
 
 // Public methods
 //- (CEWindowController *)windowController;
