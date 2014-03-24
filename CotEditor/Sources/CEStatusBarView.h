@@ -44,12 +44,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic, weak) CEEditorView *masterView;
 @property (nonatomic) BOOL showStatusBar;
-@property (nonatomic, readonly) NSTextField *leftTextField;
-@property (nonatomic, readonly) NSTextField *rightTextField;
+
+@property (nonatomic) NSInteger linesInfo;
+@property (nonatomic) NSInteger charsInfo;
+@property (nonatomic) NSInteger selectedCharsInfo;
+@property (nonatomic) NSInteger wordsInfo;
+@property (nonatomic) NSInteger selectedWordsInfo;
+@property (nonatomic) NSInteger locationInfo;
+@property (nonatomic) NSInteger lineInfo;
+@property (nonatomic) NSInteger columnInfo;
+
+@property (nonatomic, strong) NSString *encodingInfo;
+@property (nonatomic, strong) NSString *lineEndingsInfo;
 
 
 // Public method
 
 - (void)setShowsReadOnlyIcon:(BOOL)showsReadOnlyIcon;
+- (void)updateLeftField;
+- (void)updateRightField;
 
 @end

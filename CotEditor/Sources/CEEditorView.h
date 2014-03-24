@@ -49,6 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 @class CEDocument;
+@class CEWindowController;
 
 
 @interface CEEditorView : NSView
@@ -71,7 +72,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (CEDocument *)document;
-- (id)windowController;
+- (CEWindowController *)windowController;
 - (NSTextStorage *)textStorage;
 - (CENavigationBarView *)navigationBar;
 - (CESyntax *)syntax;

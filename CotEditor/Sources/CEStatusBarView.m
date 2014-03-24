@@ -43,8 +43,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEStatusBarView ()
 
-@property (nonatomic, readwrite) NSTextField *leftTextField;
+@property (nonatomic) NSTextField *leftTextField;
 @property (nonatomic, readwrite) NSTextField *rightTextField;
+
+@property (nonatomic) NSNumberFormatter *decimalFormatter;
 
 @property (nonatomic) NSImageView *readOnlyView;
 
@@ -73,6 +75,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        // set number formatter
+        [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
+        [[self decimalFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_showStatusBarThousSeparator]) {
+            [[self decimalFormatter] setThousandSeparator:@""];
+        }
+        
         // setup TextField
         CGFloat fontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_statusBarFontSize] ? : 11.0;
         NSFont *font = [NSFont controlContentFontOfSize:fontSize];
@@ -134,6 +143,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSColor controlShadowColor] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]))
                               toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]))];
+}
+
+
+// ------------------------------------------------------
+- (void)updateLeftField
+// 左側の情報欄を描画し直す
+// ------------------------------------------------------
+{
+    NSMutableString *statusString = [@"" mutableCopy];
+    NSNumberFormatter *formatter = [self decimalFormatter];
+    
+    [statusString appendFormat:NSLocalizedString(@"Num Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
+    [statusString appendFormat:NSLocalizedString(@"   Num Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
+    if ([self selectedCharsInfo] > 0) {
+        [statusString appendFormat:NSLocalizedString(@" (%@)", nil), [formatter stringFromNumber:@([self selectedCharsInfo])]];
+    }
+    [statusString appendFormat:NSLocalizedString(@"   Location: %@", nil), [formatter stringFromNumber:@([self locationInfo])]];
+    [statusString appendFormat:NSLocalizedString(@"   Line: %@", nil), [formatter stringFromNumber:@([self lineInfo])]];
+    [statusString appendFormat:NSLocalizedString(@"   Column: %@", nil), [formatter stringFromNumber:@([self columnInfo])]];
+    
+    [[self leftTextField] setStringValue:statusString];
+}
+
+
+// ------------------------------------------------------
+- (void)updateRightField
+// 右側の情報欄を描画し直す
+// ------------------------------------------------------
+{
+    [[self rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", [self encodingInfo], [self lineEndingsInfo]]];
 }
 
 

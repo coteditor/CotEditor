@@ -54,8 +54,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSTimeInterval infoUpdateInterval;
 @property (nonatomic) NSTimeInterval incompatibleCharInterval;
 
-@property (nonatomic) NSNumberFormatter *decimalFormatter;
-
 
 // readonly
 @property (nonatomic, readwrite) CESplitView *splitView;
@@ -83,13 +81,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        // set number formatter for status bar
-        [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
-        [[self decimalFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_showStatusBarThousSeparator]) {
-            [[self decimalFormatter] setThousandSeparator:@""];
-        }
-        
         [self setupViews];
     }
     return self;
@@ -132,7 +123,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (id)windowController
+- (CEWindowController *)windowController
 // windowControllerを返す
 // ------------------------------------------------------
 {
@@ -651,19 +642,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     if (shouldUpdateStatusBar) {
-        NSMutableString *statusString = [@"" mutableCopy];
-        NSNumberFormatter *formatter = [self decimalFormatter];
-        
-        [statusString appendFormat:NSLocalizedString(@"Num Lines: %@", nil), [formatter stringFromNumber:@(numberOfLines)]];
-        [statusString appendFormat:NSLocalizedString(@"   Num Chars: %@", nil), [formatter stringFromNumber:@(length)]];
-        if (selectedRange.length > 0) {
-            [statusString appendFormat:NSLocalizedString(@" (%@)", nil), [formatter stringFromNumber:@(selectedRange.length)]];
-        }
-        [statusString appendFormat:NSLocalizedString(@"   Location: %@", nil), [formatter stringFromNumber:@(selectedRange.location)]];
-        [statusString appendFormat:NSLocalizedString(@"   Line: %@", nil), [formatter stringFromNumber:@(currentLine)]];
-        [statusString appendFormat:NSLocalizedString(@"   Column: %@", nil), [formatter stringFromNumber:@(column)]];
-        
-        [[[self statusBar] leftTextField] setStringValue:statusString];
+        [[self statusBar] setLinesInfo:numberOfLines];
+        [[self statusBar] setCharsInfo:length];
+        [[self statusBar] setSelectedCharsInfo:selectedRange.length];
+        [[self statusBar] setLocationInfo:selectedRange.location];
+        [[self statusBar] setLineInfo:currentLine];
+        [[self statusBar] setColumnInfo:column];
+        [[self statusBar] updateLeftField];
     }
     if (shouldUpdateDrawer) {
         NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo;
@@ -723,7 +708,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     encodingInfo = [[self document] currentIANACharSetName];
     if (shouldUpdateStatusBar) {
-        [[[self statusBar] rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", encodingInfo, lineEndingsInfo]];
+        [[self statusBar] setEncodingInfo:encodingInfo];
+        [[self statusBar] setLineEndingsInfo:lineEndingsInfo];
+        [[self statusBar] updateRightField];
     }
     if (shouldUpdateDrawer) {
         [[self windowController] setEncodingInfo:encodingInfo];
