@@ -176,7 +176,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_allAlphabetChars  @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 // syntax coloring range buffer (in CEEditorView)
-static NSUInteger k_coloringRangeBufferLength = 1000;  // number of charactors
+static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 
 // syntax coloring indicator
 #define k_perCompoIncrement     80.0
