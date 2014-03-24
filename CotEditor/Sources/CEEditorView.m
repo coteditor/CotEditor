@@ -1113,6 +1113,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange charRange = [[[self textView] layoutManager] characterRangeForGlyphRange:glyphRange
                                                                     actualGlyphRange:NULL];
     NSRange selectedRange = [[self textView] selectedRange];
+    NSRange coloringRange = charRange;
 
     // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
     if (!NSLocationInRange(selectedRange.location, charRange)) {
@@ -1122,10 +1123,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSInteger max = [[self string] length] - location;
         length = MIN(length, max);
 
-        [[self syntax] colorVisibleRange:NSMakeRange(location, length) withWholeString:[self string]];
+        coloringRange = NSMakeRange(location, length);
     } else {
-        [[self syntax] colorVisibleRange:charRange withWholeString:[self string]];
+        // 表示領域の前もある程度カラーリングの対象に含める
+        NSUInteger buffer = MIN(charRange.location, k_coloringRangeBufferLength);
+        coloringRange.location -= buffer;
+        coloringRange.length += buffer;
     }
+    
+    [[self syntax]  colorVisibleRange:coloringRange withWholeString:[self string]];
 }
 
 
