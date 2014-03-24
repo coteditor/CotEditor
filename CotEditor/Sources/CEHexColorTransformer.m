@@ -109,7 +109,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([value length] != 6) { return nil; }
 
     unsigned int theInt = 0;
-    CGFloat red, green, blue;
+    CGFloat red = 0, green = 0, blue = 0;
 
     NSScanner *scanner;
     for (NSUInteger i = 0; i < 3; i++) {
