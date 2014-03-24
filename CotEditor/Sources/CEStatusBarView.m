@@ -146,6 +146,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
+
 // ------------------------------------------------------
 - (void)updateLeftField
 // 左側の情報欄を描画し直す
@@ -175,14 +183,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", [self encodingInfo], [self lineEndingsInfo]]];
 }
 
-
-
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
 
 // ------------------------------------------------------
 - (void)setShowStatusBar:(BOOL)showStatusBar
