@@ -668,16 +668,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldUpdateDrawer) {
         NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo;
         
-        linesInfo = [NSString stringWithFormat:@"%ld / %ld", (long)currentLine, (long)numberOfLines];
+        linesInfo = [NSString stringWithFormat:@"%ld", (long)numberOfLines];
         [[self windowController] setLinesInfo:linesInfo];
-        charsInfo = [NSString stringWithFormat:@"%ld / %ld", (long)selectedRange.location, (long)length];
+        
+        charsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)length, (long)selectedRange.length] :
+                                                 [NSString stringWithFormat:@"%ld", (long)length];
         [[self windowController] setCharsInfo:charsInfo];
-        [[self windowController] setInLineInfo:[NSString stringWithFormat:@"%ld", (long)column]];
-        selectInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld", (long)selectedRange.length] : @" - ";
-        [[self windowController] setSelectInfo:selectInfo];
-        [[self windowController] setSingleCharInfo:singleCharInfo];
-        wordsInfo = [NSString stringWithFormat:@"%ld / %ld", (long)numberOfSelectedWords, (long)numberOfWords];
+        
+        wordsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)numberOfWords, (long)numberOfSelectedWords] :
+                                                 [NSString stringWithFormat:@"%ld", (long)numberOfWords];
         [[self windowController] setWordsInfo:wordsInfo];
+        
+        [[self windowController] setLocationInfo:[NSString stringWithFormat:@"%ld", (long)selectedRange.location]];
+        [[self windowController] setColumnInfo:[NSString stringWithFormat:@"%ld", (long)column]];
+        [[self windowController] setLineInfo:[NSString stringWithFormat:@"%ld", (long)currentLine]];
+        [[self windowController] setSingleCharInfo:singleCharInfo];
     }
 }
 

@@ -79,7 +79,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" id="59">
-                                                            <rect key="frame" x="-2" y="11" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="10" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="作成日時：" id="680">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -88,7 +88,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="60">
-                                                            <rect key="frame" x="47" y="28" width="164" height="14"/>
+                                                            <rect key="frame" x="47" y="27" width="164" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="2005-03-19 00:00:00" id="681">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -104,7 +104,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="62">
-                                                            <rect key="frame" x="-2" y="48" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="47" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="変更日時：" id="683">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -113,7 +113,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="61">
-                                                            <rect key="frame" x="47" y="66" width="164" height="14"/>
+                                                            <rect key="frame" x="47" y="65" width="164" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00:00" id="682">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -129,7 +129,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="413">
-                                                            <rect key="frame" x="-2" y="87" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="86" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="オーナー：" id="689">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -138,7 +138,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="412">
-                                                            <rect key="frame" x="106" y="87" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="86" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="nakamuxu" id="688">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -154,7 +154,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="102">
-                                                            <rect key="frame" x="-2" y="108" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="107" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="アクセス権：" id="685">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -163,7 +163,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="101">
-                                                            <rect key="frame" x="106" y="108" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="107" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="420" id="684">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -179,7 +179,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="114">
-                                                            <rect key="frame" x="-2" y="129" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="128" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Finderロック：" id="687">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -188,7 +188,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="110">
-                                                            <rect key="frame" x="106" y="129" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="128" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="-" id="686">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -204,7 +204,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="41">
-                                                            <rect key="frame" x="-2" y="150" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="149" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="クリエータ：" id="672">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -213,7 +213,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="43">
-                                                            <rect key="frame" x="106" y="150" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="149" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="cEd1" id="674">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -229,7 +229,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="42">
-                                                            <rect key="frame" x="-2" y="171" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="170" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="タイプ：" id="673">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -238,7 +238,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="47">
-                                                            <rect key="frame" x="106" y="171" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="170" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="TEXT" id="675">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -254,14 +254,14 @@
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="50">
-                                                            <rect key="frame" x="25" y="192" width="160" height="5"/>
+                                                            <rect key="frame" x="25" y="191" width="160" height="5"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
                                                         <textField verticalHuggingPriority="750" id="507">
-                                                            <rect key="frame" x="-2" y="205" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="204" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="エンコーディング：" id="692">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -270,7 +270,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="510">
-                                                            <rect key="frame" x="106" y="205" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="204" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="utf-8" id="695">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -282,7 +282,7 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="509">
-                                                            <rect key="frame" x="-2" y="226" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="225" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="行末コード：" id="694">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -291,7 +291,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="508">
-                                                            <rect key="frame" x="106" y="226" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="225" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="LF" id="693">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -303,25 +303,25 @@
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="511">
-                                                            <rect key="frame" x="25" y="248" width="160" height="5"/>
+                                                            <rect key="frame" x="25" y="247" width="160" height="5"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
                                                         <textField verticalHuggingPriority="750" id="39">
-                                                            <rect key="frame" x="-2" y="261" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="260" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="行：" id="670">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="行数：" id="670">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="48">
-                                                            <rect key="frame" x="106" y="261" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="260" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="4 / 57" id="676">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="57" id="676">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -331,18 +331,18 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="40">
-                                                            <rect key="frame" x="-2" y="283" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="282" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="文字：" id="671">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="文字数：" id="671">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="49">
-                                                            <rect key="frame" x="106" y="282" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="281" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="93 / 1848" id="677">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="1024 (512)" id="677">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -352,60 +352,60 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="661">
-                                                            <rect key="frame" x="-2" y="303" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="302" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="(行頭から)：" id="696">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="単語数：" id="696">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="662">
-                                                            <rect key="frame" x="106" y="303" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="302" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="52" id="697">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="64 (32)" id="697">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="inLineInfo" id="Eau-CP-m8l"/>
+                                                                <binding destination="-2" name="value" keyPath="wordsInfo" id="zy0-fS-aNm"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="57">
-                                                            <rect key="frame" x="-2" y="324" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="323" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="[選択範囲]：" id="679">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="位置：" id="679">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="56">
-                                                            <rect key="frame" x="106" y="324" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="323" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="1" id="678">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="28" id="678">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="selectInfo" id="dWp-AT-J2Y"/>
+                                                                <binding destination="-2" name="value" keyPath="locationInfo" id="p9l-xQ-KVa"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="fzI-io-QGK">
-                                                            <rect key="frame" x="-2" y="345" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="344" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="単語：" id="5cT-m2-0Zc">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="行：" id="5cT-m2-0Zc">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="7Qg-K6-7MT">
-                                                            <rect key="frame" x="106" y="345" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="344" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="20 / 1024" id="zVg-ou-gZ9">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="512" id="zVg-ou-gZ9">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -414,7 +414,7 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="borderColor" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="wordsInfo" id="YqF-CS-300">
+                                                                <binding destination="-2" name="value" keyPath="lineInfo" id="HoU-u9-Udd">
                                                                     <dictionary key="options">
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
@@ -422,24 +422,49 @@
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="446">
-                                                            <rect key="frame" x="-2" y="366" width="104" height="14"/>
+                                                            <rect key="frame" x="-2" y="365" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Unicode：" id="691">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="列：" id="691">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="445">
-                                                            <rect key="frame" x="106" y="366" width="104" height="14"/>
+                                                            <rect key="frame" x="106" y="365" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="0x0058" id="690">
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="8" id="690">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="-2" name="value" keyPath="singleCharInfo" id="eua-15-FHX">
+                                                                <binding destination="-2" name="value" keyPath="columnInfo" id="T8O-v0-CFt">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
+                                                        </textField>
+                                                        <textField verticalHuggingPriority="750" id="uFL-lT-L4A">
+                                                            <rect key="frame" x="-2" y="386" width="104" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Unicode：" id="DlZ-P8-q0M">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField verticalHuggingPriority="750" id="qGs-2L-SH9">
+                                                            <rect key="frame" x="106" y="386" width="104" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="0x0058" id="PZv-br-Whe">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="-2" name="value" keyPath="singleCharInfo" id="UKR-eh-qdG">
                                                                     <dictionary key="options">
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
