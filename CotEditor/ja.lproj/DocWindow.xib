@@ -408,6 +408,18 @@
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="127" name="displayPatternValue1" keyPath="selection" id="bXX-Mm-GMl">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSDisplayPattern">%{value1}@</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                                <binding destination="-2" name="value" keyPath="locationInfo" id="d2T-ye-8sv">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSNullPlaceholder"> - </string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" id="446">
                                                             <rect key="frame" x="-2" y="365" width="104" height="14"/>
