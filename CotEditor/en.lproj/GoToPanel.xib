@@ -29,10 +29,10 @@
                         </constraints>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Jaf-xK-LUw">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="c9a-BM-WZG">
                                 <items>
-                                    <menuItem title="Line" state="on" id="AJY-it-0zy"/>
+                                    <menuItem title="Line" id="AJY-it-0zy"/>
                                     <menuItem title="Character" tag="1" id="8lf-5Q-9KX"/>
                                 </items>
                             </menu>
@@ -48,6 +48,9 @@
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                             <connections>
                                 <binding destination="-2" name="value" keyPath="locationString" id="TAC-ta-fW8"/>
                             </connections>

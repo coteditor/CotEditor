@@ -48,6 +48,9 @@
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                             <connections>
                                 <binding destination="-2" name="value" keyPath="locationString" id="TAC-ta-fW8"/>
                             </connections>

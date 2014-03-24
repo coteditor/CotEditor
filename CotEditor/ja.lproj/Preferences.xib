@@ -381,6 +381,9 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <allowedInputSourceLocales>
+                                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                        </allowedInputSourceLocales>
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="26" name="value" keyPath="values.pageGuideColumn" id="808"/>
@@ -459,6 +462,9 @@
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <allowedInputSourceLocales>
+                                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                                    </allowedInputSourceLocales>
                                                                 </textFieldCell>
                                                                 <connections>
                                                                     <binding destination="26" name="value" keyPath="values.windowWidth" id="640"/>
@@ -478,6 +484,9 @@
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <allowedInputSourceLocales>
+                                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                                    </allowedInputSourceLocales>
                                                                 </textFieldCell>
                                                                 <connections>
                                                                     <binding destination="26" name="value" keyPath="values.windowHeight" id="643"/>
@@ -944,6 +953,9 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <allowedInputSourceLocales>
+                                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                        </allowedInputSourceLocales>
                                                         <objectValues>
                                                             <string>0</string>
                                                             <string>0.25</string>
@@ -1079,6 +1091,9 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <allowedInputSourceLocales>
+                                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                        </allowedInputSourceLocales>
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="26" name="value" keyPath="values.tabWidth" id="284"/>
@@ -2779,6 +2794,9 @@ Gw
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                         </textFieldCell>
                         <connections>
                             <binding destination="-2" name="value" keyPath="sampleWidth" id="152"/>
@@ -2798,6 +2816,9 @@ Gw
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                         </textFieldCell>
                         <connections>
                             <binding destination="-2" name="value" keyPath="sampleHeight" id="153"/>

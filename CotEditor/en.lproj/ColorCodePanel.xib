@@ -95,6 +95,9 @@
                             <font key="font" size="13" name="Monaco"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                         </comboBoxCell>
                         <connections>
                             <binding destination="65" name="contentValues" keyPath="arrangedObjects.codeString" id="71"/>
@@ -126,6 +129,9 @@
                             <font key="font" size="13" name="Monaco"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                         </comboBoxCell>
                         <connections>
                             <binding destination="80" name="contentValues" keyPath="arrangedObjects.codeString" id="85"/>

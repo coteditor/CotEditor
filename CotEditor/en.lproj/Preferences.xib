@@ -379,6 +379,9 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <allowedInputSourceLocales>
+                                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                        </allowedInputSourceLocales>
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="26" name="value" keyPath="values.pageGuideColumn" id="808"/>
@@ -457,6 +460,9 @@
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <allowedInputSourceLocales>
+                                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                                    </allowedInputSourceLocales>
                                                                 </textFieldCell>
                                                                 <connections>
                                                                     <binding destination="26" name="value" keyPath="values.windowWidth" id="640"/>
@@ -476,6 +482,9 @@
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <allowedInputSourceLocales>
+                                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                                    </allowedInputSourceLocales>
                                                                 </textFieldCell>
                                                                 <connections>
                                                                     <binding destination="26" name="value" keyPath="values.windowHeight" id="643"/>
@@ -942,6 +951,9 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <allowedInputSourceLocales>
+                                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                        </allowedInputSourceLocales>
                                                         <objectValues>
                                                             <string>0</string>
                                                             <string>0.25</string>
@@ -1077,6 +1089,9 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <allowedInputSourceLocales>
+                                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                        </allowedInputSourceLocales>
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="26" name="value" keyPath="values.tabWidth" id="284"/>
@@ -1862,7 +1877,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -1883,7 +1898,7 @@ The parent directory name of the dropped file.
                             <tabViewItem label="Key Bindings" identifier="prefKeyBindingsItemID" id="711">
                                 <view key="view" id="712">
                                     <rect key="frame" x="0.0" y="0.0" width="674" height="666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="748" customClass="CETabItemView">
                                             <rect key="frame" x="0.0" y="0.0" width="642" height="371"/>
@@ -2776,6 +2791,9 @@ And press "OK" button, this window size will be set to default.</string>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                         </textFieldCell>
                         <connections>
                             <binding destination="-2" name="value" keyPath="sampleWidth" id="152"/>
@@ -2795,6 +2813,9 @@ And press "OK" button, this window size will be set to default.</string>
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
                         </textFieldCell>
                         <connections>
                             <binding destination="-2" name="value" keyPath="sampleHeight" id="153"/>
