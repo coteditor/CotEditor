@@ -40,12 +40,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) BOOL isOkButtonPressed;  // シートでOKボタンが押されたかどうか
 
-@property (nonatomic, strong, readonly) NSString *selectedStyleName;  // 編集対象となっているスタイル名
-@property (nonatomic, strong) NSString *editedNewStyleName;  // 編集された新しいスタイル名
-@property (nonatomic, strong, readonly) NSDictionary *xtsnAndStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic, strong, readonly) NSDictionary *xtsnErrors;  // 拡張子重複エラー辞書
-@property (nonatomic, strong, readonly) NSArray *extensions;  // 拡張子配列
-@property (nonatomic, strong, readonly) NSWindow *editWindow;  // カラーシンタックス編集シート用ウィンドウ
+@property (nonatomic, readonly) NSString *selectedStyleName;  // 編集対象となっているスタイル名
+@property (nonatomic) NSString *editedNewStyleName;  // 編集された新しいスタイル名
+@property (nonatomic, readonly) NSDictionary *xtsnAndStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic, readonly) NSDictionary *xtsnErrors;  // 拡張子重複エラー辞書
+@property (nonatomic, readonly) NSArray *extensions;  // 拡張子配列
+@property (nonatomic, readonly) NSWindow *editWindow;  // カラーシンタックス編集シート用ウィンドウ
 
 
 // class method

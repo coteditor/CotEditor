@@ -65,9 +65,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL showPageGuide;
 @property (nonatomic) BOOL isColoring;
 
-@property (nonatomic, strong) CETextViewCore *textView;
+@property (nonatomic) CETextViewCore *textView;
 
-@property (nonatomic, strong, readonly) CESplitView *splitView;
+@property (nonatomic, readonly) CESplitView *splitView;
 
 
 // Public method

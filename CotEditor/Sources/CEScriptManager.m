@@ -42,7 +42,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEScriptManager ()
 
-@property (nonatomic) IBOutlet NSTextView *errorTextView;  // 10.8まではNSTextViewはweak指定ができない
+@property (nonatomic, strong) IBOutlet NSTextView *errorTextView;  // on 10.8 NSTextView cannot be weak
 
 @property (nonatomic) NSFileHandle *outputHandle;
 @property (nonatomic) NSFileHandle *errorHandle;

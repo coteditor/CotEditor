@@ -45,11 +45,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CELayoutManager ()
 
-@property (nonatomic, strong) NSString *spaceCharacter;
-@property (nonatomic, strong) NSString *tabCharacter;
-@property (nonatomic, strong, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
-@property (nonatomic, strong) NSString *fullwidthSpaceCharacter;
-@property (nonatomic, strong) CEAppController *appController;
+@property (nonatomic) NSString *spaceCharacter;
+@property (nonatomic) NSString *tabCharacter;
+@property (nonatomic, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
+@property (nonatomic) NSString *fullwidthSpaceCharacter;
+@property (nonatomic) CEAppController *appController;
 @property (nonatomic) NSDictionary *attributes;
 
 // readonly properties

@@ -41,15 +41,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESubSplitView : NSView <NSTextViewDelegate>
 
-@property (nonatomic, strong) CEEditorView *editorView;
+@property (nonatomic) CEEditorView *editorView;
 
 // readonly
-@property (nonatomic, readonly, strong) NSScrollView *scrollView;
-@property (nonatomic, readonly, strong) CETextViewCore *textView;
-@property (nonatomic, readonly, strong) CELineNumView *lineNumView;
-@property (nonatomic, readonly, strong) CENavigationBarView *navigationBar;
-@property (nonatomic, readonly, strong) CESyntax *syntax;
-@property (nonatomic, readonly, strong) NSDictionary *highlightBracesColorDict;
+@property (nonatomic, readonly) NSScrollView *scrollView;
+@property (nonatomic, readonly) CETextViewCore *textView;
+@property (nonatomic, readonly) CELineNumView *lineNumView;
+@property (nonatomic, readonly) CENavigationBarView *navigationBar;
+@property (nonatomic, readonly) CESyntax *syntax;
+@property (nonatomic, readonly) NSDictionary *highlightBracesColorDict;
 
 
 // Public method
