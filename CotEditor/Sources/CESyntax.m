@@ -198,30 +198,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSArray *array;
         NSString *endStr = nil;
         NSDictionary *strDict;
-        NSUInteger i, count;
 
-        count = [syntaxArray count];
 
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-        for (i = 0; i < count; i++) {
-            array = [self coloringDictionary][syntaxArray[i]];
-            for (strDict in array) {
-                string = [strDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                endStr = [strDict[k_SCKey_endString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                if (([string length] > 0) &&
-                    ((endStr == nil) || ([endStr length] < 1)) &&
-                    (![strDict[k_SCKey_regularExpression] boolValue]))
-                {
-                    [tmpArray addObject:string];
-                    [tmpString appendString:[string substringToIndex:1]];
+        for (NSString *syntaxName in syntaxArray) {
+            @autoreleasepool {
+                array = [self coloringDictionary][syntaxName];
+                for (strDict in array) {
+                    string = [strDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    endStr = [strDict[k_SCKey_endString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    if (([string length] > 0) &&
+                        ((endStr == nil) || ([endStr length] < 1)) &&
+                        (![strDict[k_SCKey_regularExpression] boolValue]))
+                    {
+                        [tmpArray addObject:string];
+                        [tmpString appendString:[string substringToIndex:1]];
+                    }
                 }
-            }
-            if (i % 100 == 0) {
-                [pool release]; // ===== release
-                pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-            }
+            } // ==== end-autoreleasepool
         }
-        [pool release]; // ===== release
         // ソート
         [tmpArray sortedArrayUsingSelector:@selector(compare:)];
     }
@@ -693,28 +687,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-        attrRange = [match rangeOfMatchedString];
-        attrRange.location += [self updateRange].location;
-        if (doColoring) {
-            [outArray addObject:[NSValue valueWithRange:attrRange]];
-        } else {
-            if (pairKind >= k_QC_CommentBaseNum) {
-                QCStart = k_QC_Start;
-                QCEnd = k_QC_End;
+        
+        @autoreleasepool {
+            attrRange = [match rangeOfMatchedString];
+            attrRange.location += [self updateRange].location;
+            if (doColoring) {
+                [outArray addObject:[NSValue valueWithRange:attrRange]];
             } else {
-                QCStart = QCEnd = k_notUseStartEnd;
+                if (pairKind >= k_QC_CommentBaseNum) {
+                    QCStart = k_QC_Start;
+                    QCEnd = k_QC_End;
+                } else {
+                    QCStart = QCEnd = k_notUseStartEnd;
+                }
+                [outArray addObject:@{k_QCPosition: @(attrRange.location),
+                                      k_QCPairKind: @(pairKind),
+                                      k_QCStartEnd: @(QCStart),
+                                      k_QCStrLength: @0U}];
+                [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                      k_QCPairKind: @(pairKind),
+                                      k_QCStartEnd: @(QCEnd),
+                                      k_QCStrLength: @0U}];
             }
-            [outArray addObject:@{k_QCPosition: @(attrRange.location),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCStart),
-                                  k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCEnd),
-                                  k_QCStrLength: @0U}];
-        }
-        [pool release]; // ===== release
+        } // ==== end-autoreleasepool
     }
     return outArray;
 }
@@ -818,42 +813,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
             return nil;
         }
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-        beginRange = [match rangeOfMatchedString];
-        NS_DURING
-            endRange = [[self localString] rangeOfRegularExpressionString:endString
-                                                                  options:options
-                                                                    range:NSMakeRange(NSMaxRange(beginRange),
-                                                                                      [[self localString] length] - NSMaxRange(beginRange))];
-        NS_HANDLER
-            [pool release]; // ===== release
-            return nil;
-        NS_ENDHANDLER
-        if (endRange.location != NSNotFound) {
-            attrRange = NSUnionRange(beginRange, endRange);
-            attrRange.location += [self updateRange].location;
-        } else {
-            continue;
-        }
-        if (doColoring) {
-            [outArray addObject:[NSValue valueWithRange:attrRange]];
-        } else {
-            if (pairKind >= k_QC_CommentBaseNum) {
-                QCStart = k_QC_Start;
-                QCEnd = k_QC_End;
+        @autoreleasepool {
+            beginRange = [match rangeOfMatchedString];
+            NS_DURING
+                endRange = [[self localString] rangeOfRegularExpressionString:endString
+                                                                      options:options
+                                                                        range:NSMakeRange(NSMaxRange(beginRange),
+                                                                                          [[self localString] length] - NSMaxRange(beginRange))];
+            NS_HANDLER
+                return nil;
+            NS_ENDHANDLER
+            if (endRange.location != NSNotFound) {
+                attrRange = NSUnionRange(beginRange, endRange);
+                attrRange.location += [self updateRange].location;
             } else {
-                QCStart = QCEnd = k_notUseStartEnd;
+                continue;
             }
-            [outArray addObject:@{k_QCPosition:@(attrRange.location),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCStart),
-                                  k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCEnd),
-                                  k_QCStrLength: @0U}];
-        }
-        [pool release]; // ===== release
+            if (doColoring) {
+                [outArray addObject:[NSValue valueWithRange:attrRange]];
+            } else {
+                if (pairKind >= k_QC_CommentBaseNum) {
+                    QCStart = k_QC_Start;
+                    QCEnd = k_QC_End;
+                } else {
+                    QCStart = QCEnd = k_notUseStartEnd;
+                }
+                [outArray addObject:@{k_QCPosition:@(attrRange.location),
+                                      k_QCPairKind: @(pairKind),
+                                      k_QCStartEnd: @(QCStart),
+                                      k_QCStrLength: @0U}];
+                [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                      k_QCPairKind: @(pairKind),
+                                      k_QCStartEnd: @(QCEnd),
+                                      k_QCStrLength: @0U}];
+            }
+        } // ==== end-autoreleasepool
     }
     return outArray;
 }
@@ -1188,80 +1182,76 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             CEPrivateMutableArray *targetArray = [[[CEPrivateMutableArray alloc] initWithCapacity:10] autorelease];
             NSArray *tmpArray = nil;
-            NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
             for (j = 0; j < count; j++) {
-                strDict = array[j];
-                beginStr = strDict[k_SCKey_beginString];
+                @autoreleasepool {
+                    strDict = array[j];
+                    beginStr = strDict[k_SCKey_beginString];
 
-                if ([beginStr length] < 1) { continue; }
+                    if ([beginStr length] < 1) { continue; }
 
-                endStr = strDict[k_SCKey_endString];
+                    endStr = strDict[k_SCKey_endString];
 
-                if ([strDict[k_SCKey_regularExpression] boolValue]) {
-                    if ((endStr != nil) && ([endStr length] > 0)) {
-                        tmpArray = [self rangesRegularExpressionBeginString:beginStr
-                                                              withEndString:endStr
-                                                             withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
-                                                                 doColoring:YES
-                                                             pairStringKind:k_notUseKind];
-                        if (tmpArray != nil) {
-                            [targetArray addObject:tmpArray];
-                        }
-                    } else {
-                        tmpArray = [self rangesRegularExpressionString:beginStr
-                                                        withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
-                                                            doColoring:YES
-                                                        pairStringKind:k_notUseKind];
-                        if (tmpArray != nil) {
-                            [targetArray addObject:tmpArray];
-                        }
-                    }
-                } else {
-                    if ((endStr != nil) && ([endStr length] > 0)) {
-                        // 開始／終了ともに入力されていたらクォートかどうかをチェック、最初に出てきたクォートのみを把握
-                        if ([beginStr isEqualToString:@"\'"] && [endStr isEqualToString:@"\'"]) {
-                            if (!isSingleQuotes) {
-                                isSingleQuotes = YES;
-                                _singleQuotesAttrs = [_currentAttrs retain]; // ===== retain
+                    if ([strDict[k_SCKey_regularExpression] boolValue]) {
+                        if ((endStr != nil) && ([endStr length] > 0)) {
+                            tmpArray = [self rangesRegularExpressionBeginString:beginStr
+                                                                  withEndString:endStr
+                                                                 withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                                     doColoring:YES
+                                                                 pairStringKind:k_notUseKind];
+                            if (tmpArray != nil) {
+                                [targetArray addObject:tmpArray];
                             }
-                            continue;
-                        }
-                        if ([beginStr isEqualToString:@"\""] && [endStr isEqualToString:@"\""]) {
-                            if (!isDoubleQuotes) {
-                                isDoubleQuotes = YES;
-                                _doubleQuotesAttrs = [_currentAttrs retain]; // ===== retain
-                            }
-                            continue;
-                        }
-                        tmpArray = [self rangesBeginString:beginStr withEndString:endStr
-                                                doColoring:YES pairStringKind:k_notUseKind];
-                        if (tmpArray != nil) {
-                            [targetArray addObject:tmpArray];
-                        }
-                    } else {
-                        NSNumber *len = @([beginStr length]);
-                        id wordsArray = simpleWordsDict[len];
-                        if (wordsArray) {
-                            [wordsArray addObject:beginStr];
                         } else {
-                            wordsArray = [NSMutableArray arrayWithObject:beginStr];
-                            simpleWordsDict[len] = wordsArray;
+                            tmpArray = [self rangesRegularExpressionString:beginStr
+                                                            withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                                doColoring:YES
+                                                            pairStringKind:k_notUseKind];
+                            if (tmpArray != nil) {
+                                [targetArray addObject:tmpArray];
+                            }
                         }
-                        [simpleWordsChar appendString:beginStr];
+                    } else {
+                        if ((endStr != nil) && ([endStr length] > 0)) {
+                            // 開始／終了ともに入力されていたらクォートかどうかをチェック、最初に出てきたクォートのみを把握
+                            if ([beginStr isEqualToString:@"\'"] && [endStr isEqualToString:@"\'"]) {
+                                if (!isSingleQuotes) {
+                                    isSingleQuotes = YES;
+                                    _singleQuotesAttrs = [_currentAttrs retain]; // ===== retain
+                                }
+                                continue;
+                            }
+                            if ([beginStr isEqualToString:@"\""] && [endStr isEqualToString:@"\""]) {
+                                if (!isDoubleQuotes) {
+                                    isDoubleQuotes = YES;
+                                    _doubleQuotesAttrs = [_currentAttrs retain]; // ===== retain
+                                }
+                                continue;
+                            }
+                            tmpArray = [self rangesBeginString:beginStr withEndString:endStr
+                                                    doColoring:YES pairStringKind:k_notUseKind];
+                            if (tmpArray != nil) {
+                                [targetArray addObject:tmpArray];
+                            }
+                        } else {
+                            NSNumber *len = @([beginStr length]);
+                            id wordsArray = simpleWordsDict[len];
+                            if (wordsArray) {
+                                [wordsArray addObject:beginStr];
+                            } else {
+                                wordsArray = [NSMutableArray arrayWithObject:beginStr];
+                                simpleWordsDict[len] = wordsArray;
+                            }
+                            [simpleWordsChar appendString:beginStr];
+                        }
                     }
-                }
-                // インジケータ更新
-                if ([self isIndicatorShown] && ((j % 10) == 0)) {
-                    indicatorValue = beginDouble + (double)(j / (double)count * k_perCompoIncrement);
-                    [self setDoubleIndicator:(double)indicatorValue];
-                    [[self coloringIndicator] displayIfNeeded];
-                }
-                if (j % 100 == 0) {
-                    [pool release]; // ===== release
-                    pool = [[NSAutoreleasePool alloc] init]; // ===== alloc
-                }
+                    // インジケータ更新
+                    if ([self isIndicatorShown] && ((j % 10) == 0)) {
+                        indicatorValue = beginDouble + (double)(j / (double)count * k_perCompoIncrement);
+                        [self setDoubleIndicator:(double)indicatorValue];
+                        [[self coloringIndicator] displayIfNeeded];
+                    }
+                } // ==== end-autoreleasepool
             } // end-for (j)
-            [pool release]; // ===== release
             if (([simpleWordsDict count]) > 0) {
                 tmpArray = [self rangesSimpleWordsArrayDict:simpleWordsDict withCharString:simpleWordsChar];
                 if (tmpArray != nil) {
