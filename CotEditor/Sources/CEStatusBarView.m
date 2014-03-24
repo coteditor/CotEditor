@@ -161,8 +161,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *statusString = [@"" mutableCopy];
     NSNumberFormatter *formatter = [self decimalFormatter];
     
-    [statusString appendFormat:NSLocalizedString(@"Num Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
-    [statusString appendFormat:NSLocalizedString(@"   Num Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
+    [statusString appendFormat:NSLocalizedString(@"Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
+    [statusString appendFormat:NSLocalizedString(@"   Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
     if ([self selectedCharsInfo] > 0) {
         [statusString appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedCharsInfo])]];
     }

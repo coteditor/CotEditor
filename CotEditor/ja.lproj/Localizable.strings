@@ -120,8 +120,8 @@ http://www.aynimac.com/
 
 /* CEStatusBarView */
 "This Dococument is ReadOnly" = "書類は書き込み不可です";
-"Num Lines: %@" = "行数：%@";
-"   Num Chars: %@" = "   文字数：%@";
+"Lines: %@" = "行数：%@";
+"   Chars: %@" = "   文字数：%@";
 "   Location: %@" = "   位置：%@";
 "   Line: %@" = "   行：%@";
 "   Column: %@" = "   列：%@";
