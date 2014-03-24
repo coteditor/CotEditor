@@ -609,7 +609,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [theString length];
     NSUInteger lineStart = 0, column = 0, index = 0;
-    NSUInteger numberOfSelectedWords = 0, numberOfWords = [spellChecker countWordsInString:theString language:nil];
+    NSUInteger numberOfSelectedWords = 0, numberOfWords = 0;
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
     if ([[self textView] hasMarkedText]) {
@@ -626,6 +626,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             index = NSMaxRange([theString lineRangeForRange:NSMakeRange(index, 0)]);
         }
         
+        numberOfWords = [spellChecker countWordsInString:theString language:nil];
         if (selectedRange.length > 0) {
             numberOfSelectedWords = [spellChecker countWordsInString:[theString substringWithRange:selectedRange]
                                                                                           language:nil];
