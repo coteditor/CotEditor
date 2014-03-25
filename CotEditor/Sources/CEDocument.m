@@ -31,6 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
+#import <objc/message.h>
 #import "CEDocument.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "ODBEditorSuite.h"
@@ -322,8 +323,8 @@ enum { typeFSS = 'fss ' };
 
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
     if ([self isDocumentEdited] &&
-        ![self canReleaseFinderLockAtURL:[self fileURL] isLocked:nil lockAgain:YES]) {
-
+        ![self canReleaseFinderLockAtURL:[self fileURL] isLocked:nil lockAgain:YES])
+    {
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
                                          defaultButton:NSLocalizedString(@"Cancel", nil)
                                        alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
@@ -331,18 +332,21 @@ enum { typeFSS = 'fss ' };
                              informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else. \n\nDo you want to close?", nil)];
 
         for (NSButton *button in [alert buttons]) {
-            if ([[button title] isEqualToString:NSLocalizedString(@"Don't Save, and Close",@"")]) {
+            if ([[button title] isEqualToString:NSLocalizedString(@"Don't Save, and Close", nil)]) {
                 [button setKeyEquivalent:@"d"];
                 [button setKeyEquivalentModifierMask:NSCommandKeyMask];
                 break;
             }
         }
-        
         [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse returnCode) {
-            BOOL theReturn = (returnCode != NSAlertDefaultReturn); // YES == Don't Save (Close)
+            BOOL shouldClose = (returnCode == NSAlertAlternateReturn); // YES == Don't Save and Close
             
             if (delegate) {
-                objc_msgSend(delegate, shouldCloseSelector, self, theReturn, contextInfo);
+                void (*callback)(id, SEL, id, BOOL, void *) = (void (*)(id, SEL, id, BOOL, void *))objc_msgSend;
+                (*callback)(delegate, shouldCloseSelector, self, shouldClose, contextInfo);
+                if (shouldClose) {
+                    [[NSApplication sharedApplication] terminate:nil];
+                }
             }
         }];
     } else {
