@@ -1084,7 +1084,8 @@ enum { typeFSS = 'fss ' };
         state = ([menuItem tag] == [self encodingCode]) ? NSOnState : NSOffState;
     } else if (([menuItem action] == @selector(setLineEndingCharToLF:)) ||
                ([menuItem action] == @selector(setLineEndingCharToCR:)) ||
-               ([menuItem action] == @selector(setLineEndingCharToCRLF:))) {
+               ([menuItem action] == @selector(setLineEndingCharToCRLF:)) ||
+               ([menuItem action] == @selector(setLineEndingChar:))) {
         state = ([menuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
     } else if ([menuItem action] == @selector(setSyntaxStyle:)) {
         name = [[self editorView] syntaxStyleNameToColoring];
