@@ -66,7 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
 - (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
-- (NSWindow *)extensionErrorWindow;
+- (NSString *)extensionErrorString;
 
 // Action Message
 - (IBAction)setToFactoryDefaults:(id)sender;

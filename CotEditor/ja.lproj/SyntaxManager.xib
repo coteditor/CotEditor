@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="editWindow" destination="6" id="aVJ-sm-lWc"/>
                 <outlet property="elementPopUpButton" destination="432" id="ILa-6O-WiO"/>
-                <outlet property="extensionErrorTextView" destination="277" id="aYd-Mi-OO4"/>
                 <outlet property="factoryDefaultsButton" destination="670" id="Fc2-zO-Bsc"/>
                 <outlet property="messageField" destination="265" id="eBa-KI-Z7A"/>
                 <outlet property="styleController" destination="32" id="rIr-f7-qVy"/>
@@ -1713,70 +1712,6 @@ Cg
                 <binding destination="32" name="contentArray" keyPath="selection.charactersArray" id="244"/>
             </connections>
         </arrayController>
-        <window title="ウインドウ" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="269" userLabel="extensionWindow">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="234" y="322" width="418" height="334"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <view key="contentView" id="268">
-                <rect key="frame" x="0.0" y="0.0" width="418" height="334"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="278">
-                        <rect key="frame" x="20" y="60" width="378" height="229"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="Z18-i1-CHT">
-                            <rect key="frame" x="1" y="1" width="376" height="227"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView editable="NO" importsGraphics="NO" richText="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="277">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="227"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="376" height="227"/>
-                                    <size key="maxSize" width="378" height="10000000"/>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="376" height="227"/>
-                                    <size key="maxSize" width="378" height="10000000"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1078">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1079">
-                            <rect key="frame" x="361" y="1" width="16" height="227"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                    <button verticalHuggingPriority="750" id="281">
-                        <rect key="frame" x="305" y="13" width="98" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="閉じる" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1021">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="closeSyntaxExtensionErrorSheet:" target="-2" id="282"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" id="283">
-                        <rect key="frame" x="29" y="297" width="361" height="17"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="拡張子エラー" id="1022">
-                            <font key="font" metaFont="systemBold"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                </subviews>
-            </view>
-        </window>
         <arrayController id="722" userLabel="OutlineMenuController">
             <declaredKeys>
                 <string>beginString</string>

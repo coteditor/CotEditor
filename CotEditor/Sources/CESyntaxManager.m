@@ -45,10 +45,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSTextField *messageField;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *elementPopUpButton;
 @property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
-@property (nonatomic, strong) IBOutlet NSTextView *extensionErrorTextView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic, strong) IBOutlet NSTextView *syntaxElementCheckTextView;  // on 10.8 NSTextView cannot be weak
 
-@property (nonatomic) IBOutlet NSArrayController *styleController;;
+@property (nonatomic) IBOutlet NSArrayController *styleController;
 
 // readonly
 @property (nonatomic, readwrite) NSString *selectedStyleName;
@@ -375,17 +374,6 @@ static CESyntaxManager *sharedInstance = nil;
 //------------------------------------------------------
 {
     return ([[self xtsnErrors] count] > 0);
-}
-
-
-//------------------------------------------------------
-- (NSWindow *)extensionErrorWindow
-// 拡張子重複エラー表示ウィンドウを返す
-//------------------------------------------------------
-{
-    [self setExtensionErrorToTextView];
-
-    return [[self extensionErrorTextView] window];
 }
 
 
@@ -758,7 +746,7 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 //------------------------------------------------------
-- (void)setExtensionErrorToTextView
+- (NSString *)extensionErrorString
 // カラーシンタックス拡張子重複エラー表示シートに表示するエラー内容をセット
 //------------------------------------------------------
 {
@@ -793,7 +781,8 @@ static CESyntaxManager *sharedInstance = nil;
     } else {
         [string setString:NSLocalizedString(@"No Error found.",@"")];
     }
-    [[self extensionErrorTextView] setString:string];
+    
+    return string;
 }
 
 

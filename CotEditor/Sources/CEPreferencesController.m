@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEPreferencesController.h"
 #import "CEAppController.h"
+#import "CESyntaxExtensionErrorSheetController.h"
 #import "constants.h"
 
 
@@ -641,16 +642,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // カラーシンタックス拡張子重複エラー表示シートを開き、閉じる
 // ------------------------------------------------------
 {
-    // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
-    NSWindow *sheet = [[CESyntaxManager sharedInstance] extensionErrorWindow];
-
-    [NSApp beginSheet:sheet
-       modalForWindow:[self window]
-        modalDelegate:self
-       didEndSelector:NULL
-          contextInfo:NULL];
+    CESyntaxExtensionErrorSheetController *sheetController = [[CESyntaxExtensionErrorSheetController alloc]
+                                                          initWithWindowNibName:@"SyntaxExtensionErrorSheet"];
     
+    [sheetController setErrorString:[[CESyntaxManager sharedInstance] extensionErrorString]];
+    NSWindow *sheet = [sheetController window];
+    
+    // シートウィンドウを表示してモーダルループに入る
+    // (閉じる命令は CESyntaxExtensionsSheetControllerのcloseSheet: で)
+
+    [NSApp beginSheet:[sheetController window] modalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
 
     // シートを閉じる
