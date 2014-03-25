@@ -72,37 +72,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect textContainer:inTextContainer];
     if (self) {
-
-    // このメソッドはSmultronのSMLTextViewを参考にしています。
-    // This method is based on Smultron(SMLTextView) written by Peter Borg. Copyright (C) 2004 Peter Borg.
-    // http://smultron.sourceforge.net
-    // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
+        // このメソッドはSmultronのSMLTextViewを参考にしています。
+        // This method is based on Smultron(SMLTextView) written by Peter Borg. Copyright (C) 2004 Peter Borg.
+        // http://smultron.sourceforge.net
+        // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSMutableString *widthStr = [[NSMutableString alloc] init];
-        NSUInteger numberOfSpaces = [defaults integerForKey:k_key_tabWidth];
-        while (numberOfSpaces--) {
-            [widthStr appendString:@" "];
-        }
-        NSString *name = [defaults stringForKey:k_key_fontName];
-        CGFloat size = (CGFloat)[defaults doubleForKey:k_key_fontSize];
-        NSFont *font = [NSFont fontWithName:name size:size];
-        CGFloat sizeOfTab = [widthStr sizeWithAttributes:@{NSFontAttributeName:font}].width;
+        
+        NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
+                                       size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
 
         NSDictionary *attrs;
         NSColor *backgroundColor, *highlightLineColor;
-        NSMutableParagraphStyle *paragraphStyle;
-        NSTextTab *textTabToBeRemoved;
 
-        paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        for (textTabToBeRemoved in [paragraphStyle tabStops]) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        for (NSTextTab *textTabToBeRemoved in [paragraphStyle tabStops]) {
             [paragraphStyle removeTabStop:textTabToBeRemoved];
         }
-
-        [paragraphStyle setDefaultTabInterval:sizeOfTab];
+        [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
 
         attrs = @{NSParagraphStyleAttributeName: paragraphStyle,
                   NSFontAttributeName: font,
-                  NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_textColor]]};
+                  NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
+                                                   [defaults valueForKey:k_key_textColor]]};
         [self setTypingAttrs:attrs];
         [self setEffectTypingAttrs];
         // （NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
@@ -439,6 +430,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
     [super setFont:font];
     attrs[NSFontAttributeName] = font;
+    [attrs[NSParagraphStyleAttributeName] setDefaultTabInterval:[self tabIntervalFromFont:font]];
+    
     [self setTypingAttrs:attrs];
     [self setEffectTypingAttrs];
 }
@@ -1836,6 +1829,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
         }
     }
+}
+
+
+// ------------------------------------------------------
+- (CGFloat)tabIntervalFromFont:(NSFont *)font
+// フォントからタブ幅を計算して返す
+// ------------------------------------------------------
+{
+    NSMutableString *widthStr = [[NSMutableString alloc] init];
+    NSUInteger numberOfSpaces = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
+    while (numberOfSpaces--) {
+        [widthStr appendString:@" "];
+    }
+    return [widthStr sizeWithAttributes:@{NSFontAttributeName:font}].width;
 }
 
 @end
