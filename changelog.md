@@ -26,7 +26,8 @@ changelog (for developer)
     - 新: Drag selected text immediately
     - 旧: Carbonのように、選択テキストをすぐにドラッグ開始
     - 新: 選択テキストをすぐにドラッグ開始
-- 設定ウインドウなどの数値入力用のフィールドでは、自動的にローマ字入力に切り替わるようにした
+- 環境設定ウインドウなどの数値入力用のフィールドでは、自動的にローマ字入力に切り替わるようにした
+- 環境設定ウインドウのタイトルをその時選択されているタブの名前に変更
 
 - AppleScriptに関する変更
 	- documentオブジェクトの `transparency` および `alpha only textView` プロパティの廃止

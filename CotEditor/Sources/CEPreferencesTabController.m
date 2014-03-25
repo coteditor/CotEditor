@@ -227,6 +227,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [tabView setHidden:YES];
         [[self prefWindow] setFrame:frame display:YES animate:YES];
         [tabView setHidden:NO];
+        
+        // ウインドウタイトルを更新
+        [[tabView window] setTitle:NSLocalizedString([tabViewItem label], nil)];
     }
     return YES;
 }
