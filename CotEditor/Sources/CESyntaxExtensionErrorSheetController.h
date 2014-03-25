@@ -35,6 +35,7 @@
 
 @interface CESyntaxExtensionErrorSheetController : NSWindowController <NSWindowDelegate>
 
-@property (nonatomic) NSString *errorString;
+// default initializer
+- (instancetype)init;
 
 @end

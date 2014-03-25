@@ -31,18 +31,30 @@
  */
 
 #import "CESyntaxExtensionErrorSheetController.h"
+#import "CESyntaxManager.h"
 
+
+@interface CESyntaxExtensionErrorSheetController ()
+
+@property (nonatomic) IBOutlet NSArrayController *arrayController;
+
+@end
+
+
+
+
+#pragma mark -
 
 @implementation CESyntaxExtensionErrorSheetController
 
 #pragma mark NSWindowController Methods
 
 // ------------------------------------------------------
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)init
 // 初期化
 // ------------------------------------------------------
 {
-    self = [super initWithWindow:window];
+    self = [super initWithWindowNibName:@"SyntaxExtensionErrorSheet"];
     if (self) {
         [[self window] setLevel:NSModalPanelWindowLevel];
     }
@@ -50,8 +62,17 @@
 }
 
 
+// ------------------------------------------------------
+- (void)awakeFromNib
+// Nibファイル読み込み直後
+// ------------------------------------------------------
+{
+    [self setupErrorDict];
+}
 
-#pragma mark Private Methods
+
+
+#pragma mark Action Messages
 
 // ------------------------------------------------------
 - (IBAction)closeSheet:(id)sender
@@ -59,6 +80,30 @@
 // ------------------------------------------------------
 {
     [NSApp stopModal];
+}
+
+
+
+#pragma mark Private Methods
+
+//------------------------------------------------------
+- (void)setupErrorDict
+// シートに表示するエラー内容をセット
+//------------------------------------------------------
+{
+    NSDictionary *errorDict = [[CESyntaxManager sharedInstance] extensionErrors];
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    for (id key in errorDict) {
+        NSMutableArray *styles = [errorDict[key] mutableCopy];
+        NSString *primaryStyle = styles[0];
+        [styles removeObjectAtIndex:0];
+        [objects addObject:@{@"extension": key,
+                             @"primaryStyle": primaryStyle,
+                             @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
+    }
+    
+    [[self arrayController] setContent:objects];
 }
 
 @end

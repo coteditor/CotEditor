@@ -52,7 +52,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // readonly
 @property (nonatomic, readwrite) NSString *selectedStyleName;
 @property (nonatomic, readwrite) NSDictionary *xtsnAndStyleTable;
-@property (nonatomic, readwrite) NSDictionary *xtsnErrors;
+@property (nonatomic, readwrite) NSDictionary *extensionErrors;
 @property (nonatomic, readwrite) NSArray *extensions;
 
 @property (nonatomic, readwrite) IBOutlet NSWindow *editWindow;
@@ -373,7 +373,7 @@ static CESyntaxManager *sharedInstance = nil;
 // 拡張子重複エラーがあるかどうかを返す
 //------------------------------------------------------
 {
-    return ([[self xtsnErrors] count] > 0);
+    return ([[self extensionErrors] count] > 0);
 }
 
 
@@ -620,7 +620,7 @@ static CESyntaxManager *sharedInstance = nil;
         }
     }
     [self setXtsnAndStyleTable:table];
-    [self setXtsnErrors:errorDict];
+    [self setExtensionErrors:errorDict];
     [self setExtensions:extensions];
 }
 
@@ -742,47 +742,6 @@ static CESyntaxManager *sharedInstance = nil;
         [copiedSyntaxName appendString:@".plist"];
     }
     return [copiedSyntaxName stringByDeletingPathExtension];
-}
-
-
-//------------------------------------------------------
-- (NSString *)extensionErrorString
-// カラーシンタックス拡張子重複エラー表示シートに表示するエラー内容をセット
-//------------------------------------------------------
-{
-    NSMutableString *string = [NSMutableString string];
-
-    if ([[self xtsnErrors] count] > 0) {
-        NSDictionary *errorDict = [self xtsnErrors];
-        NSEnumerator *enumerator = [errorDict keyEnumerator];
-        NSArray *errors;
-        id key;
-        NSInteger i, count;
-
-        [string setString:NSLocalizedString(@"The following Extension list is registered by two or more styles for one extension. \nCotEditor uses the first style.\n\n", nil)];
-        [string appendString:NSLocalizedString(@"\"Extension\" = \"Style Names\"\n  -  -  -  -  -  -  -\n", nil)];
-
-        // [NSDictionary descriptionInStringsFileFormat] だと日本語がユニコード16進表示になってしまうので、
-        // マニュアルで分解し文字列に変換（もっとうまいやり方あるだろ (-_-; ... 2005.12.03）
-        while (key = [enumerator nextObject]) {
-            errors = errorDict[key];
-            count = [errors count];
-            [string appendFormat:@"\"%@\" = \"", key];
-            for (i = 0; i < count; i++) {
-                [string appendString:errors[i]];
-                if (i < (count - 1)) {
-                    [string appendString:@", "];
-                } else {
-                    break;
-                }
-            }
-            [string appendString:@"\"\n"];
-        }
-    } else {
-        [string setString:NSLocalizedString(@"No Error found.",@"")];
-    }
-    
-    return string;
 }
 
 
