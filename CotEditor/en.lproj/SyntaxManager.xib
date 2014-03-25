@@ -7,7 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxManager">
             <connections>
-                <outlet property="_syntaxElementCheckTextView" destination="439" id="563"/>
                 <outlet property="editWindow" destination="6" id="Sch-ms-W5c"/>
                 <outlet property="elementPopUpButton" destination="432" id="EJO-SJ-LT6"/>
                 <outlet property="extensionErrorTextView" destination="277" id="jPB-pU-7ar"/>

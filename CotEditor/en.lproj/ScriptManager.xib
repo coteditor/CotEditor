@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEScriptManager">
             <connections>
-                <outlet property="_errorTextView" destination="8" id="11"/>
+                <outlet property="errorTextView" destination="8" id="XeZ-zv-bUd"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
