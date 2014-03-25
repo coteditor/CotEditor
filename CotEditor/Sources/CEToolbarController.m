@@ -95,10 +95,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // トグルアイテムの状態を更新
 // ------------------------------------------------------
 {
-    NSEnumerator *items = [[[self toolbar] items] objectEnumerator];
-    id item;
-
-    while (item = [items nextObject]) {
+    for (id item in [[self toolbar] items]) {
         if ([[item itemIdentifier] isEqualToString:identifer]) {
             [self doUpdateToggleItem:item setOn:setOn];
             break;
@@ -121,10 +118,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディングポップアップの選択項目を設定
 // ------------------------------------------------------
 {
-    NSEnumerator *enumerator = [[[self encodingPopupButton] itemArray] objectEnumerator];
-    id menuItem;
-
-    while (menuItem = [enumerator nextObject]) {
+    for (id menuItem in [[self encodingPopupButton] itemArray]) {
         if ([menuItem tag] == encoding) {
             [[self encodingPopupButton] selectItem:menuItem];
             break;
