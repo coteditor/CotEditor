@@ -45,21 +45,4 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupSyntaxMenus;
 - (void)changeFont:(id)sender;
 
-// Action Message
-- (IBAction)showFonts:(id)sender;
-- (IBAction)openEncodingEditSheet:(id)sender;
-- (IBAction)openSizeSampleWindow:(id)sender;
-- (IBAction)openSyntaxEditSheet:(id)sender;
-- (IBAction)changedSyntaxStylesPopup:(id)sender;
-- (IBAction)deleteSyntaxStyle:(id)sender;
-- (IBAction)importSyntaxStyle:(id)sender;
-- (IBAction)exportSyntaxStyle:(id)sender;
-- (IBAction)openSyntaxExtensionErrorSheet:(id)sender;
-- (IBAction)insertFormatStringInFileDrop:(id)sender;
-- (IBAction)addNewFileDropSetting:(id)sender;
-- (IBAction)deleteFileDropSetting:(id)sender;
-- (IBAction)openKeyBindingEditSheet:(id)sender;
-- (IBAction)setupCustomLineSpacing:(id)sender;
-- (IBAction)openPrefHelp:(id)sender;
-
 @end
