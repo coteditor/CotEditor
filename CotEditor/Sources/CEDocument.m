@@ -338,17 +338,15 @@ enum { typeFSS = 'fss ' };
                 break;
             }
         }
-        [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse returnCode) {
-            BOOL shouldClose = (returnCode == NSAlertAlternateReturn); // YES == Don't Save and Close
-            
-            if (delegate) {
-                void (*callback)(id, SEL, id, BOOL, void *) = (void (*)(id, SEL, id, BOOL, void *))objc_msgSend;
-                (*callback)(delegate, shouldCloseSelector, self, shouldClose, contextInfo);
-                if (shouldClose) {
-                    [[NSApplication sharedApplication] terminate:nil];
-                }
-            }
-        }];
+        
+        NSDictionary *contextInfoDict = @{@"delegate": delegate,
+                                         @"shouldCloseSelector": [NSValue valueWithPointer:shouldCloseSelector],
+                                         @"contextInfo": [NSValue valueWithPointer:contextInfo]};
+        
+        [alert beginSheetModalForWindow:[self windowForSheet]
+                          modalDelegate:self
+                         didEndSelector:@selector(alertForNotWritableCloseDocDidEnd:returnCode:contextInfo:)
+                            contextInfo:(__bridge_retained void *)(contextInfoDict)];
     } else {
         [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
     }
@@ -2184,5 +2182,27 @@ enum { typeFSS = 'fss ' };
 }
 
 
+// ------------------------------------------------------
+- (void)alertForNotWritableCloseDocDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
+// 書き込み不可ドキュメントが閉じるときの確認アラートが閉じた
+// ------------------------------------------------------
+{
+    // このメソッドは下記のページの情報を参考にさせていただきました(2005.07.08)
+    // http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
+    
+    NSDictionary *contextInfoDict = CFBridgingRelease(contextInfo);
+    id delegate = contextInfoDict[@"delegate"];
+    SEL shouldCloseSelector = [contextInfoDict[@"shouldCloseSelector"] pointerValue];
+    void *originalContextInfo = [contextInfoDict[@"contextInfo"] pointerValue];
+    BOOL shouldClose = (returnCode == NSAlertAlternateReturn); // YES == Don't Save and Close
+    
+    if (delegate) {
+        void (*callback)(id, SEL, id, BOOL, void *) = (void (*)(id, SEL, id, BOOL, void *))objc_msgSend;
+        (*callback)(delegate, shouldCloseSelector, self, shouldClose, originalContextInfo);
+        if (shouldClose) {
+            [[NSApplication sharedApplication] terminate:nil];
+        }
+    }
+}
 
 @end

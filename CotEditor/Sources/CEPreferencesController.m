@@ -526,33 +526,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                        otherButton:nil
                          informativeTextWithFormat:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
 
-    __block typeof(self) blockSelf = self;
-    [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode != NSAlertAlternateReturn) { return; } // != Delete
-        
-        NSString *oldSelectedName = [[CESyntaxManager sharedInstance] selectedStyleName];
-        
-        if (![[CESyntaxManager sharedInstance] removeStyleFileWithStyleName:[[blockSelf syntaxStylesPopup] title]]) {
-            // 削除できなければ、その旨をユーザに通知
-            [[alert window] orderOut:blockSelf];
-            [[blockSelf window] makeKeyAndOrderFront:blockSelf];
-            NSAlert *newAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
-                                                defaultButton:nil alternateButton:nil otherButton:nil
-                                    informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil),
-                                 [[blockSelf syntaxStylesPopup] title]];
-            NSBeep();
-            [newAlert beginSheetModalForWindow:[blockSelf window] completionHandler:nil];
-            return;
-        }
-        // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
-        [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setStyleToNoneAndRecolorFlagWithStyleName:)
-                                                  withObject:oldSelectedName];
-        
-        // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
-        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
-        // 拡張子重複エラー表示ボタンの有効化を制御
-        [[blockSelf syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedInstance] existsExtensionError]];
-    }];
+    [alert beginSheetModalForWindow:[self window]
+                      modalDelegate:self
+                     didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:) contextInfo:NULL];
 }
 
 
@@ -591,13 +567,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
-            
-            [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
-                if (returnCode == NSAlertAlternateReturn) { // = Replace
-                    [blockSelf doImport:URL withCurrentSheetWindow:[alert window]];
-                }
-            }];
-            
+            [alert beginSheetModalForWindow:[self window] modalDelegate:self
+                             didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
+                                contextInfo:(__bridge_retained void *)(URL)];
         } else {
             // 重複するファイル名がないとき、インポート実行
             [self doImport:URL withCurrentSheetWindow:openPanel];
@@ -1081,18 +1053,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                    alternateButton:NSLocalizedString(@"Delete", nil) otherButton:nil
                          informativeTextWithFormat:NSLocalizedString(@"Deleted setting cannot be restored.", nil)];
     
-    __block typeof(self) blockSelf = self;
-    [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode != NSAlertAlternateReturn) { return; } // != Delete
-        
-        if ([[blockSelf fileDropController] selectionIndex] == NSNotFound) { return; }
-        
-        if ([blockSelf doDeleteFileDrop]) {
-            [[blockSelf fileDropController] remove:self];
-            [blockSelf writeBackFileDropArray];
-            [blockSelf setDoDeleteFileDrop:NO];
-        }
-     }];
+    [alert beginSheetModalForWindow:[self window]
+                         modalDelegate:self
+                        didEndSelector:@selector(deleteFileDropSettingAlertDidEnd:returnCode:contextInfo:)
+                           contextInfo:NULL];
 }
 
 
@@ -1102,6 +1066,66 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self fileDropTableView] editColumn:0 row:[[self fileDropTableView] selectedRow] withEvent:nil select:YES];
+}
+
+
+// ------------------------------------------------------
+- (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+// ファイルドロップ編集設定削除確認シートが閉じる直前
+// ------------------------------------------------------
+{
+    if (returnCode != NSAlertAlternateReturn) { return; } // != Delete
+    
+    if ([[self fileDropController] selectionIndex] == NSNotFound) { return; }
+    
+    if ([self doDeleteFileDrop]) {
+        [[self fileDropController] remove:self];
+        [self writeBackFileDropArray];
+        [self setDoDeleteFileDrop:NO];
+    }
+}
+
+
+// ------------------------------------------------------
+- (void)deleteStyleAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+// style削除確認シートが閉じる直前
+// ------------------------------------------------------
+{
+    if (returnCode != NSAlertAlternateReturn) { // != Delete
+        return;
+    }
+    
+    if (![[CESyntaxManager sharedInstance] removeStyleFileWithStyleName:
+          [_syntaxStylesPopup title]]) {
+        // 削除できなければ、その旨をユーザに通知
+        [[alert window] orderOut:self];
+        [[self window] makeKeyAndOrderFront:self];
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
+                                         defaultButton:nil
+                                       alternateButton:nil otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil),
+                          [[self syntaxStylesPopup] title]];
+        NSBeep();
+        [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+        return;
+    }
+    // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
+    [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
+    // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
+    [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
+    // 拡張子重複エラー表示ボタンの有効化を制御
+    [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedInstance] existsExtensionError]];
+}
+
+
+// ------------------------------------------------------
+- (void)secondarySheedlDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+// セカンダリシートが閉じる直前
+// ------------------------------------------------------
+{
+    if (returnCode == NSAlertAlternateReturn) { // = Replace
+        [self doImport:CFBridgingRelease(contextInfo) withCurrentSheetWindow:[alert window]];
+    }
 }
 
 @end
