@@ -347,10 +347,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_syntaxImportTag   -1001
 #define k_syntaxNoSheetTag  0
 
-// min & max window size
-#define k_minWindowSize 100.0
-#define k_maxWindowSize 10000.0
-
 // Encoding list edit
 #define k_dropMyselfPboardType  @"dropMyself"
 #define k_lastRow   -1

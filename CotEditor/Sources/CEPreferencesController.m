@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEPreferencesController.h"
 #import "CEAppController.h"
+#import "CESizeSampleWindowController.h"
 #import "CESyntaxExtensionErrorSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "constants.h"
@@ -47,7 +48,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
-@property (nonatomic) IBOutlet NSWindow *sizeSampleWindow;
 @property (nonatomic) IBOutlet NSArrayController *fileDropController;
 @property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
@@ -65,9 +65,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleXtsnErrButton;
 
 @property (nonatomic) BOOL doDeleteFileDrop;
-
-@property (nonatomic) CGFloat sampleWidth;
-@property (nonatomic) CGFloat sampleHeight;
 
 @end
 
@@ -177,26 +174,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setupSyntaxStylesPopup];
     [self changedSyntaxStylesPopup:self];
-}
-
-
-// ------------------------------------------------------
-- (void)setSampleWidth:(CGFloat)width
-// サンプルウィンドウの幅をセット
-// ------------------------------------------------------
-{
-    if ((width < k_minWindowSize) || (width > k_maxWindowSize)) {return;}
-    _sampleWidth = width;
-}
-
-
-// ------------------------------------------------------
-- (void)setSampleHeight:(CGFloat)height
-// サンプルウィンドウの高さを得る
-// ------------------------------------------------------
-{
-    if ((height < k_minWindowSize) || (height > k_maxWindowSize)) {return;}
-    _sampleHeight = height;
 }
 
 
@@ -392,33 +369,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // サイズ設定のためのサンプルウィンドウを開く
 // ------------------------------------------------------
 {
-    NSSize size = NSMakeSize((CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_windowWidth],
-                             (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_windowHeight]);
-
-    [[self sizeSampleWindow] setContentSize:size];
-    [[self sizeSampleWindow] makeKeyAndOrderFront:self];
     // モーダルで表示
-    [NSApp runModalForWindow:[self sizeSampleWindow]];
-
-    // サンプルウィンドウを閉じる
-    [[self sizeSampleWindow] orderOut:self];
+    CESizeSampleWindowController *sampleWindowController = [[CESizeSampleWindowController alloc] initWithWindowNibName:@"SizeSampleWindow"];
+    [sampleWindowController showWindow:sender];
+    [NSApp runModalForWindow:[sampleWindowController window]];
+    
     [[self window] makeKeyAndOrderFront:self];
-
-}
-
-
-// ------------------------------------------------------
-- (IBAction)setWindowContentSizeToDefault:(id)sender
-// サンプルウィンドウの内部サイズをuserDefaultsにセット
-// ------------------------------------------------------
-{
-    if ([sender tag] == k_okButtonTag) { // ok のときサイズを保存
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-        [defaults setDouble:[self sampleWidth] forKey:k_key_windowWidth];
-        [defaults setDouble:[self sampleHeight] forKey:k_key_windowHeight];
-    }
-    [NSApp stopModal];
 }
 
 

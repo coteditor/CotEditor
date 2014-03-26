@@ -49,7 +49,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)showFonts:(id)sender;
 - (IBAction)openEncodingEditSheet:(id)sender;
 - (IBAction)openSizeSampleWindow:(id)sender;
-- (IBAction)setWindowContentSizeToDefault:(id)sender;
 - (IBAction)openSyntaxEditSheet:(id)sender;
 - (IBAction)changedSyntaxStylesPopup:(id)sender;
 - (IBAction)deleteSyntaxStyle:(id)sender;

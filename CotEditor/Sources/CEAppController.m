@@ -209,7 +209,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
     NSArray *resettableKeys = @[k_key_encodingList,
-                                k_key_insertCustomTextArray];
+                                k_key_insertCustomTextArray,
+                                k_key_windowWidth,
+                                k_key_windowHeight];
     NSDictionary *initialValuesDict=[defaults dictionaryWithValuesForKeys:resettableKeys];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValuesDict];
 

@@ -20,7 +20,6 @@
                 <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
                 <outlet property="prefTabView" destination="10" id="zRC-Ni-cde"/>
                 <outlet property="printFontFamilyNameSize" destination="1007" id="Pj9-wE-bsR"/>
-                <outlet property="sizeSampleWindow" destination="127" id="2N0-CT-NOC"/>
                 <outlet property="syntaxStyleCopyButton" destination="346" id="ksJ-kH-iSp"/>
                 <outlet property="syntaxStyleDeleteButton" destination="351" id="0pb-Vp-GsP"/>
                 <outlet property="syntaxStyleEditButton" destination="166" id="Gew-43-qGW"/>
@@ -33,7 +32,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="CotEditor Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="prefWindow">
+        <window title="CotEditor Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Preferences Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="39" y="165" width="694" height="686"/>
@@ -2580,134 +2579,7 @@ The parent directory name of the dropped file.
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared Defaults"/>
-        <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
-            <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="192" y="280" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="400" height="200"/>
-            <view key="contentView" id="126">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" tag="100" id="128">
-                        <rect key="frame" x="366" y="22" width="100" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="3397">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setWindowContentSizeToDefault:" target="-2" id="134"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="129">
-                        <rect key="frame" x="258" y="22" width="100" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3398">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setWindowContentSizeToDefault:" target="-2" id="133"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" id="130">
-                        <rect key="frame" x="17" y="276" width="446" height="64"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="3399">
-                            <font key="font" metaFont="system"/>
-                            <string key="title">You can resize this window.
-And press "OK" button, this window size will be set to default.</string>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="136">
-                        <rect key="frame" x="250" y="249" width="63" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3400">
-                            <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.0" negativeFormat="-0" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="155">
-                                <attributedString key="attributedStringForZero">
-                                    <fragment content="0"/>
-                                </attributedString>
-                                <decimal key="minimum" value="100"/>
-                                <decimal key="maximum" value="10000"/>
-                            </numberFormatter>
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            <allowedInputSourceLocales>
-                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                            </allowedInputSourceLocales>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="-2" name="value" keyPath="sampleWidth" id="152"/>
-                        </connections>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="138">
-                        <rect key="frame" x="383" y="249" width="63" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3401">
-                            <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0.0" negativeFormat="-0" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="156">
-                                <attributedString key="attributedStringForZero">
-                                    <fragment content="0"/>
-                                </attributedString>
-                                <decimal key="minimum" value="100"/>
-                                <decimal key="maximum" value="10000"/>
-                            </numberFormatter>
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            <allowedInputSourceLocales>
-                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                            </allowedInputSourceLocales>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="-2" name="value" keyPath="sampleHeight" id="153"/>
-                        </connections>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="140">
-                        <rect key="frame" x="203" y="251" width="42" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="width:" id="3402">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="141">
-                        <rect key="frame" x="336" y="251" width="42" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="height:" id="3403">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="154">
-                        <rect key="frame" x="17" y="32" width="228" height="17"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Press button, stop modal  >>>" id="3404">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                </subviews>
-            </view>
-            <connections>
-                <binding destination="-2" name="contentHeight" keyPath="sampleHeight" id="149"/>
-                <binding destination="-2" name="contentWidth" keyPath="sampleWidth" previousBinding="149" id="151"/>
-            </connections>
-        </window>
-        <arrayController clearsFilterPredicateOnInsertion="NO" id="451" userLabel="FileDropController">
+        <arrayController clearsFilterPredicateOnInsertion="NO" id="451" userLabel="File Drop Controller">
             <declaredKeys>
                 <string>extensions</string>
                 <string>formatString</string>
@@ -2715,7 +2587,7 @@ And press "OK" button, this window size will be set to default.</string>
                 <string>footerOneAlignIndex</string>
             </declaredKeys>
         </arrayController>
-        <customObject id="737" userLabel="CEPreferencesTabController" customClass="CEPreferencesTabController">
+        <customObject id="737" userLabel="Preferences Tab Controller" customClass="CEPreferencesTabController">
             <connections>
                 <outlet property="prefWindow" destination="6" id="JO0-oC-8Qm"/>
                 <outlet property="tabView" destination="10" id="J7j-KW-6Pc"/>
