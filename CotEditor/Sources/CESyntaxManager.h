@@ -67,10 +67,4 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
 
-// Action Message
-- (IBAction)setToFactoryDefaults:(id)sender;
-- (IBAction)closeSyntaxEditSheet:(id)sender;
-- (IBAction)closeSyntaxExtensionErrorSheet:(id)sender;
-- (IBAction)startSyntaxElementCheck:(id)sender;
-
 @end

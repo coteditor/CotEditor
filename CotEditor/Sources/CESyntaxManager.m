@@ -491,15 +491,6 @@ static CESyntaxManager *sharedInstance = nil;
 
 
 // ------------------------------------------------------
-- (IBAction)closeSyntaxExtensionErrorSheet:(id)sender
-// カラーシンタックス拡張子重複エラー表示シートの Done ボタンが押された
-// ------------------------------------------------------
-{
-    [NSApp stopModal];
-}
-
-
-// ------------------------------------------------------
 - (IBAction)startSyntaxElementCheck:(id)sender
 // 構文チェックを開始
 // ------------------------------------------------------
