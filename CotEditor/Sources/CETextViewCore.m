@@ -160,7 +160,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
     if ((![self hasMarkedText]) && (charIgnoringMod != nil)) {
         NSUInteger modFlags = [theEvent modifierFlags];
-        NSString *selectorStr = [[CEKeyBindingManager sharedInstance] selectorStringWithKeyEquivalent:charIgnoringMod
+        NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
                                                                                         modifierFrags:modFlags];
         NSInteger length = [selectorStr length];
         if ((selectorStr != nil) && (length > 0)) {
@@ -337,7 +337,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                              action:nil keyEquivalent:@""];
     NSMenu *utilityMenu = [[[[NSApp mainMenu] itemAtIndex:k_utilityMenuIndex] submenu] copy];
     NSMenuItem *ASMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
-    NSMenu *ASSubMenu = [[CEScriptManager sharedInstance] contexualMenu];
+    NSMenu *ASSubMenu = [[CEScriptManager sharedManager] contexualMenu];
 
     // 「フォント」メニューおよびサブメニューを削除
     [outMenu removeItem:[outMenu itemWithTitle:NSLocalizedString(@"Font",@"")]];

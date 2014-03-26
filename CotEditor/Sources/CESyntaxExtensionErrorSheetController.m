@@ -91,7 +91,7 @@
 // シートに表示するエラー内容をセット
 //------------------------------------------------------
 {
-    NSDictionary *errorDict = [[CESyntaxManager sharedInstance] extensionErrors];
+    NSDictionary *errorDict = [[CESyntaxManager sharedManager] extensionErrors];
     
     NSMutableArray *objects = [NSMutableArray array];
     for (id key in errorDict) {

@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // class method
-+ (CESyntaxManager *)sharedInstance;
++ (CESyntaxManager *)sharedManager;
 
 // Public method
 - (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode;

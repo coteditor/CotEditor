@@ -105,7 +105,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 保持するstyle名をセット
 // ------------------------------------------------------
 {
-    CESyntaxManager *manager = [CESyntaxManager sharedInstance];
+    CESyntaxManager *manager = [CESyntaxManager sharedManager];
     NSArray *names = [manager styleNames];
 
     if ([names containsObject:styleName] || [styleName isEqualToString:NSLocalizedString(@"None",@"")]) {
@@ -123,7 +123,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // 拡張子からstyle名をセット
 // ------------------------------------------------------
 {
-    NSString *name = [[CESyntaxManager sharedInstance] syntaxNameFromExtension:extension];
+    NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
 
     if (name && ![[self syntaxStyleName] isEqualToString:name]) {
         [self setSyntaxStyleName:name];
@@ -204,7 +204,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setUpdateRange:NSMakeRange(0, [self wholeStringLength])];
 
     if ([self coloringDictionary] == nil) {
-        [self setColoringDictionary:[[CESyntaxManager sharedInstance] syntaxWithStyleName:[self syntaxStyleName]]];
+        [self setColoringDictionary:[[CESyntaxManager sharedManager] syntaxWithStyleName:[self syntaxStyleName]]];
         [self setCompleteWordsArrayFromColoringDictionary];
     }
     if ([self coloringDictionary] == nil) { return; }
@@ -242,7 +242,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [self setUpdateRange:NSMakeRange(start, end - start)];
     if ([self coloringDictionary] == nil) {
-        [self setColoringDictionary:[[CESyntaxManager sharedInstance] syntaxWithStyleName:[self syntaxStyleName]]];
+        [self setColoringDictionary:[[CESyntaxManager sharedManager] syntaxWithStyleName:[self syntaxStyleName]]];
         [self setCompleteWordsArrayFromColoringDictionary];
     }
     if ([self coloringDictionary] == nil) { return; }

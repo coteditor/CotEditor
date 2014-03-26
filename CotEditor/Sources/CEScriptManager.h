@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEScriptManager : NSObject
 
 // class method
-+ (CEScriptManager *)sharedInstance;
++ (CEScriptManager *)sharedManager;
 
 // Public method
 - (void)buildScriptMenu:(id)sender;

@@ -83,7 +83,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-+ (CEKeyBindingManager *)sharedInstance
++ (CEKeyBindingManager *)sharedManager
 // return singleton instance
 // ------------------------------------------------------
 {

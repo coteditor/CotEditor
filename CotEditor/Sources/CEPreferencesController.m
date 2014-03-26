@@ -115,7 +115,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (![[self window] isVisible]) {
         [self setFontFamilyNameAndSize];
         // 拡張子重複エラー表示ボタンの有効化を制御
-        [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedInstance] existsExtensionError]];
+        [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
         
         [[self window] center];
     }
@@ -386,14 +386,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
     if (([sender tag] != k_syntaxNewTag) && (selected < 0)) { return; }
 
-    if (![[CESyntaxManager sharedInstance] setSelectionIndexOfStyle:selected mode:[sender tag]]) {
+    if (![[CESyntaxManager sharedManager] setSelectionIndexOfStyle:selected mode:[sender tag]]) {
         return;
     }
     NSString *oldName = [[self syntaxStylesPopup] titleOfSelectedItem];
 
     // シートウィンドウを表示してモーダルループに入る
     // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
-    NSWindow *sheet = [[CESyntaxManager sharedInstance] editWindow];
+    NSWindow *sheet = [[CESyntaxManager sharedManager] editWindow];
 
     [NSApp beginSheet:sheet
        modalForWindow:[self window]
@@ -405,20 +405,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // === 以下、シートを閉じる処理
     // OKボタンが押されていたとき（キャンセルでも、最初の状態に戻していいかもしれない (1/21)） ********
-    if ([[CESyntaxManager sharedInstance] isOkButtonPressed]) {
+    if ([[CESyntaxManager sharedManager] isOkButtonPressed]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
-        NSString *newName = [[CESyntaxManager sharedInstance] editedNewStyleName];
+        NSString *newName = [[CESyntaxManager sharedManager] editedNewStyleName];
         NSDictionary *styleNameDict = @{k_key_oldStyleName: oldName,
                                         k_key_newStyleName: newName};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
         
-        [[CESyntaxManager sharedInstance] setEditedNewStyleName:@""];
+        [[CESyntaxManager sharedManager] setEditedNewStyleName:@""];
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
         // 拡張子重複エラー表示ボタンの有効化を制御
         [[self syntaxStyleXtsnErrButton] setEnabled:
-                [[CESyntaxManager sharedInstance] existsExtensionError]];
+                [[CESyntaxManager sharedManager] existsExtensionError]];
     }
     // シートを閉じる
     [NSApp endSheet:sheet];
@@ -439,7 +439,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self syntaxStyleExportButton] setEnabled:isEnabled];
 
     if (isEnabled &&
-        ![[CESyntaxManager sharedInstance] isDefaultSyntaxStyle:[[self syntaxStylesPopup] title]])
+        ![[CESyntaxManager sharedManager] isDefaultSyntaxStyle:[[self syntaxStylesPopup] title]])
     {
         [[self syntaxStyleDeleteButton] setEnabled:YES];
     } else {
@@ -455,7 +455,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2;
 
-    if (![[CESyntaxManager sharedInstance] setSelectionIndexOfStyle:selected mode:k_syntaxNoSheetTag]) {
+    if (![[CESyntaxManager sharedManager] setSelectionIndexOfStyle:selected mode:k_syntaxNoSheetTag]) {
         return;
     }
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\" ?", nil),
@@ -494,7 +494,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
         
         // 同名styleが既にあるときは、置換してもいいか確認
-        if ([[CESyntaxManager sharedInstance] existsStyleFileWithStyleName:styleName]) {
+        if ([[CESyntaxManager sharedManager] existsStyleFileWithStyleName:styleName]) {
             // オープンパネルを閉じる
             [openPanel orderOut:blockSelf];
             [[blockSelf window] makeKeyAndOrderFront:blockSelf];
@@ -537,7 +537,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (result == NSFileHandlingPanelCancelButton) return;
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSURL *sourceURL = [[CESyntaxManager sharedInstance] URLOfStyle:[[self syntaxStylesPopup] title]];
+        NSURL *sourceURL = [[CESyntaxManager sharedManager] URLOfStyle:[[self syntaxStylesPopup] title]];
         NSURL *destURL = [savePanel URL];
         
         // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
@@ -620,10 +620,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // シートウィンドウを表示してモーダルループに入る
     // (閉じる命令は CEKeyBindingManager の closeKeyBindingEditSheet: で)
-    NSWindow *sheet = [[CEKeyBindingManager sharedInstance] editSheetWindowOfMode:[sender tag]];
+    NSWindow *sheet = [[CEKeyBindingManager sharedManager] editSheetWindowOfMode:[sender tag]];
 
     if ((sheet != nil) &&
-        [[CEKeyBindingManager sharedInstance] setupOutlineDataOfMode:[sender tag]])
+        [[CEKeyBindingManager sharedManager] setupOutlineDataOfMode:[sender tag]])
     {
         [NSApp beginSheet:sheet
            modalForWindow:[self window]
@@ -897,7 +897,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // シンタックスカラーリングスタイル指定ポップアップメニューを生成
 // ------------------------------------------------------
 {
-    NSArray *styleNames = [[CESyntaxManager sharedInstance] styleNames];
+    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSMenuItem *item;
     NSString *selectedTitle;
     NSUInteger selected;
@@ -954,7 +954,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // styleインポート実行
 // ------------------------------------------------------
 {
-    if ([[CESyntaxManager sharedInstance] importStyleFile:[fileURL path]]) {
+    if ([[CESyntaxManager sharedManager] importStyleFile:[fileURL path]]) {
         // インポートに成功したら、メニューとボタンを更新
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
     } else {
@@ -1035,7 +1035,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     
-    if (![[CESyntaxManager sharedInstance] removeStyleFileWithStyleName:
+    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:
           [_syntaxStylesPopup title]]) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
@@ -1054,7 +1054,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
     [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
     // 拡張子重複エラー表示ボタンの有効化を制御
-    [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedInstance] existsExtensionError]];
+    [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
 }
 
 

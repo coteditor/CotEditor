@@ -422,7 +422,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setupSupportDirectory];
     [self buildAllEncodingMenus];
     [self setSyntaxMenu:[self buildSyntaxMenu]];
-    [[CEScriptManager sharedInstance] buildScriptMenu:nil];
+    [[CEScriptManager sharedManager] buildScriptMenu:nil];
     [self cacheTheInvisibleGlyph];
 }
 
@@ -517,7 +517,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     // KeyBindingManagerをセットアップ
-    [[CEKeyBindingManager sharedInstance] setupAtLaunching];
+    [[CEKeyBindingManager sharedManager] setupAtLaunching];
     // ファイルを開くデフォルトエンコーディングをセット
     [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
 
@@ -612,7 +612,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Scriptエラーウィンドウを表示
 // ------------------------------------------------------
 {
-    [[CEScriptManager sharedInstance] openScriptErrorWindow];
+    [[CEScriptManager sharedManager] openScriptErrorWindow];
 }
 
 
@@ -822,7 +822,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenuItem *mormatMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
     NSMenuItem *menuItem;
     NSString *menuTitle;
-    NSArray *styleNames = [[CESyntaxManager sharedInstance] styleNames];
+    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSInteger i, count = [styleNames count];
     
     [mormatMenuItem setSubmenu:nil]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない

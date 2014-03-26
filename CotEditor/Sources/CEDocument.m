@@ -767,7 +767,7 @@ enum { typeFSS = 'fss ' };
 
     if (shouldUpdated) {
         // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
-        NSString *name = [[CESyntaxManager sharedInstance] syntaxNameFromExtension:extension];
+        NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
         name = (!name || [name isEqualToString:@""]) ? [defaults stringForKey:k_key_defaultColoringStyleName]: name;
         [[[self windowController] toolbarController] setSelectSyntaxItemWithTitle:name];
         if (doColoring) {
