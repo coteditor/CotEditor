@@ -45,15 +45,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSTextField *messageField;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *elementPopUpButton;
 @property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
-@property (nonatomic, strong) IBOutlet NSTextView *extensionErrorTextView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic, strong) IBOutlet NSTextView *syntaxElementCheckTextView;  // on 10.8 NSTextView cannot be weak
 
-@property (nonatomic) IBOutlet NSArrayController *styleController;;
+@property (nonatomic) IBOutlet NSArrayController *styleController;
 
 // readonly
 @property (nonatomic, readwrite) NSString *selectedStyleName;
 @property (nonatomic, readwrite) NSDictionary *xtsnAndStyleTable;
-@property (nonatomic, readwrite) NSDictionary *xtsnErrors;
+@property (nonatomic, readwrite) NSDictionary *extensionErrors;
 @property (nonatomic, readwrite) NSArray *extensions;
 
 @property (nonatomic, readwrite) IBOutlet NSWindow *editWindow;
@@ -99,7 +98,7 @@ static CESyntaxManager *sharedInstance = nil;
 {
     if (sharedInstance == nil) {
         self = [super init];
-        (void)[NSBundle loadNibNamed:@"SyntaxManager" owner:self];
+        (void)[NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
         [self setSelectedStyleName:[NSString string]];
         [self setEditedNewStyleName:[NSString string]];
         [self setupColoringStyleArray];
@@ -374,18 +373,7 @@ static CESyntaxManager *sharedInstance = nil;
 // 拡張子重複エラーがあるかどうかを返す
 //------------------------------------------------------
 {
-    return ([[self xtsnErrors] count] > 0);
-}
-
-
-//------------------------------------------------------
-- (NSWindow *)extensionErrorWindow
-// 拡張子重複エラー表示ウィンドウを返す
-//------------------------------------------------------
-{
-    [self setExtensionErrorToTextView];
-
-    return [[self extensionErrorTextView] window];
+    return ([[self extensionErrors] count] > 0);
 }
 
 
@@ -498,15 +486,6 @@ static CESyntaxManager *sharedInstance = nil;
     [self setupColoringStyleArray];
     [self setupExtensionAndSyntaxTable];
     [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
-    [NSApp stopModal];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)closeSyntaxExtensionErrorSheet:(id)sender
-// カラーシンタックス拡張子重複エラー表示シートの Done ボタンが押された
-// ------------------------------------------------------
-{
     [NSApp stopModal];
 }
 
@@ -632,7 +611,7 @@ static CESyntaxManager *sharedInstance = nil;
         }
     }
     [self setXtsnAndStyleTable:table];
-    [self setXtsnErrors:errorDict];
+    [self setExtensionErrors:errorDict];
     [self setExtensions:extensions];
 }
 
@@ -754,46 +733,6 @@ static CESyntaxManager *sharedInstance = nil;
         [copiedSyntaxName appendString:@".plist"];
     }
     return [copiedSyntaxName stringByDeletingPathExtension];
-}
-
-
-//------------------------------------------------------
-- (void)setExtensionErrorToTextView
-// カラーシンタックス拡張子重複エラー表示シートに表示するエラー内容をセット
-//------------------------------------------------------
-{
-    NSMutableString *string = [NSMutableString string];
-
-    if ([[self xtsnErrors] count] > 0) {
-        NSDictionary *errorDict = [self xtsnErrors];
-        NSEnumerator *enumerator = [errorDict keyEnumerator];
-        NSArray *errors;
-        id key;
-        NSInteger i, count;
-
-        [string setString:NSLocalizedString(@"The following Extension list is registered by two or more styles for one extension. \nCotEditor uses the first style.\n\n", nil)];
-        [string appendString:NSLocalizedString(@"\"Extension\" = \"Style Names\"\n  -  -  -  -  -  -  -\n", nil)];
-
-        // [NSDictionary descriptionInStringsFileFormat] だと日本語がユニコード16進表示になってしまうので、
-        // マニュアルで分解し文字列に変換（もっとうまいやり方あるだろ (-_-; ... 2005.12.03）
-        while (key = [enumerator nextObject]) {
-            errors = errorDict[key];
-            count = [errors count];
-            [string appendFormat:@"\"%@\" = \"", key];
-            for (i = 0; i < count; i++) {
-                [string appendString:errors[i]];
-                if (i < (count - 1)) {
-                    [string appendString:@", "];
-                } else {
-                    break;
-                }
-            }
-            [string appendString:@"\"\n"];
-        }
-    } else {
-        [string setString:NSLocalizedString(@"No Error found.",@"")];
-    }
-    [[self extensionErrorTextView] setString:string];
 }
 
 

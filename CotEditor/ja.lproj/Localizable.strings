@@ -186,13 +186,11 @@ http://www.aynimac.com/
 "Sorry, could not import \"%@\"." = "\"%@\" を読み込めませんでした。";
 // Export syntax coloring style file savePanel label
 "Export As:" = "名前：";
-// Extension Error message
-"The following Extension list is registered by two or more styles for one extension. \nCotEditor uses the first style.\n\n" = "この拡張子はいくつかのスタイルで登録されています。\nCotEditor は最初のスタイルを使用します。\n\n";
 // Extension Error list title
 "\"Extension\" = \"Style Names\"\n" = "\"拡張子\" = \"スタイル名\"\n";
 // Extension NO Error message
 // syntax element check result (no error)
-"No Error found." = "エラーはありませんでした。";
+"No error found." = "エラーはありませんでした。";
 // syntax element check result (1 error found)
 "One Error was Found !\n\n" = "エラーがありました！\n\n";
 // syntax element check result (2 or more errors found)
