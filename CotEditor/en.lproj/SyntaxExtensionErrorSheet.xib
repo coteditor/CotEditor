@@ -16,10 +16,10 @@
         <window title="Syntax Extention Error" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="269" userLabel="Extention Error Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="234" y="322" width="420" height="329"/>
+            <rect key="contentRect" x="234" y="322" width="420" height="337"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="268">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="329"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="337"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="281">
@@ -40,16 +40,16 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="283">
-                        <rect key="frame" x="18" y="292" width="384" height="17"/>
+                        <rect key="frame" x="18" y="300" width="384" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Extention Error" id="1022">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Extention Error(s)" id="1022">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pm8-il-gYJ">
-                        <rect key="frame" x="18" y="256" width="384" height="28"/>
+                        <rect key="frame" x="18" y="264" width="384" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="gnp-H7-p1W">
                             <font key="font" metaFont="smallSystem"/>
@@ -60,14 +60,14 @@ CotEditor uses the first style automatically.</string>
                         </textFieldCell>
                     </textField>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAP-IR-n67">
-                        <rect key="frame" x="20" y="68" width="380" height="180"/>
+                        <rect key="frame" x="20" y="68" width="380" height="188"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="L98-b5-a8e">
-                            <rect key="frame" x="1" y="17" width="378" height="162"/>
+                            <rect key="frame" x="1" y="17" width="378" height="170"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="47b-0u-aDN" id="WkV-Py-vpB">
-                                    <rect key="frame" x="0.0" y="0.0" width="378" height="162"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="378" height="170"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="5" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,7 +161,7 @@ CotEditor uses the first style automatically.</string>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s19-qe-G9l">
                         <rect key="frame" x="18" y="46" width="384" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="To resolve the conflict, edit each syntax style definition." id="jFM-Ik-h8D">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="To resolve the conflict, edit each syntax style." id="jFM-Ik-h8D">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
