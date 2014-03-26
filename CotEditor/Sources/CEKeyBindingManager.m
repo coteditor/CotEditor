@@ -75,8 +75,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEKeyBindingManager
 
-static CEKeyBindingManager *sharedInstance = nil;
-
 #pragma mark Class Methods
 
 //=======================================================
@@ -86,10 +84,17 @@ static CEKeyBindingManager *sharedInstance = nil;
 
 // ------------------------------------------------------
 + (CEKeyBindingManager *)sharedInstance
-// 共有インスタンスを返す
+// return singleton instance
 // ------------------------------------------------------
 {
-    return sharedInstance ? sharedInstance : [[self alloc] init];
+    static dispatch_once_t predicate;
+    static CEKeyBindingManager *shared = nil;
+    
+    dispatch_once(&predicate, ^{
+        shared = [[CEKeyBindingManager alloc] init];
+    });
+    
+    return shared;
 }
 
 
@@ -106,8 +111,8 @@ static CEKeyBindingManager *sharedInstance = nil;
 // 初期化
 // ------------------------------------------------------
 {
-    if (sharedInstance == nil) {
-        self = [super init];
+    self = [super init];
+    if (self) {
         (void)[NSBundle loadNibNamed:@"TextKeyBindingEditSheet" owner:self];
         (void)[NSBundle loadNibNamed:@"MenuKeyBindingEditSheet" owner:self];
         [self setNoPrintableKeyDict:[self noPrintableKeyDictionary]];
@@ -115,9 +120,8 @@ static CEKeyBindingManager *sharedInstance = nil;
                                                  selector:@selector(addCatchedMenuShortcutString:)
                                                      name:k_catchMenuShortcutNotification
                                                    object:NSApp];
-        sharedInstance = self;
     }
-    return sharedInstance;
+    return self;
 }
 
 

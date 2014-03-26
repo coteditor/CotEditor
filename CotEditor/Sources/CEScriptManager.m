@@ -58,8 +58,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEScriptManager
 
-static CEScriptManager *sharedInstance = nil;
-
 #pragma mark Class Methods
 
 //=======================================================
@@ -69,10 +67,17 @@ static CEScriptManager *sharedInstance = nil;
 
 // ------------------------------------------------------
 + (CEScriptManager *)sharedInstance
-// 共有インスタンスを返す
+// return singleton instance
 // ------------------------------------------------------
 {
-    return sharedInstance ? sharedInstance : [[self alloc] init];
+    static dispatch_once_t predicate;
+    static CEScriptManager *shared = nil;
+    
+    dispatch_once(&predicate, ^{
+        shared = [[CEScriptManager alloc] init];
+    });
+    
+    return shared;
 }
 
 
@@ -107,8 +112,8 @@ static CEScriptManager *sharedInstance = nil;
 // 初期化
 // ------------------------------------------------------
 {
-    if (sharedInstance == nil) {
-        self = [super init];
+    self = [super init];
+    if (self) {
         [self setupMenuIcon];
         [self setOutputType:k_noOutput];
         (void)[NSBundle loadNibNamed:@"ScriptManager" owner:self];
@@ -117,9 +122,8 @@ static CEScriptManager *sharedInstance = nil;
                                                  selector:@selector(availableOutput:)
                                                      name:NSFileHandleReadToEndOfFileCompletionNotification
                                                    object:nil];
-        sharedInstance = self;
     }
-    return sharedInstance;
+    return self;
 }
 
 

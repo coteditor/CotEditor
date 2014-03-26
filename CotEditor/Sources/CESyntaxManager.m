@@ -65,8 +65,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CESyntaxManager
 
-static CESyntaxManager *sharedInstance = nil;
-
 #pragma mark Class Methods
 
 //=======================================================
@@ -76,10 +74,17 @@ static CESyntaxManager *sharedInstance = nil;
 
 // ------------------------------------------------------
 + (CESyntaxManager *)sharedInstance
-// 共有インスタンスを返す
+// return singleton instance
 // ------------------------------------------------------
 {
-    return sharedInstance ? sharedInstance : [[self alloc] init];
+    static dispatch_once_t predicate;
+    static CESyntaxManager *shared = nil;
+    
+    dispatch_once(&predicate, ^{
+        shared = [[CESyntaxManager alloc] init];
+    });
+    
+    return shared;
 }
 
 
@@ -96,17 +101,16 @@ static CESyntaxManager *sharedInstance = nil;
 // 初期化
 // ------------------------------------------------------
 {
-    if (sharedInstance == nil) {
-        self = [super init];
+    self = [super init];
+    if (self) {
         (void)[NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
         [self setSelectedStyleName:[NSString string]];
         [self setEditedNewStyleName:[NSString string]];
         [self setupColoringStyleArray];
         [self setupExtensionAndSyntaxTable];
         [self setIsOkButtonPressed:NO];
-        sharedInstance = self;
     }
-    return sharedInstance;
+    return self;
 }
 
 
