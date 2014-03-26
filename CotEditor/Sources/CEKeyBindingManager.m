@@ -108,7 +108,8 @@ static CEKeyBindingManager *sharedInstance = nil;
 {
     if (sharedInstance == nil) {
         self = [super init];
-        (void)[NSBundle loadNibNamed:@"KeyBindingManager" owner:self];
+        (void)[NSBundle loadNibNamed:@"TextKeyBindingEditSheet" owner:self];
+        (void)[NSBundle loadNibNamed:@"MenuKeyBindingEditSheet" owner:self];
         [self setNoPrintableKeyDict:[self noPrintableKeyDictionary]];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addCatchedMenuShortcutString:)

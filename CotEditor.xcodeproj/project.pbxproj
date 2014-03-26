@@ -55,6 +55,7 @@
 		2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
 		2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSampleWindow.xib */; };
 		2A15832418E383C300601026 /* CESizeSampleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15832318E383C300601026 /* CESizeSampleWindowController.m */; };
+		2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */; };
 		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; };
 		2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */; };
 		2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */; };
@@ -115,7 +116,7 @@
 		8C5684CA0C48A36200346FB0 /* defaultSyntaxStyle_Python.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C5684C90C48A36200346FB0 /* defaultSyntaxStyle_Python.plist */; };
 		8C5853360903C1ED0085BC4F /* CETabItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5853340903C1ED0085BC4F /* CETabItemView.m */; };
 		8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C65C0E607927D0F0028D94A /* CELayoutManager.m */; };
-		8C7400A408C6D93900683672 /* KeyBindingManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* KeyBindingManager.xib */; };
+		8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */; };
 		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
 		8C74017708C7364400683672 /* defaultSyntaxStyle_LaTeX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C74017608C7364400683672 /* defaultSyntaxStyle_LaTeX.plist */; };
 		8C78824708ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C78824608ED5A03003EFE02 /* defaultSyntaxStyle_Ruby.plist */; };
@@ -253,6 +254,8 @@
 		2A15832218E383C300601026 /* CESizeSampleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESizeSampleWindowController.h; sourceTree = "<group>"; };
 		2A15832318E383C300601026 /* CESizeSampleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESizeSampleWindowController.m; sourceTree = "<group>"; };
 		2A15832518E38F3400601026 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SizeSampleWindow.xib; sourceTree = "<group>"; };
+		2A15832718E39B7400601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
+		2A15832918E39C6B00601026 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDocument.h; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -300,7 +303,7 @@
 		6C1E212012C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ColorCodePanel.xib; sourceTree = "<group>"; };
 		6C1E212112C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Indicator.xib; sourceTree = "<group>"; };
 		6C1E212212C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6C1E212312C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/KeyBindingManager.xib; sourceTree = "<group>"; };
+		6C1E212312C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C1E212512C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6C1E212612C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -349,7 +352,7 @@
 		8C5853340903C1ED0085BC4F /* CETabItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETabItemView.m; sourceTree = "<group>"; };
 		8C65C0E507927D0F0028D94A /* CELayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELayoutManager.h; sourceTree = "<group>"; };
 		8C65C0E607927D0F0028D94A /* CELayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CELayoutManager.m; sourceTree = "<group>"; wrapsLines = 1; };
-		8C7400A308C6D93900683672 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = en; path = en.lproj/KeyBindingManager.xib; sourceTree = "<group>"; };
+		8C7400A308C6D93900683672 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingManager.h; sourceTree = "<group>"; };
 		8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingManager.m; sourceTree = "<group>"; };
 		8C74017608C7364400683672 /* defaultSyntaxStyle_LaTeX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_LaTeX.plist; path = SyntaxColorings/defaultSyntaxStyle_LaTeX.plist; sourceTree = "<group>"; };
@@ -624,7 +627,6 @@
 				2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */,
 				2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */,
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
-				8C7400A208C6D93900683672 /* KeyBindingManager.xib */,
 				25859EA5076D8EE80020F779 /* Preferences.xib */,
 				2A15831F18E3814200601026 /* SizeSampleWindow.xib */,
 				2588E9CC07C4851C0060021D /* Indicator.xib */,
@@ -636,6 +638,8 @@
 				258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */,
 				2A5D2B9218E1ED420020AA1F /* SyntaxExtensionErrorSheet.xib */,
 				2A15831518E3688300601026 /* EncodingListSheet.xib */,
+				8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */,
+				2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */,
 				2A9A144A18B67846001080D6 /* Images.xcassets */,
 				8CB0122007CA0CCD00221EDC /* toolbarIcons */,
 				25972A7107B87293005EB175 /* images */,
@@ -833,7 +837,7 @@
 				2588E9CE07C4851C0060021D /* Indicator.xib in Resources */,
 				8C28CD2E081101A300733DA7 /* ScriptManager.xib in Resources */,
 				8C4186D008864B3E0039FBFC /* ColorCodePanel.xib in Resources */,
-				8C7400A408C6D93900683672 /* KeyBindingManager.xib in Resources */,
+				8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */,
 				2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
@@ -919,6 +923,7 @@
 				2A07231016D3CF4F00F49864 /* popUpButtonArrow.pdf in Resources */,
 				2A07231116D3CF4F00F49864 /* popUpButtonBG_center.pdf in Resources */,
 				2A07231216D3CF4F00F49864 /* popUpButtonBG_left.pdf in Resources */,
+				2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */,
 				2A07231316D3CF4F00F49864 /* prevButtonImg.pdf in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
 				2A07231416D3CF4F00F49864 /* removeButtonImg.pdf in Resources */,
@@ -1070,6 +1075,15 @@
 			name = SizeSampleWindow.xib;
 			sourceTree = "<group>";
 		};
+		2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A15832718E39B7400601026 /* en */,
+				2A15832918E39C6B00601026 /* ja */,
+			);
+			name = TextKeyBindingEditSheet.xib;
+			sourceTree = "<group>";
+		};
 		2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1169,13 +1183,13 @@
 			name = ColorCodePanel.xib;
 			sourceTree = "<group>";
 		};
-		8C7400A208C6D93900683672 /* KeyBindingManager.xib */ = {
+		8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8C7400A308C6D93900683672 /* en */,
 				6C1E212312C9E65600194313 /* ja */,
 			);
-			name = KeyBindingManager.xib;
+			name = MenuKeyBindingEditSheet.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
