@@ -34,6 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEPreferencesController.h"
 #import "CEAppController.h"
 #import "CESyntaxExtensionErrorSheetController.h"
+#import "CEEncodingListSheetController.h"
 #import "constants.h"
 
 
@@ -43,8 +44,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSTextField *prefFontFamilyNameSize;
 @property (nonatomic, weak) IBOutlet NSTextField *printFontFamilyNameSize;
 
-@property (nonatomic) IBOutlet NSWindow *encodingWindow;
-@property (nonatomic, weak) IBOutlet CEPrefEncodingDataSource *encodingDataSource;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
@@ -374,32 +373,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // エンコーディングリスト編集シートを開き、閉じる
 // ------------------------------------------------------
 {
-    // データソースをセットアップ、シートを表示してモーダルループに入る(閉じる命令は closeEncodingEditSheet: で)
-    [[self encodingDataSource] setupEncodingsToEdit];
-    [NSApp beginSheet:[self encodingWindow]
-       modalForWindow:[self window]
-        modalDelegate:self
-       didEndSelector:NULL
-          contextInfo:NULL];
-    [NSApp runModalForWindow:[self encodingWindow]];
+    CEEncodingListSheetController *sheetController = [[CEEncodingListSheetController alloc] init];
+    NSWindow *sheet = [sheetController window];
+    
+    // シートを表示してモーダルループに入る(閉じる命令は CEEncodingListSheetController内 で)
+    [NSApp beginSheet:sheet modalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+    [NSApp runModalForWindow:sheet];
 
     // シートを閉じる
-    [NSApp endSheet:[self encodingWindow]];
-    [[self encodingWindow] orderOut:self];
+    [NSApp endSheet:sheet];
+    [[sheetController window] orderOut:self];
     [[self window] makeKeyAndOrderFront:self];
-}
-
-
-// ------------------------------------------------------
-- (IBAction)closeEncodingEditSheet:(id)sender
-// エンコーディングリスト編集シートの OK / Cancel ボタンが押された
-// ------------------------------------------------------
-{
-    if ([sender tag] == k_okButtonTag) { // ok のとき
-        [[self encodingDataSource] writeEncodingsToUserDefaults]; // エンコーディングを保存
-        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllEncodingMenus];
-    }
-    [NSApp stopModal];
 }
 
 

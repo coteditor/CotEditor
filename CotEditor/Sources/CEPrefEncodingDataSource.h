@@ -34,15 +34,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <Cocoa/Cocoa.h>
 
 
-@interface CEPrefEncodingDataSource : NSObject
+@interface CEPrefEncodingDataSource : NSObject <NSTableViewDataSource, NSTabViewDelegate>
 
 // Public method
 - (void)setupEncodingsToEdit;
 - (void)writeEncodingsToUserDefaults;
-
-// Action Message
-- (IBAction)revertDefaultEncodings:(id)sender;
-- (IBAction)addSeparator:(id)sender;
-- (IBAction)deleteSeparator:(id)sender;
 
 @end

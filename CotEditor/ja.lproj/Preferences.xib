@@ -7,10 +7,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
             <connections>
-                <outlet property="encodingDataSource" destination="47" id="dnp-4H-NaO"/>
                 <outlet property="encodingMenuInNew" destination="80" id="GpH-dk-1SJ"/>
                 <outlet property="encodingMenuInOpen" destination="76" id="L7F-JX-LIE"/>
-                <outlet property="encodingWindow" destination="36" id="FEf-Sm-FCf"/>
                 <outlet property="fileDropController" destination="451" id="OBw-ee-ua4"/>
                 <outlet property="fileDropGlossaryTextView" destination="586" id="iCQ-lr-XQ9"/>
                 <outlet property="fileDropTableView" destination="447" id="kNu-Mw-xRm"/>
@@ -1882,7 +1880,7 @@ The parent directory name of the dropped file.
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="469" y="1" width="16" height="110"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2587,152 +2585,6 @@ The parent directory name of the dropped file.
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared Defaults"/>
-        <window title="エンコーディングリスト" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="encodingList" animationBehavior="default" id="36" userLabel="encodingWindow">
-            <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="247" y="236" width="401" height="350"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="350" height="320"/>
-            <view key="contentView" id="37">
-                <rect key="frame" x="0.0" y="0.0" width="401" height="350"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="38">
-                        <rect key="frame" x="20" y="59" width="257" height="220"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="2RJ-0l-30d">
-                            <rect key="frame" x="1" y="1" width="255" height="218"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" id="39">
-                                    <rect key="frame" x="0.0" y="0.0" width="255" height="218"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                    <tableColumns>
-                                        <tableColumn width="252" minWidth="40" maxWidth="1000" id="40">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
-                                            </tableHeaderCell>
-                                            <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" id="3413">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </textFieldCell>
-                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        </tableColumn>
-                                    </tableColumns>
-                                    <connections>
-                                        <outlet property="dataSource" destination="47" id="48"/>
-                                        <outlet property="delegate" destination="47" id="65"/>
-                                    </connections>
-                                </tableView>
-                            </subviews>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="3421">
-                            <rect key="frame" x="1" y="-30" width="210" height="15"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3420">
-                            <rect key="frame" x="-30" y="1" width="15" height="195"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                    <button verticalHuggingPriority="750" id="42">
-                        <rect key="frame" x="185" y="12" width="100" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3390">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="closeEncodingEditSheet:" target="-2" id="50"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" tag="100" id="43">
-                        <rect key="frame" x="285" y="12" width="100" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="3391">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="closeEncodingEditSheet:" target="-2" id="49"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="54">
-                        <rect key="frame" x="285" y="249" width="97" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="区切り線を追加" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="3392">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="miniSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="addSeparator:" target="47" id="63"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="55">
-                        <rect key="frame" x="285" y="199" width="97" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="区切り線を削除" bezelStyle="rounded" alignment="center" controlSize="mini" enabled="NO" borderStyle="border" inset="2" id="3393">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="miniSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="deleteSeparator:" target="47" id="64"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" id="56">
-                        <rect key="frame" x="17" y="285" width="367" height="30"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="3394">
-                            <font key="font" metaFont="smallSystem"/>
-                            <string key="title">このリストは自動認識やメニューで使われます。
-自動認識では、上にあるものから順に判別します。</string>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="62">
-                        <rect key="frame" x="17" y="321" width="367" height="17"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="ドラッグしてエンコーディングを並び替えてください" drawsBackground="YES" id="3395">
-                            <font key="font" metaFont="systemBold"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="secondarySelectedControlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button id="700">
-                        <rect key="frame" x="15" y="31" width="164" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" title="出荷時のデフォルトに戻す" bezelStyle="regularSquare" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3396">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="revertDefaultEncodings:" target="47" id="701"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-        </window>
-        <customObject id="47" userLabel="CEPrefEncodingDataSource" customClass="CEPrefEncodingDataSource">
-            <connections>
-                <outlet property="delSeparatorButton" destination="55" id="qbA-SN-qVo"/>
-                <outlet property="revertButton" destination="700" id="Pu1-Er-NHy"/>
-                <outlet property="tableView" destination="39" id="4mx-Dq-Oyj"/>
-            </connections>
-        </customObject>
         <window title="ウインドウサイズを決定" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="sampleWindow">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

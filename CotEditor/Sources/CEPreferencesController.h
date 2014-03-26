@@ -32,7 +32,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "CEPrefEncodingDataSource.h"
 #import "CESyntax.h"
 
 
@@ -49,7 +48,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Action Message
 - (IBAction)showFonts:(id)sender;
 - (IBAction)openEncodingEditSheet:(id)sender;
-- (IBAction)closeEncodingEditSheet:(id)sender;
 - (IBAction)openSizeSampleWindow:(id)sender;
 - (IBAction)setWindowContentSizeToDefault:(id)sender;
 - (IBAction)openSyntaxEditSheet:(id)sender;
