@@ -158,8 +158,8 @@ And press "OK" button, this window size will be set to default.</string>
                 </constraints>
             </view>
             <connections>
-                <binding destination="3I1-SB-fO2" name="contentHeight" keyPath="values.windowWidth" id="PVY-b2-g0L"/>
-                <binding destination="3I1-SB-fO2" name="contentWidth" keyPath="values.windowHeight" previousBinding="PVY-b2-g0L" id="4ah-9p-k8G"/>
+                <binding destination="3I1-SB-fO2" name="contentHeight" keyPath="values.windowHeight" id="CbL-oU-KBz"/>
+                <binding destination="3I1-SB-fO2" name="contentWidth" keyPath="values.windowWidth" previousBinding="CbL-oU-KBz" id="k3Q-JK-kVe"/>
                 <outlet property="delegate" destination="-2" id="v1e-dB-Uca"/>
             </connections>
         </window>
