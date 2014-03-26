@@ -98,7 +98,7 @@ static CESyntaxManager *sharedInstance = nil;
 {
     if (sharedInstance == nil) {
         self = [super init];
-        (void)[NSBundle loadNibNamed:@"SyntaxManager" owner:self];
+        (void)[NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
         [self setSelectedStyleName:[NSString string]];
         [self setEditedNewStyleName:[NSString string]];
         [self setupColoringStyleArray];
