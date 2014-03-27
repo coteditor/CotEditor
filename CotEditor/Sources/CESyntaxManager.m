@@ -89,6 +89,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+
 #pragma mark Superclass Methods
 
 //=======================================================
@@ -108,7 +109,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setEditedNewStyleName:[NSString string]];
         [self setupColoringStyleArray];
         [self setupExtensionAndSyntaxTable];
-        [self setIsOkButtonPressed:NO];
     }
     return self;
 }
