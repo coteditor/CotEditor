@@ -355,16 +355,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_lineEndingNames   @"LF", @"CR", @"CR/LF"
 
 
-// ScriptMenuManager
-// outputType values
-#define k_noOutput              0
-#define k_replaceSelection      1
-#define k_replaceAllText        2
-#define k_insertAfterSelection  3
-#define k_appendToAllText       4
-#define k_pasteboard        5
-
-
 // Notification name
 #define k_documentDidFinishOpenNotification     @"documentDidFinishOpenNotification"
 #define k_setKeyCatchModeToCatchMenuShortcut    @"setKeyCatchModeToCatchMenuShortcut"
@@ -379,11 +369,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_keyCatchMode          @"keyCatchMode"
 #define k_keyBindingModFlags    @"keyBindingModFlags"
 #define k_keyBindingChar        @"keyBindingChar"
-
-// KeyBindingManager
-// outlineView data mode
-#define k_outlineViewModeMenu   0
-#define k_outlineViewModeText   1
 
 // outlineView data key, column identifier
 #define k_title             @"title"

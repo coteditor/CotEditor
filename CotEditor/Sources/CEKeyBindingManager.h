@@ -35,6 +35,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEAppController.h"
 
 
+typedef NS_ENUM(NSUInteger, CEKeyBindingOutlineMode) {
+    CEMenuModeOutline,
+    CETextModeOutline
+};
+
+
 @interface CEKeyBindingManager : NSObject <NSOutlineViewDataSource>
 
 // class method
@@ -42,9 +48,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)setupAtLaunching;
-- (NSWindow *)editSheetWindowOfMode:(NSInteger)mode;
+- (NSWindow *)editSheetWindowOfMode:(CEKeyBindingOutlineMode)mode;
 - (void)setupKeyBindingDictionary;
-- (BOOL)setupOutlineDataOfMode:(NSInteger)mode;
+- (BOOL)setupOutlineDataOfMode:(CEKeyBindingOutlineMode)mode;
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 
 // Action Message

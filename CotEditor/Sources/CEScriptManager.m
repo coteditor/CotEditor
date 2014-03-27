@@ -37,11 +37,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
+typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
+    CENoOutputType,
+    CEReplaceSelectionType,
+    CEReplaceAllTextType,
+    CEInsertAfterSelectionType,
+    CEAppendToAllTextType,
+    CEPasteboardType
+};
+
+
 @interface CEScriptManager ()
 
 @property (nonatomic) NSFileHandle *outputHandle;
 @property (nonatomic) NSFileHandle *errorHandle;
-@property (nonatomic) NSInteger outputType;
+@property (nonatomic) CEScriptOutputType outputType;
 
 @end
 
@@ -109,7 +119,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super init];
     if (self) {
         [self setupMenuIcon];
-        [self setOutputType:k_noOutput];
+        [self setOutputType:CENoOutputType];
         // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(availableOutput:)
@@ -581,21 +591,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     if (outputType == nil) {
-        [self setOutputType:k_noOutput];
+        [self setOutputType:CENoOutputType];
     } else if ([outputType isEqualToString:@"ReplaceSelection"]) {
-        [self setOutputType:k_replaceSelection];
+        [self setOutputType:CEReplaceSelectionType];
     } else if ([outputType isEqualToString:@"ReplaceAllText"]) {
-        [self setOutputType:k_replaceAllText];
+        [self setOutputType:CEReplaceAllTextType];
     } else if ([outputType isEqualToString:@"InsertAfterSelection"]) {
-        [self setOutputType:k_insertAfterSelection];
+        [self setOutputType:CEInsertAfterSelectionType];
     } else if ([outputType isEqualToString:@"AppendToAllText"]) {
-        [self setOutputType:k_appendToAllText];
+        [self setOutputType:CEAppendToAllTextType];
     } else if ([outputType isEqualToString:@"Pasteboard"]) {
-        [self setOutputType:k_pasteboard];
+        [self setOutputType:CEPasteboardType];
     } else if ([outputType isEqualToString:@"Pasteboard puts"]) { // 以前の定義文字列。互換性のため。(2007.05.26)
-        [self setOutputType:k_pasteboard];
+        [self setOutputType:CEPasteboardType];
     } else { // == "Discard"
-        [self setOutputType:k_noOutput];
+        [self setOutputType:CENoOutputType];
     }
 
     // タスク実行準備
@@ -637,28 +647,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
         if (outputString != nil) {
             switch ([self outputType]) {
-            case k_replaceSelection:
-                [[document editorView] replaceTextViewSelectedStringTo:outputString scroll:NO];
-                break;
-            case k_replaceAllText:
-                [[document editorView] replaceTextViewAllStringTo:outputString];
-                break;
-            case k_insertAfterSelection:
-                [[document editorView] insertTextViewAfterSelectionStringTo:outputString];
-                break;
-            case k_appendToAllText:
-                [[document editorView] appendTextViewAfterAllStringTo:outputString];
-                break;
-            case k_pasteboard:
-                pasteboard = [NSPasteboard generalPasteboard];
-                [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
-                if (![pasteboard setString:outputString forType:NSStringPboardType]) {
-                    NSBeep();
-                }
-                break;
+                case CENoOutputType:
+                    // do nothing
+                    break;
+                case CEReplaceSelectionType:
+                    [[document editorView] replaceTextViewSelectedStringTo:outputString scroll:NO];
+                    break;
+                case CEReplaceAllTextType:
+                    [[document editorView] replaceTextViewAllStringTo:outputString];
+                    break;
+                case CEInsertAfterSelectionType:
+                    [[document editorView] insertTextViewAfterSelectionStringTo:outputString];
+                    break;
+                case CEAppendToAllTextType:
+                    [[document editorView] appendTextViewAfterAllStringTo:outputString];
+                    break;
+                case CEPasteboardType:
+                    pasteboard = [NSPasteboard generalPasteboard];
+                    [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
+                    if (![pasteboard setString:outputString forType:NSStringPboardType]) {
+                        NSBeep();
+                    }
+                    break;
             }
         }
-        [self setOutputType:k_noOutput];
+        [self setOutputType:CENoOutputType];
         [self setOutputHandle:nil];
     } else if ([[aNotification object] isEqualTo:[self errorHandle]]) {
         outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];

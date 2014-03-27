@@ -63,7 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSDictionary *textKeyBindingDict;
 @property (nonatomic) NSDictionary *noPrintableKeyDict;
 @property (nonatomic) NSString *currentKeySpecChars;
-@property (nonatomic) NSInteger outlineMode;
+@property (nonatomic) CEKeyBindingOutlineMode outlineMode;
 
 @end
 
@@ -163,15 +163,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (NSWindow *)editSheetWindowOfMode:(NSInteger)mode
+- (NSWindow *)editSheetWindowOfMode:(CEKeyBindingOutlineMode)mode
 // キーバインディング編集シート用ウィンドウを返す
 // ------------------------------------------------------
 {
     switch (mode) {
-        case k_outlineViewModeMenu: // === Menu
+        case CEMenuModeOutline: // === Menu
             return [self menuEditSheet];
             
-        case k_outlineViewModeText: // === Text
+        case CETextModeOutline: // === Text
             return [self textEditSheet];
             
         default:
@@ -191,15 +191,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-- (BOOL)setupOutlineDataOfMode:(NSInteger)mode
+- (BOOL)setupOutlineDataOfMode:(CEKeyBindingOutlineMode)mode
 // 環境設定でシートを表示する準備
 // ------------------------------------------------------
 {
-    if ((mode != k_outlineViewModeMenu) && (mode != k_outlineViewModeText)) { return NO; }
+    if ((mode != CEMenuModeOutline) && (mode != CETextModeOutline)) { return NO; }
     
     // モードの保持、データの準備、タイトルとメッセージの差し替え
     [self setOutlineMode:mode];
-    if ([self outlineMode] == k_outlineViewModeMenu) { // === Menu
+    if ([self outlineMode] == CEMenuModeOutline) { // === Menu
         [[self menuDuplicateTextField] setStringValue:@""];
         [self setOutlineDataArray:[self mainMenuArrayForOutlineData:[NSApp mainMenu]]];
         [self setDuplicateKeyCheckArray:[self duplicateKeyCheckArrayWithMenu:[NSApp mainMenu]]];
@@ -208,7 +208,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self menuOutlineView] reloadData];
         [[self menuEditKeyButton] setEnabled:NO];
 
-    } else if ([self outlineMode] == k_outlineViewModeText) { // === Text
+    } else if ([self outlineMode] == CETextModeOutline) { // === Text
         id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
         NSArray *insertTextArray = [values valueForKey:k_key_insertCustomTextArray];
         NSArray *factoryDefaultsOfInsertTextArray = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
@@ -349,10 +349,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                             object:self
                                                           userInfo:@{k_keyCatchMode: @k_catchMenuShortcut}];
         switch ([self outlineMode]) {
-            case k_outlineViewModeMenu:
+            case CEMenuModeOutline:
                 [[self menuDeleteKeyButton] setEnabled:YES];
                 break;
-            case k_outlineViewModeText:
+            case CETextModeOutline:
                 [[self textDeleteKeyButton] setEnabled:YES];
                 break;
         }
@@ -374,7 +374,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([object isEqualToString:[self outlineView:outlineView objectValueForTableColumn:tableColumn byItem:item]]) {
         // データソースの値でなく表示値がそのまま入ってきているのは、選択状態になったあと何の編集もされなかった時
         if (([[NSApp currentEvent] type] == NSLeftMouseDown) &&
-            ([self outlineMode] == k_outlineViewModeMenu) &&
+            ([self outlineMode] == CEMenuModeOutline) &&
             ([[[self menuDuplicateTextField] stringValue] length] > 0))
         {
             item[identifier] = @"";
@@ -382,7 +382,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             (void)[self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
             
         } else if (([[NSApp currentEvent] type] == NSLeftMouseDown) &&
-                   ([self outlineMode] == k_outlineViewModeText) &&
+                   ([self outlineMode] == CETextModeOutline) &&
                    ([[[self textDuplicateTextField] stringValue] length] > 0))
         {
             item[identifier] = @"";
@@ -400,10 +400,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     switch ([self outlineMode]) {
-        case k_outlineViewModeMenu:
+        case CEMenuModeOutline:
             [[self menuDeleteKeyButton] setEnabled:NO];
             break;
-        case k_outlineViewModeText:
+        case CETextModeOutline:
             [[self textDeleteKeyButton] setEnabled:NO];
             break;
     }
@@ -427,10 +427,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSButton *editButton = nil;
 
     switch ([self outlineMode]) {
-        case k_outlineViewModeMenu:
+        case CEMenuModeOutline:
             editButton = [self menuEditKeyButton];
             break;
-        case k_outlineViewModeText:
+        case CETextModeOutline:
             editButton = [self textEditKeyButton];
             break;
     }
@@ -442,7 +442,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                         object:self
                                                       userInfo:@{k_keyCatchMode: @k_keyDownNoCatch}];
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
-    if ([self outlineMode] == k_outlineViewModeText) {
+    if ([self outlineMode] == CETextModeOutline) {
         BOOL isEnabled = [[item valueForKey:k_selectorString] hasPrefix:@"insertCustomText"];
         NSUInteger index = [outlineView rowForItem:item];
 
@@ -485,11 +485,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSOutlineView *outlineView;
     
     switch ([self outlineMode]) {
-        case k_outlineViewModeMenu:
+        case CEMenuModeOutline:
             sheet = [self menuEditSheet];
             outlineView = [self menuOutlineView];
             break;
-        case k_outlineViewModeText:
+        case CETextModeOutline:
             sheet = [self textEditSheet];
             outlineView = [self textOutlineView];
             break;
@@ -513,7 +513,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // キーバインディングを出荷時設定に戻す
 // ------------------------------------------------------
 {
-    if ([self outlineMode] == k_outlineViewModeMenu) {
+    if ([self outlineMode] == CEMenuModeOutline) {
         NSMutableArray *tmpArray = [[self outlineDataArray] mutableCopy];
         if (tmpArray != nil) {
             [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:tmpArray];
@@ -525,7 +525,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         [[self menuFactoryDefaultsButton] setEnabled:NO];
 
-    } else if ([self outlineMode] == k_outlineViewModeText) {
+    } else if ([self outlineMode] == CETextModeOutline) {
         NSMutableArray *contents = [NSMutableArray array];
         NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
         NSMutableDictionary *dict;
@@ -561,7 +561,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                       userInfo:@{k_keyCatchMode: @k_keyDownNoCatch}];
 
     if ([sender tag] == k_okButtonTag) { // ok のときデータを保存、反映させる
-        if (([self outlineMode] == k_outlineViewModeMenu) || ([self outlineMode] == k_outlineViewModeText)) {
+        if (([self outlineMode] == CEMenuModeOutline) || ([self outlineMode] == CETextModeOutline)) {
             [self saveOutlineViewData];
         }
     }
@@ -571,11 +571,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setOutlineDataArray:nil];
     
     switch ([self outlineMode]) {
-        case k_outlineViewModeMenu:
+        case CEMenuModeOutline:
             [[self menuOutlineView] reloadData]; // （ここでリロードしておかないと、選択行が残ったり展開されたままになる）
             break;
             
-        case k_outlineViewModeText:
+        case CETextModeOutline:
             [[self textInsertStringArrayController] setContent:nil];
             [[self textOutlineView] reloadData]; // （ここでリロードしておかないと、選択行が残ったり展開されたままになる）
             break;
@@ -1022,11 +1022,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSOutlineView *theOutlineView;
     
     switch ([self outlineMode]) {
-        case k_outlineViewModeMenu:
+        case CEMenuModeOutline:
             sheet = [self menuEditSheet];
             theOutlineView = [self menuOutlineView];
             break;
-        case k_outlineViewModeText:
+        case CETextModeOutline:
             sheet = [self textEditSheet];
             theOutlineView = [self textOutlineView];
             break;
@@ -1065,13 +1065,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // メッセージ表示
         readableKeyStr = [self readableKeyStringsFromKeySpecChars:keySpec];
         switch ([self outlineMode]) {
-            case k_outlineViewModeMenu:
+            case CEMenuModeOutline:
                 [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                          NSLocalizedString(@"'%@' have already been used. Edit it again.",@""), readableKeyStr]];
                 [[self menuOkButton] setEnabled:NO];
                 break;
                 
-            case k_outlineViewModeText:
+            case CETextModeOutline:
                 [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                          NSLocalizedString(@"'%@' have already been used. Edit it again.",@""), readableKeyStr]];
                 [[self textOkButton] setEnabled:NO];
@@ -1087,9 +1087,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // コマンドキーの存在チェック
         if ([keySpec isEqualToString:@""]) { // 空文字（入力なし = 削除された）の場合はスルー
             accepts = YES;
-        } else if ([self outlineMode] == k_outlineViewModeMenu) { // === Menu
+        } else if ([self outlineMode] == CEMenuModeOutline) { // === Menu
             accepts = ((cmdRange.location != NSNotFound) && (cmdRange.location != ([keySpec length] - 1)));
-        } else if ([self outlineMode] == k_outlineViewModeText) { // === Text
+        } else if ([self outlineMode] == CETextModeOutline) { // === Text
             accepts = ((cmdRange.location == NSNotFound) || (cmdRange.location == ([keySpec length] - 1)));
         }
 
@@ -1097,13 +1097,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (!accepts) {
             readableKeyStr = [self readableKeyStringsFromKeySpecChars:keySpec];
             switch ([self outlineMode]) {
-                case k_outlineViewModeMenu:
+                case CEMenuModeOutline:
                     [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                              NSLocalizedString(@"'%@' NOT include Command Key. Edit it again.", nil), readableKeyStr]];
                     [[self menuOkButton] setEnabled:NO];
                     break;
                     
-                case k_outlineViewModeText:
+                case CETextModeOutline:
                     [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
                                                              NSLocalizedString(@"'%@' include Command Key. Edit it again.", nil), readableKeyStr]];
                     [[self textOkButton] setEnabled:NO];
@@ -1116,12 +1116,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         } else {
             // メッセージ消去
             switch ([self outlineMode]) {
-                case k_outlineViewModeMenu:
+                case CEMenuModeOutline:
                     [[self menuDuplicateTextField] setStringValue:@""];
                     [[self menuOkButton] setEnabled:YES];
                     break;
                     
-                case k_outlineViewModeText:
+                case CETextModeOutline:
                     [[self textDuplicateTextField] setStringValue:@""];
                     [[self textOkButton] setEnabled:YES];
                     break;
@@ -1233,7 +1233,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSURL *fileURL, *dirURL;
     BOOL exists, isDirectory = NO, success = NO;
 
-    if ([self outlineMode] == k_outlineViewModeMenu) {
+    if ([self outlineMode] == CEMenuModeOutline) {
         fileURL = [self menuKeyBindingSettingFileURL]; // データディレクトリパス取得
         dirURL = [fileURL URLByDeletingLastPathComponent];
 
@@ -1256,7 +1256,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // メニューに反映させる
         [self resetAllMenuKeyBindingWithDictionary];
 
-    } else if ([self outlineMode] == k_outlineViewModeText) {
+    } else if ([self outlineMode] == CETextModeOutline) {
         id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
         NSArray *contentArray = [[[self textInsertStringArrayController] content] copy];
 
@@ -1353,9 +1353,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id outlineView = nil;
 
-    if ([self outlineMode] == k_outlineViewModeMenu) {
+    if ([self outlineMode] == CEMenuModeOutline) {
         outlineView = [self menuOutlineView];
-    } else if ([self outlineMode] == k_outlineViewModeText) {
+    } else if ([self outlineMode] == CETextModeOutline) {
         outlineView = [self textOutlineView];
     }
     if (outlineView == nil) { return; }
@@ -1368,9 +1368,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSTableColumn *column = [outlineView tableColumnWithIdentifier:k_keyBindingKey];
 
         if ([self outlineView:outlineView shouldEditTableColumn:column item:item]) {
-            if ([self outlineMode] == k_outlineViewModeMenu) {
+            if ([self outlineMode] == CEMenuModeOutline) {
                 [[self menuDeleteKeyButton] setEnabled:YES];
-            } else if ([self outlineMode] == k_outlineViewModeText) {
+            } else if ([self outlineMode] == CETextModeOutline) {
                 [[self textDeleteKeyButton] setEnabled:YES];
             }
             [outlineView editColumn:[outlineView columnWithIdentifier:k_keyBindingKey]
