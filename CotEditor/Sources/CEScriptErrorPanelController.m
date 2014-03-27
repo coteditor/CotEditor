@@ -48,15 +48,15 @@
 #pragma mark Class Methods
 
 // ------------------------------------------------------
-+ (CEScriptErrorPanelController *)sharedController
++ (instancetype)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CEScriptErrorPanelController *shared = nil;
+    static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEScriptErrorPanelController alloc] initWithWindowNibName:@"ScriptErrorPanel"];
+        shared = [[self alloc] init];
     });
     
     return shared;
@@ -64,7 +64,18 @@
 
 
 
-#pragma mark Super Class Mthods
+#pragma mark Superclass Mthods
+
+// ------------------------------------------------------
+- (instancetype)init
+// initializer of panelController
+// ------------------------------------------------------
+{
+    self = [super initWithWindowNibName:@"ScriptErrorPanel"];
+    
+    return self;
+}
+
 
 // ------------------------------------------------------
 - (void)awakeFromNib

@@ -83,15 +83,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-+ (CEKeyBindingManager *)sharedManager
++ (instancetype)sharedManager
 // return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CEKeyBindingManager *shared = nil;
+    static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEKeyBindingManager alloc] init];
+        shared = [[self alloc] init];
     });
     
     return shared;
@@ -99,10 +99,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark Public Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
 
@@ -134,6 +134,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (void)setupAtLaunching

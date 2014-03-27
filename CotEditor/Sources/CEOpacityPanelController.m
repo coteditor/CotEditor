@@ -48,15 +48,15 @@
 #pragma mark Class Methods
 
 // ------------------------------------------------------
-+ (CEOpacityPanelController *)sharedController
++ (instancetype)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CEOpacityPanelController *shared = nil;
+    static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEOpacityPanelController alloc] initWithWindowNibName:@"OpacityPanel"];
+        shared = [[self alloc] init];
     });
     
     return shared;
@@ -64,7 +64,18 @@
 
 
 
-#pragma mark CEPanelController Methods
+#pragma mark Superclass Methods
+
+// ------------------------------------------------------
+- (instancetype)init
+// initializer of panelController
+// ------------------------------------------------------
+{
+    self = [super initWithWindowNibName:@"OpacityPanel"];
+    
+    return self;
+}
+
 
 // ------------------------------------------------------
 - (void)keyDocumentDidChange

@@ -54,7 +54,6 @@
 
 @implementation CEColorCodePanelController
 
-
 #pragma mark Class Methods
 
 //=======================================================
@@ -63,15 +62,15 @@
 //=======================================================
 
 // ------------------------------------------------------
-+ (CEColorCodePanelController *)sharedController
++ (instancetype)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CEColorCodePanelController *shared = nil;
+    static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEColorCodePanelController alloc] initWithWindowNibName:@"ColorCodePanel"];
+        shared = [[self alloc] init];
     });
     
     return shared;
@@ -79,19 +78,19 @@
 
 
 
-#pragma mark Public Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
 
 // ------------------------------------------------------
-- (instancetype)initWithWindow:(NSWindow *)window
-// 初期化
+- (instancetype)init
+// initializer of panelController
 // ------------------------------------------------------
 {
-    self = [super initWithWindow:window];
+    self = [super initWithWindowNibName:@"ColorCodePanel"];
     if (self) {
         // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼（removeはスーパークラスが行なう）
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -102,6 +101,14 @@
     return self;
 }
 
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 // ------------------------------------------------------
 - (void)importHexColorCodeAsForeColor:(NSString *)codeString

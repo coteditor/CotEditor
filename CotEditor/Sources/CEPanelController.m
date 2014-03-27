@@ -42,11 +42,13 @@
 @end
 
 
+
+
 #pragma mark -
 
 @implementation CEPanelController
 
-#pragma mark NSWindowController Methods
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
 - (instancetype)initWithWindow:(NSWindow *)window

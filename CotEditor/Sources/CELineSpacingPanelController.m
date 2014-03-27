@@ -48,22 +48,33 @@
 #pragma mark Class Methods
 
 // ------------------------------------------------------
-+ (CELineSpacingPanelController *)sharedController
++ (instancetype)sharedController
 // return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CELineSpacingPanelController *shared = nil;
+    static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CELineSpacingPanelController alloc] initWithWindowNibName:@"LineSpacingPanel"];
+        shared = [[self alloc] init];
     });
     
     return shared;
 }
 
 
-#pragma mark CEPanelController Methods
+#pragma mark Superclass Methods
+
+// ------------------------------------------------------
+- (instancetype)init
+// initializer of panelController
+// ------------------------------------------------------
+{
+    self = [super initWithWindowNibName:@"LineSpacingPanel"];
+    
+    return self;
+}
+
 
 // ------------------------------------------------------
 - (void)keyDocumentDidChange

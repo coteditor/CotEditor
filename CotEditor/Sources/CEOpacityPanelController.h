@@ -35,6 +35,6 @@
 
 @interface CEOpacityPanelController : CEPanelController
 
-+ (CEOpacityPanelController *)sharedController;
++ (instancetype)sharedController;
 
 @end

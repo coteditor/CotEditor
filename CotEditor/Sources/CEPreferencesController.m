@@ -71,7 +71,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-
 #pragma mark -
 
 @implementation CEPreferencesController
@@ -89,10 +88,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CEPreferencesController *shared = nil;
+    static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CEPreferencesController alloc] initWithWindowNibName:@"Preferences"];
+        shared = [[self alloc] init];
     });
     
     return shared;
@@ -100,12 +99,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark NSWindowController Methods
+#pragma mark Superclass Methods
 
 //=======================================================
 // Public method
 //
 //=======================================================
+
+- (instancetype)init
+{
+    self = [super initWithWindowNibName:@"Preferences"];
+    
+    return self;
+}
+
 
 // ------------------------------------------------------
 - (IBAction)showWindow:(id)sender

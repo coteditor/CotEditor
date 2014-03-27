@@ -73,15 +73,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-+ (CESyntaxManager *)sharedManager
++ (instancetype)sharedManager
 // return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
-    static CESyntaxManager *shared = nil;
+    static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[CESyntaxManager alloc] init];
+        shared = [[self alloc] init];
     });
     
     return shared;
@@ -89,7 +89,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark NSObject Methods
+#pragma mark Superclass Methods
 
 //=======================================================
 // NSObject method
