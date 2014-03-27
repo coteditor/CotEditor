@@ -514,6 +514,91 @@
 			name = InternalScript;
 			sourceTree = "<group>";
 		};
+		2A15832A18E3A1EC00601026 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				258700E3077BAD2200E541BB /* CESyntaxManager.h */,
+				258700E4077BAD2200E541BB /* CESyntaxManager.m */,
+				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
+				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
+				8CC1961A07E2E54E00B54AE4 /* CEScriptManager.h */,
+				8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		2A15832B18E3A25C00601026 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8C41871E088655E00039FBFC /* CEHexColorTransformer.h */,
+				8C41871F088655E00039FBFC /* CEHexColorTransformer.m */,
+				8CBFD5F20DC42B1200EC093D /* CEPrivateMutableArray.h */,
+				8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */,
+				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
+				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		2A15832C18E3A29A00601026 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2588E9BD07C47ACC0060021D /* CEEditorView.h */,
+				2588E9BE07C47ACC0060021D /* CEEditorView.m */,
+				8C8CCCAE09D6803400A008E5 /* CESplitView.h */,
+				8C8CCCAF09D6803400A008E5 /* CESplitView.m */,
+				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
+				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
+				25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */,
+				25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */,
+				25B2C23407FA667400F4EFC7 /* CELineNumView.h */,
+				25B2C23507FA667400F4EFC7 /* CELineNumView.m */,
+				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
+				25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */,
+				8CF02E1308B9B9F8004044EB /* CENavigationBarView.h */,
+				8CF02E1408B9B9F8004044EB /* CENavigationBarView.m */,
+				258A14CE07F3C6BC008E5FA1 /* CEFlippedView.h */,
+				258A14CF07F3C6BC008E5FA1 /* CEFlippedView.m */,
+				8C5853330903C1ED0085BC4F /* CETabItemView.h */,
+				8C5853340903C1ED0085BC4F /* CETabItemView.m */,
+				8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */,
+				8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */,
+				8C99DDF808BD8940001F618C /* CEOutlineMenuButtonCell.h */,
+				8C99DDF908BD8940001F618C /* CEOutlineMenuButtonCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2A15832D18E3A3E000601026 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				25859EBE076D92D60020F779 /* CEPreferencesController.h */,
+				25859EBF076D92D60020F779 /* CEPreferencesController.m */,
+				8C8971330902620D0013FA27 /* CEPreferencesTabController.h */,
+				8C8971340902620D0013FA27 /* CEPreferencesTabController.m */,
+				2A15832218E383C300601026 /* CESizeSampleWindowController.h */,
+				2A15832318E383C300601026 /* CESizeSampleWindowController.m */,
+				25AC0919077190EB00B0C91C /* CEPrefEncodingDataSource.h */,
+				25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */,
+				2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.h */,
+				2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */,
+				2A15831818E368CE00601026 /* CEEncodingListSheetController.h */,
+				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		2A15832F18E3A4AB00601026 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				8CE4859608CD617B004817E1 /* CEApplication.h */,
+				8CE4859708CD617B004817E1 /* CEApplication.m */,
+				25859DB2076D65310020F779 /* CEAppController.h */,
+				25859DB1076D65310020F779 /* CEAppController.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,22 +616,16 @@
 		2A37F4ABFDCFA73011CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2A15832F18E3A4AB00601026 /* Application */,
+				2A15832A18E3A1EC00601026 /* Managers */,
 				2AFFB72E18D8E87900118477 /* PanelControllers */,
-				2A5D2B8E18E1EC370020AA1F /* SheetControllers */,
-				8CE4859608CD617B004817E1 /* CEApplication.h */,
-				8CE4859708CD617B004817E1 /* CEApplication.m */,
-				25859DB2076D65310020F779 /* CEAppController.h */,
-				25859DB1076D65310020F779 /* CEAppController.m */,
-				258700E3077BAD2200E541BB /* CESyntaxManager.h */,
-				258700E4077BAD2200E541BB /* CESyntaxManager.m */,
-				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
-				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
+				2A15832D18E3A3E000601026 /* Preferences */,
+				2A15832C18E3A29A00601026 /* Views */,
+				2A15832B18E3A25C00601026 /* Utilities */,
 				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
 				259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */,
 				258D708707D456DF0062A3E5 /* CETextSelection.h */,
 				258D708807D456DF0062A3E5 /* CETextSelection.m */,
-				8CC1961A07E2E54E00B54AE4 /* CEScriptManager.h */,
-				8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */,
 				2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */,
 				8CC1925407E2D84500B54AE4 /* CEDocument+ScriptingSupport.h */,
@@ -561,50 +640,14 @@
 				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
 				8CB0122B07CA0EFA00221EDC /* CEToolbarController.h */,
 				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
-				2588E9BD07C47ACC0060021D /* CEEditorView.h */,
-				2588E9BE07C47ACC0060021D /* CEEditorView.m */,
-				8C8CCCAE09D6803400A008E5 /* CESplitView.h */,
-				8C8CCCAF09D6803400A008E5 /* CESplitView.m */,
-				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
-				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
-				25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */,
-				25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */,
-				25B2C23407FA667400F4EFC7 /* CELineNumView.h */,
-				25B2C23507FA667400F4EFC7 /* CELineNumView.m */,
-				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
-				25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */,
-				8CF02E1308B9B9F8004044EB /* CENavigationBarView.h */,
-				8CF02E1408B9B9F8004044EB /* CENavigationBarView.m */,
 				258225FE07794C2A00A0F8D3 /* CESyntax.h */,
 				258225FF07794C2A00A0F8D3 /* CESyntax.m */,
 				2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */,
 				2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */,
 				8CC5044208EE829500A525A6 /* CEPrintView.h */,
 				8CC5044308EE829500A525A6 /* CEPrintView.m */,
-				258A14CE07F3C6BC008E5FA1 /* CEFlippedView.h */,
-				258A14CF07F3C6BC008E5FA1 /* CEFlippedView.m */,
-				25859EBE076D92D60020F779 /* CEPreferencesController.h */,
-				25859EBF076D92D60020F779 /* CEPreferencesController.m */,
-				8C8971330902620D0013FA27 /* CEPreferencesTabController.h */,
-				8C8971340902620D0013FA27 /* CEPreferencesTabController.m */,
-				2A15832218E383C300601026 /* CESizeSampleWindowController.h */,
-				2A15832318E383C300601026 /* CESizeSampleWindowController.m */,
-				8C5853330903C1ED0085BC4F /* CETabItemView.h */,
-				8C5853340903C1ED0085BC4F /* CETabItemView.m */,
-				25AC0919077190EB00B0C91C /* CEPrefEncodingDataSource.h */,
-				25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */,
-				8C41871E088655E00039FBFC /* CEHexColorTransformer.h */,
-				8C41871F088655E00039FBFC /* CEHexColorTransformer.m */,
-				8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */,
-				8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */,
-				8C99DDF808BD8940001F618C /* CEOutlineMenuButtonCell.h */,
-				8C99DDF908BD8940001F618C /* CEOutlineMenuButtonCell.m */,
 				25859E90076D88ED0020F779 /* constants.h */,
 				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
-				8CBFD5F20DC42B1200EC093D /* CEPrivateMutableArray.h */,
-				8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */,
-				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
-				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
 			);
 			name = Sources;
 			path = CotEditor/Sources;
@@ -669,17 +712,6 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2A5D2B8E18E1EC370020AA1F /* SheetControllers */ = {
-			isa = PBXGroup;
-			children = (
-				2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.h */,
-				2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */,
-				2A15831818E368CE00601026 /* CEEncodingListSheetController.h */,
-				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
-			);
-			name = SheetControllers;
 			sourceTree = "<group>";
 		};
 		2A8663B218C93D5700A6F9CC /* Documents */ = {
