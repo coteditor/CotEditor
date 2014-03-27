@@ -236,7 +236,7 @@
                                                 <button id="594">
                                                     <rect key="frame" x="45" y="459" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Open blank window with a reopen AppleEvent" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
+                                                    <buttonCell key="cell" type="check" title="Open a new document with reopen AppleEvent" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -247,7 +247,7 @@
                                                 <button id="106">
                                                     <rect key="frame" x="45" y="489" width="383" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Create a new document on startup" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
+                                                    <buttonCell key="cell" type="check" title="Open a new document on launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
