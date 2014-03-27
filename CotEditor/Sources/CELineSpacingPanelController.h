@@ -35,6 +35,4 @@
 
 @interface CELineSpacingPanelController : CEPanelController
 
-+ (instancetype)sharedController;
-
 @end

@@ -35,6 +35,4 @@
 
 @interface CEOpacityPanelController : CEPanelController
 
-+ (instancetype)sharedController;
-
 @end

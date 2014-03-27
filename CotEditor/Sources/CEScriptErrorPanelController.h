@@ -35,8 +35,6 @@
 
 @interface CEScriptErrorPanelController : CEPanelController
 
-+ (instancetype)sharedController;
-
 - (void)addErrorString:(NSString *)string;
 
 @end

@@ -36,8 +36,6 @@
 
 @interface CEColorCodePanelController : CEPanelController
 
-+ (instancetype)sharedController;
-
 - (void)importHexColorCodeAsForeColor:(NSString *)codeString;
 - (void)importHexColorCodeAsBackColor:(NSString *)codeString;
 

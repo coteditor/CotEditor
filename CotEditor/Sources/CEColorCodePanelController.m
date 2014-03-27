@@ -50,33 +50,11 @@
 @end
 
 
+
+
 #pragma mark -
 
 @implementation CEColorCodePanelController
-
-#pragma mark Class Methods
-
-//=======================================================
-// Class method
-//
-//=======================================================
-
-// ------------------------------------------------------
-+ (instancetype)sharedController
-// return singleton instance
-// ------------------------------------------------------
-{
-    static dispatch_once_t predicate;
-    static id shared = nil;
-    
-    dispatch_once(&predicate, ^{
-        shared = [[self alloc] init];
-    });
-    
-    return shared;
-}
-
-
 
 #pragma mark Superclass Methods
 

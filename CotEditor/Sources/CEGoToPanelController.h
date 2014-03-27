@@ -35,6 +35,4 @@
 
 @interface CEGoToPanelController : CEPanelController
 
-+ (instancetype)sharedController;
-
 @end

@@ -31,7 +31,6 @@
  */
 
 #import "CELineSpacingPanelController.h"
-#import "constants.h"
 
 
 @interface CELineSpacingPanelController ()
@@ -41,27 +40,11 @@
 @end
 
 
+
+
 #pragma mark -
 
 @implementation CELineSpacingPanelController
-
-#pragma mark Class Methods
-
-// ------------------------------------------------------
-+ (instancetype)sharedController
-// return singleton instance
-// ------------------------------------------------------
-{
-    static dispatch_once_t predicate;
-    static id shared = nil;
-    
-    dispatch_once(&predicate, ^{
-        shared = [[self alloc] init];
-    });
-    
-    return shared;
-}
-
 
 #pragma mark Superclass Methods
 

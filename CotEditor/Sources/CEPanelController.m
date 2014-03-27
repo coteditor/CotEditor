@@ -48,6 +48,53 @@
 
 @implementation CEPanelController
 
+static NSMutableDictionary *instances;
+
+
+#pragma mark Class Methods
+
+// ------------------------------------------------------
++ (instancetype) sharedController
+// return shared instance
+// ------------------------------------------------------
+{
+    // This method is based on the following article:
+    // http://qiita.com/hal_sk/items/b4e51c33e7c9d29964ab
+    
+    __block id obj;
+    @synchronized(self) {
+        if ([instances objectForKey:NSStringFromClass(self)] == nil) {
+            obj = [[self alloc] init];
+        }
+    }
+    obj = [instances objectForKey:NSStringFromClass(self)];
+    return obj;
+}
+
+
+// ------------------------------------------------------
++ (instancetype)allocWithZone:(NSZone *)zone
+// allocate
+// ------------------------------------------------------
+{
+    // This method is based on the following article:
+    // http://qiita.com/hal_sk/items/b4e51c33e7c9d29964ab
+    
+    @synchronized(self) {
+        if ([instances objectForKey:NSStringFromClass(self)] == nil) {
+            id instance = [super allocWithZone:zone];
+            if (instances == nil) {
+                instances = [[NSMutableDictionary alloc] initWithCapacity:0];
+            }
+            [instances setObject:instance forKey:NSStringFromClass(self)];
+            return instance;
+        }
+    }
+    return nil;
+}
+
+
+
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------

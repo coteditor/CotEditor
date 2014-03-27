@@ -41,28 +41,10 @@
 
 
 
+
 #pragma mark -
 
 @implementation CEScriptErrorPanelController
-
-#pragma mark Class Methods
-
-// ------------------------------------------------------
-+ (instancetype)sharedController
-// return singleton instance
-// ------------------------------------------------------
-{
-    static dispatch_once_t predicate;
-    static id shared = nil;
-    
-    dispatch_once(&predicate, ^{
-        shared = [[self alloc] init];
-    });
-    
-    return shared;
-}
-
-
 
 #pragma mark Superclass Mthods
 
