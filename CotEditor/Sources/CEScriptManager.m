@@ -32,17 +32,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEScriptManager.h"
+#import "CEScriptErrorPanelController.h"
 #import "CEDocument.h"
 #import "constants.h"
 
-//=======================================================
-// Private method
-//
-//=======================================================
 
 @interface CEScriptManager ()
-
-@property (nonatomic, strong) IBOutlet NSTextView *errorTextView;  // on 10.8 NSTextView cannot be weak
 
 @property (nonatomic) NSFileHandle *outputHandle;
 @property (nonatomic) NSFileHandle *errorHandle;
@@ -51,7 +46,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 #pragma mark -
@@ -116,7 +110,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self) {
         [self setupMenuIcon];
         [self setOutputType:k_noOutput];
-        (void)[NSBundle loadNibNamed:@"ScriptManager" owner:self];
         // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(availableOutput:)
@@ -292,33 +285,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-- (void)openScriptErrorWindow
-// Scriptエラーウィンドウを表示
-// ------------------------------------------------------
-{
-    [[[self errorTextView] window] orderFront:self];
-}
-
-
-
-#pragma mark Protocols
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-- (void)awakeFromNib
-// Nibファイル読み込み直後
-// ------------------------------------------------------
-{
-    // フォント指定
-    [[self errorTextView] setFont:[NSFont messageFontOfSize:10]];
-}
-
-
 //=======================================================
 // NSMenuValidation Protocol
 //
@@ -353,17 +319,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     (void)[appleScript executeAndReturnError:nil];
 }
-
-
-// ------------------------------------------------------
-- (IBAction)cleanScriptError:(id)sender
-// Scriptエラーログを削除
-// ------------------------------------------------------
-{
-    [[self errorTextView] setString:@""];
-}
-
-
 
 
 
@@ -720,11 +675,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // スクリプトエラーを追記し、エラーログウィンドウを表示
 // ------------------------------------------------------
 {
-    [[self errorTextView] setEditable:YES];
-    [[self errorTextView] setSelectedRange:NSMakeRange([[[self errorTextView] string] length], 0)];
-    [[self errorTextView] insertText:errorLog];
-    [[self errorTextView] setEditable:NO];
-    [self openScriptErrorWindow];
+    CEScriptErrorPanelController *sheetController = [CEScriptErrorPanelController sharedController];
+    [sheetController showWindow:self];
+    [sheetController addErrorString:errorLog];
 }
 
 @end

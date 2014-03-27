@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEScriptManager">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEScriptErrorPanelController">
             <connections>
-                <outlet property="errorTextView" destination="8" id="XeZ-zv-bUd"/>
+                <outlet property="textView" destination="8" id="vhd-5e-sgf"/>
+                <outlet property="window" destination="6" id="jA0-CS-sIe"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -21,21 +22,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="7">
-                        <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
+                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="MSy-5z-dBd">
-                            <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
+                            <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="8">
-                                    <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
+                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" verticallyResizable="YES" smartInsertDelete="YES" id="8">
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="360" height="200"/>
+                                    <size key="minSize" width="360" height="199"/>
                                     <size key="maxSize" width="360" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="360" height="200"/>
+                                    <size key="minSize" width="360" height="199"/>
                                     <size key="maxSize" width="360" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -46,11 +47,17 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="19">
-                            <rect key="frame" x="344" y="0.0" width="16" height="200"/>
+                            <rect key="frame" x="344" y="0.0" width="16" height="199"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="7" secondAttribute="bottom" id="Kq6-MG-blg"/>
+                    <constraint firstItem="7" firstAttribute="leading" secondItem="5" secondAttribute="leading" id="Poi-bK-bRt"/>
+                    <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" id="RPc-kb-fse"/>
+                    <constraint firstItem="7" firstAttribute="top" secondItem="5" secondAttribute="top" id="SAj-qa-TKB"/>
+                </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="1C6AD1A5-EDE4-4B1D-A2C5-5EC0547B5D5A" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="fb4-be-4LF">
                 <allowedToolbarItems>

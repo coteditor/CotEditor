@@ -43,10 +43,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildScriptMenu:(id)sender;
 - (NSMenu *)contexualMenu;
 - (void)launchScript:(id)sender;
-- (void)openScriptErrorWindow;
 
 // Action Message
 - (IBAction)openScriptFolder:(id)sender;
-- (IBAction)cleanScriptError:(id)sender;
 
 @end
