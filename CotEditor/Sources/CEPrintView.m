@@ -35,13 +35,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-typedef NS_ENUM(NSUInteger, CEAlignmentType) {
-    CEAlignLeft,
-    CEAlignCenter,
-    CEAlignRight
-};
-
-
 @interface CEPrintView ()
 
 @property (nonatomic) NSAttributedString *headerOneString;
@@ -278,7 +271,7 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSAttributedString *attrString = nil;
     CGFloat printWidth = borderWidth - k_printHFHorizontalMargin * 2;
-    NSInteger lineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
+    CELineNumberPrintMode lineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
 
     // ヘッダ／フッタの文字属性辞書生成、保持
     NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName]
@@ -287,12 +280,16 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
                                  NSForegroundColorAttributeName: [NSColor textColor]}];
 
     // 行番号印字の有無をチェック
-    if (lineNumMenuIndex == 1) { // same to view
-        [self setPrintsLineNum:[self isShowingLineNum]];
-    } else if (lineNumMenuIndex == 2) { // print
-        [self setPrintsLineNum:YES];
-    } else {
-        [self setPrintsLineNum:NO];
+    switch (lineNumMenuIndex) {
+        case CENoLinePrint:
+            [self setPrintsLineNum:NO];
+            break;
+        case CESameAsDocumentLinePrint:
+            [self setPrintsLineNum:[self isShowingLineNum]];
+            break;
+        case CEDoLinePrint:
+            [self setPrintsLineNum:YES];
+            break;
     }
 
     // 行番号を印字するときは文字属性を保持、パディングを調整
@@ -307,10 +304,10 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
     // ヘッダを設定
     if ([[[self printValues] valueForKey:k_printHeader] boolValue]) {
         [self setPrintsHeader:YES];
-        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_headerOneStringIndex] integerValue]
+        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_headerOneStringIndex] integerValue]
                                                              maxWidth:printWidth];
         [self setHeaderOneString:attrString];
-        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_headerTwoStringIndex] integerValue]
+        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_headerTwoStringIndex] integerValue]
                                                              maxWidth:printWidth];
         [self setHeaderTwoString:attrString];
         [self setHeaderOneAlignment:[[[self printValues] valueForKey:k_headerOneAlignIndex] integerValue]];
@@ -323,10 +320,10 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
     // フッタを設定
     if ([[[self printValues] valueForKey:k_printFooter] boolValue]) {
         [self setPrintsFooter:YES];
-        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_footerOneStringIndex] integerValue]
+        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_footerOneStringIndex] integerValue]
                                                              maxWidth:printWidth];
         [self setFooterOneString:attrString];
-        attrString = [self attributedStringFromPrintInfoSelectedIndex:[[[self printValues] valueForKey:k_footerTwoStringIndex] integerValue]
+        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_footerTwoStringIndex] integerValue]
                                                              maxWidth:printWidth];
         [self setFooterTwoString:attrString];
         [self setFooterOneAlignment:[[[self printValues] valueForKey:k_footerOneAlignIndex] integerValue]];
@@ -340,29 +337,29 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
 
 // ------------------------------------------------------
-- (NSAttributedString *)attributedStringFromPrintInfoSelectedIndex:(NSInteger)selectedIndex maxWidth:(CGFloat)maxWidth
+- (NSAttributedString *)attributedStringFromPrintInfoType:(CEPrintInfoType)selectedTag maxWidth:(CGFloat)maxWidth
 // ヘッダ／フッタに印字する文字列をポップアップメニューインデックスから生成し、返す
 // ------------------------------------------------------
 {
     NSAttributedString *outString = nil;
     NSString *dateString;
             
-    switch (selectedIndex) {
-        case 2: // == Document Name
+    switch (selectedTag) {
+        case CEDocumentNamePrintInfo:
             if ([self filePath]) {
                 outString = [[NSAttributedString alloc] initWithString:[[self filePath] lastPathComponent]
                                                             attributes:[self headerFooterAttrs]];
             }
             break;
 
-        case 3: // == File Path
+        case CEFilePathPrintInfo:
             if ([self filePath]) {
                 outString = [[NSAttributedString alloc] initWithString:[self filePath]
                                                             attributes:[self headerFooterAttrs]];
             }
             break;
 
-        case 4: // == Print Date
+        case CEPrintDatePrintInfo:
             dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:[[NSUserDefaults standardUserDefaults]
                                                                                        stringForKey:k_key_headerFooterDateTimeFormat]];
             if (dateString && ([dateString length] > 0)) {
@@ -372,13 +369,13 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
             }
             break;
 
-        case 5: // == Page num
+        case CEPageNumberPrintInfo:
             outString = [[NSAttributedString alloc] initWithString:@"PAGENUM"
                                                         attributes:[self headerFooterAttrs]];
             [self setReadyToDrawPageNum:YES];
             break;
 
-        default:
+        case CENoPrintInfo:
             break;
     }
 

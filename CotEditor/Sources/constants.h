@@ -148,6 +148,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_notifyEditByAnother       @"notifyEditByAnother"
 
 
+// Localized Strings Table
+#define k_printLocalizeTable @"print"
+
 // Tab width values
 #define k_tabWidthMin   1
 #define k_tabWidthMax   99

@@ -33,8 +33,58 @@
 #import <Cocoa/Cocoa.h>
 
 
+typedef NS_ENUM(NSUInteger, CEColorPrintMode) {
+    CEBlackColorPrint,
+    CESameAsDocumentColorPrint
+};
+
+typedef NS_ENUM(NSUInteger, CELineNumberPrintMode) {
+    CENoLinePrint,
+    CESameAsDocumentLinePrint,
+    CEDoLinePrint
+};
+
+typedef NS_ENUM(NSUInteger, CEInvisibleCharsPrintMode) {
+    CENoInvisibleCharsPrint,
+    CESameAsDocumentInvisibleCharsPrint,
+    CEAllInvisibleCharsPrint
+};
+
+typedef NS_ENUM(NSUInteger, CEPrintInfoType) {  // 歴史的経緯により 1 はスキップしている（1はポップアップメニューのセパレータだったため）
+    CENoPrintInfo = 0,
+    CEDocumentNamePrintInfo = 2,
+    CEFilePathPrintInfo,
+    CEPrintDatePrintInfo,
+    CEPageNumberPrintInfo
+};
+
+typedef NS_ENUM(NSUInteger, CEAlignmentType) {
+    CEAlignLeft,
+    CEAlignCenter,
+    CEAlignRight
+};
+
+
 @interface CEPrintPanelAccessoryController : NSViewController <NSPrintPanelAccessorizing>
 
-- (id)values;
+@property (nonatomic, readonly) CEColorPrintMode colorMode;
+@property (nonatomic, readonly) CELineNumberPrintMode lineNumberMode;
+@property (nonatomic, readonly) CEInvisibleCharsPrintMode invisibleCharsMode;
+
+@property (nonatomic, readonly) BOOL printsHeader;
+@property (nonatomic, readonly) CEPrintInfoType headerOneInfoType;
+@property (nonatomic, readonly) CEAlignmentType headerOneAlignmentType;
+@property (nonatomic, readonly) CEPrintInfoType headerTwoInfoType;
+@property (nonatomic, readonly) CEAlignmentType headerTwoAlignmentType;
+@property (nonatomic, readonly) BOOL printsHeaderSeparator;
+
+@property (nonatomic, readonly) BOOL printsFooter;
+@property (nonatomic, readonly) CEPrintInfoType footerOneInfoType;
+@property (nonatomic, readonly) CEAlignmentType footerOneAlignmentType;
+@property (nonatomic, readonly) CEPrintInfoType footerTwoInfoType;
+@property (nonatomic, readonly) CEAlignmentType footerTwoAlignmentType;
+@property (nonatomic, readonly) BOOL printsFooterSeparator;
+
+- (NSDictionary *)values;
 
 @end

@@ -2004,7 +2004,7 @@ enum { typeFSS = 'fss ' };
     if (returnCode != NSOKButton) { return; }
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    id printValues = [[self printPanelAccessoryController] values];
+    CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     NSPrintInfo *printInfo = [self printInfo];
     NSSize paperSize = [printInfo paperSize];
     NSPrintOperation *printOperation;
@@ -2015,41 +2015,42 @@ enum { typeFSS = 'fss ' };
     CESyntax *printSyntax;
     CGFloat topMargin = k_printHFVerticalMargin;
     CGFloat bottomMargin = k_printHFVerticalMargin;
-    BOOL doColoring = ([[printValues valueForKey:k_printColorIndex] integerValue] == 1);
+    BOOL doColoring = ([accessoryController colorMode] == CESameAsDocumentColorPrint);
     BOOL showsInvisibles = [(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles];
     BOOL showsControls = showsInvisibles;
 
     // ヘッダ／フッタの高さ（文書を印刷しない高さ）を得る
-    if ([[printValues valueForKey:k_printHeader] boolValue]) {
-        if ([[printValues valueForKey:k_headerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
+    if ([accessoryController printsHeader]) {
+        if ([accessoryController headerOneInfoType] != CENoPrintInfo) {  // 行1 = 印字あり
             topMargin += k_headerFooterLineHeight;
         }
-        if ([[printValues valueForKey:k_headerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
+        if ([accessoryController headerTwoInfoType] != CENoPrintInfo) {  // 行2 = 印字あり
             topMargin += k_headerFooterLineHeight;
         }
     }
     // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
     if (topMargin > k_printHFVerticalMargin) {
         topMargin += (CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize] - k_headerFooterLineHeight;
-        if ([[printValues valueForKey:k_printHeaderSeparator] boolValue]) {
+        
+        if ([accessoryController printsHeaderSeparator]) {
             topMargin += k_separatorPadding;
         } else {
             topMargin += k_noSeparatorPadding;
         }
     } else {
-        if ([[printValues valueForKey:k_printHeaderSeparator] boolValue]) {
+        if ([accessoryController printsHeaderSeparator]) {
             topMargin += k_separatorPadding;
         }
     }
-    if ([[printValues valueForKey:k_printFooter] boolValue]) {
-        if ([[printValues valueForKey:k_footerOneStringIndex] integerValue] > 1) { // 行1 = 印字あり
+    if ([accessoryController printsFooter]) {
+        if ([accessoryController footerOneInfoType] != CENoPrintInfo) {  // 行1 = 印字あり
             bottomMargin += k_headerFooterLineHeight;
         }
-        if ([[printValues valueForKey:k_footerTwoStringIndex] integerValue] > 1) { // 行2 = 印字あり
+        if ([accessoryController footerTwoInfoType] != CENoPrintInfo) {  // 行2 = 印字あり
             bottomMargin += k_headerFooterLineHeight;
         }
     }
-    if ((bottomMargin == k_printHFVerticalMargin) && [[printValues valueForKey:k_printFooterSeparator] boolValue]) {
+    if ((bottomMargin == k_printHFVerticalMargin) && [accessoryController printsFooterSeparator]) {
         bottomMargin += k_separatorPadding;
     }
 
@@ -2075,9 +2076,9 @@ enum { typeFSS = 'fss ' };
     [printView setLineSpacing:[[[self editorView] textView] lineSpacing]];
     [printView setIsShowingLineNum:[[self editorView] showLineNum]];
     // 制御文字印字を取得
-    if ([[printValues valueForKey:k_printInvisibleCharIndex] integerValue] == 0) { // = No print
+    if ([accessoryController invisibleCharsMode] == CENoInvisibleCharsPrint) {
         showsControls = NO;
-    } else if ([[printValues valueForKey:k_printInvisibleCharIndex] integerValue] == 2) { // = Print all
+    } else if ([accessoryController invisibleCharsMode] == CEAllInvisibleCharsPrint) {
         showsControls = YES;
     }
     // layoutManager を入れ替え
