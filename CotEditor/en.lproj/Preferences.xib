@@ -2326,24 +2326,24 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="934">
                                                                 <rect key="frame" x="126" y="78" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="3378">
+                                                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="940" id="3378">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="935">
                                                                         <items>
-                                                                            <menuItem title="(No Print)" state="on" id="941"/>
+                                                                            <menuItem title="(No Print)" id="941"/>
                                                                             <menuItem isSeparatorItem="YES" id="936">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="937"/>
-                                                                            <menuItem title="File Path" id="938"/>
-                                                                            <menuItem title="Print Date" id="939"/>
-                                                                            <menuItem title="Page Number" id="940"/>
+                                                                            <menuItem title="Document Name" tag="2" id="937"/>
+                                                                            <menuItem title="File Path" tag="3" id="938"/>
+                                                                            <menuItem title="Print Date" tag="4" id="939"/>
+                                                                            <menuItem title="Page Number" state="on" tag="5" id="940"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerOneStringIndex" id="976"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerOneStringIndex" id="joI-va-h9C"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="977"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2359,15 +2359,15 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="928">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="929"/>
-                                                                            <menuItem title="File Path" id="930"/>
-                                                                            <menuItem title="Print Date" id="931"/>
-                                                                            <menuItem title="Page Number" id="932"/>
+                                                                            <menuItem title="Document Name" tag="2" id="929"/>
+                                                                            <menuItem title="File Path" tag="3" id="930"/>
+                                                                            <menuItem title="Print Date" tag="4" id="931"/>
+                                                                            <menuItem title="Page Number" tag="5" id="932"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerTwoStringIndex" id="979"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerTwoStringIndex" id="IYq-A2-8Zn"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="980"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2386,24 +2386,24 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="891">
                                                                 <rect key="frame" x="126" y="80" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="895" id="3370">
+                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3370">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="892">
                                                                         <items>
-                                                                            <menuItem title="(No Print)" state="on" id="895"/>
+                                                                            <menuItem title="(No Print)" id="895"/>
                                                                             <menuItem isSeparatorItem="YES" id="894">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="896"/>
-                                                                            <menuItem title="File Path" id="897"/>
-                                                                            <menuItem title="Print Date" id="898"/>
-                                                                            <menuItem title="Page Number" id="893"/>
+                                                                            <menuItem title="Document Name" tag="2" id="896"/>
+                                                                            <menuItem title="File Path" tag="3" id="897"/>
+                                                                            <menuItem title="Print Date" tag="4" id="898"/>
+                                                                            <menuItem title="Page Number" tag="5" id="893"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerOneStringIndex" id="958"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerOneStringIndex" id="sMw-0L-xL1"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="962"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2536,24 +2536,24 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="900">
                                                                 <rect key="frame" x="126" y="44" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="3372">
+                                                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="905" id="3372">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="901">
                                                                         <items>
-                                                                            <menuItem title="(No Print)" state="on" id="906"/>
+                                                                            <menuItem title="(No Print)" id="906"/>
                                                                             <menuItem isSeparatorItem="YES" id="907">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="902"/>
-                                                                            <menuItem title="File Path" id="903"/>
-                                                                            <menuItem title="Print Date" id="904"/>
-                                                                            <menuItem title="Page Number" id="905"/>
+                                                                            <menuItem title="Document Name" tag="2" id="902"/>
+                                                                            <menuItem title="File Path" tag="3" id="903"/>
+                                                                            <menuItem title="Print Date" tag="4" id="904"/>
+                                                                            <menuItem title="Page Number" state="on" tag="5" id="905"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerTwoStringIndex" id="960"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerOneStringIndex" id="QFH-h4-EwH"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="961"/>
                                                                 </connections>
                                                             </popUpButton>

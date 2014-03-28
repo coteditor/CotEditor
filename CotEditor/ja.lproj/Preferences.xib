@@ -2340,39 +2340,39 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="936">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="937"/>
-                                                                            <menuItem title="ファイルパス" id="938"/>
-                                                                            <menuItem title="プリント日時" id="939"/>
-                                                                            <menuItem title="ページ番号" id="940"/>
+                                                                            <menuItem title="書類名" tag="2" id="937"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="938"/>
+                                                                            <menuItem title="プリント日時" tag="4" id="939"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="940"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerOneStringIndex" id="976"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerOneStringIndex" id="IS9-Et-HXH"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="977"/>
                                                                 </connections>
                                                             </popUpButton>
                                                             <popUpButton verticalHuggingPriority="750" id="925">
                                                                 <rect key="frame" x="126" y="42" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="（プリントしない）" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="3376">
+                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3376">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="926">
                                                                         <items>
-                                                                            <menuItem title="（プリントしない）" state="on" id="927"/>
+                                                                            <menuItem title="（プリントしない）" id="927"/>
                                                                             <menuItem isSeparatorItem="YES" id="928">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="929"/>
-                                                                            <menuItem title="ファイルパス" id="930"/>
-                                                                            <menuItem title="プリント日時" id="931"/>
-                                                                            <menuItem title="ページ番号" id="932"/>
+                                                                            <menuItem title="書類名" tag="2" id="929"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="930"/>
+                                                                            <menuItem title="プリント日時" tag="4" id="931"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="932"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerTwoStringIndex" id="979"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerTwoStringIndex" id="6N6-9V-JqE"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="980"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2400,15 +2400,15 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="894">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="896"/>
-                                                                            <menuItem title="ファイルパス" id="897"/>
-                                                                            <menuItem title="プリント日時" id="898"/>
-                                                                            <menuItem title="ページ番号" id="893"/>
+                                                                            <menuItem title="書類名" tag="2" id="896"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="897"/>
+                                                                            <menuItem title="プリント日時" tag="4" id="898"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="893"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerOneStringIndex" id="958"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerOneStringIndex" id="Nh0-bL-r3j"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="962"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2550,15 +2550,15 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="907">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="902"/>
-                                                                            <menuItem title="ファイルパス" id="903"/>
-                                                                            <menuItem title="プリント日時" id="904"/>
-                                                                            <menuItem title="ページ番号" id="905"/>
+                                                                            <menuItem title="書類名" tag="2" id="902"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="903"/>
+                                                                            <menuItem title="プリント日時" tag="4" id="904"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="905"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerTwoStringIndex" id="960"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerTwoStringIndex" id="IDK-9d-aA6"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="961"/>
                                                                 </connections>
                                                             </popUpButton>

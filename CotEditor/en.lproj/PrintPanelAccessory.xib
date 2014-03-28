@@ -242,48 +242,48 @@
                             <popUpButton verticalHuggingPriority="750" id="313">
                                 <rect key="frame" x="106" y="69" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="397" id="714">
+                                <popUpButtonCell key="cell" type="push" title="Page number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="314">
                                         <items>
-                                            <menuItem title="(No print)" state="on" id="397"/>
+                                            <menuItem title="(No print)" id="397"/>
                                             <menuItem isSeparatorItem="YES" id="398">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
-                                            <menuItem title="Document Name" id="320"/>
-                                            <menuItem title="File Path" id="315"/>
-                                            <menuItem title="Print Date" id="319"/>
-                                            <menuItem title="Page number" id="318"/>
+                                            <menuItem title="Document Name" tag="2" id="320"/>
+                                            <menuItem title="File Path" tag="3" id="315"/>
+                                            <menuItem title="Print Date" tag="4" id="319"/>
+                                            <menuItem title="Page number" state="on" tag="5" id="318"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.footerOneStringIndex" id="464"/>
+                                    <binding destination="448" name="selectedTag" keyPath="selection.footerOneStringIndex" id="cbG-HP-muK"/>
                                     <binding destination="448" name="enabled" keyPath="selection.printFooter" id="467"/>
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" id="321">
                                 <rect key="frame" x="106" y="39" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="715">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="322">
                                         <items>
-                                            <menuItem title="(No print)" state="on" id="399"/>
+                                            <menuItem title="(No print)" id="399"/>
                                             <menuItem isSeparatorItem="YES" id="400">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
-                                            <menuItem title="Document Name" id="328"/>
-                                            <menuItem title="File Path" id="323"/>
-                                            <menuItem title="Print Date" id="327"/>
-                                            <menuItem title="Page number" id="326"/>
+                                            <menuItem title="Document Name" tag="2" id="328"/>
+                                            <menuItem title="File Path" tag="3" id="323"/>
+                                            <menuItem title="Print Date" tag="4" id="327"/>
+                                            <menuItem title="Page number" tag="5" id="326"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.footerTwoStringIndex" id="465"/>
+                                    <binding destination="448" name="selectedTag" keyPath="selection.footerTwoStringIndex" id="rAQ-lb-vnc"/>
                                     <binding destination="448" name="enabled" keyPath="selection.printFooter" id="466"/>
                                 </connections>
                             </popUpButton>
@@ -302,24 +302,24 @@
                             <popUpButton verticalHuggingPriority="750" id="198">
                                 <rect key="frame" x="106" y="69" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="393" id="704">
+                                <popUpButtonCell key="cell" type="push" title="Page number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="200" id="704">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="199">
                                         <items>
-                                            <menuItem title="(No print)" state="on" id="393"/>
+                                            <menuItem title="(No print)" id="393"/>
                                             <menuItem isSeparatorItem="YES" id="394">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
-                                            <menuItem title="Document Name" id="202"/>
-                                            <menuItem title="File Path" id="203"/>
-                                            <menuItem title="Print Date" id="206"/>
-                                            <menuItem title="Page number" id="200"/>
+                                            <menuItem title="Document Name" tag="2" id="202"/>
+                                            <menuItem title="File Path" tag="3" id="203"/>
+                                            <menuItem title="Print Date" tag="4" id="206"/>
+                                            <menuItem title="Page number" state="on" tag="5" id="200"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.headerOneStringIndex" id="451"/>
+                                    <binding destination="448" name="selectedTag" keyPath="selection.headerOneStringIndex" id="pcu-ks-vA4"/>
                                     <binding destination="448" name="enabled" keyPath="selection.printHeader" id="454"/>
                                 </connections>
                             </popUpButton>
@@ -452,24 +452,24 @@
                             <popUpButton verticalHuggingPriority="750" id="305">
                                 <rect key="frame" x="106" y="39" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="395" id="709">
+                                <popUpButtonCell key="cell" type="push" title="Page number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="306">
                                         <items>
-                                            <menuItem title="(No print)" state="on" id="395"/>
-                                            <menuItem isSeparatorItem="YES" id="396">
+                                            <menuItem title="(No print)" id="395"/>
+                                            <menuItem isSeparatorItem="YES" tag="-1" id="396">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
-                                            <menuItem title="Document Name" id="312"/>
-                                            <menuItem title="File Path" id="307"/>
-                                            <menuItem title="Print Date" id="311"/>
-                                            <menuItem title="Page number" id="310"/>
+                                            <menuItem title="Document Name" tag="2" id="312"/>
+                                            <menuItem title="File Path" tag="3" id="307"/>
+                                            <menuItem title="Print Date" tag="4" id="311"/>
+                                            <menuItem title="Page number" state="on" tag="5" id="310"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="448" name="selectedIndex" keyPath="selection.headerTwoStringIndex" id="452"/>
+                                    <binding destination="448" name="selectedTag" keyPath="selection.headerTwoStringIndex" id="yoH-kL-bas"/>
                                     <binding destination="448" name="enabled" keyPath="selection.printHeader" id="453"/>
                                 </connections>
                             </popUpButton>
