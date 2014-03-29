@@ -654,6 +654,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldUpdateDrawer) {
         NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo;
         
+        if (selectedRange.length == 1) {
+            unichar character = [theString characterAtIndex:selectedRange.location];
+            singleCharInfo = [NSString stringWithFormat:@"0x%.4X", character];
+        }
+        
         linesInfo = [NSString stringWithFormat:@"%ld", (long)numberOfLines];
         [[self windowController] setLinesInfo:linesInfo];
         
