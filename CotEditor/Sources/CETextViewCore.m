@@ -66,8 +66,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)inTextContainer
-// 初期化
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect textContainer:inTextContainer];
@@ -141,8 +141,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// first responder になれるかを返す  !!!: Deprecated on 10.4
 - (BOOL)becomeFirstResponder
-// first responder になれるかを返す  !!!: Deprecated on 10.4
 // ------------------------------------------------------
 {
     [(CESubSplitView *)[self delegate] setTextViewToEditorView:self];
@@ -152,8 +152,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キー押下を取得
 - (void)keyDown:(NSEvent *)theEvent
-// キー押下を取得
 // ------------------------------------------------------
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
@@ -178,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 文字列入力、'¥' と '\' を入れ替える。
 - (void)insertText:(id)aString
-// 文字列入力、'¥' と '\' を入れ替える。
 // ------------------------------------------------------
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_swapYenAndBackSlashKey] && ([aString length] == 1)) {
@@ -201,8 +201,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// タブ入力、タブを展開。
 - (void)insertTab:(id)sender
-// タブ入力、タブを展開。
 // ------------------------------------------------------
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoExpandTab]) {
@@ -224,8 +224,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行末コード入力、オートインデント実行。
 - (void)insertNewline:(id)sender
-// 行末コード入力、オートインデント実行。
 // ------------------------------------------------------
 {
     NSMutableString *input = [NSMutableString string];
@@ -252,8 +252,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// デリート。タブを展開しているときのスペースを調整削除。
 - (void)deleteBackward:(id)sender
-// デリート。タブを展開しているときのスペースを調整削除。
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -286,9 +286,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 補完リストの表示、選択候補の入力
 - (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange 
         movement:(NSInteger)movement isFinal:(BOOL)isFinal
-// 補完リストの表示、選択候補の入力
 // ------------------------------------------------------
 {
     NSEvent *event = [[self window] currentEvent];
@@ -326,8 +326,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// コンテキストメニューを返す
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent
-// コンテキストメニューを返す
 // ------------------------------------------------------
 {
     NSMenu *outMenu = [super menuForEvent:theEvent];
@@ -392,8 +392,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// コピー実行。行末コードを書類に設定されたものに置換する。
 - (void)copy:(id)sender
-// コピー実行。行末コードを書類に設定されたものに置換する。
 // ------------------------------------------------------
 {
     // （このメソッドは cut: からも呼び出される）
@@ -403,8 +403,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// フォント変更
 - (void)changeFont:(id)sender
-// フォント変更
 // ------------------------------------------------------
 {
     // (引数"sender"はNSFontManegerのインスタンス)
@@ -418,8 +418,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// フォントを設定
 - (void)setFont:(NSFont *)font
-// フォントを設定
 // ------------------------------------------------------
 {
     NSMutableDictionary *attrs = [[self typingAttrs] mutableCopy];
@@ -438,8 +438,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 補完時の範囲を返す
 - (NSRange)rangeForUserCompletion
-// 補完時の範囲を返す
 // ------------------------------------------------------
 {
     NSString *string = [self string];
@@ -463,8 +463,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストコンテナの原点（左上）座標を返す
 - (NSPoint)textContainerOrigin
-// テキストコンテナの原点（左上）座標を返す
 // ------------------------------------------------------
 {
     return [self textContainerOriginPoint];
@@ -472,8 +472,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ビュー内を描画
 - (void)drawRect:(NSRect)inRect
-// ビュー内を描画
 // ------------------------------------------------------
 {
     [super drawRect:inRect];
@@ -504,8 +504,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 特定の範囲が見えるようにスクロール
 - (void)scrollRangeToVisible:(NSRange)range
-// 特定の範囲が見えるようにスクロール
 // ------------------------------------------------------
 {
     [super scrollRangeToVisible:range];
@@ -551,8 +551,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ハイライト行追加表示
 - (void)drawHighlightLineAdditionalRect
-// ハイライト行追加表示
 // ------------------------------------------------------
 {
     if (NSWidth([self highlightLineAdditionalRect]) == 0) { return; }
@@ -563,8 +563,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キー入力時の文字修飾辞書をセット
 - (void)setEffectTypingAttrs
-// キー入力時の文字修飾辞書をセット
 // ------------------------------------------------------
 {
     [self setTypingAttributes:[self typingAttrs]];
@@ -572,8 +572,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 背景色をセット
 - (void)setBackgroundColorWithAlpha:(CGFloat)alpha
-// 背景色をセット
 // ------------------------------------------------------
 {
     NSColor *theBackgroundColor = 
@@ -584,8 +584,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択文字列を置換
 - (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
-// 選択文字列を置換
 // ------------------------------------------------------
 {
     if (string == nil) { return; }
@@ -599,8 +599,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全文字列を置換
 - (void)replaceAllStringTo:(NSString *)string
-// 全文字列を置換
 // ------------------------------------------------------
 {
     NSRange newRange = NSMakeRange(0, [string length]);
@@ -613,8 +613,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択文字列の後ろへ新規文字列を挿入
 - (void)insertAfterSelection:(NSString *)string
-// 選択文字列の後ろへ新規文字列を挿入
 // ------------------------------------------------------
 {
     if (string == nil) { return; }
@@ -627,8 +627,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 末尾に新規文字列を追加
 - (void)appendAllString:(NSString *)string
-// 末尾に新規文字列を追加
 // ------------------------------------------------------
 {
     if (string == nil) { return; }
@@ -640,8 +640,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カスタムキーバインドで文字列入力
 - (void)insertCustomTextWithPatternNum:(NSInteger)patternNum
-// カスタムキーバインドで文字列入力
 // ------------------------------------------------------
 {
     if (patternNum < 0) { return; }
@@ -660,8 +660,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// フォントをリセット
 - (void)resetFont:(id)sender
-// フォントをリセット
 // ------------------------------------------------------
 {
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_fontName];
@@ -674,8 +674,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 読み取り可能なPasteboardタイプを返す
 - (NSArray *)readablePasteboardTypes
-// 読み取り可能なPasteboardタイプを返す
 // ------------------------------------------------------
 {
     NSMutableArray *types = [NSMutableArray arrayWithArray:[super readablePasteboardTypes]];
@@ -686,8 +686,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行末コード置換のためのPasteboardタイプ配列を返す
 - (NSArray *)pasteboardTypesForString
-// 行末コード置換のためのPasteboardタイプ配列を返す
 // ------------------------------------------------------
 {
     return @[NSStringPboardType, @"public.utf8-plain-text"];
@@ -695,10 +695,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドラッグする文字列の行末コードを書類に設定されたものに置換する
 - (void)dragImage:(NSImage *)anImage at:(NSPoint)imageLoc offset:(NSSize)mouseOffset
             event:(NSEvent *)theEvent pasteboard:(NSPasteboard *)pboard
            source:(id)sourceObject slideBack:(BOOL)slideBack
-// ドラッグする文字列の行末コードを書類に設定されたものに置換する
 // ------------------------------------------------------
 {
     [self replaceLineEndingToDocCharInPboard:pboard];
@@ -708,8 +708,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 領域内でオブジェクトがドラッグされている
 - (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type
-// 領域内でオブジェクトがドラッグされている
 // ------------------------------------------------------
 {
     if ([type isEqualToString:NSFilenamesPboardType]) {
@@ -761,8 +761,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドロップ実行（同じ書類からドロップされた文字列の行末コードをLFへ置換するためにオーバーライド）
 - (BOOL)performDragOperation:(id < NSDraggingInfo >)sender
-// ドロップ実行（同じ書類からドロップされた文字列の行末コードをLFへ置換するためにオーバーライド）
 // ------------------------------------------------------
 {
     // ドロップによる編集で行末コードをLFに統一する
@@ -806,8 +806,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ペーストまたはドロップされたアイテムに応じて挿入する文字列をNSPasteboardから読み込む
 - (BOOL)readSelectionFromPasteboard:(NSPasteboard *)pboard type:(NSString *)type
-// ペーストまたはドロップされたアイテムに応じて挿入する文字列をNSPasteboardから読み込む
 // ------------------------------------------------------
 {
     // （このメソッドは、performDragOperation: 内で呼ばれる）
@@ -954,8 +954,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// マウスでのテキスト選択時の挙動を制御、ダブルクリックでの括弧内選択機能を追加
 - (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange granularity:(NSSelectionGranularity)granularity
-// マウスでのテキスト選択時の挙動を制御、ダブルクリックでの括弧内選択機能を追加
 // ------------------------------------------------------
 {
 // このメソッドは、Smultron のものを使用させていただきました。(2006.09.09)
@@ -1112,8 +1112,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行間値をセットし、テキストと行番号を再描画
 - (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing
-// 行間値をセットし、テキストと行番号を再描画
 // ------------------------------------------------------
 {
     if (lineSpacing != [self lineSpacing]) {
@@ -1128,9 +1128,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 置換を実行
 - (void)doReplaceString:(NSString *)string withRange:(NSRange)range
            withSelected:(NSRange)selection withActionName:(NSString *)actionName
-// 置換を実行
 // ------------------------------------------------------
 {
     NSString *newStr = [string copy];
@@ -1167,8 +1167,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 文字列を選択
 - (void)selectTextRangeValue:(NSValue *)rangeValue
-// 文字列を選択
 // ------------------------------------------------------
 {
     [self setSelectedRange:[rangeValue rangeValue]];
@@ -1184,8 +1184,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// メニューの有効／無効を制御
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// メニューの有効／無効を制御
 // ------------------------------------------------------
 {
     NSUInteger length = [self selectedRange].length;
@@ -1222,8 +1222,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 右へシフト
 - (IBAction)shiftRight:(id)sender
-// 右へシフト
 // ------------------------------------------------------
 {
     // 現在の選択区域とシフトする行範囲を得る
@@ -1275,8 +1275,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 左へシフト
 - (IBAction)shiftLeft:(id)sender
-// 左へシフト
 // ------------------------------------------------------
 {
     // 現在の選択区域とシフトする行範囲を得る
@@ -1363,8 +1363,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 小文字へ変更
 - (IBAction)exchangeLowercase:(id)sender
-// 小文字へ変更
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1381,8 +1381,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 大文字へ変更
 - (IBAction)exchangeUppercase:(id)sender
-// 大文字へ変更
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1399,8 +1399,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 単語の頭を大文字へ変更
 - (IBAction)exchangeCapitalized:(id)sender
-// 単語の頭を大文字へ変更
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1417,8 +1417,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全角Roman文字へ変更
 - (IBAction)exchangeFullwidthRoman:(id)sender
-// 全角Roman文字へ変更
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1435,8 +1435,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 半角Roman文字へ変更
 - (IBAction)exchangeHalfwidthRoman:(id)sender
-// 半角Roman文字へ変更
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1454,8 +1454,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ひらがなをカタカナへ変更
 - (IBAction)exchangeKatakana:(id)sender
-// ひらがなをカタカナへ変更
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1472,8 +1472,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カタカナをひらがなへ変更
 - (IBAction)exchangeHiragana:(id)sender
-// カタカナをひらがなへ変更
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1491,8 +1491,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Unicode正規化
 - (IBAction)unicodeNormalizationNFD:(id)sender
-// Unicode正規化
 // ------------------------------------------------------
 {
     [self unicodeNormalization:sender];
@@ -1500,8 +1500,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Unicode正規化
 - (IBAction)unicodeNormalizationNFC:(id)sender
-// Unicode正規化
 // ------------------------------------------------------
 {
     [self unicodeNormalization:sender];
@@ -1509,8 +1509,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Unicode正規化
 - (IBAction)unicodeNormalizationNFKD:(id)sender
-// Unicode正規化
 // ------------------------------------------------------
 {
     [self unicodeNormalization:sender];
@@ -1518,8 +1518,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Unicode正規化
 - (IBAction)unicodeNormalizationNFKC:(id)sender
-// Unicode正規化
 // ------------------------------------------------------
 {
     [self unicodeNormalization:sender];
@@ -1527,8 +1527,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Unicode正規化
 - (IBAction)unicodeNormalization:(id)sender
-// Unicode正規化
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
@@ -1575,8 +1575,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 半角円マークを入力
 - (IBAction)inputYenMark:(id)sender
-// 半角円マークを入力
 // ------------------------------------------------------
 {
     [super insertText:[NSString stringWithCharacters:&k_yenMark length:1]];
@@ -1584,8 +1584,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// バックスラッシュを入力
 - (IBAction)inputBackSlash:(id)sender
-// バックスラッシュを入力
 // ------------------------------------------------------
 {
     [super insertText:@"\\"];
@@ -1593,8 +1593,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Hex Color Code を文字色として編集ウィンドウへ取り込む
 - (IBAction)editHexColorCodeAsForeColor:(id)sender
-// Hex Color Code を文字色として編集ウィンドウへ取り込む
 // ------------------------------------------------------
 {
     NSString *curStr = [[self string] substringWithRange:[self selectedRange]];
@@ -1605,8 +1605,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Hex Color Code を文字色として編集ウィンドウへ取り込む
 - (IBAction)editHexColorCodeAsBGColor:(id)sender
-// Hex Color Code を文字色として編集ウィンドウへ取り込む
 // ------------------------------------------------------
 {
     NSString *curStr = [[self string] substringWithRange:[self selectedRange]];
@@ -1617,8 +1617,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニュー選択によるテキスト選択を実行
 - (IBAction)setSelectedRangeWithNSValue:(id)sender
-// アウトラインメニュー選択によるテキスト選択を実行
 // ------------------------------------------------------
 {
     NSValue *value = [sender representedObject];
@@ -1634,8 +1634,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行間設定を変更
 - (IBAction)setLineSpacingFromMenu:(id)sender
-// 行間設定を変更
 // ------------------------------------------------------
 {
     [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue]];
@@ -1647,9 +1647,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Private Mthods
 
 // ------------------------------------------------------
+/// 文字列置換のリドゥーを登録
 - (void)redoReplaceString:(NSString *)string withRange:(NSRange)range 
             withSelected:(NSRange)selection withActionName:(NSString *)actionName
-// 文字列置換のリドゥーを登録
 // ------------------------------------------------------
 {
     [[[self undoManager] prepareWithInvocationTarget:self]
@@ -1658,9 +1658,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 置換実行
 - (void)doInsertString:(NSString *)string withRange:(NSRange)range 
             withSelected:(NSRange)selection withActionName:(NSString *)actionName scroll:(BOOL)doScroll
-// 置換実行
 // ------------------------------------------------------
 {
     NSUndoManager *undoManager = [self undoManager];
@@ -1687,8 +1687,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 半角Romanを全角Romanへ変換
 - (NSString *)halfToFullwidthRomanStringFrom:(NSString *)halfRoman
-// 半角Romanを全角Romanへ変換
 // ------------------------------------------------------
 {
     NSMutableString *fullRoman = [NSMutableString string];
@@ -1712,8 +1712,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全角Romanを半角Romanへ変換
 - (NSString *)fullToHalfwidthRomanStringFrom:(NSString *)fullRoman
-// 全角Romanを半角Romanへ変換
 // ------------------------------------------------------
 {
     NSMutableString *halfRoman = [NSMutableString string];
@@ -1734,8 +1734,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ひらがなをカタカナへ変換
 - (NSString *)hiraganaToKatakanaStringFrom:(NSString *)hiragana
-// ひらがなをカタカナへ変換
 // ------------------------------------------------------
 {
     NSMutableString *katakana = [NSMutableString string];
@@ -1756,8 +1756,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カタカナをひらがなへ変換
 - (NSString *)katakanaToHiraganaStringFrom:(NSString *)katakana
-// カタカナをひらがなへ変換
 // ------------------------------------------------------
 {
     NSMutableString *hiragana = [NSMutableString string];
@@ -1778,8 +1778,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドラッグされているアイテムのNSFilenamesPboardTypeに指定された拡張子のものが含まれているかどうかを返す
 - (BOOL)draggedItemsArray:(NSArray *)items containsExtensionInExtensions:(NSArray *)extensions
-// ドラッグされているアイテムのNSFilenamesPboardTypeに指定された拡張子のものが含まれているかどうかを返す
 // ------------------------------------------------------
 {
     if ([items count] > 0) {
@@ -1796,8 +1796,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行番号更新、キャレット／選択範囲が見えるようスクロール位置を調整
 - (void)updateLineNumberAndAdjustScroll
-// 行番号更新、キャレット／選択範囲が見えるようスクロール位置を調整
 // ------------------------------------------------------
 {
     // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
@@ -1810,8 +1810,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Pasetboard内文字列の行末コードを書類に設定されたものに置換する
 - (void)replaceLineEndingToDocCharInPboard:(NSPasteboard *)pboard
-// Pasetboard内文字列の行末コードを書類に設定されたものに置換する
 // ------------------------------------------------------
 {
     if (pboard == nil) { return; }
@@ -1833,8 +1833,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// フォントからタブ幅を計算して返す
 - (CGFloat)tabIntervalFromFont:(NSFont *)font
-// フォントからタブ幅を計算して返す
 // ------------------------------------------------------
 {
     NSMutableString *widthStr = [[NSMutableString alloc] init];

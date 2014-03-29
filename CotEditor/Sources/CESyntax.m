@@ -77,8 +77,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -92,8 +92,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全文字列の長さを返す
 - (NSUInteger)wholeStringLength
-// 全文字列の長さを返す
 // ------------------------------------------------------
 {
     return [[self wholeString] length];
@@ -101,8 +101,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 保持するstyle名をセット
 - (void)setSyntaxStyleName:(NSString *)styleName
-// 保持するstyle名をセット
 // ------------------------------------------------------
 {
     CESyntaxManager *manager = [CESyntaxManager sharedManager];
@@ -119,8 +119,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 拡張子からstyle名をセット
 - (BOOL)setSyntaxStyleNameFromExtension:(NSString *)extension
-// 拡張子からstyle名をセット
 // ------------------------------------------------------
 {
     NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
@@ -134,8 +134,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 保持しているカラーリング辞書から補完文字列配列を生成
 - (void)setCompleteWordsArrayFromColoringDictionary
-// 保持しているカラーリング辞書から補完文字列配列を生成
 // ------------------------------------------------------
 {
     if ([self coloringDictionary] == nil) { return; }
@@ -193,8 +193,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全体をカラーリング
 - (void)colorAllString:(NSString *)wholeString
-// 全体をカラーリング
 // ------------------------------------------------------
 {
     if ((wholeString == nil) || ([wholeString length] < 1) || 
@@ -215,8 +215,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 表示されている部分をカラーリング
 - (void)colorVisibleRange:(NSRange)range withWholeString:(NSString *)wholeString
-// 表示されている部分をカラーリング
 // ------------------------------------------------------
 {
     if ((wholeString == nil) || ([wholeString length] < 1) || 
@@ -253,8 +253,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニュー用の配列を生成し、返す
 - (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString
-// アウトラインメニュー用の配列を生成し、返す
 // ------------------------------------------------------
 {
 // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
@@ -395,8 +395,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// カラーリング中止、インジケータシートのモーダルを停止
 - (IBAction)cancelColoring:(id)sender
-// カラーリング中止、インジケータシートのモーダルを停止
 // ------------------------------------------------------
 {
     [NSApp abortModal];
@@ -412,8 +412,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 指定された文字列をそのまま検索し、カラーリング
 - (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSMutableString *)charString
-// 指定された文字列をそのまま検索し、カラーリング
 // ------------------------------------------------------
 {
     NSArray *array = [self rangesSimpleWordsArrayDict:wordsDict withCharString:charString];
@@ -433,8 +433,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 指定された文字列をそのまま検索し、位置を返す
 - (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSMutableString *)charString
-// 指定された文字列をそのまま検索し、位置を返す
 // ------------------------------------------------------
 {
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
@@ -480,9 +480,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 指定された開始／終了ペアの文字列を検索し、位置を返す
 - (NSArray *)rangesBeginString:(NSString *)beginString withEndString:(NSString *)endString
                     doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
-// 指定された開始／終了ペアの文字列を検索し、位置を返す
 // ------------------------------------------------------
 {
     NSString *ESCheckStr = nil;
@@ -565,9 +565,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 指定された文字列を正規表現として検索し、位置を返す
 - (NSArray *)rangesRegularExpressionString:(NSString *)regexStr withIgnoreCase:(BOOL)ignoreCase
                                 doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
-// 指定された文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
     uint32_t options = (ignoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
@@ -620,9 +620,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 指定された文字列を正規表現として検索し、位置を返す
 - (NSArray *)checkRegularExpressionString:(NSString *)regexStr withIgnoreCase:(BOOL)ignoreCase
                                doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
-// 指定された文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
     NSUInteger options = (ignoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
@@ -676,9 +676,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 指定された開始／終了文字列を正規表現として検索し、位置を返す
 - (NSArray *)rangesRegularExpressionBeginString:(NSString *)beginString withEndString:(NSString *)endString withIgnoreCase:(BOOL)ignoreCase
                                      doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
-// 指定された開始／終了文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
     uint32_t options = (ignoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
@@ -746,9 +746,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return outArray;
 }
 // ------------------------------------------------------
+/// 指定された開始／終了文字列を正規表現として検索し、位置を返す
 - (NSArray *)checkRegularExpressionBeginString:(NSString *)beginString withEndString:(NSString *)endString withIgnoreCase:(BOOL)ignoreCase
                                     doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
-// 指定された開始／終了文字列を正規表現として検索し、位置を返す
 // ------------------------------------------------------
 {
     NSUInteger options = (ignoreCase) ? OgreIgnoreCaseOption : OgreNoneOption;
@@ -814,10 +814,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// コメントをカラーリング
 - (void)setAttrToCommentsWithSyntaxArray:(NSArray *)syntaxArray
                         withSingleQuotes:(BOOL)withSingleQuotes withDoubleQuotes:(BOOL)withDoubleQuotes
                          updateIndicator:(BOOL)updateIndicator
-// コメントをカラーリング
 // ------------------------------------------------------
 {
     NSMutableArray *posArray = [NSMutableArray array];
@@ -981,8 +981,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
 - (NSUInteger)numberOfEscapeSequenceInString:(NSString *)string
-// 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
 // ------------------------------------------------------
 {
     NSUInteger numberOfEscapeSequence = 0, length = [string length];
@@ -1000,8 +1000,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字表示時に文字色を変更する
 - (void)setOtherInvisibleCharsAttrs
-// 不可視文字表示時に文字色を変更する
 // ------------------------------------------------------
 {
     if (![[self layoutManager] showOtherInvisibles]) { return; }
@@ -1044,8 +1044,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーリングを実行
 - (void)doColoring
-// カラーリングを実行
 // ------------------------------------------------------
 {
     NSUInteger length = [self wholeStringLength];
@@ -1274,8 +1274,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーリングインジケータの値を返す
 - (double)doubleValueOfIndicator
-// カラーリングインジケータの値を返す
 // ------------------------------------------------------
 {
     return [[self coloringIndicator] doubleValue];
@@ -1283,8 +1283,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーリングインジケータの値を設定
 - (void)setDoubleIndicator:(double)doubleIndicator
-// カラーリングインジケータの値を設定
 // ------------------------------------------------------
 {
     [[self coloringIndicator] setDoubleValue:doubleIndicator];

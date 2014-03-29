@@ -44,8 +44,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// セルの描画
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
-// セルの描画
 // ------------------------------------------------------
 {
     if (![self isEnabled]) { return; }

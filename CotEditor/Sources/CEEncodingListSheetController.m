@@ -50,8 +50,8 @@
 #pragma mark NSWindowController Methods
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"EncodingListSheet"];
@@ -62,8 +62,8 @@
 
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     [[self dataSource] setupEncodingsToEdit];
@@ -74,8 +74,8 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// OK ボタンが押された
 - (IBAction)save:(id)sender
-// OK ボタンが押された
 // ------------------------------------------------------
 {
     [[self dataSource] writeEncodingsToUserDefaults]; // エンコーディングを保存
@@ -86,8 +86,8 @@
 
 
 // ------------------------------------------------------
+/// Cancel ボタンが押された
 - (IBAction)cancel:(id)sender
-// Cancel ボタンが押された
 // ------------------------------------------------------
 {
     [NSApp stopModal];

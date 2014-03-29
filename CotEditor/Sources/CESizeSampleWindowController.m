@@ -47,7 +47,10 @@
 
 #pragma mark Super Class Methods
 
+// ------------------------------------------------------
+/// ウインドウをロードした直後
 - (void)windowDidLoad
+// ------------------------------------------------------
 {
     [super windowDidLoad];
     [[self window] center];
@@ -58,8 +61,8 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// サイズを保存せずに終了する
 - (IBAction)cancel:(id)sender
-// サンプルウィンドウの内部サイズをuserDefaultsにセット
 // ------------------------------------------------------
 {
     [[self userDefaultsController] revert:sender];
@@ -68,8 +71,8 @@
 
 
 // ------------------------------------------------------
+/// サンプルウィンドウサイズをuserDefaultsにセットして終了する
 - (IBAction)save:(id)sender
-// サンプルウィンドウの内部サイズをuserDefaultsにセット
 // ------------------------------------------------------
 {
     [[self userDefaultsController] save:sender];

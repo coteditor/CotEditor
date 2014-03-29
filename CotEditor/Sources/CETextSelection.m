@@ -54,8 +54,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)initWithDocument:(CEDocument *)document
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -66,8 +66,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 // ------------------------------------------------------
+/// 生成した textStorage のデリゲートであることをやめる
 - (void)cleanUpTextStorage:(NSTextStorage *)textStorage
-// 生成した textStorage のデリゲートであることをやめる
 // ------------------------------------------------------
 {
     [textStorage setDelegate:nil];
@@ -83,8 +83,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// AppleScriptの返り値としてのtextStorageが更新された
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification
-// AppleScriptの返り値としてのtextStorageが更新された
 // ------------------------------------------------------
 {
     NSString *newString = [(NSTextStorage *)[aNotification object] string];
@@ -110,8 +110,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 選択範囲内の文字列を返す(Unicode text型)
 - (NSTextStorage *)contents
-// 選択範囲内の文字列を返す(Unicode text型)
 // ------------------------------------------------------
 {
     NSString *string = [[[self document] editorView] substringWithSelectionForSave];
@@ -126,8 +126,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択範囲に文字列をセット
 - (void)setContents:(id)ContentsObject
-// 選択範囲に文字列をセット
 // ------------------------------------------------------
 {
     if ([ContentsObject isKindOfClass:[NSTextStorage class]]) {
@@ -139,8 +139,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択範囲の文字の位置と長さを返す(list型)
 - (NSArray *)range
-// 選択範囲の文字の位置と長さを返す(list型)
 // ------------------------------------------------------
 {
     NSRange selectedRange = [[[self document] editorView] selectedRange];
@@ -152,8 +152,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択範囲の文字の位置と長さをセット
 - (void)setRange:(NSArray *)rangeArray
-// 選択範囲の文字の位置と長さをセット
 // ------------------------------------------------------
 {
     if ([rangeArray count] != 2) { return; }
@@ -165,8 +165,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択範囲の行の位置と長さを返す(list型)
 - (NSArray *)lineRange
-// 選択範囲の行の位置と長さを返す(list型)
 // ------------------------------------------------------
 {
     NSRange selectedRange = [[[self document] editorView] selectedRange];
@@ -193,8 +193,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択範囲の行の位置と長さをセット
 - (void)setLineRange:(NSArray *)rangeArray
-// 選択範囲の行の位置と長さをセット
 // ------------------------------------------------------
 {
     NSInteger location;
@@ -223,8 +223,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 選択範囲を右にシフト
 - (void)handleShiftRight:(NSScriptCommand *)command
-// 選択範囲を右にシフト
 // ------------------------------------------------------
 {
     [[[[self document] editorView] textView] shiftRight:self];
@@ -232,8 +232,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択範囲を左にシフト
 - (void)handleShiftLeft:(NSScriptCommand *)command
-// 選択範囲を左にシフト
 // ------------------------------------------------------
 {
     [[[[self document] editorView] textView] shiftLeft:self];
@@ -241,8 +241,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 文字列を大文字／小文字／キャピタライズにコンバートし、結果を返す
 - (void)handleChangeCase:(NSScriptCommand *)command
-// 文字列を大文字／小文字／キャピタライズにコンバートし、結果を返す
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -265,8 +265,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 半角／全角Romanを切り替える
 - (void)handleChangeWidthRoman:(NSScriptCommand *)command
-// 半角／全角Romanを切り替える
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -286,8 +286,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ひらがな／カタカナを切り替える
 - (void)handleChangeKana:(NSScriptCommand *)command
-// ひらがな／カタカナを切り替える
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -302,8 +302,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Unicode 正規化
 - (void)handleUnicodeNomalization:(NSScriptCommand *)command
-// Unicode 正規化
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];

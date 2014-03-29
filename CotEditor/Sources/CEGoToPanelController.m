@@ -50,8 +50,8 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// initializer of panelController
 - (instancetype)init
-// initializer of panelController
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"GoToPanel"];
@@ -61,8 +61,8 @@
 
 
 // ------------------------------------------------------
+/// invoke when frontmost document window changed
 - (void)keyDocumentDidChange
-// invoke when frontmost document window changed
 // ------------------------------------------------------
 {
     [self setLocationString:@""];
@@ -73,8 +73,8 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// apply to the frontmost document window
 - (IBAction)apply:(id)sender
-// apply to the frontmost document window
 // ------------------------------------------------------
 {
     NSArray *theArray = [[self locationString] componentsSeparatedByString:@":"];

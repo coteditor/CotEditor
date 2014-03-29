@@ -44,8 +44,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 生成した textStorage のデリゲートであることをやめる
 - (void)cleanUpTextStorage:(NSTextStorage *)textStorage
-// 生成した textStorage のデリゲートであることをやめる
 // ------------------------------------------------------
 {
     [textStorage setDelegate:nil];
@@ -61,8 +61,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// AppleScriptの返り値としてのtextStorageが更新された
 - (void)textStorageDidProcessEditing:(NSNotification *)notification
-// AppleScriptの返り値としてのtextStorageが更新された
 // ------------------------------------------------------
 {
     NSString *newString = [(NSTextStorage *)[notification object] string];
@@ -82,8 +82,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ドキュメントの文字列を返す(text型)
 - (NSTextStorage *)textStorage
-// ドキュメントの文字列を返す(text型)
 // ------------------------------------------------------
 {
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:[[self editorView] stringForSave]];
@@ -97,8 +97,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントの文字列をセット（全置換）
 - (void)setTextStorage:(id)object;
-// ドキュメントの文字列をセット（全置換）
 // ------------------------------------------------------
 {
     if ([object isKindOfClass:[NSTextStorage class]]) {
@@ -108,8 +108,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントの文字列を返す(text型)
 - (NSTextStorage *)contents
-// ドキュメントの文字列を返す(text型)
 // ------------------------------------------------------
 {
     return [self textStorage];
@@ -117,8 +117,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントの文字列をセット（全置換）
 - (void)setContents:(id)object
-// ドキュメントの文字列をセット（全置換）
 // ------------------------------------------------------
 {
     [self setTextStorage:object];
@@ -126,8 +126,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントの文字数を返す(integer型)
 - (NSNumber *)length
-// ドキュメントの文字数を返す(integer型)
 // ------------------------------------------------------
 {
     return @([[[self editorView] stringForSave] length]);
@@ -135,8 +135,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行末コードを返す(enum型)
 - (CELineEnding)lineEnding
-// 行末コードを返す(enum型)
 // ------------------------------------------------------
 {
     NSInteger code = [[self editorView] lineEndingCharacter];
@@ -156,8 +156,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行末コードをセット
 - (void)setLineEnding:(CELineEnding)lineEnding
-// 行末コードをセット
 // ------------------------------------------------------
 {
     NSInteger code;
@@ -178,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディング名を返す(Unicode text型)
 - (NSString *)encoding
-// エンコーディング名を返す(Unicode text型)
 // ------------------------------------------------------
 {
     return [NSString localizedNameOfStringEncoding:[self encodingCode]];
@@ -187,8 +187,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディング名の IANA Charset 名を返す(Unicode text型)
 - (NSString *)IANACharSetName
-// エンコーディング名の IANA Charset 名を返す(Unicode text型)
 // ------------------------------------------------------
 {
     NSString *name = [self currentIANACharSetName];
@@ -199,8 +199,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーリングスタイル名を返す(Unicode text型)
 - (NSString *)coloringStyle
-// カラーリングスタイル名を返す(Unicode text型)
 // ------------------------------------------------------
 {
     return [[self editorView] syntaxStyleNameToColoring];
@@ -208,8 +208,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーリングスタイル名をセット
 - (void)setColoringStyle:(NSString *)styleName
-// カラーリングスタイル名をセット
 // ------------------------------------------------------
 {
     [self doSetSyntaxStyle:styleName];
@@ -217,8 +217,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// selection-object を返す
 - (CETextSelection *)selectionObject
-// selection-object を返す
 // ------------------------------------------------------
 {
     return [self selection];
@@ -226,8 +226,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択範囲へテキストを設定
 - (void)setSelectionObject:(id)object
-// 選択範囲へテキストを設定
 // ------------------------------------------------------
 {
     if ([object isKindOfClass:[NSString class]]) {
@@ -237,8 +237,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ワードラップの状態を返す
 - (NSNumber *)wrapLines
-// ワードラップの状態を返す
 // ------------------------------------------------------
 {
     return @([[self editorView] wrapLines]);
@@ -246,8 +246,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ワードラップを切り替える
 - (void)setWrapLines:(NSNumber *)wrapLines
-// ワードラップを切り替える
 // ------------------------------------------------------
 {
     [[self editorView] setWrapLines:[wrapLines boolValue]];
@@ -255,8 +255,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行間値を返す
 - (NSNumber *)lineSpacing
-// 行間値を返す
 // ------------------------------------------------------
 {
     return @([[[self editorView] textView] lineSpacing]);
@@ -264,8 +264,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行間値をセット
 - (void)setLineSpacing:(NSNumber *)lineSpacing
-// 行間値をセット
 // ------------------------------------------------------
 {
     [[[self editorView] textView] setLineSpacing:(CGFloat)[lineSpacing doubleValue]];
@@ -280,8 +280,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// エンコーディングを変更し、テキストをコンバートする
 - (NSNumber *)handleConvert:(NSScriptCommand *)command
-// エンコーディングを変更し、テキストをコンバートする
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -306,8 +306,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディングを変更し、テキストを再解釈する
 - (NSNumber *)handleReinterpret:(NSScriptCommand *)command
-// エンコーディングを変更し、テキストを再解釈する
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -333,8 +333,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 検索
 - (NSNumber *)handleFind:(NSScriptCommand *)inCommand
-// 検索
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [inCommand evaluatedArguments];
@@ -375,8 +375,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 置換
 - (NSNumber *)handleReplace:(NSScriptCommand *)command
-// 置換
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -447,8 +447,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// スクロール実行
 - (void)handleScroll:(NSScriptCommand *)command
-// スクロール実行
 // ------------------------------------------------------
 {
     [self scrollToCenteringSelection];
@@ -456,8 +456,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 指定された範囲の文字列を返す
 - (NSString *)handleString:(NSScriptCommand *)command
-// 指定された範囲の文字列を返す
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -486,9 +486,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-- (BOOL)doFind:(NSString *)searchString range:(NSRange)range 
+/// 文字列を検索し、見つかったら選択して結果を返す
+- (BOOL)doFind:(NSString *)searchString range:(NSRange)range
             option:(unsigned)option withRegularExpression:(BOOL)RE
-// 文字列を検索し、見つかったら選択して結果を返す
 // ------------------------------------------------------
 {
     NSString *wholeStr = [[self editorView] stringForSave];

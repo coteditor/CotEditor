@@ -63,8 +63,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 後片付け
 - (void)dealloc
-// 後片付け
 // ------------------------------------------------------
 {
     [[self toolbar] setDelegate:nil]; // デリゲート解除
@@ -80,8 +80,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     [self setToolbar:[[NSToolbar alloc] initWithIdentifier:k_prefWindowToolbarID]];
@@ -109,10 +109,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ツールバーアイテムを返す
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar
         itemForItemIdentifier:(NSString *)itemIdentifier 
         willBeInsertedIntoToolbar:(BOOL)flag
-// ツールバーアイテムを返す
 // ------------------------------------------------------
 {
     NSToolbarItem *outToolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
@@ -167,8 +167,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 設定画面でのツールバーアイテム配列を返す
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
-// 設定画面でのツールバーアイテム配列を返す
 // ------------------------------------------------------
 {
     return [self toolbarDefaultItemIdentifiers:toolbar];
@@ -176,8 +176,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ツールバーアイテムデフォルト配列を返す
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
-// ツールバーアイテムデフォルト配列を返す
 // ------------------------------------------------------
 {
     return @[k_prefGeneralItemID,
@@ -192,8 +192,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択可能なツールバーアイテムの配列を返す
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
-// 選択可能なツールバーアイテムの配列を返す
 // ------------------------------------------------------
 {
     return [self toolbarDefaultItemIdentifiers:toolbar];
@@ -206,8 +206,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// タブの選択変更の許可
 - (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem
-// タブの選択変更の許可
 // ------------------------------------------------------
 {
     id tabItemView = [[tabViewItem view] viewWithTag:k_prefTabItemViewTag];
@@ -244,13 +244,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// タブを選択
 - (IBAction)selectTab:(id)sender
-// タブを選択
 //-------------------------------------------------------
 {
     [[self toolbar] setSelectedItemIdentifier:[sender itemIdentifier]]; // ツールバーアイテムを選択し直す（Tab移動とSpaceキーでの決定で選択された時にアイテムが選択状態にならないことへの対策）
     [[self tabView] selectTabViewItemWithIdentifier:[sender itemIdentifier]];
 }
-
 
 @end

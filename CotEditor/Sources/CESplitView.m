@@ -41,11 +41,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @end
 
+
+
+
+#pragma mark -
+
 @implementation CESplitView
 
+#pragma mark Superclass Methods
+
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)initWithFrame:(NSRect)frameRect
-// 初期化
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
@@ -57,9 +64,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+
+#pragma mark Public Methods
+
 // ------------------------------------------------------
+/// 行番号表示の有無を設定
 - (void)setShowLineNum:(BOOL)showLineNum
-// 行番号表示の有無を設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setShowLineNumWithNumber:)
@@ -68,8 +78,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ナビゲーションバー描画の有無を設定
 - (void)setShowNavigationBar:(BOOL)showNavigationBar
-// ナビゲーションバー描画の有無を設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setShowNavigationBarWithNumber:)
@@ -78,8 +88,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ラップする／しないを設定
 - (void)setWrapLines:(BOOL)wrapLines
-// ラップする／しないを設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setWrapLinesWithNumber:)
@@ -88,8 +98,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字の表示／非表示を設定
 - (void)setShowInvisibles:(BOOL)showInvisibles
-// 不可視文字の表示／非表示を設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setShowInvisiblesWithNumber:)
@@ -98,8 +108,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 文字にアンチエイリアスを使うかどうかを設定
 - (void)setUseAntialias:(BOOL)useAntialias
-// 文字にアンチエイリアスを使うかどうかを設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setUseAntialiasWithNumber:)
@@ -108,8 +118,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストビュー分割削除ボタンを有効／無効を設定
 - (void)setCloseSubSplitViewButtonEnabled:(BOOL)enabled
-// テキストビュー分割削除ボタンを有効／無効を設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:)
@@ -118,8 +128,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キャレットを先頭に移動
 - (void)setAllCaretToBeginning
-// キャレットを先頭に移動
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setCaretToBeginning)];
@@ -127,8 +137,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// subSplitView が持つ editorView への参照を削除
 - (void)releaseAllEditorView
-// subSplitView が持つ editorView への参照を削除
 // ------------------------------------------------------
 {
     // （dealloc は親階層から行われるため、あらかじめ「子」が持っている「親」を開放しておく）
@@ -137,8 +147,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックススタイルを設定
 - (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName
-// シンタックススタイルを設定
 // ------------------------------------------------------
 {
     if (syntaxName == nil) { return; }
@@ -148,8 +158,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全てを再カラーリング、文書表示処理の完了をポスト（ここが最終地点）
 - (void)recoloringAllTextView
-// 全てを再カラーリング、文書表示処理の完了をポスト（ここが最終地点）
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(recoloringAllTextViewString)];
@@ -162,8 +172,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全てのアウトラインメニューを再更新
 - (void)updateAllOutlineMenu
-// 全てのアウトラインメニューを再更新
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(updateOutlineMenu)];
@@ -171,8 +181,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全てのテキストビューの背景不透明度を設定
 - (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
-// 全てのテキストビューの背景不透明度を設定
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:)

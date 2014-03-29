@@ -77,8 +77,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)initWithFrame:(NSRect)frameRect
-// 初期化
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
@@ -176,8 +176,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 後片づけ
 - (void)dealloc
-// 後片づけ
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
@@ -199,8 +199,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// editorView 開放
 - (void)releaseEditorView
-// _editorView 開放
 // ------------------------------------------------------
 {
     // （dealloc は親階層から行われるため、あらかじめ「子」が持っている「親」を開放しておく）
@@ -209,8 +209,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストビューの文字列を返す
 - (NSString *)string
-// テキストビューの文字列を返す
 // ------------------------------------------------------
 {
     return ([[self textView] string]);
@@ -218,8 +218,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ライブリサイズが終了した
 - (void)viewDidEndLiveResize
-// ライブリサイズが終了した
 // ------------------------------------------------------
 {
     // ナビゲーションバーを表示させているときにスプリットビューを最小までリサイズしてから広げると、テキストが
@@ -232,8 +232,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// TextStorage を置換
 - (void)replaceTextStorage:(NSTextStorage *)textStorage
-// TextStorage を置換
 // ------------------------------------------------------
 {
     _textStorage = textStorage;
@@ -242,8 +242,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントが書き込みできるかどうかを返す
 - (BOOL)isWritable
-// ドキュメントが書き込みできるかどうかを返す
 // ------------------------------------------------------
 {
     return [[self editorView] isWritable];
@@ -251,8 +251,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 「書き込み禁止」アラートを表示したかどうかを返す
 - (BOOL)isAlertedNotWritable
-// 「書き込み禁止」アラートを表示したかどうかを返す
 // ------------------------------------------------------
 {
     return [[self editorView] isAlertedNotWritable];
@@ -260,8 +260,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストビューをエディタビューにセット
 - (void)setTextViewToEditorView:(CETextViewCore *)textView
-// テキストビューをエディタビューにセット
 // ------------------------------------------------------
 {
     [[self editorView] setTextView:textView];
@@ -269,8 +269,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行番号表示設定をセット
 - (void)setShowLineNumWithNumber:(NSNumber *)number
-// 行番号表示設定をセット
 // ------------------------------------------------------
 {
     [[self lineNumView] setShowLineNum:[number boolValue]];
@@ -278,8 +278,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ナビゲーションバーを表示／非表示
 - (void)setShowNavigationBarWithNumber:(NSNumber *)number
-// ナビゲーションバーを表示／非表示
 // ------------------------------------------------------
 {
     [[self navigationBar] setShowNavigationBar:[number boolValue]];
@@ -290,8 +290,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ラップする／しないを切り替える
 - (void)setWrapLinesWithNumber:(NSNumber *)number
-// ラップする／しないを切り替える
 // ------------------------------------------------------
 {
     if ([number boolValue]) {
@@ -313,8 +313,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字の表示／非表示を切り替える
 - (void)setShowInvisiblesWithNumber:(NSNumber *)number
-// 不可視文字の表示／非表示を切り替える
 // ------------------------------------------------------
 {
     NSRange selectedRange;
@@ -338,8 +338,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アンチエイリアス適用を切り替える
 - (void)setUseAntialiasWithNumber:(NSNumber *)number
-// アンチエイリアス適用を切り替える
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
@@ -350,8 +350,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ページガイドの表示／非表示を返す
 - (BOOL)showPageGuide
-// ページガイドの表示／非表示を返す
 // ------------------------------------------------------
 {
     return [[self editorView] showPageGuide];
@@ -359,8 +359,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キャレットを先頭に移動
 - (void)setCaretToBeginning
-// キャレットを先頭に移動
 // ------------------------------------------------------
 {
     [[self textView] setSelectedRange:NSMakeRange(0, 0)];
@@ -368,8 +368,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックススタイルを設定
 - (void)setSyntaxStyleNameToSyntax:(NSString *)styleName
-// シンタックススタイルを設定
 // ------------------------------------------------------
 {
     [[self syntax] setSyntaxStyleName:styleName];
@@ -377,8 +377,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 全てを再カラーリング
 - (void)recoloringAllTextViewString
-// 全てを再カラーリング
 // ------------------------------------------------------
 {
     [[self syntax] colorAllString:[[self textView] string]];
@@ -386,8 +386,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニューを更新
 - (void)updateOutlineMenu
-// アウトラインメニューを更新
 // ------------------------------------------------------
 {
     [self stopUpdateOutlineMenuTimer];
@@ -397,8 +397,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニューの選択項目を更新
 - (void)updateOutlineMenuSelection
-// アウトラインメニューの選択項目を更新
 // ------------------------------------------------------
 {
     if (![self outlineMenuTimer]) {
@@ -417,8 +417,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストビュー分割削除ボタンの有効化／無効化を制御
 - (void)updateCloseSubSplitViewButtonWithNumber:(NSNumber *)number
-// テキストビュー分割削除ボタンの有効化／無効化を制御
 // ------------------------------------------------------
 {
     [[self navigationBar] setCloseSplitButtonEnabled:[number boolValue]];
@@ -426,8 +426,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行番号更新タイマーを停止
 - (void)stopUpdateLineNumberTimer
-// 行番号更新タイマーを停止
 // ------------------------------------------------------
 {
     if ([self lineNumUpdateTimer]) {
@@ -438,8 +438,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニュー更新タイマーを停止
 - (void)stopUpdateOutlineMenuTimer
-// アウトラインメニュー更新タイマーを停止
 // ------------------------------------------------------
 {
     if ([self outlineMenuTimer]) {
@@ -450,8 +450,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 入力補完文字列に設定された最初の1文字のセットを返す
 - (NSCharacterSet *)completionsFirstLetterSet
-// 入力補完文字列に設定された最初の1文字のセットを返す
 // ------------------------------------------------------
 {
     return [[self syntax] completeFirstLetterSet];
@@ -459,8 +459,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストビューに背景色をセット
 - (void)setBackgroundColorAlphaWithNumber:(NSNumber *)number
-// テキストビューに背景色をセット
 // ------------------------------------------------------
 {
     CGFloat alpha = (CGFloat)[number doubleValue];
@@ -480,9 +480,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+///  テキストが編集される
 - (BOOL)textView:(NSTextView *)aTextView shouldChangeTextInRange:(NSRange)affectedCharRange 
         replacementString:(NSString *)replacementString
-//  テキストが編集される
 // ------------------------------------------------------
 {
     // キー入力、スクリプトによる編集で行末コードをLFに統一する
@@ -528,9 +528,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 補完候補リストをセット
 - (NSArray *)textView:(NSTextView *)aTextView completions:(NSArray *)words 
         forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
-// 補完候補リストをセット
 // ------------------------------------------------------
 {
     // This method is based on Smultron(SMLSyntaxColouring.m)
@@ -592,8 +592,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// text did edit.
 - (void)textDidChange:(NSNotification *)aNotification
-// text did edit.
 // ------------------------------------------------------
 {
     // カラーリング実行
@@ -612,8 +612,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// the selection of main textView was changed.
 - (void)textViewDidChangeSelection:(NSNotification *)aNotification
-// the selection of main textView was changed.
 // ------------------------------------------------------
 {
     // カレント行をハイライト
@@ -697,8 +697,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// did Replace All
 - (void)textDidReplaceAll:(NSNotification *)aNotification
-// did Replace All
 // ------------------------------------------------------
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
@@ -711,7 +711,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-
 #pragma mark Private Mthods
 
 //=======================================================
@@ -720,8 +719,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ラップする時にサイズを適正化する
 - (void)adjustTextFrameSize
-// ラップする時にサイズを適正化する
 // ------------------------------------------------------
 {
     NSInteger newWidth = [[self scrollView] contentSize].width;
@@ -732,8 +731,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行番号更新
 - (void)doUpdateLineNumberWithTimer:(NSTimer *)timer
-// 行番号更新
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
@@ -742,8 +741,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニュー更新
 - (void)doUpdateOutlineMenuWithTimer:(NSTimer *)timer
-// アウトラインメニュー更新
 // ------------------------------------------------------
 {
     [self updateOutlineMenu]; // （updateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
@@ -751,8 +750,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 対応カッコハイライト表示をリセット
 - (void)resetBackgroundColor:(id)sender
-// 対応カッコハイライト表示をリセット
 // ------------------------------------------------------
 {
     [[[self textView] layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
@@ -761,8 +760,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行番号表示、アウトラインメニューなどを更新
 - (void)updateInfo
-// 行番号表示、アウトラインメニューなどを更新
 // ------------------------------------------------------
 {
     // 行番号更新
@@ -793,8 +792,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カレント行をハイライト表示
 - (void)showHighlightCurrentLine
-// カレント行をハイライト表示
 // ------------------------------------------------------
 {
     if (![self highlightCurrentLine]) { return; }

@@ -46,8 +46,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 共有インスタンスを返す
 + (instancetype)sharedSystemTypesetter
-// 共有インスタンスを返す
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
@@ -70,8 +70,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// フォントの leading 値を反映させるかどうかを返す
 - (BOOL)usesFontLeading
-// フォントの leading 値を反映させるかどうかを返す
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
@@ -81,8 +81,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行間ピクセル数を返す
 - (CGFloat)lineSpacingAfterGlyphAtIndex:(NSUInteger)glyphIndex withProposedLineFragmentRect:(NSRect)rect
-// 行間ピクセル数を返す
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];

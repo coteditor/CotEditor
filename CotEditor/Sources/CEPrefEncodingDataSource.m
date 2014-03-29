@@ -59,8 +59,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 表示／変更のためのエンコーディングリストをセットアップ
 - (void)setupEncodingsToEdit
-// 表示／変更のためのエンコーディングリストをセットアップ
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
@@ -75,8 +75,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディングリストを userDefaults に書き戻す
 - (void)writeEncodingsToUserDefaults
-// エンコーディングリストを userDefaults に書き戻す
 // ------------------------------------------------------
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
@@ -97,8 +97,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// tableView の行数を返す
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-// tableView の行数を返す
 // ------------------------------------------------------
 {
     return [[self encodingsForTmp] count];
@@ -106,8 +106,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// tableViewの列・行で指定された内容を返す
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
-// tableViewの列・行で指定された内容を返す
 // ------------------------------------------------------
 {
     CFStringEncoding cfEncoding = [[self encodingsForTmp][rowIndex] unsignedLongValue];
@@ -128,8 +128,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドラッグ開始／tableView からのドラッグアイテム内容をセット
 - (BOOL)tableView:(NSTableView *)tableView writeRows:(NSArray *)rows toPasteboard:(NSPasteboard *)pasteboard
-// ドラッグ開始／tableView からのドラッグアイテム内容をセット
 // ------------------------------------------------------
 {
     // ドラッグ受付タイプを登録
@@ -151,8 +151,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// tableViewへドラッグアイテムが入ってきたときの判定
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)inOperation
-// tableViewへドラッグアイテムが入ってきたときの判定
 // ------------------------------------------------------
 {
     if ([info draggingSource]) { // = Local dragging
@@ -168,10 +168,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドロップの許可、アイテムの移動挿入
 - (BOOL)tableView:(NSTableView *)tableView 
         acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row
         dropOperation:(NSTableViewDropOperation)operation
-// ドロップの許可、アイテムの移動挿入
 // ------------------------------------------------------
 {
     NSMutableIndexSet *selectIndexSet = [NSMutableIndexSet indexSet];
@@ -221,8 +221,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// tableView の選択行が変更される直前にその許可を出す
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
-// tableView の選択行が変更される直前にその許可を出す
 // ------------------------------------------------------
 {
     NSIndexSet *selectIndexSet = [[self tableView] selectedRowIndexes];
@@ -253,8 +253,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// デフォルトのエンコーディング設定に戻す
 - (IBAction)revertDefaultEncodings:(id)sender
-// デフォルトのエンコーディング設定に戻す
 // ------------------------------------------------------
 {
     id initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
@@ -267,8 +267,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// セパレータ追加
 - (IBAction)addSeparator:(id)sender
-// セパレータ追加
 // ------------------------------------------------------
 {
     NSInteger index, selectedRow = [[self tableView] selectedRow];
@@ -281,8 +281,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// セパレータ削除
 - (IBAction)deleteSeparator:(id)sender
-// セパレータ削除
 // ------------------------------------------------------
 {
     NSIndexSet *selectIndexSet = [[self tableView] selectedRowIndexes];

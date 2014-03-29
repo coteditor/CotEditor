@@ -61,8 +61,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// initialize
 - (instancetype)initWithFrame:(NSRect)frame
-// initialize
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frame];
@@ -151,8 +151,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// draw background
 - (void)drawRect:(NSRect)dirtyRect
-// draw background
 // ------------------------------------------------------
 {
     if (![self masterView] || ![self showNavigationBar]) {
@@ -178,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// set to show navigation bar.
 - (void)setShowNavigationBar:(BOOL)showNavigationBar
-// set to show navigation bar.
 // ------------------------------------------------------
 {
     if (showNavigationBar != [self showNavigationBar]) {
@@ -192,8 +192,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 配列を元にアウトラインメニューを生成
 - (void)setOutlineMenuArray:(NSArray *)outlineMenuArray
-// 配列を元にアウトラインメニューを生成
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -259,8 +259,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニューの選択項目を設定
 - (void)selectOutlineMenuItemWithRange:(NSRange)range
-// アウトラインメニューの選択項目を設定
 // ------------------------------------------------------
 {
     if (![[self outlineMenu] isEnabled]) { return; }
@@ -299,8 +299,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アウトラインメニューの選択項目を設定
 - (void)selectOutlineMenuItemWithRangeValue:(NSValue *)rangeValue
-// アウトラインメニューの選択項目を設定
 // ------------------------------------------------------
 {
     [self selectOutlineMenuItemWithRange:[rangeValue rangeValue]];
@@ -308,8 +308,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 前／次移動ボタンの有効／無効を切り替え
 - (void)updatePrevNextButtonEnabled
-// 前／次移動ボタンの有効／無効を切り替え
 // ------------------------------------------------------
 {
     [[self prevButton] setEnabled:[self canSelectPrevItem]];
@@ -318,8 +318,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// set select prev item of outline menu.
 - (void)selectPrevItem
-// set select prev item of outline menu.
 // ------------------------------------------------------
 {
     if ([self canSelectPrevItem]) {
@@ -337,8 +337,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// set select next item of outline menu.
 - (void)selectNextItem
-// set select next item of outline menu.
 // ------------------------------------------------------
 {
     if ([self canSelectNextItem]) {
@@ -359,8 +359,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// can select prev item in outline menu?
 - (BOOL)canSelectPrevItem
-// can select prev item in outline menu?
 // ------------------------------------------------------
 {
     return ([[self outlineMenu] indexOfSelectedItem] > 0);
@@ -368,8 +368,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// can select next item in outline menu?
 - (BOOL)canSelectNextItem
-// can select next item in outline menu?
 // ------------------------------------------------------
 {
     for (NSInteger i = ([[self outlineMenu] indexOfSelectedItem] + 1); i < [[self outlineMenu] numberOfItems]; i++) {
@@ -382,8 +382,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// set closeSplitButton enabled or disabled
 - (void)setCloseSplitButtonEnabled:(BOOL)enabled
-// set closeSplitButton enabled or disabled
 // ------------------------------------------------------
 {
     [[self closeSplitButton] setHidden:!enabled];
@@ -400,8 +400,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// set view height.
 - (void)setHeight:(CGFloat)height
-// set view height.
 // ------------------------------------------------------
 {
     CGFloat adjHeight = height - NSHeight([self frame]);

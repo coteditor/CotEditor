@@ -46,8 +46,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 使用するセルのクラスを返す
 + (Class)cellClass
-// 使用するセルのクラスを返す
 // ------------------------------------------------------
 {
     return [CEOutlineMenuButtonCell class];
@@ -63,8 +63,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)initWithFrame:(NSRect)buttonFrame pullsDown:(BOOL)flag
-// 初期化
 // ------------------------------------------------------
 {
     self = [super initWithFrame:buttonFrame pullsDown:flag];

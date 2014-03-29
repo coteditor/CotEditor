@@ -61,8 +61,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// inizialize instance
 - (instancetype)init
-// inizialize instance
 // ------------------------------------------------------
 {
     self = [super init];
@@ -73,8 +73,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 // ------------------------------------------------------
+/// 名称未設定ドキュメントを開き、位置を保存
 - (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
-// 名称未設定ドキュメントを開き、位置を保存
 // ------------------------------------------------------
 {
     id document = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
@@ -88,8 +88,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルからドキュメントを作成
 - (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
-// ファイルからドキュメントを作成
 // ------------------------------------------------------
 {
     id document = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
@@ -110,8 +110,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// オープンパネルを開くときにエンコーディング指定メニューを付加する
 - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions
-// オープンパネルを開くときにエンコーディング指定メニューを付加する
 // ------------------------------------------------------
 {
     // エンコーディングメニューの選択を初期化し、ビューをセット
@@ -131,8 +131,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントが閉じた
 - (void)removeDocument:(NSDocument *)document
-// ドキュメントが閉じた
 // ------------------------------------------------------
 {
     [self setLatestDocument:nil];
@@ -150,8 +150,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 新規ドキュメント作成 (override)
 - (IBAction)newDocument:(id)sender
-// 新規ドキュメント作成 (override)
 // ------------------------------------------------------
 {
     [super newDocument:sender];
@@ -161,8 +161,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントを開く (override)
 - (IBAction)openDocument:(id)sender
-// ドキュメントを開く (override)
 // ------------------------------------------------------
 {
     [self setIsOpenHidden:([sender tag] == k_openHiddenMenuItemTag)];
@@ -174,8 +174,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドキュメントを開く
 - (IBAction)openHiddenDocument:(id)sender
-// ドキュメントを開く
 // ------------------------------------------------------
 {
     [self setIsOpenHidden:([sender tag] == k_openHiddenMenuItemTag)];
@@ -185,8 +185,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディングメニューの選択を初期化
 - (IBAction)setSelectAccessoryEncodingMenuToDefault:(id)sender
-// エンコーディングメニューの選択を初期化
 // ------------------------------------------------------
 {
     NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];

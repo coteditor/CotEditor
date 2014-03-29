@@ -44,8 +44,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 変換後のオブジェクトのクラスを返す
 + (Class)transformedValueClass
-// 変換後のオブジェクトのクラスを返す
 // ------------------------------------------------------
 {
     return [NSString class];
@@ -53,8 +53,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 逆変換が可能かどうかを返す
 + (BOOL)allowsReverseTransformation
-// 逆変換が可能かどうかを返す
 // ------------------------------------------------------
 {
     return YES;
@@ -70,8 +70,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 変換された値を返す(NSColor+NSArchiver -> NSString)
 - (id)transformedValue:(id)value
-// 変換された値を返す(NSColor+NSArchiver -> NSString)
 // ------------------------------------------------------
 {
     if (value == nil) { return nil; }
@@ -101,8 +101,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 逆変換された値を返す(NSString -> NSColor+NSArchiver)
 - (id)reverseTransformedValue:(id)value
-// 逆変換された値を返す(NSString -> NSColor+NSArchiver)
 // ------------------------------------------------------
 {
     if (value == nil) { return nil; }

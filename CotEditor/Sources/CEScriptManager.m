@@ -70,8 +70,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 //=======================================================
 
 // ------------------------------------------------------
+/// return singleton instance
 + (instancetype)sharedManager
-// return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
@@ -86,8 +86,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 // ------------------------------------------------------
+/// 対応しているスクリプトの拡張子
 + (NSArray *)scriptExtensions
-// 対応しているスクリプトの拡張子
 // ------------------------------------------------------
 {
     return @[@"sh", @"pl", @"php", @"rb", @"py"];
@@ -95,8 +95,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 // ------------------------------------------------------
+/// 対応しているAppleScriptの拡張子
 + (NSArray *)AppleScriptExtensions
-// 対応しているAppleScriptの拡張子
 // ------------------------------------------------------
 {
     return @[@"applescript", @"scpt"];
@@ -112,8 +112,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -131,8 +131,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 // ------------------------------------------------------
+/// あとかたづけ
 - (void)dealloc
-// あとかたづけ
 // ------------------------------------------------------
 {
     // ノーティフィケーションセンタから自身を排除
@@ -141,8 +141,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// Scriptメニューを生成
 - (void)buildScriptMenu:(id)sender
-// Scriptメニューを生成
 //------------------------------------------------------
 {
     NSURL *directoryURL = [self scriptDirectoryURL]; // データディレクトリパス取得
@@ -212,8 +212,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// コンテキストメニュー用のメニューを返す
 - (NSMenu *)contexualMenu
-// コンテキストメニュー用のメニューを返す
 //------------------------------------------------------
 {
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
@@ -223,8 +223,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// Script実行
 - (void)launchScript:(id)sender
-// Script実行
 //------------------------------------------------------
 {
     NSURL *URL;
@@ -301,8 +301,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 //=======================================================
 
 // ------------------------------------------------------
+/// メニュー項目の有効・無効を制御
 - (BOOL)validateMenuItem:(NSMenuItem *)inMenuItem
-// メニュー項目の有効・無効を制御
 // ------------------------------------------------------
 {
     return YES;
@@ -318,8 +318,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 //=======================================================
 
 // ------------------------------------------------------
+/// ScriptフォルダウィンドウをFinderで表示
 - (IBAction)openScriptFolder:(id)sender
-// ScriptフォルダウィンドウをFinderで表示
 // ------------------------------------------------------
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openScriptMenu" withExtension:@"applescript"];
@@ -340,8 +340,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 //=======================================================
 
 //------------------------------------------------------
+/// メニューバーにアイコンを表示
 - (void)setupMenuIcon
-// メニューバーにアイコンを表示
 //------------------------------------------------------
 {
     NSMenuItem *menuItem = [[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex];
@@ -352,8 +352,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// Scriptファイル保存用ディレクトリを返す
 - (NSURL *)scriptDirectoryURL
-// Scriptファイル保存用ディレクトリを返す
 //------------------------------------------------------
 {
     NSURL *URL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
@@ -368,8 +368,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// ファイルを読み込みメニューアイテムを生成／追加する
 - (void)addChildFileItemTo:(NSMenu *)inMenu fromDir:(NSURL *)directoryURL
-// ファイルを読み込みメニューアイテムを生成／追加する
 //------------------------------------------------------
 {
     NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:directoryURL
@@ -415,8 +415,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// すべてのメニューアイテムを削除
 - (void)removeAllMenuItemsFromParent:(NSMenu *)menu
-// すべてのメニューアイテムを削除
 //------------------------------------------------------
 {
     NSArray *items = [menu itemArray];
@@ -434,8 +434,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// ファイル／フォルダ名からメニューアイテムタイトル名を生成
 - (NSString *)menuTitleFromFileName:(NSString *)fileName
-// ファイル／フォルダ名からメニューアイテムタイトル名を生成
 //------------------------------------------------------
 {
     NSString *menuTitle = [fileName stringByDeletingPathExtension];
@@ -461,8 +461,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// ファイル名からキーボードショートカット定義を読み取る
 - (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromFileName:(NSString *)fileName
-// ファイル名からキーボードショートカット定義を読み取る
 //------------------------------------------------------
 {
     NSString *keySpec = [[fileName stringByDeletingPathExtension] pathExtension];
@@ -472,8 +472,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// エラーアラートを表示
 - (void)showAlertWithMessage:(NSString *)message
-// エラーアラートを表示
 //------------------------------------------------------
 {
     NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Script Error", nil)
@@ -487,8 +487,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// スクリプトの文字列を得る
 - (NSString *)stringOfScript:(NSURL *)URL
-// スクリプトの文字列を得る
 //------------------------------------------------------
 {
     NSString *scriptString = nil;
@@ -515,8 +515,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
+/// シェルスクリプト実行
 - (void)doLaunchShellScript:(NSURL *)URL
-// シェルスクリプト実行
 //------------------------------------------------------
 {
     NSString *script = [self stringOfScript:URL];
@@ -629,8 +629,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 // ------------------------------------------------------
+/// 標準出力を取得
 - (void)availableOutput:(NSNotification *)aNotification
-// 標準出力を取得
 // ------------------------------------------------------
 {
     NSData *outputData = [aNotification userInfo][NSFileHandleNotificationDataItem];
@@ -684,8 +684,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 // ------------------------------------------------------
+/// スクリプトエラーを追記し、エラーログウィンドウを表示
 - (void)showScriptErrorLog:(NSString *)errorLog
-// スクリプトエラーを追記し、エラーログウィンドウを表示
 // ------------------------------------------------------
 {
     CEScriptErrorPanelController *sheetController = [CEScriptErrorPanelController sharedController];

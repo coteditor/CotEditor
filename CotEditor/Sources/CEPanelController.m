@@ -54,8 +54,8 @@ static NSMutableDictionary *instances;
 #pragma mark Class Methods
 
 // ------------------------------------------------------
+/// return shared instance
 + (instancetype) sharedController
-// return shared instance
 // ------------------------------------------------------
 {
     // This method is based on the following article:
@@ -73,8 +73,8 @@ static NSMutableDictionary *instances;
 
 
 // ------------------------------------------------------
+/// allocate
 + (instancetype)allocWithZone:(NSZone *)zone
-// allocate
 // ------------------------------------------------------
 {
     // This method is based on the following article:
@@ -98,8 +98,8 @@ static NSMutableDictionary *instances;
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// default initializer
 - (instancetype)initWithWindow:(NSWindow *)window
-// default initializer
 // ------------------------------------------------------
 {
     self = [super initWithWindow:window];
@@ -117,8 +117,8 @@ static NSMutableDictionary *instances;
 
 
 // ------------------------------------------------------
+/// clean up
 - (void)dealloc
-// clean up
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -134,8 +134,8 @@ static NSMutableDictionary *instances;
 //=======================================================
 
 // ------------------------------------------------------
+/// notification about main window change
 - (void)windowDidBecomeMain:(NSNotification *)notification
-// notification about main window change
 // ------------------------------------------------------
 {
     // update properties if the new main window is a document window
@@ -151,8 +151,8 @@ static NSMutableDictionary *instances;
 #pragma mark Abstract Methods
 
 // ------------------------------------------------------
+/// invoke when frontmost document window changed (abstract)
 - (void)keyDocumentDidChange
-// invoke when frontmost document window changed (abstract)
 // ------------------------------------------------------
 {
     // override in subclass

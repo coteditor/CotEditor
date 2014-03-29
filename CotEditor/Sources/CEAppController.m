@@ -65,8 +65,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// set binding keys and values
 + (void)initialize
-// set binding keys and values
 // ------------------------------------------------------
 {
     // Encoding list
@@ -231,8 +231,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -250,8 +250,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 // ------------------------------------------------------
+/// すべてのエンコーディングメニューを生成
 - (void)buildAllEncodingMenus
-// すべてのエンコーディングメニューを生成
 // ------------------------------------------------------
 {
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
@@ -265,8 +265,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// すべてのシンタックスカラーリングメニューを生成
 - (void)buildAllSyntaxMenus
-// すべてのシンタックスカラーリングメニューを生成
 // ------------------------------------------------------
 {
     if ([self preferencesController]) {
@@ -278,8 +278,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 非表示半角スペース表示用文字を返すユーティリティメソッド
 - (NSString *)invisibleSpaceCharacter:(NSUInteger)index
-// 非表示半角スペース表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
     NSUInteger max = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)) - 1;
@@ -291,8 +291,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 非表示タブ表示用文字を返すユーティリティメソッド
 - (NSString *)invisibleTabCharacter:(NSUInteger)index
-// 非表示タブ表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
     NSUInteger max = (sizeof(k_invisibleTabCharList) / sizeof(unichar)) - 1;
@@ -304,8 +304,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 非表示改行表示用文字を返すユーティリティメソッド
 - (NSString *)invisibleNewLineCharacter:(NSUInteger)index
-// 非表示改行表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
     NSUInteger max = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)) - 1;
@@ -317,8 +317,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 非表示全角スペース表示用文字を返すユーティリティメソッド
 - (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
-// 非表示全角スペース表示用文字を返すユーティリティメソッド
 // ------------------------------------------------------
 {
     NSUInteger max = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)) - 1;
@@ -330,8 +330,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディング名からNSStringEncodingを返すユーティリティメソッド
 - (NSStringEncoding)encodingFromName:(NSString *)encodingName
-// エンコーディング名からNSStringEncodingを返すユーティリティメソッド
 // ------------------------------------------------------
 {
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
@@ -353,8 +353,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディング名からNSStringEncodingを返すユーティリティメソッド
 - (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
-// エンコーディング名からNSStringEncodingを返すユーティリティメソッド
 // ------------------------------------------------------
 {
     return ([[self invalidYenEncodings] containsObject:@(encoding)]);
@@ -362,9 +362,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 文字列からキーボードショートカット定義を読み取るユーティリティメソッド
 - (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask
         fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey
-// 文字列からキーボードショートカット定義を読み取るユーティリティメソッド
 //------------------------------------------------------
 {
     *modifierMask = 0;
@@ -416,8 +416,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     [self setupSupportDirectory];
@@ -437,8 +437,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// アプリ起動時に新規ドキュメント作成
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
-// アプリ起動時に新規ドキュメント作成
 // ------------------------------------------------------
 {
     if (![self didFinishLaunching]) {
@@ -449,8 +449,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Re-Open AppleEvents へ対応してウィンドウを開くかどうかを返す
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
-// Re-Open AppleEvents へ対応してウィンドウを開くかどうかを返す
 // ------------------------------------------------------
 {
     BOOL shouldReopen = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_reopenBlankWindow];
@@ -475,8 +475,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アプリ起動直後
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
-// アプリ起動直後
 // ------------------------------------------------------
 {
     // （CEKeyBindingManagerによって、キーボードショートカット設定は上書きされる。
@@ -531,8 +531,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アプリがアクティブになった
 - (void)applicationDidBecomeActive:(NSNotification *)notification
-// アプリがアクティブになった
 // ------------------------------------------------------
 {
     // 各ドキュメントに外部プロセスによって変更保存されていた場合の通知を行わせる
@@ -541,8 +541,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Dock メニュー生成
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
-// Dock メニュー生成
 // ------------------------------------------------------
 {
     NSMenu *menu = [[NSMenu alloc] init];
@@ -562,8 +562,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// メニューの有効化／無効化を制御
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// メニューの有効化／無効化を制御
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(openLineSpacingPanel:)) {
@@ -583,8 +583,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 環境設定ウィンドウを開く
 - (IBAction)openPreferences:(id)sender
-// 環境設定ウィンドウを開く
 // ------------------------------------------------------
 {
     if ([self preferencesController]) {
@@ -598,8 +598,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 // ------------------------------------------------------
+/// アップルスクリプト辞書をスクリプトエディタで開く
 - (IBAction)openAppleScriptDictionary:(id)sender
-// アップルスクリプト辞書をスクリプトエディタで開く
 // ------------------------------------------------------
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
@@ -609,8 +609,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Scriptエラーウィンドウを表示
 - (IBAction)openScriptErrorWindow:(id)sender
-// Scriptエラーウィンドウを表示
 // ------------------------------------------------------
 {
     [[CEScriptErrorPanelController sharedController] showWindow:self];
@@ -618,8 +618,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーコードウィンドウを表示
 - (IBAction)openHexColorCodeEditor:(id)sender
-// カラーコードウィンドウを表示
 // ------------------------------------------------------
 {
     [[CEColorCodePanelController sharedController] showWindow:self];
@@ -627,8 +627,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不透明度パネルを開く
 - (IBAction)openOpacityPanel:(id)sender
-// 不透明度パネルを開く
 // ------------------------------------------------------
 {
     [[CEOpacityPanelController sharedController] showWindow:self];
@@ -636,8 +636,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行間設定パネルを開く
 - (IBAction)openLineSpacingPanel:(id)sender
-// 行間設定パネルを開く
 // ------------------------------------------------------
 {
     [[CELineSpacingPanelController sharedController] showWindow:self];
@@ -645,8 +645,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Go Toパネルを開く
 - (IBAction)openGoToPanel:(id)sender
-// Go Toパネルを開く
 // ------------------------------------------------------
 {
     [[CEGoToPanelController sharedController] showWindow:self];
@@ -654,8 +654,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Dockメニューの「新規」メニューアクション（まず自身をアクティベート）
 - (IBAction)newInDockMenu:(id)sender
-// Dockメニューの「新規」メニューアクション（まず自身をアクティベート）
 // ------------------------------------------------------
 {
     [NSApp activateIgnoringOtherApps:YES];
@@ -664,8 +664,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Dockメニューの「開く」メニューアクション（まず自身をアクティベート）
 - (IBAction)openInDockMenu:(id)sender
-// Dockメニューの「開く」メニューアクション（まず自身をアクティベート）
 // ------------------------------------------------------
 {
     [NSApp activateIgnoringOtherApps:YES];
@@ -674,8 +674,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 付属ドキュメントを開く
 - (IBAction)openBundledDocument:(id)sender
-// 付属ドキュメントを開く
 // ------------------------------------------------------
 {
     NSString *fileName = k_bundleDocumentDict[@([sender tag])];
@@ -686,8 +686,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Webサイト（coteditor.github.io）を開く
 - (IBAction)openWebSite:(id)sender
-// Webサイト（coteditor.github.io）を開く
 // ------------------------------------------------------
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_webSiteURL]];
@@ -703,8 +703,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 //------------------------------------------------------
+/// データ保存用ディレクトリの存在をチェック、なければつくる
 - (void)setupSupportDirectory
-// データ保存用ディレクトリの存在をチェック、なければつくる
 //------------------------------------------------------
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -731,8 +731,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// エンコーディングメニューアイテムを生成
 - (NSArray *)encodingMenuNoAction
-// エンコーディングメニューアイテムを生成
 //------------------------------------------------------
 {
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
@@ -770,8 +770,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 廃止したuserDefaultsのデータをユーザのplistから削除
 - (void)cleanDeprecatedDefaults
-// 廃止したuserDefaultsのデータをユーザのplistから削除
 //------------------------------------------------------
 {
     NSArray *deprecatedKeys = @[@"statusAreaFontName",  // deprecated on 1.4
@@ -788,8 +788,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// フォーマットのエンコーディングメニューアイテムを生成
 - (NSMenu *)buildFormatEncodingMenuFromArray:(NSArray *)encodings
-// フォーマットのエンコーディングメニューアイテムを生成
 //------------------------------------------------------
 {
     NSMenu *encodingMenu = [[NSMenu alloc] initWithTitle:@"ENCODEING"];
@@ -814,8 +814,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// シンタックスカラーリングメニューを生成
 - (NSMenu *)buildSyntaxMenu
-// シンタックスカラーリングメニューを生成
 //------------------------------------------------------
 {
     NSMenu *coloringMenu = [[NSMenu alloc] initWithTitle:@"SYNTAX"];
@@ -861,8 +861,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 不可視文字列表示時のタイムラグを短縮するため、キャッシュしておく
 - (void)cacheTheInvisibleGlyph
-// 不可視文字列表示時のタイムラグを短縮するため、キャッシュしておく
 //------------------------------------------------------
 {
     NSMutableString *chars = [NSMutableString string];

@@ -53,8 +53,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @end
 
 
-//------------------------------------------------------------------------------------------
-
 
 
 #pragma mark -
@@ -69,8 +67,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)initWithFrame:(NSRect)frameRect
-// 初期化
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
@@ -126,8 +124,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 矩形を描画
 - (void)drawRect:(NSRect)dirtyRect
-// 矩形を描画
 // ------------------------------------------------------
 {
     if (![self masterView] || ![self showStatusBar]) {
@@ -154,8 +152,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 左側の情報欄を描画し直す
 - (void)updateLeftField
-// 左側の情報欄を描画し直す
 // ------------------------------------------------------
 {
     NSMutableString *statusString = [@"" mutableCopy];
@@ -175,8 +173,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 右側の情報欄を描画し直す
 - (void)updateRightField
-// 右側の情報欄を描画し直す
 // ------------------------------------------------------
 {
     [[self rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", [self encodingInfo], [self lineEndingsInfo]]];
@@ -184,8 +182,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ステータスバー表示の有無をセット
 - (void)setShowStatusBar:(BOOL)showStatusBar
-// ステータスバー表示の有無をセット
 // ------------------------------------------------------
 {
     if (showStatusBar != [self showStatusBar]) {
@@ -198,8 +196,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// "ReadOnly"アイコン表示の有無をセット
 - (void)setShowsReadOnlyIcon:(BOOL)showsReadOnlyIcon
-// "ReadOnly"アイコン表示の有無をセット
 // ------------------------------------------------------
 {
     if (showsReadOnlyIcon) {
@@ -221,8 +219,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 高さをセット
 - (void)setHeight:(CGFloat)height
-// 高さをセット
 // ------------------------------------------------------
 {
     CGFloat adjHeight = height - NSHeight([self frame]);

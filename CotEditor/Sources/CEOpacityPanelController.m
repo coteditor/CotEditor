@@ -50,8 +50,8 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// initializer of panelController
 - (instancetype)init
-// initializer of panelController
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"OpacityPanel"];
@@ -61,8 +61,8 @@
 
 
 // ------------------------------------------------------
+/// invoke when frontmost document window changed
 - (void)keyDocumentDidChange
-// invoke when frontmost document window changed
 // ------------------------------------------------------
 {
     [self setOpacity:[[self documentWindowController] alpha]];
@@ -74,8 +74,8 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// set current value as default and apply it to all document windows
 - (IBAction)applyAsDefault:(id)sender
-// set current value as default and apply it to all document windows
 // ------------------------------------------------------
 {
     // apply to all windows
@@ -93,8 +93,8 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
+/// setter for opacity property
 - (void)setOpacity:(CGFloat)opacity
-// setter for opacity property
 // ------------------------------------------------------
 {
     _opacity = opacity;

@@ -45,11 +45,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) IBOutlet NSPopUpButton *encodingPopupButton;// Outletだが、片付けられてしまうため strong
 @property (nonatomic) IBOutlet NSPopUpButton *syntaxPopupButton;// Outletだが、片付けられてしまうため strong
 
-
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 #pragma mark -
@@ -64,8 +62,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 後片付け
 - (void)dealloc
-// 後片付け
 // ------------------------------------------------------
 {
     [[self toolbar] setDelegate:nil]; // デリゲート解除
@@ -73,8 +71,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ツールバーをセットアップ
 - (void)setupToolbar
-// ツールバーをセットアップ
 // ------------------------------------------------------
 {
     [self setToolbar:[[NSToolbar alloc] initWithIdentifier:k_docWindowToolbarID]];
@@ -91,8 +89,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// トグルアイテムの状態を更新
 - (void)updateToggleItem:(NSString *)identifer setOn:(BOOL)setOn
-// トグルアイテムの状態を更新
 // ------------------------------------------------------
 {
     for (id item in [[self toolbar] items]) {
@@ -105,8 +103,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディングポップアップアイテムを生成
 - (void)buildEncodingPopupButton
-// エンコーディングポップアップアイテムを生成
 // ------------------------------------------------------
 {
     [[self encodingPopupButton] setMenu:[[[NSApp delegate] encodingMenu] copy]];
@@ -114,8 +112,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディングポップアップの選択項目を設定
 - (void)setSelectEncoding:(NSInteger)encoding
-// エンコーディングポップアップの選択項目を設定
 // ------------------------------------------------------
 {
     for (id menuItem in [[self encodingPopupButton] itemArray]) {
@@ -128,8 +126,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行末コードポップアップの選択項目を設定
 - (void)setSelectEndingItemIndex:(NSInteger)index
-// 行末コードポップアップの選択項目を設定
 // ------------------------------------------------------
 {
     NSInteger max = [[[self lineEndingPopupButton] itemArray] count];
@@ -140,8 +138,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングポップアップアイテムを生成
 - (void)buildSyntaxPopupButton
-// シンタックスカラーリングポップアップアイテムを生成
 // ------------------------------------------------------
 {
     [[self syntaxPopupButton] setMenu:[[[NSApp delegate] syntaxMenu] copy]];
@@ -149,8 +147,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングポップアップアイテムで選択されているタイトル文字列を返す
 - (NSString *)selectedTitleOfSyntaxItem
-// シンタックスカラーリングポップアップアイテムで選択されているタイトル文字列を返す
 // ------------------------------------------------------
 {
     return [[self syntaxPopupButton] titleOfSelectedItem];
@@ -158,8 +156,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングポップアップの選択項目をタイトル名で設定
 - (void)setSelectSyntaxItemWithTitle:(NSString *)title
-// シンタックスカラーリングポップアップの選択項目をタイトル名で設定
 // ------------------------------------------------------
 {
     id menuItem = [[self syntaxPopupButton] itemWithTitle:title];
@@ -180,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     [self buildEncodingPopupButton];
@@ -198,8 +196,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ツールバーアイテムを返す
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
-// ツールバーアイテムを返す
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -380,8 +378,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 設定画面でのツールバーアイテム配列を返す
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
-// 設定画面でのツールバーアイテム配列を返す
 // ------------------------------------------------------
 {
     return @[k_getInfoItemID, 
@@ -412,8 +410,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ツールバーアイテムデフォルト配列を返す
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
-// ツールバーアイテムデフォルト配列を返す
 // ------------------------------------------------------
 {
     return @[k_lineEndingsItemID, 
@@ -433,8 +431,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// トグルアイテムの状態を更新
 - (void)doUpdateToggleItem:(NSToolbarItem *)item setOn:(BOOL)setOn
-// トグルアイテムの状態を更新
 // ------------------------------------------------------
 {
     NSString *identifer = [item itemIdentifier];

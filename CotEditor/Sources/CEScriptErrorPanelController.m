@@ -49,8 +49,8 @@
 #pragma mark Superclass Mthods
 
 // ------------------------------------------------------
+/// initializer of panelController
 - (instancetype)init
-// initializer of panelController
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"ScriptErrorPanel"];
@@ -60,8 +60,8 @@
 
 
 // ------------------------------------------------------
+/// Scriptエラーログを追加する
 - (void)awakeFromNib
-// Scriptエラーログを追加する
 // ------------------------------------------------------
 {
     [[self textView] setFont:[NSFont messageFontOfSize:10]];
@@ -72,8 +72,8 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// Scriptエラーログを追加する
 - (void)addErrorString:(NSString *)string
-// Scriptエラーログを追加する
 // ------------------------------------------------------
 {
     [[self textView] setEditable:YES];
@@ -87,8 +87,8 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// Scriptエラーログを削除
 - (IBAction)cleanScriptError:(id)sender
-// Scriptエラーログを削除
 // ------------------------------------------------------
 {
     [[self textView] setString:@""];

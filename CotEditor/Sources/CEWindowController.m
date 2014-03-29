@@ -78,8 +78,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -91,8 +91,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
 - (void)windowDidLoad
-// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -133,8 +133,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 文書情報ドローワ内容を更新すべきかを返す
 - (BOOL)needsInfoDrawerUpdate
-// 文書情報ドローワ内容を更新すべきかを返す
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
@@ -145,8 +145,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 非互換文字ドローワ内容を更新すべきかを返す
 - (BOOL)needsIncompatibleCharDrawerUpdate
-// 非互換文字ドローワ内容を更新すべきかを返す
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
@@ -157,8 +157,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// すべての文書情報を更新
 - (void)updateFileAttrsInformation
-// すべての文書情報を更新
 // ------------------------------------------------------
 {
     NSDictionary *fileAttributes = [[self document] fileAttributes];
@@ -176,8 +176,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 変換不可文字列リストを更新
 - (void)updateIncompatibleCharList
-// 変換不可文字列リストを更新
 // ------------------------------------------------------
 {
     NSArray *contents = [[self document] markupCharCanNotBeConvertedToCurrentEncoding];
@@ -189,8 +189,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 非互換文字リストを表示
 - (void)showIncompatibleCharList
-// 非互換文字リストを表示
 // ------------------------------------------------------
 {
     [self updateIncompatibleCharList];
@@ -200,16 +200,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストビューの不透明度を返す
 - (CGFloat)alpha
-// テキストビューの不透明度を返す
 // ------------------------------------------------------
 {
     return [[[[self editorView] textView] backgroundColor] alphaComponent];
 }
 
 // ------------------------------------------------------
+/// テキストビューの不透明度を変更する
 - (void)setAlpha:(CGFloat)alpha
-// テキストビューの不透明度を変更する
 // ------------------------------------------------------
 {
     CGFloat sanitizedAlpha = alpha;
@@ -231,8 +231,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     // クリック時に当該文字列を選択するように設定
@@ -247,8 +247,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// *OgreKit method. to pass the main textView.
 - (void)tellMeTargetToFindIn:(id)textFinder
-// *OgreKit method. to pass the main textView.
 // ------------------------------------------------------
 {
     [textFinder setTargetToFindIn:[[self editorView] textView]];
@@ -264,8 +264,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ウィンドウがキーになった
 - (void)windowDidBecomeKey:(NSNotification *)notification
-// ウィンドウがキーになった
 // ------------------------------------------------------
 {
     // 不可視文字表示メニューのツールチップを更新
@@ -286,8 +286,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ウィンドウが閉じる直前
 - (void)windowWillClose:(NSNotification *)notification
-// ウィンドウが閉じる直前
 // ------------------------------------------------------
 {
     // デリゲートをやめる
@@ -302,8 +302,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドローワのタブが切り替えられる直前に内容の更新を行う
 - (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
-// ドローワのタブが切り替えられる直前に内容の更新を行う
 // ------------------------------------------------------
 {
     if ([[tabViewItem identifier] isEqualToString:k_infoIdentifier]) {
@@ -317,8 +317,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ドローワが閉じたらテキストビューのマークアップをクリア
 - (void)drawerDidClose:(NSNotification *)notification
-// ドローワが閉じたらテキストビューのマークアップをクリア
 // ------------------------------------------------------
 {
     [[self document] clearAllMarkupForIncompatibleChar];
@@ -327,8 +327,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// フルスクリーンを開始
 - (void)windowWillEnterFullScreen:(NSNotification *)notification
-// フルスクリーンを開始
 // ------------------------------------------------------
 {
     // ウインドウ背景をデフォルトにする（ツールバーの背景に影響）
@@ -337,8 +337,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// フルスクリーンを終了
 - (void)windowDidExitFullScreen:(NSNotification *)notification
-// フルスクリーンを終了
 // ------------------------------------------------------
 {
     // ウインドウ背景を戻す
@@ -355,8 +355,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ファイル情報を表示
 - (IBAction)getInfo:(id)sender
-// ファイル情報を表示
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
@@ -383,8 +383,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 変換不可文字列リストパネルを開く
 - (IBAction)toggleIncompatibleCharList:(id)sender
-// 変換不可文字列リストパネルを開く
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
@@ -408,8 +408,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 文字列を選択
 - (IBAction)selectIncompatibleRange:(id)sender
-// 文字列を選択
 // ------------------------------------------------------
 {
     NSRange range = [[[[self listController] selectedObjects][0] valueForKey:k_incompatibleRange] rangeValue];

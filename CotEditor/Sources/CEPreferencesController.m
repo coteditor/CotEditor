@@ -83,8 +83,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// return singleton instance
 + (instancetype)sharedController
-// return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
@@ -106,7 +106,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //=======================================================
 
+// ------------------------------------------------------
+/// 初期化
 - (instancetype)init
+// ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"Preferences"];
     
@@ -115,8 +118,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 環境設定パネルを開く
 - (IBAction)showWindow:(id)sender
-// 環境設定パネルを開く
 // ------------------------------------------------------
 {
     if (![[self window] isVisible]) {
@@ -139,8 +142,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// エンコーディング設定メニューを生成
 - (void)setupEncodingMenus:(NSArray *)menuItems
-// エンコーディング設定メニューを生成
 // ------------------------------------------------------
 {
     NSString *title;
@@ -175,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングスタイル選択メニューを生成
 - (void)setupSyntaxMenus
-// シンタックスカラーリングスタイル選択メニューを生成
 // ------------------------------------------------------
 {
     [self setupSyntaxStylesPopup];
@@ -185,8 +188,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// フォントパネルでフォントが変更された
 - (void)changeFont:(id)sender
-// フォントパネルでフォントが変更された
 // ------------------------------------------------------
 {
     // (引数"sender"はNSFontManegerのインスタンス)
@@ -216,8 +219,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     [self setupInvisibleSpacePopup];
@@ -247,8 +250,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ウインドウが閉じる
 - (void)windowWillClose:(NSNotification *)notification
-// ウインドウが閉じる
 // ------------------------------------------------------
 {
     // 編集中の設定値も保存
@@ -265,8 +268,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// FileDrop 拡張子テーブルビューが編集された
 - (void)controlTextDidEndEditing:(NSNotification *)notification
-// FileDrop 拡張子テーブルビューが編集された
 // ------------------------------------------------------
 {
     if ([notification object] == [self fileDropTableView]) {
@@ -310,8 +313,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// FileDrop 挿入文字列フォーマットテキストビューが編集された
 - (void)textDidEndEditing:(NSNotification *)notification
-// FileDrop 挿入文字列フォーマットテキストビューが編集された
 // ------------------------------------------------------
 {
     if ([notification object] == [self fileDropTextView]) {
@@ -330,8 +333,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// フォントパネルを表示
 - (IBAction)showFonts:(id)sender
-// フォントパネルを表示
 //-------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -353,8 +356,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// エンコーディングリスト編集シートを開き、閉じる
 - (IBAction)openEncodingEditSheet:(id)sender
-// エンコーディングリスト編集シートを開き、閉じる
 // ------------------------------------------------------
 {
     CEEncodingListSheetController *sheetController = [[CEEncodingListSheetController alloc] init];
@@ -372,8 +375,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// サイズ設定のためのサンプルウィンドウを開く
 - (IBAction)openSizeSampleWindow:(id)sender
-// サイズ設定のためのサンプルウィンドウを開く
 // ------------------------------------------------------
 {
     // モーダルで表示
@@ -386,8 +389,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーシンタックス編集シートを開き、閉じる
 - (IBAction)openSyntaxEditSheet:(id)sender
-// カラーシンタックス編集シートを開き、閉じる
 // ------------------------------------------------------
 {
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
@@ -435,8 +438,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングスタイル指定メニューまたはカラーリング実施チェックボックスが変更された
 - (IBAction)changedSyntaxStylesPopup:(id)sender
-// シンタックスカラーリングスタイル指定メニューまたはカラーリング実施チェックボックスが変更された
 // ------------------------------------------------------
 {
     BOOL isEnabled = ([[self syntaxStylesPopup] indexOfSelectedItem] > 1);
@@ -456,8 +459,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングスタイル削除ボタンが押された
 - (IBAction)deleteSyntaxStyle:(id)sender
-// シンタックスカラーリングスタイル削除ボタンが押された
 // ------------------------------------------------------
 {
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2;
@@ -480,8 +483,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングスタイルインポートボタンが押された
 - (IBAction)importSyntaxStyle:(id)sender
-// シンタックスカラーリングスタイルインポートボタンが押された
 // ------------------------------------------------------
 {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
@@ -527,8 +530,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングスタイルエクスポートボタンが押された
 - (IBAction)exportSyntaxStyle:(id)sender
-// シンタックスカラーリングスタイルエクスポートボタンが押された
 // ------------------------------------------------------
 {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
@@ -557,8 +560,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーシンタックス拡張子重複エラー表示シートを開き、閉じる
 - (IBAction)openSyntaxExtensionErrorSheet:(id)sender
-// カラーシンタックス拡張子重複エラー表示シートを開き、閉じる
 // ------------------------------------------------------
 {
     CESyntaxExtensionErrorSheetController *sheetController = [[CESyntaxExtensionErrorSheetController alloc] init];
@@ -577,8 +580,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルドロップ定型文字列挿入メニューが選択された
 - (IBAction)insertFormatStringInFileDrop:(id)sender
-// ファイルドロップ定型文字列挿入メニューが選択された
 // ------------------------------------------------------
 {
     NSString *title = [(NSMenuItem *)sender title];
@@ -591,8 +594,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルドロップ編集設定を追加
 - (IBAction)addNewFileDropSetting:(id)sender
-// ファイルドロップ編集設定を追加
 // ------------------------------------------------------
 {
     // フォーカスを移し、値入力を確定
@@ -607,8 +610,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルドロップ編集設定の削除ボタンが押された
 - (IBAction)deleteFileDropSetting:(id)sender
-// ファイルドロップ編集設定の削除ボタンが押された
 // ------------------------------------------------------
 {
     // (編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るための)削除実施フラグをたてる
@@ -621,8 +624,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キーバインディング編集シートを開き、閉じる
 - (IBAction)openKeyBindingEditSheet:(id)sender
-// キーバインディング編集シートを開き、閉じる
 // ------------------------------------------------------
 {
     // シートウィンドウを表示してモーダルループに入る
@@ -650,8 +653,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 行間値を調整
 - (IBAction)setupCustomLineSpacing:(id)sender
-// 行間値を調整
 //------------------------------------------------------
 {
     // IB で Formatter が設定できないのでメソッドで行ってる。
@@ -666,8 +669,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 既存のファイルを開くエンコーディングが変更されたとき、選択項目をチェック
 - (IBAction)checkSelectedItemOfEncodingMenuInOpen:(id)sender
-// 既存のファイルを開くエンコーディングが変更されたとき、選択項目をチェック
 //------------------------------------------------------
 {
     NSString *newTitle = [NSString stringWithString:[[[self encodingMenuInOpen] selectedItem] title]];
@@ -698,8 +701,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// ヘルプの環境設定説明部分を開く
 - (IBAction)openPrefHelp:(id)sender
-// ヘルプの環境設定説明部分を開く
 //------------------------------------------------------
 {
     NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
@@ -714,8 +717,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// すべてのテキストビューのスマートインサート／デリート実行を設定
 - (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender
-// すべてのテキストビューのスマートインサート／デリート実行を設定
 // ------------------------------------------------------
 {
     [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setSmartInsertAndDeleteToTextView)];
@@ -724,8 +727,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// すべてのテキストビューのスマート引用符／ダッシュ実行を設定
 - (IBAction)setSmartQuotesToAllTextView:(id)sender
-// すべてのテキストビューのスマート引用符／ダッシュ実行を設定
 // ------------------------------------------------------
 {
     [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setSmartQuotesToTextView)];
@@ -741,8 +744,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+//// FileDrop 設定を UserDefaults に書き戻す
 - (void)writeBackFileDropArray
-// FileDrop 設定を UserDefaults に書き戻す
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:k_key_fileDropArray];
@@ -750,8 +753,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// Force update UserDefaults
 - (void)updateUserDefaults
-// Force update UserDefaults
 //------------------------------------------------------
 {
 // 下記のページの情報を参考にさせていただきました(2004.12.30)
@@ -765,8 +768,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// メインウィンドウのフォントファミリー名とサイズをprefFontFamilyNameSizeに表示させる
 - (void)setFontFamilyNameAndSize
-// メインウィンドウのフォントファミリー名とサイズをprefFontFamilyNameSizeに表示させる
 //------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -789,8 +792,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルドロップ設定編集用コントローラに値をセット
 - (void)setContentFileDropController
-// ファイルドロップ設定編集用コントローラに値をセット
 // ------------------------------------------------------
 {
 // バインディングで UserDefaults と直結すると「長さゼロの文字列がセットされた」ときなどにいろいろと不具合が発生するので、
@@ -804,8 +807,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字表示設定ポップアップメニューを生成
 - (void)setupInvisibleSpacePopup
-// 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
@@ -828,8 +831,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字表示設定ポップアップメニューを生成
 - (void)setupInvisibleTabPopup
-// 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
@@ -852,8 +855,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字表示設定ポップアップメニューを生成
 - (void)setupInvisibleNewLinePopup
-// 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
@@ -876,8 +879,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字表示設定ポップアップメニューを生成
 - (void)setupInvisibleFullwidthSpacePopup
-// 不可視文字表示設定ポップアップメニューを生成
 // ------------------------------------------------------
 {
     CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
@@ -900,8 +903,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// シンタックスカラーリングスタイル指定ポップアップメニューを生成
 - (void)setupSyntaxStylesPopup
-// シンタックスカラーリングスタイル指定ポップアップメニューを生成
 // ------------------------------------------------------
 {
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
@@ -940,10 +943,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 既存ファイルを開くときのエンコーディングメニューで自動認識以外が選択されたときの警告シートが閉じる直前
 - (void)autoDetectAlertDidEnd:(NSAlert *)sheet
         returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-// 既存ファイルを開くときのエンコーディングメニューで自動認識以外が
-// 選択されたときの警告シートが閉じる直前
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertDefaultReturn) { // = revert to Auto-Detect
@@ -957,8 +959,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// styleインポート実行
 - (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow
-// styleインポート実行
 // ------------------------------------------------------
 {
     if ([[CESyntaxManager sharedManager] importStyleFile:[fileURL path]]) {
@@ -979,8 +981,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルドロップ編集設定の削除を確認
 - (void)doDeleteFileDropSetting
-// ファイルドロップ編集設定の削除を確認
 // ------------------------------------------------------
 {
     // フラグがたっていなければ（既に controlTextDidEndEditing: で自動削除されていれば）何もしない
@@ -1008,8 +1010,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルドロップ編集設定の追加行の編集開始
 - (void)editNewAddedRowOfFileDropTableView
-// ファイルドロップ編集設定の追加行の編集開始
 // ------------------------------------------------------
 {
     [[self fileDropTableView] editColumn:0 row:[[self fileDropTableView] selectedRow] withEvent:nil select:YES];
@@ -1017,8 +1019,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ファイルドロップ編集設定削除確認シートが閉じる直前
 - (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-// ファイルドロップ編集設定削除確認シートが閉じる直前
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertAlternateReturn) { return; } // != Delete
@@ -1034,8 +1036,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// style削除確認シートが閉じる直前
 - (void)deleteStyleAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-// style削除確認シートが閉じる直前
 // ------------------------------------------------------
 {
     if (returnCode != NSAlertAlternateReturn) { // != Delete
@@ -1066,8 +1068,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// セカンダリシートが閉じる直前
 - (void)secondarySheedlDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-// セカンダリシートが閉じる直前
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertAlternateReturn) { // = Replace

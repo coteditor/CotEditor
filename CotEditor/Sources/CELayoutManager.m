@@ -60,7 +60,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @end
 
 
-//------------------------------------------------------------------------------------------
 
 
 #pragma mark -
@@ -75,8 +74,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     if (self = [super init]) {
@@ -121,9 +120,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 行描画矩形をセット
 - (void)setLineFragmentRect:(NSRect)fragmentRect 
         forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
-// 行描画矩形をセット
 // ------------------------------------------------------
 {
     if (![self isPrinting] && [self fixLineHeight]) {
@@ -141,9 +140,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 最終行描画矩形をセット
 - (void)setExtraLineFragmentRect:(NSRect)aRect
         usedRect:(NSRect)usedRect textContainer:(NSTextContainer *)aTextContainer
-// 最終行描画矩形をセット
 // ------------------------------------------------------
 {
     // 複合フォントで行の高さがばらつくのを防止するために一般の行の高さを変更しているので、それにあわせる
@@ -154,8 +153,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// グリフ位置を返す
 - (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
-// グリフ位置を返す
 // ------------------------------------------------------
 {
     if (![self isPrinting] && [self fixLineHeight]) {
@@ -174,8 +173,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 不可視文字の表示
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
-// 不可視文字の表示
 // ------------------------------------------------------
 {
     // （印刷中の判定は、このメソッド内では [NSGraphicsContext currentContextDrawingToScreen] が使えるが、
@@ -271,8 +270,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 不可視文字を表示するかどうかを設定する
 - (void)setShowInvisibles:(BOOL)showInvisibles
-// 不可視文字を表示するかどうかを設定する
 // ------------------------------------------------------
 {
     if (!showInvisibles) {
@@ -287,8 +286,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// その他の不可視文字を表示するかどうかを設定する
 - (void)setShowOtherInvisibles:(BOOL)showOtherInvisibles
-// その他の不可視文字を表示するかどうかを設定する
 // ------------------------------------------------------
 {
     [self setShowsControlCharacters:showOtherInvisibles];
@@ -297,8 +296,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 表示フォントをセット
 - (void)setTextFont:(NSFont *)textFont
-// 表示フォントをセット
 // ------------------------------------------------------
 {
 // 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
@@ -311,8 +310,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 表示フォントの各種値をキャッシュする
 - (void)setValuesForTextFont:(NSFont *)textFont
-// 表示フォントの各種値をキャッシュする
 // ------------------------------------------------------
 {
     if (textFont) {
@@ -334,8 +333,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 複合フォントで行の高さがばらつくのを防止するため、規定した行の高さを返す
 - (CGFloat)lineHeight
-// 複合フォントで行の高さがばらつくのを防止するため、規定した行の高さを返す
 // ------------------------------------------------------
 {
     CGFloat lineSpacing = [(CETextViewCore *)[self firstTextView] lineSpacing];
@@ -354,8 +353,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 //------------------------------------------------------
+/// グリフを描画する位置を返す
 - (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex adjust:(NSSize)size
-// グリフを描画する位置を返す
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];

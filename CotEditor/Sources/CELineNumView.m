@@ -52,8 +52,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// initialize
 - (instancetype)initWithFrame:(NSRect)frameRect
-// initialize
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
@@ -68,8 +68,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// draw line numbers.
 - (void)drawRect:(NSRect)dirtyRect
-// draw line numbers.
 // ------------------------------------------------------
 {
     if (![self masterView] || ![self showLineNum]) {
@@ -199,8 +199,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// set to show line numbers.
 - (void)setShowLineNum:(BOOL)showLineNum
-// set to show line numbers.
 // ------------------------------------------------------
 {
     if (showLineNum != [self showLineNum]) {
@@ -213,8 +213,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// redraw line numbers
 - (void)updateLineNumber:(id)sender
-// redraw line numbers
 // ------------------------------------------------------
 {
     [self setNeedsDisplay:YES];
@@ -230,8 +230,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// set view width.
 - (void)setWidth:(CGFloat)width
-// set view width.
 // ------------------------------------------------------
 {
     CGFloat adjWidth = width - NSWidth([self frame]);

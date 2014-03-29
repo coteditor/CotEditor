@@ -45,8 +45,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -62,8 +62,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// あとかたづけ
 - (void)dealloc
-// あとかたづけ
 // ------------------------------------------------------
 {
     // ノーティフィケーションセンタから自身を排除
@@ -72,8 +72,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// keyDownイベントをキャッチする
 - (void)sendEvent:(NSEvent *)anEvent
-// keyDownイベントをキャッチする
 // ------------------------------------------------------
 {
     if (([self keyCatchMode] == k_catchMenuShortcut) && ([anEvent type] == NSKeyDown)) {
@@ -119,8 +119,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ノーティフィケーションからキーキャッチモードを設定
 - (void)setKeyCatchModeWithNotification:(NSNotification *)aNotification
-// ノーティフィケーションからキーキャッチモードを設定
 // ------------------------------------------------------
 {
     NSInteger mode = [[aNotification userInfo][k_keyCatchMode] integerValue];

@@ -50,8 +50,8 @@
 #pragma mark NSWindowController Methods
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"SyntaxExtensionErrorSheet"];
@@ -63,8 +63,8 @@
 
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     [self setupErrorDict];
@@ -75,8 +75,8 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// シートの Done ボタンが押された
 - (IBAction)closeSheet:(id)sender
-// シートの Done ボタンが押された
 // ------------------------------------------------------
 {
     [NSApp stopModal];
@@ -87,8 +87,8 @@
 #pragma mark Private Methods
 
 //------------------------------------------------------
+/// シートに表示するエラー内容をセット
 - (void)setupErrorDict
-// シートに表示するエラー内容をセット
 //------------------------------------------------------
 {
     NSDictionary *errorDict = [[CESyntaxManager sharedManager] extensionErrors];

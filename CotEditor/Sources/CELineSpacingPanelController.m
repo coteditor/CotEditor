@@ -49,8 +49,8 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
+/// initializer of panelController
 - (instancetype)init
-// initializer of panelController
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"LineSpacingPanel"];
@@ -60,8 +60,8 @@
 
 
 // ------------------------------------------------------
+/// invoke when frontmost document window changed
 - (void)keyDocumentDidChange
-// invoke when frontmost document window changed
 // ------------------------------------------------------
 {
     [self setLineSpacing:[[[[self documentWindowController] editorView] textView] lineSpacing]];
@@ -73,8 +73,8 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
+/// apply to the frontmost document window
 - (IBAction)apply:(id)sender
-// apply to the frontmost document window
 // ------------------------------------------------------
 {
     [[[[self documentWindowController] editorView] textView] setLineSpacing:[self lineSpacing]];

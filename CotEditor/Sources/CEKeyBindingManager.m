@@ -83,8 +83,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// return singleton instance
 + (instancetype)sharedManager
-// return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
@@ -107,8 +107,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -126,8 +126,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// あとかたづけ
 - (void)dealloc
-// あとかたづけ
 // ------------------------------------------------------
 {
     // ノーティフィケーションセンタから自身を排除
@@ -144,8 +144,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 起動時の準備
 - (void)setupAtLaunching
-// 起動時の準備
 // ------------------------------------------------------
 {
     NSURL *URL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/DefaultMenuKeyBindings.plist"];
@@ -163,8 +163,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キーバインディング編集シート用ウィンドウを返す
 - (NSWindow *)editSheetWindowOfMode:(CEKeyBindingOutlineMode)mode
-// キーバインディング編集シート用ウィンドウを返す
 // ------------------------------------------------------
 {
     switch (mode) {
@@ -181,8 +181,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 定義ファイルのセットアップと読み込み
 - (void)setupKeyBindingDictionary
-// 定義ファイルのセットアップと読み込み
 // ------------------------------------------------------
 {
     [self setupMenuKeyBindingDictionary];
@@ -191,8 +191,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 環境設定でシートを表示する準備
 - (BOOL)setupOutlineDataOfMode:(CEKeyBindingOutlineMode)mode
-// 環境設定でシートを表示する準備
 // ------------------------------------------------------
 {
     if ((mode != CEMenuModeOutline) && (mode != CETextModeOutline)) { return NO; }
@@ -239,8 +239,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キー入力に応じたセレクタ文字列を返す
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
-// キー入力に応じたセレクタ文字列を返す
 // ------------------------------------------------------
 {
     NSString *keySpecChars = [self keySpecCharsFromKeyEquivalent:string modifierFrags:modifierFlags];
@@ -258,8 +258,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
-// Nibファイル読み込み直後
 // ------------------------------------------------------
 {
     // アプリケーションメニューにタイトルを設定（Nibで設定できないため）
@@ -277,8 +277,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 子アイテムの数を返す
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
-// 子アイテムの数を返す
 // ------------------------------------------------------
 {
     if (item == nil) {
@@ -291,8 +291,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// アイテムが展開可能かどうかを返す
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
-// アイテムが展開可能かどうかを返す
 // ------------------------------------------------------
 {
     if (item == nil) {
@@ -304,8 +304,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 子アイテムオブジェクトを返す
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
-// 子アイテムオブジェクトを返す
 // ------------------------------------------------------
 {
     if (item == nil) {
@@ -317,8 +317,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// コラムに応じたオブジェクト(表示文字列)を返す
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-// コラムに応じたオブジェクト(表示文字列)を返す
 // ------------------------------------------------------
 {
     id theItem = (item == nil) ? [self outlineDataArray] : item;
@@ -332,8 +332,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// コラム編集直前、キー入力を取得するようにしてから許可を出す
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
-// コラム編集直前、キー入力を取得するようにしてから許可を出す
 // ------------------------------------------------------
 {
     id identifier = [tableColumn identifier];
@@ -363,9 +363,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// データをセット
 - (void)outlineView:(NSOutlineView *)outlineView 
         setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
-// データをセット
 // ------------------------------------------------------
 {
     id identifier = [tableColumn identifier];
@@ -420,8 +420,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 選択行の変更を許可
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
-// 選択行の変更を許可
 // ------------------------------------------------------
 {
     NSButton *editButton = nil;
@@ -468,8 +468,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 選択行のキー編集開始
 - (IBAction)editKeyBindingKey:(id)sender
-// 選択行のキー編集開始
 // ------------------------------------------------------
 {
     [self performEditOutlineViewSelectedKeyBindingKeyColumn];
@@ -477,8 +477,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 選択行のキー削除
 - (IBAction)deleteKeyBindingKey:(id)sender
-// 選択行のキー削除
 // ------------------------------------------------------
 {
     NSWindow *sheet;
@@ -509,8 +509,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キーバインディングを出荷時設定に戻す
 - (IBAction)resetOutlineDataArrayToFactoryDefaults:(id)sender
-// キーバインディングを出荷時設定に戻す
 // ------------------------------------------------------
 {
     if ([self outlineMode] == CEMenuModeOutline) {
@@ -549,8 +549,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// キーバインディング編集シートの OK / Cancel ボタンが押された
 - (IBAction)closeKeyBindingEditSheet:(id)sender
-// キーバインディング編集シートの OK / Cancel ボタンが押された
 // ------------------------------------------------------
 {
     // フォーカスを移して入力中の値を確定
@@ -587,8 +587,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// アウトラインビューの行がダブルクリックされた
 - (IBAction)doubleClickedOutlineViewRow:(id)sender
-// アウトラインビューの行がダブルクリックされた
 // ------------------------------------------------------
 {
     if (![sender isKindOfClass:[NSOutlineView class]]) { return; }
@@ -618,8 +618,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 //------------------------------------------------------
+/// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
 - (NSURL *)menuKeyBindingSettingFileURL
-// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
 //------------------------------------------------------
 {
     return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
@@ -632,8 +632,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
 - (NSURL *)textKeyBindingSettingFileURL
-// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
 //------------------------------------------------------
 {
     return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
@@ -646,8 +646,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// メニューキーバインディング定義ファイルのセットアップと読み込み
 - (void)setupMenuKeyBindingDictionary
-// メニューキーバインディング定義ファイルのセットアップと読み込み
 // ------------------------------------------------------
 {
     NSURL *fileURL = [self menuKeyBindingSettingFileURL];
@@ -682,8 +682,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// テキストキーバインディング定義ファイルのセットアップと読み込み
 - (void)setupTextKeyBindingDictionary
-// テキストキーバインディング定義ファイルのセットアップと読み込み
 // ------------------------------------------------------
 {
     NSURL *fileURL = [self textKeyBindingSettingFileURL];
@@ -718,8 +718,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// すべてのメニューのキーボードショートカットをクリアする
 - (void)clearAllMenuKeyBindingOf:(NSMenu *)menu
-// すべてのメニューのキーボードショートカットをクリアする
 //------------------------------------------------------
 {
     NSString *selectorString;
@@ -744,8 +744,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// キーボードショートカット設定を反映させる
 - (void)updateMenuValidation:(NSMenu *)menu
-// キーボードショートカット設定を反映させる
 //------------------------------------------------------
 {
     id menuItem;
@@ -761,8 +761,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// すべてのメニューにキーボードショートカットを設定し直す
 - (void)resetAllMenuKeyBindingWithDictionary
-// すべてのメニューにキーボードショートカットを設定し直す
 //------------------------------------------------------
 {
     if ([self menuKeyBindingDict] == nil) { return; }
@@ -777,8 +777,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// メニューにキーボードショートカットを設定する
 - (void)resetKeyBindingWithDictionaryTo:(NSMenu *)menu
-// メニューにキーボードショートカットを設定する
 //------------------------------------------------------
 {
 // NSMenu の indexOfItemWithTarget:andAction: だと取得できないメニューアイテムがあるため、メニューをひとつずつなめる
@@ -827,8 +827,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 現在のメニューからショートカットキー設定を読み込み編集用アウトラインビューデータ配列を返す
 - (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu
-// 現在のメニューからショートカットキー設定を読み込み編集用アウトラインビューデータ配列を返す
 //------------------------------------------------------
 {
     NSMutableArray *outArray = [NSMutableArray array];
@@ -876,8 +876,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// テキストキーバインディングの現在の保持データから設定を読み込み編集用アウトラインビューデータ配列を返す
 - (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
-// テキストキーバインディングの現在の保持データから設定を読み込み編集用アウトラインビューデータ配列を返す
 //------------------------------------------------------
 {
     // usesFactoryDefaults == YES で標準設定を返す。NO なら現在の設定を返す。
@@ -911,8 +911,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// キーバインディング定義文字列から表示用文字列を生成し、返す
 - (NSString *)readableKeyStringsFromKeySpecChars:(NSString *)string
-// キーバインディング定義文字列から表示用文字列を生成し、返す
 //------------------------------------------------------
 {
     NSInteger length = [string length];
@@ -930,8 +930,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// メニューのキーボードショートカットから表示用文字列を返す
 - (NSString *)readableKeyStringsFromKeyEquivalent:(NSString *)string
-// メニューのキーボードショートカットから表示用文字列を返す
 //------------------------------------------------------
 {
     if ([string length] < 1) { return @""; }
@@ -946,8 +946,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// メニューのキーボードショートカットからキーバインディング定義文字列を返す
 - (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
-// メニューのキーボードショートカットからキーバインディング定義文字列を返す
 //------------------------------------------------------
 {
     if ([string length] < 1) { return @""; }
@@ -978,8 +978,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
 - (NSString *)readableKeyStringsFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)isShiftPressed
-// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
 //------------------------------------------------------
 {
     NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
@@ -1003,8 +1003,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
 - (NSString *)visibleCharFromIgnoringModChar:(NSString *)igunoresModChar
-// キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
 //------------------------------------------------------
 {
     NSString *outString = [self noPrintableKeyDict][igunoresModChar];
@@ -1014,8 +1014,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 新しいキーバインディングキーの押下をアウトラインビューに取り込む
 - (void)addCatchedMenuShortcutString:(NSNotification *)notification
-// 新しいキーバインディングキーの押下をアウトラインビューに取り込む
 //------------------------------------------------------
 {
     NSWindow *sheet;
@@ -1048,8 +1048,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 重複などの警告メッセージを表示
 - (BOOL)showDuplicateKeySpecCharsMessageWithKeySpecChars:(NSString *)keySpec oldChars:(NSString *)oldSpec
-// 重複などの警告メッセージを表示
 //------------------------------------------------------
 {
     BOOL showsMessage = NO;
@@ -1142,8 +1142,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 重複チェック配列を生成
 - (NSMutableArray *)duplicateKeyCheckArrayWithMenu:(NSMenu *)menu
-// 重複チェック配列を生成
 //------------------------------------------------------
 {
     NSMutableArray *duplicateKeyCheckArray = [NSMutableArray array];
@@ -1171,8 +1171,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 重複チェック配列を生成
 - (NSArray *)duplicateKeyCheckArrayWithArray:(NSArray *)array
-// 重複チェック配列を生成
 //------------------------------------------------------
 {
     if (array == nil) { return nil; }
@@ -1199,8 +1199,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// アウトラインビューデータから保存用辞書を生成
 - (NSMutableDictionary *)keyBindingDictionaryFromOutlineViewDataArray:(NSArray *)array
-// アウトラインビューデータから保存用辞書を生成
 //------------------------------------------------------
 {
     NSMutableDictionary *keyBindingDict = [NSMutableDictionary dictionary];
@@ -1225,8 +1225,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// アウトラインビューデータ保存
 - (void)saveOutlineViewData
-// アウトラインビューデータ保存
 //------------------------------------------------------
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -1299,8 +1299,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// セレクタ名を定義しているキーバインディング文字列（キー）を得る
 - (NSString *)keySpecCharsInDictionaryFromSelectorString:(NSString *)selectorString
-// セレクタ名を定義しているキーバインディング文字列（キー）を得る
 //------------------------------------------------------
 {
     NSArray *keyArray = [[self menuKeyBindingDict] allKeysForObject:selectorString];
@@ -1313,8 +1313,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// デフォルト設定の、セレクタ名を定義しているキーバインディング文字列（キー）を得る
 - (NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(NSString *)selectorString
-// デフォルト設定の、セレクタ名を定義しているキーバインディング文字列（キー）を得る
 //------------------------------------------------------
 {
     NSArray *keys = [[self defaultMenuKeyBindingDict] allKeysForObject:selectorString];
@@ -1327,8 +1327,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 配列中のキーバインディング設定文字列をデフォルトに戻す
 - (void)resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:(NSMutableArray *)dataArray
-// 配列中のキーバインディング設定文字列をデフォルトに戻す
 //------------------------------------------------------
 {
     NSMutableArray *children;
@@ -1347,8 +1347,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// キーを重複入力された時に再び選択状態にする
 - (void)performEditOutlineViewSelectedKeyBindingKeyColumn
-// キーを重複入力された時に再び選択状態にする
 //------------------------------------------------------
 {
     id outlineView = nil;
@@ -1381,8 +1381,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
 - (NSDictionary *)noPrintableKeyDictionary
-// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
 //------------------------------------------------------
 {
 // 下記の情報を参考にさせていただきました (2005.09.05)
@@ -1439,8 +1439,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 独自定義のセレクタ名配列を返す
 - (NSArray *)textKeyBindingSelectorStrArray
-// 独自定義のセレクタ名配列を返す
 //------------------------------------------------------
 {
     return @[@"insertCustomText_00:",
@@ -1477,8 +1477,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 //------------------------------------------------------
+/// 変更しない項目のセレクタ名配列を返す
 - (NSArray *)selectorStringsToIgnore
-// 変更しない項目のセレクタ名配列を返す
 //------------------------------------------------------
 {
     return @[@"modifyFont:",

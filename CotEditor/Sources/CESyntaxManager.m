@@ -73,8 +73,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// return singleton instance
 + (instancetype)sharedManager
-// return singleton instance
 // ------------------------------------------------------
 {
     static dispatch_once_t predicate;
@@ -98,8 +98,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
 - (instancetype)init
-// 初期化
 // ------------------------------------------------------
 {
     self = [super init];
@@ -123,8 +123,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// シートの表示に備え、シンタックスカラーリングスタイル定義配列のうちの一つを選択する（バインディングのため）
 - (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode
-// シートの表示に備え、シンタックスカラーリングスタイル定義配列のうちの一つを選択する（バインディングのため）
 // ------------------------------------------------------
 {
     NSArray *colorings;
@@ -165,8 +165,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 拡張子に応じたstyle名を返す
 - (NSString *)syntaxNameFromExtension:(NSString *)extension
-// 拡張子に応じたstyle名を返す
 // ------------------------------------------------------
 {
     NSString *syntaxName = [self xtsnAndStyleTable][extension];
@@ -176,8 +176,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// style名に応じたstyle辞書を返す
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName
-// style名に応じたstyle辞書を返す
 // ------------------------------------------------------
 {
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
@@ -204,8 +204,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// バンドルされているシンタックスカラーリングスタイルファイル名配列を返す
 - (NSArray *)defaultSyntaxFileNames
-// バンドルされているシンタックスカラーリングスタイルファイル名配列を返す
 // ------------------------------------------------------
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -229,8 +229,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// バンドルされているシンタックスカラーリングスタイルファイル名のプレフィックスを除いた配列を返す
 - (NSArray *)defaultSyntaxFileNamesWithoutPrefix
-// バンドルされているシンタックスカラーリングスタイルファイル名のプレフィックスを除いた配列を返す
 // ------------------------------------------------------
 {
     NSArray *fileNames = [self defaultSyntaxFileNames];
@@ -245,8 +245,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// あるスタイルネームがデフォルトで用意されているものかどうかを返す
 - (BOOL)isDefaultSyntaxStyle:(NSString *)styleName
-// あるスタイルネームがデフォルトで用意されているものかどうかを返す
 // ------------------------------------------------------
 {
     if ([styleName isEqualToString:@""]) { return NO; }
@@ -258,8 +258,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
 - (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName
-// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
 // ------------------------------------------------------
 {
     if ([styleName isEqualToString:@""]) { return NO; }
@@ -287,8 +287,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// スタイル名配列を返す
 - (NSArray *)styleNames
-// スタイル名配列を返す
 // ------------------------------------------------------
 {
     NSMutableArray *styleNames = [NSMutableArray array];
@@ -302,8 +302,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// ある名前を持つstyleファイルがstyle保存ディレクトリにあるかどうかを返す
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName
-// ある名前を持つstyleファイルがstyle保存ディレクトリにあるかどうかを返す
 //------------------------------------------------------
 {
     NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
@@ -313,8 +313,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 外部styleファイルを保存ディレクトリにコピーする
 - (BOOL)importStyleFile:(NSString *)styleFileName
-// 外部styleファイルを保存ディレクトリにコピーする
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -336,8 +336,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// style名に応じたstyleファイルを削除する
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName
-// style名に応じたstyleファイルを削除する
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -362,8 +362,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// style名からstyle定義ファイルのURLを返す
 - (NSURL *)URLOfStyle:(NSString *)styleName
-// style名からstyle定義ファイルのURLを返す
 //------------------------------------------------------
 {
     NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
@@ -373,8 +373,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 拡張子重複エラーがあるかどうかを返す
 - (BOOL)existsExtensionError
-// 拡張子重複エラーがあるかどうかを返す
 //------------------------------------------------------
 {
     return ([[self extensionErrors] count] > 0);
@@ -390,8 +390,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// tableView の選択が変更された
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
-// tableView の選択が変更された
 // ------------------------------------------------------
 {
     NSTableView *tableView = [notification object];
@@ -417,8 +417,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// スタイルの内容を出荷時設定に戻す
 - (IBAction)setToFactoryDefaults:(id)sender
-// スタイルの内容を出荷時設定に戻す
 // ------------------------------------------------------
 {
     if (![self isDefaultSyntaxStyle:[self selectedStyleName]]) { return; }
@@ -444,8 +444,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// カラーシンタックス編集シートの OK / Cancel ボタンが押された
 - (IBAction)closeSyntaxEditSheet:(id)sender
-// カラーシンタックス編集シートの OK / Cancel ボタンが押された
 // ------------------------------------------------------
 {
     // フォーカスを移して入力中の値を確定
@@ -495,8 +495,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 構文チェックを開始
 - (IBAction)startSyntaxElementCheck:(id)sender
-// 構文チェックを開始
 // ------------------------------------------------------
 {
     (void)[self syntaxElementError];
@@ -513,8 +513,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 //------------------------------------------------------
+/// 空の新規styleを返す
 - (NSDictionary *)emptyColoringStyle
-// 空の新規styleを返す
 //------------------------------------------------------
 {
     return @{k_SCKey_styleName: [@"" mutableCopy],
@@ -532,8 +532,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// styleのファイルからのセットアップと読み込み
 - (void)setupColoringStyleArray
-// styleのファイルからのセットアップと読み込み
 //------------------------------------------------------
 {
     NSURL *dirURL = [self URLOfStyleDirectory]; // データディレクトリパス取得
@@ -583,8 +583,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)と、拡張子辞書、拡張子重複エラー辞書を更新
 - (void)setupExtensionAndSyntaxTable
-// 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)と、拡張子辞書、拡張子重複エラー辞書を更新
 // ------------------------------------------------------
 {
     NSMutableDictionary *table = [NSMutableDictionary dictionary];
@@ -621,8 +621,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// styleのファイルへの保存
 - (void)saveColoringStyle
-// styleのファイルへの保存
 //------------------------------------------------------
 {
     NSURL *dirURL = [self URLOfStyleDirectory]; // データディレクトリパス取得
@@ -660,8 +660,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// styleデータファイル保存用ディレクトリをNSURLで返す
 - (NSURL *)URLOfStyleDirectory
-// styleデータファイル保存用ディレクトリをNSURLで返す
 //------------------------------------------------------
 {
     return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
@@ -674,8 +674,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// styleデータファイルを保存用ディレクトリにコピー
 - (BOOL)copyDefaultSyntaxStylesTo:(NSURL *)destDirURL
-// styleデータファイルを保存用ディレクトリにコピー
 //------------------------------------------------------
 {
     NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
@@ -702,8 +702,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// コピーされたstyle名を返す
 - (NSString *)copiedSyntaxName:(NSString *)originalName
-// コピーされたstyle名を返す
 //------------------------------------------------------
 {
     NSURL *URL = [self URLOfStyleDirectory];
@@ -741,8 +741,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// シートのコントロール類をセットアップ
 - (void)setupSyntaxSheetControles
-// シートのコントロール類をセットアップ
 //------------------------------------------------------
 {
     BOOL isDefaultSyntax = [self isDefaultSyntaxStyle:[self selectedStyleName]];
@@ -766,8 +766,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// 最下行が選択され、一番左のコラムが入力されていなければ自動的に編集を開始する
 - (void)editNewAddedRowOfTableView:(NSTableView *)tableView
-// 最下行が選択され、一番左のコラムが入力されていなければ自動的に編集を開始する
 //------------------------------------------------------
 {
     NSTableColumn *column = [tableView tableColumns][0];
@@ -783,16 +783,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 }
 // ------------------------------------------------------
+/// 構文チェック実行
 - (NSInteger)syntaxElementError
-// 構文チェック実行
 // ------------------------------------------------------
 {
     return [self syntaxElementCheck];
 }
 
 // ------------------------------------------------------
+/// 正規表現構文と重複のチェック実行
 - (NSInteger)syntaxElementCheck
-// 正規表現構文と重複のチェック実行
 // ------------------------------------------------------
 {
     NSArray *selectedArray = [[self styleController] selectedObjects];

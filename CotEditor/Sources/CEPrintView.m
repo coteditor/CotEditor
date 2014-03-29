@@ -61,11 +61,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @end
 
 
-//------------------------------------------------------------------------------------------
+
 
 #pragma mark -
-
-
 
 @implementation CEPrintView
 
@@ -93,8 +91,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 // ------------------------------------------------------
+/// ヘッダ／フッタの描画
 - (void)drawPageBorderWithSize:(NSSize)borderSize
-// ヘッダ／フッタの描画
 // ------------------------------------------------------
 {
     NSRect currentFrame = [self frame]; // 現在のフレームを退避
@@ -191,8 +189,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// プリント
 - (void)drawRect:(NSRect)dirtyRect
-// プリント
 // ------------------------------------------------------
 {
     [super drawRect:dirtyRect];
@@ -254,8 +252,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// Y軸を逆転させる
 - (BOOL)isFlipped
-// Y軸を逆転させる
 // ------------------------------------------------------
 {
     return YES;
@@ -263,8 +261,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// the top/left point of text container.
 - (NSPoint)textContainerOrigin
-// the top/left point of text container.
 // ------------------------------------------------------
 {
     return NSMakePoint([self xOffset], 0);
@@ -310,8 +308,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// プリント開始の準備
 - (void)setupPrintWithBorderWidth:(CGFloat)borderWidth
-// プリント開始の準備
 // ------------------------------------------------------
 {
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
@@ -419,8 +417,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ヘッダ／フッタに印字する文字列をポップアップメニューインデックスから生成し、返す
 - (NSAttributedString *)attributedStringFromPrintInfoType:(CEPrintInfoType)selectedTag maxWidth:(CGFloat)maxWidth
-// ヘッダ／フッタに印字する文字列をポップアップメニューインデックスから生成し、返す
 // ------------------------------------------------------
 {
     NSAttributedString *outString = nil;
@@ -491,10 +489,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// X軸方向の印字開始位置を返す
 - (CGFloat)xValueToDrawOfAttributedString:(NSAttributedString *)attrString
                               borderWidth:(CGFloat)borderWidth
                                 alignment:(CEAlignmentType)alignmentType
-// X軸方向の印字開始位置を返す
 // ------------------------------------------------------
 {
     switch (alignmentType) {
