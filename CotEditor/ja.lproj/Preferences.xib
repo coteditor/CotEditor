@@ -1840,17 +1840,17 @@ The parent directory name of the dropped file.
                                                     <rect key="frame" x="20" y="302" width="486" height="112"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="8Pf-DD-vMX">
-                                                        <rect key="frame" x="1" y="1" width="469" height="94"/>
+                                                        <rect key="frame" x="1" y="1" width="484" height="110"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
-                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="94"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="484" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="extensions" width="466" minWidth="40" maxWidth="1000" id="448">
+                                                                    <tableColumn identifier="extensions" width="481" minWidth="40" maxWidth="1000" id="448">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="拡張子">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1875,11 +1875,11 @@ The parent directory name of the dropped file.
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="3415">
-                                                        <rect key="frame" x="1" y="95" width="469" height="16"/>
+                                                        <rect key="frame" x="1" y="95" width="484" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                                                        <rect key="frame" x="470" y="1" width="15" height="94"/>
+                                                        <rect key="frame" x="470" y="1" width="15" height="110"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -2248,7 +2248,7 @@ The parent directory name of the dropped file.
                                                             <button id="915">
                                                                 <rect key="frame" x="41" y="11" width="330" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="フッタの上に区切り線を印字" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
+                                                                <buttonCell key="cell" type="check" title="フッタの上に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" size="13" name="AquaKana"/>
                                                                 </buttonCell>
@@ -2320,9 +2320,9 @@ The parent directory name of the dropped file.
                                                             <button id="916">
                                                                 <rect key="frame" x="41" y="107" width="192" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="フッタを印字：" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
+                                                                <buttonCell key="cell" type="check" title="フッタをプリント：" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
+                                                                    <font key="font" size="13" name="AquaKana"/>
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="26" name="value" keyPath="values.printFooter" id="974"/>
@@ -2331,48 +2331,50 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="934">
                                                                 <rect key="frame" x="126" y="78" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="（プリントしない）" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="3378">
+                                                                <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="K2q-gQ-YEa" id="3378">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="935">
                                                                         <items>
-                                                                            <menuItem title="（プリントしない）" state="on" id="941"/>
+                                                                            <menuItem title="（プリントしない）" id="941"/>
                                                                             <menuItem isSeparatorItem="YES" id="936">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="937"/>
-                                                                            <menuItem title="ファイルパス" id="938"/>
-                                                                            <menuItem title="プリント日時" id="939"/>
-                                                                            <menuItem title="ページ番号" id="940"/>
+                                                                            <menuItem title="シンタックス名" state="on" tag="1" id="K2q-gQ-YEa"/>
+                                                                            <menuItem title="書類名" tag="2" id="937"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="938"/>
+                                                                            <menuItem title="プリント日時" tag="4" id="939"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="940"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerOneStringIndex" id="976"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerOneStringIndex" id="IS9-Et-HXH"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="977"/>
                                                                 </connections>
                                                             </popUpButton>
                                                             <popUpButton verticalHuggingPriority="750" id="925">
                                                                 <rect key="frame" x="126" y="42" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="（プリントしない）" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="3376">
+                                                                <popUpButtonCell key="cell" type="push" title="プリント日時" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="931" id="3376">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="926">
                                                                         <items>
-                                                                            <menuItem title="（プリントしない）" state="on" id="927"/>
+                                                                            <menuItem title="（プリントしない）" id="927"/>
                                                                             <menuItem isSeparatorItem="YES" id="928">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="929"/>
-                                                                            <menuItem title="ファイルパス" id="930"/>
-                                                                            <menuItem title="プリント日時" id="931"/>
-                                                                            <menuItem title="ページ番号" id="932"/>
+                                                                            <menuItem title="シンタックス名" tag="1" id="fwg-Z5-CYn"/>
+                                                                            <menuItem title="書類名" tag="2" id="929"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="930"/>
+                                                                            <menuItem title="プリント日時" state="on" tag="4" id="931"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="932"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerTwoStringIndex" id="979"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerTwoStringIndex" id="6N6-9V-JqE"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="980"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2391,24 +2393,25 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="891">
                                                                 <rect key="frame" x="126" y="80" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="（プリントしない）" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="895" id="3370">
+                                                                <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="e5A-t4-1op" id="3370">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="892">
                                                                         <items>
-                                                                            <menuItem title="（プリントしない）" state="on" id="895"/>
+                                                                            <menuItem title="（プリントしない）" id="895"/>
                                                                             <menuItem isSeparatorItem="YES" id="894">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="896"/>
-                                                                            <menuItem title="ファイルパス" id="897"/>
-                                                                            <menuItem title="プリント日時" id="898"/>
-                                                                            <menuItem title="ページ番号" id="893"/>
+                                                                            <menuItem title="シンタックス名" state="on" tag="1" id="e5A-t4-1op"/>
+                                                                            <menuItem title="書類名" tag="2" id="896"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="897"/>
+                                                                            <menuItem title="プリント日時" tag="4" id="898"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="893"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerOneStringIndex" id="958"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerOneStringIndex" id="Nh0-bL-r3j"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="962"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2458,9 +2461,9 @@ The parent directory name of the dropped file.
                                                             <button id="899">
                                                                 <rect key="frame" x="41" y="9" width="330" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="ヘッダの下に区切り線を印字" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
+                                                                <buttonCell key="cell" type="check" title="ヘッダの下に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
+                                                                    <font key="font" size="13" name="AquaKana"/>
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="26" name="value" keyPath="values.printHeaderSeparator" id="964"/>
@@ -2530,9 +2533,9 @@ The parent directory name of the dropped file.
                                                             <button id="889">
                                                                 <rect key="frame" x="41" y="109" width="185" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="ヘッダを印字：" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
+                                                                <buttonCell key="cell" type="check" title="ヘッダをプリント：" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
+                                                                    <font key="font" size="13" name="AquaKana"/>
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="26" name="value" keyPath="values.printHeader" id="956"/>
@@ -2541,24 +2544,25 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="900">
                                                                 <rect key="frame" x="126" y="44" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="（プリントしない）" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="3372">
+                                                                <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="N0w-rc-p7T" id="3372">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="901">
                                                                         <items>
-                                                                            <menuItem title="（プリントしない）" state="on" id="906"/>
+                                                                            <menuItem title="（プリントしない）" id="906"/>
                                                                             <menuItem isSeparatorItem="YES" id="907">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="書類名" id="902"/>
-                                                                            <menuItem title="ファイルパス" id="903"/>
-                                                                            <menuItem title="プリント日時" id="904"/>
-                                                                            <menuItem title="ページ番号" id="905"/>
+                                                                            <menuItem title="シンタックス名" state="on" tag="1" id="N0w-rc-p7T"/>
+                                                                            <menuItem title="書類名" tag="2" id="902"/>
+                                                                            <menuItem title="ファイルパス" tag="3" id="903"/>
+                                                                            <menuItem title="プリント日時" tag="4" id="904"/>
+                                                                            <menuItem title="ページ番号" tag="5" id="905"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerTwoStringIndex" id="960"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerTwoStringIndex" id="IDK-9d-aA6"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="961"/>
                                                                 </connections>
                                                             </popUpButton>

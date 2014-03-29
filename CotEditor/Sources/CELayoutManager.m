@@ -188,10 +188,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger invisibleCharPrintMenuIndex;
 
     id view = [self firstTextView];
-    if ([self isPrinting] && [view respondsToSelector:@selector(printValues)]) {
-        invisibleCharPrintMenuIndex = [[[view printValues] valueForKey:k_printInvisibleCharIndex] integerValue];
+    if ([self isPrinting] && [view respondsToSelector:@selector(printPanelAccessoryController)]) {
+        invisibleCharPrintMenuIndex = [[view printPanelAccessoryController] invisibleCharsMode];
     } else {
-        invisibleCharPrintMenuIndex = [defaults integerForKey:k_printInvisibleCharIndex];
+        invisibleCharPrintMenuIndex = [defaults integerForKey:k_key_printInvisibleCharIndex];
     }
 
     // フォントサイズは随時変更されるため、表示時に取得する

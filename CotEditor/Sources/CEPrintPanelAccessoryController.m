@@ -36,9 +36,26 @@
 
 @interface CEPrintPanelAccessoryController ()
 
-@property (nonatomic) IBOutlet NSObjectController *settingController;
+@property (nonatomic, readwrite) CEColorPrintMode colorMode;
+@property (nonatomic, readwrite) CELineNumberPrintMode lineNumberMode;
+@property (nonatomic, readwrite) CEInvisibleCharsPrintMode invisibleCharsMode;
+
+@property (nonatomic, readwrite) BOOL printsHeader;
+@property (nonatomic, readwrite) CEPrintInfoType headerOneInfoType;
+@property (nonatomic, readwrite) CEAlignmentType headerOneAlignmentType;
+@property (nonatomic, readwrite) CEPrintInfoType headerTwoInfoType;
+@property (nonatomic, readwrite) CEAlignmentType headerTwoAlignmentType;
+@property (nonatomic, readwrite) BOOL printsHeaderSeparator;
+
+@property (nonatomic, readwrite) BOOL printsFooter;
+@property (nonatomic, readwrite) CEPrintInfoType footerOneInfoType;
+@property (nonatomic, readwrite) CEAlignmentType footerOneAlignmentType;
+@property (nonatomic, readwrite) CEPrintInfoType footerTwoInfoType;
+@property (nonatomic, readwrite) CEAlignmentType footerTwoAlignmentType;
+@property (nonatomic, readwrite) BOOL printsFooterSeparator;
 
 @end
+
 
 
 
@@ -46,40 +63,97 @@
 
 @implementation CEPrintPanelAccessoryController
 
-#pragma mark NSViewController Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// NSViewController Protocol
+// Superclass Methods
 //
 //=======================================================
 
 // ------------------------------------------------------
-- (void)loadView
-// ビューのロード
+/// 初期化
+- (instancetype)init
 // ------------------------------------------------------
 {
-    [super loadView];
+    self = [super initWithNibName:@"PrintPanelAccessory" bundle:nil];
+    if (self) {
+        // マージンに関わるキー値を監視する
+        for (NSString *key in [self keyPathsForValuesAffectingHeaderMargin]) {
+            [self addObserver:self forKeyPath:key options:0 context:NULL];
+        }
+        for (NSString *key in [self keyPathsForValuesAffectingFooterMargin]) {
+            [self addObserver:self forKeyPath:key options:0 context:NULL];
+        }
+    }
+    return self;
+}
+
+
+// ------------------------------------------------------
+/// あとかたづけ
+- (void)dealloc
+// ------------------------------------------------------
+{
+    // 監視していたキー値を取り除く
+    for (NSString *key in [self keyPathsForValuesAffectingHeaderMargin]) {
+        [self removeObserver:self forKeyPath:key];
+    }
+    for (NSString *key in [self keyPathsForValuesAffectingFooterMargin]) {
+        [self removeObserver:self forKeyPath:key];
+    }
+}
+
+
+// ------------------------------------------------------
+/// Nibファイル読み込み直後
+- (void)awakeFromNib
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    // 設定をセットアップ（ユーザデフォルトからローカル設定にコピー）
     // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-    NSArray *keys = @[k_printHeader,
-                      k_headerOneStringIndex,
-                      k_headerTwoStringIndex,
-                      k_headerOneAlignIndex,
-                      k_headerTwoAlignIndex,
-                      k_printHeaderSeparator,
-                      k_printFooter,
-                      k_footerOneStringIndex,
-                      k_footerTwoStringIndex,
-                      k_footerOneAlignIndex,
-                      k_footerTwoAlignIndex,
-                      k_printFooterSeparator,
-                      k_printLineNumIndex,
-                      k_printInvisibleCharIndex,
-                      k_printColorIndex];
-    NSDictionary *settings = [[NSUserDefaults standardUserDefaults] dictionaryWithValuesForKeys:keys];
+    [self setColorMode:[defaults integerForKey:k_key_printColorIndex]];
+    [self setLineNumberMode:[defaults integerForKey:k_key_printLineNumIndex]];
+    [self setInvisibleCharsMode:[defaults integerForKey:k_key_printInvisibleCharIndex]];
+    [self setPrintsHeader:[defaults boolForKey:k_key_printHeader]];
+    [self setHeaderOneInfoType:[defaults integerForKey:k_key_headerOneStringIndex]];
+    [self setHeaderOneAlignmentType:[defaults integerForKey:k_key_headerOneAlignIndex]];
+    [self setHeaderTwoInfoType:[defaults integerForKey:k_key_headerTwoStringIndex]];
+    [self setHeaderTwoAlignmentType:[defaults integerForKey:k_key_headerTwoAlignIndex]];
+    [self setPrintsHeaderSeparator:[defaults boolForKey:k_key_printHeaderSeparator]];
+    [self setPrintsFooter:[defaults boolForKey:k_key_printFooter]];
+    [self setFooterOneInfoType:[defaults integerForKey:k_key_footerOneStringIndex]];
+    [self setFooterOneAlignmentType:[defaults integerForKey:k_key_footerOneAlignIndex]];
+    [self setFooterTwoInfoType:[defaults integerForKey:k_key_footerTwoStringIndex]];
+    [self setFooterTwoAlignmentType:[defaults integerForKey:k_key_footerTwoAlignIndex]];
+    [self setPrintsFooterSeparator:[defaults boolForKey:k_key_printFooterSeparator]];
+}
+
+
+// ------------------------------------------------------
+/// printInfoがセットされた
+- (void)setRepresentedObject:(id)representedObject
+// ------------------------------------------------------
+{
+    [super setRepresentedObject:representedObject];
     
-    [[self settingController] setContent:[settings mutableCopy]];
+    // printInfoの値をヘッダ／フッタのマージンに反映させる
+    [self updateHeaderOffset];
+    [self updateFooterOffset];
+}
+
+
+// ------------------------------------------------------
+/// 監視しているキー値が変更された
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    if ([[self keyPathsForValuesAffectingFooterMargin] containsObject:keyPath]) {
+        [self updateHeaderOffset];
+    }
+    if ([[self keyPathsForValuesAffectingFooterMargin] containsObject:keyPath]) {
+        [self updateFooterOffset];
+    }
 }
 
 
@@ -92,28 +166,270 @@
 //=======================================================
 
 // ------------------------------------------------------
--(NSArray *)localizedSummaryItems
-//
+/// プレビューに影響するキーのセットを返す
+- (NSSet *)keyPathsForValuesAffectingPreview
 // ------------------------------------------------------
 {
-    return nil;
+    return [NSSet setWithArray:@[@"colorMode",
+                                 @"lineNumberMode",
+                                 @"invisibleCharsMode",
+                                 @"printsHeader",
+                                 @"headerOneInfoType",
+                                 @"headerOneAlignmentType",
+                                 @"headerTwoInfoType",
+                                 @"headerTwoAlignmentType",
+                                 @"printsHeaderSeparator",
+                                 @"printsFooter",
+                                 @"footerOneInfoType",
+                                 @"footerOneAlignmentType",
+                                 @"footerTwoInfoType",
+                                 @"footerTwoAlignmentType",
+                                 @"printsFooterSeparator"]];
+}
+
+
+// ------------------------------------------------------
+/// ローカライズ済みの設定説明を返す
+-(NSArray *)localizedSummaryItems
+// ------------------------------------------------------
+{
+    // 現時点ではこのアクセサリビューでの設定値はプリントパネルにあるプリセットに対応していない (2014-03-29 1024jp)
+    // (ただし、リストに表示はされる)
+    // プリセットにアプリケーション独自の設定を保存するためには、KVOに準拠しつつ[printInfo printSettings]で全ての値を管理する必要がある。
+    
+    NSMutableArray *items = [NSMutableArray array];
+    NSString *description;
+    
+    switch ([self colorMode]) {
+        case CEBlackColorPrint:
+            description = @"Black Text";
+            break;
+        case CESameAsDocumentColorPrint:
+            description = @"Same as Document's Setting";
+            break;
+    }
+    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Color", k_printLocalizeTable, nil),
+                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    
+    switch ([self lineNumberMode]) {
+        case CENoLinePrint:
+            description = @"Don't Print";
+            break;
+        case CESameAsDocumentLinePrint:
+            description = @"Same as Document's Setting";
+            break;
+        case CEDoLinePrint:
+            description = @"Print";
+            break;
+    }
+    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Line Number", k_printLocalizeTable, nil),
+                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    
+    switch ([self invisibleCharsMode]) {
+        case CENoInvisibleCharsPrint:
+            description = @"Don't Print";
+            break;
+        case CESameAsDocumentInvisibleCharsPrint:
+            description = @"Same as Document's Setting";
+            break;
+        case CEAllInvisibleCharsPrint:
+            description = @"Print All";
+            break;
+    }
+    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Invisible Characters", k_printLocalizeTable, nil),
+                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    
+    
+    description = [self printsHeader] ? @"On" : @"Off";
+    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Header", k_printLocalizeTable, nil),
+                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    if ([self printsHeader]) {
+        description = [self printInfoDescription:[self headerOneInfoType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 1", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        
+        description = [self alignmentDescription:[self headerOneAlignmentType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 1 Alignment", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        
+        description = [self printInfoDescription:[self headerTwoInfoType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 2", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        
+        description = [self alignmentDescription:[self headerTwoAlignmentType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 2 Alignment", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    }
+    description = [self printsHeaderSeparator] ? @"On" : @"Off";
+    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Header Separator", k_printLocalizeTable, nil),
+                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    
+    description = [self printsFooter] ? @"On" : @"Off";
+    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Footer", k_printLocalizeTable, nil),
+                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    if ([self printsFooter]) {
+        description = [self printInfoDescription:[self footerOneInfoType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 1", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        
+        description = [self alignmentDescription:[self footerOneAlignmentType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 1 Alignment", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        
+        description = [self printInfoDescription:[self footerTwoInfoType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 2", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        
+        description = [self alignmentDescription:[self footerTwoInfoType]];
+        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 2 Alignment", k_printLocalizeTable, nil),
+                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    }
+    description = [self printsFooterSeparator] ? @"On" : @"Off";
+    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Footer Separator", k_printLocalizeTable, nil),
+                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    
+    return items;
 }
 
 
 
-#pragma mark Public Methods
+#pragma mark Private Methods
 
 //=======================================================
-// Public method
+// Private method
 //
 //=======================================================
 
 // ------------------------------------------------------
-- (id)values
-// プリンタローカル設定オブジェクトを返す
+/// ヘッダマージンを再計算する
+- (void)updateHeaderOffset
 // ------------------------------------------------------
 {
-    return [[self settingController] content];
+    NSPrintInfo *printInfo = [self representedObject];
+    
+    CGFloat topMargin = k_printHFVerticalMargin;
+    
+    // ヘッダ／フッタの高さ（文書を印刷しない高さ）を得る
+    if ([self printsHeader]) {
+        if ([self headerOneInfoType] != CENoPrintInfo) {  // 行1 = 印字あり
+            topMargin += k_headerFooterLineHeight;
+        }
+        if ([self headerTwoInfoType] != CENoPrintInfo) {  // 行2 = 印字あり
+            topMargin += k_headerFooterLineHeight;
+        }
+    }
+    // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
+    if (topMargin > k_printHFVerticalMargin) {
+        topMargin += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_headerFooterFontSize] - k_headerFooterLineHeight;
+        
+        if ([self printsHeaderSeparator]) {
+            topMargin += k_separatorPadding;
+        } else {
+            topMargin += k_noSeparatorPadding;
+        }
+    } else {
+        if ([self printsHeaderSeparator]) {
+            topMargin += k_separatorPadding;
+        }
+    }
+    
+    // printView が flip しているので入れ替えている
+    [printInfo setBottomMargin:topMargin];
+}
+
+
+// ------------------------------------------------------
+/// フッタマージンを再計算する
+- (void)updateFooterOffset
+// ------------------------------------------------------
+{
+    NSPrintInfo *printInfo = [self representedObject];
+    
+    CGFloat bottomMargin = k_printHFVerticalMargin;
+    
+    if ([self printsFooter]) {
+        if ([self footerOneInfoType] != CENoPrintInfo) {  // 行1 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
+        }
+        if ([self footerTwoInfoType] != CENoPrintInfo) {  // 行2 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
+        }
+    }
+    if ((bottomMargin == k_printHFVerticalMargin) && [self printsFooterSeparator]) {
+        bottomMargin += k_separatorPadding;
+    }
+    
+    // printView が flip しているので入れ替えている
+    [printInfo setTopMargin:bottomMargin];
+}
+
+
+// ------------------------------------------------------
+/// ヘッダー／フッターの表示情報タイプから文字列を返す
+- (NSString *)printInfoDescription:(CEPrintInfoType)type
+// ------------------------------------------------------
+{
+    switch (type) {
+        case CENoPrintInfo:
+            return @"None";
+        
+        case CESyntaxNamePrintInfo:
+            return @"Syntax Name";
+            
+        case CEDocumentNamePrintInfo:
+            return @"Document Name";
+            
+        case CEFilePathPrintInfo:
+            return @"File Path";
+            
+        case CEPrintDatePrintInfo:
+            return @"Print Date";
+            
+        case CEPageNumberPrintInfo:
+            return @"Page Number";
+    }
+}
+
+
+// ------------------------------------------------------
+/// 行揃えタイプから文字列を返す
+- (NSString *)alignmentDescription:(CEAlignmentType)type
+// ------------------------------------------------------
+{
+    switch (type) {
+        case CEAlignLeft:
+            return @"Left";
+            
+        case CEAlignCenter:
+            return @"Center";
+            
+        case CEAlignRight:
+            return @"Right";
+    }
+}
+
+
+// ------------------------------------------------------
+/// ヘッダマージンに影響するキーのセットを返す
+- (NSSet *)keyPathsForValuesAffectingHeaderMargin
+// ------------------------------------------------------
+{
+    return [NSSet setWithArray:@[@"printsHeader",
+                                 @"headerOneInfoType",
+                                 @"headerTwoInfoType",
+                                 @"printsHeaderSeparator"]];
+}
+
+
+// ------------------------------------------------------
+/// フッタマージンに影響するキーのセットを返す
+- (NSSet *)keyPathsForValuesAffectingFooterMargin
+// ------------------------------------------------------
+{
+    return [NSSet setWithArray:@[@"printsFooter",
+                                 @"footerOneInfoType",
+                                 @"footerTwoInfoType",
+                                 @"printsFooterSeparator"]];
 }
 
 @end

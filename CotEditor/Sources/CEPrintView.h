@@ -32,13 +32,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
+#import "CEPrintPanelAccessoryController.h"
 
 
 @interface CEPrintView : NSTextView
 
+@property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
+
 @property (nonatomic) NSString *filePath;
+@property (nonatomic) NSString *documentName;
+@property (nonatomic) NSString *syntaxName;
 @property (nonatomic) CGFloat lineSpacing;
-@property (nonatomic) BOOL isShowingLineNum;
-@property (nonatomic) id printValues;
+
+// settings on current window to be set by CEDocument.
+// These values are used if set option is "Same as document's setting"
+@property (nonatomic) BOOL documentShowsLineNum;
+@property (nonatomic) BOOL documentShowsInvisibles;
 
 @end

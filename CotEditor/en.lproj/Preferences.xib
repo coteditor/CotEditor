@@ -2049,12 +2049,12 @@ The parent directory name of the dropped file.
                                                 <popUpButton verticalHuggingPriority="750" id="1350">
                                                     <rect key="frame" x="186" y="558" width="215" height="26"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <popUpButtonCell key="cell" type="push" title="Black text" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1353" id="3387">
+                                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3387">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="1352">
                                                             <items>
-                                                                <menuItem title="Black text" state="on" id="1353">
+                                                                <menuItem title="Black text" id="1353">
                                                                     <attributedString key="attributedTitle"/>
                                                                 </menuItem>
                                                                 <menuItem title="Same as document's setting" id="1354"/>
@@ -2139,12 +2139,12 @@ The parent directory name of the dropped file.
                                                 <popUpButton verticalHuggingPriority="750" id="950">
                                                     <rect key="frame" x="186" y="484" width="215" height="26"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="952" id="3383">
+                                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3383">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="951">
                                                             <items>
-                                                                <menuItem title="(No Print)" state="on" id="952"/>
+                                                                <menuItem title="(No Print)" id="952"/>
                                                                 <menuItem title="Same as document's setting" id="953"/>
                                                                 <menuItem title="Print All" id="954"/>
                                                             </items>
@@ -2157,7 +2157,7 @@ The parent directory name of the dropped file.
                                                 <textField verticalHuggingPriority="750" id="949">
                                                     <rect key="frame" x="70" y="490" width="114" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Invisible Chars:" id="3382">
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Invisible chars:" id="3382">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2166,12 +2166,12 @@ The parent directory name of the dropped file.
                                                 <popUpButton verticalHuggingPriority="750" id="944">
                                                     <rect key="frame" x="186" y="521" width="215" height="26"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="946" id="3381">
+                                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3381">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="945">
                                                             <items>
-                                                                <menuItem title="(No Print)" state="on" id="946"/>
+                                                                <menuItem title="(No Print)" id="946"/>
                                                                 <menuItem title="Same as document's setting" id="947"/>
                                                                 <menuItem title="Print" id="948"/>
                                                             </items>
@@ -2315,7 +2315,7 @@ The parent directory name of the dropped file.
                                                             <button id="916">
                                                                 <rect key="frame" x="41" y="107" width="192" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="Print Footer:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
+                                                                <buttonCell key="cell" type="check" title="Print footer:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -2326,48 +2326,50 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="934">
                                                                 <rect key="frame" x="126" y="78" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="3378">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="Mvg-wT-FTM" id="3378">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="935">
                                                                         <items>
-                                                                            <menuItem title="(No Print)" state="on" id="941"/>
+                                                                            <menuItem title="(No Print)" id="941"/>
                                                                             <menuItem isSeparatorItem="YES" id="936">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="937"/>
-                                                                            <menuItem title="File Path" id="938"/>
-                                                                            <menuItem title="Print Date" id="939"/>
-                                                                            <menuItem title="Page Number" id="940"/>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="Mvg-wT-FTM"/>
+                                                                            <menuItem title="Document Name" tag="2" id="937"/>
+                                                                            <menuItem title="File Path" tag="3" id="938"/>
+                                                                            <menuItem title="Print Date" tag="4" id="939"/>
+                                                                            <menuItem title="Page Number" tag="5" id="940"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerOneStringIndex" id="976"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerOneStringIndex" id="joI-va-h9C"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="977"/>
                                                                 </connections>
                                                             </popUpButton>
                                                             <popUpButton verticalHuggingPriority="750" id="925">
                                                                 <rect key="frame" x="126" y="42" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="3376">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ckJ-Cw-ccE" id="3376">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="926">
                                                                         <items>
-                                                                            <menuItem title="(No Print)" state="on" id="927"/>
+                                                                            <menuItem title="(No Print)" id="927"/>
                                                                             <menuItem isSeparatorItem="YES" id="928">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="929"/>
-                                                                            <menuItem title="File Path" id="930"/>
-                                                                            <menuItem title="Print Date" id="931"/>
-                                                                            <menuItem title="Page Number" id="932"/>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="ckJ-Cw-ccE"/>
+                                                                            <menuItem title="Document Name" tag="2" id="929"/>
+                                                                            <menuItem title="File Path" tag="3" id="930"/>
+                                                                            <menuItem title="Print Date" tag="4" id="931"/>
+                                                                            <menuItem title="Page Number" tag="5" id="932"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.footerTwoStringIndex" id="979"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.footerTwoStringIndex" id="IYq-A2-8Zn"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printFooter" id="980"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2386,24 +2388,25 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="891">
                                                                 <rect key="frame" x="126" y="80" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="895" id="3370">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="uuc-7D-Iot" id="3370">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="892">
                                                                         <items>
-                                                                            <menuItem title="(No Print)" state="on" id="895"/>
+                                                                            <menuItem title="(No Print)" id="895"/>
                                                                             <menuItem isSeparatorItem="YES" id="894">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="896"/>
-                                                                            <menuItem title="File Path" id="897"/>
-                                                                            <menuItem title="Print Date" id="898"/>
-                                                                            <menuItem title="Page Number" id="893"/>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="uuc-7D-Iot"/>
+                                                                            <menuItem title="Document Name" tag="2" id="896"/>
+                                                                            <menuItem title="File Path" tag="3" id="897"/>
+                                                                            <menuItem title="Print Date" tag="4" id="898"/>
+                                                                            <menuItem title="Page Number" tag="5" id="893"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerOneStringIndex" id="958"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerOneStringIndex" id="sMw-0L-xL1"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="962"/>
                                                                 </connections>
                                                             </popUpButton>
@@ -2525,7 +2528,7 @@ The parent directory name of the dropped file.
                                                             <button id="889">
                                                                 <rect key="frame" x="41" y="109" width="185" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="Print Header:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
+                                                                <buttonCell key="cell" type="check" title="Print header:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -2536,24 +2539,25 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="900">
                                                                 <rect key="frame" x="126" y="44" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" title="(No Print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="3372">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="plk-U5-NGA" id="3372">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="901">
                                                                         <items>
-                                                                            <menuItem title="(No Print)" state="on" id="906"/>
+                                                                            <menuItem title="(No Print)" id="906"/>
                                                                             <menuItem isSeparatorItem="YES" id="907">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
-                                                                            <menuItem title="Document Name" id="902"/>
-                                                                            <menuItem title="File Path" id="903"/>
-                                                                            <menuItem title="Print Date" id="904"/>
-                                                                            <menuItem title="Page Number" id="905"/>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="plk-U5-NGA"/>
+                                                                            <menuItem title="Document Name" tag="2" id="902"/>
+                                                                            <menuItem title="File Path" tag="3" id="903"/>
+                                                                            <menuItem title="Print Date" tag="4" id="904"/>
+                                                                            <menuItem title="Page Number" tag="5" id="905"/>
                                                                         </items>
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedIndex" keyPath="values.headerTwoStringIndex" id="960"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerTwoStringIndex" id="AUz-V7-jL2"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="961"/>
                                                                 </connections>
                                                             </popUpButton>
