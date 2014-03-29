@@ -519,6 +519,17 @@
 			name = InternalScript;
 			sourceTree = "<group>";
 		};
+		2A0E160B18E7240C00AAD872 /* Print */ = {
+			isa = PBXGroup;
+			children = (
+				2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */,
+				2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */,
+				8CC5044208EE829500A525A6 /* CEPrintView.h */,
+				8CC5044308EE829500A525A6 /* CEPrintView.m */,
+			);
+			name = Print;
+			sourceTree = "<group>";
+		};
 		2A15832A18E3A1EC00601026 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +637,7 @@
 				2AFFB72E18D8E87900118477 /* PanelControllers */,
 				2A15832D18E3A3E000601026 /* Preferences */,
 				2A15832C18E3A29A00601026 /* Views */,
+				2A0E160B18E7240C00AAD872 /* Print */,
 				2A15832B18E3A25C00601026 /* Utilities */,
 				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
 				259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */,
@@ -647,10 +659,6 @@
 				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
 				258225FE07794C2A00A0F8D3 /* CESyntax.h */,
 				258225FF07794C2A00A0F8D3 /* CESyntax.m */,
-				2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */,
-				2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */,
-				8CC5044208EE829500A525A6 /* CEPrintView.h */,
-				8CC5044308EE829500A525A6 /* CEPrintView.m */,
 				25859E90076D88ED0020F779 /* constants.h */,
 				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
 			);
