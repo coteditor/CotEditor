@@ -33,7 +33,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="printColorType" id="gS3-6W-OJ4"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="colorMode" id="n1a-Rs-81Y"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="584">
@@ -66,7 +66,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="printInvisibleCharsType" id="mbd-EK-f6a"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="invisibleCharsMode" id="UkP-Ba-QDG"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="423">
@@ -96,7 +96,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="printLineNumberType" id="3YY-rb-FUb"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="lineNumberMode" id="T1v-IJ-jYl"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="415">
@@ -524,6 +524,7 @@
                 <constraint firstItem="585" firstAttribute="leading" secondItem="584" secondAttribute="trailing" constant="8" symbolic="YES" id="wOq-N0-Qfa"/>
             </constraints>
         </customView>
+        <userDefaultsController representsSharedInstance="YES" id="IXW-z3-v4o"/>
     </objects>
     <resources>
         <image name="centerButtonImg" width="16" height="16"/>

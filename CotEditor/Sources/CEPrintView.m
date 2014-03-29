@@ -32,6 +32,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEPrintView.h"
+#import "CELayoutManager.h"
+#import "CESyntax.h"
 #import "constants.h"
 
 
@@ -73,6 +75,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // NSTextView method
 //
 //=======================================================
+
+- (instancetype)initWithFrame:(NSRect)frameRect
+{
+    self = [super initWithFrame:frameRect];
+    if (self) {
+        // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
+        [[self textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
+        
+        // layoutManager を入れ替え
+        CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+        [layoutManager setFixLineHeight:NO];
+        [layoutManager setIsPrinting:YES];
+        [[self textContainer] replaceLayoutManager:layoutManager];
+    }
+    return self;
+}
 
 // ------------------------------------------------------
 - (void)drawPageBorderWithSize:(NSSize)borderSize
@@ -250,13 +268,42 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // the top/left point of text container.
 // ------------------------------------------------------
 {
-    return NSMakePoint([self xOffset], 0.0);
+    return NSMakePoint([self xOffset], 0);
+}
+
+
+// ------------------------------------------------------
+/// set printing font
+- (void)setFont:(NSFont *)font
+// ------------------------------------------------------
+{
+    // layoutManagerにもフォントを設定する
+    [(CELayoutManager *)[self layoutManager] setTextFont:font];
+    [super setFont:font];
 }
 
 
 
-
 #pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// 実際のドキュメントで不可視文字を表示しているかをセット
+- (void)setDocumentShowsInvisibles:(BOOL)showsInvisibles
+// ------------------------------------------------------
+{
+    // layoutManagerにも設定する
+    [(CELayoutManager *)[self layoutManager] setShowOtherInvisibles:showsInvisibles];
+    _documentShowsInvisibles = showsInvisibles;
+}
+
+
+
+#pragma mark Private Methods
 
 //=======================================================
 // Private method
@@ -268,10 +315,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // プリント開始の準備
 // ------------------------------------------------------
 {
+    CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSAttributedString *attrString = nil;
     CGFloat printWidth = borderWidth - k_printHFHorizontalMargin * 2;
-    CELineNumberPrintMode lineNumMenuIndex = [[[self printValues] valueForKey:k_printLineNumIndex] integerValue];
 
     // ヘッダ／フッタの文字属性辞書生成、保持
     NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName]
@@ -280,12 +327,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                  NSForegroundColorAttributeName: [NSColor textColor]}];
 
     // 行番号印字の有無をチェック
-    switch (lineNumMenuIndex) {
+    switch ([accessoryController lineNumberMode]) {
         case CENoLinePrint:
             [self setPrintsLineNum:NO];
             break;
         case CESameAsDocumentLinePrint:
-            [self setPrintsLineNum:[self isShowingLineNum]];
+            [self setPrintsLineNum:[self documentShowsLineNum]];
             break;
         case CEDoLinePrint:
             [self setPrintsLineNum:YES];
@@ -301,37 +348,73 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setXOffset:k_printTextHorizontalMargin];
     }
     
+    // 制御文字印字を取得
+    BOOL showsControls;
+    switch ([accessoryController invisibleCharsMode]) {
+        case CENoInvisibleCharsPrint:
+            showsControls = NO;
+            break;
+        case CESameAsDocumentInvisibleCharsPrint:
+            showsControls = [self documentShowsInvisibles];
+            break;
+        case CEAllInvisibleCharsPrint:
+            showsControls = YES;
+            break;
+    }
+    [[[self textContainer] layoutManager] setShowsControlCharacters:showsControls];
+    
+    
+    // カラーリングの設定
+    switch ([accessoryController colorMode]) {
+        case CEBlackColorPrint:
+            [self setTextColor:[NSColor blackColor]];
+            [self setBackgroundColor:[NSColor whiteColor]];
+            break;
+            
+        case CESameAsDocumentColorPrint:
+            [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_textColor]]];
+            [self setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_backgroundColor]]];
+            
+            // カラーリング実行オブジェクトを用意して実行
+            CESyntax *syntax = [[CESyntax alloc] init];
+            [syntax setSyntaxStyleName:[self styleName]];
+            [syntax setLayoutManager:(CELayoutManager *)[[self textContainer] layoutManager]];
+            [syntax setIsPrinting:YES];
+            [syntax colorAllString:[self string]];
+            break;
+    }
+    
     // ヘッダを設定
-    if ([[[self printValues] valueForKey:k_printHeader] boolValue]) {
+    if ([accessoryController printsHeader]) {
         [self setPrintsHeader:YES];
-        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_headerOneStringIndex] integerValue]
-                                                             maxWidth:printWidth];
+        attrString = [self attributedStringFromPrintInfoType:[accessoryController headerOneInfoType]
+                                                    maxWidth:printWidth];
         [self setHeaderOneString:attrString];
-        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_headerTwoStringIndex] integerValue]
-                                                             maxWidth:printWidth];
+        attrString = [self attributedStringFromPrintInfoType:[accessoryController headerTwoInfoType]
+                                                    maxWidth:printWidth];
         [self setHeaderTwoString:attrString];
-        [self setHeaderOneAlignment:[[[self printValues] valueForKey:k_headerOneAlignIndex] integerValue]];
-        [self setHeaderTwoAlignment:[[[self printValues] valueForKey:k_headerTwoAlignIndex] integerValue]];
+        [self setHeaderOneAlignment:[accessoryController headerOneAlignmentType]];
+        [self setHeaderTwoAlignment:[accessoryController headerTwoAlignmentType]];
     } else {
         [self setPrintsHeader:NO];
     }
-    [self setPrintsHeaderSeparator:[[[self printValues] valueForKey:k_printHeaderSeparator] boolValue]];
+    [self setPrintsHeaderSeparator:[accessoryController printsHeaderSeparator]];
 
     // フッタを設定
-    if ([[[self printValues] valueForKey:k_printFooter] boolValue]) {
+    if ([accessoryController printsFooter]) {
         [self setPrintsFooter:YES];
-        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_footerOneStringIndex] integerValue]
-                                                             maxWidth:printWidth];
+        attrString = [self attributedStringFromPrintInfoType:[accessoryController footerOneInfoType]
+                                                    maxWidth:printWidth];
         [self setFooterOneString:attrString];
-        attrString = [self attributedStringFromPrintInfoType:[[[self printValues] valueForKey:k_footerTwoStringIndex] integerValue]
-                                                             maxWidth:printWidth];
+        attrString = [self attributedStringFromPrintInfoType:[accessoryController footerTwoInfoType]
+                                                    maxWidth:printWidth];
         [self setFooterTwoString:attrString];
-        [self setFooterOneAlignment:[[[self printValues] valueForKey:k_footerOneAlignIndex] integerValue]];
-        [self setFooterTwoAlignment:[[[self printValues] valueForKey:k_footerTwoAlignIndex] integerValue]];
+        [self setFooterOneAlignment:[accessoryController footerOneAlignmentType]];
+        [self setFooterTwoAlignment:[accessoryController footerTwoAlignmentType]];
     } else {
         [self setPrintsFooter:NO];
     }
-    [self setPrintsFooterSeparator:[[[self printValues] valueForKey:k_printFooterSeparator] boolValue]];
+    [self setPrintsFooterSeparator:[accessoryController printsFooterSeparator]];
     [self setReadyToPrint:YES];
 }
 
@@ -343,27 +426,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSAttributedString *outString = nil;
     NSString *dateString;
+    NSString *filePath = [self filePath];
             
     switch (selectedTag) {
         case CEDocumentNamePrintInfo:
             if ([self filePath]) {
-                outString = [[NSAttributedString alloc] initWithString:[[self filePath] lastPathComponent]
+                outString = [[NSAttributedString alloc] initWithString:[self documentName]
                                                             attributes:[self headerFooterAttrs]];
             }
             break;
 
         case CEFilePathPrintInfo:
-            if ([self filePath]) {
-                outString = [[NSAttributedString alloc] initWithString:[self filePath]
-                                                            attributes:[self headerFooterAttrs]];
+            if (filePath) {
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_headerFooterPathAbbreviatingWithTilde]) {
+                    filePath = [[self filePath] stringByAbbreviatingWithTildeInPath];
+                }
+            } else {
+                filePath = [self documentName];  // パスがない場合は書類名をプリント
             }
+            outString = [[NSAttributedString alloc] initWithString:filePath
+                                                        attributes:[self headerFooterAttrs]];
             break;
 
         case CEPrintDatePrintInfo:
             dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:[[NSUserDefaults standardUserDefaults]
                                                                                        stringForKey:k_key_headerFooterDateTimeFormat]];
             if (dateString && ([dateString length] > 0)) {
-                outString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Printed: %@",@""),
+                outString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Printed: %@", nil),
                                                                          dateString]
                                                             attributes:[self headerFooterAttrs]];
             }

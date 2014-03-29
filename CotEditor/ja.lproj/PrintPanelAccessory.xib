@@ -33,7 +33,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="printColorType" id="gS3-6W-OJ4"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="colorMode" id="1JE-tz-GTi"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="584">
@@ -66,7 +66,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="printInvisibleCharsType" id="mbd-EK-f6a"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="invisibleCharsMode" id="j0a-eN-HT7"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="423">
@@ -96,7 +96,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="printLineNumberType" id="3YY-rb-FUb"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="lineNumberMode" id="kTx-Os-DOJ"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="415">

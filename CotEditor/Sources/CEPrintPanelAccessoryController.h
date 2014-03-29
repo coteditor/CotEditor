@@ -85,6 +85,4 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 @property (nonatomic, readonly) CEAlignmentType footerTwoAlignmentType;
 @property (nonatomic, readonly) BOOL printsFooterSeparator;
 
-- (NSDictionary *)values;
-
 @end

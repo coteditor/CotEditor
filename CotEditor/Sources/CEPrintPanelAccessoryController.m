@@ -63,37 +63,37 @@
 
 @implementation CEPrintPanelAccessoryController
 
-#pragma mark NSViewController Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// NSViewController Protocol
+// Superclass Methods
 //
 //=======================================================
 
-- (instancetype)init
+// ------------------------------------------------------
+/// Nibファイル読み込み直後
+- (void)awakeFromNib
+// ------------------------------------------------------
 {
-    self = [super init];
-    if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-        [self setColorMode:[defaults integerForKey:k_printColorIndex]];
-        [self setLineNumberMode:[defaults integerForKey:k_printLineNumIndex]];
-        [self setInvisibleCharsMode:[defaults integerForKey:k_printInvisibleCharIndex]];
-        [self setPrintsHeader:[defaults boolForKey:k_printHeader]];
-        [self setHeaderOneInfoType:[defaults integerForKey:k_headerOneStringIndex]];
-        [self setHeaderOneAlignmentType:[defaults integerForKey:k_headerOneAlignIndex]];
-        [self setHeaderTwoInfoType:[defaults integerForKey:k_headerTwoStringIndex]];
-        [self setHeaderTwoAlignmentType:[defaults integerForKey:k_headerTwoAlignIndex]];
-        [self setPrintsHeaderSeparator:[defaults boolForKey:k_printHeaderSeparator]];
-        [self setPrintsFooter:[defaults boolForKey:k_printFooter]];
-        [self setFooterOneInfoType:[defaults integerForKey:k_footerOneStringIndex]];
-        [self setFooterOneAlignmentType:[defaults integerForKey:k_footerOneAlignIndex]];
-        [self setFooterTwoInfoType:[defaults integerForKey:k_footerTwoStringIndex]];
-        [self setFooterTwoAlignmentType:[defaults integerForKey:k_footerTwoAlignIndex]];
-        [self setPrintsFooterSeparator:[defaults boolForKey:k_printFooterSeparator]];
-    }
-    return self;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
+    [self setColorMode:[defaults integerForKey:k_printColorIndex]];
+    [self setLineNumberMode:[defaults integerForKey:k_printLineNumIndex]];
+    [self setInvisibleCharsMode:[defaults integerForKey:k_printInvisibleCharIndex]];
+    [self setPrintsHeader:[defaults boolForKey:k_printHeader]];
+    [self setHeaderOneInfoType:[defaults integerForKey:k_headerOneStringIndex]];
+    [self setHeaderOneAlignmentType:[defaults integerForKey:k_headerOneAlignIndex]];
+    [self setHeaderTwoInfoType:[defaults integerForKey:k_headerTwoStringIndex]];
+    [self setHeaderTwoAlignmentType:[defaults integerForKey:k_headerTwoAlignIndex]];
+    [self setPrintsHeaderSeparator:[defaults boolForKey:k_printHeaderSeparator]];
+    [self setPrintsFooter:[defaults boolForKey:k_printFooter]];
+    [self setFooterOneInfoType:[defaults integerForKey:k_footerOneStringIndex]];
+    [self setFooterOneAlignmentType:[defaults integerForKey:k_footerOneAlignIndex]];
+    [self setFooterTwoInfoType:[defaults integerForKey:k_footerTwoStringIndex]];
+    [self setFooterTwoAlignmentType:[defaults integerForKey:k_footerTwoAlignIndex]];
+    [self setPrintsFooterSeparator:[defaults boolForKey:k_printFooterSeparator]];
+    
 }
 
 
@@ -106,8 +106,30 @@
 //=======================================================
 
 // ------------------------------------------------------
+/// プレビューに影響するキーのセットを返す
+- (NSSet *)keyPathsForValuesAffectingPreview
+// ------------------------------------------------------
+{
+    return [NSSet setWithArray:@[@"colorMode",
+                                 @"lineNumberMode",
+                                 @"invisibleCharsMode",
+                                 @"printsHeader",
+                                 @"headerOneInfoType",
+                                 @"headerOneAlignmentType",
+                                 @"headerTwoInfoType",
+                                 @"headerTwoAlignmentType",
+                                 @"printsHeaderSeparator",
+                                 @"printsFooter",
+                                 @"footerOneInfoType",
+                                 @"footerOneAlignmentType",
+                                 @"footerTwoInfoType",
+                                 @"footerTwoAlignmentType",
+                                 @"printsFooterSeparator"]];
+}
+
+// ------------------------------------------------------
+/// ローカライズ済みの設定説明を返す
 -(NSArray *)localizedSummaryItems
-// ローカライズ済みの設定説明を返す
 // ------------------------------------------------------
 {
     NSMutableArray *items = [NSMutableArray array];
@@ -206,36 +228,6 @@
 
 
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
-
-// ------------------------------------------------------
-- (NSDictionary *)values
-// プリンタローカル設定オブジェクトを返す
-// ------------------------------------------------------
-{
-    return @{k_printColorIndex: @([self colorMode]),
-             k_printLineNumIndex: @([self lineNumberMode]),
-             k_printInvisibleCharIndex: @([self invisibleCharsMode]),
-             k_printHeader: @([self printsHeader]),
-             k_headerOneStringIndex: @([self headerOneInfoType]),
-             k_headerOneAlignIndex: @([self headerOneAlignmentType]),
-             k_headerTwoStringIndex: @([self headerTwoInfoType]),
-             k_headerTwoAlignIndex: @([self headerTwoAlignmentType]),
-             k_printHeaderSeparator: @([self printsHeaderSeparator]),
-             k_printFooter: @([self printsFooter]),
-             k_footerOneStringIndex: @([self footerOneInfoType]),
-             k_footerOneAlignIndex: @([self footerOneAlignmentType]),
-             k_footerTwoStringIndex: @([self footerTwoInfoType]),
-             k_footerTwoAlignIndex: @([self footerTwoAlignmentType]),
-             k_printFooterSeparator: @([self printsFooterSeparator])};
-}
-
-
 
 #pragma mark Private Methods
 
@@ -245,8 +237,151 @@
 //=======================================================
 
 // ------------------------------------------------------
+/// ヘッダ表示の有無をセットする
+- (void)setPrintsHeader:(BOOL)printsHeader
+// ------------------------------------------------------
+{
+    _printsHeader = printsHeader;
+    [self updateHeaderOffset];
+}
+
+
+// ------------------------------------------------------
+/// ヘッダ2行目の情報タイプをセットする
+- (void)setHeaderOneInfoType:(CEPrintInfoType)headerOneInfoType
+// ------------------------------------------------------
+{
+    _headerOneInfoType = headerOneInfoType;
+    [self updateHeaderOffset];
+}
+
+
+// ------------------------------------------------------
+/// ヘッダ1行目の情報タイプをセットする
+- (void)setHeaderTwoInfoType:(CEPrintInfoType)headerTwoInfoType
+// ------------------------------------------------------
+{
+    _headerTwoInfoType = headerTwoInfoType;
+    [self updateHeaderOffset];
+}
+
+
+// ------------------------------------------------------
+/// ヘッダ区切り線の有無をセットする
+- (void)setPrintsHeaderSeparator:(BOOL)printsHeaderSeparator
+// ------------------------------------------------------
+{
+    _printsHeaderSeparator = printsHeaderSeparator;
+    [self updateHeaderOffset];
+}
+
+// ------------------------------------------------------
+/// フッタ表示の有無をセットする
+- (void)setPrintsFooter:(BOOL)printsFooter
+// ------------------------------------------------------
+{
+    _printsFooter = printsFooter;
+    [self updateFooterOffset];
+}
+
+
+// ------------------------------------------------------
+/// フッタ2行目の情報タイプをセットする
+- (void)setFooterOneInfoType:(CEPrintInfoType)footerOneInfoType
+// ------------------------------------------------------
+{
+    _footerOneInfoType = footerOneInfoType;
+    [self updateFooterOffset];
+}
+
+
+// ------------------------------------------------------
+/// フッタ1行目の情報タイプをセットする
+- (void)setFooterTwoInfoType:(CEPrintInfoType)footerTwoInfoType
+// ------------------------------------------------------
+{
+    _footerTwoInfoType = footerTwoInfoType;
+    [self updateFooterOffset];
+}
+
+
+// ------------------------------------------------------
+/// フッタ区切り線の有無を設定する
+- (void)setPrintsFooterSeparator:(BOOL)printsFooterSeparator
+// ------------------------------------------------------
+{
+    _printsFooterSeparator = printsFooterSeparator;
+    [self updateFooterOffset];
+}
+
+
+// ------------------------------------------------------
+/// ヘッダマージンを再計算する
+- (void)updateHeaderOffset
+// ------------------------------------------------------
+{
+    NSPrintInfo *printInfo = [self representedObject];
+    
+    CGFloat topMargin = k_printHFVerticalMargin;
+    
+    // ヘッダ／フッタの高さ（文書を印刷しない高さ）を得る
+    if ([self printsHeader]) {
+        if ([self headerOneInfoType] != CENoPrintInfo) {  // 行1 = 印字あり
+            topMargin += k_headerFooterLineHeight;
+        }
+        if ([self headerTwoInfoType] != CENoPrintInfo) {  // 行2 = 印字あり
+            topMargin += k_headerFooterLineHeight;
+        }
+    }
+    // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
+    if (topMargin > k_printHFVerticalMargin) {
+        topMargin += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_headerFooterFontSize] - k_headerFooterLineHeight;
+        
+        if ([self printsHeaderSeparator]) {
+            topMargin += k_separatorPadding;
+        } else {
+            topMargin += k_noSeparatorPadding;
+        }
+    } else {
+        if ([self printsHeaderSeparator]) {
+            topMargin += k_separatorPadding;
+        }
+    }
+    
+    // printView が flip しているので入れ替えている
+    [printInfo setBottomMargin:topMargin];
+}
+
+
+// ------------------------------------------------------
+/// フッタマージンを再計算する
+- (void)updateFooterOffset
+// ------------------------------------------------------
+{
+    NSPrintInfo *printInfo = [self representedObject];
+    
+    CGFloat bottomMargin = k_printHFVerticalMargin;
+    
+    if ([self printsFooter]) {
+        if ([self footerOneInfoType] != CENoPrintInfo) {  // 行1 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
+        }
+        if ([self footerTwoInfoType] != CENoPrintInfo) {  // 行2 = 印字あり
+            bottomMargin += k_headerFooterLineHeight;
+        }
+    }
+    if ((bottomMargin == k_printHFVerticalMargin) && [self printsFooterSeparator]) {
+        bottomMargin += k_separatorPadding;
+    }
+    
+    // printView が flip しているので入れ替えている
+    [printInfo setTopMargin:bottomMargin];
+}
+
+
+// ------------------------------------------------------
+/// ヘッダー／フッターの表示情報タイプから文字列を返す
 - (NSString *)printInfoDescription:(CEPrintInfoType)type
-// ヘッダー／フッターの表示情報タイプから文字列を返す
 // ------------------------------------------------------
 {
     switch (type) {
@@ -269,8 +404,8 @@
 
 
 // ------------------------------------------------------
+/// 行揃えタイプから文字列を返す
 - (NSString *)alignmentDescription:(CEAlignmentType)type
-// アラインメントタイプから文字列を返す
 // ------------------------------------------------------
 {
     switch (type) {

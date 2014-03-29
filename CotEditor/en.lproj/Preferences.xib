@@ -2553,7 +2553,7 @@ The parent directory name of the dropped file.
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                                 <connections>
-                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerOneStringIndex" id="QFH-h4-EwH"/>
+                                                                    <binding destination="26" name="selectedTag" keyPath="values.headerTwoStringIndex" id="AUz-V7-jL2"/>
                                                                     <binding destination="26" name="enabled" keyPath="values.printHeader" id="961"/>
                                                                 </connections>
                                                             </popUpButton>
