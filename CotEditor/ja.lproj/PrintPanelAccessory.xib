@@ -108,7 +108,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box title="フッタ：" translatesAutoresizingMaskIntoConstraints="NO" id="299">
+                <box title="フッタ" translatesAutoresizingMaskIntoConstraints="NO" id="299">
                     <rect key="frame" x="17" y="16" width="414" height="137"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <view key="contentView">
@@ -272,7 +272,7 @@
                                             <menuItem title="書類名" tag="2" id="328"/>
                                             <menuItem title="ファイルパス" tag="3" id="323"/>
                                             <menuItem title="プリント日時" tag="4" id="327"/>
-                                            <menuItem title="ページ番号" state="on" tag="5" id="326"/>
+                                            <menuItem title="ページ番号" tag="5" id="326"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -305,7 +305,7 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
-                <box title="ヘッダ：" translatesAutoresizingMaskIntoConstraints="NO" id="297">
+                <box title="ヘッダ" translatesAutoresizingMaskIntoConstraints="NO" id="297">
                     <rect key="frame" x="17" y="157" width="414" height="137"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <view key="contentView">
