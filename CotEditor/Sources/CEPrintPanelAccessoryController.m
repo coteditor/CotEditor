@@ -112,21 +112,21 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-    [self setColorMode:[defaults integerForKey:k_printColorIndex]];
-    [self setLineNumberMode:[defaults integerForKey:k_printLineNumIndex]];
-    [self setInvisibleCharsMode:[defaults integerForKey:k_printInvisibleCharIndex]];
-    [self setPrintsHeader:[defaults boolForKey:k_printHeader]];
-    [self setHeaderOneInfoType:[defaults integerForKey:k_headerOneStringIndex]];
-    [self setHeaderOneAlignmentType:[defaults integerForKey:k_headerOneAlignIndex]];
-    [self setHeaderTwoInfoType:[defaults integerForKey:k_headerTwoStringIndex]];
-    [self setHeaderTwoAlignmentType:[defaults integerForKey:k_headerTwoAlignIndex]];
-    [self setPrintsHeaderSeparator:[defaults boolForKey:k_printHeaderSeparator]];
-    [self setPrintsFooter:[defaults boolForKey:k_printFooter]];
-    [self setFooterOneInfoType:[defaults integerForKey:k_footerOneStringIndex]];
-    [self setFooterOneAlignmentType:[defaults integerForKey:k_footerOneAlignIndex]];
-    [self setFooterTwoInfoType:[defaults integerForKey:k_footerTwoStringIndex]];
-    [self setFooterTwoAlignmentType:[defaults integerForKey:k_footerTwoAlignIndex]];
-    [self setPrintsFooterSeparator:[defaults boolForKey:k_printFooterSeparator]];
+    [self setColorMode:[defaults integerForKey:k_key_printColorIndex]];
+    [self setLineNumberMode:[defaults integerForKey:k_key_printLineNumIndex]];
+    [self setInvisibleCharsMode:[defaults integerForKey:k_key_printInvisibleCharIndex]];
+    [self setPrintsHeader:[defaults boolForKey:k_key_printHeader]];
+    [self setHeaderOneInfoType:[defaults integerForKey:k_key_headerOneStringIndex]];
+    [self setHeaderOneAlignmentType:[defaults integerForKey:k_key_headerOneAlignIndex]];
+    [self setHeaderTwoInfoType:[defaults integerForKey:k_key_headerTwoStringIndex]];
+    [self setHeaderTwoAlignmentType:[defaults integerForKey:k_key_headerTwoAlignIndex]];
+    [self setPrintsHeaderSeparator:[defaults boolForKey:k_key_printHeaderSeparator]];
+    [self setPrintsFooter:[defaults boolForKey:k_key_printFooter]];
+    [self setFooterOneInfoType:[defaults integerForKey:k_key_footerOneStringIndex]];
+    [self setFooterOneAlignmentType:[defaults integerForKey:k_key_footerOneAlignIndex]];
+    [self setFooterTwoInfoType:[defaults integerForKey:k_key_footerTwoStringIndex]];
+    [self setFooterTwoAlignmentType:[defaults integerForKey:k_key_footerTwoAlignIndex]];
+    [self setPrintsFooterSeparator:[defaults boolForKey:k_key_printFooterSeparator]];
 }
 
 
