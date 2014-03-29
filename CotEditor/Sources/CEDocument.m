@@ -360,7 +360,7 @@ enum { typeFSS = 'fss ' };
 {
     if (![self printPanelAccessoryController]) {
         [self setPrintPanelAccessoryController:
-         [[CEPrintPanelAccessoryController alloc] initWithNibName:@"PrintPanelAccessory" bundle:nil]];
+         [[CEPrintPanelAccessoryController alloc] init]];
     }
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     
@@ -408,11 +408,8 @@ enum { typeFSS = 'fss ' };
     printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
     [printOperation setJobTitle:[self displayName]];
     // プリントパネルの表示を制御し、プログレスパネルは表示させる
-    [printOperation setShowsPrintPanel:NO];
-    // ユーザのプリント決定後にアクセサリパネルの値を使用しレイアウトを計算してるので、ライブプレビューはできない
-    [[printOperation printPanel] addAccessoryController:accessoryController];
-    [[printOperation printPanel] setOptions:[[printOperation printPanel] options] & ~NSPrintPanelShowsPreview];
     [printOperation setShowsProgressPanel:YES];
+    [[printOperation printPanel] addAccessoryController:accessoryController];
     
     return printOperation;
 }

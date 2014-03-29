@@ -71,6 +71,40 @@
 //=======================================================
 
 // ------------------------------------------------------
+/// 初期化
+- (instancetype)init
+// ------------------------------------------------------
+{
+    self = [super initWithNibName:@"PrintPanelAccessory" bundle:nil];
+    if (self) {
+        // マージンに関わるキー値を監視する
+        for (NSString *key in [self keyPathsForValuesAffectingHeaderMargin]) {
+            [self addObserver:self forKeyPath:key options:0 context:NULL];
+        }
+        for (NSString *key in [self keyPathsForValuesAffectingFooterMargin]) {
+            [self addObserver:self forKeyPath:key options:0 context:NULL];
+        }
+    }
+    return self;
+}
+
+
+// ------------------------------------------------------
+/// あとかたづけ
+- (void)dealloc
+// ------------------------------------------------------
+{
+    // 監視していたキー値を取り除く
+    for (NSString *key in [self keyPathsForValuesAffectingHeaderMargin]) {
+        [self removeObserver:self forKeyPath:key];
+    }
+    for (NSString *key in [self keyPathsForValuesAffectingFooterMargin]) {
+        [self removeObserver:self forKeyPath:key];
+    }
+}
+
+
+// ------------------------------------------------------
 /// Nibファイル読み込み直後
 - (void)awakeFromNib
 // ------------------------------------------------------
@@ -93,7 +127,33 @@
     [self setFooterTwoInfoType:[defaults integerForKey:k_footerTwoStringIndex]];
     [self setFooterTwoAlignmentType:[defaults integerForKey:k_footerTwoAlignIndex]];
     [self setPrintsFooterSeparator:[defaults boolForKey:k_printFooterSeparator]];
+}
+
+
+// ------------------------------------------------------
+/// printInfoがセットされた
+- (void)setRepresentedObject:(id)representedObject
+// ------------------------------------------------------
+{
+    [super setRepresentedObject:representedObject];
     
+    // printInfoの値をヘッダ／フッタのマージンに反映させる
+    [self updateHeaderOffset];
+    [self updateFooterOffset];
+}
+
+
+// ------------------------------------------------------
+/// 監視しているキー値が変更された
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    if ([[self keyPathsForValuesAffectingFooterMargin] containsObject:keyPath]) {
+        [self updateHeaderOffset];
+    }
+    if ([[self keyPathsForValuesAffectingFooterMargin] containsObject:keyPath]) {
+        [self updateFooterOffset];
+    }
 }
 
 
@@ -126,6 +186,7 @@
                                  @"footerTwoAlignmentType",
                                  @"printsFooterSeparator"]];
 }
+
 
 // ------------------------------------------------------
 /// ローカライズ済みの設定説明を返す
@@ -228,92 +289,12 @@
 
 
 
-
 #pragma mark Private Methods
 
 //=======================================================
 // Private method
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// ヘッダ表示の有無をセットする
-- (void)setPrintsHeader:(BOOL)printsHeader
-// ------------------------------------------------------
-{
-    _printsHeader = printsHeader;
-    [self updateHeaderOffset];
-}
-
-
-// ------------------------------------------------------
-/// ヘッダ2行目の情報タイプをセットする
-- (void)setHeaderOneInfoType:(CEPrintInfoType)headerOneInfoType
-// ------------------------------------------------------
-{
-    _headerOneInfoType = headerOneInfoType;
-    [self updateHeaderOffset];
-}
-
-
-// ------------------------------------------------------
-/// ヘッダ1行目の情報タイプをセットする
-- (void)setHeaderTwoInfoType:(CEPrintInfoType)headerTwoInfoType
-// ------------------------------------------------------
-{
-    _headerTwoInfoType = headerTwoInfoType;
-    [self updateHeaderOffset];
-}
-
-
-// ------------------------------------------------------
-/// ヘッダ区切り線の有無をセットする
-- (void)setPrintsHeaderSeparator:(BOOL)printsHeaderSeparator
-// ------------------------------------------------------
-{
-    _printsHeaderSeparator = printsHeaderSeparator;
-    [self updateHeaderOffset];
-}
-
-// ------------------------------------------------------
-/// フッタ表示の有無をセットする
-- (void)setPrintsFooter:(BOOL)printsFooter
-// ------------------------------------------------------
-{
-    _printsFooter = printsFooter;
-    [self updateFooterOffset];
-}
-
-
-// ------------------------------------------------------
-/// フッタ2行目の情報タイプをセットする
-- (void)setFooterOneInfoType:(CEPrintInfoType)footerOneInfoType
-// ------------------------------------------------------
-{
-    _footerOneInfoType = footerOneInfoType;
-    [self updateFooterOffset];
-}
-
-
-// ------------------------------------------------------
-/// フッタ1行目の情報タイプをセットする
-- (void)setFooterTwoInfoType:(CEPrintInfoType)footerTwoInfoType
-// ------------------------------------------------------
-{
-    _footerTwoInfoType = footerTwoInfoType;
-    [self updateFooterOffset];
-}
-
-
-// ------------------------------------------------------
-/// フッタ区切り線の有無を設定する
-- (void)setPrintsFooterSeparator:(BOOL)printsFooterSeparator
-// ------------------------------------------------------
-{
-    _printsFooterSeparator = printsFooterSeparator;
-    [self updateFooterOffset];
-}
-
 
 // ------------------------------------------------------
 /// ヘッダマージンを再計算する
@@ -418,6 +399,30 @@
         case CEAlignRight:
             return @"Right";
     }
+}
+
+
+// ------------------------------------------------------
+/// ヘッダマージンに影響するキーのセットを返す
+- (NSSet *)keyPathsForValuesAffectingHeaderMargin
+// ------------------------------------------------------
+{
+    return [NSSet setWithArray:@[@"printsHeader",
+                                 @"headerOneInfoType",
+                                 @"headerTwoInfoType",
+                                 @"printsHeaderSeparator"]];
+}
+
+
+// ------------------------------------------------------
+/// フッタマージンに影響するキーのセットを返す
+- (NSSet *)keyPathsForValuesAffectingFooterMargin
+// ------------------------------------------------------
+{
+    return [NSSet setWithArray:@[@"printsFooter",
+                                 @"footerOneInfoType",
+                                 @"footerTwoInfoType",
+                                 @"printsFooterSeparator"]];
 }
 
 @end

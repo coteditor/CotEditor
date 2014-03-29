@@ -103,9 +103,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat headerFooterLineFontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_headerFooterFontSize];
 
     // プリントパネルでのカスタム設定を読み取り、保持
-    if ([self readyToPrint] == NO) {
-        [self setupPrintWithBorderWidth:borderSize.width];
-    }
+    [self setupPrintWithBorderWidth:borderSize.width];
+    
     // ページ番号の印字があるなら、準備する
     if ([self readyToDrawPageNum]) {
         NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
