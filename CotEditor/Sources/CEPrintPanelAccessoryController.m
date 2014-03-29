@@ -193,6 +193,10 @@
 -(NSArray *)localizedSummaryItems
 // ------------------------------------------------------
 {
+    // 現時点ではこのアクセサリビューでの設定値はプリントパネルにあるプリセットに対応していない (2014-03-29 1024jp)
+    // (ただし、リストに表示はされる)
+    // プリセットにアプリケーション独自の設定を保存するためには、KVOに準拠しつつ[printInfo printSettings]で全ての値を管理する必要がある。
+    
     NSMutableArray *items = [NSMutableArray array];
     NSString *description;
     
