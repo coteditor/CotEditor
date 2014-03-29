@@ -246,6 +246,8 @@
 		2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rightButtonImg.pdf; path = images/rightButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230416D3CF4F00F49864 /* swapArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrow.pdf; path = images/swapArrow.pdf; sourceTree = "<group>"; };
 		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
+		2A0E160F18E79FFA00AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
+		2A0E161018E7A17600AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		2A15830518E24CB300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SyntaxExtensionErrorSheet.xib; sourceTree = "<group>"; };
 		2A15831618E3688300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EncodingListSheet.xib; sourceTree = "<group>"; };
 		2A15831818E368CE00601026 /* CEEncodingListSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodingListSheetController.h; sourceTree = "<group>"; };
@@ -256,7 +258,6 @@
 		2A15832318E383C300601026 /* CESizeSampleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESizeSampleWindowController.m; sourceTree = "<group>"; };
 		2A15832518E38F3400601026 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SizeSampleWindow.xib; sourceTree = "<group>"; };
 		2A15832718E39B7400601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
-		2A15832918E39C6B00601026 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		2A15833318E3B83F00601026 /* CEScriptErrorPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEScriptErrorPanelController.h; sourceTree = "<group>"; };
 		2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEScriptErrorPanelController.m; sourceTree = "<group>"; };
 		2A1CFD0C18E5B64F00A5B664 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/print.strings; sourceTree = "<group>"; };
@@ -308,7 +309,6 @@
 		6C1E212012C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ColorCodePanel.xib; sourceTree = "<group>"; };
 		6C1E212112C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Indicator.xib; sourceTree = "<group>"; };
 		6C1E212212C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6C1E212312C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C1E212512C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6C1E212612C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -1129,7 +1129,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A15832718E39B7400601026 /* en */,
-				2A15832918E39C6B00601026 /* ja */,
+				2A0E161018E7A17600AAD872 /* ja */,
 			);
 			name = TextKeyBindingEditSheet.xib;
 			sourceTree = "<group>";
@@ -1245,7 +1245,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8C7400A308C6D93900683672 /* en */,
-				6C1E212312C9E65600194313 /* ja */,
+				2A0E160F18E79FFA00AAD872 /* ja */,
 			);
 			name = MenuKeyBindingEditSheet.xib;
 			sourceTree = "<group>";
