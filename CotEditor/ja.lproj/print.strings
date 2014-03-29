@@ -30,6 +30,7 @@
 "Black Text" = "テキストを黒";
 "Print" = "プリント";
 "Print All" = "全てプリント";
+"Style Name" = "スタイル名";
 "Document Name" = "書類名";
 "File Path" = "ファイルパス";
 "Print Date" = "プリント日時";

@@ -2326,7 +2326,7 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="934">
                                                                 <rect key="frame" x="126" y="78" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3378">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="Mvg-wT-FTM" id="3378">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="935">
@@ -2335,6 +2335,7 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="936">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="Mvg-wT-FTM"/>
                                                                             <menuItem title="Document Name" tag="2" id="937"/>
                                                                             <menuItem title="File Path" tag="3" id="938"/>
                                                                             <menuItem title="Print Date" tag="4" id="939"/>
@@ -2350,7 +2351,7 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="925">
                                                                 <rect key="frame" x="126" y="42" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3376">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ckJ-Cw-ccE" id="3376">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="926">
@@ -2359,6 +2360,7 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="928">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="ckJ-Cw-ccE"/>
                                                                             <menuItem title="Document Name" tag="2" id="929"/>
                                                                             <menuItem title="File Path" tag="3" id="930"/>
                                                                             <menuItem title="Print Date" tag="4" id="931"/>
@@ -2386,7 +2388,7 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="891">
                                                                 <rect key="frame" x="126" y="80" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3370">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="uuc-7D-Iot" id="3370">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="892">
@@ -2395,6 +2397,7 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="894">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="uuc-7D-Iot"/>
                                                                             <menuItem title="Document Name" tag="2" id="896"/>
                                                                             <menuItem title="File Path" tag="3" id="897"/>
                                                                             <menuItem title="Print Date" tag="4" id="898"/>
@@ -2536,7 +2539,7 @@ The parent directory name of the dropped file.
                                                             <popUpButton verticalHuggingPriority="750" id="900">
                                                                 <rect key="frame" x="126" y="44" width="215" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3372">
+                                                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="plk-U5-NGA" id="3372">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" title="OtherViews" id="901">
@@ -2545,6 +2548,7 @@ The parent directory name of the dropped file.
                                                                             <menuItem isSeparatorItem="YES" id="907">
                                                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                             </menuItem>
+                                                                            <menuItem title="Syntax Name" state="on" tag="1" id="plk-U5-NGA"/>
                                                                             <menuItem title="Document Name" tag="2" id="902"/>
                                                                             <menuItem title="File Path" tag="3" id="903"/>
                                                                             <menuItem title="Print Date" tag="4" id="904"/>

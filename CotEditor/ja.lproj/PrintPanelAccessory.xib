@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="272">
-                                <rect key="frame" x="315" y="66" width="77" height="22"/>
+                                <rect key="frame" x="307" y="66" width="77" height="22"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 <size key="cellSize" width="23" height="22"/>
@@ -151,7 +151,7 @@
                                 </connections>
                             </matrix>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="276">
-                                <rect key="frame" x="15" y="12" width="267" height="18"/>
+                                <rect key="frame" x="15" y="12" width="217" height="18"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <buttonCell key="cell" type="check" title="フッタの上に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="710">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -162,7 +162,7 @@
                                 </connections>
                             </button>
                             <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="291">
-                                <rect key="frame" x="315" y="35" width="77" height="23"/>
+                                <rect key="frame" x="307" y="35" width="77" height="23"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 <size key="cellSize" width="23" height="23"/>
@@ -197,7 +197,7 @@
                                 </connections>
                             </matrix>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="295">
-                                <rect key="frame" x="44" y="69" width="47" height="17"/>
+                                <rect key="frame" x="44" y="69" width="39" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行1：" id="711">
                                     <font key="font" metaFont="system"/>
@@ -206,7 +206,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="296">
-                                <rect key="frame" x="44" y="38" width="47" height="17"/>
+                                <rect key="frame" x="44" y="38" width="39" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行2：" id="712">
                                     <font key="font" metaFont="system"/>
@@ -215,7 +215,7 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="304">
-                                <rect key="frame" x="15" y="94" width="98" height="18"/>
+                                <rect key="frame" x="15" y="94" width="139" height="18"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <buttonCell key="cell" type="check" title="フッタをプリント：" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="713">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -226,12 +226,12 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="313">
-                                <rect key="frame" x="95" y="64" width="215" height="26"/>
+                                <rect key="frame" x="87" y="64" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="abT-dP-x7p"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="ページ番号" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
+                                <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="WDK-aU-ExF" id="714">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="314">
@@ -240,6 +240,7 @@
                                             <menuItem isSeparatorItem="YES" id="398">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="シンタックス名" state="on" tag="1" id="WDK-aU-ExF"/>
                                             <menuItem title="書類名" tag="2" id="320"/>
                                             <menuItem title="ファイルパス" tag="3" id="315"/>
                                             <menuItem title="プリント日時" tag="4" id="319"/>
@@ -253,12 +254,12 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="321">
-                                <rect key="frame" x="95" y="33" width="215" height="26"/>
+                                <rect key="frame" x="87" y="33" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="rIT-s2-gwW"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="ページ番号" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="326" id="715">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="715">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="322">
@@ -267,6 +268,7 @@
                                             <menuItem isSeparatorItem="YES" id="400">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="シンタックス名" tag="1" id="FQG-ag-Duh"/>
                                             <menuItem title="書類名" tag="2" id="328"/>
                                             <menuItem title="ファイルパス" tag="3" id="323"/>
                                             <menuItem title="プリント日時" tag="4" id="327"/>
@@ -311,12 +313,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                <rect key="frame" x="95" y="64" width="215" height="26"/>
+                                <rect key="frame" x="87" y="64" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="704">
+                                <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="3up-nI-VpT" id="704">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="199">
@@ -325,6 +327,7 @@
                                             <menuItem isSeparatorItem="YES" id="394">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="シンタックス名" state="on" tag="1" id="3up-nI-VpT"/>
                                             <menuItem title="書類名" tag="2" id="202"/>
                                             <menuItem title="ファイルパス" tag="3" id="203"/>
                                             <menuItem title="プリント日時" tag="4" id="206"/>
@@ -338,7 +341,7 @@
                                 </connections>
                             </popUpButton>
                             <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="212">
-                                <rect key="frame" x="315" y="66" width="77" height="23"/>
+                                <rect key="frame" x="307" y="66" width="77" height="23"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 <size key="cellSize" width="23" height="23"/>
@@ -373,7 +376,7 @@
                                 </connections>
                             </matrix>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="216">
-                                <rect key="frame" x="15" y="12" width="297" height="18"/>
+                                <rect key="frame" x="15" y="12" width="217" height="18"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <buttonCell key="cell" type="check" title="ヘッダの下に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="705">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -384,7 +387,7 @@
                                 </connections>
                             </button>
                             <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="252">
-                                <rect key="frame" x="315" y="35" width="77" height="23"/>
+                                <rect key="frame" x="307" y="35" width="77" height="23"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 <size key="cellSize" width="23" height="23"/>
@@ -419,7 +422,7 @@
                                 </connections>
                             </matrix>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="256">
-                                <rect key="frame" x="44" y="69" width="47" height="17"/>
+                                <rect key="frame" x="44" y="69" width="39" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行1：" id="706">
                                     <font key="font" metaFont="system"/>
@@ -428,7 +431,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="257">
-                                <rect key="frame" x="44" y="38" width="47" height="17"/>
+                                <rect key="frame" x="44" y="38" width="39" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行2：" id="707">
                                     <font key="font" metaFont="system"/>
@@ -437,7 +440,7 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="303">
-                                <rect key="frame" x="15" y="94" width="103" height="18"/>
+                                <rect key="frame" x="15" y="94" width="139" height="18"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <buttonCell key="cell" type="check" title="ヘッダをプリント：" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="708">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -448,12 +451,12 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
-                                <rect key="frame" x="95" y="33" width="215" height="26"/>
+                                <rect key="frame" x="87" y="33" width="215" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="lgi-4X-dYs"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="ページ番号" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
+                                <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SRi-XN-6jc" id="709">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="306">
@@ -462,6 +465,7 @@
                                             <menuItem isSeparatorItem="YES" tag="-1" id="396">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="シンタックス名" state="on" tag="1" id="SRi-XN-6jc"/>
                                             <menuItem title="書類名" tag="2" id="312"/>
                                             <menuItem title="ファイルパス" tag="3" id="307"/>
                                             <menuItem title="プリント日時" tag="4" id="311"/>

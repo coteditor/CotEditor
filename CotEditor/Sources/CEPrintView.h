@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) NSString *filePath;
 @property (nonatomic) NSString *documentName;
-@property (nonatomic) NSString *styleName;
+@property (nonatomic) NSString *syntaxName;
 @property (nonatomic) CGFloat lineSpacing;
 
 // settings on current window to be set by CEDocument.

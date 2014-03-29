@@ -376,7 +376,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             
             // カラーリング実行オブジェクトを用意して実行
             CESyntax *syntax = [[CESyntax alloc] init];
-            [syntax setSyntaxStyleName:[self styleName]];
+            [syntax setSyntaxStyleName:[self syntaxName]];
             [syntax setLayoutManager:(CELayoutManager *)[[self textContainer] layoutManager]];
             [syntax setIsPrinting:YES];
             [syntax colorAllString:[self string]];
@@ -435,6 +435,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             break;
 
+        case CESyntaxNamePrintInfo:
+            outString = [[NSAttributedString alloc] initWithString:[self syntaxName]
+                                                        attributes:[self headerFooterAttrs]];
+            break;
+            
         case CEFilePathPrintInfo:
             if (filePath) {
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_headerFooterPathAbbreviatingWithTilde]) {

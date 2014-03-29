@@ -231,15 +231,16 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="abT-dP-x7p"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="397" id="714">
+                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="Ro5-rK-S7p" id="714">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="314">
                                         <items>
-                                            <menuItem title="(No print)" state="on" id="397"/>
+                                            <menuItem title="(No print)" id="397"/>
                                             <menuItem isSeparatorItem="YES" id="398">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="Syntax Name" state="on" tag="1" id="Ro5-rK-S7p"/>
                                             <menuItem title="Document Name" tag="2" id="320"/>
                                             <menuItem title="File Path" tag="3" id="315"/>
                                             <menuItem title="Print Date" tag="4" id="319"/>
@@ -267,6 +268,7 @@
                                             <menuItem isSeparatorItem="YES" id="400">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="Syntax Name" tag="1" id="i9p-3e-KNC"/>
                                             <menuItem title="Document Name" tag="2" id="328"/>
                                             <menuItem title="File Path" tag="3" id="323"/>
                                             <menuItem title="Print Date" tag="4" id="327"/>
@@ -316,7 +318,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="704">
+                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="UJ5-ki-qHL" id="704">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="199">
@@ -325,6 +327,7 @@
                                             <menuItem isSeparatorItem="YES" id="394">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="Syntax Name" state="on" tag="1" id="UJ5-ki-qHL"/>
                                             <menuItem title="Document Name" tag="2" id="202"/>
                                             <menuItem title="File Path" tag="3" id="203"/>
                                             <menuItem title="Print Date" tag="4" id="206"/>
@@ -453,15 +456,16 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="lgi-4X-dYs"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="(No print)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="395" id="709">
+                                <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="6RR-gp-tKJ" id="709">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="306">
                                         <items>
-                                            <menuItem title="(No print)" state="on" id="395"/>
+                                            <menuItem title="(No print)" id="395"/>
                                             <menuItem isSeparatorItem="YES" tag="-1" id="396">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
+                                            <menuItem title="Syntax Name" state="on" tag="1" id="6RR-gp-tKJ"/>
                                             <menuItem title="Document Name" tag="2" id="312"/>
                                             <menuItem title="File Path" tag="3" id="307"/>
                                             <menuItem title="Print Date" tag="4" id="311"/>

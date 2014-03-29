@@ -50,9 +50,10 @@ typedef NS_ENUM(NSUInteger, CEInvisibleCharsPrintMode) {
     CEAllInvisibleCharsPrint
 };
 
-typedef NS_ENUM(NSUInteger, CEPrintInfoType) {  // 歴史的経緯により 1 はスキップしている（1はポップアップメニューのセパレータだったため）
-    CENoPrintInfo = 0,
-    CEDocumentNamePrintInfo = 2,
+typedef NS_ENUM(NSUInteger, CEPrintInfoType) {
+    CENoPrintInfo,
+    CESyntaxNamePrintInfo,
+    CEDocumentNamePrintInfo,
     CEFilePathPrintInfo,
     CEPrintDatePrintInfo,
     CEPageNumberPrintInfo

@@ -368,6 +368,9 @@
     switch (type) {
         case CENoPrintInfo:
             return @"None";
+        
+        case CESyntaxNamePrintInfo:
+            return @"Syntax Name";
             
         case CEDocumentNamePrintInfo:
             return @"Document Name";

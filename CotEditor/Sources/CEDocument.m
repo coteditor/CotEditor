@@ -375,7 +375,7 @@ enum { typeFSS = 'fss ' };
     [printView setString:[[self editorView] string]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
-    [printView setStyleName:[[[self windowController] toolbarController] selectedTitleOfSyntaxItem]];
+    [printView setSyntaxName:[[[self windowController] toolbarController] selectedTitleOfSyntaxItem]];
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles]];
     [printView setDocumentShowsLineNum:[[self editorView] showLineNum]];
