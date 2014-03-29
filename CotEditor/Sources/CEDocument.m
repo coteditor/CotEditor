@@ -406,6 +406,7 @@ enum { typeFSS = 'fss ' };
     // プリントオペレーション生成、設定、プリント実行
     NSPrintOperation *printOperation;
     printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
+    [printOperation setJobTitle:[self displayName]];
     // プリントパネルの表示を制御し、プログレスパネルは表示させる
     [printOperation setShowsPrintPanel:NO];
     // ユーザのプリント決定後にアクセサリパネルの値を使用しレイアウトを計算してるので、ライブプレビューはできない
