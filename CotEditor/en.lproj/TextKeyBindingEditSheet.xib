@@ -165,7 +165,7 @@ DO NOT include the Command key.</string>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="66">
                         <rect key="frame" x="18" y="154" width="78" height="14"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Text to Insert:" id="152">
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Text to insert:" id="152">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
