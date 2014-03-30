@@ -37,11 +37,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEDocumentController ()
 
-@property (nonatomic, weak) CEDocument *latestDocument;
-@property (nonatomic) NSRect latestDocumentWindowFrame;
 @property (nonatomic) BOOL isOpenHidden;
 
 @property (nonatomic) IBOutlet NSView *openPanelAccessoryView;
+
 
 // readonly
 @property (nonatomic, readwrite) IBOutlet NSPopUpButton *accessoryEncodingMenu;
@@ -72,42 +71,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return self;
 }
 
-// ------------------------------------------------------
-/// 名称未設定ドキュメントを開き、位置を保存
-- (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
-// ------------------------------------------------------
-{
-    id document = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
-
-    if (document) {
-        [self setLatestDocument:(CEDocument *)document];
-        [self setLatestDocumentWindowFrame:[[[(CEDocument *)document windowController] window] frame]];
-    }
-    return document;
-}
-
-
-// ------------------------------------------------------
-/// ファイルからドキュメントを作成
-- (id)makeDocumentWithContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
-// ------------------------------------------------------
-{
-    id document = [super makeDocumentWithContentsOfURL:url ofType:typeName error:outError];
-
-    // 自動的に開かれた名称未設定ドキュメントが未変更のままあるときはそれを上書きする（ように見せる）
-    // 実際の位置の変更は CEWindowController で行う
-    if (document && [self latestDocument] && ![[self latestDocument] isDocumentEdited] &&
-        NSEqualRects([self latestDocumentWindowFrame], [[[[self latestDocument] windowController] window] frame])) {
-        // ウィンドウ位置は、この時点ではまだ新しいドキュメントの windowController がないため、設定できない
-        [document setDoCascadeWindow:NO];
-        [document setInitTopLeftPoint:NSMakePoint(NSMinX([self latestDocumentWindowFrame]),
-                                                  NSMaxY([self latestDocumentWindowFrame]))];
-        [[[[self latestDocument] windowController] window] close];
-    }
-
-    return document;
-}
-
 
 // ------------------------------------------------------
 /// オープンパネルを開くときにエンコーディング指定メニューを付加する
@@ -130,17 +93,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-/// ドキュメントが閉じた
-- (void)removeDocument:(NSDocument *)document
-// ------------------------------------------------------
-{
-    [self setLatestDocument:nil];
-
-    [super removeDocument:document];
-}
-
-
 
 #pragma mark Action Messages
 
@@ -148,17 +100,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Action messages
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// 新規ドキュメント作成 (override)
-- (IBAction)newDocument:(id)sender
-// ------------------------------------------------------
-{
-    [super newDocument:sender];
-
-    [self setLatestDocument:nil];
-}
-
 
 // ------------------------------------------------------
 /// ドキュメントを開く (override)

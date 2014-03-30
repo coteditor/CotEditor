@@ -96,16 +96,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:k_key_windowWidth],
                              (CGFloat)[defaults doubleForKey:k_key_windowHeight]);
-    BOOL shouldCascade = [[self document] doCascadeWindow];
-
     [[self window] setContentSize:size];
-    [self setShouldCascadeWindows:shouldCascade]; // ウィンドウのカスケード表示を制御（未変更のブランクウィンドウを上書き）
-    if (!shouldCascade) {
-        // カスケードしないときは、位置をずらす
-        [[self window] setFrameTopLeftPoint:[[self document] initTopLeftPoint]];
-    }
+    
     // 背景をセットアップ
     [self setAlpha:(CGFloat)[[defaults valueForKey:k_key_windowAlpha] doubleValue]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット

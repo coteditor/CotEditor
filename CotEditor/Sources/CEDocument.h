@@ -56,8 +56,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @interface CEDocument : NSDocument
 
 @property (nonatomic) CEEditorView *editorView;
-@property (nonatomic) BOOL doCascadeWindow;  // ウィンドウをカスケード表示するかどうか
-@property (nonatomic) NSPoint initTopLeftPoint;  // カスケードしないときのウィンドウ左上のポイント
 
 
 // readonly properties
