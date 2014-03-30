@@ -248,6 +248,7 @@
 		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
 		2A0E160F18E79FFA00AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		2A0E161018E7A17600AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
+		2A0E161318E7BE7B00AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxEditSheet.xib; sourceTree = "<group>"; };
 		2A15830518E24CB300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SyntaxExtensionErrorSheet.xib; sourceTree = "<group>"; };
 		2A15831618E3688300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EncodingListSheet.xib; sourceTree = "<group>"; };
 		2A15831818E368CE00601026 /* CEEncodingListSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodingListSheetController.h; sourceTree = "<group>"; };
@@ -312,7 +313,6 @@
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C1E212512C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6C1E212612C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Preferences.xib; sourceTree = "<group>"; };
-		6C1E212812C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxEditSheet.xib; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* Script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Script; sourceTree = "<group>"; };
 		6CB074A11373A03B001D0243 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = CotEditor/Sparkle.framework; sourceTree = "<group>"; };
@@ -1075,7 +1075,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				258EF2F9077FEDD000011E52 /* en */,
-				6C1E212812C9E65600194313 /* ja */,
+				2A0E161318E7BE7B00AAD872 /* ja */,
 			);
 			name = SyntaxEditSheet.xib;
 			sourceTree = "<group>";
