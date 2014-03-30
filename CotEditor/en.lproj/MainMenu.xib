@@ -749,7 +749,6 @@
         <customObject id="290" userLabel="CEAppController" customClass="CEAppController"/>
         <customObject id="329" userLabel="CEDocumentController" customClass="CEDocumentController"/>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
-        <userDefaultsController representsSharedInstance="YES" id="554" userLabel="Shared Defaults"/>
         <customObject id="831" customClass="SUUpdater"/>
     </objects>
 </document>
