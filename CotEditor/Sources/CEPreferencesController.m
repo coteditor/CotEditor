@@ -39,9 +39,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
+typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
+    CEGeneralPreferences,
+    CEWindowPreferences,
+    CEViewPreferences,
+    CEFormatPreferences,
+    CESyntaxPreferences,
+    CEFileDropPreferences,
+    CEKeyBindingsPreferences,
+    CEPrintPreferences
+};
+
+
 @interface CEPreferencesController ()
 
-@property (nonatomic, weak) IBOutlet NSTabView *prefTabView;
+@property (nonatomic) IBOutlet NSView *generalView;
+@property (nonatomic) IBOutlet NSView *windowView;
+@property (nonatomic) IBOutlet NSView *viewView;
+@property (nonatomic) IBOutlet NSView *formatView;
+@property (nonatomic) IBOutlet NSView *syntaxView;
+@property (nonatomic) IBOutlet NSView *fileDropView;
+@property (nonatomic) IBOutlet NSView *keyBindingsView;
+@property (nonatomic) IBOutlet NSView *printView;
+
 @property (nonatomic, weak) IBOutlet NSTextField *prefFontFamilyNameSize;
 @property (nonatomic, weak) IBOutlet NSTextField *printFontFamilyNameSize;
 
@@ -126,8 +146,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setFontFamilyNameAndSize];
         // 拡張子重複エラー表示ボタンの有効化を制御
         [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
-        
-        [[self window] center];
     }
     [super showWindow:sender];
 }
@@ -198,11 +216,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
 
-    if ([[[[self prefTabView] selectedTabViewItem] identifier] isEqualToString:k_prefFormatItemID]) {
+    if ([[[self window] contentView] subviews][0] == [self formatView]) {
         [defaults setObject:name forKey:k_key_fontName];
         [defaults setFloat:size forKey:k_key_fontSize];
         [self setFontFamilyNameAndSize];
-    } else if ([[[[self prefTabView] selectedTabViewItem] identifier] isEqualToString:k_prefPrintItemID]) {
+        
+    } else if ([[[self window] contentView] subviews][0] == [self printView]) {
         [defaults setObject:name forKey:k_key_printFontName];
         [defaults setFloat:size forKey:k_key_printFontSize];
         [self setFontFamilyNameAndSize];
@@ -223,6 +242,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
+    // 最初のビューを選ぶ
+    NSToolbarItem *leftmostItem = [[[self window] toolbar] items][0];
+    [[[self window] toolbar] setSelectedItemIdentifier:[leftmostItem itemIdentifier]];
+    [self switchView:leftmostItem];
+    [[self window] center];
+    
+    // 各種セットアップ
     [self setupInvisibleSpacePopup];
     [self setupInvisibleTabPopup];
     [self setupInvisibleNewLinePopup];
@@ -333,6 +359,44 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// ツールバーからビューをスイッチする
+- (IBAction)switchView:(id)sender
+// ------------------------------------------------------
+{
+    // detect clicked icon and select a view to switch
+    NSView   *newView;
+    switch ([sender tag]) {
+        case CEGeneralPreferences:     newView = [self generalView];     break;
+        case CEViewPreferences:        newView = [self viewView];        break;
+        case CEWindowPreferences:      newView = [self windowView];      break;
+        case CEFormatPreferences:      newView = [self formatView];      break;
+        case CESyntaxPreferences:      newView = [self syntaxView];      break;
+        case CEFileDropPreferences:    newView = [self fileDropView];    break;
+        case CEKeyBindingsPreferences: newView = [self keyBindingsView]; break;
+        case CEPrintPreferences:       newView = [self printView];       break;
+    }
+    
+    // remove current view from the main view
+    for (NSView *view in [[[self window] contentView] subviews]) {
+        [view removeFromSuperview];
+    }
+    
+    // set window title
+    [[self window] setTitle:[sender label]];
+    
+    // resize window to fit to new view
+    NSRect frame    = [[self window] frame];
+    NSRect newFrame = [[self window] frameRectForContentRect:[newView frame]];
+    newFrame.origin    = frame.origin;
+    newFrame.origin.y += NSHeight(frame) - NSHeight(newFrame);
+    [[self window] setFrame:newFrame display:YES animate:YES];
+    
+    // add new view to the main view
+    [[[self window] contentView] addSubview:newView];
+}
+
+
+// ------------------------------------------------------
 /// フォントパネルを表示
 - (IBAction)showFonts:(id)sender
 //-------------------------------------------------------
@@ -341,12 +405,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSFontManager *manager = [NSFontManager sharedFontManager];
     NSFont *font;
 
-    if ([[[[self prefTabView] selectedTabViewItem] identifier] isEqualToString:k_prefPrintItemID]) {
-        font = [NSFont fontWithName:[defaults stringForKey:k_key_printFontName]
-                               size:(CGFloat)[defaults doubleForKey:k_key_printFontSize]];
-    } else {
+    
+    if ([[[self window] contentView] subviews][0] == [self formatView]) {
         font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
+        
+    } else if ([[[self window] contentView] subviews][0] == [self printView]) {
+        font = [NSFont fontWithName:[defaults stringForKey:k_key_printFontName]
+                               size:(CGFloat)[defaults doubleForKey:k_key_printFontSize]];
     }
 
     [[self window] makeFirstResponder:[self window]];

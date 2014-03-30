@@ -320,27 +320,11 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_addCodeToBackButtonTag        2001
 #define k_ColorCodeDataControllerKey    @"codeString"
 
-
-// CEPreferences
-// tab title (toolbarItem) identifier
-#define k_prefWindowToolbarID   @"prefWindowToolbarID"
-#define k_prefGeneralItemID     @"prefGeneralItemID"
-#define k_prefWindowItemID      @"prefWindowItemID"
-#define k_prefViewItemID        @"prefViewItemID"
-#define k_prefFormatItemID      @"prefFormatItemID"
-#define k_prefSyntaxItemID      @"prefSyntaxItemID"
-#define k_prefFileDropItemID    @"prefFileDropItemID"
-#define k_prefKeyBindingsItemID @"prefKeyBindingsItemID"
-#define k_prefPrintItemID       @"prefPrintItemID"
-
 // Help anchors
 #define k_helpPrefAnchors       @"pref_general", @"pref_window", @"pref_appearance", @"pref_format", @"pref_syntax", @"pref_filedrop", @"pref_keybinding", @"pref_print"
 
 // distribution web site
 #define k_webSiteURL @"http://coteditor.github.io"
-
-// tab item view tag
-#define k_prefTabItemViewTag    3000
 
 // button
 #define k_okButtonTag       100

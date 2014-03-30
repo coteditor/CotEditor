@@ -116,7 +116,6 @@
 		8C4BC9300895BD3C00F5263E /* EditHexAsFore.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C4BC92E0895BD3C00F5263E /* EditHexAsFore.tiff */; };
 		8C52080A0880BAAF005734F2 /* RecolorAll.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C5208090880BAAF005734F2 /* RecolorAll.tiff */; };
 		8C5684CA0C48A36200346FB0 /* defaultSyntaxStyle_Python.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C5684C90C48A36200346FB0 /* defaultSyntaxStyle_Python.plist */; };
-		8C5853360903C1ED0085BC4F /* CETabItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5853340903C1ED0085BC4F /* CETabItemView.m */; };
 		8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C65C0E607927D0F0028D94A /* CELayoutManager.m */; };
 		8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */; };
 		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
@@ -125,7 +124,6 @@
 		8C7D7DB30BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D7DB20BE71A3000C2C7E3 /* defaultSyntaxStyle_Haskell.plist */; };
 		8C7F74EC091C738C005C7598 /* ODBEditorSuite.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */; };
 		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
-		8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8971340902620D0013FA27 /* CEPreferencesTabController.m */; };
 		8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8977240DCD8AD000DC32FF /* libicucore.dylib */; };
 		8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CCCAF09D6803400A008E5 /* CESplitView.m */; };
 		8C98366708C0211D00746F92 /* IncompatibleChar.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C98366608C0211D00746F92 /* IncompatibleChar.tiff */; };
@@ -353,8 +351,6 @@
 		8C4BC92E0895BD3C00F5263E /* EditHexAsFore.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EditHexAsFore.tiff; path = toolbarIcons/EditHexAsFore.tiff; sourceTree = "<group>"; };
 		8C5208090880BAAF005734F2 /* RecolorAll.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = RecolorAll.tiff; path = toolbarIcons/RecolorAll.tiff; sourceTree = "<group>"; };
 		8C5684C90C48A36200346FB0 /* defaultSyntaxStyle_Python.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_Python.plist; path = SyntaxColorings/defaultSyntaxStyle_Python.plist; sourceTree = "<group>"; };
-		8C5853330903C1ED0085BC4F /* CETabItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETabItemView.h; sourceTree = "<group>"; };
-		8C5853340903C1ED0085BC4F /* CETabItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETabItemView.m; sourceTree = "<group>"; };
 		8C65C0E507927D0F0028D94A /* CELayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELayoutManager.h; sourceTree = "<group>"; };
 		8C65C0E607927D0F0028D94A /* CELayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CELayoutManager.m; sourceTree = "<group>"; wrapsLines = 1; };
 		8C7400A308C6D93900683672 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
@@ -366,8 +362,6 @@
 		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODBEditorSuite.h; path = ImportSources/ODBEditorSuite.h; sourceTree = "<group>"; };
 		8C83A48009485F27004E48A8 /* CEATSTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEATSTypesetter.h; sourceTree = "<group>"; };
 		8C83A48109485F27004E48A8 /* CEATSTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEATSTypesetter.m; sourceTree = "<group>"; };
-		8C8971330902620D0013FA27 /* CEPreferencesTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPreferencesTabController.h; sourceTree = "<group>"; };
-		8C8971340902620D0013FA27 /* CEPreferencesTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPreferencesTabController.m; sourceTree = "<group>"; };
 		8C8977240DCD8AD000DC32FF /* libicucore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		8C8CCCAE09D6803400A008E5 /* CESplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CESplitView.h; sourceTree = "<group>"; };
 		8C8CCCAF09D6803400A008E5 /* CESplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CESplitView.m; sourceTree = "<group>"; };
@@ -575,8 +569,6 @@
 				8CF02E1408B9B9F8004044EB /* CENavigationBarView.m */,
 				258A14CE07F3C6BC008E5FA1 /* CEFlippedView.h */,
 				258A14CF07F3C6BC008E5FA1 /* CEFlippedView.m */,
-				8C5853330903C1ED0085BC4F /* CETabItemView.h */,
-				8C5853340903C1ED0085BC4F /* CETabItemView.m */,
 				8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */,
 				8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */,
 				8C99DDF808BD8940001F618C /* CEOutlineMenuButtonCell.h */,
@@ -590,8 +582,6 @@
 			children = (
 				25859EBE076D92D60020F779 /* CEPreferencesController.h */,
 				25859EBF076D92D60020F779 /* CEPreferencesController.m */,
-				8C8971330902620D0013FA27 /* CEPreferencesTabController.h */,
-				8C8971340902620D0013FA27 /* CEPreferencesTabController.m */,
 				2A15832218E383C300601026 /* CESizeSampleWindowController.h */,
 				2A15832318E383C300601026 /* CESizeSampleWindowController.m */,
 				25AC0919077190EB00B0C91C /* CEPrefEncodingDataSource.h */,
@@ -1028,8 +1018,6 @@
 				8CE4859908CD617B004817E1 /* CEApplication.m in Sources */,
 				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
-				8C8971360902620D0013FA27 /* CEPreferencesTabController.m in Sources */,
-				8C5853360903C1ED0085BC4F /* CETabItemView.m in Sources */,
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
