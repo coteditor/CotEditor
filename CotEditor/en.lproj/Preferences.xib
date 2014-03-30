@@ -24,6 +24,7 @@
                 <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
                 <outlet property="printFontFamilyNameSize" destination="1007" id="Pj9-wE-bsR"/>
                 <outlet property="printView" destination="882" id="ffx-Sq-UdJ"/>
+                <outlet property="smartQuoteCheckButton" destination="mK4-4e-plf" id="MOr-jB-XTX"/>
                 <outlet property="syntaxStyleCopyButton" destination="346" id="ksJ-kH-iSp"/>
                 <outlet property="syntaxStyleDeleteButton" destination="351" id="0pb-Vp-GsP"/>
                 <outlet property="syntaxStyleEditButton" destination="166" id="Gew-43-qGW"/>

@@ -62,6 +62,8 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic) IBOutlet NSView *keyBindingsView;
 @property (nonatomic) IBOutlet NSView *printView;
 
+@property (nonatomic) IBOutlet NSButton *smartQuoteCheckButton;
+
 @property (nonatomic, weak) IBOutlet NSTextField *prefFontFamilyNameSize;
 @property (nonatomic, weak) IBOutlet NSTextField *printFontFamilyNameSize;
 
@@ -248,6 +250,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     [self switchView:leftmostItem];
     [[self window] center];
     
+    // Mavericks用の設定をMavericks以下では無効にする
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) {
+        [[self smartQuoteCheckButton] setEnabled:NO];
+        [[self smartQuoteCheckButton] setState:NSOffState];
+    }
+
     // 各種セットアップ
     [self setupInvisibleSpacePopup];
     [self setupInvisibleTabPopup];
