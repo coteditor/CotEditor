@@ -528,7 +528,6 @@
                 <constraint firstItem="585" firstAttribute="leading" secondItem="584" secondAttribute="trailing" constant="8" symbolic="YES" id="wOq-N0-Qfa"/>
             </constraints>
         </customView>
-        <userDefaultsController representsSharedInstance="YES" id="IXW-z3-v4o"/>
     </objects>
     <resources>
         <image name="centerButtonImg" width="16" height="16"/>
