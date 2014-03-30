@@ -125,8 +125,6 @@ enum { typeFSS = 'fss ' };
                 [defaults boolForKey:k_key_showInvisibleNewLine] ||
                 [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
                 [defaults boolForKey:k_key_showOtherInvisibleChars]];
-        [self setDoCascadeWindow:YES];
-        [self setInitTopLeftPoint:NSZeroPoint];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
                                                      name:k_documentDidFinishOpenNotification object:nil];
