@@ -202,9 +202,9 @@
                     </textFieldCell>
                 </textField>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
-                    <rect key="frame" x="337" y="192" width="92" height="24"/>
+                    <rect key="frame" x="339" y="193" width="88" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
+                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="njJ-Ab-dUQ">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftButtonImg" width="28"/>
@@ -220,9 +220,9 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
-                    <rect key="frame" x="337" y="69" width="92" height="24"/>
+                    <rect key="frame" x="339" y="70" width="88" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
+                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="Aru-Gd-J0D">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftButtonImg" width="28"/>
@@ -238,9 +238,9 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
-                    <rect key="frame" x="337" y="161" width="92" height="24"/>
+                    <rect key="frame" x="339" y="162" width="88" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
+                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="I4t-kQ-lvq">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftButtonImg" width="28"/>
@@ -256,9 +256,9 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
-                    <rect key="frame" x="337" y="38" width="92" height="24"/>
+                    <rect key="frame" x="339" y="39" width="88" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
+                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="xAm-2i-Sw1">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftButtonImg" width="28"/>

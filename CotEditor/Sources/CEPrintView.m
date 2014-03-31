@@ -107,7 +107,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self readyToDrawPageNum]) {
         NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
 
-        pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"- %li -", (long)pageNum]
+        pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%li", (long)pageNum]
                                                      attributes:[self headerFooterAttrs]];
     }
 
