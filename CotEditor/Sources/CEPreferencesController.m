@@ -853,14 +853,16 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSFont *font = [NSFont fontWithName:name size:size];
     NSString *localizedName = [font displayName];
 
-    [[self prefFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@  (%gpt)", localizedName, size]];
+    [[self prefFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
+    [[self prefFontFamilyNameSize] setFont:[NSFont fontWithName:name size:13.0]];
 
     name = [defaults stringForKey:k_key_printFontName];
     size = (CGFloat)[defaults doubleForKey:k_key_printFontSize];
     font = [NSFont fontWithName:name size:size];
     localizedName = [font displayName];
 
-    [[self printFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@  (%gpt)", localizedName, size]];
+    [[self printFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
+    [[self printFontFamilyNameSize] setFont:[NSFont fontWithName:name size:13.0]];
 
 }
 

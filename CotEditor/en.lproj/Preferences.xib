@@ -1323,7 +1323,7 @@
                     </connections>
                 </button>
                 <box title="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="70">
-                    <rect key="frame" x="17" y="62" width="546" height="129"/>
+                    <rect key="frame" x="17" y="57" width="546" height="129"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <view key="contentView">
                         <rect key="frame" x="2" y="2" width="542" height="112"/>
@@ -1463,21 +1463,21 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="385">
-                    <rect key="frame" x="60" y="233" width="300" height="22"/>
+                    <rect key="frame" x="60" y="228" width="260" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="vyL-3O-dlj"/>
+                        <constraint firstAttribute="width" constant="260" id="vyL-3O-dlj"/>
                     </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="3288">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="3288">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="809">
-                    <rect key="frame" x="58" y="209" width="103" height="18"/>
+                    <rect key="frame" x="58" y="204" width="105" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Anti-aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
+                    <buttonCell key="cell" type="check" title="Anti-Aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -1486,21 +1486,21 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="387">
-                    <rect key="frame" x="363" y="227" width="88" height="28"/>
+                    <rect key="frame" x="322" y="222" width="90" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="8cj-Zi-DRd"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3289">
+                    <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="showFonts:" target="-2" id="389"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-sa-5cF">
-                    <rect key="frame" x="18" y="235" width="36" height="17"/>
+                    <rect key="frame" x="18" y="230" width="36" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Font:" id="Z85-S9-uID">
                         <font key="font" metaFont="system"/>
@@ -1510,7 +1510,6 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="cM2-sa-5cF" firstAttribute="baseline" secondItem="387" secondAttribute="baseline" id="0Fa-Jx-PA2"/>
                 <constraint firstItem="209" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="16" id="0NR-M2-r00"/>
                 <constraint firstItem="17" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="1Z0-Yx-AT7"/>
                 <constraint firstItem="283" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="12" id="4KK-Is-6Yw"/>
@@ -1535,7 +1534,6 @@
                 <constraint firstItem="282" firstAttribute="centerX" secondItem="840" secondAttribute="centerX" id="YLz-Xv-aO7"/>
                 <constraint firstItem="69" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="YyB-t2-gca"/>
                 <constraint firstItem="282" firstAttribute="leading" secondItem="283" secondAttribute="trailing" constant="8" symbolic="YES" id="Z6q-W9-4lH"/>
-                <constraint firstItem="cM2-sa-5cF" firstAttribute="baseline" secondItem="385" secondAttribute="baseline" id="aU3-qj-uoj"/>
                 <constraint firstItem="860" firstAttribute="leading" secondItem="813" secondAttribute="leading" constant="-25" id="agr-I7-lYS"/>
                 <constraint firstItem="383" firstAttribute="bottom" secondItem="833" secondAttribute="bottom" constant="2" id="byH-7r-BvE"/>
                 <constraint firstItem="813" firstAttribute="top" secondItem="860" secondAttribute="bottom" constant="12" id="fDN-wQ-xHR"/>
@@ -1548,9 +1546,11 @@
                 <constraint firstItem="cM2-sa-5cF" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="onQ-NC-nWx"/>
                 <constraint firstAttribute="trailing" secondItem="70" secondAttribute="trailing" constant="20" symbolic="YES" id="qJc-lH-C9E"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="383" secondAttribute="top" constant="2" id="rcf-MT-kdN"/>
-                <constraint firstItem="cM2-sa-5cF" firstAttribute="top" secondItem="17" secondAttribute="bottom" constant="30" id="sFI-V6-uXu"/>
+                <constraint firstItem="cM2-sa-5cF" firstAttribute="centerY" secondItem="385" secondAttribute="centerY" id="rik-g0-s4v"/>
+                <constraint firstItem="cM2-sa-5cF" firstAttribute="top" secondItem="17" secondAttribute="bottom" constant="35" id="sFI-V6-uXu"/>
                 <constraint firstItem="283" firstAttribute="leading" secondItem="160" secondAttribute="leading" constant="25" id="tLM-8q-eLB"/>
                 <constraint firstItem="387" firstAttribute="leading" secondItem="385" secondAttribute="trailing" constant="8" symbolic="YES" id="tk7-qt-uEw"/>
+                <constraint firstItem="387" firstAttribute="centerY" secondItem="385" secondAttribute="centerY" id="uzS-Ec-Lc8"/>
                 <constraint firstAttribute="centerX" secondItem="383" secondAttribute="centerX" id="wPs-vO-SFD"/>
                 <constraint firstItem="Zfr-k3-6wm" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="xgP-lz-2Oo"/>
                 <constraint firstItem="70" firstAttribute="top" secondItem="809" secondAttribute="bottom" constant="20" id="xiz-5Z-gTf"/>
@@ -2014,7 +2014,7 @@
             </constraints>
         </customView>
         <customView id="747" userLabel="View - File Drop">
-            <rect key="frame" x="0.0" y="0.0" width="580" height="500"/>
+            <rect key="frame" x="0.0" y="0.0" width="580" height="490"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="2351">
@@ -2029,7 +2029,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="589">
-                    <rect key="frame" x="18" y="144" width="52" height="14"/>
+                    <rect key="frame" x="18" y="132" width="52" height="14"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Glossary:" id="3337">
                         <font key="font" metaFont="smallSystem"/>
@@ -2038,7 +2038,7 @@
                     </textFieldCell>
                 </textField>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="587">
-                    <rect key="frame" x="76" y="73" width="484" height="85"/>
+                    <rect key="frame" x="76" y="61" width="484" height="85"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" id="PI9-s6-0DE">
                         <rect key="frame" x="1" y="1" width="482" height="83"/>
@@ -2098,12 +2098,12 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
-                    <rect key="frame" x="417" y="305" width="146" height="22"/>
+                    <rect key="frame" x="397" y="295" width="166" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="140" id="XCP-jV-qFG"/>
+                        <constraint firstAttribute="width" constant="160" id="XCP-jV-qFG"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="pre-formatted string" bezelStyle="rounded" alignment="center" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="545" id="3336">
+                    <popUpButtonCell key="cell" type="push" title="pre-formatted string" bezelStyle="rounded" alignment="center" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" title="OtherViews" id="543">
@@ -2167,7 +2167,7 @@ The parent directory name of the dropped file.
                     </popUpButtonCell>
                 </popUpButton>
                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="531">
-                    <rect key="frame" x="20" y="170" width="540" height="130"/>
+                    <rect key="frame" x="20" y="160" width="540" height="130"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" id="ybU-5v-A28">
                         <rect key="frame" x="1" y="1" width="538" height="128"/>
@@ -2203,7 +2203,7 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="466">
-                    <rect key="frame" x="127" y="463" width="153" height="14"/>
+                    <rect key="frame" x="278" y="453" width="153" height="14"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" id="3335">
                         <font key="font" metaFont="smallSystem"/>
@@ -2212,7 +2212,7 @@ The parent directory name of the dropped file.
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
-                    <rect key="frame" x="468" y="432" width="32" height="24"/>
+                    <rect key="frame" x="468" y="422" width="32" height="24"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="RDU-2u-Aor"/>
@@ -2228,7 +2228,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
-                    <rect key="frame" x="437" y="432" width="32" height="24"/>
+                    <rect key="frame" x="437" y="422" width="32" height="24"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="smallSquare" title="New" bezelStyle="smallSquare" image="addButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="3333">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2240,7 +2240,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="456">
-                    <rect key="frame" x="18" y="308" width="110" height="17"/>
+                    <rect key="frame" x="18" y="298" width="110" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Insertion format:" id="3332">
                         <font key="font" metaFont="system"/>
@@ -2249,7 +2249,7 @@ The parent directory name of the dropped file.
                     </textFieldCell>
                 </textField>
                 <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="446">
-                    <rect key="frame" x="20" y="345" width="409" height="110"/>
+                    <rect key="frame" x="20" y="335" width="409" height="110"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" id="9EX-7h-iHb">
                         <rect key="frame" x="1" y="1" width="407" height="108"/>
@@ -2294,12 +2294,12 @@ The parent directory name of the dropped file.
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3414">
-                        <rect key="frame" x="393" y="1" width="15" height="108"/>
+                        <rect key="frame" x="392" y="1" width="16" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="434">
-                    <rect key="frame" x="18" y="463" width="101" height="17"/>
+                    <rect key="frame" x="18" y="453" width="101" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="File extensions:" id="3331">
                         <font key="font" metaFont="system"/>
@@ -2311,12 +2311,12 @@ The parent directory name of the dropped file.
             <constraints>
                 <constraint firstItem="434" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="0Hb-oR-Iwd"/>
                 <constraint firstAttribute="trailing" secondItem="536" secondAttribute="trailing" constant="20" symbolic="YES" id="0j0-4e-x2w"/>
-                <constraint firstItem="589" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="12" id="2rN-RN-5IN"/>
+                <constraint firstItem="589" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="14" id="2rN-RN-5IN"/>
                 <constraint firstItem="531" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="Aaj-vW-vbB"/>
                 <constraint firstAttribute="trailing" secondItem="458" secondAttribute="trailing" constant="80" id="Aq6-sb-vxH"/>
                 <constraint firstItem="446" firstAttribute="top" secondItem="457" secondAttribute="top" id="AqU-xa-IFS"/>
                 <constraint firstItem="456" firstAttribute="top" secondItem="446" secondAttribute="bottom" constant="20" id="G43-aH-ECM"/>
-                <constraint firstItem="587" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="12" id="K3d-jP-OhC"/>
+                <constraint firstItem="587" firstAttribute="top" secondItem="531" secondAttribute="bottom" constant="14" id="K3d-jP-OhC"/>
                 <constraint firstItem="457" firstAttribute="width" secondItem="458" secondAttribute="width" id="L7s-Lh-gbd"/>
                 <constraint firstItem="531" firstAttribute="top" secondItem="456" secondAttribute="bottom" constant="8" symbolic="YES" id="Q8S-IB-Cbn"/>
                 <constraint firstItem="587" firstAttribute="leading" secondItem="589" secondAttribute="trailing" constant="8" symbolic="YES" id="R2A-oX-eA8"/>
@@ -2328,19 +2328,18 @@ The parent directory name of the dropped file.
                 <constraint firstItem="434" firstAttribute="top" secondItem="747" secondAttribute="top" constant="20" symbolic="YES" id="dUv-UC-Zfu"/>
                 <constraint firstItem="466" firstAttribute="bottom" secondItem="434" secondAttribute="bottom" id="g9C-fF-wRH"/>
                 <constraint firstItem="457" firstAttribute="leading" secondItem="446" secondAttribute="trailing" constant="8" symbolic="YES" id="hO3-0U-eoO"/>
-                <constraint firstItem="466" firstAttribute="leading" secondItem="434" secondAttribute="trailing" constant="12" id="hkn-uH-6Oe"/>
                 <constraint firstItem="446" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="jEq-km-a6s"/>
                 <constraint firstAttribute="trailing" secondItem="531" secondAttribute="trailing" constant="20" symbolic="YES" id="m84-30-ObK"/>
+                <constraint firstItem="446" firstAttribute="trailing" secondItem="466" secondAttribute="trailing" id="qW5-e9-6pY"/>
                 <constraint firstItem="456" firstAttribute="leading" secondItem="747" secondAttribute="leading" constant="20" symbolic="YES" id="r84-dz-jpl"/>
                 <constraint firstItem="458" firstAttribute="leading" secondItem="457" secondAttribute="trailing" constant="-1" id="uq0-AS-8wS"/>
                 <constraint firstItem="446" firstAttribute="top" secondItem="434" secondAttribute="bottom" constant="8" symbolic="YES" id="ur6-7o-itQ"/>
-                <constraint firstItem="2351" firstAttribute="top" relation="greaterThanOrEqual" secondItem="587" secondAttribute="bottom" constant="25" id="xoh-qM-BB8"/>
                 <constraint firstAttribute="trailing" secondItem="587" secondAttribute="trailing" constant="20" symbolic="YES" id="xsC-9k-4xe"/>
                 <constraint firstItem="531" firstAttribute="top" secondItem="536" secondAttribute="bottom" constant="8" symbolic="YES" id="xtB-Bn-7oq"/>
             </constraints>
         </customView>
         <customView id="748" userLabel="View - Key Bindings">
-            <rect key="frame" x="0.0" y="0.0" width="580" height="350"/>
+            <rect key="frame" x="0.0" y="0.0" width="580" height="346"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="2356">
@@ -2355,7 +2354,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="718">
-                    <rect key="frame" x="17" y="66" width="546" height="126"/>
+                    <rect key="frame" x="17" y="62" width="546" height="126"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <view key="contentView">
                         <rect key="frame" x="2" y="2" width="542" height="122"/>
@@ -2419,7 +2418,7 @@ The parent directory name of the dropped file.
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="716">
-                    <rect key="frame" x="17" y="206" width="546" height="126"/>
+                    <rect key="frame" x="17" y="202" width="546" height="126"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <view key="contentView">
                         <rect key="frame" x="2" y="2" width="542" height="122"/>
@@ -2496,7 +2495,7 @@ The parent directory name of the dropped file.
             </constraints>
         </customView>
         <customView id="882" userLabel="View - Print">
-            <rect key="frame" x="0.0" y="0.0" width="580" height="580"/>
+            <rect key="frame" x="0.0" y="0.0" width="580" height="560"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="2359">
@@ -2511,7 +2510,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
-                    <rect key="frame" x="91" y="507" width="43" height="17"/>
+                    <rect key="frame" x="91" y="487" width="43" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Color:" id="3388">
                         <font key="font" metaFont="system"/>
@@ -2520,10 +2519,10 @@ The parent directory name of the dropped file.
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1350">
-                    <rect key="frame" x="138" y="502" width="215" height="26"/>
+                    <rect key="frame" x="138" y="482" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="210" id="76s-Ny-Xgv"/>
+                        <constraint firstAttribute="width" constant="220" id="76s-Ny-Xgv"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="KIj-uM-yBR"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3387">
@@ -2543,7 +2542,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="950">
-                    <rect key="frame" x="138" y="428" width="215" height="26"/>
+                    <rect key="frame" x="138" y="412" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3383">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2561,7 +2560,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="949">
-                    <rect key="frame" x="37" y="433" width="97" height="17"/>
+                    <rect key="frame" x="37" y="417" width="97" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Invisible chars:" id="3382">
                         <font key="font" metaFont="system"/>
@@ -2570,7 +2569,7 @@ The parent directory name of the dropped file.
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="944">
-                    <rect key="frame" x="138" y="465" width="215" height="26"/>
+                    <rect key="frame" x="138" y="447" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3381">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2588,7 +2587,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="943">
-                    <rect key="frame" x="40" y="470" width="94" height="17"/>
+                    <rect key="frame" x="40" y="452" width="94" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Line numbers:" id="3380">
                         <font key="font" metaFont="system"/>
@@ -2597,7 +2596,7 @@ The parent directory name of the dropped file.
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XWw-Ld-8TL">
-                    <rect key="frame" x="18" y="546" width="351" height="14"/>
+                    <rect key="frame" x="18" y="526" width="351" height="14"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="The following changes will be applied first to the next document." id="exK-2u-48q">
                         <font key="font" metaFont="smallSystem"/>
@@ -2606,14 +2605,14 @@ The parent directory name of the dropped file.
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1008">
-                    <rect key="frame" x="359" y="329" width="98" height="28"/>
+                    <rect key="frame" x="422" y="335" width="90" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="88" id="7Gp-iZ-mz7"/>
+                        <constraint firstAttribute="width" constant="78" id="7Gp-iZ-mz7"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3385">
+                    <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="showFonts:" target="-2" id="1009"/>
@@ -2621,10 +2620,10 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1011">
-                    <rect key="frame" x="50" y="328" width="318" height="66"/>
+                    <rect key="frame" x="140" y="337" width="318" height="58"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="318" height="32"/>
+                    <size key="cellSize" width="318" height="28"/>
                     <size key="intercellSpacing" width="4" height="2"/>
                     <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3411">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2647,34 +2646,34 @@ The parent directory name of the dropped file.
                     </connections>
                 </matrix>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1007">
-                    <rect key="frame" x="72" y="333" width="280" height="22"/>
+                    <rect key="frame" x="160" y="341" width="260" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="280" id="OeK-6f-UNf"/>
+                        <constraint firstAttribute="width" constant="260" id="OeK-6f-UNf"/>
                     </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="3384">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="3384">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
                         <binding destination="26" name="enabled" keyPath="values.setPrintFont" id="1021"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u8V-Dc-6yR">
-                    <rect key="frame" x="18" y="394" width="70" height="17"/>
+                    <rect key="frame" x="98" y="373" width="36" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Print Font:" id="C9y-bs-mE1">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Font:" id="C9y-bs-mE1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="891">
-                    <rect key="frame" x="99" y="248" width="215" height="26"/>
+                    <rect key="frame" x="138" y="262" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="210" id="YJo-is-zIW"/>
+                        <constraint firstAttribute="width" constant="220" id="YJo-is-zIW"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="uuc-7D-Iot" id="3370">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2698,51 +2697,8 @@ The parent directory name of the dropped file.
                         <binding destination="26" name="enabled" keyPath="values.printHeader" id="962"/>
                     </connections>
                 </popUpButton>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="885">
-                    <rect key="frame" x="319" y="250" width="77" height="23"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="23" height="23"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3407">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="leftButtonImg" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" inset="2" id="887">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="centerButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="888">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="rightButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="886">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.headerOneAlignIndex" id="966"/>
-                        <binding destination="26" name="enabled2" keyPath="values.headerOneStringIndex" previousBinding="967" id="968">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="26" name="enabled" keyPath="values.printHeader" id="967"/>
-                    </connections>
-                </matrix>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="899">
-                    <rect key="frame" x="18" y="182" width="297" height="18"/>
+                    <rect key="frame" x="18" y="198" width="297" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="Print separator line at the bottom of header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2752,71 +2708,34 @@ The parent directory name of the dropped file.
                         <binding destination="26" name="value" keyPath="values.printHeaderSeparator" id="964"/>
                     </connections>
                 </button>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="908">
-                    <rect key="frame" x="319" y="213" width="77" height="23"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="23" height="23"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3408">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="leftButtonImg" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" inset="2" id="909">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="centerButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="910">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="rightButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="911">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.headerTwoAlignIndex" id="970"/>
-                        <binding destination="26" name="enabled2" keyPath="values.headerTwoStringIndex" previousBinding="971" id="972">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="26" name="enabled" keyPath="values.printHeader" id="971"/>
-                    </connections>
-                </matrix>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="890">
-                    <rect key="frame" x="48" y="254" width="47" height="17"/>
+                    <rect key="frame" x="68" y="268" width="66" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Line 1:" id="3369">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Header 1:" id="3369">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="26" name="enabled" keyPath="values.printHeader" id="5Tp-US-SkA"/>
+                    </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="912">
-                    <rect key="frame" x="48" y="217" width="47" height="17"/>
+                    <rect key="frame" x="68" y="233" width="66" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Line 2:" id="3373">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Header 2:" id="3373">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="26" name="enabled" keyPath="values.printHeader" id="X8g-V6-FF9"/>
+                    </connections>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="889">
-                    <rect key="frame" x="18" y="282" width="103" height="18"/>
+                    <rect key="frame" x="18" y="296" width="99" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Print header:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
+                    <buttonCell key="cell" type="check" title="Print header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -2825,7 +2744,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="900">
-                    <rect key="frame" x="99" y="211" width="215" height="26"/>
+                    <rect key="frame" x="138" y="227" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="plk-U5-NGA" id="3372">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2849,51 +2768,8 @@ The parent directory name of the dropped file.
                         <binding destination="26" name="enabled" keyPath="values.printHeader" id="961"/>
                     </connections>
                 </popUpButton>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="917">
-                    <rect key="frame" x="319" y="106" width="77" height="23"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="23" height="23"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3409">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="leftButtonImg" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" inset="2" id="919">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="centerButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="920">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="rightButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="918">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.footerOneAlignIndex" id="987"/>
-                        <binding destination="26" name="enabled2" keyPath="values.footerOneStringIndex" previousBinding="985" id="986">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="26" name="enabled" keyPath="values.printFooter" id="985"/>
-                    </connections>
-                </matrix>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="915">
-                    <rect key="frame" x="18" y="38" width="267" height="18"/>
+                    <rect key="frame" x="18" y="56" width="267" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="Print separator line at the top of footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2903,71 +2779,34 @@ The parent directory name of the dropped file.
                         <binding destination="26" name="value" keyPath="values.printFooterSeparator" id="982"/>
                     </connections>
                 </button>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="921">
-                    <rect key="frame" x="319" y="69" width="77" height="23"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="23" height="23"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3410">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="leftButtonImg" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" inset="2" id="922">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="centerButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="923">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                        <column>
-                            <buttonCell type="square" bezelStyle="shadowlessSquare" image="rightButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="924">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.footerTwoAlignIndex" id="989"/>
-                        <binding destination="26" name="enabled2" keyPath="values.footerTwoStringIndex" previousBinding="990" id="991">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="26" name="enabled" keyPath="values.printFooter" id="990"/>
-                    </connections>
-                </matrix>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="942">
-                    <rect key="frame" x="48" y="110" width="47" height="17"/>
+                    <rect key="frame" x="73" y="126" width="61" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Line 1:" id="3379">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Footer 1:" id="3379">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="26" name="enabled" keyPath="values.printFooter" id="vtq-sD-m8l"/>
+                    </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="933">
-                    <rect key="frame" x="48" y="73" width="47" height="17"/>
+                    <rect key="frame" x="73" y="91" width="61" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Line 2:" id="3377">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Footer 2:" id="3377">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <binding destination="26" name="enabled" keyPath="values.printFooter" id="lyI-7R-FOL"/>
+                    </connections>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="916">
-                    <rect key="frame" x="18" y="138" width="98" height="18"/>
+                    <rect key="frame" x="18" y="154" width="94" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Print footer:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
+                    <buttonCell key="cell" type="check" title="Print footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -2976,9 +2815,9 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="934">
-                    <rect key="frame" x="99" y="104" width="215" height="26"/>
+                    <rect key="frame" x="138" y="120" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="Mvg-wT-FTM" id="3378">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3378">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="935">
@@ -2987,7 +2826,7 @@ The parent directory name of the dropped file.
                                 <menuItem isSeparatorItem="YES" id="936">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" state="on" tag="1" id="Mvg-wT-FTM"/>
+                                <menuItem title="Syntax Name" tag="1" id="Mvg-wT-FTM"/>
                                 <menuItem title="Document Name" tag="2" id="937"/>
                                 <menuItem title="File Path" tag="3" id="938"/>
                                 <menuItem title="Print Date" tag="4" id="939"/>
@@ -3001,7 +2840,7 @@ The parent directory name of the dropped file.
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="925">
-                    <rect key="frame" x="99" y="67" width="215" height="26"/>
+                    <rect key="frame" x="138" y="85" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ckJ-Cw-ccE" id="3376">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -3025,62 +2864,166 @@ The parent directory name of the dropped file.
                         <binding destination="26" name="enabled" keyPath="values.printFooter" id="980"/>
                     </connections>
                 </popUpButton>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-68-Zyb">
+                    <rect key="frame" x="366" y="263" width="92" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment toolTip="Align Left" image="leftButtonImg" width="28"/>
+                            <segment toolTip="Center" image="centerButtonImg" width="28" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="rightButtonImg" width="28">
+                                <nil key="label"/>
+                            </segment>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.headerOneStringIndex" previousBinding="akr-zq-LmW" id="5GJ-Sp-C0L">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="26" name="enabled" keyPath="values.printHeader" id="akr-zq-LmW"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.headerOneAlignIndex" id="Bg9-Mx-Rsv"/>
+                    </connections>
+                </segmentedControl>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oVS-uF-Ue4">
+                    <rect key="frame" x="366" y="228" width="92" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment toolTip="Align Left" image="leftButtonImg" width="28"/>
+                            <segment toolTip="Center" image="centerButtonImg" width="28" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="rightButtonImg" width="28">
+                                <nil key="label"/>
+                            </segment>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.headerTwoStringIndex" previousBinding="w32-tL-tRG" id="wXe-Os-RE7">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="26" name="enabled" keyPath="values.printHeader" id="w32-tL-tRG"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.headerTwoAlignIndex" id="Hd1-NY-efu"/>
+                    </connections>
+                </segmentedControl>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GHf-us-wxC">
+                    <rect key="frame" x="366" y="121" width="92" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment toolTip="Align Left" image="leftButtonImg" width="28"/>
+                            <segment toolTip="Center" image="centerButtonImg" width="28" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="rightButtonImg" width="28">
+                                <nil key="label"/>
+                            </segment>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.footerOneStringIndex" previousBinding="knu-zE-paY" id="i64-VD-ycP">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="26" name="enabled" keyPath="values.printFooter" id="knu-zE-paY"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.footerOneAlignIndex" id="PfF-sb-l4j"/>
+                    </connections>
+                </segmentedControl>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ko-Fv-J5m">
+                    <rect key="frame" x="366" y="86" width="92" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment toolTip="Align Left" image="leftButtonImg" width="28"/>
+                            <segment toolTip="Center" image="centerButtonImg" width="28" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="rightButtonImg" width="28">
+                                <nil key="label"/>
+                            </segment>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <binding destination="26" name="enabled2" keyPath="values.footerTwoStringIndex" previousBinding="DOh-Gc-WIa" id="WPX-z1-Hni">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="26" name="enabled" keyPath="values.printFooter" id="DOh-Gc-WIa"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.footerTwoAlignIndex" id="85x-eK-gr8"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <constraints>
-                <constraint firstItem="890" firstAttribute="leading" secondItem="942" secondAttribute="leading" id="1Dh-lG-GnB"/>
-                <constraint firstItem="1007" firstAttribute="bottom" secondItem="1011" secondAttribute="bottom" constant="-5" id="2AB-o4-Hmw"/>
+                <constraint firstItem="1007" firstAttribute="bottom" secondItem="1011" secondAttribute="bottom" constant="-4" id="2AB-o4-Hmw"/>
                 <constraint firstItem="1350" firstAttribute="leading" secondItem="1356" secondAttribute="trailing" constant="8" symbolic="YES" id="2Hu-n6-mV2"/>
-                <constraint firstItem="890" firstAttribute="leading" secondItem="912" secondAttribute="leading" id="3Oo-qz-vrK"/>
                 <constraint firstItem="925" firstAttribute="leading" secondItem="933" secondAttribute="trailing" constant="8" symbolic="YES" id="4SZ-M4-0E1"/>
-                <constraint firstItem="900" firstAttribute="top" secondItem="891" secondAttribute="bottom" constant="16" id="4mk-w6-QZF"/>
-                <constraint firstItem="1008" firstAttribute="leading" secondItem="1007" secondAttribute="trailing" constant="12" id="5vh-9u-bf6"/>
-                <constraint firstItem="1007" firstAttribute="centerY" secondItem="1008" secondAttribute="centerY" id="6Jg-fD-Xpj"/>
-                <constraint firstItem="925" firstAttribute="top" secondItem="934" secondAttribute="bottom" constant="16" id="6n5-ma-Fyr"/>
+                <constraint firstItem="900" firstAttribute="top" secondItem="891" secondAttribute="bottom" constant="14" id="4mk-w6-QZF"/>
+                <constraint firstItem="912" firstAttribute="trailing" secondItem="890" secondAttribute="trailing" id="56j-qB-GMi"/>
+                <constraint firstItem="u8V-Dc-6yR" firstAttribute="trailing" secondItem="890" secondAttribute="trailing" id="5g3-GI-Att"/>
+                <constraint firstItem="1008" firstAttribute="leading" secondItem="1007" secondAttribute="trailing" constant="8" symbolic="YES" id="5vh-9u-bf6"/>
+                <constraint firstItem="2ko-Fv-J5m" firstAttribute="centerY" secondItem="925" secondAttribute="centerY" id="6Qa-0C-wo5"/>
+                <constraint firstItem="925" firstAttribute="top" secondItem="934" secondAttribute="bottom" constant="14" id="6n5-ma-Fyr"/>
+                <constraint firstItem="GHf-us-wxC" firstAttribute="centerY" secondItem="934" secondAttribute="centerY" id="6oa-kq-Zf3"/>
+                <constraint firstItem="2ko-Fv-J5m" firstAttribute="leading" secondItem="925" secondAttribute="trailing" constant="8" symbolic="YES" id="86l-sY-eOP"/>
+                <constraint firstItem="912" firstAttribute="trailing" secondItem="942" secondAttribute="trailing" id="8cf-n1-qjK"/>
                 <constraint firstItem="900" firstAttribute="leading" secondItem="912" secondAttribute="trailing" constant="8" symbolic="YES" id="8hN-eZ-j50"/>
-                <constraint firstItem="889" firstAttribute="top" secondItem="1011" secondAttribute="bottom" constant="30" id="8sv-fV-IcZ"/>
+                <constraint firstItem="889" firstAttribute="top" secondItem="1011" secondAttribute="bottom" constant="25" id="8sv-fV-IcZ"/>
                 <constraint firstItem="944" firstAttribute="leading" secondItem="943" secondAttribute="trailing" constant="8" symbolic="YES" id="ACa-dY-DoE"/>
-                <constraint firstItem="950" firstAttribute="top" secondItem="944" secondAttribute="bottom" constant="16" id="Aao-dP-K2q"/>
-                <constraint firstItem="u8V-Dc-6yR" firstAttribute="leading" secondItem="882" secondAttribute="leading" constant="20" symbolic="YES" id="BeJ-N8-HZD"/>
+                <constraint firstItem="950" firstAttribute="top" secondItem="944" secondAttribute="bottom" constant="14" id="Aao-dP-K2q"/>
                 <constraint firstItem="889" firstAttribute="leading" secondItem="882" secondAttribute="leading" constant="20" symbolic="YES" id="DML-cQ-7g6"/>
+                <constraint firstItem="u8V-Dc-6yR" firstAttribute="top" secondItem="1011" secondAttribute="top" constant="5" id="EH8-cA-Koe"/>
                 <constraint firstItem="916" firstAttribute="top" secondItem="899" secondAttribute="bottom" constant="30" id="F8H-qP-z3T"/>
                 <constraint firstItem="1350" firstAttribute="width" secondItem="950" secondAttribute="width" id="FfC-bn-Egw"/>
                 <constraint firstItem="XWw-Ld-8TL" firstAttribute="leading" secondItem="882" secondAttribute="leading" constant="20" symbolic="YES" id="Hbt-oc-LAr"/>
                 <constraint firstItem="944" firstAttribute="centerY" secondItem="943" secondAttribute="centerY" id="HvB-Qu-kqi"/>
-                <constraint firstItem="889" firstAttribute="leading" secondItem="890" secondAttribute="leading" constant="-30" id="IaN-eG-AbC"/>
                 <constraint firstItem="891" firstAttribute="leading" secondItem="890" secondAttribute="trailing" constant="8" symbolic="YES" id="JAZ-hP-lhi"/>
                 <constraint firstItem="915" firstAttribute="top" secondItem="925" secondAttribute="bottom" constant="16" id="JO6-4D-3LG"/>
                 <constraint firstItem="934" firstAttribute="top" secondItem="916" secondAttribute="bottom" constant="12" id="Ltk-08-Zmt"/>
-                <constraint firstItem="1011" firstAttribute="top" secondItem="u8V-Dc-6yR" secondAttribute="bottom" id="Nqs-kT-6hU"/>
                 <constraint firstItem="912" firstAttribute="baseline" secondItem="900" secondAttribute="baseline" id="OVh-ts-hfW"/>
                 <constraint firstAttribute="bottom" secondItem="2359" secondAttribute="bottom" constant="20" symbolic="YES" id="PbL-Sz-RZD"/>
                 <constraint firstItem="1350" firstAttribute="leading" secondItem="950" secondAttribute="leading" id="QDD-yz-GyX"/>
-                <constraint firstItem="1007" firstAttribute="leading" secondItem="1011" secondAttribute="leading" constant="22" id="QFq-qx-RJw"/>
+                <constraint firstItem="1007" firstAttribute="leading" secondItem="1011" secondAttribute="leading" constant="20" id="QFq-qx-RJw"/>
+                <constraint firstItem="1011" firstAttribute="leading" secondItem="u8V-Dc-6yR" secondAttribute="trailing" constant="8" symbolic="YES" id="QXa-XQ-iha"/>
+                <constraint firstItem="1007" firstAttribute="centerY" secondItem="1008" secondAttribute="centerY" id="Rgh-S7-pIe"/>
                 <constraint firstItem="949" firstAttribute="centerY" secondItem="950" secondAttribute="centerY" id="RzV-Xm-dyO"/>
                 <constraint firstItem="950" firstAttribute="leading" secondItem="949" secondAttribute="trailing" constant="8" symbolic="YES" id="S6A-pZ-TJ6"/>
-                <constraint firstItem="917" firstAttribute="leading" secondItem="934" secondAttribute="trailing" constant="8" symbolic="YES" id="T0u-IC-cJU"/>
-                <constraint firstItem="921" firstAttribute="centerY" secondItem="925" secondAttribute="centerY" id="T1g-3t-jIC"/>
-                <constraint firstItem="921" firstAttribute="leading" secondItem="925" secondAttribute="trailing" constant="8" symbolic="YES" id="VBD-52-OCg"/>
-                <constraint firstItem="885" firstAttribute="leading" secondItem="891" secondAttribute="trailing" constant="8" symbolic="YES" id="VMA-Yq-dBY"/>
+                <constraint firstItem="OzI-68-Zyb" firstAttribute="centerY" secondItem="891" secondAttribute="centerY" id="SfU-IY-cLo"/>
+                <constraint firstItem="OzI-68-Zyb" firstAttribute="leading" secondItem="891" secondAttribute="trailing" constant="8" symbolic="YES" id="TxY-Gr-FK3"/>
+                <constraint firstItem="GHf-us-wxC" firstAttribute="leading" secondItem="934" secondAttribute="trailing" constant="8" symbolic="YES" id="WFG-8Y-prM"/>
                 <constraint firstAttribute="trailing" secondItem="2359" secondAttribute="trailing" constant="20" symbolic="YES" id="WHW-fM-Yid"/>
                 <constraint firstItem="934" firstAttribute="width" secondItem="925" secondAttribute="width" id="WzR-iA-DPa"/>
                 <constraint firstItem="1350" firstAttribute="leading" secondItem="944" secondAttribute="leading" id="XqI-UO-MZH"/>
                 <constraint firstItem="933" firstAttribute="baseline" secondItem="925" secondAttribute="baseline" id="YIY-fr-TVu"/>
-                <constraint firstItem="1011" firstAttribute="leading" secondItem="u8V-Dc-6yR" secondAttribute="leading" constant="30" id="Zox-wI-ECX"/>
                 <constraint firstItem="899" firstAttribute="leading" secondItem="882" secondAttribute="leading" constant="20" symbolic="YES" id="bY0-IT-w7C"/>
                 <constraint firstItem="916" firstAttribute="leading" secondItem="882" secondAttribute="leading" constant="20" symbolic="YES" id="bcp-Vg-jqV"/>
                 <constraint firstItem="1350" firstAttribute="leading" secondItem="882" secondAttribute="leading" constant="140" id="c7k-BN-DLR"/>
+                <constraint firstItem="912" firstAttribute="trailing" secondItem="933" secondAttribute="trailing" id="cen-EO-7ur"/>
                 <constraint firstItem="915" firstAttribute="leading" secondItem="882" secondAttribute="leading" constant="20" symbolic="YES" id="chP-0y-eiw"/>
-                <constraint firstItem="890" firstAttribute="leading" secondItem="933" secondAttribute="leading" id="cwv-tV-xYF"/>
-                <constraint firstItem="908" firstAttribute="leading" secondItem="900" secondAttribute="trailing" constant="8" symbolic="YES" id="dZd-UY-1ik"/>
-                <constraint firstItem="934" firstAttribute="centerY" secondItem="917" secondAttribute="centerY" id="eCQ-Ls-NxC"/>
                 <constraint firstItem="934" firstAttribute="leading" secondItem="942" secondAttribute="trailing" constant="8" symbolic="YES" id="ePb-9b-1Qa"/>
-                <constraint firstItem="891" firstAttribute="centerY" secondItem="885" secondAttribute="centerY" id="f6m-w3-wHu"/>
+                <constraint firstItem="oVS-uF-Ue4" firstAttribute="leading" secondItem="900" secondAttribute="trailing" constant="8" symbolic="YES" id="fGe-Zs-zCA"/>
                 <constraint firstItem="891" firstAttribute="top" secondItem="889" secondAttribute="bottom" constant="12" id="hi9-hx-aLf"/>
                 <constraint firstItem="1350" firstAttribute="width" secondItem="944" secondAttribute="width" id="jav-xL-SrY"/>
+                <constraint firstItem="u8V-Dc-6yR" firstAttribute="trailing" secondItem="949" secondAttribute="trailing" id="kUT-Ca-BaE"/>
                 <constraint firstItem="899" firstAttribute="top" secondItem="900" secondAttribute="bottom" constant="16" id="kc0-66-1BV"/>
-                <constraint firstItem="944" firstAttribute="top" secondItem="1350" secondAttribute="bottom" constant="16" id="oVC-mV-ghN"/>
-                <constraint firstItem="908" firstAttribute="centerY" secondItem="900" secondAttribute="centerY" id="r9I-ou-cMe"/>
-                <constraint firstItem="u8V-Dc-6yR" firstAttribute="top" secondItem="950" secondAttribute="bottom" constant="20" id="rSL-hE-tn4"/>
+                <constraint firstItem="944" firstAttribute="top" secondItem="1350" secondAttribute="bottom" constant="14" id="oVC-mV-ghN"/>
+                <constraint firstItem="900" firstAttribute="centerY" secondItem="oVS-uF-Ue4" secondAttribute="centerY" id="q7v-vR-DnD"/>
+                <constraint firstItem="u8V-Dc-6yR" firstAttribute="top" secondItem="950" secondAttribute="bottom" constant="25" id="rSL-hE-tn4"/>
                 <constraint firstItem="1350" firstAttribute="top" secondItem="XWw-Ld-8TL" secondAttribute="bottom" constant="20" id="t49-kf-GBD"/>
                 <constraint firstItem="891" firstAttribute="baseline" secondItem="890" secondAttribute="baseline" id="vAH-GM-F9p"/>
                 <constraint firstItem="XWw-Ld-8TL" firstAttribute="top" secondItem="882" secondAttribute="top" constant="20" symbolic="YES" id="vGl-8E-Mfk"/>
