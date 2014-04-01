@@ -33,11 +33,11 @@
 		2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
 		2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */; };
-		2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */; };
+		2A07230716D3CF4F00F49864 /* centerAlignTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F516D3CF4F00F49864 /* centerAlignTemplate.pdf */; };
 		2A07230816D3CF4F00F49864 /* clearButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F616D3CF4F00F49864 /* clearButtonImg.pdf */; };
 		2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F716D3CF4F00F49864 /* closeSplitButtonImg.pdf */; };
 		2A07230A16D3CF4F00F49864 /* editButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F816D3CF4F00F49864 /* editButtonImg.pdf */; };
-		2A07230B16D3CF4F00F49864 /* leftButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F916D3CF4F00F49864 /* leftButtonImg.pdf */; };
+		2A07230B16D3CF4F00F49864 /* leftAlignTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F916D3CF4F00F49864 /* leftAlignTemplate.pdf */; };
 		2A07230C16D3CF4F00F49864 /* lockOnImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722FA16D3CF4F00F49864 /* lockOnImg.pdf */; };
 		2A07230D16D3CF4F00F49864 /* nextButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722FB16D3CF4F00F49864 /* nextButtonImg.pdf */; };
 		2A07230E16D3CF4F00F49864 /* openSplitButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722FC16D3CF4F00F49864 /* openSplitButtonImg.pdf */; };
@@ -46,7 +46,7 @@
 		2A07231116D3CF4F00F49864 /* popUpButtonBG_center.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722FF16D3CF4F00F49864 /* popUpButtonBG_center.pdf */; };
 		2A07231216D3CF4F00F49864 /* popUpButtonBG_left.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230016D3CF4F00F49864 /* popUpButtonBG_left.pdf */; };
 		2A07231316D3CF4F00F49864 /* prevButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */; };
-		2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */; };
+		2A07231516D3CF4F00F49864 /* rightAlignTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightAlignTemplate.pdf */; };
 		2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230416D3CF4F00F49864 /* swapArrow.pdf */; };
 		2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* opacityGuide.pdf */; };
 		2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
@@ -224,11 +224,11 @@
 		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
 		2A07202D18E0E421006F3A43 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
 		2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = scriptMenuIcon.pdf; path = images/scriptMenuIcon.pdf; sourceTree = "<group>"; };
-		2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = centerButtonImg.pdf; path = images/centerButtonImg.pdf; sourceTree = "<group>"; };
+		2A0722F516D3CF4F00F49864 /* centerAlignTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = centerAlignTemplate.pdf; path = images/centerAlignTemplate.pdf; sourceTree = "<group>"; };
 		2A0722F616D3CF4F00F49864 /* clearButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = clearButtonImg.pdf; path = images/clearButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722F716D3CF4F00F49864 /* closeSplitButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = closeSplitButtonImg.pdf; path = images/closeSplitButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722F816D3CF4F00F49864 /* editButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = editButtonImg.pdf; path = images/editButtonImg.pdf; sourceTree = "<group>"; };
-		2A0722F916D3CF4F00F49864 /* leftButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = leftButtonImg.pdf; path = images/leftButtonImg.pdf; sourceTree = "<group>"; };
+		2A0722F916D3CF4F00F49864 /* leftAlignTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = leftAlignTemplate.pdf; path = images/leftAlignTemplate.pdf; sourceTree = "<group>"; };
 		2A0722FA16D3CF4F00F49864 /* lockOnImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = lockOnImg.pdf; path = images/lockOnImg.pdf; sourceTree = "<group>"; };
 		2A0722FB16D3CF4F00F49864 /* nextButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = nextButtonImg.pdf; path = images/nextButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722FC16D3CF4F00F49864 /* openSplitButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitButtonImg.pdf; path = images/openSplitButtonImg.pdf; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 		2A0722FF16D3CF4F00F49864 /* popUpButtonBG_center.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = popUpButtonBG_center.pdf; path = images/popUpButtonBG_center.pdf; sourceTree = "<group>"; };
 		2A07230016D3CF4F00F49864 /* popUpButtonBG_left.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = popUpButtonBG_left.pdf; path = images/popUpButtonBG_left.pdf; sourceTree = "<group>"; };
 		2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = prevButtonImg.pdf; path = images/prevButtonImg.pdf; sourceTree = "<group>"; };
-		2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rightButtonImg.pdf; path = images/rightButtonImg.pdf; sourceTree = "<group>"; };
+		2A07230316D3CF4F00F49864 /* rightAlignTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rightAlignTemplate.pdf; path = images/rightAlignTemplate.pdf; sourceTree = "<group>"; };
 		2A07230416D3CF4F00F49864 /* swapArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrow.pdf; path = images/swapArrow.pdf; sourceTree = "<group>"; };
 		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
 		2A0E160F18E79FFA00AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
@@ -475,11 +475,11 @@
 			isa = PBXGroup;
 			children = (
 				2A0722F216D3CF2E00F49864 /* scriptMenuIcon.pdf */,
-				2A0722F516D3CF4F00F49864 /* centerButtonImg.pdf */,
+				2A0722F516D3CF4F00F49864 /* centerAlignTemplate.pdf */,
 				2A0722F616D3CF4F00F49864 /* clearButtonImg.pdf */,
 				2A0722F716D3CF4F00F49864 /* closeSplitButtonImg.pdf */,
 				2A0722F816D3CF4F00F49864 /* editButtonImg.pdf */,
-				2A0722F916D3CF4F00F49864 /* leftButtonImg.pdf */,
+				2A0722F916D3CF4F00F49864 /* leftAlignTemplate.pdf */,
 				2A0722FA16D3CF4F00F49864 /* lockOnImg.pdf */,
 				2A0722FB16D3CF4F00F49864 /* nextButtonImg.pdf */,
 				2A0722FC16D3CF4F00F49864 /* openSplitButtonImg.pdf */,
@@ -488,7 +488,7 @@
 				2A0722FF16D3CF4F00F49864 /* popUpButtonBG_center.pdf */,
 				2A07230016D3CF4F00F49864 /* popUpButtonBG_left.pdf */,
 				2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */,
-				2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */,
+				2A07230316D3CF4F00F49864 /* rightAlignTemplate.pdf */,
 				2A07230416D3CF4F00F49864 /* swapArrow.pdf */,
 				2A07230516D3CF4F00F49864 /* opacityGuide.pdf */,
 			);
@@ -936,13 +936,13 @@
 				2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */,
 				2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxExtensionErrorSheet.xib in Resources */,
-				2A07230716D3CF4F00F49864 /* centerButtonImg.pdf in Resources */,
+				2A07230716D3CF4F00F49864 /* centerAlignTemplate.pdf in Resources */,
 				2A94A46018D0F166009FA90D /* (null) in Resources */,
 				2A07230816D3CF4F00F49864 /* clearButtonImg.pdf in Resources */,
 				2A9A144B18B67846001080D6 /* Images.xcassets in Resources */,
 				2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */,
 				2A07230A16D3CF4F00F49864 /* editButtonImg.pdf in Resources */,
-				2A07230B16D3CF4F00F49864 /* leftButtonImg.pdf in Resources */,
+				2A07230B16D3CF4F00F49864 /* leftAlignTemplate.pdf in Resources */,
 				2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */,
 				2A8663AE18C93D2200A6F9CC /* ReadMe.rtf in Resources */,
 				2A07230C16D3CF4F00F49864 /* lockOnImg.pdf in Resources */,
@@ -956,7 +956,7 @@
 				2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */,
 				2A07231316D3CF4F00F49864 /* prevButtonImg.pdf in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
-				2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */,
+				2A07231516D3CF4F00F49864 /* rightAlignTemplate.pdf in Resources */,
 				2A1CFD0D18E5B64F00A5B664 /* print.strings in Resources */,
 				2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */,
 				2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */,

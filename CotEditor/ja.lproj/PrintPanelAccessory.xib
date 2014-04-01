@@ -199,14 +199,14 @@
                     </textFieldCell>
                 </textField>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
-                    <rect key="frame" x="324" y="187" width="76" height="23"/>
+                    <rect key="frame" x="324" y="186" width="76" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="njJ-Ab-dUQ">
+                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="njJ-Ab-dUQ">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="左揃え" image="leftButtonImg" width="24"/>
-                            <segment toolTip="中央揃え" image="centerButtonImg" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="右揃え" image="rightButtonImg" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -217,14 +217,14 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
-                    <rect key="frame" x="324" y="68" width="76" height="23"/>
+                    <rect key="frame" x="324" y="67" width="76" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="Aru-Gd-J0D">
+                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="Aru-Gd-J0D">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="左揃え" image="leftButtonImg" width="24"/>
-                            <segment toolTip="中央揃え" image="centerButtonImg" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="右揃え" image="rightButtonImg" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -235,14 +235,14 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
-                    <rect key="frame" x="324" y="156" width="76" height="23"/>
+                    <rect key="frame" x="324" y="155" width="76" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="I4t-kQ-lvq">
+                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="I4t-kQ-lvq">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="左揃え" image="leftButtonImg" width="24"/>
-                            <segment toolTip="中央揃え" image="centerButtonImg" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="右揃え" image="rightButtonImg" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -253,14 +253,14 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
-                    <rect key="frame" x="324" y="37" width="76" height="23"/>
+                    <rect key="frame" x="324" y="36" width="76" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="smallSquare" trackingMode="selectOne" id="xAm-2i-Sw1">
+                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="xAm-2i-Sw1">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="左揃え" image="leftButtonImg" width="24"/>
-                            <segment toolTip="中央揃え" image="centerButtonImg" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="右揃え" image="rightButtonImg" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -419,8 +419,8 @@
         </customView>
     </objects>
     <resources>
-        <image name="centerButtonImg" width="16" height="16"/>
-        <image name="leftButtonImg" width="16" height="16"/>
-        <image name="rightButtonImg" width="16" height="16"/>
+        <image name="centerAlignTemplate" width="16" height="16"/>
+        <image name="leftAlignTemplate" width="16" height="16"/>
+        <image name="rightAlignTemplate" width="16" height="16"/>
     </resources>
 </document>
