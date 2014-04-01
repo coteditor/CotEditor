@@ -205,7 +205,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_showColoringIndicatorTextLength: @115000U, 
                                k_key_runAppleScriptInLaunching: @YES, 
                                k_key_showAlertForNotWritable: @YES, 
-                               k_key_notifyEditByAnother: @YES};
+                               k_key_notifyEditByAnother: @YES,
+                               k_key_smartIndentStartChars: @"{:"};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
