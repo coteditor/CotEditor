@@ -3,8 +3,7 @@ CotEditor
 =============================
 CotEditor is a lightweight plain-text editor for OS X.
 
-### Distribution Site
-<http://coteditor.github.io>
+__Distribution Site__ : <http://coteditor.github.io>
 
 
 
@@ -27,8 +26,6 @@ This project uses ARC currently. However, please note that the following classes
 
 ### License
 The source code is distributed under the terms of the GNU General Public License. See the bundled "LICENSE" for details.
-
-[OgreKit](http://sonoisa.github.io/ogrekit/) and [Onigmo](https://github.com/k-takata/Onigmo)/[Oniguruma](http://www.geocities.jp/kosako3/oniguruma/), the framework and library that CotEditor uses, are distributed under the OgreKit License. See the bundled document in OgreKit for details.
 
 
 ### Copyrights

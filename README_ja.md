@@ -4,8 +4,7 @@ CotEditor
 CotEditor は OS X で動く軽量なプレーンテキストエディタです。
 
 
-### 配布ページ
-<http://coteditor.github.io>
+__配布ページ__ : <http://coteditor.github.io>
 
 
 
@@ -27,9 +26,6 @@ CotEditor は OS X で動く軽量なプレーンテキストエディタです�
 ### ライセンス
 GPL ライセンスです。ライセンスに基づいた取り扱いをお願いします。
 ライセンスに関する詳細は、添付のドキュメント「LICENSE」をご覧ください。
-
-使用しているフレームワーク [OgreKit](http://sonoisa.github.io/ogrekit/) とライブラリ [Onigmo](https://github.com/k-takata/Onigmo)/[Oniguruma](http://www.geocities.jp/kosako3/oniguruma/)は OgreKit License です。
-OgreKit ならびに Onigmo, Oniguruma のライセンスの詳細は OgreKit に添付されている文書をご覧ください。
 
 
 ### 著作権表示
