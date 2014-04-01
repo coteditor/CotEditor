@@ -49,7 +49,7 @@
 		2A07231316D3CF4F00F49864 /* prevButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */; };
 		2A07231416D3CF4F00F49864 /* removeButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */; };
 		2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */; };
-		2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230416D3CF4F00F49864 /* swapArrow.pdf */; };
+		2A07231616D3CF4F00F49864 /* swapArrowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230416D3CF4F00F49864 /* swapArrowTemplate.pdf */; };
 		2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* opacityGuide.pdf */; };
 		2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
 		2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
@@ -244,7 +244,7 @@
 		2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = prevButtonImg.pdf; path = images/prevButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = removeButtonImg.pdf; path = images/removeButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rightButtonImg.pdf; path = images/rightButtonImg.pdf; sourceTree = "<group>"; };
-		2A07230416D3CF4F00F49864 /* swapArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrow.pdf; path = images/swapArrow.pdf; sourceTree = "<group>"; };
+		2A07230416D3CF4F00F49864 /* swapArrowTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrowTemplate.pdf; path = images/swapArrowTemplate.pdf; sourceTree = "<group>"; };
 		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
 		2A0E160F18E79FFA00AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		2A0E161018E7A17600AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
@@ -502,7 +502,7 @@
 				2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */,
 				2A07230216D3CF4F00F49864 /* removeButtonImg.pdf */,
 				2A07230316D3CF4F00F49864 /* rightButtonImg.pdf */,
-				2A07230416D3CF4F00F49864 /* swapArrow.pdf */,
+				2A07230416D3CF4F00F49864 /* swapArrowTemplate.pdf */,
 				2A07230516D3CF4F00F49864 /* opacityGuide.pdf */,
 			);
 			name = images;
@@ -977,7 +977,7 @@
 				2A07231416D3CF4F00F49864 /* removeButtonImg.pdf in Resources */,
 				2A07231516D3CF4F00F49864 /* rightButtonImg.pdf in Resources */,
 				2A1CFD0D18E5B64F00A5B664 /* print.strings in Resources */,
-				2A07231616D3CF4F00F49864 /* swapArrow.pdf in Resources */,
+				2A07231616D3CF4F00F49864 /* swapArrowTemplate.pdf in Resources */,
 				2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */,
 				2AFFB71D18D7F22E00118477 /* GoToPanel.xib in Resources */,
 			);
