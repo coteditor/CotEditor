@@ -44,10 +44,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CELineNumView
 
-#pragma mark NSView Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
 
@@ -62,8 +62,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setAutoresizingMask:NSViewHeightSizable];
         [[self enclosingScrollView] setHasHorizontalScroller:NO];
         [[self enclosingScrollView] setHasVerticalScroller:NO];
+        
+        // observe window resize
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateLineNumber:)
+                                                     name:NSWindowDidResizeNotification
+                                                   object:[self window]];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

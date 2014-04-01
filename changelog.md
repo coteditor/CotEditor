@@ -31,6 +31,7 @@ changelog (for developer)
 - Type/Creatorを参照・付与する機能を廃止
 - アプリケーション起動時の処理内容の見直し
 - 検索パネルや環境設定ウインドウ内のテキストビューのスマート引用符／ダッシュを無効に
+- ウインドウリサイズに追従してリアルタイムで行番号ビューも更新するように変更
 - 現在では「カーボンのように」の意味が想像しづらいと考えられるため、環境設定の項目名を変更した
     - 旧: Drag selected text immediately (just like in Carbon applications)
     - 新: Drag selected text immediately
