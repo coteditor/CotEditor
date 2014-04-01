@@ -297,31 +297,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドローワのタブが切り替えられる直前に内容の更新を行う
-- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
-// ------------------------------------------------------
-{
-    if ([[tabViewItem identifier] isEqualToString:k_infoIdentifier]) {
-        [self updateFileAttrsInformation];
-        [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
-        [[self editorView] updateLineEndingsInStatusAndInfo:YES];
-    } else if ([[tabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
-        [self updateIncompatibleCharList];
-    }
-}
-
-
-// ------------------------------------------------------
-/// ドローワが閉じたらテキストビューのマークアップをクリア
-- (void)drawerDidClose:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    [[self document] clearAllMarkupForIncompatibleChar];
-    // テキストビューの表示だけをクリアし、リストはそのまま
-}
-
-
-// ------------------------------------------------------
 /// フルスクリーンを開始
 - (void)windowWillEnterFullScreen:(NSNotification *)notification
 // ------------------------------------------------------
@@ -338,6 +313,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // ウインドウ背景を戻す
     [[self window] setBackgroundColor:[NSColor clearColor]];
+}
+
+
+//=======================================================
+// Delegate method (NSTabView)
+//  <== tabView
+//=======================================================
+
+// ------------------------------------------------------
+/// ドローワのタブが切り替えられる直前に内容の更新を行う
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
+// ------------------------------------------------------
+{
+    if ([[tabViewItem identifier] isEqualToString:k_infoIdentifier]) {
+        [self updateFileAttrsInformation];
+        [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
+        [[self editorView] updateLineEndingsInStatusAndInfo:YES];
+    } else if ([[tabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
+        [self updateIncompatibleCharList];
+    }
+}
+
+
+//=======================================================
+// Delegate method (NSDrawer)
+//  <== drawer
+//=======================================================
+
+// ------------------------------------------------------
+/// ドローワが閉じたらテキストビューのマークアップをクリア
+- (void)drawerDidClose:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    [[self document] clearAllMarkupForIncompatibleChar];
+    // テキストビューの表示だけをクリアし、リストはそのまま
 }
 
 

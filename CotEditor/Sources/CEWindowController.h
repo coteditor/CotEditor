@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEToolbarController.h"
 
 
-@interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
+@interface CEWindowController : NSWindowController <NSWindowDelegate, NSDrawerDelegate, NSTabViewDelegate, OgreTextFindDataSource>
 
 @property (nonatomic, weak, readonly) CEEditorView *editorView;
 @property (nonatomic, weak, readonly) CEToolbarController *toolbarController;
