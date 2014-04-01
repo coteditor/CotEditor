@@ -182,7 +182,7 @@
                     <button toolTip="コンボボックスのリストに追加" tag="1001" id="111">
                         <rect key="frame" x="194" y="384" width="26" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="addButtonImg" imagePosition="only" alignment="center" borderStyle="border" tag="1001" inset="2" id="142">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" tag="1001" inset="2" id="142">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -194,7 +194,7 @@
                     <button toolTip="コンボボックスのリストに追加" tag="2001" id="113">
                         <rect key="frame" x="194" y="319" width="26" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="addButtonImg" imagePosition="only" alignment="center" borderStyle="border" tag="2001" inset="2" id="143">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" tag="2001" inset="2" id="143">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -343,7 +343,7 @@
                                 <button toolTip="コンボボックスのリストから削除" id="100">
                                     <rect key="frame" x="171" y="208" width="26" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="removeButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="148">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="148">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -355,7 +355,7 @@
                                 <button toolTip="コンボボックスのリストから削除" id="101">
                                     <rect key="frame" x="171" y="115" width="26" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="removeButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="149">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="149">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -395,8 +395,8 @@
         </arrayController>
     </objects>
     <resources>
-        <image name="addButtonImg" width="16" height="16"/>
-        <image name="removeButtonImg" width="16" height="16"/>
+        <image name="NSAddTemplate" width="8" height="8"/>
+        <image name="NSRemoveTemplate" width="8" height="8"/>
         <image name="swapArrow" width="16" height="16"/>
     </resources>
 </document>
