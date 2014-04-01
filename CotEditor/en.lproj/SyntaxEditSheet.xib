@@ -137,7 +137,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="456">
-                                            <rect key="frame" x="35" y="-1" width="26" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="removeButtonImg" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="993">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -149,11 +149,11 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="389">
-                                            <rect key="frame" x="10" y="-1" width="26" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="aw6-9e-V2k"/>
-                                                <constraint firstAttribute="width" constant="26" id="gvW-Md-rJA"/>
+                                                <constraint firstAttribute="width" constant="25" id="gvW-Md-rJA"/>
                                             </constraints>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="addButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="992">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -181,7 +181,7 @@
                             </tabViewItem>
                             <tabViewItem label="1" identifier="Commands" id="414" userLabel="Commands Tab">
                                 <view key="view" id="425">
-                                    <rect key="frame" x="10" y="7" width="416" height="257"/>
+                                    <rect key="frame" x="10" y="7" width="446" height="253"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="465">
@@ -215,20 +215,20 @@
                                             </connections>
                                         </button>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="473">
-                                            <rect key="frame" x="10" y="28" width="396" height="209"/>
+                                            <rect key="frame" x="10" y="28" width="426" height="205"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="dTG-i9-Inz">
-                                                <rect key="frame" x="1" y="17" width="394" height="191"/>
+                                                <rect key="frame" x="1" y="17" width="424" height="187"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1047" id="446">
-                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="191"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="424" height="187"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginCommands" width="183" minWidth="40" maxWidth="1000" id="409">
+                                                            <tableColumn identifier="beginCommands" width="198" minWidth="40" maxWidth="1000" id="409">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -245,7 +245,7 @@
                                                                     <binding destination="33" name="value" keyPath="arrangedObjects.beginString" id="644"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endCommands" width="153" minWidth="10" maxWidth="1000" id="643">
+                                                            <tableColumn identifier="endCommands" width="168" minWidth="10" maxWidth="1000" id="643">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -309,7 +309,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1047">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="424" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -1523,10 +1523,10 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <size key="minSize" width="394" height="204"/>
-                                                        <size key="maxSize" width="394" height="10000000"/>
+                                                        <size key="maxSize" width="396" height="10000000"/>
                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <size key="minSize" width="394" height="204"/>
-                                                        <size key="maxSize" width="394" height="10000000"/>
+                                                        <size key="maxSize" width="396" height="10000000"/>
                                                     </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

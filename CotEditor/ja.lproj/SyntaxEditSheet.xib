@@ -34,18 +34,18 @@
                         <tabViewItems>
                             <tabViewItem label="0" identifier="Keywords" id="399" userLabel="Keywords Tab">
                                 <view key="view" id="407">
-                                    <rect key="frame" x="10" y="7" width="446" height="257"/>
+                                    <rect key="frame" x="10" y="7" width="446" height="253"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="426">
-                                            <rect key="frame" x="10" y="28" width="426" height="209"/>
+                                            <rect key="frame" x="10" y="28" width="426" height="205"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="sXN-MI-36V">
-                                                <rect key="frame" x="1" y="17" width="424" height="191"/>
+                                                <rect key="frame" x="1" y="17" width="424" height="187"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1044" id="415">
-                                                        <rect key="frame" x="0.0" y="0.0" width="424" height="191"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="424" height="187"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,7 +137,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="456">
-                                            <rect key="frame" x="35" y="-1" width="26" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="removeButtonImg" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="993">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -149,11 +149,11 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="389">
-                                            <rect key="frame" x="10" y="-1" width="26" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="aw6-9e-V2k"/>
-                                                <constraint firstAttribute="width" constant="26" id="gvW-Md-rJA"/>
+                                                <constraint firstAttribute="width" constant="25" id="gvW-Md-rJA"/>
                                             </constraints>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="addButtonImg" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="992">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -477,18 +477,18 @@
                             </tabViewItem>
                             <tabViewItem label="3" identifier="Numbers" id="468" userLabel="Numbers Tab">
                                 <view key="view" id="383">
-                                    <rect key="frame" x="10" y="7" width="446" height="257"/>
+                                    <rect key="frame" x="10" y="7" width="446" height="253"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="397">
-                                            <rect key="frame" x="10" y="28" width="426" height="209"/>
+                                            <rect key="frame" x="10" y="28" width="426" height="205"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="qq1-WH-BH7">
-                                                <rect key="frame" x="1" y="17" width="424" height="191"/>
+                                                <rect key="frame" x="1" y="17" width="424" height="187"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1059" id="442">
-                                                        <rect key="frame" x="0.0" y="0.0" width="424" height="191"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="424" height="187"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -580,7 +580,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="394">
-                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
+                                            <rect key="frame" x="10" y="-5" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="iyS-SJ-Fcb"/>
@@ -596,7 +596,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="390">
-                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
+                                            <rect key="frame" x="34" y="-5" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="removeButtonImg" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="1003">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1523,10 +1523,10 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <size key="minSize" width="424" height="204"/>
-                                                        <size key="maxSize" width="424" height="10000000"/>
+                                                        <size key="maxSize" width="426" height="10000000"/>
                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <size key="minSize" width="424" height="204"/>
-                                                        <size key="maxSize" width="424" height="10000000"/>
+                                                        <size key="maxSize" width="426" height="10000000"/>
                                                     </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
