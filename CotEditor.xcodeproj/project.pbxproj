@@ -67,6 +67,7 @@
 		2A6394DE18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DD18B0BFAE008D304D /* defaultSyntaxStyle_Markdown.plist */; };
 		2A6394E018B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6394DF18B0BFB9008D304D /* defaultSyntaxStyle_Scala.plist */; };
 		2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A7572BE18B3BBAE00878F66 /* CotEditor.help */; };
+		2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		2A8663AE18C93D2200A6F9CC /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663B018C93D2200A6F9CC /* ReadMe.rtf */; };
 		2A8663C918C93FEB00A6F9CC /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A8663CB18C93FEB00A6F9CC /* Version History.rtf */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
@@ -95,7 +96,6 @@
 		8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */; };
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
 		8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */; };
-		8C3289F007A21422001CA481 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		8C3840930D16B75C00F76A4C /* UKXattrMetadataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8C38409B0D16B7AC00F76A4C /* UKXattrMetadataStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */; };
@@ -315,7 +315,7 @@
 		6C1E212612C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Preferences.xib; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* Script */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Script; sourceTree = "<group>"; };
-		6CB074A11373A03B001D0243 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = CotEditor/Sparkle.framework; sourceTree = "<group>"; };
+		6CB074A11373A03B001D0243 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
 		8C0A063C0F748B9900D32B56 /* defaultSyntaxStyle_PHP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultSyntaxStyle_PHP.plist; path = SyntaxColorings/defaultSyntaxStyle_PHP.plist; sourceTree = "<group>"; };
 		8C0F52600871861C00ABD124 /* openScriptMenu.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = openScriptMenu.applescript; path = internalScript/openScriptMenu.applescript; sourceTree = "<group>"; };
@@ -330,7 +330,7 @@
 		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptSuite; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Script_CleanButton.tiff; path = toolbarIcons/Script_CleanButton.tiff; sourceTree = "<group>"; };
-		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = CotEditor/OgreKit.framework; sourceTree = "<group>"; };
+		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = "<group>"; };
 		8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKXattrMetadataStore.h; path = ImportSources/UKXattrMetadataStore.h; sourceTree = "<group>"; };
 		8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKXattrMetadataStore.m; path = ImportSources/UKXattrMetadataStore.m; sourceTree = "<group>"; };
 		8C3A7DD80867EA9A00ECE052 /* startup.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = startup.applescript; path = internalScript/startup.applescript; sourceTree = "<group>"; };
@@ -421,10 +421,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
-				8C3289F007A21422001CA481 /* OgreKit.framework in Frameworks */,
+				2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */,
 				6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */,
+				8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,8 +1263,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					.,
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					./CotEditor/,
+					"$(PROJECT_DIR)/frameworks",
 				);
 				GCC_DEBUGGING_SYMBOLS = full;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1294,8 +1295,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					.,
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					./CotEditor/,
+					"$(PROJECT_DIR)/frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
