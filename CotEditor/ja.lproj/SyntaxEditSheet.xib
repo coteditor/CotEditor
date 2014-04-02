@@ -1716,7 +1716,7 @@ Gw
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="78" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="214">
-                        <rect key="frame" x="32" y="361" width="82" height="17"/>
+                        <rect key="frame" x="32" y="358" width="82" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="スタイル名：" id="987">
                             <font key="font" size="13" name="AquaKana"/>
@@ -1805,6 +1805,7 @@ Gw
                     <constraint firstItem="670" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="D0J-in-juQ"/>
                     <constraint firstItem="215" firstAttribute="leading" secondItem="214" secondAttribute="trailing" constant="8" symbolic="YES" id="LF7-g9-pIo"/>
                     <constraint firstAttribute="trailing" secondItem="91" secondAttribute="trailing" constant="20" symbolic="YES" id="QBI-uN-8ER"/>
+                    <constraint firstItem="215" firstAttribute="baseline" secondItem="214" secondAttribute="baseline" id="QyI-cA-xWd"/>
                     <constraint firstAttribute="trailing" secondItem="265" secondAttribute="trailing" constant="20" symbolic="YES" id="R3C-OD-dlg"/>
                     <constraint firstItem="432" firstAttribute="top" secondItem="393" secondAttribute="top" constant="-10" id="WpA-mC-5lN"/>
                     <constraint firstItem="265" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="2" id="ZSQ-qE-vcp"/>
@@ -1812,7 +1813,6 @@ Gw
                     <constraint firstItem="215" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="120" id="e5J-A9-Zdd"/>
                     <constraint firstAttribute="bottom" secondItem="91" secondAttribute="bottom" constant="20" symbolic="YES" id="kgh-UB-LHQ"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="91" secondAttribute="top" id="kum-2W-D5e"/>
-                    <constraint firstItem="214" firstAttribute="centerY" secondItem="215" secondAttribute="centerY" id="mFu-WN-RY3"/>
                     <constraint firstItem="265" firstAttribute="leading" secondItem="215" secondAttribute="leading" id="nNG-pM-hBV"/>
                     <constraint firstAttribute="bottom" secondItem="92" secondAttribute="bottom" constant="20" symbolic="YES" id="oba-hi-t3F"/>
                     <constraint firstItem="432" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="40" id="u1f-fg-0W0"/>
