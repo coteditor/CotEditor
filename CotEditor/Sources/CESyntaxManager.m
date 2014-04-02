@@ -37,7 +37,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntaxManager ()
 
-@property (nonatomic) NSArray *coloringStyleArray;
+@property (nonatomic) NSArray *coloringStyles;  // 全てのカラーリング定義
+
 @property (nonatomic) NSInteger sheetOpeningMode;
 @property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
 
@@ -106,7 +107,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super init];
     if (self) {
         (void)[NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
-        [self setupColoringStyleArray];
+        [self setupColoringStyles];
         [self setupExtensionAndSyntaxTable];
     }
     return self;
@@ -134,7 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     switch (mode) {
         case k_syntaxCopyTag: // Copy
             selected = styleIndex;
-            colorings = [self coloringStyleArray];
+            colorings = [self coloringStyles];
             name = [self copiedSyntaxName:colorings[styleIndex][k_SCKey_styleName]];
             colorings[styleIndex][k_SCKey_styleName] = name;
             break;
@@ -147,7 +148,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             
         default: // Edit, Delete
             selected = styleIndex;
-            colorings = [self coloringStyleArray];
+            colorings = [self coloringStyles];
             name = colorings[styleIndex][k_SCKey_styleName];
             break;
     }
@@ -157,7 +158,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self styleController] setContent:colorings];
 
     // シートのコントロール類をセットアップ
-    [self setupSyntaxSheetControles];
+    [self setupSyntaxSheetControlesForStyle:[self selectedStyleName]];
 
     return ([[self styleController] setSelectionIndex:selected]);
 }
@@ -181,7 +182,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
         NSMutableDictionary *styleDict;
-        for (NSDictionary *dict in [self coloringStyleArray]) {
+        for (NSDictionary *dict in [self coloringStyles]) {
             if ([dict[k_SCKey_styleName] isEqualToString:styleName]) {
                 NSArray *syntaxes = @[k_SCKey_allColoringArrays];
                 NSArray *theArray;
@@ -209,7 +210,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([styleName isEqualToString:@""]) { return NO; }
     
-    NSArray *names = [self defaultSyntaxFileNamesWithoutPrefix];
+    NSArray *names = [self bundledSyntaxFileNamesWithoutPrefix];
     
     return [names containsObject:[styleName stringByAppendingPathExtension:@"plist"]];
 }
@@ -222,7 +223,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSMutableArray *styleNames = [NSMutableArray array];
     
-    for (NSDictionary *dict in [self coloringStyleArray]) {
+    for (NSDictionary *dict in [self coloringStyles]) {
         [styleNames addObject:dict[k_SCKey_styleName]];
     }
 
@@ -235,7 +236,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName
 //------------------------------------------------------
 {
-    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
 
     return [URL checkResourceIsReachableAndReturnError:nil];
 }
@@ -249,7 +250,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL success = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *fileURL = [NSURL fileURLWithPath:styleFileName];
-    NSURL *destURL = [[self URLOfStyleDirectory] URLByAppendingPathComponent:[fileURL lastPathComponent]];
+    NSURL *destURL = [[self userStyleDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
 
     if ([destURL checkResourceIsReachableAndReturnError:nil]) {
         [fileManager removeItemAtURL:destURL error:nil];
@@ -257,7 +258,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     success = [fileManager copyItemAtURL:fileURL toURL:destURL error:nil];
     if (success) {
         // 内部で持っているキャッシュ用データを更新
-        [self setupColoringStyleArray];
+        [self setupColoringStyles];
         [self setupExtensionAndSyntaxTable];
     }
     return success;
@@ -272,13 +273,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL success = NO;
     if ([styleName length] < 1) { return success; }
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         success = [fileManager removeItemAtURL:URL error:nil];
         if (success) {
             // 内部で持っているキャッシュ用データを更新
-            [self setupColoringStyleArray];
+            [self setupColoringStyles];
             [self setupExtensionAndSyntaxTable];
         } else {
             NSLog(@"Error. Could not remove \"%@\"", [URL path]);
@@ -295,7 +296,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSURL *)URLOfStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    NSURL *URL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
     
     return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
 }
@@ -315,7 +316,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //=======================================================
 // Delegate method (NSTableView)
-//  <== tableViews in Preferences sheet
+//  <== tableViews in edit sheet
 //=======================================================
 
 // ------------------------------------------------------
@@ -351,7 +352,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if (![self isDefaultSyntaxStyle:[self selectedStyleName]]) { return; }
-    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceDirURL = [self bundledStyleDirectoryURL];
     NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",
                                                                    k_bundleSyntaxStyleFilePrefix, [self selectedStyleName]]]
                         URLByAppendingPathExtension:@"plist"];
@@ -366,7 +367,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self styleController] setContent:contents];
     (void)[[self styleController] setSelectionIndex:0];
     // シートのコントロール類をセットアップ
-    [self setupSyntaxSheetControles];
+    [self setupSyntaxSheetControlesForStyle:[self selectedStyleName]];
     // デフォルト設定に戻すボタンを無効化
     [[self factoryDefaultsButton] setEnabled:NO];
 }
@@ -416,7 +417,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self saveColoringStyle];
     }
     // 内部で持っているキャッシュ用データを更新
-    [self setupColoringStyleArray];
+    [self setupColoringStyles];
     [self setupExtensionAndSyntaxTable];
     [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
     [NSApp stopModal];
@@ -428,7 +429,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)startSyntaxElementCheck:(id)sender
 // ------------------------------------------------------
 {
-    (void)[self syntaxElementError];
+    [self syntaxElementError];
 }
 
 
@@ -443,7 +444,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// バンドルされているシンタックスカラーリングスタイルファイル名配列を返す
-- (NSArray *)defaultSyntaxFileNames
+- (NSArray *)bundledSyntaxFileNames
 // ------------------------------------------------------
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -468,10 +469,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// バンドルされているシンタックスカラーリングスタイルファイル名のプレフィックスを除いた配列を返す
-- (NSArray *)defaultSyntaxFileNamesWithoutPrefix
+- (NSArray *)bundledSyntaxFileNamesWithoutPrefix
 // ------------------------------------------------------
 {
-    NSArray *fileNames = [self defaultSyntaxFileNames];
+    NSArray *fileNames = [self bundledSyntaxFileNames];
     NSMutableArray *fileNamesWithoutPrefix = [NSMutableArray array];
     NSUInteger prefixLength = [k_bundleSyntaxStyleFilePrefix length];
     
@@ -484,12 +485,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
-- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName
+- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName
 // ------------------------------------------------------
 {
     if ([styleName isEqualToString:@""]) { return NO; }
     
-    NSURL *destURL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *destURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
     NSURL *sourceDirURL =[[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
     NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", k_bundleSyntaxStyleFilePrefix, styleName]] URLByAppendingPathExtension:@"plist"];
     
@@ -516,7 +517,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSDictionary *)emptyColoringStyle
 //------------------------------------------------------
 {
-    return @{k_SCKey_styleName: [@"" mutableCopy],
+    return @{k_SCKey_styleName: [NSMutableString string],
              k_SCKey_extensions: [NSMutableArray array], 
              k_SCKey_keywordsArray: [NSMutableArray array], 
              k_SCKey_commandsArray: [NSMutableArray array], 
@@ -532,10 +533,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// styleのファイルからのセットアップと読み込み
-- (void)setupColoringStyleArray
+- (void)setupColoringStyles
 //------------------------------------------------------
 {
-    NSURL *dirURL = [self URLOfStyleDirectory]; // データディレクトリパス取得
+    NSURL *dirURL = [self userStyleDirectoryURL]; // データディレクトリパス取得
 
     // ディレクトリの存在チェック
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -577,7 +578,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [styles addObject:dict]; // theDictがnilになってここで落ちる（MacBook Airの場合）
         }
     }
-    [self setColoringStyleArray:styles];
+    [self setColoringStyles:styles];
 }
 
 
@@ -592,7 +593,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id styleDict, extension, addedName = nil;
     NSArray *extensionArray;
 
-    for (styleDict in [self coloringStyleArray]) {
+    for (styleDict in [self coloringStyles]) {
         extensionArray = styleDict[k_SCKey_extensions];
         if (!extensionArray) { continue; }
         for (NSDictionary *extensionDict in extensionArray) {
@@ -624,7 +625,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)saveColoringStyle
 //------------------------------------------------------
 {
-    NSURL *dirURL = [self URLOfStyleDirectory]; // データディレクトリパス取得
+    NSURL *dirURL = [self userStyleDirectoryURL]; // データディレクトリパス取得
     NSString *styleName;
     NSURL *saveURL;
     NSMutableDictionary *dict;
@@ -659,8 +660,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// styleデータファイル保存用ディレクトリをNSURLで返す
-- (NSURL *)URLOfStyleDirectory
+/// Application Support内のstyleデータファイル保存用ディレクトリ
+- (NSURL *)userStyleDirectoryURL
 //------------------------------------------------------
 {
     return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
@@ -673,14 +674,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
+/// bundle内のstyleデータファイル保存ディレクトリ
+- (NSURL *)bundledStyleDirectoryURL
+//------------------------------------------------------
+{
+    return [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+}
+
+
+//------------------------------------------------------
 /// styleデータファイルを保存用ディレクトリにコピー
 - (BOOL)copyDefaultSyntaxStylesTo:(NSURL *)destDirURL
 //------------------------------------------------------
 {
-    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceDirURL = [self bundledStyleDirectoryURL];
     NSURL *sourceURL, *destURL;
-    NSArray *sourceNames = [self defaultSyntaxFileNames];
-    NSArray *destNames = [self defaultSyntaxFileNamesWithoutPrefix];
+    NSArray *sourceNames = [self bundledSyntaxFileNames];
+    NSArray *destNames = [self bundledSyntaxFileNamesWithoutPrefix];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL success = NO;
     
@@ -705,7 +715,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)copiedSyntaxName:(NSString *)originalName
 //------------------------------------------------------
 {
-    NSURL *URL = [self URLOfStyleDirectory];
+    NSURL *URL = [self userStyleDirectoryURL];
     NSString *compareName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *copyName;
     NSMutableString *copiedSyntaxName = [NSMutableString string];
@@ -741,21 +751,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// シートのコントロール類をセットアップ
-- (void)setupSyntaxSheetControles
+- (void)setupSyntaxSheetControlesForStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    BOOL isDefaultSyntax = [self isDefaultSyntaxStyle:[self selectedStyleName]];
+    BOOL isDefaultSyntax = [self isDefaultSyntaxStyle:styleName];
 
-    [[self styleNameField] setStringValue:[self selectedStyleName]];
-    [[self styleNameField] setDrawsBackground:(!isDefaultSyntax)];
-    [[self styleNameField] setBezeled:(!isDefaultSyntax)];
-    [[self styleNameField] setSelectable:(!isDefaultSyntax)];
-    [[self styleNameField] setEditable:(!isDefaultSyntax)];
+    [[self styleNameField] setStringValue:styleName];
+    [[self styleNameField] setDrawsBackground:!isDefaultSyntax];
+    [[self styleNameField] setBezeled:!isDefaultSyntax];
+    [[self styleNameField] setSelectable:!isDefaultSyntax];
+    [[self styleNameField] setEditable:!isDefaultSyntax];
 
     if (isDefaultSyntax) {
         [[self styleNameField] setBordered:YES];
-        [[self messageField] setStringValue:NSLocalizedString(@"The default style name cannot be changed.",@"")];
-        [[self factoryDefaultsButton] setEnabled:![self isEqualToDefaultSyntaxStyle:[self selectedStyleName]]];
+        [[self messageField] setStringValue:NSLocalizedString(@"The default style name cannot be changed.", nil)];
+        [[self factoryDefaultsButton] setEnabled:![self isEqualToBundledSyntaxStyle:styleName]];
     } else {
         [[self messageField] setStringValue:@""];
         [[self factoryDefaultsButton] setEnabled:NO];
@@ -781,22 +791,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
 }
+
+
 // ------------------------------------------------------
-/// 構文チェック実行
+/// 構文チェックを実行してエラー数を返す
 - (NSInteger)syntaxElementError
 // ------------------------------------------------------
 {
-    return [self syntaxElementCheck];
+    return [self syntaxElementCheck:[[self styleController] selectedObjects]];
 }
 
 // ------------------------------------------------------
-/// 正規表現構文と重複のチェック実行
-- (NSInteger)syntaxElementCheck
+/// 正規表現構文と重複のチェック実行をしてエラー数を返す
+- (NSInteger)syntaxElementCheck:(NSArray *)selectedArray
 // ------------------------------------------------------
 {
-    NSArray *selectedArray = [[self styleController] selectedObjects];
-    NSMutableString *resultStr = [NSMutableString string];
-    NSInteger outCount = 0;
+    NSMutableString *resultMessage = [NSMutableString string];
+    NSInteger numberOfErrors = 0;
 
     if ([selectedArray count] == 1) {
         NSDictionary *dict = selectedArray[0];
@@ -818,16 +829,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 if ([tmpBeginStr isEqualToString:beginStr] &&
                     ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
 
-                    outCount++;
-                    [resultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
-                     (long)outCount, arrayNameDeletingArray, beginStr];
+                    numberOfErrors++;
+                    [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
+                     (long)numberOfErrors, arrayNameDeletingArray, beginStr];
 
                 } else if ([dict[k_SCKey_regularExpression] boolValue]) {
                     capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
                     if (capCount == -1) { // エラーのとき
-                        outCount++;
-                        [resultStr appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
-                                (long)outCount, arrayNameDeletingArray, beginStr,
+                        numberOfErrors++;
+                        [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
+                                (long)numberOfErrors, arrayNameDeletingArray, beginStr,
                                 [error userInfo][RKLICURegexErrorNameErrorKey], 
                                 [error userInfo][RKLICURegexOffsetErrorKey], 
                                 [error userInfo][RKLICURegexPreContextErrorKey], 
@@ -836,9 +847,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     if (endStr != nil) {
                         capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
                         if (capCount == -1) { // エラーのとき
-                            outCount++;
-                            [resultStr appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
-                                    (long)outCount, arrayNameDeletingArray, endStr, 
+                            numberOfErrors++;
+                            [resultMessage appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
+                                    (long)numberOfErrors, arrayNameDeletingArray, endStr, 
                                     [error userInfo][RKLICURegexErrorNameErrorKey], 
                                     [error userInfo][RKLICURegexOffsetErrorKey], 
                                     [error userInfo][RKLICURegexPreContextErrorKey], 
@@ -852,30 +863,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         (void)[OGRegularExpression regularExpressionWithString:beginStr];
                     NS_HANDLER
                         // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                        outCount++;
-                        [resultStr appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
-                                (long)outCount, arrayNameDeletingArray, beginStr, [localException reason]];
+                        numberOfErrors++;
+                        [resultMessage appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
+                                (long)numberOfErrors, arrayNameDeletingArray, beginStr, [localException reason]];
                     NS_ENDHANDLER
                 }
                 tmpBeginStr = beginStr;
                 tmpEndStr = endStr;
             }
         }
-        if (outCount == 0) {
-            [resultStr setString:NSLocalizedString(@"No Error found.", nil)];
-        } else if (outCount == 1) {
-            [resultStr insertString:NSLocalizedString(@"One Error was Found !\n\n", nil) atIndex:0];
+        if (numberOfErrors == 0) {
+            [resultMessage setString:NSLocalizedString(@"No Error found.", nil)];
+        } else if (numberOfErrors == 1) {
+            [resultMessage insertString:NSLocalizedString(@"One Error was Found !\n\n", nil) atIndex:0];
         } else {
-            [resultStr insertString:
-                    [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n", nil), outCount]
+            [resultMessage insertString:
+                    [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n", nil), numberOfErrors]
                     atIndex:0];
         }
     } else {
-        [resultStr setString:NSLocalizedString(@"An Error occuerd in Checking.\nNumber of selected object is 2 or more in 'styleController'.", nil)];
+        [resultMessage setString:NSLocalizedString(@"An Error occuerd in Checking.\nNumber of selected object is 2 or more in 'styleController'.", nil)];
     }
-    [[self syntaxElementCheckTextView] setString:resultStr];
+    [[self syntaxElementCheckTextView] setString:resultMessage];
 
-    return outCount;
+    return numberOfErrors;
 }
 
 @end
