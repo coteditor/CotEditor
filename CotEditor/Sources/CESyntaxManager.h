@@ -55,6 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode;
+
 - (NSString *)syntaxNameFromExtension:(NSString *)extension;
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
 - (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;

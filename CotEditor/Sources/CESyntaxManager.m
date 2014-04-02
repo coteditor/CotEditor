@@ -51,7 +51,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) IBOutlet NSArrayController *styleController;
 
 @property (nonatomic) NSString *selectedStyleName;   // 編集対象となっているスタイル名
-@property (nonatomic) NSDictionary *xtsnAndStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic) NSArray *extensions;  // 拡張子配列
 
 // readonly
@@ -107,8 +107,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super init];
     if (self) {
         (void)[NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
-        [self setupColoringStyles];
-        [self setupExtensionAndSyntaxTable];
+        [self updateCache];
     }
     return self;
 }
@@ -169,7 +168,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)syntaxNameFromExtension:(NSString *)extension
 // ------------------------------------------------------
 {
-    NSString *syntaxName = [self xtsnAndStyleTable][extension];
+    NSString *syntaxName = [self extensionToStyleTable][extension];
 
     return (syntaxName) ? syntaxName : [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
 }
@@ -258,8 +257,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     success = [fileManager copyItemAtURL:fileURL toURL:destURL error:nil];
     if (success) {
         // 内部で持っているキャッシュ用データを更新
-        [self setupColoringStyles];
-        [self setupExtensionAndSyntaxTable];
+        [self updateCache];
     }
     return success;
 }
@@ -279,8 +277,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         success = [fileManager removeItemAtURL:URL error:nil];
         if (success) {
             // 内部で持っているキャッシュ用データを更新
-            [self setupColoringStyles];
-            [self setupExtensionAndSyntaxTable];
+            [self updateCache];
         } else {
             NSLog(@"Error. Could not remove \"%@\"", [URL path]);
         }
@@ -416,8 +413,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self saveColoringStyle];
     }
     // 内部で持っているキャッシュ用データを更新
-    [self setupColoringStyles];
-    [self setupExtensionAndSyntaxTable];
+    [self updateCache];
     [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
     [NSApp stopModal];
 }
@@ -440,6 +436,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// 内部で持っているキャッシュ用データを更新
+- (void)updateCache
+// ------------------------------------------------------
+{
+    [self setupColoringStyles];
+    [self setupExtensionAndSyntaxTable];
+}
+
 
 // ------------------------------------------------------
 /// バンドルされているシンタックスカラーリングスタイルファイル名配列を返す
@@ -594,7 +600,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
         }
     }
-    [self setXtsnAndStyleTable:table];
+    [self setExtensionToStyleTable:table];
     [self setExtensionErrors:errorDict];
     [self setExtensions:extensions];
 }
