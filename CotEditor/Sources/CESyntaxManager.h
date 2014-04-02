@@ -42,11 +42,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSString *editedNewStyleName;  // 編集された新しいスタイル名
 
 // readonly
-@property (nonatomic, readonly) NSString *selectedStyleName;  // 編集対象となっているスタイル名
-@property (nonatomic, readonly) NSDictionary *xtsnAndStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic, readonly) NSDictionary *extensionErrors;  // 拡張子重複エラー辞書
-@property (nonatomic, readonly) NSArray *extensions;  // 拡張子配列
-@property (nonatomic, readonly) NSWindow *editWindow;  // カラーシンタックス編集シート用ウィンドウ
+
+/// 拡張子重複エラー辞書
+@property (nonatomic, readonly) NSDictionary *extensionErrors;
+
+/// カラーシンタックス編集シート用ウィンドウ
+@property (nonatomic, readonly) NSWindow *editWindow;
 
 
 // class method
@@ -56,10 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode;
 - (NSString *)syntaxNameFromExtension:(NSString *)extension;
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
-- (NSArray *)defaultSyntaxFileNames;
-- (NSArray *)defaultSyntaxFileNamesWithoutPrefix;
 - (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;
-- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName;
 - (NSArray *)styleNames;
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
 - (BOOL)importStyleFile:(NSString *)styleFileName;

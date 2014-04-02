@@ -49,11 +49,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) IBOutlet NSArrayController *styleController;
 
+@property (nonatomic) NSString *selectedStyleName;   // 編集対象となっているスタイル名
+@property (nonatomic) NSDictionary *xtsnAndStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic) NSArray *extensions;  // 拡張子配列
+
 // readonly
-@property (nonatomic, readwrite) NSString *selectedStyleName;
-@property (nonatomic, readwrite) NSDictionary *xtsnAndStyleTable;
 @property (nonatomic, readwrite) NSDictionary *extensionErrors;
-@property (nonatomic, readwrite) NSArray *extensions;
 
 @property (nonatomic, readwrite) IBOutlet NSWindow *editWindow;
 
@@ -105,8 +106,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super init];
     if (self) {
         (void)[NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
-        [self setSelectedStyleName:[NSString string]];
-        [self setEditedNewStyleName:[NSString string]];
         [self setupColoringStyleArray];
         [self setupExtensionAndSyntaxTable];
     }
@@ -204,47 +203,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// バンドルされているシンタックスカラーリングスタイルファイル名配列を返す
-- (NSArray *)defaultSyntaxFileNames
-// ------------------------------------------------------
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
-    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:sourceDirURL
-                                          includingPropertiesForKeys:nil
-                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants
-                                                        errorHandler:nil];
-    NSMutableArray *fileNames = [NSMutableArray array];
-    NSURL *URL;
-    
-    while (URL = [enumerator nextObject]) {
-        if ([[URL lastPathComponent] hasPrefix:k_bundleSyntaxStyleFilePrefix] &&
-            [[URL pathExtension] isEqualToString:@"plist"])
-        {
-            [fileNames addObject:[URL lastPathComponent]];
-        }
-    }
-    return fileNames;
-}
-
-
-// ------------------------------------------------------
-/// バンドルされているシンタックスカラーリングスタイルファイル名のプレフィックスを除いた配列を返す
-- (NSArray *)defaultSyntaxFileNamesWithoutPrefix
-// ------------------------------------------------------
-{
-    NSArray *fileNames = [self defaultSyntaxFileNames];
-    NSMutableArray *fileNamesWithoutPrefix = [NSMutableArray array];
-    NSUInteger prefixLength = [k_bundleSyntaxStyleFilePrefix length];
-    
-    for (NSString *fileName in fileNames) {
-        [fileNamesWithoutPrefix addObject:[fileName substringFromIndex:prefixLength]];
-    }
-    return fileNamesWithoutPrefix;
-}
-
-
-// ------------------------------------------------------
 /// あるスタイルネームがデフォルトで用意されているものかどうかを返す
 - (BOOL)isDefaultSyntaxStyle:(NSString *)styleName
 // ------------------------------------------------------
@@ -254,35 +212,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *names = [self defaultSyntaxFileNamesWithoutPrefix];
     
     return [names containsObject:[styleName stringByAppendingPathExtension:@"plist"]];
-}
-
-
-// ------------------------------------------------------
-/// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
-- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName
-// ------------------------------------------------------
-{
-    if ([styleName isEqualToString:@""]) { return NO; }
-    
-    NSURL *destURL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-    NSURL *sourceDirURL =[[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
-    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", k_bundleSyntaxStyleFilePrefix, styleName]] URLByAppendingPathExtension:@"plist"];
-    
-    if (![sourceDirURL checkResourceIsReachableAndReturnError:nil] ||
-        ![destURL checkResourceIsReachableAndReturnError:nil])
-    {
-        return NO;
-    }
-
-    // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
-    // ため、同じではない。ファイル同士を比較する。2008.05.06.
-    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
-    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
-
-    return [sourcePList isEqualToDictionary:destPList];
-
-// NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
-//    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
 }
 
 
@@ -511,6 +440,76 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// バンドルされているシンタックスカラーリングスタイルファイル名配列を返す
+- (NSArray *)defaultSyntaxFileNames
+// ------------------------------------------------------
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:sourceDirURL
+                                          includingPropertiesForKeys:nil
+                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants
+                                                        errorHandler:nil];
+    NSMutableArray *fileNames = [NSMutableArray array];
+    NSURL *URL;
+    
+    while (URL = [enumerator nextObject]) {
+        if ([[URL lastPathComponent] hasPrefix:k_bundleSyntaxStyleFilePrefix] &&
+            [[URL pathExtension] isEqualToString:@"plist"])
+        {
+            [fileNames addObject:[URL lastPathComponent]];
+        }
+    }
+    return fileNames;
+}
+
+
+// ------------------------------------------------------
+/// バンドルされているシンタックスカラーリングスタイルファイル名のプレフィックスを除いた配列を返す
+- (NSArray *)defaultSyntaxFileNamesWithoutPrefix
+// ------------------------------------------------------
+{
+    NSArray *fileNames = [self defaultSyntaxFileNames];
+    NSMutableArray *fileNamesWithoutPrefix = [NSMutableArray array];
+    NSUInteger prefixLength = [k_bundleSyntaxStyleFilePrefix length];
+    
+    for (NSString *fileName in fileNames) {
+        [fileNamesWithoutPrefix addObject:[fileName substringFromIndex:prefixLength]];
+    }
+    return fileNamesWithoutPrefix;
+}
+
+
+// ------------------------------------------------------
+/// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
+- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName
+// ------------------------------------------------------
+{
+    if ([styleName isEqualToString:@""]) { return NO; }
+    
+    NSURL *destURL = [[[self URLOfStyleDirectory] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *sourceDirURL =[[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", k_bundleSyntaxStyleFilePrefix, styleName]] URLByAppendingPathExtension:@"plist"];
+    
+    if (![sourceDirURL checkResourceIsReachableAndReturnError:nil] ||
+        ![destURL checkResourceIsReachableAndReturnError:nil])
+    {
+        return NO;
+    }
+    
+    // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
+    // ため、同じではない。ファイル同士を比較する。2008.05.06.
+    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
+    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
+    
+    return [sourcePList isEqualToDictionary:destPList];
+    
+    // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
+    //    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
+}
+
 
 //------------------------------------------------------
 /// 空の新規styleを返す
