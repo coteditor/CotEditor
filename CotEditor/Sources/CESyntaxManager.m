@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) NSArray *coloringStyles;  // 全てのカラーリング定義
 
-@property (nonatomic) NSInteger sheetOpeningMode;
+@property (nonatomic) CESyntaxEditSheetMode sheetMode;
 @property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
 
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
@@ -123,29 +123,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// シートの表示に備え、シンタックスカラーリングスタイル定義配列のうちの一つを選択する（バインディングのため）
-- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode
+- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(CESyntaxEditSheetMode)mode
 // ------------------------------------------------------
 {
     NSArray *colorings;
     NSString *name;
     NSUInteger selected;
 
-    [self setSheetOpeningMode:mode];
+    [self setSheetMode:mode];
     switch (mode) {
-        case k_syntaxCopyTag: // Copy
+        case CECopySyntaxEdit:
             selected = styleIndex;
             colorings = [self coloringStyles];
             name = [self copiedSyntaxName:colorings[styleIndex][k_SCKey_styleName]];
             colorings[styleIndex][k_SCKey_styleName] = name;
             break;
             
-        case k_syntaxNewTag: // New
+        case CENewSyntaxEdit:
             selected = 0;
             colorings = @[[NSMutableDictionary dictionaryWithDictionary:[self emptyColoringStyle]]];
             name = @"";
             break;
-            
-        default: // Edit, Delete
+        
+        case CESyntaxEdit:
             selected = styleIndex;
             colorings = [self coloringStyles];
             name = colorings[styleIndex][k_SCKey_styleName];
@@ -384,7 +384,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self styleNameField] setStringValue:string];
 
     if ([sender tag] == k_okButtonTag) { // ok のときstyleを保存
-        if (([self sheetOpeningMode] == k_syntaxCopyTag) || ([self sheetOpeningMode] == k_syntaxNewTag)) {
+        if (([self sheetMode] == CECopySyntaxEdit) || ([self sheetMode] == CENewSyntaxEdit)) {
             if ([string length] < 1) { // ファイル名としても使われるので、空は不可
                 [[self messageField] setStringValue:NSLocalizedString(@"Input the Style Name !",@"")];
                 NSBeep();

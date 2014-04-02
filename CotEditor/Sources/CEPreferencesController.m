@@ -394,7 +394,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
-    if (([sender tag] != k_syntaxNewTag) && (selected < 0)) { return; }
+    if (([sender tag] != CENewSyntaxEdit) && (selected < 0)) { return; }
 
     if (![[CESyntaxManager sharedManager] setSelectionIndexOfStyle:selected mode:[sender tag]]) {
         return;
@@ -463,13 +463,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)deleteSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2;
+    NSString *selectedStyleName = [[self syntaxStylesPopup] title];
 
-    if (![[CESyntaxManager sharedManager] setSelectionIndexOfStyle:selected mode:k_syntaxNoSheetTag]) {
-        return;
-    }
+    if (![[CESyntaxManager sharedManager] URLOfStyle:selectedStyleName]) { return; }
+    
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\" ?", nil),
-                         [[self syntaxStylesPopup] title]];
+                         selectedStyleName];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil)
@@ -1044,8 +1043,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     
-    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:
-          [_syntaxStylesPopup title]]) {
+    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:[[self syntaxStylesPopup] title]]) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[self window] makeKeyAndOrderFront:self];

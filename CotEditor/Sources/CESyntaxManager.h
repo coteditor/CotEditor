@@ -36,6 +36,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "RegexKitLite.h"
 
 
+typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
+    CESyntaxEdit     = 0,
+    CECopySyntaxEdit = -100,
+    CENewSyntaxEdit  = -200
+};
+
+
 @interface CESyntaxManager : NSObject <NSTableViewDelegate>
 
 @property (nonatomic) BOOL isOkButtonPressed;  // シートでOKボタンが押されたかどうか
@@ -54,7 +61,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 + (instancetype)sharedManager;
 
 // Public method
-- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode;
+- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(CESyntaxEditSheetMode)mode;
 
 - (NSString *)syntaxNameFromExtension:(NSString *)extension;
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
