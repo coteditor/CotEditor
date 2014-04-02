@@ -243,8 +243,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         // スマートインデント（改行直前の文字が特定の文字の場合はインデントレベルを1つ下げる）
         NSString *indentStartChars = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_smartIndentStartChars];
-        NSString *lastChar = [lineStr substringFromIndex:[lineStr length] - 1];
-        shouldIncreaseIndentLevel = ([indentStartChars rangeOfString:lastChar].location != NSNotFound);
+        NSCharacterSet *indentStartCharSet = [NSCharacterSet characterSetWithCharactersInString:indentStartChars];
+        unichar lastChar = [lineStr characterAtIndex:[lineStr length] - 1];
+        shouldIncreaseIndentLevel = [indentStartCharSet characterIsMember:lastChar];
 
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
         if ((indentRange.location != NSNotFound) &&
