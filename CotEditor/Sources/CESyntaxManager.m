@@ -106,7 +106,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        (void)[NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
+        [NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
         [self updateCache];
     }
     return self;
@@ -126,40 +126,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(CESyntaxEditSheetMode)mode
 // ------------------------------------------------------
 {
-    NSArray *colorings;
+    NSMutableDictionary *coloring;
     NSString *name;
-    NSUInteger selected;
 
     [self setSheetMode:mode];
     switch (mode) {
         case CECopySyntaxEdit:
-            selected = styleIndex;
-            colorings = [self coloringStyles];
-            name = [self copiedSyntaxName:colorings[styleIndex][k_SCKey_styleName]];
-            colorings[styleIndex][k_SCKey_styleName] = name;
+            coloring = [self coloringStyles][styleIndex];
+            name = [self copiedSyntaxName:coloring[k_SCKey_styleName]];
+            coloring[k_SCKey_styleName] = name;
             break;
             
         case CENewSyntaxEdit:
-            selected = 0;
-            colorings = @[[NSMutableDictionary dictionaryWithDictionary:[self emptyColoringStyle]]];
+            coloring = [[self emptyColoringStyle] mutableCopy];
             name = @"";
             break;
         
         case CESyntaxEdit:
-            selected = styleIndex;
-            colorings = [self coloringStyles];
-            name = colorings[styleIndex][k_SCKey_styleName];
+            coloring = [self coloringStyles][styleIndex];
+            name = coloring[k_SCKey_styleName];
             break;
     }
     if (!name) { return NO; }
     
     [self setSelectedStyleName:name];
-    [[self styleController] setContent:colorings];
-
+    [[self styleController] setContent:@[coloring]];
+    
     // シートのコントロール類をセットアップ
     [self setupSyntaxSheetControlesForStyle:[self selectedStyleName]];
 
-    return ([[self styleController] setSelectionIndex:selected]);
+    return YES;
 }
 
 
@@ -197,8 +193,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
         }
     }
-    // デフォルトデータを返す
+    // 空のデータを返す
     return [self emptyColoringStyle];
+}
+
+
+// ------------------------------------------------------
+/// style名に応じたバンドル版のstyle辞書を返す
+- (NSURL *)URLOfBundledStyle:(NSString *)styleName
+// ------------------------------------------------------
+{
+    NSURL *URL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName]
+                  URLByAppendingPathExtension:@"plist"];
+    
+    if (![URL checkResourceIsReachableAndReturnError:nil]) { return nil; }
+    
+    return URL;
 }
 
 
@@ -348,20 +358,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)setToFactoryDefaults:(id)sender
 // ------------------------------------------------------
 {
-    if (![self isDefaultSyntaxStyle:[self selectedStyleName]]) { return; }
-    NSURL *sourceDirURL = [self bundledStyleDirectoryURL];
-    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[self selectedStyleName]]
-                        URLByAppendingPathExtension:@"plist"];
+    NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:
+                                  [self URLOfBundledStyle:[self selectedStyleName]]];
     
-    if (![sourceURL checkResourceIsReachableAndReturnError:nil]) { return; }
-    
-    NSArray *contents = @[[NSMutableDictionary dictionaryWithContentsOfURL:sourceURL]];
+    if (!style) { return; }
 
     // フォーカスを移しておく
     [[sender window] makeFirstResponder:[sender window]];
     // コントローラに内容をセット
-    [[self styleController] setContent:contents];
-    (void)[[self styleController] setSelectionIndex:0];
+    [[self styleController] setContent:@[style]];
+    [[self styleController] setSelectionIndex:0];
     // シートのコントロール類をセットアップ
     [self setupSyntaxSheetControlesForStyle:[self selectedStyleName]];
     // デフォルト設定に戻すボタンを無効化
@@ -376,23 +382,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // フォーカスを移して入力中の値を確定
     [[sender window] makeFirstResponder:sender];
+    
     // style名から先頭または末尾のスペース／タブ／改行を排除
-    NSMutableString *string = [[[[self styleNameField] stringValue] stringByTrimmingCharactersInSet:
-                                [NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
-    (void)[string replaceOccurrencesOfString:@"\n" withString:@"" options:0 range:NSMakeRange(0, [string length])];
-    (void)[string replaceOccurrencesOfString:@"\t" withString:@"" options:0 range:NSMakeRange(0, [string length])];
+    NSString *string = [[[self styleNameField] stringValue]
+                        stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     [[self styleNameField] setStringValue:string];
 
     if ([sender tag] == k_okButtonTag) { // ok のときstyleを保存
         if (([self sheetMode] == CECopySyntaxEdit) || ([self sheetMode] == CENewSyntaxEdit)) {
             if ([string length] < 1) { // ファイル名としても使われるので、空は不可
-                [[self messageField] setStringValue:NSLocalizedString(@"Input the Style Name !",@"")];
+                [[self messageField] setStringValue:NSLocalizedString(@"Input the Style Name !", nil)];
                 NSBeep();
                 [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
                 return;
             } else if ([self existsStyleFileWithStyleName:string]) { // 既にある名前は不可
                 [[self messageField] setStringValue:[NSString stringWithFormat:
-                            NSLocalizedString(@"\"%@\" is already exist. Input new name.",@""), string]];
+                            NSLocalizedString(@"\"%@\" is already exist. Input new name.", nil), string]];
                 NSBeep();
                 [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
                 return;
@@ -410,10 +416,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         [self setEditedNewStyleName:string];
         [self setIsOkButtonPressed:YES];
-        [self saveColoringStyle];
+        
+        // styleController内のコンテンツオブジェクト取得
+        NSArray *contents = [[self styleController] selectedObjects];
+        // styleデータ保存（選択中のオブジェクトはひとつだから、配列の最初の要素のみ処理する 2008.11.02）
+        NSMutableDictionary *style = [contents[0] mutableCopy];
+        
+        [self saveColoringStyle:style];
     }
-    // 内部で持っているキャッシュ用データを更新
-    [self updateCache];
+    
+    [self updateCache];  // 内部で持っているキャッシュ用データを更新
     [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
     [NSApp stopModal];
 }
@@ -608,13 +620,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// styleのファイルへの保存
-- (void)saveColoringStyle
+- (void)saveColoringStyle:(NSMutableDictionary *)style
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // データディレクトリパス取得
     NSString *styleName;
     NSURL *saveURL;
-    NSMutableDictionary *dict;
     NSArray *arraysArray = @[k_SCKey_allArrays];
     NSMutableArray *keyStrings;
     NSSortDescriptor *descriptorOne = [[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
@@ -624,15 +635,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                   ascending:YES
                                                                    selector:@selector(caseInsensitiveCompare:)];
     NSArray *descriptors = @[descriptorOne, descriptorTwo];
-
-    // styleController内のコンテンツオブジェクト取得
-    NSArray *contents = [[self styleController] selectedObjects];
-    // styleデータ保存（選択中のオブジェクトはひとつだから、配列の最初の要素のみ処理する 2008.11.02）
-    dict = [contents[0] mutableCopy];
     for (id key in arraysArray) {
-        keyStrings = dict[key];
+        keyStrings = style[key];
         [keyStrings sortUsingDescriptors:descriptors];
     }
+    
     styleName = [self editedNewStyleName];
     if ([styleName length] > 0) {
         saveURL = [[dirURL URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
@@ -640,7 +647,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (![styleName isEqualToString:[self selectedStyleName]]) {
             (void)[self removeStyleFileWithStyleName:[self selectedStyleName]];
         }
-        [dict writeToURL:saveURL atomically:YES];
+        [style writeToURL:saveURL atomically:YES];
     }
 }
 
@@ -782,92 +789,90 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSInteger)syntaxElementError
 // ------------------------------------------------------
 {
-    return [self syntaxElementCheck:[[self styleController] selectedObjects]];
+    NSDictionary *selectedStyle = [[self styleController] selectedObjects][0];
+    
+    return [self syntaxElementCheck:selectedStyle];
 }
 
 // ------------------------------------------------------
 /// 正規表現構文と重複のチェック実行をしてエラー数を返す
-- (NSInteger)syntaxElementCheck:(NSArray *)selectedArray
+- (NSInteger)syntaxElementCheck:(NSDictionary *)style
 // ------------------------------------------------------
 {
     NSMutableString *resultMessage = [NSMutableString string];
     NSInteger numberOfErrors = 0;
-
-    if ([selectedArray count] == 1) {
-        NSDictionary *dict = selectedArray[0];
-        NSArray *syntaxes = @[k_SCKey_syntaxCheckArrays];
-        NSArray *array;
-        NSString *beginStr, *endStr, *tmpBeginStr = nil, *tmpEndStr = nil;
-        NSString *arrayNameDeletingArray = nil;
-        NSInteger capCount;
-        NSError *error = nil;
-
-        for (NSString *arrayName in syntaxes) {
-            array = dict[arrayName];
-            arrayNameDeletingArray = [arrayName substringToIndex:([arrayName length] - 5)];
-
-            for (NSDictionary *dict in array) {
-                beginStr = dict[k_SCKey_beginString];
-                endStr = dict[k_SCKey_endString];
-
-                if ([tmpBeginStr isEqualToString:beginStr] &&
-                    ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
-
+    
+    NSArray *syntaxes = @[k_SCKey_syntaxCheckArrays];
+    NSArray *array;
+    NSString *beginStr, *endStr, *tmpBeginStr = nil, *tmpEndStr = nil;
+    NSString *arrayNameDeletingArray = nil;
+    NSInteger capCount;
+    NSError *error = nil;
+    
+    for (NSString *arrayName in syntaxes) {
+        array = style[arrayName];
+        arrayNameDeletingArray = [arrayName substringToIndex:([arrayName length] - 5)];
+        
+        for (NSDictionary *dict in array) {
+            beginStr = dict[k_SCKey_beginString];
+            endStr = dict[k_SCKey_endString];
+            
+            if ([tmpBeginStr isEqualToString:beginStr] &&
+                ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
+                
+                numberOfErrors++;
+                [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
+                 (long)numberOfErrors, arrayNameDeletingArray, beginStr];
+                
+            } else if ([dict[k_SCKey_regularExpression] boolValue]) {
+                capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
+                if (capCount == -1) { // エラーのとき
                     numberOfErrors++;
-                    [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
-                     (long)numberOfErrors, arrayNameDeletingArray, beginStr];
-
-                } else if ([dict[k_SCKey_regularExpression] boolValue]) {
-                    capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
+                    [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
+                     (long)numberOfErrors, arrayNameDeletingArray, beginStr,
+                     [error userInfo][RKLICURegexErrorNameErrorKey],
+                     [error userInfo][RKLICURegexOffsetErrorKey],
+                     [error userInfo][RKLICURegexPreContextErrorKey],
+                     [error userInfo][RKLICURegexPostContextErrorKey]];
+                }
+                if (endStr != nil) {
+                    capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
                     if (capCount == -1) { // エラーのとき
                         numberOfErrors++;
-                        [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n", 
-                                (long)numberOfErrors, arrayNameDeletingArray, beginStr,
-                                [error userInfo][RKLICURegexErrorNameErrorKey], 
-                                [error userInfo][RKLICURegexOffsetErrorKey], 
-                                [error userInfo][RKLICURegexPreContextErrorKey], 
-                                [error userInfo][RKLICURegexPostContextErrorKey]];
+                        [resultMessage appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
+                         (long)numberOfErrors, arrayNameDeletingArray, endStr,
+                         [error userInfo][RKLICURegexErrorNameErrorKey],
+                         [error userInfo][RKLICURegexOffsetErrorKey],
+                         [error userInfo][RKLICURegexPreContextErrorKey],
+                         [error userInfo][RKLICURegexPostContextErrorKey]];
                     }
-                    if (endStr != nil) {
-                        capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
-                        if (capCount == -1) { // エラーのとき
-                            numberOfErrors++;
-                            [resultMessage appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
-                                    (long)numberOfErrors, arrayNameDeletingArray, endStr, 
-                                    [error userInfo][RKLICURegexErrorNameErrorKey], 
-                                    [error userInfo][RKLICURegexOffsetErrorKey], 
-                                    [error userInfo][RKLICURegexPreContextErrorKey], 
-                                    [error userInfo][RKLICURegexPostContextErrorKey]];
-                        }
-                    }
-
-                // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
-                } else if ([arrayName isEqualToString:k_SCKey_outlineMenuArray]) {
-                    NS_DURING
-                        (void)[OGRegularExpression regularExpressionWithString:beginStr];
-                    NS_HANDLER
-                        // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                        numberOfErrors++;
-                        [resultMessage appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n", 
-                                (long)numberOfErrors, arrayNameDeletingArray, beginStr, [localException reason]];
-                    NS_ENDHANDLER
                 }
-                tmpBeginStr = beginStr;
-                tmpEndStr = endStr;
+                
+                // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
+            } else if ([arrayName isEqualToString:k_SCKey_outlineMenuArray]) {
+                NS_DURING
+                (void)[OGRegularExpression regularExpressionWithString:beginStr];
+                NS_HANDLER
+                // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
+                numberOfErrors++;
+                [resultMessage appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n",
+                 (long)numberOfErrors, arrayNameDeletingArray, beginStr, [localException reason]];
+                NS_ENDHANDLER
             }
+            tmpBeginStr = beginStr;
+            tmpEndStr = endStr;
         }
-        if (numberOfErrors == 0) {
-            [resultMessage setString:NSLocalizedString(@"No Error found.", nil)];
-        } else if (numberOfErrors == 1) {
-            [resultMessage insertString:NSLocalizedString(@"One Error was Found !\n\n", nil) atIndex:0];
-        } else {
-            [resultMessage insertString:
-                    [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n", nil), numberOfErrors]
-                    atIndex:0];
-        }
-    } else {
-        [resultMessage setString:NSLocalizedString(@"An Error occuerd in Checking.\nNumber of selected object is 2 or more in 'styleController'.", nil)];
     }
+    if (numberOfErrors == 0) {
+        [resultMessage setString:NSLocalizedString(@"No Error found.", nil)];
+    } else if (numberOfErrors == 1) {
+        [resultMessage insertString:NSLocalizedString(@"One Error was Found !\n\n", nil) atIndex:0];
+    } else {
+        [resultMessage insertString:
+         [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n", nil), numberOfErrors]
+                            atIndex:0];
+    }
+    
     [[self syntaxElementCheckTextView] setString:resultMessage];
 
     return numberOfErrors;

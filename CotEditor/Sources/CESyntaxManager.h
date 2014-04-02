@@ -70,6 +70,7 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
 - (BOOL)importStyleFile:(NSString *)styleFileName;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
+- (NSURL *)URLOfBundledStyle:(NSString *)styleName;
 - (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
 
