@@ -640,6 +640,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [keyStrings sortUsingDescriptors:descriptors];
     }
     
+    
+    NSMutableArray *emptyDicts = [NSMutableArray array];
+    for (NSDictionary *extensionDict in style[k_SCKey_extensions]) {
+        if (extensionDict[k_SCKey_arrayKeyString] == nil) {
+            [emptyDicts addObject:extensionDict];
+        }
+    }
+    [style[k_SCKey_extensions] removeObjectsInArray:emptyDicts];
+    
     styleName = [self editedNewStyleName];
     if ([styleName length] > 0) {
         saveURL = [[dirURL URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
