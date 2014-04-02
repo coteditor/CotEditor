@@ -231,10 +231,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_key_newStyleName       @"newStyleName"
 
 
-// Default bundle SyntaxStyle files name prefix
-#define k_bundleSyntaxStyleFilePrefix    @"defaultSyntaxStyle_"
-
-
 // Main Menu index and tag
 #define k_applicationMenuIndex  0
 #define k_fileMenuIndex     1

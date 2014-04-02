@@ -210,9 +210,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([styleName isEqualToString:@""]) { return NO; }
     
-    NSArray *names = [self bundledSyntaxFileNamesWithoutPrefix];
+    NSArray *fileNames = [self bundledSyntaxFileNames];
     
-    return [names containsObject:[styleName stringByAppendingPathExtension:@"plist"]];
+    return [fileNames containsObject:[styleName stringByAppendingPathExtension:@"plist"]];
 }
 
 
@@ -353,8 +353,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (![self isDefaultSyntaxStyle:[self selectedStyleName]]) { return; }
     NSURL *sourceDirURL = [self bundledStyleDirectoryURL];
-    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",
-                                                                   k_bundleSyntaxStyleFilePrefix, [self selectedStyleName]]]
+    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[self selectedStyleName]]
                         URLByAppendingPathExtension:@"plist"];
     
     if (![sourceURL checkResourceIsReachableAndReturnError:nil]) { return; }
@@ -448,7 +447,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    NSURL *sourceDirURL = [self bundledStyleDirectoryURL];
     NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:sourceDirURL
                                           includingPropertiesForKeys:nil
                                                              options:NSDirectoryEnumerationSkipsSubdirectoryDescendants
@@ -457,29 +456,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSURL *URL;
     
     while (URL = [enumerator nextObject]) {
-        if ([[URL lastPathComponent] hasPrefix:k_bundleSyntaxStyleFilePrefix] &&
-            [[URL pathExtension] isEqualToString:@"plist"])
-        {
+        if ([[URL pathExtension] isEqualToString:@"plist"]) {
             [fileNames addObject:[URL lastPathComponent]];
         }
     }
     return fileNames;
-}
-
-
-// ------------------------------------------------------
-/// バンドルされているシンタックスカラーリングスタイルファイル名のプレフィックスを除いた配列を返す
-- (NSArray *)bundledSyntaxFileNamesWithoutPrefix
-// ------------------------------------------------------
-{
-    NSArray *fileNames = [self bundledSyntaxFileNames];
-    NSMutableArray *fileNamesWithoutPrefix = [NSMutableArray array];
-    NSUInteger prefixLength = [k_bundleSyntaxStyleFilePrefix length];
-    
-    for (NSString *fileName in fileNames) {
-        [fileNamesWithoutPrefix addObject:[fileName substringFromIndex:prefixLength]];
-    }
-    return fileNamesWithoutPrefix;
 }
 
 
@@ -491,10 +472,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([styleName isEqualToString:@""]) { return NO; }
     
     NSURL *destURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-    NSURL *sourceDirURL =[[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
-    NSURL *sourceURL = [[sourceDirURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", k_bundleSyntaxStyleFilePrefix, styleName]] URLByAppendingPathExtension:@"plist"];
+    NSURL *sourceURL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
     
-    if (![sourceDirURL checkResourceIsReachableAndReturnError:nil] ||
+    if (![sourceURL checkResourceIsReachableAndReturnError:nil] ||
         ![destURL checkResourceIsReachableAndReturnError:nil])
     {
         return NO;
@@ -660,7 +640,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// Application Support内のstyleデータファイル保存用ディレクトリ
+/// Application Support内のstyleデータファイル保存ディレクトリ
 - (NSURL *)userStyleDirectoryURL
 //------------------------------------------------------
 {
@@ -678,7 +658,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSURL *)bundledStyleDirectoryURL
 //------------------------------------------------------
 {
-    return [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources"];
+    return [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/SyntaxColorings"];
 }
 
 
@@ -689,18 +669,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSURL *sourceDirURL = [self bundledStyleDirectoryURL];
     NSURL *sourceURL, *destURL;
-    NSArray *sourceNames = [self bundledSyntaxFileNames];
-    NSArray *destNames = [self bundledSyntaxFileNamesWithoutPrefix];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *fileNames = [self bundledSyntaxFileNames];
     BOOL success = NO;
     
-    for (NSUInteger i = 0; i < [sourceNames count]; i++) {
-        sourceURL = [sourceDirURL URLByAppendingPathComponent:sourceNames[i]];
-        destURL = [destDirURL URLByAppendingPathComponent:destNames[i]];
+    for (NSString *fileName in fileNames) {
+        sourceURL = [sourceDirURL URLByAppendingPathComponent:fileName];
+        destURL = [destDirURL URLByAppendingPathComponent:fileName];
         if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
             ![destURL checkResourceIsReachableAndReturnError:nil])
         {
-            success = [fileManager copyItemAtURL:sourceURL toURL:destURL error:nil];
+            success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:nil];
             if (!success) {
                 NSLog(@"Error. Could not copy \"%@\" to \"%@\"...", sourceURL, destURL);
             }
@@ -735,7 +713,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (copiedState) {
         copyName = [NSString stringWithFormat:@"%@%@",
                     [compareName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
-                    NSLocalizedString(@" copy",@"")];
+                    NSLocalizedString(@" copy", nil)];
     } else {
         copyName = [NSString stringWithFormat:@"%@%@", compareName, NSLocalizedString(@" copy", nil)];
     }
