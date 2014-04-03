@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEKeyBindingManager ()
 
-@property (nonatomic) IBOutlet NSWindow *menuEditSheet;
+@property (nonatomic, weak) IBOutlet NSWindow *menuEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしている
 @property (nonatomic, weak) IBOutlet NSOutlineView *menuOutlineView;
 @property (nonatomic, weak) IBOutlet  NSTextField *menuDuplicateTextField;
 @property (nonatomic, weak) IBOutlet NSButton *menuEditKeyButton;
@@ -45,7 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSButton *menuFactoryDefaultsButton;
 @property (nonatomic, weak) IBOutlet NSButton *menuOkButton;
 
-@property (nonatomic) IBOutlet NSWindow *textEditSheet;
+@property (nonatomic, weak) IBOutlet NSWindow *textEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしている
 @property (nonatomic, weak) IBOutlet NSOutlineView *textOutlineView;
 @property (nonatomic, weak) IBOutlet  NSTextField *textDuplicateTextField;
 @property (nonatomic, weak) IBOutlet NSButton *textEditKeyButton;
@@ -174,16 +174,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     switch (mode) {
         case CEMenuModeOutline:
+            // シートが呼び出されてから初めてnibを読み込む
+            // ref. https://github.com/coteditor/CotEditor/issues/53
             if (![self menuEditSheet]) {
-                // シートが呼び出されてから初めてnibを読み込む
-                [NSBundle loadNibNamed:@"MenuKeyBindingEditSheet" owner:self];
+                // loadNibNamed:owner:topLevelObjects は10.8から。
+                // loadNibNamed:owner:topLevelObjectsはトップレベルobjectを勝手にリテインしない
+                if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7) {
+                    [NSBundle loadNibNamed:@"MenuKeyBindingEditSheet" owner:self];
+                    
+                } else {
+                    NSArray *objects;
+                    [[NSBundle mainBundle] loadNibNamed:@"MenuKeyBindingEditSheet" owner:self
+                    topLevelObjects:&objects];
+                }
             }
             return [self menuEditSheet];
             
         case CETextModeOutline:
             if (![self textEditSheet]) {
                 // シートが呼び出されてから初めてnibを読み込む
-                [NSBundle loadNibNamed:@"TextKeyBindingEditSheet" owner:self];
+                // ref. https://github.com/coteditor/CotEditor/issues/53
+                if (![self textEditSheet]) {
+                    // loadNibNamed:owner:topLevelObjects は10.8から。
+                    // loadNibNamed:owner:topLevelObjectsはトップレベルobjectを勝手にリテインしない
+                    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_7) {
+                        [NSBundle loadNibNamed:@"TextKeyBindingEditSheet" owner:self];
+                        
+                    } else {
+                        NSArray *objects;
+                        [[NSBundle mainBundle] loadNibNamed:@"TextKeyBindingEditSheet" owner:self
+                                            topLevelObjects:&objects];
+                    }
+                }
             }
             return [self textEditSheet];
     }
