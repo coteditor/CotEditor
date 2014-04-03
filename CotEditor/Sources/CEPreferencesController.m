@@ -219,7 +219,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
 
-    if ([[[self window] contentView] subviews][0] == [self formatView]) {
+    if ([[[self window] contentView] subviews][0] == [self viewView]) {
         [defaults setObject:name forKey:k_key_fontName];
         [defaults setFloat:size forKey:k_key_fontSize];
         [self setFontFamilyNameAndSize];
@@ -417,7 +417,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSFont *font;
 
     
-    if ([[[self window] contentView] subviews][0] == [self formatView]) {
+    if ([[[self window] contentView] subviews][0] == [self viewView]) {
         font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
         
