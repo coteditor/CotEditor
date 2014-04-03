@@ -255,6 +255,8 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) {
         [[self smartQuoteCheckButton] setEnabled:NO];
         [[self smartQuoteCheckButton] setState:NSOffState];
+        [[self smartQuoteCheckButton] setTitle:[NSString stringWithFormat:@"%@%@", [[self smartQuoteCheckButton] title],
+                                                NSLocalizedString(@" (on Mavericks and later)", nil)]];
     }
 
     // 各種セットアップ

@@ -147,6 +147,8 @@ http://www.aynimac.com/
 "Key Bindings" = "キーバインド";
 "Print" = "プリント";
 
+" (on Mavericks and later)" = "（Mavericks以上）";
+
 // Pref Format tab
 // encoding menu alert sheet
 "Are you sure you want to change to \"%@\"?" = "本当に\"%@\"へ変更しますか？";
