@@ -257,25 +257,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Protocol
 
 //=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
-// ------------------------------------------------------
-{
-    // アプリケーションメニューにタイトルを設定（Nibで設定できないため）
-    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
-    if ((appName != nil) && ([appName length] > 0)) {
-        [[[NSApp mainMenu] itemAtIndex:k_applicationMenuIndex] setTitle:appName];
-    }
-}
-
-
-
-//=======================================================
 // NSOutlineViewDataSource Protocol(Category)
 //
 //=======================================================
