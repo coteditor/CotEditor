@@ -134,6 +134,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// Nibファイル読み込み直後
+- (void)awakeFromNib
+// ------------------------------------------------------
+{
+    // ダブルクリックでトグルに展開するようアクションを設定する
+    [[self menuOutlineView] setDoubleAction:@selector(doubleClickedOutlineViewRow:)];
+    [[self menuOutlineView] setTarget:self];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -153,9 +164,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setDefaultMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:URL]];
     }
 
-    // ダブルクリックでトグルに展開するようアクションを設定する
-    [[self menuOutlineView] setDoubleAction:@selector(doubleClickedOutlineViewRow:)];
-    [[self menuOutlineView] setTarget:self];
     [self setupKeyBindingDictionary];
     [self resetAllMenuKeyBindingWithDictionary];
 }
