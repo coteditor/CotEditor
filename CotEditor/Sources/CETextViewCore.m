@@ -589,10 +589,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setBackgroundColorWithAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    NSColor *theBackgroundColor = 
-            [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:k_key_backgroundColor]];
+    NSColor *backgroundColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]
+                                                                      valueForKey:k_key_backgroundColor]];
 
-    [self setBackgroundColor:[theBackgroundColor colorWithAlphaComponent:alpha]];
+    [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:alpha]];
+    
+    // 背景色に合わせたスクローラのスタイルをセット
+    CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
+    NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
+    [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
 }
 
 
