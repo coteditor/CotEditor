@@ -56,6 +56,7 @@
 		2A15833518E3B83F00601026 /* CEScriptErrorPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */; };
 		2A1CFD0D18E5B64F00A5B664 /* print.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1CFD0B18E5B64F00A5B664 /* print.strings */; };
 		2A3FB2A418EC473A00D9CB2C /* SyntaxColorings in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */; };
+		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; };
 		2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */; };
 		2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */; };
@@ -251,6 +252,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SyntaxColorings; sourceTree = "<group>"; };
+		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditSheetController.h; sourceTree = "<group>"; };
+		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineSpacingPanelController.h; sourceTree = "<group>"; };
 		2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineSpacingPanelController.m; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
 				8CC1961A07E2E54E00B54AE4 /* CEScriptManager.h */,
 				8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */,
+				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
+				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -940,6 +945,7 @@
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */,
 				8C4186C0088648CA0039FBFC /* CEColorCodePanelController.m in Sources */,
+				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxManager">
+        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxEditSheetController">
             <connections>
                 <outlet property="elementPopUpButton" destination="432" id="EJO-SJ-LT6"/>
                 <outlet property="factoryDefaultsButton" destination="670" id="Q4D-Bs-Kwo"/>

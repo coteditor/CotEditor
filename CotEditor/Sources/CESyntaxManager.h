@@ -36,31 +36,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "RegexKitLite.h"
 
 
-typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
-    CESyntaxEdit     = 0,
-    CECopySyntaxEdit = -100,
-    CENewSyntaxEdit  = -200
-};
-
-
 @interface CESyntaxManager : NSObject <NSTableViewDelegate>
 
-@property (nonatomic) NSString *editedNewStyleName;  // 編集された新しいスタイル名
-
 // readonly
-
 /// 拡張子重複エラー辞書
 @property (nonatomic, readonly) NSDictionary *extensionErrors;
-
-/// カラーシンタックス編集シート用ウィンドウ
-@property (nonatomic, readonly) NSWindow *window;
 
 
 // class method
 + (instancetype)sharedManager;
-
-// Public method
-- (BOOL)setupSheetForSytle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode;
 
 - (NSString *)syntaxNameFromExtension:(NSString *)extension;
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
@@ -76,7 +60,7 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 // private methods
 - (NSDictionary *)emptyColoringStyle;
 - (NSString *)copiedSyntaxName:(NSString *)originalName;
-- (void)saveColoringStyle:(NSMutableDictionary *)style;
+- (void)saveColoringStyle:(NSMutableDictionary *)style newName:(NSString *)newName oldName:(NSString *)oldName;
 - (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;
 - (NSArray *)validateSyntax:(NSDictionary *)style;
 

@@ -35,6 +35,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEAppController.h"
 #import "CESizeSampleWindowController.h"
 #import "CESyntaxExtensionErrorSheetController.h"
+#import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "constants.h"
 
@@ -397,13 +398,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (([sender tag] != CENewSyntaxEdit) && (selected < 0)) { return; }
     
     NSString *selectedName = [[self syntaxStylesPopup] titleOfSelectedItem];
-    if (![[CESyntaxManager sharedManager] setupSheetForSytle:selectedName mode:[sender tag]]) {
+    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:selectedName
+                                                                                                 mode:[sender tag]];
+    if (!sheetController) {
         return;
     }
 
     // シートウィンドウを表示してモーダルループに入る
     // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
-    NSWindow *sheet = [[CESyntaxManager sharedManager] window];
+    NSWindow *sheet = [sheetController window];
 
     [NSApp beginSheet:sheet
        modalForWindow:[self window]
@@ -415,15 +418,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // === 以下、シートを閉じる処理
     // OKボタンが押されていたとき（キャンセルでも、最初の状態に戻していいかもしれない (1/21)） ********
-    if ([[CESyntaxManager sharedManager] editedNewStyleName]) {
+    if ([sheetController editedNewStyleName]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
-        NSString *newName = [[CESyntaxManager sharedManager] editedNewStyleName];
+        NSString *newName = [sheetController editedNewStyleName];
         NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedName,
                                         k_key_newStyleName: newName};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
         
-        [[CESyntaxManager sharedManager] setEditedNewStyleName:nil];
+        [sheetController setEditedNewStyleName:nil];
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
         // 拡張子重複エラー表示ボタンの有効化を制御

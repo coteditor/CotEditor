@@ -41,23 +41,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic) NSArray *extensions;  // 拡張子配列
 
-@property (nonatomic) CESyntaxEditSheetMode sheetMode;
-@property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
-
-@property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
-@property (nonatomic, weak) IBOutlet NSTextField *messageField;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *elementPopUpButton;
-@property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
-@property (nonatomic, strong) IBOutlet NSTextView *syntaxElementCheckTextView;  // on 10.8 NSTextView cannot be weak
-
-@property (nonatomic) IBOutlet NSArrayController *styleController;
-
-@property (nonatomic) NSString *selectedStyleName;   // 編集対象となっているスタイル名
-
 // readonly
 @property (nonatomic, readwrite) NSDictionary *extensionErrors;
-
-@property (nonatomic, readwrite) IBOutlet NSWindow *window;
 
 @end
 
@@ -106,7 +91,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        [NSBundle loadNibNamed:@"SyntaxEditSheet" owner:self];
         [self updateCache];
     }
     return self;
@@ -120,44 +104,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Public method
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// シートの表示に備え準備をする
-- (BOOL)setupSheetForSytle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode
-// ------------------------------------------------------
-{
-    NSMutableDictionary *coloring;
-    NSString *name;
-
-    [self setSheetMode:mode];
-    switch (mode) {
-        case CECopySyntaxEdit:
-            coloring = [[self syntaxWithStyleName:styleName] mutableCopy];
-            name = [self copiedSyntaxName:coloring[k_SCKey_styleName]];
-            coloring[k_SCKey_styleName] = name;
-            break;
-            
-        case CENewSyntaxEdit:
-            coloring = [[self emptyColoringStyle] mutableCopy];
-            name = @"";
-            break;
-        
-        case CESyntaxEdit:
-            coloring = [[self syntaxWithStyleName:styleName] mutableCopy];
-            name = coloring[k_SCKey_styleName];
-            break;
-    }
-    if (!name) { return NO; }
-    
-    [self setSelectedStyleName:name];
-    [[self styleController] setContent:@[coloring]];
-    
-    // シートのコントロール類をセットアップ
-    [self setupSyntaxSheetControlesForStyle:name];
-
-    return YES;
-}
-
 
 // ------------------------------------------------------
 /// 拡張子に応じたstyle名を返す
@@ -316,130 +262,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     return ([[self extensionErrors] count] > 0);
 }
-
-
-
-#pragma mark Delegate and Notification
-
-//=======================================================
-// Delegate method (NSTableView)
-//  <== tableViews in edit sheet
-//=======================================================
-
-// ------------------------------------------------------
-/// tableView の選択が変更された
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    NSTableView *tableView = [notification object];
-    NSInteger row = [tableView selectedRow];
-
-    // 最下行が選択されたのなら、編集開始のメソッドを呼び出す
-    //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
-    if ((row + 1) == [tableView numberOfRows]) {
-        [tableView scrollRowToVisible:row];
-        [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:)
-                               withObject:tableView
-                            waitUntilDone:NO];
-    }
-}
-
-
-
-#pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// スタイルの内容を出荷時設定に戻す
-- (IBAction)setToFactoryDefaults:(id)sender
-// ------------------------------------------------------
-{
-    NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:
-                                  [self URLOfBundledStyle:[self selectedStyleName]]];
-    
-    if (!style) { return; }
-
-    // フォーカスを移しておく
-    [[sender window] makeFirstResponder:[sender window]];
-    // コントローラに内容をセット
-    [[self styleController] setContent:@[style]];
-    [[self styleController] setSelectionIndex:0];
-    // シートのコントロール類をセットアップ
-    [self setupSyntaxSheetControlesForStyle:[self selectedStyleName]];
-    // デフォルト設定に戻すボタンを無効化
-    [[self factoryDefaultsButton] setEnabled:NO];
-}
-
-
-// ------------------------------------------------------
-/// カラーシンタックス編集シートの OK / Cancel ボタンが押された
-- (IBAction)closeSyntaxEditSheet:(id)sender
-// ------------------------------------------------------
-{
-    // フォーカスを移して入力中の値を確定
-    [[sender window] makeFirstResponder:sender];
-    
-    // style名から先頭または末尾のスペース／タブ／改行を排除
-    NSString *string = [[[self styleNameField] stringValue]
-                        stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    [[self styleNameField] setStringValue:string];
-
-    if ([sender tag] == k_okButtonTag) { // ok のときstyleを保存
-        if (([self sheetMode] == CECopySyntaxEdit) || ([self sheetMode] == CENewSyntaxEdit)) {
-            if ([string length] < 1) { // ファイル名としても使われるので、空は不可
-                [[self messageField] setStringValue:NSLocalizedString(@"Input the Style Name !", nil)];
-                NSBeep();
-                [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
-                return;
-            } else if ([self existsStyleFileWithStyleName:string]) { // 既にある名前は不可
-                [[self messageField] setStringValue:[NSString stringWithFormat:
-                            NSLocalizedString(@"\"%@\" is already exist. Input new name.", nil), string]];
-                NSBeep();
-                [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
-                return;
-            }
-            // 入力されたstyle名をコントローラで選択されたものとして保持しておく（ファイル書き込み時の照合のため）
-            [self setSelectedStyleName:string];
-        }
-        // エラー未チェックかつエラーがあれば、表示（エラーを表示していてOKボタンを押下したら、そのまま確定）
-        if (([[[self syntaxElementCheckTextView] string] isEqualToString:@""]) && ([self validate] > 0)) {
-            // 「構文要素チェック」を選択
-            // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
-            NSBeep();
-            [[[self elementPopUpButton] menu] performActionForItemAtIndex:11];
-            return;
-        }
-        [self setEditedNewStyleName:string];
-        
-        // styleController内のコンテンツオブジェクト取得
-        NSArray *contents = [[self styleController] selectedObjects];
-        // styleデータ保存（選択中のオブジェクトはひとつだから、配列の最初の要素のみ処理する 2008.11.02）
-        NSMutableDictionary *style = [contents[0] mutableCopy];
-        
-        [self saveColoringStyle:style];
-    } else {
-        
-        [self setEditedNewStyleName:nil];
-    }
-    
-    [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
-    [NSApp stopModal];
-}
-
-
-// ------------------------------------------------------
-/// 構文チェックを開始
-- (IBAction)startSyntaxElementCheck:(id)sender
-// ------------------------------------------------------
-{
-    [self validate];
-}
-
 
 
 
@@ -621,11 +443,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// styleのファイルへの保存
-- (void)saveColoringStyle:(NSMutableDictionary *)style
+- (void)saveColoringStyle:(NSMutableDictionary *)style newName:(NSString *)newName oldName:(NSString *)oldName
 //------------------------------------------------------
 {
-    NSURL *dirURL = [self userStyleDirectoryURL]; // データディレクトリパス取得
-    NSString *styleName;
     NSURL *saveURL;
     NSArray *arraysArray = @[k_SCKey_allArrays];
     NSMutableArray *keyStrings;
@@ -650,12 +470,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     [style[k_SCKey_extensions] removeObjectsInArray:emptyDicts];
     
-    styleName = [self editedNewStyleName];
-    if ([styleName length] > 0) {
-        saveURL = [[dirURL URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    if ([newName length] > 0) {
+        saveURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:newName] URLByAppendingPathExtension:@"plist"];
         // style名が変更されたときは、古いファイルを削除する
-        if (![styleName isEqualToString:[self selectedStyleName]]) {
-            (void)[self removeStyleFileWithStyleName:[self selectedStyleName]];
+        if (![newName isEqualToString:oldName]) {
+            [self removeStyleFileWithStyleName:oldName];
         }
         [style writeToURL:saveURL atomically:YES];
     }
@@ -749,83 +568,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [copiedSyntaxName appendString:@".plist"];
     }
     return [copiedSyntaxName stringByDeletingPathExtension];
-}
-
-
-//------------------------------------------------------
-/// シートのコントロール類をセットアップ
-- (void)setupSyntaxSheetControlesForStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    BOOL isDefaultSyntax = [self isDefaultSyntaxStyle:styleName];
-
-    [[self styleNameField] setStringValue:styleName];
-    [[self styleNameField] setDrawsBackground:!isDefaultSyntax];
-    [[self styleNameField] setBezeled:!isDefaultSyntax];
-    [[self styleNameField] setSelectable:!isDefaultSyntax];
-    [[self styleNameField] setEditable:!isDefaultSyntax];
-
-    if (isDefaultSyntax) {
-        [[self styleNameField] setBordered:YES];
-        [[self messageField] setStringValue:NSLocalizedString(@"The default style name cannot be changed.", nil)];
-        [[self factoryDefaultsButton] setEnabled:![self isEqualToBundledSyntaxStyle:styleName]];
-    } else {
-        [[self messageField] setStringValue:@""];
-        [[self factoryDefaultsButton] setEnabled:NO];
-    }
-}
-
-
-//------------------------------------------------------
-/// 最下行が選択され、一番左のコラムが入力されていなければ自動的に編集を開始する
-- (void)editNewAddedRowOfTableView:(NSTableView *)tableView
-//------------------------------------------------------
-{
-    NSTableColumn *column = [tableView tableColumns][0];
-    NSInteger row = [tableView selectedRow];
-    id cell = [column dataCellForRow:row];
-    if (cell == nil) { return; }
-    NSString *string = [cell stringValue];
-
-    if ([string isEqualToString:@""]) {
-        if ([[tableView window] makeFirstResponder:tableView]) {
-            [tableView editColumn:0 row:row withEvent:nil select:YES];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// 構文チェックを実行しその結果をテキストビューに挿入（戻り値はエラー数）
-- (NSInteger)validate
-// ------------------------------------------------------
-{
-    NSDictionary *selectedStyle = [[self styleController] selectedObjects][0];
-    
-    NSArray *errorMessages = [self validateSyntax:selectedStyle];
-    
-    NSMutableString *resultMessage = [NSMutableString string];
-    if ([errorMessages count] == 0) {
-        [resultMessage setString:NSLocalizedString(@"No Error found.", nil)];
-    
-    } else {
-        if ([errorMessages count] == 1) {
-            [resultMessage appendString:NSLocalizedString(@"One Error was Found!\n\n", nil)];
-        } else {
-            [resultMessage appendFormat:NSLocalizedString(@"%i Errors were Found!\n\n", nil), [errorMessages count]];
-        }
-        
-        NSUInteger lineCount = 1;
-        for (NSString *message in errorMessages) {
-            [resultMessage appendFormat:@"%li.  %@\n\n", (long)lineCount, message];
-            lineCount++;
-        }
-    }
-    
-    [[self syntaxElementCheckTextView] setString:resultMessage];
-    
-    
-    return [errorMessages count];
 }
 
 
