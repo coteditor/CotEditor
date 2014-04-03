@@ -418,15 +418,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // === 以下、シートを閉じる処理
     // OKボタンが押されていたとき（キャンセルでも、最初の状態に戻していいかもしれない (1/21)） ********
-    if ([sheetController editedNewStyleName]) {
+    if ([sheetController savedNewStyleName]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
-        NSString *newName = [sheetController editedNewStyleName];
+        NSString *newName = [sheetController savedNewStyleName];
         NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedName,
                                         k_key_newStyleName: newName};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
         
-        [sheetController setEditedNewStyleName:nil];
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
         // 拡張子重複エラー表示ボタンの有効化を制御
@@ -435,7 +434,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // シートを閉じる
     [NSApp endSheet:sheet];
-    [sheet orderOut:self];
+    [sheetController close];
     [[self window] makeKeyAndOrderFront:self];
 }
 
@@ -470,7 +469,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (![[CESyntaxManager sharedManager] URLOfStyle:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\" ?", nil),
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil),
                          selectedStyleName];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
@@ -516,7 +515,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             alert = [NSAlert alertWithMessageText:message
                                     defaultButton:NSLocalizedString(@"Cancel", nil)
                                   alternateButton:NSLocalizedString(@"Replace", nil) otherButton:nil
-                        informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.", nil)];
+                        informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it?\nReplaced style cannot be restored.", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
             [alert beginSheetModalForWindow:[self window] modalDelegate:self
@@ -998,7 +997,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         extension = @"";
     }
 
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting ?\n \"%@\"", nil), extension];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting?\n \"%@\"", nil), extension];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil) otherButton:nil

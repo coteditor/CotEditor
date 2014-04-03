@@ -172,6 +172,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
+- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName
+// ------------------------------------------------------
+{
+    if ([styleName isEqualToString:@""]) { return NO; }
+    
+    NSURL *destURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *sourceURL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    
+    if (![sourceURL checkResourceIsReachableAndReturnError:nil] ||
+        ![destURL checkResourceIsReachableAndReturnError:nil])
+    {
+        return NO;
+    }
+    
+    // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
+    // ため、同じではない。ファイル同士を比較する。2008.05.06.
+    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
+    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
+    
+    return [sourcePList isEqualToDictionary:destPList];
+    
+    // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
+    //    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
+}
+
+
+// ------------------------------------------------------
 /// スタイル名配列を返す
 - (NSArray *)styleNames
 // ------------------------------------------------------
@@ -264,6 +292,178 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+//------------------------------------------------------
+/// コピーされたstyle名を返す
+- (NSString *)copiedSyntaxName:(NSString *)originalName
+//------------------------------------------------------
+{
+    NSURL *URL = [self userStyleDirectoryURL];
+    NSString *compareName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *copyName;
+    NSMutableString *copiedSyntaxName = [NSMutableString string];
+    NSRange copiedStrRange;
+    BOOL copiedState = NO;
+    NSInteger i = 1;
+    
+    copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy$", nil)];
+    if (copiedStrRange.location != NSNotFound) {
+        copiedState = YES;
+    } else {
+        copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy [0-9]+$", nil)];
+        if (copiedStrRange.location != NSNotFound) {
+            copiedState = YES;
+        }
+    }
+    if (copiedState) {
+        copyName = [NSString stringWithFormat:@"%@%@",
+                    [compareName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
+                    NSLocalizedString(@" copy", nil)];
+    } else {
+        copyName = [NSString stringWithFormat:@"%@%@", compareName, NSLocalizedString(@" copy", nil)];
+    }
+    [copiedSyntaxName appendFormat:@"%@.plist", copyName];
+    while ([[URL URLByAppendingPathExtension:copiedSyntaxName] checkResourceIsReachableAndReturnError:nil]) {
+        i++;
+        [copiedSyntaxName setString:[NSString stringWithFormat:@"%@ %li", copyName, (long)i]];
+        [copiedSyntaxName appendString:@".plist"];
+    }
+    return [copiedSyntaxName stringByDeletingPathExtension];
+}
+
+
+//------------------------------------------------------
+/// styleのファイルへの保存
+- (void)saveColoringStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName
+//------------------------------------------------------
+{
+    NSURL *saveURL;
+    NSArray *arraysArray = @[k_SCKey_allArrays];
+    NSMutableArray *keyStrings;
+    NSSortDescriptor *descriptorOne = [[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
+                                                                  ascending:YES
+                                                                   selector:@selector(caseInsensitiveCompare:)];
+    NSSortDescriptor *descriptorTwo = [[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString
+                                                                  ascending:YES
+                                                                   selector:@selector(caseInsensitiveCompare:)];
+    NSArray *descriptors = @[descriptorOne, descriptorTwo];
+    for (id key in arraysArray) {
+        keyStrings = style[key];
+        [keyStrings sortUsingDescriptors:descriptors];
+    }
+    
+    
+    NSMutableArray *emptyDicts = [NSMutableArray array];
+    for (NSDictionary *extensionDict in style[k_SCKey_extensions]) {
+        if (extensionDict[k_SCKey_arrayKeyString] == nil) {
+            [emptyDicts addObject:extensionDict];
+        }
+    }
+    [style[k_SCKey_extensions] removeObjectsInArray:emptyDicts];
+    
+    if ([name length] > 0) {
+        saveURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:name] URLByAppendingPathExtension:@"plist"];
+        // style名が変更されたときは、古いファイルを削除する
+        if (![name isEqualToString:oldName]) {
+            [self removeStyleFileWithStyleName:oldName];
+        }
+        [style writeToURL:saveURL atomically:YES];
+    }
+    
+    [self updateCache];  // 内部で持っているキャッシュ用データを更新
+}
+
+
+// ------------------------------------------------------
+/// 正規表現構文と重複のチェック実行をしてエラーメッセージのArrayを返す
+- (NSArray *)validateSyntax:(NSDictionary *)style
+// ------------------------------------------------------
+{
+    NSMutableArray *errorMessages = [NSMutableArray array];
+    
+    NSArray *syntaxes = @[k_SCKey_syntaxCheckArrays];
+    NSArray *array;
+    NSString *beginStr, *endStr, *tmpBeginStr = nil, *tmpEndStr = nil;
+    NSString *arrayNameDeletingArray = nil;
+    NSInteger capCount;
+    NSError *error = nil;
+    
+    for (NSString *arrayName in syntaxes) {
+        array = style[arrayName];
+        arrayNameDeletingArray = [arrayName substringToIndex:([arrayName length] - 5)];
+        
+        for (NSDictionary *dict in array) {
+            beginStr = dict[k_SCKey_beginString];
+            endStr = dict[k_SCKey_endString];
+            
+            if ([tmpBeginStr isEqualToString:beginStr] &&
+                ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
+                [errorMessages addObject:[NSString stringWithFormat:
+                                          @"%@ :(Begin string) > %@\n  >>> multiple registered.",
+                                          arrayNameDeletingArray, beginStr]];
+                
+            } else if ([dict[k_SCKey_regularExpression] boolValue]) {
+                capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
+                if (capCount == -1) { // エラーのとき
+                    [errorMessages addObject:[NSString stringWithFormat:
+                                              @"%@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
+                                              arrayNameDeletingArray, beginStr,
+                                              [error userInfo][RKLICURegexErrorNameErrorKey],
+                                              [error userInfo][RKLICURegexOffsetErrorKey],
+                                              [error userInfo][RKLICURegexPreContextErrorKey],
+                                              [error userInfo][RKLICURegexPostContextErrorKey]]];
+                }
+                if (endStr != nil) {
+                    capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
+                    if (capCount == -1) { // エラーのとき
+                        [errorMessages addObject:[NSString stringWithFormat:
+                                                  @"%@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
+                                                  arrayNameDeletingArray, endStr,
+                                                  [error userInfo][RKLICURegexErrorNameErrorKey],
+                                                  [error userInfo][RKLICURegexOffsetErrorKey],
+                                                  [error userInfo][RKLICURegexPreContextErrorKey],
+                                                  [error userInfo][RKLICURegexPostContextErrorKey]]];
+                    }
+                }
+                
+                // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
+            } else if ([arrayName isEqualToString:k_SCKey_outlineMenuArray]) {
+                NS_DURING
+                (void)[OGRegularExpression regularExpressionWithString:beginStr];
+                NS_HANDLER
+                // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
+                [errorMessages addObject:[NSString stringWithFormat:
+                                          @"%@ :(RE string) > %@\n  >>> %@",
+                                          arrayNameDeletingArray, beginStr, [localException reason]]];
+                NS_ENDHANDLER
+            }
+            tmpBeginStr = beginStr;
+            tmpEndStr = endStr;
+        }
+    }
+    
+    return errorMessages;
+}
+
+
+//------------------------------------------------------
+/// 空の新規styleを返す
+- (NSDictionary *)emptyColoringStyle
+//------------------------------------------------------
+{
+    return @{k_SCKey_styleName: [NSMutableString string],
+             k_SCKey_extensions: [NSMutableArray array],
+             k_SCKey_keywordsArray: [NSMutableArray array],
+             k_SCKey_commandsArray: [NSMutableArray array],
+             k_SCKey_valuesArray: [NSMutableArray array],
+             k_SCKey_numbersArray: [NSMutableArray array],
+             k_SCKey_stringsArray: [NSMutableArray array],
+             k_SCKey_charactersArray: [NSMutableArray array],
+             k_SCKey_commentsArray: [NSMutableArray array],
+             k_SCKey_outlineMenuArray: [NSMutableArray array],
+             k_SCKey_completionsArray: [NSMutableArray array]};
+}
+
+
 
 #pragma mark Private Mthods
 
@@ -302,53 +502,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     return fileNames;
-}
-
-
-// ------------------------------------------------------
-/// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
-- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName
-// ------------------------------------------------------
-{
-    if ([styleName isEqualToString:@""]) { return NO; }
-    
-    NSURL *destURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-    NSURL *sourceURL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-    
-    if (![sourceURL checkResourceIsReachableAndReturnError:nil] ||
-        ![destURL checkResourceIsReachableAndReturnError:nil])
-    {
-        return NO;
-    }
-    
-    // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
-    // ため、同じではない。ファイル同士を比較する。2008.05.06.
-    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
-    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
-    
-    return [sourcePList isEqualToDictionary:destPList];
-    
-    // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
-    //    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
-}
-
-
-//------------------------------------------------------
-/// 空の新規styleを返す
-- (NSDictionary *)emptyColoringStyle
-//------------------------------------------------------
-{
-    return @{k_SCKey_styleName: [NSMutableString string],
-             k_SCKey_extensions: [NSMutableArray array], 
-             k_SCKey_keywordsArray: [NSMutableArray array], 
-             k_SCKey_commandsArray: [NSMutableArray array], 
-             k_SCKey_valuesArray: [NSMutableArray array], 
-             k_SCKey_numbersArray: [NSMutableArray array], 
-             k_SCKey_stringsArray: [NSMutableArray array], 
-             k_SCKey_charactersArray: [NSMutableArray array], 
-             k_SCKey_commentsArray: [NSMutableArray array], 
-             k_SCKey_outlineMenuArray: [NSMutableArray array], 
-             k_SCKey_completionsArray: [NSMutableArray array]};
 }
 
 
@@ -442,48 +595,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// styleのファイルへの保存
-- (void)saveColoringStyle:(NSMutableDictionary *)style newName:(NSString *)newName oldName:(NSString *)oldName
-//------------------------------------------------------
-{
-    NSURL *saveURL;
-    NSArray *arraysArray = @[k_SCKey_allArrays];
-    NSMutableArray *keyStrings;
-    NSSortDescriptor *descriptorOne = [[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
-                                                                  ascending:YES
-                                                                   selector:@selector(caseInsensitiveCompare:)];
-    NSSortDescriptor *descriptorTwo = [[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString
-                                                                  ascending:YES
-                                                                   selector:@selector(caseInsensitiveCompare:)];
-    NSArray *descriptors = @[descriptorOne, descriptorTwo];
-    for (id key in arraysArray) {
-        keyStrings = style[key];
-        [keyStrings sortUsingDescriptors:descriptors];
-    }
-    
-    
-    NSMutableArray *emptyDicts = [NSMutableArray array];
-    for (NSDictionary *extensionDict in style[k_SCKey_extensions]) {
-        if (extensionDict[k_SCKey_arrayKeyString] == nil) {
-            [emptyDicts addObject:extensionDict];
-        }
-    }
-    [style[k_SCKey_extensions] removeObjectsInArray:emptyDicts];
-    
-    if ([newName length] > 0) {
-        saveURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:newName] URLByAppendingPathExtension:@"plist"];
-        // style名が変更されたときは、古いファイルを削除する
-        if (![newName isEqualToString:oldName]) {
-            [self removeStyleFileWithStyleName:oldName];
-        }
-        [style writeToURL:saveURL atomically:YES];
-    }
-    
-    [self updateCache];  // 内部で持っているキャッシュ用データを更新
-}
-
-
-//------------------------------------------------------
 /// Application Support内のstyleデータファイル保存ディレクトリ
 - (NSURL *)userStyleDirectoryURL
 //------------------------------------------------------
@@ -529,117 +640,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     return success;
-}
-
-
-//------------------------------------------------------
-/// コピーされたstyle名を返す
-- (NSString *)copiedSyntaxName:(NSString *)originalName
-//------------------------------------------------------
-{
-    NSURL *URL = [self userStyleDirectoryURL];
-    NSString *compareName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *copyName;
-    NSMutableString *copiedSyntaxName = [NSMutableString string];
-    NSRange copiedStrRange;
-    BOOL copiedState = NO;
-    NSInteger i = 1;
-
-    copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy$", nil)];
-    if (copiedStrRange.location != NSNotFound) {
-        copiedState = YES;
-    } else {
-        copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy [0-9]+$", nil)];
-        if (copiedStrRange.location != NSNotFound) {
-            copiedState = YES;
-        }
-    }
-    if (copiedState) {
-        copyName = [NSString stringWithFormat:@"%@%@",
-                    [compareName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
-                    NSLocalizedString(@" copy", nil)];
-    } else {
-        copyName = [NSString stringWithFormat:@"%@%@", compareName, NSLocalizedString(@" copy", nil)];
-    }
-    [copiedSyntaxName appendFormat:@"%@.plist", copyName];
-    while ([[URL URLByAppendingPathExtension:copiedSyntaxName] checkResourceIsReachableAndReturnError:nil]) {
-        i++;
-        [copiedSyntaxName setString:[NSString stringWithFormat:@"%@ %li", copyName, (long)i]];
-        [copiedSyntaxName appendString:@".plist"];
-    }
-    return [copiedSyntaxName stringByDeletingPathExtension];
-}
-
-
-// ------------------------------------------------------
-/// 正規表現構文と重複のチェック実行をしてエラーメッセージのArrayを返す
-- (NSArray *)validateSyntax:(NSDictionary *)style
-// ------------------------------------------------------
-{
-    NSMutableArray *errorMessages = [NSMutableArray array];
-    
-    NSArray *syntaxes = @[k_SCKey_syntaxCheckArrays];
-    NSArray *array;
-    NSString *beginStr, *endStr, *tmpBeginStr = nil, *tmpEndStr = nil;
-    NSString *arrayNameDeletingArray = nil;
-    NSInteger capCount;
-    NSError *error = nil;
-    
-    for (NSString *arrayName in syntaxes) {
-        array = style[arrayName];
-        arrayNameDeletingArray = [arrayName substringToIndex:([arrayName length] - 5)];
-        
-        for (NSDictionary *dict in array) {
-            beginStr = dict[k_SCKey_beginString];
-            endStr = dict[k_SCKey_endString];
-            
-            if ([tmpBeginStr isEqualToString:beginStr] &&
-                ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
-                [errorMessages addObject:[NSString stringWithFormat:
-                                          @"%@ :(Begin string) > %@\n  >>> multiple registered.",
-                                          arrayNameDeletingArray, beginStr]];
-                
-            } else if ([dict[k_SCKey_regularExpression] boolValue]) {
-                capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
-                if (capCount == -1) { // エラーのとき
-                    [errorMessages addObject:[NSString stringWithFormat:
-                                              @"%@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                              arrayNameDeletingArray, beginStr,
-                                              [error userInfo][RKLICURegexErrorNameErrorKey],
-                                              [error userInfo][RKLICURegexOffsetErrorKey],
-                                              [error userInfo][RKLICURegexPreContextErrorKey],
-                                              [error userInfo][RKLICURegexPostContextErrorKey]]];
-                }
-                if (endStr != nil) {
-                    capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
-                    if (capCount == -1) { // エラーのとき
-                        [errorMessages addObject:[NSString stringWithFormat:
-                                                  @"%@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
-                                                  arrayNameDeletingArray, endStr,
-                                                  [error userInfo][RKLICURegexErrorNameErrorKey],
-                                                  [error userInfo][RKLICURegexOffsetErrorKey],
-                                                  [error userInfo][RKLICURegexPreContextErrorKey],
-                                                  [error userInfo][RKLICURegexPostContextErrorKey]]];
-                    }
-                }
-                
-                // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
-            } else if ([arrayName isEqualToString:k_SCKey_outlineMenuArray]) {
-                NS_DURING
-                (void)[OGRegularExpression regularExpressionWithString:beginStr];
-                NS_HANDLER
-                // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                [errorMessages addObject:[NSString stringWithFormat:
-                                          @"%@ :(RE string) > %@\n  >>> %@",
-                                          arrayNameDeletingArray, beginStr, [localException reason]]];
-                NS_ENDHANDLER
-            }
-            tmpBeginStr = beginStr;
-            tmpEndStr = endStr;
-        }
-    }
-
-    return errorMessages;
 }
 
 @end

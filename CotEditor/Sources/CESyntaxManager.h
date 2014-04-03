@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "RegexKitLite.h"
 
 
-@interface CESyntaxManager : NSObject <NSTableViewDelegate>
+@interface CESyntaxManager : NSObject
 
 // readonly
 /// 拡張子重複エラー辞書
@@ -46,9 +46,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // class method
 + (instancetype)sharedManager;
 
+
+// public methods
 - (NSString *)syntaxNameFromExtension:(NSString *)extension;
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
-- (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;
+- (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;  // check only the name
+- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;  // check also the content
 - (NSArray *)styleNames;
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
 - (BOOL)importStyleFile:(NSString *)styleFileName;
@@ -56,12 +59,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSURL *)URLOfBundledStyle:(NSString *)styleName;
 - (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
-
-// private methods
-- (NSDictionary *)emptyColoringStyle;
 - (NSString *)copiedSyntaxName:(NSString *)originalName;
-- (void)saveColoringStyle:(NSMutableDictionary *)style newName:(NSString *)newName oldName:(NSString *)oldName;
-- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;
+- (void)saveColoringStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName;
 - (NSArray *)validateSyntax:(NSDictionary *)style;
+- (NSDictionary *)emptyColoringStyle;
 
 @end

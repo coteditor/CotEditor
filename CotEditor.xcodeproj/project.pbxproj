@@ -483,8 +483,6 @@
 				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
 				8CC1961A07E2E54E00B54AE4 /* CEScriptManager.h */,
 				8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */,
-				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
-				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -542,6 +540,8 @@
 				2A15832318E383C300601026 /* CESizeSampleWindowController.m */,
 				25AC0919077190EB00B0C91C /* CEPrefEncodingDataSource.h */,
 				25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */,
+				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
+				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
 				2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.h */,
 				2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */,
 				2A15831818E368CE00601026 /* CEEncodingListSheetController.h */,
