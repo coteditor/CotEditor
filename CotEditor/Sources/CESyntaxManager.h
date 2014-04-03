@@ -36,35 +36,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "RegexKitLite.h"
 
 
-@interface CESyntaxManager : NSObject <NSTableViewDelegate>
-
-@property (nonatomic) BOOL isOkButtonPressed;  // シートでOKボタンが押されたかどうか
-@property (nonatomic) NSString *editedNewStyleName;  // 編集された新しいスタイル名
+@interface CESyntaxManager : NSObject
 
 // readonly
-@property (nonatomic, readonly) NSString *selectedStyleName;  // 編集対象となっているスタイル名
-@property (nonatomic, readonly) NSDictionary *xtsnAndStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic, readonly) NSDictionary *extensionErrors;  // 拡張子重複エラー辞書
-@property (nonatomic, readonly) NSArray *extensions;  // 拡張子配列
-@property (nonatomic, readonly) NSWindow *editWindow;  // カラーシンタックス編集シート用ウィンドウ
+/// 拡張子重複エラー辞書
+@property (nonatomic, readonly) NSDictionary *extensionErrors;
 
 
 // class method
 + (instancetype)sharedManager;
 
-// Public method
-- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(NSInteger)mode;
+
+// public methods
 - (NSString *)syntaxNameFromExtension:(NSString *)extension;
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
-- (NSArray *)defaultSyntaxFileNames;
-- (NSArray *)defaultSyntaxFileNamesWithoutPrefix;
-- (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;
-- (BOOL)isEqualToDefaultSyntaxStyle:(NSString *)styleName;
+- (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;  // check only the name
+- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;  // check also the content
 - (NSArray *)styleNames;
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
 - (BOOL)importStyleFile:(NSString *)styleFileName;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
+- (NSURL *)URLOfBundledStyle:(NSString *)styleName;
 - (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
+- (NSString *)copiedSyntaxName:(NSString *)originalName;
+- (void)saveColoringStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName;
+- (NSArray *)validateSyntax:(NSDictionary *)style;
+- (NSDictionary *)emptyColoringStyle;
 
 @end

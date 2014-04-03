@@ -158,7 +158,7 @@ http://www.aynimac.com/
 // Syntax coloring popup button title
 "Choose style..." = "スタイルを選択...";
 // Syntax coloring style name was set to blank message
-"Input the Style Name !" = "スタイル名を入力してください！";
+"Input the Style Name!" = "スタイル名を入力してください！";
 // Syntax coloring style name already exists
 "\"%@\" is already exist. Input new name." = "\"%@\" は既に使われています。ほかの名前を入力してください。";
 // selected Syntax coloring style name was original
@@ -166,7 +166,7 @@ http://www.aynimac.com/
 // Suffix of copied syntax coloring style
 " copy" = " コピー";
 // Delete syntax coloring style alert message
-"Delete the Syntax coloring style \"%@\" ?" = "カラーリングスタイル \"%@\" を削除してもよろしいですか？";
+"Delete the Syntax coloring style \"%@\"?" = "カラーリングスタイル \"%@\" を削除してもよろしいですか？";
 // syntax coloring style alert button title
 "Cancel" = "キャンセル";
 "Delete" = "削除";
@@ -180,7 +180,7 @@ http://www.aynimac.com/
 // Importing same name style alert title
 "the \"%@\" style file already exists." = "スタイルファイル \"%@\" は既に存在しています。";
 // Importing same name style alert info
-"Do you want to replace it ?\nReplaced style cannot be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
+"Do you want to replace it?\nReplaced style cannot be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
 // Imported error
 "Error occured." = "エラーが起きました。";
 "Sorry, could not import \"%@\"." = "\"%@\" を読み込めませんでした。";
@@ -192,13 +192,13 @@ http://www.aynimac.com/
 // syntax element check result (no error)
 "No error found." = "エラーはありませんでした。";
 // syntax element check result (1 error found)
-"One Error was Found !\n\n" = "エラーがありました！\n\n";
+"One Error was Found!\n\n" = "エラーがありました！\n\n";
 // syntax element check result (2 or more errors found)
-"%i Errors were Found !\n\n" = "%i 個のエラーがありました！\n\n";
+"%i Errors were Found!\n\n" = "%i 個のエラーがありました！\n\n";
 // syntax element check failed
 "An Error occuerd in Checking.\nNumber of selected object is 2 or more in '_styleController'." = "チェック中にエラーが起きました。\n'_styleController' で選択されているオブジェクトが 2 個以上あります。";
 // File Drop setting delete
-"Delete the File Drop setting ?\n \"%@\"" = "ファイルドロップ設定 \"%@\" を削除してもよろしいですか？";
+"Delete the File Drop setting?\n \"%@\"" = "ファイルドロップ設定 \"%@\" を削除してもよろしいですか？";
 "Deleted setting cannot be restored." = "設定を削除すると元に戻せません。";
 
 /* CEWindowsController */

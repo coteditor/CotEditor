@@ -35,6 +35,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEAppController.h"
 #import "CESizeSampleWindowController.h"
 #import "CESyntaxExtensionErrorSheetController.h"
+#import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "constants.h"
 
@@ -468,16 +469,18 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 // ------------------------------------------------------
 {
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
-    if (([sender tag] != k_syntaxNewTag) && (selected < 0)) { return; }
-
-    if (![[CESyntaxManager sharedManager] setSelectionIndexOfStyle:selected mode:[sender tag]]) {
+    if (([sender tag] != CENewSyntaxEdit) && (selected < 0)) { return; }
+    
+    NSString *selectedName = [[self syntaxStylesPopup] titleOfSelectedItem];
+    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:selectedName
+                                                                                                 mode:[sender tag]];
+    if (!sheetController) {
         return;
     }
-    NSString *oldName = [[self syntaxStylesPopup] titleOfSelectedItem];
 
     // シートウィンドウを表示してモーダルループに入る
     // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
-    NSWindow *sheet = [[CESyntaxManager sharedManager] editWindow];
+    NSWindow *sheet = [sheetController window];
 
     [NSApp beginSheet:sheet
        modalForWindow:[self window]
@@ -489,15 +492,14 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
     // === 以下、シートを閉じる処理
     // OKボタンが押されていたとき（キャンセルでも、最初の状態に戻していいかもしれない (1/21)） ********
-    if ([[CESyntaxManager sharedManager] isOkButtonPressed]) {
+    if ([sheetController savedNewStyleName]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
-        NSString *newName = [[CESyntaxManager sharedManager] editedNewStyleName];
-        NSDictionary *styleNameDict = @{k_key_oldStyleName: oldName,
+        NSString *newName = [sheetController savedNewStyleName];
+        NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedName,
                                         k_key_newStyleName: newName};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
         
-        [[CESyntaxManager sharedManager] setEditedNewStyleName:@""];
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
         // 拡張子重複エラー表示ボタンの有効化を制御
@@ -506,7 +508,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     }
     // シートを閉じる
     [NSApp endSheet:sheet];
-    [sheet orderOut:self];
+    [sheetController close];
     [[self window] makeKeyAndOrderFront:self];
 }
 
@@ -537,13 +539,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)deleteSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2;
+    NSString *selectedStyleName = [[self syntaxStylesPopup] title];
 
-    if (![[CESyntaxManager sharedManager] setSelectionIndexOfStyle:selected mode:k_syntaxNoSheetTag]) {
-        return;
-    }
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\" ?", nil),
-                         [[self syntaxStylesPopup] title]];
+    if (![[CESyntaxManager sharedManager] URLOfStyle:selectedStyleName]) { return; }
+    
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil),
+                         selectedStyleName];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil)
@@ -588,7 +589,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
             alert = [NSAlert alertWithMessageText:message
                                     defaultButton:NSLocalizedString(@"Cancel", nil)
                                   alternateButton:NSLocalizedString(@"Replace", nil) otherButton:nil
-                        informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it ?\nReplaced style cannot be restored.", nil)];
+                        informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it?\nReplaced style cannot be restored.", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
             [alert beginSheetModalForWindow:[self window] modalDelegate:self
@@ -1072,7 +1073,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         extension = @"";
     }
 
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting ?\n \"%@\"", nil), extension];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting?\n \"%@\"", nil), extension];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil) otherButton:nil
@@ -1120,8 +1121,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         return;
     }
     
-    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:
-          [_syntaxStylesPopup title]]) {
+    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:[[self syntaxStylesPopup] title]]) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[self window] makeKeyAndOrderFront:self];

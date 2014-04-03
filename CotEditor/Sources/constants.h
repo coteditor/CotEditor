@@ -146,6 +146,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_runAppleScriptInLaunching     @"runAppleScriptInLaunching"
 #define k_key_showAlertForNotWritable       @"showAlertForNotWritable"
 #define k_key_notifyEditByAnother       @"notifyEditByAnother"
+#define k_key_smartIndentStartChars     @"smartIndentStartChars"
 
 
 // Localized Strings Table
@@ -228,10 +229,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 // edit argument dictionary's key
 #define k_key_oldStyleName       @"oldStyleName"
 #define k_key_newStyleName       @"newStyleName"
-
-
-// Default bundle SyntaxStyle files name prefix
-#define k_bundleSyntaxStyleFilePrefix    @"defaultSyntaxStyle_"
 
 
 // Main Menu index and tag
@@ -328,11 +325,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 
 // button
 #define k_okButtonTag       100
-#define k_syntaxCopyTag     -100
-#define k_syntaxNewTag      -200
-#define k_syntaxDeleteTag   -1000
-#define k_syntaxImportTag   -1001
-#define k_syntaxNoSheetTag  0
 
 // Encoding list edit
 #define k_dropMyselfPboardType  @"dropMyself"

@@ -231,6 +231,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSMutableString *input = [NSMutableString string];
+    BOOL shouldIncreaseIndentLevel = NO;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoIndent]) {
         NSRange selectedRange = [self selectedRange];
@@ -239,6 +240,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     NSMakeRange(lineRange.location,
                                 lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
         NSRange indentRange = [lineStr rangeOfRegularExpressionString:@"^[[:blank:]\t]+"];
+        
+        // スマートインデント（改行直前の文字が特定の文字の場合はインデントレベルを1つ下げる）
+        NSString *indentStartChars = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_smartIndentStartChars];
+        NSCharacterSet *indentStartCharSet = [NSCharacterSet characterSetWithCharactersInString:indentStartChars];
+        unichar lastChar = [lineStr characterAtIndex:[lineStr length] - 1];
+        shouldIncreaseIndentLevel = [indentStartCharSet characterIsMember:lastChar];
 
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
         if ((indentRange.location != NSNotFound) &&
@@ -249,6 +256,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super insertNewline:sender];
     if ([input length] > 0) {
         [super insertText:input];
+    }
+    
+    if (shouldIncreaseIndentLevel) {
+        [self insertTab:self];
     }
 }
 

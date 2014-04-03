@@ -5,20 +5,19 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxManager">
+        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxEditSheetController">
             <connections>
-                <outlet property="editWindow" destination="6" id="Sch-ms-W5c"/>
                 <outlet property="elementPopUpButton" destination="432" id="EJO-SJ-LT6"/>
                 <outlet property="factoryDefaultsButton" destination="670" id="Q4D-Bs-Kwo"/>
                 <outlet property="messageField" destination="265" id="CWe-kL-hZ7"/>
-                <outlet property="styleController" destination="32" id="6b9-wo-Tt7"/>
                 <outlet property="styleNameField" destination="215" id="vzT-U7-bfQ"/>
                 <outlet property="syntaxElementCheckTextView" destination="439" id="bSa-UR-G9y"/>
+                <outlet property="window" destination="6" id="AX6-RY-4FT"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="Syntax" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Edit Sheet">
+        <window title="Syntax" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Edit Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="33" y="401" width="500" height="400"/>
@@ -1551,7 +1550,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="startSyntaxElementCheck:" target="-2" id="562"/>
+                                                <action selector="startValidation:" target="-2" id="mqd-ag-YDI"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1695,7 +1694,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeSyntaxEditSheet:" target="-2" id="101"/>
+                            <action selector="saveEdit:" target="-2" id="v22-W3-bKM"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92">
@@ -1712,11 +1711,11 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeSyntaxEditSheet:" target="-2" id="100"/>
+                            <action selector="cancelEdit:" target="-2" id="VDz-ly-EWU"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="78" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="214">
-                        <rect key="frame" x="32" y="361" width="82" height="17"/>
+                        <rect key="frame" x="32" y="358" width="82" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="スタイル名：" id="987">
                             <font key="font" size="13" name="AquaKana"/>
@@ -1805,6 +1804,7 @@ Gw
                     <constraint firstItem="670" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="D0J-in-juQ"/>
                     <constraint firstItem="215" firstAttribute="leading" secondItem="214" secondAttribute="trailing" constant="8" symbolic="YES" id="LF7-g9-pIo"/>
                     <constraint firstAttribute="trailing" secondItem="91" secondAttribute="trailing" constant="20" symbolic="YES" id="QBI-uN-8ER"/>
+                    <constraint firstItem="215" firstAttribute="baseline" secondItem="214" secondAttribute="baseline" id="QyI-cA-xWd"/>
                     <constraint firstAttribute="trailing" secondItem="265" secondAttribute="trailing" constant="20" symbolic="YES" id="R3C-OD-dlg"/>
                     <constraint firstItem="432" firstAttribute="top" secondItem="393" secondAttribute="top" constant="-10" id="WpA-mC-5lN"/>
                     <constraint firstItem="265" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="2" id="ZSQ-qE-vcp"/>
@@ -1812,7 +1812,6 @@ Gw
                     <constraint firstItem="215" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="120" id="e5J-A9-Zdd"/>
                     <constraint firstAttribute="bottom" secondItem="91" secondAttribute="bottom" constant="20" symbolic="YES" id="kgh-UB-LHQ"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="91" secondAttribute="top" id="kum-2W-D5e"/>
-                    <constraint firstItem="214" firstAttribute="centerY" secondItem="215" secondAttribute="centerY" id="mFu-WN-RY3"/>
                     <constraint firstItem="265" firstAttribute="leading" secondItem="215" secondAttribute="leading" id="nNG-pM-hBV"/>
                     <constraint firstAttribute="bottom" secondItem="92" secondAttribute="bottom" constant="20" symbolic="YES" id="oba-hi-t3F"/>
                     <constraint firstItem="432" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="40" id="u1f-fg-0W0"/>
@@ -1821,6 +1820,9 @@ Gw
                     <constraint firstAttribute="trailing" secondItem="393" secondAttribute="trailing" constant="20" symbolic="YES" id="y25-Ba-jDy"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="MgF-nF-xzP"/>
+            </connections>
         </window>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="32" userLabel=" Style Controller">
             <declaredKeys>
@@ -1838,6 +1840,9 @@ Gw
                 <string>outlineMenuArray</string>
                 <string>completionsArray</string>
             </declaredKeys>
+            <connections>
+                <binding destination="-2" name="contentObject" keyPath="style" id="kaY-xm-8YH"/>
+            </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="35" userLabel="Keywords Controller">
             <declaredKeys>
