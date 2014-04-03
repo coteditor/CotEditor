@@ -112,8 +112,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        [NSBundle loadNibNamed:@"TextKeyBindingEditSheet" owner:self];
-        [NSBundle loadNibNamed:@"MenuKeyBindingEditSheet" owner:self];
         [self setNoPrintableKeyDict:[self noPrintableKeyDictionary]];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addCatchedMenuShortcutString:)
@@ -176,9 +174,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     switch (mode) {
         case CEMenuModeOutline:
+            if (![self menuEditSheet]) {
+                // シートが呼び出されてから初めてnibを読み込む
+                [NSBundle loadNibNamed:@"MenuKeyBindingEditSheet" owner:self];
+            }
             return [self menuEditSheet];
             
         case CETextModeOutline:
+            if (![self textEditSheet]) {
+                // シートが呼び出されてから初めてnibを読み込む
+                [NSBundle loadNibNamed:@"TextKeyBindingEditSheet" owner:self];
+            }
             return [self textEditSheet];
     }
     
@@ -561,9 +567,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                       userInfo:@{k_keyCatchMode: @k_keyDownNoCatch}];
 
     if ([sender tag] == k_okButtonTag) { // ok のときデータを保存、反映させる
-        if (([self outlineMode] == CEMenuModeOutline) || ([self outlineMode] == CETextModeOutline)) {
-            [self saveOutlineViewData];
-        }
+        [self saveOutlineViewData];
     }
     // シートを閉じる
     [NSApp stopModal];
