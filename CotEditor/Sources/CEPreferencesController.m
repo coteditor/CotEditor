@@ -394,17 +394,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
-    NSString *selectedName = [[self syntaxStylesPopup] titleOfSelectedItem];
-    
     if (([sender tag] != CENewSyntaxEdit) && (selected < 0)) { return; }
     
+    NSString *selectedName = [[self syntaxStylesPopup] titleOfSelectedItem];
     if (![[CESyntaxManager sharedManager] setupSheetForSytle:selectedName mode:[sender tag]]) {
         return;
     }
 
     // シートウィンドウを表示してモーダルループに入る
     // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
-    NSWindow *sheet = [[CESyntaxManager sharedManager] editWindow];
+    NSWindow *sheet = [[CESyntaxManager sharedManager] window];
 
     [NSApp beginSheet:sheet
        modalForWindow:[self window]
@@ -416,7 +415,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // === 以下、シートを閉じる処理
     // OKボタンが押されていたとき（キャンセルでも、最初の状態に戻していいかもしれない (1/21)） ********
-    if ([[CESyntaxManager sharedManager] isOkButtonPressed]) {
+    if ([[CESyntaxManager sharedManager] editedNewStyleName]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
         NSString *newName = [[CESyntaxManager sharedManager] editedNewStyleName];
         NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedName,
@@ -424,7 +423,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
         
-        [[CESyntaxManager sharedManager] setEditedNewStyleName:@""];
+        [[CESyntaxManager sharedManager] setEditedNewStyleName:nil];
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
         // 拡張子重複エラー表示ボタンの有効化を制御

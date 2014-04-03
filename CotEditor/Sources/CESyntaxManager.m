@@ -38,6 +38,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CESyntaxManager ()
 
 @property (nonatomic) NSArray *coloringStyles;  // 全てのカラーリング定義
+@property (nonatomic) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic) NSArray *extensions;  // 拡張子配列
 
 @property (nonatomic) CESyntaxEditSheetMode sheetMode;
 @property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
@@ -51,13 +53,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) IBOutlet NSArrayController *styleController;
 
 @property (nonatomic) NSString *selectedStyleName;   // 編集対象となっているスタイル名
-@property (nonatomic) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic) NSArray *extensions;  // 拡張子配列
 
 // readonly
 @property (nonatomic, readwrite) NSDictionary *extensionErrors;
 
-@property (nonatomic, readwrite) IBOutlet NSWindow *editWindow;
+@property (nonatomic, readwrite) IBOutlet NSWindow *window;
 
 @end
 
@@ -415,7 +415,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             return;
         }
         [self setEditedNewStyleName:string];
-        [self setIsOkButtonPressed:YES];
         
         // styleController内のコンテンツオブジェクト取得
         NSArray *contents = [[self styleController] selectedObjects];
@@ -423,6 +422,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSMutableDictionary *style = [contents[0] mutableCopy];
         
         [self saveColoringStyle:style];
+    } else {
+        
+        [self setEditedNewStyleName:nil];
     }
     
     [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
@@ -771,7 +773,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self messageField] setStringValue:@""];
         [[self factoryDefaultsButton] setEnabled:NO];
     }
-    [self setIsOkButtonPressed:NO];
 }
 
 

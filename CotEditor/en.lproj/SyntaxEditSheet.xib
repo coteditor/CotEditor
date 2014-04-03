@@ -7,13 +7,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxManager">
             <connections>
-                <outlet property="editWindow" destination="6" id="Sch-ms-W5c"/>
                 <outlet property="elementPopUpButton" destination="432" id="EJO-SJ-LT6"/>
                 <outlet property="factoryDefaultsButton" destination="670" id="Q4D-Bs-Kwo"/>
                 <outlet property="messageField" destination="265" id="CWe-kL-hZ7"/>
                 <outlet property="styleController" destination="32" id="6b9-wo-Tt7"/>
                 <outlet property="styleNameField" destination="215" id="vzT-U7-bfQ"/>
                 <outlet property="syntaxElementCheckTextView" destination="439" id="bSa-UR-G9y"/>
+                <outlet property="window" destination="6" id="91B-pH-jDW"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

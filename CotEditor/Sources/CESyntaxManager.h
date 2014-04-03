@@ -45,7 +45,6 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 
 @interface CESyntaxManager : NSObject <NSTableViewDelegate>
 
-@property (nonatomic) BOOL isOkButtonPressed;  // シートでOKボタンが押されたかどうか
 @property (nonatomic) NSString *editedNewStyleName;  // 編集された新しいスタイル名
 
 // readonly
@@ -54,7 +53,7 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 @property (nonatomic, readonly) NSDictionary *extensionErrors;
 
 /// カラーシンタックス編集シート用ウィンドウ
-@property (nonatomic, readonly) NSWindow *editWindow;
+@property (nonatomic, readonly) NSWindow *window;
 
 
 // class method
@@ -79,5 +78,6 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 - (NSString *)copiedSyntaxName:(NSString *)originalName;
 - (void)saveColoringStyle:(NSMutableDictionary *)style;
 - (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;
+- (NSArray *)validateSyntax:(NSDictionary *)style;
 
 @end
