@@ -231,10 +231,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_key_newStyleName       @"newStyleName"
 
 
-// Default bundle SyntaxStyle files name prefix
-#define k_bundleSyntaxStyleFilePrefix    @"defaultSyntaxStyle_"
-
-
 // Main Menu index and tag
 #define k_applicationMenuIndex  0
 #define k_fileMenuIndex     1
@@ -345,11 +341,6 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 
 // button
 #define k_okButtonTag       100
-#define k_syntaxCopyTag     -100
-#define k_syntaxNewTag      -200
-#define k_syntaxDeleteTag   -1000
-#define k_syntaxImportTag   -1001
-#define k_syntaxNoSheetTag  0
 
 // Encoding list edit
 #define k_dropMyselfPboardType  @"dropMyself"

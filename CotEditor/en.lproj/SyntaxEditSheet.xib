@@ -5,20 +5,19 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxManager">
+        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxEditSheetController">
             <connections>
-                <outlet property="editWindow" destination="6" id="Sch-ms-W5c"/>
                 <outlet property="elementPopUpButton" destination="432" id="EJO-SJ-LT6"/>
                 <outlet property="factoryDefaultsButton" destination="670" id="Q4D-Bs-Kwo"/>
                 <outlet property="messageField" destination="265" id="CWe-kL-hZ7"/>
-                <outlet property="styleController" destination="32" id="6b9-wo-Tt7"/>
                 <outlet property="styleNameField" destination="215" id="vzT-U7-bfQ"/>
                 <outlet property="syntaxElementCheckTextView" destination="439" id="bSa-UR-G9y"/>
+                <outlet property="window" destination="6" id="91B-pH-jDW"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="Syntax" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Edit Sheet">
+        <window title="Syntax" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Edit Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="33" y="401" width="500" height="400"/>
@@ -433,7 +432,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="413">
-                                            <rect key="frame" x="40" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="Hwj-Oh-rSP"/>
@@ -449,7 +448,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="459">
-                                            <rect key="frame" x="64" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="991">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -580,7 +579,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="394">
-                                            <rect key="frame" x="40" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="iyS-SJ-Fcb"/>
@@ -596,7 +595,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="390">
-                                            <rect key="frame" x="64" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="1003">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -628,7 +627,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="423">
-                                            <rect key="frame" x="40" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="EBY-cR-sfb"/>
@@ -644,7 +643,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="454">
-                                            <rect key="frame" x="64" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="1007">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -874,7 +873,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="440">
-                                            <rect key="frame" x="40" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="PJq-09-rfu"/>
@@ -890,7 +889,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="411">
-                                            <rect key="frame" x="64" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="999">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1021,7 +1020,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="427">
-                                            <rect key="frame" x="40" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="mju-zO-0Ds"/>
@@ -1037,7 +1036,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="417">
-                                            <rect key="frame" x="64" y="-5" width="25" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="1001">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1171,7 +1170,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="740">
-                                            <rect key="frame" x="8" y="26" width="309" height="14"/>
+                                            <rect key="frame" x="8" y="26" width="279" height="14"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Menu Title Pattern (blank matches the whole string)" id="1011">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -1523,10 +1522,10 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <size key="minSize" width="424" height="200"/>
-                                                        <size key="maxSize" width="424" height="10000000"/>
+                                                        <size key="maxSize" width="426" height="10000000"/>
                                                         <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <size key="minSize" width="424" height="200"/>
-                                                        <size key="maxSize" width="424" height="10000000"/>
+                                                        <size key="maxSize" width="426" height="10000000"/>
                                                     </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1551,7 +1550,7 @@
                                                 <font key="font" metaFont="smallSystem"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="startSyntaxElementCheck:" target="-2" id="562"/>
+                                                <action selector="startValidation:" target="-2" id="uue-mg-tHe"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1651,7 +1650,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="676">
-                                            <rect key="frame" x="78" y="228" width="78" height="14"/>
+                                            <rect key="frame" x="78" y="224" width="78" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="(without dots)" id="998">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -1695,7 +1694,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeSyntaxEditSheet:" target="-2" id="101"/>
+                            <action selector="saveEdit:" target="-2" id="rli-FP-Z2f"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92">
@@ -1712,11 +1711,11 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeSyntaxEditSheet:" target="-2" id="100"/>
+                            <action selector="cancelEdit:" target="-2" id="SXs-Rk-47h"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="74" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="214">
-                        <rect key="frame" x="36" y="361" width="78" height="17"/>
+                        <rect key="frame" x="36" y="360" width="78" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Style Name:" id="987">
                             <font key="font" metaFont="system"/>
@@ -1801,6 +1800,7 @@ Gw
                 <constraints>
                     <constraint firstItem="91" firstAttribute="leading" secondItem="92" secondAttribute="trailing" constant="12" symbolic="YES" id="0a9-gj-yVO"/>
                     <constraint firstItem="215" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" id="0ga-oA-Zxx"/>
+                    <constraint firstItem="215" firstAttribute="baseline" secondItem="214" secondAttribute="baseline" id="4DT-rX-0Vx"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="393" secondAttribute="bottom" constant="12" id="5sq-No-Prd"/>
                     <constraint firstItem="670" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="D0J-in-juQ"/>
                     <constraint firstItem="215" firstAttribute="leading" secondItem="214" secondAttribute="trailing" constant="8" symbolic="YES" id="LF7-g9-pIo"/>
@@ -1812,7 +1812,6 @@ Gw
                     <constraint firstItem="432" firstAttribute="top" secondItem="393" secondAttribute="top" constant="-10" id="fn4-co-GvH"/>
                     <constraint firstAttribute="bottom" secondItem="91" secondAttribute="bottom" constant="20" symbolic="YES" id="kgh-UB-LHQ"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="91" secondAttribute="top" id="kum-2W-D5e"/>
-                    <constraint firstItem="214" firstAttribute="centerY" secondItem="215" secondAttribute="centerY" id="mFu-WN-RY3"/>
                     <constraint firstItem="265" firstAttribute="leading" secondItem="215" secondAttribute="leading" id="nNG-pM-hBV"/>
                     <constraint firstAttribute="bottom" secondItem="92" secondAttribute="bottom" constant="20" symbolic="YES" id="oba-hi-t3F"/>
                     <constraint firstItem="432" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="40" id="u1f-fg-0W0"/>
@@ -1821,6 +1820,9 @@ Gw
                     <constraint firstAttribute="trailing" secondItem="393" secondAttribute="trailing" constant="20" symbolic="YES" id="y25-Ba-jDy"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="Cu2-Qj-No4"/>
+            </connections>
         </window>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="32" userLabel=" Style Controller">
             <declaredKeys>
@@ -1838,6 +1840,9 @@ Gw
                 <string>outlineMenuArray</string>
                 <string>completionsArray</string>
             </declaredKeys>
+            <connections>
+                <binding destination="-2" name="contentObject" keyPath="style" id="nXz-10-OOM"/>
+            </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="35" userLabel="Keywords Controller">
             <declaredKeys>
