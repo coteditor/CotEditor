@@ -77,7 +77,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     NSDictionary *defaults = @{k_key_showLineNumbers: @YES,
-                               k_key_showWrappedLineMark: @YES,
                                k_key_showStatusBar: @YES,
                                k_key_countLineEndingAsChar: @YES,
                                k_key_syncFindPboard: @NO,
@@ -779,6 +778,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 @"alphaOnlyTextView",   // deprecated on 1.5
                                 @"saveTypeCreator",     // deprecated on 1.5
                                 @"gotoObjectMenuIndex", // deprecated on 1.5
+                                @"showWrappedLineMark", // deprecated on 1.5
                                 @"statusAreaFontSize"   // deprecated on 1.5
                                 ];
     

@@ -34,7 +34,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // binding keys
 // userdefaults
 #define k_key_showLineNumbers   @"showLineNumbers"
-#define k_key_showWrappedLineMark   @"showWrappedLineMark"
 #define k_key_showStatusBar     @"showStatusArea"
 #define k_key_countLineEndingAsChar @"countLineEndingAsChar"
 #define k_key_syncFindPboard        @"syncFindPboard"
