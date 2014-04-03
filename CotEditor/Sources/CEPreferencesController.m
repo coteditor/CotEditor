@@ -394,12 +394,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
+    NSString *selectedName = [[self syntaxStylesPopup] titleOfSelectedItem];
+    
     if (([sender tag] != CENewSyntaxEdit) && (selected < 0)) { return; }
-
-    if (![[CESyntaxManager sharedManager] setSelectionIndexOfStyle:selected mode:[sender tag]]) {
+    
+    if (![[CESyntaxManager sharedManager] setupSheetForSytle:selectedName mode:[sender tag]]) {
         return;
     }
-    NSString *oldName = [[self syntaxStylesPopup] titleOfSelectedItem];
 
     // シートウィンドウを表示してモーダルループに入る
     // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
@@ -418,7 +419,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[CESyntaxManager sharedManager] isOkButtonPressed]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
         NSString *newName = [[CESyntaxManager sharedManager] editedNewStyleName];
-        NSDictionary *styleNameDict = @{k_key_oldStyleName: oldName,
+        NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedName,
                                         k_key_newStyleName: newName};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];

@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 + (instancetype)sharedManager;
 
 // Public method
-- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(CESyntaxEditSheetMode)mode;
+- (BOOL)setupSheetForSytle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode;
 
 - (NSString *)syntaxNameFromExtension:(NSString *)extension;
 - (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;

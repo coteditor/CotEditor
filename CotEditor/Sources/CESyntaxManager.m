@@ -122,8 +122,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-/// シートの表示に備え、シンタックスカラーリングスタイル定義配列のうちの一つを選択する（バインディングのため）
-- (BOOL)setSelectionIndexOfStyle:(NSInteger)styleIndex mode:(CESyntaxEditSheetMode)mode
+/// シートの表示に備え準備をする
+- (BOOL)setupSheetForSytle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode
 // ------------------------------------------------------
 {
     NSMutableDictionary *coloring;
@@ -132,7 +132,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setSheetMode:mode];
     switch (mode) {
         case CECopySyntaxEdit:
-            coloring = [self coloringStyles][styleIndex];
+            coloring = [[self syntaxWithStyleName:styleName] mutableCopy];
             name = [self copiedSyntaxName:coloring[k_SCKey_styleName]];
             coloring[k_SCKey_styleName] = name;
             break;
@@ -143,7 +143,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             break;
         
         case CESyntaxEdit:
-            coloring = [self coloringStyles][styleIndex];
+            coloring = [[self syntaxWithStyleName:styleName] mutableCopy];
             name = coloring[k_SCKey_styleName];
             break;
     }
@@ -153,7 +153,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self styleController] setContent:@[coloring]];
     
     // シートのコントロール類をセットアップ
-    [self setupSyntaxSheetControlesForStyle:[self selectedStyleName]];
+    [self setupSyntaxSheetControlesForStyle:name];
 
     return YES;
 }
