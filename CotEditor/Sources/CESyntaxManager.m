@@ -407,7 +407,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setSelectedStyleName:string];
         }
         // エラー未チェックかつエラーがあれば、表示（エラーを表示していてOKボタンを押下したら、そのまま確定）
-        if (([[[self syntaxElementCheckTextView] string] isEqualToString:@""]) && ([self syntaxElementError] > 0)) {
+        if (([[[self syntaxElementCheckTextView] string] isEqualToString:@""]) && ([self validate] > 0)) {
             // 「構文要素チェック」を選択
             // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
             NSBeep();
@@ -425,7 +425,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self saveColoringStyle:style];
     }
     
-    [self updateCache];  // 内部で持っているキャッシュ用データを更新
     [[self syntaxElementCheckTextView] setString:@""]; // 構文チェック結果文字列を消去
     [NSApp stopModal];
 }
@@ -436,7 +435,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)startSyntaxElementCheck:(id)sender
 // ------------------------------------------------------
 {
-    [self syntaxElementError];
+    [self validate];
 }
 
 
@@ -658,6 +657,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         [style writeToURL:saveURL atomically:YES];
     }
+    
+    [self updateCache];  // 内部で持っているキャッシュ用データを更新
 }
 
 
@@ -794,22 +795,45 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 構文チェックを実行してエラー数を返す
-- (NSInteger)syntaxElementError
+/// 構文チェックを実行しその結果をテキストビューに挿入（戻り値はエラー数）
+- (NSInteger)validate
 // ------------------------------------------------------
 {
     NSDictionary *selectedStyle = [[self styleController] selectedObjects][0];
     
-    return [self syntaxElementCheck:selectedStyle];
+    NSArray *errorMessages = [self validateSyntax:selectedStyle];
+    
+    NSMutableString *resultMessage = [NSMutableString string];
+    if ([errorMessages count] == 0) {
+        [resultMessage setString:NSLocalizedString(@"No Error found.", nil)];
+    
+    } else {
+        if ([errorMessages count] == 1) {
+            [resultMessage appendString:NSLocalizedString(@"One Error was Found!\n\n", nil)];
+        } else {
+            [resultMessage appendFormat:NSLocalizedString(@"%i Errors were Found!\n\n", nil), [errorMessages count]];
+        }
+        
+        NSUInteger lineCount = 1;
+        for (NSString *message in errorMessages) {
+            [resultMessage appendFormat:@"%li.  %@\n\n", (long)lineCount, message];
+            lineCount++;
+        }
+    }
+    
+    [[self syntaxElementCheckTextView] setString:resultMessage];
+    
+    
+    return [errorMessages count];
 }
 
+
 // ------------------------------------------------------
-/// 正規表現構文と重複のチェック実行をしてエラー数を返す
-- (NSInteger)syntaxElementCheck:(NSDictionary *)style
+/// 正規表現構文と重複のチェック実行をしてエラーメッセージのArrayを返す
+- (NSArray *)validateSyntax:(NSDictionary *)style
 // ------------------------------------------------------
 {
-    NSMutableString *resultMessage = [NSMutableString string];
-    NSInteger numberOfErrors = 0;
+    NSMutableArray *errorMessages = [NSMutableArray array];
     
     NSArray *syntaxes = @[k_SCKey_syntaxCheckArrays];
     NSArray *array;
@@ -828,32 +852,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             
             if ([tmpBeginStr isEqualToString:beginStr] &&
                 ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
-                
-                numberOfErrors++;
-                [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> multiple registered.\n\n",
-                 (long)numberOfErrors, arrayNameDeletingArray, beginStr];
+                [errorMessages addObject:[NSString stringWithFormat:
+                                          @"%@ :(Begin string) > %@\n  >>> multiple registered.",
+                                          arrayNameDeletingArray, beginStr]];
                 
             } else if ([dict[k_SCKey_regularExpression] boolValue]) {
                 capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
                 if (capCount == -1) { // エラーのとき
-                    numberOfErrors++;
-                    [resultMessage appendFormat:@"%li.  %@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
-                     (long)numberOfErrors, arrayNameDeletingArray, beginStr,
-                     [error userInfo][RKLICURegexErrorNameErrorKey],
-                     [error userInfo][RKLICURegexOffsetErrorKey],
-                     [error userInfo][RKLICURegexPreContextErrorKey],
-                     [error userInfo][RKLICURegexPostContextErrorKey]];
+                    [errorMessages addObject:[NSString stringWithFormat:
+                                              @"%@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
+                                              arrayNameDeletingArray, beginStr,
+                                              [error userInfo][RKLICURegexErrorNameErrorKey],
+                                              [error userInfo][RKLICURegexOffsetErrorKey],
+                                              [error userInfo][RKLICURegexPreContextErrorKey],
+                                              [error userInfo][RKLICURegexPostContextErrorKey]]];
                 }
                 if (endStr != nil) {
                     capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
                     if (capCount == -1) { // エラーのとき
-                        numberOfErrors++;
-                        [resultMessage appendFormat:@"%li.  %@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@\n\n",
-                         (long)numberOfErrors, arrayNameDeletingArray, endStr,
-                         [error userInfo][RKLICURegexErrorNameErrorKey],
-                         [error userInfo][RKLICURegexOffsetErrorKey],
-                         [error userInfo][RKLICURegexPreContextErrorKey],
-                         [error userInfo][RKLICURegexPostContextErrorKey]];
+                        [errorMessages addObject:[NSString stringWithFormat:
+                                                  @"%@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
+                                                  arrayNameDeletingArray, endStr,
+                                                  [error userInfo][RKLICURegexErrorNameErrorKey],
+                                                  [error userInfo][RKLICURegexOffsetErrorKey],
+                                                  [error userInfo][RKLICURegexPreContextErrorKey],
+                                                  [error userInfo][RKLICURegexPostContextErrorKey]]];
                     }
                 }
                 
@@ -863,28 +886,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 (void)[OGRegularExpression regularExpressionWithString:beginStr];
                 NS_HANDLER
                 // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                numberOfErrors++;
-                [resultMessage appendFormat:@"%li.  %@ :(RE string) > %@\n  >>> %@\n\n",
-                 (long)numberOfErrors, arrayNameDeletingArray, beginStr, [localException reason]];
+                [errorMessages addObject:[NSString stringWithFormat:
+                                          @"%@ :(RE string) > %@\n  >>> %@",
+                                          arrayNameDeletingArray, beginStr, [localException reason]]];
                 NS_ENDHANDLER
             }
             tmpBeginStr = beginStr;
             tmpEndStr = endStr;
         }
     }
-    if (numberOfErrors == 0) {
-        [resultMessage setString:NSLocalizedString(@"No Error found.", nil)];
-    } else if (numberOfErrors == 1) {
-        [resultMessage insertString:NSLocalizedString(@"One Error was Found !\n\n", nil) atIndex:0];
-    } else {
-        [resultMessage insertString:
-         [NSString stringWithFormat:NSLocalizedString(@"%i Errors were Found !\n\n", nil), numberOfErrors]
-                            atIndex:0];
-    }
-    
-    [[self syntaxElementCheckTextView] setString:resultMessage];
 
-    return numberOfErrors;
+    return errorMessages;
 }
 
 @end

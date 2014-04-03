@@ -74,4 +74,10 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 - (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
 
+// private methods
+- (NSDictionary *)emptyColoringStyle;
+- (NSString *)copiedSyntaxName:(NSString *)originalName;
+- (void)saveColoringStyle:(NSMutableDictionary *)style;
+- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;
+
 @end

@@ -192,9 +192,9 @@ http://www.aynimac.com/
 // syntax element check result (no error)
 "No error found." = "エラーはありませんでした。";
 // syntax element check result (1 error found)
-"One Error was Found !\n\n" = "エラーがありました！\n\n";
+"One Error was Found!\n\n" = "エラーがありました！\n\n";
 // syntax element check result (2 or more errors found)
-"%i Errors were Found !\n\n" = "%i 個のエラーがありました！\n\n";
+"%i Errors were Found!\n\n" = "%i 個のエラーがありました！\n\n";
 // syntax element check failed
 "An Error occuerd in Checking.\nNumber of selected object is 2 or more in '_styleController'." = "チェック中にエラーが起きました。\n'_styleController' で選択されているオブジェクトが 2 個以上あります。";
 // File Drop setting delete
