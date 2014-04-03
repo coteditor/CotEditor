@@ -2850,9 +2850,9 @@ The parent directory name of the dropped file.
                     </connections>
                 </popUpButton>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-68-Zyb">
-                    <rect key="frame" x="368" y="261" width="76" height="25"/>
+                    <rect key="frame" x="366" y="261" width="80" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="Jap-f3-ehL">
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
@@ -2876,9 +2876,9 @@ The parent directory name of the dropped file.
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oVS-uF-Ue4">
-                    <rect key="frame" x="368" y="226" width="76" height="25"/>
+                    <rect key="frame" x="366" y="226" width="80" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="90p-SJ-bXq">
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
@@ -2902,9 +2902,9 @@ The parent directory name of the dropped file.
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GHf-us-wxC">
-                    <rect key="frame" x="368" y="119" width="76" height="25"/>
+                    <rect key="frame" x="366" y="119" width="80" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="Zgh-yF-xd2">
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
@@ -2928,9 +2928,9 @@ The parent directory name of the dropped file.
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ko-Fv-J5m">
-                    <rect key="frame" x="368" y="84" width="76" height="25"/>
+                    <rect key="frame" x="366" y="84" width="80" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="Pjk-d8-E4v">
+                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
