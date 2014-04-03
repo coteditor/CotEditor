@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, CEKeyBindingOutlineMode) {
 };
 
 
-@interface CEKeyBindingManager : NSObject <NSOutlineViewDataSource>
+@interface CEKeyBindingManager : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 // class method
 + (instancetype)sharedManager;
