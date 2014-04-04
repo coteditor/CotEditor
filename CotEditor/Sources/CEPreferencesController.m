@@ -75,10 +75,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropGlossaryTextView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleSpacePopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleTabPopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleNewLinePopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleFullwidthSpacePopup;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesPopup;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleEditButton;
@@ -86,6 +82,11 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleExportButton;
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleXtsnErrButton;
+
+@property (nonatomic) NSArray *invisibleSpaces;
+@property (nonatomic) NSArray *invisibleTabs;
+@property (nonatomic) NSArray *invisibleNewLines;
+@property (nonatomic) NSArray *invisibleFullWidthSpaces;
 
 @property (nonatomic) BOOL doDeleteFileDrop;
 
@@ -135,7 +136,31 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"Preferences"];
-    
+    if (self) {
+        // 不可視文字表示ポップアップ用の選択肢をセットする
+        CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
+        NSUInteger i;
+        NSMutableArray *spaces = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
+            [spaces addObject:[appDelegate invisibleSpaceCharacter:i]];
+        }
+        [self setInvisibleSpaces:spaces];
+        NSMutableArray *tabs = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
+            [tabs addObject:[appDelegate invisibleTabCharacter:i]];
+        }
+        [self setInvisibleTabs:tabs];
+        NSMutableArray *newLines = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
+            [newLines addObject:[appDelegate invisibleNewLineCharacter:i]];
+        }
+        [self setInvisibleNewLines:newLines];
+        NSMutableArray *fullWidthSpaces = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
+            [fullWidthSpaces addObject:[appDelegate invisibleFullwidthSpaceCharacter:i]];
+        }
+        [self setInvisibleFullWidthSpaces:fullWidthSpaces];
+    }
     return self;
 }
 
@@ -246,10 +271,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     }
 
     // 各種セットアップ
-    [self setupInvisibleSpacePopup];
-    [self setupInvisibleTabPopup];
-    [self setupInvisibleNewLinePopup];
-    [self setupInvisibleFullwidthSpacePopup];
     [self setupSyntaxMenus];
     [self setContentFileDropController];
     [self setFontFamilyNameAndSize];
@@ -868,102 +889,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSMutableArray *fileDropArray = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray] mutableCopy];
 
     [[self fileDropController] setContent:fileDropArray];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleSpacePopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *title;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleSpacePopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
-        title = [appDelegate invisibleSpaceCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-        [[[self invisibleSpacePopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleSpace];
-    [[self invisibleSpacePopup] selectItemAtIndex:selected];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleTabPopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *title;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleTabPopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
-        title = [appDelegate invisibleTabCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-        [[[self invisibleTabPopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleTab];
-    [[self invisibleTabPopup] selectItemAtIndex:selected];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleNewLinePopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *vitle;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleNewLinePopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
-        vitle = [appDelegate invisibleNewLineCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:vitle action:nil keyEquivalent:@""];
-        [[[self invisibleNewLinePopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleNewLine];
-    [[self invisibleNewLinePopup] selectItemAtIndex:selected];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleFullwidthSpacePopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *title;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleFullwidthSpacePopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
-        title = [appDelegate invisibleFullwidthSpaceCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-        [[[self invisibleFullwidthSpacePopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleFullwidthSpace];
-    [[self invisibleFullwidthSpacePopup] selectItemAtIndex:selected];
 }
 
 

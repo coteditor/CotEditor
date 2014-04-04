@@ -16,10 +16,6 @@
                 <outlet property="fileDropTextView" destination="532" id="C5S-P7-taE"/>
                 <outlet property="formatPane" destination="745" id="yeE-kJ-Os0"/>
                 <outlet property="generalPane" destination="743" id="aCt-FQ-Eq1"/>
-                <outlet property="invisibleFullwidthSpacePopup" destination="247" id="J3B-ji-Yqu"/>
-                <outlet property="invisibleNewLinePopup" destination="224" id="nZp-DQ-kUj"/>
-                <outlet property="invisibleSpacePopup" destination="236" id="Ted-p3-b15"/>
-                <outlet property="invisibleTabPopup" destination="243" id="5hM-TE-wWu"/>
                 <outlet property="keyBindingsPane" destination="748" id="7E9-VP-ALt"/>
                 <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
                 <outlet property="printFontFamilyNameSize" destination="1007" id="Pj9-wE-bsR"/>
@@ -1092,7 +1088,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleNewLine" id="232"/>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleNewLines" id="dtj-Fb-OId"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleNewLine" previousBinding="dtj-Fb-OId" id="GVd-bs-zbe"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleNewLine" id="230"/>
                     </connections>
                 </popUpButton>
@@ -1123,7 +1120,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleSpace" id="240"/>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleSpaces" id="nhg-7o-Cjg"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleSpace" previousBinding="nhg-7o-Cjg" id="bLN-Jj-zX1"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleSpace" id="239"/>
                     </connections>
                 </popUpButton>
@@ -1143,7 +1141,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleTab" id="253"/>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleTabs" id="jfI-Rh-dyy"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleTab" previousBinding="jfI-Rh-dyy" id="HTm-ic-wn2"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleTab" id="252"/>
                     </connections>
                 </popUpButton>
@@ -1174,7 +1173,8 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleZenkakuSpace" id="256"/>
+                        <binding destination="-2" name="contentValues" keyPath="invisibleFullWidthSpaces" id="OWc-5t-nq8"/>
+                        <binding destination="26" name="selectedIndex" keyPath="values.invisibleZenkakuSpace" previousBinding="OWc-5t-nq8" id="Kgk-eb-Xec"/>
                         <binding destination="26" name="enabled" keyPath="values.showInvisibleZenkakuSpace" id="255"/>
                     </connections>
                 </popUpButton>
