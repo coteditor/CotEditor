@@ -11,20 +11,21 @@
                 <outlet property="encodingMenuInOpen" destination="76" id="8DX-cy-t6W"/>
                 <outlet property="fileDropController" destination="451" id="Do3-c6-cpR"/>
                 <outlet property="fileDropGlossaryTextView" destination="586" id="ieD-hl-bAG"/>
+                <outlet property="fileDropPane" destination="747" id="voJ-2k-P2G"/>
                 <outlet property="fileDropTableView" destination="447" id="xHZ-M3-GTp"/>
                 <outlet property="fileDropTextView" destination="532" id="C5S-P7-taE"/>
-                <outlet property="fileDropView" destination="747" id="CAb-49-fYw"/>
-                <outlet property="formatView" destination="745" id="4eJ-Gy-KIN"/>
-                <outlet property="generalView" destination="743" id="TB3-al-aHE"/>
+                <outlet property="formatPane" destination="745" id="yeE-kJ-Os0"/>
+                <outlet property="generalPane" destination="743" id="aCt-FQ-Eq1"/>
                 <outlet property="invisibleFullwidthSpacePopup" destination="247" id="J3B-ji-Yqu"/>
                 <outlet property="invisibleNewLinePopup" destination="224" id="nZp-DQ-kUj"/>
                 <outlet property="invisibleSpacePopup" destination="236" id="Ted-p3-b15"/>
                 <outlet property="invisibleTabPopup" destination="243" id="5hM-TE-wWu"/>
-                <outlet property="keyBindingsView" destination="748" id="rOq-Ec-bNa"/>
+                <outlet property="keyBindingsPane" destination="748" id="7E9-VP-ALt"/>
                 <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
                 <outlet property="printFontFamilyNameSize" destination="1007" id="Pj9-wE-bsR"/>
-                <outlet property="printView" destination="882" id="ffx-Sq-UdJ"/>
+                <outlet property="printPane" destination="882" id="j1k-qE-dAf"/>
                 <outlet property="smartQuoteCheckButton" destination="mK4-4e-plf" id="MOr-jB-XTX"/>
+                <outlet property="syntaxPane" destination="746" id="6ch-uX-3WW"/>
                 <outlet property="syntaxStyleCopyButton" destination="346" id="ksJ-kH-iSp"/>
                 <outlet property="syntaxStyleDeleteButton" destination="351" id="0pb-Vp-GsP"/>
                 <outlet property="syntaxStyleEditButton" destination="166" id="Gew-43-qGW"/>
@@ -32,10 +33,9 @@
                 <outlet property="syntaxStyleXtsnErrButton" destination="356" id="n5f-gl-qdo"/>
                 <outlet property="syntaxStylesDefaultPopup" destination="727" id="DnT-Hr-kMu"/>
                 <outlet property="syntaxStylesPopup" destination="312" id="WPp-LZ-7YB"/>
-                <outlet property="syntaxView" destination="746" id="XT6-V3-xqT"/>
-                <outlet property="viewView" destination="744" id="s19-Vl-h3D"/>
+                <outlet property="viewPane" destination="744" id="0wP-By-0AA"/>
                 <outlet property="window" destination="6" id="Pbb-7O-dH4"/>
-                <outlet property="windowView" destination="741" id="VA0-kx-ljk"/>
+                <outlet property="windowPane" destination="741" id="j7y-Sv-sqJ"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

@@ -41,27 +41,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
-    CEGeneralPreferences,
-    CEWindowPreferences,
-    CEViewPreferences,
-    CEFormatPreferences,
-    CESyntaxPreferences,
-    CEFileDropPreferences,
-    CEKeyBindingsPreferences,
-    CEPrintPreferences
+    CEGeneralPane,
+    CEWindowPane,
+    CEViewPane,
+    CEFormatPane,
+    CESyntaxPane,
+    CEFileDropPane,
+    CEKeyBindingsPane,
+    CEPrintPane
 };
 
 
 @interface CEPreferencesController ()
 
-@property (nonatomic) IBOutlet NSView *generalView;
-@property (nonatomic) IBOutlet NSView *windowView;
-@property (nonatomic) IBOutlet NSView *viewView;
-@property (nonatomic) IBOutlet NSView *formatView;
-@property (nonatomic) IBOutlet NSView *syntaxView;
-@property (nonatomic) IBOutlet NSView *fileDropView;
-@property (nonatomic) IBOutlet NSView *keyBindingsView;
-@property (nonatomic) IBOutlet NSView *printView;
+@property (nonatomic) IBOutlet NSView *generalPane;
+@property (nonatomic) IBOutlet NSView *windowPane;
+@property (nonatomic) IBOutlet NSView *viewPane;
+@property (nonatomic) IBOutlet NSView *formatPane;
+@property (nonatomic) IBOutlet NSView *syntaxPane;
+@property (nonatomic) IBOutlet NSView *fileDropPane;
+@property (nonatomic) IBOutlet NSView *keyBindingsPane;
+@property (nonatomic) IBOutlet NSView *printPane;
 
 @property (nonatomic) IBOutlet NSButton *smartQuoteCheckButton;
 
@@ -125,7 +125,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 #pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
 
@@ -137,20 +137,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     self = [super initWithWindowNibName:@"Preferences"];
     
     return self;
-}
-
-
-// ------------------------------------------------------
-/// 環境設定パネルを開く
-- (IBAction)showWindow:(id)sender
-// ------------------------------------------------------
-{
-    if (![[self window] isVisible]) {
-        [self setFontFamilyNameAndSize];
-        // 拡張子重複エラー表示ボタンの有効化を制御
-        [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
-    }
-    [super showWindow:sender];
 }
 
 
@@ -219,12 +205,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
 
-    if ([[[self window] contentView] subviews][0] == [self viewView]) {
+    if ([[[self window] contentView] subviews][0] == [self viewPane]) {
         [defaults setObject:name forKey:k_key_fontName];
         [defaults setFloat:size forKey:k_key_fontSize];
         [self setFontFamilyNameAndSize];
         
-    } else if ([[[self window] contentView] subviews][0] == [self printView]) {
+    } else if ([[[self window] contentView] subviews][0] == [self printPane]) {
         [defaults setObject:name forKey:k_key_printFontName];
         [defaults setFloat:size forKey:k_key_printFontSize];
         [self setFontFamilyNameAndSize];
@@ -266,14 +252,15 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     [self setupInvisibleFullwidthSpacePopup];
     [self setupSyntaxMenus];
     [self setContentFileDropController];
+    [self setFontFamilyNameAndSize];
 
     [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
     // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
     // 2008.07.15.
     [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
-
     
-    [[self window] setShowsToolbarButton:NO];
+    // 拡張子重複エラー表示ボタンの有効化を制御
+    [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
 }
 
 
@@ -376,14 +363,14 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     // detect clicked icon and select a view to switch
     NSView   *newView;
     switch ([sender tag]) {
-        case CEGeneralPreferences:     newView = [self generalView];     break;
-        case CEViewPreferences:        newView = [self viewView];        break;
-        case CEWindowPreferences:      newView = [self windowView];      break;
-        case CEFormatPreferences:      newView = [self formatView];      break;
-        case CESyntaxPreferences:      newView = [self syntaxView];      break;
-        case CEFileDropPreferences:    newView = [self fileDropView];    break;
-        case CEKeyBindingsPreferences: newView = [self keyBindingsView]; break;
-        case CEPrintPreferences:       newView = [self printView];       break;
+        case CEGeneralPane:     newView = [self generalPane];     break;
+        case CEViewPane:        newView = [self viewPane];        break;
+        case CEWindowPane:      newView = [self windowPane];      break;
+        case CEFormatPane:      newView = [self formatPane];      break;
+        case CESyntaxPane:      newView = [self syntaxPane];      break;
+        case CEFileDropPane:    newView = [self fileDropPane];    break;
+        case CEKeyBindingsPane: newView = [self keyBindingsPane]; break;
+        case CEPrintPane:       newView = [self printPane];       break;
     }
     
     // remove current view from the main view
@@ -416,11 +403,11 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSFont *font;
 
     
-    if ([[[self window] contentView] subviews][0] == [self viewView]) {
+    if ([[[self window] contentView] subviews][0] == [self viewPane]) {
         font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
         
-    } else if ([[[self window] contentView] subviews][0] == [self printView]) {
+    } else if ([[[self window] contentView] subviews][0] == [self printPane]) {
         font = [NSFont fontWithName:[defaults stringForKey:k_key_printFontName]
                                size:(CGFloat)[defaults doubleForKey:k_key_printFontSize]];
     }
