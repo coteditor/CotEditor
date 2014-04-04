@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntax">
@@ -13,7 +14,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="書類をカラーリングしています..." allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel1" customClass="NSPanel">
+        <window title="書類をカラーリングしています..." allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="180" y="593" width="404" height="132"/>
@@ -22,17 +23,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="404" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView id="29">
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="29">
                         <rect key="frame" x="20" y="48" width="64" height="64"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="29" secondAttribute="height" multiplier="1:1" id="Fvd-lK-FJl"/>
+                            <constraint firstAttribute="width" constant="64" id="ICn-lR-QMc"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="appIcon" id="73"/>
                     </imageView>
-                    <progressIndicator verticalHuggingPriority="750" maxValue="800" bezeled="NO" indeterminate="YES" style="bar" id="47">
+                    <progressIndicator verticalHuggingPriority="750" maxValue="800" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
                         <rect key="frame" x="104" y="68" width="280" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </progressIndicator>
-                    <textField verticalHuggingPriority="750" id="50">
-                        <rect key="frame" x="102" y="95" width="284" height="17"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="50">
+                        <rect key="frame" x="102" y="95" width="173" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="テキストのカラーリング中..." id="74">
                             <font key="font" metaFont="system"/>
@@ -40,8 +45,8 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="51">
-                        <rect key="frame" x="102" y="43" width="274" height="18"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="51">
+                        <rect key="frame" x="102" y="47" width="136" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="しばらくお待ちください..." id="75">
                             <font key="font" metaFont="smallSystem"/>
@@ -49,9 +54,12 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" id="58">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58">
                         <rect key="frame" x="272" y="13" width="118" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="106" id="dvn-7U-V5U"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="76">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -61,6 +69,19 @@
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="29" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="AH8-w1-4Xa"/>
+                    <constraint firstItem="29" firstAttribute="leading" secondItem="7" secondAttribute="leading" constant="20" symbolic="YES" id="K54-lf-Cz2"/>
+                    <constraint firstItem="50" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="Wdw-J3-1be"/>
+                    <constraint firstAttribute="trailing" secondItem="58" secondAttribute="trailing" constant="20" symbolic="YES" id="cQu-U6-TL7"/>
+                    <constraint firstItem="51" firstAttribute="leading" secondItem="47" secondAttribute="leading" id="e7k-D4-8RU"/>
+                    <constraint firstItem="51" firstAttribute="leading" secondItem="50" secondAttribute="leading" id="gJ4-kx-kze"/>
+                    <constraint firstAttribute="bottom" secondItem="58" secondAttribute="bottom" constant="20" symbolic="YES" id="lIm-a4-QCa"/>
+                    <constraint firstAttribute="trailing" secondItem="47" secondAttribute="trailing" constant="20" symbolic="YES" id="mru-4k-WH3"/>
+                    <constraint firstItem="50" firstAttribute="leading" secondItem="29" secondAttribute="trailing" constant="20" id="qLb-yZ-5IZ"/>
+                    <constraint firstItem="47" firstAttribute="top" secondItem="50" secondAttribute="bottom" constant="8" symbolic="YES" id="r2H-zM-l08"/>
+                    <constraint firstItem="51" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="8" symbolic="YES" id="zpp-df-swP"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="23"/>
