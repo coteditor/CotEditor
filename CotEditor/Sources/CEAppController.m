@@ -78,11 +78,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     NSDictionary *defaults = @{k_key_showLineNumbers: @YES,
                                k_key_showStatusBar: @YES,
+                               k_key_showStatusBarChars: @YES,
+                               k_key_showStatusBarLines: @YES,
+                               k_key_showStatusBarWords: @NO,
+                               k_key_showStatusBarLocation: @YES,
+                               k_key_showStatusBarLine: @YES,
+                               k_key_showStatusBarColumn: @NO,
+                               k_key_showStatusBarEncoding: @YES,
+                               k_key_showStatusBarLineEndings: @YES,
                                k_key_countLineEndingAsChar: @YES,
                                k_key_syncFindPboard: @NO,
                                k_key_inlineContextualScriptMenu: @NO,
                                k_key_appendExtensionAtSaving: @YES,
-                               k_key_showStatusBarThousSeparator: @YES,
                                k_key_showNavigationBar: @YES,
                                k_key_wrapLines: @YES,
                                k_key_defaultLineEndCharCode: @0,
@@ -779,6 +786,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 @"saveTypeCreator",     // deprecated on 1.5
                                 @"gotoObjectMenuIndex", // deprecated on 1.5
                                 @"showWrappedLineMark", // deprecated on 1.5
+                                @"showStatusThousSeparator",
                                 @"statusAreaFontSize"   // deprecated on 1.5
                                 ];
     

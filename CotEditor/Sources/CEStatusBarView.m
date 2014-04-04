@@ -76,9 +76,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // set number formatter
         [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
         [[self decimalFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_showStatusBarThousSeparator]) {
-            [[self decimalFormatter] setThousandSeparator:@""];
-        }
         
         // setup TextField
         NSFont *font = [NSFont controlContentFontOfSize:[NSFont smallSystemFontSize]];
@@ -156,19 +153,44 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateLeftField
 // ------------------------------------------------------
 {
-    NSMutableString *statusString = [@"" mutableCopy];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableString *status = [NSMutableString string];
+    NSString *space = @"  ";
     NSNumberFormatter *formatter = [self decimalFormatter];
     
-    [statusString appendFormat:NSLocalizedString(@"Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
-    [statusString appendFormat:NSLocalizedString(@"   Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
-    if ([self selectedCharsInfo] > 0) {
-        [statusString appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedCharsInfo])]];
+    if ([defaults boolForKey:k_key_showStatusBarLines]) {
+        [status appendFormat:NSLocalizedString(@"Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
     }
-    [statusString appendFormat:NSLocalizedString(@"   Location: %@", nil), [formatter stringFromNumber:@([self locationInfo])]];
-    [statusString appendFormat:NSLocalizedString(@"   Line: %@", nil), [formatter stringFromNumber:@([self lineInfo])]];
-    [statusString appendFormat:NSLocalizedString(@"   Column: %@", nil), [formatter stringFromNumber:@([self columnInfo])]];
+    if ([defaults boolForKey:k_key_showStatusBarChars]) {
+        if ([status length] > 0) { [status appendString:space]; }
+        [status appendFormat:NSLocalizedString(@"Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
+        
+        if ([self selectedCharsInfo] > 0) {
+            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedCharsInfo])]];
+        }
+    }
+    if ([defaults boolForKey:k_key_showStatusBarWords]) {
+        if ([status length] > 0) { [status appendString:space]; }
+        [status appendFormat:NSLocalizedString(@"Words: %@", nil), [formatter stringFromNumber:@([self wordsInfo])]];
+        
+        if ([self selectedWordsInfo] > 0) {
+            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedWordsInfo])]];
+        }
+    }
+    if ([defaults boolForKey:k_key_showStatusBarLocation]) {
+        if ([status length] > 0) { [status appendString:space]; }
+        [status appendFormat:NSLocalizedString(@"Location: %@", nil), [formatter stringFromNumber:@([self locationInfo])]];
+    }
+    if ([defaults boolForKey:k_key_showStatusBarLine]) {
+        if ([status length] > 0) { [status appendString:space]; }
+        [status appendFormat:NSLocalizedString(@"Line: %@", nil), [formatter stringFromNumber:@([self lineInfo])]];
+    }
+    if ([defaults boolForKey:k_key_showStatusBarColumn]) {
+        if ([status length] > 0) { [status appendString:space]; }
+        [status appendFormat:NSLocalizedString(@"Column: %@", nil), [formatter stringFromNumber:@([self columnInfo])]];
+    }
     
-    [[self leftTextField] setStringValue:statusString];
+    [[self leftTextField] setStringValue:status];
 }
 
 
@@ -177,7 +199,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateRightField
 // ------------------------------------------------------
 {
-    [[self rightTextField] setStringValue:[NSString stringWithFormat:@"%@ %@", [self encodingInfo], [self lineEndingsInfo]]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableString *status = [NSMutableString string];
+    
+    if ([defaults boolForKey:k_key_showStatusBarEncoding]) {
+        [status appendString:[self encodingInfo]];
+    }
+    if ([defaults boolForKey:k_key_showStatusBarLineEndings]) {
+        [status appendString:@" "];
+        [status appendString:[self lineEndingsInfo]];
+    }
+    
+    [[self rightTextField] setStringValue:status];
 }
 
 
