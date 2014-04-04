@@ -1436,7 +1436,7 @@
                         <constraint firstAttribute="width" constant="40" id="8n8-kM-Jo2"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="4" drawsBackground="YES" id="3286">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="839">
+                        <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="839">
                             <decimal key="minimum" value="1"/>
                             <decimal key="maximum" value="99"/>
                         </numberFormatter>
@@ -1590,8 +1590,17 @@
                         <binding destination="26" name="value" keyPath="values.saveUTF8BOM" id="3250"/>
                     </connections>
                 </button>
+                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iub-4d-NyY">
+                    <rect key="frame" x="452" y="101" width="19" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="ajw-Bh-Oc0"/>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.tabWidth" id="5S2-d5-xKG"/>
+                    </connections>
+                </stepper>
             </subviews>
             <constraints>
+                <constraint firstItem="282" firstAttribute="centerY" secondItem="iub-4d-NyY" secondAttribute="centerY" id="03F-yf-fHl"/>
                 <constraint firstItem="209" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="14" id="0NR-M2-r00"/>
                 <constraint firstItem="283" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="12" id="4KK-Is-6Yw"/>
                 <constraint firstItem="860" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="4ZH-bp-oa2"/>
@@ -1606,6 +1615,7 @@
                 <constraint firstItem="80" firstAttribute="top" secondItem="13" secondAttribute="bottom" constant="25" id="FNu-VI-sNi"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="160" secondAttribute="top" id="J5C-J1-5pW"/>
                 <constraint firstItem="79" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="M6b-lC-M3t"/>
+                <constraint firstItem="iub-4d-NyY" firstAttribute="leading" secondItem="282" secondAttribute="trailing" constant="8" symbolic="YES" id="NNU-Gt-icN"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="ayZ-FY-KlD" secondAttribute="bottom" constant="20" id="Nhv-ta-lK8"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="827" secondAttribute="trailing" constant="8" symbolic="YES" id="OjB-LZ-6xn"/>
                 <constraint firstItem="3248" firstAttribute="top" secondItem="80" secondAttribute="bottom" constant="8" symbolic="YES" id="R8O-n1-SOc"/>
