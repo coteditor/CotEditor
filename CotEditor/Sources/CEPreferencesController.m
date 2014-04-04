@@ -282,7 +282,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 #pragma mark Delegate and Notification
 
 //=======================================================
-// Selector for Notification (NSApplication)
+// Delegate method (NSWindow)
 //  <== prefWindow
 //=======================================================
 
@@ -300,7 +300,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 //=======================================================
-// Selector for Notification (NSTableView)
+// Delegate method (NSTableView)
 //  <== fileDropTableView
 //=======================================================
 
@@ -345,7 +345,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 //=======================================================
-// Selector for Notification (NSTextView)
+// Delegate method (NSTextView)
 //  <== fileDropTextView
 //=======================================================
 

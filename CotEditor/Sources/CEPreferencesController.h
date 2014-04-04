@@ -35,7 +35,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntax.h"
 
 
-@interface CEPreferencesController : NSWindowController <NSApplicationDelegate, NSWindowDelegate, NSTableViewDelegate>
+@interface CEPreferencesController : NSWindowController <NSWindowDelegate, NSTableViewDelegate, NSTextViewDelegate>
 
 // Class Methods
 + (instancetype)sharedController;
