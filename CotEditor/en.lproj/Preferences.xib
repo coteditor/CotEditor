@@ -2264,7 +2264,7 @@ The parent directory name of the dropped file.
                         <rect key="frame" x="1" y="1" width="518" height="98"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" quoteSubstitution="YES" linkDetection="YES" dashSubstitution="YES" smartInsertDelete="YES" id="532">
+                            <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="532">
                                 <rect key="frame" x="0.0" y="0.0" width="518" height="98"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2274,7 +2274,7 @@ The parent directory name of the dropped file.
                                 <size key="minSize" width="518" height="98"/>
                                 <size key="maxSize" width="600" height="10000000"/>
                                 <connections>
-                                    <binding destination="451" name="value" keyPath="selection.formatString" id="593"/>
+                                    <binding destination="451" name="value" keyPath="selection.formatString" id="0Lj-fM-ziw"/>
                                     <outlet property="delegate" destination="-2" id="585"/>
                                 </connections>
                             </textView>
