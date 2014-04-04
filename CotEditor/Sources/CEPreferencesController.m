@@ -300,7 +300,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 {
     // 編集中の設定値も保存
     [[self window] makeFirstResponder:[self window]];
-    [self updateUserDefaults];  // !!!: いまでも必要かあとで調べる [synclonize] 2014jp 2014-03
     // FileDrop 配列コントローラの値を書き戻す
     [self writeBackFileDropArray];
 }
@@ -833,21 +832,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 // ------------------------------------------------------
 {
     [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:k_key_fileDropArray];
-}
-
-
-//------------------------------------------------------
-/// Force update UserDefaults
-- (void)updateUserDefaults
-//------------------------------------------------------
-{
-// 下記のページの情報を参考にさせていただきました(2004.12.30)
-// http://cocoa.mamasam.com/COCOADEV/2004/02/2/85406.php
-    NSUserDefaultsController *UDC = [NSUserDefaultsController sharedUserDefaultsController];
-
-//    [[self fileDropController] commitEditing];
-    [UDC commitEditing];
-    [UDC save:self];
 }
 
 
