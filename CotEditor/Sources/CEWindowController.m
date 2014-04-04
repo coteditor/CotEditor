@@ -48,6 +48,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSString *creatorInfo;
 @property (nonatomic) NSString *finderLockInfo;
 @property (nonatomic) NSString *permissionInfo;
+@property (nonatomic) NSNumber *fileSizeInfo;
 
 // IBOutlets
 @property (nonatomic) IBOutlet NSArrayController *listController;
@@ -167,6 +168,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON",@"") : nil;
     [self setFinderLockInfo:finderLockInfo];
     [self setPermissionInfo:[NSString stringWithFormat:@"%lu", (unsigned long)[fileAttributes filePosixPermissions]]];
+    [self setFileSizeInfo:@([fileAttributes fileSize])];
 }
 
 
