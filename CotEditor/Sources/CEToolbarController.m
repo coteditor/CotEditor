@@ -358,7 +358,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_editHexAsForeItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Edit as Fore",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as Fore",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as ForeColor",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as Text Color",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"EditHexAsFore"]];
         [toolbarItem setAction:@selector(editHexColorCodeAsForeColor:)];
 
@@ -366,7 +366,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_editHexAsBGItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Edit as BG",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as BG",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as BackgroundColor",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as Background Color",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"EditHexAsBG"]];
         [toolbarItem setAction:@selector(editHexColorCodeAsBGColor:)];
 

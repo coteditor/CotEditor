@@ -284,13 +284,13 @@ http://www.aynimac.com/
 
 // Edit HexColorCode as Fore
 "Edit as Fore" = "文字色編集";
-"Edit HexColorCode as Fore" = "文字色として編集";
-"Open HexColorCode Editor to Edit as ForeColor" = "カラーコードエディタを開き、文字色として編集する";
+"Edit Color Code as Fore" = "文字色として編集";
+"Open Color Code Editor to Edit as Text Color" = "カラーコードエディタを開き、文字色として編集する";
 
 // Edit HexColorCode as BG
 "Edit as BG" = "背景色編集";
-"Edit HexColorCode as BG" = "背景色として編集";
-"Open HexColorCode Editor to Edit as BackgroundColor" = "カラーコードエディタを開き、背景色として編集する";
+"Edit Color Code as BG" = "背景色として編集";
+"Open Color Code Editor to Edit as Background Color" = "カラーコードエディタを開き、背景色として編集する";
 
 
 /* CEScriptManager */
