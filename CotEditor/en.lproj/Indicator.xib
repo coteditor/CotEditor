@@ -3,7 +3,6 @@
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntax">
@@ -28,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="Bvw-aM-Js4"/>
-                            <constraint firstAttribute="width" secondItem="29" secondAttribute="height" multiplier="1:1" id="bcE-Jq-XJM"/>
+                            <constraint firstAttribute="height" constant="64" id="dMR-DV-H2Q"/>
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="appIcon" id="73"/>
                     </imageView>
