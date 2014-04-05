@@ -49,6 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL isReadingFromPboard;  // ペーストまたはドロップ実行中なのか
 @property (nonatomic) CGFloat lineSpacing;
 @property (nonatomic) NSRect highlightLineAdditionalRect;  // ハイライト行で追加表示する矩形
+@property (nonatomic) BOOL isAutoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 
 @property (nonatomic, weak) NSView *slaveView;  // LineNumView
 @property (nonatomic) NSString *lineEndingString;  // 行末文字
@@ -82,6 +83,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Action Message
 - (IBAction)shiftRight:(id)sender;
 - (IBAction)shiftLeft:(id)sender;
+- (IBAction)toggleAutoTabExpand:(id)sender;
 - (IBAction)exchangeLowercase:(id)sender;
 - (IBAction)exchangeUppercase:(id)sender;
 - (IBAction)exchangeCapitalized:(id)sender;

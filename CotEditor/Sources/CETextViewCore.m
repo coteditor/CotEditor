@@ -131,6 +131,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
+        [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
         [self setIsReCompletion:NO];
         [self setUpdateOutlineMenuItemSelection:YES];
         [self setIsSelfDrop:NO];
@@ -207,7 +208,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)insertTab:(id)sender
 // ------------------------------------------------------
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoExpandTab]) {
+    if ([self isAutoTabExpandEnabled]) {
         NSInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
         NSRange selected = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selected];
@@ -271,7 +272,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSRange selectedRange = [self selectedRange];
     if (selectedRange.length == 0) {
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoExpandTab]) {
+        if ([self isAutoTabExpandEnabled]) {
             NSInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
             NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
             NSInteger location = selectedRange.location - lineRange.location;
@@ -1225,6 +1226,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     } else if ([menuItem action] == @selector(setLineSpacingFromMenu:)) {
         [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue]) ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
+        [menuItem setState:[self isAutoTabExpandEnabled] ? NSOnState : NSOffState];
     }
 
     return [super validateMenuItem:menuItem];
@@ -1254,7 +1257,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // シフトするために挿入する文字列と長さを得る
     NSMutableString *shiftStr = [NSMutableString string];
     NSUInteger shiftLength = 0;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoExpandTab]) {
+    if ([self isAutoTabExpandEnabled]) {
         NSUInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
         shiftLength = tabWidth;
         while (tabWidth--) {
@@ -1377,6 +1380,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 置換実行
     [self doReplaceString:newLine withRange:lineRange
              withSelected:NSMakeRange(newLocation, newLength) withActionName:NSLocalizedString(@"Shift Left", nil)];
+}
+
+
+// ------------------------------------------------------
+/// ソフトタブを有効に
+- (IBAction)toggleAutoTabExpand:(id)sender
+// ------------------------------------------------------
+{
+    [self setIsAutoTabExpandEnabled:![self isAutoTabExpandEnabled]];
 }
 
 

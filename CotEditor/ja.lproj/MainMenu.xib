@@ -401,6 +401,11 @@
                                     <action selector="toggleWrapLines:" target="-1" id="288"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="タブを自動でスペースに変換" id="8fB-qA-BhZ">
+                                <connections>
+                                    <action selector="toggleAutoTabExpand:" target="-1" id="DSl-M0-OXS"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="行間" id="751">
                                 <menu key="submenu" title="行間" id="752">
                                     <items>

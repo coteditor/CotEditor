@@ -401,6 +401,11 @@
                                     <action selector="toggleWrapLines:" target="-1" id="288"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Auto Expand Tabs" id="hsG-8k-OKX">
+                                <connections>
+                                    <action selector="toggleAutoTabExpand:" target="-1" id="Zjj-9f-F0n"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Line Spacing" id="751">
                                 <menu key="submenu" title="Line Spacing" id="752">
                                     <items>
