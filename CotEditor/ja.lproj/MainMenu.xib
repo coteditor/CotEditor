@@ -401,10 +401,48 @@
                                     <action selector="toggleWrapLines:" target="-1" id="288"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="タブを自動でスペースに変換" id="8fB-qA-BhZ">
-                                <connections>
-                                    <action selector="toggleAutoTabExpand:" target="-1" id="DSl-M0-OXS"/>
-                                </connections>
+                            <menuItem title="タブ幅" id="KLn-0q-b80">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="タブ幅" id="9pO-3M-6lq">
+                                    <items>
+                                        <menuItem title="2" tag="2" id="f1W-yc-OSy">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="kId-V4-5ah"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="3" tag="3" id="ezU-g9-5M7">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="6ED-YX-fnD"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="4" tag="4" id="Gb5-b3-eN6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="J87-qY-SQc"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="6" tag="6" id="V3P-62-ZXB">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="Otn-IE-ld4"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="8" tag="8" id="jYj-e9-haD">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="Fus-ug-Jha"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="UeK-h0-5QV"/>
+                                        <menuItem title="タブを自動でスペースに変換" id="8fB-qA-BhZ">
+                                            <connections>
+                                                <action selector="toggleAutoTabExpand:" target="-1" id="DSl-M0-OXS"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="行間" id="751">
                                 <menu key="submenu" title="行間" id="752">

@@ -401,10 +401,48 @@
                                     <action selector="toggleWrapLines:" target="-1" id="288"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Auto Expand Tabs" id="hsG-8k-OKX">
-                                <connections>
-                                    <action selector="toggleAutoTabExpand:" target="-1" id="Zjj-9f-F0n"/>
-                                </connections>
+                            <menuItem title="Tab Width" id="djM-fI-MkN">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Tab Width" id="xAm-b4-9CY">
+                                    <items>
+                                        <menuItem title="2" tag="2" id="qs3-we-YzU">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="wPL-yl-LsJ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="3" tag="3" id="8hL-SQ-WlX">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="05y-4Z-6qJ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="4" tag="4" id="fwb-zD-hBp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="hg6-NQ-03T"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="6" tag="6" id="HOF-KZ-dXD">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="FNx-Jn-DIE"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="8" tag="8" id="9e0-Q5-Oqh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeTabWidth:" target="-1" id="ZaW-Kv-sxL"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
+                                        <menuItem title="Auto Expand Tabs" id="hsG-8k-OKX">
+                                            <connections>
+                                                <action selector="toggleAutoTabExpand:" target="-1" id="Zjj-9f-F0n"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="Line Spacing" id="751">
                                 <menu key="submenu" title="Line Spacing" id="752">
@@ -755,5 +793,9 @@
         <customObject id="329" userLabel="CEDocumentController" customClass="CEDocumentController"/>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
         <customObject id="831" customClass="SUUpdater"/>
+        <menuItem isSeparatorItem="YES" id="zig-66-TfW"/>
+        <menuItem title="Item" id="IeE-dV-blm">
+            <modifierMask key="keyEquivalentModifierMask"/>
+        </menuItem>
     </objects>
 </document>

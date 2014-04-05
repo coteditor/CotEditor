@@ -78,6 +78,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
+        [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
+        [self setTabWidth:[defaults integerForKey:k_key_tabWidth]];
+        
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                        size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
 
@@ -131,7 +134,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
-        [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
         [self setIsReCompletion:NO];
         [self setUpdateOutlineMenuItemSelection:YES];
         [self setIsSelfDrop:NO];
@@ -209,7 +211,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self isAutoTabExpandEnabled]) {
-        NSInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
+        NSInteger tabWidth = [self tabWidth];
         NSRange selected = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selected];
         NSInteger location = selected.location - lineRange.location;
@@ -273,7 +275,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange selectedRange = [self selectedRange];
     if (selectedRange.length == 0) {
         if ([self isAutoTabExpandEnabled]) {
-            NSInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
+            NSUInteger tabWidth = [self tabWidth];
             NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
             NSInteger location = selectedRange.location - lineRange.location;
             NSInteger length = (location + tabWidth) % tabWidth;
@@ -1228,6 +1230,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         [menuItem setState:([self isAutoTabExpandEnabled] ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(changeTabWidth:)) {
+        [menuItem setState:(([self tabWidth] == [menuItem tag])? NSOnState : NSOffState)];
     }
 
     return [super validateMenuItem:menuItem];
@@ -1272,7 +1276,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *shiftStr = [NSMutableString string];
     NSUInteger shiftLength = 0;
     if ([self isAutoTabExpandEnabled]) {
-        NSUInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
+        NSUInteger tabWidth = [self tabWidth];
         shiftLength = tabWidth;
         while (tabWidth--) {
             [shiftStr appendString:@" "];
@@ -1326,7 +1330,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         lineRange.length--; // 末尾の改行分を減ずる
     }
     // シフトするために削除するスペースの長さを得る
-    NSInteger shiftLength = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
+    NSInteger shiftLength = [self tabWidth];
     if (shiftLength < 1) { return; }
 
     // 置換する行を生成する
@@ -1403,6 +1407,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self setIsAutoTabExpandEnabled:![self isAutoTabExpandEnabled]];
+}
+
+
+// ------------------------------------------------------
+/// タブ幅を変更する
+- (IBAction)changeTabWidth:(id)sender
+// ------------------------------------------------------
+{
+    [self setTabWidth:[sender tag]];
+    [self setFont:[self font]];  // 新しい幅でレイアウトし直す
 }
 
 
@@ -1882,7 +1896,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSMutableString *widthStr = [[NSMutableString alloc] init];
-    NSUInteger numberOfSpaces = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_tabWidth];
+    NSUInteger numberOfSpaces = [self tabWidth];
     while (numberOfSpaces--) {
         [widthStr appendString:@" "];
     }
