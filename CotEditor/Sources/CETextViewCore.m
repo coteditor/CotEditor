@@ -1227,10 +1227,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([menuItem action] == @selector(setLineSpacingFromMenu:)) {
         [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
-        [menuItem setState:[self isAutoTabExpandEnabled] ? NSOnState : NSOffState];
+        [menuItem setState:([self isAutoTabExpandEnabled] ? NSOnState : NSOffState)];
     }
 
     return [super validateMenuItem:menuItem];
+}
+
+
+// ------------------------------------------------------
+/// ツールバーアイテムの有効／無効を制御
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+// ------------------------------------------------------
+{
+    if ([theItem action] == @selector(toggleAutoTabExpand:)) {
+        NSString *imageName = [self isAutoTabExpandEnabled] ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
+        [theItem setImage:[NSImage imageNamed:imageName]];
+    }
+    
+    return YES;
 }
 
 

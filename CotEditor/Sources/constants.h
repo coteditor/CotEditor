@@ -379,6 +379,7 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_smallerFontItemID     @"smallerFontItemID"
 #define k_shiftLeftItemID       @"shiftLeftItemID"
 #define k_shiftRightItemID      @"shiftRightItemID"
+#define k_autoTabExpandItemID   @"autoTabExpandItemID"
 #define k_showNavigationBarItemID   @"showNavigationBarItemID"
 #define k_showLineNumItemID     @"showLineNumItemID"
 #define k_showStatusBarItemID   @"showStatusAreaItemID"

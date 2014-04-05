@@ -239,6 +239,10 @@ http://www.aynimac.com/
 "Shift Right" = "右へシフト";
 "Shift line to Right" = "行を右へシフト";
 
+// Expand Tabs
+"Expand Tabs" = "タブを変換";
+"Toggle Auto Tab Expand" = "自動タブ変換を切替";
+
 // Navigation Bar
 "Navigation Bar" = "ナビゲーションバー";
 "Show / Hide Navigation Bar" = "ナビゲーションバーを表示／隠す";

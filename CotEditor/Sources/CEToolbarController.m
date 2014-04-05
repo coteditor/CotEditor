@@ -254,6 +254,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [toolbarItem setToolTip:NSLocalizedString(@"Shift line to Right",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"Shift_Right"]];
         [toolbarItem setAction:@selector(shiftRight:)];
+        
+        // Auto Tab Expand (target = FirstResponder)  // アイコンの切り替えは CETextViewCore でおこなっている
+    } else if ([itemIdentifier isEqualToString:k_autoTabExpandItemID]) {
+        [toolbarItem setLabel:NSLocalizedString(@"Expand Tabs",@"")];
+        [toolbarItem setPaletteLabel:NSLocalizedString(@"Toggle Auto Tab Expand",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Toggle Auto Tab Expand",@"")];
+        [toolbarItem setImage:[NSImage imageNamed:@"AutoTabExpand_On"]];
+        [toolbarItem setAction:@selector(toggleAutoTabExpand:)];
 
     // Show Navigation Bar (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_showNavigationBarItemID]) {
@@ -389,13 +397,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
              k_biggerFontItemID, 
              k_smallerFontItemID, 
              k_shiftLeftItemID, 
-             k_shiftRightItemID, 
+             k_shiftRightItemID,
+             k_autoTabExpandItemID,
              k_showNavigationBarItemID, 
              k_showLineNumItemID, 
              k_showStatusBarItemID, 
              k_showInvisibleCharsItemID, 
              k_showPageGuideItemID, 
-             k_wrapLinesItemID, 
+             k_wrapLinesItemID,
              k_lineEndingsItemID, 
              k_fileEncodingsItemID, 
              k_syntaxItemID, 
