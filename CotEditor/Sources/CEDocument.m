@@ -417,12 +417,8 @@ enum { typeFSS = 'fss ' };
 - (void)close
 // ------------------------------------------------------
 {
-    // アンドゥ履歴をクリア
-    [[self undoManager] removeAllActionsWithTarget:self];
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
     [self sendCloseEventToClient];
-    
-    [self removeWindowController:(NSWindowController *)[self windowController]];
     
     [super close];
 }
