@@ -91,6 +91,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
+        // 重複しているユーザ領域の定義ファイルを避難
+        [self migrateDuplicatedDefaultColoringStylesInUserDomain];
+        
         [self updateCache];
     }
     return self;
@@ -273,11 +276,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// style名からstyle定義ファイルのURLを返す
+/// style名から有効なstyle定義ファイルのURLを返す
 - (NSURL *)URLOfStyle:(NSString *)styleName
 //------------------------------------------------------
 {
     NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    
+    if (![URL checkResourceIsReachableAndReturnError:nil]) {
+        URL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    }
     
     return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
 }
@@ -366,7 +373,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (![name isEqualToString:oldName]) {
             [self removeStyleFileWithStyleName:oldName];
         }
-        [style writeToURL:saveURL atomically:YES];
+        // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
+        BOOL isSameToBundledStyle = NO;
+        if ([[self bundledStyleNames] containsObject:name]) {
+            NSURL *bundledStyleURL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:name]
+                                      URLByAppendingPathExtension:@"plist"];
+            NSDictionary *bundledStyle = [NSDictionary dictionaryWithContentsOfURL:bundledStyleURL];
+            isSameToBundledStyle = [style isEqualToDictionary:bundledStyle];
+        }
+        if (isSameToBundledStyle) {
+            [self removeStyleFileWithStyleName:name];
+        } else {
+            [style writeToURL:saveURL atomically:YES];
+        }
     }
     
     [self updateCache];  // 内部で持っているキャッシュ用データを更新
@@ -510,7 +529,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupColoringStyles
 //------------------------------------------------------
 {
-    NSURL *dirURL = [self userStyleDirectoryURL]; // データディレクトリパス取得
+    NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
 
     // ディレクトリの存在チェック
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -525,9 +544,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 		}
 		
     }
-    if ((exists && isDirectory) || (success)) {
-        [self deleteDuplicatedDefaultSyntaxStylesInUserDomain];
-    } else {
+    if (!(exists && isDirectory) && !success) {
         NSLog(@"Error. SyntaxStyles directory could not be found.");
         return;
     }
@@ -556,7 +573,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                             NSLog(@"Error on seeking SyntaxStyle Files Directory.");
                                                             return YES;
                                                         }];
-    
     while (URL = [enumerator nextObject]) {
         styleDict = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
         // URLが無効だった場合などに、dictがnilになる場合がある
@@ -633,24 +649,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSURL *)bundledStyleDirectoryURL
 //------------------------------------------------------
 {
-    return [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/SyntaxColorings"];
+    return [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Resources/SyntaxColorings"];
 }
 
 
 //------------------------------------------------------
-/// ユーザ領域にあるバンドル版と重複したstyleデータファイルを削除
-- (BOOL)deleteDuplicatedDefaultSyntaxStylesInUserDomain
+/// ユーザ領域にあるバンドル版と重複したstyleデータファイルを避難
+- (BOOL)migrateDuplicatedDefaultColoringStylesInUserDomain
 //------------------------------------------------------
 {
-    // CotEditor 1.4.1までで自動的にコピーされたバンドル版定義ファイルを削除する (2014-04-07 by 1024jp)
-    // CotEditor 1.5で実装されたこのメソッドは後に取り除く予定
+    // CotEditor 1.4.1までで自動的にコピーされたバンドル版定義ファイルを別のディレクトリに避難させる (2014-04-07 by 1024jp)
+    // CotEditor 1.5で実装されたこのメソッドは、後に十分に移行が完了した時点で取り除く予定
+    
+    if ([[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil]) { return YES; }
+    
+    NSURL *migrationDirURL = [[[self userStyleDirectoryURL] URLByDeletingLastPathComponent]
+                              URLByAppendingPathComponent:@"SyntaxColorings (duplicated)"];
     
     NSArray *styleNames = [self bundledStyleNames];
     BOOL success = NO;
     
     for (NSString *styleName in styleNames) {
         if ([self isEqualToBundledSyntaxStyle:styleName]) {
-            success = [self removeStyleFileWithStyleName:styleName];
+            [[NSFileManager defaultManager] createDirectoryAtURL:migrationDirURL withIntermediateDirectories:YES attributes:nil error:nil];
+            
+            NSURL *URL = [self URLOfStyle:styleName];
+            NSURL *migrationURL = [[migrationDirURL URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+            
+            if ([migrationDirURL checkResourceIsReachableAndReturnError:nil]) {
+                [[NSFileManager defaultManager] removeItemAtURL:migrationURL error:nil];
+            }
+            success = [[NSFileManager defaultManager] moveItemAtURL:URL toURL:migrationURL error:nil];
         }
     }
     return success;
