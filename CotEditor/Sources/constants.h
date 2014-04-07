@@ -399,11 +399,11 @@ static NSUInteger k_coloringRangeBufferLength = 2000;  // number of characters
 #define k_autoDetectEncodingMenuTag 0
 
 static CFStringEncodings k_CFStringEncodingList[] = {
+    kCFStringEncodingUTF8, // Unicode (UTF-8)
+    kCFStringEncodingInvalidId, // ----------
+    
     kCFStringEncodingShiftJIS, // Japanese (Shift JIS)
     kCFStringEncodingEUC_JP, // Japanese (EUC)
-    kCFStringEncodingInvalidId, // ----------
-
-    kCFStringEncodingUTF8, // Unicode (UTF-8)
     kCFStringEncodingInvalidId, // ----------
 
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
