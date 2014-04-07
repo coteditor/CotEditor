@@ -54,7 +54,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;  // check also the content
 - (NSArray *)styleNames;
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
-- (BOOL)importStyleFile:(NSString *)styleFileName;
+- (BOOL)importStyleFromURL:(NSURL *)fileURL;
+- (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
 - (NSURL *)URLOfBundledStyle:(NSString *)styleName;
 - (NSURL *)URLOfStyle:(NSString *)styleName;

@@ -229,23 +229,61 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// 外部styleファイルを保存ディレクトリにコピーする
-- (BOOL)importStyleFile:(NSString *)styleFileName
+/// 外部styleファイルをユーザ領域にコピーする
+- (BOOL)importStyleFromURL:(NSURL *)fileURL
 //------------------------------------------------------
 {
-    BOOL success = NO;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *fileURL = [NSURL fileURLWithPath:styleFileName];
     NSURL *destURL = [[self userStyleDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
-
-    if ([destURL checkResourceIsReachableAndReturnError:nil]) {
-        [fileManager removeItemAtURL:destURL error:nil];
+    
+    __block BOOL success = NO;
+    __block NSError *error = nil;
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+    [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges
+                           writingItemAtURL:destURL options:NSFileCoordinatorWritingForReplacing
+                                      error:&error
+                                 byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+     {
+         NSFileManager *fileManager = [[NSFileManager alloc] init];
+         [fileManager removeItemAtURL:newWritingURL error:nil];
+         success = [fileManager copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
+     }];
+    
+    if (error) {
+        NSLog(@"Error: %@", [error description]);
     }
-    success = [fileManager copyItemAtURL:fileURL toURL:destURL error:nil];
+    
     if (success) {
         // 内部で持っているキャッシュ用データを更新
         [self updateCache];
     }
+    
+    return success;
+}
+
+//------------------------------------------------------
+/// styleファイルを指定のURLにコピーする
+- (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL
+//------------------------------------------------------
+{
+    NSURL *sourceURL = [self URLOfStyle:styleName];
+    
+    __block BOOL success = NO;
+    __block NSError *error = nil;
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+    [coordinator coordinateReadingItemAtURL:sourceURL options:NSFileCoordinatorReadingWithoutChanges
+                           writingItemAtURL:fileURL options:NSFileCoordinatorWritingForReplacing
+                                      error:&error
+                                 byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+     {
+         NSFileManager *fileManager = [[NSFileManager alloc] init];
+         [fileManager removeItemAtURL:newWritingURL error:nil];
+         success = [fileManager copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
+     }];
+    
+    if (error) {
+        NSLog(@"Error: %@", [error description]);
+    }
+    
     return success;
 }
 
