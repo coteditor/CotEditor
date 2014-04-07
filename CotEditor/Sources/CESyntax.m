@@ -109,7 +109,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *names = [manager styleNames];
 
     if ([names containsObject:styleName] || [styleName isEqualToString:NSLocalizedString(@"None",@"")]) {
-        [self setColoringDictionary:[manager syntaxWithStyleName:styleName]];
+        [self setColoringDictionary:[manager styleWithStyleName:styleName]];
 
         [self setCompleteWordsArrayFromColoringDictionary];
 
@@ -204,7 +204,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setUpdateRange:NSMakeRange(0, [self wholeStringLength])];
 
     if ([self coloringDictionary] == nil) {
-        [self setColoringDictionary:[[CESyntaxManager sharedManager] syntaxWithStyleName:[self syntaxStyleName]]];
+        [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
         [self setCompleteWordsArrayFromColoringDictionary];
     }
     if ([self coloringDictionary] == nil) { return; }
@@ -242,7 +242,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [self setUpdateRange:NSMakeRange(start, end - start)];
     if ([self coloringDictionary] == nil) {
-        [self setColoringDictionary:[[CESyntaxManager sharedManager] syntaxWithStyleName:[self syntaxStyleName]]];
+        [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
         [self setCompleteWordsArrayFromColoringDictionary];
     }
     if ([self coloringDictionary] == nil) { return; }

@@ -78,18 +78,18 @@
         
         switch (mode) {
             case CECopySyntaxEdit:
-                style = [[[CESyntaxManager sharedManager] syntaxWithStyleName:styleName] mutableCopy];
-                name = [[CESyntaxManager sharedManager] copiedSyntaxName:style[k_SCKey_styleName]];
+                style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
+                name = [[CESyntaxManager sharedManager] copiedStyleName:style[k_SCKey_styleName]];
                 style[k_SCKey_styleName] = name;
                 break;
                 
             case CENewSyntaxEdit:
-                style = [[[CESyntaxManager sharedManager] emptyColoringStyle] mutableCopy];
+                style = [[[CESyntaxManager sharedManager] emptyStyle] mutableCopy];
                 name = @"";
                 break;
                 
             case CESyntaxEdit:
-                style = [[[CESyntaxManager sharedManager] syntaxWithStyleName:styleName] mutableCopy];
+                style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
                 name = style[k_SCKey_styleName];
                 break;
         }
@@ -111,7 +111,7 @@
     [super windowDidLoad];
     
     NSString *styleName = [self originalStyleName];
-    BOOL isDefaultSyntax = [[CESyntaxManager sharedManager] isDefaultSyntaxStyle:styleName];
+    BOOL isDefaultSyntax = [[CESyntaxManager sharedManager] isBundledSyntaxStyle:styleName];
     
     [[self styleNameField] setStringValue:styleName];
     [[self styleNameField] setDrawsBackground:!isDefaultSyntax];
@@ -170,8 +170,7 @@
 - (IBAction)setToFactoryDefaults:(id)sender
 // ------------------------------------------------------
 {
-    NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:
-                                  [[CESyntaxManager sharedManager] URLOfBundledStyle:[self originalStyleName]]];
+    NSMutableDictionary *style = [[[CESyntaxManager sharedManager] bundledStyleWithStyleName:[self originalStyleName]] mutableCopy];
     
     if (!style) { return; }
     
@@ -222,7 +221,7 @@
     }
     [self setSavedNewStyleName:styleName];
     
-    [[CESyntaxManager sharedManager] saveColoringStyle:[self style] name:styleName oldName:[self originalStyleName]];
+    [[CESyntaxManager sharedManager] saveStyle:[self style] name:styleName oldName:[self originalStyleName]];
     
     [NSApp stopModal];
 }

@@ -451,7 +451,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self syntaxStyleExportButton] setEnabled:isEnabled];
 
     if (isEnabled &&
-        ![[CESyntaxManager sharedManager] isDefaultSyntaxStyle:[[self syntaxStylesPopup] title]])
+        ![[CESyntaxManager sharedManager] isBundledSyntaxStyle:[[self syntaxStylesPopup] title]])
     {
         [[self syntaxStyleDeleteButton] setEnabled:YES];
     } else {
@@ -467,10 +467,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *selectedStyleName = [[self syntaxStylesPopup] title];
 
-    if (![[CESyntaxManager sharedManager] URLOfStyle:selectedStyleName]) { return; }
+    if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil),
-                         selectedStyleName];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil), selectedStyleName];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil)
