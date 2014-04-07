@@ -418,14 +418,14 @@ static CFStringEncodings k_CFStringEncodingList[] = {
     kCFStringEncodingMacRoman, // Western (Mac OS Roman)
     kCFStringEncodingWindowsLatin1, // Western (Windows Latin 1)
     kCFStringEncodingInvalidId, // ----------
-
+    
+    kCFStringEncodingGB_18030_2000,  // Chinese (GB18030)
     kCFStringEncodingMacChineseTrad, // Traditional Chinese (Mac OS)
     kCFStringEncodingMacChineseSimp, // Simplified Chinese (Mac OS)
     kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
     kCFStringEncodingEUC_CN,  // Simplified Chinese (EUC)
     kCFStringEncodingDOSChineseTrad,  // Traditional Chinese (Windows, DOS)
     kCFStringEncodingDOSChineseSimplif,  // Simplified Chinese (Windows, DOS)
-    kCFStringEncodingGB_18030_2000,  // Chinese (GB18030)
     kCFStringEncodingInvalidId, // ----------
 
     kCFStringEncodingMacKorean, // Korean (Mac OS)
