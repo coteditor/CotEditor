@@ -425,6 +425,7 @@ static CFStringEncodings k_CFStringEncodingList[] = {
     kCFStringEncodingEUC_CN,  // Simplified Chinese (EUC)
     kCFStringEncodingDOSChineseTrad,  // Traditional Chinese (Windows, DOS)
     kCFStringEncodingDOSChineseSimplif,  // Simplified Chinese (Windows, DOS)
+    kCFStringEncodingGB_18030_2000,  // Chinese (GB18030)
     kCFStringEncodingInvalidId, // ----------
 
     kCFStringEncodingMacKorean, // Korean (Mac OS)
