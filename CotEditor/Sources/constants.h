@@ -407,7 +407,7 @@ static CFStringEncodings k_CFStringEncodingList[] = {
     kCFStringEncodingInvalidId, // ----------
 
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
-    kCFStringEncodingShiftJIS_X0213_00, // Japanese (Shift JIS X0213)
+    kCFStringEncodingShiftJIS_X0213, // Japanese (Shift JIS X0213)
     kCFStringEncodingMacJapanese, // Japanese (Mac OS)
     kCFStringEncodingISO_2022_JP, // Japanese (ISO 2022-JP)
     kCFStringEncodingInvalidId, // ----------

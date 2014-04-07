@@ -1644,13 +1644,13 @@ enum { typeFSS = 'fss ' };
     // 見つかったら NSStringEncoding に変換して返す
     if (scannedStr != nil) {
         CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
-        // "Shift_JIS"だったら、kCFStringEncodingShiftJIS と kCFStringEncodingShiftJIS_X0213_00 の
+        // "Shift_JIS"だったら、kCFStringEncodingShiftJIS と kCFStringEncodingShiftJIS_X0213 の
         // 優先順位の高いものを取得する
         if ([[scannedStr uppercaseString] isEqualToString:@"SHIFT_JIS"]) {
             // （theScannedStr をそのまま CFStringConvertIANACharSetNameToEncoding() で変換すると、大文字小文字を問わず
             // 「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
             // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
-            // kCFStringEncodingShiftJIS_X0213_00 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
+            // kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
             // ための処理）
             NSArray *theEncodings = [[[NSUserDefaults standardUserDefaults] valueForKeyPath:k_key_encodingList] copy];
             CFStringEncoding tmpCFEncoding;
@@ -1658,7 +1658,7 @@ enum { typeFSS = 'fss ' };
             for (NSNumber *encodingNumber in theEncodings) {
                 tmpCFEncoding = [encodingNumber unsignedLongValue];
                 if ((tmpCFEncoding == kCFStringEncodingShiftJIS) ||
-                    (tmpCFEncoding == kCFStringEncodingShiftJIS_X0213_00)) {
+                    (tmpCFEncoding == kCFStringEncodingShiftJIS_X0213)) {
                     cfEncoding = tmpCFEncoding;
                     break;
                 }
@@ -1704,7 +1704,7 @@ enum { typeFSS = 'fss ' };
     NSStringEncoding IANACharSetEncoding = 
             [self scannedCharsetOrEncodingFromString:[[self editorView] stringForSave]];
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
-    NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213_00);
+    NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
 
     if ((IANACharSetEncoding != NSProprietaryStringEncoding) && (IANACharSetEncoding != [self encodingCode]) &&
         (!(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
