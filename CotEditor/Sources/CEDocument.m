@@ -962,8 +962,14 @@ enum { typeFSS = 'fss ' };
 - (void)getFileAttributes
 // ------------------------------------------------------
 {
-    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path]
-                                                                                error:nil];
+    __block NSDictionary *attributes;
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil
+                                 byAccessor:^(NSURL *newURL)
+     {
+         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+     }];
 
     if (attributes) {
         [self setFileAttributes:attributes];
