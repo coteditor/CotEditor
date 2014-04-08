@@ -1,20 +1,591 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>charactersArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;==)|(?&lt;== ))'</string>
+			<string>(?&lt;==)\s*'</string>
 			<key>endString</key>
 			<string>'</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&lt;?php</string>
+			<key>endString</key>
+			<string>?&gt;</string>
+		</dict>
 	</array>
 	<key>commandsArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;)!DOCTYPE\s</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;)\?(\w|[\-.:])+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onabort(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onafterprint(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onbeforeprint(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onbeforeunload(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onblur(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)oncancel(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)oncanplay(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)oncanplaythrough(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onchange(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onclick(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onclose(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)oncontextmenu(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)oncuechange(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondblclick(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondrag(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondragend(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondragenter(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondragleave(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondragover(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondragstart(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondrop(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ondurationchange(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onemptied(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onended(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onerror(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onfocus(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onhashchange(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)oninput(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)oninvalid(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onkeydown(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onkeypress(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onkeyup(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onload(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onloadeddata(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onloadedmetadata(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onloadstart(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onmessage(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onmousedown(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onmousemove(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onmouseout(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onmouseover(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onmouseup(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onmousewheel(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onoffline(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ononline(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onpagehide(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onpageshow(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onpause(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onplay(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onplaying(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onpopstate(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onprogress(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onratechange(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onreset(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onresize(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onscroll(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onseeked(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onseeking(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onselect(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onshow(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onstalled(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onstorage(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onsubmit(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onsuspend(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ontimeupdate(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onunload(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onvolumechange(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)onwaiting(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\?(?=&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>commentsArray</key>
 	<array>
 		<dict>
@@ -32,23 +603,7 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>&amp;copy;</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
 			<string>&amp;gt;</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>&amp;hearts;</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>&amp;infin;</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>&amp;laquo;</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -56,27 +611,19 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>&amp;nbsp;</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
 			<string>&amp;quot;</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>&amp;raquo;</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>&amp;reg;</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>&amp;yen;</string>
+			<string>a</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>abbr</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>about</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -108,7 +655,19 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>alink</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>allowfullscreen</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>alt</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>applet</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -120,7 +679,43 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>article</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>aside</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>async</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>audio</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>autocomplete</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>autofocus</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>autoplay</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>axis</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>b</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>background</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -128,7 +723,11 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>baseline</string>
+			<string>basefont</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>bdi</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -136,7 +735,19 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>bgcolor</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>bgsound</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>big</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>blink</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -152,15 +763,15 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>bottom</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
 			<string>br</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>button</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>canvas</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -173,6 +784,14 @@
 		<dict>
 			<key>keyString</key>
 			<string>cellspacing</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>center</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>challenge</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -196,15 +815,15 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>cite</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
 			<string>class</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>classid</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>clear</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -236,7 +855,27 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>command</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>compact</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>content</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>contenteditable</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>contextmenu</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>controls</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -244,7 +883,23 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>crossorigin</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>data</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>data-</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>datalist</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>datatype</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -260,6 +915,10 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>default</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>defer</string>
 		</dict>
 		<dict>
@@ -268,11 +927,23 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>details</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>dfn</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>dialog</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>dir</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>dirname</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -288,11 +959,31 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>DOCTYPE html&gt;</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>download</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>draggable</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>dropzone</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>dt</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>em</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>embed</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -304,6 +995,22 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>figcaption</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>figure</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>font</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>footer</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>for</string>
 		</dict>
 		<dict>
@@ -312,11 +1019,39 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>formaction</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>formenctype</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>formmethod</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>formnovalidate</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>formtarget</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>frame</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>get</string>
+			<string>frameborder</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>frameset</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>from</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -348,11 +1083,27 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>header</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>headers</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>height</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>hgroup</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>hidden</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>high</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -368,6 +1119,10 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>hspace</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>html</string>
 		</dict>
 		<dict>
@@ -376,11 +1131,31 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>i</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>icon</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>id</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>iframe</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>img</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>inert</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>inlist</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -392,11 +1167,47 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>isindex</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>ismap</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>itemid</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>itemprop</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>itemref</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>itemscope</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>itemtype</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>kbd</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>keygen</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>keytype</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>kind</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -420,11 +1231,47 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>list</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>longdesc</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>loop</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>low</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>manifest</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>map</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>marginheight</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>marginwidth</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>mark</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>marquee</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>max</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -436,7 +1283,23 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>mediagroup</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>menu</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>menuitem</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>meta</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>meter</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -444,7 +1307,7 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>middle</string>
+			<string>min</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -452,7 +1315,27 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>muted</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>name</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>nav</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>nobr</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>noembed</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>noframes</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -464,6 +1347,18 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>noshade</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>novalidate</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>nowrap</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>object</string>
 		</dict>
 		<dict>
@@ -472,7 +1367,35 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>onabort</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onafterprint</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onbeforeprint</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onbeforeunload</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>onblur</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>oncancel</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>oncanplay</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>oncanplaythrough</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -484,11 +1407,87 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>onclose</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>oncontextmenu</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>oncuechange</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>ondblclick</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>ondrag</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ondragend</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ondragenter</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ondragleave</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ondragover</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ondragstart</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ondrop</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ondurationchange</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onemptied</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onended</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onerror</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>onfocus</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onfullscreenchange</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onfullscreenerror</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onhashchange</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>oninput</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>oninvalid</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -505,6 +1504,22 @@
 		<dict>
 			<key>keyString</key>
 			<string>onload</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onloadeddata</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onloadedmetadata</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onloadstart</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onmessage</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -528,7 +1543,67 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>onmousewheel</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onoffline</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ononline</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onpagehide</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onpageshow</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onpause</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onplay</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onplaying</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onpopstate</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onprogress</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onratechange</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>onreset</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onresize</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onscroll</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onseeked</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onseeking</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -536,7 +1611,27 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>onshow</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onstalled</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onstorage</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>onsubmit</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onsuspend</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ontimeupdate</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -544,7 +1639,23 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>onvolumechange</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>onwaiting</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>open</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>optgroup</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>optimum</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -552,11 +1663,31 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>output</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>p</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>param</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>post</string>
+			<string>pattern</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>ping</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>placeholder</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>poster</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -564,15 +1695,35 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>prefix</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>preload</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>profile</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>progress</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>property</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>q</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>radiogroup</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>rb</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>rbc</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>rbspan</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -584,11 +1735,19 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>reset</string>
+			<string>required</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>resource</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>rev</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>reversed</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -608,10 +1767,6 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>rtc</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
 			<string>ruby</string>
 		</dict>
 		<dict>
@@ -620,11 +1775,15 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>s</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>samp</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>scheme</string>
+			<string>sandbox</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -632,7 +1791,23 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>scoped</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>script</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>scrolling</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>seamless</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>section</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -644,7 +1819,11 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>sharpe</string>
+			<string>shape</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>sheme</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -652,7 +1831,15 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>sizes</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>small</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>source</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -660,11 +1847,35 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>spellcheck</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>src</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>srcdoc</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>srclang</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>standby</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>start</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>step</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>strike</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -676,11 +1887,11 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>sub</string>
+			<string>style</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>submit</string>
+			<string>sub</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -700,11 +1911,19 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>target</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>tbody</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>td</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>text</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -724,15 +1943,23 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
+			<string>time</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
 			<string>title</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>top</string>
+			<string>tr</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>tr</string>
+			<string>track</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>translate</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -741,6 +1968,18 @@
 		<dict>
 			<key>keyString</key>
 			<string>type</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>typemustmatch</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>typeof</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>u</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -768,19 +2007,31 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>width</string>
+			<string>version</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>xml:lang</string>
+			<string>video</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>xml:space</string>
+			<string>vlink</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>xmlns</string>
+			<string>vocab</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>vspace</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>wbr</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>wrap</string>
 		</dict>
 	</array>
 	<key>extensions</key>
@@ -802,7 +2053,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))a\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;!DOCTYPE)\s+html(?=&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -810,7 +2061,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))abbr\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)a\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -818,7 +2069,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))acronym\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)abbr\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -826,7 +2077,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))address\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)acronym\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -834,7 +2085,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))area\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)address\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -842,7 +2093,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))b\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)applet\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -850,7 +2101,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))base\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)area\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -858,7 +2109,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))bdo\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)article\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -866,7 +2117,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))big\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)aside\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -874,7 +2125,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))blockquote\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)audio\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -882,7 +2133,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))body\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)b\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -890,7 +2141,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))br\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)base\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -898,7 +2149,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))button\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)basefont\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -906,7 +2157,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))caption\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)bdi\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -914,7 +2165,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))cite\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)bdo\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -922,7 +2173,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))code\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)bgsound\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -930,7 +2181,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))col\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)big\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -938,7 +2189,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))colgroup\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)blink\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -946,7 +2197,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))dd\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)blockquote\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -954,7 +2205,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))del\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)body\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -962,7 +2213,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))dfn\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)br\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -970,7 +2221,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))div\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)button\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -978,7 +2229,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))dl\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)canvas\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -986,7 +2237,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))dt\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)caption\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -994,7 +2245,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))em\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)center\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1002,7 +2253,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))fieldset\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)cite\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1010,7 +2261,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))form\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)code\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1018,7 +2269,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))h1\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)col\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1026,7 +2277,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))h2\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)colgroup\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1034,7 +2285,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))h3\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)command\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1042,7 +2293,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))h4\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)data\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1050,7 +2301,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))h5\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)datalist\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1058,7 +2309,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))h6\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)dd\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1066,7 +2317,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))head\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)del\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1074,7 +2325,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))hr\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)details\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1082,7 +2333,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))html\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)dfn\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1090,7 +2341,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))i\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)dialog\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1098,7 +2349,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))img\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)dir\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1106,7 +2357,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))input\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)div\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1114,7 +2365,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))ins\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)dl\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1122,7 +2373,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))kbd\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)dt\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1130,7 +2381,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))label\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)em\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1138,7 +2389,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))legend\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)embed\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1146,7 +2397,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))li\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)fieldset\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1154,7 +2405,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))link\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)figcaption\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1162,7 +2413,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))map\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)figure\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1170,7 +2421,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))meta\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)font\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1178,7 +2429,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))noscript\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)footer\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1186,7 +2437,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))object\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)form\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1194,7 +2445,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))ol\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)frame\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1202,7 +2453,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))optgroup\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)frameset\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1210,7 +2461,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))option\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)h[1-6]\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1218,7 +2469,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))p\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)head\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1226,7 +2477,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))param\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)header\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1234,7 +2485,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))pre\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)hgroup\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1242,7 +2493,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))q\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)hr\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1250,7 +2501,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))rb\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)html\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1258,7 +2509,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))rbc\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)i\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1266,7 +2517,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))rp\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)iframe\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1274,7 +2525,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))rt\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)img\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1282,7 +2533,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))rtc\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)input\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1290,7 +2541,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))ruby\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)ins\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1298,7 +2549,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))samp\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)isindex\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1306,7 +2557,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))script\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)kbd\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1314,7 +2565,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))select\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)keygen\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1322,7 +2573,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))small\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)label\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1330,7 +2581,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))span\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)legend\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1338,7 +2589,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))strong\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)li\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1346,7 +2597,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))style\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)link\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1354,7 +2605,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))sub\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)main\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1362,7 +2613,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))sup\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)map\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1370,7 +2621,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))table\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)mark\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1378,7 +2629,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))tbody\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)marquee\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1386,7 +2637,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))td\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)menu\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1394,7 +2645,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))textarea\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)menuitem\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1402,7 +2653,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))tfoot\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)meta\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1410,7 +2661,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))th\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)meter\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1418,7 +2669,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))thead\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)nav\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1426,7 +2677,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))title\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)nobr\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1434,7 +2685,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))tr\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)noembed\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1442,7 +2693,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))tt\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)noframes\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1450,7 +2701,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))ul\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)noscript\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1458,62 +2709,458 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>((?&lt;=&lt;)|(?&lt;=&lt;/))var\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)object\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)ol\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)optgroup\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)option\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)output\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)p\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)param\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)picture\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)pre\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)progress\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)q\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)rb\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)rp\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)rt\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)rtc\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)ruby\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)s\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)samp\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)script\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)section\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)select\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)small\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)source\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)span\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)strike\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)strong\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)style\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)sub\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)summary\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)sup\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)table\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)tbody\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)td\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)template\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)textarea\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)tfoot\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)th\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)thead\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)time\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)title\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)tr\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)track\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)tt\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)u\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)ul\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)var\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)video\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)wbr\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 	</array>
+	<key>numOfObjInArray</key>
+	<integer>393</integer>
 	<key>numbersArray</key>
 	<array/>
 	<key>outlineMenuArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>&lt;(form)[^&gt;]*method=[\"]*([^"&gt;]*)[\"]*[^&gt;]*&gt;</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>keyString</key>
-			<string>$1 : $2</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&lt;(h[1-6])[^&gt;]*&gt;([^&lt;]*)&lt;/\1[^&gt;]*&gt;</string>
+			<string>&lt;(h1)[^&gt;]*&gt;(.*)&lt;/\1[^&gt;]*&gt;</string>
 			<key>bold</key>
-			<true/>
+			<false/>
 			<key>ignoreCase</key>
 			<true/>
 			<key>italic</key>
 			<false/>
 			<key>keyString</key>
-			<string>$1 : $2</string>
+			<string>$1: $2</string>
 			<key>underline</key>
 			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&lt;(script)[^&gt;]*language=[\"]*([^"]*)[\"]*[^&gt;]*&gt;</string>
+			<string>&lt;(h2)[^&gt;]*&gt;(.*)&lt;/\1[^&gt;]*&gt;</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>keyString</key>
-			<string>$1 : $2</string>
+			<string>   $1: $2</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&lt;(table)[^&gt;]*summary=[\"]*([^"]*)[\"]*[^&gt;]*&gt;</string>
+			<string>&lt;(h3)[^&gt;]*&gt;(.*)&lt;/\1[^&gt;]*&gt;</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>keyString</key>
-			<string>$1 : $2</string>
+			<string>      $1: $2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&lt;(h4)[^&gt;]*&gt;(.*)&lt;/\1[^&gt;]*&gt;</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>keyString</key>
+			<string>         $1: $2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&lt;(h5)[^&gt;]*&gt;(.*)&lt;/\1[^&gt;]*&gt;</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>keyString</key>
+			<string>            $1: $2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&lt;(h6)[^&gt;]*&gt;(.*)&lt;/\1[^&gt;]*&gt;</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>keyString</key>
+			<string>               $1: $2</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>&lt;(title)[^&gt;]*&gt;([^&lt;]*)&lt;/\1[^&gt;]*&gt;</string>
+			<key>bold</key>
+			<true/>
 			<key>ignoreCase</key>
 			<true/>
 			<key>keyString</key>
-			<string>$1 : $2</string>
+			<string>$1: $2</string>
 		</dict>
 	</array>
 	<key>stringsArray</key>
@@ -1530,7 +3177,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&amp;#[0-9]+;</string>
+			<string>&amp;#[0-9]{1,10};</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;#x[0-9a-f]{1,10};</string>
+			<key>ignoreCase</key>
+			<true/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -1613,7 +3268,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>\baccept-charset\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)abbr(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1621,7 +3276,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\baccept\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)about(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1629,7 +3284,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\baccesskey\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)accept(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1637,7 +3292,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\baction\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)accept-charset(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1645,7 +3300,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\balign\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)accesskey(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1653,7 +3308,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\balt\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)action(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1661,7 +3316,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\barchive\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)align(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1669,7 +3324,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\baxis\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)alink(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1677,7 +3332,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bbaseline\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)allowfullscreen(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1685,7 +3340,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bborder\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)alt(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1693,7 +3348,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bbottom\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)archive(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1701,7 +3356,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcellpadding\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)async(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1709,7 +3364,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcellspacing\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)autocomplete(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1717,7 +3372,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bchar\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)autofocus(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1725,7 +3380,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcharoff\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)autoplay(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1733,7 +3388,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcharset\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)axis(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1741,7 +3396,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bchecked\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)background(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1749,7 +3404,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcite\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)bgcolor(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1757,7 +3412,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bclass\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)border(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1765,7 +3420,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bclassid\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)cellpadding(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1773,7 +3428,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcodebase\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)cellspacing(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1781,7 +3436,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcodetype\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)challenge(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1789,7 +3444,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcols\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)char(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1797,7 +3452,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcolspan\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)charoff(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1805,7 +3460,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcontent\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)charset(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1813,7 +3468,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bcoords\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)checked(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1821,7 +3476,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bdata\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)cite(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1829,7 +3484,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bdatetime\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)class(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1837,7 +3492,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bdeclare\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)classid(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1845,7 +3500,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bdefer\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)clear(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1853,7 +3508,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bdir\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)codebase(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1861,7 +3516,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bdisabled\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)codetype(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1869,7 +3524,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\benctype\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)cols(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1877,7 +3532,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bfor\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)colspan(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1885,7 +3540,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bframe\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)command(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1893,7 +3548,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bget\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)compact(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1901,7 +3556,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bheaders\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)content(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1909,7 +3564,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bheight\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)contenteditable(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1917,7 +3572,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bhref\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)contextmenu(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1925,7 +3580,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bhreflang\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)controls(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1933,7 +3588,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bhttp-equiv\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)coords(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1941,7 +3596,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bid\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)crossorigin(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1949,7 +3604,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bismap\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)data(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1957,7 +3612,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\blang\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)data-[a-z\-]+(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1965,7 +3620,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\blongdesc\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)datatype(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1973,7 +3628,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bmaxlength\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)datetime(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1981,7 +3636,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bmedia\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)declare(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1989,7 +3644,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bmethod\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)default(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -1997,7 +3652,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bmiddle\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)defer(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2005,7 +3660,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bmultiple\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)dir(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2013,7 +3668,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bname\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)dirname(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2021,7 +3676,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bnohref\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)disabled(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2029,7 +3684,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonblur\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)download(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2037,7 +3692,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonchange\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)draggable(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2045,7 +3700,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonclick\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)dropzone(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2053,7 +3708,453 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bondblclick\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)encoding(?=\b[^&lt;&gt;]*\?&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)enctype(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)for(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)form(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)formaction(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)formenctype(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)formmethod(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)formnovalidate(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)formtarget(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)frameborder(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)headers(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)height(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)hidden(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)high(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)href(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)hreflang(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)hspace(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)http-equiv(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)icon(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)id(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)inert(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)inlist(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ismap(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)itemid(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)itemprop(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)itemref(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)itemscope(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)itemtype(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)keytype(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)kind(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)label(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)lang(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)link(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)list(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)longdesc(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)loop(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)low(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)manifest(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)marginheight(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)marginwidth(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)max(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)maxlength(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)media(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)mediagroup(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)menu(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)method(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)min(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)multiple(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)muted(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)name(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)nohref(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)noshade(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)novalidate(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)nowrap(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)open(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)optimum(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)pattern(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2061,7 +4162,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonfocus\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)ping(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2069,7 +4170,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonkeydown\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)placeholder(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2077,7 +4178,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonkeypress\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)poster(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2085,7 +4186,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonkeyup\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)prefix(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2093,7 +4194,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonload\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)preload(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2101,7 +4202,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonmousedown\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)profile(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2109,7 +4210,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonmousemove\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)property(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2117,7 +4218,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonmouseout\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)radiogroup(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2125,7 +4226,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonmouseover\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)readonly(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2133,7 +4234,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonmouseup\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)rel(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2141,7 +4242,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonreset\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)required(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2149,7 +4250,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonselect\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)resource(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2157,7 +4258,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonsubmit\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)rev(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2165,7 +4266,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bonunload\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)reversed(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2173,7 +4274,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bpost\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)role(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2181,7 +4282,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\brbspan\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)rows(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2189,7 +4290,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\breadonly\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)rowspan(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2197,7 +4298,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\brel\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)rules(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2205,7 +4306,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\breset\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)sandbox(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2213,7 +4314,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\brev\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)scheme(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2221,7 +4322,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\brows\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)scope(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2229,7 +4330,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\browspan\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)scoped(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2237,7 +4338,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\brules\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)scrolling(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2245,7 +4346,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bscheme\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)seamless(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2253,7 +4354,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bscope\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)selected(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2261,7 +4362,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bselected\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)shape(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2269,7 +4370,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bsharpe\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)size(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2277,7 +4378,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bsize\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)sizes(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2285,7 +4386,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bsrc\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)sortable(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2293,7 +4394,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bstandby\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)sorted(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2301,7 +4402,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bsubmit\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)span(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2309,7 +4410,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bsummary\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)spellcheck(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2317,7 +4418,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\btabindex\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)src(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2325,7 +4426,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\btop\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)srcdoc(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2333,7 +4434,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\btype\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)srclang(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2341,7 +4442,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\busemap\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)srcset(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2349,7 +4450,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bvalign\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)standby(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2357,7 +4458,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bvalue\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)start(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2365,7 +4466,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bvaluetype\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)step(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2373,7 +4474,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bwidth\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)style(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2381,7 +4482,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bxml:lang\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)tabindex(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2389,7 +4490,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bxml:space\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)target(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -2397,9 +4498,161 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bxmlns\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=\s)text(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)title(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)translate(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)type(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)typemustmatch(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)typeof(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)usemap(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)valign(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)value(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)valuetype(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)version(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)version(?=\b[^&lt;&gt;]*\?&gt;)</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)vlink(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)vocab(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)vspace(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)width(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)wrap(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)xml:lang(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)xml:space(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)xmlns(?=\b[^&lt;&gt;]*&gt;)</string>
+			<key>ignoreCase</key>
+			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
