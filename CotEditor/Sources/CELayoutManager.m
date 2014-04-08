@@ -140,12 +140,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (![self isPrinting] && [self fixLineHeight]) {
         // 複合フォントで描画位置Y座標が変わるのを防止する
         // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）
-
-        // フォントサイズは随時変更されるため、表示時に取得する
-        NSPoint outPoint = [super locationForGlyphAtIndex:glyphIndex];
-        outPoint.y = [self textFontGlyphY];
-
-        return outPoint;
+        
+        if ([[self firstTextView] layoutOrientation] != NSTextLayoutOrientationVertical) {
+            // フォントサイズは随時変更されるため、表示時に取得する
+            NSPoint outPoint = [super locationForGlyphAtIndex:glyphIndex];
+            outPoint.y = [self textFontGlyphY];
+            
+            return outPoint;
+        }
     }
 
     return [super locationForGlyphAtIndex:glyphIndex];
