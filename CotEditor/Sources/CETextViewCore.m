@@ -589,6 +589,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     _backgroundAlpha = alpha;
 }
 
+// ------------------------------------------------------
+/// 表示方向を変更
+- (void)setLayoutOrientation:(NSTextLayoutOrientation)theOrientation
+// ------------------------------------------------------
+{
+    // 縦書きのときは強制的に行番号ビューを非表示
+    BOOL shouldShowLineNum = NO;
+    if (theOrientation != NSTextLayoutOrientationVertical) {
+        shouldShowLineNum = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showLineNumbers];
+    }
+    [(CELineNumView *)[self slaveView] setShowLineNum:shouldShowLineNum];
+    
+    [super setLayoutOrientation:theOrientation];
+}
+
+
 
 // ------------------------------------------------------
 /// 選択文字列を置換
