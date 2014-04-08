@@ -706,7 +706,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (![[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil]) { return; }
     
     NSURL *migrationDirURL = [[[self userStyleDirectoryURL] URLByDeletingLastPathComponent]
-                              URLByAppendingPathComponent:@"SyntaxColorings (duplicated)"];
+                              URLByAppendingPathComponent:@"SyntaxColorings (old)"];
     
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSArray *styleNames = [self bundledStyleNames];
