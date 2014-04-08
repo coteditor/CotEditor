@@ -451,7 +451,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self syntaxStyleExportButton] setEnabled:isEnabled];
 
     if (isEnabled &&
-        ![[CESyntaxManager sharedManager] isDefaultSyntaxStyle:[[self syntaxStylesPopup] title]])
+        ![[CESyntaxManager sharedManager] isBundledSyntaxStyle:[[self syntaxStylesPopup] title]])
     {
         [[self syntaxStyleDeleteButton] setEnabled:YES];
     } else {
@@ -467,10 +467,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *selectedStyleName = [[self syntaxStylesPopup] title];
 
-    if (![[CESyntaxManager sharedManager] URLOfStyle:selectedStyleName]) { return; }
+    if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil),
-                         selectedStyleName];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil), selectedStyleName];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil)
@@ -535,27 +534,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)exportSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
+    __block NSString *styleName = [[self syntaxStylesPopup] title];
     NSSavePanel *savePanel = [NSSavePanel savePanel];
 
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
-    [savePanel setNameFieldStringValue:[[self syntaxStylesPopup] title]];
+    [savePanel setNameFieldStringValue:styleName];
     [savePanel setAllowedFileTypes:@[@"plist"]];
     
     [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelCancelButton) return;
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSURL *sourceURL = [[CESyntaxManager sharedManager] URLOfStyle:[[self syntaxStylesPopup] title]];
-        NSURL *destURL = [savePanel URL];
-        
-        // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
-        if ([fileManager fileExistsAtPath:[destURL path]]) {
-            [fileManager removeItemAtURL:destURL error:nil];
+        if (result == NSFileHandlingPanelOKButton) {
+            [[CESyntaxManager sharedManager] exportStyle:styleName toURL:[savePanel URL]];
         }
-        [fileManager copyItemAtURL:sourceURL toURL:destURL error:nil];
     }];
 }
 
@@ -964,7 +956,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow
 // ------------------------------------------------------
 {
-    if ([[CESyntaxManager sharedManager] importStyleFile:[fileURL path]]) {
+    if ([[CESyntaxManager sharedManager] importStyleFromURL:fileURL]) {
         // インポートに成功したら、メニューとボタンを更新
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
     } else {

@@ -48,20 +48,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // public methods
-- (NSString *)syntaxNameFromExtension:(NSString *)extension;
-- (NSDictionary *)syntaxWithStyleName:(NSString *)styleName;
-- (BOOL)isDefaultSyntaxStyle:(NSString *)styleName;  // check only the name
-- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;  // check also the content
 - (NSArray *)styleNames;
+- (NSString *)syntaxNameFromExtension:(NSString *)extension;
+- (NSDictionary *)styleWithStyleName:(NSString *)styleName;
+- (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName;
+- (NSDictionary *)emptyStyle;
+- (BOOL)isBundledSyntaxStyle:(NSString *)styleName;  // check only the name
+- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName;  // check also the content
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
-- (BOOL)importStyleFile:(NSString *)styleFileName;
+- (BOOL)importStyleFromURL:(NSURL *)fileURL;
+- (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
-- (NSURL *)URLOfBundledStyle:(NSString *)styleName;
-- (NSURL *)URLOfStyle:(NSString *)styleName;
 - (BOOL)existsExtensionError;
-- (NSString *)copiedSyntaxName:(NSString *)originalName;
-- (void)saveColoringStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName;
+- (NSString *)copiedStyleName:(NSString *)originalName;
+- (void)saveStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName;
 - (NSArray *)validateSyntax:(NSDictionary *)style;
-- (NSDictionary *)emptyColoringStyle;
 
 @end
