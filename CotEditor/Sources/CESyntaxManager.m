@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSArray *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
 @property (nonatomic) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic) NSArray *extensions;  // 拡張子配列
+@property (nonatomic) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 
 
 // readonly
@@ -92,6 +93,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
+        // バンドルされているstyle定義の名前を読み込んでおく
+        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"plist" subdirectory:@"SyntaxColorings"];
+        NSMutableArray *styleNames = [NSMutableArray array];
+        for (NSURL *URL in URLs) {
+            [styleNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
+        }
+        [self setBundledStyleNames:styleNames];
+        
         // 重複しているユーザ領域の定義ファイルを隔離
         [self migrateDuplicatedDefaultColoringStylesInUserDomain];
         
@@ -164,41 +173,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// style名に応じたバンドル版のstyle辞書を返す
+/// style名に応じたバンドル版のstyle辞書を返す（ない場合はnil）
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    NSURL *URL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName]
-                  URLByAppendingPathExtension:@"plist"];
-    
-    if (![URL checkResourceIsReachableAndReturnError:nil]) { return nil; }
-    
-    return [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+    return [NSMutableDictionary dictionaryWithContentsOfURL:[self URLForBundledStyle:styleName]];
 }
 
 
 // ------------------------------------------------------
 /// あるスタイルネームがデフォルトで用意されているものかどうかを返す
-- (BOOL)isBundledSyntaxStyle:(NSString *)styleName
+- (BOOL)isBundledStyle:(NSString *)styleName
 // ------------------------------------------------------
 {
-    if ([styleName isEqualToString:@""]) { return NO; }
-    
-    NSArray *fileNames = [self bundledStyleNames];
-    
-    return [fileNames containsObject:styleName];
+    return [[self bundledStyleNames] containsObject:styleName];
 }
 
 
 // ------------------------------------------------------
 /// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
-- (BOOL)isEqualToBundledSyntaxStyle:(NSString *)styleName
+- (BOOL)isEqualToBundledStyle:(NSString *)styleName
 // ------------------------------------------------------
 {
     if ([styleName isEqualToString:@""]) { return NO; }
     
-    NSURL *destURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-    NSURL *sourceURL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *destURL = [self URLForUserStyle:styleName];
+    NSURL *sourceURL = [self URLForBundledStyle:styleName];
     
     if (![sourceURL checkResourceIsReachableAndReturnError:nil] ||
         ![destURL checkResourceIsReachableAndReturnError:nil])
@@ -223,7 +223,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName
 //------------------------------------------------------
 {
-    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *URL = [self URLForUserStyle:styleName];
 
     return [URL checkResourceIsReachableAndReturnError:nil];
 }
@@ -270,7 +270,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL
 //------------------------------------------------------
 {
-    NSURL *sourceURL = [self URLOfStyle:styleName];
+    NSURL *sourceURL = [self URLForUsedStyle:styleName];
     
     __block BOOL success = NO;
     __block NSError *error = nil;
@@ -304,7 +304,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL success = NO;
     if ([styleName length] < 1) { return success; }
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *URL = [self URLForUserStyle:styleName];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         success = [fileManager removeItemAtURL:URL error:nil];
@@ -399,7 +399,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [style[k_SCKey_extensions] removeObjectsInArray:emptyDicts];
     
     if ([name length] > 0) {
-        saveURL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:name] URLByAppendingPathExtension:@"plist"];
+        saveURL = [self URLForUserStyle:name];
         // style名が変更されたときは、古いファイルを削除する
         if (![name isEqualToString:oldName]) {
             [self removeStyleFileWithStyleName:oldName];
@@ -528,29 +528,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-/// バンドルされているシンタックスカラーリングスタイル名配列を返す
-- (NSArray *)bundledStyleNames
-// ------------------------------------------------------
-{
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSURL *sourceDirURL = [self bundledStyleDirectoryURL];
-    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:sourceDirURL
-                                          includingPropertiesForKeys:nil
-                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants
-                                                        errorHandler:nil];
-    NSMutableArray *fileNames = [NSMutableArray array];
-    NSURL *URL;
-    
-    while (URL = [enumerator nextObject]) {
-        if ([[URL pathExtension] isEqualToString:@"plist"]) {
-            [fileNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
-        }
-    }
-    return fileNames;
-}
-
-
 //------------------------------------------------------
 /// styleのファイルからのセットアップと読み込み
 - (void)setupColoringStyles
@@ -583,10 +560,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSURL *URL;
     
     // バンドル版を読み込む
-    NSArray *bundledStyleNames = [self bundledStyleNames];
-    for (styleName in bundledStyleNames) {
-        URL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-        styleDict = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+    for (styleName in [self bundledStyleNames]) {
+        styleDict = [NSMutableDictionary dictionaryWithContentsOfURL:[self URLForBundledStyle:styleName]];
         if (styleDict) {
             styles[[styleName lowercaseString]] = styleDict;  // このキーは重複チェック＆ソート用なので小文字に揃えておく
         }
@@ -659,16 +634,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// style名から有効なstyle定義ファイルのURLを返す
-- (NSURL *)URLOfStyle:(NSString *)styleName
+- (NSURL *)URLForUsedStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    NSURL *URL = [self URLForUserStyle:styleName];
     
     if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        URL = [[[self bundledStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+        URL = [self URLForBundledStyle:styleName];
     }
     
     return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+}
+
+
+//------------------------------------------------------
+/// style名からバンドル領域のstyle定義ファイルのURLを返す
+- (NSURL *)URLForBundledStyle:(NSString *)styleName
+//------------------------------------------------------
+{
+    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"plist" subdirectory:@"SyntaxColorings"];
+    
+}
+
+
+//------------------------------------------------------
+/// style名からユーザ領域のstyle定義ファイルのURLを返す
+- (NSURL *)URLForUserStyle:(NSString *)styleName
+//------------------------------------------------------
+{
+    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
 }
 
 
@@ -687,15 +681,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// bundle内のstyleデータファイル保存ディレクトリ
-- (NSURL *)bundledStyleDirectoryURL
-//------------------------------------------------------
-{
-    return [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Resources/SyntaxColorings"];
-}
-
-
-//------------------------------------------------------
 /// ユーザ領域にあるバンドル版と重複したstyleデータファイルを隔離
 - (void)migrateDuplicatedDefaultColoringStylesInUserDomain
 //------------------------------------------------------
@@ -709,13 +694,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                               URLByAppendingPathComponent:@"SyntaxColorings (old)"];
     
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSArray *styleNames = [self bundledStyleNames];
     
-    for (NSString *styleName in styleNames) {
-        if ([self isEqualToBundledSyntaxStyle:styleName]) {
+    for (NSString *styleName in [self bundledStyleNames]) {
+        if ([self isEqualToBundledStyle:styleName]) {
             [fileManager createDirectoryAtURL:migrationDirURL withIntermediateDirectories:YES attributes:nil error:nil];
             
-            NSURL *URL = [self URLOfStyle:styleName];
+            NSURL *URL = [self URLForUserStyle:styleName];
             NSURL *migrationURL = [[migrationDirURL URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
             
             if ([migrationDirURL checkResourceIsReachableAndReturnError:nil]) {

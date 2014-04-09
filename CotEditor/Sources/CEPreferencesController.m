@@ -451,7 +451,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self syntaxStyleExportButton] setEnabled:isEnabled];
 
     if (isEnabled &&
-        ![[CESyntaxManager sharedManager] isBundledSyntaxStyle:[[self syntaxStylesPopup] title]])
+        ![[CESyntaxManager sharedManager] isBundledStyle:[[self syntaxStylesPopup] title]])
     {
         [[self syntaxStyleDeleteButton] setEnabled:YES];
     } else {

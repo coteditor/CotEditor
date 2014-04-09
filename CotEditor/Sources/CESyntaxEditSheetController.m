@@ -111,7 +111,7 @@
     [super windowDidLoad];
     
     NSString *styleName = [self originalStyleName];
-    BOOL isDefaultSyntax = [[CESyntaxManager sharedManager] isBundledSyntaxStyle:styleName];
+    BOOL isDefaultSyntax = [[CESyntaxManager sharedManager] isBundledStyle:styleName];
     
     [[self styleNameField] setStringValue:styleName];
     [[self styleNameField] setDrawsBackground:!isDefaultSyntax];
@@ -122,7 +122,7 @@
     if (isDefaultSyntax) {
         [[self styleNameField] setBordered:YES];
         [[self messageField] setStringValue:NSLocalizedString(@"The default style name cannot be changed.", nil)];
-        [[self factoryDefaultsButton] setEnabled:![[CESyntaxManager sharedManager] isEqualToBundledSyntaxStyle:styleName]];
+        [[self factoryDefaultsButton] setEnabled:![[CESyntaxManager sharedManager] isEqualToBundledStyle:styleName]];
     } else {
         [[self messageField] setStringValue:@""];
         [[self factoryDefaultsButton] setEnabled:NO];
