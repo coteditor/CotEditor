@@ -452,6 +452,7 @@ static CFStringEncodings k_CFStringEncodingList[] = {
     kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
     kCFStringEncodingNextStepLatin, // Western (NextStep)
+    kCFStringEncodingASCII,  // Western (ASCII)
     kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
     kCFStringEncodingInvalidId, // ----------
 
