@@ -77,7 +77,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_invisibleFullwidthSpace   @"invisibleZenkakuSpace"
 #define k_key_showOtherInvisibleChars   @"showOtherInvisibleChars"
 #define k_key_highlightCurrentLine      @"highlightCurrentLine"
-#define k_key_setHiliteLineColorToIMChars   @"setHiliteLineColorToIMChars"
 #define k_key_doColoring                @"doSyntaxColoring"
 #define k_key_defaultColoringStyleName  @"defaultColoringStyleName"
 #define k_key_delayColoring             @"delayColoring"

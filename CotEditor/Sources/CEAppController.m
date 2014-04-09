@@ -119,7 +119,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_invisibleFullwidthSpace: @0U,
                                k_key_showOtherInvisibleChars: @NO,
                                k_key_highlightCurrentLine: @NO,
-                               k_key_setHiliteLineColorToIMChars: @YES,
                                k_key_textColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
                                k_key_backgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
                                k_key_insertionPointColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
@@ -787,6 +786,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 @"gotoObjectMenuIndex", // deprecated on 1.5
                                 @"showWrappedLineMark", // deprecated on 1.5
                                 @"showStatusThousSeparator",
+                                @"setHiliteLineColorToIMChars",
                                 @"statusAreaFontSize"   // deprecated on 1.5
                                 ];
     

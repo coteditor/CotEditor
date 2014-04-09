@@ -45,7 +45,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSRect hilightedLineRect;
 
 @property (nonatomic) BOOL highlightCurrentLine;
-@property (nonatomic) BOOL setsHiliteLineColorToIMChars;
 @property (nonatomic) BOOL hadMarkedText;
 @property (nonatomic) NSInteger lastCursorLocation;
 
@@ -167,7 +166,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_selectionColor]],
                     NSBackgroundColorAttributeName, nil]];
         [self setHighlightCurrentLine:[defaults boolForKey:k_key_highlightCurrentLine]];
-        [self setSetsHiliteLineColorToIMChars:[defaults boolForKey:k_key_setHiliteLineColorToIMChars]];
         [self setHadMarkedText:NO];
 
     }
@@ -838,31 +836,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     // 古い範囲の文字背景色を削除し、新しい範囲にセット
-    BOOL shouldSetBackgroundColor = [self setsHiliteLineColorToIMChars] ? YES :
-                    (([self hadMarkedText] == [[self textView] hasMarkedText]) &&
-                                    (!NSEqualRanges([self hilightedLineRange], lineRange)));
-    if (shouldSetBackgroundColor) {
-
-        NSColor *highlightColor = [[[self textView] highlightLineColor] colorWithAlphaComponent:
-                    [[[self textView] backgroundColor] alphaComponent]];
-        NSDictionary *dict = @{NSBackgroundColorAttributeName: highlightColor};
-        // （文字列が削除されたときも実行されるので、範囲を検証しておかないと例外が発生する）
-        NSRange removeAttrsRange = NSMakeRange(0, [[self textStorage] length]);
-
-        // 検索パネルのハイライトや非互換文字表示で使っているlayoutManのaddTemporaryAttributesと衝突しないように、
-        // NSTextStorageの背景色を使っている。addTemporaryAttributesよりも後ろに描画されるので、
-        // これら検索パネルのハイライト／非互換文字表示／カレント行のハイライトが全て表示できる。
-        // ただし、テキストビュー分割時にアクティブでないものも含めて全てのテキストビューがハイライトされてしまう。
-        // これは、全テキストビューのtextStorageが共通であることに起因するので、構造を変更しない限り解決できない。2008.06.07.
-        [[self textStorage] beginEditing];
-        if (removeAttrsRange.length > 0) {
-            [[self textStorage] removeAttribute:NSBackgroundColorAttributeName range:removeAttrsRange];
-        }
-        [[self textStorage] addAttributes:dict range:lineRange];
-        [[self textStorage] endEditing];
-        [self setHilightedLineRange:lineRange];
-        [self setHadMarkedText:[[self textView] hasMarkedText]];
+    NSColor *highlightColor = [[[self textView] highlightLineColor] colorWithAlphaComponent:
+                               [[[self textView] backgroundColor] alphaComponent]];
+    NSDictionary *dict = @{NSBackgroundColorAttributeName: highlightColor};
+    // （文字列が削除されたときも実行されるので、範囲を検証しておかないと例外が発生する）
+    NSRange removeAttrsRange = NSMakeRange(0, [[self textStorage] length]);
+    
+    // 検索パネルのハイライトや非互換文字表示で使っているlayoutManのaddTemporaryAttributesと衝突しないように、
+    // NSTextStorageの背景色を使っている。addTemporaryAttributesよりも後ろに描画されるので、
+    // これら検索パネルのハイライト／非互換文字表示／カレント行のハイライトが全て表示できる。
+    // ただし、テキストビュー分割時にアクティブでないものも含めて全てのテキストビューがハイライトされてしまう。
+    // これは、全テキストビューのtextStorageが共通であることに起因するので、構造を変更しない限り解決できない。2008.06.07.
+    [[self textStorage] beginEditing];
+    if (removeAttrsRange.length > 0) {
+        [[self textStorage] removeAttribute:NSBackgroundColorAttributeName range:removeAttrsRange];
     }
+    [[self textStorage] addAttributes:dict range:lineRange];
+    [[self textStorage] endEditing];
+    [self setHilightedLineRange:lineRange];
+    [self setHadMarkedText:[[self textView] hasMarkedText]];
 }
 
 @end
