@@ -44,6 +44,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     CEGeneralPane,
     CEWindowPane,
     CEViewPane,
+    CEEditPane,
     CEFormatPane,
     CESyntaxPane,
     CEFileDropPane,
@@ -55,6 +56,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @interface CEPreferencesController ()
 
 @property (nonatomic) IBOutlet NSView *generalPane;
+@property (nonatomic) IBOutlet NSView *editPane;
 @property (nonatomic) IBOutlet NSView *windowPane;
 @property (nonatomic) IBOutlet NSView *viewPane;
 @property (nonatomic) IBOutlet NSView *formatPane;
@@ -384,6 +386,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSView   *newView;
     switch ([sender tag]) {
         case CEGeneralPane:     newView = [self generalPane];     break;
+        case CEEditPane:        newView = [self editPane];        break;
         case CEViewPane:        newView = [self viewPane];        break;
         case CEWindowPane:      newView = [self windowPane];      break;
         case CEFormatPane:      newView = [self formatPane];      break;
