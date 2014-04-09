@@ -1816,10 +1816,12 @@ enum { typeFSS = 'fss ' };
         // クリエータなどを設定
         [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
         
-        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
-        NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
-                                  [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
-        [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
+        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存 (Non-lossy ASCIIの場合は追加しない)
+        if (CFStringConvertNSStringEncodingToEncoding([self encodingCode]) != kCFStringEncodingNonLossyASCII) {
+            NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
+                                      [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
+            [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
+        }
     }
     
     // Finder Lock がかかってたなら、再びかける
