@@ -156,7 +156,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupAtLaunching
 // ------------------------------------------------------
 {
-    NSURL *URL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/DefaultMenuKeyBindings.plist"];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"DefaultMenuKeyBindings" withExtension:@"plist"];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         [self setDefaultMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:URL]];
@@ -680,15 +680,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSURL *dirURL = [fileURL URLByDeletingLastPathComponent];
 
     // ディレクトリの存在チェック
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
     BOOL isDirectory = NO, success = NO;
     BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
     if (!exists) {
         success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
     }
     if ((exists && isDirectory) || success) {
-        NSURL *sourceURL = [[[NSBundle mainBundle] bundleURL]
-                            URLByAppendingPathComponent:@"/Contents/Resources/DefaultMenuKeyBindings.plist"];
+        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultMenuKeyBindings" withExtension:@"plist"];
 
         if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
             ![fileURL checkResourceIsReachableAndReturnError:nil]) {
@@ -716,15 +715,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSURL *dirURL = [fileURL URLByDeletingLastPathComponent];
 
     // ディレクトリの存在チェック
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
     BOOL isDirectory = NO, success = NO;
     BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
     if (!exists) {
         success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
     }
     if ((exists && isDirectory) || (success)) {
-        NSURL *sourceURL = [[[NSBundle mainBundle] bundleURL]
-                            URLByAppendingPathComponent:@"/Contents/Resources/DefaultTextKeyBindings.plist"];
+        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
 
         if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
             ![fileURL checkResourceIsReachableAndReturnError:nil]) {
@@ -911,8 +909,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     for (id selector in [self textKeyBindingSelectorStrArray]) {
         if ((selector != nil) && [selector isKindOfClass:[NSString class]] && ([selector length] > 0)) {
             if (usesFactoryDefaults) {
-                NSURL *sourceURL = [[[NSBundle mainBundle] bundleURL]
-                                    URLByAppendingPathComponent:@"/Contents/Resources/DefaultTextKeyBindings.plist"];
+                NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
                 NSDictionary *defaultDict = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
                 keys = [defaultDict allKeysForObject:selector];
             } else {
@@ -1253,7 +1250,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)saveOutlineViewData
 //------------------------------------------------------
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *fileURL, *dirURL;
     BOOL exists, isDirectory = NO, success = NO;
 

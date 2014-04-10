@@ -107,7 +107,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 #pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
 
@@ -146,7 +146,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 //------------------------------------------------------
 {
     NSURL *directoryURL = [self scriptDirectoryURL]; // データディレクトリパス取得
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
 
     // ディレクトリの存在チェック
     NSNumber *isDirectory = NO;
@@ -162,8 +162,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     }
 
     // About 文書をコピー
-    NSURL *sourceURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/_aboutScriptFolder.rtf"];
-    NSURL *destURL = [directoryURL URLByAppendingPathComponent:@"_aboutScriptFolder.rtf"];
+    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"_aboutScriptFolder" withExtension:@"rtf"];
+    NSURL *destURL = [directoryURL URLByAppendingPathComponent:[sourceURL lastPathComponent]];
     if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
         ![destURL checkResourceIsReachableAndReturnError:nil]) {
         if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
@@ -171,8 +171,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         }
 
         // 付属の Script をコピー
-        NSURL *sourceDirURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"/Contents/Resources/Script"];
-        NSURL *destDirURL = [directoryURL URLByAppendingPathComponent:@"/SampleScript"];
+        NSURL *sourceDirURL = [[NSBundle mainBundle] URLForResource:@"Script" withExtension:nil];
+        NSURL *destDirURL = [directoryURL URLByAppendingPathComponent:@"SampleScript"];
         if (![fileManager copyItemAtURL:sourceDirURL toURL:destDirURL error:nil]) {
             NSLog(@"Error. AppleScriptFolder sample could not copy.");
         }
@@ -257,7 +257,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
             success = [[NSWorkspace sharedWorkspace] openFile:[URL path] withApplication:[[NSBundle mainBundle] bundlePath]];
         }
         if (!success) {
-            message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file \"%@\".",@""), URL];
+            message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file \"%@\".", nil), URL];
         }
     } else if (flags == (NSAlternateKeyMask | NSShiftKeyMask)) {
         isModifierPressed = YES;
@@ -356,20 +356,18 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 - (NSURL *)scriptDirectoryURL
 //------------------------------------------------------
 {
-    NSURL *URL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                        inDomain:NSUserDomainMask
-                                               appropriateForURL:nil
-                                                          create:YES
-                                                           error:nil]
-                  URLByAppendingPathComponent:@"CotEditor/ScriptMenu"];
-    
-    return URL;
+    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                   inDomain:NSUserDomainMask
+                                          appropriateForURL:nil
+                                                     create:YES
+                                                      error:nil]
+            URLByAppendingPathComponent:@"CotEditor/ScriptMenu"];
 }
 
 
 //------------------------------------------------------
 /// ファイルを読み込みメニューアイテムを生成／追加する
-- (void)addChildFileItemTo:(NSMenu *)inMenu fromDir:(NSURL *)directoryURL
+- (void)addChildFileItemTo:(NSMenu *)menu fromDir:(NSURL *)directoryURL
 //------------------------------------------------------
 {
     NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:directoryURL
@@ -386,13 +384,13 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         if ([resourceType isEqualToString:NSURLFileResourceTypeDirectory]) {
             menuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
             if ([menuTitle isEqualToString:@"-"]) { // セパレータ
-                [inMenu addItem:[NSMenuItem separatorItem]];
+                [menu addItem:[NSMenuItem separatorItem]];
                 continue;
             }
             NSMenu *subMenu = [[NSMenu alloc] initWithTitle:menuTitle];
             menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle action:nil keyEquivalent:@""];
             [menuItem setTag:k_scriptMenuDirectoryTag];
-            [inMenu addItem:menuItem];
+            [menu addItem:menuItem];
             [menuItem setSubmenu:subMenu];
             [self addChildFileItemTo:subMenu fromDir:URL];
         } else if ([resourceType isEqualToString:NSURLFileResourceTypeRegular] &&
@@ -408,7 +406,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
             [menuItem setRepresentedObject:URL];
             [menuItem setTarget:self];
             [menuItem setToolTip:NSLocalizedString(@"\"Opt + click\" to open in Script Editor.",@"")];
-            [inMenu addItem:menuItem];
+            [menu addItem:menuItem];
         }
     }
 }
@@ -482,7 +480,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
                                        otherButton:nil
                          informativeTextWithFormat:message, nil];
     [alert setAlertStyle:NSCriticalAlertStyle];
-    (void)[alert runModal];
+    [alert runModal];
 }
 
 
@@ -496,7 +494,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     
     if ((data == nil) || ([data length] < 1)) { return nil; }
     
-    NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy];
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
     NSStringEncoding encoding;
     NSInteger i = 0;
     while (scriptString == nil) {
@@ -523,7 +521,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
     // スクリプトファイル内容を得られない場合は警告して抜ける
     if (!script || ([script length] < 1)) {
-        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could NOT read the script \"%@\".",@""), [URL path]]];
+        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could NOT read the script \"%@\".", nil), URL]];
         return;
     }
 
@@ -556,8 +554,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     }
     if ((inputType != nil) && ([inputType isEqualToString:@"Selection"])) {
         if (docExists) {
-            NSRange theSelectedRange = [[[document editorView] textView] selectedRange];
-            inputString = [[[document editorView] string] substringWithRange:theSelectedRange];
+            NSRange selectedRange = [[[document editorView] textView] selectedRange];
+            inputString = [[[document editorView] string] substringWithRange:selectedRange];
             // ([[theDoc editorView] string] は行末コードLFの文字列を返すが、[[theDoc editorView] selectedRange] は
             // 行末コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
             // [[[theDoc editorView] textView] selectedRange] を使う必要がある。2009-04-12
@@ -565,7 +563,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         } else {
             hasError = YES;
         }
-    } else if ((inputType != nil) && ([inputType isEqualToString:@"AllText"])) {
+    } else if (inputType && ([inputType isEqualToString:@"AllText"])) {
         if (docExists) {
             inputString = [[document editorView] string];
         } else {
@@ -583,7 +581,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     }
     [scanner setScanLocation:0];
     while (![scanner isAtEnd]) {
-        (void)[scanner scanUpToString:@"%%%{CotEditorXOutput=" intoString:nil];
+        [scanner scanUpToString:@"%%%{CotEditorXOutput=" intoString:nil];
         if ([scanner scanString:@"%%%{CotEditorXOutput=" intoString:nil]) {
             if ([scanner scanUpToString:@"}%%%" intoString:&outputType]) {
                 break;
@@ -621,7 +619,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     [[[task standardError] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
 
     [task launch];
-    if ((inputData != nil) && ([inputData length] > 0)) {
+    if (inputData && ([inputData length] > 0)) {
         [[[task standardInput] fileHandleForWriting] writeData:inputData];
         [[[task standardInput] fileHandleForWriting] closeFile];
     }
