@@ -55,6 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSString *lineInfo;  // 現在行
 @property (nonatomic) NSString *columnInfo;  // 文書の行頭からのキャレット位置
 @property (nonatomic) NSString *singleCharInfo;  // 文書の選択文字
+@property (nonatomic) NSString *byteLengthInfo;  //  現在のエンコーディングでのバイト数
 
 // Public method
 - (BOOL)needsInfoDrawerUpdate;

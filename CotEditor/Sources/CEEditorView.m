@@ -652,12 +652,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self statusBar] updateLeftField];
     }
     if (shouldUpdateDrawer) {
-        NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo;
+        NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo, *byteLengthInfo;
         
         if (selectedRange.length == 1) {
             unichar character = [theString characterAtIndex:selectedRange.location];
             singleCharInfo = [NSString stringWithFormat:@"0x%.4X", character];
         }
+        NSUInteger byteLength = [theString lengthOfBytesUsingEncoding:[[self document] encodingCode]];
+        NSUInteger selectedByteLength = [[theString substringWithRange:selectedRange]
+                                         lengthOfBytesUsingEncoding:[[self document] encodingCode]];
         
         linesInfo = [NSString stringWithFormat:@"%ld", (long)numberOfLines];
         [[self windowController] setLinesInfo:linesInfo];
@@ -665,6 +668,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         charsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)length, (long)selectedRange.length] :
                                                  [NSString stringWithFormat:@"%ld", (long)length];
         [[self windowController] setCharsInfo:charsInfo];
+        
+        byteLengthInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)byteLength, (long)selectedByteLength] :
+                                                      [NSString stringWithFormat:@"%ld", (long)byteLength];
+        [[self windowController] setByteLengthInfo:byteLengthInfo];
         
         wordsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)numberOfWords, (long)numberOfSelectedWords] :
                                                  [NSString stringWithFormat:@"%ld", (long)numberOfWords];
