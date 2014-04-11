@@ -44,6 +44,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     CEGeneralPane,
     CEWindowPane,
     CEViewPane,
+    CEEditPane,
     CEFormatPane,
     CESyntaxPane,
     CEFileDropPane,
@@ -55,6 +56,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @interface CEPreferencesController ()
 
 @property (nonatomic) IBOutlet NSView *generalPane;
+@property (nonatomic) IBOutlet NSView *editPane;
 @property (nonatomic) IBOutlet NSView *windowPane;
 @property (nonatomic) IBOutlet NSView *viewPane;
 @property (nonatomic) IBOutlet NSView *formatPane;
@@ -71,17 +73,15 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
+@property (nonatomic) IBOutlet NSArrayController *stylesController;
+@property (nonatomic) IBOutlet NSTableView *syntaxTableView;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
+@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
+
 @property (nonatomic) IBOutlet NSArrayController *fileDropController;
 @property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropGlossaryTextView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesPopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleEditButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleCopyButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleExportButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleXtsnErrButton;
 
 @property (nonatomic) NSArray *invisibleSpaces;
 @property (nonatomic) NSArray *invisibleTabs;
@@ -162,6 +162,27 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         [self setInvisibleFullWidthSpaces:fullWidthSpaces];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// メニューの有効化／無効化を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    // 拡張子重複エラー表示メニューの有効化を制御
+    if ([menuItem action] == @selector(openSyntaxExtensionErrorSheet:)) {
+        return [[CESyntaxManager sharedManager] existsExtensionError];
+        
+    // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
+    } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
+        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export \"%@\"...", nil), selectedStyleName]];
+    } if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
+        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate \"%@\"...", nil), selectedStyleName]];
+    }
+    return YES;
 }
 
 
@@ -274,14 +295,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     [self setupSyntaxMenus];
     [self setContentFileDropController];
     [self setFontFamilyNameAndSize];
+    
 
     [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
     // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
     // 2008.07.15.
     [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
-    
-    // 拡張子重複エラー表示ボタンの有効化を制御
-    [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
 }
 
 
@@ -367,6 +386,14 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 }
 
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    if ([notification object] == [self syntaxTableView]) {
+        [self changedSyntaxStylesPopup:self];
+    }
+}
+
+
 
 #pragma mark Action Messages
 
@@ -384,6 +411,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSView   *newView;
     switch ([sender tag]) {
         case CEGeneralPane:     newView = [self generalPane];     break;
+        case CEEditPane:        newView = [self editPane];        break;
         case CEViewPane:        newView = [self viewPane];        break;
         case CEWindowPane:      newView = [self windowPane];      break;
         case CEFormatPane:      newView = [self formatPane];      break;
@@ -476,10 +504,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)openSyntaxEditSheet:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
-    if (([sender tag] != CENewSyntaxEdit) && (selected < 0)) { return; }
-    
-    NSString *selectedName = [[self syntaxStylesPopup] titleOfSelectedItem];
+    NSString *selectedName = [[self stylesController] selectedObjects][0];
     CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:selectedName
                                                                                                  mode:[sender tag]];
     if (!sheetController) {
@@ -510,9 +535,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
-        // 拡張子重複エラー表示ボタンの有効化を制御
-        [[self syntaxStyleXtsnErrButton] setEnabled:
-                [[CESyntaxManager sharedManager] existsExtensionError]];
     }
     // シートを閉じる
     [NSApp endSheet:sheet];
@@ -526,19 +548,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)changedSyntaxStylesPopup:(id)sender
 // ------------------------------------------------------
 {
-    BOOL isEnabled = ([[self syntaxStylesPopup] indexOfSelectedItem] > 1);
-
-    [[self syntaxStyleEditButton] setEnabled:isEnabled];
-    [[self syntaxStyleCopyButton] setEnabled:isEnabled];
-    [[self syntaxStyleExportButton] setEnabled:isEnabled];
-
-    if (isEnabled &&
-        ![[CESyntaxManager sharedManager] isDefaultSyntaxStyle:[[self syntaxStylesPopup] title]])
-    {
-        [[self syntaxStyleDeleteButton] setEnabled:YES];
-    } else {
-        [[self syntaxStyleDeleteButton] setEnabled:NO];
-    }
+    NSString *selected = [[self stylesController] selectedObjects][0];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isDefaultSyntaxStyle:selected];
+    
+    [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
 
 
@@ -547,7 +560,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)deleteSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyleName = [[self syntaxStylesPopup] title];
+    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
 
     if (![[CESyntaxManager sharedManager] URLOfStyle:selectedStyleName]) { return; }
     
@@ -617,20 +630,22 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)exportSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
+    NSString *selectedStyle = [[self stylesController] selectedObjects][0];
+    
     NSSavePanel *savePanel = [NSSavePanel savePanel];
 
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
-    [savePanel setNameFieldStringValue:[[self syntaxStylesPopup] title]];
+    [savePanel setNameFieldStringValue:selectedStyle];
     [savePanel setAllowedFileTypes:@[@"plist"]];
     
     [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) return;
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSURL *sourceURL = [[CESyntaxManager sharedManager] URLOfStyle:[[self syntaxStylesPopup] title]];
+        NSURL *sourceURL = [[CESyntaxManager sharedManager] URLOfStyle:selectedStyle];
         NSURL *destURL = [savePanel URL];
         
         // 同名ファイルが既にあるときは、削除(Replace の確認は、SavePanel で自動的に行われている)
@@ -886,22 +901,17 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSString *selectedTitle;
     NSUInteger selected;
 
-    [[self syntaxStylesPopup] removeAllItems];
+    [[self stylesController] setContent:styleNames];
+    
     [[self syntaxStylesDefaultPopup] removeAllItems];
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Choose style...", nil)
-                                      action:nil keyEquivalent:@""];
-    [[[self syntaxStylesPopup] menu] addItem:item];
-    [[[self syntaxStylesPopup] menu] addItem:[NSMenuItem separatorItem]];
     item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
                                       action:nil keyEquivalent:@""];
     [[[self syntaxStylesDefaultPopup] menu] addItem:item];
     [[[self syntaxStylesDefaultPopup] menu] addItem:[NSMenuItem separatorItem]];
     
     for (NSString *styleName in styleNames) {
-        item = [[NSMenuItem alloc] initWithTitle:styleName
-                   action:nil keyEquivalent:@""];
-        [[[self syntaxStylesPopup] menu] addItem:item];
-        [[[self syntaxStylesDefaultPopup] menu] addItem:[item copy]];
+        item = [[NSMenuItem alloc] initWithTitle:styleName action:nil keyEquivalent:@""];
+        [[[self syntaxStylesDefaultPopup] menu] addItem:item];
     }
     // (デフォルトシンタックスカラーリングスタイル指定ポップアップメニューはバインディングを使っているが、
     // タグの選択がバインディングで行われた後にメニューが追加／削除されるため、結果的に選択がうまく動かない。
@@ -1018,15 +1028,16 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         return;
     }
     
-    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:[[self syntaxStylesPopup] title]]) {
+    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+    
+    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[self window] makeKeyAndOrderFront:self];
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
                                          defaultButton:nil
                                        alternateButton:nil otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil),
-                          [[self syntaxStylesPopup] title]];
+                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil), selectedStyleName];
         NSBeep();
         [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
         return;
@@ -1035,8 +1046,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
     // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
     [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
-    // 拡張子重複エラー表示ボタンの有効化を制御
-    [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
 }
 
 
