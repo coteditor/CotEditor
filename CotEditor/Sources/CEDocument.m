@@ -689,8 +689,8 @@ enum { typeFSS = 'fss ' };
 
     // 削除／変換される文字をリストアップ
     NSArray *managers = [[self editorView] allLayoutManagers];
-    NSColor *foreColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:k_key_textColor]];
-    NSColor *backColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:k_key_backgroundColor]];
+    NSColor *foreColor = [[[self editorView] textView] textColor];
+    NSColor *backColor = [[[self editorView] textView] backgroundColor];
     NSColor *incompatibleColor;
     NSDictionary *attrs;
     NSString *curChar, *convertedChar;
