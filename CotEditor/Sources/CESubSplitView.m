@@ -56,7 +56,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readwrite) CELineNumView *lineNumView;
 @property (nonatomic, readwrite) CENavigationBarView *navigationBar;
 @property (nonatomic, readwrite) CESyntax *syntax;
-@property (nonatomic, readwrite) NSDictionary *highlightBracesColorDict;
 @property (nonatomic, readwrite) NSTextStorage *textStorage;
 
 @end
@@ -163,9 +162,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setOutlineMenuTimer:nil];
         [self setLineNumUpdateInterval:[defaults doubleForKey:k_key_lineNumUpdateInterval]];
         [self setOutlineMenuInterval:[defaults doubleForKey:k_key_outlineMenuInterval]];
-        [self setHighlightBracesColorDict:[[NSDictionary alloc] initWithObjectsAndKeys:
-                    [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_selectionColor]],
-                    NSBackgroundColorAttributeName, nil]];
         [self setHighlightCurrentLine:[defaults boolForKey:k_key_highlightCurrentLine]];
         [self setSetsHiliteLineColorToIMChars:[defaults boolForKey:k_key_setHiliteLineColorToIMChars]];
         [self setHadMarkedText:NO];
@@ -674,7 +670,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theUnichar = [string characterAtIndex:location];
         if (theUnichar == braceChar) {
             if (!skipMatchingBrace) {
-                [[[self textView] layoutManager] addTemporaryAttributes:[self highlightBracesColorDict]
+                [[[self textView] layoutManager] addTemporaryAttributes:[[self textView] selectedTextAttributes]
                                                       forCharacterRange:NSMakeRange(location, 1)];
                 [self performSelector:@selector(resetBackgroundColor:)
                            withObject:NSStringFromRange(NSMakeRange(location, 1))

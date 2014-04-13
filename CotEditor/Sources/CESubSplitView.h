@@ -49,7 +49,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readonly) CELineNumView *lineNumView;
 @property (nonatomic, readonly) CENavigationBarView *navigationBar;
 @property (nonatomic, readonly) CESyntax *syntax;
-@property (nonatomic, readonly) NSDictionary *highlightBracesColorDict;
 
 
 // Public method
