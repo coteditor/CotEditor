@@ -117,24 +117,24 @@
                         <tabViewItems>
                             <tabViewItem label="0" identifier="Keywords" id="399" userLabel="Keywords Tab">
                                 <view key="view" id="407">
-                                    <rect key="frame" x="10" y="7" width="408" height="263"/>
+                                    <rect key="frame" x="10" y="7" width="418" height="263"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="426">
-                                            <rect key="frame" x="8" y="28" width="392" height="223"/>
+                                            <rect key="frame" x="8" y="28" width="402" height="223"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="sXN-MI-36V">
-                                                <rect key="frame" x="1" y="17" width="390" height="205"/>
+                                                <rect key="frame" x="1" y="17" width="400" height="205"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1044" id="415">
-                                                        <rect key="frame" x="0.0" y="0.0" width="390" height="205"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="205"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginKeywords" width="183" minWidth="40" maxWidth="1000" id="455">
+                                                            <tableColumn identifier="beginKeywords" width="188" minWidth="40" maxWidth="1000" id="455">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -151,7 +151,7 @@
                                                                     <binding destination="35" name="value" keyPath="arrangedObjects.beginString" id="679"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endKeywords" width="149" minWidth="10" maxWidth="1000" id="642">
+                                                            <tableColumn identifier="endKeywords" width="154" minWidth="10" maxWidth="1000" id="642">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -215,7 +215,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="1044">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="400" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -711,7 +711,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="423">
-                                            <rect key="frame" x="20" y="-1" width="25" height="22"/>
+                                            <rect key="frame" x="10" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="EBY-cR-sfb"/>
@@ -727,7 +727,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="454">
-                                            <rect key="frame" x="44" y="-1" width="25" height="22"/>
+                                            <rect key="frame" x="34" y="-1" width="25" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="1007">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1254,7 +1254,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="740">
-                                            <rect key="frame" x="8" y="26" width="289" height="14"/>
+                                            <rect key="frame" x="8" y="26" width="279" height="14"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Menu Title Pattern (blank matches the whole string)" id="1011">
                                                 <font key="font" metaFont="smallSystem"/>
