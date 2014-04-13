@@ -55,7 +55,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) NSView *slaveView;  // LineNumView
 @property (nonatomic) NSString *lineEndingString;  // 行末文字
 @property (nonatomic) NSDictionary *typingAttrs;  // キー入力時の文字修飾辞書
-@property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
+
+// readonly
+@property (nonatomic, readonly) NSColor *highlightLineColor;  // カレント行ハイライト色
+@property (nonatomic, readonly) NSColor *invisiblesColor;  // 不可視文字の文字色
 
 
 // Public method

@@ -48,6 +48,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSRect insertionRect;
 @property (nonatomic) NSPoint textContainerOriginPoint;
 
+
+// readonly
+@property (nonatomic, readwrite) NSColor *highlightLineColor;  // カレント行ハイライト色
+@property (nonatomic, readwrite) NSColor *invisiblesColor;  // 不可視文字の文字色
+
 @end
 
 
@@ -127,10 +132,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         highlightLineColor =  [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_highlightLineColor]];
         [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]]];
         [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]]];
-        [self setInsertionPointColor:
-                [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_insertionPointColor]]];
-        [self setSelectedTextAttributes:
-                @{NSBackgroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_selectionColor]]}];
+        [self setInvisiblesColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_invisibleCharactersColor]]];
+        [self setInsertionPointColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_insertionPointColor]]];
+        [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName:
+                                              [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_selectionColor]]}];
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
