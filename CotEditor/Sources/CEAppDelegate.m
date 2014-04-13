@@ -41,6 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
 #import "constants.h"
+#import "CEThemeManager.h"
 
 
 @interface CEAppDelegate ()
@@ -269,11 +270,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self buildSyntaxMenu];
     [[CEScriptManager sharedManager] buildScriptMenu:nil];
     [self cacheInvisibleGlyphs];
+    [self buildThemeMenu];
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxMenu)
                                                  name:CESyntaxListDidUpdateNotification
+                                               object:nil];
+    // テーマ更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildThemeMenu)
+                                                 name:CEThemeDidUpdateNotification
                                                object:nil];
 }
 
@@ -660,6 +667,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItem:item];
+}
+
+
+//------------------------------------------------------
+/// メインメニューのテーマメニューを再構築する
+- (void)buildThemeMenu
+//------------------------------------------------------
+{
+    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"THEME"];
+    NSMenuItem *menuItem;
+    
+    for (NSString *themeName in themeNames) {
+        menuItem = [[NSMenuItem alloc] initWithTitle:themeName action:@selector(setTheme:) keyEquivalent:@""];
+        [menu addItem:menuItem];
+    }
+    
+    [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_themeMenuItemTag] setSubmenu:menu];
 }
 
 

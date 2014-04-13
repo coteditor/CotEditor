@@ -106,6 +106,7 @@ extern NSString *const k_key_showOtherInvisibleChars;
 extern NSString *const k_key_highlightCurrentLine;
 extern NSString *const k_key_doColoring;
 extern NSString *const k_key_defaultColoringStyleName;
+extern NSString *const k_key_defaultTheme;
 extern NSString *const k_key_delayColoring;
 extern NSString *const k_key_fileDropArray;
 extern NSString *const k_key_fileDropExtensions;

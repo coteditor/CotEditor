@@ -108,6 +108,7 @@ NSString *const k_key_showOtherInvisibleChars = @"showOtherInvisibleChars";
 NSString *const k_key_highlightCurrentLine = @"highlightCurrentLine";
 NSString *const k_key_doColoring = @"doSyntaxColoring";
 NSString *const k_key_defaultColoringStyleName = @"defaultColoringStyleName";
+NSString *const k_key_defaultTheme = @"defaultTheme";
 NSString *const k_key_delayColoring = @"delayColoring";
 NSString *const k_key_fileDropArray = @"fileDropArray";
 NSString *const k_key_fileDropExtensions = @"extensions";
