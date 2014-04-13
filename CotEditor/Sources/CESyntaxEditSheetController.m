@@ -33,6 +33,7 @@
 
 #import "CESyntaxEditSheetController.h"
 #import "CESyntaxManager.h"
+#import "CEMenuItemCell.h"
 #import "constants.h"
 
 
@@ -42,11 +43,11 @@
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
 
+@property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
 @property (nonatomic, weak) IBOutlet NSTextField *messageField;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *elementPopUpButton;
 @property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
-@property (nonatomic, strong) IBOutlet NSTextView *syntaxElementCheckTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, strong) IBOutlet NSTextView *validationTextView;  // on 10.8 NSTextView cannot be weak
 
 @property (nonatomic) NSUInteger selectedDetailTag; // Elementsタブでのポップアップメニュー選択用バインディング変数(#削除不可)
 
@@ -146,6 +147,12 @@
     NSTableView *tableView = [notification object];
     NSInteger row = [tableView selectedRow];
     
+    // タブを切り替える
+    if (tableView == [self menuTableView]) {
+        [self setSelectedDetailTag:row];
+        return;
+    }
+    
     // 最下行が選択されたのなら、編集開始のメソッドを呼び出す
     //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
     if ((row + 1) == [tableView numberOfRows]) {
@@ -154,6 +161,25 @@
                                withObject:tableView
                             waitUntilDone:NO];
     }
+}
+
+
+//=======================================================
+// Delegate method (NSTableView)
+//  <== menuTableView
+//=======================================================
+
+// ------------------------------------------------------
+/// 行を選択するべきかを返す
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
+// ------------------------------------------------------
+{
+    // セパレータは選択不可
+    if (tableView == [self menuTableView]) {
+        return ![[self menuTitles][row] isEqualToString:CESeparatorObject];
+    }
+    
+    return YES;
 }
 
 
@@ -212,11 +238,11 @@
         }
     }
     // エラー未チェックかつエラーがあれば、表示（エラーを表示していてOKボタンを押下したら、そのまま確定）
-    if ([[[self syntaxElementCheckTextView] string] isEqualToString:@""] && ([self validate] > 0)) {
+    if ([[[self validationTextView] string] isEqualToString:@""] && ([self validate] > 0)) {
         // 「構文要素チェック」を選択
         // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
         NSBeep();
-        [[[self elementPopUpButton] menu] performActionForItemAtIndex:11];
+        [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:12] byExtendingSelection:NO];
         return;
     }
     [self setSavedNewStyleName:styleName];
@@ -252,6 +278,27 @@
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// メニュー項目を返す
+- (NSArray *)menuTitles
+// ------------------------------------------------------
+{
+    return @[NSLocalizedString(@"Keywords", nil),
+             NSLocalizedString(@"Commands", nil),
+             NSLocalizedString(@"Values", nil),
+             NSLocalizedString(@"Numbers", nil),
+             NSLocalizedString(@"Strings", nil),
+             NSLocalizedString(@"Characters", nil),
+             NSLocalizedString(@"Comments", nil),
+             CESeparatorObject,
+             NSLocalizedString(@"Outline Menu", nil),
+             NSLocalizedString(@"Completion List", nil),
+             NSLocalizedString(@"Extensions", nil),
+             CESeparatorObject,
+             NSLocalizedString(@"Syntax Validation", nil)];
+}
+
 
 //------------------------------------------------------
 /// 最下行が選択され、一番左のコラムが入力されていなければ自動的に編集を開始する
@@ -296,7 +343,7 @@
             lineCount++;
         }
     }
-    [[self syntaxElementCheckTextView] setString:resultMessage];
+    [[self validationTextView] setString:resultMessage];
     
     return [errorMessages count];
 }

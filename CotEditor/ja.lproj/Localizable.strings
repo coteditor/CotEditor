@@ -154,6 +154,20 @@ http://www.aynimac.com/
 "Revert to \"Auto-Detect\"" = "\"自動認識\"へ戻す";
 "The default \"Auto-Detect\" is recommended for most cases." = "ほとんどの場合、デフォルトの\"自動認識\"が推奨されます。";
 
+/* CESyntaxEditSheet */
+// menu items
+"Keywords" = "キーワード";
+"Commands" = "コマンド";
+"Values" = "値";
+"Numbers" = "数値";
+"Strings" = "文字列";
+"Characters" = "文字";
+"Comments" = "コメント";
+"Outline Menu" = "アウトラインメニュー";
+"Completion List" = "入力補完リスト";
+"Extensions" = "拡張子";
+"Syntax Validation" = "シンタックスの検証";
+
 /* CESyntaxColoringManager */
 // Syntax coloring popup button title
 "Choose style..." = "スタイルを選択...";

@@ -1,15 +1,14 @@
 /*
  =================================================
- CESyntaxEditSheetController
+ CEMenuItemCell
  (for CotEditor)
  
- Copyright (C) 2004-2007 nakamuxu.
  Copyright (C) 2014 CotEditor Project
  http://coteditor.github.io
  =================================================
  
  encoding="UTF-8"
- Created:2014.04.03 by 1024jp
+ Created:2014-04-13 by 1024jp
  
  -------------------------------------------------
  
@@ -34,20 +33,11 @@
 #import <Cocoa/Cocoa.h>
 
 
-typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
-    CESyntaxEdit,
-    CECopySyntaxEdit = -100,
-    CENewSyntaxEdit  = -200
-};
+extern NSString *const CESeparatorObject;
 
 
-@interface CESyntaxEditSheetController : NSWindowController <NSTableViewDelegate, NSWindowDelegate, NSTableViewDataSource>
+@interface CEMenuItemCell : NSTextFieldCell
 
-/// saved new style name, or nil if canceled
-@property (nonatomic) NSString *savedNewStyleName;
-
-
-/// default initializer (return nil if styleName is invalid)
-- (instancetype)initWithStyle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode;
+- (BOOL)isSeparator;
 
 @end
