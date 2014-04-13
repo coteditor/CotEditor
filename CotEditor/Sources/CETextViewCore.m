@@ -47,6 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) NSRect insertionRect;
 @property (nonatomic) NSPoint textContainerOriginPoint;
+@property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
 
 
 // readonly
@@ -89,26 +90,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                        size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
 
-        NSDictionary *attrs;
-        NSColor *backgroundColor, *highlightLineColor;
-
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         for (NSTextTab *textTabToBeRemoved in [paragraphStyle tabStops]) {
             [paragraphStyle removeTabStop:textTabToBeRemoved];
         }
         [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
-
-        attrs = @{NSParagraphStyleAttributeName: paragraphStyle,
-                  NSFontAttributeName: font,
-                  NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
-                                                   [defaults valueForKey:k_key_textColor]]};
-        [self setTypingAttrs:attrs];
-        [self setEffectTypingAttrs];
+        [self setParagraphStyle:paragraphStyle];
         // （NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
         // set the values
+        [self setupColors];
         [self setFont:font];
         [self setMinSize:frameRect.size];
         [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -127,23 +120,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
         }
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:k_key_lineSpacing]];
-        [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_textColor]]];
-        backgroundColor = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_backgroundColor]];
-        highlightLineColor =  [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_highlightLineColor]];
-        [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]]];
-        [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]]];
-        [self setInvisiblesColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_invisibleCharactersColor]]];
-        [self setInsertionPointColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_insertionPointColor]]];
-        [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName:
-                                              [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_selectionColor]]}];
+        [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
-        [self setIsReCompletion:NO];
         [self setUpdateOutlineMenuItemSelection:YES];
-        [self setIsSelfDrop:NO];
-        [self setIsReadingFromPboard:NO];
         [self setHighlightLineAdditionalRect:NSZeroRect];
+        
+        [self applyTypingAttributes];
     }
 
     return self;
@@ -443,18 +427,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setFont:(NSFont *)font
 // ------------------------------------------------------
 {
-    NSMutableDictionary *attrs = [[self typingAttrs] mutableCopy];
-
 // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
 // （CELayoutManager で [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
 // 日本語フォント名を返してくることがあるため、CELayoutManager からは [textView font] を使わない）
+    
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
     [super setFont:font];
-    attrs[NSFontAttributeName] = font;
-    [attrs[NSParagraphStyleAttributeName] setDefaultTabInterval:[self tabIntervalFromFont:font]];
     
-    [self setTypingAttrs:attrs];
-    [self setEffectTypingAttrs];
+    [[self paragraphStyle] setDefaultTabInterval:[self tabIntervalFromFont:font]];
+    
+    [self applyTypingAttributes];
 }
 
 
@@ -578,34 +560,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (NSWidth([self highlightLineAdditionalRect]) == 0) { return; }
 
-    [[[self highlightLineColor] colorWithAlphaComponent:[[self backgroundColor] alphaComponent]] set];
+    [[self highlightLineColor] set];
     [NSBezierPath fillRect:[self highlightLineAdditionalRect]];
 }
 
 
 // ------------------------------------------------------
 /// キー入力時の文字修飾辞書をセット
-- (void)setEffectTypingAttrs
+- (void)applyTypingAttributes
 // ------------------------------------------------------
 {
-    [self setTypingAttributes:[self typingAttrs]];
+    NSDictionary *attrs = @{NSParagraphStyleAttributeName: [self paragraphStyle],
+                            NSFontAttributeName: [self font],
+                            NSForegroundColorAttributeName: [self textColor]};
+    
+    [self setTypingAttributes:attrs];
 }
 
 
 // ------------------------------------------------------
-/// 背景色をセット
-- (void)setBackgroundColorWithAlpha:(CGFloat)alpha
+/// ビューの不透明度をセット
+- (void)setBackgroundAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    NSColor *backgroundColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]
-                                                                      valueForKey:k_key_backgroundColor]];
-
-    [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:alpha]];
+    [self setBackgroundColor:[[self backgroundColor] colorWithAlphaComponent:alpha]];
+    [self setHighlightLineColor:[[self highlightLineColor] colorWithAlphaComponent:alpha]];
     
-    // 背景色に合わせたスクローラのスタイルをセット
-    CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
-    NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
-    [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
+    _backgroundAlpha = alpha;
 }
 
 
@@ -740,7 +721,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
-        NSColor *insertionPointColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:k_key_insertionPointColor]];
+        NSColor *insertionPointColor = [self insertionPointColor];
         for (id item in fileDropArray) {
             NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
             NSArray *extensions = [[item valueForKey:k_key_fileDropExtensions] componentsSeparatedByString:@", "];
@@ -1179,8 +1160,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL shouldSetAttrs = ([[self string] length] == 0);
     [[self textStorage] beginEditing];
     [[self textStorage] replaceCharactersInRange:range withString:newStr];
-    if (shouldSetAttrs) { // 文字列がない場合に AppleScript から文字列を追加されたときに Attrs が適用されないことへの対応
-        [[self textStorage] setAttributes:[self typingAttrs]
+    if (shouldSetAttrs) { // 文字列がない場合に AppleScript から文字列を追加されたときに Attributes が適用されないことへの対応
+        [[self textStorage] setAttributes:[self typingAttributes]
                                     range:NSMakeRange(0, [[[self textStorage] string] length])];
     }
     [[self textStorage] endEditing];
@@ -1708,6 +1689,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #pragma mark Private Mthods
+
+// ------------------------------------------------------
+/// カラーリング設定を更新する
+- (void)setupColors
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSColor *backgroundColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_backgroundColor]];
+    NSColor *highlightLineColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_highlightLineColor]];
+    
+    [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_textColor]]];
+    [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:[self backgroundAlpha]]];
+    [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:[self backgroundAlpha]]];
+    [self setInvisiblesColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_invisibleCharactersColor]]];
+    [self setInsertionPointColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_insertionPointColor]]];
+    [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName:
+                                          [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_selectionColor]]}];
+    
+    // 背景色に合わせたスクローラのスタイルをセット
+    CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
+    NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
+    [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
+}
+
 
 // ------------------------------------------------------
 /// 文字列置換のリドゥーを登録

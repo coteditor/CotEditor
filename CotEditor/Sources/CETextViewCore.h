@@ -54,7 +54,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic, weak) NSView *slaveView;  // LineNumView
 @property (nonatomic) NSString *lineEndingString;  // 行末文字
-@property (nonatomic) NSDictionary *typingAttrs;  // キー入力時の文字修飾辞書
+@property (nonatomic) CGFloat backgroundAlpha;  // ビューの不透明度
 
 // readonly
 @property (nonatomic, readonly) NSColor *highlightLineColor;  // カレント行ハイライト色
@@ -63,8 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)drawHighlightLineAdditionalRect;
-- (void)setEffectTypingAttrs;
-- (void)setBackgroundColorWithAlpha:(CGFloat)inAlpha;
+- (void)applyTypingAttributes;
 - (void)replaceSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
 - (void)replaceAllStringTo:(NSString *)inString;
 - (void)insertAfterSelection:(NSString *)inString;

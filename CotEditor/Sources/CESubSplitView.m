@@ -461,7 +461,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     CGFloat alpha = (CGFloat)[number doubleValue];
     
-    [[self textView] setBackgroundColorWithAlpha:alpha];
+    [[self textView] setBackgroundAlpha:alpha];
     [[self lineNumView] setBackgroundAlpha:alpha];
     [[self lineNumView] setNeedsDisplay:YES];
 }
@@ -838,10 +838,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     (([self hadMarkedText] == [[self textView] hasMarkedText]) &&
                                     (!NSEqualRanges([self hilightedLineRange], lineRange)));
     if (shouldSetBackgroundColor) {
-
-        NSColor *highlightColor = [[[self textView] highlightLineColor] colorWithAlphaComponent:
-                    [[[self textView] backgroundColor] alphaComponent]];
-        NSDictionary *dict = @{NSBackgroundColorAttributeName: highlightColor};
+        NSDictionary *attrs = @{NSBackgroundColorAttributeName: [[self textView] highlightLineColor]};
         // （文字列が削除されたときも実行されるので、範囲を検証しておかないと例外が発生する）
         NSRange removeAttrsRange = NSMakeRange(0, [[self textStorage] length]);
 
@@ -854,7 +851,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (removeAttrsRange.length > 0) {
             [[self textStorage] removeAttribute:NSBackgroundColorAttributeName range:removeAttrsRange];
         }
-        [[self textStorage] addAttributes:dict range:lineRange];
+        [[self textStorage] addAttributes:attrs range:lineRange];
         [[self textStorage] endEditing];
         [self setHilightedLineRange:lineRange];
         [self setHadMarkedText:[[self textView] hasMarkedText]];

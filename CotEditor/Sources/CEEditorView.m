@@ -227,7 +227,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
     // 設定されたフォントでないもので表示されることがあるため、リセットする
     [[self textView] setString:@""];
-    [[self textView] setEffectTypingAttrs];
+    [[self textView] applyTypingAttributes];
     [[self textView] setString:newLineString];
     // キャレットを先頭に移動
     if ([newLineString length] > 0) {
