@@ -1,5 +1,5 @@
 (*
-‚±‚ÌƒXƒNƒŠƒvƒg‚ÍA‰º‹L‚Ìƒ\[ƒX‚ðŽQl‚É‚³‚¹‚Ä‚¢‚½‚¾‚«‚Ü‚µ‚½B
+ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯ã€ä¸‹è¨˜ã®ã‚½ãƒ¼ã‚¹ã‚’å‚è€ƒã«ã•ã›ã¦ã„ãŸã ãã¾ã—ãŸã€‚
 http://piza.2ch.net/log2/mac/kako/957/957215209.html
 *)
 tell application "Finder"
