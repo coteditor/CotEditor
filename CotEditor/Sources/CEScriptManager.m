@@ -85,24 +85,6 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 }
 
 
-// ------------------------------------------------------
-/// 対応しているスクリプトの拡張子
-+ (NSArray *)scriptExtensions
-// ------------------------------------------------------
-{
-    return @[@"sh", @"pl", @"php", @"rb", @"py"];
-}
-
-
-// ------------------------------------------------------
-/// 対応しているAppleScriptの拡張子
-+ (NSArray *)AppleScriptExtensions
-// ------------------------------------------------------
-{
-    return @[@"applescript", @"scpt"];
-}
-
-
 
 #pragma mark Superclass Methods
 
@@ -119,7 +101,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     self = [super init];
     if (self) {
         [self setupMenuIcon];
-        [self setOutputType:CENoOutputType];
+        [self setupScriptFolder];
+        
         // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(availableOutput:)
@@ -145,56 +128,12 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 - (void)buildScriptMenu:(id)sender
 //------------------------------------------------------
 {
-    NSURL *directoryURL = [self scriptDirectoryURL]; // データディレクトリパス取得
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-
-    // ディレクトリの存在チェック
-    NSNumber *isDirectory = NO;
-    BOOL didCreated = NO;
-    [directoryURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
-    if (![isDirectory boolValue]) {
-        didCreated = [fileManager createDirectoryAtURL:directoryURL
-                           withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    if (![isDirectory boolValue] && !didCreated) {
-        NSLog(@"Error. ScriptMenu directory could not found.");
-        return;
-    }
-
-    // About 文書をコピー
-    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"_aboutScriptFolder" withExtension:@"rtf"];
-    NSURL *destURL = [directoryURL URLByAppendingPathComponent:[sourceURL lastPathComponent]];
-    if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
-        ![destURL checkResourceIsReachableAndReturnError:nil]) {
-        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder about document could not copy.");
-        }
-
-        // 付属の Script をコピー
-        NSURL *sourceDirURL = [[NSBundle mainBundle] URLForResource:@"Script" withExtension:nil];
-        NSURL *destDirURL = [directoryURL URLByAppendingPathComponent:@"SampleScript"];
-        if (![fileManager copyItemAtURL:sourceDirURL toURL:destDirURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder sample could not copy.");
-        }
-    }
-    else if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
-             [destURL checkResourceIsReachableAndReturnError:nil] &&
-             ![fileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]) {
-        // About 文書が更新されている場合の対応
-        if (![fileManager removeItemAtURL:destURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder about document could not remove.");
-        }
-        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder about document could not copy.");
-        }
-    }
-
     // メニューデータの読み込みとメニュー構成
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
     [self removeAllMenuItemsFromParent:menu];
     NSMenuItem *menuItem;
 
-    [self addChildFileItemTo:menu fromDir:directoryURL];
+    [self addChildFileItemTo:menu fromDir:[self scriptDirectoryURL]];
     if ([menu numberOfItems] > 0) {
         [menu addItem:[NSMenuItem separatorItem]];
     }
@@ -247,13 +186,13 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     BOOL success = YES;
     if (flags == NSAlternateKeyMask) {
         isModifierPressed = YES;
-        if ([[CEScriptManager AppleScriptExtensions] containsObject:extension]) {
+        if ([[self AppleScriptExtensions] containsObject:extension]) {
             success = [[NSWorkspace sharedWorkspace] openURLs:@[URL]
                                      withAppBundleIdentifier:@"com.apple.ScriptEditor2"
                                                      options:0
                               additionalEventParamDescriptor:nil
                                            launchIdentifiers:NULL];
-        } else if ([[CEScriptManager scriptExtensions] containsObject:extension]) {
+        } else if ([[self scriptExtensions] containsObject:extension]) {
             success = [[NSWorkspace sharedWorkspace] openFile:[URL path] withApplication:[[NSBundle mainBundle] bundlePath]];
         }
         if (!success) {
@@ -269,7 +208,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     }
     if (isModifierPressed) { return; }
 
-    if ([[CEScriptManager AppleScriptExtensions] containsObject:extension]) {
+    if ([[self AppleScriptExtensions] containsObject:extension]) {
         NSAppleScript *appleScript = nil;
         NSDictionary *errorInfo = nil;
         NSAppleEventDescriptor *descriptor;
@@ -284,7 +223,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
                                         [errorInfo valueForKey:NSAppleScriptErrorMessage],
                                         [[errorInfo valueForKey:NSAppleScriptErrorNumber] integerValue]]];
         }
-    } else if ([[CEScriptManager scriptExtensions] containsObject:extension]) {
+    } else if ([[self scriptExtensions] containsObject:extension]) {
         // 実行権限がない場合は警告して抜ける
         if (![[NSFileManager defaultManager] isExecutableFileAtPath:[URL path]]) {
             [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script \"%@\".\nShell scripts have to have the execute permission.\n\nCheck it\'s permission.",@""), URL]];
@@ -327,7 +266,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     if (URL == nil) { return; }
     
     NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
-    (void)[appleScript executeAndReturnError:nil];
+    [appleScript executeAndReturnError:nil];
 }
 
 
@@ -338,6 +277,24 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// 対応しているスクリプトの拡張子
+- (NSArray *)scriptExtensions
+// ------------------------------------------------------
+{
+    return @[@"sh", @"pl", @"php", @"rb", @"py"];
+}
+
+
+// ------------------------------------------------------
+/// 対応しているAppleScriptの拡張子
+- (NSArray *)AppleScriptExtensions
+// ------------------------------------------------------
+{
+    return @[@"applescript", @"scpt"];
+}
+
 
 //------------------------------------------------------
 /// メニューバーにアイコンを表示
@@ -362,6 +319,55 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
                                                      create:YES
                                                       error:nil]
             URLByAppendingPathComponent:@"CotEditor/ScriptMenu"];
+}
+
+
+//------------------------------------------------------
+/// Scriptフォルダの準備をする
+- (void)setupScriptFolder
+//------------------------------------------------------
+{
+    NSURL *directoryURL = [self scriptDirectoryURL]; // データディレクトリパス取得
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // ディレクトリの存在チェック
+    NSNumber *isDirectory = NO;
+    BOOL didCreated = NO;
+    [directoryURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
+    if (![isDirectory boolValue]) {
+        didCreated = [fileManager createDirectoryAtURL:directoryURL
+                           withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    if (![isDirectory boolValue] && !didCreated) {
+        NSLog(@"Error. ScriptMenu directory could not found.");
+        return;
+    }
+    
+    // About 文書をコピー
+    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"_aboutScriptFolder" withExtension:@"rtf"];
+    NSURL *destURL = [directoryURL URLByAppendingPathComponent:[sourceURL lastPathComponent]];
+    if (![destURL checkResourceIsReachableAndReturnError:nil]) {
+        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
+            NSLog(@"Error. AppleScriptFolder about document could not copy.");
+        }
+        
+        // 付属の Script をコピー
+        NSURL *sourceDirURL = [[NSBundle mainBundle] URLForResource:@"Script" withExtension:nil];
+        NSURL *destDirURL = [directoryURL URLByAppendingPathComponent:@"SampleScript"];
+        if (![fileManager copyItemAtURL:sourceDirURL toURL:destDirURL error:nil]) {
+            NSLog(@"Error. AppleScriptFolder sample could not copy.");
+        }
+    }
+    else if ([destURL checkResourceIsReachableAndReturnError:nil] &&
+             ![fileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]) {
+        // About 文書が更新されている場合の対応
+        if (![fileManager removeItemAtURL:destURL error:nil]) {
+            NSLog(@"Error. AppleScriptFolder about document could not remove.");
+        }
+        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
+            NSLog(@"Error. AppleScriptFolder about document could not copy.");
+        }
+    }
 }
 
 
@@ -394,8 +400,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
             [menuItem setSubmenu:subMenu];
             [self addChildFileItemTo:subMenu fromDir:URL];
         } else if ([resourceType isEqualToString:NSURLFileResourceTypeRegular] &&
-                ([[CEScriptManager AppleScriptExtensions] containsObject:extension] ||
-                 [[CEScriptManager scriptExtensions] containsObject:extension])) {
+                ([[self AppleScriptExtensions] containsObject:extension] ||
+                 [[self scriptExtensions] containsObject:extension])) {
             NSUInteger modifierMask = 0;
             NSString *keyEquivalent = [self keyEquivalentAndModifierMask:&modifierMask fromFileName:[URL lastPathComponent]];
             menuTitle = [self menuTitleFromFileName:[URL lastPathComponent]];
