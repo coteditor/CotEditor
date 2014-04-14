@@ -81,19 +81,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self = [super init]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-/*
-// 削除しないこと！ ************* (1/12)
-        NSString *fontName = [values valueForKey:k_key_fontName];
-        CGFloat fontSize = (CGFloat)[[values valueForKey:k_key_fontSize] doubleValue];
-        NSFont *font = [NSFont fontWithName:fontName size:fontSize];
-        NSColor *color = [NSUnarchiver unarchiveObjectWithData:[theValues valueForKey:k_key_invisibleCharactersColor]];
-        [self setAttributes:@{NSFontAttributeName:font,
-                              NSForegroundColorAttributeName:color}];
-
-*/
-//        [self setDefaultLineHeightForTextFont:0.0];
-//        [self setTextFontPointSize:0.0];
-
         [self setAppController:(CEAppController *)[NSApp delegate]];
 
         [self setSpaceCharacter:[[self appController] invisibleSpaceCharacter:
