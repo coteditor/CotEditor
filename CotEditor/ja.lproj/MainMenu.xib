@@ -750,10 +750,36 @@
                                     <action selector="showHelp:" target="-1" id="122"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="AppleScript辞書" id="620">
-                                <connections>
-                                    <action selector="openAppleScriptDictionary:" target="290" id="621"/>
-                                </connections>
+                            <menuItem title="CotEditor スクリプトマニュアル" id="NOj-Kg-IIB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="CotEditor スクリプトマニュアル" id="IJM-xJ-1oK">
+                                    <items>
+                                        <menuItem title="スクリプトフォルダについて" tag="301" id="DGM-eF-8qs">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openBundledDocument:" target="290" id="xXK-Q9-6gL"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="AppleScriptでのスクリプト作成" tag="302" id="Ahy-z3-Irr">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openBundledDocument:" target="290" id="M6M-nd-qMt"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="他言語でのスクリプト作成" tag="303" id="Qer-QI-B6d">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openBundledDocument:" target="290" id="Mfq-Ow-Ik9"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="KBR-Cg-S8R"/>
+                                        <menuItem title="AppleScript辞書" id="620">
+                                            <connections>
+                                                <action selector="openAppleScriptDictionary:" target="290" id="621"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>

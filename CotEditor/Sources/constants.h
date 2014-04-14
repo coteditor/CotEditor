@@ -258,7 +258,7 @@ static NSUInteger k_coloringRangeBufferLength = 50000;  // number of characters
 #define k_scriptMenuTag     800
 
 // Help Document Menu tag and path
-#define k_bundleDocumentDict @{@101:@"Acknowledgements", @200:@"ReadMe", @201:@"Version History"}
+#define k_bundleDocumentDict @{@101:@"Acknowledgements", @200:@"ReadMe", @201:@"Version History", @301:@"ScriptMenu Folder", @302:@"AppleScript", @303:@"ShellScript"}
 
 
 // CEEditorView and subView's dict key

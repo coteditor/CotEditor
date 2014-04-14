@@ -137,12 +137,21 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     if ([menu numberOfItems] > 0) {
         [menu addItem:[NSMenuItem separatorItem]];
     }
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", @"")
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
                                           action:@selector(openScriptFolder:)
-                                   keyEquivalent:@""];
+                                   keyEquivalent:@"a"];
     [menuItem setTarget:self];
     [menu addItem:menuItem];
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", @"")
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Copy Sample to Scripts Folder", nil)
+                                          action:@selector(copySampleScriptToUserDomain:)
+                                   keyEquivalent:@""];
+    [menuItem setTarget:self];
+    [menuItem setAlternate:YES];
+    [menuItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
+    [menuItem setTag:k_scriptMenuDirectoryTag];  // Alternate表示のための修飾キーをCotEditor menu key bindingsの対応外にする
+    [menuItem setToolTip:NSLocalizedString(@"Copy bundled sample scripts to the scripts folder.", nil)];
+    [menu addItem:menuItem];
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
                                           action:@selector(buildScriptMenu:)
                                    keyEquivalent:@""];
     [menuItem setTarget:self];
@@ -234,20 +243,6 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 }
 
 
-//=======================================================
-// NSMenuValidation Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// メニュー項目の有効・無効を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)inMenuItem
-// ------------------------------------------------------
-{
-    return YES;
-}
-
-
 
 #pragma mark Action Messages
 
@@ -267,6 +262,35 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     
     NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     [appleScript executeAndReturnError:nil];
+}
+
+
+// ------------------------------------------------------
+/// サンプルスクリプトをユーザ領域にコピー
+- (IBAction)copySampleScriptToUserDomain:(id)sender
+// ------------------------------------------------------
+{
+    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"SampleScripts" withExtension:nil];
+    NSURL *destURL = [[self scriptDirectoryURL] URLByAppendingPathComponent:@"SampleScript"];
+    
+    if (![destURL checkResourceIsReachableAndReturnError:nil]) {
+        BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:nil];
+        
+        if (success) {
+            [self buildScriptMenu:self];
+        } else {
+            NSLog(@"Error. Sample script folder could not be copied.");
+        }
+        
+    } else if ([sender isKindOfClass:[NSMenuItem class]]) {
+        // ユーザがメニューからコピーを実行し、すでにサンプルフォルダがあった場合は警告を出す
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"SampleScript folder exists already.", nil)
+                                         defaultButton:nil
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at \"%@\" at first.", nil), [destURL relativePath]];
+        [alert runModal];
+    }
 }
 
 
@@ -328,45 +352,22 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 //------------------------------------------------------
 {
     NSURL *directoryURL = [self scriptDirectoryURL]; // データディレクトリパス取得
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     
     // ディレクトリの存在チェック
-    NSNumber *isDirectory = NO;
-    BOOL didCreated = NO;
+    NSNumber *isDirectory = @NO;
+    BOOL success = NO;
     [directoryURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
     if (![isDirectory boolValue]) {
-        didCreated = [fileManager createDirectoryAtURL:directoryURL
-                           withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    if (![isDirectory boolValue] && !didCreated) {
-        NSLog(@"Error. ScriptMenu directory could not found.");
-        return;
-    }
-    
-    // About 文書をコピー
-    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"_aboutScriptFolder" withExtension:@"rtf"];
-    NSURL *destURL = [directoryURL URLByAppendingPathComponent:[sourceURL lastPathComponent]];
-    if (![destURL checkResourceIsReachableAndReturnError:nil]) {
-        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder about document could not copy.");
+        success = [[NSFileManager defaultManager] createDirectoryAtURL:directoryURL
+                                              withIntermediateDirectories:YES attributes:nil error:nil];
+        
+        if (!success) {
+            NSLog(@"Error. ScriptMenu directory could not found.");
+            return;
         }
         
-        // 付属の Script をコピー
-        NSURL *sourceDirURL = [[NSBundle mainBundle] URLForResource:@"Script" withExtension:nil];
-        NSURL *destDirURL = [directoryURL URLByAppendingPathComponent:@"SampleScript"];
-        if (![fileManager copyItemAtURL:sourceDirURL toURL:destDirURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder sample could not copy.");
-        }
-    }
-    else if ([destURL checkResourceIsReachableAndReturnError:nil] &&
-             ![fileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]) {
-        // About 文書が更新されている場合の対応
-        if (![fileManager removeItemAtURL:destURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder about document could not remove.");
-        }
-        if (![fileManager copyItemAtURL:sourceURL toURL:destURL error:nil]) {
-            NSLog(@"Error. AppleScriptFolder about document could not copy.");
-        }
+        // サンプルスクリプトをユーザ領域にコピー
+        [self copySampleScriptToUserDomain:self];
     }
 }
 
