@@ -66,7 +66,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     self = [super initWithFrame:frame];
-    
     if (self) {
         // setup outlineMenu
         NSRect outlineMenuFrame = frame;
@@ -137,7 +136,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self closeSplitButton] setImage:[NSImage imageNamed:@"closeSplitButtonImg"]];
         [[self closeSplitButton] setToolTip:NSLocalizedString(@"Close SplitView", @"")];
         [[self closeSplitButton] setHidden:YES];
-
 
         [self setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin)];
         [self addSubview:[self outlineMenu]];
@@ -391,7 +389,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-
 #pragma mark Private Methods
 
 //=======================================================
@@ -425,6 +422,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[[self window] contentView] setNeedsDisplay:YES];
 }
-
 
 @end

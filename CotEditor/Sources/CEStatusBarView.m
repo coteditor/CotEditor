@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEStatusBarView ()
 
 @property (nonatomic) NSTextField *leftTextField;
-@property (nonatomic, readwrite) NSTextField *rightTextField;
+@property (nonatomic) NSTextField *rightTextField;
 
 @property (nonatomic) NSNumberFormatter *decimalFormatter;
 
