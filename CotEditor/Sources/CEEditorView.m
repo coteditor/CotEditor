@@ -858,30 +858,43 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSInteger theState = NSOffState;
+    NSString *title;
 
     if ([menuItem action] == @selector(toggleShowLineNum:)) {
-        if ([self showLineNum]) {theState = NSOnState;}
+        title = [self showLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
+        
     } else if ([menuItem action] == @selector(toggleShowStatusBar:)) {
-        if ([self showStatusBar]) {theState = NSOnState;}
+        title = [self showStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
+        
     } else if ([menuItem action] == @selector(toggleShowNavigationBar:)) {
-        if ([self showNavigationBar]) {theState = NSOnState;}
+        title = [self showNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
+        
     } else if ([menuItem action] == @selector(toggleWrapLines:)) {
-        if ([self wrapLines]) {theState = NSOnState;}
+        title = [self wrapLines] ? @"Unwrap Lines" : @"Wrap Lines";
+        
     } else if ([menuItem action] == @selector(toggleUseAntialias:)) {
         if ([self shouldUseAntialias]) {theState = NSOnState;}
-    } else if ([menuItem action] == @selector(toggleShowInvisibleChars:)) {
-        if ([(CELayoutManager *)[[self textView] layoutManager] showInvisibles]) {theState = NSOnState;}
-        [menuItem setState:theState];
-        return ([[self document] canActivateShowInvisibleCharsItem]);
+        
     } else if ([menuItem action] == @selector(toggleShowPageGuide:)) {
-        if ([self showPageGuide]) {theState = NSOnState;}
+        title = [self showPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
+        
+    } else if ([menuItem action] == @selector(toggleShowInvisibleChars:)) {
+        title = [(CELayoutManager *)[[self textView] layoutManager] showInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        return ([[self document] canActivateShowInvisibleCharsItem]);
+        
     } else if (([menuItem action] == @selector(focusNextSplitTextView:)) || 
             ([menuItem action] == @selector(focusPrevSplitTextView:)) || 
             ([menuItem action] == @selector(closeSplitTextView:))) {
         return ([[[self splitView] subviews] count] > 1);
     }
-    [menuItem setState:theState];
-
+    
+    if (title) {
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+    } else {
+        [menuItem setState:theState];
+    }
+    
     return YES;
 }
 

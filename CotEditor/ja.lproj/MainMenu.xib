@@ -385,7 +385,7 @@
                                         <menuItem isSeparatorItem="YES" id="746">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="アンチエイリアス適用" id="745">
+                                        <menuItem title="アンチエイリアス" id="745">
                                             <connections>
                                                 <action selector="toggleUseAntialias:" target="-1" id="747"/>
                                             </connections>

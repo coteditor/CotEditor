@@ -91,6 +91,20 @@ http://www.aynimac.com/
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 
+// menu items
+"Hide Line Numbers" = "行番号を隠す";
+"Show Line Numbers" = "行番号を表示";
+"Hide Status Bar" = "ステータスバーを隠す";
+"Show Status Bar" = "ステータスバーを表示";
+"Hide Navigation Bar" = "ナビゲーションバーを隠す";
+"Show Navigation Bar" = "ナビゲーションバーを表示";
+"Hide Invisible Characters" = "不可視文字を隠す";
+"Show Invisible Characters" = "不可視文字を表示";
+"Hide Page Guide" = "ページガイドを隠す";
+"Show Page Guide" = "ページガイドを表示";
+"Unwrap Lines" = "行を折り返さない";
+"Wrap Lines" = "行を折り返す";
+
 // show invisible char menu tooltip
 "To display invisible characters, set in Preferences and re-open the document." = "不可視文字を表示させるには、環境設定を変更し、書類を開き直してください。";
 
