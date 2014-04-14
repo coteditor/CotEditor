@@ -1117,12 +1117,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
             array = [self coloringDictionary][syntaxArray[i]];
             count = [array count];
-            if (count < 1) {
-                if ([self isIndicatorShown]) {
-                    [self setDoubleIndicator:((i + 1) * 100.0)];
-                }
-                continue;
-            }
             [self setTextColor:[NSUnarchiver unarchiveObjectWithData:
                                 [[NSUserDefaults standardUserDefaults] valueForKey:colorArray[i]]]]; // ===== retain
             [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
@@ -1134,6 +1128,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [self setTextColor:nil]; // ===== release
                 [self setCurrentAttrs:nil]; // ===== release
                 break;
+            }
+            if (count < 1) {
+                if ([self isIndicatorShown]) {
+                    [self setDoubleIndicator:((i + 1) * 100.0)];
+                }
+                continue;
             }
 
             if ([self isIndicatorShown]) {
