@@ -463,7 +463,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="170" id="CvX-bJ-TEw"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Get from Sample Window..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3346">
+                    <buttonCell key="cell" type="push" title="Get from Sample Window…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3346">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -760,7 +760,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="8cj-Zi-DRd"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
+                    <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -1778,7 +1778,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="iGy-QY-Sx5"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Edit List..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3275">
+                    <buttonCell key="cell" type="push" title="Edit List…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3275">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -1789,12 +1789,12 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="76">
                     <rect key="frame" x="167" y="273" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="73" id="3276">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3276">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="72">
                             <items>
-                                <menuItem title=" " state="on" id="73"/>
+                                <menuItem title=" " id="73"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -1827,12 +1827,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="7pp-Cr-TTw"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="78" id="3279">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3279">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="81">
                             <items>
-                                <menuItem title=" " state="on" id="78"/>
+                                <menuItem title=" " id="78"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -2044,23 +2044,23 @@
                         <menu key="menu" title="OtherViews" id="9gA-X5-Prh">
                             <items>
                                 <menuItem title="Syntax Action" state="on" image="NSActionTemplate" hidden="YES" id="Iwh-vL-LrV"/>
-                                <menuItem title="Duplicate..." tag="-100" id="NNW-FT-uJ2">
+                                <menuItem title="Duplicate…" tag="-100" id="NNW-FT-uJ2">
                                     <connections>
                                         <action selector="openSyntaxEditSheet:" target="-2" id="56D-Mi-K5K"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="Export..." id="LeQ-Ct-m5f">
+                                <menuItem title="Export…" id="LeQ-Ct-m5f">
                                     <connections>
                                         <action selector="exportSyntaxStyle:" target="-2" id="RDJ-UK-ew3"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="Import..." id="1lj-x8-ouD">
+                                <menuItem title="Import…" id="1lj-x8-ouD">
                                     <connections>
                                         <action selector="importSyntaxStyle:" target="-2" id="msK-50-4LW"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="OxF-jR-DpE"/>
-                                <menuItem title="Show Extension Errors..." id="hyN-4W-57i">
+                                <menuItem title="Show Extension Errors…" id="hyN-4W-57i">
                                     <connections>
                                         <action selector="openSyntaxExtensionErrorSheet:" target="-2" id="0lU-0V-lYX"/>
                                     </connections>
@@ -2511,7 +2511,7 @@ The parent directory name of the dropped file.
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="Jiu-hk-nks"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Edit..." bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
+                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2566,7 +2566,7 @@ The parent directory name of the dropped file.
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="Ft6-A5-Vzh"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Edit..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
+                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2737,7 +2737,7 @@ The parent directory name of the dropped file.
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="7Gp-iZ-mz7"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
+                    <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

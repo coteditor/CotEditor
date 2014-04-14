@@ -175,10 +175,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
         NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export \"%@\"...", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export \"%@\"…", nil), selectedStyleName]];
     } if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
         NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate \"%@\"...", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate \"%@\"…", nil), selectedStyleName]];
     }
     return YES;
 }
