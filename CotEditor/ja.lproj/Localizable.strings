@@ -17,15 +17,15 @@ http://www.aynimac.com/
 // Find menu added item title.
 "Select Prev Outline Item" = "前のアウトライン項目を選択";
 "Select Next Outline Item" = "次のアウトライン項目を選択";
-"Go To..." = "移動...";
+"Go To…" = "移動…";
 
 /* CEDocumentController */
 "File Open Error" = "ファイルオープンエラー";
 // File open error message
 "The File(s) could not be read with unknown error:\n %@" = "未知のエラーで読み込めませんでした：";
 // Custom Line Spacing menu title
-"Custom..." = "カスタム...";
-"Custom [%.2f] ..." = "カスタム [%.2f] ...";
+"Custom…" = "カスタム…";
+"Custom [%.2f] …" = "カスタム [%.2f] …";
 
 /* CEDocument */
 // Undo/Redo Action name
@@ -143,8 +143,8 @@ http://www.aynimac.com/
 /* CESyntax */
 // Outline Menu title
 "< Outline Menu >" = "< アウトラインメニュー >";
-"Print text Coloring ..." = "プリントテキストのカラーリング中…";
-"Text Coloring ..." = "テキストのカラーリング中…";
+"Print text Coloring ..." = "プリントテキストのカラーリング中...";
+"Text Coloring ..." = "テキストのカラーリング中...";
 
 /* CEPreferences */
 // FileDrop Glossary

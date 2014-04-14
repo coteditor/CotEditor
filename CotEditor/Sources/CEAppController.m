@@ -506,7 +506,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [findMenu addItem:menuItem];
 
     [findMenu addItem:[NSMenuItem separatorItem]];
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To...",@"")
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To…",@"")
                                           action:@selector(openGoToPanel:)
                                    keyEquivalent:@"l"];
     [findMenu addItem:menuItem];

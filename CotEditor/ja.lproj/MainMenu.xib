@@ -23,7 +23,7 @@
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="アップデートを確認..." id="837">
+                            <menuItem title="アップデートを確認…" id="837">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="836" id="838"/>
@@ -32,7 +32,7 @@
                             <menuItem isSeparatorItem="YES" id="202">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="環境設定..." keyEquivalent="," id="129">
+                            <menuItem title="環境設定…" keyEquivalent="," id="129">
                                 <connections>
                                     <action selector="openPreferences:" target="290" id="bVR-8R-fPb"/>
                                 </connections>
@@ -81,12 +81,12 @@
                                     <action selector="newDocument:" target="-1" id="194"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="開く..." tag="101" keyEquivalent="o" id="72">
+                            <menuItem title="開く…" tag="101" keyEquivalent="o" id="72">
                                 <connections>
                                     <action selector="openDocument:" target="-1" id="195"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="非表示ファイルを開く..." tag="102" alternate="YES" keyEquivalent="O" id="688">
+                            <menuItem title="非表示ファイルを開く…" tag="102" alternate="YES" keyEquivalent="O" id="688">
                                 <connections>
                                     <action selector="openHiddenDocument:" target="-1" id="690"/>
                                 </connections>
@@ -128,7 +128,7 @@
                                     <action selector="saveDocument:" target="-1" id="196"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="別名で保存..." keyEquivalent="S" id="80">
+                            <menuItem title="別名で保存…" keyEquivalent="S" id="80">
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="197"/>
                                 </connections>
@@ -142,12 +142,12 @@
                             <menuItem isSeparatorItem="YES" id="74">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="ページ設定..." keyEquivalent="P" id="77">
+                            <menuItem title="ページ設定…" keyEquivalent="P" id="77">
                                 <connections>
                                     <action selector="runPageLayout:" target="-1" id="87"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="プリント..." keyEquivalent="p" id="78">
+                            <menuItem title="プリント…" keyEquivalent="p" id="78">
                                 <connections>
                                     <action selector="printDocument:" target="-1" id="200"/>
                                 </connections>
@@ -242,7 +242,7 @@
                             <menuItem title="スペル" id="184">
                                 <menu key="submenu" title="スペル" id="185">
                                     <items>
-                                        <menuItem title="スペル..." keyEquivalent=":" id="187">
+                                        <menuItem title="スペル…" keyEquivalent=":" id="187">
                                             <connections>
                                                 <action selector="showGuessPanel:" target="-1" id="188"/>
                                             </connections>
@@ -271,7 +271,7 @@
                                     <action selector="toggleToolbarShown:" target="-1" id="614"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="ツールバーをカスタマイズ..." id="613">
+                            <menuItem title="ツールバーをカスタマイズ…" id="613">
                                 <connections>
                                     <action selector="runToolbarCustomizationPalette:" target="-1" id="615"/>
                                 </connections>
@@ -333,7 +333,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="ウインドウの不透明度..." keyEquivalent="T" id="367">
+                            <menuItem title="ウインドウの不透明度…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="openOpacityPanel:" target="290" id="yHh-1j-g6F"/>
                                 </connections>
@@ -495,7 +495,7 @@
                                         <menuItem isSeparatorItem="YES" id="771">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="カスタム..." id="772">
+                                        <menuItem title="カスタム…" id="772">
                                             <connections>
                                                 <action selector="openLineSpacingPanel:" target="290" id="1rX-xl-LI6"/>
                                             </connections>
@@ -557,7 +557,7 @@
                 <menuItem title="検索" id="538">
                     <menu key="submenu" title="検索" id="535">
                         <items>
-                            <menuItem title="検索..." tag="1" keyEquivalent="f" id="536">
+                            <menuItem title="検索…" tag="1" keyEquivalent="f" id="536">
                                 <connections>
                                     <action selector="performFindPanelAction:" target="-1" id="541"/>
                                 </connections>
@@ -667,13 +667,13 @@
                             <menuItem isSeparatorItem="YES" id="640">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="文字色として編集..." keyEquivalent="h" id="641">
+                            <menuItem title="文字色として編集…" keyEquivalent="h" id="641">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
                                     <action selector="editHexColorCodeAsForeColor:" target="-1" id="642"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="背景色として編集..." keyEquivalent="H" id="645">
+                            <menuItem title="背景色として編集…" keyEquivalent="H" id="645">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
                                     <action selector="editHexColorCodeAsBGColor:" target="-1" id="647"/>

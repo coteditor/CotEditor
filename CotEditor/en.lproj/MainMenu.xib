@@ -23,7 +23,7 @@
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Check for Updates..." id="832">
+                            <menuItem title="Check for Updates…" id="832">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="831" id="833"/>
@@ -271,7 +271,7 @@
                                     <action selector="toggleToolbarShown:" target="-1" id="614"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Customize Toolbar..." id="613">
+                            <menuItem title="Customize Toolbar…" id="613">
                                 <connections>
                                     <action selector="runToolbarCustomizationPalette:" target="-1" id="615"/>
                                 </connections>
@@ -333,7 +333,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Set Window Opacity..." keyEquivalent="T" id="367">
+                            <menuItem title="Set Window Opacity…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="openOpacityPanel:" target="290" id="fLb-68-BsZ"/>
                                 </connections>
@@ -495,7 +495,7 @@
                                         <menuItem isSeparatorItem="YES" id="771">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Custom..." id="772">
+                                        <menuItem title="Custom…" id="772">
                                             <connections>
                                                 <action selector="openLineSpacingPanel:" target="290" id="QKf-LD-jaO"/>
                                             </connections>
@@ -667,13 +667,13 @@
                             <menuItem isSeparatorItem="YES" id="640">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Edit HexColorCode as Fore..." keyEquivalent="h" id="641">
+                            <menuItem title="Edit HexColorCode as Fore…" keyEquivalent="h" id="641">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
                                     <action selector="editHexColorCodeAsForeColor:" target="-1" id="642"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Edit HexColorCode as BG..." keyEquivalent="H" id="645">
+                            <menuItem title="Edit HexColorCode as BG…" keyEquivalent="H" id="645">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
                                     <action selector="editHexColorCodeAsBGColor:" target="-1" id="647"/>
