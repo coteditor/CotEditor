@@ -49,7 +49,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSString *tabCharacter;
 @property (nonatomic, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
 @property (nonatomic) NSString *fullwidthSpaceCharacter;
-@property (nonatomic) CEAppController *appController;
 @property (nonatomic) NSDictionary *attributes;
 
 // readonly properties
@@ -81,16 +80,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self = [super init]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [self setAppController:(CEAppController *)[NSApp delegate]];
-
-        [self setSpaceCharacter:[[self appController] invisibleSpaceCharacter:
-                                 [defaults integerForKey:k_key_invisibleSpace]]];
-        [self setTabCharacter:[[self appController] invisibleTabCharacter:
-                               [defaults integerForKey:k_key_invisibleTab]]];
-        [self setNewLineCharacter:[[self appController] invisibleNewLineCharacter:
-                                   [defaults integerForKey:k_key_invisibleNewLine]]];
-        [self setFullwidthSpaceCharacter:[[self appController] invisibleFullwidthSpaceCharacter:
-                                          [defaults integerForKey:k_key_invisibleFullwidthSpace]]];
+        CEAppController *appController = (CEAppController *)[NSApp delegate];
+        [self setSpaceCharacter:[appController invisibleSpaceCharacter:[defaults integerForKey:k_key_invisibleSpace]]];
+        [self setTabCharacter:[appController invisibleTabCharacter:[defaults integerForKey:k_key_invisibleTab]]];
+        [self setNewLineCharacter:[appController invisibleNewLineCharacter:[defaults integerForKey:k_key_invisibleNewLine]]];
+        [self setFullwidthSpaceCharacter:[appController invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
 
         // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
         [self setFixLineHeight:NO];
