@@ -36,6 +36,7 @@
 				<string>xml</string>
 				<string>scala</string>
 				<string>conf</string>
+				<string>json</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>docIcon.icns</string>
