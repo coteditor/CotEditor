@@ -39,7 +39,7 @@
                         <rect key="frame" x="168" y="358" width="280" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="280" id="yoK-kW-EZU"/>
+                            <constraint firstAttribute="width" priority="250" constant="280" id="yoK-kW-EZU"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="988">
                             <font key="font" metaFont="system"/>
@@ -1824,8 +1824,10 @@ DQ
                     <constraint firstItem="215" firstAttribute="leading" secondItem="393" secondAttribute="leading" id="9vd-fc-vop"/>
                     <constraint firstItem="670" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="D0J-in-juQ"/>
                     <constraint firstItem="215" firstAttribute="leading" secondItem="214" secondAttribute="trailing" constant="8" symbolic="YES" id="LF7-g9-pIo"/>
+                    <constraint firstItem="92" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="670" secondAttribute="trailing" constant="8" symbolic="YES" id="MbY-uK-mYr"/>
                     <constraint firstItem="393" firstAttribute="leading" secondItem="WT6-a5-cVO" secondAttribute="trailing" constant="8" symbolic="YES" id="Ptq-34-kAN"/>
                     <constraint firstAttribute="trailing" secondItem="91" secondAttribute="trailing" constant="20" symbolic="YES" id="QBI-uN-8ER"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="215" secondAttribute="trailing" constant="20" symbolic="YES" id="Vjx-vr-AxE"/>
                     <constraint firstItem="265" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="2" id="ZSQ-qE-vcp"/>
                     <constraint firstAttribute="trailing" secondItem="265" secondAttribute="trailing" constant="20" symbolic="YES" id="ZSz-Sf-Rzl"/>
                     <constraint firstItem="WT6-a5-cVO" firstAttribute="bottom" secondItem="393" secondAttribute="bottom" id="bj7-P2-oX7"/>
