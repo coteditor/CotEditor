@@ -43,10 +43,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     CEGeneralPane,
     CEWindowPane,
-    CEViewPane,
+    CEAppearancePane,
     CEEditPane,
     CEFormatPane,
-    CESyntaxPane,
     CEFileDropPane,
     CEKeyBindingsPane,
     CEPrintPane
@@ -56,11 +55,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @interface CEPreferencesController ()
 
 @property (nonatomic) IBOutlet NSView *generalPane;
-@property (nonatomic) IBOutlet NSView *editPane;
 @property (nonatomic) IBOutlet NSView *windowPane;
-@property (nonatomic) IBOutlet NSView *viewPane;
+@property (nonatomic) IBOutlet NSView *appearancePane;
+@property (nonatomic) IBOutlet NSView *editPane;
 @property (nonatomic) IBOutlet NSView *formatPane;
-@property (nonatomic) IBOutlet NSView *syntaxPane;
 @property (nonatomic) IBOutlet NSView *fileDropPane;
 @property (nonatomic) IBOutlet NSView *keyBindingsPane;
 @property (nonatomic) IBOutlet NSView *printPane;
@@ -251,7 +249,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
 
-    if ([[[self window] contentView] subviews][0] == [self viewPane]) {
+    if ([[[self window] contentView] subviews][0] == [self appearancePane]) {
         [defaults setObject:name forKey:k_key_fontName];
         [defaults setFloat:size forKey:k_key_fontSize];
         [self setFontFamilyNameAndSize];
@@ -411,11 +409,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSView   *newView;
     switch ([sender tag]) {
         case CEGeneralPane:     newView = [self generalPane];     break;
-        case CEEditPane:        newView = [self editPane];        break;
-        case CEViewPane:        newView = [self viewPane];        break;
+        case CEAppearancePane:  newView = [self appearancePane];  break;
         case CEWindowPane:      newView = [self windowPane];      break;
+        case CEEditPane:        newView = [self editPane];        break;
         case CEFormatPane:      newView = [self formatPane];      break;
-        case CESyntaxPane:      newView = [self syntaxPane];      break;
         case CEFileDropPane:    newView = [self fileDropPane];    break;
         case CEKeyBindingsPane: newView = [self keyBindingsPane]; break;
         case CEPrintPane:       newView = [self printPane];       break;
@@ -451,7 +448,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSFont *font;
 
     
-    if ([[[self window] contentView] subviews][0] == [self viewPane]) {
+    if ([[[self window] contentView] subviews][0] == [self appearancePane]) {
         font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
         

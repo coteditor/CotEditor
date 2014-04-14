@@ -152,8 +152,6 @@ http://www.aynimac.com/
 "Export \"%@\"..." = "\"%@\"を書き出し...";
 
 /* CESyntaxColoringManager */
-// Syntax coloring popup button title
-"Choose style..." = "スタイルを選択...";
 // Syntax coloring style name was set to blank message
 "Input the Style Name!" = "スタイル名を入力してください！";
 // Syntax coloring style name already exists

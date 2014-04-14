@@ -127,12 +127,12 @@
 		8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */; };
 		8CE4859908CD617B004817E1 /* CEApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4859708CD617B004817E1 /* CEApplication.m */; };
 		8CE5D6C80AC80A31005F5FDB /* Pref_Print.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5D6C70AC80A31005F5FDB /* Pref_Print.tiff */; };
-		8CE68107090A1C6900D50390 /* Pref_View.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68100090A1C6900D50390 /* Pref_View.tiff */; };
+		8CE68107090A1C6900D50390 /* Pref_Appearance.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68100090A1C6900D50390 /* Pref_Appearance.tiff */; };
 		8CE68108090A1C6900D50390 /* Pref_FileDrop.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68101090A1C6900D50390 /* Pref_FileDrop.tiff */; };
-		8CE68109090A1C6900D50390 /* Pref_Format.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68102090A1C6900D50390 /* Pref_Format.tiff */; };
+		8CE68109090A1C6900D50390 /* Pref_Edit.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68102090A1C6900D50390 /* Pref_Edit.tiff */; };
 		8CE6810A090A1C6900D50390 /* Pref_General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68103090A1C6900D50390 /* Pref_General.tiff */; };
 		8CE6810B090A1C6900D50390 /* Pref_KeyBinding.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68104090A1C6900D50390 /* Pref_KeyBinding.tiff */; };
-		8CE6810C090A1C6900D50390 /* Pref_Syntax.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68105090A1C6900D50390 /* Pref_Syntax.tiff */; };
+		8CE6810C090A1C6900D50390 /* Pref_Format.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68105090A1C6900D50390 /* Pref_Format.tiff */; };
 		8CE6810D090A1C6900D50390 /* Pref_Window.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68106090A1C6900D50390 /* Pref_Window.tiff */; };
 		8CEF66C20995E47F00C65A84 /* InvisibleChar_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C00995E47F00C65A84 /* InvisibleChar_Hide.tiff */; };
 		8CEF66C30995E47F00C65A84 /* InvisibleChar_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C10995E47F00C65A84 /* InvisibleChar_Show.tiff */; };
@@ -356,12 +356,12 @@
 		8CE4859608CD617B004817E1 /* CEApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEApplication.h; sourceTree = "<group>"; };
 		8CE4859708CD617B004817E1 /* CEApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEApplication.m; sourceTree = "<group>"; };
 		8CE5D6C70AC80A31005F5FDB /* Pref_Print.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Print.tiff; path = toolbarIcons/Pref_Print.tiff; sourceTree = "<group>"; };
-		8CE68100090A1C6900D50390 /* Pref_View.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_View.tiff; path = toolbarIcons/Pref_View.tiff; sourceTree = "<group>"; };
+		8CE68100090A1C6900D50390 /* Pref_Appearance.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Appearance.tiff; path = toolbarIcons/Pref_Appearance.tiff; sourceTree = "<group>"; };
 		8CE68101090A1C6900D50390 /* Pref_FileDrop.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_FileDrop.tiff; path = toolbarIcons/Pref_FileDrop.tiff; sourceTree = "<group>"; };
-		8CE68102090A1C6900D50390 /* Pref_Format.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Format.tiff; path = toolbarIcons/Pref_Format.tiff; sourceTree = "<group>"; };
+		8CE68102090A1C6900D50390 /* Pref_Edit.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Edit.tiff; path = toolbarIcons/Pref_Edit.tiff; sourceTree = "<group>"; };
 		8CE68103090A1C6900D50390 /* Pref_General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_General.tiff; path = toolbarIcons/Pref_General.tiff; sourceTree = "<group>"; };
 		8CE68104090A1C6900D50390 /* Pref_KeyBinding.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_KeyBinding.tiff; path = toolbarIcons/Pref_KeyBinding.tiff; sourceTree = "<group>"; };
-		8CE68105090A1C6900D50390 /* Pref_Syntax.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Syntax.tiff; path = toolbarIcons/Pref_Syntax.tiff; sourceTree = "<group>"; };
+		8CE68105090A1C6900D50390 /* Pref_Format.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Format.tiff; path = toolbarIcons/Pref_Format.tiff; sourceTree = "<group>"; };
 		8CE68106090A1C6900D50390 /* Pref_Window.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Window.tiff; path = toolbarIcons/Pref_Window.tiff; sourceTree = "<group>"; };
 		8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEBUG_macro.h; sourceTree = "<group>"; };
 		8CEF66C00995E47F00C65A84 /* InvisibleChar_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = InvisibleChar_Hide.tiff; path = toolbarIcons/InvisibleChar_Hide.tiff; sourceTree = "<group>"; };
@@ -734,14 +734,14 @@
 				8C3E2D5A0808E210009894D1 /* StatusArea_Show.tiff */,
 				8C3E2D5C0808E210009894D1 /* WrapLines_Off.tiff */,
 				8C3E2D5D0808E210009894D1 /* WrapLines_On.tiff */,
-				8CE68101090A1C6900D50390 /* Pref_FileDrop.tiff */,
-				8CE68102090A1C6900D50390 /* Pref_Format.tiff */,
 				8CE68103090A1C6900D50390 /* Pref_General.tiff */,
+				8CE68106090A1C6900D50390 /* Pref_Window.tiff */,
+				8CE68100090A1C6900D50390 /* Pref_Appearance.tiff */,
+				8CE68102090A1C6900D50390 /* Pref_Edit.tiff */,
+				8CE68105090A1C6900D50390 /* Pref_Format.tiff */,
+				8CE68101090A1C6900D50390 /* Pref_FileDrop.tiff */,
 				8CE68104090A1C6900D50390 /* Pref_KeyBinding.tiff */,
 				8CE5D6C70AC80A31005F5FDB /* Pref_Print.tiff */,
-				8CE68105090A1C6900D50390 /* Pref_Syntax.tiff */,
-				8CE68100090A1C6900D50390 /* Pref_View.tiff */,
-				8CE68106090A1C6900D50390 /* Pref_Window.tiff */,
 				8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */,
 			);
 			name = toolbarIcons;
@@ -848,12 +848,12 @@
 				8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */,
 				8C0FE15A08D7FDAA00B2B71B /* DefaultTextKeyBindings.plist in Resources */,
 				2A067B9A18D52F5200546280 /* Acknowledgements.rtf in Resources */,
-				8CE68107090A1C6900D50390 /* Pref_View.tiff in Resources */,
+				8CE68107090A1C6900D50390 /* Pref_Appearance.tiff in Resources */,
 				8CE68108090A1C6900D50390 /* Pref_FileDrop.tiff in Resources */,
-				8CE68109090A1C6900D50390 /* Pref_Format.tiff in Resources */,
+				8CE68109090A1C6900D50390 /* Pref_Edit.tiff in Resources */,
 				8CE6810A090A1C6900D50390 /* Pref_General.tiff in Resources */,
 				8CE6810B090A1C6900D50390 /* Pref_KeyBinding.tiff in Resources */,
-				8CE6810C090A1C6900D50390 /* Pref_Syntax.tiff in Resources */,
+				8CE6810C090A1C6900D50390 /* Pref_Format.tiff in Resources */,
 				8CE6810D090A1C6900D50390 /* Pref_Window.tiff in Resources */,
 				8CEF66C20995E47F00C65A84 /* InvisibleChar_Hide.tiff in Resources */,
 				8CEF66C30995E47F00C65A84 /* InvisibleChar_Show.tiff in Resources */,
