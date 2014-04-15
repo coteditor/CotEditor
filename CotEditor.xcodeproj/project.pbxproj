@@ -67,7 +67,6 @@
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
 		2A94A46018D0F166009FA90D /* (null) in Resources */ = {isa = PBXBuildFile; };
-		2A961C5118FC699E002076B6 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
 		2A961C5318FC699E002076B6 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4918FC699E002076B6 /* ReadMe.rtf */; };
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
@@ -501,6 +500,7 @@
 				8CBFD5F30DC42B1200EC093D /* CEPrivateMutableArray.m */,
 				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
 				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
+				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -514,8 +514,6 @@
 				8C8CCCAF09D6803400A008E5 /* CESplitView.m */,
 				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
 				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
-				25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */,
-				25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */,
 				25B2C23407FA667400F4EFC7 /* CELineNumView.h */,
 				25B2C23507FA667400F4EFC7 /* CELineNumView.m */,
 				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
@@ -583,33 +581,15 @@
 			children = (
 				2A15832F18E3A4AB00601026 /* Application */,
 				2A15832A18E3A1EC00601026 /* Managers */,
-				2AFFB72E18D8E87900118477 /* PanelControllers */,
+				2AFFB72E18D8E87900118477 /* Panel Controllers */,
 				2A15832D18E3A3E000601026 /* Preferences */,
+				2A42825318FCC22100386899 /* Document */,
+				2A42825418FCC23400386899 /* Window */,
 				2A15832C18E3A29A00601026 /* Views */,
+				2A42825218FCC1C100386899 /* TextView */,
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2A15832B18E3A25C00601026 /* Utilities */,
-				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
-				259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */,
-				258D708707D456DF0062A3E5 /* CETextSelection.h */,
-				258D708807D456DF0062A3E5 /* CETextSelection.m */,
-				2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */,
-				2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */,
-				8CC1925407E2D84500B54AE4 /* CEDocument+ScriptingSupport.h */,
-				8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */,
-				8C65C0E507927D0F0028D94A /* CELayoutManager.h */,
-				8C65C0E607927D0F0028D94A /* CELayoutManager.m */,
-				8C83A48009485F27004E48A8 /* CEATSTypesetter.h */,
-				8C83A48109485F27004E48A8 /* CEATSTypesetter.m */,
-				25859DEB076D75BC0020F779 /* CEWindowController.h */,
-				25859DEC076D75BC0020F779 /* CEWindowController.m */,
-				2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */,
-				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
-				8CB0122B07CA0EFA00221EDC /* CEToolbarController.h */,
-				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
-				258225FE07794C2A00A0F8D3 /* CESyntax.h */,
-				258225FF07794C2A00A0F8D3 /* CESyntax.m */,
 				25859E90076D88ED0020F779 /* constants.h */,
-				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
 			);
 			name = Sources;
 			path = CotEditor/Sources;
@@ -677,6 +657,49 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2A42825218FCC1C100386899 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */,
+				25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */,
+				8C65C0E507927D0F0028D94A /* CELayoutManager.h */,
+				8C65C0E607927D0F0028D94A /* CELayoutManager.m */,
+				8C83A48009485F27004E48A8 /* CEATSTypesetter.h */,
+				8C83A48109485F27004E48A8 /* CEATSTypesetter.m */,
+				258225FE07794C2A00A0F8D3 /* CESyntax.h */,
+				258225FF07794C2A00A0F8D3 /* CESyntax.m */,
+			);
+			name = TextView;
+			sourceTree = "<group>";
+		};
+		2A42825318FCC22100386899 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
+				259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */,
+				258D708707D456DF0062A3E5 /* CETextSelection.h */,
+				258D708807D456DF0062A3E5 /* CETextSelection.m */,
+				2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */,
+				2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */,
+				8CC1925407E2D84500B54AE4 /* CEDocument+ScriptingSupport.h */,
+				8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */,
+			);
+			name = Document;
+			sourceTree = "<group>";
+		};
+		2A42825418FCC23400386899 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				25859DEB076D75BC0020F779 /* CEWindowController.h */,
+				25859DEC076D75BC0020F779 /* CEWindowController.m */,
+				2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */,
+				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
+				8CB0122B07CA0EFA00221EDC /* CEToolbarController.h */,
+				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
+			);
+			name = Window;
+			sourceTree = "<group>";
+		};
 		2A961C4418FC6979002076B6 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,7 +713,7 @@
 			name = Documents;
 			sourceTree = "<group>";
 		};
-		2AFFB72E18D8E87900118477 /* PanelControllers */ = {
+		2AFFB72E18D8E87900118477 /* Panel Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				2AFFB71418D7DCC000118477 /* CEPanelController.h */,
@@ -706,7 +729,7 @@
 				2A15833318E3B83F00601026 /* CEScriptErrorPanelController.h */,
 				2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */,
 			);
-			name = PanelControllers;
+			name = "Panel Controllers";
 			sourceTree = "<group>";
 		};
 		8C74014C08C7041A00683672 /* KeyBindings */ = {
