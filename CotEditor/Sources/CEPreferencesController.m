@@ -294,6 +294,8 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     [self setContentFileDropController];
     [self setFontFamilyNameAndSize];
     
+    // インストール済みシンタックス定義をダブルクリックしたら編集シートが出るようにセット
+    [[self syntaxTableView] setDoubleAction:@selector(openSyntaxEditSheet:)];
 
     [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
     // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
