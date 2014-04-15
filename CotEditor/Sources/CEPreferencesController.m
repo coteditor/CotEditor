@@ -175,10 +175,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
         NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export \"%@\"…", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), selectedStyleName]];
     } if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
         NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate \"%@\"…", nil), selectedStyleName]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), selectedStyleName]];
     }
     return YES;
 }
@@ -560,7 +560,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
     if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style \"%@\"?", nil)];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil)];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil)
@@ -601,7 +601,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
             [[blockSelf window] makeKeyAndOrderFront:blockSelf];
             
             NSAlert *alert;
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"The \"%@\" style already exists.", nil), styleName];
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName];
             alert = [NSAlert alertWithMessageText:message
                                     defaultButton:NSLocalizedString(@"Cancel", nil)
                                   alternateButton:NSLocalizedString(@"Replace", nil) otherButton:nil
@@ -766,16 +766,16 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     if ([newTitle isEqualToString:NSLocalizedString(@"Auto-Detect", nil)]) { return; }
 
     NSString *message = [NSString stringWithFormat:
-                         NSLocalizedString(@"Are you sure you want to change to \"%@\"?", nil),
+                         NSLocalizedString(@"Are you sure you want to change to “%@”?", nil),
                          newTitle];
     NSString *altButtonTitle = [NSString stringWithFormat:
-                                NSLocalizedString(@"Change to \"%@\"", nil),
+                                NSLocalizedString(@"Change to “%@”", nil),
                                 newTitle];
     NSAlert *alert = [NSAlert alertWithMessageText:message
-                                     defaultButton:NSLocalizedString(@"Revert to \"Auto-Detect\"", nil)
+                                     defaultButton:NSLocalizedString(@"Revert to “Auto-Detect”", nil)
                                    alternateButton:altButtonTitle
                                        otherButton:nil
-                         informativeTextWithFormat:NSLocalizedString(@"The default \"Auto-Detect\" is recommended for most cases.",nil)];
+                         informativeTextWithFormat:NSLocalizedString(@"The default “Auto-Detect” is recommended for most cases.",nil)];
 
     NSBeep();
     [alert beginSheetModalForWindow:[self window]
@@ -944,7 +944,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
                                          defaultButton:nil
                                        alternateButton:nil otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not import \"%@\".", nil), [fileURL lastPathComponent]];
+                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not import “%@”.", nil), [fileURL lastPathComponent]];
         NSBeep();
         [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
@@ -967,7 +967,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         extension = @"";
     }
 
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for \"%@\"?", nil), extension];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for “%@”?", nil), extension];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil) otherButton:nil
@@ -1024,7 +1024,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
                                          defaultButton:nil
                                        alternateButton:nil otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil), selectedStyleName];
+                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), selectedStyleName];
         NSBeep();
         [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
         return;

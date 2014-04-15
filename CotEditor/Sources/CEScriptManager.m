@@ -183,7 +183,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
     // ファイルがない場合は警告して抜ける
     if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script \"%@\" does not exist.\n\nCheck it and do \"Update Script Menu\".", @""), URL]];
+        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu”.", @""), URL]];
         return;
     }
 
@@ -205,7 +205,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
             success = [[NSWorkspace sharedWorkspace] openFile:[URL path] withApplication:[[NSBundle mainBundle] bundlePath]];
         }
         if (!success) {
-            message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file \"%@\".", nil), URL];
+            message = [NSString stringWithFormat:NSLocalizedString(@"Could not open the script file “%@”.", nil), URL];
         }
     } else if (flags == (NSAlternateKeyMask | NSShiftKeyMask)) {
         isModifierPressed = YES;
@@ -235,7 +235,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     } else if ([[self scriptExtensions] containsObject:extension]) {
         // 実行権限がない場合は警告して抜ける
         if (![[NSFileManager defaultManager] isExecutableFileAtPath:[URL path]]) {
-            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script \"%@\".\nShell scripts have to have the execute permission.\n\nCheck it\'s permission.",@""), URL]];
+            [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script “%@”.\nShell scripts have to have the execute permission.\n\nCheck it's permission.",@""), URL]];
             return;
         }
         [self doLaunchShellScript:URL];
@@ -288,7 +288,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
                                          defaultButton:nil
                                        alternateButton:nil
                                            otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at \"%@\" at first.", nil), [destURL relativePath]];
+                             informativeTextWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at “%@” at first.", nil), [destURL relativePath]];
         [alert runModal];
     }
 }
@@ -412,7 +412,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
             [menuItem setKeyEquivalentModifierMask:modifierMask];
             [menuItem setRepresentedObject:URL];
             [menuItem setTarget:self];
-            [menuItem setToolTip:NSLocalizedString(@"\"Opt + click\" to open in Script Editor.",@"")];
+            [menuItem setToolTip:NSLocalizedString(@"“Opt + click” to open in Script Editor.",@"")];
             [menu addItem:menuItem];
         }
     }
@@ -528,7 +528,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
     // スクリプトファイル内容を得られない場合は警告して抜ける
     if (!script || ([script length] < 1)) {
-        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could NOT read the script \"%@\".", nil), URL]];
+        [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Could NOT read the script “%@”.", nil), URL]];
         return;
     }
 

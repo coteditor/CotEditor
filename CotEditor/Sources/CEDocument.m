@@ -326,7 +326,7 @@ enum { typeFSS = 'fss ' };
                                          defaultButton:NSLocalizedString(@"Cancel", nil)
                                        alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
                                            otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else. \n\nDo you want to close?", nil)];
+                             informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?", nil)];
 
         for (NSButton *button in [alert buttons]) {
             if ([[button title] isEqualToString:NSLocalizedString(@"Don't Save, and Close", nil)]) {
@@ -605,7 +605,7 @@ enum { typeFSS = 'fss ' };
         if (askLossy) {
             if (![curString canBeConvertedToEncoding:encoding]) {
                 NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:encoding];
-                NSString *messageText = [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), encodingNameStr];
+                NSString *messageText = [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingNameStr];
                 NSAlert *alert = [NSAlert alertWithMessageText:messageText
                                                  defaultButton:NSLocalizedString(@"Cancel", nil)
                                                alternateButton:NSLocalizedString(@"Change Encoding", nil)
@@ -756,7 +756,7 @@ enum { typeFSS = 'fss ' };
     }
 
     NSArray *lineEndingNames = @[k_lineEndingNames];
-    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Line Endings to \"%@\"",@""),lineEndingNames[newLineEnding]];
+    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”",@""),lineEndingNames[newLineEnding]];
 
     // Undo登録
     NSUndoManager *undoManager = [self undoManager];
@@ -1346,13 +1346,13 @@ enum { typeFSS = 'fss ' };
                                          defaultButton:NSLocalizedString(@"Convert", nil)
                                        alternateButton:NSLocalizedString(@"Reinterpret", nil)
                                            otherButton:NSLocalizedString(@"Cancel", nil)
-                             informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using \"%@\"?", nil), encodingName];
+                             informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName];
 
         result = [alert runModal];
     }
     if (result == NSAlertDefaultReturn) { // = Convert 変換
 
-        NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to \"%@\"",@""),
+        NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”",@""),
                     [NSString localizedNameOfStringEncoding:encoding]];
 
         (void)[self doSetEncoding:encoding updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
@@ -1361,7 +1361,7 @@ enum { typeFSS = 'fss ' };
 
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
-            NSAlert *secondAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file \'%@\' has unsaved changes.", nil), [[self fileURL] path]]
+            NSAlert *secondAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] path]]
                                                    defaultButton:NSLocalizedString(@"Cancel", nil)
                                                  alternateButton:NSLocalizedString(@"Discard Changes", nil)
                                                      otherButton:nil
@@ -1384,7 +1384,7 @@ enum { typeFSS = 'fss ' };
                                                   defaultButton:NSLocalizedString(@"Done", nil)
                                                 alternateButton:nil
                                                     otherButton:nil
-                                      informativeTextWithFormat:NSLocalizedString(@"The file \'%@\' could not be reinterpreted using the new encoding \"%@\".", nil), [[self fileURL] path], encodingName];
+                                      informativeTextWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName];
             [thirdAlert setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
@@ -1719,7 +1719,7 @@ enum { typeFSS = 'fss ' };
 
         NSString *IANANameStr = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
         NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
-        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is \"%@\", but the IANA charset name in text is \"%@\".", nil), encodingNameStr, IANANameStr]
+        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingNameStr, IANANameStr]
                                          defaultButton:NSLocalizedString(@"Cancel", nil)
                                        alternateButton:NSLocalizedString(@"Continue Saving", nil)
                                            otherButton:nil
@@ -1744,7 +1744,7 @@ enum { typeFSS = 'fss ' };
                                             withEncoding:[self encodingCode]];
     if (![curString canBeConvertedToEncoding:[self encodingCode]]) {
         NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encodingCode]];
-        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), encodingName]
+        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]
                                          defaultButton:NSLocalizedString(@"Show Incompatible Chars", nil)
                                        alternateButton:NSLocalizedString(@"Save Available Strings", nil)
                                            otherButton:NSLocalizedString(@"Cancel", nil)
@@ -1787,7 +1787,7 @@ enum { typeFSS = 'fss ' };
                                          defaultButton:nil
                                        alternateButton:nil
                                            otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"You can use \"Save As\" to save a copy.", nil)];
+                             informativeTextWithFormat:NSLocalizedString(@"You can use “Save As” to save a copy.", nil)];
         [alert setAlertStyle:NSCriticalAlertStyle];
         (void)[alert runModal];
         return NO;

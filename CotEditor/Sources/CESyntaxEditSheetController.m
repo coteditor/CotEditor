@@ -231,7 +231,7 @@
             return;
         } else if ([[CESyntaxManager sharedManager] existsStyleFileWithStyleName:styleName]) { // 既にある名前は不可
             [[self messageField] setStringValue:[NSString stringWithFormat:
-                                                 NSLocalizedString(@"\"%@\" is already exist. Input new name.", nil), styleName]];
+                                                 NSLocalizedString(@"“%@” is already exist. Input new name.", nil), styleName]];
             NSBeep();
             [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
             return;
