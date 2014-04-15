@@ -2037,7 +2037,7 @@
                 <button toolTip="Edit selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-oI-um3">
                     <rect key="frame" x="401" y="50" width="28" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" title="Edit" bezelStyle="smallSquare" image="editButtonImg" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dY5-OA-5Z4">
+                    <buttonCell key="cell" type="smallSquare" title="Edit" bezelStyle="smallSquare" image="editTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dY5-OA-5Z4">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -3176,7 +3176,7 @@ The parent directory name of the dropped file.
         <image name="Pref_Print" width="64" height="64"/>
         <image name="Pref_Window" width="64" height="64"/>
         <image name="centerAlignTemplate" width="16" height="16"/>
-        <image name="editButtonImg" width="16" height="16"/>
+        <image name="editTemplate" width="16" height="16"/>
         <image name="leftAlignTemplate" width="16" height="16"/>
         <image name="opacityGuide" width="195" height="15"/>
         <image name="rightAlignTemplate" width="16" height="16"/>

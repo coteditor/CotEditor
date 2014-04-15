@@ -244,7 +244,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if (showsReadOnlyIcon) {
-        [[self readOnlyView] setImage:[NSImage imageNamed:@"lockOnImg"]];
+        [[self readOnlyView] setImage:[NSImage imageNamed:@"lockedTemplate"]];
         [[self readOnlyView] setToolTip:NSLocalizedString(@"This document is read only.", nil)];
     } else {
         [[self readOnlyView] setImage:nil];
