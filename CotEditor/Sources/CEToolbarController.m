@@ -213,9 +213,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // Show Incompatible Char (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_showIncompatibleCharItemID]) {
-        [toolbarItem setLabel:NSLocalizedString(@"Incompatible Char",@"")];
-        [toolbarItem setPaletteLabel:NSLocalizedString(@"Show Incompatible Char(s)",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Show Incompatible Char for the encoding",@"")];
+        [toolbarItem setLabel:NSLocalizedString(@"Incompatible Chars",@"")];
+        [toolbarItem setPaletteLabel:NSLocalizedString(@"Show Incompatible Chars",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Show incompatible chars for selected encoding",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"IncompatibleChar"]];
         [toolbarItem setAction:@selector(toggleIncompatibleCharList:)];
 
@@ -223,7 +223,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_biggerFontItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Bigger",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Bigger Font",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Increases Font size",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Increases font size",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"biggerFont"]];
         [toolbarItem setTarget:[NSFontManager sharedFontManager]];
         [toolbarItem setAction:@selector(modifyFont:)];
@@ -233,7 +233,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_smallerFontItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Smaller",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Smaller Font",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Decreases Font size",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Decreases font size",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"smallerFont"]];
         [toolbarItem setTarget:[NSFontManager sharedFontManager]];
         [toolbarItem setAction:@selector(modifyFont:)];
@@ -243,7 +243,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_shiftLeftItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Shift Left",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Shift Left",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Shift line to Left",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Shift lines to left",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"Shift_Left"]];
         [toolbarItem setAction:@selector(shiftLeft:)];
 
@@ -251,7 +251,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_shiftRightItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Shift Right",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Shift Right",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Shift line to Right",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Shift lines to right",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"Shift_Right"]];
         [toolbarItem setAction:@selector(shiftRight:)];
         
@@ -259,7 +259,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_autoTabExpandItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Expand Tabs",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Toggle Auto Tab Expand",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Toggle Auto Tab Expand",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Toggle auto tab expand",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"AutoTabExpand_On"]];
         [toolbarItem setAction:@selector(toggleAutoTabExpand:)];
 
@@ -267,7 +267,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_showNavigationBarItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Navigation Bar",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Show / Hide Navigation Bar",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Show or Hide Navigation Bar of window",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Show or hide navigation bar of window",@"")];
         [self doUpdateToggleItem:toolbarItem setOn:[defaults boolForKey:k_key_showNavigationBar]];
         [toolbarItem setAction:@selector(toggleShowNavigationBar:)];
 
@@ -275,7 +275,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_showLineNumItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"LineNum",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Show / Hide Line Number",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Show or Hide Line Number of text",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Show or hide line number of text",@"")];
         [self doUpdateToggleItem:toolbarItem setOn:[defaults boolForKey:k_key_showLineNumbers]];
         [toolbarItem setAction:@selector(toggleShowLineNum:)];
 
@@ -283,7 +283,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_showStatusBarItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Status Bar",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Show / Hide Status Bar",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Show or Hide Status Bar of window",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Show or hide status bar of window",@"")];
         [self doUpdateToggleItem:toolbarItem setOn:[defaults boolForKey:k_key_showStatusBar]];
         [toolbarItem setAction:@selector(toggleShowStatusBar:)];
 
@@ -295,7 +295,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Show / Hide Invisible Chars",@"")];
         // ツールバーアイテムを有効化できなければツールチップを変更
         if (theBoolToActivate) {
-            [toolbarItem setToolTip:NSLocalizedString(@"Show or Hide Invisible Characters in Text",@"")];
+            [toolbarItem setToolTip:NSLocalizedString(@"Show or hide invisible characters in text",@"")];
             [self doUpdateToggleItem:toolbarItem setOn:YES];
             [toolbarItem setAction:@selector(toggleShowInvisibleChars:)];
         } else {
@@ -308,15 +308,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_showPageGuideItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Page Guide",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Show / Hide Page Guide",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Show or Hide Page Guide Line",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Show or hide page guide line",@"")];
         [self doUpdateToggleItem:toolbarItem setOn:[defaults boolForKey:k_key_showPageGuide]];
         [toolbarItem setAction:@selector(toggleShowPageGuide:)];
 
     // Wrap lines (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_wrapLinesItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Wrap lines",@"")];
-        [toolbarItem setPaletteLabel:NSLocalizedString(@"Toggle Wrap lines",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Toggle Wrap lines",@"")];
+        [toolbarItem setPaletteLabel:NSLocalizedString(@"Toggle Wrap Lines",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Toggle wrap lines",@"")];
         [self doUpdateToggleItem:toolbarItem setOn:[defaults boolForKey:k_key_wrapLines]];
         [toolbarItem setAction:@selector(toggleWrapLines:)];
 
@@ -344,21 +344,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [toolbarItem setMinSize:[[self encodingPopupButton] bounds].size];
         [toolbarItem setMaxSize:[[self encodingPopupButton] bounds].size];
 
-    // Syntax Coloring (target = FirstResponder)
+    // Syntax Style (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_syntaxItemID]) {
 
-        [toolbarItem setLabel:NSLocalizedString(@"Syntax Coloring",@"")];
-        [toolbarItem setPaletteLabel:NSLocalizedString(@"Syntax Coloring",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Syntax Coloring",@"")];
+        [toolbarItem setLabel:NSLocalizedString(@"Syntax Style",@"")];
+        [toolbarItem setPaletteLabel:NSLocalizedString(@"Syntax Style",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Syntax Style",@"")];
         [toolbarItem setView:[self syntaxPopupButton]];
         [toolbarItem setMinSize:[[self syntaxPopupButton] bounds].size];
         [toolbarItem setMaxSize:[[self syntaxPopupButton] bounds].size];
 
     // Re-color All (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_syntaxReColorAllItemID]) {
-        [toolbarItem setLabel:NSLocalizedString(@"Re-color",@"")];
-        [toolbarItem setPaletteLabel:NSLocalizedString(@"Re-color All",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Do Re-color whole document",@"")];
+        [toolbarItem setLabel:NSLocalizedString(@"Re-Color",@"")];
+        [toolbarItem setPaletteLabel:NSLocalizedString(@"Re-Color All",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Do re-color whole document",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"RecolorAll"]];
         [toolbarItem setAction:@selector(recoloringAllStringOfDocument:)];
 
@@ -366,7 +366,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_editHexAsForeItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Edit as Fore",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as Fore",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as Text Color",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to edit as text color",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"EditHexAsFore"]];
         [toolbarItem setAction:@selector(editHexColorCodeAsForeColor:)];
 
@@ -374,7 +374,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([itemIdentifier isEqualToString:k_editHexAsBGItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Edit as BG",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as BG",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to Edit as Background Color",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to edit as background color",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"EditHexAsBG"]];
         [toolbarItem setAction:@selector(editHexColorCodeAsBGColor:)];
 

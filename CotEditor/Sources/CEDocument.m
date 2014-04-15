@@ -1745,7 +1745,7 @@ enum { typeFSS = 'fss ' };
     if (![curString canBeConvertedToEncoding:[self encodingCode]]) {
         NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encodingCode]];
         NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as \"%@\".", nil), encodingName]
-                                         defaultButton:NSLocalizedString(@"Show Incompatible Char(s)", nil)
+                                         defaultButton:NSLocalizedString(@"Show Incompatible Chars", nil)
                                        alternateButton:NSLocalizedString(@"Save Available Strings", nil)
                                            otherButton:NSLocalizedString(@"Cancel", nil)
                              informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
