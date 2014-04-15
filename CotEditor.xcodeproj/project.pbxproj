@@ -53,6 +53,7 @@
 		2A3FB2A418EC473A00D9CB2C /* SyntaxColorings in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A3FB2B218EDBB1400D9CB2C /* swapArrowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */; };
+		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; };
 		2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */; };
 		2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */; };
@@ -926,6 +927,7 @@
 				2A07230B16D3CF4F00F49864 /* leftAlignTemplate.pdf in Resources */,
 				2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */,
 				2A07230C16D3CF4F00F49864 /* lockOnImg.pdf in Resources */,
+				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
 				2A07230D16D3CF4F00F49864 /* nextButtonImg.pdf in Resources */,
 				2A07230E16D3CF4F00F49864 /* openSplitButtonImg.pdf in Resources */,
 				2A07230F16D3CF4F00F49864 /* pageGuide.pdf in Resources */,
