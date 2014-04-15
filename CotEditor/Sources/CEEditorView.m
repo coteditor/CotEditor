@@ -725,6 +725,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldUpdateStatusBar) {
         [[self statusBar] setEncodingInfo:encodingInfo];
         [[self statusBar] setLineEndingsInfo:lineEndingsInfo];
+        [[self statusBar] setFileSizeInfo:[[[self document] fileAttributes] fileSize]];
         [[self statusBar] updateRightField];
     }
     if (shouldUpdateDrawer) {

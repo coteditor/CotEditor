@@ -38,6 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEStatusBarView.h"
 #import "CEEditorView.h"
+#import "CEByteCountTransformer.h"
 #import "constants.h"
 
 
@@ -47,6 +48,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSTextField *rightTextField;
 
 @property (nonatomic) NSNumberFormatter *decimalFormatter;
+@property (nonatomic) CEByteCountTransformer *byteCountTransformer;
 
 @property (nonatomic) NSImageView *readOnlyView;
 
@@ -77,13 +79,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
         [[self decimalFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
         
+        // set transformer
+        [self setByteCountTransformer:[[CEByteCountTransformer alloc] init]];
+        
         // setup TextField
         NSFont *font = [NSFont controlContentFontOfSize:[NSFont smallSystemFontSize]];
         
         NSRect textFieldFrame = frameRect;
         textFieldFrame.origin.x += k_statusBarReadOnlyWidth;
         textFieldFrame.origin.y -= (k_statusBarHeight - [font pointSize]) / 4;
-        textFieldFrame.size.width -= [NSScroller scrollerWidth] + k_statusBarReadOnlyWidth + k_statusBarRightPadding;
+        textFieldFrame.size.width -= k_statusBarReadOnlyWidth + k_statusBarRightPadding;
         
         [self setLeftTextField:[[NSTextField allocWithZone:nil] initWithFrame:textFieldFrame]];
         [[self leftTextField] setEditable:NO];
@@ -208,6 +213,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([defaults boolForKey:k_key_showStatusBarLineEndings]) {
         [status appendString:@" "];
         [status appendString:[self lineEndingsInfo]];
+    }
+    if ([defaults boolForKey:k_key_showStatusBarFileSize]) {
+        NSString *fileSizeInfo = [self fileSizeInfo] ? [[self byteCountTransformer] transformedValue:@([self fileSizeInfo])] : @"-";
+        [status appendString:@" "];
+        [status appendString:fileSizeInfo];
     }
     
     [[self rightTextField] setStringValue:status];

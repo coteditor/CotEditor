@@ -56,6 +56,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) NSString *encodingInfo;
 @property (nonatomic) NSString *lineEndingsInfo;
+@property (nonatomic) NSInteger fileSizeInfo;
 
 
 // Public method

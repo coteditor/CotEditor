@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define k_key_showStatusBarColumn       @"showStatusBarColumn"
 #define k_key_showStatusBarEncoding     @"showStatusBarEncoding"
 #define k_key_showStatusBarLineEndings  @"showStatusBarLineEndings"
+#define k_key_showStatusBarFileSize     @"showStatusBarFileSize"
 #define k_key_countLineEndingAsChar @"countLineEndingAsChar"
 #define k_key_syncFindPboard        @"syncFindPboard"
 #define k_key_inlineContextualScriptMenu    @"inlineContextualScriptMenu"
