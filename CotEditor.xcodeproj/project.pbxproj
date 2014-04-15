@@ -308,17 +308,17 @@
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
 		8C0F52600871861C00ABD124 /* openScriptMenu.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = openScriptMenu.applescript; path = internalScript/openScriptMenu.applescript; sourceTree = "<group>"; };
 		8C0FE15908D7FDAA00B2B71B /* DefaultTextKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultTextKeyBindings.plist; path = KeyBindings/DefaultTextKeyBindings.plist; sourceTree = "<group>"; };
-		8C1305AD0DC4B71D00975AC6 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = ImportSources/RegexKitLite.h; sourceTree = "<group>"; };
-		8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = ImportSources/RegexKitLite.m; sourceTree = "<group>"; };
-		8C1305B00DC4B83000975AC6 /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RKLMatchEnumerator.h; path = ImportSources/RKLMatchEnumerator.h; sourceTree = "<group>"; };
-		8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RKLMatchEnumerator.m; path = ImportSources/RKLMatchEnumerator.m; sourceTree = "<group>"; };
+		8C1305AD0DC4B71D00975AC6 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		8C1305B00DC4B83000975AC6 /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
+		8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
 		8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptTerminology; path = CotEditor.scriptTerminology; sourceTree = "<group>"; };
 		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptSuite; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Script_CleanButton.tiff; path = toolbarIcons/Script_CleanButton.tiff; sourceTree = "<group>"; };
 		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = "<group>"; };
-		8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKXattrMetadataStore.h; path = ImportSources/UKXattrMetadataStore.h; sourceTree = "<group>"; };
-		8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKXattrMetadataStore.m; path = ImportSources/UKXattrMetadataStore.m; sourceTree = "<group>"; };
+		8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKXattrMetadataStore.h; sourceTree = "<group>"; };
+		8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKXattrMetadataStore.m; sourceTree = "<group>"; };
 		8C3A7DD80867EA9A00ECE052 /* startup.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = startup.applescript; path = internalScript/startup.applescript; sourceTree = "<group>"; };
 		8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOutlineMenuButton.h; sourceTree = "<group>"; };
 		8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOutlineMenuButton.m; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 		8C7400A308C6D93900683672 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingManager.h; sourceTree = "<group>"; };
 		8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingManager.m; sourceTree = "<group>"; };
-		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODBEditorSuite.h; path = ImportSources/ODBEditorSuite.h; sourceTree = "<group>"; };
+		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODBEditorSuite.h; sourceTree = "<group>"; };
 		8C83A48009485F27004E48A8 /* CEATSTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEATSTypesetter.h; sourceTree = "<group>"; };
 		8C83A48109485F27004E48A8 /* CEATSTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEATSTypesetter.m; sourceTree = "<group>"; };
 		8C8977240DCD8AD000DC32FF /* libicucore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -567,7 +567,7 @@
 			children = (
 				2AFFB72C18D8DB6A00118477 /* changelog.md */,
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
-				8C7F74E8091C7344005C7598 /* Import Sources */,
+				8C7F74E8091C7344005C7598 /* Imported Sources */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
@@ -741,7 +741,7 @@
 			name = KeyBindings;
 			sourceTree = "<group>";
 		};
-		8C7F74E8091C7344005C7598 /* Import Sources */ = {
+		8C7F74E8091C7344005C7598 /* Imported Sources */ = {
 			isa = PBXGroup;
 			children = (
 				8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */,
@@ -752,8 +752,8 @@
 				8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */,
 				8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */,
 			);
-			name = "Import Sources";
-			path = CotEditor;
+			name = "Imported Sources";
+			path = CotEditor/ImportedSources;
 			sourceTree = "<group>";
 		};
 		8CB0122007CA0CCD00221EDC /* toolbarIcons */ = {
