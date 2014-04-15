@@ -625,12 +625,12 @@
                             <menuItem isSeparatorItem="YES" id="591">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hiragana to Katakana (jp)" id="592">
+                            <menuItem title="Hiragana to Katakana (ja_JP)" id="592">
                                 <connections>
                                     <action selector="exchangeKatakana:" target="-1" id="593"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Katakana to Hiragana (jp)" id="594">
+                            <menuItem title="Katakana to Hiragana (ja_JP)" id="594">
                                 <connections>
                                     <action selector="exchangeHiragana:" target="-1" id="596"/>
                                 </connections>
@@ -819,9 +819,5 @@
         <customObject id="329" userLabel="CEDocumentController" customClass="CEDocumentController"/>
         <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
         <customObject id="831" customClass="SUUpdater"/>
-        <menuItem isSeparatorItem="YES" id="zig-66-TfW"/>
-        <menuItem title="Item" id="IeE-dV-blm">
-            <modifierMask key="keyEquivalentModifierMask"/>
-        </menuItem>
     </objects>
 </document>
