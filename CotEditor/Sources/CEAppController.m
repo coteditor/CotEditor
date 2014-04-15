@@ -78,13 +78,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     NSDictionary *defaults = @{k_key_showLineNumbers: @YES,
-                               k_key_showWrappedLineMark: @YES,
                                k_key_showStatusBar: @YES,
+                               k_key_showStatusBarChars: @YES,
+                               k_key_showStatusBarLines: @YES,
+                               k_key_showStatusBarWords: @NO,
+                               k_key_showStatusBarLocation: @YES,
+                               k_key_showStatusBarLine: @YES,
+                               k_key_showStatusBarColumn: @NO,
+                               k_key_showStatusBarEncoding: @YES,
+                               k_key_showStatusBarLineEndings: @YES,
                                k_key_countLineEndingAsChar: @YES,
                                k_key_syncFindPboard: @NO,
                                k_key_inlineContextualScriptMenu: @NO,
                                k_key_appendExtensionAtSaving: @YES,
-                               k_key_showStatusBarThousSeparator: @YES,
                                k_key_showNavigationBar: @YES,
                                k_key_wrapLines: @YES,
                                k_key_defaultLineEndCharCode: @0,
@@ -114,7 +120,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_invisibleFullwidthSpace: @0U,
                                k_key_showOtherInvisibleChars: @NO,
                                k_key_highlightCurrentLine: @NO,
-                               k_key_setHiliteLineColorToIMChars: @YES,
                                k_key_textColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
                                k_key_backgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
                                k_key_insertionPointColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
@@ -782,6 +787,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 @"alphaOnlyTextView",   // deprecated on 1.5
                                 @"saveTypeCreator",     // deprecated on 1.5
                                 @"gotoObjectMenuIndex", // deprecated on 1.5
+                                @"showWrappedLineMark", // deprecated on 1.5
+                                @"showStatusThousSeparator",
+                                @"setHiliteLineColorToIMChars",
                                 @"statusAreaFontSize"   // deprecated on 1.5
                                 ];
     

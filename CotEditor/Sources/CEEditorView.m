@@ -646,6 +646,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self statusBar] setLinesInfo:numberOfLines];
         [[self statusBar] setCharsInfo:length];
         [[self statusBar] setSelectedCharsInfo:selectedRange.length];
+        [[self statusBar] setWordsInfo:numberOfWords];
+        [[self statusBar] setSelectedWordsInfo:numberOfSelectedWords];
         [[self statusBar] setLocationInfo:selectedRange.location];
         [[self statusBar] setLineInfo:currentLine];
         [[self statusBar] setColumnInfo:column];

@@ -126,7 +126,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange range;       // a range for counting lines
     NSString *str = [[self masterView] string];
     NSString *numStr;    // a temporary string for Line Number
-    NSString *wrappedLineMark = [defaults boolForKey:k_key_showWrappedLineMark] ? @"-" : @" ";
     NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
     NSUInteger charIndex;
     NSUInteger lineNum;     // line counter
@@ -165,7 +164,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSHeight(numRect) - numRect.origin.y;
             if (NSIntersectsRect(numRect, dirtyRect)) {
-                numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%ld", (long)lineNum] : wrappedLineMark;
+                numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%ld", (long)lineNum] : @"-";
                 reqWidth = charWidth * [numStr length];
                 curWidth = NSWidth([self frame]);
                 if ((curWidth - k_lineNumPadding) < reqWidth) {

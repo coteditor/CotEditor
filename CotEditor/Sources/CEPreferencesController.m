@@ -40,30 +40,51 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
+typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
+    CEGeneralPane,
+    CEWindowPane,
+    CEAppearancePane,
+    CEEditPane,
+    CEFormatPane,
+    CEFileDropPane,
+    CEKeyBindingsPane,
+    CEPrintPane
+};
+
+
 @interface CEPreferencesController ()
 
-@property (nonatomic, weak) IBOutlet NSTabView *prefTabView;
+@property (nonatomic) IBOutlet NSView *generalPane;
+@property (nonatomic) IBOutlet NSView *windowPane;
+@property (nonatomic) IBOutlet NSView *appearancePane;
+@property (nonatomic) IBOutlet NSView *editPane;
+@property (nonatomic) IBOutlet NSView *formatPane;
+@property (nonatomic) IBOutlet NSView *fileDropPane;
+@property (nonatomic) IBOutlet NSView *keyBindingsPane;
+@property (nonatomic) IBOutlet NSView *printPane;
+
+@property (nonatomic, weak) IBOutlet NSButton *smartQuoteCheckButton;
+
 @property (nonatomic, weak) IBOutlet NSTextField *prefFontFamilyNameSize;
 @property (nonatomic, weak) IBOutlet NSTextField *printFontFamilyNameSize;
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
+@property (nonatomic) IBOutlet NSArrayController *stylesController;
+@property (nonatomic, weak) IBOutlet NSTableView *syntaxTableView;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
+@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
+
 @property (nonatomic) IBOutlet NSArrayController *fileDropController;
 @property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropGlossaryTextView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleSpacePopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleTabPopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleNewLinePopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *invisibleFullwidthSpacePopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesPopup;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleEditButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleCopyButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleExportButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
-@property (nonatomic, weak) IBOutlet NSButton *syntaxStyleXtsnErrButton;
+
+@property (nonatomic) NSArray *invisibleSpaces;
+@property (nonatomic) NSArray *invisibleTabs;
+@property (nonatomic) NSArray *invisibleNewLines;
+@property (nonatomic) NSArray *invisibleFullWidthSpaces;
 
 @property (nonatomic) BOOL doDeleteFileDrop;
 
@@ -103,7 +124,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
 
@@ -113,24 +134,53 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     self = [super initWithWindowNibName:@"Preferences"];
-    
+    if (self) {
+        // 不可視文字表示ポップアップ用の選択肢をセットする
+        CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
+        NSUInteger i;
+        NSMutableArray *spaces = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
+            [spaces addObject:[appDelegate invisibleSpaceCharacter:i]];
+        }
+        [self setInvisibleSpaces:spaces];
+        NSMutableArray *tabs = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
+            [tabs addObject:[appDelegate invisibleTabCharacter:i]];
+        }
+        [self setInvisibleTabs:tabs];
+        NSMutableArray *newLines = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
+            [newLines addObject:[appDelegate invisibleNewLineCharacter:i]];
+        }
+        [self setInvisibleNewLines:newLines];
+        NSMutableArray *fullWidthSpaces = [NSMutableArray array];
+        for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
+            [fullWidthSpaces addObject:[appDelegate invisibleFullwidthSpaceCharacter:i]];
+        }
+        [self setInvisibleFullWidthSpaces:fullWidthSpaces];
+    }
     return self;
 }
 
 
 // ------------------------------------------------------
-/// 環境設定パネルを開く
-- (IBAction)showWindow:(id)sender
+/// メニューの有効化／無効化を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (![[self window] isVisible]) {
-        [self setFontFamilyNameAndSize];
-        // 拡張子重複エラー表示ボタンの有効化を制御
-        [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
+    // 拡張子重複エラー表示メニューの有効化を制御
+    if ([menuItem action] == @selector(openSyntaxExtensionErrorSheet:)) {
+        return [[CESyntaxManager sharedManager] existsExtensionError];
         
-        [[self window] center];
+    // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
+    } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
+        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export \"%@\"…", nil), selectedStyleName]];
+    } if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
+        NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate \"%@\"…", nil), selectedStyleName]];
     }
-    [super showWindow:sender];
+    return YES;
 }
 
 
@@ -199,11 +249,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
 
-    if ([[[[self prefTabView] selectedTabViewItem] identifier] isEqualToString:k_prefFormatItemID]) {
+    if ([[[self window] contentView] subviews][0] == [self appearancePane]) {
         [defaults setObject:name forKey:k_key_fontName];
         [defaults setFloat:size forKey:k_key_fontSize];
         [self setFontFamilyNameAndSize];
-    } else if ([[[[self prefTabView] selectedTabViewItem] identifier] isEqualToString:k_prefPrintItemID]) {
+        
+    } else if ([[[self window] contentView] subviews][0] == [self printPane]) {
         [defaults setObject:name forKey:k_key_printFontName];
         [defaults setFloat:size forKey:k_key_printFontSize];
         [self setFontFamilyNameAndSize];
@@ -224,21 +275,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [self setupInvisibleSpacePopup];
-    [self setupInvisibleTabPopup];
-    [self setupInvisibleNewLinePopup];
-    [self setupInvisibleFullwidthSpacePopup];
+    // 最初のビューを選ぶ
+    NSToolbarItem *leftmostItem = [[[self window] toolbar] items][0];
+    [[[self window] toolbar] setSelectedItemIdentifier:[leftmostItem itemIdentifier]];
+    [self switchView:leftmostItem];
+    [[self window] center];
+    
+    // Mavericks用の設定をMavericks以下では無効にする
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) {
+        [[self smartQuoteCheckButton] setEnabled:NO];
+        [[self smartQuoteCheckButton] setState:NSOffState];
+        [[self smartQuoteCheckButton] setTitle:[NSString stringWithFormat:@"%@%@", [[self smartQuoteCheckButton] title],
+                                                NSLocalizedString(@" (on Mavericks and later)", nil)]];
+    }
+
+    // 各種セットアップ
     [self setupSyntaxMenus];
     [self setContentFileDropController];
+    [self setFontFamilyNameAndSize];
+    
 
-    [[self fileDropTextView] setContinuousSpellCheckingEnabled:NO]; // IBでの設定が効かないのでここで、実行
     [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
     // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
     // 2008.07.15.
     [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
-
-    
-    [[self window] setShowsToolbarButton:NO];
 }
 
 
@@ -246,7 +306,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Delegate and Notification
 
 //=======================================================
-// Selector for Notification (NSApplication)
+// Delegate method (NSWindow)
 //  <== prefWindow
 //=======================================================
 
@@ -257,14 +317,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // 編集中の設定値も保存
     [[self window] makeFirstResponder:[self window]];
-    [self updateUserDefaults];  // !!!: いまでも必要かあとで調べる [synclonize] 2014jp 2014-03
     // FileDrop 配列コントローラの値を書き戻す
     [self writeBackFileDropArray];
 }
 
 
 //=======================================================
-// Selector for Notification (NSTableView)
+// Delegate method (NSTableView)
 //  <== fileDropTableView
 //=======================================================
 
@@ -309,7 +368,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //=======================================================
-// Selector for Notification (NSTextView)
+// Delegate method (NSTextView)
 //  <== fileDropTextView
 //=======================================================
 
@@ -325,6 +384,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    if ([notification object] == [self syntaxTableView]) {
+        [self changedSyntaxStylesPopup:self];
+    }
+}
+
+
 
 #pragma mark Action Messages
 
@@ -332,6 +399,44 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Action messages
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// ツールバーからビューをスイッチする
+- (IBAction)switchView:(id)sender
+// ------------------------------------------------------
+{
+    // detect clicked icon and select a view to switch
+    NSView   *newView;
+    switch ([sender tag]) {
+        case CEGeneralPane:     newView = [self generalPane];     break;
+        case CEAppearancePane:  newView = [self appearancePane];  break;
+        case CEWindowPane:      newView = [self windowPane];      break;
+        case CEEditPane:        newView = [self editPane];        break;
+        case CEFormatPane:      newView = [self formatPane];      break;
+        case CEFileDropPane:    newView = [self fileDropPane];    break;
+        case CEKeyBindingsPane: newView = [self keyBindingsPane]; break;
+        case CEPrintPane:       newView = [self printPane];       break;
+    }
+    
+    // remove current view from the main view
+    for (NSView *view in [[[self window] contentView] subviews]) {
+        [view removeFromSuperview];
+    }
+    
+    // set window title
+    [[self window] setTitle:[sender label]];
+    
+    // resize window to fit to new view
+    NSRect frame    = [[self window] frame];
+    NSRect newFrame = [[self window] frameRectForContentRect:[newView frame]];
+    newFrame.origin    = frame.origin;
+    newFrame.origin.y += NSHeight(frame) - NSHeight(newFrame);
+    [[self window] setFrame:newFrame display:YES animate:YES];
+    
+    // add new view to the main view
+    [[[self window] contentView] addSubview:newView];
+}
+
 
 // ------------------------------------------------------
 /// フォントパネルを表示
@@ -342,12 +447,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSFontManager *manager = [NSFontManager sharedFontManager];
     NSFont *font;
 
-    if ([[[[self prefTabView] selectedTabViewItem] identifier] isEqualToString:k_prefPrintItemID]) {
-        font = [NSFont fontWithName:[defaults stringForKey:k_key_printFontName]
-                               size:(CGFloat)[defaults doubleForKey:k_key_printFontSize]];
-    } else {
+    if ([[[self window] contentView] subviews][0] == [self appearancePane]) {
         font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
+        
+    } else if ([[[self window] contentView] subviews][0] == [self printPane]) {
+        font = [NSFont fontWithName:[defaults stringForKey:k_key_printFontName]
+                               size:(CGFloat)[defaults doubleForKey:k_key_printFontSize]];
     }
 
     [[self window] makeFirstResponder:[self window]];
@@ -394,10 +500,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openSyntaxEditSheet:(id)sender
 // ------------------------------------------------------
 {
-    NSInteger selected = [[self syntaxStylesPopup] indexOfSelectedItem] - 2; // "None"とセパレータ分のオフセット
-    if (([sender tag] != CENewSyntaxEdit) && (selected < 0)) { return; }
-    
-    NSString *selectedName = [[self syntaxStylesPopup] titleOfSelectedItem];
+    NSString *selectedName = [[self stylesController] selectedObjects][0];
     CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:selectedName
                                                                                                  mode:[sender tag]];
     if (!sheetController) {
@@ -410,9 +513,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [NSApp beginSheet:sheet
        modalForWindow:[self window]
-        modalDelegate:self
-       didEndSelector:NULL
-          contextInfo:NULL];
+        modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
 
 
@@ -428,9 +529,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
         [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
-        // 拡張子重複エラー表示ボタンの有効化を制御
-        [[self syntaxStyleXtsnErrButton] setEnabled:
-                [[CESyntaxManager sharedManager] existsExtensionError]];
     }
     // シートを閉じる
     [NSApp endSheet:sheet];
@@ -444,19 +542,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)changedSyntaxStylesPopup:(id)sender
 // ------------------------------------------------------
 {
-    BOOL isEnabled = ([[self syntaxStylesPopup] indexOfSelectedItem] > 1);
-
-    [[self syntaxStyleEditButton] setEnabled:isEnabled];
-    [[self syntaxStyleCopyButton] setEnabled:isEnabled];
-    [[self syntaxStyleExportButton] setEnabled:isEnabled];
-
-    if (isEnabled &&
-        ![[CESyntaxManager sharedManager] isBundledStyle:[[self syntaxStylesPopup] title]])
-    {
-        [[self syntaxStyleDeleteButton] setEnabled:YES];
-    } else {
-        [[self syntaxStyleDeleteButton] setEnabled:NO];
-    }
+    NSString *selected = [[self stylesController] selectedObjects][0];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:selected];
+    
+    [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
 
 
@@ -465,11 +554,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)deleteSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    NSString *selectedStyleName = [[self syntaxStylesPopup] title];
+    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
 
     if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil), selectedStyleName];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style \"%@\"?", nil)];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil)
@@ -510,7 +599,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [[blockSelf window] makeKeyAndOrderFront:blockSelf];
             
             NSAlert *alert;
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"the \"%@\" style already exists.", nil), styleName];
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"The \"%@\" style already exists.", nil), styleName];
             alert = [NSAlert alertWithMessageText:message
                                     defaultButton:NSLocalizedString(@"Cancel", nil)
                                   alternateButton:NSLocalizedString(@"Replace", nil) otherButton:nil
@@ -534,19 +623,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)exportSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
-    __block NSString *styleName = [[self syntaxStylesPopup] title];
+    NSString *selectedStyle = [[self stylesController] selectedObjects][0];
+    
     NSSavePanel *savePanel = [NSSavePanel savePanel];
 
     // SavePanelをセットアップ(既定値を含む)、シートとして開く
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
-    [savePanel setNameFieldStringValue:styleName];
+    [savePanel setNameFieldStringValue:selectedStyle];
     [savePanel setAllowedFileTypes:@[@"plist"]];
     
     [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
-            [[CESyntaxManager sharedManager] exportStyle:styleName toURL:[savePanel URL]];
+            [[CESyntaxManager sharedManager] exportStyle:selectedStyle toURL:[savePanel URL]];
         }
     }];
 }
@@ -695,7 +785,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// ヘルプの環境設定説明部分を開く
-- (IBAction)openPrefHelp:(id)sender
+- (IBAction)openHelp:(id)sender
 //------------------------------------------------------
 {
     NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
@@ -746,21 +836,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// Force update UserDefaults
-- (void)updateUserDefaults
-//------------------------------------------------------
-{
-// 下記のページの情報を参考にさせていただきました(2004.12.30)
-// http://cocoa.mamasam.com/COCOADEV/2004/02/2/85406.php
-    NSUserDefaultsController *UDC = [NSUserDefaultsController sharedUserDefaultsController];
-
-//    [[self fileDropController] commitEditing];
-    [UDC commitEditing];
-    [UDC save:self];
-}
-
-
-//------------------------------------------------------
 /// メインウィンドウのフォントファミリー名とサイズをprefFontFamilyNameSizeに表示させる
 - (void)setFontFamilyNameAndSize
 //------------------------------------------------------
@@ -772,14 +847,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSFont *font = [NSFont fontWithName:name size:size];
     NSString *localizedName = [font displayName];
 
-    [[self prefFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@  (%gpt)", localizedName, size]];
+    [[self prefFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
+    [[self prefFontFamilyNameSize] setFont:[NSFont fontWithName:name size:13.0]];
 
     name = [defaults stringForKey:k_key_printFontName];
     size = (CGFloat)[defaults doubleForKey:k_key_printFontSize];
     font = [NSFont fontWithName:name size:size];
     localizedName = [font displayName];
 
-    [[self printFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@  (%gpt)", localizedName, size]];
+    [[self printFontFamilyNameSize] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
+    [[self printFontFamilyNameSize] setFont:[NSFont fontWithName:name size:13.0]];
 
 }
 
@@ -800,102 +877,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleSpacePopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *title;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleSpacePopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
-        title = [appDelegate invisibleSpaceCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-        [[[self invisibleSpacePopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleSpace];
-    [[self invisibleSpacePopup] selectItemAtIndex:selected];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleTabPopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *title;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleTabPopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
-        title = [appDelegate invisibleTabCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-        [[[self invisibleTabPopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleTab];
-    [[self invisibleTabPopup] selectItemAtIndex:selected];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleNewLinePopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *vitle;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleNewLinePopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
-        vitle = [appDelegate invisibleNewLineCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:vitle action:nil keyEquivalent:@""];
-        [[[self invisibleNewLinePopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleNewLine];
-    [[self invisibleNewLinePopup] selectItemAtIndex:selected];
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字表示設定ポップアップメニューを生成
-- (void)setupInvisibleFullwidthSpacePopup
-// ------------------------------------------------------
-{
-    CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
-    NSString *title;
-    NSMenuItem *item;
-    NSUInteger selected;
-    NSUInteger i;
-
-    [[self invisibleFullwidthSpacePopup] removeAllItems];
-    for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
-        title = [appDelegate invisibleFullwidthSpaceCharacter:i];
-        item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-        [[[self invisibleFullwidthSpacePopup] menu] addItem:item];
-    }
-    // (不可視文字表示設定ポップアップメニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_invisibleFullwidthSpace];
-    [[self invisibleFullwidthSpacePopup] selectItemAtIndex:selected];
-}
-
-
-// ------------------------------------------------------
 /// シンタックスカラーリングスタイル指定ポップアップメニューを生成
 - (void)setupSyntaxStylesPopup
 // ------------------------------------------------------
@@ -905,22 +886,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *selectedTitle;
     NSUInteger selected;
 
-    [[self syntaxStylesPopup] removeAllItems];
+    [[self stylesController] setContent:styleNames];
+    
     [[self syntaxStylesDefaultPopup] removeAllItems];
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Choose style...", nil)
-                                      action:nil keyEquivalent:@""];
-    [[[self syntaxStylesPopup] menu] addItem:item];
-    [[[self syntaxStylesPopup] menu] addItem:[NSMenuItem separatorItem]];
     item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
                                       action:nil keyEquivalent:@""];
     [[[self syntaxStylesDefaultPopup] menu] addItem:item];
     [[[self syntaxStylesDefaultPopup] menu] addItem:[NSMenuItem separatorItem]];
     
     for (NSString *styleName in styleNames) {
-        item = [[NSMenuItem alloc] initWithTitle:styleName
-                   action:nil keyEquivalent:@""];
-        [[[self syntaxStylesPopup] menu] addItem:item];
-        [[[self syntaxStylesDefaultPopup] menu] addItem:[item copy]];
+        item = [[NSMenuItem alloc] initWithTitle:styleName action:nil keyEquivalent:@""];
+        [[[self syntaxStylesDefaultPopup] menu] addItem:item];
     }
     // (デフォルトシンタックスカラーリングスタイル指定ポップアップメニューはバインディングを使っているが、
     // タグの選択がバインディングで行われた後にメニューが追加／削除されるため、結果的に選択がうまく動かない。
@@ -989,7 +965,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         extension = @"";
     }
 
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting?\n \"%@\"", nil), extension];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for \"%@\"?", nil), extension];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil) otherButton:nil
@@ -1037,15 +1013,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     
-    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:[[self syntaxStylesPopup] title]]) {
+    NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
+    
+    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[self window] makeKeyAndOrderFront:self];
         NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
                                          defaultButton:nil
                                        alternateButton:nil otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil),
-                          [[self syntaxStylesPopup] title]];
+                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete \"%@\".", nil), selectedStyleName];
         NSBeep();
         [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
         return;
@@ -1054,8 +1031,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
     // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
     [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
-    // 拡張子重複エラー表示ボタンの有効化を制御
-    [[self syntaxStyleXtsnErrButton] setEnabled:[[CESyntaxManager sharedManager] existsExtensionError]];
 }
 
 

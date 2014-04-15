@@ -107,7 +107,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self readyToDrawPageNum]) {
         NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
 
-        pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"- %li -", (long)pageNum]
+        pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%li", (long)pageNum]
                                                      attributes:[self headerFooterAttrs]];
     }
 
@@ -207,7 +207,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRange range;       // a range for counting lines
         NSString *str = [self string];
         NSString *numStr;    // a temporary string for Line Number
-        NSString *wrappedLineMark = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showWrappedLineMark] ? @"-:" : @" ";
         NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
         NSUInteger charIndex;
         NSUInteger lineNum;   // line counter
@@ -236,7 +235,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         numStr = [NSString stringWithFormat:@"%ld:", (long)lineNum];
                         reqWidth = charWidth * [numStr length];
                     } else {
-                        numStr = wrappedLineMark;
+                        numStr = @"-:";
                         reqWidth = 8.0; // @"-:"のときに必要なピクセル値。変更時、注意。*****
                     }
                     numPoint = NSMakePoint(dirtyRect.origin.x - reqWidth + xAdj,
