@@ -41,27 +41,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEPrivateMutableArray.h"
 
 
-@interface CEPrivateMutableArray ()
+@implementation CEPrivateMutableArray
 {
     id *_pointers;
     NSUInteger _size;
     NSUInteger _nPointers;
 }
 
-@end
 
-@implementation CEPrivateMutableArray
-
-
-- (id)initWithCapacity:(NSUInteger)inSize
+- (id)initWithCapacity:(NSUInteger)size
 {
-    [super init];
-
-    _pointers = malloc( sizeof(id) * inSize);
-    _nPointers = 0;
-    _size = inSize;
-
-    return( self);
+    self = [super init];
+    if (self) {
+        _pointers = malloc(sizeof(id) * size);
+        _nPointers = 0;
+        _size = size;
+    }
+    return(self);
 }
 
 
@@ -70,7 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger i;
    
     for (i = 0; i < _nPointers; i++) {
-        [_pointers[ i] release];
+        [_pointers[i] release];
     }
 
     free(_pointers);
