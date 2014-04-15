@@ -861,7 +861,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [coloringMenu addItem:[NSMenuItem separatorItem]];
     // 全文字列を再カラーリングするメニューを追加
-    menuTitle = NSLocalizedString(@"Re-color All",@"");
+    menuTitle = NSLocalizedString(@"Re-Color All",@"");
     menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
                                           action:@selector(recoloringAllStringOfDocument:)
                                    keyEquivalent:@"r"];

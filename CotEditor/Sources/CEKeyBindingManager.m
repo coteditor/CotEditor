@@ -1084,13 +1084,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         switch ([self outlineMode]) {
             case CEMenuModeOutline:
                 [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                         NSLocalizedString(@"'%@' have already been used. Edit it again.", nil), readableKeyStr]];
+                                                         NSLocalizedString(@"“%@” has already been used. Edit it again.", nil), readableKeyStr]];
                 [[self menuOkButton] setEnabled:NO];
                 break;
                 
             case CETextModeOutline:
                 [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                         NSLocalizedString(@"'%@' have already been used. Edit it again.", nil), readableKeyStr]];
+                                                         NSLocalizedString(@"“%@” has already been used. Edit it again.", nil), readableKeyStr]];
                 [[self textOkButton] setEnabled:NO];
                 break;
         }
@@ -1122,13 +1122,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             switch ([self outlineMode]) {
                 case CEMenuModeOutline:
                     [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                             NSLocalizedString(@"'%@' NOT include Command Key. Edit it again.", nil), readableKeyStr]];
+                                                             NSLocalizedString(@"“%@” does NOT include Command key. Edit it again.", nil), readableKeyStr]];
                     [[self menuOkButton] setEnabled:NO];
                     break;
                     
                 case CETextModeOutline:
                     [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                             NSLocalizedString(@"'%@' include Command Key. Edit it again.", nil), readableKeyStr]];
+                                                             NSLocalizedString(@"“%@” includes Command key. Edit it again.", nil), readableKeyStr]];
                     [[self textOkButton] setEnabled:NO];
                     break;
             }

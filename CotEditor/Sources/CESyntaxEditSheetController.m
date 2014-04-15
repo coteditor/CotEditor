@@ -328,13 +328,13 @@
     
     NSMutableString *resultMessage = [NSMutableString string];
     if ([errorMessages count] == 0) {
-        [resultMessage setString:NSLocalizedString(@"No Error found.", nil)];
+        [resultMessage setString:NSLocalizedString(@"No error was found.", nil)];
         
     } else {
         if ([errorMessages count] == 1) {
-            [resultMessage appendString:NSLocalizedString(@"One Error was Found!\n\n", nil)];
+            [resultMessage appendString:NSLocalizedString(@"One error was found!\n\n", nil)];
         } else {
-            [resultMessage appendFormat:NSLocalizedString(@"%i Errors were Found!\n\n", nil), [errorMessages count]];
+            [resultMessage appendFormat:NSLocalizedString(@"%i errors were found!\n\n", nil), [errorMessages count]];
         }
         
         NSUInteger lineCount = 1;

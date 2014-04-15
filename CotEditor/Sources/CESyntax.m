@@ -378,7 +378,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [outlineMenuDicts sortUsingDescriptors:@[theDescriptor]];
         // ソート後に、冒頭のアイテムを追加
         [outlineMenuDicts insertObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)],
-                                         k_outlineMenuItemTitle: NSLocalizedString(@"< Outline Menu >",@""),
+                                         k_outlineMenuItemTitle: NSLocalizedString(@"<Outline Menu>",@""),
                                          k_outlineMenuItemSortKey: @0U}
                                atIndex:0];
     }
@@ -1071,10 +1071,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setDoubleIndicator:0];
         if ([self isPrinting]) {
             documentWindow = [NSApp mainWindow];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Print text Coloring ...", nil)];
+            [[self coloringCaption] setStringValue:NSLocalizedString(@"Coloring print text...", nil)];
         } else {
             documentWindow = [[[self layoutManager] firstTextView] window];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Text Coloring ...", nil)];
+            [[self coloringCaption] setStringValue:NSLocalizedString(@"Coloring text...", nil)];
         }
         sheet = [[self coloringIndicator] window];
         [NSApp beginSheet:sheet

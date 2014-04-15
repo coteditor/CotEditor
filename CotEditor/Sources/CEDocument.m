@@ -322,7 +322,7 @@ enum { typeFSS = 'fss ' };
     if ([self isDocumentEdited] &&
         ![self canReleaseFinderLockAtURL:[self fileURL] isLocked:nil lockAgain:YES])
     {
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is ON", nil)
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is On.", nil)
                                          defaultButton:NSLocalizedString(@"Cancel", nil)
                                        alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
                                            otherButton:nil
@@ -610,7 +610,7 @@ enum { typeFSS = 'fss ' };
                                                  defaultButton:NSLocalizedString(@"Cancel", nil)
                                                alternateButton:NSLocalizedString(@"Change Encoding", nil)
                                                    otherButton:nil
-                                     informativeTextWithFormat:NSLocalizedString(@"Do you want to change encoding and show incompatible character(s)?", nil)];
+                                     informativeTextWithFormat:NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil)];
 
                 result = [alert runModal];
                 if (result == NSAlertDefaultReturn) { // == Cancel

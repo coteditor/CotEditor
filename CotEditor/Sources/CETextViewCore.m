@@ -597,7 +597,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (string == nil) { return; }
     NSRange selectedRange = [self selectedRange];
-    NSString *actionName = (selectedRange.length > 0) ? @"Replace text" : @"Insert text";
+    NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
     NSRange newRange = NSMakeRange(selectedRange.location, [string length]);
 
     [self doInsertString:string withRange:selectedRange 
@@ -614,7 +614,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (string) {
         [self doReplaceString:string withRange:NSMakeRange(0, [[self string] length])
-                 withSelected:newRange withActionName:NSLocalizedString(@"Replace text", nil)];
+                 withSelected:newRange withActionName:NSLocalizedString(@"Replace Text", nil)];
     }
 }
 
@@ -629,7 +629,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange newRange = NSMakeRange(NSMaxRange(selectedRange), [string length]);
 
     [self doInsertString:string withRange:NSMakeRange(NSMaxRange(selectedRange), 0)
-            withSelected:newRange withActionName:NSLocalizedString(@"Insert text", nil) scroll:NO];
+            withSelected:newRange withActionName:NSLocalizedString(@"Insert Text", nil) scroll:NO];
 }
 
 
@@ -642,7 +642,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange newRange = NSMakeRange([[self string] length], [string length]);
 
     [self doInsertString:string withRange:NSMakeRange([[self string] length], 0)
-            withSelected:newRange withActionName:NSLocalizedString(@"Insert text", nil) scroll:NO];
+            withSelected:newRange withActionName:NSLocalizedString(@"Insert Text", nil) scroll:NO];
 }
 
 
@@ -661,7 +661,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRange newRange = NSMakeRange(selectedRange.location + [string length], 0);
 
         [self doInsertString:string withRange:selectedRange
-                withSelected:newRange withActionName:NSLocalizedString(@"Insert custom text", nil) scroll:YES];
+                withSelected:newRange withActionName:NSLocalizedString(@"Insert Custom Text", nil) scroll:YES];
     }
 }
 
@@ -1418,7 +1418,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"to Lowercase", nil) scroll:YES];
+                    withSelected:newRange withActionName:NSLocalizedString(@"To Lowercase", nil) scroll:YES];
         }
     }
 }
@@ -1436,7 +1436,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"to Uppercase", nil) scroll:YES];
+                    withSelected:newRange withActionName:NSLocalizedString(@"To Uppercase", nil) scroll:YES];
         }
     }
 }
@@ -1454,7 +1454,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange
-                    withSelected:newRange withActionName:NSLocalizedString(@"to Capitalized", nil) scroll:YES];
+                    withSelected:newRange withActionName:NSLocalizedString(@"To Capitalized", nil) scroll:YES];
         }
     }
 }
@@ -1472,7 +1472,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"to Fullwidth (jp/Roman)", nil) scroll:YES];
+                    withSelected:newRange withActionName:NSLocalizedString(@"To Fullwidth (ja_JP/Roman)", nil) scroll:YES];
         }
     }
 }
@@ -1491,7 +1491,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"to Halfwidth (jp/Roman)", nil) scroll:YES];
+                    withSelected:newRange withActionName:NSLocalizedString(@"To Halfwidth (ja_JP/Roman)", nil) scroll:YES];
         }
     }
 }
@@ -1509,7 +1509,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"Hiragana to Katakana (jp)",@"") scroll:YES];
+                    withSelected:newRange withActionName:NSLocalizedString(@"Hiragana to Katakana (ja_JP)",@"") scroll:YES];
         }
     }
 }
@@ -1528,7 +1528,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange
-                    withSelected:newRange withActionName:NSLocalizedString(@"Katakana to Hiragana (jp)",@"") scroll:YES];
+                    withSelected:newRange withActionName:NSLocalizedString(@"Katakana to Hiragana (ja_JP)",@"") scroll:YES];
         }
     }
 }

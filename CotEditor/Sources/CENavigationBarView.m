@@ -88,7 +88,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self prevButton] setImagePosition:NSImageOnly];
         [[self prevButton] setAction:@selector(selectPrevItem)];
         [[self prevButton] setTarget:self];
-        [[self prevButton] setToolTip:NSLocalizedString(@"Go Prev item", @"")];
+        [[self prevButton] setToolTip:NSLocalizedString(@"Go to prev item", @"")];
         [[self prevButton] setAutoresizingMask:NSViewHeightSizable];
 
         // setup nextButton
@@ -102,7 +102,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self nextButton] setImagePosition:NSImageOnly];
         [[self nextButton] setAction:@selector(selectNextItem)];
         [[self nextButton] setTarget:self];
-        [[self nextButton] setToolTip:NSLocalizedString(@"Go Next item", @"")];
+        [[self nextButton] setToolTip:NSLocalizedString(@"Go to next item", @"")];
         [[self nextButton] setAutoresizingMask:NSViewHeightSizable];
 
         // setup openSplitButton
@@ -118,7 +118,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self openSplitButton] setAction:@selector(openSplitTextView:)];
         [[self openSplitButton] setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
         [[self openSplitButton] setImage:[NSImage imageNamed:@"openSplitButtonImg"]];
-        [[self openSplitButton] setToolTip:NSLocalizedString(@"Open SplitView", @"")];
+        [[self openSplitButton] setToolTip:NSLocalizedString(@"Split view", @"")];
         [[self openSplitButton] setEnabled:YES];
 
         // setup closeSplitButton
@@ -134,7 +134,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self closeSplitButton] setAction:@selector(closeSplitTextView:)];
         [[self closeSplitButton] setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
         [[self closeSplitButton] setImage:[NSImage imageNamed:@"closeSplitButtonImg"]];
-        [[self closeSplitButton] setToolTip:NSLocalizedString(@"Close SplitView", @"")];
+        [[self closeSplitButton] setToolTip:NSLocalizedString(@"Close split view", @"")];
         [[self closeSplitButton] setHidden:YES];
 
         [self setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin)];

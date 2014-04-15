@@ -13,19 +13,12 @@ http://www.aynimac.com/
 "Auto-Detect" = "自動認識";
 // Format - Syntax coloring menu item title.
 "None" = "なし";
-"Re-color All" = "再カラーリング";
+"Re-Color All" = "再カラーリング";
 // Find menu added item title.
 "Select Prev Outline Item" = "前のアウトライン項目を選択";
 "Select Next Outline Item" = "次のアウトライン項目を選択";
 "Go To…" = "移動…";
 
-/* CEDocumentController */
-"File Open Error" = "ファイルオープンエラー";
-// File open error message
-"The File(s) could not be read with unknown error:\n %@" = "未知のエラーで読み込めませんでした：";
-// Custom Line Spacing menu title
-"Custom…" = "カスタム…";
-"Custom [%.2f] …" = "カスタム [%.2f] …";
 
 /* CEDocument */
 // Undo/Redo Action name
@@ -60,7 +53,7 @@ http://www.aynimac.com/
 "Change Encoding" = "エンコーディングを変更";
 "The characters would have to be changed or deleted in saving as “%@”." = "“%@” で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
-"Do you want to change encoding and show incompatible character(s)?" = "エンコーディングを変更し、非互換文字を表示しますか？";
+"Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
 
 "Printed: %@" = "プリント：%@";
 
@@ -72,25 +65,33 @@ http://www.aynimac.com/
 "The file has been modified by another process." = "ファイルは別のプロセスによって変更されました。";
 "Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
 
-/* CEEditorView */
+
+/* CEEditorViewCore */
 // undo action name
-"Replace text" = "テキストを置換";
-"Insert text" = "テキストを挿入";
-"Insert custom text" = "カスタムテキストを挿入";
+"Replace Text" = "テキストを置換";
+"Insert Text" = "テキストを挿入";
+"Insert Custom Text" = "カスタムテキストを挿入";
 "Shift Right" = "右へシフト";
 "Shift Left" = "左へシフト";
-"to Lowercase" = "小文字に";
-"to Uppercase" = "大文字に";
-"to Capitalized" = "先頭の文字を大文字に";
-"to Fullwidth (jp/Roman)" = "全角英数に";
-"to Halfwidth (jp/Roman)" = "半角英数に";
-"Hiragana to Katakana (jp)" = "ひらがなをカタカナに";
-"Katakana to Hiragana (jp)" = "カタカナをひらがなに";
+"To Lowercase" = "小文字に";
+"To Uppercase" = "大文字に";
+"To Capitalized" = "先頭の文字を大文字に";
+"To Fullwidth (ja_JP/Roman)" = "全角英数に";
+"To Halfwidth (ja_JP/Roman)" = "半角英数に";
+"Hiragana to Katakana (ja_JP)" = "ひらがなをカタカナに";
+"Katakana to Hiragana (ja_JP)" = "カタカナをひらがなに";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 
+// contextual menu title
+"Font" = "フォント";
+"Utility" = "ユーティリティ";
+"Select All" = "すべてを選択";
+
+
+/* CEEditorView */
 // menu items
 "Hide Line Numbers" = "行番号を隠す";
 "Show Line Numbers" = "行番号を表示";
@@ -106,13 +107,7 @@ http://www.aynimac.com/
 "Wrap Lines" = "行を折り返す";
 
 // show invisible char menu tooltip
-"To display invisible characters, set in Preferences and re-open the document." = "不可視文字を表示させるには、環境設定を変更し、書類を開き直してください。";
-
-/* CETextViewCore */
-// contextual menu title
-"Font" = "フォント";
-"Utility" = "ユーティリティ";
-"Select All" = "すべてを選択";
+"To display invisible characters, set in Preferences and re-open the document." = "不可視文字を表示させるには、環境設定を変更し書類を開き直してください。";
 
 // Alert strings
 "The file is not writable." = "このファイルは書き込み不可です。";
@@ -121,31 +116,35 @@ http://www.aynimac.com/
 "You may not be able to save your changes, but you will be able to save a copy somewhere else.\n\nDo you want to edit this file anyway?" = "このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。\n\n変更しますか？";  // どこで使用されているか不明 (2014-03 by 1024jp)
 "You may not be able to save your changes, but you will be able to save a copy somewhere else." = "このファイルに加えられた変更は保存できない場合がありますが、コピーを別の場所に保存することができます。";
 
-"Finder's lock is ON" = "Finder のロックがかかっています";
+"Finder's lock is On." = "Finder のロックがかかっています。";
 "Don't Save, and Close" = "保存しないで閉じる";
 "Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?" = "Finder のロックを解除できませんでしたので、編集内容をこのファイルに保存できません。「別名で保存」でコピーを保存できます。\n\nファイルを閉じますか？";
 
+
 /* CENavigationBarView */
 // Tooltip
-"Go Prev item" = "前の項目へ";
-"Go Next item" = "次の項目へ";
-"Open SplitView" = "エディタを分割";
-"Close SplitView" = "分割されたエディタを閉じる";
+"Go to prev item" = "前の項目へ";
+"Go to next item" = "次の項目へ";
+"Split view" = "エディタを分割";
+"Close split view" = "分割されたエディタを閉じる";
+
 
 /* CEStatusBarView */
-"This Dococument is ReadOnly" = "書類は書き込み不可です";
+"This document is read only." = "書類は書き込み不可です。";
 "Lines: %@" = "行数：%@";
-"Chars: %@" = "   文字数：%@";
-"Words: %@" = "   単語数：%@";
-"Location: %@" = "   位置：%@";
-"Line: %@" = "   行：%@";
-"Column: %@" = "   列：%@";
+"Chars: %@" = "文字数：%@";
+"Words: %@" = "単語数：%@";
+"Location: %@" = "位置：%@";
+"Line: %@" = "行：%@";
+"Column: %@" = "列：%@";
+
 
 /* CESyntax */
 // Outline Menu title
-"< Outline Menu >" = "< アウトラインメニュー >";
-"Print text Coloring ..." = "プリントテキストのカラーリング中...";
-"Text Coloring ..." = "テキストのカラーリング中...";
+"<Outline Menu>" = "< アウトラインメニュー >";
+"Coloring print text..." = "プリントテキストのカラーリング中...";
+"Coloring text..." = "テキストのカラーリング中...";
+
 
 /* CEPreferencesController */
 // FileDrop Glossary
@@ -165,7 +164,8 @@ http://www.aynimac.com/
 "Duplicate “%@”…" = "“%@” を複製…";
 "Export “%@”…" = "“%@” を書き出し…";
 
-/* CESyntaxEditSheet */
+
+/* CESyntaxEditSheetController */
 // menu items
 "Keywords" = "キーワード";
 "Commands" = "コマンド";
@@ -179,7 +179,15 @@ http://www.aynimac.com/
 "Extensions" = "拡張子";
 "Syntax Validation" = "シンタックスの検証";
 
-/* CESyntaxColoringManager */
+// syntax element check result (no error)
+"No error found." = "エラーはありませんでした。";
+// syntax element check result (1 error found)
+"One error was found!\n\n" = "エラーがありました！\n\n";
+// syntax element check result (2 or more errors found)
+"%i errors were found!\n\n" = "%i 個のエラーがありました！\n\n";
+
+
+/* CESyntaxManager */
 // Syntax coloring style name was set to blank message
 "Input the Style Name!" = "スタイル名を入力してください！";
 // Syntax coloring style name already exists
@@ -209,28 +217,21 @@ http://www.aynimac.com/
 "Sorry, could not import “%@”." = "“%@” を読み込めませんでした。";
 // Export syntax coloring style file savePanel label
 "Export As:" = "書き出し：";
-// Extension NO Error message
-// syntax element check result (no error)
-"No error found." = "エラーはありませんでした。";
-// syntax element check result (1 error found)
-"One Error was Found!\n\n" = "エラーがありました！\n\n";
-// syntax element check result (2 or more errors found)
-"%i Errors were Found!\n\n" = "%i 個のエラーがありました！\n\n";
-// syntax element check failed
-"An Error occuerd in Checking.\nNumber of selected object is 2 or more in '_styleController'." = "チェック中にエラーが起きました。\n'_styleController' で選択されているオブジェクトが 2 個以上あります。";
 // File Drop setting delete
 "Delete the File Drop setting for “%@”?" = "ファイルドロップ設定 “%@” を削除してもよろしいですか？";
 "Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
+
 
 /* CEWindowsController */
 "ON" = "ON";
 "OFF" = "OFF";
 
+
 /* CEKeyBindingManager */
 // Sheet text
-"'%@' have already been used. Edit it again." = "'%@' は既に使われています。再編集してください。";
-"'%@' NOT include Command Key. Edit it again." = "'%@' にはコマンドキーが含まれていません。再編集してください。";
-"'%@' include Command Key. Edit it again." = "'%@' はコマンドキーを含んでいます。再編集してください。";
+"“%@” has already been used. Edit it again." = "“%@” は既に使われています。再編集してください。";
+"“%@” does NOT include Command key. Edit it again." = "“%@” にはコマンドキーが含まれていません。再編集してください。";
+"“%@” includes Command key. Edit it again." = "“%@” はコマンドキーを含んでいます。再編集してください。";
 
 /* Toolbar (Label, Palette label, Tooltip) */
 // Get Info
