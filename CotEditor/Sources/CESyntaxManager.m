@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // readonly
-@property (nonatomic, readwrite) NSDictionary *extensionErrors;
+@property (nonatomic, readwrite) NSDictionary *extensionConflicts;
 
 @end
 
@@ -323,10 +323,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// 拡張子重複エラーがあるかどうかを返す
-- (BOOL)existsExtensionError
+- (BOOL)existsExtensionConflict
 //------------------------------------------------------
 {
-    return ([[self extensionErrors] count] > 0);
+    return ([[self extensionConflicts] count] > 0);
 }
 
 
@@ -600,7 +600,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSMutableDictionary *table = [NSMutableDictionary dictionary];
-    NSMutableDictionary *errorDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *conflictDict = [NSMutableDictionary dictionary];
     NSMutableArray *extensions = [NSMutableArray array];
     id extension, addedName = nil;
     NSArray *extensionDicts;
@@ -611,10 +611,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         for (NSDictionary *extensionDict in extensionDicts) {
             extension = extensionDict[k_SCKey_arrayKeyString];
             if ((addedName = table[extension])) { // 同じ拡張子を持つものがすでにあるとき
-                NSMutableArray *errorArray = errorDict[extension];
+                NSMutableArray *errorArray = conflictDict[extension];
                 if (!errorArray) {
                     errorArray = [NSMutableArray array];
-                    [errorDict setValue:errorArray forKey:extension];
+                    [conflictDict setValue:errorArray forKey:extension];
                 }
                 if (![errorArray containsObject:addedName]) {
                     [errorArray addObject:addedName];
@@ -627,7 +627,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     [self setExtensionToStyleTable:table];
-    [self setExtensionErrors:errorDict];
+    [self setExtensionConflicts:conflictDict];
     [self setExtensions:extensions];
 }
 

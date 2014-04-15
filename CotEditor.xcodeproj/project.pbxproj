@@ -56,8 +56,8 @@
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; };
 		2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */; };
-		2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */; };
-		2A5D2B9418E1ED420020AA1F /* SyntaxExtensionErrorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxExtensionErrorSheet.xib */; };
+		2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.m */; };
+		2A5D2B9418E1ED420020AA1F /* SyntaxExtensionConflictSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxExtensionConflictSheet.xib */; };
 		2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93718FB04F300673440 /* CEMenuItemCell.m */; };
 		2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
 		2A712CA318EFB716001FEC33 /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
@@ -224,7 +224,7 @@
 		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
 		2A0E160F18E79FFA00AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		2A0E161018E7A17600AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
-		2A15830518E24CB300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SyntaxExtensionErrorSheet.xib; sourceTree = "<group>"; };
+		2A15830518E24CB300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SyntaxExtensionConflictSheet.xib; sourceTree = "<group>"; };
 		2A15831618E3688300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EncodingListSheet.xib; sourceTree = "<group>"; };
 		2A15831818E368CE00601026 /* CEEncodingListSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodingListSheetController.h; sourceTree = "<group>"; };
 		2A15831918E368CE00601026 /* CEEncodingListSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEncodingListSheetController.m; sourceTree = "<group>"; };
@@ -253,9 +253,9 @@
 		2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineSpacingPanelController.m; sourceTree = "<group>"; };
 		2A5B998A18D61443009C2F4F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LineSpacingPanel.xib; sourceTree = "<group>"; };
 		2A5B998C18D634A3009C2F4F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/LineSpacingPanel.xib; sourceTree = "<group>"; };
-		2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxExtensionErrorSheetController.h; sourceTree = "<group>"; };
-		2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxExtensionErrorSheetController.m; sourceTree = "<group>"; };
-		2A5D2B9518E1F5AA0020AA1F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxExtensionErrorSheet.xib; sourceTree = "<group>"; };
+		2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxExtensionConflictSheetController.h; sourceTree = "<group>"; };
+		2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxExtensionConflictSheetController.m; sourceTree = "<group>"; };
+		2A5D2B9518E1F5AA0020AA1F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxExtensionConflictSheet.xib; sourceTree = "<group>"; };
 		2A68F93618FB04F300673440 /* CEMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuItemCell.h; sourceTree = "<group>"; };
 		2A68F93718FB04F300673440 /* CEMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMenuItemCell.m; sourceTree = "<group>"; };
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AutoTabExpand_Off.tiff; path = toolbarIcons/AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
@@ -541,8 +541,8 @@
 				25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */,
 				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
 				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
-				2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.h */,
-				2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m */,
+				2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.h */,
+				2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.m */,
 				2A15831818E368CE00601026 /* CEEncodingListSheetController.h */,
 				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
 				2A68F93618FB04F300673440 /* CEMenuItemCell.h */,
@@ -621,7 +621,7 @@
 				2AFFB71F18D7F22E00118477 /* GoToPanel.xib */,
 				8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */,
 				258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */,
-				2A5D2B9218E1ED420020AA1F /* SyntaxExtensionErrorSheet.xib */,
+				2A5D2B9218E1ED420020AA1F /* SyntaxExtensionConflictSheet.xib */,
 				2A15831518E3688300601026 /* EncodingListSheet.xib */,
 				8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */,
 				2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */,
@@ -917,7 +917,7 @@
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2A0722F316D3CF2E00F49864 /* scriptMenuIcon.pdf in Resources */,
 				2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */,
-				2A5D2B9418E1ED420020AA1F /* SyntaxExtensionErrorSheet.xib in Resources */,
+				2A5D2B9418E1ED420020AA1F /* SyntaxExtensionConflictSheet.xib in Resources */,
 				2A07230716D3CF4F00F49864 /* centerAlignTemplate.pdf in Resources */,
 				2A94A46018D0F166009FA90D /* (null) in Resources */,
 				2A07230816D3CF4F00F49864 /* clearButtonImg.pdf in Resources */,
@@ -984,7 +984,7 @@
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,
-				2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionErrorSheetController.m in Sources */,
+				2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.m in Sources */,
 				8C418721088655E00039FBFC /* CEHexColorTransformer.m in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarView.m in Sources */,
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
@@ -1121,13 +1121,13 @@
 			name = LineSpacingPanel.xib;
 			sourceTree = "<group>";
 		};
-		2A5D2B9218E1ED420020AA1F /* SyntaxExtensionErrorSheet.xib */ = {
+		2A5D2B9218E1ED420020AA1F /* SyntaxExtensionConflictSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2A5D2B9518E1F5AA0020AA1F /* ja */,
 				2A15830518E24CB300601026 /* en */,
 			);
-			name = SyntaxExtensionErrorSheet.xib;
+			name = SyntaxExtensionConflictSheet.xib;
 			sourceTree = "<group>";
 		};
 		2A961C4518FC699E002076B6 /* Acknowledgements.rtf */ = {

@@ -1,6 +1,6 @@
 /*
  =================================================
- CESyntaxExtensionErrosSheetController
+ CESyntaxExtensionConflictSheetController
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -30,11 +30,11 @@
  =================================================
  */
 
-#import "CESyntaxExtensionErrorSheetController.h"
+#import "CESyntaxExtensionConflictSheetController.h"
 #import "CESyntaxManager.h"
 
 
-@interface CESyntaxExtensionErrorSheetController ()
+@interface CESyntaxExtensionConflictSheetController ()
 
 @property (nonatomic) IBOutlet NSArrayController *arrayController;
 
@@ -45,7 +45,7 @@
 
 #pragma mark -
 
-@implementation CESyntaxExtensionErrorSheetController
+@implementation CESyntaxExtensionConflictSheetController
 
 #pragma mark NSWindowController Methods
 
@@ -54,7 +54,7 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"SyntaxExtensionErrorSheet"];
+    self = [super initWithWindowNibName:@"SyntaxExtensionConflictSheet"];
     if (self) {
         [[self window] setLevel:NSModalPanelWindowLevel];
     }
@@ -91,7 +91,7 @@
 - (void)setupErrorDict
 //------------------------------------------------------
 {
-    NSDictionary *errorDict = [[CESyntaxManager sharedManager] extensionErrors];
+    NSDictionary *errorDict = [[CESyntaxManager sharedManager] extensionConflicts];
     
     NSMutableArray *objects = [NSMutableArray array];
     for (id key in errorDict) {

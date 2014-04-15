@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // readonly
 /// 拡張子重複エラー辞書
-@property (nonatomic, readonly) NSDictionary *extensionErrors;
+@property (nonatomic, readonly) NSDictionary *extensionConflicts;
 
 
 // class method
@@ -59,7 +59,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)importStyleFromURL:(NSURL *)fileURL;
 - (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
-- (BOOL)existsExtensionError;
+- (BOOL)existsExtensionConflict;
 - (NSString *)copiedStyleName:(NSString *)originalName;
 - (void)saveStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName;
 - (NSArray *)validateSyntax:(NSDictionary *)style;

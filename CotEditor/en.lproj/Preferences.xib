@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
@@ -2061,9 +2061,9 @@
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="OxF-jR-DpE"/>
-                                <menuItem title="Show Extension Errors…" id="hyN-4W-57i">
+                                <menuItem title="Show Extension Conflicts…" id="hyN-4W-57i">
                                     <connections>
-                                        <action selector="openSyntaxExtensionErrorSheet:" target="-2" id="0lU-0V-lYX"/>
+                                        <action selector="openSyntaxExtensionConflictSheet:" target="-2" id="Kw4-iR-TDZ"/>
                                     </connections>
                                 </menuItem>
                             </items>

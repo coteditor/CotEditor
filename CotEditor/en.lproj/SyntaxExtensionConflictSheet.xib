@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxExtensionErrorSheetController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxExtensionConflictSheetController">
             <connections>
                 <outlet property="arrayController" destination="oW9-gC-3kM" id="7rA-tM-10n"/>
                 <outlet property="window" destination="269" id="z5z-Th-gHA"/>
@@ -13,7 +13,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="拡張子エラー" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="269" userLabel="Extention Error Sheet">
+        <window title="Syntax Extention Conflicts" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="269" userLabel="Extention Error Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="234" y="322" width="420" height="337"/>
@@ -28,7 +28,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="yAn-4E-r6B"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="閉じる" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1021">
+                        <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1021">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -42,7 +42,7 @@ DQ
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="283">
                         <rect key="frame" x="18" y="300" width="384" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="拡張子エラー" id="1022">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Extention Conflicts" id="1022">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -53,8 +53,8 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="gnp-H7-p1W">
                             <font key="font" metaFont="smallSystem"/>
-                            <string key="title">以下の拡張子はいくつかのスタイルで重複して登録されています。
-CotEditorは自動的に最初のスタイルを使用します。</string>
+                            <string key="title">The following extentions are registered in two or more styles.
+CotEditor uses the first style automatically.</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -75,7 +75,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn editable="NO" width="60" minWidth="40" maxWidth="1000" id="qkj-mf-TAf">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="拡張子">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extention">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,7 +97,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                                             </connections>
                                         </tableColumn>
                                         <tableColumn editable="NO" width="100" minWidth="40" maxWidth="1000" id="cz8-8b-5qL">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="使用するスタイル">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Used Style">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,7 +119,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                                             </connections>
                                         </tableColumn>
                                         <tableColumn editable="NO" width="203" minWidth="40" maxWidth="1000" id="nge-9Z-A9D">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="重複しているスタイル">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Duplicated Styles">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,7 +150,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="yam-Ud-4eR">
-                            <rect key="frame" x="363" y="17" width="16" height="0.0"/>
+                            <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="47b-0u-aDN">
@@ -158,27 +158,27 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s4C-Wv-ZSe">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s19-qe-G9l">
                         <rect key="frame" x="18" y="46" width="384" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="解決するにはそれぞれのシンタックススタイルを編集して下さい。" id="iAh-PR-4FG">
-                            <font key="font" size="11" name="AquaKana"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="To resolve the conflict, edit each syntax style." id="jFM-Ik-h8D">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="s4C-Wv-ZSe" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="0U0-PH-aXB"/>
                     <constraint firstAttribute="trailing" secondItem="281" secondAttribute="trailing" constant="20" symbolic="YES" id="4Zd-tU-tq9"/>
-                    <constraint firstItem="s4C-Wv-ZSe" firstAttribute="top" secondItem="xAP-IR-n67" secondAttribute="bottom" constant="8" symbolic="YES" id="6Y6-ah-WYg"/>
+                    <constraint firstItem="s19-qe-G9l" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="Ai2-iu-z8p"/>
                     <constraint firstAttribute="trailing" secondItem="283" secondAttribute="trailing" constant="20" symbolic="YES" id="Dg4-79-xG3"/>
+                    <constraint firstItem="281" firstAttribute="top" secondItem="s19-qe-G9l" secondAttribute="bottom" constant="8" symbolic="YES" id="EYJ-UH-1tg"/>
+                    <constraint firstItem="s19-qe-G9l" firstAttribute="top" secondItem="xAP-IR-n67" secondAttribute="bottom" constant="8" symbolic="YES" id="NFx-Ke-5Vb"/>
                     <constraint firstItem="pm8-il-gYJ" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="Pnd-c1-OWE"/>
                     <constraint firstAttribute="trailing" secondItem="xAP-IR-n67" secondAttribute="trailing" constant="20" symbolic="YES" id="Rcf-6n-gMU"/>
+                    <constraint firstAttribute="trailing" secondItem="s19-qe-G9l" secondAttribute="trailing" constant="20" symbolic="YES" id="Y9l-t1-UYC"/>
                     <constraint firstItem="xAP-IR-n67" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="dft-OZ-g28"/>
                     <constraint firstItem="283" firstAttribute="leading" secondItem="268" secondAttribute="leading" constant="20" symbolic="YES" id="fJJ-Bf-CDQ"/>
-                    <constraint firstAttribute="trailing" secondItem="s4C-Wv-ZSe" secondAttribute="trailing" constant="20" symbolic="YES" id="hoK-M5-wm0"/>
-                    <constraint firstItem="281" firstAttribute="top" secondItem="s4C-Wv-ZSe" secondAttribute="bottom" constant="8" symbolic="YES" id="qnd-mr-Dhr"/>
                     <constraint firstItem="pm8-il-gYJ" firstAttribute="top" secondItem="283" secondAttribute="bottom" constant="8" symbolic="YES" id="rEl-NB-j9F"/>
                     <constraint firstItem="xAP-IR-n67" firstAttribute="top" secondItem="pm8-il-gYJ" secondAttribute="bottom" constant="8" symbolic="YES" id="rdQ-cG-jML"/>
                     <constraint firstAttribute="trailing" secondItem="pm8-il-gYJ" secondAttribute="trailing" constant="20" symbolic="YES" id="tBD-Fa-63d"/>

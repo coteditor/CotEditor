@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEPreferencesController.h"
 #import "CEAppController.h"
 #import "CESizeSampleWindowController.h"
-#import "CESyntaxExtensionErrorSheetController.h"
+#import "CESyntaxExtensionConflictSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "constants.h"
@@ -169,8 +169,8 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 // ------------------------------------------------------
 {
     // 拡張子重複エラー表示メニューの有効化を制御
-    if ([menuItem action] == @selector(openSyntaxExtensionErrorSheet:)) {
-        return [[CESyntaxManager sharedManager] existsExtensionError];
+    if ([menuItem action] == @selector(openSyntaxExtensionConflictSheet:)) {
+        return [[CESyntaxManager sharedManager] existsExtensionConflict];
         
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
@@ -646,10 +646,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 // ------------------------------------------------------
 /// カラーシンタックス拡張子重複エラー表示シートを開き、閉じる
-- (IBAction)openSyntaxExtensionErrorSheet:(id)sender
+- (IBAction)openSyntaxExtensionConflictSheet:(id)sender
 // ------------------------------------------------------
 {
-    CESyntaxExtensionErrorSheetController *sheetController = [[CESyntaxExtensionErrorSheetController alloc] init];
+    CESyntaxExtensionConflictSheetController *sheetController = [[CESyntaxExtensionConflictSheetController alloc] init];
     NSWindow *sheet = [sheetController window];
     
     // シートウィンドウを表示してモーダルループに入る
