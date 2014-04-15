@@ -74,7 +74,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //=======================================================
 
+// ------------------------------------------------------
+/// 初期化
 - (instancetype)initWithFrame:(NSRect)frameRect
+// ------------------------------------------------------
 {
     self = [super initWithFrame:frameRect];
     if (self) {
@@ -295,6 +298,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // layoutManagerにも設定する
     [(CELayoutManager *)[self layoutManager] setShowOtherInvisibles:showsInvisibles];
     _documentShowsInvisibles = showsInvisibles;
+}
+
+
+// ------------------------------------------------------
+/// 不可視文字の色を返す（CELayoutManager向け: テーマ機能を実装したら取り外せる予定）
+- (NSColor *)invisiblesColor
+// ------------------------------------------------------
+{
+    return [NSUnarchiver unarchiveObjectWithData:
+            [[NSUserDefaults standardUserDefaults] dataForKey:k_key_invisibleCharactersColor]];
 }
 
 

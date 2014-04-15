@@ -167,16 +167,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger glyphIndex, charIndex = 0;
     NSInteger invisibleCharPrintMenuIndex;
 
-    id view = [self firstTextView];
-    if ([self isPrinting] && [view respondsToSelector:@selector(printPanelAccessoryController)]) {
-        invisibleCharPrintMenuIndex = [[view printPanelAccessoryController] invisibleCharsMode];
+    id textView = [self firstTextView];
+    if ([self isPrinting] && [textView respondsToSelector:@selector(printPanelAccessoryController)]) {
+        invisibleCharPrintMenuIndex = [[textView printPanelAccessoryController] invisibleCharsMode];
     } else {
         invisibleCharPrintMenuIndex = [defaults integerForKey:k_key_printInvisibleCharIndex];
     }
 
     // フォントサイズは随時変更されるため、表示時に取得する
     NSFont *font = [self isPrinting] ? [[self textStorage] font] : [self textFont];
-    NSColor *color = [(CETextViewCore *)[self firstTextView] invisiblesColor];
+    NSColor *color = [textView invisiblesColor];
     [self setAttributes:@{NSFontAttributeName: font,
                           NSForegroundColorAttributeName: color}];
 

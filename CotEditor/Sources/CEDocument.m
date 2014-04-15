@@ -364,8 +364,8 @@ enum { typeFSS = 'fss ' };
     // プリントビュー生成
     NSSize paperSize = [[self printInfo] paperSize];
     NSRect frame = NSMakeRect(0, 0,
-                              paperSize.width - (k_printTextHorizontalMargin * 2),
-                              paperSize.height - (k_printHFVerticalMargin * 2));
+                              paperSize.width  - 2 * (k_printTextHorizontalMargin),
+                              paperSize.height - 2 * (k_printHFVerticalMargin + k_headerFooterLineHeight));
     CEPrintView *printView = [[CEPrintView alloc] initWithFrame:frame];
     
     // ドキュメント情報をプリントビューにセット
