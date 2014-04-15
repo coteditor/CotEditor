@@ -150,13 +150,13 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="1992"/>
+                        <action selector="openHelp:" target="-2" id="rrX-dk-lvT"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1036">
-                    <rect key="frame" x="172" y="208" width="276" height="18"/>
+                    <rect key="frame" x="172" y="208" width="274" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Sync Find strings with other applications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
+                    <buttonCell key="cell" type="check" title="Sync find strings with other applications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -333,7 +333,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="2153"/>
+                        <action selector="openHelp:" target="-2" id="iXZ-Hb-Xb1"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="800">
@@ -728,7 +728,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="2156"/>
+                        <action selector="openHelp:" target="-2" id="vKq-wz-cwC"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="385">
@@ -1482,7 +1482,7 @@
                         <binding destination="26" name="value" keyPath="values.autoIndent" id="210"/>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z5v-7l-1C4">
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="z5v-7l-1C4">
                     <rect key="frame" x="497" y="17" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cmk-AI-Nel">
@@ -1490,7 +1490,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="xdb-vY-iLL"/>
+                        <action selector="openHelp:" target="-2" id="W56-gQ-hiN"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="69">
@@ -1731,7 +1731,7 @@
             <rect key="frame" x="0.0" y="0.0" width="540" height="430"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="2157">
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="2157">
                     <rect key="frame" x="497" y="17" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3297">
@@ -1739,7 +1739,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="2159"/>
+                        <action selector="openHelp:" target="-2" id="PtN-1B-EgC"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="17">
@@ -2148,7 +2148,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="2353"/>
+                        <action selector="openHelp:" target="-2" id="szt-wL-Tbj"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="589">
@@ -2486,7 +2486,7 @@ The parent directory name of the dropped file.
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="2358"/>
+                        <action selector="openHelp:" target="-2" id="gHg-mX-tIe"/>
                     </connections>
                 </button>
                 <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="718">
@@ -2642,7 +2642,7 @@ The parent directory name of the dropped file.
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openPrefHelp:" target="-2" id="2361"/>
+                        <action selector="openHelp:" target="-2" id="Rst-lN-QQw"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1356">

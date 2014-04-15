@@ -133,12 +133,12 @@ http://www.aynimac.com/
 "Print text Coloring ..." = "プリントテキストのカラーリング中…";
 "Text Coloring ..." = "テキストのカラーリング中…";
 
-/* CEPreferences */
+/* CEPreferencesController */
 // FileDrop Glossary
 "<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height." = "<<<ABSOLUTE-PATH>>>\nドロップ元ファイルの絶対パス\n\n<<<RELATIVE-PATH>>>\nドロップ先ファイルからドロップ元ファイルへの相対パス\n\n<<<FILENAME>>>\nドロップ元ファイルの、拡張子を含むファイル名\n\n<<<FILENAME-NOSUFFIX>>>\nドロップ元ファイルの名前から拡張子を削除した文字列\n\n<<<FILEEXTENSION>>>\nドロップ元ファイルの拡張子\n\n<<<FILEEXTENSION-LOWER>>>\nドロップ元ファイルの拡張子（小文字）\n\n<<<FILEEXTENSION-UPPER>>>\nドロップ元ファイルの拡張子（大文字）\n\n<<<DIRECTORY>>>\nドロップ元ファイルのあるディレクトリ名\n\n<<<IMAGEWIDTH>>>\n画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）\n\n<<<IMAGEHEIGHT>>>\n画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
 
 // smart quotes/dashes
-" (on Mavericks and later)" = "（Mavericks以上）";
+" (on Mavericks and later)" = "（Mavericks 以上）";
 
 // Pref Format tab
 // encoding menu alert sheet
@@ -161,28 +161,26 @@ http://www.aynimac.com/
 // Suffix of copied syntax coloring style
 " copy" = " コピー";
 // Delete syntax coloring style alert message
-"Delete the Syntax coloring style \"%@\"?" = "カラーリングスタイル \"%@\" を削除してもよろしいですか？";
+"Delete the Syntax style \"%@\"?" = "シンタックススタイル \"%@\" を削除してもよろしいですか？";
 // syntax coloring style alert button title
 "Cancel" = "キャンセル";
 "Delete" = "削除";
 "Replace" = "置換";
 // Delete syntax coloring style alert information
-"Deleted style cannot be restored." = "スタイルを削除すると元に戻せません。";
+"Deleted style cannot be restored." = "削除したスタイルは元に戻せません。";
 // Deleted error
 "Sorry, could not delete \"%@\"." = "\"%@\" を削除できませんでした。";
 // Import syntax coloring style file choose openPanel button
 "Import" = "読み込み";
 // Importing same name style alert title
-"the \"%@\" style file already exists." = "スタイルファイル \"%@\" は既に存在しています。";
+"The \"%@\" style file already exists." = "スタイルファイル \"%@\" は既に存在しています。";
 // Importing same name style alert info
 "Do you want to replace it?\nReplaced style cannot be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
 // Imported error
 "Error occured." = "エラーが起きました。";
 "Sorry, could not import \"%@\"." = "\"%@\" を読み込めませんでした。";
 // Export syntax coloring style file savePanel label
-"Export As:" = "名前：";
-// Extension Error list title
-"\"Extension\" = \"Style Names\"\n" = "\"拡張子\" = \"スタイル名\"\n";
+"Export As:" = "書き出し：";
 // Extension NO Error message
 // syntax element check result (no error)
 "No error found." = "エラーはありませんでした。";
@@ -193,8 +191,8 @@ http://www.aynimac.com/
 // syntax element check failed
 "An Error occuerd in Checking.\nNumber of selected object is 2 or more in '_styleController'." = "チェック中にエラーが起きました。\n'_styleController' で選択されているオブジェクトが 2 個以上あります。";
 // File Drop setting delete
-"Delete the File Drop setting?\n \"%@\"" = "ファイルドロップ設定 \"%@\" を削除してもよろしいですか？";
-"Deleted setting cannot be restored." = "設定を削除すると元に戻せません。";
+"Delete the File Drop setting for \"%@\"?" = "ファイルドロップ設定 \"%@\" を削除してもよろしいですか？";
+"Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
 
 /* CEWindowsController */
 "ON" = "ON";

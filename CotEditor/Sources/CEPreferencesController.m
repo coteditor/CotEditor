@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic) IBOutlet NSView *keyBindingsPane;
 @property (nonatomic) IBOutlet NSView *printPane;
 
-@property (nonatomic) IBOutlet NSButton *smartQuoteCheckButton;
+@property (nonatomic, weak) IBOutlet NSButton *smartQuoteCheckButton;
 
 @property (nonatomic, weak) IBOutlet NSTextField *prefFontFamilyNameSize;
 @property (nonatomic, weak) IBOutlet NSTextField *printFontFamilyNameSize;
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
 @property (nonatomic) IBOutlet NSArrayController *stylesController;
-@property (nonatomic) IBOutlet NSTableView *syntaxTableView;
+@property (nonatomic, weak) IBOutlet NSTableView *syntaxTableView;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
 
@@ -447,7 +447,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     NSFontManager *manager = [NSFontManager sharedFontManager];
     NSFont *font;
 
-    
     if ([[[self window] contentView] subviews][0] == [self appearancePane]) {
         font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
                                size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
@@ -514,9 +513,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
     [NSApp beginSheet:sheet
        modalForWindow:[self window]
-        modalDelegate:self
-       didEndSelector:NULL
-          contextInfo:NULL];
+        modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
 
 
@@ -561,7 +558,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
     if (![[CESyntaxManager sharedManager] URLOfStyle:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the Syntax coloring style \"%@\"?", nil),
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style \"%@\"?", nil),
                          selectedStyleName];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
@@ -603,7 +600,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
             [[blockSelf window] makeKeyAndOrderFront:blockSelf];
             
             NSAlert *alert;
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"the \"%@\" style already exists.", nil), styleName];
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"The \"%@\" style already exists.", nil), styleName];
             alert = [NSAlert alertWithMessageText:message
                                     defaultButton:NSLocalizedString(@"Cancel", nil)
                                   alternateButton:NSLocalizedString(@"Replace", nil) otherButton:nil
@@ -797,7 +794,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 //------------------------------------------------------
 /// ヘルプの環境設定説明部分を開く
-- (IBAction)openPrefHelp:(id)sender
+- (IBAction)openHelp:(id)sender
 //------------------------------------------------------
 {
     NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
@@ -977,7 +974,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         extension = @"";
     }
 
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting?\n \"%@\"", nil), extension];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for \"%@\"?", nil), extension];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil) otherButton:nil
