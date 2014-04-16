@@ -805,7 +805,11 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender
 // ------------------------------------------------------
 {
-    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setSmartInsertAndDeleteToTextView)];
+    BOOL isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_smartInsertAndDelete];
+    
+    for (CEDocument *document in [NSApp orderedDocuments]) {
+        [[[[document windowController] editorView] textView] setSmartInsertDeleteEnabled:isEnabled];
+    }
 }
 
 
@@ -815,7 +819,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (IBAction)setSmartQuotesToAllTextView:(id)sender
 // ------------------------------------------------------
 {
-    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setSmartQuotesToTextView)];
+    BOOL isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartQuotes];
+    
+    for (CEDocument *document in [NSApp orderedDocuments]) {
+        [[[[document windowController] editorView] textView] setAutomaticDashSubstitutionEnabled:isEnabled];
+        [[[[document windowController] editorView] textView] setAutomaticQuoteSubstitutionEnabled:isEnabled];
+    }
 }
 
 

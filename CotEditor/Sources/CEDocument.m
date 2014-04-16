@@ -1022,29 +1022,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-/// スマートインサート／デリートをするかどうかをテキストビューへ設定
-- (void)setSmartInsertAndDeleteToTextView
-// ------------------------------------------------------
-{
-    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_smartInsertAndDelete];
-    
-    [[[self editorView] textView] setSmartInsertDeleteEnabled:enabled];
-}
-
-
-// ------------------------------------------------------
-/// スマート引用符／ダッシュを有効にするかどうかをテキストビューへ設定
-- (void)setSmartQuotesToTextView
-// ------------------------------------------------------
-{
-    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartQuotes];
-    
-    [[[self editorView] textView] setAutomaticQuoteSubstitutionEnabled:enabled];
-    [[[self editorView] textView] setAutomaticDashSubstitutionEnabled:enabled];
-}
-
-
-// ------------------------------------------------------
 /// 設定されたエンコーディングの IANA Charset 名を返す
 - (NSString *)currentIANACharSetName
 // ------------------------------------------------------
