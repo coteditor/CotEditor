@@ -52,9 +52,9 @@ NSString *const CEThemeCommentsColorKey = @"commentsColor";
 
 NSString *const CEThemeUsesSystemSelectionColorKey = @"usesSystemSelectionColor";
 
-
 // notifications
 NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
+
 
 
 @interface CEThemeManager ()
@@ -145,29 +145,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 // Public method
 //
 //=======================================================
-
-//------------------------------------------------------
-/// テーマ名から解凍済みテーマ定義を返す
-- (NSDictionary *)theme:(NSString *)themeName
-//------------------------------------------------------
-{
-    NSDictionary *archivedTheme = [self archivedTheme:themeName isBundled:NULL];
-    
-    NSMutableDictionary *theme = [NSMutableDictionary dictionary];
-    for (NSString *key in archivedTheme) {
-        if ([key isEqualToString:CEThemeUsesSystemSelectionColorKey]) { continue; }
-        
-        theme[key] = [NSUnarchiver unarchiveObjectWithData:archivedTheme[key]];
-    }
-    
-    // システム環境設定の設定を使う場合はここで再定義する
-    if ([archivedTheme[CEThemeUsesSystemSelectionColorKey] boolValue]) {
-        theme[CEThemeSelectionColorKey] = [NSColor selectedTextBackgroundColor];
-    }
-    
-    return theme;
-}
-
 
 //------------------------------------------------------
 /// テーマ名からProperty list形式のテーマ定義を返す

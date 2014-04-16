@@ -57,7 +57,6 @@ extern NSString *const CEThemeUsesSystemSelectionColorKey;  // only in archived 
 extern NSString *const CEThemeDidUpdateNotification;
 
 
-
 @interface CEThemeManager : NSObject
 
 @property (nonatomic, readonly) NSArray *themeNames;
@@ -68,9 +67,6 @@ extern NSString *const CEThemeDidUpdateNotification;
 
 
 // public methods
-/// Theme dict in which objects are only NSColor data that is already unarchived.
-- (NSDictionary *)theme:(NSString *)themeName;
-
 /// Theme dict in which objects are property list ready.
 - (NSMutableDictionary *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled;
 
