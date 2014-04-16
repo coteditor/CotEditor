@@ -25,7 +25,6 @@
                 <outlet property="smartQuoteCheckButton" destination="mK4-4e-plf" id="MOr-jB-XTX"/>
                 <outlet property="stylesController" destination="Qfx-DD-EBP" id="g9W-3p-vV2"/>
                 <outlet property="syntaxStyleDeleteButton" destination="dI1-Dk-Mce" id="WhQ-fH-VAB"/>
-                <outlet property="syntaxStylesDefaultPopup" destination="727" id="DnT-Hr-kMu"/>
                 <outlet property="syntaxTableView" destination="i9j-3p-xYF" id="Gcu-c5-0BR"/>
                 <outlet property="window" destination="6" id="Pbb-7O-dH4"/>
                 <outlet property="windowPane" destination="741" id="j7y-Sv-sqJ"/>
@@ -1976,7 +1975,6 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="changedSyntaxStylesPopup:" target="-2" id="677"/>
                         <binding destination="26" name="value" keyPath="values.doSyntaxColoring" id="431"/>
                     </connections>
                 </button>

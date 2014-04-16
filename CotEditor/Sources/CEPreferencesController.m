@@ -233,8 +233,8 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (void)setupSyntaxMenus
 // ------------------------------------------------------
 {
-    [self setupSyntaxStylesPopup];
-    [self changedSyntaxStylesPopup:self];
+    [self setupSyntaxStylesMenus];
+    [self validateRemoveSyntaxStyleButton];
 }
 
 
@@ -324,6 +324,23 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 }
 
 
+
+//=======================================================
+// Delegate method (NSTableView)
+//  <== syntaxTableView
+//=======================================================
+
+// ------------------------------------------------------
+/// テーブルの選択が変更された
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([notification object] == [self syntaxTableView]) {
+        [self validateRemoveSyntaxStyleButton];
+    }
+}
+
+
 //=======================================================
 // Delegate method (NSTableView)
 //  <== fileDropTableView
@@ -382,14 +399,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     if ([notification object] == [self fileDropTextView]) {
         // UserDefaults に書き戻し、直ちに反映させる
         [self writeBackFileDropArray];
-    }
-}
-
-
-- (void)tableViewSelectionDidChange:(NSNotification *)notification
-{
-    if ([notification object] == [self syntaxTableView]) {
-        [self changedSyntaxStylesPopup:self];
     }
 }
 
@@ -536,18 +545,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     [NSApp endSheet:sheet];
     [sheetController close];
     [[self window] makeKeyAndOrderFront:self];
-}
-
-
-// ------------------------------------------------------
-/// シンタックスカラーリングスタイル指定メニューまたはカラーリング実施チェックボックスが変更された
-- (IBAction)changedSyntaxStylesPopup:(id)sender
-// ------------------------------------------------------
-{
-    NSString *selected = [[self stylesController] selectedObjects][0];
-    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:selected];
-    
-    [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
 
 
@@ -879,37 +876,41 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングスタイル指定ポップアップメニューを生成
-- (void)setupSyntaxStylesPopup
+/// シンタックスカラーリングスタイルメニューを生成
+- (void)setupSyntaxStylesMenus
 // ------------------------------------------------------
 {
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSMenuItem *item;
-    NSString *selectedTitle;
-    NSUInteger selected;
+    NSString *noneStyle = NSLocalizedString(@"None", nil);
 
+    // インストール済みスタイルリストの更新
     [[self stylesController] setContent:styleNames];
     
+    // デフォルトスタイルメニューの更新
     [[self syntaxStylesDefaultPopup] removeAllItems];
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
-                                      action:nil keyEquivalent:@""];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:noneStyle action:nil keyEquivalent:@""];
     [[[self syntaxStylesDefaultPopup] menu] addItem:item];
     [[[self syntaxStylesDefaultPopup] menu] addItem:[NSMenuItem separatorItem]];
+    [[self syntaxStylesDefaultPopup] addItemsWithTitles:styleNames];
     
-    for (NSString *styleName in styleNames) {
-        item = [[NSMenuItem alloc] initWithTitle:styleName action:nil keyEquivalent:@""];
-        [[[self syntaxStylesDefaultPopup] menu] addItem:item];
-    }
     // (デフォルトシンタックスカラーリングスタイル指定ポップアップメニューはバインディングを使っているが、
     // タグの選択がバインディングで行われた後にメニューが追加／削除されるため、結果的に選択がうまく動かない。
     // しかたないので、コードから選択している)
-    selectedTitle = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
-    selected = [[self syntaxStylesDefaultPopup] indexOfItemWithTitle:selectedTitle];
-    if (selected != -1) { // no selection
-        [[self syntaxStylesDefaultPopup] selectItemAtIndex:selected];
-    } else {
-        [[self syntaxStylesDefaultPopup] selectItemAtIndex:0]; // == "None"
-    }
+    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
+    selectedStyle = [styleNames containsObject:selectedStyle] ? selectedStyle : noneStyle;
+    [[self syntaxStylesDefaultPopup] selectItemWithTitle:selectedStyle];
+}
+
+
+// ------------------------------------------------------
+/// シンタックススタイル削除ボタンを制御する
+- (void)validateRemoveSyntaxStyleButton
+// ------------------------------------------------------
+{
+    NSString *selectedStyle = [[self stylesController] selectedObjects][0];
+    BOOL isDeletable = ![[CESyntaxManager sharedManager] isBundledStyle:selectedStyle];
+    
+    [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
 
 
