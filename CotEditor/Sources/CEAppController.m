@@ -49,6 +49,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) CEPreferencesController *preferencesController;
 
+
+// readonly
+@property (nonatomic, copy, readwrite) NSMenu *encodingMenu;
+
 @end
 
 
@@ -259,6 +263,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return self;
 }
 
+
+// ------------------------------------------------------
+/// あとかたづけ
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 // ------------------------------------------------------
 /// すべてのエンコーディングメニューを生成
 - (void)buildAllEncodingMenus
@@ -271,19 +285,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     [self setEncodingMenu:[self buildFormatEncodingMenuFromArray:encodings]];
     [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(rebuildToolbarEncodingItem)];
-}
-
-
-// ------------------------------------------------------
-/// すべてのシンタックスカラーリングメニューを生成
-- (void)buildAllSyntaxMenus
-// ------------------------------------------------------
-{
-    if ([self preferencesController]) {
-        [[self preferencesController] setupSyntaxMenus];
-    }
-    [self setSyntaxMenu:[self buildSyntaxMenu]];
-    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(rebuildToolbarSyntaxItem)];
 }
 
 
@@ -432,9 +433,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setupSupportDirectory];
     [self buildAllEncodingMenus];
-    [self setSyntaxMenu:[self buildSyntaxMenu]];
+    [self buildSyntaxMenu];
     [[CEScriptManager sharedManager] buildScriptMenu:nil];
     [self cacheTheInvisibleGlyph];
+    
+    // シンタックススタイルリスト更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildSyntaxMenu)
+                                                 name:CESyntaxListDidUpdateNotification
+                                               object:nil];
 }
 
 
@@ -828,48 +835,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// シンタックスカラーリングメニューを生成
-- (NSMenu *)buildSyntaxMenu
+- (void)buildSyntaxMenu
 //------------------------------------------------------
 {
-    NSMenu *coloringMenu = [[NSMenu alloc] initWithTitle:@"SYNTAX"];
-    NSMenu *menu = nil;
-    NSMenuItem *mormatMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
-    NSMenuItem *menuItem;
-    NSString *menuTitle;
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSInteger i, count = [styleNames count];
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"SYNTAX"];
+    NSMenuItem *item;
     
-    [mormatMenuItem setSubmenu:nil]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
-
-    for (i = 0; i < (count + 2); i++) { // "None"+Separator分を加える
-        if (i == 1) {
-            [coloringMenu addItem:[NSMenuItem separatorItem]];
-        } else {
-            if (i == 0) {
-                menuTitle = NSLocalizedString(@"None",@"");
-            } else {
-                menuTitle = styleNames[(i - 2)];
-            }
-            menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
-                                                  action:@selector(setSyntaxStyle:)
-                                           keyEquivalent:@""];
-            [menuItem setTag:i];
-            [coloringMenu addItem:menuItem];
-        }
+    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
+                                      action:@selector(changeSyntaxStyle:)
+                               keyEquivalent:@""];
+    [menu addItem:item];
+    [menu addItem:[NSMenuItem separatorItem]];
+    for (NSString *styleName in styleNames) {
+        item = [[NSMenuItem alloc] initWithTitle:styleName
+                                          action:@selector(changeSyntaxStyle:)
+                                   keyEquivalent:@""];
+        [menu addItem:item];
     }
-    menu = [coloringMenu copy];
-
-    [coloringMenu addItem:[NSMenuItem separatorItem]];
+    
+    // メインメニュー用
+    NSMenuItem *mormatMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
+    [mormatMenuItem setSubmenu:nil]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
+    
+    [menu addItem:[NSMenuItem separatorItem]];
     // 全文字列を再カラーリングするメニューを追加
-    menuTitle = NSLocalizedString(@"Re-Color All",@"");
-    menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
-                                          action:@selector(recoloringAllStringOfDocument:)
-                                   keyEquivalent:@"r"];
-    [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
-    [coloringMenu addItem:menuItem];
-    [mormatMenuItem setSubmenu:coloringMenu];
-
-    return menu;
+    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
+                                      action:@selector(recoloringAllStringOfDocument:)
+                               keyEquivalent:@"r"];
+    [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
+    [menu addItem:item];
+    
+    [mormatMenuItem setSubmenu:menu];
 }
 
 

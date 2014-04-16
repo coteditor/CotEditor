@@ -372,7 +372,7 @@ enum { typeFSS = 'fss ' };
     [printView setString:[[self editorView] string]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
-    [printView setSyntaxName:[[[self windowController] toolbarController] selectedTitleOfSyntaxItem]];
+    [printView setSyntaxName:[[self editorView] syntaxStyleNameToColoring]];
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles]];
     [printView setDocumentShowsLineNum:[[self editorView] showLineNum]];
@@ -788,7 +788,7 @@ enum { typeFSS = 'fss ' };
 {
     if ([name length] > 0) {
         [[self editorView] setSyntaxStyleNameToColoring:name recolorNow:YES];
-        [[[self windowController] toolbarController] setSelectSyntaxItemWithTitle:name];
+        [[[self windowController] toolbarController] selectSyntaxItemWithTitle:name];
     }
 }
 
@@ -802,7 +802,7 @@ enum { typeFSS = 'fss ' };
         if ([name length] > 0) {
             [[self editorView] setSyntaxStyleNameToColoring:name recolorNow:NO];
             [[[self windowController] toolbarController]
-                    performSelector:@selector(setSelectSyntaxItemWithTitle:) withObject:name afterDelay:0];
+                    performSelector:@selector(selectSyntaxItemWithTitle:) withObject:name afterDelay:0];
         }
     } else {
         [self doSetSyntaxStyle:name];
@@ -825,7 +825,7 @@ enum { typeFSS = 'fss ' };
         // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
         NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
         name = (!name || [name isEqualToString:@""]) ? [defaults stringForKey:k_key_defaultColoringStyleName]: name;
-        [[[self windowController] toolbarController] setSelectSyntaxItemWithTitle:name];
+        [[[self windowController] toolbarController] selectSyntaxItemWithTitle:name];
         if (doColoring) {
             [self recoloringAllStringOfDocument:nil];
         }
@@ -989,18 +989,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-/// toolbar のシンタックスカラーリングメニューアイテムを再生成する
-- (void)rebuildToolbarSyntaxItem
-// ------------------------------------------------------
-{
-    NSString *title = [[[self windowController] toolbarController] selectedTitleOfSyntaxItem];
-
-    [[[self windowController] toolbarController] buildSyntaxPopupButton];
-    [[[self windowController] toolbarController] setSelectSyntaxItemWithTitle:title];
-}
-
-
-// ------------------------------------------------------
 /// 指定されたスタイルを適用していたら、WindowController のリカラーフラグを立てる
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict
 // ------------------------------------------------------
@@ -1151,7 +1139,7 @@ enum { typeFSS = 'fss ' };
                ([menuItem action] == @selector(setLineEndingCharToCRLF:)) ||
                ([menuItem action] == @selector(setLineEndingChar:))) {
         state = ([menuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
-    } else if ([menuItem action] == @selector(setSyntaxStyle:)) {
+    } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
         name = [[self editorView] syntaxStyleNameToColoring];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
@@ -1398,7 +1386,7 @@ enum { typeFSS = 'fss ' };
 
 // ------------------------------------------------------
 /// 新しいシンタックスカラーリングスタイルを適用
-- (IBAction)setSyntaxStyle:(id)sender
+- (IBAction)changeSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
     NSString *name = [sender title];

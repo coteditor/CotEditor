@@ -36,6 +36,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "RegexKitLite.h"
 
 
+// notifications
+/// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
+extern NSString *const CESyntaxListDidUpdateNotification;
+
+
 @interface CESyntaxManager : NSObject
 
 // readonly

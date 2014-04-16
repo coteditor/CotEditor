@@ -92,7 +92,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
 - (void)getFileAttributes;
 - (void)rebuildToolbarEncodingItem;
-- (void)rebuildToolbarSyntaxItem;
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict;
 - (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName;
 - (void)setSmartInsertAndDeleteToTextView;
@@ -106,7 +105,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (IBAction)setLineEndingCharToCRLF:(id)sender;
 - (IBAction)setLineEndingChar:(id)sender;
 - (IBAction)setEncoding:(id)sender;
-- (IBAction)setSyntaxStyle:(id)sender;
+- (IBAction)changeSyntaxStyle:(id)sender;
 - (IBAction)recoloringAllStringOfDocument:(id)sender;
 - (IBAction)insertIANACharSetName:(id)sender;
 - (IBAction)insertIANACharSetNameWithCharset:(id)sender;

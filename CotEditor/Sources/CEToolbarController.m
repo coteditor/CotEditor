@@ -67,6 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self toolbar] setDelegate:nil]; // デリゲート解除
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -107,7 +108,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    [[self encodingPopupButton] setMenu:[[[NSApp delegate] encodingMenu] copy]];
+    [[self encodingPopupButton] setMenu:[[NSApp delegate] encodingMenu]];
 }
 
 
@@ -142,26 +143,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildSyntaxPopupButton
 // ------------------------------------------------------
 {
-    [[self syntaxPopupButton] setMenu:[[[NSApp delegate] syntaxMenu] copy]];
-}
-
-
-// ------------------------------------------------------
-/// シンタックスカラーリングポップアップアイテムで選択されているタイトル文字列を返す
-- (NSString *)selectedTitleOfSyntaxItem
-// ------------------------------------------------------
-{
-    return [[self syntaxPopupButton] titleOfSelectedItem];
+    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
+    NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
+    NSMenuItem *item;
+    
+    [[self syntaxPopupButton] removeAllItems];
+    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
+                                      action:@selector(changeSyntaxStyle:)
+                               keyEquivalent:@""];
+    [[[self syntaxPopupButton] menu] addItem:item];
+    [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
+    for (NSString *styleName in styleNames) {
+        item = [[NSMenuItem alloc] initWithTitle:styleName
+                                          action:@selector(changeSyntaxStyle:)
+                                   keyEquivalent:@""];
+        [[[self syntaxPopupButton] menu] addItem:item];
+    }
+    
+    [self selectSyntaxItemWithTitle:title];
 }
 
 
 // ------------------------------------------------------
 /// シンタックスカラーリングポップアップの選択項目をタイトル名で設定
-- (void)setSelectSyntaxItemWithTitle:(NSString *)title
+- (void)selectSyntaxItemWithTitle:(NSString *)title
 // ------------------------------------------------------
 {
-    id menuItem = [[self syntaxPopupButton] itemWithTitle:title];
-    if (menuItem != nil) {
+    NSMenuItem *menuItem = [[self syntaxPopupButton] itemWithTitle:title];
+    if (menuItem) {
         [[self syntaxPopupButton] selectItem:menuItem];
     } else {
         [[self syntaxPopupButton] selectItemAtIndex:0]; // "None" を選択
@@ -184,6 +193,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self buildEncodingPopupButton];
     [self buildSyntaxPopupButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildSyntaxPopupButton)
+                                                 name:CESyntaxListDidUpdateNotification
+                                               object:nil];
 }
 
 

@@ -42,8 +42,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildEncodingPopupButton;
 - (void)setSelectEncoding:(NSInteger)encoding;
 - (void)setSelectEndingItemIndex:(NSInteger)index;
-- (void)buildSyntaxPopupButton;
-- (NSString *)selectedTitleOfSyntaxItem;
-- (void)setSelectSyntaxItemWithTitle:(NSString *)title;
+- (void)selectSyntaxItemWithTitle:(NSString *)title;
 
 @end

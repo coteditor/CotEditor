@@ -42,13 +42,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEAppController : NSObject <NSApplicationDelegate>
 
-@property (nonatomic) NSMenu *encodingMenu;
-@property (nonatomic) NSMenu *syntaxMenu;
+@property (nonatomic, copy, readonly) NSMenu *encodingMenu;
 
 
 // Public method
 - (void)buildAllEncodingMenus;
-- (void)buildAllSyntaxMenus;
 - (NSString *)invisibleSpaceCharacter:(NSUInteger)index;
 - (NSString *)invisibleTabCharacter:(NSUInteger)index;
 - (NSString *)invisibleNewLineCharacter:(NSUInteger)index;

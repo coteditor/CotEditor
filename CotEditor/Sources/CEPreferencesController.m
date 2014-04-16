@@ -136,7 +136,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     self = [super initWithWindowNibName:@"Preferences"];
     if (self) {
         // 不可視文字表示ポップアップ用の選択肢をセットする
-        CEAppController *appDelegate = (CEAppController *)[[NSApplication sharedApplication] delegate];
+        CEAppController *appDelegate = [NSApp delegate];
         NSUInteger i;
         NSMutableArray *spaces = [NSMutableArray array];
         for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
@@ -160,6 +160,15 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         [self setInvisibleFullWidthSpaces:fullWidthSpaces];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// あとかたづけ
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -229,16 +238,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングスタイル選択メニューを生成
-- (void)setupSyntaxMenus
-// ------------------------------------------------------
-{
-    [self setupSyntaxStylesMenus];
-    [self validateRemoveSyntaxStyleButton];
-}
-
-
-// ------------------------------------------------------
 /// フォントパネルでフォントが変更された
 - (void)changeFont:(id)sender
 // ------------------------------------------------------
@@ -290,7 +289,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     }
 
     // 各種セットアップ
-    [self setupSyntaxMenus];
+    [self setupSyntaxStylesMenus];
     [self setContentFileDropController];
     [self setFontFamilyNameAndSize];
     
@@ -301,6 +300,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
     // 2008.07.15.
     [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
+    
+    // シンタックススタイルリスト更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setupSyntaxStylesMenus)
+                                                 name:CESyntaxListDidUpdateNotification
+                                               object:nil];
 }
 
 
@@ -537,9 +542,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
                                         k_key_newStyleName: newName};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
-        
-        // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
-        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
     }
     // シートを閉じる
     [NSApp endSheet:sheet];
@@ -549,7 +551,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングスタイル削除ボタンが押された
+/// シンタックススタイル削除ボタンが押された
 - (IBAction)deleteSyntaxStyle:(id)sender
 // ------------------------------------------------------
 {
@@ -557,7 +559,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
     if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil)];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), selectedStyleName];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Cancel", nil)
                                    alternateButton:NSLocalizedString(@"Delete", nil)
@@ -885,11 +887,11 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
     // インストール済みスタイルリストの更新
     [[self stylesController] setContent:styleNames];
+    [self validateRemoveSyntaxStyleButton];
     
     // デフォルトスタイルメニューの更新
     [[self syntaxStylesDefaultPopup] removeAllItems];
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:noneStyle action:nil keyEquivalent:@""];
-    [[[self syntaxStylesDefaultPopup] menu] addItem:item];
+    [[self syntaxStylesDefaultPopup] addItemWithTitle:noneStyle];
     [[[self syntaxStylesDefaultPopup] menu] addItem:[NSMenuItem separatorItem]];
     [[self syntaxStylesDefaultPopup] addItemsWithTitles:styleNames];
     
@@ -935,10 +937,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (void)doImport:(NSURL *)fileURL withCurrentSheetWindow:(NSWindow *)inWindow
 // ------------------------------------------------------
 {
-    if ([[CESyntaxManager sharedManager] importStyleFromURL:fileURL]) {
-        // インポートに成功したら、メニューとボタンを更新
-        [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
-    } else {
+    if (![[CESyntaxManager sharedManager] importStyleFromURL:fileURL]) {
         // インポートできなかったときは、セカンダリシートを閉じ、メッセージシートを表示
         [inWindow orderOut:self];
         [[self window] makeKeyAndOrderFront:self];
@@ -1018,7 +1017,13 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     
     NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
     
-    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
+        // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
+        NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedStyleName,
+                                        k_key_newStyleName: NSLocalizedString(@"None", nil)};
+        [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
+                                                  withObject:styleNameDict];
+    } else {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[self window] makeKeyAndOrderFront:self];
@@ -1028,12 +1033,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
                              informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), selectedStyleName];
         NSBeep();
         [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-        return;
     }
-    // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
-    [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
-    // シンタックスカラーリングスタイル指定メニューを再構成、選択をクリアしてボタン類を有効／無効化
-    [(CEAppController *)[[NSApplication sharedApplication] delegate] buildAllSyntaxMenus];
 }
 
 

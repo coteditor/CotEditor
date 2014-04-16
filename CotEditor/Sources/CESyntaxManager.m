@@ -35,6 +35,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
+// notifications
+NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
+
+
 @interface CESyntaxManager ()
 
 @property (nonatomic) NSArray *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
@@ -402,20 +406,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         saveURL = [self URLForUserStyle:name];
         // style名が変更されたときは、古いファイルを削除する
         if (![name isEqualToString:oldName]) {
-            [self removeStyleFileWithStyleName:oldName];
+            [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName] error:nil];
         }
         // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
         if ([style isEqualToDictionary:[[self bundledStyleWithStyleName:name] mutableCopy]]) {
             if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
-                [self removeStyleFileWithStyleName:name];
+                [[NSFileManager defaultManager] removeItemAtURL:saveURL error:nil];
             }
         } else {
             // 保存
             [style writeToURL:saveURL atomically:YES];
         }
     }
-    
-    [self updateCache];  // 内部で持っているキャッシュ用データを更新
+    // 内部で持っているキャッシュ用データを更新
+    [self updateCache];
 }
 
 
@@ -525,6 +529,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setupColoringStyles];
     [self setupExtensionAndSyntaxTable];
+    
+    // ラインナップの更新を通知する
+    [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxListDidUpdateNotification object:nil];
 }
 
 
