@@ -87,6 +87,7 @@
 		2A7846D518FDF98D006BDF00 /* editTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846D418FDF98D006BDF00 /* editTemplate.pdf */; };
 		2A7846D718FDFAFB006BDF00 /* lockedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846D618FDFAFB006BDF00 /* lockedTemplate.pdf */; };
 		2A7846D918FDFBEB006BDF00 /* clearTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846D818FDFBEB006BDF00 /* clearTemplate.pdf */; };
+		2A7846DB18FE035E006BDF00 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
@@ -325,6 +326,7 @@
 		2A7846D418FDF98D006BDF00 /* editTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = editTemplate.pdf; path = images/editTemplate.pdf; sourceTree = "<group>"; };
 		2A7846D618FDFAFB006BDF00 /* lockedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = lockedTemplate.pdf; path = images/lockedTemplate.pdf; sourceTree = "<group>"; };
 		2A7846D818FDFBEB006BDF00 /* clearTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = clearTemplate.pdf; path = images/clearTemplate.pdf; sourceTree = "<group>"; };
+		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 		2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+ScriptingSupport.h"; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 				8C74014C08C7041A00683672 /* KeyBindings */,
 				259B181207E530DA00C5FD26 /* InternalScript */,
 				2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */,
+				2A7846DA18FE035E006BDF00 /* Themes */,
 				6CA3B36012E3B59B0019AB2E /* SampleScript */,
 			);
 			name = Resources;

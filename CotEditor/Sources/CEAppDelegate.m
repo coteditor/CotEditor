@@ -139,6 +139,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_charactersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
                                k_key_commentsColor: [NSArchiver archivedDataWithRootObject:
                                                      [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]],
+                               k_key_defaultTheme: @"Classic",
                                k_key_doColoring: @YES,
                                k_key_defaultColoringStyleName: NSLocalizedString(@"None", nil),
                                k_key_delayColoring: @NO,

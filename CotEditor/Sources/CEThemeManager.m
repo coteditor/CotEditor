@@ -495,8 +495,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     if (isCustomized) {
         NSString *themeName = NSLocalizedString(@"Customized Theme", nil);
         [self saveTheme:theme name:themeName];
-        // TODO: UserDefault にカスタマイズされたテーマを選択させる
-//        [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:@"defaultTheme"];
+        // カスタマイズされたテーマを選択
+        [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:k_key_defaultTheme];
     }
 }
 

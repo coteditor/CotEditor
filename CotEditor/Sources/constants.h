@@ -294,6 +294,7 @@ extern NSInteger const k_showInvisibleCharMenuItemTag;
 extern NSInteger const k_showInvisibleCharMenuItemTag;
 extern NSInteger const k_fileEncodingMenuItemTag;
 extern NSInteger const k_syntaxMenuItemTag;
+extern NSInteger const k_themeMenuItemTag;
 extern NSInteger const k_servicesMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
 extern NSInteger const k_windowPanelsMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
 extern NSInteger const k_scriptMenuDirectoryTag;  // Menu KeyBindings Setting でリストアップしないための定数

@@ -312,6 +312,7 @@ NSInteger const k_BSMenuItemTag = 209;
 NSInteger const k_showInvisibleCharMenuItemTag = 304;
 NSInteger const k_fileEncodingMenuItemTag = 4001;
 NSInteger const k_syntaxMenuItemTag = 4002;
+NSInteger const k_themeMenuItemTag = 4003;
 NSInteger const k_servicesMenuItemTag = 999;
 NSInteger const k_windowPanelsMenuItemTag = 7999;
 NSInteger const k_scriptMenuDirectoryTag = 8999;
