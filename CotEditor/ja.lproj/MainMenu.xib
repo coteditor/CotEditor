@@ -260,6 +260,25 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="スピーチ" id="ppU-xq-iaS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="スピーチ" id="DN3-Db-Nr5">
+                                    <items>
+                                        <menuItem title="読み上げを開始" id="GfU-Of-YwP">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="startSpeaking:" target="-1" id="NN0-zm-7J5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="読み上げを停止" id="FmO-S6-0k6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="stopSpeaking:" target="-1" id="RCC-xY-8U6"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -685,14 +704,14 @@
                 <menuItem title="ウインドウ" id="19">
                     <menu key="submenu" title="ウインドウ" systemMenu="window" id="24">
                         <items>
-                            <menuItem title="拡大／縮小" id="203">
-                                <connections>
-                                    <action selector="performZoom:" target="-1" id="204"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="しまう" keyEquivalent="m" id="23">
                                 <connections>
                                     <action selector="performMiniaturize:" target="-1" id="37"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="拡大／縮小" id="203">
+                                <connections>
+                                    <action selector="performZoom:" target="-1" id="204"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="92">
