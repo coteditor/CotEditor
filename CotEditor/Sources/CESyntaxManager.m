@@ -405,10 +405,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self removeStyleFileWithStyleName:oldName];
         }
         // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
-        if ([style isEqualToDictionary:[self bundledStyleWithStyleName:name]] &&
-            [saveURL checkResourceIsReachableAndReturnError:nil])
-        {
-            [self removeStyleFileWithStyleName:name];
+        if ([style isEqualToDictionary:[[self bundledStyleWithStyleName:name] mutableCopy]]) {
+            if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
+                [self removeStyleFileWithStyleName:name];
+            }
         } else {
             // 保存
             [style writeToURL:saveURL atomically:YES];
