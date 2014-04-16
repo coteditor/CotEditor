@@ -43,7 +43,7 @@
 @property (nonatomic, readonly) NSColor *backgroundColor;
 @property (nonatomic, readonly) NSColor *invisiblesColor;
 @property (nonatomic, readonly) NSColor *selectionColor;
-@property (nonatomic, readonly) NSColor *cursorColor;
+@property (nonatomic, readonly) NSColor *insertionPointColor;
 @property (nonatomic, readonly) NSColor *lineHighLightColor;
 
 // syntax colors

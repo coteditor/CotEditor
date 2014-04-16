@@ -39,7 +39,7 @@ extern NSString *const CEThemeTextColorKey;
 extern NSString *const CEThemeBackgroundColorKey;
 extern NSString *const CEThemeInvisiblesColorKey;
 extern NSString *const CEThemeSelectionColorKey;
-extern NSString *const CEThemeCursorColorKey;
+extern NSString *const CEThemeInsertionPointColorKey;
 extern NSString *const CEThemeLineHighlightColorKey;
 
 extern NSString *const CEThemeKeywordsColorKey;

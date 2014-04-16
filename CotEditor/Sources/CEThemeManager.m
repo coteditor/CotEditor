@@ -39,7 +39,7 @@ NSString *const CEThemeTextColorKey = @"textColor";
 NSString *const CEThemeBackgroundColorKey = @"backgroundColor";
 NSString *const CEThemeInvisiblesColorKey = @"invisiblesColor";
 NSString *const CEThemeSelectionColorKey = @"selectionColor";
-NSString *const CEThemeCursorColorKey = @"cursorColor";
+NSString *const CEThemeInsertionPointColorKey = @"insertionPointColor";
 NSString *const CEThemeLineHighlightColorKey = @"lineHighlightColor";
 
 NSString *const CEThemeKeywordsColorKey = @"keywordsColor";
@@ -491,7 +491,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
              CEThemeInvisiblesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
              CEThemeSelectionColorKey: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
              CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeCursorColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeInsertionPointColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:
                                           [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0]],
              CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:
@@ -519,7 +519,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
              @"backgroundColor": CEThemeBackgroundColorKey,
              @"invisibleCharactersColor": CEThemeInvisiblesColorKey,
              @"selectionColor": CEThemeSelectionColorKey,
-             @"insertionPointColor": CEThemeCursorColorKey,
+             @"insertionPointColor": CEThemeInsertionPointColorKey,
              @"highlightLineColor": CEThemeLineHighlightColorKey,
              @"keywordsColor": CEThemeKeywordsColorKey,
              @"commandsColor": CEThemeCommandsColorKey,

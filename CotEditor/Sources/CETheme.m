@@ -44,7 +44,7 @@
 @property (nonatomic, readwrite) NSColor *backgroundColor;
 @property (nonatomic, readwrite) NSColor *invisiblesColor;
 @property (nonatomic, readwrite) NSColor *selectionColor;
-@property (nonatomic, readwrite) NSColor *cursorColor;
+@property (nonatomic, readwrite) NSColor *insertionPointColor;
 @property (nonatomic, readwrite) NSColor *lineHighLightColor;
 
 // syntax colors
@@ -90,7 +90,7 @@
         [self setBackgroundColor:themeDict[CEThemeBackgroundColorKey]];
         [self setInvisiblesColor:themeDict[CEThemeInvisiblesColorKey]];
         [self setSelectionColor:themeDict[CEThemeSelectionColorKey]];
-        [self setCursorColor:themeDict[CEThemeCursorColorKey]];
+        [self setInsertionPointColor:themeDict[CEThemeInsertionPointColorKey]];
         [self setLineHighLightColor:themeDict[CEThemeLineHighlightColorKey]];
         [self setKeywordsColor:themeDict[CEThemeKeywordsColorKey]];
         [self setCommandsColor:themeDict[CEThemeCommandsColorKey]];
