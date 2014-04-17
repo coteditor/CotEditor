@@ -49,7 +49,6 @@ typedef NS_ENUM(NSUInteger, CEKeyBindingOutlineMode) {
 // Public method
 - (void)setupAtLaunching;
 - (NSWindow *)editSheetWindowOfMode:(CEKeyBindingOutlineMode)mode;
-- (void)setupKeyBindingDictionary;
 - (BOOL)setupOutlineDataOfMode:(CEKeyBindingOutlineMode)mode;
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 

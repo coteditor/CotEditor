@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic, weak) IBOutlet NSWindow *menuEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしている
 @property (nonatomic, weak) IBOutlet NSOutlineView *menuOutlineView;
-@property (nonatomic, weak) IBOutlet  NSTextField *menuDuplicateTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *menuDuplicateTextField;
 @property (nonatomic, weak) IBOutlet NSButton *menuEditKeyButton;
 @property (nonatomic, weak) IBOutlet NSButton *menuDeleteKeyButton;
 @property (nonatomic, weak) IBOutlet NSButton *menuFactoryDefaultsButton;
@@ -63,6 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSDictionary *textKeyBindingDict;
 @property (nonatomic) NSDictionary *noPrintableKeyDict;
 @property (nonatomic) NSString *currentKeySpecChars;
+
 @property (nonatomic) CEKeyBindingOutlineMode outlineMode;
 
 @end
@@ -161,8 +162,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         [self setDefaultMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:URL]];
     }
-
-    [self setupKeyBindingDictionary];
+    /// 定義ファイルのセットアップと読み込み
+    [self setupMenuKeyBindingDictionary];
+    [self setupTextKeyBindingDictionary];
+    
     [self resetAllMenuKeyBindingWithDictionary];
 }
 
@@ -211,16 +214,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     return nil;
-}
-
-
-// ------------------------------------------------------
-/// 定義ファイルのセットアップと読み込み
-- (void)setupKeyBindingDictionary
-// ------------------------------------------------------
-{
-    [self setupMenuKeyBindingDictionary];
-    [self setupTextKeyBindingDictionary];
 }
 
 
@@ -644,8 +637,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 //------------------------------------------------------
-/// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
-- (NSURL *)menuKeyBindingSettingFileURL
+/// キーバインディング設定ファイル保存用ディレクトリのURLを返す
+- (NSURL *)userSettingDirecotryURL
 //------------------------------------------------------
 {
     return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
@@ -653,7 +646,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                           appropriateForURL:nil
                                                      create:NO
                                                       error:nil]
-            URLByAppendingPathComponent:@"CotEditor/KeyBindings/MenuKeyBindings.plist"];
+            URLByAppendingPathComponent:@"CotEditor/KeyBindings"];
+    
+}
+
+//------------------------------------------------------
+/// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
+- (NSURL *)menuKeyBindingSettingFileURL
+//------------------------------------------------------
+{
+    return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"MenuKeyBindings"]
+                                                URLByAppendingPathExtension:@"plist"];
 }
 
 
@@ -662,12 +665,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSURL *)textKeyBindingSettingFileURL
 //------------------------------------------------------
 {
-    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                   inDomain:NSUserDomainMask
-                                          appropriateForURL:nil
-                                                     create:NO
-                                                      error:nil]
-            URLByAppendingPathComponent:@"CotEditor/KeyBindings/TextKeyBindings.plist"];
+    return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"TextKeyBindings"]
+                                                URLByAppendingPathExtension:@"plist"];
 }
 
 
@@ -677,10 +676,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSURL *fileURL = [self menuKeyBindingSettingFileURL];
-    NSURL *dirURL = [fileURL URLByDeletingLastPathComponent];
+    NSURL *dirURL = [self userSettingDirecotryURL];
 
     // ディレクトリの存在チェック
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDirectory = NO, success = NO;
     BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
     if (!exists) {
@@ -712,10 +711,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSURL *fileURL = [self textKeyBindingSettingFileURL];
-    NSURL *dirURL = [fileURL URLByDeletingLastPathComponent];
+    NSURL *dirURL = [self userSettingDirecotryURL];
 
     // ディレクトリの存在チェック
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDirectory = NO, success = NO;
     BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
     if (!exists) {
@@ -746,8 +745,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)clearAllMenuKeyBindingOf:(NSMenu *)menu
 //------------------------------------------------------
 {
-    NSString *selectorString;
-
     for (NSMenuItem *item in [menu itemArray]) {
         // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
         if ([[self selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
@@ -1250,7 +1247,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)saveOutlineViewData
 //------------------------------------------------------
 {
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *fileURL, *dirURL;
     BOOL exists, isDirectory = NO, success = NO;
 
@@ -1258,7 +1255,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         case CEMenuModeOutline:
         {
             fileURL = [self menuKeyBindingSettingFileURL]; // データディレクトリパス取得
-            dirURL = [fileURL URLByDeletingLastPathComponent];
+            dirURL = [self userSettingDirecotryURL];
             
             // ディレクトリの存在チェック
             exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
@@ -1287,7 +1284,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSArray *contents = [[[self textInsertStringArrayController] content] copy];
             
             fileURL = [self textKeyBindingSettingFileURL]; // データディレクトリパス取得
-            dirURL = [fileURL URLByDeletingLastPathComponent];
+            dirURL = [self userSettingDirecotryURL];
             
             // ディレクトリの存在チェック
             exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
