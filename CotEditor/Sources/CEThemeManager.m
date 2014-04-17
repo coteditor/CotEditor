@@ -171,9 +171,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName  // TODO:not implemented
 //------------------------------------------------------
 {
-    [self prepareUserThemeDirectory];
+    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:theme
+                                                                   format:NSPropertyListBinaryFormat_v1_0
+                                                                  options:0
+                                                                    error:nil];
     
-    return [theme writeToURL:[self URLForUserTheme:themeName] atomically:YES];
+    [self prepareUserThemeDirectory];
+    return [plistData writeToURL:[self URLForUserTheme:themeName] atomically:YES];
 }
 
 
@@ -425,7 +429,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     // 定義をキャッシュする
     NSMutableDictionary *themes = [NSMutableDictionary dictionary];
     for (NSString *name in [self themeNames]) {
-        themes[name] = [NSDictionary dictionaryWithContentsOfURL:[self URLForUsedTheme:name]];
+        themes[name] = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
+                                                                 options:NSPropertyListMutableContainersAndLeaves
+                                                                  format:NULL
+                                                                   error:nil];
     }
     [self setArchivedThemes:themes];
     
