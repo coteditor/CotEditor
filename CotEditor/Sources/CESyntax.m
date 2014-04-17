@@ -581,30 +581,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:regexOptions error:&error];
     if (error) {
-        // 何もしない
         NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
-        return nil;
+        return nil;  // 何もしない
     }
     
-    __block CEPrivateMutableArray *outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
-    __block BOOL isCanceled = NO;
+    __block NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
     [regex enumerateMatchesInString:[self localString]
                             options:0
                               range:NSMakeRange(0, [[self localString] length])
                          usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
          if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSModalResponseContinue)) {
-             isCanceled = YES;
-             stop = YES;
+             *stop = YES;
          };
-         
-         NSUInteger QCStart = 0, QCEnd = 0;
-         NSRange attrRange = [result range];
          
          if (doColoring) {
              [outArray addObject:[NSValue valueWithRange:[result range]]];
              
          } else {
+             NSUInteger QCStart = 0, QCEnd = 0;
+             NSRange attrRange = [result range];
+             
              if (pairKind >= k_QC_CommentBaseNum) {
                  QCStart = k_QC_Start;
                  QCEnd = k_QC_End;
@@ -621,10 +618,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                    k_QCStrLength: @0U}];
          }
     }];
-    
-    if (isCanceled) {
-        return nil;
-    }
     
     return outArray;
 }
@@ -701,24 +694,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRegularExpression *beginRegex = [NSRegularExpression regularExpressionWithPattern:beginString options:regexOptions error:&error];
     NSRegularExpression *endRegex = [NSRegularExpression regularExpressionWithPattern:endString options:regexOptions error:&error];
     if (error) {
-        // 何もしない
         NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
-        return nil;
+        return nil;  // 何もしない
     }
     
-    __block CEPrivateMutableArray *outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
-    __block BOOL isCanceled = NO;
+    __block NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
     [beginRegex enumerateMatchesInString:[self localString]
                                  options:0
                                    range:NSMakeRange(0, [[self localString] length])
                               usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
          if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSModalResponseContinue)) {
-             isCanceled = YES;
-             stop = YES;
+             *stop = YES;
          };
          
-         NSUInteger QCStart = 0, QCEnd = 0;
          NSRange beginRange = [result range];
          NSRange endRange = [endRegex rangeOfFirstMatchInString:[self localString] options:0
                                                           range:NSMakeRange(NSMaxRange(beginRange),
@@ -729,7 +718,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
              
              if (doColoring) {
                  [outArray addObject:[NSValue valueWithRange:attrRange]];
+                 
              } else {
+                 NSUInteger QCStart = 0, QCEnd = 0;
+                 
                  if (pairKind >= k_QC_CommentBaseNum) {
                      QCStart = k_QC_Start;
                      QCEnd = k_QC_End;
@@ -747,10 +739,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
              }
          }
      }];
-    
-    if (isCanceled) {
-        return nil;
-    }
     
     return outArray;
 }
