@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingsController">
             <connections>
-                <outlet property="keyBindingsPane" destination="748" id="7E9-VP-ALt"/>
+                <outlet property="view" destination="748" id="2qO-XK-wiQ"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

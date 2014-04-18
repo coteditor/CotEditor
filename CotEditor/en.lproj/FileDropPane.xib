@@ -5,13 +5,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEFileDropPaneController">
             <connections>
                 <outlet property="fileDropController" destination="451" id="Do3-c6-cpR"/>
                 <outlet property="fileDropGlossaryTextView" destination="586" id="ieD-hl-bAG"/>
-                <outlet property="fileDropPane" destination="747" id="voJ-2k-P2G"/>
                 <outlet property="fileDropTableView" destination="447" id="xHZ-M3-GTp"/>
                 <outlet property="fileDropTextView" destination="532" id="C5S-P7-taE"/>
+                <outlet property="view" destination="747" id="ImZ-nW-JkE"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

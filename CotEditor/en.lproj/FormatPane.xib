@@ -5,15 +5,15 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEFormatPaneController">
             <connections>
                 <outlet property="encodingMenuInNew" destination="80" id="eqc-w1-QrX"/>
                 <outlet property="encodingMenuInOpen" destination="76" id="8DX-cy-t6W"/>
-                <outlet property="formatPane" destination="745" id="yeE-kJ-Os0"/>
                 <outlet property="stylesController" destination="Qfx-DD-EBP" id="g9W-3p-vV2"/>
                 <outlet property="syntaxStyleDeleteButton" destination="dI1-Dk-Mce" id="WhQ-fH-VAB"/>
                 <outlet property="syntaxStylesDefaultPopup" destination="727" id="aKL-mF-XGI"/>
                 <outlet property="syntaxTableView" destination="i9j-3p-xYF" id="Gcu-c5-0BR"/>
+                <outlet property="view" destination="745" id="wMY-r7-vF6"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEEditPaneController">
             <connections>
-                <outlet property="editPane" destination="s6I-DY-Ii0" id="etJ-TR-YEp"/>
                 <outlet property="smartQuoteCheckButton" destination="mK4-4e-plf" id="MOr-jB-XTX"/>
+                <outlet property="view" destination="s6I-DY-Ii0" id="zbx-7h-a2R"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>

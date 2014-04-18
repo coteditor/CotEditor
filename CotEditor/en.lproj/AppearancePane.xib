@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEAppearancePaneController">
             <connections>
-                <outlet property="appearancePane" destination="744" id="QOd-GY-Ced"/>
-                <outlet property="prefFontFamilyNameSize" destination="385" id="phw-0m-abk"/>
+                <outlet property="fontField" destination="385" id="n5f-3y-xKI"/>
+                <outlet property="view" destination="744" id="0ED-IT-XKF"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -33,6 +33,7 @@
                     <rect key="frame" x="120" y="445" width="260" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="22" id="4zH-Fv-QUF"/>
                         <constraint firstAttribute="width" constant="260" id="vyL-3O-dlj"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="3288">
@@ -539,6 +540,7 @@
                 <constraint firstItem="809" firstAttribute="top" secondItem="385" secondAttribute="bottom" constant="8" symbolic="YES" id="VmV-cH-wkZ"/>
                 <constraint firstItem="Q1i-8g-boW" firstAttribute="centerY" secondItem="216" secondAttribute="centerY" id="X7s-As-21f"/>
                 <constraint firstItem="299" firstAttribute="leading" secondItem="293" secondAttribute="leading" id="aGw-km-YFt"/>
+                <constraint firstItem="cM2-sa-5cF" firstAttribute="centerY" secondItem="385" secondAttribute="centerY" id="cJk-fC-EtP"/>
                 <constraint firstItem="289" firstAttribute="leading" secondItem="290" secondAttribute="trailing" constant="8" symbolic="YES" id="cgc-3g-HeO"/>
                 <constraint firstItem="293" firstAttribute="centerY" secondItem="294" secondAttribute="centerY" id="dGF-qC-3Ec"/>
                 <constraint firstItem="eyW-60-P7E" firstAttribute="top" secondItem="ryE-0I-GfC" secondAttribute="bottom" constant="12" id="dIm-k2-O2U"/>
@@ -558,7 +560,6 @@
                 <constraint firstItem="422" firstAttribute="top" secondItem="848" secondAttribute="bottom" constant="6" id="lZh-tj-yh3"/>
                 <constraint firstItem="860" firstAttribute="leading" secondItem="DSq-u9-gbq" secondAttribute="trailing" constant="8" symbolic="YES" id="lZs-SE-BaS"/>
                 <constraint firstItem="eyW-60-P7E" firstAttribute="leading" secondItem="744" secondAttribute="leading" constant="30" id="lfS-s1-tjd"/>
-                <constraint firstItem="385" firstAttribute="baseline" secondItem="cM2-sa-5cF" secondAttribute="baseline" id="mMU-Kw-LZs"/>
                 <constraint firstItem="299" firstAttribute="leading" secondItem="300" secondAttribute="trailing" constant="8" symbolic="YES" id="mqN-ue-j0v"/>
                 <constraint firstItem="423" firstAttribute="leading" secondItem="216" secondAttribute="leading" id="n0u-HQ-Hne"/>
                 <constraint firstAttribute="trailing" secondItem="2154" secondAttribute="trailing" constant="20" symbolic="YES" id="nhN-Eg-3rU"/>

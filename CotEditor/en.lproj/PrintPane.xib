@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEPrintPaneController">
             <connections>
-                <outlet property="printFontFamilyNameSize" destination="1007" id="Pj9-wE-bsR"/>
-                <outlet property="printPane" destination="882" id="j1k-qE-dAf"/>
+                <outlet property="fontField" destination="1007" id="j6k-GL-zAX"/>
+                <outlet property="view" destination="882" id="PRb-ld-8dC"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -131,10 +131,10 @@
                     </connections>
                 </button>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1011">
-                    <rect key="frame" x="140" y="402" width="318" height="54"/>
+                    <rect key="frame" x="140" y="402" width="183" height="54"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="318" height="26"/>
+                    <size key="cellSize" width="183" height="26"/>
                     <size key="intercellSpacing" width="4" height="2"/>
                     <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3411">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -161,6 +161,7 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="OeK-6f-UNf"/>
+                        <constraint firstAttribute="height" constant="22" id="OfU-j2-cBT"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="3384">
                         <font key="font" metaFont="system"/>

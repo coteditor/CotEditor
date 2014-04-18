@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEWindowPaneController">
             <connections>
-                <outlet property="windowPane" destination="741" id="j7y-Sv-sqJ"/>
+                <outlet property="view" destination="741" id="Hc7-ko-9IX"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -171,7 +171,7 @@
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <action selector="openSizeSampleWindow:" target="-2" id="642"/>
+                        <action selector="openSizeSampleWindow:" target="-2" id="ZKF-iz-1c7"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="624">

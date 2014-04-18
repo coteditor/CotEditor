@@ -1,6 +1,6 @@
 /*
  =================================================
- CEPreferences
+ CEAppearancePaneController
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -9,7 +9,7 @@
  =================================================
  
  encoding="UTF-8"
- Created:2004.12.13
+ Created:2014-04-18
  
  -------------------------------------------------
  
@@ -32,18 +32,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "CESyntax.h"
 
 
-@interface CEPreferencesController : NSWindowController <NSWindowDelegate>
-
-// Class Methods
-+ (instancetype)sharedController;
-
-// Public Methods
-- (void)setupEncodingMenus:(NSArray *)menuItems;
-
-
-- (IBAction)openPreferencesHelp:(id)sender;
+@interface CEAppearancePaneController : NSViewController
 
 @end

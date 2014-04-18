@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+        <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
             <connections>
-                <outlet property="generalPane" destination="743" id="aCt-FQ-Eq1"/>
+                <outlet property="view" destination="743" id="NV1-KF-qM5"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
