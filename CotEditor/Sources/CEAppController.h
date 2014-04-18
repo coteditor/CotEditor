@@ -40,9 +40,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEScriptManager.h"
 
 
+// notifications
+extern NSString *const CEEncodingListDidUpdateNotification;
+
+
 @interface CEAppController : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, copy, readonly) NSMenu *encodingMenu;
+@property (nonatomic, copy, readonly) NSArray *encodingMenuItems;
 
 
 // Public method

@@ -50,8 +50,6 @@
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxStylesDefaultPopup;
 @property (nonatomic, weak) IBOutlet NSButton *syntaxStyleDeleteButton;
 
-@property (nonatomic) NSArray *encodingMenuItems;
-
 @end
 
 
@@ -80,14 +78,21 @@
     // インストール済みシンタックス定義をダブルクリックしたら編集シートが出るようにセット
     [[self syntaxTableView] setDoubleAction:@selector(openSyntaxEditSheet:)];
     
+    [self setupEncodingMenus];
     [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
+    [[self encodingMenuInOpen] setTarget:self];
     
-    [self setupEncodingMenus:[self encodingMenuItems]];
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setupSyntaxStylesMenus)
                                                  name:CESyntaxListDidUpdateNotification
+                                               object:nil];
+    
+    // エンコーディングリスト\更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setupEncodingMenus)
+                                                 name:CEEncodingListDidUpdateNotification
                                                object:nil];
 }
 
@@ -111,52 +116,6 @@
     }
     
     return YES;
-}
-
-
-
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// エンコーディング設定メニューを生成
-- (void)setupEncodingMenus:(NSArray *)menuItems
-// ------------------------------------------------------
-{
-    NSString *title;
-    NSMenuItem *item;
-    NSUInteger selected;
-    
-    [self setEncodingMenuItems:menuItems];
-    
-    [[self encodingMenuInOpen] removeAllItems];
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
-                                      action:nil keyEquivalent:@""];
-    [item setTag:k_autoDetectEncodingMenuTag];
-    [[[self encodingMenuInOpen] menu] addItem:item];
-    [[[self encodingMenuInOpen] menu] addItem:[NSMenuItem separatorItem]];
-    [[self encodingMenuInNew] removeAllItems];
-    
-    for (NSMenuItem *menuItem in menuItems) {
-        [[[self encodingMenuInOpen] menu] addItem:[menuItem copy]];
-        [[[self encodingMenuInNew] menu] addItem:[menuItem copy]];
-    }
-    // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
-    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];
-    if (selected == k_autoDetectEncodingMenuTag) {
-        title = NSLocalizedString(@"Auto-Detect", nil);
-    } else {
-        title = [NSString localizedNameOfStringEncoding:selected];
-    }
-    [[self encodingMenuInOpen] selectItemWithTitle:title];
-    title = [NSString localizedNameOfStringEncoding:[[NSUserDefaults standardUserDefaults]
-                                                     integerForKey:k_key_encodingInNew]];
-    [[self encodingMenuInNew] selectItemWithTitle:title];
 }
 
 
@@ -392,6 +351,45 @@
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// エンコーディング設定メニューを生成
+- (void)setupEncodingMenus
+// ------------------------------------------------------
+{
+    NSArray *menuItems = [(CEAppController *)[NSApp delegate] encodingMenuItems];
+    
+    NSString *title;
+    NSUInteger selected;
+    
+    [[self encodingMenuInOpen] removeAllItems];
+    [[self encodingMenuInNew] removeAllItems];
+    
+    NSMenuItem *autoDetectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
+                                                            action:nil keyEquivalent:@""];
+    [autoDetectItem setTag:k_autoDetectEncodingMenuTag];
+    [[[self encodingMenuInOpen] menu] addItem:autoDetectItem];
+    [[[self encodingMenuInOpen] menu] addItem:[NSMenuItem separatorItem]];
+    
+    for (NSMenuItem *item in menuItems) {
+        [[[self encodingMenuInOpen] menu] addItem:[item copy]];
+        [[[self encodingMenuInNew] menu] addItem:[item copy]];
+    }
+    
+    // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
+    // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
+    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];
+    if (selected == k_autoDetectEncodingMenuTag) {
+        title = NSLocalizedString(@"Auto-Detect", nil);
+    } else {
+        title = [NSString localizedNameOfStringEncoding:selected];
+    }
+    [[self encodingMenuInOpen] selectItemWithTitle:title];
+    title = [NSString localizedNameOfStringEncoding:[[NSUserDefaults standardUserDefaults]
+                                                     integerForKey:k_key_encodingInNew]];
+    [[self encodingMenuInNew] selectItemWithTitle:title];
+}
+
 
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルメニューを生成

@@ -127,23 +127,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// エンコーディング設定メニューを生成
-- (void)setupEncodingMenus:(NSArray *)menuItems
-// ------------------------------------------------------
-{
-    [[self formatPaneController] setupEncodingMenus:menuItems];
-}
-
-
-
 #pragma mark Protocol
 
 //=======================================================

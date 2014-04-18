@@ -108,7 +108,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    [[self encodingPopupButton] setMenu:[[NSApp delegate] encodingMenu]];
+    NSArray *items = [[NSArray alloc] initWithArray:[[NSApp delegate] encodingMenuItems] copyItems:YES];
+    
+    [[self encodingPopupButton] removeAllItems];
+    for (NSMenuItem *item in items) {
+        [item setAction:@selector(setEncoding:)];
+        [item setTarget:nil];
+        [[[self encodingPopupButton] menu] addItem:item];
+    }
 }
 
 
@@ -117,7 +124,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSelectEncoding:(NSInteger)encoding
 // ------------------------------------------------------
 {
-    for (id menuItem in [[self encodingPopupButton] itemArray]) {
+    for (NSMenuItem *menuItem in [[self encodingPopupButton] itemArray]) {
         if ([menuItem tag] == encoding) {
             [[self encodingPopupButton] selectItem:menuItem];
             break;
@@ -197,6 +204,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxPopupButton)
                                                  name:CESyntaxListDidUpdateNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildEncodingPopupButton)
+                                                 name:CEEncodingListDidUpdateNotification
                                                object:nil];
 }
 

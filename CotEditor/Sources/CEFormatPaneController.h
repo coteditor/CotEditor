@@ -36,6 +36,4 @@
 
 @interface CEFormatPaneController : NSViewController <NSTableViewDelegate>
 
-- (void)setupEncodingMenus:(NSArray *)menuItems;
-
 @end

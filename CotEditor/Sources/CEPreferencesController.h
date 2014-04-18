@@ -40,9 +40,6 @@
 // Class Methods
 + (instancetype)sharedController;
 
-// Public Methods
-- (void)setupEncodingMenus:(NSArray *)menuItems;
-
 
 - (IBAction)openPreferencesHelp:(id)sender;
 
