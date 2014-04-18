@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesController">
+            <connections>
+                <outlet property="keyBindingsPane" destination="748" id="7E9-VP-ALt"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
+        <customView id="748" userLabel="Key Bindings Pane">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="331"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="2356">
+                    <rect key="frame" x="497" y="17" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="3367">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openPreferencesHelp:" target="-1" id="qzX-IR-qSm"/>
+                    </connections>
+                </button>
+                <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="718">
+                    <rect key="frame" x="17" y="47" width="506" height="126"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <view key="contentView">
+                        <rect key="frame" x="2" y="2" width="502" height="122"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="720">
+                                <rect key="frame" x="14" y="93" width="188" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Additional Text Key Bindings " id="3363">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="722">
+                                <rect key="frame" x="387" y="53" width="100" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="Jiu-hk-nks"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" inset="2" id="3365">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openKeyBindingEditSheet:" target="-2" id="725"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="721">
+                                <rect key="frame" x="14" y="67" width="169" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Key bindings for text handling." id="3364">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="726">
+                                <rect key="frame" x="14" y="35" width="324" height="28"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting is NOT for standard Cocoa key bindings but for CotEditor's original methods." id="3366">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="721" firstAttribute="leading" secondItem="726" secondAttribute="leading" id="1ws-Ow-sos"/>
+                        <constraint firstAttribute="height" constant="120" id="5qt-dH-p56"/>
+                        <constraint firstItem="720" firstAttribute="top" secondItem="718" secondAttribute="top" constant="12" id="5tH-bg-67n"/>
+                        <constraint firstItem="721" firstAttribute="top" secondItem="722" secondAttribute="top" id="KtW-Pq-9Qa"/>
+                        <constraint firstItem="721" firstAttribute="leading" secondItem="720" secondAttribute="leading" id="Ui1-s8-v8M"/>
+                        <constraint firstItem="720" firstAttribute="leading" secondItem="718" secondAttribute="leading" constant="15" id="b2E-yE-fas"/>
+                        <constraint firstItem="721" firstAttribute="top" secondItem="720" secondAttribute="bottom" constant="12" id="gcQ-vN-VdX"/>
+                        <constraint firstItem="726" firstAttribute="top" secondItem="721" secondAttribute="bottom" constant="4" id="jee-Qh-JFK"/>
+                        <constraint firstAttribute="trailing" secondItem="722" secondAttribute="trailing" constant="20" id="nLT-NR-Ox0"/>
+                    </constraints>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
+                <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="716">
+                    <rect key="frame" x="17" y="187" width="506" height="126"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <view key="contentView">
+                        <rect key="frame" x="2" y="2" width="502" height="122"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="714">
+                                <rect key="frame" x="387" y="53" width="100" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="Ft6-A5-Vzh"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Edit…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3360">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openKeyBindingEditSheet:" target="-2" id="723"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="715">
+                                <rect key="frame" x="14" y="67" width="161" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Key bindings for menu items." id="3361">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="713">
+                                <rect key="frame" x="14" y="93" width="123" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Menu Key Bindings" id="3359">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="835">
+                                <rect key="frame" x="14" y="49" width="260" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This setting does not include script menu items." id="3362">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="713" firstAttribute="top" secondItem="716" secondAttribute="top" constant="12" id="5Gc-0a-ayo"/>
+                        <constraint firstItem="713" firstAttribute="leading" secondItem="716" secondAttribute="leading" constant="15" id="DkP-HA-TWm"/>
+                        <constraint firstAttribute="height" constant="120" id="QEE-Jl-zgK"/>
+                        <constraint firstItem="835" firstAttribute="top" secondItem="715" secondAttribute="bottom" constant="4" id="atq-Nx-aVY"/>
+                        <constraint firstItem="835" firstAttribute="leading" secondItem="715" secondAttribute="leading" id="cee-W5-92c"/>
+                        <constraint firstItem="835" firstAttribute="leading" secondItem="713" secondAttribute="leading" id="mcN-6F-S6h"/>
+                        <constraint firstAttribute="trailing" secondItem="714" secondAttribute="trailing" constant="20" id="wv2-Lh-hqi"/>
+                        <constraint firstItem="714" firstAttribute="top" secondItem="715" secondAttribute="top" id="yI3-wg-uLP"/>
+                        <constraint firstItem="715" firstAttribute="top" secondItem="713" secondAttribute="bottom" constant="12" id="yVv-CC-fYD"/>
+                    </constraints>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="716" firstAttribute="top" secondItem="748" secondAttribute="top" constant="20" symbolic="YES" id="5Jq-bs-DFN"/>
+                <constraint firstAttribute="trailing" secondItem="718" secondAttribute="trailing" constant="20" symbolic="YES" id="78p-5E-N5t"/>
+                <constraint firstItem="718" firstAttribute="top" secondItem="716" secondAttribute="bottom" constant="20" id="9Yg-jZ-dT5"/>
+                <constraint firstAttribute="bottom" secondItem="2356" secondAttribute="bottom" constant="20" symbolic="YES" id="GyS-OX-S6C"/>
+                <constraint firstAttribute="trailing" secondItem="2356" secondAttribute="trailing" constant="20" symbolic="YES" id="Mck-Fv-9Xz"/>
+                <constraint firstItem="716" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="cEL-PO-psC"/>
+                <constraint firstItem="2356" firstAttribute="top" secondItem="718" secondAttribute="bottom" constant="10" id="dzy-ni-y9U"/>
+                <constraint firstAttribute="trailing" secondItem="716" secondAttribute="trailing" constant="20" symbolic="YES" id="mKP-VT-4Cq"/>
+                <constraint firstItem="718" firstAttribute="leading" secondItem="748" secondAttribute="leading" constant="20" symbolic="YES" id="wEI-r5-3Rn"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>

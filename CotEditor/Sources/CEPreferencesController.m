@@ -133,8 +133,18 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"Preferences"];
+    self = [super initWithWindowNibName:@"PreferencesWindow"];
     if (self) {
+        // 各ペインを読み込む
+        [NSBundle loadNibNamed:@"GeneralPane" owner:self];
+        [NSBundle loadNibNamed:@"WindowPane" owner:self];
+        [NSBundle loadNibNamed:@"AppearancePane" owner:self];
+        [NSBundle loadNibNamed:@"EditPane" owner:self];
+        [NSBundle loadNibNamed:@"FormatPane" owner:self];
+        [NSBundle loadNibNamed:@"FileDropPane" owner:self];
+        [NSBundle loadNibNamed:@"KeyBindingsPane" owner:self];
+        [NSBundle loadNibNamed:@"PrintPane" owner:self];
+        
         // 不可視文字表示ポップアップ用の選択肢をセットする
         CEAppController *appDelegate = [NSApp delegate];
         NSUInteger i;
@@ -786,7 +796,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 //------------------------------------------------------
 /// ヘルプの環境設定説明部分を開く
-- (IBAction)openHelp:(id)sender
+- (IBAction)openPreferencesHelp:(id)sender
 //------------------------------------------------------
 {
     NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
