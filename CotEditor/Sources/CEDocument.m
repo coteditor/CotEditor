@@ -35,25 +35,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEDocument.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "ODBEditorSuite.h"
+#import "UKXattrMetadataStore.h"
 #import "NSData+MD5.h"
 #import "constants.h"
 
-
-
-//=======================================================
-// not defined in __LP64__
-// 2014-02 by 1024jp
-//=======================================================
-#ifdef __LP64__
-enum { typeFSS = 'fss ' };
-#endif
-
-
-
-//=======================================================
-// Private properties
-//
-//=======================================================
 
 @interface CEDocument ()
 
@@ -64,11 +49,26 @@ enum { typeFSS = 'fss ' };
 @property (atomic) BOOL isRevertingForExternalFileUpdate;
 @property (nonatomic) NSString *initialString;  // 初期表示文字列に表示する文字列;
 
+// ODB Editor Suite 対応プロパティ (本当は ODBEditorSuite カテゴリに持たせたいけど面倒そうなので)
+@property (nonatomic) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
+@property (nonatomic) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
+
+// readonly
 @property (nonatomic, readwrite) CEWindowController *windowController;
 @property (nonatomic, readwrite) BOOL canActivateShowInvisibleCharsItem;
 @property (nonatomic, readwrite) NSStringEncoding encodingCode;
 @property (nonatomic, readwrite) NSDictionary *fileAttributes;
 @property (nonatomic, readwrite) CETextSelection *selection;
+
+@end
+
+
+
+@interface CEDocument (ODBEditorSuite)
+
+- (void)setupODB;
+- (void)sendModifiedEventToODBClientWithURL:(NSURL *)URLToSave operation:(NSSaveOperationType)saveOperationType;
+- (void)sendCloseEventToODBClient;
 
 @end
 
@@ -189,7 +189,7 @@ enum { typeFSS = 'fss ' };
         [self getFileAttributes];
         
         // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-        [self sendModifiedEventToClientOfFile:[url path] operation:saveOperation];
+        [self sendModifiedEventToODBClientWithURL:url operation:saveOperation];
         
         // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
         [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
@@ -418,7 +418,7 @@ enum { typeFSS = 'fss ' };
 // ------------------------------------------------------
 {
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
-    [self sendCloseEventToClient];
+    [self sendCloseEventToODBClient];
     
     [super close];
 }
@@ -1802,159 +1802,6 @@ enum { typeFSS = 'fss ' };
 
 
 // ------------------------------------------------------
-/// 外部エディタプロトコル(ODB Editor Suite)用の値をセット
-- (void)setupODB
-// ------------------------------------------------------
-{
-// この部分は、Smultron を参考にさせていただきました。(2005.04.20)
-// This part is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-    
-    NSAppleEventDescriptor *descriptor, *AEPropDescriptor, *fileSender, *fileToken;
-    
-    descriptor = [[NSAppleEventManager sharedAppleEventManager] currentAppleEvent];
-    fileSender = [descriptor paramDescriptorForKeyword:keyFileSender];
-    if (fileSender) {
-        fileToken = [descriptor paramDescriptorForKeyword:keyFileSenderToken];
-    } else {
-        AEPropDescriptor = [descriptor paramDescriptorForKeyword:keyAEPropData];
-        fileSender = [AEPropDescriptor paramDescriptorForKeyword:keyFileSender];
-        fileToken = [AEPropDescriptor paramDescriptorForKeyword:keyFileSenderToken];
-    }
-    if (fileSender) {
-        [self setFileSender:fileSender];
-        if (fileToken) {
-            [self setFileToken:fileToken];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// 外部エディタプロトコル(ODB Editor Suite)対応メソッド。ファイルクライアントにファイル更新を通知する。
-- (void)sendModifiedEventToClientOfFile:(NSString *)saveAsPath
-                              operation:(NSSaveOperationType)saveOperationType
-// ------------------------------------------------------
-{
-// このメソッドは、Smultron を参考にさせていただきました。(2005.04.19)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
-    NSString *thePath = [[self fileURL] path];
-    if (thePath == nil) { return; }
-    OSType creatorCode = [[self fileSender] typeCodeValue];
-    if (creatorCode == 0) { return; }
-
-    NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
-    AppleEvent *theAppleEventPointer;
-
-    FSRef theRef, theSaveAsRef;
-    FSSpec theFSSpec, theSaveAsFSSpec;
-    OSStatus theOSStatus;
-    OSErr theErr;
-
-    theOSStatus = FSPathMakeRef((UInt8 *)[thePath UTF8String], &theRef, nil);
-    if (theOSStatus != noErr) {
-        NSLog(@"'kAEModifiedFile' theOSStatus is err. <%d>", theOSStatus);
-        return;
-    }
-    theErr = FSGetCatalogInfo(&theRef, kFSCatInfoNone, NULL, NULL, &theFSSpec, NULL);
-    if (theErr != noErr) {
-        NSLog(@"'kAEModifiedFile' theErr is err. <%d>", theErr);
-        return;
-    }
-
-    theCreator = [NSAppleEventDescriptor 
-            descriptorWithDescriptorType:typeApplSignature bytes:&creatorCode length:sizeof(OSType)];
-    theAppleEvent = [NSAppleEventDescriptor 
-            appleEventWithEventClass:kODBEditorSuite eventID:kAEModifiedFile targetDescriptor:theCreator 
-            returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
-    theFileSSpec = [NSAppleEventDescriptor 
-            descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
-    [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
-    
-    if ([self fileToken]) {
-        [theAppleEvent setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
-    }
-    if (saveOperationType == NSSaveAsOperation) {
-        theOSStatus = FSPathMakeRef((UInt8 *)[saveAsPath UTF8String], &theSaveAsRef, nil);
-        theErr = FSGetCatalogInfo(&theSaveAsRef, kFSCatInfoNone, NULL, NULL, &theSaveAsFSSpec, NULL);
-        if ((theOSStatus != noErr) || (theErr != noErr)) {
-            NSLog(@"\"SaveAs\" err. \n'kAEModifiedFile' theOSStatus = <%d>\n'kAEModifiedFile' theErr = <%d>", theOSStatus, theErr);
-            return;
-        }
-        [theCreator setParamDescriptor:
-            [NSAppleEventDescriptor descriptorWithDescriptorType:typeFSS 
-                bytes:&theSaveAsFSSpec length:sizeof(FSSpec)] forKeyword:keyNewLocation];
-        [self setFileSender:nil];
-    }
-    
-    theAppleEventPointer = (AEDesc *)[theAppleEvent aeDesc];
-    if (theAppleEventPointer) {
-        AESendMessage(theAppleEventPointer, NULL, kAENoReply, kAEDefaultTimeout);
-    }
-}
-
-
-// ------------------------------------------------------
-/// 外部エディタプロトコル(ODB Editor Suite)対応メソッド。ファイルクライアントにファイルクローズを通知する。
-- (void)sendCloseEventToClient
-// ------------------------------------------------------
-{
-// このメソッドは、Smultron を参考にさせていただきました。(2005.04.19)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
-    NSString *thePath = [[self fileURL] path];
-    if (thePath == nil) { return; }
-    OSType creatorCode = [[self fileSender] typeCodeValue];
-    if (creatorCode == 0) { return; }
-
-    NSAppleEventDescriptor *theCreator, *theAppleEvent, *theFileSSpec;
-    AppleEvent *theAppleEventPointer;
-
-    FSRef theRef;
-    FSSpec theFSSpec;
-    OSStatus theOSStatus;
-    OSErr theErr;
-
-    theOSStatus = FSPathMakeRef((UInt8 *)[thePath UTF8String], &theRef, nil);
-    if (theOSStatus != noErr) {
-        NSLog(@"'kAEClosedFile' theOSStatus is err. <%d>", theOSStatus);
-        return;
-    }
-    theErr = FSGetCatalogInfo(&theRef, kFSCatInfoNone, NULL, NULL, &theFSSpec, NULL);
-    if (theErr != noErr) {
-        NSLog(@"'kAEClosedFile' theErr is err. <%d>", theErr);
-        return;
-    }
-
-    theCreator = [NSAppleEventDescriptor 
-            descriptorWithDescriptorType:typeApplSignature bytes:&creatorCode length:sizeof(OSType)];
-    theAppleEvent = [NSAppleEventDescriptor 
-            appleEventWithEventClass:kODBEditorSuite eventID:kAEClosedFile targetDescriptor:theCreator 
-            returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
-    theFileSSpec = [NSAppleEventDescriptor 
-            descriptorWithDescriptorType:typeFSS bytes:&theFSSpec length:sizeof(FSSpec)];
-    [theAppleEvent setParamDescriptor:theFileSSpec forKeyword:keyDirectObject];
-    
-    if ([self fileToken]) {
-        [theAppleEvent setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
-    }
-    
-    theAppleEventPointer = (AEDesc *)[theAppleEvent aeDesc];
-    if (theAppleEventPointer) {
-        AESendMessage(theAppleEventPointer, NULL, kAENoReply, kAEDefaultTimeout);
-    }
-    // 複数回コールされてしまう場合の予防措置
-    [self setFileSender:nil];
-}
-
-
-// ------------------------------------------------------
 /// Finder のロックが解除出来るか試す。lockAgain が真なら再びロックする。
 - (BOOL)canReleaseFinderLockAtURL:(NSURL *)url isLocked:(BOOL *)ioLocked lockAgain:(BOOL)lockAgain
 // ------------------------------------------------------
@@ -2066,6 +1913,112 @@ enum { typeFSS = 'fss ' };
         if (shouldClose) {
             [[NSApplication sharedApplication] terminate:nil];
         }
+    }
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEDocument (ODBEditorSuite)
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// 外部エディタプロトコル(ODB Editor Suite)用の値をセット
+- (void)setupODB
+// ------------------------------------------------------
+{
+    // この部分は、Smultron を参考にさせていただきました。(2005.04.20)
+    // This part is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
+    // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
+    // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
+    
+    NSAppleEventDescriptor *descriptor, *AEPropDescriptor, *fileSender, *fileToken;
+    
+    descriptor = [[NSAppleEventManager sharedAppleEventManager] currentAppleEvent];
+    
+    fileSender = [descriptor paramDescriptorForKeyword:keyFileSender];
+    
+    if (fileSender) {
+        fileToken = [descriptor paramDescriptorForKeyword:keyFileSenderToken];
+    } else {
+        AEPropDescriptor = [descriptor paramDescriptorForKeyword:keyAEPropData];
+        fileSender = [AEPropDescriptor paramDescriptorForKeyword:keyFileSender];
+        fileToken = [AEPropDescriptor paramDescriptorForKeyword:keyFileSenderToken];
+    }
+    
+    if (fileSender) {
+        [self setFileSender:fileSender];
+        if (fileToken) {
+            [self setFileToken:fileToken];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// 外部エディタプロトコル(ODB Editor Suite)対応メソッド: ファイルクライアントにファイル更新を通知する
+- (void)sendModifiedEventToODBClientWithURL:(NSURL *)URLToSave operation:(NSSaveOperationType)saveOperationType
+// ------------------------------------------------------
+{
+    AEEventID type = (saveOperationType == NSSaveAsOperation) ? keyNewLocation : kAEModifiedFile;
+    
+    [self sendODBEventWithType:type URL:URLToSave];
+}
+
+
+// ------------------------------------------------------
+/// 外部エディタプロトコル(ODB Editor Suite)対応メソッド: ファイルクライアントにファイルクローズを通知する
+- (void)sendCloseEventToODBClient
+// ------------------------------------------------------
+{
+    [self sendODBEventWithType:kAEClosedFile URL:[self fileURL]];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// ファイルクライアントに通知を送る
+- (void)sendODBEventWithType:(AEEventID)eventType URL:(NSURL *)fileURL
+// ------------------------------------------------------
+{
+    if (!fileURL) { return; }
+    
+    OSType creatorCode = [[self fileSender] typeCodeValue];
+    if (creatorCode == 0) { return; }
+    
+    NSAppleEventDescriptor *creatorDescriptor, *eventDescriptor, *fileDescriptor;
+    
+    creatorDescriptor = [NSAppleEventDescriptor descriptorWithDescriptorType:typeApplSignature
+                                                                       bytes:&creatorCode
+                                                                      length:sizeof(OSType)];
+    
+    eventDescriptor = [NSAppleEventDescriptor appleEventWithEventClass:kODBEditorSuite
+                                                               eventID:eventType
+                                                      targetDescriptor:creatorDescriptor
+                                                              returnID:kAutoGenerateReturnID
+                                                         transactionID:kAnyTransactionID];
+    
+    NSData *urlData = [[fileURL absoluteString] dataUsingEncoding:NSUTF8StringEncoding];
+    fileDescriptor = [NSAppleEventDescriptor descriptorWithDescriptorType:typeFileURL
+                                                                     data:urlData];
+    [eventDescriptor setParamDescriptor:fileDescriptor forKeyword:keyDirectObject];
+    
+    if ([self fileToken]) {
+        [eventDescriptor setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
+    }
+    
+    AESendMessage([eventDescriptor aeDesc], NULL, kAENoReply, kAEDefaultTimeout);
+    
+    // 複数回コールされてしまう場合の予防措置
+    if (eventType == kAEClosedFile || eventType == keyNewLocation) {
+        [self setFileSender:nil];
     }
 }
 

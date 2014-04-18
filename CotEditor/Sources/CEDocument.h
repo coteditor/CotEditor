@@ -39,7 +39,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEWindowController.h"
 #import "CETextSelection.h"
 #import "CEPrintView.h"
-#import "UKXattrMetadataStore.h"
 
 
 @class CEEditorView;
@@ -57,7 +56,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 @property (nonatomic) CEEditorView *editorView;
 
-
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
 @property (nonatomic, readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
@@ -65,12 +63,8 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (nonatomic, readonly) NSDictionary *fileAttributes;  // ファイル属性情報辞書
 @property (nonatomic, readonly) CETextSelection *selection;
 
-// ODB Editor Suite 対応プロパティ
-@property (nonatomic) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
-@property (nonatomic) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
 
 // Public methods
-//- (CEWindowController *)windowController;
 - (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
 - (NSString *)stringToWindowController;
 - (void)setStringToEditorView;
