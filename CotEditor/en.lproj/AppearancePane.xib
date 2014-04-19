@@ -225,9 +225,9 @@
                     </connections>
                 </colorWell>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="417">
-                    <rect key="frame" x="330" y="247" width="48" height="17"/>
+                    <rect key="frame" x="336" y="247" width="42" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Carret:" id="3265">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Caret:" id="3265">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
