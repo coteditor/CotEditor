@@ -33,7 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CESyntax.h"
 #import "CEEditorView.h"
-#import "CEPrivateMutableArray.h"
 #import "constants.h"
 
 
@@ -439,7 +438,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
     NSString *scanStr = nil;
-    CEPrivateMutableArray *outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
+    NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
     NSCharacterSet *charSet;
     NSRange attrRange;
     id wordsArray;
@@ -498,7 +497,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     endLength = [endString length];
     [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:YES];
-    CEPrivateMutableArray *outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
+    NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
     NSInteger i = 0;
 
     while (![scanner isAtEnd]) {
@@ -573,7 +572,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     uint32_t options = (ignoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
     NSArray *matchArray;
     NSEnumerator *enumerator;
-    CEPrivateMutableArray *outArray = nil;
+    NSMutableArray *outArray = nil;
     NSRange attrRange;
     NSInteger i, count = 0;
     NSUInteger QCStart = 0, QCEnd = 0;
@@ -592,7 +591,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         count = [matchArray count];
         if (count > 0) {
-            outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
+            outArray = [[NSMutableArray alloc] initWithCapacity:10];
         }
         for (i = 0; i < count; i++) {
             if ([self isIndicatorShown] && ((i % 10) == 0) && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
@@ -685,7 +684,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSEnumerator *enumerator;
     NSArray *matchArray;
     NSRange beginRange, endRange, attrRange;
-    CEPrivateMutableArray *outArray = nil;
+    NSMutableArray *outArray = nil;
     NSInteger i, count = 0;
     NSUInteger QCStart = 0, QCEnd = 0;
 
@@ -700,7 +699,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     count = [matchArray count];
     if (count > 0) {
-        outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
+        outArray = [[NSMutableArray alloc] initWithCapacity:10];
     }
     for (i = 0; i < count; i++) {
         if ([self isIndicatorShown] && ((i % 10) == 0) && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
@@ -1139,7 +1138,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ([self isIndicatorShown]) {
                 beginDouble = [self doubleValueOfIndicator];
             }
-            CEPrivateMutableArray *targetArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
+            NSMutableArray *targetArray = [[NSMutableArray alloc] initWithCapacity:10];
             NSArray *tmpArray = nil;
             for (j = 0; j < count; j++) {
                 @autoreleasepool {

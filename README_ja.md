@@ -7,15 +7,10 @@ CotEditor は OS X で動く軽量なプレーンテキストエディタです�
 __配布ページ__ : <http://coteditor.github.io>
 
 
-
 ソースコードについて
 -----------------------------
 言語は Objective-C、文字コードは UTF-8 で書かれています。
-
-プロジェクト内では ARC が標準となっていますが、以下のクラスに関しては MRC なので注意して下さい。
-
-- CEPrivateMutableArray
-- ImportSources/
+プロジェクト内では ARC が標準となっています。
 
 
 ### 開発環境

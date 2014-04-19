@@ -12,11 +12,7 @@ About Source Code
 [![Build Status](https://travis-ci.org/coteditor/CotEditor.png)](https://travis-ci.org/coteditor/CotEditor)
 
 The source code is written in Objective-C (UTF-8).
-
-This project uses ARC currently. However, please note that the following classes are still under MRC:
-
-- CEPrivateMutableArray
-- ImportSources/
+This project uses ARC currently.
 
 
 ### Development Environment
