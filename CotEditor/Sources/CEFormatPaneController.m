@@ -84,6 +84,7 @@
     
     // インストール済みシンタックス定義をダブルクリックしたら編集シートが出るようにセット
     [[self syntaxTableView] setDoubleAction:@selector(openSyntaxEditSheet:)];
+    [[self syntaxTableView] setTarget:self];
     
     [self setupEncodingMenus];
     [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
@@ -336,17 +337,14 @@
     
     if ([newTitle isEqualToString:NSLocalizedString(@"Auto-Detect", nil)]) { return; }
     
-    NSString *message = [NSString stringWithFormat:
-                         NSLocalizedString(@"Are you sure you want to change to “%@”?", nil),
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to change to “%@”?", nil),
                          newTitle];
-    NSString *altButtonTitle = [NSString stringWithFormat:
-                                NSLocalizedString(@"Change to “%@”", nil),
-                                newTitle];
+    NSString *altButtonTitle = [NSString stringWithFormat:NSLocalizedString(@"Change to “%@”", nil), newTitle];
     NSAlert *alert = [NSAlert alertWithMessageText:message
                                      defaultButton:NSLocalizedString(@"Revert to “Auto-Detect”", nil)
                                    alternateButton:altButtonTitle
                                        otherButton:nil
-                         informativeTextWithFormat:NSLocalizedString(@"The default “Auto-Detect” is recommended for most cases.",nil)];
+                         informativeTextWithFormat:NSLocalizedString(@"The default “Auto-Detect” is recommended for most cases.", nil)];
     
     NSBeep();
     [alert beginSheetModalForWindow:[[self view] window]
