@@ -32,9 +32,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESyntax.h"
+#import <OgreKit/OgreKit.h>
 #import "CEEditorView.h"
+#import "CESyntaxManager.h"
 #import "CEPrivateMutableArray.h"
 #import "constants.h"
+#import "DEBUG_macro.h"
 
 
 @interface CESyntax ()
@@ -282,7 +285,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             regex = [OGRegularExpression regularExpressionWithString:dict[k_SCKey_beginString] options:options];
         NS_HANDLER
             // 何もしない
-            NSLog(@"ERROR in \"outlineMenuArrayWithWholeString:\"");
+            NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
             continue;
         NS_ENDHANDLER
 
@@ -471,7 +474,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     NS_HANDLER
         // 何もしない
-        NSLog(@"ERROR in \"rangesSimpleWordsArrayDict:withCharString:\"");
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
         return nil;
     NS_ENDHANDLER
 
@@ -570,52 +573,53 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // ------------------------------------------------------
 {
-    uint32_t options = (ignoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
-    NSArray *matchArray;
-    NSEnumerator *enumerator;
-    CEPrivateMutableArray *outArray = nil;
-    NSRange attrRange;
-    NSInteger i, count = 0;
-    NSUInteger QCStart = 0, QCEnd = 0;
-
-    NS_DURING
-        enumerator = [[self localString] matchEnumeratorWithRegex:regexStr options:options];
-        matchArray = [enumerator allObjects];
-    NS_HANDLER
-        // 何もしない
-        NSLog(@"ERROR in \"rangesRegularExpressionString:withIgnoreCase:doColoring:pairStringKind:\"");
-        return nil;
-    NS_ENDHANDLER
-
-    if (doColoring) {
-        return matchArray;
-    } else {
-        count = [matchArray count];
-        if (count > 0) {
-            outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
-        }
-        for (i = 0; i < count; i++) {
-            if ([self isIndicatorShown] && ((i % 10) == 0) && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
-                return nil;
-            }
-            attrRange = [matchArray[i] rangeValue];
-            if (pairKind >= k_QC_CommentBaseNum) {
-                QCStart = k_QC_Start;
-                QCEnd = k_QC_End;
-            } else {
-                QCStart = QCEnd = k_notUseStartEnd;
-            }
-            [outArray addObject:@{k_QCPosition: @(attrRange.location),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCStart),
-                                  k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCEnd),
-                                  k_QCStrLength: @0U}];
-        }
-        return outArray;
+    NSRegularExpressionOptions regexOptions = NSRegularExpressionAnchorsMatchLines;
+    if (ignoreCase) {
+        regexOptions |= NSRegularExpressionCaseInsensitive;
     }
+    
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:regexOptions error:&error];
+    if (error) {
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        return nil;  // 何もしない
+    }
+    
+    __block NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
+    [regex enumerateMatchesInString:[self localString]
+                            options:0
+                              range:NSMakeRange(0, [[self localString] length])
+                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+     {
+         if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSModalResponseContinue)) {
+             *stop = YES;
+         };
+         
+         if (doColoring) {
+             [outArray addObject:[NSValue valueWithRange:[result range]]];
+             
+         } else {
+             NSUInteger QCStart = 0, QCEnd = 0;
+             NSRange attrRange = [result range];
+             
+             if (pairKind >= k_QC_CommentBaseNum) {
+                 QCStart = k_QC_Start;
+                 QCEnd = k_QC_End;
+             } else {
+                 QCStart = QCEnd = k_notUseStartEnd;
+             }
+             [outArray addObject:@{k_QCPosition: @(attrRange.location),
+                                   k_QCPairKind: @(pairKind),
+                                   k_QCStartEnd: @(QCStart),
+                                   k_QCStrLength: @0U}];
+             [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                   k_QCPairKind: @(pairKind),
+                                   k_QCStartEnd: @(QCEnd),
+                                   k_QCStrLength: @0U}];
+         }
+    }];
+    
+    return outArray;
 }
 
 
@@ -681,70 +685,65 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                      doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // ------------------------------------------------------
 {
-    uint32_t options = (ignoreCase) ? (RKLCaseless | RKLMultiline) : RKLMultiline;
-    NSEnumerator *enumerator;
-    NSArray *matchArray;
-    NSRange beginRange, endRange, attrRange;
-    CEPrivateMutableArray *outArray = nil;
-    NSInteger i, count = 0;
-    NSUInteger QCStart = 0, QCEnd = 0;
-
-    NS_DURING
-        enumerator = [[self localString] matchEnumeratorWithRegex:beginString options:options];
-        matchArray = [enumerator allObjects];
-    NS_HANDLER
-        // 何もしない
-        NSLog(@"ERROR in \"rangesRegularExpressionBeginString:withEndString:withIgnoreCase:doColoring:pairStringKind:\" first NS_DURING");
-        return nil;
-    NS_ENDHANDLER
-
-    count = [matchArray count];
-    if (count > 0) {
-        outArray = [[CEPrivateMutableArray alloc] initWithCapacity:10];
+    NSRegularExpressionOptions regexOptions = NSRegularExpressionAnchorsMatchLines;
+    if (ignoreCase) {
+        regexOptions |= NSRegularExpressionCaseInsensitive;
     }
-    for (i = 0; i < count; i++) {
-        if ([self isIndicatorShown] && ((i % 10) == 0) && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
-            return nil;
-        }
-        beginRange = [matchArray[i] rangeValue];
-        NS_DURING
-            endRange = [[self localString] rangeOfRegex:endString
-                                                options:options
-                                                inRange:NSMakeRange(NSMaxRange(beginRange),
-                                                                    [[self localString] length] - NSMaxRange(beginRange))
-                                                capture:0 error:NULL];
-        NS_HANDLER
-            // 何もしない
-            NSLog(@"ERROR in \"rangesRegularExpressionBeginString:withEndString:withIgnoreCase:doColoring:pairStringKind:\" second NS_DURING");
-            return nil;
-        NS_ENDHANDLER
-
-        if (endRange.location != NSNotFound) {
-            attrRange = NSUnionRange(beginRange, endRange);
-        } else {
-            continue;
-        }
-        if (doColoring) {
-            [outArray addObject:[NSValue valueWithRange:attrRange]];
-        } else {
-            if (pairKind >= k_QC_CommentBaseNum) {
-                QCStart = k_QC_Start;
-                QCEnd = k_QC_End;
-            } else {
-                QCStart = QCEnd = k_notUseStartEnd;
-            }
-            [outArray addObject:@{k_QCPosition: @(attrRange.location),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCStart),
-                                  k_QCStrLength: @0U}];
-            [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
-                                  k_QCPairKind: @(pairKind),
-                                  k_QCStartEnd: @(QCEnd),
-                                  k_QCStrLength: @0U}];
-        }
+    
+    NSError *error = nil;
+    NSRegularExpression *beginRegex = [NSRegularExpression regularExpressionWithPattern:beginString options:regexOptions error:&error];
+    NSRegularExpression *endRegex = [NSRegularExpression regularExpressionWithPattern:endString options:regexOptions error:&error];
+    if (error) {
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        return nil;  // 何もしない
     }
+    
+    __block NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
+    [beginRegex enumerateMatchesInString:[self localString]
+                                 options:0
+                                   range:NSMakeRange(0, [[self localString] length])
+                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+     {
+         if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSModalResponseContinue)) {
+             *stop = YES;
+         };
+         
+         NSRange beginRange = [result range];
+         NSRange endRange = [endRegex rangeOfFirstMatchInString:[self localString] options:0
+                                                          range:NSMakeRange(NSMaxRange(beginRange),
+                                                                            [[self localString] length] - NSMaxRange(beginRange))];
+         
+         if (endRange.location != NSNotFound) {
+             NSRange attrRange = NSUnionRange(beginRange, endRange);
+             
+             if (doColoring) {
+                 [outArray addObject:[NSValue valueWithRange:attrRange]];
+                 
+             } else {
+                 NSUInteger QCStart = 0, QCEnd = 0;
+                 
+                 if (pairKind >= k_QC_CommentBaseNum) {
+                     QCStart = k_QC_Start;
+                     QCEnd = k_QC_End;
+                 } else {
+                     QCStart = QCEnd = k_notUseStartEnd;
+                 }
+                 [outArray addObject:@{k_QCPosition: @(attrRange.location),
+                                       k_QCPairKind: @(pairKind),
+                                       k_QCStartEnd: @(QCStart),
+                                       k_QCStrLength: @0U}];
+                 [outArray addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
+                                       k_QCPairKind: @(pairKind),
+                                       k_QCStartEnd: @(QCEnd),
+                                       k_QCStrLength: @0U}];
+             }
+         }
+     }];
+    
     return outArray;
 }
+
+
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
 - (NSArray *)checkRegularExpressionBeginString:(NSString *)beginString withEndString:(NSString *)endString withIgnoreCase:(BOOL)ignoreCase
@@ -1255,7 +1254,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setOtherInvisibleCharsAttrs];
     NS_HANDLER
         // 何もしない
-        NSLog(@"ERROR in \"doColoring\"");
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
     NS_ENDHANDLER
 
     // インジーケータシートを片づける
