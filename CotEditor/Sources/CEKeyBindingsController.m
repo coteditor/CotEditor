@@ -37,6 +37,13 @@
 
 @implementation CEKeyBindingsController
 
+#pragma mark Action Messages
+
+//=======================================================
+// Action messages
+//
+//=======================================================
+
 // ------------------------------------------------------
 /// キーバインディング編集シートを開き、閉じる
 - (IBAction)openKeyBindingEditSheet:(id)sender

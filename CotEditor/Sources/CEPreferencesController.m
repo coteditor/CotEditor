@@ -126,14 +126,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 }
 
 
-
-#pragma mark Protocol
-
-//=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
 // ------------------------------------------------------
 /// Nibファイル読み込み直後
 - (void)awakeFromNib
@@ -166,7 +158,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     // FileDrop 配列コントローラの値を書き戻す
     [[self fileDropPaneController] writeBackFileDropArray];
 }
-
 
 
 

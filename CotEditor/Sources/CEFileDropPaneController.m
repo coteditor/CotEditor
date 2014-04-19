@@ -53,17 +53,6 @@
 
 @implementation CEFileDropPaneController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
-
-
-
 #pragma mark Protocol
 
 //=======================================================
@@ -151,6 +140,11 @@
 
 
 #pragma mark Action Messages
+
+//=======================================================
+// Action messages
+//
+//=======================================================
 
 // ------------------------------------------------------
 /// ファイルドロップ定型文字列挿入メニューが選択された
