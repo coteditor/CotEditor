@@ -537,9 +537,6 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
     // ファイルを開くデフォルトエンコーディングをセット
     [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
-
-    // 廃止した UserDeafults の値を取り除く
-    [self cleanDeprecatedDefaults];
     
     // 起動完了フラグをセット
     [self setDidFinishLaunching:YES];
@@ -735,27 +732,6 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
         }
     } else if (!isDirectory) {
         NSLog(@"\"%@\" is not dir.", URL);
-    }
-}
-
-
-//------------------------------------------------------
-/// 廃止したuserDefaultsのデータをユーザのplistから削除
-- (void)cleanDeprecatedDefaults
-//------------------------------------------------------
-{
-    NSArray *deprecatedKeys = @[@"statusAreaFontName",  // deprecated on 1.4
-                                @"alphaOnlyTextView",   // deprecated on 1.5
-                                @"saveTypeCreator",     // deprecated on 1.5
-                                @"gotoObjectMenuIndex", // deprecated on 1.5
-                                @"showWrappedLineMark", // deprecated on 1.5
-                                @"showStatusThousSeparator",
-                                @"setHiliteLineColorToIMChars",
-                                @"statusAreaFontSize"   // deprecated on 1.5
-                                ];
-    
-    for (NSString *key in deprecatedKeys) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
     }
 }
 
