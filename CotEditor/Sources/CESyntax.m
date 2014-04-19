@@ -31,8 +31,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
+#import <OgreKit/OgreKit.h>
 #import "CESyntax.h"
 #import "CEEditorView.h"
+#import "CESyntaxManager.h"
+#import "RKLMatchEnumerator.h"
+#import "DEBUG_macro.h"
 #import "constants.h"
 
 
