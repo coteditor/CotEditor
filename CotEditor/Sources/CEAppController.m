@@ -813,14 +813,20 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 //------------------------------------------------------
 {
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"SYNTAX"];
     NSMenuItem *item;
     
+    NSMenuItem *syntaxMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
+    [syntaxMenuItem setSubmenu:[[NSMenu alloc] initWithTitle:@"SYNTAX"]]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
+    NSMenu *menu = [syntaxMenuItem submenu];
+    
+    // None を追加
     item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
                                       action:@selector(changeSyntaxStyle:)
                                keyEquivalent:@""];
     [menu addItem:item];
     [menu addItem:[NSMenuItem separatorItem]];
+    
+    // シンタックススタイルをラインナップ
     for (NSString *styleName in styleNames) {
         item = [[NSMenuItem alloc] initWithTitle:styleName
                                           action:@selector(changeSyntaxStyle:)
@@ -829,19 +835,13 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
         [menu addItem:item];
     }
     
-    // メインメニュー用
-    NSMenuItem *mormatMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
-    [mormatMenuItem setSubmenu:nil]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
-    
-    [menu addItem:[NSMenuItem separatorItem]];
     // 全文字列を再カラーリングするメニューを追加
     item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
                                       action:@selector(recoloringAllStringOfDocument:)
                                keyEquivalent:@"r"];
     [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
+    [menu addItem:[NSMenuItem separatorItem]];
     [menu addItem:item];
-    
-    [mormatMenuItem setSubmenu:menu];
 }
 
 
