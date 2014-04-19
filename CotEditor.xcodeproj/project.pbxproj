@@ -82,7 +82,6 @@
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
-		2A94A46018D0F166009FA90D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
 		2A961C5318FC699E002076B6 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4918FC699E002076B6 /* ReadMe.rtf */; };
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
@@ -109,7 +108,6 @@
 		8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */; };
 		8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		8C3840930D16B75C00F76A4C /* UKXattrMetadataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8C38409B0D16B7AC00F76A4C /* UKXattrMetadataStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */; };
 		8C3A7DEA0867EC9C00ECE052 /* startup.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A7DD80867EA9A00ECE052 /* startup.applescript */; };
 		8C3BEA2808BDBCA800BC2067 /* CEOutlineMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
@@ -129,7 +127,6 @@
 		8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C65C0E607927D0F0028D94A /* CELayoutManager.m */; };
 		8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */; };
 		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
-		8C7F74EC091C738C005C7598 /* ODBEditorSuite.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */; };
 		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
 		8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8977240DCD8AD000DC32FF /* libicucore.dylib */; };
 		8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CCCAF09D6803400A008E5 /* CESplitView.m */; };
@@ -175,8 +172,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */,
-				8C7F74EC091C738C005C7598 /* ODBEditorSuite.h in CopyFiles */,
-				8C38409B0D16B7AC00F76A4C /* UKXattrMetadataStore.h in CopyFiles */,
 				6CB074B11373A0C3001D0243 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,7 +1040,6 @@
 				2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxExtensionConflictSheet.xib in Resources */,
 				2A07230716D3CF4F00F49864 /* centerAlignTemplate.pdf in Resources */,
-				2A94A46018D0F166009FA90D /* (null) in Resources */,
 				2A9A144B18B67846001080D6 /* Images.xcassets in Resources */,
 				2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */,
 				2A07230B16D3CF4F00F49864 /* leftAlignTemplate.pdf in Resources */,
