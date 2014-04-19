@@ -1,6 +1,6 @@
 /*
  =================================================
- CEPreferences
+ CEPrintPaneController
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -9,7 +9,7 @@
  =================================================
  
  encoding="UTF-8"
- Created:2004.12.13
+ Created:2014-04-18
  
  -------------------------------------------------
  
@@ -32,15 +32,10 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "CESyntax.h"
 
 
-@interface CEPreferencesController : NSWindowController <NSWindowDelegate>
+@interface CEPrintPaneController : NSViewController
 
-// Class Methods
-+ (instancetype)sharedController;
-
-
-- (IBAction)openPreferencesHelp:(id)sender;
+- (void)changeFont:(id)sender;
 
 @end

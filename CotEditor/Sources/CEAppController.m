@@ -42,16 +42,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
+// notifications
+NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
+
+
 @interface CEAppController ()
 
 @property (nonatomic) NSArray *invalidYenEncodings;
 @property (nonatomic) BOOL didFinishLaunching;
 
-@property (nonatomic) CEPreferencesController *preferencesController;
-
 
 // readonly
-@property (nonatomic, copy, readwrite) NSMenu *encodingMenu;
+@property (nonatomic, copy, readwrite) NSArray *encodingMenuItems;
 
 @end
 
@@ -278,13 +280,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildAllEncodingMenus
 // ------------------------------------------------------
 {
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
-
-    if ([self preferencesController]) {
-        [[self preferencesController] setupEncodingMenus:[self encodingMenuNoAction]];
-    }
-    [self setEncodingMenu:[self buildFormatEncodingMenuFromArray:encodings]];
-    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(rebuildToolbarEncodingItem)];
+    [self buildEncodingMenuItems];
+    
+    [self buildFormatEncodingMenu];
+    
 }
 
 
@@ -604,14 +603,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openPreferences:(id)sender
 // ------------------------------------------------------
 {
-    if ([self preferencesController]) {
-        [[self preferencesController] showWindow:self];
-    } else {
-        // setup preferences controller at first time
-        [self setPreferencesController:[CEPreferencesController sharedController]];
-        [[self preferencesController] showWindow:self];
-        [[self preferencesController] setupEncodingMenus:[self encodingMenuNoAction]];
-    }
+    [[CEPreferencesController sharedController] showWindow:self];
 }
 
 // ------------------------------------------------------
@@ -748,45 +740,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// エンコーディングメニューアイテムを生成
-- (NSArray *)encodingMenuNoAction
-//------------------------------------------------------
-{
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
-    
-    NSMutableArray *menuItems = [NSMutableArray array];
-    NSPopUpButton *accessoryEncodingMenuButton = [[CEDocumentController sharedDocumentController] accessoryEncodingMenu];
-    NSMenu *accessoryEncodingMenu = [accessoryEncodingMenuButton menu];
-    NSMenuItem *item;
-
-    [accessoryEncodingMenuButton removeAllItems];
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect",@"")
-                                      action:nil keyEquivalent:@""];
-    [item setTag:k_autoDetectEncodingMenuTag];
-    [accessoryEncodingMenu addItem:item];
-    [accessoryEncodingMenu addItem:[NSMenuItem separatorItem]];
-
-    for (NSNumber *encodingNumber in encodings) {
-        CFStringEncoding theCFEncoding = [encodingNumber unsignedLongValue];
-        if (theCFEncoding == kCFStringEncodingInvalidId) { // set separator
-            [accessoryEncodingMenu addItem:[NSMenuItem separatorItem]];
-            [menuItems addObject:[NSMenuItem separatorItem]];
-        } else {
-            NSStringEncoding theEncoding = CFStringConvertEncodingToNSStringEncoding(theCFEncoding);
-            NSString *theMenuTitle = [NSString localizedNameOfStringEncoding:theEncoding];
-            NSMenuItem *theAccessoryMenuItem = [[NSMenuItem alloc] initWithTitle:theMenuTitle
-                                                                          action:nil keyEquivalent:@""];
-            [theAccessoryMenuItem setTarget:nil];
-            [theAccessoryMenuItem setTag:theEncoding];
-            [accessoryEncodingMenu addItem:theAccessoryMenuItem];
-            [menuItems addObject:theAccessoryMenuItem];
-        }
-    }
-    return menuItems;
-}
-
-
-//------------------------------------------------------
 /// 廃止したuserDefaultsのデータをユーザのplistから削除
 - (void)cleanDeprecatedDefaults
 //------------------------------------------------------
@@ -808,28 +761,49 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// フォーマットのエンコーディングメニューアイテムを生成
-- (NSMenu *)buildFormatEncodingMenuFromArray:(NSArray *)encodings
+/// エンコーディングメニューアイテムを生成
+- (void)buildEncodingMenuItems
 //------------------------------------------------------
 {
-    NSMenu *encodingMenu = [[NSMenu alloc] initWithTitle:@"ENCODEING"];
-    NSMenuItem *formatMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag];
-
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
+    NSMutableArray *items = [NSMutableArray array];
+    
     for (NSNumber *encodingNumber in encodings) {
         CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
         if (cfEncoding == kCFStringEncodingInvalidId) { // set separator
-            [encodingMenu addItem:[NSMenuItem separatorItem]];
+            [items addObject:[NSMenuItem separatorItem]];
         } else {
             NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
             NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
-            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:menuTitle
-                                                              action:@selector(setEncoding:) keyEquivalent:@""];
-            [menuItem setTag:encoding];
-            [encodingMenu addItem:menuItem];
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
+            [item setTag:encoding];
+            
+            [items addObject:item];
         }
     }
-    [formatMenuItem setSubmenu:encodingMenu];
-    return [encodingMenu copy];
+    
+    [self setEncodingMenuItems:items];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:nil];
+}
+
+
+//------------------------------------------------------
+/// フォーマットのエンコーディングメニューアイテムを生成
+- (void)buildFormatEncodingMenu
+//------------------------------------------------------
+{
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
+    NSArray *items = [[NSArray alloc] initWithArray:[self encodingMenuItems] copyItems:YES];
+    
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag] submenu];
+    
+    [menu removeAllItems];
+    for (NSMenuItem *item in items) {
+        [item setAction:@selector(setEncoding:)];
+        [item setTarget:nil];
+        [menu addItem:item];
+    }
 }
 
 
@@ -851,6 +825,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         item = [[NSMenuItem alloc] initWithTitle:styleName
                                           action:@selector(changeSyntaxStyle:)
                                    keyEquivalent:@""];
+        [item setTarget:nil];
         [menu addItem:item];
     }
     

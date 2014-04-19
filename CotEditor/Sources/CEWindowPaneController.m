@@ -1,6 +1,6 @@
 /*
  =================================================
- CEPreferences
+ CEWindowPaneController
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -9,7 +9,7 @@
  =================================================
  
  encoding="UTF-8"
- Created:2004.12.13
+ Created:2014-04-18
  
  -------------------------------------------------
  
@@ -31,16 +31,30 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
-#import "CESyntax.h"
+#import "CEWindowPaneController.h"
+#import "CESizeSampleWindowController.h"
 
 
-@interface CEPreferencesController : NSWindowController <NSWindowDelegate>
+@implementation CEWindowPaneController
 
-// Class Methods
-+ (instancetype)sharedController;
+#pragma mark Action Messages
 
+//=======================================================
+// Action messages
+//
+//=======================================================
 
-- (IBAction)openPreferencesHelp:(id)sender;
+// ------------------------------------------------------
+/// サイズ設定のためのサンプルウィンドウを開く
+- (IBAction)openSizeSampleWindow:(id)sender
+// ------------------------------------------------------
+{
+    // モーダルで表示
+    CESizeSampleWindowController *sampleWindowController = [[CESizeSampleWindowController alloc] initWithWindowNibName:@"SizeSampleWindow"];
+    [sampleWindowController showWindow:sender];
+    [NSApp runModalForWindow:[sampleWindowController window]];
+    
+    [[[self view] window] makeKeyAndOrderFront:self];
+}
 
 @end

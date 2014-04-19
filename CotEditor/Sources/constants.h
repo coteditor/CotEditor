@@ -188,6 +188,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // syntax coloring range buffer (in CEEditorView)
 static NSUInteger k_coloringRangeBufferLength = 50000;  // number of characters
 
+// separator
+static NSString *CESeparatorString = @"-";
+
 // syntax coloring indicator
 #define k_perCompoIncrement     80.0
 #define k_minIncrement          3.4

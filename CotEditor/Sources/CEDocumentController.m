@@ -40,10 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL isOpenHidden;
 
 @property (nonatomic) IBOutlet NSView *openPanelAccessoryView;
-
-
-// readonly
-@property (nonatomic, readwrite) IBOutlet NSPopUpButton *accessoryEncodingMenu;
+@property (nonatomic) IBOutlet NSPopUpButton *accessoryEncodingMenu;
 
 @end
 
@@ -69,6 +66,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super init];
     if (self) {
         [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(buildEncodingPopupButton:)
+                                                     name:CEEncodingListDidUpdateNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -135,6 +137,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];
 
     [self setAccessorySelectedEncoding:defaultEncoding];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// オープンパネルのエンコーディングメニューを再構築
+- (void)buildEncodingPopupButton:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    NSArray *items = [[NSArray alloc] initWithArray:[[NSApp delegate] encodingMenuItems] copyItems:YES];
+    
+    [[self accessoryEncodingMenu] removeAllItems];
+    
+    [[self accessoryEncodingMenu] addItemWithTitle:NSLocalizedString(@"Auto-Detect", nil)];
+    [[[self accessoryEncodingMenu] itemAtIndex:0] setTag:k_autoDetectEncodingMenuTag];
+    [[[self accessoryEncodingMenu] menu] addItem:[NSMenuItem separatorItem]];
+    
+    for (NSMenuItem *item in items) {
+        [[[self accessoryEncodingMenu] menu] addItem:item];
+    }
+    
 }
 
 @end
