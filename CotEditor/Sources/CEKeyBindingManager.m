@@ -59,11 +59,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) NSMutableArray *outlineDataArray;
 @property (nonatomic) NSMutableArray *duplicateKeyCheckArray;
-@property (nonatomic) NSDictionary *defaultMenuKeyBindingDict;
-@property (nonatomic) NSDictionary *menuKeyBindingDict;
-@property (nonatomic) NSDictionary *textKeyBindingDict;
-@property (nonatomic) NSDictionary *noPrintableKeyDict;
-@property (nonatomic) NSString *currentKeySpecChars;
+@property (nonatomic, copy) NSDictionary *defaultMenuKeyBindingDict;
+@property (nonatomic, copy) NSDictionary *menuKeyBindingDict;
+@property (nonatomic, copy) NSDictionary *textKeyBindingDict;
+@property (nonatomic, copy) NSDictionary *noPrintableKeyDict;
+@property (nonatomic, copy) NSString *currentKeySpecChars;
 
 @property (nonatomic) CEKeyBindingOutlineMode outlineMode;
 

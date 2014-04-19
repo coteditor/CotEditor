@@ -41,7 +41,7 @@
 
 @property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
-@property (nonatomic) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
+@property (nonatomic, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
 
 @property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;

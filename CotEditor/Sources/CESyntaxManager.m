@@ -41,14 +41,14 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
 
 @interface CESyntaxManager ()
 
-@property (nonatomic) NSArray *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
-@property (nonatomic) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic) NSArray *extensions;  // 拡張子配列
-@property (nonatomic) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
+@property (nonatomic, copy) NSArray *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
+@property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic, copy) NSArray *extensions;  // 拡張子配列
+@property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 
 
 // readonly
-@property (nonatomic, readwrite) NSDictionary *extensionConflicts;
+@property (nonatomic, copy, readwrite) NSDictionary *extensionConflicts;
 
 @end
 

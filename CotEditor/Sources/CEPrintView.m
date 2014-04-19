@@ -55,8 +55,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL printsLineNum;
 @property (nonatomic) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
-@property (nonatomic) NSDictionary *headerFooterAttrs;
-@property (nonatomic) NSDictionary *lineNumAttrs;
+@property (nonatomic, copy) NSDictionary *headerFooterAttrs;
+@property (nonatomic, copy) NSDictionary *lineNumAttrs;
 
 @end
 

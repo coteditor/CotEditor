@@ -47,11 +47,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CELayoutManager ()
 
-@property (nonatomic) NSString *spaceCharacter;
-@property (nonatomic) NSString *tabCharacter;
-@property (nonatomic, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
-@property (nonatomic) NSString *fullwidthSpaceCharacter;
-@property (nonatomic) NSDictionary *attributes;
+@property (nonatomic, copy) NSString *spaceCharacter;
+@property (nonatomic, copy) NSString *tabCharacter;
+@property (nonatomic, copy, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
+@property (nonatomic, copy) NSString *fullwidthSpaceCharacter;
+@property (nonatomic, copy) NSDictionary *attributes;
 
 // readonly properties
 @property (nonatomic, readwrite) CGFloat textFontPointSize;

@@ -41,10 +41,10 @@
 
 @property (nonatomic, weak) IBOutlet NSButton *smartQuoteCheckButton;
 
-@property (nonatomic) NSArray *invisibleSpaces;
-@property (nonatomic) NSArray *invisibleTabs;
-@property (nonatomic) NSArray *invisibleNewLines;
-@property (nonatomic) NSArray *invisibleFullWidthSpaces;
+@property (nonatomic, copy) NSArray *invisibleSpaces;
+@property (nonatomic, copy) NSArray *invisibleTabs;
+@property (nonatomic, copy) NSArray *invisibleNewLines;
+@property (nonatomic, copy) NSArray *invisibleFullWidthSpaces;
 
 @end
 

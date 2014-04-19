@@ -46,16 +46,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
 // document information (for binding in drawer)
-@property (nonatomic) NSString *encodingInfo;// 文書のエンコーディング情報
-@property (nonatomic) NSString *lineEndingsInfo;  // 文書の行末コード情報
-@property (nonatomic) NSString *linesInfo;  // 行数
-@property (nonatomic) NSString *charsInfo;  // 文字数
-@property (nonatomic) NSString *wordsInfo;  // 単語数
-@property (nonatomic) NSString *locationInfo;  // 文頭からのキャレット位置
-@property (nonatomic) NSString *lineInfo;  // 現在行
-@property (nonatomic) NSString *columnInfo;  // 文書の行頭からのキャレット位置
-@property (nonatomic) NSString *singleCharInfo;  // 文書の選択文字
-@property (nonatomic) NSString *byteLengthInfo;  //  現在のエンコーディングでのバイト数
+@property (nonatomic, copy) NSString *encodingInfo;// 文書のエンコーディング情報
+@property (nonatomic, copy) NSString *lineEndingsInfo;  // 文書の行末コード情報
+@property (nonatomic, copy) NSString *linesInfo;  // 行数
+@property (nonatomic, copy) NSString *charsInfo;  // 文字数
+@property (nonatomic, copy) NSString *wordsInfo;  // 単語数
+@property (nonatomic, copy) NSString *locationInfo;  // 文頭からのキャレット位置
+@property (nonatomic, copy) NSString *lineInfo;  // 現在行
+@property (nonatomic, copy) NSString *columnInfo;  // 文書の行頭からのキャレット位置
+@property (nonatomic, copy) NSString *singleCharInfo;  // 文書の選択文字
+@property (nonatomic, copy) NSString *byteLengthInfo;  //  現在のエンコーディングでのバイト数
 
 // Public method
 - (BOOL)needsInfoDrawerUpdate;

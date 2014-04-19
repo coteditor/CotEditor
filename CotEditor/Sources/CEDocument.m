@@ -45,10 +45,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
-@property (atomic) NSString *fileMD5;
+@property (atomic, copy) NSString *fileMD5;
 @property (atomic) BOOL showUpdateAlertWithBecomeKey;
 @property (atomic) BOOL isRevertingForExternalFileUpdate;
-@property (nonatomic) NSString *initialString;  // 初期表示文字列に表示する文字列;
+@property (nonatomic, copy) NSString *initialString;  // 初期表示文字列に表示する文字列;
 
 // ODB Editor Suite 対応プロパティ (本当は ODBEditorSuite カテゴリに持たせたいけど面倒そうなので)
 @property (nonatomic) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
@@ -58,7 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readwrite) CEWindowController *windowController;
 @property (nonatomic, readwrite) BOOL canActivateShowInvisibleCharsItem;
 @property (nonatomic, readwrite) NSStringEncoding encodingCode;
-@property (nonatomic, readwrite) NSDictionary *fileAttributes;
+@property (nonatomic, copy, readwrite) NSDictionary *fileAttributes;
 @property (nonatomic, readwrite) CETextSelection *selection;
 
 @end

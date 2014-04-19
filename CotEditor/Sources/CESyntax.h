@@ -48,8 +48,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
 // readonly
-@property (nonatomic, readonly) NSArray *completeWordsArray;  // 保持している入力補完文字列配列
-@property (nonatomic, readonly) NSCharacterSet *completeFirstLetterSet;  // 保持している入力補完の最初の1文字のセット
+@property (nonatomic, copy, readonly) NSArray *completeWordsArray;  // 保持している入力補完文字列配列
+@property (nonatomic, copy, readonly) NSCharacterSet *completeFirstLetterSet;  // 保持している入力補完の最初の1文字のセット
 
 
 // Public method

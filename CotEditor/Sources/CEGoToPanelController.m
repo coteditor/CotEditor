@@ -35,7 +35,7 @@
 
 @interface CEGoToPanelController ()
 
-@property (nonatomic) NSString  *locationString;
+@property (nonatomic, copy) NSString  *locationString;
 @property (nonatomic) NSUInteger gotoType;
 
 @end

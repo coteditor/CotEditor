@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
 
 @property (nonatomic, weak) NSView *slaveView;  // LineNumView
-@property (nonatomic) NSString *lineEndingString;  // 行末文字
+@property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 @property (nonatomic) CGFloat backgroundAlpha;  // ビューの不透明度
 
 // readonly

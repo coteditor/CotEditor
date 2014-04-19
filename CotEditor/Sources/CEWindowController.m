@@ -41,13 +41,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 
 // document information (for binding)
-@property (nonatomic) NSString *createdInfo;
-@property (nonatomic) NSString *modificatedInfo;
-@property (nonatomic) NSString *ownerInfo;
-@property (nonatomic) NSString *typeInfo;
-@property (nonatomic) NSString *creatorInfo;
-@property (nonatomic) NSString *finderLockInfo;
-@property (nonatomic) NSString *permissionInfo;
+@property (nonatomic, copy) NSString *createdInfo;
+@property (nonatomic, copy) NSString *modificatedInfo;
+@property (nonatomic, copy) NSString *ownerInfo;
+@property (nonatomic, copy) NSString *typeInfo;
+@property (nonatomic, copy) NSString *creatorInfo;
+@property (nonatomic, copy) NSString *finderLockInfo;
+@property (nonatomic, copy) NSString *permissionInfo;
 @property (nonatomic) NSNumber *fileSizeInfo;
 
 // IBOutlets

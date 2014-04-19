@@ -45,10 +45,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *coloringIndicator;
 @property (nonatomic, weak) IBOutlet NSTextField *coloringCaption;
 
-@property (nonatomic) NSDictionary *coloringDictionary;
-@property (nonatomic) NSDictionary *currentAttrs;
-@property (nonatomic) NSDictionary *singleQuotesAttrs;
-@property (nonatomic) NSDictionary *doubleQuotesAttrs;
+@property (nonatomic, copy) NSDictionary *coloringDictionary;
+@property (nonatomic, copy) NSDictionary *currentAttrs;
+@property (nonatomic, copy) NSDictionary *singleQuotesAttrs;
+@property (nonatomic, copy) NSDictionary *doubleQuotesAttrs;
 @property (nonatomic) NSColor *textColor;
 
 @property (nonatomic) NSRange updateRange;
@@ -59,8 +59,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // readonly
-@property (nonatomic, readwrite) NSArray *completeWordsArray;
-@property (nonatomic, readwrite) NSCharacterSet *completeFirstLetterSet;
+@property (nonatomic, copy, readwrite) NSArray *completeWordsArray;
+@property (nonatomic, copy, readwrite) NSCharacterSet *completeFirstLetterSet;
 
 @end
 
