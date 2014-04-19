@@ -79,10 +79,6 @@
     
     if (size == 0) { return nil; }
     
-    if (size < 1024) {
-        return [NSString stringWithFormat:@"%.0f bytes", size];
-    }
-    
     NSArray *tokens = @[@"bytes", @"KB", @"MB", @"GB"];
     NSUInteger factor = 0;
     
@@ -91,7 +87,9 @@
         factor++;
     }
     
-    return [NSString stringWithFormat:@"%.1f %@", size, tokens[factor]];
+    NSString *format = (factor == 0 || size < 10) ? @"%.0f %@" : @"%.1f %@";
+    
+    return [NSString stringWithFormat:format, size, tokens[factor]];
 }
 
 @end
