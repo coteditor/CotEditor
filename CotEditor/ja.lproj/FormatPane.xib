@@ -36,16 +36,16 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="17">
-                    <rect key="frame" x="28" y="394" width="135" height="17"/>
+                    <rect key="frame" x="57" y="394" width="147" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default line endings:" id="3273">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="デフォルト行末コード：" id="3273">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13">
-                    <rect key="frame" x="167" y="388" width="165" height="26"/>
+                    <rect key="frame" x="208" y="388" width="165" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="160" id="D2Q-g5-p9Z"/>
@@ -66,12 +66,12 @@
                     </connections>
                 </popUpButton>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44">
-                    <rect key="frame" x="396" y="272" width="110" height="28"/>
+                    <rect key="frame" x="427" y="272" width="102" height="28"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="iGy-QY-Sx5"/>
+                        <constraint firstAttribute="width" constant="92" id="iGy-QY-Sx5"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Edit List…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3275">
+                    <buttonCell key="cell" type="push" title="リストを編集…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3275">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -80,7 +80,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="76">
-                    <rect key="frame" x="167" y="274" width="225" height="26"/>
+                    <rect key="frame" x="208" y="274" width="215" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3276">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -97,28 +97,28 @@
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="77">
-                    <rect key="frame" x="57" y="280" width="106" height="17"/>
+                    <rect key="frame" x="70" y="280" width="134" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="On file opening:" id="3277">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="ファイルオープン時：" id="3277">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="79">
-                    <rect key="frame" x="18" y="337" width="145" height="17"/>
+                    <rect key="frame" x="18" y="337" width="186" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Default text encoding:" id="3278">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="デフォルトエンコーディング：" id="3278">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="80">
-                    <rect key="frame" x="167" y="331" width="225" height="26"/>
+                    <rect key="frame" x="208" y="331" width="215" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="220" id="7pp-Cr-TTw"/>
+                        <constraint firstAttribute="width" constant="210" id="7pp-Cr-TTw"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3279">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -134,9 +134,9 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="877">
-                    <rect key="frame" x="167" y="253" width="209" height="18"/>
+                    <rect key="frame" x="208" y="253" width="217" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Refer to encoding declaration" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3280">
+                    <buttonCell key="cell" type="check" title="エンコーディング宣言を参照する" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3280">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -145,9 +145,9 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3248">
-                    <rect key="frame" x="166" y="311" width="283" height="18"/>
+                    <rect key="frame" x="207" y="311" width="212" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Save UTF-8 files with a BOM  (not recommended)" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3281">
+                    <buttonCell key="cell" type="check" title="UTF-8 のとき BOM も保存（非推奨）" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3281">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -156,7 +156,7 @@
                     </connections>
                 </button>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmu-7H-gv5">
-                    <rect key="frame" x="169" y="80" width="260" height="80"/>
+                    <rect key="frame" x="210" y="80" width="260" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" id="tYa-xS-9xx">
                         <rect key="frame" x="1" y="1" width="258" height="78"/>
@@ -207,9 +207,9 @@
                     </scroller>
                 </scrollView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="734">
-                    <rect key="frame" x="32" y="175" width="131" height="17"/>
+                    <rect key="frame" x="70" y="175" width="134" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Default syntax style:" id="3329">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="デフォルトスタイル：" id="3329">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -219,7 +219,7 @@
                     </connections>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="727">
-                    <rect key="frame" x="167" y="169" width="265" height="26"/>
+                    <rect key="frame" x="208" y="169" width="265" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3328">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -236,9 +236,9 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="703">
-                    <rect key="frame" x="347" y="201" width="99" height="18"/>
+                    <rect key="frame" x="406" y="200" width="110" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Delay coloring" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3327">
+                    <buttonCell key="cell" type="check" title="遅延カラーリング" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3327">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -248,20 +248,20 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="430">
-                    <rect key="frame" x="18" y="202" width="164" height="18"/>
+                    <rect key="frame" x="18" y="202" width="256" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Enable syntax coloring" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3326">
+                    <buttonCell key="cell" type="check" title="シンタックスカラーリングを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3326">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AquaKana"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.doSyntaxColoring" id="431"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="710">
-                    <rect key="frame" x="186" y="203" width="136" height="14"/>
+                    <rect key="frame" x="278" y="202" width="125" height="14"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="(Including Outline Menu)" id="3325">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="（アウトラインを含む）" id="3325">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -281,8 +281,8 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
-                <button toolTip="Add empty style" verticalHuggingPriority="750" tag="-200" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
-                    <rect key="frame" x="169" y="50" width="28" height="23"/>
+                <button toolTip="新規スタイルを追加" verticalHuggingPriority="750" tag="-200" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
+                    <rect key="frame" x="210" y="50" width="28" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="8UR-ET-nch"/>
@@ -298,8 +298,8 @@
                         <action selector="openSyntaxEditSheet:" target="-2" id="mWI-xe-Ws7"/>
                     </connections>
                 </button>
-                <button toolTip="Remove selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dI1-Dk-Mce">
-                    <rect key="frame" x="196" y="50" width="28" height="23"/>
+                <button toolTip="選択したスタイルを削除" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dI1-Dk-Mce">
+                    <rect key="frame" x="237" y="50" width="28" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="iZv-za-r30"/>
@@ -312,8 +312,8 @@
                         <action selector="deleteSyntaxStyle:" target="-2" id="WDa-QW-Bf4"/>
                     </connections>
                 </button>
-                <button toolTip="Edit selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-oI-um3">
-                    <rect key="frame" x="401" y="50" width="28" height="23"/>
+                <button toolTip="選択したスタイルを編集" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-oI-um3">
+                    <rect key="frame" x="442" y="50" width="28" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="smallSquare" title="Edit" bezelStyle="smallSquare" image="editTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dY5-OA-5Z4">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -324,35 +324,35 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mI2-B3-2Dr">
-                    <rect key="frame" x="223" y="50" width="35" height="23"/>
+                    <rect key="frame" x="264" y="50" width="35" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="35" id="C2H-ho-Lhl"/>
                         <constraint firstAttribute="height" constant="21" id="U66-bm-gzy"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="DWa-4z-345">
+                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="hyN-4W-57i" id="DWa-4z-345">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="9gA-X5-Prh">
                             <items>
                                 <menuItem title="Syntax Action" state="on" image="NSActionTemplate" hidden="YES" id="Iwh-vL-LrV"/>
-                                <menuItem title="Duplicate…" tag="-100" id="NNW-FT-uJ2">
+                                <menuItem title="複製…" tag="-100" id="NNW-FT-uJ2">
                                     <connections>
                                         <action selector="openSyntaxEditSheet:" target="-2" id="56D-Mi-K5K"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="Export…" id="LeQ-Ct-m5f">
+                                <menuItem title="書き出し…" id="LeQ-Ct-m5f">
                                     <connections>
                                         <action selector="exportSyntaxStyle:" target="-2" id="RDJ-UK-ew3"/>
                                     </connections>
                                 </menuItem>
-                                <menuItem title="Import…" id="1lj-x8-ouD">
+                                <menuItem title="読み込み…" id="1lj-x8-ouD">
                                     <connections>
                                         <action selector="importSyntaxStyle:" target="-2" id="msK-50-4LW"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="OxF-jR-DpE"/>
-                                <menuItem title="Show Extension Conflicts…" id="hyN-4W-57i">
+                                <menuItem title="拡張子のコンフリクトを表示…" id="hyN-4W-57i">
                                     <connections>
                                         <action selector="openSyntaxExtensionConflictSheet:" target="-2" id="Kw4-iR-TDZ"/>
                                     </connections>
@@ -362,9 +362,9 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XBA-8h-9hb">
-                    <rect key="frame" x="19" y="143" width="144" height="17"/>
+                    <rect key="frame" x="31" y="143" width="173" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Installed syntax styles:" id="vlw-Tc-sLl">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="インストール済みスタイル：" id="vlw-Tc-sLl">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -410,7 +410,7 @@
                 <constraint firstItem="79" firstAttribute="baseline" secondItem="80" secondAttribute="baseline" id="ahk-VG-Rkf"/>
                 <constraint firstItem="mI2-B3-2Dr" firstAttribute="leading" secondItem="dI1-Dk-Mce" secondAttribute="trailing" constant="-1" id="eVq-oK-0ma"/>
                 <constraint firstItem="44" firstAttribute="leading" secondItem="76" secondAttribute="trailing" constant="12" id="fkf-DX-XIS"/>
-                <constraint firstItem="703" firstAttribute="leading" secondItem="710" secondAttribute="trailing" constant="30" id="h71-40-mVu"/>
+                <constraint firstItem="703" firstAttribute="leading" secondItem="710" secondAttribute="trailing" constant="8" symbolic="YES" id="h71-40-mVu"/>
                 <constraint firstItem="727" firstAttribute="leading" secondItem="13" secondAttribute="leading" id="neP-RT-EpQ"/>
                 <constraint firstItem="710" firstAttribute="baseline" secondItem="430" secondAttribute="baseline" id="oAx-4E-BLj"/>
                 <constraint firstItem="Hma-8v-2gu" firstAttribute="top" secondItem="Gmu-7H-gv5" secondAttribute="bottom" constant="8" symbolic="YES" id="pqR-Qg-wsM"/>

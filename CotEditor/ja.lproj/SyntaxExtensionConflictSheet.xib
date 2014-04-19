@@ -43,7 +43,7 @@ DQ
                         <rect key="frame" x="18" y="300" width="384" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="拡張子のコンフリクト" id="1022">
-                            <font key="font" size="13" name="AquaKana-Bold"/>
+                            <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -162,7 +162,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                         <rect key="frame" x="18" y="46" width="384" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="解決するにはそれぞれのシンタックススタイルを編集して下さい。" id="iAh-PR-4FG">
-                            <font key="font" size="11" name="AquaKana"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>

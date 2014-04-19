@@ -41,9 +41,9 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="589">
-                    <rect key="frame" x="268" y="339" width="52" height="14"/>
+                    <rect key="frame" x="268" y="339" width="59" height="14"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Glossary:" id="3337">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="用語説明：" id="3337">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -114,12 +114,12 @@ The parent directory name of the dropped file.
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="XCP-jV-qFG"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
+                    <popUpButtonCell key="cell" type="push" title="定型文字列を挿入" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" title="OtherViews" id="543">
                             <items>
-                                <menuItem title="Insert Pre-Formatted String" hidden="YES" id="541"/>
+                                <menuItem title="定型文字列を挿入" hidden="YES" id="541"/>
                                 <menuItem title="&lt;&lt;&lt;ABSOLUTE-PATH>>>" toolTip="The dropped file absolute path." id="544">
                                     <connections>
                                         <action selector="insertFormatStringInFileDrop:" target="-2" id="555"/>
@@ -214,9 +214,9 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="466">
-                    <rect key="frame" x="99" y="339" width="153" height="14"/>
+                    <rect key="frame" x="94" y="339" width="158" height="14"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" id="3335">
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="（カンマ区切り、ドット不要）" id="3335">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -229,7 +229,7 @@ The parent directory name of the dropped file.
                         <constraint firstAttribute="height" constant="20" id="RDU-2u-Aor"/>
                         <constraint firstAttribute="width" constant="30" id="yzy-Pg-HBT"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Delete" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="3334">
+                    <buttonCell key="cell" type="smallSquare" title="削除" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="3334">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -241,7 +241,7 @@ The parent directory name of the dropped file.
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
                     <rect key="frame" x="20" y="193" width="30" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="smallSquare" title="New" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="3333">
+                    <buttonCell key="cell" type="smallSquare" title="追加" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="3333">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -251,9 +251,9 @@ The parent directory name of the dropped file.
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="456">
-                    <rect key="frame" x="18" y="157" width="112" height="17"/>
+                    <rect key="frame" x="18" y="157" width="173" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" id="3332">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="挿入文字列のフォーマット：" id="3332">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -311,9 +311,9 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="434">
-                    <rect key="frame" x="18" y="339" width="75" height="17"/>
+                    <rect key="frame" x="18" y="339" width="56" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Extensions:" id="3331">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="拡張子：" id="3331">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

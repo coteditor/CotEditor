@@ -81,7 +81,7 @@ DQ
                         <rect key="frame" x="18" y="332" width="434" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="150">
-                            <font key="font" size="11" name="AquaKana"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <string key="title">キーの列をダブルクリックして編集状態にし、希望のキーを入力してください。
 コマンドキーを含めることはできません。</string>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>

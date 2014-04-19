@@ -30,9 +30,9 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1356">
-                    <rect key="frame" x="91" y="363" width="43" height="17"/>
+                    <rect key="frame" x="78" y="363" width="56" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Color:" id="3388">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="カラー：" id="3388">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -45,15 +45,15 @@
                         <constraint firstAttribute="width" constant="220" id="76s-Ny-Xgv"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="KIj-uM-yBR"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3387">
+                    <popUpButtonCell key="cell" type="push" title="テキストを黒" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1353" id="3387">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="1352">
                             <items>
-                                <menuItem title="Black text" id="1353">
+                                <menuItem title="テキストを黒" state="on" id="1353">
                                     <attributedString key="attributedTitle"/>
                                 </menuItem>
-                                <menuItem title="Same as document's setting" id="1354"/>
+                                <menuItem title="書類の設定と同じ" id="1354"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -64,14 +64,14 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="950">
                     <rect key="frame" x="138" y="292" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3383">
+                    <popUpButtonCell key="cell" type="push" title="すべてプリント" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="954" id="3383">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="951">
                             <items>
-                                <menuItem title="(No Print)" id="952"/>
-                                <menuItem title="Same as document's setting" id="953"/>
-                                <menuItem title="Print All" id="954"/>
+                                <menuItem title="（プリントしない）" id="952"/>
+                                <menuItem title="書類の設定と同じ" id="953"/>
+                                <menuItem title="すべてプリント" state="on" id="954"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -80,9 +80,9 @@
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="949">
-                    <rect key="frame" x="68" y="297" width="66" height="17"/>
+                    <rect key="frame" x="52" y="297" width="82" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" id="3382">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="不可視文字：" id="3382">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -91,14 +91,14 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="944">
                     <rect key="frame" x="138" y="325" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3381">
+                    <popUpButtonCell key="cell" type="push" title="プリント" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="948" id="3381">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="945">
                             <items>
-                                <menuItem title="(No Print)" id="946"/>
-                                <menuItem title="Same as document's setting" id="947"/>
-                                <menuItem title="Print" id="948"/>
+                                <menuItem title="（プリントしない）" id="946"/>
+                                <menuItem title="書類の設定と同じ" id="947"/>
+                                <menuItem title="プリント" state="on" id="948"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -107,9 +107,9 @@
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="943">
-                    <rect key="frame" x="40" y="330" width="94" height="17"/>
+                    <rect key="frame" x="78" y="330" width="56" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Line numbers:" id="3380">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行番号：" id="3380">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -121,7 +121,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="7Gp-iZ-mz7"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
+                    <buttonCell key="cell" type="push" title="選択…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3385">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -142,7 +142,7 @@
                     </buttonCell>
                     <cells>
                         <column>
-                            <buttonCell type="radio" title="Same as document's font" imagePosition="left" alignment="left" state="on" inset="2" id="1012">
+                            <buttonCell type="radio" title="書類の設定と同じ" imagePosition="left" alignment="left" state="on" inset="2" id="1012">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -173,9 +173,9 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u8V-Dc-6yR">
-                    <rect key="frame" x="98" y="434" width="36" height="17"/>
+                    <rect key="frame" x="65" y="434" width="69" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Font:" id="C9y-bs-mE1">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="フォント：" id="C9y-bs-mE1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -187,20 +187,20 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="YJo-is-zIW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="uuc-7D-Iot" id="3370">
+                    <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="uuc-7D-Iot" id="3370">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="892">
                             <items>
-                                <menuItem title="(No Print)" id="895"/>
+                                <menuItem title="（プリントしない）" id="895"/>
                                 <menuItem isSeparatorItem="YES" id="894">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" state="on" tag="1" id="uuc-7D-Iot"/>
-                                <menuItem title="Document Name" tag="2" id="896"/>
-                                <menuItem title="File Path" tag="3" id="897"/>
-                                <menuItem title="Print Date" tag="4" id="898"/>
-                                <menuItem title="Page Number" tag="5" id="893"/>
+                                <menuItem title="シンタックス名" state="on" tag="1" id="uuc-7D-Iot"/>
+                                <menuItem title="書類名" tag="2" id="896"/>
+                                <menuItem title="ファイルパス" tag="3" id="897"/>
+                                <menuItem title="プリント日時" tag="4" id="898"/>
+                                <menuItem title="ページ番号" tag="5" id="893"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -210,9 +210,9 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="899">
-                    <rect key="frame" x="28" y="172" width="297" height="18"/>
+                    <rect key="frame" x="28" y="172" width="217" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the bottom of header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
+                    <buttonCell key="cell" type="check" title="ヘッダの下に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3371">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -221,27 +221,27 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="890">
-                    <rect key="frame" x="68" y="232" width="66" height="17"/>
+                    <rect key="frame" x="69" y="232" width="65" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Header 1:" id="3369">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="ヘッダ1：" id="3369">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="912">
-                    <rect key="frame" x="68" y="201" width="66" height="17"/>
+                    <rect key="frame" x="69" y="201" width="65" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Header 2:" id="3373">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="ヘッダ2：" id="3373">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="889">
-                    <rect key="frame" x="28" y="256" width="99" height="18"/>
+                    <rect key="frame" x="28" y="256" width="126" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Print header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
+                    <buttonCell key="cell" type="check" title="ヘッダをプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3368">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -252,20 +252,20 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="900">
                     <rect key="frame" x="138" y="195" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3372">
+                    <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="plk-U5-NGA" id="3372">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="901">
                             <items>
-                                <menuItem title="(No Print)" id="906"/>
+                                <menuItem title="（プリントしない）" id="906"/>
                                 <menuItem isSeparatorItem="YES" id="907">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="plk-U5-NGA"/>
-                                <menuItem title="Document Name" tag="2" id="902"/>
-                                <menuItem title="File Path" tag="3" id="903"/>
-                                <menuItem title="Print Date" tag="4" id="904"/>
-                                <menuItem title="Page Number" tag="5" id="905"/>
+                                <menuItem title="シンタックス名" state="on" tag="1" id="plk-U5-NGA"/>
+                                <menuItem title="書類名" tag="2" id="902"/>
+                                <menuItem title="ファイルパス" tag="3" id="903"/>
+                                <menuItem title="プリント日時" tag="4" id="904"/>
+                                <menuItem title="ページ番号" tag="5" id="905"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -275,9 +275,9 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="915">
-                    <rect key="frame" x="28" y="49" width="267" height="18"/>
+                    <rect key="frame" x="28" y="49" width="217" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Print separator line at the top of footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
+                    <buttonCell key="cell" type="check" title="フッタの上に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3374">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -286,27 +286,27 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="942">
-                    <rect key="frame" x="73" y="109" width="61" height="17"/>
+                    <rect key="frame" x="69" y="109" width="65" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Footer 1:" id="3379">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="フッタ1：" id="3379">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="933">
-                    <rect key="frame" x="73" y="78" width="61" height="17"/>
+                    <rect key="frame" x="69" y="78" width="65" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Footer 2:" id="3377">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="フッタ2：" id="3377">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="916">
-                    <rect key="frame" x="28" y="133" width="94" height="18"/>
+                    <rect key="frame" x="28" y="133" width="126" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="Print footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
+                    <buttonCell key="cell" type="check" title="フッタをプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3375">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -317,20 +317,20 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="934">
                     <rect key="frame" x="138" y="103" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3378">
+                    <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="Mvg-wT-FTM" id="3378">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="935">
                             <items>
-                                <menuItem title="(No Print)" id="941"/>
+                                <menuItem title="（プリントしない）" id="941"/>
                                 <menuItem isSeparatorItem="YES" id="936">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" tag="1" id="Mvg-wT-FTM"/>
-                                <menuItem title="Document Name" tag="2" id="937"/>
-                                <menuItem title="File Path" tag="3" id="938"/>
-                                <menuItem title="Print Date" tag="4" id="939"/>
-                                <menuItem title="Page Number" tag="5" id="940"/>
+                                <menuItem title="シンタックス名" state="on" tag="1" id="Mvg-wT-FTM"/>
+                                <menuItem title="書類名" tag="2" id="937"/>
+                                <menuItem title="ファイルパス" tag="3" id="938"/>
+                                <menuItem title="プリント日時" tag="4" id="939"/>
+                                <menuItem title="ページ番号" tag="5" id="940"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -342,20 +342,20 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="925">
                     <rect key="frame" x="138" y="72" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ckJ-Cw-ccE" id="3376">
+                    <popUpButtonCell key="cell" type="push" title="シンタックス名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ckJ-Cw-ccE" id="3376">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="926">
                             <items>
-                                <menuItem title="(No Print)" id="927"/>
+                                <menuItem title="（プリントしない）" id="927"/>
                                 <menuItem isSeparatorItem="YES" id="928">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" state="on" tag="1" id="ckJ-Cw-ccE"/>
-                                <menuItem title="Document Name" tag="2" id="929"/>
-                                <menuItem title="File Path" tag="3" id="930"/>
-                                <menuItem title="Print Date" tag="4" id="931"/>
-                                <menuItem title="Page Number" tag="5" id="932"/>
+                                <menuItem title="シンタックス名" state="on" tag="1" id="ckJ-Cw-ccE"/>
+                                <menuItem title="書類名" tag="2" id="929"/>
+                                <menuItem title="ファイルパス" tag="3" id="930"/>
+                                <menuItem title="プリント日時" tag="4" id="931"/>
+                                <menuItem title="ページ番号" tag="5" id="932"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -370,9 +370,9 @@
                     <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="rightAlignTemplate" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -396,9 +396,9 @@
                     <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="rightAlignTemplate" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -422,9 +422,9 @@
                     <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="rightAlignTemplate" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -448,9 +448,9 @@
                     <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="leftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="rightAlignTemplate" width="24">
+                            <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
+                            <segment toolTip="中央揃え" image="centerAlignTemplate" width="24" selected="YES" tag="1"/>
+                            <segment toolTip="右揃え" image="rightAlignTemplate" width="24">
                                 <nil key="label"/>
                             </segment>
                         </segments>

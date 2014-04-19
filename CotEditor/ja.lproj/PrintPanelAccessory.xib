@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPrintPanelAccessoryController">
@@ -22,12 +22,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="ywH-Ua-doT"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="722">
+                    <popUpButtonCell key="cell" type="push" title="テキストを黒" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="590" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="587">
                             <items>
-                                <menuItem title="テキストを黒" id="590"/>
+                                <menuItem title="テキストを黒" state="on" id="590"/>
                                 <menuItem title="書類の設定と同じ" id="589"/>
                             </items>
                         </menu>
@@ -51,14 +51,14 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="04O-p7-HaW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="719">
+                    <popUpButtonCell key="cell" type="push" title="すべてプリント" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="426" id="719">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="425">
                             <items>
                                 <menuItem title="（プリントしない）" id="428"/>
                                 <menuItem title="書類の設定と同じ" id="427"/>
-                                <menuItem title="すべてプリント" id="426"/>
+                                <menuItem title="すべてプリント" state="on" id="426"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -111,7 +111,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="ページ番号" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="200" id="704">
+                    <popUpButtonCell key="cell" type="push" title="プリント日時" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="206" id="704">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="199">
@@ -123,8 +123,8 @@
                                 <menuItem title="シンタックス名" tag="1" id="UJ5-ki-qHL"/>
                                 <menuItem title="書類名" tag="2" id="202"/>
                                 <menuItem title="ファイルパス" tag="3" id="203"/>
-                                <menuItem title="プリント日時" tag="4" id="206"/>
-                                <menuItem title="ページ番号" state="on" tag="5" id="200"/>
+                                <menuItem title="プリント日時" state="on" tag="4" id="206"/>
+                                <menuItem title="ページ番号" tag="5" id="200"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
