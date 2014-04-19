@@ -38,8 +38,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CELayoutManager.h"
-#import "CEAppController.h"
+#import "CETextViewCore.h"
+#import "CEPrintView.h"
 #import "CEATSTypesetter.h"
+#import "CEUtilities.h"
 #import "constants.h"
 
 
@@ -80,11 +82,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self = [super init]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        CEAppController *appController = (CEAppController *)[NSApp delegate];
-        [self setSpaceCharacter:[appController invisibleSpaceCharacter:[defaults integerForKey:k_key_invisibleSpace]]];
-        [self setTabCharacter:[appController invisibleTabCharacter:[defaults integerForKey:k_key_invisibleTab]]];
-        [self setNewLineCharacter:[appController invisibleNewLineCharacter:[defaults integerForKey:k_key_invisibleNewLine]]];
-        [self setFullwidthSpaceCharacter:[appController invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
+        [self setSpaceCharacter:[CEUtilities invisibleSpaceCharacter:[defaults integerForKey:k_key_invisibleSpace]]];
+        [self setTabCharacter:[CEUtilities invisibleTabCharacter:[defaults integerForKey:k_key_invisibleTab]]];
+        [self setNewLineCharacter:[CEUtilities invisibleNewLineCharacter:[defaults integerForKey:k_key_invisibleNewLine]]];
+        [self setFullwidthSpaceCharacter:[CEUtilities invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
 
         // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
         [self setFixLineHeight:NO];

@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEDocument+ScriptingSupport.h"
+#import "CEUtilities.h"
 
 
 @implementation CEDocument (ScriptingSupport)
@@ -286,7 +287,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
-    NSStringEncoding encoding = [[NSApp delegate] encodingFromName:encodingName];
+    NSStringEncoding encoding = [CEUtilities encodingFromName:encodingName];
     BOOL success = NO;
 
     if (encoding == NSNotFound) {
@@ -312,7 +313,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
-    NSStringEncoding encoding = [[NSApp delegate] encodingFromName:encodingName];
+    NSStringEncoding encoding = [CEUtilities encodingFromName:encodingName];
     BOOL success = NO;
 
     if ((encoding == NSNotFound) || ([self fileURL] == nil)) {

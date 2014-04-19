@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEKeyBindingManager.h"
+#import "CEUtilities.h"
 #import "constants.h"
 
 
@@ -819,9 +820,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             NSString *keySpecChars = [self keySpecCharsInDictionaryFromSelectorString:selectorString];
             NSUInteger modifierMask = 0;
-            NSString *keyEquivalent = [[NSApp delegate] keyEquivalentAndModifierMask:&modifierMask
-                                                                          fromString:keySpecChars
-                                                                 includingCommandKey:YES];
+            NSString *keyEquivalent = [CEUtilities keyEquivalentAndModifierMask:&modifierMask
+                                                                     fromString:keySpecChars
+                                                            includingCommandKey:YES];
 
             // theKeySpecChars があり Cmd が設定されている場合だけ、反映させる
             if ((keySpecChars != nil) && ([keySpecChars length] > 0) && (modifierMask & NSCommandKeyMask)) {

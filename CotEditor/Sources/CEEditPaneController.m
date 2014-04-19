@@ -32,7 +32,8 @@
  */
 
 #import "CEEditPaneController.h"
-#import "CEAppController.h"
+#import "CEDocument.h"
+#import "CEUtilities.h"
 #import "constants.h"
 
 
@@ -69,26 +70,25 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // 不可視文字表示ポップアップ用の選択肢をセットする
-        CEAppController *appDelegate = [NSApp delegate];
         NSUInteger i;
         NSMutableArray *spaces = [NSMutableArray array];
         for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
-            [spaces addObject:[appDelegate invisibleSpaceCharacter:i]];
+            [spaces addObject:[CEUtilities invisibleSpaceCharacter:i]];
         }
         [self setInvisibleSpaces:spaces];
         NSMutableArray *tabs = [NSMutableArray array];
         for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
-            [tabs addObject:[appDelegate invisibleTabCharacter:i]];
+            [tabs addObject:[CEUtilities invisibleTabCharacter:i]];
         }
         [self setInvisibleTabs:tabs];
         NSMutableArray *newLines = [NSMutableArray array];
         for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
-            [newLines addObject:[appDelegate invisibleNewLineCharacter:i]];
+            [newLines addObject:[CEUtilities invisibleNewLineCharacter:i]];
         }
         [self setInvisibleNewLines:newLines];
         NSMutableArray *fullWidthSpaces = [NSMutableArray array];
         for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
-            [fullWidthSpaces addObject:[appDelegate invisibleFullwidthSpaceCharacter:i]];
+            [fullWidthSpaces addObject:[CEUtilities invisibleFullwidthSpaceCharacter:i]];
         }
         [self setInvisibleFullWidthSpaces:fullWidthSpaces];
     }

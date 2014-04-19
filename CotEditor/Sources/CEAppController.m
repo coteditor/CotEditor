@@ -48,7 +48,6 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 @interface CEAppController ()
 
-@property (nonatomic) NSArray *invalidYenEncodings;
 @property (nonatomic) BOOL didFinishLaunching;
 
 
@@ -247,26 +246,6 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 //=======================================================
 
 // ------------------------------------------------------
-/// 初期化
-- (instancetype)init
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        NSMutableArray *encodings = [NSMutableArray array];
-        NSStringEncoding encoding;
-        NSUInteger i;
-        for (i = 0; i < sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings); i++) {
-            encoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
-            [encodings addObject:@(encoding)];
-        }
-        [self setInvalidYenEncodings:encodings];
-    }
-    return self;
-}
-
-
-// ------------------------------------------------------
 /// あとかたづけ
 - (void)dealloc
 // ------------------------------------------------------
@@ -282,135 +261,6 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 {
     [self buildEncodingMenuItems];
     [self buildFormatEncodingMenu];
-}
-
-
-// ------------------------------------------------------
-/// 非表示半角スペース表示用文字を返すユーティリティメソッド
-- (NSString *)invisibleSpaceCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)) - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleSpaceCharList[sanitizedIndex];
-
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// 非表示タブ表示用文字を返すユーティリティメソッド
-- (NSString *)invisibleTabCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = (sizeof(k_invisibleTabCharList) / sizeof(unichar)) - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleTabCharList[sanitizedIndex];
-
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// 非表示改行表示用文字を返すユーティリティメソッド
-- (NSString *)invisibleNewLineCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)) - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleNewLineCharList[sanitizedIndex];
-
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// 非表示全角スペース表示用文字を返すユーティリティメソッド
-- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
-// ------------------------------------------------------
-{
-    NSUInteger max = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)) - 1;
-    NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleFullwidthSpaceCharList[sanitizedIndex];
-
-    return [NSString stringWithCharacters:&theUnichar length:1];
-}
-
-
-// ------------------------------------------------------
-/// エンコーディング名からNSStringEncodingを返すユーティリティメソッド
-- (NSStringEncoding)encodingFromName:(NSString *)encodingName
-// ------------------------------------------------------
-{
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
-    NSStringEncoding encoding;
-    BOOL isValid = NO;
-
-    for (NSNumber __strong *encodingNumber in encodings) {
-        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
-        if (cfEncoding != kCFStringEncodingInvalidId) { // = separator
-            encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-            if ([encodingName isEqualToString:[NSString localizedNameOfStringEncoding:encoding]]) {
-                isValid = YES;
-                break;
-            }
-        }
-    }
-    return (isValid) ? encoding : NSNotFound;
-}
-
-
-// ------------------------------------------------------
-/// エンコーディング名からNSStringEncodingを返すユーティリティメソッド
-- (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
-// ------------------------------------------------------
-{
-    return ([[self invalidYenEncodings] containsObject:@(encoding)]);
-}
-
-
-// ------------------------------------------------------
-/// 文字列からキーボードショートカット定義を読み取るユーティリティメソッド
-- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey
-//------------------------------------------------------
-{
-    *modifierMask = 0;
-    NSUInteger length = [string length];
-    if ((string == nil) || (length < 2)) { return @""; }
-
-    NSString *key = [string substringFromIndex:(length - 1)];
-    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:[string substringToIndex:(length - 1)]];
-
-    if (isIncludingCommandKey) { // === Cmd 必須のとき
-        if ([charSet characterIsMember:k_keySpecCharList[3]]) { // @
-            if ([charSet characterIsMember:k_keySpecCharList[0]]) { // ^
-                *modifierMask |= NSControlKeyMask;
-            }
-            if ([charSet characterIsMember:k_keySpecCharList[1]]) { // ~
-                *modifierMask |= NSAlternateKeyMask;
-            }
-            if (([charSet characterIsMember:k_keySpecCharList[2]]) ||
-                    (isupper([key characterAtIndex:0]) == 1)) { // $
-                *modifierMask |= NSShiftKeyMask;
-            }
-            *modifierMask |= NSCommandKeyMask;
-        }
-    } else {
-        if ([charSet characterIsMember:k_keySpecCharList[0]]) {
-            *modifierMask |= NSControlKeyMask;
-        }
-        if ([charSet characterIsMember:k_keySpecCharList[1]]) {
-            *modifierMask |= NSAlternateKeyMask;
-        }
-        if ([charSet characterIsMember:k_keySpecCharList[2]]) {
-            *modifierMask |= NSShiftKeyMask;
-        }
-        if ([charSet characterIsMember:k_keySpecCharList[3]]) {
-            *modifierMask |= NSCommandKeyMask;
-        }
-    }
-
-    return (modifierMask != 0) ? key : @"";
 }
 
 

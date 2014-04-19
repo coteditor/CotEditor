@@ -34,6 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <objc/message.h>
 #import "CEDocument.h"
 #import "CEPrintPanelAccessoryController.h"
+#import "CEUtilities.h"
 #import "ODBEditorSuite.h"
 #import "UKXattrMetadataStore.h"
 #import "NSData+MD5.h"
@@ -715,7 +716,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             curChar = [wholeString substringWithRange:NSMakeRange(i, 1)];
             convertedChar = [convertedString substringWithRange:NSMakeRange(i, 1)];
 
-            if (([[NSApp delegate] isInvalidYenEncoding:encoding]) && 
+            if (([CEUtilities isInvalidYenEncoding:encoding]) &&
                     ([curChar isEqualToString:yenMarkChar])) {
                 curChar = yenMarkChar;
                 convertedChar = @"\\";
@@ -1458,7 +1459,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (length > 0) {
         NSMutableString *outString = [string mutableCopy]; // ===== mutableCopy
-        if ([[NSApp delegate] isInvalidYenEncoding:encoding]) {
+        if ([CEUtilities isInvalidYenEncoding:encoding]) {
             (void)[outString replaceOccurrencesOfString:
                         [NSString stringWithCharacters:&k_yenMark length:1] withString:@"\\" 
                         options:0 range:NSMakeRange(0, length)];

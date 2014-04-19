@@ -51,14 +51,6 @@ extern NSString *const CEEncodingListDidUpdateNotification;
 
 // Public method
 - (void)buildAllEncodingMenus;
-- (NSString *)invisibleSpaceCharacter:(NSUInteger)index;
-- (NSString *)invisibleTabCharacter:(NSUInteger)index;
-- (NSString *)invisibleNewLineCharacter:(NSUInteger)index;
-- (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index;
-- (NSStringEncoding)encodingFromName:(NSString *)encodingName;
-- (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding;
-- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask
-                                fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey;
 
 // Action Message
 - (IBAction)openPreferences:(id)sender;
