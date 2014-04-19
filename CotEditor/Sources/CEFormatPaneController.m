@@ -371,9 +371,6 @@
 {
     NSArray *menuItems = [(CEAppController *)[NSApp delegate] encodingMenuItems];
     
-    NSString *title;
-    NSUInteger selected;
-    
     [[self encodingMenuInOpen] removeAllItems];
     [[self encodingMenuInNew] removeAllItems];
     
@@ -390,16 +387,8 @@
     
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    selected = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];
-    if (selected == k_autoDetectEncodingMenuTag) {
-        title = NSLocalizedString(@"Auto-Detect", nil);
-    } else {
-        title = [NSString localizedNameOfStringEncoding:selected];
-    }
-    [[self encodingMenuInOpen] selectItemWithTitle:title];
-    title = [NSString localizedNameOfStringEncoding:[[NSUserDefaults standardUserDefaults]
-                                                     integerForKey:k_key_encodingInNew]];
-    [[self encodingMenuInNew] selectItemWithTitle:title];
+    [[self encodingMenuInOpen] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen]];
+    [[self encodingMenuInNew] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew]];
 }
 
 
