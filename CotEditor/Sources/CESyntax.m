@@ -82,9 +82,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        (void)[NSBundle loadNibNamed:@"Indicator" owner:self];
         [self setShowColoringIndicatorTextLength:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength]];
-        [[self coloringIndicator] setIndeterminate:NO];
     }
     return self;
 }
@@ -944,6 +942,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSWindow *documentWindow = nil;
     NSWindow *sheet = nil;
     if (([self showColoringIndicatorTextLength] > 0) && ([self updateRange].length > [self showColoringIndicatorTextLength])) {
+        if (![self coloringIndicator]) {
+            [NSBundle loadNibNamed:@"Indicator" owner:self];
+            [[self coloringIndicator] setIndeterminate:NO];
+        }
         [self setIsIndicatorShown:YES];
         [self setDoubleIndicator:0];
         if ([self isPrinting]) {
