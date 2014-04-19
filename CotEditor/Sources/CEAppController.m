@@ -281,9 +281,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 // ------------------------------------------------------
 {
     [self buildEncodingMenuItems];
-    
     [self buildFormatEncodingMenu];
-    
 }
 
 
@@ -373,8 +371,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 // ------------------------------------------------------
 /// 文字列からキーボードショートカット定義を読み取るユーティリティメソッド
-- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask
-        fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey
+- (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey
 //------------------------------------------------------
 {
     *modifierMask = 0;
@@ -434,7 +431,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     [self buildAllEncodingMenus];
     [self buildSyntaxMenu];
     [[CEScriptManager sharedManager] buildScriptMenu:nil];
-    [self cacheTheInvisibleGlyph];
+    [self cacheInvisibleGlyphs];
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -504,21 +501,21 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
     [findMenu addItem:[NSMenuItem separatorItem]];
     unichar upKey = NSUpArrowFunctionKey;
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Prev Outline Item",@"")
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Prev Outline Item", nil)
                                           action:@selector(selectPrevItemOfOutlineMenu:)
                                    keyEquivalent:[NSString stringWithCharacters:&upKey length:1]];
     [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
     [findMenu addItem:menuItem];
 
-    unichar theDownKey = NSDownArrowFunctionKey;
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Next Outline Item",@"")
+    unichar downKey = NSDownArrowFunctionKey;
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Select Next Outline Item", nil)
                                           action:@selector(selectNextItemOfOutlineMenu:)
-                                   keyEquivalent:[NSString stringWithCharacters:&theDownKey length:1]];
+                                   keyEquivalent:[NSString stringWithCharacters:&downKey length:1]];
     [menuItem setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)];
     [findMenu addItem:menuItem];
 
     [findMenu addItem:[NSMenuItem separatorItem]];
-    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To…",@"")
+    menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To…", nil)
                                           action:@selector(openGoToPanel:)
                                    keyEquivalent:@"l"];
     [findMenu addItem:menuItem];
@@ -610,7 +607,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openDictionary" withExtension:@"applescript"];
     NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
-    (void)[AppleScript executeAndReturnError:nil];
+    [AppleScript executeAndReturnError:nil];
 }
 
 
@@ -728,7 +725,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
                                          attributes:nil
                                               error:nil];
         if (!success) {
-            NSLog(@"Could not create support directory for CotEditor...");
+            NSLog(@"Failed to create support directory for CotEditor...");
         }
     } else if (!isDirectory) {
         NSLog(@"\"%@\" is not dir.", URL);
@@ -760,6 +757,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     
     [self setEncodingMenuItems:items];
     
+    // リストのできあがりを通知
     [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:nil];
 }
 
@@ -788,12 +786,10 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
-    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSMenuItem *item;
-    
     NSMenuItem *syntaxMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
     [syntaxMenuItem setSubmenu:[[NSMenu alloc] initWithTitle:@"SYNTAX"]]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
     NSMenu *menu = [syntaxMenuItem submenu];
+    NSMenuItem *item;
     
     // None を追加
     item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
@@ -803,6 +799,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     [menu addItem:[NSMenuItem separatorItem]];
     
     // シンタックススタイルをラインナップ
+    NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     for (NSString *styleName in styleNames) {
         item = [[NSMenuItem alloc] initWithTitle:styleName
                                           action:@selector(changeSyntaxStyle:)
@@ -823,22 +820,21 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
 //------------------------------------------------------
 /// 不可視文字列表示時のタイムラグを短縮するため、キャッシュしておく
-- (void)cacheTheInvisibleGlyph
+- (void)cacheInvisibleGlyphs
 //------------------------------------------------------
 {
     NSMutableString *chars = [NSMutableString string];
-    NSUInteger i;
 
-    for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleSpaceCharList[i] length:1]];
     }
-    for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleTabCharList[i] length:1]];
     }
-    for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleNewLineCharList[i] length:1]];
     }
-    for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleFullwidthSpaceCharList[i] length:1]];
     }
     if ([chars length] < 1) { return; }
@@ -849,7 +845,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 
     [layoutManager addTextContainer:container];
     [storage addLayoutManager:layoutManager];
-    (void)[layoutManager glyphRangeForTextContainer:container];
+    [layoutManager glyphRangeForTextContainer:container];
 }
 
 @end
