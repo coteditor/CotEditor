@@ -256,7 +256,7 @@
         NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
         
         // 同名styleが既にあるときは、置換してもいいか確認
-        if ([[CESyntaxManager sharedManager] existsStyleFileWithStyleName:styleName]) {
+        if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             // オープンパネルを閉じる
             [openPanel orderOut:blockSelf];
             [[[blockSelf view] window] makeKeyAndOrderFront:blockSelf];

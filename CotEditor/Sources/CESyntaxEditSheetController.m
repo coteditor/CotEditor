@@ -223,15 +223,23 @@
     
     [[self styleNameField] setStringValue:styleName];
     
-    if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit)) {
-        if ([styleName length] < 1) { // ファイル名としても使われるので、空は不可
-            [[self messageField] setStringValue:NSLocalizedString(@"Input the Style Name!", nil)];
-            NSBeep();
-            [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
-            return;
-        } else if ([[CESyntaxManager sharedManager] existsStyleFileWithStyleName:styleName]) { // 既にある名前は不可
-            [[self messageField] setStringValue:[NSString stringWithFormat:
-                                                 NSLocalizedString(@"“%@” is already exist. Input new name.", nil), styleName]];
+    // style名のチェック
+    if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit) ||
+        (([self mode] == CESyntaxEdit) && ![styleName isEqualToString:[self originalStyleName]]))
+    {
+        NSString *errorMessage = nil;
+        if ([styleName length] < 1) {  // 空は不可
+            errorMessage = NSLocalizedString(@"Input style name.", nil);
+        } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
+            errorMessage = NSLocalizedString(@"Style Name cannot contain “/”. Input another name.", nil);
+        } else if ([styleName rangeOfString:@"."].location == 0) {  // ファイル名としても使われるので、"." から始まる名前は不可
+            errorMessage = NSLocalizedString(@"Style Name cannot begin with “.”. Input another name.", nil);
+        } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {  // 既にある名前は不可
+            errorMessage = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), styleName];
+        }
+        
+        if (errorMessage) {
+            [[self messageField] setStringValue:errorMessage];
             NSBeep();
             [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
             return;

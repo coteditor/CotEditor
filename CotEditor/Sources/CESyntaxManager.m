@@ -321,10 +321,10 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
             // 内部で持っているキャッシュ用データを更新
             [self updateCache];
         } else {
-            NSLog(@"Error. Could not remove \"%@\"", URL);
+            NSLog(@"Error. Could not remove \"%@\".", URL);
         }
     } else {
-        NSLog(@"Error. Could not be found \"%@\" for remove", URL);
+        NSLog(@"Error. Could not be found \"%@\" for remove.", URL);
     }
     return success;
 }
@@ -347,16 +347,18 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
     NSURL *URL = [self userStyleDirectoryURL];
     NSString *compareName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *copyName;
-    NSMutableString *copiedSyntaxName = [NSMutableString string];
     NSRange copiedStrRange;
     BOOL copiedState = NO;
-    NSInteger i = 1;
+    NSUInteger i = 2;
     
-    copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy$", nil)];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@" copy$", nil)
+                                                                           options:0 error:nil];
+    copiedStrRange = [regex rangeOfFirstMatchInString:compareName options:0 range:NSMakeRange(0, [compareName length])];
     if (copiedStrRange.location != NSNotFound) {
         copiedState = YES;
     } else {
-        copiedStrRange = [compareName rangeOfRegularExpressionString:NSLocalizedString(@" copy [0-9]+$", nil)];
+        regex = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@" copy [0-9]+$", nil) options:0 error:nil];
+        copiedStrRange = [regex rangeOfFirstMatchInString:compareName options:0 range:NSMakeRange(0, [compareName length])];
         if (copiedStrRange.location != NSNotFound) {
             copiedState = YES;
         }
@@ -368,11 +370,10 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
     } else {
         copyName = [NSString stringWithFormat:@"%@%@", compareName, NSLocalizedString(@" copy", nil)];
     }
-    [copiedSyntaxName appendFormat:@"%@.plist", copyName];
-    while ([[URL URLByAppendingPathExtension:copiedSyntaxName] checkResourceIsReachableAndReturnError:nil]) {
-        i++;
+    NSMutableString *copiedSyntaxName = [copyName mutableCopy];
+    while ([[self styleNames] containsObject:copiedSyntaxName]) {
         [copiedSyntaxName setString:[NSString stringWithFormat:@"%@ %li", copyName, (long)i]];
-        [copiedSyntaxName appendString:@".plist"];
+        i++;
     }
     return [copiedSyntaxName stringByDeletingPathExtension];
 }

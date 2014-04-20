@@ -188,10 +188,11 @@ http://www.aynimac.com/
 
 
 /* CESyntaxManager */
-// Syntax coloring style name was set to blank message
-"Input the Style Name!" = "スタイル名を入力してください！";
-// Syntax coloring style name already exists
-"“%@” is already exist. Input new name." = "“%@” は既に使われています。ほかの名前を入力してください。";
+// Syntax coloring style name errors
+"Input style name." = "スタイル名を入力してください。";
+"“%@” is already exist. Input another name." = "“%@” は既に使われています。ほかの名前を入力してください。";
+"Style Name cannot contain “/”. Input another name." = "スタイル名に “/” を含むことはできません。ほかの名前を入力してください。";
+"Style Name cannot begin with “.”. Input another name." = "スタイル名を “.” から始めることはできません。ほかの名前を入力してください。";
 // selected Syntax coloring style name was original
 "The default style name cannot be changed." = "デフォルトのスタイル名は変更できません。";
 // Suffix of copied syntax coloring style
