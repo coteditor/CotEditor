@@ -59,7 +59,7 @@ extern NSString *const CEThemeDidUpdateNotification;
 
 @interface CEThemeManager : NSObject
 
-@property (nonatomic, readonly) NSArray *themeNames;
+@property (nonatomic, copy, readonly) NSArray *themeNames;
 
 
 // class method

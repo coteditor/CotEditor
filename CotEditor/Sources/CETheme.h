@@ -36,7 +36,7 @@
 @interface CETheme : NSObject
 
 /// name of the theme
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *name;
 
 // basic colors
 @property (nonatomic, readonly) NSColor *textColor;

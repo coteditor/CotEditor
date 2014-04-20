@@ -59,11 +59,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 @interface CEThemeManager ()
 
-@property (nonatomic) NSDictionary *archivedThemes;
-@property (nonatomic) NSArray *bundledThemeNames;
+@property (nonatomic, copy) NSDictionary *archivedThemes;
+@property (nonatomic, copy) NSArray *bundledThemeNames;
 
 // readonly
-@property (nonatomic, readwrite) NSArray *themeNames;
+@property (nonatomic, copy, readwrite) NSArray *themeNames;
 
 @end
 
