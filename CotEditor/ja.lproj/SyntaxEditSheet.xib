@@ -41,11 +41,14 @@
                         <constraints>
                             <constraint firstAttribute="width" priority="250" constant="280" id="yoK-kW-EZU"/>
                         </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="988">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="スタイル名" drawsBackground="YES" usesSingleLineMode="YES" id="988">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="Zdq-d2-gEr"/>
+                        </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="265">
                         <rect key="frame" x="166" y="342" width="436" height="14"/>
@@ -1814,23 +1817,37 @@ DQ
                             <action selector="saveEdit:" target="-2" id="rli-FP-Z2f"/>
                         </connections>
                     </button>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="YNt-ZS-01O">
+                        <rect key="frame" x="456" y="361" width="15" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="YWJ-NV-KyY"/>
+                            <constraint firstAttribute="height" constant="15" id="iox-ps-kAQ"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSInvalidDataFreestandingTemplate" id="7UO-93-nBd"/>
+                        <connections>
+                            <binding destination="-2" name="hidden" keyPath="isStyleNameValid" id="7oZ-sV-och"/>
+                        </connections>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="91" firstAttribute="leading" secondItem="92" secondAttribute="trailing" constant="12" symbolic="YES" id="0a9-gj-yVO"/>
                     <constraint firstItem="215" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" id="0ga-oA-Zxx"/>
+                    <constraint firstItem="YNt-ZS-01O" firstAttribute="leading" secondItem="215" secondAttribute="trailing" constant="8" symbolic="YES" id="1D3-7x-DeL"/>
                     <constraint firstItem="92" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="670" secondAttribute="trailing" constant="8" symbolic="YES" id="3no-XE-UBa"/>
                     <constraint firstItem="215" firstAttribute="baseline" secondItem="214" secondAttribute="baseline" id="4DT-rX-0Vx"/>
                     <constraint firstItem="WT6-a5-cVO" firstAttribute="top" secondItem="393" secondAttribute="top" id="4kK-Zd-8ao"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="393" secondAttribute="bottom" constant="12" id="5sq-No-Prd"/>
+                    <constraint firstItem="215" firstAttribute="centerY" secondItem="YNt-ZS-01O" secondAttribute="centerY" id="9KN-Pb-0AO"/>
                     <constraint firstItem="215" firstAttribute="leading" secondItem="393" secondAttribute="leading" id="9vd-fc-vop"/>
                     <constraint firstItem="670" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="D0J-in-juQ"/>
                     <constraint firstItem="393" firstAttribute="leading" secondItem="WT6-a5-cVO" secondAttribute="trailing" constant="8" symbolic="YES" id="Ptq-34-kAN"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YNt-ZS-01O" secondAttribute="trailing" constant="20" symbolic="YES" id="Q8q-F0-Z8P"/>
                     <constraint firstAttribute="trailing" secondItem="91" secondAttribute="trailing" constant="20" symbolic="YES" id="QBI-uN-8ER"/>
                     <constraint firstItem="265" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="2" id="ZSQ-qE-vcp"/>
                     <constraint firstAttribute="trailing" secondItem="265" secondAttribute="trailing" constant="20" symbolic="YES" id="ZSz-Sf-Rzl"/>
                     <constraint firstItem="WT6-a5-cVO" firstAttribute="bottom" secondItem="393" secondAttribute="bottom" id="bj7-P2-oX7"/>
                     <constraint firstItem="WT6-a5-cVO" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="d9M-Vw-Thb"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="215" secondAttribute="trailing" constant="20" symbolic="YES" id="dOx-0C-evp"/>
                     <constraint firstAttribute="bottom" secondItem="91" secondAttribute="bottom" constant="20" symbolic="YES" id="kgh-UB-LHQ"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="91" secondAttribute="top" id="kum-2W-D5e"/>
                     <constraint firstItem="265" firstAttribute="leading" secondItem="215" secondAttribute="leading" id="nNG-pM-hBV"/>
@@ -1985,6 +2002,7 @@ DQ
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
+        <image name="NSInvalidDataFreestandingTemplate" width="18" height="18"/>
         <image name="NSRemoveTemplate" width="8" height="8"/>
     </resources>
 </document>

@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 };
 
 
-@interface CESyntaxEditSheetController : NSWindowController <NSTableViewDelegate, NSWindowDelegate, NSTableViewDataSource>
+@interface CESyntaxEditSheetController : NSWindowController <NSTextFieldDelegate, NSTableViewDelegate, NSWindowDelegate>
 
 /// saved new style name, or nil if canceled
 @property (nonatomic) NSString *savedNewStyleName;

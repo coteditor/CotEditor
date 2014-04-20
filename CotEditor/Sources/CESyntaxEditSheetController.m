@@ -42,6 +42,7 @@
 @property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
+@property (nonatomic) BOOL isStyleNameValid;
 
 @property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
@@ -99,6 +100,7 @@
         [self setMode:mode];
         [self setOriginalStyleName:name];
         [self setStyle:style];
+        [self setIsStyleNameValid:YES];
     }
     
     return self;
@@ -135,8 +137,27 @@
 #pragma mark Delegate and Notification
 
 //=======================================================
+// Delegate method (NSTextField)
+//  <== styleNameField
+//=======================================================
+
+// ------------------------------------------------------
+/// スタイル名が変更された
+- (void)controlTextDidChange:(NSNotification *)aNotification
+// ------------------------------------------------------
+{
+    // 入力されたスタイル名の検証
+    if ([aNotification object] == [self styleNameField]) {
+        NSString *styleName = [[self styleNameField] stringValue];
+        styleName = [styleName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        [self validateStyleName:styleName];
+    }
+}
+
+
+//=======================================================
 // Delegate method (NSTableView)
-//  <== tableViews in edit sheet
+//  <== tableViews
 //=======================================================
 
 // ------------------------------------------------------
@@ -224,27 +245,13 @@
     [[self styleNameField] setStringValue:styleName];
     
     // style名のチェック
-    if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit) ||
-        (([self mode] == CESyntaxEdit) && ![styleName isEqualToString:[self originalStyleName]]))
-    {
-        NSString *errorMessage = nil;
-        if ([styleName length] < 1) {  // 空は不可
-            errorMessage = NSLocalizedString(@"Input style name.", nil);
-        } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
-            errorMessage = NSLocalizedString(@"Style Name cannot contain “/”. Input another name.", nil);
-        } else if ([styleName rangeOfString:@"."].location == 0) {  // ファイル名としても使われるので、"." から始まる名前は不可
-            errorMessage = NSLocalizedString(@"Style Name cannot begin with “.”. Input another name.", nil);
-        } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {  // 既にある名前は不可
-            errorMessage = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), styleName];
-        }
-        
-        if (errorMessage) {
-            [[self messageField] setStringValue:errorMessage];
-            NSBeep();
-            [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
-            return;
-        }
+    NSString *errorMessage = [self validateStyleName:styleName];
+    if (errorMessage) {
+        NSBeep();
+        [[[self styleNameField] window] makeFirstResponder:[self styleNameField]];
+        return;
     }
+    
     // エラー未チェックかつエラーがあれば、表示（エラーを表示していてOKボタンを押下したら、そのまま確定）
     if ([[[self validationTextView] string] isEqualToString:@""] && ([self validate] > 0)) {
         // 「構文要素チェック」を選択
@@ -324,6 +331,38 @@
             [tableView editColumn:0 row:row withEvent:nil select:YES];
         }
     }
+}
+
+
+// ------------------------------------------------------
+// 有効なスタイル名かチェックしてエラーメッセージを返す
+- (NSString *)validateStyleName:(NSString *)styleName;
+// ------------------------------------------------------
+{
+    if (([self mode] == CESyntaxEdit) && [[CESyntaxManager sharedManager] isBundledStyle:[self originalStyleName]]) {
+        return nil;
+    }
+    
+    NSString *message = nil;
+    
+    if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit) ||
+        (([self mode] == CESyntaxEdit) && ![styleName isEqualToString:[self originalStyleName]]))
+    {
+        if ([styleName length] < 1) {  // 空は不可
+            message = NSLocalizedString(@"Input style name.", nil);
+        } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
+            message = NSLocalizedString(@"Style Name cannot contain “/”. Input another name.", nil);
+        } else if ([styleName rangeOfString:@"."].location == 0) {  // ファイル名としても使われるので、"." から始まる名前は不可
+            message = NSLocalizedString(@"Style Name cannot begin with “.”. Input another name.", nil);
+        } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {  // 既にある名前は不可
+            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), styleName];
+        }
+    }
+    
+    [self setIsStyleNameValid:(!message)];
+    [[self messageField] setStringValue:message ? : @""];
+    
+    return message;
 }
 
 

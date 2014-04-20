@@ -41,11 +41,14 @@
                         <constraints>
                             <constraint firstAttribute="width" priority="250" constant="280" id="yoK-kW-EZU"/>
                         </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="988">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Style Name" drawsBackground="YES" usesSingleLineMode="YES" id="988">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="2NJ-MB-95F"/>
+                        </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="265">
                         <rect key="frame" x="166" y="342" width="436" height="14"/>
@@ -1814,6 +1817,18 @@ DQ
                             <action selector="saveEdit:" target="-2" id="rli-FP-Z2f"/>
                         </connections>
                     </button>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="WE1-JL-ncy">
+                        <rect key="frame" x="456" y="362" width="15" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="DZb-gg-iAJ"/>
+                            <constraint firstAttribute="height" constant="15" id="eMa-dK-oln"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSInvalidDataFreestandingTemplate" id="nuN-fG-4bp"/>
+                        <connections>
+                            <binding destination="-2" name="hidden" keyPath="isStyleNameValid" id="vvO-ZI-Hlt"/>
+                        </connections>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="91" firstAttribute="leading" secondItem="92" secondAttribute="trailing" constant="12" symbolic="YES" id="0a9-gj-yVO"/>
@@ -1827,13 +1842,15 @@ DQ
                     <constraint firstItem="92" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="670" secondAttribute="trailing" constant="8" symbolic="YES" id="MbY-uK-mYr"/>
                     <constraint firstItem="393" firstAttribute="leading" secondItem="WT6-a5-cVO" secondAttribute="trailing" constant="8" symbolic="YES" id="Ptq-34-kAN"/>
                     <constraint firstAttribute="trailing" secondItem="91" secondAttribute="trailing" constant="20" symbolic="YES" id="QBI-uN-8ER"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="215" secondAttribute="trailing" constant="20" symbolic="YES" id="Vjx-vr-AxE"/>
+                    <constraint firstItem="215" firstAttribute="centerY" secondItem="WE1-JL-ncy" secondAttribute="centerY" id="Qbv-b8-kdh"/>
+                    <constraint firstItem="WE1-JL-ncy" firstAttribute="leading" secondItem="215" secondAttribute="trailing" constant="8" symbolic="YES" id="Ybl-u5-n7y"/>
                     <constraint firstItem="265" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="2" id="ZSQ-qE-vcp"/>
                     <constraint firstAttribute="trailing" secondItem="265" secondAttribute="trailing" constant="20" symbolic="YES" id="ZSz-Sf-Rzl"/>
                     <constraint firstItem="WT6-a5-cVO" firstAttribute="bottom" secondItem="393" secondAttribute="bottom" id="bj7-P2-oX7"/>
                     <constraint firstItem="WT6-a5-cVO" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="d9M-Vw-Thb"/>
                     <constraint firstAttribute="bottom" secondItem="91" secondAttribute="bottom" constant="20" symbolic="YES" id="kgh-UB-LHQ"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="91" secondAttribute="top" id="kum-2W-D5e"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WE1-JL-ncy" secondAttribute="trailing" constant="20" symbolic="YES" id="m1j-CE-N5V"/>
                     <constraint firstItem="265" firstAttribute="leading" secondItem="215" secondAttribute="leading" id="nNG-pM-hBV"/>
                     <constraint firstAttribute="bottom" secondItem="92" secondAttribute="bottom" constant="20" symbolic="YES" id="oba-hi-t3F"/>
                     <constraint firstItem="393" firstAttribute="top" secondItem="265" secondAttribute="bottom" constant="12" id="wLe-AX-ksM"/>
@@ -1985,6 +2002,7 @@ DQ
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
+        <image name="NSInvalidDataFreestandingTemplate" width="18" height="18"/>
         <image name="NSRemoveTemplate" width="8" height="8"/>
     </resources>
 </document>
