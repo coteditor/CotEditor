@@ -344,38 +344,37 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
 - (NSString *)copiedStyleName:(NSString *)originalName
 //------------------------------------------------------
 {
-    NSURL *URL = [self userStyleDirectoryURL];
-    NSString *compareName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *copyName;
+    NSString *baseName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *copyString;
     NSRange copiedStrRange;
     BOOL copiedState = NO;
     NSUInteger i = 2;
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@" copy$", nil)
                                                                            options:0 error:nil];
-    copiedStrRange = [regex rangeOfFirstMatchInString:compareName options:0 range:NSMakeRange(0, [compareName length])];
+    copiedStrRange = [regex rangeOfFirstMatchInString:baseName options:0 range:NSMakeRange(0, [baseName length])];
     if (copiedStrRange.location != NSNotFound) {
         copiedState = YES;
     } else {
         regex = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@" copy [0-9]+$", nil) options:0 error:nil];
-        copiedStrRange = [regex rangeOfFirstMatchInString:compareName options:0 range:NSMakeRange(0, [compareName length])];
+        copiedStrRange = [regex rangeOfFirstMatchInString:baseName options:0 range:NSMakeRange(0, [baseName length])];
         if (copiedStrRange.location != NSNotFound) {
             copiedState = YES;
         }
     }
     if (copiedState) {
-        copyName = [NSString stringWithFormat:@"%@%@",
-                    [compareName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
+        copyString = [NSString stringWithFormat:@"%@%@",
+                    [baseName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
                     NSLocalizedString(@" copy", nil)];
     } else {
-        copyName = [NSString stringWithFormat:@"%@%@", compareName, NSLocalizedString(@" copy", nil)];
+        copyString = [NSString stringWithFormat:@"%@%@", baseName, NSLocalizedString(@" copy", nil)];
     }
-    NSMutableString *copiedSyntaxName = [copyName mutableCopy];
-    while ([[self styleNames] containsObject:copiedSyntaxName]) {
-        [copiedSyntaxName setString:[NSString stringWithFormat:@"%@ %li", copyName, (long)i]];
+    NSMutableString *copiedStyleName = [copyString mutableCopy];
+    while ([[self styleNames] containsObject:copiedStyleName]) {
+        [copiedStyleName setString:[NSString stringWithFormat:@"%@ %li", copyString, (long)i]];
         i++;
     }
-    return [copiedSyntaxName stringByDeletingPathExtension];
+    return copiedStyleName;
 }
 
 

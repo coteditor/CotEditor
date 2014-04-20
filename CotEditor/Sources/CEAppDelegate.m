@@ -610,7 +610,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildFormatEncodingMenu
 //------------------------------------------------------
 {
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
     NSArray *items = [[NSArray alloc] initWithArray:[self encodingMenuItems] copyItems:YES];
     
     NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag] submenu];
