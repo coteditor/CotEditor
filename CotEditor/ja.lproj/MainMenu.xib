@@ -773,19 +773,19 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="CotEditor スクリプトマニュアル" id="IJM-xJ-1oK">
                                     <items>
-                                        <menuItem title="スクリプトフォルダについて" tag="3" id="DGM-eF-8qs">
+                                        <menuItem title="スクリプトフォルダについて" tag="2" id="DGM-eF-8qs">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="xXK-Q9-6gL"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="AppleScriptでのスクリプト作成" tag="4" id="Ahy-z3-Irr">
+                                        <menuItem title="AppleScriptでのスクリプト作成" tag="3" id="Ahy-z3-Irr">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="M6M-nd-qMt"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="他言語でのスクリプト作成" tag="5" id="Qer-QI-B6d">
+                                        <menuItem title="他言語でのスクリプト作成" tag="4" id="Qer-QI-B6d">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="Mfq-Ow-Ik9"/>
@@ -803,19 +803,13 @@
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="README" id="822">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openBundledDocument:" target="290" id="827"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="バージョン履歴" tag="1" id="823">
+                            <menuItem title="バージョン履歴" id="823">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="828"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="謝辞" tag="2" id="833">
+                            <menuItem title="謝辞" tag="1" id="833">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="834"/>

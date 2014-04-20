@@ -85,7 +85,6 @@
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
-		2A961C5318FC699E002076B6 /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4918FC699E002076B6 /* ReadMe.rtf */; };
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A961C5618FC699E002076B6 /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4F18FC699E002076B6 /* Version History.rtf */; };
@@ -317,11 +316,9 @@
 		2A961C0918FB2AA1002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxEditSheet.xib; sourceTree = "<group>"; };
 		2A961C4618FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
 		2A961C4818FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/AppleScript.rtf; sourceTree = "<group>"; };
-		2A961C4A18FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/ReadMe.rtf; sourceTree = "<group>"; };
 		2A961C4C18FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "en.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
 		2A961C4E18FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/ShellScript.rtf; sourceTree = "<group>"; };
 		2A961C5018FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "en.lproj/Version History.rtf"; sourceTree = "<group>"; };
-		2A961C5718FC69C3002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ReadMe.rtf; sourceTree = "<group>"; };
 		2A961C5818FC69C8002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/Version History.rtf"; sourceTree = "<group>"; };
 		2A961C5918FC69CC002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
 		2A961C5A18FC69D0002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
@@ -825,7 +822,6 @@
 		2A961C4418FC6979002076B6 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				2A961C4918FC699E002076B6 /* ReadMe.rtf */,
 				2A961C4F18FC699E002076B6 /* Version History.rtf */,
 				2A961C4518FC699E002076B6 /* Acknowledgements.rtf */,
 				2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */,
@@ -1010,7 +1006,6 @@
 				2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */,
 				8C3E2D610808E210009894D1 /* WrapLines_Off.tiff in Resources */,
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
-				2A961C5318FC699E002076B6 /* ReadMe.rtf in Resources */,
 				8C3A7DEA0867EC9C00ECE052 /* startup.applescript in Resources */,
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
@@ -1356,15 +1351,6 @@
 				2A961C5B18FC69D4002076B6 /* ja */,
 			);
 			name = AppleScript.rtf;
-			sourceTree = "<group>";
-		};
-		2A961C4918FC699E002076B6 /* ReadMe.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A961C4A18FC699E002076B6 /* en */,
-				2A961C5718FC69C3002076B6 /* ja */,
-			);
-			name = ReadMe.rtf;
 			sourceTree = "<group>";
 		};
 		2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */ = {

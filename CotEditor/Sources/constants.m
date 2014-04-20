@@ -330,7 +330,6 @@ NSInteger const k_scriptMenuTag = 800;
 
 // Help Document Menu tag and path
 NSString *const k_bundleDocumentTags[] = {
-    @"ReadMe",
     @"Version History",
     @"Acknowledgements",
     @"ScriptMenu Folder",
