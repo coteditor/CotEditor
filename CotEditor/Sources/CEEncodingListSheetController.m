@@ -32,7 +32,7 @@
 
 #import "CEEncodingListSheetController.h"
 #import "CEPrefEncodingDataSource.h"
-#import "CEAppController.h"
+#import "CEAppDelegate.h"
 
 
 @interface CEEncodingListSheetController ()
@@ -79,7 +79,7 @@
 // ------------------------------------------------------
 {
     [[self dataSource] writeEncodingsToUserDefaults]; // エンコーディングを保存
-    [(CEAppController *)[NSApp delegate] buildAllEncodingMenus];
+    [(CEAppDelegate *)[NSApp delegate] buildAllEncodingMenus];
     
     [NSApp stopModal];
 }

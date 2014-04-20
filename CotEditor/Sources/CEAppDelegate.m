@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CEAppController.h"
+#import "CEAppDelegate.h"
 #import "CEPreferencesWindowController.h"
 #import "CEHexColorTransformer.h"
 #import "CEByteCountTransformer.h"
@@ -43,7 +43,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-@interface CEAppController ()
+@interface CEAppDelegate ()
 
 // readonly
 @property (nonatomic, copy, readwrite) NSArray *encodingMenuItems;
@@ -55,7 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma mark -
 
-@implementation CEAppController
+@implementation CEAppDelegate
 
 #pragma mark Class Methods
 

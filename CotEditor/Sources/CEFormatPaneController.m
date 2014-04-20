@@ -36,7 +36,7 @@
 #import "CESyntaxExtensionConflictSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
-#import "CEAppController.h"
+#import "CEAppDelegate.h"
 #import "constants.h"
 
 
@@ -367,7 +367,7 @@
 - (void)setupEncodingMenus
 // ------------------------------------------------------
 {
-    NSArray *menuItems = [(CEAppController *)[NSApp delegate] encodingMenuItems];
+    NSArray *menuItems = [(CEAppDelegate *)[NSApp delegate] encodingMenuItems];
     
     [[self encodingMenuInOpen] removeAllItems];
     [[self encodingMenuInNew] removeAllItems];

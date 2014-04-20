@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2582260107794C2A00A0F8D3 /* CESyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntax.m */; };
 		2585914D080F503A0038F387 /* openDictionary.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 2585914B080F503A0038F387 /* openDictionary.applescript */; };
-		25859DB3076D65310020F779 /* CEAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppController.m */; };
+		25859DB3076D65310020F779 /* CEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppDelegate.m */; };
 		25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DEC076D75BC0020F779 /* CEWindowController.m */; };
 		25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
 		25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */; };
@@ -186,8 +186,8 @@
 		258225FE07794C2A00A0F8D3 /* CESyntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntax.h; sourceTree = "<group>"; };
 		258225FF07794C2A00A0F8D3 /* CESyntax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntax.m; sourceTree = "<group>"; };
 		2585914B080F503A0038F387 /* openDictionary.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = openDictionary.applescript; path = internalScript/openDictionary.applescript; sourceTree = "<group>"; };
-		25859DB1076D65310020F779 /* CEAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEAppController.m; sourceTree = "<group>"; };
-		25859DB2076D65310020F779 /* CEAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAppController.h; sourceTree = "<group>"; };
+		25859DB1076D65310020F779 /* CEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEAppDelegate.m; sourceTree = "<group>"; };
+		25859DB2076D65310020F779 /* CEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAppDelegate.h; sourceTree = "<group>"; };
 		25859DEB076D75BC0020F779 /* CEWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowController.h; sourceTree = "<group>"; };
 		25859DEC076D75BC0020F779 /* CEWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWindowController.m; sourceTree = "<group>"; };
 		25859E90076D88ED0020F779 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constants.h; path = CotEditor/Sources/constants.h; sourceTree = SOURCE_ROOT; };
@@ -693,8 +693,8 @@
 			children = (
 				8CE4859608CD617B004817E1 /* CEApplication.h */,
 				8CE4859708CD617B004817E1 /* CEApplication.m */,
-				25859DB2076D65310020F779 /* CEAppController.h */,
-				25859DB1076D65310020F779 /* CEAppController.m */,
+				25859DB2076D65310020F779 /* CEAppDelegate.h */,
+				25859DB1076D65310020F779 /* CEAppDelegate.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -1086,7 +1086,7 @@
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				2A149DD719033CBB00A9D6EF /* constants.m in Sources */,
 				2A149DBC1901803C00A9D6EF /* CEEditPaneController.m in Sources */,
-				25859DB3076D65310020F779 /* CEAppController.m in Sources */,
+				25859DB3076D65310020F779 /* CEAppDelegate.m in Sources */,
 				25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */,
 				25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */,
 				259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */,

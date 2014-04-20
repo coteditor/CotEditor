@@ -155,7 +155,7 @@ extern NSString *const k_key_backgroundColorCBoxIsOk;
 extern NSString *const k_key_insertCustomTextArray;
 extern NSString *const k_key_insertCustomText;
 
-// hidden settings（隠し設定の値は CEAppController の initialize で設定している）
+// hidden settings（隠し設定の値は CEAppDelegate の initialize で設定している）
 extern NSString *const k_key_lineNumFontName;
 extern NSString *const k_key_lineNumFontSize;
 extern NSString *const k_key_lineNumFontColor;
