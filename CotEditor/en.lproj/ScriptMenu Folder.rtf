@@ -1,12 +1,11 @@
-{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf420
-\readonlydoc1{\fonttbl\f0\fswiss\fcharset77 Helvetica-Bold;\f1\fswiss\fcharset77 Helvetica;\f2\fswiss\fcharset77 Helvetica-Oblique;
-\f3\fnil\fcharset77 LucidaGrande;}
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+\readonlydoc1\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 LucidaGrande;}
 {\colortbl;\red255\green255\blue255;}
-\paperw11899\paperh16839\margl1440\margr1440\vieww11040\viewh12000\viewkind0
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\paperw11900\paperh16840\margl1440\margr1440\vieww11040\viewh12000\viewkind0
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
 \f0\b\fs32 \cf0 About The ScriptMenu Folder
-\f1\b0\fs28 \
+\b0\fs28 \
 
 \fs24 \
 The ScriptMenu folder (~/Library/Application Support/CotEditor/ScriptMenu/) is the folder for CotEditor's Script menu.\
@@ -15,39 +14,39 @@ On launching, CotEditor reads the script files in this folder (file extension: .
 If you made modifications to the folder while CotEditor is running, you can manually update the menu by choosing Update Script Menu in the Script menu.\
 \
 \
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\f0\b\fs26 \cf0 Notes
-\f1\b0\fs24 \
+\b\fs26 \cf0 Notes
+\b0\fs24 \
 \
-* You can line up the menu items in numerical order by adding \'d2number + closing parenthesis ())\'d3 at the head of the file name.\
-The part \'d2number + )\'d3 and the file extension won't be shown in the menu.\
+* You can line up the menu items in numerical order by adding \'93number + closing parenthesis ())\'94 at the head of the file name.\
+The part \'93number + )\'94 and the file extension won't be shown in the menu.\
 \
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\f2\i \cf0 example 1.
-\f1\i0 \
+\i \cf0 example 1.
+\i0 \
  File name: 01)Open File.applescript\
  Menu title: Open File\
 \
 \
-* You can assign a keyboard shortcut to the file by adding \'d2dot (.) + modifier-keys + shortcut-key\'d3 in front of the file extension.\
+* You can assign a keyboard shortcut to the file by adding \'93dot (.) + modifier-keys + shortcut-key\'94 in front of the file extension.\
 \
 
-\f2\i example 2.
-\f1\i0 \
+\i example 2.
+\i0 \
  File name: Insert String.@e.scpt\
  Menu title: Insert String [
-\f3 \uc0\u8984 
-\f1 E]\
+\f1 \uc0\u8984 
+\f0 E]\
 
-\f2\i \
+\i \
 example 3.
-\f1\i0 \
+\i0 \
  File name: 03)Insert Date.@Y.scpt\
  Menu title: Insert Date [
-\f3 \uc0\u8679 \u8984 
-\f1 Y]\
+\f1 \uc0\u8679 \u8984 
+\f0 Y]\
 \
 Modifier-key symbols:\
  ^ : Control\
@@ -55,17 +54,22 @@ Modifier-key symbols:\
  ~ : Option\
  @ : Command\
 \
-Shortcut-keys (e.g. \'d2e\'d3 in the example 2) are case sensitive. The one in uppercase indicates that \'d2the Shift key should be pressed together\'d3 as in the example 3.\
+Shortcut-keys (e.g. \'93e\'94 in the example 2) are case sensitive. The one in uppercase indicates that \'93the Shift key should be pressed together\'94 as in the example 3.\
 \
 A shortcut-key must come after modifier-keys, and must be one letter. Thus, you cannot assign the keys such as F1 or Delete to scripts.\
 \
 \
-* A folder named \'d2-\'d3 appears as a separator line in the menu.\
+* A folder named \'93-\'94 appears as a separator line in the menu.\
 
-\f2\i \
+\i \
 example 4.
-\f1\i0 \
+\i0 \
  Folder name: 09)-\
  Menu title: (separator)\
 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 Sample Scripts
+\b0 \
+On the first launch, CotEditor copies SampleScript folder that contains some of sample scripts for CotEditor into ScriptMenu folder.  If you want to copy it later, select hidden \'94Copy Sample to Scripts Folder" menu item in the Script menu  (press option key to display it).\
 }
