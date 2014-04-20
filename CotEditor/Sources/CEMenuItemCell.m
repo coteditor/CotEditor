@@ -31,9 +31,7 @@
  */
 
 #import "CEMenuItemCell.h"
-
-
-NSString *const CESeparatorObject = @"-";
+#import "constants.h"
 
 
 @implementation CEMenuItemCell
@@ -64,7 +62,7 @@ NSString *const CESeparatorObject = @"-";
 - (BOOL)isSeparator
 // ------------------------------------------------------
 {
-    return [[self objectValue] isEqualTo:CESeparatorObject];
+    return [[self objectValue] isEqualTo:CESeparatorString];
 }
 
 @end

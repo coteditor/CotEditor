@@ -176,7 +176,7 @@
 {
     // セパレータは選択不可
     if (tableView == [self menuTableView]) {
-        return ![[self menuTitles][row] isEqualToString:CESeparatorObject];
+        return ![[self menuTitles][row] isEqualToString:CESeparatorString];
     }
     
     return YES;
@@ -291,11 +291,11 @@
              NSLocalizedString(@"Strings", nil),
              NSLocalizedString(@"Characters", nil),
              NSLocalizedString(@"Comments", nil),
-             CESeparatorObject,
+             CESeparatorString,
              NSLocalizedString(@"Outline Menu", nil),
              NSLocalizedString(@"Completion List", nil),
              NSLocalizedString(@"Extensions", nil),
-             CESeparatorObject,
+             CESeparatorString,
              NSLocalizedString(@"Syntax Validation", nil)];
 }
 
