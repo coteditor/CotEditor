@@ -215,7 +215,7 @@
                             <menuItem title="エンコーディング名を挿入" id="661">
                                 <menu key="submenu" title="エンコーディング名を挿入" id="662">
                                     <items>
-                                        <menuItem title="IANA文字コード名" id="663">
+                                        <menuItem title="IANA 文字コード名" id="663">
                                             <connections>
                                                 <action selector="insertIANACharSetName:" target="-1" id="666"/>
                                             </connections>
@@ -779,7 +779,7 @@
                                                 <action selector="openBundledDocument:" target="290" id="xXK-Q9-6gL"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="AppleScriptでのスクリプト作成" tag="3" id="Ahy-z3-Irr">
+                                        <menuItem title="AppleScript でのスクリプト作成" tag="3" id="Ahy-z3-Irr">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="M6M-nd-qMt"/>
@@ -792,7 +792,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="KBR-Cg-S8R"/>
-                                        <menuItem title="AppleScript辞書" id="620">
+                                        <menuItem title="AppleScript 辞書" id="620">
                                             <connections>
                                                 <action selector="openAppleScriptDictionary:" target="290" id="621"/>
                                             </connections>
