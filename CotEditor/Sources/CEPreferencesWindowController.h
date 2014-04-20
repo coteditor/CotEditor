@@ -1,6 +1,6 @@
 /*
  =================================================
- CEPreferences
+ CEPreferencesWindowController
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -32,10 +32,9 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "CESyntax.h"
 
 
-@interface CEPreferencesController : NSWindowController <NSWindowDelegate>
+@interface CEPreferencesWindowController : NSWindowController <NSWindowDelegate>
 
 // Class Methods
 + (instancetype)sharedController;

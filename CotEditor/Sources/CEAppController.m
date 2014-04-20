@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEAppController.h"
-#import "CEPreferencesController.h"
+#import "CEPreferencesWindowController.h"
 #import "CEHexColorTransformer.h"
 #import "CEByteCountTransformer.h"
 #import "CEOpacityPanelController.h"
@@ -429,7 +429,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openPreferences:(id)sender
 // ------------------------------------------------------
 {
-    [[CEPreferencesController sharedController] showWindow:self];
+    [[CEPreferencesWindowController sharedController] showWindow:self];
 }
 
 

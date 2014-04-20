@@ -1,6 +1,6 @@
 /*
  =================================================
- CEPreferences
+ CEPreferencesWindowController
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -31,7 +31,7 @@
  =================================================
  */
 
-#import "CEPreferencesController.h"
+#import "CEPreferencesWindowController.h"
 #import "CEWindowPaneController.h"
 #import "CEAppearancePaneController.h"
 #import "CEEditPaneController.h"
@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 };
 
 
-@interface CEPreferencesController ()
+@interface CEPreferencesWindowController ()
 
 @property (nonatomic) NSViewController *generalPaneController;
 @property (nonatomic) CEWindowPaneController *windowPaneController;
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 #pragma mark -
 
-@implementation CEPreferencesController
+@implementation CEPreferencesWindowController
 
 #pragma mark Class Methods
 
