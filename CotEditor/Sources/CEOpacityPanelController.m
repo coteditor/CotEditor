@@ -66,7 +66,6 @@
 // ------------------------------------------------------
 {
     [self setOpacity:[[self documentWindowController] alpha]];
-    
 }
 
 
@@ -79,8 +78,7 @@
 // ------------------------------------------------------
 {
     // apply to all windows
-    NSArray *documents = [[NSDocumentController sharedDocumentController] documents];
-    for (id document in documents) {
+    for (id document in [NSApp orderedDocuments]) {
         [(CEWindowController *)[document windowController] setAlpha:[self opacity]];
     }
     

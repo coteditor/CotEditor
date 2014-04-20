@@ -88,8 +88,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setFullwidthSpaceCharacter:[CEUtilities invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
 
         // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
-        [self setFixLineHeight:NO];
-        [self setIsPrinting:NO];
         [self setShowSpace:[defaults boolForKey:k_key_showInvisibleSpace]];
         [self setShowTab:[defaults boolForKey:k_key_showInvisibleTab]];
         [self setShowNewLine:[defaults boolForKey:k_key_showInvisibleNewLine]];
@@ -117,7 +115,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         usedRect.size.height = [self lineHeight];
     }
 
-    (void)[super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
+    [super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
 }
 
 

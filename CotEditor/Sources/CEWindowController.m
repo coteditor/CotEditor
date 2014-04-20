@@ -103,7 +103,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self window] setContentSize:size];
     
     // 背景をセットアップ
-    [self setAlpha:(CGFloat)[[defaults valueForKey:k_key_windowAlpha] doubleValue]];
+    [self setAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     
     // ツールバーをセットアップ
@@ -419,7 +419,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)selectIncompatibleRange:(id)sender
 // ------------------------------------------------------
 {
-    NSRange range = [[[[self listController] selectedObjects][0] valueForKey:k_incompatibleRange] rangeValue];
+    NSRange range = [[[self listController] selectedObjects][0][k_incompatibleRange] rangeValue];
 
     [[self editorView] setSelectedRange:range];
     [[self window] makeFirstResponder:[[self editorView] textView]];

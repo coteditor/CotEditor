@@ -67,6 +67,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self) {
         [NSBundle loadNibNamed:@"OpenDocumentAccessory" owner:self];
         
+        // ファイルを開くデフォルトエンコーディングをセット
+        [self setSelectAccessoryEncodingMenuToDefault:self];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(buildEncodingPopupButton:)
                                                      name:CEEncodingListDidUpdateNotification

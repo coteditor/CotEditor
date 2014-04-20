@@ -45,6 +45,7 @@ extern NSString *const CESeparatorString;
 extern NSString *const k_printLocalizeTable;
 
 // Notification name
+extern NSString *const CEEncodingListDidUpdateNotification;
 extern NSString *const CEDocumentDidFinishOpenNotification;
 extern NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification;
 extern NSString *const CECatchMenuShortcutNotification;

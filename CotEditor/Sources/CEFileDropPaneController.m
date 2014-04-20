@@ -87,8 +87,8 @@
 // ------------------------------------------------------
 {
     if ([notification object] == [self fileDropTableView]) {
-        NSString *extension = [[[self fileDropController] selection] valueForKey:k_key_fileDropExtensions];
-        NSString *format = [[[self fileDropController] selection] valueForKey:k_key_fileDropFormatString];
+        NSString *extension = [[self fileDropController] selection][k_key_fileDropExtensions];
+        NSString *format = [[self fileDropController] selection][k_key_fileDropFormatString];
         
         // 入力されていなければ行ごと削除
         if ((extension == nil) && (format == nil)) {
@@ -231,7 +231,7 @@
     if (![self doDeleteFileDrop]) { return; }
     
     NSArray *selected = [[self fileDropController] selectedObjects];
-    NSString *extension = [selected[0] valueForKey:k_key_fileDropExtensions];
+    NSString *extension = selected[0][k_key_fileDropExtensions];
     if ([selected count] == 0) {
         return;
     } else if (extension == nil) {

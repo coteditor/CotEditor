@@ -553,7 +553,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     [self setErrorHandle:[errorPipe fileHandleForReading]];
     [scanner setCaseSensitive:YES];
     while (![scanner isAtEnd]) {
-        (void)[scanner scanUpToString:@"%%%{CotEditorXInput=" intoString:nil];
+        [scanner scanUpToString:@"%%%{CotEditorXInput=" intoString:nil];
         if ([scanner scanString:@"%%%{CotEditorXInput=" intoString:nil]) {
             if ([scanner scanUpToString:@"}%%%" intoString:&inputType]) {
                 break;

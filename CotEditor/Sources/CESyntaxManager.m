@@ -494,12 +494,12 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
                 // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
             } else if ([key isEqualToString:k_SCKey_outlineMenuArray]) {
                 NS_DURING
-                (void)[OGRegularExpression regularExpressionWithString:beginStr];
+                    [OGRegularExpression regularExpressionWithString:beginStr];
                 NS_HANDLER
                 // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                [errorMessages addObject:[NSString stringWithFormat:
-                                          @"%@ :(RE string) > %@\n  >>> %@",
-                                          arrayNameDeletingArray, beginStr, [localException reason]]];
+                    [errorMessages addObject:[NSString stringWithFormat:
+                                              @"%@ :(RE string) > %@\n  >>> %@",
+                                              arrayNameDeletingArray, beginStr, [localException reason]]];
                 NS_ENDHANDLER
             }
             tmpBeginStr = beginStr;

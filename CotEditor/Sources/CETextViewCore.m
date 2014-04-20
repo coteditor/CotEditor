@@ -915,31 +915,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 fileName = [absoluteURL lastPathComponent];
                 fileNoSuffix = [fileName stringByDeletingPathExtension];
                 dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
-                (void)[newStr replaceOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
-                                              withString:[absoluteURL path] options:0 range:NSMakeRange(0, [newStr length])];
-                (void)[newStr replaceOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
-                                              withString:relativePath options:0 range:NSMakeRange(0, [newStr length])];
-                (void)[newStr replaceOccurrencesOfString:@"<<<FILENAME>>>"
-                                              withString:fileName options:0 range:NSMakeRange(0, [newStr length])];
-                (void)[newStr replaceOccurrencesOfString:@"<<<FILENAME-NOSUFFIX>>>"
-                                              withString:fileNoSuffix options:0 range:NSMakeRange(0, [newStr length])];
-                (void)[newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION>>>"
-                                              withString:pathExtension options:0 range:NSMakeRange(0, [newStr length])];
-                (void)[newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION-LOWER>>>"
-                                              withString:pathExtensionLower options:0 range:NSMakeRange(0, [newStr length])];
-                (void)[newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION-UPPER>>>"
-                                              withString:pathExtensionUpper options:0 range:NSMakeRange(0, [newStr length])];
-                (void)[newStr replaceOccurrencesOfString:@"<<<DIRECTORY>>>"
-                                              withString:dirName options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
+                                        withString:[absoluteURL path] options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
+                                        withString:relativePath options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<FILENAME>>>"
+                                        withString:fileName options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<FILENAME-NOSUFFIX>>>"
+                                        withString:fileNoSuffix options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION>>>"
+                                        withString:pathExtension options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION-LOWER>>>"
+                                        withString:pathExtensionLower options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION-UPPER>>>"
+                                        withString:pathExtensionUpper options:0 range:NSMakeRange(0, [newStr length])];
+                [newStr replaceOccurrencesOfString:@"<<<DIRECTORY>>>"
+                                        withString:dirName options:0 range:NSMakeRange(0, [newStr length])];
                 NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
                 if (imageRep) {
                     // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
-                    (void)[newStr replaceOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
-                                                  withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsWide]]
-                                                     options:0 range:NSMakeRange(0, [newStr length])];
-                    (void)[newStr replaceOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
-                                                  withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsHigh]]
-                                                     options:0 range:NSMakeRange(0, [newStr length])];
+                    [newStr replaceOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
+                                            withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsWide]]
+                                               options:0 range:NSMakeRange(0, [newStr length])];
+                    [newStr replaceOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
+                                            withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsHigh]]
+                                               options:0 range:NSMakeRange(0, [newStr length])];
                 }
                 // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
                 newRange = NSMakeRange(selectedRange.location, [newStr length]);

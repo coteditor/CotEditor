@@ -65,8 +65,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     id initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
-    NSMutableArray *encodings = [NSMutableArray arrayWithArray:[values valueForKey:k_key_encodingList]];
-    BOOL shouldRevert = ![encodings isEqualToArray:(NSArray *)[initValues valueForKey:k_key_encodingList]];
+    NSMutableArray *encodings = [NSMutableArray arrayWithArray:[values arrayForKey:k_key_encodingList]];
+    BOOL shouldRevert = ![encodings isEqualToArray:[initValues arrayForKey:k_key_encodingList]];
 
     [self setEncodingsForTmp:encodings];
     [[self revertButton] setEnabled:shouldRevert]; // 出荷時に戻すボタンの有効化／無効化を制御
@@ -81,7 +81,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 
-    if (![[self encodingsForTmp] isEqualToArray:[values valueForKey:k_key_encodingList]]) {
+    if (![[self encodingsForTmp] isEqualToArray:[values arrayForKey:k_key_encodingList]]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:[self encodingsForTmp] forKey:k_key_encodingList];
     }
@@ -258,7 +258,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
-    NSMutableArray *encodings = [NSMutableArray arrayWithArray:[initValues valueForKey:k_key_encodingList]];
+    NSMutableArray *encodings = [NSMutableArray arrayWithArray:[initValues arrayForKey:k_key_encodingList]];
 
     [self setEncodingsForTmp:encodings];
     [[self tableView] reloadData];

@@ -116,7 +116,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         font = [NSFont paletteFontOfSize:9];
     }
     attrs[NSFontAttributeName] = font;
-    attrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_lineNumFontColor]];
+    attrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_lineNumFontColor]];
     
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)

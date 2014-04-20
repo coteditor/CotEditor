@@ -298,7 +298,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *actionName = @"TEST";
         BOOL lossy = NO;
 
-        lossy = [[arguments valueForKey:@"Lossy"] boolValue];
+        lossy = [arguments[@"Lossy"] boolValue];
         success = [self doSetEncoding:encoding updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
     }
 
@@ -462,7 +462,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    NSArray *rangeArray = [arguments valueForKey:@"range"];
+    NSArray *rangeArray = arguments[@"range"];
     NSInteger location, length;
     NSRange range;
 

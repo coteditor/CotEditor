@@ -31,6 +31,8 @@
  =================================================
  */
 
+#import "constants.h"
+
 
 #pragma mark General
 
@@ -45,6 +47,7 @@ NSString *const CESeparatorString = @"-";
 NSString *const k_printLocalizeTable =  @"print";
 
 // Notification name
+NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 NSString *const CEDocumentDidFinishOpenNotification = @"documentDidFinishOpenNotification";
 NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification = @"setKeyCatchModeToCatchMenuShortcut";
 NSString *const CECatchMenuShortcutNotification = @"catchMenuShortcutNotification";

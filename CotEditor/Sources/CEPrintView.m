@@ -353,7 +353,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName]
                                        size:(CGFloat)[defaults doubleForKey:k_key_lineNumFontSize]];
         [self setLineNumAttrs:@{NSFontAttributeName:font,
-                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_lineNumFontColor]]}];
+                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_lineNumFontColor]]}];
         [self setXOffset:k_printTextHorizontalMargin];
     }
     
@@ -381,8 +381,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             break;
             
         case CESameAsDocumentColorPrint:
-            [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_textColor]]];
-            [self setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:k_key_backgroundColor]]];
+            [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_textColor]]];
+            [self setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_backgroundColor]]];
             
             // カラーリング実行オブジェクトを用意して実行
             CESyntax *syntax = [[CESyntax alloc] init];

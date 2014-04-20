@@ -246,7 +246,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CECaseType caseType = [[arguments valueForKey:@"caseType"] unsignedLongValue];
+    CECaseType caseType = [arguments[@"caseType"] unsignedLongValue];
 
     switch (caseType) {
     case CELowerCase:
@@ -270,7 +270,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEWidthType widthType = [[arguments valueForKey:@"widthType"] unsignedLongValue];
+    CEWidthType widthType = [arguments[@"widthType"] unsignedLongValue];
 
     switch (widthType) {
     case CEFullwidth:
@@ -291,7 +291,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEChangeKanaType changeKanaType = [[arguments valueForKey:@"kanaType"] unsignedLongValue];
+    CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedLongValue];
 
     if (changeKanaType == CEHiragana) {
         [[[[self document] editorView] textView] exchangeHiragana:self];

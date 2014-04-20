@@ -63,11 +63,11 @@ static NSMutableDictionary *instances;
     
     __block id obj;
     @synchronized(self) {
-        if ([instances objectForKey:NSStringFromClass(self)] == nil) {
+        if (instances[NSStringFromClass(self)] == nil) {
             obj = [[self alloc] init];
         }
     }
-    obj = [instances objectForKey:NSStringFromClass(self)];
+    obj = instances[NSStringFromClass(self)];
     return obj;
 }
 
@@ -81,12 +81,12 @@ static NSMutableDictionary *instances;
     // http://qiita.com/hal_sk/items/b4e51c33e7c9d29964ab
     
     @synchronized(self) {
-        if ([instances objectForKey:NSStringFromClass(self)] == nil) {
+        if (instances[NSStringFromClass(self)] == nil) {
             id instance = [super allocWithZone:zone];
             if (instances == nil) {
-                instances = [[NSMutableDictionary alloc] initWithCapacity:0];
+                instances = [NSMutableDictionary dictionary];
             }
-            [instances setObject:instance forKey:NSStringFromClass(self)];
+            instances[NSStringFromClass(self)] = instance;
             return instance;
         }
     }

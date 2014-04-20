@@ -117,8 +117,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults ];
 
         [self setHasUndoManager:YES];
-        (void)[self doSetEncoding:[defaults integerForKey:k_key_encodingInNew]
-                   updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+        [self doSetEncoding:[defaults integerForKey:k_key_encodingInNew]
+             updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         [self setSelection:[[CETextSelection alloc] initWithDocument:self]];
         [self setCanActivateShowInvisibleCharsItem:
                 [defaults boolForKey:k_key_showInvisibleSpace] ||
@@ -296,7 +296,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // フォルダをアイコンにドロップしても開けないようにする
     BOOL isDirectory = NO;
-    (void)[[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
+    [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
     if (isDirectory) { return NO; }
     
     // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
@@ -384,7 +384,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // プリントに使用するフォント
     NSFont *font;
     if ([[NSUserDefaults standardUserDefaults] integerForKey:k_key_setPrintFont] == 1) { // == プリンタ専用フォントで印字
-        font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] valueForKey:k_key_printFontName]
+        font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_printFontName]
                                size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_printFontSize]];
     } else {
         font = [[self editorView] font];
@@ -532,7 +532,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     
             [self setInitialString:string];
             // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
-            (void)[self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+            [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             return YES;
         }
     }
@@ -1320,7 +1320,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”",@""),
                     [NSString localizedNameOfStringEncoding:encoding]];
 
-        (void)[self doSetEncoding:encoding updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
+        [self doSetEncoding:encoding updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
 
     } else if (result == NSAlertAlternateReturn) { // = Reinterpret 再解釈
 
@@ -1353,7 +1353,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [thirdAlert setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
-            (void)[thirdAlert runModal];
+            [thirdAlert runModal];
         }
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
@@ -1459,9 +1459,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (length > 0) {
         NSMutableString *outString = [string mutableCopy]; // ===== mutableCopy
         if ([CEUtilities isInvalidYenEncoding:encoding]) {
-            (void)[outString replaceOccurrencesOfString:
-                        [NSString stringWithCharacters:&k_yenMark length:1] withString:@"\\" 
-                        options:0 range:NSMakeRange(0, length)];
+            [outString replaceOccurrencesOfString:[NSString stringWithCharacters:&k_yenMark length:1]
+                                       withString:@"\\"
+                                          options:0
+                                            range:NSMakeRange(0, length)];
         }
         return outString;
     } else {
@@ -1541,7 +1542,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         if (newEncoding != NSProprietaryStringEncoding) {
             if ([data length] == 0) {
-                (void)[self doSetEncoding:newEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+                [self doSetEncoding:newEncoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             } else {
                 isEA = YES;
             }
@@ -1581,7 +1582,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\"\' "]];
     // "charset="を探す
     while (![scanner isAtEnd]) {
-        (void)[scanner scanUpToString:@"charset=" intoString:nil];
+        [scanner scanUpToString:@"charset=" intoString:nil];
         if ([scanner scanString:@"charset=" intoString:nil]) {
             if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
                 break;
@@ -1592,7 +1593,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (scannedStr == nil) {
         [scanner setScanLocation:0];
         while (![scanner isAtEnd]) {
-            (void)[scanner scanUpToString:@"encoding=" intoString:nil];
+            [scanner scanUpToString:@"encoding=" intoString:nil];
             if ([scanner scanString:@"encoding=" intoString:nil]) {
                 if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
                     break;
@@ -1604,7 +1605,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (scannedStr == nil) {
         [scanner setScanLocation:0];
         while (![scanner isAtEnd]) {
-            (void)[scanner scanUpToString:@"@charset" intoString:nil];
+            [scanner scanUpToString:@"@charset" intoString:nil];
             if ([scanner scanString:@"@charset" intoString:nil]) {
                 if ([scanner scanUpToCharactersFromSet:stopSet intoString:&scannedStr]) {
                     break;
@@ -1623,7 +1624,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
             // kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
             // ための処理）
-            NSArray *theEncodings = [[[NSUserDefaults standardUserDefaults] valueForKeyPath:k_key_encodingList] copy];
+            NSArray *theEncodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
             CFStringEncoding tmpCFEncoding;
 
             for (NSNumber *encodingNumber in theEncodings) {
@@ -1652,9 +1653,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         askLossy:(BOOL)askLossy  lossy:(BOOL)lossy  asActionName:(NSString *)actionName
 // ------------------------------------------------------
 {
-    (void)[[[self undoManager] prepareWithInvocationTarget:self] 
-            doSetEncoding:encoding updateDocument:updateDocument
-                askLossy:askLossy lossy:lossy asActionName:actionName];
+    [[[self undoManager] prepareWithInvocationTarget:self] 
+      doSetEncoding:encoding updateDocument:updateDocument
+          askLossy:askLossy lossy:lossy asActionName:actionName];
 }
 
 
@@ -1754,7 +1755,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                            otherButton:nil
                              informativeTextWithFormat:NSLocalizedString(@"You can use “Save As” to save a copy.", nil)];
         [alert setAlertStyle:NSCriticalAlertStyle];
-        (void)[alert runModal];
+        [alert runModal];
         return NO;
     }
     

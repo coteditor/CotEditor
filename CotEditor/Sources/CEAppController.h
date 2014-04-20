@@ -33,15 +33,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import <Cocoa/Cocoa.h>
 #import "CEDocumentController.h"
-#import "CEPreferencesController.h"
 #import "CESyntaxManager.h"
 #import "CEKeyBindingManager.h"
-#import "CETextSelection.h"
 #import "CEScriptManager.h"
-
-
-// notifications
-extern NSString *const CEEncodingListDidUpdateNotification;
 
 
 @interface CEAppController : NSObject <NSApplicationDelegate>

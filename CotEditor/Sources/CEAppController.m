@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEAppController.h"
+#import "CEPreferencesController.h"
 #import "CEHexColorTransformer.h"
 #import "CEByteCountTransformer.h"
 #import "CEOpacityPanelController.h"
@@ -42,14 +43,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-// notifications
-NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
-
-
 @interface CEAppController ()
-
-@property (nonatomic) BOOL didFinishLaunching;
-
 
 // readonly
 @property (nonatomic, copy, readwrite) NSArray *encodingMenuItems;
@@ -303,10 +297,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 // ------------------------------------------------------
 {
-    if (![self didFinishLaunching]) {
-        return [[NSUserDefaults standardUserDefaults] boolForKey:k_key_createNewAtStartup];
-    }
-    return YES;
+    return [[NSUserDefaults standardUserDefaults] boolForKey:k_key_createNewAtStartup];
 }
 
 
@@ -372,20 +363,12 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
     // AppleScript 起動のスピードアップのため一度動かしておく
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_runAppleScriptInLaunching]) {
         NSURL *URL = [[NSBundle mainBundle] URLForResource:@"startup" withExtension:@"applescript"];
-        if (URL == nil) { return; }
         NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
-
-        if (AppleScript) {
-            (void)[AppleScript executeAndReturnError:nil];
-        }
+        [AppleScript executeAndReturnError:nil];
     }
+    
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
-    // ファイルを開くデフォルトエンコーディングをセット
-    [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];
-    
-    // 起動完了フラグをセット
-    [self setDidFinishLaunching:YES];
 }
 
 
@@ -448,6 +431,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 {
     [[CEPreferencesController sharedController] showWindow:self];
 }
+
 
 // ------------------------------------------------------
 /// アップルスクリプト辞書をスクリプトエディタで開く
@@ -588,26 +572,27 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 //------------------------------------------------------
 {
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
-    NSMutableArray *items = [NSMutableArray array];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
+    NSMenuItem *item;
     
     for (NSNumber *encodingNumber in encodings) {
         CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
-        if (cfEncoding == kCFStringEncodingInvalidId) { // set separator
-            [items addObject:[NSMenuItem separatorItem]];
+        if (cfEncoding == kCFStringEncodingInvalidId) {
+            item = [NSMenuItem separatorItem];
         } else {
             NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
             NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
-            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
+            item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
             [item setTag:encoding];
-            
-            [items addObject:item];
         }
+        
+        [items addObject:item];
     }
     
     [self setEncodingMenuItems:items];
     
     // リストのできあがりを通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
 }
 
 

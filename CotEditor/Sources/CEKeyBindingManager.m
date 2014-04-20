@@ -394,7 +394,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         {
             item[identifier] = @"";
             [[self menuDuplicateTextField] setStringValue:@""];
-            (void)[self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
+            [self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
             
         } else if (([[NSApp currentEvent] type] == NSLeftMouseDown) &&
                    ([self outlineMode] == CETextModeOutline) &&
@@ -402,7 +402,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         {
             item[identifier] = @"";
             [[self textDuplicateTextField] setStringValue:@""];
-            (void)[self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
+            [self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
         }
         
     } else {
@@ -461,7 +461,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         BOOL isEnabled = [[item valueForKey:k_selectorString] hasPrefix:@"insertCustomText"];
         NSUInteger index = [outlineView rowForItem:item];
 
-        (void)[[self textInsertStringArrayController] setSelectionIndex:index];
+        [[self textInsertStringArrayController] setSelectionIndex:index];
         [[self textInsertStringTextView] setEditable:isEnabled];
         NSColor *color = (isEnabled) ? [NSColor controlBackgroundColor] : [NSColor controlHighlightColor];
         [[self textInsertStringTextView] setBackgroundColor:color];
