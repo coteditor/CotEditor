@@ -315,6 +315,8 @@ extern NSString *const k_bundleDocumentTags[];
 
 // distribution web site
 extern NSString *const k_webSiteURL;
+// issue tracker site
+extern NSString *const k_issueTrackerURL;
 
 
 

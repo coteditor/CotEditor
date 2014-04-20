@@ -530,6 +530,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// バグを報告する
+- (IBAction)reportBug:(id)sender
+// ------------------------------------------------------
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_issueTrackerURL]];
+}
+
+
 
 #pragma mark Private Methods
 

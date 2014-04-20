@@ -828,6 +828,12 @@
                                     <action selector="openWebSite:" target="290" id="yUt-qX-KWm"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="不具合を報告…" id="qHT-FN-VpY">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="reportBug:" target="290" id="cdN-Ah-xEy"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

@@ -340,6 +340,7 @@ NSString *const k_bundleDocumentTags[] = {
 
 // distribution web site
 NSString *const k_webSiteURL = @"http://coteditor.github.io";
+NSString *const k_issueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
 
 
 
