@@ -58,4 +58,5 @@
 + (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask
                                 fromString:(NSString *)string
                        includingCommandKey:(BOOL)isIncludingCommandKey;
+
 @end
