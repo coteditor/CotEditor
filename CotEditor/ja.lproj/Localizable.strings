@@ -23,7 +23,7 @@ http://www.aynimac.com/
 /* CEDocument */
 // Undo/Redo Action name
 "Encoding to “%@”" = "エンコーディングを “%@” へ";
-"Line Endings to “%@”" = "行末コードを “%@” へ";
+"Line Endings to “%@”" = "改行コードを “%@” へ";
 // convert or reinterpret alert
 "File encoding" = "エンコーディング";
 "Convert" = "変換";
@@ -297,7 +297,7 @@ http://www.aynimac.com/
 "Toggle wrap lines" = "行の折り返しを切替";
 
 // Line Endings
-"Line Endings" = "行末コード";
+"Line Endings" = "改行コード";
 
 // File Encoding
 "File Encoding" = "エンコーディング";

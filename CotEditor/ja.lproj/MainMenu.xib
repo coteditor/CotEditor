@@ -522,8 +522,8 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="行末コード" tag="100" id="294">
-                                <menu key="submenu" title="行末コード" id="296">
+                            <menuItem title="改行コード" tag="100" id="294">
+                                <menu key="submenu" title="改行コード" id="296">
                                     <items>
                                         <menuItem title="Unix（LF）" id="295">
                                             <connections>

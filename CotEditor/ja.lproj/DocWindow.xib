@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
@@ -308,8 +308,8 @@
                                                         <textField verticalHuggingPriority="750" id="509">
                                                             <rect key="frame" x="-2" y="244" width="104" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="行末コード：" id="694">
-                                                                <font key="font" metaFont="smallSystem"/>
+                                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="改行コード：" id="694">
+                                                                <font key="font" size="11" name="AquaKana"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -547,11 +547,11 @@
                                         <rect key="frame" x="0.0" y="5" width="210" height="440"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" id="aGt-dH-qdm">
-                                            <rect key="frame" x="1" y="17" width="208" height="422"/>
+                                            <rect key="frame" x="1" y="17" width="197" height="408"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="733" id="122">
-                                                    <rect key="frame" x="0.0" y="0.0" width="208" height="422"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="408"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -589,7 +589,7 @@
                                                                 <binding destination="127" name="value" keyPath="arrangedObjects.incompatibleChar" id="135"/>
                                                             </connections>
                                                         </tableColumn>
-                                                        <tableColumn editable="NO" width="85" minWidth="10" maxWidth="1000" id="186">
+                                                        <tableColumn editable="NO" width="74" minWidth="10" maxWidth="1000" id="186">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="変換後">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -615,15 +615,15 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="734">
-                                            <rect key="frame" x="1" y="425" width="208" height="14"/>
+                                            <rect key="frame" x="1" y="425" width="197" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="732">
-                                            <rect key="frame" x="195" y="17" width="14" height="422"/>
+                                            <rect key="frame" x="198" y="17" width="11" height="408"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" id="733">
-                                            <rect key="frame" x="0.0" y="0.0" width="208" height="17"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="197" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>

@@ -745,13 +745,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行末コードを変更する
+/// 改行コードを変更する
 - (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding
 // ------------------------------------------------------
 {
     NSInteger currentEnding = [[self editorView] lineEndingCharacter];
 
-    // 現在と同じ行末コードなら、何もしない
+    // 現在と同じ改行コードなら、何もしない
     if (currentEnding == newLineEnding) {
         return;
     }
@@ -762,7 +762,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUndoManager *undoManager = [self undoManager];
     [[undoManager prepareWithInvocationTarget:self] 
                 redoSetNewLineEndingCharacterCode:newLineEnding]; // undo内redo
-    [[undoManager prepareWithInvocationTarget:self] setLineEndingCharToView:currentEnding]; // 元の行末コード
+    [[undoManager prepareWithInvocationTarget:self] setLineEndingCharToView:currentEnding]; // 元の改行コード
     [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
     [undoManager setActionName:actionName];
 
@@ -772,7 +772,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行末コード番号をセット
+/// 改行コード番号をセット
 - (void)setLineEndingCharToView:(NSInteger)newLineEnding
 // ------------------------------------------------------
 {
@@ -1254,7 +1254,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドキュメントに新しい行末コードをセットする
+/// ドキュメントに新しい改行コードをセットする
 - (IBAction)setLineEndingCharToLF:(id)sender
 // ------------------------------------------------------
 {
@@ -1263,7 +1263,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドキュメントに新しい行末コードをセットする
+/// ドキュメントに新しい改行コードをセットする
 - (IBAction)setLineEndingCharToCR:(id)sender
 // ------------------------------------------------------
 {
@@ -1272,7 +1272,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドキュメントに新しい行末コードをセットする
+/// ドキュメントに新しい改行コードをセットする
 - (IBAction)setLineEndingCharToCRLF:(id)sender
 // ------------------------------------------------------
 {
@@ -1281,7 +1281,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドキュメントに新しい行末コードをセットする
+/// ドキュメントに新しい改行コードをセットする
 - (IBAction)setLineEndingChar:(id)sender
 // ------------------------------------------------------
 {
@@ -1660,7 +1660,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行末コードを変更するアクションのRedo登録
+/// 改行コードを変更するアクションのRedo登録
 - (void)redoSetNewLineEndingCharacterCode:(NSInteger)newLineEnding
 // ------------------------------------------------------
 {
@@ -1858,7 +1858,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *string = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
     NSArray *strings = [string componentsSeparatedByString:@";"];
     if (([strings count] >= 2) && ([strings[1] length] > 1)) {
-        // （配列の2番目の要素の末尾には行末コードが付加されているため、長さの最小は1）
+        // （配列の2番目の要素の末尾には改行コードが付加されているため、長さの最小は1）
         encoding = CFStringConvertEncodingToNSStringEncoding([strings[1] integerValue]);
     } else if ([strings[0] length] > 1) {
         CFStringEncoding cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)strings[0]);

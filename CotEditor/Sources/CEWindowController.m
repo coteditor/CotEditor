@@ -111,7 +111,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:[self editorView]];
-    // デフォルト行末コードをセット
+    // デフォルト改行コードをセット
     [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // 不可視文字の表示／非表示をセット
     [[self editorView] setShowInvisibleChars:[[self document] canActivateShowInvisibleCharsItem]];

@@ -479,9 +479,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         replacementString:(NSString *)replacementString
 // ------------------------------------------------------
 {
-    // キー入力、スクリプトによる編集で行末コードをLFに統一する
+    // キー入力、スクリプトによる編集で改行コードをLFに統一する
     // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の行末コードの置換場所
+    // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEEditorView > setString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
@@ -500,7 +500,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (![replacementString isEqualToString:@"\n"]) {
         OgreNewlineCharacter replacementLineEndingChar = [OGRegularExpression newlineCharacterInString:replacementString];
-        // 挿入／置換する文字列に行末コードが含まれていたら、LF に置換する
+        // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
         if ((replacementLineEndingChar != OgreNonbreakingNewlineCharacter) &&
             (replacementLineEndingChar != OgreLfNewlineCharacter)) {
             // （theNewStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）

@@ -218,7 +218,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行末コード入力、オートインデント実行。
+/// 改行コード入力、オートインデント実行。
 - (void)insertNewline:(id)sender
 // ------------------------------------------------------
 {
@@ -397,7 +397,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// コピー実行。行末コードを書類に設定されたものに置換する。
+/// コピー実行。改行コードを書類に設定されたものに置換する。
 - (void)copy:(id)sender
 // ------------------------------------------------------
 {
@@ -693,7 +693,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行末コード置換のためのPasteboardタイプ配列を返す
+/// 改行コード置換のためのPasteboardタイプ配列を返す
 - (NSArray *)pasteboardTypesForString
 // ------------------------------------------------------
 {
@@ -702,7 +702,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドラッグする文字列の行末コードを書類に設定されたものに置換する
+/// ドラッグする文字列の改行コードを書類に設定されたものに置換する
 - (void)dragImage:(NSImage *)anImage at:(NSPoint)imageLoc offset:(NSSize)mouseOffset
             event:(NSEvent *)theEvent pasteboard:(NSPasteboard *)pboard
            source:(id)sourceObject slideBack:(BOOL)slideBack
@@ -768,13 +768,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドロップ実行（同じ書類からドロップされた文字列の行末コードをLFへ置換するためにオーバーライド）
+/// ドロップ実行（同じ書類からドロップされた文字列の改行コードをLFへ置換するためにオーバーライド）
 - (BOOL)performDragOperation:(id < NSDraggingInfo >)sender
 // ------------------------------------------------------
 {
-    // ドロップによる編集で行末コードをLFに統一する
+    // ドロップによる編集で改行コードをLFに統一する
     // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の行末コードの置換場所
+    // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEEditorView > setString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
@@ -787,7 +787,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setIsSelfDrop:([sender draggingSource] == self)];
 
     if ([self isSelfDrop]) {
-        // （自己内ドラッグの場合には、行末コード置換を readSelectionFromPasteboard:type: 内で実行すると
+        // （自己内ドラッグの場合には、改行コード置換を readSelectionFromPasteboard:type: 内で実行すると
         // アンドゥの登録で文字列範囲の計算が面倒なので、ここでPasteboardを書き換えてしまう）
         NSPasteboard *pboard = [sender draggingPasteboard];
         NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
@@ -827,9 +827,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // ペーストされたか、他からテキストがドロップされた
     if ((![self isSelfDrop]) && ([type isEqualToString:NSStringPboardType])) {
-        // ペースト、他からのドロップによる編集で行末コードをLFに統一する
+        // ペースト、他からのドロップによる編集で改行コードをLFに統一する
         // （その他の編集は、下記の通りの別の場所で置換している）
-        // # テキスト編集時の行末コードの置換場所
+        // # テキスト編集時の改行コードの置換場所
         //  * ファイルオープン = CEEditorView > setString:
         //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
         //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
@@ -1878,7 +1878,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// Pasetboard内文字列の行末コードを書類に設定されたものに置換する
+/// Pasetboard内文字列の改行コードを書類に設定されたものに置換する
 - (void)replaceLineEndingToDocCharInPboard:(NSPasteboard *)pboard
 // ------------------------------------------------------
 {

@@ -114,7 +114,7 @@ The parent directory name of the dropped file.
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="XCP-jV-qFG"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
+                    <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="541" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" title="OtherViews" id="543">

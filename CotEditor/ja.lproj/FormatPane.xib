@@ -38,8 +38,8 @@
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="17">
                     <rect key="frame" x="57" y="394" width="147" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="デフォルト行末コード：" id="3273">
-                        <font key="font" metaFont="system"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="デフォルト改行コード：" id="3273">
+                        <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

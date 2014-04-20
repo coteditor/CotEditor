@@ -564,8 +564,8 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         if (docExists) {
             NSRange selectedRange = [[[document editorView] textView] selectedRange];
             inputString = [[[document editorView] string] substringWithRange:selectedRange];
-            // ([[theDoc editorView] string] は行末コードLFの文字列を返すが、[[theDoc editorView] selectedRange] は
-            // 行末コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
+            // ([[theDoc editorView] string] は改行コードLFの文字列を返すが、[[theDoc editorView] selectedRange] は
+            // 改行コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
             // [[[theDoc editorView] textView] selectedRange] を使う必要がある。2009-04-12
 
         } else {

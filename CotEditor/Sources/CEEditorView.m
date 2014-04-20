@@ -159,7 +159,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// メインtextViewの文字列を返す（行末コードはLF固定）
+/// メインtextViewの文字列を返す（改行コードはLF固定）
 - (NSString *)string
 // ------------------------------------------------------
 {
@@ -168,7 +168,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行末コードを指定のものに置換したメインtextViewの文字列を返す
+/// 改行コードを指定のものに置換したメインtextViewの文字列を返す
 - (NSString *)stringForSave
 // ------------------------------------------------------
 {
@@ -196,7 +196,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// メインtextViewの選択された文字列を、行末コードを指定のものに置換して返す
+/// メインtextViewの選択された文字列を、改行コードを指定のものに置換して返す
 - (NSString *)substringWithSelectionForSave
 // ------------------------------------------------------
 {
@@ -206,13 +206,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// メインtextViewに文字列をセット。行末コードはLFに置換される
+/// メインtextViewに文字列をセット。改行コードはLFに置換される
 - (void)setString:(NSString *)string
 // ------------------------------------------------------
 {
-    // 表示する文字列内の行末コードをLFに統一する
+    // 表示する文字列内の改行コードをLFに統一する
     // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の行末コードの置換場所
+    // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEEditorView > setString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
@@ -467,7 +467,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行末コードをセット（OgreNewlineCharacter型）
+/// 改行コードをセット（OgreNewlineCharacter型）
 - (void)setLineEndingCharacter:(OgreNewlineCharacter)lineEndingCharacter
 // ------------------------------------------------------
 {
@@ -632,7 +632,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                                           language:nil];
         }
         
-        // 行末コードをカウントしない場合は再計算
+        // 改行コードをカウントしない場合は再計算
         if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_countLineEndingAsChar]) {
             NSString *locStr = [theString substringToIndex:selectedRange.location];
 
@@ -688,7 +688,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ステータスバーと情報ドローワの行末コード表記を更新
+/// ステータスバーと情報ドローワの改行コード表記を更新
 - (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool
 // ------------------------------------------------------
 {

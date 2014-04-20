@@ -63,9 +63,9 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1030">
                     <rect key="frame" x="143" y="136" width="217" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="行末コードを文字としてカウント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
+                    <buttonCell key="cell" type="check" title="改行コードを文字としてカウント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AquaKana"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.countLineEndingAsChar" id="1032"/>

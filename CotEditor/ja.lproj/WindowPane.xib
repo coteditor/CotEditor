@@ -307,7 +307,7 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="SCx-th-irQ">
                     <rect key="frame" x="356" y="196" width="87" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="行末コード" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ief-Dy-mPR">
+                    <buttonCell key="cell" type="check" title="改行コード" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ief-Dy-mPR">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
                     </buttonCell>
