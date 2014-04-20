@@ -1,531 +1,516 @@
 /*
-=================================================
-constants
-(for CotEditor)
-
+ =================================================
+ constants
+ (for CotEditor)
+ 
  Copyright (C) 2004-2007 nakamuxu.
  Copyright (C) 2011, 2014 CotEditor Project
  http://coteditor.github.io
-=================================================
-
-encoding="UTF-8"
-Created:2004.12.13
-
--------------------------------------------------
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. 
-
-
-=================================================
-*/
-
-// binding keys
-// userdefaults
-#define k_key_showLineNumbers   @"showLineNumbers"
-#define k_key_showStatusBar     @"showStatusArea"
-#define k_key_showStatusBarLines        @"showStatusBarLines"
-#define k_key_showStatusBarChars        @"showStatusBarChars"
-#define k_key_showStatusBarWords        @"showStatusBarWords"
-#define k_key_showStatusBarLocation     @"showStatusBarLocation"
-#define k_key_showStatusBarLine         @"showStatusBarLine"
-#define k_key_showStatusBarColumn       @"showStatusBarColumn"
-#define k_key_showStatusBarEncoding     @"showStatusBarEncoding"
-#define k_key_showStatusBarLineEndings  @"showStatusBarLineEndings"
-#define k_key_showStatusBarFileSize     @"showStatusBarFileSize"
-#define k_key_countLineEndingAsChar @"countLineEndingAsChar"
-#define k_key_syncFindPboard        @"syncFindPboard"
-#define k_key_inlineContextualScriptMenu    @"inlineContextualScriptMenu"
-#define k_key_appendExtensionAtSaving       @"appendExtensionAtSaving"
-#define k_key_showNavigationBar @"showNavigationBar"
-#define k_key_wrapLines         @"wrapLines"
-#define k_key_defaultEncodingCode   @"defaultEncoding"
-#define k_key_defaultLineEndCharCode    @"defaultLineEndCharCode"
-#define k_key_encodingList  @"encodingList"
-#define k_key_fontName      @"fontName"
-#define k_key_fontSize      @"fontSize"
-#define k_key_encodingInOpen    @"encodingInOpen"
-#define k_key_encodingInNew     @"encodingInNew"
-#define k_key_referToEncodingTag    @"referToEncodingTag"
-#define k_key_createNewAtStartup    @"createNewAtStartup"
-#define k_key_reopenBlankWindow     @"reopenBlankWindow"
-#define k_key_checkSpellingAsType   @"checkSpellingAsType"
-#define k_key_windowWidth   @"windowWidth"
-#define k_key_windowHeight  @"windowHeight"
-#define k_key_autoExpandTab     @"autoExpandTab"
-#define k_key_tabWidth      @"tabWidth"
-#define k_key_windowAlpha   @"windowAlpha"
-#define k_key_autoIndent   @"autoIndent"
-#define k_key_invisibleCharactersColor  @"invisibleCharactersColor"
-#define k_key_showInvisibleSpace        @"showInvisibleSpace"
-#define k_key_invisibleSpace            @"invisibleSpace"
-#define k_key_showInvisibleTab          @"showInvisibleTab"
-#define k_key_invisibleTab              @"invisibleTab"
-#define k_key_showInvisibleNewLine      @"showInvisibleNewLine"
-#define k_key_invisibleNewLine          @"invisibleNewLine"
-#define k_key_showInvisibleFullwidthSpace   @"showInvisibleZenkakuSpace"
-#define k_key_invisibleFullwidthSpace   @"invisibleZenkakuSpace"
-#define k_key_showOtherInvisibleChars   @"showOtherInvisibleChars"
-#define k_key_highlightCurrentLine      @"highlightCurrentLine"
-#define k_key_doColoring                @"doSyntaxColoring"
-#define k_key_defaultColoringStyleName  @"defaultColoringStyleName"
-#define k_key_delayColoring             @"delayColoring"
-#define k_key_fileDropArray         @"fileDropArray"
-#define k_key_fileDropExtensions    @"extensions"
-#define k_key_fileDropFormatString  @"formatString"
-#define k_key_NSDragAndDropTextDelay    @"NSDragAndDropTextDelay"
-#define k_key_smartInsertAndDelete      @"smartInsertAndDelete"
-#define k_key_shouldAntialias           @"shouldAntialias"
-#define k_key_completeAddStandardWords  @"completeAddStandardWords"
-#define k_key_showPageGuide         @"showPageGuide"
-#define k_key_pageGuideColumn       @"pageGuideColumn"
-#define k_key_lineSpacing           @"lineSpacing"
-#define k_key_swapYenAndBackSlashKey    @"swapYenAndBackSlashKey"
-#define k_key_fixLineHeight     @"fixLineHeight"
-#define k_key_highlightBraces   @"highlightBraces"
-#define k_key_highlightLtGt     @"highlightLtGt"
-#define k_key_saveUTF8BOM       @"saveUTF8BOM"
-#define k_key_setPrintFont      @"setPrintFont"
-#define k_key_printFontName     @"printFontName"
-#define k_key_printFontSize     @"printFontSize"
-#define k_key_enableSmartQuotes @"enableSmartQuotes"
-// （以下の印刷設定関連キー）
-#define k_key_printHeader           @"printHeader"
-#define k_key_headerOneStringIndex  @"headerOneStringIndex"
-#define k_key_headerTwoStringIndex  @"headerTwoStringIndex"
-#define k_key_headerOneAlignIndex   @"headerOneAlignIndex"
-#define k_key_headerTwoAlignIndex   @"headerTwoAlignIndex"
-#define k_key_printHeaderSeparator  @"printHeaderSeparator"
-#define k_key_printFooter           @"printFooter"
-#define k_key_footerOneStringIndex  @"footerOneStringIndex"
-#define k_key_footerTwoStringIndex  @"footerTwoStringIndex"
-#define k_key_footerOneAlignIndex   @"footerOneAlignIndex"
-#define k_key_footerTwoAlignIndex   @"footerTwoAlignIndex"
-#define k_key_printFooterSeparator  @"printFooterSeparator"
-#define k_key_printLineNumIndex     @"printLineNumIndex"
-#define k_key_printInvisibleCharIndex   @"printInvisibleCharIndex"
-#define k_key_printColorIndex       @"printColorIndex"
-//------ 以下、環境設定にない設定項目 ------
-#define k_key_HCCBackgroundColor    @"HCCBackgroundColor"
-#define k_key_HCCForeColor          @"HCCForeColor"
-#define k_key_HCCSampleText         @"HCCSampleText"
-#define k_key_HCCForeComboBoxData       @"HCCForeComboBoxData"
-#define k_key_HCCBackComboBoxData       @"HCCBackComboBoxData"
-#define k_key_foreColorCBoxIsOk         @"foreColorCBoxIsOk"
-#define k_key_backgroundColorCBoxIsOk   @"backgroundColorCBoxIsOk"
-#define k_key_insertCustomTextArray     @"insertCustomTextArray"
-#define k_key_insertCustomText          @"insertCustomText"
-//------ 以下、隠し設定 ------
-//（隠し設定の値は CEAppController の initialize で設定している）
-#define k_key_lineNumFontName       @"lineNumFontName"
-#define k_key_lineNumFontSize       @"lineNumFontSize"
-#define k_key_lineNumFontColor      @"lineNumFontColor"
-#define k_key_basicColoringDelay    @"basicColoringDelay"
-#define k_key_firstColoringDelay    @"firstColoringDelay"
-#define k_key_secondColoringDelay   @"secondColoringDelay"
-#define k_key_lineNumUpdateInterval @"lineNumUpdateInterval"
-#define k_key_infoUpdateInterval    @"infoUpdateInterval"
-#define k_key_incompatibleCharInterval  @"incompatibleCharInterval"
-#define k_key_outlineMenuInterval   @"outlineMenuInterval"
-#define k_key_navigationBarFontName @"navigationBarFontName"
-#define k_key_navigationBarFontSize @"navigationBarFontSize"
-#define k_key_outlineMenuMaxLength  @"outlineMenuMaxLength"
-#define k_key_headerFooterFontName  @"headerFooterFontName"
-#define k_key_headerFooterFontSize  @"headerFooterFontSize"
-#define k_key_headerFooterDateTimeFormat    @"headerFooterDateTimeFormat"
-#define k_key_headerFooterPathAbbreviatingWithTilde @"headerFooterPathAbbreviatingWithTilde"
-#define k_key_textContainerInsetWidth       @"textContainerInsetWidth"
-#define k_key_textContainerInsetHeightTop       @"textContainerInsetHeightTop"
-#define k_key_textContainerInsetHeightBottom    @"textContainerInsetHeightBottom"
-#define k_key_showColoringIndicatorTextLength   @"showColoringIndicatorTextLength"
-#define k_key_runAppleScriptInLaunching     @"runAppleScriptInLaunching"
-#define k_key_showAlertForNotWritable       @"showAlertForNotWritable"
-#define k_key_notifyEditByAnother       @"notifyEditByAnother"
-#define k_key_smartIndentStartChars     @"smartIndentStartChars"
+ =================================================
+ 
+ encoding="UTF-8"
+ Created:2004.12.13
+ 
+ -------------------------------------------------
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ 
+ =================================================
+ */
 
 
-// Localized Strings Table
-#define k_printLocalizeTable @"print"
+#pragma mark General
 
-// Tab width values
-#define k_tabWidthMin   1
-#define k_tabWidthMax   99
-
-// Page guide column values
-#define k_pageGuideColumnMin    1
-#define k_pageGuideColumnMax    1000
-
-// custom line spacing values
-#define k_lineSpacingMin    0.0
-#define k_lineSpacingMax    10.0
-
-// syntax coloring
-#define k_ESCheckLength     16
-#define k_QCPosition        @"QCPosition"
-#define k_QCPairKind        @"QCPairKind"
-#define k_notUseKind            0
-#define k_QC_SingleQ            1
-#define k_QC_DoubleQ            2
-#define k_QC_CommentBaseNum     100
-#define k_QCStartEnd        @"QCStartEnd"
-#define k_notUseStartEnd        0
-#define k_QC_Start              1
-#define k_QC_End                2
-#define k_QCStrLength       @"QCStrLength"
-#define k_allAlphabetChars  @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-// syntax coloring range buffer (in CEEditorView)
-static NSUInteger k_coloringRangeBufferLength = 50000;  // number of characters
+// ------------------------------------------------------
+// General
+// ------------------------------------------------------
 
 // separator
-static NSString *CESeparatorString = @"-";
+extern NSString *const CESeparatorString;
 
-// syntax coloring indicator
-#define k_perCompoIncrement     80.0
-#define k_minIncrement          3.4
-
-// syntax coloring color
-#define k_key_textColor         @"textColor"
-#define k_key_backgroundColor   @"backgroundColor"
-#define k_key_insertionPointColor   @"insertionPointColor"
-#define k_key_selectionColor    @"selectionColor"
-#define k_key_highlightLineColor    @"highlightLineColor"
-#define k_key_keywordsColor     @"keywordsColor"
-#define k_key_commandsColor     @"commandsColor"
-#define k_key_numbersColor      @"numbersColor"
-#define k_key_valuesColor       @"valuesColor"
-#define k_key_stringsColor      @"stringsColor"
-#define k_key_charactersColor   @"charactersColor"
-#define k_key_commentsColor     @"commentsColor"
-#define k_key_allSyntaxColors   k_key_keywordsColor, k_key_commandsColor, k_key_valuesColor, k_key_numbersColor, k_key_stringsColor, k_key_charactersColor, k_key_commentsColor
-
-// syntax style
-#define k_SCKey_styleName   @"styleName"
-#define k_SCKey_extensions  @"extensions"
-#define k_SCKey_ignoreCase  @"ignoreCase"
-#define k_SCKey_regularExpression   @"regularExpression"
-#define k_SCKey_arrayKeyString  @"keyString"
-#define k_SCKey_beginString     @"beginString"
-#define k_SCKey_endString       @"endString"
-#define k_SCKey_bold            @"bold"
-#define k_SCKey_underline       @"underline"
-#define k_SCKey_italic          @"italic"
-#define k_SCKey_numOfObjInArray @"numOfObjInArray"
-#define k_SCKey_keywordsArray   @"keywordsArray"
-#define k_SCKey_commandsArray   @"commandsArray"
-#define k_SCKey_valuesArray     @"valuesArray"
-#define k_SCKey_numbersArray    @"numbersArray"
-#define k_SCKey_stringsArray    @"stringsArray"
-#define k_SCKey_charactersArray @"charactersArray"
-#define k_SCKey_commentsArray   @"commentsArray"
-#define k_SCKey_outlineMenuArray    @"outlineMenuArray"
-#define k_SCKey_completionsArray    @"completionsArray"
-#define k_SCKey_allColoringArrays   k_SCKey_keywordsArray, k_SCKey_commandsArray, k_SCKey_valuesArray, k_SCKey_numbersArray, k_SCKey_stringsArray, k_SCKey_charactersArray, k_SCKey_commentsArray
-#define k_SCKey_syntaxCheckArrays   k_SCKey_allColoringArrays, k_SCKey_outlineMenuArray
-#define k_SCKey_allArrays           k_SCKey_syntaxCheckArrays, k_SCKey_completionsArray
-
-// edit argument dictionary's key
-#define k_key_oldStyleName       @"oldStyleName"
-#define k_key_newStyleName       @"newStyleName"
-
-
-// Main Menu index and tag
-#define k_applicationMenuIndex  0
-#define k_fileMenuIndex     1
-#define k_editMenuIndex     2
-#define k_viewMenuIndex     3
-#define k_formatMenuIndex   4
-#define k_findMenuIndex     5
-#define k_utilityMenuIndex  6
-#define k_scriptMenuIndex   8
-#define k_newMenuItemTag            100
-#define k_openMenuItemTag           101
-#define k_openHiddenMenuItemTag     102
-#define k_openRecentMenuItemTag     103
-#define k_BSMenuItemTag             209
-#define k_showInvisibleCharMenuItemTag      304
-#define k_fileEncodingMenuItemTag   4001
-#define k_syntaxMenuItemTag         4002
-#define k_servicesMenuItemTag       999 // Menu KeyBindings Setting でリストアップしないための定数
-#define k_windowPanelsMenuItemTag   7999 // Menu KeyBindings Setting でリストアップしないための定数
-#define k_scriptMenuDirectoryTag    8999 // Menu KeyBindings Setting でリストアップしないための定数
-
-// Contextual Menu tag
-#define k_noMenuItem        -1
-#define k_utilityMenuTag    600
-#define k_scriptMenuTag     800
-
-// Help Document Menu tag and path
-#define k_bundleDocumentDict @{@101:@"Acknowledgements", @200:@"ReadMe", @201:@"Version History", @301:@"ScriptMenu Folder", @302:@"AppleScript", @303:@"ShellScript"}
-
-
-// CEEditorView and subView's dict key
-#define k_invocationAfterAlert      @"invocationAfterAlert"
-#define k_argsArrayAfterAlert       @"argsArrayAfterAlert"
-#define k_outlineMenuItemRange      @"outlineMenuItemRange"
-#define k_outlineMenuItemTitle      @"outlineMenuItemTitle"
-#define k_outlineMenuItemSortKey    @"outlineMenuItemSortKey"
-#define k_outlineMenuItemFontBold   @"outlineMenuItemFontBold"
-#define k_outlineMenuItemFontItalic @"outlineMenuItemFontItalic"
-#define k_outlineMenuItemUnderlineMask   @"outlineMenuItemUnderlineMask"
-
-
-// CEEditorView and subView's constants
-#define k_defaultLineNumWidth       32.0
-#define k_lineNumPadding            2.0
-#define k_statusBarHeight           20.0
-#define k_statusBarRightPadding     10.0
-#define k_statusBarReadOnlyWidth    k_defaultLineNumWidth
-#define k_lineNumFontDescender      -2.1
-#define k_navigationBarHeight       16.0
-#define k_outlineMenuLeftMargin     70.0
-#define k_outlineMenuWidth          300.0
-#define k_outlineButtonWidth        20.0
-#define k_outlineMenuSeparatorSymbol    @"-"
-
-
-// CEATSTypeSetter (Layouting)
-#define k_defaultLineHeightMultiple     1.19
-
-
-// Print settings
-#define k_printTextHorizontalMargin     8.0    // テキスト用の左右のマージン
-#define k_printHFHorizontalMargin      34.0    // ヘッダ／フッタ用の左右のマージン
-#define k_printHFVerticalMargin        34.0    // ヘッダ／フッタ用の上下のマージン
-#define k_headerFooterLineHeight    15.0
-#define k_separatorPadding      8.0
-#define k_noSeparatorPadding    18.0
-
-
-// CEWindowController
-// Drawer identifier
-#define k_infoIdentifier            @"info"
-#define k_incompatibleIdentifier    @"incompatibleChar"
-// listController key
-#define k_listLineNumber        @"lineNumber"
-#define k_incompatibleRange     @"incompatibleRange"
-#define k_incompatibleChar      @"incompatibleChar"
-#define k_convertedChar         @"convertedChar"
-
-
-// CEColorCodePanelController
-#define k_exportForeColorButtonTag      1000
-#define k_exportBGColorButtonTag        2000
-#define k_addCodeToForeButtonTag        1001
-#define k_addCodeToBackButtonTag        2001
-#define k_ColorCodeDataControllerKey    @"codeString"
-
-// Help anchors
-#define k_helpPrefAnchors       @"pref_general", @"pref_window", @"pref_appearance", @"pref_format", @"pref_syntax", @"pref_filedrop", @"pref_keybinding", @"pref_print"
-
-// distribution web site
-#define k_webSiteURL @"http://coteditor.github.io"
-
-// button
-#define k_okButtonTag       100
-
-// Encoding list edit
-#define k_dropMyselfPboardType  @"dropMyself"
-#define k_lastRow   -1
-
-// Line Endings
-#define k_lineEndingNames   @"LF", @"CR", @"CR/LF"
-
+// Localized Strings Table
+extern NSString *const k_printLocalizeTable;
 
 // Notification name
-#define k_documentDidFinishOpenNotification     @"documentDidFinishOpenNotification"
-#define k_setKeyCatchModeToCatchMenuShortcut    @"setKeyCatchModeToCatchMenuShortcut"
-#define k_catchMenuShortcutNotification         @"catchMenuShortcutNotification"
+extern NSString *const CEDocumentDidFinishOpenNotification;
+extern NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification;
+extern NSString *const CECatchMenuShortcutNotification;
 
-// Application & KeyBindingManager
-// key catch mode
-#define k_keyDownNoCatch        0
-#define k_catchMenuShortcut     1
 
-// info dictionary key
-#define k_keyCatchMode          @"keyCatchMode"
-#define k_keyBindingModFlags    @"keyBindingModFlags"
-#define k_keyBindingChar        @"keyBindingChar"
 
-// outlineView data key, column identifier
-#define k_title             @"title"
-#define k_children          @"children"
-#define k_keyBindingKey     @"keyBindingKey"
-#define k_selectorString    @"selectorString"
+#pragma mark User Defaults Keys
+
+// ------------------------------------------------------
+// User Defaults Keys
+// ------------------------------------------------------
+
+// normal settings
+extern NSString *const k_key_showLineNumbers;
+extern NSString *const k_key_showStatusBar;
+extern NSString *const k_key_showStatusBarLines;
+extern NSString *const k_key_showStatusBarChars;
+extern NSString *const k_key_showStatusBarWords;
+extern NSString *const k_key_showStatusBarLocation;
+extern NSString *const k_key_showStatusBarLine;
+extern NSString *const k_key_showStatusBarColumn;
+extern NSString *const k_key_showStatusBarEncoding;
+extern NSString *const k_key_showStatusBarLineEndings;
+extern NSString *const k_key_showStatusBarFileSize;
+extern NSString *const k_key_countLineEndingAsChar;
+extern NSString *const k_key_syncFindPboard;
+extern NSString *const k_key_inlineContextualScriptMenu;
+extern NSString *const k_key_appendExtensionAtSaving;
+extern NSString *const k_key_showNavigationBar;
+extern NSString *const k_key_wrapLines;
+extern NSString *const k_key_defaultEncodingCode;
+extern NSString *const k_key_defaultLineEndCharCode;
+extern NSString *const k_key_encodingList;
+extern NSString *const k_key_fontName;
+extern NSString *const k_key_fontSize;
+extern NSString *const k_key_encodingInOpen;
+extern NSString *const k_key_encodingInNew;
+extern NSString *const k_key_referToEncodingTag;
+extern NSString *const k_key_createNewAtStartup;
+extern NSString *const k_key_reopenBlankWindow;
+extern NSString *const k_key_checkSpellingAsType;
+extern NSString *const k_key_windowWidth;
+extern NSString *const k_key_windowHeight;
+extern NSString *const k_key_autoExpandTab;
+extern NSString *const k_key_tabWidth;
+extern NSString *const k_key_windowAlpha;
+extern NSString *const k_key_autoIndent;
+extern NSString *const k_key_invisibleCharactersColor;
+extern NSString *const k_key_showInvisibleSpace;
+extern NSString *const k_key_invisibleSpace;
+extern NSString *const k_key_showInvisibleTab;
+extern NSString *const k_key_invisibleTab;
+extern NSString *const k_key_showInvisibleNewLine;
+extern NSString *const k_key_invisibleNewLine;
+extern NSString *const k_key_showInvisibleFullwidthSpace;
+extern NSString *const k_key_invisibleFullwidthSpace;
+extern NSString *const k_key_showOtherInvisibleChars;
+extern NSString *const k_key_highlightCurrentLine;
+extern NSString *const k_key_doColoring;
+extern NSString *const k_key_defaultColoringStyleName;
+extern NSString *const k_key_delayColoring;
+extern NSString *const k_key_fileDropArray;
+extern NSString *const k_key_fileDropExtensions;
+extern NSString *const k_key_fileDropFormatString;
+extern NSString *const k_key_NSDragAndDropTextDelay;
+extern NSString *const k_key_smartInsertAndDelete;
+extern NSString *const k_key_shouldAntialias;
+extern NSString *const k_key_completeAddStandardWords;
+extern NSString *const k_key_showPageGuide;
+extern NSString *const k_key_pageGuideColumn;
+extern NSString *const k_key_lineSpacing;
+extern NSString *const k_key_swapYenAndBackSlashKey;
+extern NSString *const k_key_fixLineHeight;
+extern NSString *const k_key_highlightBraces;
+extern NSString *const k_key_highlightLtGt;
+extern NSString *const k_key_saveUTF8BOM;
+extern NSString *const k_key_setPrintFont;
+extern NSString *const k_key_printFontName;
+extern NSString *const k_key_printFontSize;
+extern NSString *const k_key_enableSmartQuotes;
+
+// print settings
+extern NSString *const k_key_printHeader;
+extern NSString *const k_key_headerOneStringIndex;
+extern NSString *const k_key_headerTwoStringIndex;
+extern NSString *const k_key_headerOneAlignIndex;
+extern NSString *const k_key_headerTwoAlignIndex;
+extern NSString *const k_key_printHeaderSeparator;
+extern NSString *const k_key_printFooter;
+extern NSString *const k_key_footerOneStringIndex;
+extern NSString *const k_key_footerTwoStringIndex;
+extern NSString *const k_key_footerOneAlignIndex;
+extern NSString *const k_key_footerTwoAlignIndex;
+extern NSString *const k_key_printFooterSeparator;
+extern NSString *const k_key_printLineNumIndex;
+extern NSString *const k_key_printInvisibleCharIndex;
+extern NSString *const k_key_printColorIndex;
+
+// settings that are not in preferences (環境設定にない設定項目)
+extern NSString *const k_key_HCCBackgroundColor;
+extern NSString *const k_key_HCCForeColor;
+extern NSString *const k_key_HCCSampleText;
+extern NSString *const k_key_HCCForeComboBoxData;
+extern NSString *const k_key_HCCBackComboBoxData;
+extern NSString *const k_key_foreColorCBoxIsOk;
+extern NSString *const k_key_backgroundColorCBoxIsOk;
+extern NSString *const k_key_insertCustomTextArray;
+extern NSString *const k_key_insertCustomText;
+
+// hidden settings（隠し設定の値は CEAppController の initialize で設定している）
+extern NSString *const k_key_lineNumFontName;
+extern NSString *const k_key_lineNumFontSize;
+extern NSString *const k_key_lineNumFontColor;
+extern NSString *const k_key_basicColoringDelay;
+extern NSString *const k_key_firstColoringDelay;
+extern NSString *const k_key_secondColoringDelay;
+extern NSString *const k_key_lineNumUpdateInterval;
+extern NSString *const k_key_infoUpdateInterval;
+extern NSString *const k_key_incompatibleCharInterval;
+extern NSString *const k_key_outlineMenuInterval;
+extern NSString *const k_key_navigationBarFontName;
+extern NSString *const k_key_navigationBarFontSize;
+extern NSString *const k_key_outlineMenuMaxLength;
+extern NSString *const k_key_headerFooterFontName;
+extern NSString *const k_key_headerFooterFontSize;
+extern NSString *const k_key_headerFooterDateTimeFormat;
+extern NSString *const k_key_headerFooterPathAbbreviatingWithTilde;
+extern NSString *const k_key_textContainerInsetWidth;
+extern NSString *const k_key_textContainerInsetHeightTop;
+extern NSString *const k_key_textContainerInsetHeightBottom;
+extern NSString *const k_key_showColoringIndicatorTextLength;
+extern NSString *const k_key_runAppleScriptInLaunching;
+extern NSString *const k_key_showAlertForNotWritable;
+extern NSString *const k_key_notifyEditByAnother;
+extern NSString *const k_key_smartIndentStartChars;
+
+
+
+#pragma mark Setting Values
+
+// ------------------------------------------------------
+// Setting Values
+// ------------------------------------------------------
+
+// Tab width values
+extern NSUInteger const k_tabWidthMin;
+extern NSUInteger const k_tabWidthMax;
+
+// Page guide column values
+extern NSUInteger const k_pageGuideColumnMin;
+extern NSUInteger const k_pageGuideColumnMax;
+
+// custom line spacing values
+extern CGFloat const k_lineSpacingMin;
+extern CGFloat const k_lineSpacingMax;
+
+
+
+#pragma mark Syntax
+
+// ------------------------------------------------------
+// Syntax
+// ------------------------------------------------------
+
+// syntax coloring
+extern NSUInteger const k_ESCheckLength;
+extern NSString  *const k_QCPosition;
+extern NSString  *const k_QCPairKind;
+extern NSUInteger const k_notUseKind;
+extern NSUInteger const k_QC_SingleQ;
+extern NSUInteger const k_QC_DoubleQ;
+extern NSUInteger const k_QC_CommentBaseNum;
+extern NSString  *const k_QCStartEnd;
+extern NSUInteger const k_notUseStartEnd;
+extern NSUInteger const k_QC_Start;
+extern NSUInteger const k_QC_End;
+extern NSString  *const k_QCStrLength;
+extern NSString  *const k_allAlphabetChars;
+
+// syntax coloring range buffer (in CEEditorView)
+extern NSUInteger const k_coloringRangeBufferLength;  // number of characters
+
+// syntax coloring indicator
+extern CGFloat const k_perCompoIncrement;
+extern CGFloat const k_minIncrement;
+
+// syntax coloring color
+extern NSString *const k_key_textColor;
+extern NSString *const k_key_backgroundColor;
+extern NSString *const k_key_insertionPointColor;
+extern NSString *const k_key_selectionColor;
+extern NSString *const k_key_highlightLineColor;
+extern NSString *const k_key_keywordsColor;
+extern NSString *const k_key_commandsColor;
+extern NSString *const k_key_valuesColor;
+extern NSString *const k_key_numbersColor;
+extern NSString *const k_key_stringsColor;
+extern NSString *const k_key_charactersColor;
+extern NSString *const k_key_commentsColor;
+extern NSString *const k_key_allSyntaxColors[];
+
+// syntax style
+extern NSString *const k_SCKey_styleName;
+extern NSString *const k_SCKey_extensions;
+extern NSString *const k_SCKey_ignoreCase;
+extern NSString *const k_SCKey_regularExpression;
+extern NSString *const k_SCKey_arrayKeyString;
+extern NSString *const k_SCKey_beginString;
+extern NSString *const k_SCKey_endString;
+extern NSString *const k_SCKey_bold;
+extern NSString *const k_SCKey_underline;
+extern NSString *const k_SCKey_italic;
+extern NSString *const k_SCKey_numOfObjInArray;
+extern NSString *const k_SCKey_keywordsArray;
+extern NSString *const k_SCKey_commandsArray;
+extern NSString *const k_SCKey_valuesArray;
+extern NSString *const k_SCKey_numbersArray;
+extern NSString *const k_SCKey_stringsArray;
+extern NSString *const k_SCKey_charactersArray;
+extern NSString *const k_SCKey_commentsArray;
+extern NSString *const k_SCKey_outlineMenuArray;
+extern NSString *const k_SCKey_completionsArray;
+extern NSString *const k_SCKey_allColoringArrays[];
+extern NSUInteger const k_size_of_allColoringArrays;
+
+// edit argument dictionary's key
+extern NSString *const k_key_oldStyleName;
+extern NSString *const k_key_newStyleName;
+
+
+
+#pragma mark Main Menu
+
+// ------------------------------------------------------
+// Main Menu
+// ------------------------------------------------------
+
+// Main Menu index and tag
+extern NSInteger const k_applicationMenuIndex;
+extern NSInteger const k_fileMenuIndex;
+extern NSInteger const k_editMenuIndex;
+extern NSInteger const k_viewMenuIndex;
+extern NSInteger const k_formatMenuIndex;
+extern NSInteger const k_findMenuIndex;
+extern NSInteger const k_utilityMenuIndex;
+extern NSInteger const k_scriptMenuIndex;
+extern NSInteger const k_newMenuItemTag;
+extern NSInteger const k_openMenuItemTag;
+extern NSInteger const k_openHiddenMenuItemTag;
+extern NSInteger const k_openRecentMenuItemTag;
+extern NSInteger const k_BSMenuItemTag;
+extern NSInteger const k_showInvisibleCharMenuItemTag;
+extern NSInteger const k_showInvisibleCharMenuItemTag;
+extern NSInteger const k_fileEncodingMenuItemTag;
+extern NSInteger const k_syntaxMenuItemTag;
+extern NSInteger const k_servicesMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
+extern NSInteger const k_windowPanelsMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
+extern NSInteger const k_scriptMenuDirectoryTag;  // Menu KeyBindings Setting でリストアップしないための定数
+
+// Contextual Menu tag
+extern NSInteger const k_noMenuItem;
+extern NSInteger const k_utilityMenuTag;
+extern NSInteger const k_scriptMenuTag;
+
+// Help Document Menu tag and path
+extern NSString *const k_bundleDocumentTags[];
+
+// distribution web site
+extern NSString *const k_webSiteURL;
+
+
+
+#pragma mark CEEditorView
+
+// ------------------------------------------------------
+// CEEditorView
+// ------------------------------------------------------
+
+// CEEditorView and subView's dict key
+extern NSString *const k_invocationAfterAlert;
+extern NSString *const k_argsArrayAfterAlert;
+extern NSString *const k_outlineMenuItemRange;
+extern NSString *const k_outlineMenuItemTitle;
+extern NSString *const k_outlineMenuItemSortKey;
+extern NSString *const k_outlineMenuItemFontBold;
+extern NSString *const k_outlineMenuItemFontItalic;
+extern NSString *const k_outlineMenuItemUnderlineMask;
+
+// CEEditorView and subView's constants
+extern CGFloat const k_defaultLineNumWidth;
+extern CGFloat const k_lineNumPadding;
+extern CGFloat const k_statusBarHeight;
+extern CGFloat const k_statusBarRightPadding;
+extern CGFloat const k_statusBarReadOnlyWidth;
+extern CGFloat const k_lineNumFontDescender;
+extern CGFloat const k_navigationBarHeight;
+extern CGFloat const k_outlineMenuLeftMargin;
+extern CGFloat const k_outlineMenuWidth;
+extern CGFloat const k_outlineButtonWidth;
+
+
+
+#pragma mark CEATSTypeSetter
+
+// ------------------------------------------------------
+// CEATSTypeSetter
+// ------------------------------------------------------
+
+// CEATSTypeSetter (Layouting)
+extern CGFloat const k_defaultLineHeightMultiple;
+
+
+
+#pragma mark Print
+
+// ------------------------------------------------------
+// Print
+// ------------------------------------------------------
+
+extern CGFloat const k_printTextHorizontalMargin;    // テキスト用の左右のマージン
+extern CGFloat const k_printHFHorizontalMargin;    // ヘッダ／フッタ用の左右のマージン
+extern CGFloat const k_printHFVerticalMargin;    // ヘッダ／フッタ用の上下のマージン
+extern CGFloat const k_headerFooterLineHeight;
+extern CGFloat const k_separatorPadding;
+extern CGFloat const k_noSeparatorPadding;
+
+
+
+#pragma mark CEWindowController
+
+// ------------------------------------------------------
+// CEWindowController
+// ------------------------------------------------------
+
+// Drawer identifier
+extern NSString *const k_infoIdentifier;
+extern NSString *const k_incompatibleIdentifier;
+
+// listController key
+extern NSString *const k_listLineNumber;
+extern NSString *const k_incompatibleRange;
+extern NSString *const k_incompatibleChar;
+extern NSString *const k_convertedChar;
+
+
+
+#pragma mark CEColorCodePanelController
+
+// ------------------------------------------------------
+// CEColorCodePanelController
+// ------------------------------------------------------
+
+extern NSInteger const k_exportForeColorButtonTag;
+extern NSInteger const k_exportBGColorButtonTag;
+extern NSInteger const k_addCodeToForeButtonTag;
+extern NSInteger const k_addCodeToBackButtonTag;
+extern NSString *const k_ColorCodeDataControllerKey;
+
+
+
+#pragma mark Preferences
+
+// ------------------------------------------------------
+// Preferences
+// ------------------------------------------------------
+
+// Help anchors
+extern NSString *const k_helpPrefAnchors[];
+
+// button
+extern NSInteger const k_okButtonTag;
+
+// Encoding list edit
+extern NSString *const k_dropMyselfPboardType;
+extern NSInteger const k_lastRow;
+
+
+
+#pragma mark Document Window
+
+// ------------------------------------------------------
+// Document Window
+// ------------------------------------------------------
+
+// Line Endings
+extern NSString *const k_lineEndingNames[];
 
 // Toolbar item identifier
-#define k_docWindowToolbarID    @"docWindowToolbarID"
-#define k_getInfoItemID         @"searchFieldItemID"
-#define k_showIncompatibleCharItemID    @"showIncompatibleCharItemID"
-#define k_biggerFontItemID      @"biggerFontItemID"
-#define k_smallerFontItemID     @"smallerFontItemID"
-#define k_shiftLeftItemID       @"shiftLeftItemID"
-#define k_shiftRightItemID      @"shiftRightItemID"
-#define k_autoTabExpandItemID   @"autoTabExpandItemID"
-#define k_showNavigationBarItemID   @"showNavigationBarItemID"
-#define k_showLineNumItemID     @"showLineNumItemID"
-#define k_showStatusBarItemID   @"showStatusAreaItemID"
-#define k_showInvisibleCharsItemID  @"showInvisibleCharsItemID"
-#define k_showPageGuideItemID   @"showPageGuideItemID"
-#define k_wrapLinesItemID       @"wrapLinesItemID"
-#define k_lineEndingsItemID     @"lineEndingsItemID"
-#define k_fileEncodingsItemID   @"fileEncodingsItemID"
-#define k_syntaxItemID          @"syntaxColoringItemID"
-#define k_syntaxReColorAllItemID  @"syntaxReColorAllItemID"
-#define k_editHexAsForeItemID   @"editHexAsForeItemID"
-#define k_editHexAsBGItemID     @"editHexAsBGItemID"
+extern NSString *const k_docWindowToolbarID;
+extern NSString *const k_getInfoItemID;
+extern NSString *const k_showIncompatibleCharItemID;
+extern NSString *const k_biggerFontItemID;
+extern NSString *const k_smallerFontItemID;
+extern NSString *const k_shiftLeftItemID;
+extern NSString *const k_shiftRightItemID;
+extern NSString *const k_autoTabExpandItemID;
+extern NSString *const k_showNavigationBarItemID;
+extern NSString *const k_showLineNumItemID;
+extern NSString *const k_showStatusBarItemID;
+extern NSString *const k_showInvisibleCharsItemID;
+extern NSString *const k_showPageGuideItemID;
+extern NSString *const k_wrapLinesItemID;
+extern NSString *const k_lineEndingsItemID;
+extern NSString *const k_fileEncodingsItemID;
+extern NSString *const k_syntaxItemID;
+extern NSString *const k_syntaxReColorAllItemID;
+extern NSString *const k_editHexAsForeItemID;
+extern NSString *const k_editHexAsBGItemID;
 
 
+
+#pragma mark KeyBindingManager
+
+// ------------------------------------------------------
+// KeyBindingManager
+// ------------------------------------------------------
+
+// info dictionary key
+extern NSString *const k_keyCatchMode;
+extern NSString *const k_keyBindingModFlags;
+extern NSString *const k_keyBindingChar;
+
+// outlineView data key, column identifier
+extern NSString *const k_title;
+extern NSString *const k_children;
+extern NSString *const k_keyBindingKey;
+extern NSString *const k_selectorString;
+
+
+
+#pragma mark Encodings
+
+// ------------------------------------------------------
 // Encodings
+// ------------------------------------------------------
+
 // Encoding menu
-#define k_autoDetectEncodingMenuTag 0
+extern NSInteger const k_autoDetectEncodingMenuTag;
 
-static CFStringEncodings k_CFStringEncodingList[] = {
-    kCFStringEncodingUTF8, // Unicode (UTF-8)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingShiftJIS, // Japanese (Shift JIS)
-    kCFStringEncodingEUC_JP, // Japanese (EUC)
-    kCFStringEncodingInvalidId, // ----------
-
-    kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
-    kCFStringEncodingShiftJIS_X0213, // Japanese (Shift JIS X0213)
-    kCFStringEncodingMacJapanese, // Japanese (Mac OS)
-    kCFStringEncodingISO_2022_JP, // Japanese (ISO 2022-JP)
-    kCFStringEncodingInvalidId, // ----------
-
-    kCFStringEncodingUnicode, // Unicode (UTF-16), kCFStringEncodingUTF16(in 10.4)
-    kCFStringEncodingInvalidId, // ----------
-
-    kCFStringEncodingMacRoman, // Western (Mac OS Roman)
-    kCFStringEncodingWindowsLatin1, // Western (Windows Latin 1)
-    kCFStringEncodingInvalidId, // ----------
-    
-    kCFStringEncodingGB_18030_2000,  // Chinese (GB18030)
-    kCFStringEncodingMacChineseTrad, // Traditional Chinese (Mac OS)
-    kCFStringEncodingMacChineseSimp, // Simplified Chinese (Mac OS)
-    kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
-    kCFStringEncodingEUC_CN,  // Simplified Chinese (EUC)
-    kCFStringEncodingDOSChineseTrad,  // Traditional Chinese (Windows, DOS)
-    kCFStringEncodingDOSChineseSimplif,  // Simplified Chinese (Windows, DOS)
-    kCFStringEncodingInvalidId, // ----------
-
-    kCFStringEncodingMacKorean, // Korean (Mac OS)
-    kCFStringEncodingEUC_KR,  // Korean (EUC)
-    kCFStringEncodingDOSKorean,  // Korean (Windows, DOS)
-    kCFStringEncodingInvalidId, // ----------
-
-    kCFStringEncodingMacArabic, // Arabic (Mac OS)
-    kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
-    kCFStringEncodingMacGreek, // Greek (Mac OS)
-    kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
-    kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
-    kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
-    kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
-    kCFStringEncodingMacTurkish, // Turkish (Mac OS)
-    kCFStringEncodingMacIcelandic, // Icelandic (Mac OS)
-    kCFStringEncodingInvalidId, // ----------
-
-    kCFStringEncodingISOLatin1, // Western (ISO Latin 1)
-    kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
-    kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
-    kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
-    kCFStringEncodingISOLatin5, // Turkish (ISO Latin 5)
-    kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
-    kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
-    kCFStringEncodingNextStepLatin, // Western (NextStep)
-    kCFStringEncodingASCII,  // Western (ASCII)
-    kCFStringEncodingNonLossyASCII, // Non-lossy ASCII
-    kCFStringEncodingInvalidId, // ----------
-
-// Encodings available 10.4 and later (CotEditor added in 0.8.0)
-    kCFStringEncodingUTF16BE, // Unicode (UTF-16BE)
-    kCFStringEncodingUTF16LE, // Unicode (UTF-16LE)
-    kCFStringEncodingUTF32, // Unicode (UTF-32)
-    kCFStringEncodingUTF32BE, // Unicode (UTF-32BE)
-    kCFStringEncodingUTF32LE, // Unicode (UTF-16LE)
-};
+extern CFStringEncodings const k_CFStringEncodingList[];
+extern NSUInteger        const k_size_of_CFStringEncodingList;
 
 // Encodings to convert Yen mark to back-slash
-static CFStringEncodings k_CFStringEncodingInvalidYenList[] = {
-    kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS) 
-    kCFStringEncodingEUC_JP,  // Japanese (EUC)
-    kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
-    kCFStringEncodingEUC_CN,  // Simplified Chinese (EUC)
-    kCFStringEncodingEUC_KR,  // Korean (EUC)
-    kCFStringEncodingDOSKorean,  // Korean (Windows, DOS)
-    kCFStringEncodingMacArabic, // Arabic (Mac OS)
-    kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
-    kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
-    kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
-    kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
-    kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
-    kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
-    kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
-    kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
-    kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
-    kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
-};
+extern CFStringEncodings const k_CFStringEncodingInvalidYenList[];
+extern NSUInteger        const k_size_of_CFStringEncodingInvalidYenList;
 
-static unichar k_yenMark = {0x00A5};
 
-static unichar k_invisibleSpaceCharList[] = {0x00B7, 0x00B0, 0x02D0, 0x2423};
-static unichar k_invisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
-static unichar k_invisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
-static unichar k_invisibleFullwidthSpaceCharList[] = {0x25A1, 0x22A0, 0x25A0, 0x2022};
+extern unichar const k_yenMark;
 
-static NSUInteger k_modifierKeysList[] = 
-            {NSControlKeyMask, NSAlternateKeyMask, NSShiftKeyMask, NSCommandKeyMask};
-static unichar k_keySpecCharList[] = {0x005E, 0x007E, 0x0024, 0x0040}; // == "^~$@"
-static unichar k_readableKeyStringsList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
+extern unichar    const k_invisibleSpaceCharList[];
+extern NSUInteger const k_size_of_invisibleSpaceCharList;
+extern unichar    const k_invisibleTabCharList[];
+extern NSUInteger const k_size_of_invisibleTabCharList;
+extern unichar    const k_invisibleNewLineCharList[];
+extern NSUInteger const k_size_of_invisibleNewLineCharList;
+extern unichar    const k_invisibleFullwidthSpaceCharList[];
+extern NSUInteger const k_size_of_invisibleFullwidthSpaceCharList;
 
-static unichar k_noPrintableKeyList[] = {
-            NSUpArrowFunctionKey,
-            NSDownArrowFunctionKey,
-            NSLeftArrowFunctionKey,
-            NSRightArrowFunctionKey,
-            NSF1FunctionKey,
-            NSF2FunctionKey,
-            NSF3FunctionKey,
-            NSF4FunctionKey,
-            NSF5FunctionKey,
-            NSF6FunctionKey,
-            NSF7FunctionKey,
-            NSF8FunctionKey,
-            NSF9FunctionKey,
-            NSF10FunctionKey,
-            NSF11FunctionKey,
-            NSF12FunctionKey,
-            NSF13FunctionKey,
-            NSF14FunctionKey,
-            NSF15FunctionKey,
-            NSF16FunctionKey,
-            NSDeleteCharacter, // NSDeleteFunctionKey は使わない
-            NSHomeFunctionKey,
-            NSEndFunctionKey,
-            NSPageUpFunctionKey,
-            NSPageDownFunctionKey,
-            NSClearLineFunctionKey,
-            NSHelpFunctionKey,
-            ' ', // = Space
-            '\t', // = Tab
-            '\r', // = Return
-            '\b', // = Backspace, (delete backword)
-            '\003', // = Enter
-            '\031', // = Backtab
-            '\033', // = Escape
-};
+extern NSUInteger const k_modifierKeysList[];
+extern NSUInteger const k_size_of_modifierKeysList;
+extern unichar    const k_keySpecCharList[];
+extern NSUInteger const k_size_of_keySpecCharList;
+extern unichar    const k_readableKeyStringsList[];
+extern NSUInteger const k_size_of_readableKeyStringsList;
 
-static unichar k_braceCharList[] = {0x0028, 0x005B, 0x007B, 0x003C}; // == ([{<
+extern unichar    const k_noPrintableKeyList[];
+extern NSUInteger const k_size_of_noPrintableKeyList;
 
+extern unichar const k_braceCharList[];

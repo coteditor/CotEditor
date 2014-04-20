@@ -56,6 +56,7 @@
 		2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */; };
 		2A149DC51901885A00A9D6EF /* CEKeyBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsController.m */; };
 		2A149DD519032CC900A9D6EF /* CEUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEUtilities.m */; };
+		2A149DD719033CBB00A9D6EF /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* constants.m */; };
 		2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
 		2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
 		2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSampleWindow.xib */; };
@@ -264,6 +265,7 @@
 		2A149DD21902CAFE00A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PrintPane.xib; sourceTree = "<group>"; };
 		2A149DD319032CC900A9D6EF /* CEUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUtilities.h; sourceTree = "<group>"; };
 		2A149DD419032CC900A9D6EF /* CEUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUtilities.m; sourceTree = "<group>"; };
+		2A149DD619033CBB00A9D6EF /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
 		2A15830518E24CB300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SyntaxExtensionConflictSheet.xib; sourceTree = "<group>"; };
 		2A15831618E3688300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EncodingListSheet.xib; sourceTree = "<group>"; };
 		2A15831818E368CE00601026 /* CEEncodingListSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodingListSheetController.h; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2A15832B18E3A25C00601026 /* Utilities */,
 				25859E90076D88ED0020F779 /* constants.h */,
+				2A149DD619033CBB00A9D6EF /* constants.m */,
 			);
 			name = Sources;
 			path = CotEditor/Sources;
@@ -1081,6 +1084,7 @@
 				2A15832418E383C300601026 /* CESizeSampleWindowController.m in Sources */,
 				8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				2A149DD719033CBB00A9D6EF /* constants.m in Sources */,
 				2A149DBC1901803C00A9D6EF /* CEEditPaneController.m in Sources */,
 				25859DB3076D65310020F779 /* CEAppController.m in Sources */,
 				25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */,

@@ -51,10 +51,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        [self setKeyCatchMode:k_keyDownNoCatch];
+        [self setKeyCatchMode:CEKeyDownNoCatchMode];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(setKeyCatchModeWithNotification:)
-                                                     name:k_setKeyCatchModeToCatchMenuShortcut
+                                                     name:CESetKeyCatchModeToCatchMenuShortcutNotification
                                                    object:nil];
     }
     return self;
@@ -76,7 +76,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)sendEvent:(NSEvent *)anEvent
 // ------------------------------------------------------
 {
-    if (([self keyCatchMode] == k_catchMenuShortcut) && ([anEvent type] == NSKeyDown)) {
+    if (([self keyCatchMode] == CECatchMenuShortCutMode) && ([anEvent type] == NSKeyDown)) {
         NSString *charIgnoringMod = [anEvent charactersIgnoringModifiers];
         if ((charIgnoringMod != nil) && ([charIgnoringMod length] > 0)) {
             unichar theChar = [charIgnoringMod characterAtIndex:0];
@@ -99,10 +99,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             NSDictionary *userInfo = @{k_keyBindingModFlags: @(modifierFlags),
                                        k_keyBindingChar: charIgnoringMod};
-            [[NSNotificationCenter defaultCenter] postNotificationName:k_catchMenuShortcutNotification
+            [[NSNotificationCenter defaultCenter] postNotificationName:CECatchMenuShortcutNotification
                                                                 object:self
                                                               userInfo:userInfo];
-            [self setKeyCatchMode:k_keyDownNoCatch];
+            [self setKeyCatchMode:CEKeyDownNoCatchMode];
             return;
         }
     }

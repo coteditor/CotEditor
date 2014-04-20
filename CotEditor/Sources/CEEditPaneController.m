@@ -71,23 +71,23 @@
     if (self) {
         // 不可視文字表示ポップアップ用の選択肢をセットする
         NSUInteger i;
-        NSMutableArray *spaces = [NSMutableArray array];
-        for (i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
+        NSMutableArray *spaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleSpaceCharList];
+        for (i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
             [spaces addObject:[CEUtilities invisibleSpaceCharacter:i]];
         }
         [self setInvisibleSpaces:spaces];
-        NSMutableArray *tabs = [NSMutableArray array];
-        for (i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
+        NSMutableArray *tabs = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleTabCharList];
+        for (i = 0; i < k_size_of_invisibleTabCharList; i++) {
             [tabs addObject:[CEUtilities invisibleTabCharacter:i]];
         }
         [self setInvisibleTabs:tabs];
-        NSMutableArray *newLines = [NSMutableArray array];
-        for (i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
+        NSMutableArray *newLines = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleNewLineCharList];
+        for (i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
             [newLines addObject:[CEUtilities invisibleNewLineCharacter:i]];
         }
         [self setInvisibleNewLines:newLines];
-        NSMutableArray *fullWidthSpaces = [NSMutableArray array];
-        for (i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
+        NSMutableArray *fullWidthSpaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleFullwidthSpaceCharList];
+        for (i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
             [fullWidthSpaces addObject:[CEUtilities invisibleFullwidthSpaceCharacter:i]];
         }
         [self setInvisibleFullWidthSpaces:fullWidthSpaces];

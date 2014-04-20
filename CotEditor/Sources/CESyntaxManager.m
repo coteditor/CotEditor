@@ -157,11 +157,16 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
         for (NSDictionary *style in [self styles]) {
             if ([style[k_SCKey_styleName] isEqualToString:styleName]) {
                 NSMutableDictionary *styleToReturn = [style mutableCopy];
-                NSArray *syntaxes = @[k_SCKey_allColoringArrays];
+                
+                NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
+                for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
+                    [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+                }
+                
                 NSArray *theArray;
                 NSUInteger count = 0;
 
-                for (NSString *key in syntaxes) {
+                for (NSString *key in syntaxDictKeys) {
                     theArray = styleToReturn[key];
                     count += [theArray count];
                 }
@@ -379,7 +384,6 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
 //------------------------------------------------------
 {
     NSURL *saveURL;
-    NSArray *arraysArray = @[k_SCKey_allArrays];
     NSMutableArray *keyStrings;
     NSSortDescriptor *descriptorOne = [[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
                                                                   ascending:YES
@@ -388,7 +392,15 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
                                                                   ascending:YES
                                                                    selector:@selector(caseInsensitiveCompare:)];
     NSArray *descriptors = @[descriptorOne, descriptorTwo];
-    for (NSString *key in arraysArray) {
+    
+    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays + 2];
+    for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
+        [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+    }
+    [syntaxDictKeys addObjectsFromArray:@[k_SCKey_outlineMenuArray,
+                                          k_SCKey_completionsArray]];
+    
+    for (NSString *key in syntaxDictKeys) {
         keyStrings = style[key];
         [keyStrings sortUsingDescriptors:descriptors];
     }
@@ -429,17 +441,21 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
 // ------------------------------------------------------
 {
     NSMutableArray *errorMessages = [NSMutableArray array];
-    
-    NSArray *syntaxes = @[k_SCKey_syntaxCheckArrays];
     NSArray *array;
     NSString *beginStr, *endStr, *tmpBeginStr = nil, *tmpEndStr = nil;
     NSString *arrayNameDeletingArray = nil;
     NSInteger capCount;
     NSError *error = nil;
     
-    for (NSString *arrayName in syntaxes) {
-        array = style[arrayName];
-        arrayNameDeletingArray = [arrayName substringToIndex:([arrayName length] - 5)];
+    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(k_size_of_allColoringArrays + 1)];
+    for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
+        [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+    }
+    [syntaxDictKeys addObject:k_SCKey_outlineMenuArray];
+    
+    for (NSString *key in syntaxDictKeys) {
+        array = style[key];
+        arrayNameDeletingArray = [key substringToIndex:([key length] - 5)];
         
         for (NSDictionary *dict in array) {
             beginStr = dict[k_SCKey_beginString];
@@ -476,7 +492,7 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
                 }
                 
                 // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
-            } else if ([arrayName isEqualToString:k_SCKey_outlineMenuArray]) {
+            } else if ([key isEqualToString:k_SCKey_outlineMenuArray]) {
                 NS_DURING
                 (void)[OGRegularExpression regularExpressionWithString:beginStr];
                 NS_HANDLER

@@ -76,9 +76,8 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 // ------------------------------------------------------
 {
     // Encoding list
-    NSUInteger numberOfEncodings = sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings);
-    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:numberOfEncodings];
-    for (NSUInteger i = 0; i < numberOfEncodings; i++) {
+    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:k_size_of_CFStringEncodingList];
+    for (NSUInteger i = 0; i < k_size_of_CFStringEncodingList; i++) {
         [encodings addObject:@(k_CFStringEncodingList[i])];
     }
     
@@ -531,7 +530,7 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------
 {
-    NSString *fileName = k_bundleDocumentDict[@([sender tag])];
+    NSString *fileName = k_bundleDocumentTags[[sender tag]];
     NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"rtf"];
     
     [[NSWorkspace sharedWorkspace] openURL:URL];
@@ -675,16 +674,16 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 {
     NSMutableString *chars = [NSMutableString string];
 
-    for (NSUInteger i = 0; i < (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleSpaceCharList[i] length:1]];
     }
-    for (NSUInteger i = 0; i < (sizeof(k_invisibleTabCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < k_size_of_invisibleTabCharList; i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleTabCharList[i] length:1]];
     }
-    for (NSUInteger i = 0; i < (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleNewLineCharList[i] length:1]];
     }
-    for (NSUInteger i = 0; i < (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)); i++) {
+    for (NSUInteger i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
         [chars appendString:[NSString stringWithCharacters:&k_invisibleFullwidthSpaceCharList[i] length:1]];
     }
     if ([chars length] < 1) { return; }

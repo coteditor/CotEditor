@@ -117,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setNoPrintableKeyDict:[self noPrintableKeyDictionary]];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addCatchedMenuShortcutString:)
-                                                     name:k_catchMenuShortcutNotification
+                                                     name:CECatchMenuShortcutNotification
                                                    object:NSApp];
     }
     return self;
@@ -360,9 +360,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // （値が既にセットされている時は更新しない）
             [self setCurrentKeySpecChars:[theItem valueForKey:identifier]];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:k_setKeyCatchModeToCatchMenuShortcut
+        [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
                                                             object:self
-                                                          userInfo:@{k_keyCatchMode: @k_catchMenuShortcut}];
+                                                          userInfo:@{k_keyCatchMode: @(CECatchMenuShortCutMode)}];
         switch ([self outlineMode]) {
             case CEMenuModeOutline:
                 [[self menuDeleteKeyButton] setEnabled:YES];
@@ -453,9 +453,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (editButton == nil) { return NO; }
 
     // キー取得を停止
-    [[NSNotificationCenter defaultCenter] postNotificationName:k_setKeyCatchModeToCatchMenuShortcut
+    [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
                                                         object:self
-                                                      userInfo:@{k_keyCatchMode: @k_keyDownNoCatch}];
+                                                      userInfo:@{k_keyCatchMode: @(CEKeyDownNoCatchMode)}];
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if ([self outlineMode] == CETextModeOutline) {
         BOOL isEnabled = [[item valueForKey:k_selectorString] hasPrefix:@"insertCustomText"];
@@ -578,9 +578,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // フォーカスを移して入力中の値を確定
     [[sender window] makeFirstResponder:sender];
     // キー入力取得を停止
-    [[NSNotificationCenter defaultCenter] postNotificationName:k_setKeyCatchModeToCatchMenuShortcut
+    [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
                                                         object:self
-                                                      userInfo:@{k_keyCatchMode: @k_keyDownNoCatch}];
+                                                      userInfo:@{k_keyCatchMode: @(CEKeyDownNoCatchMode)}];
 
     if ([sender tag] == k_okButtonTag) { // ok のときデータを保存、反映させる
         [self saveOutlineViewData];
@@ -970,14 +970,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableString *keySpecChars = [NSMutableString string];
     unichar theChar = [string characterAtIndex:0];
     BOOL isShiftPressed = NO;
-    NSInteger i, max = sizeof(k_modifierKeysList) / sizeof(NSUInteger);
 
-    if (max != (sizeof(k_keySpecCharList) / sizeof(unichar))) {
+    if (k_size_of_modifierKeysList != k_size_of_keySpecCharList) {
         NSLog(@"internal data error! 'k_modifierKeysList' and 'k_keySpecCharList' size is different.");
         return @"";
     }
 
-    for (i = 0; i < max; i++) {
+    for (NSInteger i = 0; i < k_size_of_modifierKeysList; i++) {
         if ((modifierFlags & k_modifierKeysList[i]) || ((i == 2) && (isupper(theChar) == 1))) {
             // （メニューから定義値を取得した時、アルファベット+シフトの場合にシフトの定義が欠落するための回避処置）
             [keySpecChars appendFormat:@"%C", k_keySpecCharList[i]];
@@ -1000,14 +999,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
     NSMutableString *keyStrings = [NSMutableString string];
     unichar theChar;
-    NSInteger i, max = sizeof(k_keySpecCharList) / sizeof(unichar);
+    NSInteger i;
 
-    if (max != (sizeof(k_readableKeyStringsList) / sizeof(unichar))) {
+    if (k_size_of_keySpecCharList != k_size_of_readableKeyStringsList) {
         NSLog(@"internal data error! 'k_keySpecCharList' and 'k_readableKeyStringsList' size is different.");
         return @"";
     }
 
-    for (i = 0; i < max; i++) {
+    for (i = 0; i < k_size_of_keySpecCharList; i++) {
         theChar = k_keySpecCharList[i];
         if ([modStringSet characterIsMember:theChar]) {
             [keyStrings appendFormat:@"%C", k_readableKeyStringsList[i]];
@@ -1454,15 +1453,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                               [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
                               [NSString stringWithFormat:@"%C", (unichar)0x238B]];
 
-    NSInteger max = sizeof(k_noPrintableKeyList) / sizeof(unichar);
-    if (max != [visibleChars count]) {
+    if (k_size_of_noPrintableKeyList != [visibleChars count]) {
         NSLog(@"internal data error! 'k_noPrintableKeyList' and 'visibleChars' size is different.");
         return nil;
     }
-    NSMutableArray *keys = [NSMutableArray array];
+    NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:k_size_of_noPrintableKeyList];
     NSInteger i;
 
-    for (i = 0; i < max; i++) {
+    for (i = 0; i < k_size_of_noPrintableKeyList; i++) {
         [keys addObject:[NSString stringWithFormat:@"%C", k_noPrintableKeyList[i]]];
     }
 

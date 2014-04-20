@@ -155,15 +155,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
 
     } else {
-        NSArray *syntaxArray = @[k_SCKey_allColoringArrays];
         NSArray *array;
         NSString *endStr = nil;
         NSDictionary *strDict;
+        
+        NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
+        for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
+            [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+        }
 
-
-        for (NSString *syntaxName in syntaxArray) {
+        for (NSString *key in syntaxDictKeys) {
             @autoreleasepool {
-                array = [self coloringDictionary][syntaxName];
+                array = [self coloringDictionary][key];
                 for (strDict in array) {
                     string = [strDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                     endStr = [strDict[k_SCKey_endString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -293,10 +296,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             matchRange = [match rangeOfMatchedString];
             // メニュー項目タイトル
             pattern = [dict[k_SCKey_arrayKeyString] mutableCopy];
-            if ([pattern isEqualToString:k_outlineMenuSeparatorSymbol]) {
+            if ([pattern isEqualToString:CESeparatorString]) {
                 // セパレータのとき
                 matchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:matchRange],
-                              k_outlineMenuItemTitle: k_outlineMenuSeparatorSymbol,
+                              k_outlineMenuItemTitle: CESeparatorString,
                               k_outlineMenuItemSortKey: @(matchRange.location)};
                 [outlineMenuDicts addObject:matchDict];
                 continue;
@@ -967,22 +970,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
               contextInfo:NULL];
         [self setModalSession:[NSApp beginModalSessionForWindow:sheet]];
     }
-
-    NSArray *colorArray = @[k_key_allSyntaxColors];
-    NSArray *syntaxArray = @[k_SCKey_allColoringArrays];
+    
     NSArray *array, *inArray;
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableString *simpleWordsChar = [NSMutableString stringWithString:k_allAlphabetChars];
     NSString *beginStr = nil, *endStr = nil;
     NSDictionary *strDict;
     NSRange coloringRange;
-    NSInteger i, j, count, syntaxArrayCount = [syntaxArray count];
+    NSInteger i, j, count;
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
     double indicatorValue, beginDouble = 0.0;
-
+    
+    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
+    for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
+        [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+    }
+    
     NS_DURING
         // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
-        for (i = 0; i < syntaxArrayCount; i++) {
+        for (i = 0; i < k_size_of_allColoringArrays; i++) {
 
             if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
                 // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
@@ -998,14 +1004,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 break;
             }
 
-            array = [self coloringDictionary][syntaxArray[i]];
+            array = [self coloringDictionary][syntaxDictKeys[i]];
             count = [array count];
             [self setTextColor:[NSUnarchiver unarchiveObjectWithData:
-                                [[NSUserDefaults standardUserDefaults] valueForKey:colorArray[i]]]]; // ===== retain
+                                [[NSUserDefaults standardUserDefaults] valueForKey:k_key_allSyntaxColors[i]]]]; // ===== retain
             [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
-            if ([syntaxArray[i] isEqualToString:k_SCKey_commentsArray]) {
+            if ([syntaxDictKeys[i] isEqualToString:k_SCKey_commentsArray]) {
                 [self setAttrToCommentsWithSyntaxArray:array withSingleQuotes:isSingleQuotes
                                       withDoubleQuotes:isDoubleQuotes updateIndicator:[self isIndicatorShown]];
                 [self setTextColor:nil]; // ===== release

@@ -773,19 +773,19 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
                                     <items>
-                                        <menuItem title="About ScriptMenu Folder" tag="301" id="u2o-8v-WPL">
+                                        <menuItem title="About ScriptMenu Folder" tag="3" id="u2o-8v-WPL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="HQ0-1V-jTT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Scripting with AppleScript" tag="302" id="GRD-OA-psD">
+                                        <menuItem title="Scripting with AppleScript" tag="4" id="GRD-OA-psD">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="ALX-8u-IiD"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Scripting with Other Languages" tag="303" id="zKW-b0-WR1">
+                                        <menuItem title="Scripting with Other Languages" tag="5" id="zKW-b0-WR1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openBundledDocument:" target="290" id="kms-XO-4c3"/>
@@ -803,19 +803,19 @@
                             <menuItem isSeparatorItem="YES" id="619">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="README" tag="200" id="820">
+                            <menuItem title="README" id="820">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="826"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Version History" tag="201" id="822">
+                            <menuItem title="Version History" tag="1" id="822">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="827"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Acknowledgements" tag="101" id="824">
+                            <menuItem title="Acknowledgements" tag="2" id="824">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openBundledDocument:" target="290" id="825"/>

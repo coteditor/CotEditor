@@ -34,8 +34,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <Cocoa/Cocoa.h>
 
 
+// key catch mode
+typedef NS_ENUM(NSUInteger, CEKeyCatchMode) {
+    CEKeyDownNoCatchMode,
+    CECatchMenuShortCutMode
+};
+
+
 @interface CEApplication : NSApplication
 
-@property (nonatomic) NSInteger keyCatchMode;
+@property (nonatomic) CEKeyCatchMode keyCatchMode;
 
 @end

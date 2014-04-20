@@ -212,13 +212,9 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 //------------------------------------------------------
 {
     NSString *bookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
-    NSArray *anchorsArray = @[k_helpPrefAnchors];
-    NSInteger tag = [sender tag];
-
-    if ((tag >= 0) && (tag < [anchorsArray count])) {
-        [[NSHelpManager sharedHelpManager] openHelpAnchor:anchorsArray[tag]
-                                                   inBook:bookName];
-    }
+    
+    [[NSHelpManager sharedHelpManager] openHelpAnchor:k_helpPrefAnchors[[sender tag]]
+                                               inBook:bookName];
 }
 
 @end

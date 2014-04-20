@@ -128,7 +128,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [defaults boolForKey:k_key_showOtherInvisibleChars]];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
-                                                     name:k_documentDidFinishOpenNotification object:nil];
+                                                     name:CEDocumentDidFinishOpenNotification object:nil];
     }
     return self;
 }
@@ -756,8 +756,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
 
-    NSArray *lineEndingNames = @[k_lineEndingNames];
-    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”",@""),lineEndingNames[newLineEnding]];
+    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”",@""), k_lineEndingNames[newLineEnding]];
 
     // Undo登録
     NSUndoManager *undoManager = [self undoManager];

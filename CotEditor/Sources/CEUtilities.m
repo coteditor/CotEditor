@@ -49,8 +49,8 @@ static NSArray *_invalidYenEncodings;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *encodings = [NSMutableArray array];
-        for (NSUInteger i = 0; i < sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings); i++) {
+        NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:k_size_of_CFStringEncodingInvalidYenList];
+        for (NSUInteger i = 0; i < k_size_of_CFStringEncodingInvalidYenList; i++) {
             NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
             [encodings addObject:@(encoding)];
         }
@@ -68,7 +68,7 @@ static NSArray *_invalidYenEncodings;
 + (NSString *)invisibleSpaceCharacter:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar)) - 1;
+    NSUInteger max = k_size_of_invisibleSpaceCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     unichar theUnichar = k_invisibleSpaceCharList[sanitizedIndex];
     
@@ -81,7 +81,7 @@ static NSArray *_invalidYenEncodings;
 + (NSString *)invisibleTabCharacter:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = (sizeof(k_invisibleTabCharList) / sizeof(unichar)) - 1;
+    NSUInteger max = k_size_of_invisibleTabCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     unichar theUnichar = k_invisibleTabCharList[sanitizedIndex];
     
@@ -94,7 +94,7 @@ static NSArray *_invalidYenEncodings;
 + (NSString *)invisibleNewLineCharacter:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar)) - 1;
+    NSUInteger max = k_size_of_invisibleNewLineCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     unichar theUnichar = k_invisibleNewLineCharList[sanitizedIndex];
     
@@ -107,7 +107,7 @@ static NSArray *_invalidYenEncodings;
 + (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar)) - 1;
+    NSUInteger max = k_size_of_invisibleFullwidthSpaceCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     unichar theUnichar = k_invisibleFullwidthSpaceCharList[sanitizedIndex];
     
