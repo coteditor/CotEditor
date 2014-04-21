@@ -3,13 +3,12 @@
  CEPreferencesWindowController
  (for CotEditor)
  
- Copyright (C) 2004-2007 nakamuxu.
  Copyright (C) 2014 CotEditor Project
  http://coteditor.github.io
  =================================================
  
  encoding="UTF-8"
- Created:2004.12.13
+ Created:2014-04-18 by 1024jp
  
  -------------------------------------------------
  
@@ -36,10 +35,11 @@
 
 @interface CEPreferencesWindowController : NSWindowController <NSWindowDelegate>
 
-// Class Methods
+/// shared controller
 + (instancetype)sharedController;
 
 
+/// open help viewer
 - (IBAction)openPreferencesHelp:(id)sender;
 
 @end
