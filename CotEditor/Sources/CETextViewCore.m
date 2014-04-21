@@ -541,6 +541,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([(CESubSplitView *)[self delegate] showPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
         NSImage *lineImg = [NSImage imageNamed:@"pageGuide"];
+        CGFloat length = [self frame].size.height;
         if ((column < k_pageGuideColumnMin) || (column > k_pageGuideColumnMax) || (lineImg == nil)) {
             return;
         }
@@ -549,8 +550,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *tmpStr = @"M";
         column *= [tmpStr sizeWithAttributes:@{NSFontAttributeName:[self font]}].width;
 
+        if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
+            length = [self frame].size.width;
+        }
+        
         // （2ピクセル右に描画してるのは、調整）
-        [lineImg drawInRect:NSMakeRect(column + insetWidth + linePadding + 2.0, 0, 1, [self frame].size.height)
+        [lineImg drawInRect:NSMakeRect(column + insetWidth + linePadding + 2.0, 0, 1, length)
                    fromRect:NSMakeRect(0, 0, 2, 1) operation:NSCompositeSourceOver fraction:0.5];
     }
     // テキストビューを透過させている時に影を更新描画する
