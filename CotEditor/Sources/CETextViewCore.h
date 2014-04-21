@@ -36,12 +36,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
+#import "CETextViewProtocol.h"
 
 
 @class CEEditorView;
 
 
-@interface CETextViewCore : NSTextView
+@interface CETextViewCore : NSTextView <CETextViewProtocol>
 
 @property (nonatomic) BOOL isReCompletion;  // 再度入力補完をするか
 @property (nonatomic) BOOL updateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
@@ -58,7 +59,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // readonly
 @property (nonatomic, readonly) NSColor *highlightLineColor;  // カレント行ハイライト色
-@property (nonatomic, readonly) NSColor *invisiblesColor;  // 不可視文字の文字色
 
 
 // Public method

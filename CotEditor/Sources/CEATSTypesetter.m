@@ -32,8 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEATSTypesetter.h"
-#import "CETextViewCore.h"
-#import "constants.h"
+#import "CETextViewProtocol.h"
 
 
 @implementation CEATSTypesetter
@@ -86,7 +85,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
-    CGFloat lineSpacing = [(CETextViewCore *)[[self currentTextContainer] textView] lineSpacing];
+    CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[[self currentTextContainer] textView] lineSpacing];
     CGFloat fontSize;
 
     if ([manager isPrinting] || ![manager fixLineHeight]) {

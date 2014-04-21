@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CELayoutManager.h"
-#import "CETextViewCore.h"
+#import "CETextViewProtocol.h"
 #import "CEPrintView.h"
 #import "CEATSTypesetter.h"
 #import "CEUtilities.h"
@@ -168,9 +168,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger glyphIndex, charIndex = 0;
     NSInteger invisibleCharPrintMenuIndex;
 
-    id textView = [self firstTextView];
+    NSTextView<CETextViewProtocol> *textView = (NSTextView<CETextViewProtocol> *)[self firstTextView];
     if ([self isPrinting] && [textView respondsToSelector:@selector(printPanelAccessoryController)]) {
-        invisibleCharPrintMenuIndex = [[textView printPanelAccessoryController] invisibleCharsMode];
+        invisibleCharPrintMenuIndex = [[textView performSelector:@selector(printPanelAccessoryController)] invisibleCharsMode];
     } else {
         invisibleCharPrintMenuIndex = [defaults integerForKey:k_key_printInvisibleCharIndex];
     }
@@ -190,12 +190,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     if (((![self isPrinting] || (invisibleCharPrintMenuIndex == 1)) && [self showInvisibles]) ||
-        ([self isPrinting] && (invisibleCharPrintMenuIndex == 2))) {
-
+        ([self isPrinting] && (invisibleCharPrintMenuIndex == 2)))
+    {
         CGFloat insetWidth = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth];
         CGFloat insetHeight = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop];
         if ([self isPrinting]) {
-            NSPoint thePoint = [[self firstTextView] textContainerOrigin];
+            NSPoint thePoint = [textView textContainerOrigin];
             insetWidth = thePoint.x;
             insetHeight = thePoint.y;
         }
@@ -319,7 +319,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (CGFloat)lineHeight
 // ------------------------------------------------------
 {
-    CGFloat lineSpacing = [(CETextViewCore *)[self firstTextView] lineSpacing];
+    CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
 
     // 小数点以下を返すと選択範囲が分離することがあるため、丸める
     return floor([self defaultLineHeightForTextFont] + lineSpacing * [self textFontPointSize] + 0.5);

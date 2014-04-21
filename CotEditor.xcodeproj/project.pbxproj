@@ -297,6 +297,7 @@
 		2A5D2B8F18E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxExtensionConflictSheetController.h; sourceTree = "<group>"; };
 		2A5D2B9018E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxExtensionConflictSheetController.m; sourceTree = "<group>"; };
 		2A5D2B9518E1F5AA0020AA1F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxExtensionConflictSheet.xib; sourceTree = "<group>"; };
+		2A607B04190582CE00F3A991 /* CETextViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CETextViewProtocol.h; sourceTree = "<group>"; };
 		2A68F93618FB04F300673440 /* CEMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuItemCell.h; sourceTree = "<group>"; };
 		2A68F93718FB04F300673440 /* CEMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMenuItemCell.m; sourceTree = "<group>"; };
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AutoTabExpand_Off.tiff; path = toolbarIcons/AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
@@ -779,6 +780,7 @@
 		2A42825218FCC1C100386899 /* TextView */ = {
 			isa = PBXGroup;
 			children = (
+				2A607B04190582CE00F3A991 /* CETextViewProtocol.h */,
 				25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */,
 				25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */,
 				8C65C0E507927D0F0028D94A /* CELayoutManager.h */,

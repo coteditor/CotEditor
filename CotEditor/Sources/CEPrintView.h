@@ -32,10 +32,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
+#import "CETextViewProtocol.h"
 #import "CEPrintPanelAccessoryController.h"
 
 
-@interface CEPrintView : NSTextView
+@interface CEPrintView : NSTextView <CETextViewProtocol>
 
 @property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
@@ -48,9 +49,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // These values are used if set option is "Same as document's setting"
 @property (nonatomic) BOOL documentShowsLineNum;
 @property (nonatomic) BOOL documentShowsInvisibles;
-
-
-// public methods
-- (NSColor *)invisiblesColor;
 
 @end
