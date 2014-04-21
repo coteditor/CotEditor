@@ -21,27 +21,40 @@
 <p>ファイルドロップの「フォーマット」で使用できる定型文字列と、使用例を示します。</p>
 
 <table>
-<tr><th>定型文字列</th><th>置換される値</th></tr>
-<tr><td><tt>&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;</tt></td><td>ドロップ元ファイルの絶対パス</td></tr>
-<tr><td><tt>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</tt></td><td>ドロップ先ファイルからドロップ元ファイルへの相対パス</td></tr>
-<tr><td><tt>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</tt></td><td>ドロップ元ファイルの、拡張子を含むファイル名</td></tr>
-<tr><td><tt>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</tt></td><td>ドロップ元ファイルの名前から拡張子を削除した文字列</td></tr>
-<tr><td><tt>&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;</tt></td><td>ドロップ元ファイルの拡張子</td></tr>
-<tr><td style="white-space: nowrap;"><tt>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</tt></td><td>ドロップ元ファイルの拡張子（小文字）</td></tr>
-<tr><td style="white-space: nowrap;"><tt>&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;</tt></td><td>ドロップ元ファイルの拡張子（大文字）</td></tr>
-<tr><td><tt>&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;</tt></td><td>ドロップ元ファイルのあるディレクトリ名</td></tr>
-<tr><td><tt>&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;</tt></td><td>画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）</td></tr>
-<tr><td><tt>&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;</tt></td><td>画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）</td></tr>
+<thead>
+  <tr><th>定型文字列</th><th>置換される値</th></tr>
+<head>
+<tbody>
+  <tr><td><code>&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの絶対パス</td></tr>
+  <tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td>ドロップ先ファイルからドロップ元ファイルへの相対パス</td></tr>
+  <tr><td><code>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの、拡張子を含むファイル名</td></tr>
+  <tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの名前から拡張子を削除した文字列</td></tr>
+  <tr><td><code>&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの拡張子</td></tr>
+  <tr><td style="white-space: nowrap;"><code>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの拡張子（小文字）</td></tr>
+  <tr><td style="white-space: nowrap;"><code>&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;</code></td><td>ドロップ元ファイルの拡張子（大文字）</td></tr>
+  <tr><td><code>&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;</code></td><td>ドロップ元ファイルのあるディレクトリ名</td></tr>
+  <tr><td><code>&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;</code></td><td>画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）</td></tr>
+  <tr><td><code>&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;</code></td><td>画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）</td></tr>
+</tbody>
 </table>
 
 <p>下記に使用例を示します。</p>
+
 <table>
-<tr><td colspan="2" style="border: none;">例 1) hoge.html をドロップした場合：</td></tr>
-<tr><th class="lh">フォーマット</th><td><tt>&lt;a href=&quot;&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;&quot;&gt;&lt;/a&gt;</tt></td></tr>
-<tr><th class="lh">挿入文字列</th><td><tt>&lt;a href=&quot;hoge.html&quot;&gt;&lt;/a&gt;</tt></td></tr>
-<tr><td colspan="2" style="border: none;">例 2) hoge.jpg をドロップした場合：</td></tr>
-<tr><th class="lh">フォーマット</th><td><tt>&lt;img src=&quot;&lt;&lt;&lt;FILENAME&gt;&gt;&gt;&quot; width=&quot;&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;&quot; height=&quot;&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;&quot; /&gt;</tt></td></tr>
-<tr><th class="lh">挿入文字列</th><td><tt>&lt;img src=&quot;hoge.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</tt></td></tr>
+<caption>例 1) hoge.html をドロップした場合：</caption>
+<tbody>
+  <tr><th>フォーマット</th><td><code>&lt;a href=&quot;&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;&quot;&gt;&lt;/a&gt;</code></td></tr>
+  <tr><th>挿入文字列</th><td><code>&lt;a href=&quot;foo.html&quot;&gt;&lt;/a&gt;</code></td></tr>
+</tbody>
+</table>
+
+<table>
+<caption>例 2) hoge.jpg をドロップした場合：</caption>
+<tbody>
+  <tr><th>フォーマット</th><td><code>&lt;img src=&quot;&lt;&lt;&lt;FILENAME&gt;&gt;&gt;&quot; width=&quot;&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;&quot; height=&quot;&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;&quot; /&gt;</code></td></tr>
+  <tr><th>挿入文字列</th><td><code>&lt;img src=&quot;hoge.jpg&quot; width=&quot;160&quot; height=&quot;80&quot; /&gt;</code></td></tr>
+</tbody>
+</table>
 </table>
 
 <h2 id="P0">関連項目</h2>

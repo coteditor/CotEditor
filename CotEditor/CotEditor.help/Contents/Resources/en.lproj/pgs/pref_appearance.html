@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="View preferences, View, appearance"/>
+<meta name="keywords" content="Appearance preferences, Appearance, appearance"/>
 <link rel="start" href="../CotEditorHelp.html"/>
 <link rel="index" href="../xpgs/xall.html"/>
 <link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
-<title>View preferences</title>
+<title>Appearance preferences</title>
 </head>
 <body>
 
@@ -18,23 +18,43 @@
 </div>
 
 <div id="contents">
-<h1>View preferences</h1>
-<p>The View preferences let you set the default appearance of documents, including text color and invisible characters' alternatives.<br />
-Changes you make here will take effect when you next create/open a document.</p>
+<h1>Appearance preferences</h1>
+<p>The Appearance preferences let you set the appearance of documents, including font, line height and the colors.</p>
+
+<dl>
+  <dt>Font</dt>
+  <dd>You can set the font type and size for the text view.</dd>
+  <dd><dl>
+    <dt>Anti-aliasing</dt>
+    <dd>With this option selected, CotEditor displays text anti-aliased.</dd>
+  </dl></dd>
+  
+  <dt>Line height</dt>
+  <dd>You can set the setting about line height.</dd>
+  <dd><dl>
+    <dt>Line spacing</dt>
+    <dd>You can adjust line spacing with a value indicating the number of lines. The range you can set is from 0.0 to 10.0 (lines).<br />
+        (The actual height of space between lines is the product of the value you set here and the point size of the font.)</dd>
+    <dt>Fix line height with composite font</dt>
+    <dd>With this option turned on, CotEditor forces the line height to be fixed regardless of the font you use or the character you input.<br />
+  The line height gets larger than when this option is off.</dd>
+  </dl></dd>
+</dl>
+
+<hr/>
+
 <dl>
   <dt>Basic Coloring</dt>
-  <dd>The configurations for basic coloring other than syntax coloring go here. Included are the color of text, selection, insertion point, and background.<br />
-You can customize the syntax coloring rules in the Syntax preferences pane.</dd>
-</dl>
-<dl>
-  <dt>Show Invisible Characters</dt>
-  <dd>You can transform invisible characters &mdash; space, tab, line ending, control character &mdash; into alternative symbols in order to make them viewable. Select the symbol you wish to use from the drop-down menu.<br />
-The default font you set in the Format pane applies to these symbols as well.</dd>
+  <dd>The configurations for basic coloring other than syntax coloring. Included are the color of text, selection, insertion point and background.</dd>
+
+  <dt>Syntax Coloring</dt>
+  <dd>You can set the colors for syntax coloring.<br />
+      The code elements CotEditor colors are: Keywords, Commands, Values, Numbers, Strings, Characters, Comments.<br />
+      &quot;Enable syntax coloring&quot; in the <a href="../pgs/pref_format.html" class="wikipage">Format preferences</a> should be checked to applay these colors.</dd>
 </dl>
 
 <h2 id="P0">See also</h2>
 <ul class="rel_items">
-  <li><a href="../pgs/pref_syntax.html" class="wikipage">Syntax preferences</a></li>
   <li><a href="../pgs/pref_format.html" class="wikipage">Format preferences</a></li>
   <li><a href="../xpgs/xpreferences.html">preferences</a></li>
 </ul>

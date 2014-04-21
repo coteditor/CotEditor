@@ -17,6 +17,14 @@ a:hover { text-decoration: underline; }
 	margin: 3em 1.5em 0 1.5em;
 }
 
+hr {
+	opacity: 0.33;
+}
+
+code {
+	font-family: 'menlo', monospace;
+}
+
 h1 {
 	font-size: 130%;
 	margin: 1em 0;
@@ -43,9 +51,10 @@ h3 {
 }
 
 ol, ul, pre {
-	padding: 1em 2em 0.5em 2em;
-	margin: 0;
-	border: 1px solid #cccccc;
+	padding: 0.6em 2.5em 0.2em;
+	margin: 0.4em 0;
+	border: 1px solid #ccc;
+	border-radius: 1px;
 	background-color: #e6edff;
 	clear: both;
 }
@@ -148,23 +157,47 @@ dt {
 dd {
 	margin-left: 2.5em;
 }
+dd + dt {
+	margin-top: 1em;
+}
+dl dl dd + dt {
+	margin-top: 0.5em;
+}
+dd + dd dl {
+	margin-top: 0.5em;
+}
 
 table {
 	border-collapse: collapse;
 	empty-cells: show;
+	margin: 1em 0;
 }
+table caption {
+  text-align: left;
+  margin: 0.4em 0;
+}
+table thead tr:first-child > * {
+  border-top: none;
+}
+table thead tr:last-child > * {
+	border-bottom: 1px solid #888;
+}
+
 th, td {
-	border: 1px solid #cccccc;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	margin: 0;
-	padding: 3px;
+	padding: 3px 0.5em;
 }
 th {
 	background-color: #e6edff;
 	font-weight: normal;
 	white-space: nowrap;
 }
-th.lh {
+th.lh,
+tbody th:first-child {
 	text-align: left;
+	border-right: 1px solid #ccc;
 }
 
 tt, pre {
