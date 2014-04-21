@@ -39,6 +39,7 @@
 /// name of the theme
 @property (nonatomic, copy, readwrite) NSString *name;
 
+
 // basic colors
 @property (nonatomic, readwrite) NSColor *textColor;
 @property (nonatomic, readwrite) NSColor *backgroundColor;
@@ -55,6 +56,10 @@
 @property (nonatomic, readwrite) NSColor *stringsColor;
 @property (nonatomic, readwrite) NSColor *charactersColor;
 @property (nonatomic, readwrite) NSColor *commentsColor;
+
+
+// other options
+@property (nonatomic) BOOL usesSystemSelectionColor;
 
 @end
 
@@ -77,7 +82,7 @@
         NSMutableDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
         
         // カラーを解凍
-        for (NSString *key in themeDict) {
+        for (NSString *key in [themeDict allKeys]) {
             if ([key isEqualToString:CEThemeUsesSystemSelectionColorKey]) { continue; }
             
             themeDict[key] = [NSUnarchiver unarchiveObjectWithData:themeDict[key]];
@@ -98,14 +103,24 @@
         [self setNumbersColor:themeDict[CEThemeNumbersColorKey]];
         [self setStringsColor:themeDict[CEThemeStringsColorKey]];
         [self setCharactersColor:themeDict[CEThemeCharactersColorKey]];
-        [self setCommandsColor:themeDict[CEThemeCommentsColorKey]];
+        [self setCommentsColor:themeDict[CEThemeCommentsColorKey]];
         
-        // システム環境設定の設定を使う場合はここで再定義する
-        if ([themeDict[CEThemeUsesSystemSelectionColorKey] boolValue]) {
-            [self setSelectionColor:[NSColor selectedTextBackgroundColor]];
-        }
+        [self setUsesSystemSelectionColor:[themeDict[CEThemeUsesSystemSelectionColorKey] boolValue]];
     }
     return self;
+}
+
+
+//------------------------------------------------------
+/// 選択範囲のハイライトカラーを返す
+- (NSColor *)selectionColor
+//------------------------------------------------------
+{
+    // システム環境設定の設定を使う場合はここで再定義する
+    if ([self usesSystemSelectionColor]) {
+        return [NSColor selectedTextBackgroundColor];
+    }
+    return _selectionColor;
 }
 
 
@@ -121,7 +136,7 @@
         case 3: return [self numbersColor];
         case 4: return [self stringsColor];
         case 5: return [self charactersColor];
-        case 6: return [self commandsColor];
+        case 6: return [self commentsColor];
             
         default: return [self textColor];
     }
