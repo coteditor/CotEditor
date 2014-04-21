@@ -173,14 +173,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         {
             NSString *arrow = [theEvent charactersIgnoringModifiers];
             BOOL isShiftPressed = ([theEvent modifierFlags] & NSShiftKeyMask) > 0;
-            BOOL isCommandPressed = ([theEvent modifierFlags] & NSAlternateKeyMask) > 0;
+            BOOL isOptionPressed = ([theEvent modifierFlags] & NSAlternateKeyMask) > 0;
             
             if ([arrow length] == 1) {
                 switch([arrow characterAtIndex:0]) {
                     case NSUpArrowFunctionKey:
-                        if (isCommandPressed & isShiftPressed) {
+                        if (isOptionPressed & isShiftPressed) {
                             [self moveWordBackwardAndModifySelection:self];
-                        } else if (isCommandPressed) {
+                        } else if (isOptionPressed) {
                             [self moveWordBackward:self];
                         } else if (isShiftPressed) {
                             [self moveBackwardAndModifySelection:self];
@@ -190,9 +190,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         return;
                         
                     case NSDownArrowFunctionKey:
-                        if (isCommandPressed & isShiftPressed) {
+                        if (isOptionPressed & isShiftPressed) {
                             [self moveWordForwardAndModifySelection:self];
-                        } else if (isCommandPressed) {
+                        } else if (isOptionPressed) {
                             [self moveWordForward:self];
                         } else if (isShiftPressed) {
                             [self moveForwardAndModifySelection:self];
