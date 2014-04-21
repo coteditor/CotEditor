@@ -85,6 +85,10 @@ http://www.aynimac.com/
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 
+// menu item title
+"Use Vertical Orientation" = "縦書きで表示";
+"Use Horizontal Orientation" = "横書きで表示";
+
 // contextual menu title
 "Font" = "フォント";
 "Utility" = "ユーティリティ";

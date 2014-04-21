@@ -167,6 +167,60 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             return;
         }
     }
+    
+    // 縦書きのときの矢印キー移動を乗っ取る
+    if (([self layoutOrientation] == NSTextLayoutOrientationVertical) &&
+        ([theEvent modifierFlags] & NSNumericPadKeyMask))  // arrow keys have this mask
+    {
+        NSString *arrow = [theEvent charactersIgnoringModifiers];
+        BOOL isShiftPressed = ([theEvent modifierFlags] & NSShiftKeyMask) > 0;
+        BOOL isCommandPressed = ([theEvent modifierFlags] & NSAlternateKeyMask) > 0;
+        
+        if ([arrow length] == 1) {
+            switch([arrow characterAtIndex:0]) {
+                case NSUpArrowFunctionKey:
+                    if (isCommandPressed & isShiftPressed) {
+                        [self moveWordBackwardAndModifySelection:self];
+                    } else if (isCommandPressed) {
+                        [self moveWordBackward:self];
+                    } else if (isShiftPressed) {
+                        [self moveBackwardAndModifySelection:self];
+                    } else {
+                        [self moveBackward:self];
+                    }
+                    return;
+                    
+                case NSDownArrowFunctionKey:
+                    if (isCommandPressed & isShiftPressed) {
+                        [self moveWordForwardAndModifySelection:self];
+                    } else if (isCommandPressed) {
+                        [self moveWordForward:self];
+                    } else if (isShiftPressed) {
+                        [self moveForwardAndModifySelection:self];
+                    } else {
+                        [self moveForward:self];
+                    }
+                    return;
+                    
+                case NSRightArrowFunctionKey:
+                    if (isShiftPressed) {
+                        [self moveUpAndModifySelection:self];
+                    } else {
+                        [self moveUp:self];
+                    }
+                    return;
+                    
+                case NSLeftArrowFunctionKey:
+                    if (isShiftPressed) {
+                        [self moveDownAndModifySelection:self];
+                    } else {
+                        [self moveDown:self];
+                    }
+                    return;
+            }
+        }
+    }
+    
     [super keyDown:theEvent];
 }
 
@@ -541,6 +595,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     {
         [self scrollPoint:NSMakePoint(NSMinX(rect), NSMaxY(rect))];
     }
+}
+
+
+// ------------------------------------------------------
+/// 表示方向を変更
+- (void)setLayoutOrientation:(NSTextLayoutOrientation)theOrientation
+// ------------------------------------------------------
+{
+    // 縦書きのときは強制的に行番号ビューを非表示
+    BOOL shouldShowLineNum = NO;
+    if (theOrientation != NSTextLayoutOrientationVertical) {
+        shouldShowLineNum = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showLineNumbers];
+    }
+    [(CELineNumView *)[self slaveView] setShowLineNum:shouldShowLineNum];
+    
+    [super setLayoutOrientation:theOrientation];
 }
 
 
@@ -1217,7 +1287,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         [menuItem setState:([self isAutoTabExpandEnabled] ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        [menuItem setState:(([self tabWidth] == [menuItem tag])? NSOnState : NSOffState)];
+        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
+        NSString *title = ([self layoutOrientation] == NSTextLayoutOrientationHorizontal) ? @"Use Vertical Orientation" : @"Use Horizontal Orientation";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
     }
 
     return [super validateMenuItem:menuItem];
@@ -1393,6 +1466,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self setIsAutoTabExpandEnabled:![self isAutoTabExpandEnabled]];
+}
+
+
+// ------------------------------------------------------
+/// 縦書き／横書きを切り替え
+- (IBAction)toggleLayoutOrientation:(id)sender
+// ------------------------------------------------------
+{
+    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
+        [self setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    } else {
+        [self setLayoutOrientation:NSTextLayoutOrientationVertical];
+    }
 }
 
 
