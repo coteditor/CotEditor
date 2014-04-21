@@ -420,6 +420,12 @@
                                     <action selector="toggleWrapLines:" target="-1" id="288"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="縦書きに変更" id="oSU-ic-29H">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleLayoutOrientation:" target="-1" id="lam-lb-hyF"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="タブ幅" id="KLn-0q-b80">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="タブ幅" id="9pO-3M-6lq">

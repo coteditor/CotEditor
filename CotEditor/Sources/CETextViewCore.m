@@ -1287,7 +1287,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         [menuItem setState:([self isAutoTabExpandEnabled] ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        [menuItem setState:(([self tabWidth] == [menuItem tag])? NSOnState : NSOffState)];
+        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
+    } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
+        NSString *title = ([self layoutOrientation] == NSTextLayoutOrientationHorizontal) ? @"Use Vertical Orientation" : @"Use Horizontal Orientation";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
     }
 
     return [super validateMenuItem:menuItem];
@@ -1463,6 +1466,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self setIsAutoTabExpandEnabled:![self isAutoTabExpandEnabled]];
+}
+
+
+// ------------------------------------------------------
+/// 縦書き／横書きを切り替え
+- (IBAction)toggleLayoutOrientation:(id)sender
+// ------------------------------------------------------
+{
+    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
+        [self setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    } else {
+        [self setLayoutOrientation:NSTextLayoutOrientationVertical];
+    }
 }
 
 

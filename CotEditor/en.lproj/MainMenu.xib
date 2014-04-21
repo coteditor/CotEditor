@@ -420,6 +420,12 @@
                                     <action selector="toggleWrapLines:" target="-1" id="288"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleLayoutOrientation:" target="-1" id="IgY-EE-SlR"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Tab Width" id="djM-fI-MkN">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Tab Width" id="xAm-b4-9CY">
@@ -462,6 +468,9 @@
                                         </menuItem>
                                     </items>
                                 </menu>
+                            </menuItem>
+                            <menuItem title="Layout Orientation" id="EY6-QE-Ebr">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                             <menuItem title="Line Spacing" id="751">
                                 <menu key="submenu" title="Line Spacing" id="752">
