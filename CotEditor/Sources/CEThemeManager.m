@@ -177,7 +177,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
                                                                     error:nil];
     
     [self prepareUserThemeDirectory];
-    return [plistData writeToURL:[self URLForUserTheme:themeName] atomically:YES];
+    
+    BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] atomically:YES];
+    
+    if (success) {
+        [self updateCache];
+    }
+    
+    return success;
 }
 
 
@@ -534,7 +541,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
              @"numbersColor": CEThemeNumbersColorKey,
              @"stringsColor": CEThemeStringsColorKey,
              @"charactersColor": CEThemeCharactersColorKey,
-             @"commandsColor": CEThemeCommentsColorKey,
+             @"commentsColor": CEThemeCommentsColorKey,
              };
 }
 
