@@ -166,57 +166,57 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             return;
         }
-    }
-    
-    // 縦書きのときの矢印キー移動を乗っ取る
-    if (([self layoutOrientation] == NSTextLayoutOrientationVertical) &&
-        ([theEvent modifierFlags] & NSNumericPadKeyMask))  // arrow keys have this mask
-    {
-        NSString *arrow = [theEvent charactersIgnoringModifiers];
-        BOOL isShiftPressed = ([theEvent modifierFlags] & NSShiftKeyMask) > 0;
-        BOOL isCommandPressed = ([theEvent modifierFlags] & NSAlternateKeyMask) > 0;
         
-        if ([arrow length] == 1) {
-            switch([arrow characterAtIndex:0]) {
-                case NSUpArrowFunctionKey:
-                    if (isCommandPressed & isShiftPressed) {
-                        [self moveWordBackwardAndModifySelection:self];
-                    } else if (isCommandPressed) {
-                        [self moveWordBackward:self];
-                    } else if (isShiftPressed) {
-                        [self moveBackwardAndModifySelection:self];
-                    } else {
-                        [self moveBackward:self];
-                    }
-                    return;
-                    
-                case NSDownArrowFunctionKey:
-                    if (isCommandPressed & isShiftPressed) {
-                        [self moveWordForwardAndModifySelection:self];
-                    } else if (isCommandPressed) {
-                        [self moveWordForward:self];
-                    } else if (isShiftPressed) {
-                        [self moveForwardAndModifySelection:self];
-                    } else {
-                        [self moveForward:self];
-                    }
-                    return;
-                    
-                case NSRightArrowFunctionKey:
-                    if (isShiftPressed) {
-                        [self moveUpAndModifySelection:self];
-                    } else {
-                        [self moveUp:self];
-                    }
-                    return;
-                    
-                case NSLeftArrowFunctionKey:
-                    if (isShiftPressed) {
-                        [self moveDownAndModifySelection:self];
-                    } else {
-                        [self moveDown:self];
-                    }
-                    return;
+        // 縦書きのときの矢印キー移動を乗っ取る
+        if (([self layoutOrientation] == NSTextLayoutOrientationVertical) &&
+            ([theEvent modifierFlags] & NSNumericPadKeyMask))  // arrow keys have this mask
+        {
+            NSString *arrow = [theEvent charactersIgnoringModifiers];
+            BOOL isShiftPressed = ([theEvent modifierFlags] & NSShiftKeyMask) > 0;
+            BOOL isCommandPressed = ([theEvent modifierFlags] & NSAlternateKeyMask) > 0;
+            
+            if ([arrow length] == 1) {
+                switch([arrow characterAtIndex:0]) {
+                    case NSUpArrowFunctionKey:
+                        if (isCommandPressed & isShiftPressed) {
+                            [self moveWordBackwardAndModifySelection:self];
+                        } else if (isCommandPressed) {
+                            [self moveWordBackward:self];
+                        } else if (isShiftPressed) {
+                            [self moveBackwardAndModifySelection:self];
+                        } else {
+                            [self moveBackward:self];
+                        }
+                        return;
+                        
+                    case NSDownArrowFunctionKey:
+                        if (isCommandPressed & isShiftPressed) {
+                            [self moveWordForwardAndModifySelection:self];
+                        } else if (isCommandPressed) {
+                            [self moveWordForward:self];
+                        } else if (isShiftPressed) {
+                            [self moveForwardAndModifySelection:self];
+                        } else {
+                            [self moveForward:self];
+                        }
+                        return;
+                        
+                    case NSRightArrowFunctionKey:
+                        if (isShiftPressed) {
+                            [self moveUpAndModifySelection:self];
+                        } else {
+                            [self moveUp:self];
+                        }
+                        return;
+                        
+                    case NSLeftArrowFunctionKey:
+                        if (isShiftPressed) {
+                            [self moveDownAndModifySelection:self];
+                        } else {
+                            [self moveDown:self];
+                        }
+                        return;
+                }
             }
         }
     }
