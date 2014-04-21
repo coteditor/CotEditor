@@ -387,6 +387,11 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     NSString *resourceType;
     
     for (NSURL *URL in URLs) {
+        // "_" から始まるファイル/フォルダは無視
+        if ([[URL lastPathComponent] hasPrefix:@"_"]) {
+            continue;
+        }
+        
         NSString *extension = [URL pathExtension];
         [URL getResourceValue:&resourceType forKey:NSURLFileResourceTypeKey error:nil];
         if ([resourceType isEqualToString:NSURLFileResourceTypeDirectory]) {
