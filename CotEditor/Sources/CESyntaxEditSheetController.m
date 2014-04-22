@@ -348,14 +348,22 @@
     if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit) ||
         (([self mode] == CESyntaxEdit) && ![styleName isEqualToString:[self originalStyleName]]))
     {
+        // NSArray を case insensitive に検索するブロック
+        __block NSString *duplicatedStyleName;
+        BOOL (^caseInsensitiveContains)() = ^(id obj, NSUInteger idx, BOOL *stop){
+            BOOL found = (BOOL)([obj caseInsensitiveCompare:styleName] == NSOrderedSame);
+            if (found) { duplicatedStyleName = obj; }
+            return found;
+        };
+        
         if ([styleName length] < 1) {  // 空は不可
             message = NSLocalizedString(@"Input style name.", nil);
         } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
             message = NSLocalizedString(@"Style Name cannot contain “/”. Input another name.", nil);
         } else if ([styleName rangeOfString:@"."].location == 0) {  // ファイル名としても使われるので、"." から始まる名前は不可
             message = NSLocalizedString(@"Style Name cannot begin with “.”. Input another name.", nil);
-        } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {  // 既にある名前は不可
-            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), styleName];
+        } else if ([[[CESyntaxManager sharedManager] styleNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
+            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), duplicatedStyleName];
         }
     }
     
