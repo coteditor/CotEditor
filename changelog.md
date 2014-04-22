@@ -88,6 +88,9 @@ changelog (for developer)
 - 文字入力中のシンタックスカラーリング精度を向上
 - メモリ管理を ARC (Automatic Reference Counting) に移行
 - アプリケーション起動時の処理を軽減
+- Sparkle framework を 1.6.0 に更新
+	- Software update 画面に日本語ロケールを追加
+	- 「今後はインストールを自動的に行う」のチェックボックスが正常動作するように修正
 - ほか内部コードの変更
 
 
