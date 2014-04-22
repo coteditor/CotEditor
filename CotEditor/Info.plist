@@ -79,6 +79,8 @@
 	<string>1.5α</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
+	<key>CFBundleVersion</key>
+	<string>1.5alpha</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
