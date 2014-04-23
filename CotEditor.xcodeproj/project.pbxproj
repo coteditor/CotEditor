@@ -68,7 +68,7 @@
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A3FB2B218EDBB1400D9CB2C /* swapArrowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
-		2A5B0AF21906E2CE00B6A51C /* NSColor+HSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF11906E2CE00B6A51C /* NSColor+HSL.m */; };
+		2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */; };
 		2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
 		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; };
 		2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */; };
@@ -294,8 +294,8 @@
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrowTemplate.pdf; path = images/swapArrowTemplate.pdf; sourceTree = "<group>"; };
 		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
-		2A5B0AF01906E2CE00B6A51C /* NSColor+HSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+HSL.h"; sourceTree = "<group>"; };
-		2A5B0AF11906E2CE00B6A51C /* NSColor+HSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+HSL.m"; sourceTree = "<group>"; };
+		2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CEColorCode.h"; sourceTree = "<group>"; };
+		2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CEColorCode.m"; sourceTree = "<group>"; };
 		2A5B0AF319070EED00B6A51C /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ColorCodePanelAccessory.xib; sourceTree = "<group>"; };
 		2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = EditColorCode.tiff; path = toolbarIcons/EditColorCode.tiff; sourceTree = "<group>"; };
 		2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineSpacingPanelController.h; sourceTree = "<group>"; };
@@ -655,8 +655,8 @@
 				2A73F17C18EF573B00BFB5E5 /* CEByteCountTransformer.m */,
 				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
 				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
-				2A5B0AF01906E2CE00B6A51C /* NSColor+HSL.h */,
-				2A5B0AF11906E2CE00B6A51C /* NSColor+HSL.m */,
+				2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */,
+				2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */,
 				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
 			);
 			name = Utilities;
@@ -1119,7 +1119,7 @@
 				2A73F17D18EF573B00BFB5E5 /* CEByteCountTransformer.m in Sources */,
 				8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
-				2A5B0AF21906E2CE00B6A51C /* NSColor+HSL.m in Sources */,
+				2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */,
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
 				258A14D107F3C6BC008E5FA1 /* CEFlippedView.m in Sources */,
 				2A149DB31901740600A9D6EF /* CEWindowPaneController.m in Sources */,

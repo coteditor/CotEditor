@@ -1,5 +1,5 @@
 //
-//  NSColor+HSL.h
+//  NSColor+CEColorCode.h
 //
 //  Created by 1024jp on 2014-04-22.
 
@@ -30,12 +30,35 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface NSColor (HSL)
+@interface NSColor (CEColorCode)
+
+#pragma mark Color Code
+
+/// color code type
+typedef NS_ENUM(NSUInteger, CEColorCodeType) {
+    CEColorCodeInvalid,   // nil
+    CEColorCodeHex,       // #ffffff
+    CEColorCodeShortHex,  // #fff
+    CEColorCodeCSSRGB,       // rgb(255,255,255)
+    CEColorCodeCSSRGBa,      // rgba(255,255,255,1)
+    CEColorCodeCSSHSL,       // hsl(0,0%,100%)
+    CEColorCodeCSSHSLa       // hsla(0,0%,100%,1)
+};
+
+/// Creates and returns an NSColor object using the given color code. Or returns nil if color code is invalid.
++ (NSColor *)colorWithColorCode:(NSString *)colorCode codeType:(CEColorCodeType *)codeType;
+
+/// Returns the receiver’s color code in desired type.
+/// This method works only with objects representing colors in the NSCalibratedRGBColorSpace or NSDeviceRGBColorSpace color space. Sending it to other objects raises an exception.
+- (NSString *)colorCodeWithType:(CEColorCodeType)codeType;
+
+
+
+# pragma mark HSL
 
 /// Creates and returns an NSColor object using the given opacity and HSL components.
 /// Values below 0.0 are interpreted as 0.0, and values above 1.0 are interpreted as 1.0.
 + (NSColor *)colorWithDeviceHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)lightness alpha:(CGFloat)alpha;
-
 
 /// Returns the receiver’s HSL component and opacity values in the respective arguments.
 /// This method works only with objects representing colors in the NSCalibratedRGBColorSpace or NSDeviceRGBColorSpace color space. Sending it to other objects raises an exception.

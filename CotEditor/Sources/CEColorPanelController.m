@@ -32,19 +32,8 @@
 
 #import "CEColorPanelController.h"
 #import "CEDocument.h"
-#import "NSColor+HSL.h"
+#import "NSColor+CEColorCode.h"
 #import "constants.h"
-
-
-typedef NS_ENUM(NSUInteger, CEColorCodeType) {
-    CEAutoDetectColorCode,
-    CEHexCode,
-    CEShortHexCode,
-    CERGBCode,
-    CERGBaCode,
-    CEHSLCode,
-    CEHSLaCode
-};
 
 
 @interface CEColorPanelController ()
@@ -119,10 +108,23 @@ typedef NS_ENUM(NSUInteger, CEColorCodeType) {
 - (void)setColorWithCode:(NSString *)colorCode
 // ------------------------------------------------------
 {
-    if ([colorCode length] > 0) {
-        [self setColorWithCode:colorCode codeType:CEAutoDetectColorCode];
+    colorCode = [colorCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([colorCode length] == 0) {
+        return;
     }
+    
+    CEColorCodeType codeType;
+    NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&codeType];
+    
+    if (color) {
+        [[NSUserDefaults standardUserDefaults] setInteger:codeType forKey:k_key_colorCodeType];
+        [(NSColorPanel *)[self window] setColor:color];
+        return;
+    }
+    NSBeep();
 }
+
 
 
 #pragma mark Delegate
@@ -201,9 +203,7 @@ typedef NS_ENUM(NSUInteger, CEColorCodeType) {
 - (IBAction)applayColorCode:(id)sender
 // ------------------------------------------------------
 {
-    CEColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_colorCodeType];
-    
-    [self setColorWithCode:[self colorCode] codeType:codeType];
+    [self setColorWithCode:[self colorCode]];
 }
 
 
@@ -212,181 +212,16 @@ typedef NS_ENUM(NSUInteger, CEColorCodeType) {
 - (IBAction)updateCode:(id)sender
 // ------------------------------------------------------
 {
-    NSColor *color = [self color];
-    NSString *code;
     CEColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_colorCodeType];
+    NSString *code = [[[self color] colorUsingColorSpaceName:NSDeviceRGBColorSpace] colorCodeWithType:codeType];
     
-    // カラースペースをコンバートする
-    color = [color colorUsingColorSpaceName:NSDeviceRGBColorSpace];
-    
-    int r = (int)roundf(255 * [color redComponent]);
-    int g = (int)roundf(255 * [color greenComponent]);
-    int b = (int)roundf(255 * [color blueComponent]);
-    double alpha = (double)[color alphaComponent];
-    
-    switch (codeType) {
-        case CEHexCode:
-            code = [NSString stringWithFormat:@"#%02x%02x%02x", r, g, b];
-            break;
-            
-        case CEShortHexCode:
-            code = [NSString stringWithFormat:@"#%1x%1x%1x", r/16, g/16, b/16];
-            break;
-            
-        case CERGBCode:
-            code = [NSString stringWithFormat:@"rgb(%d,%d,%d)", r, g, b];
-            break;
-            
-        case CERGBaCode:
-            code = [NSString stringWithFormat:@"rgba(%d,%d,%d,%g)", r, g, b, alpha];
-            break;
-            
-        case CEHSLCode:
-        case CEHSLaCode: {
-            CGFloat hue, saturation, lightness, alpha;
-            [color getHue:&hue saturation:&saturation lightness:&lightness alpha:&alpha];
-            
-            int h = (int)roundf(360 * hue);
-            int s = (int)roundf(100 * saturation);
-            int l = (int)roundf(100 * lightness);
-            
-            if (codeType == CEHSLaCode) {
-                code = [NSString stringWithFormat:@"hsla(%d,%d%%,%d%%,%g)", h, s, l, alpha];
-            } else {
-                code = [NSString stringWithFormat:@"hsl(%d,%d%%,%d%%)", h, s, l];
-            }
-        } break;
-            
-        case CEAutoDetectColorCode:
-            break;
+    // 現在の Hex コードが大文字だったら大文字をキープ
+    if ((codeType == CEColorCodeHex || codeType == CEColorCodeShortHex) &&
+        [[self colorCode] rangeOfString:@"^#[0-9A-F]{1,6}$" options:NSRegularExpressionSearch].location != NSNotFound) {
+        code = [code uppercaseString];
     }
     
     [self setColorCode:code];
-}
-
-
-// ------------------------------------------------------
-/// カラーパネルからのアクションで色を変更しない
-- (void)changeColor:(id)sender
-// ------------------------------------------------------
-{
-    NSLog(@"hoge");
-    // do nothing.
-}
-
-
-#pragma mark Private Methods
-
-//=======================================================
-// Private Methods
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// カラーコードから色をセットする
-- (void)setColorWithCode:(NSString *)colorCode codeType:(CEColorCodeType)codeType
-// ------------------------------------------------------
-{
-    colorCode = [colorCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSRange codeRange = NSMakeRange(0, [colorCode length]);
-    
-    NSDictionary *patterns = @{@(CEHexCode): @"^#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$",
-                               @(CEShortHexCode): @"^#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])$",
-                               @(CERGBCode): @"^rgb\\( ?([0-9]{1,3}), ?([0-9]{1,3}), ?([0-9]{1,3})\\)$",
-                               @(CERGBaCode): @"^rgba\\( ?([0-9]{1,3}), ?([0-9]{1,3}), ?([0-9]{1,3}), ?([0-9.]+)\\)$",
-                               @(CEHSLCode): @"^hsl\\( ?([0-9]{1,3}), ?([0-9.]+)%, ?([0-9.]+)%\\)$",
-                               @(CEHSLaCode): @"^hsla\\( ?([0-9]{1,3}), ?([0-9.]+)%, ?([0-9.]+)%, ?([0-9.]+)\\)$"
-                               };
-    NSRegularExpression *regex;
-    NSArray *matchs;
-    NSTextCheckingResult *result;
-    
-    
-    if (codeType != CEAutoDetectColorCode) {
-        regex = [NSRegularExpression regularExpressionWithPattern:patterns[@(codeType)] options:0 error:nil];
-        matchs = [regex matchesInString:colorCode options:0 range:codeRange];
-        if ([matchs count] == 1) {
-            result = matchs[0];
-        }
-    }
-    
-    if (!result) {
-        for (NSString *key in patterns) {
-            regex = [NSRegularExpression regularExpressionWithPattern:patterns[key] options:0 error:nil];
-            matchs = [regex matchesInString:colorCode options:0 range:codeRange];
-            if ([matchs count] == 1) {
-                codeType = [key integerValue];
-                result = matchs[0];
-                break;
-            }
-        }
-    }
-    
-    if (!result) {
-        NSBeep();
-        return;
-    }
-    
-    NSColor *color;
-    
-    switch (codeType) {
-        case CEHexCode: {
-            unsigned int r, g, b;
-            [[NSScanner scannerWithString:[colorCode substringWithRange:[result rangeAtIndex:1]]] scanHexInt:&r];
-            [[NSScanner scannerWithString:[colorCode substringWithRange:[result rangeAtIndex:2]]] scanHexInt:&g];
-            [[NSScanner scannerWithString:[colorCode substringWithRange:[result rangeAtIndex:3]]] scanHexInt:&b];
-            color = [NSColor colorWithDeviceRed:((CGFloat)r/255) green:((CGFloat)g/255) blue:((CGFloat)b/255) alpha:1.0];
-        } break;
-            
-        case CEShortHexCode: {
-            unsigned int r, g, b;
-            [[NSScanner scannerWithString:[colorCode substringWithRange:[result rangeAtIndex:1]]] scanHexInt:&r];
-            [[NSScanner scannerWithString:[colorCode substringWithRange:[result rangeAtIndex:2]]] scanHexInt:&g];
-            [[NSScanner scannerWithString:[colorCode substringWithRange:[result rangeAtIndex:3]]] scanHexInt:&b];
-            color = [NSColor colorWithDeviceRed:((CGFloat)r/15) green:((CGFloat)g/15) blue:((CGFloat)b/15) alpha:1.0];
-        } break;
-            
-        case CERGBCode: {
-            CGFloat r = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:1]] doubleValue];
-            CGFloat g = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:2]] doubleValue];
-            CGFloat b = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:3]] doubleValue];
-            color = [NSColor colorWithDeviceRed:r/255 green:g/255 blue:b/255 alpha:1.0];
-        } break;
-            
-        case CERGBaCode: {
-            CGFloat r = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:1]] doubleValue];
-            CGFloat g = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:2]] doubleValue];
-            CGFloat b = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:3]] doubleValue];
-            CGFloat a = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:4]] doubleValue];
-            color = [NSColor colorWithDeviceRed:r/255 green:g/255 blue:b/255 alpha:a];
-        } break;
-            
-        case CEHSLCode: {
-            CGFloat h = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:1]] doubleValue];
-            CGFloat s = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:2]] doubleValue];
-            CGFloat l = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:3]] doubleValue];
-            color = [NSColor colorWithDeviceHue:h/360 saturation:s/100 lightness:l/100 alpha:1.0];
-        } break;
-            
-        case CEHSLaCode: {
-            CGFloat h = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:1]] doubleValue];
-            CGFloat s = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:2]] doubleValue];
-            CGFloat l = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:3]] doubleValue];
-            CGFloat a = (CGFloat)[[colorCode substringWithRange:[result rangeAtIndex:4]] doubleValue];
-            color = [NSColor colorWithDeviceHue:h/360 saturation:s/100 lightness:l/100 alpha:a];
-        } break;
-            
-        default:
-            break;
-    }
-    
-    if (color) {
-        [[NSUserDefaults standardUserDefaults] setInteger:codeType forKey:k_key_colorCodeType];
-        [(NSColorPanel *)[self window] setColor:color];
-        return;
-    }
-    
-    NSBeep();
 }
 
 @end
