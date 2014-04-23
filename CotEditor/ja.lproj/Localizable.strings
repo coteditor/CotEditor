@@ -324,6 +324,11 @@ http://www.aynimac.com/
 "Edit Color Code as BG" = "背景色として編集";
 "Open Color Code Editor to edit as background color" = "カラーコードエディタを開き、背景色として編集する";
 
+// Edit Color Code
+"Color Code" = "カラーコード";
+"Edit Color Code" = "カラーコードを編集";
+"Open Color Code Editor and set selection as color code" = "カラーコードエディタを開き、選択範囲をカラーコードとしてセット";
+
 
 /* CEScriptManager */
 // menu title

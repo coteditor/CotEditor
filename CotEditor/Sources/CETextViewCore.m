@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
+#import "CEColorPanelController.h"
 #import "CEKeyBindingManager.h"
 #import "constants.h"
 
@@ -1748,6 +1749,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     [[CEColorCodePanelController sharedController] showWindow:sender];
     [[CEColorCodePanelController sharedController] importHexColorCodeAsBackColor:curStr];
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲をカラーコードパネルに渡す
+- (IBAction)editColorCode:(id)sender
+// ------------------------------------------------------
+{
+    NSString *curStr = [[self string] substringWithRange:[self selectedRange]];
+    
+    [[CEColorPanelController sharedController] showWindow:sender];
+    [[CEColorPanelController sharedController] setColorWithCode:curStr];
+}
+
+
+// ------------------------------------------------------
+/// カラーパネルからのアクションで色を変更しない
+- (IBAction)changeColor:(id)sender
+// ------------------------------------------------------
+{
+    // do nothing.
 }
 
 

@@ -154,6 +154,7 @@ extern NSString *const k_key_foreColorCBoxIsOk;
 extern NSString *const k_key_backgroundColorCBoxIsOk;
 extern NSString *const k_key_insertCustomTextArray;
 extern NSString *const k_key_insertCustomText;
+extern NSString *const k_key_colorCodeType;
 
 // hidden settings（隠し設定の値は CEAppDelegate の initialize で設定している）
 extern NSString *const k_key_lineNumFontName;
@@ -456,6 +457,7 @@ extern NSString *const k_syntaxItemID;
 extern NSString *const k_syntaxReColorAllItemID;
 extern NSString *const k_editHexAsForeItemID;
 extern NSString *const k_editHexAsBGItemID;
+extern NSString *const k_editColorCodeItemID;
 
 
 

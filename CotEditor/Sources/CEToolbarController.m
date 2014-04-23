@@ -403,6 +403,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to edit as background color",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"EditHexAsBG"]];
         [toolbarItem setAction:@selector(editHexColorCodeAsBGColor:)];
+        
+        // Edit Color Code (target = FirstResponder)
+    } else if ([itemIdentifier isEqualToString:k_editColorCodeItemID]) {
+        [toolbarItem setLabel:NSLocalizedString(@"Color Code",@"")];
+        [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor and set selection as color code",@"")];
+        [toolbarItem setImage:[NSImage imageNamed:@"EditColorCode"]];
+        [toolbarItem setAction:@selector(editColorCode:)];
 
     } else {
         toolbarItem = nil;
@@ -437,6 +445,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
              k_syntaxReColorAllItemID, 
              k_editHexAsForeItemID, 
              k_editHexAsBGItemID, 
+             k_editColorCodeItemID,
              NSToolbarSeparatorItemIdentifier, 
              NSToolbarFlexibleSpaceItemIdentifier, 
              NSToolbarSpaceItemIdentifier, 

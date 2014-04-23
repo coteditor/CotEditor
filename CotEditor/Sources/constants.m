@@ -156,6 +156,7 @@ NSString *const k_key_foreColorCBoxIsOk = @"foreColorCBoxIsOk";
 NSString *const k_key_backgroundColorCBoxIsOk = @"backgroundColorCBoxIsOk";
 NSString *const k_key_insertCustomTextArray = @"insertCustomTextArray";
 NSString *const k_key_insertCustomText = @"insertCustomText";
+NSString *const k_key_colorCodeType = @"colorCodeType";
 
 // hidden settings
 NSString *const k_key_lineNumFontName = @"lineNumFontName";
@@ -492,6 +493,7 @@ NSString *const k_syntaxItemID = @"syntaxColoringItemID";
 NSString *const k_syntaxReColorAllItemID = @"syntaxReColorAllItemID";
 NSString *const k_editHexAsForeItemID = @"editHexAsForeItemID";
 NSString *const k_editHexAsBGItemID = @"editHexAsBGItemID";
+NSString *const k_editColorCodeItemID = @"editColorCodeItemID";
 
 
 

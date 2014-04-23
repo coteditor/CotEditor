@@ -105,6 +105,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)inputBackSlash:(id)sender;
 - (IBAction)editHexColorCodeAsForeColor:(id)sender;
 - (IBAction)editHexColorCodeAsBGColor:(id)sender;
+- (IBAction)editColorCode:(id)sender;
 - (IBAction)setSelectedRangeWithNSValue:(id)sender;
 - (IBAction)setLineSpacingFromMenu:(id)sender;
 
