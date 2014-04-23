@@ -620,6 +620,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// フォントパネルを更新
+- (void)updateFontPanel
+// ------------------------------------------------------
+{
+    // フォントのみをフォントパネルに渡す
+    // -> super にやらせると、テキストカラーもフォントパネルに送り、フォントパネルがさらにカラーパネル（= カラーコードパネル）にそのテキストカラーを渡すので、
+    // それを断つために自分で渡す
+    [[NSFontPanel sharedFontPanel] setPanelFont:[self font] isMultiple:NO];
+}
+
+
 
 #pragma mark Public Methods
 
