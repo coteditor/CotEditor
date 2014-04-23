@@ -58,7 +58,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" alignment="center" title="#ffffff" drawsBackground="YES" id="MFc-gP-VZL">
                         <font key="font" size="14" name="Menlo-Regular"/>
-                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" white="0.0" alpha="0.90000000000000002" colorSpace="deviceWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <allowedInputSourceLocales>
                             <string>NSAllRomanInputSourcesLocaleIdentifier</string>
@@ -66,10 +66,10 @@
                     </textFieldCell>
                     <connections>
                         <action selector="applayColorCode:" target="-2" id="3m0-0d-dc8"/>
-                        <binding destination="-2" name="value" keyPath="colorCode" id="xaM-Nj-sZK">
+                        <binding destination="-2" name="value" keyPath="colorCode" id="zwB-Z7-P18">
                             <dictionary key="options">
                                 <string key="NSNoSelectionPlaceholder">no selection</string>
-                                <string key="NSNullPlaceholder">null</string>
+                                <string key="NSNullPlaceholder">color code</string>
                             </dictionary>
                         </binding>
                     </connections>
