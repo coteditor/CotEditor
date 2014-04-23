@@ -646,8 +646,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *attrs = @{NSParagraphStyleAttributeName: [self paragraphStyle],
-                            NSFontAttributeName: [self font],
-                            NSForegroundColorAttributeName: [self textColor]};
+                            NSFontAttributeName: [self font]};
     
     [self setTypingAttributes:attrs];
 }
