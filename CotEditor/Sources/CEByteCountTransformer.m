@@ -87,7 +87,7 @@
         factor++;
     }
     
-    NSString *format = (factor == 0 || size < 10) ? @"%.0f %@" : @"%.1f %@";
+    NSString *format = (factor == 0 || size >= 10) ? @"%.0f %@" : @"%.1f %@";
     
     return [NSString stringWithFormat:format, size, tokens[factor]];
 }
