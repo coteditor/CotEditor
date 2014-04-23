@@ -145,13 +145,6 @@ extern NSString *const k_key_printInvisibleCharIndex;
 extern NSString *const k_key_printColorIndex;
 
 // settings that are not in preferences (環境設定にない設定項目)
-extern NSString *const k_key_HCCBackgroundColor;
-extern NSString *const k_key_HCCForeColor;
-extern NSString *const k_key_HCCSampleText;
-extern NSString *const k_key_HCCForeComboBoxData;
-extern NSString *const k_key_HCCBackComboBoxData;
-extern NSString *const k_key_foreColorCBoxIsOk;
-extern NSString *const k_key_backgroundColorCBoxIsOk;
 extern NSString *const k_key_insertCustomTextArray;
 extern NSString *const k_key_insertCustomText;
 extern NSString *const k_key_colorCodeType;
