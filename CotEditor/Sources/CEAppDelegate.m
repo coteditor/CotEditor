@@ -33,7 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEAppDelegate.h"
 #import "CEPreferencesWindowController.h"
-#import "CEHexColorTransformer.h"
 #import "CEByteCountTransformer.h"
 #import "CEOpacityPanelController.h"
 #import "CELineSpacingPanelController.h"
@@ -175,16 +174,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_printColorIndex: @0,
                                
                                /* -------- 以下、環境設定にない設定項目 -------- */
-                               k_key_HCCBackgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor whiteColor]],
-                               k_key_HCCForeColor: [NSArchiver archivedDataWithRootObject:[NSColor blackColor]],
-                               k_key_HCCSampleText: @"Sample Text",
-                               k_key_HCCForeComboBoxData: @[],
-                               k_key_HCCBackComboBoxData: @[],
-                               k_key_foreColorCBoxIsOk: @NO,
-                               k_key_backgroundColorCBoxIsOk: @NO,
                                k_key_insertCustomTextArray: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                               @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
                                                               @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
+                               k_key_colorCodeType:@1,
                                
                                /* -------- 以下、隠し設定 -------- */
                                k_key_lineNumFontName: @"ArialNarrow",
@@ -223,8 +216,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValuesDict];
 
     // transformer 登録
-    [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
-                                    forName:@"HexColorTransformer"];
     [NSValueTransformer setValueTransformer:[[CEByteCountTransformer alloc] init]
                                     forName:@"CEByteCountTransformer"];
 }

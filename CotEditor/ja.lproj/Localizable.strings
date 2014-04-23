@@ -314,15 +314,10 @@ http://www.aynimac.com/
 "Re-Color All" = "再カラーリング";
 "Do Re-color whole document" = "書類全体を再カラーリング";
 
-// Edit HexColorCode as Fore
-"Edit as Fore" = "文字色編集";
-"Edit Color Code as Fore" = "文字色として編集";
-"Open Color Code Editor to edit as text color" = "カラーコードエディタを開き、文字色として編集する";
-
-// Edit HexColorCode as BG
-"Edit as BG" = "背景色編集";
-"Edit Color Code as BG" = "背景色として編集";
-"Open Color Code Editor to edit as background color" = "カラーコードエディタを開き、背景色として編集する";
+// Edit Color Code
+"Color Code" = "カラーコード";
+"Edit Color Code" = "カラーコードを編集";
+"Open Color Code Editor and set selection as color code" = "カラーコードエディタを開き、選択範囲をカラーコードとしてセット";
 
 
 /* CEScriptManager */

@@ -387,22 +387,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [toolbarItem setToolTip:NSLocalizedString(@"Do re-color whole document",@"")];
         [toolbarItem setImage:[NSImage imageNamed:@"RecolorAll"]];
         [toolbarItem setAction:@selector(recoloringAllStringOfDocument:)];
-
-    // Edit HexColorCode as Fore (target = FirstResponder)
-    } else if ([itemIdentifier isEqualToString:k_editHexAsForeItemID]) {
-        [toolbarItem setLabel:NSLocalizedString(@"Edit as Fore",@"")];
-        [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as Fore",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to edit as text color",@"")];
-        [toolbarItem setImage:[NSImage imageNamed:@"EditHexAsFore"]];
-        [toolbarItem setAction:@selector(editHexColorCodeAsForeColor:)];
-
-    // Edit HexColorCode as BG (target = FirstResponder)
-    } else if ([itemIdentifier isEqualToString:k_editHexAsBGItemID]) {
-        [toolbarItem setLabel:NSLocalizedString(@"Edit as BG",@"")];
-        [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code as BG",@"")];
-        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor to edit as background color",@"")];
-        [toolbarItem setImage:[NSImage imageNamed:@"EditHexAsBG"]];
-        [toolbarItem setAction:@selector(editHexColorCodeAsBGColor:)];
+        
+        // Edit Color Code (target = FirstResponder)
+    } else if ([itemIdentifier isEqualToString:k_editColorCodeItemID]) {
+        [toolbarItem setLabel:NSLocalizedString(@"Color Code",@"")];
+        [toolbarItem setPaletteLabel:NSLocalizedString(@"Edit Color Code",@"")];
+        [toolbarItem setToolTip:NSLocalizedString(@"Open Color Code Editor and set selection as color code",@"")];
+        [toolbarItem setImage:[NSImage imageNamed:@"EditColorCode"]];
+        [toolbarItem setAction:@selector(editColorCode:)];
 
     } else {
         toolbarItem = nil;
@@ -434,9 +426,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
              k_lineEndingsItemID, 
              k_fileEncodingsItemID, 
              k_syntaxItemID, 
-             k_syntaxReColorAllItemID, 
-             k_editHexAsForeItemID, 
-             k_editHexAsBGItemID, 
+             k_syntaxReColorAllItemID,
+             k_editColorCodeItemID,
              NSToolbarSeparatorItemIdentifier, 
              NSToolbarFlexibleSpaceItemIdentifier, 
              NSToolbarSpaceItemIdentifier, 

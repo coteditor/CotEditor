@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
+#import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
 #import "constants.h"
 
@@ -616,6 +617,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [(CELineNumView *)[self slaveView] setShowLineNum:shouldShowLineNum];
     
     [super setLayoutOrientation:theOrientation];
+}
+
+
+// ------------------------------------------------------
+/// フォントパネルを更新
+- (void)updateFontPanel
+// ------------------------------------------------------
+{
+    // フォントのみをフォントパネルに渡す
+    // -> super にやらせると、テキストカラーもフォントパネルに送り、フォントパネルがさらにカラーパネル（= カラーコードパネル）にそのテキストカラーを渡すので、
+    // それを断つために自分で渡す
+    [[NSFontPanel sharedFontPanel] setPanelFont:[self font] isMultiple:NO];
 }
 
 
@@ -1728,26 +1741,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// Hex Color Code を文字色として編集ウィンドウへ取り込む
-- (IBAction)editHexColorCodeAsForeColor:(id)sender
-// ------------------------------------------------------
-{
-    NSString *curStr = [[self string] substringWithRange:[self selectedRange]];
-
-    [[CEColorCodePanelController sharedController] showWindow:sender];
-    [[CEColorCodePanelController sharedController] importHexColorCodeAsForeColor:curStr];
-}
-
-
-// ------------------------------------------------------
-/// Hex Color Code を文字色として編集ウィンドウへ取り込む
-- (IBAction)editHexColorCodeAsBGColor:(id)sender
+/// 選択範囲をカラーコードパネルに渡す
+- (IBAction)editColorCode:(id)sender
 // ------------------------------------------------------
 {
     NSString *curStr = [[self string] substringWithRange:[self selectedRange]];
     
     [[CEColorCodePanelController sharedController] showWindow:sender];
-    [[CEColorCodePanelController sharedController] importHexColorCodeAsBackColor:curStr];
+    [[CEColorCodePanelController sharedController] setColorWithCode:curStr];
+}
+
+
+// ------------------------------------------------------
+/// カラーパネルからのアクションで色を変更しない
+- (IBAction)changeColor:(id)sender
+// ------------------------------------------------------
+{
+    // do nothing.
 }
 
 

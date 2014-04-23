@@ -1,15 +1,14 @@
 /*
  =================================================
- CEPanelController
+ CEColorPanelController
  (for CotEditor)
  
- Copyright (C) 2004-2007 nakamuxu.
  Copyright (C) 2014 CotEditor Project
  http://coteditor.github.io
  =================================================
  
  encoding="UTF-8"
- Created:2005.07.14
+ Created:2014-04-22 by 1024jp
  
  -------------------------------------------------
  
@@ -31,12 +30,12 @@
  =================================================
  */
 
+#import <Cocoa/Cocoa.h>
 #import "CEPanelController.h"
 
 
-@interface CEColorCodePanelController : CEPanelController
+@interface CEColorCodePanelController : CEPanelController <NSWindowDelegate>
 
-- (void)importHexColorCodeAsForeColor:(NSString *)codeString;
-- (void)importHexColorCodeAsBackColor:(NSString *)codeString;
+- (void)setColorWithCode:(NSString *)colorCode;
 
 @end

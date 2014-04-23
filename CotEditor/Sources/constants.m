@@ -147,15 +147,9 @@ NSString *const k_key_printInvisibleCharIndex = @"printInvisibleCharIndex";
 NSString *const k_key_printColorIndex = @"printColorIndex";
 
 // settings that are not in preferences
-NSString *const k_key_HCCBackgroundColor = @"HCCBackgroundColor";
-NSString *const k_key_HCCForeColor = @"HCCForeColor";
-NSString *const k_key_HCCSampleText = @"HCCSampleText";
-NSString *const k_key_HCCForeComboBoxData = @"HCCForeComboBoxData";
-NSString *const k_key_HCCBackComboBoxData = @"HCCBackComboBoxData";
-NSString *const k_key_foreColorCBoxIsOk = @"foreColorCBoxIsOk";
-NSString *const k_key_backgroundColorCBoxIsOk = @"backgroundColorCBoxIsOk";
 NSString *const k_key_insertCustomTextArray = @"insertCustomTextArray";
 NSString *const k_key_insertCustomText = @"insertCustomText";
+NSString *const k_key_colorCodeType = @"colorCodeType";
 
 // hidden settings
 NSString *const k_key_lineNumFontName = @"lineNumFontName";
@@ -490,8 +484,7 @@ NSString *const k_lineEndingsItemID = @"lineEndingsItemID";
 NSString *const k_fileEncodingsItemID = @"fileEncodingsItemID";
 NSString *const k_syntaxItemID = @"syntaxColoringItemID";
 NSString *const k_syntaxReColorAllItemID = @"syntaxReColorAllItemID";
-NSString *const k_editHexAsForeItemID = @"editHexAsForeItemID";
-NSString *const k_editHexAsBGItemID = @"editHexAsBGItemID";
+NSString *const k_editColorCodeItemID = @"editColorCodeItemID";
 
 
 
