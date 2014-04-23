@@ -46,10 +46,10 @@
     
     NSDictionary *patterns = @{@(CEColorCodeHex): @"^#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$",
                                @(CEColorCodeShortHex): @"^#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])$",
-                               @(CEColorCodeCSSRGB): @"^rgb\\( ?([0-9]{1,3}), ?([0-9]{1,3}), ?([0-9]{1,3})\\)$",
-                               @(CEColorCodeCSSRGBa): @"^rgba\\( ?([0-9]{1,3}), ?([0-9]{1,3}), ?([0-9]{1,3}), ?([0-9.]+)\\)$",
-                               @(CEColorCodeCSSHSL): @"^hsl\\( ?([0-9]{1,3}), ?([0-9.]+)%, ?([0-9.]+)%\\)$",
-                               @(CEColorCodeCSSHSLa): @"^hsla\\( ?([0-9]{1,3}), ?([0-9.]+)%, ?([0-9.]+)%, ?([0-9.]+)\\)$"
+                               @(CEColorCodeCSSRGB): @"^rgb\\( *([0-9]{1,3}) *, *([0-9]{1,3}) *, *([0-9]{1,3}) *\\)$",
+                               @(CEColorCodeCSSRGBa): @"^rgba\\( *([0-9]{1,3}) *, *([0-9]{1,3}) *, *([0-9]{1,3}) *, *([0-9.]+) *\\)$",
+                               @(CEColorCodeCSSHSL): @"^hsl\\( *([0-9]{1,3}) *, *([0-9.]+)% *, *([0-9.]+)% *\\)$",
+                               @(CEColorCodeCSSHSLa): @"^hsla\\( *([0-9]{1,3}) *, *([0-9.]+)% *, *([0-9.]+)% *, *([0-9.]+) *\\)$"
                                };
     NSRegularExpression *regex;
     NSArray *matchs;
