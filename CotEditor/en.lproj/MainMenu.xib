@@ -469,9 +469,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Layout Orientation" id="EY6-QE-Ebr">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
                             <menuItem title="Line Spacing" id="751">
                                 <menu key="submenu" title="Line Spacing" id="752">
                                     <items>
