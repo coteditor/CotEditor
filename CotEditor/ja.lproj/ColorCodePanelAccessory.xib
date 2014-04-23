@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEColorPanelController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEColorCodePanelController">
             <connections>
                 <outlet property="accessoryView" destination="c22-O7-iKe" id="7Q9-Hb-7La"/>
             </connections>

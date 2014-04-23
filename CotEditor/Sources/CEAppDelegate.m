@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEOpacityPanelController.h"
 #import "CELineSpacingPanelController.h"
 #import "CEGoToPanelController.h"
-#import "CEColorPanelController.h"
+#import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "constants.h"
 
@@ -449,7 +449,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openHexColorCodeEditor:(id)sender
 // ------------------------------------------------------
 {
-    [[CEColorPanelController sharedController] showWindow:self];
+    [[CEColorCodePanelController sharedController] showWindow:self];
 }
 
 

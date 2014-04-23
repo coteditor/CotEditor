@@ -30,13 +30,13 @@
  =================================================
  */
 
-#import "CEColorPanelController.h"
+#import "CEColorCodePanelController.h"
 #import "CEDocument.h"
 #import "NSColor+CEColorCode.h"
 #import "constants.h"
 
 
-@interface CEColorPanelController ()
+@interface CEColorCodePanelController ()
 
 @property (nonatomic) IBOutlet NSView *accessoryView;
 @property (nonatomic) NSColor *color;
@@ -49,7 +49,7 @@
 
 #pragma mark -
 
-@implementation CEColorPanelController
+@implementation CEColorCodePanelController
 
 #pragma mark Class Methods
 
