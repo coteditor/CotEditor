@@ -455,8 +455,6 @@ extern NSString *const k_lineEndingsItemID;
 extern NSString *const k_fileEncodingsItemID;
 extern NSString *const k_syntaxItemID;
 extern NSString *const k_syntaxReColorAllItemID;
-extern NSString *const k_editHexAsForeItemID;
-extern NSString *const k_editHexAsBGItemID;
 extern NSString *const k_editColorCodeItemID;
 
 

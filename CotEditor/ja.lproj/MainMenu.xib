@@ -692,16 +692,10 @@
                             <menuItem isSeparatorItem="YES" id="640">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="文字色として編集…" keyEquivalent="h" id="641">
+                            <menuItem title="カラーコードを編集…" keyEquivalent="h" id="641">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
-                                    <action selector="editHexColorCodeAsForeColor:" target="-1" id="642"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="背景色として編集…" keyEquivalent="H" id="645">
-                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                <connections>
-                                    <action selector="editHexColorCodeAsBGColor:" target="-1" id="647"/>
+                                    <action selector="editColorCode:" target="-1" id="8p1-fz-JbA"/>
                                 </connections>
                             </menuItem>
                         </items>

@@ -81,34 +81,6 @@
 
 
 
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// 文字列をカラーコードとしてフォアカラーコンボボックスへ取り込む
-- (void)importHexColorCodeAsForeColor:(NSString *)codeString
-// ------------------------------------------------------
-{
-    [self importHexColorCode:codeString to:[self foreColorComboBox]];
-}
-
-
-// ------------------------------------------------------
-/// 文字列をカラーコードとしてBGカラーコンボボックスへ取り込む
-- (void)importHexColorCodeAsBackColor:(NSString *)codeString
-//------------------------------------------------------
-{
-    [self importHexColorCode:codeString to:[self backColorComboBox]];
-    // 背景色を強制的に更新
-    [[self sampleTextField] setBackgroundColor:[[self backColorWell] color]];
-}
-
-
-
 #pragma mark Protocol
 
 //=======================================================

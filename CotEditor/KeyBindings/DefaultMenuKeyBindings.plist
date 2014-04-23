@@ -84,10 +84,8 @@
 	<string>undo:</string>
 	<key>@¥</key>
 	<string>inputBackSlash:</string>
-	<key>^$@H</key>
-	<string>editHexColorCodeAsBGColor:</string>
 	<key>^@h</key>
-	<string>editHexColorCodeAsForeColor:</string>
+	<string>editColorCode:</string>
 	<key>^~@</key>
 	<string>focusPrevSplitTextView:</string>
 	<key>^~@</key>

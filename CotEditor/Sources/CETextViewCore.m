@@ -1729,30 +1729,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// Hex Color Code を文字色として編集ウィンドウへ取り込む
-- (IBAction)editHexColorCodeAsForeColor:(id)sender
-// ------------------------------------------------------
-{
-    NSString *curStr = [[self string] substringWithRange:[self selectedRange]];
-
-    [[CEColorCodePanelController sharedController] showWindow:sender];
-    [[CEColorCodePanelController sharedController] importHexColorCodeAsForeColor:curStr];
-}
-
-
-// ------------------------------------------------------
-/// Hex Color Code を文字色として編集ウィンドウへ取り込む
-- (IBAction)editHexColorCodeAsBGColor:(id)sender
-// ------------------------------------------------------
-{
-    NSString *curStr = [[self string] substringWithRange:[self selectedRange]];
-    
-    [[CEColorCodePanelController sharedController] showWindow:sender];
-    [[CEColorCodePanelController sharedController] importHexColorCodeAsBackColor:curStr];
-}
-
-
-// ------------------------------------------------------
 /// 選択範囲をカラーコードパネルに渡す
 - (IBAction)editColorCode:(id)sender
 // ------------------------------------------------------

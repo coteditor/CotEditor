@@ -491,8 +491,6 @@ NSString *const k_lineEndingsItemID = @"lineEndingsItemID";
 NSString *const k_fileEncodingsItemID = @"fileEncodingsItemID";
 NSString *const k_syntaxItemID = @"syntaxColoringItemID";
 NSString *const k_syntaxReColorAllItemID = @"syntaxReColorAllItemID";
-NSString *const k_editHexAsForeItemID = @"editHexAsForeItemID";
-NSString *const k_editHexAsBGItemID = @"editHexAsBGItemID";
 NSString *const k_editColorCodeItemID = @"editColorCodeItemID";
 
 
