@@ -117,8 +117,6 @@
     NSString *localizedName = [font displayName];
     
     [[self fontField] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
-    [[self fontField] setFont:[NSFont fontWithName:name size:13.0]];
-    
 }
 
 @end
