@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CESizeSampleWindowController">
+            <connections>
+                <outlet property="userDefaultsController" destination="3I1-SB-fO2" id="DDt-k2-X3m"/>
+                <outlet property="window" destination="127" id="evL-3h-9d0"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="Sample Window">
+            <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="192" y="280" width="480" height="360"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <value key="minSize" type="size" width="400" height="200"/>
+            <view key="contentView" id="126">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="128">
+                        <rect key="frame" x="366" y="13" width="100" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="88" id="mkJ-zn-ehk"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="3397">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="save:" target="-2" id="Gul-Zl-xbE"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="129">
+                        <rect key="frame" x="266" y="13" width="100" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="88" id="4gH-Yw-JG8"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3398">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancel:" target="-2" id="Owb-pY-bYW"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="130">
+                        <rect key="frame" x="18" y="306" width="444" height="34"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="3399">
+                            <font key="font" metaFont="system"/>
+                            <string key="title">You can resize this window.
+And press "OK" button, this window size will be set to default.</string>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="136">
+                        <rect key="frame" x="232" y="249" width="80" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="xWN-LC-Lew"/>
+                        </constraints>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3400">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                            <connections>
+                                <outlet property="formatter" destination="6fa-a9-iGI" id="PXH-i8-uvi"/>
+                            </connections>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="3I1-SB-fO2" name="value" keyPath="values.windowWidth" id="oYP-yi-VUu"/>
+                        </connections>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="138">
+                        <rect key="frame" x="380" y="249" width="80" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="dMw-Jt-sFh"/>
+                        </constraints>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3401">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="3I1-SB-fO2" name="value" keyPath="values.windowHeight" id="A2H-Td-3hP"/>
+                            <outlet property="formatter" destination="6fa-a9-iGI" id="0hn-rM-Qsa"/>
+                        </connections>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="34" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="140">
+                        <rect key="frame" x="188" y="251" width="38" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Width:" id="3402">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="40" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="141">
+                        <rect key="frame" x="330" y="251" width="44" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Height:" id="3403">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="154">
+                        <rect key="frame" x="96" y="24" width="170" height="14"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Press button, stop modal  >>>" id="3404">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="136" firstAttribute="leading" secondItem="140" secondAttribute="trailing" constant="8" symbolic="YES" id="181-kX-sBd"/>
+                    <constraint firstItem="138" firstAttribute="centerY" secondItem="140" secondAttribute="centerY" id="4DT-6Z-Gj7"/>
+                    <constraint firstItem="130" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="20" symbolic="YES" id="6OW-hK-V57"/>
+                    <constraint firstAttribute="trailing" secondItem="130" secondAttribute="trailing" constant="20" symbolic="YES" id="8gV-Lz-0xw"/>
+                    <constraint firstItem="130" firstAttribute="top" secondItem="126" secondAttribute="top" constant="20" symbolic="YES" id="Bbr-hM-OfH"/>
+                    <constraint firstItem="138" firstAttribute="centerY" secondItem="141" secondAttribute="centerY" id="BfX-F8-t0J"/>
+                    <constraint firstAttribute="bottom" secondItem="129" secondAttribute="bottom" constant="20" symbolic="YES" id="DyQ-BE-OIX"/>
+                    <constraint firstItem="154" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="126" secondAttribute="leading" constant="20" symbolic="YES" id="HAS-5v-Ofc"/>
+                    <constraint firstItem="129" firstAttribute="centerY" secondItem="154" secondAttribute="centerY" id="Mnd-sK-VD9"/>
+                    <constraint firstAttribute="bottom" secondItem="128" secondAttribute="bottom" constant="20" symbolic="YES" id="Rhj-SW-ceh"/>
+                    <constraint firstItem="138" firstAttribute="centerY" secondItem="136" secondAttribute="centerY" id="Udb-w1-6fv"/>
+                    <constraint firstItem="128" firstAttribute="leading" secondItem="129" secondAttribute="trailing" constant="12" symbolic="YES" id="XnZ-BB-v4n"/>
+                    <constraint firstItem="138" firstAttribute="top" secondItem="130" secondAttribute="bottom" constant="38" id="cBU-1W-cy9"/>
+                    <constraint firstItem="129" firstAttribute="leading" secondItem="154" secondAttribute="trailing" constant="8" symbolic="YES" id="dIS-Pu-8Wg"/>
+                    <constraint firstItem="138" firstAttribute="leading" secondItem="141" secondAttribute="trailing" constant="8" symbolic="YES" id="dTU-Zp-7U9"/>
+                    <constraint firstAttribute="trailing" secondItem="128" secondAttribute="trailing" constant="20" symbolic="YES" id="ndw-4v-aTg"/>
+                    <constraint firstItem="141" firstAttribute="leading" secondItem="136" secondAttribute="trailing" constant="20" id="uFn-TV-GEa"/>
+                    <constraint firstAttribute="trailing" secondItem="138" secondAttribute="trailing" constant="20" symbolic="YES" id="yLl-4T-bLH"/>
+                </constraints>
+            </view>
+            <connections>
+                <binding destination="3I1-SB-fO2" name="contentHeight" keyPath="values.windowHeight" id="CbL-oU-KBz"/>
+                <binding destination="3I1-SB-fO2" name="contentWidth" keyPath="values.windowWidth" previousBinding="CbL-oU-KBz" id="k3Q-JK-kVe"/>
+                <outlet property="delegate" destination="-2" id="v1e-dB-Uca"/>
+            </connections>
+        </window>
+        <userDefaultsController appliesImmediately="NO" id="3I1-SB-fO2"/>
+        <numberFormatter formatterBehavior="custom10_4" localizesFormat="NO" numberStyle="decimal" allowsFloats="NO" usesGroupingSeparator="NO" paddingPosition="beforeSuffix" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="6fa-a9-iGI">
+            <metadata>
+                <real key="inspectorSampleValue" value="1"/>
+            </metadata>
+        </numberFormatter>
+    </objects>
+</document>

@@ -1,0 +1,401 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+\readonlydoc1\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset128 HiraKakuProN-W3;\f2\fmodern\fcharset0 Courier;
+\f3\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red26\green32\blue255;\red217\green11\blue0;\red128\green128\blue128;
+\red149\green105\blue0;\red34\green34\blue255;\red22\green22\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13640\viewh13060\viewkind0
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f0\b\fs32 \cf0 Using AppleScript with CotEditor
+\b0\fs24 \
+\
+\
+- - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 The terminology changing on CotEditor 1.5:
+\b0 \
+\ul \
+Window Transparency\ulnone \
+According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The 
+\b document
+\b0 's properties till on version 1.4:\
+\
+	transparency = The transparency of Window or TextView. (real, from \'910.2\'92 to \'911.0\'92)\
+	alpha only textView = Whether the transparency setting affects only the TextView or not. (boolean)\
+\
+were deprecated, and the new 
+\b window
+\b0 's property:\
+\
+	view opacity = The opacity of the view. (real, from \'910.2\'92 to \'911.0\'92)\
+\
+was added instead.\
+Since the previous term "transparency" was incorrectly used until version 1.4, the property name was renamed from "transparency" to "opacity" but the value to set is not changed. Namely, 1.0 means fully opaque on both properties.\
+Please note that, \ul there is no backward
+\f1  compatibility\ulnone  with this changing.
+\f0 \
+\
+\ul Selection Object direct under the Application\ulnone \
+In version 0.6, the initial release of CotEditor, if you didn't specify the \'91selection\'92 object, the frontmost window's contents will be selected (example 1). But it was actually didn't work correctly and therefore deprecated.  This method was kept valid however to maintain backwards compatibility.\
+On CotEditor 1.5, it is formally removed.  Specify the target as below (example 2), when you get the \'91selection\'92 object.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 example 1.
+\i0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf2 tell application "CotEditor"\
+	contents of selection 
+\f3\b \ul \ulc2 of front document
+\f2\b0 \ulnone \
+end tell
+\f0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 example 2.
+\i0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf2 tell application "CotEditor"\
+	
+\f3\b \ul tell document 1
+\f2\b0 \ulnone \
+		contents of selection
+\f3\b \ul \
+	end tell
+\f2\b0 \ulnone \
+end tell
+\f0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf0 - - - - - - - - - - - - - - - - - - - - -\
+\
+\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\fs28 \cf0 \ul \ulc0 Class\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\fs24 \cf0 \ulnone \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 Application
+\b0  = The CotEditor application.\
+\
+
+\b Window
+\b0  = A CotEditor window.\
+	view opacity = The opacity of the view. (real, from \'910.2\'92 to \'911.0\'92)  \cf3 new on CotEditor 1.5\cf0 \
+\
+
+\b Document
+\b0  = A CotEditor document.\
+	contents = The contents of the document. (text)\
+	text = The text of the document. (text)\
+	length = The number of characters of the document. (int)\
+	selection = The current selection. (selection-object)\
+	encoding = The encoding name of the document. (Unicode text)\
+	IANA charset = The IANA charset name of the document. (Unicode text, e.g. Shift_JIS, EUC-JP)\
+	line ending = The line ending code of the document. (CR/LF/CRLF)\
+	line spacing = The spacing between lines. (real, from \'910.0\'92 to \'9110.0\'92)\
+	wrap lines = Whether to wrap lines or not. (boolean)\
+	coloring style = The syntax coloring style name of the document. (Unicode text)\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf4 	transparency = The transparency of Window or TextView. (real, from \'910.2\'92 to \'911.0\'92) \cf5 Deprecated on CotEditor 1.5\cf4 \
+	alpha only textView = Whether the transparency setting affects only the TextView or not. (boolean) \cf5 Deprecated on CotEditor 1.5\cf0 \
+	\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 Selection-object
+\b0  = The current selection.\
+	contents = The contents of the selection.\
+	range = The range of characters in the selection. The format is "\{location, length\}".\
+	line range = The range of lines in the selection. The format is "\{location, length\}". (\'91length\'92 can be omitted, one line will be selected even if it were \'910\'92 or \'911\'92)\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 example code:
+\i0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf2 contents of selection of document 1
+\f0 \cf0 \
+	Returns the selected string in the frontmost document.\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # The \'91selection\'92 property doesn't work by itself. Use this property with others such as \'91contents.\'92
+\i0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf6 set contents of selection of front document to "Apple"
+\f0 \cf0 \
+	Replaces the selection with \'93Apple.\'94\
+
+\f2 \cf7 range of selection\cf6  of front document
+\f0 \cf0 \
+	Returns the selection range with \{location, length\}.\
+
+\f2 \cf7 set range of selection\cf6  of front document\cf7  to \{1,12\}
+\f0 \cf0 \
+	Select from the 1st character to the 12th character.\
+
+\f2 \cf7 set line range of selection\cf6  of front document\cf7  to 10
+\f0 \cf0 \
+	Select the 10th line (no scrolling).\
+
+\f2 \cf7 set range of selection\cf6  of front document\cf7  to \{-15,-1\}
+\f0 \cf0 \
+	Select from the 15th last character to the last but one (no scrolling).\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # When \'91location\'92 is a negative value, the selection range starts from the \'91location\'92-th last character.\
+When \'91length\'92 is a positive value, the selection range becomes the \'91length\'92 characters starting from \'91location.\'92 If \'91length\'92 is larger than the number of the rest characters in the document, the range will be from \'91location\'92 to the end.\
+When \'91length\'92 is a negative value, the selection range ends at the \'91length\'92-th last character. If the absolute value of \'91length\'92 is smaller than \'91location\'92 (i.e. the selection's end point is before \'91location\'92), the caret just moves to \'91location\'92 (same as when \{location, 0\} was input).\
+# This specifying method is modeled after that of PHP's \'91substr.\'92\
+# The command for changing selection doesn't scroll the window. Use the \'91scroll to caret\'92 command to make the selection remain in the view.
+\i0 \
+\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\fs28 \cf0 \ul Command
+\fs24  (properties surrounded by [ ] are options)\ulnone \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 \
+find
+\b0  = Searches a string, selects the string and returns true, if any, otherwise returns false.\
+	
+\b for
+\b0  (Unicode text) = The string to search for.\
+	[
+\b RE
+\b0   (boolean)] = Perform regular expression search or not.\
+	[
+\b wrap
+\b0   (boolean)] = Perform wrap search or not.\
+	[
+\b ignore case
+\b0  (boolean)] = Ignore case or not.\
+	[
+\b backwards
+\b0  (boolean)] = Perform backwards search or not.\
+return value = boolean\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # The search starts from the current selection (caret position).\
+For example, when not using the \'91wrap\'92 or \'91backwards\'92 options and when there are no matching string after the current selection, then false is returned.\
+# The regular expression search cannot search backwards. If both options were specified at the same time, \'91RE\'92 takes precedence and \'91backwards\'92 is ignored.\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i0 \cf0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 find front document for "Apple" with ignore case
+\f0 \cf0 \
+	Searches \'93Apple\'94 with ignoring case, starting from the current selection to the end of the frontmost document, and returns the result.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 \
+replace
+\b0  = Searches a string, replaces the string and returns the number of replacements, if any, otherwise returns 0.\
+	
+\b for
+\b0  (Unicode text) = The string to search for.\
+	
+\b to
+\b0   (Unicode text) = The string to replace with.\
+	[
+\b all
+\b0   (boolean)] = Search the whole document or not.\
+	[
+\b RE
+\b0   (boolean)] = Perform regular expression search or not.\
+	[
+\b wrap
+\b0   (boolean)] = Perform wrap search or not.\
+	[
+\b ignore case
+\b0  (boolean)] = Ignore case or not.\
+	[
+\b backwards
+\b0  (boolean)] = Perform backwards search or not.\
+return value = int\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # As in the case of the \'91find\'92 command, the search starts from the current selection (caret position). Use the \'91all\'92 option for searching the whole document.\
+# After replacing the whole document using the \'91all\'92 option, the caret moves to the head of the document. If there were no matching string, the caret doesn't move.\
+# The regular expression search cannot search backwards. If both options were specified at the same time, the \'91backwards\'92 option is ignored.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 replace front document for "Apple" to "Orange" with all and ignore case
+\f0 \cf0 \
+	Searches \'93Apple\'94 with ignoring case in the frontmost document, replaces the matching strings with \'93Orange\'94 and returns the number of replacements.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 \
+scroll to caret
+\b0  = Scrolls the window so that the caret or the selection can be seen.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 scroll to caret front document
+\f0 \cf0 \
+	Scrolls the frontmost window so that the caret or the selection can be seen.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 \
+convert
+\b0  = Converts the character encoding of the document.\
+	
+\b to
+\b0  (Unicode text) = The new encoding.\
+	
+\b lossy
+\b0  (boolean) = Whether to allow \'93lossy\'94 conversion (might result in loss of character that couldn't be converted) or not.\
+return value = boolean\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 convert front document to "Unicode (UTF-8)" without lossy
+\f0 \cf0 \
+	Converts the character encoding of the frontmost window to UTF-8, returns the result.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 reinterpret
+\b0  = Reinterpret the document with the specified encoding.\
+	
+\b as
+\b0  (Unicode text) = The encoding for reinterpreting.\
+return value = boolean\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # Returns false if the file has never been saved.\
+# Changes that are not yet saved will be lost.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 reinterpret front document as "Japanese (EUC)"
+\f0 \cf0 \
+	Reinterprets the document with EUC-JP, returns the result.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 shift left
+\b0  = Shifts the current line left.\
+
+\b shift right
+\b0  = Shifts the current line right.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 shift right selection of front document
+\f0 \cf0 \
+	Shifts the line where the selection/caret is positioned right.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 string
+\b0  = Returns the string in the specified range regardless of the current selection.\
+	
+\b in
+\b0  (list) = The range.\
+return value = Unicode text\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # Returns an empty string if the specified range was invalid.\
+# This command does not change the specified range.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 string front document in \{0, 10\}
+\f0 \cf0 \
+	Returns the first ten letters of the document.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 change case
+\b0  = Uppercases/Lowercases/Capitalizes words.\
+	to upper/lower/capitalized\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # Works only for \'91selection\'92 objects.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 change case selection of front document to upper
+\f0 \cf0 \
+	Uppercases alphabetic words in the selection.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 change roman width
+\b0  = Converts between halfwidth and full-width characters.\
+	to half/full\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # Works only for \'91selection\'92 objects.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 change roman width selection of front document to full
+\f0 \cf0 \
+	Converts ascii characters in the selection to their full-width equivalents.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 change kana
+\b0  = Converts between Japanese Hiragana and Katakana.\
+	to hiragana/katakana\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # Works only for \'91selection\'92 objects.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 change kana selection of front document to katakana
+\f0 \cf0 \
+	Converts Hiragana in the selection to Katakana.\
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 unicode normalization
+\b0  = Performs Unicode normalization.\
+	to  NFKC/NFD/NFC/NFKD\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\i \cf0 # Works only for \'91selection\'92 objects.
+\i0 \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\f2 \cf7 unicode normalization selection of front document to NFC
+\f0 \cf0 \
+	Perform Unicode normalization on the selection using normalization form C (NFC).\
+\
+\
+}

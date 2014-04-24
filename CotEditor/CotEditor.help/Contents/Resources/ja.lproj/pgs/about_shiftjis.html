@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content="文字エンコーディング, Shift JIS"/>
+<link rel="start" href="../CotEditorHelp.html"/>
+<link rel="index" href="../xpgs/xall.html"/>
+<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
+<title>Shift JIS 系のエンコーディングの違い</title>
+</head>
+<body>
+
+<div id="navbar">
+<div id="home"><a href="../CotEditorHelp.html" rel="start">CotEditor ヘルプ</a></div>
+<div id="index"><a href="../xpgs/xall.html" rel="index">索引</a></div>
+</div>
+
+<div id="contents">
+<h1>Shift JIS 系のエンコーディングの違い</h1>
+<p>4 種類の日本語 Shift JIS 系エンコーディングには、下記のような違いがあります。</p>
+
+<table>
+  <tr><th>Shift JIS</th><td>最も基本的な Shift JIS。漢字第一、第二水準をサポートします。</td></tr>
+  <tr><th>Mac OS</th><td>Mac 独自の機種依存文字などを加えたもので Mac OS 9 以前で使われています。</td></tr>
+  <tr><th>Windows, DOS</th><td>Windows 独自の機種依存文字などを加えたものです。</td></tr>
+  <tr><th>Shift JIS X0213</th><td>文字コード規格 JIS X0213（第一 〜 第四水準）が扱えます。</td></tr>
+</table>
+
+<p>適切なエンコーディングは場合によって異なりますが、一般には「日本語（Shift JIS）」が無難です。ただし、一部の文字の取り扱いについて下記のような違いがありますので、これらの文字を使う場合には注意してください。</p>
+
+<table>
+<thead>
+  <tr><th></th><th>半角円マーク (&#x00A5;)</th><th>半角バック<br/>スラッシュ (&#x005C;)</th><th>半角チルダ (&#x007E;)</th></tr>
+</thead>
+<tbody>
+  <tr><th>Shift JIS</th><td>使用可</td><td>全角バックスラッシュに置換</td><td>使用不可</td></tr>
+  <tr><th>Mac OS</th><td>使用可</td><td>使用可</td><td>使用可</td></tr>
+  <tr><th>Windows, DOS</th><td>半角バックスラッシュに置換</td><td>使用可</td><td>使用可</td></tr>
+  <tr><th>Shift JIS X0213</th><td>使用可</td><td>全角バックスラッシュに置換</td><td>全角チルダに置換</td></tr>
+<tbody>
+</table>
+
+<ul>
+<li>これらの文字が含まれていないかどうか「非互換文字を表示」で確認できます。</li>
+</ul>
+
+<h2 id="P0">関連項目</h2>
+<ul class="rel_items">
+  <li><a href="../pgs/howto_inspect_usedchar.html" class="wikipage">非互換の文字が含まれていないか確認する</a></li>
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content="文字エンコーディング, エンコーディング, 自動認識"/>
+<link rel="start" href="../CotEditorHelp.html"/>
+<link rel="index" href="../xpgs/xall.html"/>
+<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
+<title>「charset=」「encoding=」「@charset」タグによる自動認識</title>
+</head>
+<body>
+
+<div id="navbar">
+<div id="home"><a href="../CotEditorHelp.html" rel="start">CotEditor ヘルプ</a></div>
+<div id="index"><a href="../xpgs/xall.html" rel="index">索引</a></div>
+</div>
+
+<div id="contents">
+<h1>「charset=」「encoding=」「@charset」タグによる自動認識</h1>
+<p>環境設定「フォーマット」の「エンコーディング宣言を参照する」が有効で、文字エンコーディングの自動認識が有効な場合、書類中の「charset=」「encoding=」「@charset」タグを読み取ります。記述に矛盾がなければ、このタグの記述が優先されます。</p>
+<p>これらの記述はコメントの中であっても有効ですし、地の文として書かれていても読み取られます。もし、書類の文字エンコーディングでないものを「charset=」などのエンコーディング指定タグとともに記述する必要がある場合には、その記述よりも前に実際の文字エンコーディングを書き込むか、環境設定「フォーマット」の「エンコーディング指定タグを参照する」のチェックを外してください。</p>
+<ul>
+<li>「charset」「encoding」の直後にスペースなど「=」以外の文字があってはいけません。</li>
+<li>「charset=」「encoding=」の後ろは、「&quot;」で囲っていなくても認識します。</li>
+<li>複数の記述がある時は、一番最初のものを読み取ります。</li>
+<li>「charset=&quot;Shift_JIS&quot;」の場合は、「日本語 (Shift JIS)」と「日本語 (Shift JIS X0213)」のうち、優先されている方（メニューで上にある方）として認識されます。<br />
+=&gt; <a href="../pgs/howto_customize_encoding_order.html" class="wikipage">文字エンコードの認識順序を調整する</a></li>
+</ul>
+
+<h2 id="P0">関連項目</h2>
+<ul class="rel_items">
+  <li><a href="../pgs/pref_format.html" class="wikipage">環境設定：フォーマット</a></li>
+  <li><a href="../pgs/howto_customize_encoding_order.html" class="wikipage">文字エンコードの認識順序を調整する</a></li>
+</ul>
+</div>
+
+</body>
+</html>
