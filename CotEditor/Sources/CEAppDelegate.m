@@ -681,7 +681,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenuItem *menuItem;
     
     for (NSString *themeName in themeNames) {
-        menuItem = [[NSMenuItem alloc] initWithTitle:themeName action:@selector(setTheme:) keyEquivalent:@""];
+        menuItem = [[NSMenuItem alloc] initWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
         [menu addItem:menuItem];
     }
     

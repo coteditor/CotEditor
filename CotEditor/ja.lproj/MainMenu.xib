@@ -576,6 +576,13 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="テーマ" tag="4003" id="a0G-h0-I1o">
+                                <menu key="submenu" title="テーマ" id="wnM-q0-TxM">
+                                    <items>
+                                        <menuItem title="項目" id="Qa0-cO-cHA"/>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="453">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>

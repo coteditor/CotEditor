@@ -97,6 +97,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (IBAction)setLineEndingCharToCRLF:(id)sender;
 - (IBAction)setLineEndingChar:(id)sender;
 - (IBAction)setEncoding:(id)sender;
+- (IBAction)changeTheme:(id)sender;
 - (IBAction)changeSyntaxStyle:(id)sender;
 - (IBAction)recoloringAllStringOfDocument:(id)sender;
 - (IBAction)insertIANACharSetName:(id)sender;

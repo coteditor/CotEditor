@@ -365,6 +365,15 @@ static NSArray *kSyntaxDictKeys;
 //=======================================================
 
 // ------------------------------------------------------
+/// 現在のテーマを返す
+- (CETheme *)theme
+// ------------------------------------------------------
+{
+    return [(NSTextView<CETextViewProtocol> *)[[self layoutManager] firstTextView] theme];
+}
+
+
+// ------------------------------------------------------
 /// 保持しているカラーリング辞書から補完文字列配列を生成
 - (void)setCompletionWordsFromColoringDictionary
 // ------------------------------------------------------
@@ -879,7 +888,7 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 {
     if (![[self layoutManager] showOtherInvisibles]) { return; }
-    NSColor *color = [[(NSTextView<CETextViewProtocol> *)[[self layoutManager] firstTextView] theme] invisiblesColor];
+    NSColor *color = [[self theme] invisiblesColor];
     if ([[[self layoutManager] firstTextView] textColor] == color) { return; }
     NSDictionary *attrs = @{};
     NSMutableArray *ranges = [NSMutableArray array];
@@ -971,7 +980,6 @@ static NSArray *kSyntaxDictKeys;
     NSInteger i, j, count;
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
     double indicatorValue, beginDouble = 0.0;
-    CETheme *theme = [(NSTextView<CETextViewProtocol> *)[[self layoutManager] firstTextView] theme];
     
     @try {
         // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
@@ -993,7 +1001,7 @@ static NSArray *kSyntaxDictKeys;
             
             strDicts = [self coloringDictionary][kSyntaxDictKeys[i]];
             count = [strDicts count];
-            [self setTextColor:[theme syntaxColorWithIndex:i]]; // ===== retain
+            [self setTextColor:[[self theme] syntaxColorWithIndex:i]]; // ===== retain
             [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
