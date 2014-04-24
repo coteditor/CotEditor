@@ -177,7 +177,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // フォントサイズは随時変更されるため、表示時に取得する
     NSFont *font = [self isPrinting] ? [[self textStorage] font] : [self textFont];
-    NSColor *color = [textView invisiblesColor];
+    NSColor *color = [[textView theme] invisiblesColor];
     [self setAttributes:@{NSFontAttributeName: font,
                           NSForegroundColorAttributeName: color}];
 

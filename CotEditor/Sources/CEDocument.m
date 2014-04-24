@@ -364,6 +364,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // プリントビュー生成
     CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editorView] string]];
+    [printView setTheme:[[[self editorView] textView] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self editorView] syntaxStyleNameToColoring]];

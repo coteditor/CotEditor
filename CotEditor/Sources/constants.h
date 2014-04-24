@@ -225,21 +225,6 @@ extern NSString  *const k_allAlphabetChars;
 extern CGFloat const k_perCompoIncrement;
 extern CGFloat const k_minIncrement;
 
-// syntax coloring color
-extern NSString *const k_key_textColor;
-extern NSString *const k_key_backgroundColor;
-extern NSString *const k_key_insertionPointColor;
-extern NSString *const k_key_selectionColor;
-extern NSString *const k_key_highlightLineColor;
-extern NSString *const k_key_keywordsColor;
-extern NSString *const k_key_commandsColor;
-extern NSString *const k_key_valuesColor;
-extern NSString *const k_key_numbersColor;
-extern NSString *const k_key_stringsColor;
-extern NSString *const k_key_charactersColor;
-extern NSString *const k_key_commentsColor;
-extern NSString *const k_key_allSyntaxColors[];
-
 // syntax style
 extern NSString *const k_SCKey_styleName;
 extern NSString *const k_SCKey_extensions;

@@ -227,29 +227,6 @@ NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN
 CGFloat const k_perCompoIncrement = 80.0;
 CGFloat const k_minIncrement = 3.4;
 
-// syntax coloring color
-NSString *const k_key_textColor = @"textColor";
-NSString *const k_key_backgroundColor = @"backgroundColor";
-NSString *const k_key_insertionPointColor = @"insertionPointColor";
-NSString *const k_key_selectionColor = @"selectionColor";
-NSString *const k_key_highlightLineColor = @"highlightLineColor";
-NSString *const k_key_keywordsColor = @"keywordsColor";
-NSString *const k_key_commandsColor = @"commandsColor";
-NSString *const k_key_valuesColor = @"valuesColor";
-NSString *const k_key_numbersColor = @"numbersColor";
-NSString *const k_key_stringsColor = @"stringsColor";
-NSString *const k_key_charactersColor = @"charactersColor";
-NSString *const k_key_commentsColor = @"commentsColor";
-NSString *const k_key_allSyntaxColors[] = {
-    @"keywordsColor",
-    @"commandsColor",
-    @"valuesColor",
-    @"numbersColor",
-    @"stringsColor",
-    @"charactersColor",
-    @"commentsColor"
-};
-
 // syntax style
 NSString *const k_SCKey_styleName = @"styleName";
 NSString *const k_SCKey_extensions = @"extensions";

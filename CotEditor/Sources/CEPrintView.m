@@ -339,24 +339,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark Protocol
-
-//=======================================================
-// CETextViewProtocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// 不可視文字の色を返す（CELayoutManager向け: テーマ機能を実装したら取り外せる予定）
-- (NSColor *)invisiblesColor
-// ------------------------------------------------------
-{
-    return [NSUnarchiver unarchiveObjectWithData:
-            [[NSUserDefaults standardUserDefaults] dataForKey:k_key_invisibleCharactersColor]];
-}
-
-
-
 #pragma mark Private Methods
 
 //=======================================================
@@ -418,8 +400,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             break;
             
         case CESameAsDocumentColorPrint:
-            [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_textColor]]];
-            [self setBackgroundColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_backgroundColor]]];
+            [self setTextColor:[[self theme] textColor]];
+            [self setBackgroundColor:[[self theme] backgroundColor]];
             
             // カラーリング実行オブジェクトを用意して実行
             CESyntax *syntax = [[CESyntax alloc] init];

@@ -44,6 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *documentName;
 @property (nonatomic, copy) NSString *syntaxName;
 @property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) CETheme *theme;
 
 // settings on current window to be set by CEDocument.
 // These values are used if set option is "Same as document's setting"

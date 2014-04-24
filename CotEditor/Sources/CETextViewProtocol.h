@@ -31,12 +31,13 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "CETheme.h"
 
 
 @protocol CETextViewProtocol
 
 @required
 - (CGFloat)lineSpacing;
-- (NSColor *)invisiblesColor;
+- (CETheme *)theme;
 
 @end
