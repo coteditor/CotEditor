@@ -346,7 +346,7 @@
     NSString *message = nil;
     
     if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit) ||
-        (([self mode] == CESyntaxEdit) && ![styleName isEqualToString:[self originalStyleName]]))
+        (([self mode] == CESyntaxEdit) && ([styleName caseInsensitiveCompare:[self originalStyleName]] != NSOrderedSame)))
     {
         // NSArray を case insensitive に検索するブロック
         __block NSString *duplicatedStyleName;
