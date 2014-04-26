@@ -37,6 +37,14 @@
 				<string>scala</string>
 				<string>conf</string>
 				<string>json</string>
+				<string>patch</string>
+				<string>diff</string>
+				<string>ini</string>
+				<string>rest</string>
+				<string>rst</string>
+				<string>textile</string>
+				<string>yaml</string>
+				<string>yml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>docIcon.icns</string>
