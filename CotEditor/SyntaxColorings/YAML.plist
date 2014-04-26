@@ -118,7 +118,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=[\n\[\{,])[ \t]*[^-:\[\]\n]*(?=[\t ]*:[ \t\n])</string>
+			<string>(?&lt;=[\n\[\{,]|\A)[ \t]*[^-:\[\]\n]*(?=[\t ]*:[ \t\n])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
