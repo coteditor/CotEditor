@@ -7,7 +7,7 @@ changelog
 
 ### new
 
-- "CoffeeScript", "Dart", "Diff", "INI", "Makefile", "reST", "Textile", "YAML" シンタックス定義を追加
+- "CoffeeScript", "Dart", "Diff", "INI", "Makefile", "reStructuredText", "Textile", "YAML" シンタックス定義を追加
 
 ### mod
 

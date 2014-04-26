@@ -143,6 +143,8 @@
 			<true/>
 		</dict>
 	</array>
+	<key>numOfObjInArray</key>
+	<integer>34</integer>
 	<key>numbersArray</key>
 	<array>
 		<dict>
@@ -221,7 +223,7 @@
 		</dict>
 	</array>
 	<key>styleName</key>
-	<string>reST</string>
+	<string>reStructuredText</string>
 	<key>valuesArray</key>
 	<array>
 		<dict>
