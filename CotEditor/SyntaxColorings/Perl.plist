@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>charactersArray</key>
@@ -9,6 +9,22 @@
 			<string>'</string>
 			<key>endString</key>
 			<string>'</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?s)&lt;&lt;\s*'([0-9a-zA-Z_]+)'\s*;.+?\n\1\n</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bq/</string>
+			<key>endString</key>
+			<string>/</string>
+			<key>regularExpression</key>
+			<false/>
 		</dict>
 	</array>
 	<key>commandsArray</key>
@@ -790,7 +806,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>#(.*+)</string>
+			<string>(?&lt;!\$)#(.*+)$</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -808,6 +824,14 @@
 	</array>
 	<key>keywordsArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>__DATA__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__END__</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>continue</string>
@@ -842,6 +866,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>package</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>sub</string>
 		</dict>
 		<dict>
@@ -858,7 +886,32 @@
 		</dict>
 	</array>
 	<key>numbersArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;![0-9a-z_$])[0-9.][0-9._]*(e-?[0-9._]+)?\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0b[01_]+\b</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0x[0-9a-fA-F_]+\b</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>outlineMenuArray</key>
 	<array>
 		<dict>
@@ -897,164 +950,32 @@
 			<string>"</string>
 			<key>endString</key>
 			<string>"</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?s)&lt;&lt;[ \t]*"?([0-9a-zA-Z_]+)"?[ \t]*;.+?\n\1\n</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>/[^\n/]*/[^\n/]*/</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>qq/</string>
+			<key>endString</key>
+			<string>/</string>
 		</dict>
 	</array>
 	<key>styleName</key>
 	<string>Perl</string>
 	<key>valuesArray</key>
 	<array>
-		<dict>
-			<key>beginString</key>
-			<string>$!</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$"</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$#</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$$</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$%</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$&amp;</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$'</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$(</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$)</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$*</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$+</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$,</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$-</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$.</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$/</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$0</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$:</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$;</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$&lt;</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$=</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$&gt;</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$?</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$@</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$[</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$\</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$]</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^A</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^D</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^F</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^I</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^L</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^P</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^T</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^W</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^X</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$_</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$`</string>
-		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>$ACCUMULATOR</string>
@@ -1257,15 +1178,55 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>$|</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$~</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>%INC</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!\$)\$,</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!\$)\$;</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!\$)\$\$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!\$)\$\)(?!\s*\{)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!\$)\$\+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!\$)\$\-</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!\$)\$\.</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(\$|\$#|@|%)[_a-zA-Z][_a-zA-Z0-9]*</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1274,6 +1235,216 @@
 		<dict>
 			<key>beginString</key>
 			<string>@INC</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$!</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$"</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$#</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$%</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$&amp;</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$'</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$/</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$:</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$&lt;</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$=</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$&gt;</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$@</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$[0-9]+\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\(</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\*</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\?</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\[</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\\</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\]</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^A\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^D\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^F\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^I\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^L\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^P\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^T\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^W\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\^X\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\|</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$_</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$`</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$~</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__FILE__</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__LINE__</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 	</array>
 </dict>
