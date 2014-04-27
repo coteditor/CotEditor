@@ -219,7 +219,7 @@ NSUInteger const k_notUseStartEnd = 0;
 NSUInteger const k_QC_Start = 1;
 NSUInteger const k_QC_End = 2;
 NSString  *const k_QCStrLength = @"QCStrLength";
-NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 // syntax coloring range buffer (in CEEditorView)
 NSUInteger const k_coloringRangeBufferLength = 50000;  // number of characters
