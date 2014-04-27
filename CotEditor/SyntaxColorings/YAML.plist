@@ -129,7 +129,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=[-:]) +[0-9,.]+(?=[ \n])</string>
+			<string>(?&lt;=[-:]) +[0-9,.]+(?=[ \n\}\]])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
