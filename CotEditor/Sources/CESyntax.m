@@ -364,7 +364,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // イタリック
             BOOL isItalic = [dict[k_SCKey_italic] boolValue];
             // アンダーライン
-            NSUInteger theUnderlineMask = ([dict[k_SCKey_underline] boolValue]) ?
+            NSUInteger underlineMask = ([dict[k_SCKey_underline] boolValue]) ?
                     (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
             // 辞書生成
             matchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:matchRange],
@@ -372,15 +372,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                           k_outlineMenuItemSortKey: @(matchRange.location),
                           k_outlineMenuItemFontBold: @(isBold),
                           k_outlineMenuItemFontItalic: @(isItalic),
-                          k_outlineMenuItemUnderlineMask: @(theUnderlineMask)};
+                          k_outlineMenuItemUnderlineMask: @(underlineMask)};
             [outlineMenuDicts addObject:matchDict];
         }
     }
     if ([outlineMenuDicts count] > 0) {
-        NSSortDescriptor *theDescriptor = [[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey
-                                                                      ascending:YES
-                                                                       selector:@selector(compare:)];
-        [outlineMenuDicts sortUsingDescriptors:@[theDescriptor]];
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey
+                                                                   ascending:YES
+                                                                    selector:@selector(compare:)];
+        [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
         // ソート後に、冒頭のアイテムを追加
         [outlineMenuDicts insertObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)],
                                          k_outlineMenuItemTitle: NSLocalizedString(@"<Outline Menu>",@""),
@@ -779,8 +779,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // カラーリング対象がなければ、もどる
     if ([posArray count] < 1) { return; }
-    NSSortDescriptor *theDescriptor = [[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES];
-    [posArray sortUsingDescriptors:@[theDescriptor]];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES];
+    [posArray sortUsingDescriptors:@[descriptor]];
     coloringCount = [posArray count];
 
     QCKind = k_notUseKind;

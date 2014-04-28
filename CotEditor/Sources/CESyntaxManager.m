@@ -163,12 +163,9 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
                     [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
                 }
                 
-                NSArray *theArray;
                 NSUInteger count = 0;
-
                 for (NSString *key in syntaxDictKeys) {
-                    theArray = styleToReturn[key];
-                    count += [theArray count];
+                    count += [(NSArray *)styleToReturn[key] count];
                 }
                 styleToReturn[k_SCKey_numOfObjInArray] = @(count);
                 

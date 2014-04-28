@@ -226,7 +226,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 文字列入力、'¥' と '\' を入れ替える。
+/// 文字列入力、'¥' と '\' を入れ替える
 - (void)insertText:(id)aString
 // ------------------------------------------------------
 {
@@ -249,7 +249,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// タブ入力、タブを展開。
+/// タブ入力、タブを展開
 - (void)insertTab:(id)sender
 // ------------------------------------------------------
 {
@@ -330,7 +330,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// デリート。タブを展開しているときのスペースを調整削除。
+/// デリート、タブを展開しているときのスペースを調整削除
 - (void)deleteBackward:(id)sender
 // ------------------------------------------------------
 {
@@ -345,15 +345,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ((NSInteger)selectedRange.location >= targetWidth) {
                 NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
                 NSString *target = [[self string] substringWithRange:targetRange];
-                BOOL valueToDelete = NO;
-                NSUInteger i;
-                for (i = 0; i < targetWidth; i++) {
-                    valueToDelete = [[target substringWithRange:NSMakeRange(i, 1)] isEqualToString:@" "];
-                    if (!valueToDelete) {
+                BOOL shouldDelete = NO;
+                for (NSUInteger i = 0; i < targetWidth; i++) {
+                    shouldDelete = [[target substringWithRange:NSMakeRange(i, 1)] isEqualToString:@" "];
+                    if (!shouldDelete) {
                         break;
                     }
                 }
-                if (valueToDelete) {
+                if (shouldDelete) {
                     [self setSelectedRange:targetRange];
                 }
             }
@@ -429,12 +428,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [outMenu insertItem:selectAllMenuItem atIndex:(pasteIndex + 1)];
         }
     }
-    if (((utilityMenu) || (ASSubMenu)) &&
+    if ((utilityMenu || ASSubMenu) &&
         ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem) &&
         ([outMenu indexOfItemWithTag:k_scriptMenuTag] == k_noMenuItem)) {
         [outMenu addItem:[NSMenuItem separatorItem]];
     }
-    if ((utilityMenu) && ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem)) {
+    if (utilityMenu && ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem)) {
         [utilityMenuItem setTag:k_utilityMenuTag];
         [utilityMenuItem setSubmenu:utilityMenu];
         [outMenu addItem:utilityMenuItem];
@@ -446,15 +445,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_inlineContextualScriptMenu]) {
-            NSUInteger i, count = [ASSubMenu numberOfItems];
-            NSMenuItem *addItem = nil;
-
-            for (i = 0; i < 2; i++) { // セパレータをふたつ追加
+            for (NSUInteger i = 0; i < 2; i++) { // セパレータをふたつ追加
                 [outMenu addItem:[NSMenuItem separatorItem]];
                 [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:k_scriptMenuTag];
             }
-            for (i = 0; i < count; i++) {
-                addItem = [(NSMenuItem *)[ASSubMenu itemAtIndex:i] copy];
+            NSMenuItem *addItem = nil;
+            for (NSMenuItem *item in [ASSubMenu itemArray]) {
+                addItem = [item copy];
                 [addItem setTag:k_scriptMenuTag];
                 [outMenu addItem:addItem];
             }
@@ -827,10 +824,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
-        NSColor *insertionPointColor = [self insertionPointColor];
-        for (id item in fileDropArray) {
+        for (NSDictionary *item in fileDropArray) {
             NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            NSArray *extensions = [[item valueForKey:k_key_fileDropExtensions] componentsSeparatedByString:@", "];
+            NSArray *extensions = [item[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
             if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
                 NSString *string = [self string];
                 NSUInteger length = [string length];
@@ -858,7 +854,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         // 古い自前挿入ポイントが描かれたままになることへの対応
                         [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
                     }
-                    [insertionPointColor set];
+                    [[self insertionPointColor] set];
                     [self lockFocus];
                     NSFrameRectWithWidth(insertionRect, 1.0);
                     [self unlockFocus];
@@ -932,7 +928,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setIsReadingFromPboard:YES];
 
     // ペーストされたか、他からテキストがドロップされた
-    if ((![self isSelfDrop]) && ([type isEqualToString:NSStringPboardType])) {
+    if (![self isSelfDrop] && [type isEqualToString:NSStringPboardType]) {
         // ペースト、他からのドロップによる編集で改行コードをLFに統一する
         // （その他の編集は、下記の通りの別の場所で置換している）
         // # テキスト編集時の改行コードの置換場所
@@ -968,29 +964,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
         NSMutableString *relativePath = [NSMutableString string];
         NSMutableString *newStr = [NSMutableString string];
-        NSInteger i, xtsnCount;
-        NSInteger fileArrayCount = (NSInteger)[fileDropArray count];
 
         for (NSURL *absoluteURL in files) {
             selectedRange = [self selectedRange];
-            for (xtsnCount = 0; xtsnCount < fileArrayCount; xtsnCount++) {
-                NSArray *extensions = [[fileDropArray[xtsnCount] valueForKey:k_key_fileDropExtensions]
-                                       componentsSeparatedByString:@", "];
+            for (NSDictionary *itemDict in fileDropArray) {
+                NSArray *extensions = [itemDict[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
                 pathExtension = [absoluteURL pathExtension];
                 pathExtensionLower = [pathExtension lowercaseString];
                 pathExtensionUpper = [pathExtension uppercaseString];
-
-                if (([extensions containsObject:pathExtensionLower]) 
-                        || ([extensions containsObject:pathExtensionUpper])) {
-
-                    [newStr setString:[fileDropArray[xtsnCount] 
-                                valueForKey:k_key_fileDropFormatString]];
+                
+                if ([extensions containsObject:pathExtensionLower] ||
+                    [extensions containsObject:pathExtensionUpper])
+                {
+                    [newStr setString:itemDict[k_key_fileDropFormatString]];
                 } else {
                     continue;
                 }
             }
             if ([newStr length] > 0) {
-                if ((documentURL != nil) && (![[documentURL path] isEqualToString:[absoluteURL path]])) {
+                if (documentURL && ![[documentURL path] isEqualToString:[absoluteURL path]]) {
                     NSArray *docPathArray = [documentURL pathComponents];
                     NSArray *pathArray = [absoluteURL pathComponents];
                     NSMutableString *tmpStr = [NSMutableString string];
@@ -1057,7 +1049,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
         }
     }
-    if (success == NO) {
+    if (!success) {
         success = [super readSelectionFromPasteboard:pboard type:type];
     }
     [self setIsReadingFromPboard:NO];

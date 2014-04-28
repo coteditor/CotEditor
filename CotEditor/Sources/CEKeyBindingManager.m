@@ -252,8 +252,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // （システム標準のキーバインディングとの重複は、チェックしない）
             [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]];
             [[self textFactoryDefaultsButton] setEnabled:
-             ((![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]]) ||
-              (![factoryDefaultsOfInsertTextArray isEqualToArray:insertTextArray]))];
+             (![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]] ||
+              ![factoryDefaultsOfInsertTextArray isEqualToArray:insertTextArray])];
             [[self textOutlineView] reloadData];
             for (id object in insertTextArray) {
                 dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
@@ -300,7 +300,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return [[self outlineDataArray] count];
     } else {
         NSMutableArray *children = item[k_children];
-        return (children != nil) ? [children count] : 0;
+        return (children) ? [children count] : 0;
     }
 }
 
@@ -512,7 +512,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             return;
     }
     
-    if ((sheet == nil) || (outlineView == nil)) { return; }
+    if (!sheet || !outlineView) { return; }
 
     NSText *fieldEditor = [sheet fieldEditor:NO forObject:outlineView];
 
@@ -657,7 +657,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"MenuKeyBindings"]
-                                                URLByAppendingPathExtension:@"plist"];
+                                            URLByAppendingPathExtension:@"plist"];
 }
 
 
@@ -667,7 +667,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"TextKeyBindings"]
-                                                URLByAppendingPathExtension:@"plist"];
+                                            URLByAppendingPathExtension:@"plist"];
 }
 
 
@@ -829,9 +829,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 // 日本語リソースが使われたとき、Input BackSlash の keyEquivalent を変更する
                 // （半角円マークのままだと半角カナ「エ」に化けるため）
                 if ([keyEquivalent isEqualToString:[NSString stringWithCharacters:&k_yenMark length:1]] &&
-                    [[[[[NSBundle mainBundle] URLForResource:@"InfoPlist" withExtension:@"strings"]
-                       URLByDeletingLastPathComponent] lastPathComponent]
-                     isEqualToString:@"ja.lproj"])
+                    [[[NSBundle mainBundle] preferredLocalizations][0] isEqualToString:@"ja"])
                 {
                     [item setKeyEquivalent:@"\\"];
                 } else {
@@ -1170,15 +1168,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *keyEquivalent, *keySpecChars;
     NSUInteger modifierFlags;
 
-    for (id menuItem in [menu itemArray]) {
-        if ([menuItem hasSubmenu]) {
-            NSArray *theTmpArray = [self duplicateKeyCheckArrayWithMenu:[menuItem submenu]];
+    for (NSMenuItem *item in [menu itemArray]) {
+        if ([item hasSubmenu]) {
+            NSArray *theTmpArray = [self duplicateKeyCheckArrayWithMenu:[item submenu]];
             [duplicateKeyCheckArray addObjectsFromArray:theTmpArray];
             continue;
         }
-        keyEquivalent = [menuItem keyEquivalent];
+        keyEquivalent = [item keyEquivalent];
         if ([keyEquivalent length] > 0) {
-            modifierFlags = [menuItem keyEquivalentModifierMask];
+            modifierFlags = [item keyEquivalentModifierMask];
             keySpecChars = [self keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierFlags];
             if ([keySpecChars length] > 1) {
                 [duplicateKeyCheckArray addObject:keySpecChars];

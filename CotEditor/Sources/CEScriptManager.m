@@ -131,7 +131,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 {
     // メニューデータの読み込みとメニュー構成
     NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
-    [self removeAllMenuItemsFromParent:menu];
+    [menu removeAllItems];
     NSMenuItem *menuItem;
 
     [self addChildFileItemTo:menu fromDir:[self scriptDirectoryURL]];
@@ -212,7 +212,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         isModifierPressed = YES;
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
     }
-    if (!success && (message != nil)) {
+    if (!success && message) {
         // 開けなかったり選択できなければその旨を表示
         [self showAlertWithMessage:message];
     }
@@ -224,11 +224,11 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         NSAppleEventDescriptor *descriptor;
         
         appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo];
-        if (appleScript != nil) {
+        if (appleScript) {
             descriptor = [appleScript executeAndReturnError:&errorInfo];
         }
         // エラーが発生したら、表示
-        if (((appleScript == nil) || (descriptor == nil)) && (errorInfo != nil)) {
+        if ((!appleScript || !descriptor) && errorInfo) {
             [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"%@\nErrorNumber: %i",@""),
                                         [errorInfo valueForKey:NSAppleScriptErrorMessage],
                                         [[errorInfo valueForKey:NSAppleScriptErrorNumber] integerValue]]];
@@ -426,25 +426,6 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 
 
 //------------------------------------------------------
-/// すべてのメニューアイテムを削除
-- (void)removeAllMenuItemsFromParent:(NSMenu *)menu
-//------------------------------------------------------
-{
-    NSArray *items = [menu itemArray];
-    NSMenuItem *menuItem;
-    NSInteger i;
-
-    for (i = ([items count] - 1); i >= 0; i--) {
-        menuItem = items[i];
-        if (![menuItem isSeparatorItem] && [menuItem hasSubmenu]) {
-            [self removeAllMenuItemsFromParent:[menuItem submenu]];
-        }
-        [menu removeItem:menuItem];
-    }
-}
-
-
-//------------------------------------------------------
 /// ファイル／フォルダ名からメニューアイテムタイトル名を生成
 - (NSString *)menuTitleFromFileName:(NSString *)fileName
 //------------------------------------------------------
@@ -502,23 +483,21 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 - (NSString *)stringOfScript:(NSURL *)URL
 //------------------------------------------------------
 {
-    NSString *scriptString = nil;
     NSData *data = [NSData dataWithContentsOfURL:URL];
     
-    if ((data == nil) || ([data length] < 1)) { return nil; }
+    if (!data || ([data length] < 1)) { return nil; }
     
+    NSString *scriptString = nil;
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
-    NSStringEncoding encoding;
-    NSInteger i = 0;
-    while (scriptString == nil) {
-        encoding = CFStringConvertEncodingToNSStringEncoding([encodings[i] unsignedLongValue]);
+    
+    for (NSNumber *encodingNumber in encodings) {
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedLongValue]);
         if (encoding == NSProprietaryStringEncoding) {
             NSLog(@"encoding == NSProprietaryStringEncoding");
             break;
         }
         scriptString = [[NSString alloc] initWithData:data encoding:encoding];
         if (scriptString != nil) { break; }
-        i++;
     }
     
     return scriptString;
