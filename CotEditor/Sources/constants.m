@@ -176,7 +176,6 @@ NSString *const k_key_showColoringIndicatorTextLength = @"showColoringIndicatorT
 NSString *const k_key_runAppleScriptInLaunching = @"runAppleScriptInLaunching";
 NSString *const k_key_showAlertForNotWritable = @"showAlertForNotWritable";
 NSString *const k_key_notifyEditByAnother = @"notifyEditByAnother";
-NSString *const k_key_smartIndentStartChars = @"smartIndentStartChars";
 
 
 

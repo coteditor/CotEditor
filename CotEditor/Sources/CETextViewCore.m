@@ -272,40 +272,57 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 改行コード入力、オートインデント実行。
+/// 改行コード入力、オートインデント実行
 - (void)insertNewline:(id)sender
 // ------------------------------------------------------
 {
-    NSMutableString *input = [NSMutableString string];
+    NSString *indent = @"";
     BOOL shouldIncreaseIndentLevel = NO;
+    BOOL shouldExpandBlock = NO;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoIndent]) {
         NSRange selectedRange = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-        NSString *lineStr = [[self string] substringWithRange:
-                    NSMakeRange(lineRange.location,
-                                lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
-        NSRange indentRange = [lineStr rangeOfRegularExpressionString:@"^[[:blank:]\t]+"];
+        NSString *lineStr = [[self string] substringWithRange:lineRange];
+        NSRange indentRange = [lineStr rangeOfString:@"^\\s+" options:NSRegularExpressionSearch];
         
-        // スマートインデント（改行直前の文字が特定の文字の場合はインデントレベルを1つ下げる）
-        NSString *indentStartChars = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_smartIndentStartChars];
-        NSCharacterSet *indentStartCharSet = [NSCharacterSet characterSetWithCharactersInString:indentStartChars];
-        unichar lastChar = [lineStr characterAtIndex:[lineStr length] - 1];
-        shouldIncreaseIndentLevel = [indentStartCharSet characterIsMember:lastChar];
-
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
         if ((indentRange.location != NSNotFound) &&
-            NSMaxRange(selectedRange) < (selectedRange.location + NSMaxRange(indentRange))) {
-            [input setString:[lineStr substringWithRange:indentRange]];
+            (NSMaxRange(selectedRange) < (selectedRange.location + NSMaxRange(indentRange))))
+        {
+            indent = [lineStr substringWithRange:indentRange];
         }
-    }
-    [super insertNewline:sender];
-    if ([input length] > 0) {
-        [super insertText:input];
+        
+        // スマートインデント
+        NSString *lastChar;
+        NSString *nextChar;
+        if (selectedRange.location > 0) {
+            lastChar = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 1)];
+        }
+        if (NSMaxRange(selectedRange) < [[self string] length]) {
+            nextChar = [[self string] substringWithRange:NSMakeRange(NSMaxRange(selectedRange), 1)];
+        }
+        // `{}` の中で改行した場合はインデントを展開する
+        shouldExpandBlock = ([lastChar isEqualToString:@"{"] && [nextChar isEqualToString:@"}"]);
+        // 改行直前の文字が `:` の場合はインデントレベルを1つ下げる
+        shouldIncreaseIndentLevel = [lastChar isEqualToString:@":"];
     }
     
-    if (shouldIncreaseIndentLevel) {
-        [self insertTab:self];
+    [super insertNewline:sender];
+    
+    if ([indent length] > 0) {
+        [super insertText:indent];
+    }
+    
+    if (shouldExpandBlock) {
+        [self insertTab:sender];
+        NSRange selection = [self selectedRange];
+        [super insertNewline:sender];
+        [super insertText:indent];
+        [self setSelectedRange:selection];
+        
+    } else if (shouldIncreaseIndentLevel) {
+        [self insertTab:sender];
     }
 }
 
@@ -371,7 +388,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [self setIsReCompletion:YES];
             } else {
                 // 補完文字列に括弧が含まれていたら、括弧内だけを選択する準備をする
-                range = [word rangeOfRegularExpressionString:@"\\(.*\\)"];
+                range = [word rangeOfString:@"\\(.*\\)" options:NSRegularExpressionSearch];
                 shouldReselect = (range.location != NSNotFound);
             }
         }

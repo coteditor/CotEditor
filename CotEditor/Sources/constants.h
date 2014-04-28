@@ -174,7 +174,6 @@ extern NSString *const k_key_showColoringIndicatorTextLength;
 extern NSString *const k_key_runAppleScriptInLaunching;
 extern NSString *const k_key_showAlertForNotWritable;
 extern NSString *const k_key_notifyEditByAnother;
-extern NSString *const k_key_smartIndentStartChars;
 
 
 
