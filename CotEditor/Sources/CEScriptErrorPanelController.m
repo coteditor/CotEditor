@@ -60,11 +60,11 @@
 
 
 // ------------------------------------------------------
-/// Scriptエラーログを追加する
+/// Nibファイル読み込み直後
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [[self textView] setFont:[NSFont messageFontOfSize:10]];
+    [[self textView] setFont:[NSFont messageFontOfSize:11]];
 }
 
 
@@ -78,7 +78,7 @@
 {
     [[self textView] setEditable:YES];
     [[self textView] setSelectedRange:NSMakeRange([[[self textView] string] length], 0)];
-    [[self textView] insertText:string];
+    [[self textView] insertText:[NSString stringWithFormat:@"%@\n", string]];
     [[self textView] setEditable:NO];
 }
 
