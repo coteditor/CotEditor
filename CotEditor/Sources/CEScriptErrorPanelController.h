@@ -38,3 +38,10 @@
 - (void)addErrorString:(NSString *)string;
 
 @end
+
+
+
+
+@interface CEScriptErrorView : NSTextView
+
+@end
