@@ -668,11 +668,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theUnichar = [string characterAtIndex:location];
         if (theUnichar == braceChar) {
             if (!skipMatchingBrace) {
-                [[[self textView] layoutManager] addTemporaryAttributes:[[self textView] selectedTextAttributes]
-                                                      forCharacterRange:NSMakeRange(location, 1)];
-                [self performSelector:@selector(resetBackgroundColor:)
-                           withObject:NSStringFromRange(NSMakeRange(location, 1))
-                           afterDelay:0.12];
+                [[self textView] showFindIndicatorForRange:NSMakeRange(location, 1)];
                 return;
             } else {
                 skipMatchingBrace--;
@@ -740,16 +736,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self updateOutlineMenu]; // （updateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
-}
-
-
-// ------------------------------------------------------
-/// 対応カッコハイライト表示をリセット
-- (void)resetBackgroundColor:(id)sender
-// ------------------------------------------------------
-{
-    [[[self textView] layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
-                                            forCharacterRange:NSRangeFromString(sender)];
 }
 
 
