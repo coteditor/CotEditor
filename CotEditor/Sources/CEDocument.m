@@ -1361,8 +1361,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     CETheme *theme = [[CETheme alloc] initWithThemeName:[sender title]];
     [[[self editorView] textView] setTheme:theme];
+    [[[self editorView] textView] setSelectedRanges:[[[self editorView] textView] selectedRanges]];
     
-    [[self editorView] recoloringAllString];
+    [[self editorView] recolorAllString];
 }
 
 
