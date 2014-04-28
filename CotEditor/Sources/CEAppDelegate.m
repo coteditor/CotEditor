@@ -69,8 +69,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // Encoding list
-    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:k_size_of_CFStringEncodingList];
-    for (NSUInteger i = 0; i < k_size_of_CFStringEncodingList; i++) {
+    NSUInteger size = k_size_of_CFStringEncodingList;
+    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:size];
+    for (NSUInteger i = 0; i < size; i++) {
         [encodings addObject:@(k_CFStringEncodingList[i])];
     }
     
@@ -144,6 +145,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_NSDragAndDropTextDelay: @1,
                                k_key_smartInsertAndDelete: @NO,
                                k_key_enableSmartQuotes: @NO,
+                               k_key_enableSmartIndent: @YES,
                                k_key_shouldAntialias: @YES,
                                k_key_completeAddStandardWords: @0U,
                                k_key_showPageGuide: @NO,
@@ -211,7 +213,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 k_key_insertCustomTextArray,
                                 k_key_windowWidth,
                                 k_key_windowHeight];
-    NSDictionary *initialValuesDict=[defaults dictionaryWithValuesForKeys:resettableKeys];
+    NSDictionary *initialValuesDict = [defaults dictionaryWithValuesForKeys:resettableKeys];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValuesDict];
 
     // transformer 登録

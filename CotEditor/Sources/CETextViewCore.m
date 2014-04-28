@@ -294,18 +294,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         // スマートインデント
-        NSString *lastChar;
-        NSString *nextChar;
-        if (selectedRange.location > 0) {
-            lastChar = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 1)];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartIndent]) {
+            NSString *lastChar;
+            NSString *nextChar;
+            if (selectedRange.location > 0) {
+                lastChar = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 1)];
+            }
+            if (NSMaxRange(selectedRange) < [[self string] length]) {
+                nextChar = [[self string] substringWithRange:NSMakeRange(NSMaxRange(selectedRange), 1)];
+            }
+            // `{}` の中で改行した場合はインデントを展開する
+            shouldExpandBlock = ([lastChar isEqualToString:@"{"] && [nextChar isEqualToString:@"}"]);
+            // 改行直前の文字が `:` の場合はインデントレベルを1つ下げる
+            shouldIncreaseIndentLevel = [lastChar isEqualToString:@":"];
         }
-        if (NSMaxRange(selectedRange) < [[self string] length]) {
-            nextChar = [[self string] substringWithRange:NSMakeRange(NSMaxRange(selectedRange), 1)];
-        }
-        // `{}` の中で改行した場合はインデントを展開する
-        shouldExpandBlock = ([lastChar isEqualToString:@"{"] && [nextChar isEqualToString:@"}"]);
-        // 改行直前の文字が `:` の場合はインデントレベルを1つ下げる
-        shouldIncreaseIndentLevel = [lastChar isEqualToString:@":"];
     }
     
     [super insertNewline:sender];
