@@ -300,7 +300,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 {
     BOOL success = NO;
     NSString *newThemeName = [themeName stringByAppendingString:NSLocalizedString(@" copy", nil)];
-    NSURL *baseURL = nil;
     
     // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
     if (![self prepareUserThemeDirectory]) {
@@ -318,7 +317,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         newThemeName = proposedNewThemeName;
     }
     
-    success = [[NSFileManager defaultManager] copyItemAtURL:baseURL toURL:[self URLForUserTheme:newThemeName] error:nil];
+    success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedTheme:themeName]
+                                                      toURL:[self URLForUserTheme:newThemeName] error:nil];
     
     if (success) {
         [self updateCache];

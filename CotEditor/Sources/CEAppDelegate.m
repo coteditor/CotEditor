@@ -110,7 +110,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_tabWidth: @4U,
                                k_key_windowAlpha: @1.0f,
                                k_key_autoIndent: @YES,
-                               k_key_invisibleCharactersColor: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
                                k_key_showInvisibleSpace: @NO,
                                k_key_invisibleSpace: @0U,
                                k_key_showInvisibleTab: @NO,
@@ -121,24 +120,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_invisibleFullwidthSpace: @0U,
                                k_key_showOtherInvisibleChars: @NO,
                                k_key_highlightCurrentLine: @NO,
-                               k_key_textColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-                               k_key_backgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
-                               k_key_insertionPointColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-                               k_key_selectionColor: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
-                               k_key_highlightLineColor: [NSArchiver archivedDataWithRootObject:
-                                                          [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0]],
-                               k_key_keywordsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0]],
-                               k_key_commandsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0]],
-                               k_key_numbersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-                               k_key_valuesColor: [NSArchiver archivedDataWithRootObject:
-                                                   [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0]],
-                               k_key_stringsColor: [NSArchiver archivedDataWithRootObject:
-                                                    [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0]],
-                               k_key_charactersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-                               k_key_commentsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]],
                                k_key_defaultTheme: @"Classic",
                                k_key_doColoring: @YES,
                                k_key_defaultColoringStyleName: NSLocalizedString(@"None", nil),
