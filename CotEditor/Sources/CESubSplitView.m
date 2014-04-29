@@ -141,6 +141,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                  selector:@selector(textDidReplaceAll:)
                                                      name:@"textDidReplaceAllNotification"
                                                    object:nil];
+        
+        // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recolorAfterUndoAndRedo:)
+                                                     name:NSUndoManagerDidRedoChangeNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recolorAfterUndoAndRedo:)
+                                                     name:NSUndoManagerDidUndoChangeNotification
+                                                   object:nil];
+        
         [[self scrollView] setDocumentView:[self textView]];
 
         // slave view をセット
@@ -376,6 +387,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self syntax] colorAllString:[[self textView] string]];
+}
+
+
+// ------------------------------------------------------
+/// Undo/Redo の後に全てを再カラーリング
+- (void)recolorAfterUndoAndRedo:(NSNotification *)aNotification
+// ------------------------------------------------------
+{
+    NSUndoManager *undoManager = [aNotification object];
+    
+    if (undoManager != [[self textView] undoManager]) { return; }
+    
+    // OgreKit からの置換の Undo/Redo の後のみ再カラーリングを実行
+    // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用しているが、
+    // ローカライズ後の名前なので、名前を決め打ちしている。あまり良い方法ではない。 (2014-04 by 1024jp)
+    NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
+    if ([@[@"一括置換", @"Replace All"] containsObject:actionName]) {
+        [self recoloringAllTextViewString];
+    }
 }
 
 
