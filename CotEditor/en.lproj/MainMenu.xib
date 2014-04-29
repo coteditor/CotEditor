@@ -34,7 +34,7 @@
                             </menuItem>
                             <menuItem title="Preferences…" keyEquivalent="," id="129">
                                 <connections>
-                                    <action selector="openPreferences:" target="290" id="rSD-cP-wdk"/>
+                                    <action selector="openPrefWindow:" target="290" id="6u3-7x-oXn"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">
