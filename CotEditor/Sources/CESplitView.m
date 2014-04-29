@@ -162,7 +162,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)recoloringAllTextView
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(recoloringAllTextViewString)];
+    [[self subviews] makeObjectsPerformSelector:@selector(recolorAllTextViewString)];
     if (![self finishedOpen]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
                                                             object:[self superview]]; // superView = CEEditorView

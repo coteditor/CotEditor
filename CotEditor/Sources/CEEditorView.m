@@ -538,7 +538,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self splitView] setSyntaxStyleNameToSyntax:name];
         [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
         if (recolorNow) {
-            [self recoloringAllString];
+            [self recolorAllString];
             if ([self showNavigationBar]) {
                 [[self splitView] updateAllOutlineMenu];
             }
@@ -549,7 +549,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 全テキストを再カラーリング
-- (void)recoloringAllString
+- (void)recolorAllString
 // ------------------------------------------------------
 {
     [self stopColoringTimer];

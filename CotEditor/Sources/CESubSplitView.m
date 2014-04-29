@@ -383,7 +383,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 全てを再カラーリング
-- (void)recoloringAllTextViewString
+- (void)recolorAllTextViewString
 // ------------------------------------------------------
 {
     [[self syntax] colorAllString:[[self textView] string]];
@@ -404,7 +404,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ローカライズ後の名前なので、名前を決め打ちしている。あまり良い方法ではない。 (2014-04 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
     if ([@[@"一括置換", @"Replace All"] containsObject:actionName]) {
-        [self recoloringAllTextViewString];
+        [self recolorAllTextViewString];
     }
 }
 
@@ -724,7 +724,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[self editorView] setupInfoUpdateTimer];
     // 全テキストを再カラーリング
-    [self performSelector:@selector(recoloringAllTextViewString) withObject:nil afterDelay:0];
+    [self performSelector:@selector(recolorAllTextViewString) withObject:nil afterDelay:0];
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
 }
