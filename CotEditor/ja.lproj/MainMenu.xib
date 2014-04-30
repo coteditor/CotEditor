@@ -223,12 +223,12 @@
                                         <menuItem isSeparatorItem="YES" id="664">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="+ &quot;charset=&quot;" id="665">
+                                        <menuItem title="“charset=” 形式" id="665">
                                             <connections>
                                                 <action selector="insertIANACharSetNameWithCharset:" target="-1" id="668"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="+ &quot;encoding=&quot;" id="667">
+                                        <menuItem title="“encoding=” 形式" id="667">
                                             <connections>
                                                 <action selector="insertIANACharSetNameWithEncoding:" target="-1" id="669"/>
                                             </connections>
