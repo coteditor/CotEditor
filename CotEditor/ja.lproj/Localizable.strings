@@ -267,8 +267,9 @@ http://www.aynimac.com/
 "Shift lines to right" = "行を右へシフト";
 
 // Expand Tabs
-"Expand Tabs" = "タブを変換";
-"Toggle auto tab expand" = "自動タブ変換を切替";
+"Expand Tabs" = "タブを展開";
+"Toggle Auto Tab Expand" = "自動タブ展開を切替";
+"Toggle auto tab expand" = "自動タブ展開を切替";
 
 // Navigation Bar
 "Navigation Bar" = "ナビゲーションバー";

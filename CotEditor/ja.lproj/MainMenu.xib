@@ -461,7 +461,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="UeK-h0-5QV"/>
-                                        <menuItem title="タブを自動でスペースに変換" id="8fB-qA-BhZ">
+                                        <menuItem title="タブを自動でスペースに展開" id="8fB-qA-BhZ">
                                             <connections>
                                                 <action selector="toggleAutoTabExpand:" target="-1" id="DSl-M0-OXS"/>
                                             </connections>
