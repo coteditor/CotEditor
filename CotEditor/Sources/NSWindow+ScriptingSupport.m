@@ -50,7 +50,6 @@
 {
     if ([self isDocumentWindow]) {
         return @([(CEWindowController *)[self windowController] alpha]);
-        // AppleScript で値を得てみると、0.50000000113 とかになってしまう **** 2005.03.04
     }
     
     return nil;
