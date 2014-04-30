@@ -55,6 +55,8 @@
 
 
 
+
+
 #pragma mark Public Methods
 
 // ------------------------------------------------------
@@ -62,7 +64,7 @@
 - (BOOL)isSeparator
 // ------------------------------------------------------
 {
-    return [[self objectValue] isEqualTo:CESeparatorString];
+    return [[[self attributedStringValue] string] isEqualTo:CESeparatorString];
 }
 
 @end
