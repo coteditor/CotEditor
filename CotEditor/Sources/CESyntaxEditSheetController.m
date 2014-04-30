@@ -124,8 +124,8 @@
     
     if (isDefaultSyntax) {
         [[self styleNameField] setBordered:YES];
-        [[self messageField] setStringValue:NSLocalizedString(@"The default style name cannot be changed.", nil)];
         [[self factoryDefaultsButton] setEnabled:![[CESyntaxManager sharedManager] isEqualToBundledStyle:styleName]];
+        [[self messageField] setStringValue:NSLocalizedString(@"Name of the bundled style cannot be changed.", nil)];
     } else {
         [[self messageField] setStringValue:@""];
         [[self factoryDefaultsButton] setEnabled:NO];

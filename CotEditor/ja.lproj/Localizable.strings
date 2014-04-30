@@ -198,7 +198,7 @@ http://www.aynimac.com/
 "Style Name cannot contain “/”. Input another name." = "スタイル名に “/” を含むことはできません。ほかの名前を入力してください。";
 "Style Name cannot begin with “.”. Input another name." = "スタイル名を “.” から始めることはできません。ほかの名前を入力してください。";
 // selected Syntax coloring style name was original
-"The default style name cannot be changed." = "デフォルトのスタイル名は変更できません。";
+"Name of the bundled style cannot be changed." = "バンドルされているスタイルの名前は変更できません。";
 // Suffix of copied syntax coloring style
 " copy" = " コピー";
 // Delete syntax coloring style alert message
