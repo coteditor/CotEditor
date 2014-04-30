@@ -123,9 +123,10 @@
     [[self styleNameField] setEditable:!isDefaultSyntax];
     
     if (isDefaultSyntax) {
+        BOOL isEqual = [[CESyntaxManager sharedManager] isEqualToBundledStyle:[self style] name:styleName];
         [[self styleNameField] setBordered:YES];
-        [[self factoryDefaultsButton] setEnabled:![[CESyntaxManager sharedManager] isEqualToBundledStyle:styleName]];
         [[self messageField] setStringValue:NSLocalizedString(@"Name of the bundled style cannot be changed.", nil)];
+        [[self factoryDefaultsButton] setEnabled:!isEqual];
     } else {
         [[self messageField] setStringValue:@""];
         [[self factoryDefaultsButton] setEnabled:NO];
