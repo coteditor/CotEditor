@@ -816,16 +816,16 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="tV2-Tm-LbD"/>
-                            <menuItem title="CotEditor Web サイト" id="l2O-Zn-Vo0">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openWebSite:" target="290" id="yUt-qX-KWm"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="不具合を報告…" id="qHT-FN-VpY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="cdN-Ah-xEy"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="CotEditor Web サイト" id="l2O-Zn-Vo0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openWebSite:" target="290" id="yUt-qX-KWm"/>
                                 </connections>
                             </menuItem>
                         </items>

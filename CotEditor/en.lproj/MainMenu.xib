@@ -816,16 +816,16 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                            <menuItem title="CotEditor Web Site" id="g34-YV-E6o">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openWebSite:" target="290" id="04s-Jk-LhF"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Report Bug…" id="Bk3-xx-uft">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="KOP-ne-blB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="CotEditor Web Site" id="g34-YV-E6o">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openWebSite:" target="290" id="04s-Jk-LhF"/>
                                 </connections>
                             </menuItem>
                         </items>
