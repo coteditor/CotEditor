@@ -199,12 +199,12 @@
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Input BackSlash" tag="209" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
+                            <menuItem title="Input Backslash" tag="209" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
                                 <connections>
                                     <action selector="inputBackSlash:" target="-1" id="635"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Input YenMark" keyEquivalent="y" id="633">
+                            <menuItem title="Input Yen Mark" keyEquivalent="y" id="633">
                                 <connections>
                                     <action selector="inputYenMark:" target="-1" id="634"/>
                                 </connections>
