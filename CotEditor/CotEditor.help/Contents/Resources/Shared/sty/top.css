@@ -1,11 +1,11 @@
 /*
  * CotEditor Help Style Sheet for CotEditor.html
- * $Id$
  */
+ 
 body {
 	margin: 0;
 	padding: 0;
-	font-family: "Lucida Grande";
+	font-family: 'Lucida Grande';
 }
 
 a { text-decoration: none; }
@@ -24,7 +24,7 @@ div {
 #rightbox {
 	width: 220px;
 	padding-left: 30px;
-	border-left: 1px solid #999999;
+	border-left: 1px solid #999;
 }
 
 img {

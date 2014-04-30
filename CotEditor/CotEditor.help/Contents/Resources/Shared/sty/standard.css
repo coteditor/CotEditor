@@ -1,11 +1,11 @@
 /*
  * CotEditor Help Standard Style Sheet
- * $Id$
  */
+ 
 body {
 	margin: 0 0 1em 0;
 	padding: 0;
-	font-family: "Lucida Grande";
+	font-family: 'Lucida Grande';
 	font-size: 9pt;
 	line-height: 130%;
 }
@@ -79,7 +79,7 @@ ul + ul, ol + ol, ul + ol, ol + ul {
 
 ul.topicbox {
 	background-color: white;
-	border: 1px dotted #999999;
+	border: 1px dotted #999;
 }
 
 ul.rel_items {
@@ -94,7 +94,7 @@ ul.rel_items {
 p.point {
 	padding: 1em 2em 1em 1.5em;
 	margin: auto -1%;
-	border: 1px solid #cccccc;
+	border: 1px solid #ccc;
 	background-color: #e6edff;
 }
 
@@ -201,5 +201,5 @@ tbody th:first-child {
 }
 
 tt, pre {
-	font-family: "Courier", "Courier New", monotype;
+	font-family: 'Courier', 'Courier New', monospace;
 }
