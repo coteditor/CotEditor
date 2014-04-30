@@ -523,8 +523,6 @@ CFStringEncodings const k_CFStringEncodingList[] = {
     
     kCFStringEncodingShiftJIS, // Japanese (Shift JIS)
     kCFStringEncodingEUC_JP, // Japanese (EUC)
-    kCFStringEncodingInvalidId, // ----------
-    
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
     kCFStringEncodingShiftJIS_X0213, // Japanese (Shift JIS X0213)
     kCFStringEncodingMacJapanese, // Japanese (Mac OS)
