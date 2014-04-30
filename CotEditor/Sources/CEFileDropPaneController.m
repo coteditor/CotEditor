@@ -87,8 +87,8 @@
 // ------------------------------------------------------
 {
     if ([notification object] == [self fileDropTableView]) {
-        NSString *extension = [[self fileDropController] selection][k_key_fileDropExtensions];
-        NSString *format = [[self fileDropController] selection][k_key_fileDropFormatString];
+        NSString *extension = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropExtensions];
+        NSString *format = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropFormatString];
         
         // 入力されていなければ行ごと削除
         if ((extension == nil) && (format == nil)) {
