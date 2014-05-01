@@ -30,7 +30,7 @@ GPL ライセンスです。ライセンスに基づいた取り扱いをお願�
 - Copyright © 2014 1024jp
 
 #### OgreKit <http://sonoisa.github.io/ogrekit/>
-Copyright © 2003-2010 Isao Sonobe. All rights reserved.
+Copyright © 2003-2014 Isao Sonobe. All rights reserved.
 
 #### Onigmo (Oniguruma-mod) <https://github.com/k-takata/Onigmo>
 Copyright © 2011-2013  K.Takata. All rights reserved. 
