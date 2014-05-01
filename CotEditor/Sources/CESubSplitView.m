@@ -562,7 +562,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *partialWord = [[aTextView string] substringWithRange:charRange];
 
     //"ファイル中の語彙" を検索して outArray に入れる
-    {
+    if (addingMode != 3) {
         NSString *documentString = [aTextView string];
         NSString *pattern = [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)",
                              [NSRegularExpression escapedPatternForString:partialWord]];
@@ -586,7 +586,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     //デフォルトの候補から "一般英単語" をコピーする
-    if (addingMode >= 2) {
+    if (addingMode == 2) {
         [outWords addObjectsFromArray:words];
     }
 
