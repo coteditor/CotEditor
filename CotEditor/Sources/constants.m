@@ -665,5 +665,3 @@ unichar const k_noPrintableKeyList[] = {
     '\033', // = Escape
 };
 NSUInteger const k_size_of_noPrintableKeyList = sizeof(k_noPrintableKeyList) / sizeof(unichar);
-
-unichar const k_braceCharList[] = {0x0028, 0x005B, 0x007B, 0x003C}; // == ([{<

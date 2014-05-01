@@ -508,5 +508,3 @@ extern NSUInteger const k_size_of_readableKeyStringsList;
 
 extern unichar    const k_noPrintableKeyList[];
 extern NSUInteger const k_size_of_noPrintableKeyList;
-
-extern unichar const k_braceCharList[];

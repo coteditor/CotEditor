@@ -295,18 +295,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         // スマートインデント
         if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartIndent]) {
-            NSString *lastChar;
-            NSString *nextChar;
+            unichar lastChar = NULL;
+            unichar nextChar = NULL;
             if (selectedRange.location > 0) {
-                lastChar = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 1)];
+                lastChar = [[self string] characterAtIndex:selectedRange.location - 1];
             }
             if (NSMaxRange(selectedRange) < [[self string] length]) {
-                nextChar = [[self string] substringWithRange:NSMakeRange(NSMaxRange(selectedRange), 1)];
+                nextChar = [[self string] characterAtIndex:NSMaxRange(selectedRange)];
             }
             // `{}` の中で改行した場合はインデントを展開する
-            shouldExpandBlock = ([lastChar isEqualToString:@"{"] && [nextChar isEqualToString:@"}"]);
+            shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
             // 改行直前の文字が `:` の場合はインデントレベルを1つ下げる
-            shouldIncreaseIndentLevel = [lastChar isEqualToString:@":"];
+            shouldIncreaseIndentLevel = (lastChar == ':');
         }
     }
     

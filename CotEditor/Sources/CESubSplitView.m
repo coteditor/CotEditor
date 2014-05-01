@@ -404,7 +404,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ローカライズ後の名前なので、名前を決め打ちしている。あまり良い方法ではない。 (2014-04 by 1024jp)
     NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
     if ([@[@"一括置換", @"Replace All"] containsObject:actionName]) {
-        [self recolorAllTextViewString];
+        [self textDidReplaceAll:aNotification];
     }
 }
 
@@ -666,13 +666,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     unichar theUnichar = [string characterAtIndex:location];
     unichar curChar, braceChar;
     if (theUnichar == ')') {
-        braceChar = k_braceCharList[0];
+        braceChar = '(';
     } else if (theUnichar == ']') {
-        braceChar = k_braceCharList[1];
+        braceChar = '[';
     } else if (theUnichar == '}') {
-        braceChar = k_braceCharList[2];
+        braceChar = '{';
     } else if ((theUnichar == '>') && [[NSUserDefaults standardUserDefaults] boolForKey:k_key_highlightLtGt]) {
-        braceChar = k_braceCharList[3];
+        braceChar = '<';
     } else {
         return;
     }
