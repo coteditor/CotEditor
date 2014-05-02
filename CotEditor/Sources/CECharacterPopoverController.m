@@ -137,7 +137,7 @@
     NSPopover *popover = [[NSPopover alloc] init];
     [popover setContentViewController:self];
     [popover setDelegate:self];
-    [popover  showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
+    [popover showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
     [self setPopover:popover];
     
     // 選択範囲が変更されたらポップオーバーを閉じる
