@@ -106,7 +106,8 @@
         } else if ([character length] == 1) {
             unicode = [NSString stringWithFormat:@"U+%04X", [character characterAtIndex:0]];
         } else {
-            unicode = @"";
+            unicode = [NSString stringWithFormat:@"U+%04X U+%04X", [character characterAtIndex:0],
+                                                                   [character characterAtIndex:1]];
         }
         [self setUnicode:unicode];
         
