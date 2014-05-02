@@ -7,6 +7,8 @@ changelog
 
 ### new
 
+- 「グリフ情報を表示」機能
+    - 1文字だけ選択した状態で Cmd+Option+I もしくは「編集」メニューから「グリフ情報を表示」を実行すると、選択している文字の情報がポップオーバー
 - "CoffeeScript", "Dart", "Diff", "INI", "Makefile", "reStructuredText", "Textile", "YAML" シンタックス定義を追加
 
 ### mod

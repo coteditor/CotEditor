@@ -239,6 +239,13 @@
                             <menuItem isSeparatorItem="YES" id="174">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="グリフ情報を表示" keyEquivalent="i" id="QCj-Kx-s6L">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showSelectionInfo:" target="-1" id="oZz-EJ-sJL"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="2nh-JM-Guj"/>
                             <menuItem title="スペル" id="184">
                                 <menu key="submenu" title="スペル" id="185">
                                     <items>
