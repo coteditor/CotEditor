@@ -35,7 +35,7 @@
 
 @interface CECharacterPopoverController ()
 
-@property (nonatomic) NSPopover *popover;
+@property (nonatomic, weak) NSPopover *popover;
 @property (nonatomic, copy) NSString *glyph;
 @property (nonatomic, copy) NSString *unicodeName;
 @property (nonatomic, copy) NSString *unicode;
@@ -89,11 +89,6 @@
 {
     self = [super initWithNibName:@"CharacterPopover" bundle:nil];
     if (self) {
-        // popover instance
-        [self setPopover:[[NSPopover alloc] init]];
-        [[self popover] setContentViewController:self];
-        [[self popover] setDelegate:self];
-        
         [self setGlyph:character];
         
         // unicode hex
@@ -139,7 +134,11 @@
 - (void)showPopoverRelativeToRect:(NSRect)positioningRect inView:(NSTextView *)parentView
 // ------------------------------------------------------
 {
-    [[self popover] showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
+    NSPopover *popover = [[NSPopover alloc] init];
+    [popover setContentViewController:self];
+    [popover setDelegate:self];
+    [popover  showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
+    [self setPopover:popover];
     
     // 選択範囲が変更されたらポップオーバーを閉じる
     [[NSNotificationCenter defaultCenter] addObserver:self
