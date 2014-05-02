@@ -56,13 +56,24 @@
 + (BOOL)isSingleCharacter:(NSString *)string
 // ------------------------------------------------------
 {
-    // surrogate-pair check
-    if ([string length] == 2) {
+    if ([string length] == 0) { return NO; }
+    
+    NSRange composedRange = [string rangeOfComposedCharacterSequenceAtIndex:0];
+    
+    return ([string length] == composedRange.length);
+}
+
+
+// ------------------------------------------------------
+/// サロゲートペアかどうか
++ (BOOL)isSurrogatePair:(NSString *)string
+// ------------------------------------------------------
+{
+    if ([string rangeOfComposedCharacterSequenceAtIndex:0].length == 2) {
         unichar firstChar = [string characterAtIndex:0];
         unichar secondChar = [string characterAtIndex:1];
+        
         return (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar));
-    } else if ([string length] == 1) {
-        return YES;
     }
     return NO;
 }
@@ -87,13 +98,15 @@
         
         // unicode hex
         NSString *unicode;
-        if ([character length] == 2) {  // surrogate-pair
+        if ([[self class] isSurrogatePair:character]) {
             unichar high = [character characterAtIndex:0];
             unichar low  = [character characterAtIndex:1];
             unsigned long uni = 0x10000 + (high - 0xD800) * 0x400 + (low - 0xDC00);
             unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", uni, high, low];
-        } else {
+        } else if ([character length] == 1) {
             unicode = [NSString stringWithFormat:@"U+%04X", [character characterAtIndex:0]];
+        } else {
+            unicode = @"";
         }
         [self setUnicode:unicode];
         
