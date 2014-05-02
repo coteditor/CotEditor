@@ -56,7 +56,7 @@
 + (BOOL)isSingleCharacter:(NSString *)string
 // ------------------------------------------------------
 {
-    if ([string length] == 0) { return NO; }
+    if ([string length] == 0 || [string length] > 2) { return NO; }
     
     NSRange composedRange = [string rangeOfComposedCharacterSequenceAtIndex:0];
     
