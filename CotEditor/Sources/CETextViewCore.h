@@ -106,5 +106,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)editColorCode:(id)sender;
 - (IBAction)setSelectedRangeWithNSValue:(id)sender;
 - (IBAction)setLineSpacingFromMenu:(id)sender;
+- (IBAction)showSelectionInfo:(id)sender;
 
 @end

@@ -66,7 +66,7 @@ http://www.aynimac.com/
 "Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
 
 
-/* CEEditorViewCore */
+/* CETextViewCore */
 // undo action name
 "Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";
@@ -84,6 +84,7 @@ http://www.aynimac.com/
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
+"Show Glyph Info" = "グリフ情報を表示";
 
 // menu item title
 "Use Vertical Orientation" = "縦書きで表示";

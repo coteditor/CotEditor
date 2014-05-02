@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
+#import "CECharacterPopoverController.h"
 #import "constants.h"
 
 
@@ -462,6 +463,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [outMenu addItem:ASMenuItem];
         }
     }
+    
+    if ([CECharacterPopoverController isSingleCharacter:[[self string] substringWithRange:[self selectedRange]]]) {
+        [outMenu insertItemWithTitle:NSLocalizedString(@"Show Glyph Info", nil)
+                              action:@selector(showSelectionInfo:)
+                       keyEquivalent:@""
+                             atIndex:1];
+    }
+    
     return outMenu;
 }
 
@@ -1319,6 +1328,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
         NSString *title = ([self layoutOrientation] == NSTextLayoutOrientationHorizontal) ? @"Use Vertical Orientation" : @"Use Horizontal Orientation";
         [menuItem setTitle:NSLocalizedString(title, nil)];
+    } else if ([menuItem action] == @selector(showSelectionInfo:)) {
+        NSString *selection = [[self string] substringWithRange:[self selectedRange]];
+        return [CECharacterPopoverController isSingleCharacter:selection];
     }
 
     return [super validateMenuItem:menuItem];
@@ -1796,6 +1808,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue]];
 }
 
+
+// ------------------------------------------------------
+/// グリフ情報をポップオーバーで表示
+- (IBAction)showSelectionInfo:(id)sender
+// ------------------------------------------------------
+{
+    NSRange selectedRange = [self selectedRange];
+    NSString *selectedString = [[self string] substringWithRange:selectedRange];
+    
+    if (![CECharacterPopoverController isSingleCharacter:selectedString]) {
+        return;
+    }
+    
+    CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
+    
+    NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:selectedRange actualCharacterRange:NULL];
+    NSRect selectedRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
+    NSPoint containerOrigin = [self textContainerOrigin];
+    selectedRect.origin.x += containerOrigin.x;
+    selectedRect.origin.y += containerOrigin.y - 6.0;
+    selectedRect = [self convertRectToLayer:selectedRect];
+    
+    [popoverController showPopoverRelativeToRect:selectedRect inView:self];
+    [self showFindIndicatorForRange:NSMakeRange(selectedRange.location, 1)];
+}
 
 
 #pragma mark Private Mthods

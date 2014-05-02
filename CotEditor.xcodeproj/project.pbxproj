@@ -93,6 +93,8 @@
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A961C5618FC699E002076B6 /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4F18FC699E002076B6 /* Version History.rtf */; };
 		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
+		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
+		2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CECharacterPopoverController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToPanelController.m */; };
@@ -333,6 +335,9 @@
 		2A961C5C18FC69D9002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ShellScript.rtf; sourceTree = "<group>"; };
 		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2AA562A818E8F630009CD7A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
+		2AB4326D1912ADAC00835004 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CharacterPopover.xib; sourceTree = "<group>"; };
+		2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECharacterPopoverController.h; sourceTree = "<group>"; };
+		2AB432701912AF7200835004 /* CECharacterPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECharacterPopoverController.m; sourceTree = "<group>"; };
 		2AFFB70618D7BC9300118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB70818D7BCB300118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
@@ -611,6 +616,7 @@
 				2A37F4B4FDCFA73011CA2CEA /* DocWindow.xib */,
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
 				2588E9CC07C4851C0060021D /* Indicator.xib */,
+				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
 				2A149DAE19016AC500A9D6EF /* Preferences */,
 				2A149DC81902BC2B00A9D6EF /* Panels */,
 			);
@@ -787,6 +793,8 @@
 				8C83A48109485F27004E48A8 /* CEATSTypesetter.m */,
 				258225FE07794C2A00A0F8D3 /* CESyntax.h */,
 				258225FF07794C2A00A0F8D3 /* CESyntax.m */,
+				2AB4326F1912AF7200835004 /* CECharacterPopoverController.h */,
+				2AB432701912AF7200835004 /* CECharacterPopoverController.m */,
 			);
 			name = TextView;
 			sourceTree = "<group>";
@@ -1011,6 +1019,7 @@
 				8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */,
 				8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */,
 				8C52080A0880BAAF005734F2 /* RecolorAll.tiff in Resources */,
+				2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */,
 				8C99DD5108BD561B001F618C /* NaviBar_Hide.tiff in Resources */,
 				8C99DD5208BD561B001F618C /* NaviBar_Show.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChar.tiff in Resources */,
@@ -1106,6 +1115,7 @@
 				2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */,
+				2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */,
 				2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */,
 				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
@@ -1385,6 +1395,14 @@
 				2A961C5818FC69C8002076B6 /* ja */,
 			);
 			name = "Version History.rtf";
+			sourceTree = "<group>";
+		};
+		2AB4326C1912ADAC00835004 /* CharacterPopover.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AB4326D1912ADAC00835004 /* en */,
+			);
+			name = CharacterPopover.xib;
 			sourceTree = "<group>";
 		};
 		2AFFB70518D7BC9300118477 /* OpacityPanel.xib */ = {
