@@ -388,20 +388,6 @@ extern NSString *const k_convertedChar;
 
 
 
-#pragma mark CEColorCodePanelController
-
-// ------------------------------------------------------
-// CEColorCodePanelController
-// ------------------------------------------------------
-
-extern NSInteger const k_exportForeColorButtonTag;
-extern NSInteger const k_exportBGColorButtonTag;
-extern NSInteger const k_addCodeToForeButtonTag;
-extern NSInteger const k_addCodeToBackButtonTag;
-extern NSString *const k_ColorCodeDataControllerKey;
-
-
-
 #pragma mark Preferences
 
 // ------------------------------------------------------

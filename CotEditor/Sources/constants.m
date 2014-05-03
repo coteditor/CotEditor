@@ -411,20 +411,6 @@ NSString *const k_convertedChar = @"convertedChar";
 
 
 
-#pragma mark CEColorCodePanelController
-
-// ------------------------------------------------------
-// CEColorCodePanelController
-// ------------------------------------------------------
-
-NSInteger const k_exportForeColorButtonTag = 1000;
-NSInteger const k_exportBGColorButtonTag = 2000;
-NSInteger const k_addCodeToForeButtonTag = 1001;
-NSInteger const k_addCodeToBackButtonTag = 2001;
-NSString *const k_ColorCodeDataControllerKey = @"codeString";
-
-
-
 #pragma mark Preferences
 
 // ------------------------------------------------------
