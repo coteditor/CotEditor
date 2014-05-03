@@ -658,7 +658,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         if (selectedRange.length == 1) {
             unichar character = [theString characterAtIndex:selectedRange.location];
-            singleCharInfo = [NSString stringWithFormat:@"0x%.4X", character];
+            singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
         }
         NSUInteger byteLength = [theString lengthOfBytesUsingEncoding:[[self document] encodingCode]];
         NSUInteger selectedByteLength = [[theString substringWithRange:selectedRange]
