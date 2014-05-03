@@ -165,6 +165,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if ([defaults boolForKey:k_key_showStatusBarLines]) {
         [status appendFormat:NSLocalizedString(@"Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
+        
+        if ([self selectedLinesInfo] > 0) {
+            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedLinesInfo])]];
+        }
     }
     if ([defaults boolForKey:k_key_showStatusBarChars]) {
         if ([status length] > 0) { [status appendString:space]; }

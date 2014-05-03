@@ -608,8 +608,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *singleCharInfo = nil;
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [theString length];
+    NSUInteger numberOfSelectedLines = 0;
     NSUInteger lineStart = 0, column = 0, index = 0;
     NSUInteger numberOfSelectedWords = 0, numberOfWords = 0;
+    BOOL isSelected = (selectedRange.length > 0);
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
     if ([[self textView] hasMarkedText]) {
@@ -627,9 +629,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         numberOfWords = [spellChecker countWordsInString:theString language:nil];
-        if (selectedRange.length > 0) {
-            numberOfSelectedWords = [spellChecker countWordsInString:[theString substringWithRange:selectedRange]
-                                                                                          language:nil];
+        if (isSelected) {
+            NSString *selectedString = [theString substringWithRange:selectedRange];
+            numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
+            numberOfSelectedWords = [spellChecker countWordsInString:selectedString language:nil];
         }
         
         // 改行コードをカウントしない場合は再計算
@@ -644,6 +647,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (shouldUpdateStatusBar) {
         [[self statusBar] setLinesInfo:numberOfLines];
+        [[self statusBar] setSelectedLinesInfo:numberOfSelectedLines];
         [[self statusBar] setCharsInfo:length];
         [[self statusBar] setSelectedCharsInfo:selectedRange.length];
         [[self statusBar] setWordsInfo:numberOfWords];
@@ -665,18 +669,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                          lengthOfBytesUsingEncoding:[[self document] encodingCode]];
         
         linesInfo = [NSString stringWithFormat:@"%ld", (long)numberOfLines];
+        if (isSelected) {
+            linesInfo = [linesInfo stringByAppendingFormat:@" (%ld)", (long)numberOfSelectedLines];
+        }
         [[self windowController] setLinesInfo:linesInfo];
         
-        charsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)length, (long)selectedRange.length] :
-                                                 [NSString stringWithFormat:@"%ld", (long)length];
+        charsInfo = [NSString stringWithFormat:@"%ld", (long)length];
+        if (isSelected) {
+            charsInfo = [charsInfo stringByAppendingFormat:@" (%ld)", (long)selectedRange.length];
+        }
         [[self windowController] setCharsInfo:charsInfo];
         
-        byteLengthInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)byteLength, (long)selectedByteLength] :
-                                                      [NSString stringWithFormat:@"%ld", (long)byteLength];
+        byteLengthInfo = [NSString stringWithFormat:@"%ld", (long)byteLength];
+        if (isSelected) {
+            byteLengthInfo = [byteLengthInfo stringByAppendingFormat:@" (%ld)", (long)selectedByteLength];
+        }
         [[self windowController] setByteLengthInfo:byteLengthInfo];
         
-        wordsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)numberOfWords, (long)numberOfSelectedWords] :
-                                                 [NSString stringWithFormat:@"%ld", (long)numberOfWords];
+        wordsInfo = [NSString stringWithFormat:@"%ld", (long)numberOfWords];
+        if (isSelected) {
+            wordsInfo = [wordsInfo stringByAppendingFormat:@" (%ld)", (long)numberOfSelectedWords];
+        }
         [[self windowController] setWordsInfo:wordsInfo];
         
         [[self windowController] setLocationInfo:[NSString stringWithFormat:@"%ld", (long)selectedRange.location]];
