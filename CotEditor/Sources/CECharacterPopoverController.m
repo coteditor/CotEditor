@@ -34,7 +34,7 @@
 
 
 // variation Selector
-unichar const textSequenceChar = 0xFE0E;
+unichar const  textSequenceChar = 0xFE0E;
 unichar const emojiSequenceChar = 0xFE0F;
 
 
@@ -46,6 +46,8 @@ unichar const emojiSequenceChar = 0xFE0F;
 @property (nonatomic, copy) NSString *unicode;
 
 @end
+
+
 
 
 #pragma mark -
@@ -110,9 +112,9 @@ unichar const emojiSequenceChar = 0xFE0F;
             isSurrogatePair = YES;
             unichar high = [character characterAtIndex:0];
             unichar low  = [character characterAtIndex:1];
-            unsigned long uni = 0x10000 + (high - 0xD800) * 0x400 + (low - 0xDC00);
+            UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(high, low);
             
-            unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", uni, high, low];
+            unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", (long)pair, high, low];
             [unicodes removeObjectsInRange:NSMakeRange(0, 2)];
             [unicodes insertObject:unicode atIndex:0];
         }
