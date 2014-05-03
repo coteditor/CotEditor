@@ -98,11 +98,16 @@
             unichar low  = [character characterAtIndex:1];
             unsigned long uni = 0x10000 + (high - 0xD800) * 0x400 + (low - 0xDC00);
             unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", uni, high, low];
+            
         } else if ([character length] == 1) {
             unicode = [NSString stringWithFormat:@"U+%04X", [character characterAtIndex:0]];
+            
         } else {
-            unicode = [NSString stringWithFormat:@"U+%04X U+%04X", [character characterAtIndex:0],
-                                                                   [character characterAtIndex:1]];
+            NSMutableArray *unicodes = [NSMutableArray array];
+            for (NSUInteger i = 0; i < [character length]; i++) {
+                [unicodes addObject:[NSString stringWithFormat:@"U+%04X", [character characterAtIndex:i]]];
+            }
+            unicode = [unicodes componentsJoinedByString:@" "];
         }
         [self setUnicode:unicode];
         
