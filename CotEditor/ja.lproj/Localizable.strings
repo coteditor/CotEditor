@@ -96,6 +96,12 @@ http://www.aynimac.com/
 "Select All" = "すべてを選択";
 
 
+/* CharacterPopover */
+"<a letter consisting of %d characters>" = "<%d字から成る文字>";
+"Emoji Style" = "絵文字スタイル";
+"Text Style" = "テキストスタイル";
+
+
 /* CEEditorView */
 // menu items
 "Hide Line Numbers" = "行番号を隠す";

@@ -33,6 +33,11 @@
 #import "CECharacterPopoverController.h"
 
 
+// variation Selector
+unichar const textSequenceChar = 0xFE0E;
+unichar const emojiSequenceChar = 0xFE0F;
+
+
 @interface CECharacterPopoverController ()
 
 @property (nonatomic, weak) NSPopover *popover;
@@ -41,8 +46,6 @@
 @property (nonatomic, copy) NSString *unicode;
 
 @end
-
-
 
 
 #pragma mark -
@@ -56,7 +59,7 @@
 + (BOOL)isSingleCharacter:(NSString *)string
 // ------------------------------------------------------
 {
-    if ([string length] == 0 || [string length] > 2) { return NO; }
+    if ([string length] == 0) { return NO; }
     
     NSRange composedRange = [string rangeOfComposedCharacterSequenceAtIndex:0];
     
@@ -91,32 +94,70 @@
     if (self) {
         [self setGlyph:character];
         
+        NSUInteger length = [character length];
+        BOOL isLigature;
+        BOOL isSurrogatePair;
+        
         // unicode hex
         NSString *unicode;
-        if ([[self class] isSurrogatePair:character]) {
+        NSMutableArray *unicodes = [NSMutableArray array];
+        for (NSUInteger i = 0; i < length; i++) {
+            [unicodes addObject:[NSString stringWithFormat:@"U+%04X", [character characterAtIndex:i]]];
+        }
+        
+        /// surrogat pair (with variation sequence)
+        if (length >= 2 && [[self class] isSurrogatePair:[character substringWithRange:NSMakeRange(0, 2)]]) {
+            isSurrogatePair = YES;
             unichar high = [character characterAtIndex:0];
             unichar low  = [character characterAtIndex:1];
             unsigned long uni = 0x10000 + (high - 0xD800) * 0x400 + (low - 0xDC00);
-            unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", uni, high, low];
             
-        } else if ([character length] == 1) {
-            unicode = [NSString stringWithFormat:@"U+%04X", [character characterAtIndex:0]];
+            unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", uni, high, low];
+            [unicodes removeObjectsInRange:NSMakeRange(0, 2)];
+            [unicodes insertObject:unicode atIndex:0];
+        }
+        
+        isLigature = ((isSurrogatePair && (length > 2)) || (!isSurrogatePair && (length > 1)));
+        [self setUnicode:[unicodes componentsJoinedByString:@" "]];
+        
+        // emoji variation check
+        NSString *emojiStyle;
+        if (length == 2 || (isSurrogatePair && length == 3)) {
+            switch ([character characterAtIndex:(length - 1)]) {
+                case emojiSequenceChar:
+                    emojiStyle = @"Emoji Style";
+                    isLigature = NO;
+                    break;
+                
+                case textSequenceChar:
+                    emojiStyle = @"Text Style";
+                    isLigature = NO;
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        
+        if (isLigature) {
+            // ligature message (ただし正確にはリガチャとは限らないので、letterとぼかしている)
+            [self setUnicodeName:[NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), length]];
             
         } else {
-            NSMutableArray *unicodes = [NSMutableArray array];
-            for (NSUInteger i = 0; i < [character length]; i++) {
-                [unicodes addObject:[NSString stringWithFormat:@"U+%04X", [character characterAtIndex:i]]];
+            // unicode character name
+            NSMutableString *mutableUnicodeName = [character mutableCopy];
+            CFStringTransform((__bridge CFMutableStringRef)mutableUnicodeName, NULL, CFSTR("Any-Name"), NO);
+            
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
+            NSTextCheckingResult *firstMatch = [regex firstMatchInString:mutableUnicodeName options:0
+                                                                   range:NSMakeRange(0, [mutableUnicodeName length])];
+            [self setUnicodeName:[mutableUnicodeName substringWithRange:[firstMatch rangeAtIndex:1]]];
+            
+            if (emojiStyle) {
+                [self setUnicodeName:[NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
+                                      NSLocalizedString(emojiStyle, nil)]];
             }
-            unicode = [unicodes componentsJoinedByString:@" "];
         }
-        [self setUnicode:unicode];
-        
-        // unicode character name
-        NSMutableString *mutableUnicodeName = [character mutableCopy];
-        CFStringTransform((__bridge CFMutableStringRef)mutableUnicodeName, NULL, CFSTR("Any-Name"), NO);
-        NSString *unicodeName = [[mutableUnicodeName stringByReplacingOccurrencesOfString:@"\\N{" withString:@""]
-                                 stringByReplacingOccurrencesOfString:@"}" withString:@""];
-        [self setUnicodeName:unicodeName];
     }
     return self;
 }
