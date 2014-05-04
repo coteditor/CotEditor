@@ -98,7 +98,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         
         NSUInteger length = [character length];
         BOOL isLigature;
-        BOOL isSurrogatePair;
+        BOOL isSurrogatePair = NO;
         
         // unicode hex
         NSString *unicode;
