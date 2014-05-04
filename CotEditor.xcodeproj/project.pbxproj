@@ -354,6 +354,7 @@
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComposedCharacter.m"; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
+		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
 		2AFFB70618D7BC9300118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB70818D7BCB300118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
@@ -656,7 +657,7 @@
 				2A73F17C18EF573B00BFB5E5 /* CEByteCountTransformer.m */,
 				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
 				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
-				2AB432721915D6AA00835004 /* NSString+ComposedCharacter.h */,
+				2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */,
 				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
 				2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */,
 				2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */,

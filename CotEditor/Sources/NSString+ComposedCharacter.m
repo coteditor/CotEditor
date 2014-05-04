@@ -42,10 +42,28 @@
     
     // count composed chars
     __block NSUInteger count = 0;
+    __block BOOL isRegionalIndicator = NO;
+    NSRange regionalIndicatorRange = NSMakeRange(0xDDE6, 0xDDFF - 0xDDE6 + 1);
     [string enumerateSubstringsInRange:NSMakeRange(0, [string length])
-                               options:NSStringEnumerationByComposedCharacterSequences
+                               options:NSStringEnumerationByComposedCharacterSequences | NSStringEnumerationSubstringNotRequired
                             usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop)
      {
+         // skip if the last composed character was a regional indicator surrogate-pair
+         // 'Cause the so-called national flag emojis consist of two such surrogate pairs
+         // and the first one is already counted in the last loop.
+         // (To simplify the process, we don't check whether this character is also a regional indicator.)
+         if (isRegionalIndicator) {
+             isRegionalIndicator = NO;
+             return;
+         }
+         
+         // detect regional surrogate pair.
+         if ((substringRange.length == 2) &&
+             (NSLocationInRange([string characterAtIndex:substringRange.location + 1], regionalIndicatorRange)))
+         {
+             isRegionalIndicator = YES;
+         }
+         
          count++;
      }];
     
