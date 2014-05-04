@@ -114,7 +114,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
             unichar low  = [character characterAtIndex:1];
             UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(high, low);
             
-            unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", (long)pair, high, low];
+            unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", (unsigned long)pair, high, low];
             [unicodes removeObjectsInRange:NSMakeRange(0, 2)];
             [unicodes insertObject:unicode atIndex:0];
         }

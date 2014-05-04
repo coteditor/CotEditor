@@ -660,6 +660,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldUpdateDrawer) {
         NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo, *byteLengthInfo;
         
+        if (selectedRange.length == 2) {
+            unichar firstChar = [theString characterAtIndex:selectedRange.location];
+            unichar secondChar = [theString characterAtIndex:selectedRange.location + 1];
+            if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
+                UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
+                singleCharInfo = [NSString stringWithFormat:@"U+%04lX", (unsigned long)pair];
+            }
+        }
         if (selectedRange.length == 1) {
             unichar character = [theString characterAtIndex:selectedRange.location];
             singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
