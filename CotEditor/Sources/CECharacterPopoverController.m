@@ -34,8 +34,8 @@
 
 
 // variation Selector
-unichar const  textSequenceChar = 0xFE0E;
-unichar const emojiSequenceChar = 0xFE0F;
+static const unichar  kTextSequenceChar = 0xFE0E;
+static const unichar kEmojiSequenceChar = 0xFE0F;
 
 
 @interface CECharacterPopoverController ()
@@ -126,12 +126,12 @@ unichar const emojiSequenceChar = 0xFE0F;
         NSString *emojiStyle;
         if (length == 2 || (isSurrogatePair && length == 3)) {
             switch ([character characterAtIndex:(length - 1)]) {
-                case emojiSequenceChar:
+                case kEmojiSequenceChar:
                     emojiStyle = @"Emoji Style";
                     isLigature = NO;
                     break;
                 
-                case textSequenceChar:
+                case kTextSequenceChar:
                     emojiStyle = @"Text Style";
                     isLigature = NO;
                     break;
