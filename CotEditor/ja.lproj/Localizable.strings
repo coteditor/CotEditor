@@ -84,7 +84,7 @@ http://www.aynimac.com/
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
-"Show Glyph Info" = "グリフ情報を表示";
+"Inspect Glyph" = "グリフ情報を表示";
 
 // menu item title
 "Use Vertical Orientation" = "縦書きで表示";

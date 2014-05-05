@@ -464,7 +464,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     if ([CECharacterPopoverController isSingleCharacter:[[self string] substringWithRange:[self selectedRange]]]) {
-        [outMenu insertItemWithTitle:NSLocalizedString(@"Show Glyph Info", nil)
+        [outMenu insertItemWithTitle:NSLocalizedString(@"Inspect Glyph", nil)
                               action:@selector(showSelectionInfo:)
                        keyEquivalent:@""
                              atIndex:1];

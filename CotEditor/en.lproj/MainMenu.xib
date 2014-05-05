@@ -239,7 +239,7 @@
                             <menuItem isSeparatorItem="YES" id="174">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Show Glyph Info" keyEquivalent="i" id="ToR-yH-ahH">
+                            <menuItem title="Inspect Glyph" keyEquivalent="i" id="ToR-yH-ahH">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="showSelectionInfo:" target="-1" id="W48-su-Cpd"/>
