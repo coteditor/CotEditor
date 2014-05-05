@@ -6,7 +6,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CECharacterPopoverController">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEGlyphPopoverController">
             <connections>
                 <outlet property="view" destination="c22-O7-iKe" id="tsm-eO-5VC"/>
             </connections>

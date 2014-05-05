@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
-#import "CECharacterPopoverController.h"
+#import "CEGlyphPopoverController.h"
 #import "constants.h"
 
 
@@ -463,7 +463,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     
-    if ([CECharacterPopoverController isSingleCharacter:[[self string] substringWithRange:[self selectedRange]]]) {
+    if ([CEGlyphPopoverController isSingleCharacter:[[self string] substringWithRange:[self selectedRange]]]) {
         [outMenu insertItemWithTitle:NSLocalizedString(@"Inspect Glyph", nil)
                               action:@selector(showSelectionInfo:)
                        keyEquivalent:@""
@@ -1325,7 +1325,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [menuItem setTitle:NSLocalizedString(title, nil)];
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {
         NSString *selection = [[self string] substringWithRange:[self selectedRange]];
-        return [CECharacterPopoverController isSingleCharacter:selection];
+        return [CEGlyphPopoverController isSingleCharacter:selection];
     }
 
     return [super validateMenuItem:menuItem];
@@ -1786,11 +1786,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange selectedRange = [self selectedRange];
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
     
-    if (![CECharacterPopoverController isSingleCharacter:selectedString]) {
+    if (![CEGlyphPopoverController isSingleCharacter:selectedString]) {
         return;
     }
     
-    CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
+    CEGlyphPopoverController *popoverController = [[CEGlyphPopoverController alloc] initWithCharacter:selectedString];
     
     NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:selectedRange actualCharacterRange:NULL];
     NSRect selectedRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];

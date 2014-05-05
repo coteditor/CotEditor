@@ -1,6 +1,6 @@
 /*
  =================================================
- CECharacterPopoverController
+ CEGlyphPopoverController
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -33,13 +33,13 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface CECharacterPopoverController : NSViewController
+@interface CEGlyphPopoverController : NSViewController
 
-/// pre-check for surrogate-pair
+/// pre-check for surrogate-pair, ligature and emoji
 + (BOOL)isSingleCharacter:(NSString *)string;
 
 
-/// default initializer (singleString must be one character (or a surrogate-pair).)
+/// default initializer (singleString must be a single character (or a surrogate-pair).)
 - (instancetype)initWithCharacter:(NSString *)singleString;
 
 /// show popover

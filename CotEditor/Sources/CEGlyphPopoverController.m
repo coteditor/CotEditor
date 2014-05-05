@@ -1,6 +1,6 @@
 /*
  =================================================
- CECharacterPopoverController
+ CEGlyphPopoverController
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -30,7 +30,7 @@
  =================================================
  */
 
-#import "CECharacterPopoverController.h"
+#import "CEGlyphPopoverController.h"
 
 
 // variation Selector
@@ -38,7 +38,7 @@ static const unichar  kTextSequenceChar = 0xFE0E;
 static const unichar kEmojiSequenceChar = 0xFE0F;
 
 
-@interface CECharacterPopoverController ()
+@interface CEGlyphPopoverController ()
 
 @property (nonatomic, copy) NSString *glyph;
 @property (nonatomic, copy) NSString *unicodeName;
@@ -51,7 +51,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 
 #pragma mark -
 
-@implementation CECharacterPopoverController
+@implementation CEGlyphPopoverController
 
 #pragma mark Class Methods
 
@@ -86,7 +86,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 - (instancetype)initWithCharacter:(NSString *)character
 // ------------------------------------------------------
 {
-    self = [super initWithNibName:@"CharacterPopover" bundle:nil];
+    self = [super initWithNibName:@"GlyphPopover" bundle:nil];
     if (self) {
         [self setGlyph:character];
         
