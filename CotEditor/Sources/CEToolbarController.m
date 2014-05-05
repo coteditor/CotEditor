@@ -281,12 +281,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [toolbarItem setImage:[NSImage imageNamed:@"Shift_Right"]];
         [toolbarItem setAction:@selector(shiftRight:)];
         
-        // Auto Tab Expand (target = FirstResponder)  // アイコンの切り替えは CETextViewCore でおこなっている
+        // Auto Tab Expand (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_autoTabExpandItemID]) {
         [toolbarItem setLabel:NSLocalizedString(@"Expand Tabs",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Toggle Auto Tab Expand",@"")];
         [toolbarItem setToolTip:NSLocalizedString(@"Toggle auto tab expand",@"")];
-        [toolbarItem setImage:[NSImage imageNamed:@"AutoTabExpand_On"]];
+        [self doUpdateToggleItem:toolbarItem setOn:[(CETextViewCore *)[[[[self mainWindow] windowController] editorView] textView] isAutoTabExpandEnabled]];
         [toolbarItem setAction:@selector(toggleAutoTabExpand:)];
 
     // Show Navigation Bar (target = FirstResponder)
@@ -315,12 +315,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // Show Invisible Characters (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_showInvisibleCharsItemID]) {
-        BOOL theBoolToActivate = [[[[self mainWindow] windowController] document] canActivateShowInvisibleCharsItem];
+        BOOL canActivate = [[[[self mainWindow] windowController] document] canActivateShowInvisibleCharsItem];
 
         [toolbarItem setLabel:NSLocalizedString(@"Invisible Chars",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Show / Hide Invisible Chars",@"")];
         // ツールバーアイテムを有効化できなければツールチップを変更
-        if (theBoolToActivate) {
+        if (canActivate) {
             [toolbarItem setToolTip:NSLocalizedString(@"Show or hide invisible characters in text",@"")];
             [self doUpdateToggleItem:toolbarItem setOn:YES];
             [toolbarItem setAction:@selector(toggleShowInvisibleChars:)];
@@ -348,11 +348,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // Line Endings (target = FirstResponder)
     } else if ([itemIdentifier isEqualToString:k_lineEndingsItemID]) {
-
-        // （ツールバーアイテムメニューの選択項目にチェックマークが表示されない問題が起きている 2006.01.25）*****
-        // （IB でのコネクション定義をやめソースコードでアクションを設定してみたが、効果なく、元に戻した。）
-        // （原因／対処法、不明。2006.01.25）
-
         [toolbarItem setLabel:NSLocalizedString(@"Line Endings",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Line Endings",@"")];
         [toolbarItem setToolTip:NSLocalizedString(@"Line Endings",@"")];
@@ -463,7 +458,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *identifer = [item itemIdentifier];
     NSString *imageName;
-
     if ([identifer isEqualToString:k_showNavigationBarItemID]) {
         imageName = setOn ? @"NaviBar_Show" : @"NaviBar_Hide";
         
@@ -481,6 +475,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
     } else if ([identifer isEqualToString:k_wrapLinesItemID]) {
         imageName = setOn ? @"WrapLines_On" : @"WrapLines_Off";
+        
+    } else if ([identifer isEqualToString:k_autoTabExpandItemID]) {
+        imageName = setOn ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
     }
     
     if (imageName) {

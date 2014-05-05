@@ -40,8 +40,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setShowNavigationBar:(BOOL)showNavigationBar;
 - (void)setWrapLines:(BOOL)wrapLines;
 - (void)setShowInvisibles:(BOOL)showInvisibles;
+- (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUseAntialias:(BOOL)useAntialias;
-- (void)setCloseSubSplitViewButtonEnabled:(BOOL)enabled;
+- (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled;
 - (void)setAllCaretToBeginning;
 - (void)releaseAllEditorView;
 - (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName;

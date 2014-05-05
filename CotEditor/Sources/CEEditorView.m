@@ -906,6 +906,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         title = [(CELayoutManager *)[[self textView] layoutManager] showInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         return ([[self document] canActivateShowInvisibleCharsItem]);
+    
+    } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
+        theState = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
     } else if (([menuItem action] == @selector(focusNextSplitTextView:)) || 
             ([menuItem action] == @selector(focusPrevSplitTextView:)) || 
@@ -986,6 +989,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self splitView] setShowInvisibles:!showInvisibles];
     [[[self windowController] toolbarController] updateToggleItem:k_showInvisibleCharsItemID setOn:!showInvisibles];
+}
+
+
+// ------------------------------------------------------
+/// ソフトタブの有効／無効をトグルに切り替える
+- (IBAction)toggleAutoTabExpand:(id)sender
+// ------------------------------------------------------
+{
+    BOOL isEnabled = ![[self textView] isAutoTabExpandEnabled];
+    
+    [[self splitView] setAutoTabExpandEnabled:isEnabled];
+    [[[self windowController] toolbarController] updateToggleItem:k_autoTabExpandItemID setOn:isEnabled];
 }
 
 

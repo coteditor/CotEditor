@@ -1318,8 +1318,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     } else if ([menuItem action] == @selector(setLineSpacingFromMenu:)) {
         [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue]) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
-        [menuItem setState:([self isAutoTabExpandEnabled] ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
@@ -1331,20 +1329,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     return [super validateMenuItem:menuItem];
-}
-
-
-// ------------------------------------------------------
-/// ツールバーアイテムの有効／無効を制御
-- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
-// ------------------------------------------------------
-{
-    if ([theItem action] == @selector(toggleAutoTabExpand:)) {
-        NSString *imageName = [self isAutoTabExpandEnabled] ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
-        [theItem setImage:[NSImage imageNamed:imageName]];
-    }
-    
-    return YES;
 }
 
 
@@ -1491,15 +1475,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 置換実行
     [self doReplaceString:newLine withRange:lineRange
              withSelected:NSMakeRange(newLocation, newLength) withActionName:NSLocalizedString(@"Shift Left", nil)];
-}
-
-
-// ------------------------------------------------------
-/// ソフトタブを有効に
-- (IBAction)toggleAutoTabExpand:(id)sender
-// ------------------------------------------------------
-{
-    [self setIsAutoTabExpandEnabled:![self isAutoTabExpandEnabled]];
 }
 
 

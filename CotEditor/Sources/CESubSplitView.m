@@ -343,6 +343,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ソフトタブの有効／無効を切り替える
+- (void)setAutoTabExpandEnabledWithNumber:(NSNumber *)number
+// ------------------------------------------------------
+{
+    [[self textView] setIsAutoTabExpandEnabled:[number boolValue]];
+}
+
+
+// ------------------------------------------------------
 /// アンチエイリアス適用を切り替える
 - (void)setUseAntialiasWithNumber:(NSNumber *)number
 // ------------------------------------------------------
