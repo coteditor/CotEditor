@@ -1799,7 +1799,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     selectedRect.origin.y += containerOrigin.y - 6.0;
     selectedRect = [self convertRectToLayer:selectedRect];
     
-    [popoverController showPopoverRelativeToRect:selectedRect inView:self];
+    [popoverController showPopoverRelativeToRect:selectedRect ofView:self];
     [self showFindIndicatorForRange:NSMakeRange(selectedRange.location, 1)];
 }
 

@@ -40,7 +40,6 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 
 @interface CECharacterPopoverController ()
 
-@property (nonatomic, weak) NSPopover *popover;
 @property (nonatomic, copy) NSString *glyph;
 @property (nonatomic, copy) NSString *unicodeName;
 @property (nonatomic, copy) NSString *unicode;
@@ -85,7 +84,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 
 
 
-#pragma mark Superclass Methods
+#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// 初期化
@@ -166,54 +165,15 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 
 
 // ------------------------------------------------------
-/// 後片付け
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-
-#pragma mark Public Methods
-
-// ------------------------------------------------------
 /// popover を表示
-- (void)showPopoverRelativeToRect:(NSRect)positioningRect inView:(NSTextView *)parentView
+- (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(NSView *)parentView
 // ------------------------------------------------------
 {
     NSPopover *popover = [[NSPopover alloc] init];
     [popover setContentViewController:self];
-    [popover setDelegate:self];
+    [popover setBehavior:NSPopoverBehaviorSemitransient];
     [popover showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
-    [self setPopover:popover];
     [[parentView window] makeFirstResponder:parentView];
-    
-    // 選択範囲が変更されたらポップオーバーを閉じる
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(closePopover:)
-                                                 name:NSTextViewDidChangeSelectionNotification
-                                               object:parentView];
-    
-    // 別のポップオーバーが表示されるならポップオーバーを閉じる
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(closePopover:)
-                                                 name:NSPopoverWillShowNotification
-                                               object:nil];
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// popover を閉じる
-- (void)closePopover:(id)sender
-// ------------------------------------------------------
-{
-    if ([[self popover] isShown]) {
-        [[self popover] performClose:sender];
-    }
 }
 
 @end

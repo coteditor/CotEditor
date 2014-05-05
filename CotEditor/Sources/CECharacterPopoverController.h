@@ -33,7 +33,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface CECharacterPopoverController : NSViewController <NSPopoverDelegate>
+@interface CECharacterPopoverController : NSViewController
 
 /// pre-check for surrogate-pair
 + (BOOL)isSingleCharacter:(NSString *)string;
@@ -43,6 +43,6 @@
 - (instancetype)initWithCharacter:(NSString *)singleString;
 
 /// show popover
-- (void)showPopoverRelativeToRect:(NSRect)positioningRect inView:(NSTextView *)parentView;
+- (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(NSView *)parentView;
 
 @end
