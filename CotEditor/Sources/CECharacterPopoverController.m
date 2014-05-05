@@ -187,6 +187,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
     [popover setDelegate:self];
     [popover showRelativeToRect:positioningRect ofView:parentView preferredEdge:NSMinYEdge];
     [self setPopover:popover];
+    [[parentView window] makeFirstResponder:parentView];
     
     // 選択範囲が変更されたらポップオーバーを閉じる
     [[NSNotificationCenter defaultCenter] addObserver:self
