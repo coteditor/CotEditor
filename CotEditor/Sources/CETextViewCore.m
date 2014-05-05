@@ -527,14 +527,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
     NSCharacterSet *charSet = [(CESubSplitView *)[self delegate] completionsFirstLetterSet];
-    NSInteger i, begin = range.location;
+    NSInteger begin = range.location;
 
-    if (charSet == nil) { return range; }
+    if (!charSet || [string length] == 0) { return range; }
 
     // 入力補完文字列の先頭となりえない文字が出てくるまで補完文字列対象を広げる
-    for (i = range.location; i >= 0; i--) {
-        unichar theChar = [[string substringWithRange:NSMakeRange(i, 1)] characterAtIndex:0];
-        if ([charSet characterIsMember:theChar]) {
+    for (NSInteger i = range.location; i >= 0; i--) {
+        if ([charSet characterIsMember:[string characterAtIndex:i]]) {
             begin = i;
         } else {
             break;
