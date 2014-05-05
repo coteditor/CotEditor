@@ -64,22 +64,17 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
     
     NSRange composedRange = [string rangeOfComposedCharacterSequenceAtIndex:0];
     
-    return ([string length] == composedRange.length);
-}
-
-
-// ------------------------------------------------------
-/// サロゲートペアかどうか
-+ (BOOL)isSurrogatePair:(NSString *)string
-// ------------------------------------------------------
-{
-    if ([string rangeOfComposedCharacterSequenceAtIndex:0].length == 2) {
-        unichar firstChar = [string characterAtIndex:0];
-        unichar secondChar = [string characterAtIndex:1];
-        
-        return (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar));
+    // check whether the string is a national flag emoji
+    if (composedRange.length == 2 && [string length] == 4) {
+        NSRange regionalIndicatorRange = NSMakeRange(0xDDE6, 0xDDFF - 0xDDE6 + 1);
+        if (NSLocationInRange([string characterAtIndex:1], regionalIndicatorRange) &&
+            NSLocationInRange([string characterAtIndex:3], regionalIndicatorRange))
+        {
+            return YES;
+        }
     }
-    return NO;
+    
+    return ([string length] == composedRange.length);
 }
 
 
@@ -96,34 +91,33 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         [self setGlyph:character];
         
         NSUInteger length = [character length];
-        BOOL isLigature;
-        BOOL isSurrogatePair = NO;
         
         // unicode hex
         NSString *unicode;
+        NSString *substring;
         NSMutableArray *unicodes = [NSMutableArray array];
         for (NSUInteger i = 0; i < length; i++) {
-            [unicodes addObject:[NSString stringWithFormat:@"U+%04X", [character characterAtIndex:i]]];
-        }
-        
-        /// surrogat pair (with variation sequence)
-        if (length >= 2 && [[self class] isSurrogatePair:[character substringWithRange:NSMakeRange(0, 2)]]) {
-            isSurrogatePair = YES;
-            unichar high = [character characterAtIndex:0];
-            unichar low  = [character characterAtIndex:1];
-            UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(high, low);
+            unichar theChar = [character characterAtIndex:i];
+            unichar nextChar = (length > i + 1) ? [character characterAtIndex:i + 1] : 0;
             
-            unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", (unsigned long)pair, high, low];
-            [unicodes removeObjectsInRange:NSMakeRange(0, 2)];
-            [unicodes insertObject:unicode atIndex:0];
+            if (CFStringIsSurrogateHighCharacter(theChar) && CFStringIsSurrogateLowCharacter(nextChar)) {
+                UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(theChar, nextChar);
+                unicode = [NSString stringWithFormat:@"U+%04lX (U+%04X U+%04X)", (unsigned long)pair, theChar, nextChar];
+                i++;
+                
+            } else {
+                unicode = [NSString stringWithFormat:@"U+%04X", theChar];
+            }
+            
+            [unicodes addObject:unicode];
         }
+        [self setUnicode:[unicodes componentsJoinedByString:@"  "]];
         
-        isLigature = ((isSurrogatePair && (length > 2)) || (!isSurrogatePair && (length > 1)));
-        [self setUnicode:[unicodes componentsJoinedByString:@" "]];
+        BOOL isLigature = ([unicodes count] > 1);
         
         // emoji variation check
         NSString *emojiStyle;
-        if (length == 2 || (isSurrogatePair && length == 3)) {
+        if ([unicodes count] == 2) {
             switch ([character characterAtIndex:(length - 1)]) {
                 case kEmojiSequenceChar:
                     emojiStyle = @"Emoji Style";
