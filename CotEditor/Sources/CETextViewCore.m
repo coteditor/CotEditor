@@ -59,11 +59,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+
 #pragma mark -
 
 @implementation CETextViewCore
-
-
 
 #pragma mark NSTextView Methods
 
@@ -153,10 +152,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
-    if ((![self hasMarkedText]) && (charIgnoringMod != nil)) {
+    if (![self hasMarkedText] && (charIgnoringMod != nil)) {
         NSUInteger modFlags = [theEvent modifierFlags];
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                        modifierFrags:modFlags];
+                                                                                       modifierFrags:modFlags];
         NSInteger length = [selectorStr length];
         if ((selectorStr != nil) && (length > 0)) {
             if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
@@ -343,12 +342,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSInteger location = selectedRange.location - lineRange.location;
             NSInteger length = (location + tabWidth) % tabWidth;
             NSInteger targetWidth = (length == 0) ? tabWidth : length;
-            if ((NSInteger)selectedRange.location >= targetWidth) {
+            if (selectedRange.location >= targetWidth) {
                 NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
                 NSString *target = [[self string] substringWithRange:targetRange];
                 BOOL shouldDelete = NO;
                 for (NSUInteger i = 0; i < targetWidth; i++) {
-                    shouldDelete = [[target substringWithRange:NSMakeRange(i, 1)] isEqualToString:@" "];
+                    shouldDelete = ([target characterAtIndex:i] == ' ');
                     if (!shouldDelete) {
                         break;
                     }
@@ -381,7 +380,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         if ([inputChar isEqualToString:[event characters]]) { //キーバインディングの入力などを除外
             // アンダースコアが右矢印キーと判断されることの是正
-            if (([inputChar isEqualToString:@"_"]) && (movement == NSRightTextMovement) && (isFinal)) {
+            if (([inputChar isEqualToString:@"_"]) && (movement == NSRightTextMovement) && isFinal) {
                 movement = NSIllegalTextMovement;
                 isFinal = NO;
             }
@@ -847,8 +846,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                fractionOfDistanceThroughGlyph:&partialFraction];
                     NSPoint glypthIndexPoint;
                     NSRect lineRect, insertionRect;
-                    if ((partialFraction > 0.5) && 
-                            (![[string substringWithRange:NSMakeRange(glyphIndex, 1)] isEqualToString:@"\n"])) {
+                    if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
                             NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
                                                                         inTextContainer:[self textContainer]];
                             glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
@@ -1422,9 +1420,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (NSMaxRange(lineRange) == 0) { // 空行で実行された場合は何もしない
         return;
     }
-    if ((lineRange.length > 1) &&
-        ([[[self string] substringWithRange:NSMakeRange(NSMaxRange(lineRange) - 1, 1)] isEqualToString:@"\n"]))
-    {
+    if ((lineRange.length > 1) &&  ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n')) {
         lineRange.length--; // 末尾の改行分を減ずる
     }
     // シフトするために削除するスペースの長さを得る
@@ -1435,7 +1431,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *lines = [[[self string] substringWithRange:lineRange] componentsSeparatedByString:@"\n"];
     NSMutableString *newLine = [NSMutableString string];
     NSMutableString *tmpLine = [NSMutableString string];
-    NSString *string;
     BOOL spaceDeleted;
     NSUInteger numberOfDeleted = 0, totalDeleted = 0;
     NSInteger newLocation = selectedRange.location, newLength = selectedRange.length;
@@ -1449,14 +1444,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ([tmpLine length] == 0) {
                 break;
             }
-            string = [lines[i] substringWithRange:NSMakeRange(j, 1)];
-            if ([string isEqualToString:@"\t"]) {
+            unichar theChar = [lines[i] characterAtIndex:j];
+            if (theChar == '\t') {
                 if (!spaceDeleted) {
                     [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
                     numberOfDeleted++;
                 }
                 break;
-            } else if ([string isEqualToString:@" "]) {
+            } else if (theChar == ' ') {
                 [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
                 numberOfDeleted++;
                 spaceDeleted = YES;
