@@ -286,7 +286,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [toolbarItem setLabel:NSLocalizedString(@"Expand Tabs",@"")];
         [toolbarItem setPaletteLabel:NSLocalizedString(@"Toggle Auto Tab Expand",@"")];
         [toolbarItem setToolTip:NSLocalizedString(@"Toggle auto tab expand",@"")];
-        [self doUpdateToggleItem:toolbarItem setOn:[(CETextViewCore *)[[[[self mainWindow] windowController] editorView] textView] isAutoTabExpandEnabled]];
+        [self doUpdateToggleItem:toolbarItem setOn:[defaults boolForKey:k_key_autoExpandTab]];
         [toolbarItem setAction:@selector(toggleAutoTabExpand:)];
 
     // Show Navigation Bar (target = FirstResponder)
