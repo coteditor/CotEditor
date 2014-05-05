@@ -152,19 +152,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
-    NSMenuItem *item;
     
     [[self syntaxPopupButton] removeAllItems];
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
-                                      action:@selector(changeSyntaxStyle:)
-                               keyEquivalent:@""];
-    [[[self syntaxPopupButton] menu] addItem:item];
+    [[[self syntaxPopupButton] menu] addItemWithTitle:NSLocalizedString(@"None", nil)
+                                               action:@selector(changeSyntaxStyle:)
+                                        keyEquivalent:@""];
     [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
     for (NSString *styleName in styleNames) {
-        item = [[NSMenuItem alloc] initWithTitle:styleName
-                                          action:@selector(changeSyntaxStyle:)
-                                   keyEquivalent:@""];
-        [[[self syntaxPopupButton] menu] addItem:item];
+        [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
+                                                   action:@selector(changeSyntaxStyle:)
+                                            keyEquivalent:@""];
     }
     
     [self selectSyntaxItemWithTitle:title];
