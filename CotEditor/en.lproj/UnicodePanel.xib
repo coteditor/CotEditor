@@ -23,7 +23,7 @@
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yRX-Lf-Qnd">
                         <rect key="frame" x="20" y="20" width="112" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="U+FFFF" drawsBackground="YES" usesSingleLineMode="YES" id="n75-u3-Rt4">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="U+1F600" drawsBackground="YES" usesSingleLineMode="YES" id="n75-u3-Rt4">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -32,9 +32,9 @@
                             </allowedInputSourceLocales>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="unicode" id="0F5-gc-1NZ">
+                            <binding destination="-2" name="value" keyPath="unicode" id="8RW-az-nSW">
                                 <dictionary key="options">
-                                    <string key="NSNullPlaceholder">U+FFFF</string>
+                                    <string key="NSNullPlaceholder">U+1F600</string>
                                 </dictionary>
                             </binding>
                             <outlet property="delegate" destination="-2" id="lb6-YX-ReB"/>
