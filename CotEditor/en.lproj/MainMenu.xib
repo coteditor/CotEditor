@@ -209,6 +209,12 @@
                                     <action selector="inputYenMark:" target="-1" id="634"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Input Char in Unicode Hex…" id="tWx-pj-3PL">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openUnicodeInputPanel:" target="290" id="S5h-bp-QnD"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="660">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>

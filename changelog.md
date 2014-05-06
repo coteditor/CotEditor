@@ -9,6 +9,7 @@ changelog
 
 - 「グリフ情報を表示」機能
     - 1文字だけ選択した状態で Cmd+Option+I もしくは「編集」メニューから「グリフ情報を表示」を実行すると、選択している文字の情報がポップオーバー
+- 「文字を Unicode 16 進数で入力」機能を「編集」メニューに追加
 - "CoffeeScript", "Dart", "Diff", "INI", "Makefile", "reStructuredText", "Textile", "YAML" シンタックス定義を追加
 
 ### mod

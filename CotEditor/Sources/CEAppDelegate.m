@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEGoToPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
+#import "CEUnicodeInputPanelController.h"
 #import "constants.h"
 
 
@@ -399,7 +400,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if ([menuItem action] == @selector(openLineSpacingPanel:)) {
+    if (([menuItem action] == @selector(openLineSpacingPanel:)) ||
+        ([menuItem action] == @selector(openUnicodeInputPanel:))) {
         return ([[CEDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
@@ -477,6 +479,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[CEGoToPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// Unicode 入力パネルを開く
+- (IBAction)openUnicodeInputPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEUnicodeInputPanelController sharedController] showWindow:self];
 }
 
 
