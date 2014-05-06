@@ -68,6 +68,8 @@
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A3FB2B218EDBB1400D9CB2C /* swapArrowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
+		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
+		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */; };
 		2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
 		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; };
@@ -291,6 +293,10 @@
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrowTemplate.pdf; path = images/swapArrowTemplate.pdf; sourceTree = "<group>"; };
 		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
+		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
+		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
+		2A5ABE78191861E3009265DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
+		2A5ABE7A19189021009265DF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
 		2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CEColorCode.h"; sourceTree = "<group>"; };
 		2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CEColorCode.m"; sourceTree = "<group>"; };
 		2A5B0AF319070EED00B6A51C /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ColorCodePanelAccessory.xib; sourceTree = "<group>"; };
@@ -604,6 +610,7 @@
 				2AFFB71F18D7F22E00118477 /* GoToPanel.xib */,
 				8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */,
 				2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */,
+				2A5ABE77191861E3009265DF /* UnicodePanel.xib */,
 			);
 			name = Panels;
 			sourceTree = "<group>";
@@ -854,6 +861,8 @@
 				2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */,
 				2A15833318E3B83F00601026 /* CEScriptErrorPanelController.h */,
 				2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */,
+				2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */,
+				2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */,
 			);
 			name = "Panel Controllers";
 			sourceTree = "<group>";
@@ -1064,6 +1073,7 @@
 				2A07231116D3CF4F00F49864 /* popUpButtonBG_center.pdf in Resources */,
 				2A149DA919016ABB00A9D6EF /* FormatPane.xib in Resources */,
 				2A961C5618FC699E002076B6 /* Version History.rtf in Resources */,
+				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A07231216D3CF4F00F49864 /* popUpButtonBG_left.pdf in Resources */,
 				2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */,
 				2A07231316D3CF4F00F49864 /* prevButtonImg.pdf in Resources */,
@@ -1137,6 +1147,7 @@
 				2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
 				8C3840930D16B75C00F76A4C /* UKXattrMetadataStore.m in Sources */,
+				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,
 				8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */,
 				8C1305B20DC4B83000975AC6 /* RKLMatchEnumerator.m in Sources */,
 				2A149DD519032CC900A9D6EF /* CEUtilities.m in Sources */,
@@ -1323,6 +1334,15 @@
 				6C1E212512C9E65600194313 /* ja */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		2A5ABE77191861E3009265DF /* UnicodePanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5ABE78191861E3009265DF /* en */,
+				2A5ABE7A19189021009265DF /* ja */,
+			);
+			name = UnicodePanel.xib;
 			sourceTree = "<group>";
 		};
 		2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */ = {

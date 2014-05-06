@@ -209,6 +209,12 @@
                                     <action selector="inputYenMark:" target="-1" id="634"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="文字を Unicode 16 進数で入力…" id="G66-XU-XBu">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openUnicodeInputPanel:" target="290" id="n44-tu-2RR"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="660">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
