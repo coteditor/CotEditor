@@ -81,6 +81,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        // 行番号の文字属性辞書生成、保持
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSFont *lineNumFont = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName]
+                                              size:(CGFloat)[defaults doubleForKey:k_key_lineNumFontSize]];
+        [self setLineNumAttrs:@{NSFontAttributeName: lineNumFont,
+                                NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
+                                                                 [defaults dataForKey:k_key_lineNumFontColor]]}];
+        
+        // ヘッダ／フッタの文字属性辞書生成、保持
+        NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName]
+                                                   size:(CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize]];
+        [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
+                                     NSForegroundColorAttributeName: [NSColor textColor]}];
+        
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
         [[self textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
         
@@ -101,7 +115,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRect currentFrame = [self frame]; // 現在のフレームを退避
     NSAttributedString *pageString = nil;
     NSPoint drawPoint = NSMakePoint(0.0, k_printHFVerticalMargin);
-    CGFloat headerFooterLineFontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_headerFooterFontSize];
+    CGFloat headerFooterLineFontSize = [[self headerFooterAttrs][NSFontAttributeName] pointSize];
 
     // プリントパネルでのカスタム設定を読み取り、保持
     [self setupPrintWithBorderWidth:borderSize.width];
@@ -205,7 +219,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
         CGFloat charWidth = [@"8" sizeWithAttributes:[self lineNumAttrs]].width;
-
+        
         // setup the variables we need for the loop
         NSRange range;       // a range for counting lines
         NSString *str = [self string];
@@ -235,7 +249,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 if (NSPointInRect(numRect.origin, dirtyRect)) {
                     if (theBefore != lineNum) {
-                        numStr = [NSString stringWithFormat:@"%ld:", (long)lineNum];
+                        numStr = [NSString stringWithFormat:@"%ld:", (unsigned long)lineNum];
                         reqWidth = charWidth * [numStr length];
                     } else {
                         numStr = @"-:";
@@ -337,12 +351,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSAttributedString *attrString = nil;
     CGFloat printWidth = borderWidth - k_printHFHorizontalMargin * 2;
 
-    // ヘッダ／フッタの文字属性辞書生成、保持
-    NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName]
-                                               size:(CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize]];
-    [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
-                                 NSForegroundColorAttributeName: [NSColor textColor]}];
-
     // 行番号印字の有無をチェック
     switch ([accessoryController lineNumberMode]) {
         case CENoLinePrint:
@@ -356,13 +364,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             break;
     }
 
-    // 行番号を印字するときは文字属性を保持、パディングを調整
+    // 行番号表示の有無によってパディングを調整
     if ([self printsLineNum]) {
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName]
-                                       size:(CGFloat)[defaults doubleForKey:k_key_lineNumFontSize]];
-        [self setLineNumAttrs:@{NSFontAttributeName:font,
-                                NSForegroundColorAttributeName:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_lineNumFontColor]]}];
         [self setXOffset:k_printTextHorizontalMargin];
+    } else {
+        [self setXOffset:0];
     }
     
     // 制御文字印字を取得
