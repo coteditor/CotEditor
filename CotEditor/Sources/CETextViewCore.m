@@ -283,8 +283,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoIndent]) {
         NSRange selectedRange = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-        NSString *lineStr = [[self string] substringWithRange:lineRange];
-        NSRange indentRange = [lineStr rangeOfString:@"^\\s+" options:NSRegularExpressionSearch];
+        NSString *lineStr = [[self string] substringWithRange:
+                             NSMakeRange(lineRange.location,
+                                         lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
+        NSRange indentRange = [lineStr rangeOfString:@"^[ \\t]+" options:NSRegularExpressionSearch];
         
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
         if ((indentRange.location != NSNotFound) &&
