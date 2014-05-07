@@ -185,9 +185,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // Draw the last "extra" line number.
     numRect = [layoutManager extraLineFragmentRect];
-    // 10.5.1では、1行目が改行だけのときnumRect.origin.yに行の高さがセットされてしまうことへ対処（2007.12.01）
-    if ((numRect.size.width > 0) && (numRect.size.height > 0)) {
-        //    if (!NSEqualRects(numRect, NSZeroRect)) {
+    if (!NSEqualSizes(numRect.size, NSZeroSize)) {
         numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%lx", (unsigned long)lineNum] : @" ";
         reqWidth = charWidth * [numStr length];
         curWidth = NSWidth([self frame]);
