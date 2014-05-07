@@ -224,7 +224,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRange range;       // a range for counting lines
         NSString *str = [self string];
         NSString *numStr;    // a temporary string for Line Number
-        NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
+        NSUInteger glyphIndex, lastLineNum, glyphCount; // glyph counter
         NSUInteger charIndex;
         NSUInteger lineNum;   // line counter
         CGFloat reqWidth;    // width calculator holder -- width needed to show string
@@ -235,7 +235,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSLayoutManager *layoutManager = [self layoutManager]; // get _owner's layout manager.
         NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
 
-        theBefore = 0;
+        lastLineNum = 0;
         lineNum = 1;
         glyphCount = 0;
         xAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
@@ -248,8 +248,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
                 numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 if (NSPointInRect(numRect.origin, dirtyRect)) {
-                    if (theBefore != lineNum) {
-                        numStr = [NSString stringWithFormat:@"%ld:", (unsigned long)lineNum];
+                    if (lastLineNum != lineNum) {
+                        numStr = [NSString stringWithFormat:@"%lu:", (unsigned long)lineNum];
                         reqWidth = charWidth * [numStr length];
                     } else {
                         numStr = @"-:";
@@ -258,7 +258,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     numPoint = NSMakePoint(dirtyRect.origin.x - reqWidth + xAdj,
                                            numRect.origin.y + yAdj);
                     [numStr drawAtPoint:numPoint withAttributes:[self lineNumAttrs]]; // draw the line number.
-                    theBefore = lineNum;
+                    lastLineNum = lineNum;
                 }
                 glyphCount = NSMaxRange(range);
             }

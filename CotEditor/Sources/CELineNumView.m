@@ -126,18 +126,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange range;       // a range for counting lines
     NSString *str = [[self masterView] string];
     NSString *numStr;    // a temporary string for Line Number
-    NSUInteger glyphIndex, theBefore, glyphCount; // glyph counter
+    NSUInteger glyphIndex, glyphCount; // glyph counter
     NSUInteger charIndex;
-    NSUInteger lineNum;     // line counter
+    NSUInteger lineNum, lastLineNum;   // line counter
     CGFloat reqWidth;      // width calculator holder -- width needed to show string
     CGFloat curWidth;      // width calculator holder -- my current width
     CGFloat adj = 0;       // adjust vertical value for line number drawing
     CGFloat insetAdj = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop];
     NSRect numRect;      // rectange holder
     NSPoint numPoint;    // point holder
-    CELayoutManager *layoutManager = (CELayoutManager *)[[[self masterView] textView] layoutManager]; // get _owner's layout manager.
+    NSLayoutManager *layoutManager = [[[self masterView] textView] layoutManager]; // get _owner's layout manager.
     
-    theBefore = 0;
+    lastLineNum = 0;
     lineNum = 1;
     glyphCount = 0;
     
@@ -164,7 +164,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSHeight(numRect) - numRect.origin.y;
             if (NSIntersectsRect(numRect, dirtyRect)) {
-                numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%lx", (unsigned long)lineNum] : @"-";
+                numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%lu", (unsigned long)lineNum] : @"-";
                 reqWidth = charWidth * [numStr length];
                 curWidth = NSWidth([self frame]);
                 if ((curWidth - k_lineNumPadding) < reqWidth) {
@@ -176,7 +176,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 numPoint = NSMakePoint(curWidth - reqWidth - k_lineNumPadding,
                                        numRect.origin.y + adj + NSHeight(numRect));
                 [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the line number.
-                theBefore = lineNum;
+                lastLineNum = lineNum;
             } else if (NSMaxY(numRect) < 0) { // no need to draw
                 return;
             }
@@ -186,7 +186,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // Draw the last "extra" line number.
     numRect = [layoutManager extraLineFragmentRect];
     if (!NSEqualSizes(numRect.size, NSZeroSize)) {
-        numStr = (theBefore != lineNum) ? [NSString stringWithFormat:@"%lx", (unsigned long)lineNum] : @" ";
+        numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%lu", (unsigned long)lineNum] : @" ";
         reqWidth = charWidth * [numStr length];
         curWidth = NSWidth([self frame]);
         if ((curWidth - k_lineNumPadding) < reqWidth) {
