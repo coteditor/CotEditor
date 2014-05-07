@@ -148,7 +148,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 // ------------------------------------------------------
 {
-    if ([[self keyPathsForValuesAffectingFooterMargin] containsObject:keyPath]) {
+    if ([[self keyPathsForValuesAffectingHeaderMargin] containsObject:keyPath]) {
         [self updateHeaderOffset];
     }
     if ([[self keyPathsForValuesAffectingFooterMargin] containsObject:keyPath]) {
@@ -305,8 +305,6 @@
 - (void)updateHeaderOffset
 // ------------------------------------------------------
 {
-    NSPrintInfo *printInfo = [self representedObject];
-    
     CGFloat topMargin = k_printHFVerticalMargin;
     
     // ヘッダ／フッタの高さ（文書を印刷しない高さ）を得る
@@ -322,11 +320,7 @@
     if (topMargin > k_printHFVerticalMargin) {
         topMargin += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_headerFooterFontSize] - k_headerFooterLineHeight;
         
-        if ([self printsHeaderSeparator]) {
-            topMargin += k_separatorPadding;
-        } else {
-            topMargin += k_noSeparatorPadding;
-        }
+        topMargin += [self printsHeaderSeparator] ? k_separatorPadding : k_noSeparatorPadding;
     } else {
         if ([self printsHeaderSeparator]) {
             topMargin += k_separatorPadding;
@@ -334,7 +328,7 @@
     }
     
     // printView が flip しているので入れ替えている
-    [printInfo setBottomMargin:topMargin];
+    [(NSPrintInfo *)[self representedObject] setBottomMargin:topMargin];
 }
 
 
@@ -343,8 +337,6 @@
 - (void)updateFooterOffset
 // ------------------------------------------------------
 {
-    NSPrintInfo *printInfo = [self representedObject];
-    
     CGFloat bottomMargin = k_printHFVerticalMargin;
     
     if ([self printsFooter]) {
@@ -360,7 +352,7 @@
     }
     
     // printView が flip しているので入れ替えている
-    [printInfo setTopMargin:bottomMargin];
+    [(NSPrintInfo *)[self representedObject] setTopMargin:bottomMargin];
 }
 
 
