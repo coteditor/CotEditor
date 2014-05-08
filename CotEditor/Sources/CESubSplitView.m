@@ -436,8 +436,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self stopUpdateOutlineMenuTimer];
-    [[self navigationBar] setOutlineMenuArray:[[[self editorView] syntax] outlineMenuArrayWithWholeString:[self string]]];
-    // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
+    
+    [[self navigationBar] showOutlineIndicator];
+    
+    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *outlineMenuArray = [[[self editorView] syntax] outlineMenuArrayWithWholeString:[self string]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self navigationBar] setOutlineMenuArray:outlineMenuArray];
+            // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
+        });
+    });
 }
 
 
