@@ -152,7 +152,7 @@ http://www.aynimac.com/
 
 /* CESyntax */
 // Outline Menu title
-"<Outline Menu>" = "< アウトラインメニュー >";
+"<Outline Menu>" = "<アウトラインメニュー>";
 "Coloring print text..." = "プリントテキストのカラーリング中...";
 "Coloring text..." = "テキストのカラーリング中...";
 
