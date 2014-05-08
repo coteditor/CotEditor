@@ -363,7 +363,7 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
     }
     NSMutableString *copiedStyleName = [copyString mutableCopy];
     while ([[self styleNames] containsObject:copiedStyleName]) {
-        [copiedStyleName setString:[NSString stringWithFormat:@"%@ %li", copyString, (long)i]];
+        [copiedStyleName setString:[NSString stringWithFormat:@"%@ %tu", copyString, i]];
         i++;
     }
     return copiedStyleName;

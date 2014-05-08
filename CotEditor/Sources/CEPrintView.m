@@ -124,7 +124,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self readyToDrawPageNum]) {
         NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
 
-        pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%li", (long)pageNum]
+        pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd", pageNum]
                                                      attributes:[self headerFooterAttrs]];
     }
 
@@ -249,7 +249,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 if (NSPointInRect(numRect.origin, dirtyRect)) {
                     if (lastLineNum != lineNum) {
-                        numStr = [NSString stringWithFormat:@"%lu:", (unsigned long)lineNum];
+                        numStr = [NSString stringWithFormat:@"%tu:", lineNum];
                         reqWidth = charWidth * [numStr length];
                     } else {
                         numStr = @"-:";

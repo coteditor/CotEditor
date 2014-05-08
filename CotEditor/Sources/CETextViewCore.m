@@ -1041,10 +1041,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 if (imageRep) {
                     // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
                     [newStr replaceOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
-                                            withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsWide]]
+                                            withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsWide]]
                                                options:0 range:NSMakeRange(0, [newStr length])];
                     [newStr replaceOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
-                                            withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsHigh]]
+                                            withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsHigh]]
                                                options:0 range:NSMakeRange(0, [newStr length])];
                 }
                 // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）

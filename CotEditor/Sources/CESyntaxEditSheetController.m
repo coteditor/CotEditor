@@ -395,7 +395,7 @@
         
         NSUInteger lineCount = 1;
         for (NSString *message in errorMessages) {
-            [resultMessage appendFormat:@"%li.  %@\n\n", (long)lineCount, message];
+            [resultMessage appendFormat:@"%tu.  %@\n\n", lineCount, message];
             lineCount++;
         }
     }

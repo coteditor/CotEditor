@@ -164,7 +164,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSHeight(numRect) - numRect.origin.y;
             if (NSIntersectsRect(numRect, dirtyRect)) {
-                numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%lu", (unsigned long)lineNum] : @"-";
+                numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu", lineNum] : @"-";
                 reqWidth = charWidth * [numStr length];
                 curWidth = NSWidth([self frame]);
                 if ((curWidth - k_lineNumPadding) < reqWidth) {
@@ -186,7 +186,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // Draw the last "extra" line number.
     numRect = [layoutManager extraLineFragmentRect];
     if (!NSEqualSizes(numRect.size, NSZeroSize)) {
-        numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%lu", (unsigned long)lineNum] : @" ";
+        numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu", lineNum] : @" ";
         reqWidth = charWidth * [numStr length];
         curWidth = NSWidth([self frame]);
         if ((curWidth - k_lineNumPadding) < reqWidth) {

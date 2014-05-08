@@ -665,7 +665,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             unichar secondChar = [theString characterAtIndex:selectedRange.location + 1];
             if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
                 UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                singleCharInfo = [NSString stringWithFormat:@"U+%04lX", (unsigned long)pair];
+                singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
             }
         }
         if (selectedRange.length == 1) {
@@ -676,33 +676,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSUInteger selectedByteLength = [[theString substringWithRange:selectedRange]
                                          lengthOfBytesUsingEncoding:[[self document] encodingCode]];
         
-        linesInfo = [NSString stringWithFormat:@"%ld", (long)numberOfLines];
+        linesInfo = [NSString stringWithFormat:@"%tu", numberOfLines];
         if (isSelected) {
-            linesInfo = [linesInfo stringByAppendingFormat:@" (%ld)", (long)numberOfSelectedLines];
+            linesInfo = [linesInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedLines];
         }
         [[self windowController] setLinesInfo:linesInfo];
         
-        charsInfo = [NSString stringWithFormat:@"%ld", (long)length];
+        charsInfo = [NSString stringWithFormat:@"%tu", length];
         if (isSelected) {
-            charsInfo = [charsInfo stringByAppendingFormat:@" (%ld)", (long)selectedRange.length];
+            charsInfo = [charsInfo stringByAppendingFormat:@" (%tu)", selectedRange.length];
         }
         [[self windowController] setCharsInfo:charsInfo];
         
-        byteLengthInfo = [NSString stringWithFormat:@"%ld", (long)byteLength];
+        byteLengthInfo = [NSString stringWithFormat:@"%tu", byteLength];
         if (isSelected) {
-            byteLengthInfo = [byteLengthInfo stringByAppendingFormat:@" (%ld)", (long)selectedByteLength];
+            byteLengthInfo = [byteLengthInfo stringByAppendingFormat:@" (%tu)", selectedByteLength];
         }
         [[self windowController] setByteLengthInfo:byteLengthInfo];
         
-        wordsInfo = [NSString stringWithFormat:@"%ld", (long)numberOfWords];
+        wordsInfo = [NSString stringWithFormat:@"%tu", numberOfWords];
         if (isSelected) {
-            wordsInfo = [wordsInfo stringByAppendingFormat:@" (%ld)", (long)numberOfSelectedWords];
+            wordsInfo = [wordsInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedWords];
         }
         [[self windowController] setWordsInfo:wordsInfo];
         
-        [[self windowController] setLocationInfo:[NSString stringWithFormat:@"%ld", (long)selectedRange.location]];
-        [[self windowController] setColumnInfo:[NSString stringWithFormat:@"%ld", (long)column]];
-        [[self windowController] setLineInfo:[NSString stringWithFormat:@"%ld", (long)currentLine]];
+        [[self windowController] setLocationInfo:[NSString stringWithFormat:@"%tu", selectedRange.location]];
+        [[self windowController] setColumnInfo:[NSString stringWithFormat:@"%tu", column]];
+        [[self windowController] setLineInfo:[NSString stringWithFormat:@"%tu", currentLine]];
         [[self windowController] setSingleCharInfo:singleCharInfo];
     }
 }

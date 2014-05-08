@@ -321,7 +321,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 for (NSInteger i = 1; i < 10; i++) {
                     matchedIndexString = [match substringAtIndex:i];
                     if (matchedIndexString != nil) {
-                        [pattern replaceOccurrencesOfRegularExpressionString:[NSString stringWithFormat:@"(?<!\\\\)\\$%li", (long)i]
+                        [pattern replaceOccurrencesOfRegularExpressionString:[NSString stringWithFormat:@"(?<!\\\\)\\$%zd", i]
                                                                   withString:matchedIndexString
                                                                      options:0
                                                                        range:NSMakeRange(0, [pattern length])];
@@ -339,7 +339,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
                 //行番号（$LN）置換
                 [pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$LN"
-                                                          withString:[NSString stringWithFormat:@"%lu", (unsigned long)curLine]
+                                                          withString:[NSString stringWithFormat:@"%tu", curLine]
                                                              options:0
                                                                range:NSMakeRange(0, [pattern length])];
             }
