@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEKeyBindingManager ()
 
-@property (nonatomic, weak) IBOutlet NSWindow *menuEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしている
+@property (nonatomic, strong) IBOutlet NSWindow *menuEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしたいのだが、OS X 10.7 に引っかかるのでstrong
 @property (nonatomic, weak) IBOutlet NSOutlineView *menuOutlineView;
 @property (nonatomic, weak) IBOutlet NSTextField *menuDuplicateTextField;
 @property (nonatomic, weak) IBOutlet NSButton *menuEditKeyButton;
@@ -46,7 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSButton *menuFactoryDefaultsButton;
 @property (nonatomic, weak) IBOutlet NSButton *menuOkButton;
 
-@property (nonatomic, weak) IBOutlet NSWindow *textEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしている
+@property (nonatomic, strong) IBOutlet NSWindow *textEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしたいのだが、OS X 10.7 に引っかかるのでstrong
 @property (nonatomic, weak) IBOutlet NSOutlineView *textOutlineView;
 @property (nonatomic, weak) IBOutlet  NSTextField *textDuplicateTextField;
 @property (nonatomic, weak) IBOutlet NSButton *textEditKeyButton;

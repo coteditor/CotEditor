@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) NSToolbar *toolbar;
 
-@property (nonatomic, weak) IBOutlet NSWindow *mainWindow;
+@property (nonatomic, unsafe_unretained) IBOutlet NSWindow *mainWindow;  // NSWindow は 10.7 では weak で持てないため
 @property (nonatomic) IBOutlet NSPopUpButton *lineEndingPopupButton;// Outletだが、片付けられてしまうため strong
 @property (nonatomic) IBOutlet NSPopUpButton *encodingPopupButton;// Outletだが、片付けられてしまうため strong
 @property (nonatomic) IBOutlet NSPopUpButton *syntaxPopupButton;// Outletだが、片付けられてしまうため strong
