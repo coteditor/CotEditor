@@ -108,6 +108,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ソフトタブの有効／無効を設定
+- (void)setAutoTabExpandEnabled:(BOOL)isEnabled
+// ------------------------------------------------------
+{
+    [[self subviews] makeObjectsPerformSelector:@selector(setAutoTabExpandEnabledWithNumber:)
+                                     withObject:@(isEnabled)];
+}
+
+
+// ------------------------------------------------------
 /// 文字にアンチエイリアスを使うかどうかを設定
 - (void)setUseAntialias:(BOOL)useAntialias
 // ------------------------------------------------------
@@ -118,12 +128,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// テキストビュー分割削除ボタンを有効／無効を設定
-- (void)setCloseSubSplitViewButtonEnabled:(BOOL)enabled
+/// テキストビュー分割削除ボタンの有効／無効を設定
+- (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
     [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:)
-                                     withObject:@(enabled)];
+                                     withObject:@(isEnabled)];
 }
 
 
@@ -151,9 +161,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName
 // ------------------------------------------------------
 {
-    if (syntaxName == nil) { return; }
+    if (!syntaxName) { return; }
 
-    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxStyleNameToSyntax:) withObject:syntaxName];
+    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxStyleNameToSyntax:)
+                                     withObject:syntaxName];
 }
 
 
@@ -162,7 +173,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)recoloringAllTextView
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(recoloringAllTextViewString)];
+    [[self subviews] makeObjectsPerformSelector:@selector(recolorAllTextViewString)];
     if (![self finishedOpen]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
                                                             object:[self superview]]; // superView = CEEditorView

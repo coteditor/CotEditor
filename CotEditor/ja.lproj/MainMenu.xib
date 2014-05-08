@@ -34,7 +34,7 @@
                             </menuItem>
                             <menuItem title="環境設定…" keyEquivalent="," id="129">
                                 <connections>
-                                    <action selector="openPreferences:" target="290" id="bVR-8R-fPb"/>
+                                    <action selector="openPrefWindow:" target="290" id="Ng0-nU-PQk"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">
@@ -209,6 +209,12 @@
                                     <action selector="inputYenMark:" target="-1" id="634"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="文字を Unicode 16 進数で入力…" id="G66-XU-XBu">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openUnicodeInputPanel:" target="290" id="n44-tu-2RR"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="660">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -223,12 +229,12 @@
                                         <menuItem isSeparatorItem="YES" id="664">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="+ &quot;charset=&quot;" id="665">
+                                        <menuItem title="“charset=” 形式" id="665">
                                             <connections>
                                                 <action selector="insertIANACharSetNameWithCharset:" target="-1" id="668"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="+ &quot;encoding=&quot;" id="667">
+                                        <menuItem title="“encoding=” 形式" id="667">
                                             <connections>
                                                 <action selector="insertIANACharSetNameWithEncoding:" target="-1" id="669"/>
                                             </connections>
@@ -239,6 +245,13 @@
                             <menuItem isSeparatorItem="YES" id="174">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="グリフ情報を表示" keyEquivalent="i" id="QCj-Kx-s6L">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showSelectionInfo:" target="-1" id="oZz-EJ-sJL"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="2nh-JM-Guj"/>
                             <menuItem title="スペル" id="184">
                                 <menu key="submenu" title="スペル" id="185">
                                     <items>
@@ -461,7 +474,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="UeK-h0-5QV"/>
-                                        <menuItem title="タブを自動でスペースに変換" id="8fB-qA-BhZ">
+                                        <menuItem title="タブを自動でスペースに展開" id="8fB-qA-BhZ">
                                             <connections>
                                                 <action selector="toggleAutoTabExpand:" target="-1" id="DSl-M0-OXS"/>
                                             </connections>
@@ -816,16 +829,16 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="tV2-Tm-LbD"/>
-                            <menuItem title="CotEditor Web サイト" id="l2O-Zn-Vo0">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openWebSite:" target="290" id="yUt-qX-KWm"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="不具合を報告…" id="qHT-FN-VpY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="cdN-Ah-xEy"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="CotEditor Web サイト" id="l2O-Zn-Vo0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openWebSite:" target="290" id="yUt-qX-KWm"/>
                                 </connections>
                             </menuItem>
                         </items>

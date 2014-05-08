@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEGoToPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
+#import "CEUnicodeInputPanelController.h"
 #import "constants.h"
 
 
@@ -69,8 +70,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // Encoding list
-    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:k_size_of_CFStringEncodingList];
-    for (NSUInteger i = 0; i < k_size_of_CFStringEncodingList; i++) {
+    NSUInteger size = k_size_of_CFStringEncodingList;
+    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:size];
+    for (NSUInteger i = 0; i < size; i++) {
         [encodings addObject:@(k_CFStringEncodingList[i])];
     }
     
@@ -144,6 +146,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_NSDragAndDropTextDelay: @1,
                                k_key_smartInsertAndDelete: @NO,
                                k_key_enableSmartQuotes: @NO,
+                               k_key_enableSmartIndent: @YES,
                                k_key_shouldAntialias: @YES,
                                k_key_completeAddStandardWords: @0U,
                                k_key_showPageGuide: @NO,
@@ -203,8 +206,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_showColoringIndicatorTextLength: @115000U, 
                                k_key_runAppleScriptInLaunching: @YES, 
                                k_key_showAlertForNotWritable: @YES, 
-                               k_key_notifyEditByAnother: @YES,
-                               k_key_smartIndentStartChars: @"{:"};
+                               k_key_notifyEditByAnother: @YES};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
@@ -212,7 +214,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                 k_key_insertCustomTextArray,
                                 k_key_windowWidth,
                                 k_key_windowHeight];
-    NSDictionary *initialValuesDict=[defaults dictionaryWithValuesForKeys:resettableKeys];
+    NSDictionary *initialValuesDict = [defaults dictionaryWithValuesForKeys:resettableKeys];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValuesDict];
 
     // transformer 登録
@@ -382,7 +384,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_newMenuItemTag] copy];
     NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_openMenuItemTag] copy];
 
-
     [newItem setAction:@selector(newInDockMenu:)];
     [openItem setAction:@selector(openInDockMenu:)];
 
@@ -399,7 +400,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if ([menuItem action] == @selector(openLineSpacingPanel:)) {
+    if (([menuItem action] == @selector(openLineSpacingPanel:)) ||
+        ([menuItem action] == @selector(openUnicodeInputPanel:))) {
         return ([[CEDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
@@ -417,7 +419,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 環境設定ウィンドウを開く
-- (IBAction)openPreferences:(id)sender
+- (IBAction)openPrefWindow:(id)sender
 // ------------------------------------------------------
 {
     [[CEPreferencesWindowController sharedController] showWindow:self];
@@ -477,6 +479,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[CEGoToPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// Unicode 入力パネルを開く
+- (IBAction)openUnicodeInputPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEUnicodeInputPanelController sharedController] showWindow:self];
 }
 
 

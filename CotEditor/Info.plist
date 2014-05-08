@@ -37,6 +37,14 @@
 				<string>scala</string>
 				<string>conf</string>
 				<string>json</string>
+				<string>patch</string>
+				<string>diff</string>
+				<string>ini</string>
+				<string>rest</string>
+				<string>rst</string>
+				<string>textile</string>
+				<string>yaml</string>
+				<string>yml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>docIcon.icns</string>
@@ -76,11 +84,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5β1</string>
+	<string>1.5</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>1.5beta1</string>
+	<string>1.5</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>

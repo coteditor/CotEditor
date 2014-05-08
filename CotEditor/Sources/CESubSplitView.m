@@ -141,6 +141,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                  selector:@selector(textDidReplaceAll:)
                                                      name:@"textDidReplaceAllNotification"
                                                    object:nil];
+        
+        // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recolorAfterUndoAndRedo:)
+                                                     name:NSUndoManagerDidRedoChangeNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(recolorAfterUndoAndRedo:)
+                                                     name:NSUndoManagerDidUndoChangeNotification
+                                                   object:nil];
+        
         [[self scrollView] setDocumentView:[self textView]];
 
         // slave view をセット
@@ -332,6 +343,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ソフトタブの有効／無効を切り替える
+- (void)setAutoTabExpandEnabledWithNumber:(NSNumber *)number
+// ------------------------------------------------------
+{
+    [[self textView] setIsAutoTabExpandEnabled:[number boolValue]];
+}
+
+
+// ------------------------------------------------------
 /// アンチエイリアス適用を切り替える
 - (void)setUseAntialiasWithNumber:(NSNumber *)number
 // ------------------------------------------------------
@@ -372,10 +392,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 全てを再カラーリング
-- (void)recoloringAllTextViewString
+- (void)recolorAllTextViewString
 // ------------------------------------------------------
 {
     [[self syntax] colorAllString:[[self textView] string]];
+}
+
+
+// ------------------------------------------------------
+/// Undo/Redo の後に全てを再カラーリング
+- (void)recolorAfterUndoAndRedo:(NSNotification *)aNotification
+// ------------------------------------------------------
+{
+    NSUndoManager *undoManager = [aNotification object];
+    
+    if (undoManager != [[self textView] undoManager]) { return; }
+    
+    // OgreKit からの置換の Undo/Redo の後のみ再カラーリングを実行
+    // 置換の Undo を判別するために OgreKit 側で登録された actionName を使用しているが、
+    // ローカライズ後の名前なので、名前を決め打ちしている。あまり良い方法ではない。 (2014-04 by 1024jp)
+    NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
+    if ([@[@"一括置換", @"Replace All"] containsObject:actionName]) {
+        [self textDidReplaceAll:aNotification];
+    }
 }
 
 
@@ -527,55 +566,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 // ------------------------------------------------------
 {
-    // This method is based on Smultron(SMLSyntaxColouring.m)
-    //  written by Peter Borg. Copyright (C) 2004 Peter Borg.
-    // http://smultron.sourceforge.net
-
-    NSUInteger addingStandard = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_completeAddStandardWords];
-    NSMutableArray *outArray = [NSMutableArray arrayWithCapacity:[words count]];
-    NSEnumerator *enumerator;
-    NSString *curStr = [[aTextView string] substringWithRange:charRange];
-    NSString *arrayStr;
+    NSMutableOrderedSet *outWords = [NSMutableOrderedSet orderedSet];
+    NSUInteger addingMode = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_completeAddStandardWords];
+    NSString *partialWord = [[aTextView string] substringWithRange:charRange];
 
     //"ファイル中の語彙" を検索して outArray に入れる
-    {
-        OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString: 
-            [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)",
-                [OGRegularExpression regularizeString:curStr]]];
-        enumerator = [regex matchEnumeratorInString:[aTextView string]];
-        OGRegularExpressionMatch *match;
-        while (match = [enumerator nextObject]) {
-            if (![outArray containsObject:[match matchedString]]) {
-                [outArray addObject:[match matchedString]];
-            }
-        }
+    if (addingMode != 3) {
+        NSString *documentString = [aTextView string];
+        NSString *pattern = [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)",
+                             [NSRegularExpression escapedPatternForString:partialWord]];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+        [regex enumerateMatchesInString:documentString options:0
+                                  range:NSMakeRange(0, [documentString length])
+                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+         {
+             [outWords addObject:[documentString substringWithRange:[result range]]];
+         }];
     }
     
     //"カラーシンタックス辞書の語彙" をコピーする
-    if (addingStandard >= 1) {
-        NSArray *syntaxWordsArray = [[self syntax] completeWordsArray];
-        for (arrayStr in syntaxWordsArray) {
-            if ([arrayStr rangeOfString:curStr options:NSCaseInsensitiveSearch
-                                  range:NSMakeRange(0, [arrayStr length])].location == 0 && ![outArray containsObject:arrayStr]) {
-                [outArray addObject:arrayStr];
+    if (addingMode >= 1) {
+        NSArray *syntaxWords = [[self syntax] completeWordsArray];
+        for (NSString *word in syntaxWords) {
+            if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
+                [outWords addObject:word];
             }
         }
     }
     
     //デフォルトの候補から "一般英単語" をコピーする
-    if (addingStandard >= 2) {
-        for (arrayStr in words) {
-            //デフォルトの候補は "ファイル中の語彙" "一般英単語" の順に並んでいる
-            //そのうち "ファイル中の語彙" 部分をスキップする
-            if (![outArray containsObject:arrayStr]) {
-                [outArray addObject:arrayStr];
-                [outArray addObjectsFromArray:[enumerator allObjects]];
-                break;
-            }
-        }
+    if (addingMode == 2) {
+        [outWords addObjectsFromArray:words];
     }
 
-    return outArray;
+    return [outWords array];
 }
 
 
@@ -651,13 +675,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     unichar theUnichar = [string characterAtIndex:location];
     unichar curChar, braceChar;
     if (theUnichar == ')') {
-        braceChar = k_braceCharList[0];
+        braceChar = '(';
     } else if (theUnichar == ']') {
-        braceChar = k_braceCharList[1];
+        braceChar = '[';
     } else if (theUnichar == '}') {
-        braceChar = k_braceCharList[2];
+        braceChar = '{';
     } else if ((theUnichar == '>') && [[NSUserDefaults standardUserDefaults] boolForKey:k_key_highlightLtGt]) {
-        braceChar = k_braceCharList[3];
+        braceChar = '<';
     } else {
         return;
     }
@@ -668,11 +692,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         theUnichar = [string characterAtIndex:location];
         if (theUnichar == braceChar) {
             if (!skipMatchingBrace) {
-                [[[self textView] layoutManager] addTemporaryAttributes:[[self textView] selectedTextAttributes]
-                                                      forCharacterRange:NSMakeRange(location, 1)];
-                [self performSelector:@selector(resetBackgroundColor:)
-                           withObject:NSStringFromRange(NSMakeRange(location, 1))
-                           afterDelay:0.12];
+                [[self textView] showFindIndicatorForRange:NSMakeRange(location, 1)];
                 return;
             } else {
                 skipMatchingBrace--;
@@ -698,7 +718,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[self editorView] setupInfoUpdateTimer];
     // 全テキストを再カラーリング
-    [self performSelector:@selector(recoloringAllTextViewString) withObject:nil afterDelay:0];
+    [self performSelector:@selector(recolorAllTextViewString) withObject:nil afterDelay:0];
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
 }
@@ -740,16 +760,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self updateOutlineMenu]; // （updateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
-}
-
-
-// ------------------------------------------------------
-/// 対応カッコハイライト表示をリセット
-- (void)resetBackgroundColor:(id)sender
-// ------------------------------------------------------
-{
-    [[[self textView] layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
-                                            forCharacterRange:NSRangeFromString(sender)];
 }
 
 

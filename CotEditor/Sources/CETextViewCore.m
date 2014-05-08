@@ -39,8 +39,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
-#import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
+#import "CEGlyphPopoverController.h"
 #import "constants.h"
 
 
@@ -59,11 +59,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
+
 #pragma mark -
 
 @implementation CETextViewCore
-
-
 
 #pragma mark NSTextView Methods
 
@@ -153,10 +152,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
-    if ((![self hasMarkedText]) && (charIgnoringMod != nil)) {
+    if (![self hasMarkedText] && (charIgnoringMod != nil)) {
         NSUInteger modFlags = [theEvent modifierFlags];
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                        modifierFrags:modFlags];
+                                                                                       modifierFrags:modFlags];
         NSInteger length = [selectorStr length];
         if ((selectorStr != nil) && (length > 0)) {
             if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
@@ -227,7 +226,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 文字列入力、'¥' と '\' を入れ替える。
+/// 文字列入力、'¥' と '\' を入れ替える
 - (void)insertText:(id)aString
 // ------------------------------------------------------
 {
@@ -250,7 +249,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// タブ入力、タブを展開。
+/// タブ入力、タブを展開
 - (void)insertTab:(id)sender
 // ------------------------------------------------------
 {
@@ -273,46 +272,67 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 改行コード入力、オートインデント実行。
+/// 改行コード入力、オートインデント実行
 - (void)insertNewline:(id)sender
 // ------------------------------------------------------
 {
-    NSMutableString *input = [NSMutableString string];
+    NSString *indent = @"";
     BOOL shouldIncreaseIndentLevel = NO;
+    BOOL shouldExpandBlock = NO;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoIndent]) {
         NSRange selectedRange = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
         NSString *lineStr = [[self string] substringWithRange:
-                    NSMakeRange(lineRange.location,
-                                lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
-        NSRange indentRange = [lineStr rangeOfRegularExpressionString:@"^[[:blank:]\t]+"];
+                             NSMakeRange(lineRange.location,
+                                         lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
+        NSRange indentRange = [lineStr rangeOfString:@"^[ \\t]+" options:NSRegularExpressionSearch];
         
-        // スマートインデント（改行直前の文字が特定の文字の場合はインデントレベルを1つ下げる）
-        NSString *indentStartChars = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_smartIndentStartChars];
-        NSCharacterSet *indentStartCharSet = [NSCharacterSet characterSetWithCharactersInString:indentStartChars];
-        unichar lastChar = [lineStr characterAtIndex:[lineStr length] - 1];
-        shouldIncreaseIndentLevel = [indentStartCharSet characterIsMember:lastChar];
-
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
         if ((indentRange.location != NSNotFound) &&
-            NSMaxRange(selectedRange) < (selectedRange.location + NSMaxRange(indentRange))) {
-            [input setString:[lineStr substringWithRange:indentRange]];
+            (NSMaxRange(selectedRange) < (selectedRange.location + NSMaxRange(indentRange))))
+        {
+            indent = [lineStr substringWithRange:indentRange];
+        }
+        
+        // スマートインデント
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartIndent]) {
+            unichar lastChar = NULL;
+            unichar nextChar = NULL;
+            if (selectedRange.location > 0) {
+                lastChar = [[self string] characterAtIndex:selectedRange.location - 1];
+            }
+            if (NSMaxRange(selectedRange) < [[self string] length]) {
+                nextChar = [[self string] characterAtIndex:NSMaxRange(selectedRange)];
+            }
+            // `{}` の中で改行した場合はインデントを展開する
+            shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
+            // 改行直前の文字が `:` の場合はインデントレベルを1つ下げる
+            shouldIncreaseIndentLevel = (lastChar == ':');
         }
     }
+    
     [super insertNewline:sender];
-    if ([input length] > 0) {
-        [super insertText:input];
+    
+    if ([indent length] > 0) {
+        [super insertText:indent];
     }
     
-    if (shouldIncreaseIndentLevel) {
-        [self insertTab:self];
+    if (shouldExpandBlock) {
+        [self insertTab:sender];
+        NSRange selection = [self selectedRange];
+        [super insertNewline:sender];
+        [super insertText:indent];
+        [self setSelectedRange:selection];
+        
+    } else if (shouldIncreaseIndentLevel) {
+        [self insertTab:sender];
     }
 }
 
 
 // ------------------------------------------------------
-/// デリート。タブを展開しているときのスペースを調整削除。
+/// デリート、タブを展開しているときのスペースを調整削除
 - (void)deleteBackward:(id)sender
 // ------------------------------------------------------
 {
@@ -324,18 +344,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSInteger location = selectedRange.location - lineRange.location;
             NSInteger length = (location + tabWidth) % tabWidth;
             NSInteger targetWidth = (length == 0) ? tabWidth : length;
-            if ((NSInteger)selectedRange.location >= targetWidth) {
+            if (selectedRange.location >= targetWidth) {
                 NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
                 NSString *target = [[self string] substringWithRange:targetRange];
-                BOOL valueToDelete = NO;
-                NSUInteger i;
-                for (i = 0; i < targetWidth; i++) {
-                    valueToDelete = [[target substringWithRange:NSMakeRange(i, 1)] isEqualToString:@" "];
-                    if (!valueToDelete) {
+                BOOL shouldDelete = NO;
+                for (NSUInteger i = 0; i < targetWidth; i++) {
+                    shouldDelete = ([target characterAtIndex:i] == ' ');
+                    if (!shouldDelete) {
                         break;
                     }
                 }
-                if (valueToDelete) {
+                if (shouldDelete) {
                     [self setSelectedRange:targetRange];
                 }
             }
@@ -363,7 +382,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         if ([inputChar isEqualToString:[event characters]]) { //キーバインディングの入力などを除外
             // アンダースコアが右矢印キーと判断されることの是正
-            if (([inputChar isEqualToString:@"_"]) && (movement == NSRightTextMovement) && (isFinal)) {
+            if (([inputChar isEqualToString:@"_"]) && (movement == NSRightTextMovement) && isFinal) {
                 movement = NSIllegalTextMovement;
                 isFinal = NO;
             }
@@ -372,7 +391,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [self setIsReCompletion:YES];
             } else {
                 // 補完文字列に括弧が含まれていたら、括弧内だけを選択する準備をする
-                range = [word rangeOfRegularExpressionString:@"\\(.*\\)"];
+                range = [word rangeOfString:@"\\(.*\\)" options:NSRegularExpressionSearch];
                 shouldReselect = (range.location != NSNotFound);
             }
         }
@@ -411,12 +430,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [outMenu insertItem:selectAllMenuItem atIndex:(pasteIndex + 1)];
         }
     }
-    if (((utilityMenu) || (ASSubMenu)) &&
+    if ((utilityMenu || ASSubMenu) &&
         ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem) &&
         ([outMenu indexOfItemWithTag:k_scriptMenuTag] == k_noMenuItem)) {
         [outMenu addItem:[NSMenuItem separatorItem]];
     }
-    if ((utilityMenu) && ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem)) {
+    if (utilityMenu && ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem)) {
         [utilityMenuItem setTag:k_utilityMenuTag];
         [utilityMenuItem setSubmenu:utilityMenu];
         [outMenu addItem:utilityMenuItem];
@@ -428,15 +447,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_inlineContextualScriptMenu]) {
-            NSUInteger i, count = [ASSubMenu numberOfItems];
-            NSMenuItem *addItem = nil;
-
-            for (i = 0; i < 2; i++) { // セパレータをふたつ追加
+            for (NSUInteger i = 0; i < 2; i++) { // セパレータをふたつ追加
                 [outMenu addItem:[NSMenuItem separatorItem]];
                 [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:k_scriptMenuTag];
             }
-            for (i = 0; i < count; i++) {
-                addItem = [(NSMenuItem *)[ASSubMenu itemAtIndex:i] copy];
+            NSMenuItem *addItem = nil;
+            for (NSMenuItem *item in [ASSubMenu itemArray]) {
+                addItem = [item copy];
                 [addItem setTag:k_scriptMenuTag];
                 [outMenu addItem:addItem];
             }
@@ -447,6 +464,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [outMenu addItem:ASMenuItem];
         }
     }
+    
+    if ([CEGlyphPopoverController isSingleCharacter:[[self string] substringWithRange:[self selectedRange]]]) {
+        [outMenu insertItemWithTitle:NSLocalizedString(@"Inspect Glyph", nil)
+                              action:@selector(showSelectionInfo:)
+                       keyEquivalent:@""
+                             atIndex:1];
+    }
+    
     return outMenu;
 }
 
@@ -503,14 +528,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
     NSCharacterSet *charSet = [(CESubSplitView *)[self delegate] completionsFirstLetterSet];
-    NSInteger i, begin = range.location;
+    NSInteger begin = range.location;
 
-    if (charSet == nil) { return range; }
+    if (!charSet || [string length] == 0) { return range; }
 
     // 入力補完文字列の先頭となりえない文字が出てくるまで補完文字列対象を広げる
-    for (i = range.location; i >= 0; i--) {
-        unichar theChar = [[string substringWithRange:NSMakeRange(i, 1)] characterAtIndex:0];
-        if ([charSet characterIsMember:theChar]) {
+    for (NSInteger i = range.location; i >= 0; i--) {
+        if ([charSet characterIsMember:[string characterAtIndex:i]]) {
             begin = i;
         } else {
             break;
@@ -809,10 +833,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
-        NSColor *insertionPointColor = [self insertionPointColor];
-        for (id item in fileDropArray) {
+        for (NSDictionary *item in fileDropArray) {
             NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            NSArray *extensions = [[item valueForKey:k_key_fileDropExtensions] componentsSeparatedByString:@", "];
+            NSArray *extensions = [item[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
             if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
                 NSString *string = [self string];
                 NSUInteger length = [string length];
@@ -825,8 +848,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                fractionOfDistanceThroughGlyph:&partialFraction];
                     NSPoint glypthIndexPoint;
                     NSRect lineRect, insertionRect;
-                    if ((partialFraction > 0.5) && 
-                            (![[string substringWithRange:NSMakeRange(glyphIndex, 1)] isEqualToString:@"\n"])) {
+                    if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
                             NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
                                                                         inTextContainer:[self textContainer]];
                             glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
@@ -840,7 +862,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         // 古い自前挿入ポイントが描かれたままになることへの対応
                         [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
                     }
-                    [insertionPointColor set];
+                    [[self insertionPointColor] set];
                     [self lockFocus];
                     NSFrameRectWithWidth(insertionRect, 1.0);
                     [self unlockFocus];
@@ -914,7 +936,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setIsReadingFromPboard:YES];
 
     // ペーストされたか、他からテキストがドロップされた
-    if ((![self isSelfDrop]) && ([type isEqualToString:NSStringPboardType])) {
+    if (![self isSelfDrop] && [type isEqualToString:NSStringPboardType]) {
         // ペースト、他からのドロップによる編集で改行コードをLFに統一する
         // （その他の編集は、下記の通りの別の場所で置換している）
         // # テキスト編集時の改行コードの置換場所
@@ -950,29 +972,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
         NSMutableString *relativePath = [NSMutableString string];
         NSMutableString *newStr = [NSMutableString string];
-        NSInteger i, xtsnCount;
-        NSInteger fileArrayCount = (NSInteger)[fileDropArray count];
 
         for (NSURL *absoluteURL in files) {
             selectedRange = [self selectedRange];
-            for (xtsnCount = 0; xtsnCount < fileArrayCount; xtsnCount++) {
-                NSArray *extensions = [[fileDropArray[xtsnCount] valueForKey:k_key_fileDropExtensions]
-                                       componentsSeparatedByString:@", "];
+            for (NSDictionary *itemDict in fileDropArray) {
+                NSArray *extensions = [itemDict[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
                 pathExtension = [absoluteURL pathExtension];
                 pathExtensionLower = [pathExtension lowercaseString];
                 pathExtensionUpper = [pathExtension uppercaseString];
-
-                if (([extensions containsObject:pathExtensionLower]) 
-                        || ([extensions containsObject:pathExtensionUpper])) {
-
-                    [newStr setString:[fileDropArray[xtsnCount] 
-                                valueForKey:k_key_fileDropFormatString]];
+                
+                if ([extensions containsObject:pathExtensionLower] ||
+                    [extensions containsObject:pathExtensionUpper])
+                {
+                    [newStr setString:itemDict[k_key_fileDropFormatString]];
                 } else {
                     continue;
                 }
             }
             if ([newStr length] > 0) {
-                if ((documentURL != nil) && (![[documentURL path] isEqualToString:[absoluteURL path]])) {
+                if (documentURL && ![[documentURL path] isEqualToString:[absoluteURL path]]) {
                     NSArray *docPathArray = [documentURL pathComponents];
                     NSArray *pathArray = [absoluteURL pathComponents];
                     NSMutableString *tmpStr = [NSMutableString string];
@@ -1023,10 +1041,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 if (imageRep) {
                     // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
                     [newStr replaceOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
-                                            withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsWide]]
+                                            withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsWide]]
                                                options:0 range:NSMakeRange(0, [newStr length])];
                     [newStr replaceOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
-                                            withString:[NSString stringWithFormat:@"%li", (long)[imageRep pixelsHigh]]
+                                            withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsHigh]]
                                                options:0 range:NSMakeRange(0, [newStr length])];
                 }
                 // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
@@ -1039,7 +1057,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
         }
     }
-    if (success == NO) {
+    if (!success) {
         success = [super readSelectionFromPasteboard:pboard type:type];
     }
     [self setIsReadingFromPboard:NO];
@@ -1302,30 +1320,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     } else if ([menuItem action] == @selector(setLineSpacingFromMenu:)) {
         [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue]) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
-        [menuItem setState:([self isAutoTabExpandEnabled] ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
         NSString *title = ([self layoutOrientation] == NSTextLayoutOrientationHorizontal) ? @"Use Vertical Orientation" : @"Use Horizontal Orientation";
         [menuItem setTitle:NSLocalizedString(title, nil)];
+    } else if ([menuItem action] == @selector(showSelectionInfo:)) {
+        NSString *selection = [[self string] substringWithRange:[self selectedRange]];
+        return [CEGlyphPopoverController isSingleCharacter:selection];
     }
 
     return [super validateMenuItem:menuItem];
-}
-
-
-// ------------------------------------------------------
-/// ツールバーアイテムの有効／無効を制御
-- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
-// ------------------------------------------------------
-{
-    if ([theItem action] == @selector(toggleAutoTabExpand:)) {
-        NSString *imageName = [self isAutoTabExpandEnabled] ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
-        [theItem setImage:[NSImage imageNamed:imageName]];
-    }
-    
-    return YES;
 }
 
 
@@ -1401,9 +1406,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (NSMaxRange(lineRange) == 0) { // 空行で実行された場合は何もしない
         return;
     }
-    if ((lineRange.length > 1) &&
-        ([[[self string] substringWithRange:NSMakeRange(NSMaxRange(lineRange) - 1, 1)] isEqualToString:@"\n"]))
-    {
+    if ((lineRange.length > 1) &&  ([[self string] characterAtIndex:NSMaxRange(lineRange) - 1] == '\n')) {
         lineRange.length--; // 末尾の改行分を減ずる
     }
     // シフトするために削除するスペースの長さを得る
@@ -1414,7 +1417,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *lines = [[[self string] substringWithRange:lineRange] componentsSeparatedByString:@"\n"];
     NSMutableString *newLine = [NSMutableString string];
     NSMutableString *tmpLine = [NSMutableString string];
-    NSString *string;
     BOOL spaceDeleted;
     NSUInteger numberOfDeleted = 0, totalDeleted = 0;
     NSInteger newLocation = selectedRange.location, newLength = selectedRange.length;
@@ -1428,14 +1430,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ([tmpLine length] == 0) {
                 break;
             }
-            string = [lines[i] substringWithRange:NSMakeRange(j, 1)];
-            if ([string isEqualToString:@"\t"]) {
+            unichar theChar = [lines[i] characterAtIndex:j];
+            if (theChar == '\t') {
                 if (!spaceDeleted) {
                     [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
                     numberOfDeleted++;
                 }
                 break;
-            } else if ([string isEqualToString:@" "]) {
+            } else if (theChar == ' ') {
                 [tmpLine deleteCharactersInRange:NSMakeRange(0, 1)];
                 numberOfDeleted++;
                 spaceDeleted = YES;
@@ -1475,15 +1477,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 置換実行
     [self doReplaceString:newLine withRange:lineRange
              withSelected:NSMakeRange(newLocation, newLength) withActionName:NSLocalizedString(@"Shift Left", nil)];
-}
-
-
-// ------------------------------------------------------
-/// ソフトタブを有効に
-- (IBAction)toggleAutoTabExpand:(id)sender
-// ------------------------------------------------------
-{
-    [self setIsAutoTabExpandEnabled:![self isAutoTabExpandEnabled]];
 }
 
 
@@ -1786,6 +1779,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue]];
 }
 
+
+// ------------------------------------------------------
+/// グリフ情報をポップオーバーで表示
+- (IBAction)showSelectionInfo:(id)sender
+// ------------------------------------------------------
+{
+    NSRange selectedRange = [self selectedRange];
+    NSString *selectedString = [[self string] substringWithRange:selectedRange];
+    
+    if (![CEGlyphPopoverController isSingleCharacter:selectedString]) {
+        return;
+    }
+    
+    CEGlyphPopoverController *popoverController = [[CEGlyphPopoverController alloc] initWithCharacter:selectedString];
+    
+    NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:selectedRange actualCharacterRange:NULL];
+    NSRect selectedRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
+    NSPoint containerOrigin = [self textContainerOrigin];
+    selectedRect.origin.x += containerOrigin.x;
+    selectedRect.origin.y += containerOrigin.y - 6.0;
+    selectedRect = [self convertRectToLayer:selectedRect];
+    
+    [popoverController showPopoverRelativeToRect:selectedRect ofView:self];
+    [self showFindIndicatorForRange:NSMakeRange(selectedRange.location, 1)];
+}
 
 
 #pragma mark Private Mthods

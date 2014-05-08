@@ -123,9 +123,10 @@
     [[self styleNameField] setEditable:!isDefaultSyntax];
     
     if (isDefaultSyntax) {
+        BOOL isEqual = [[CESyntaxManager sharedManager] isEqualToBundledStyle:[self style] name:styleName];
         [[self styleNameField] setBordered:YES];
-        [[self messageField] setStringValue:NSLocalizedString(@"The default style name cannot be changed.", nil)];
-        [[self factoryDefaultsButton] setEnabled:![[CESyntaxManager sharedManager] isEqualToBundledStyle:styleName]];
+        [[self messageField] setStringValue:NSLocalizedString(@"Name of the bundled style cannot be changed.", nil)];
+        [[self factoryDefaultsButton] setEnabled:!isEqual];
     } else {
         [[self messageField] setStringValue:@""];
         [[self factoryDefaultsButton] setEnabled:NO];
@@ -346,7 +347,7 @@
     NSString *message = nil;
     
     if (([self mode] == CECopySyntaxEdit) || ([self mode] == CENewSyntaxEdit) ||
-        (([self mode] == CESyntaxEdit) && ![styleName isEqualToString:[self originalStyleName]]))
+        (([self mode] == CESyntaxEdit) && ([styleName caseInsensitiveCompare:[self originalStyleName]] != NSOrderedSame)))
     {
         // NSArray を case insensitive に検索するブロック
         __block NSString *duplicatedStyleName;
@@ -394,7 +395,7 @@
         
         NSUInteger lineCount = 1;
         for (NSString *message in errorMessages) {
-            [resultMessage appendFormat:@"%li.  %@\n\n", (long)lineCount, message];
+            [resultMessage appendFormat:@"%tu.  %@\n\n", lineCount, message];
             lineCount++;
         }
     }

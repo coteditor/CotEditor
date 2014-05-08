@@ -357,8 +357,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if (![self printPanelAccessoryController]) {
-        [self setPrintPanelAccessoryController:
-         [[CEPrintPanelAccessoryController alloc] init]];
+        [self setPrintPanelAccessoryController:[[CEPrintPanelAccessoryController alloc] init]];
     }
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     
@@ -366,7 +365,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSSize paperSize = [[self printInfo] paperSize];
     NSRect frame = NSMakeRect(0, 0,
                               paperSize.width  - 2 * (k_printTextHorizontalMargin),
-                              paperSize.height - 2 * (k_printHFVerticalMargin + k_headerFooterLineHeight));
+                              paperSize.height - 2 * (k_printHFVerticalMargin));
     CEPrintView *printView = [[CEPrintView alloc] initWithFrame:frame];
     
     // ドキュメント情報をプリントビューにセット
@@ -1379,7 +1378,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)recoloringAllStringOfDocument:(id)sender
 // ------------------------------------------------------
 {
-    [[self editorView] recoloringAllString];
+    [[self editorView] recolorAllString];
 }
 
 

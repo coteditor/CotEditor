@@ -287,7 +287,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             regex = [OGRegularExpression regularExpressionWithString:dict[k_SCKey_beginString] options:options];
         NS_HANDLER
             // 何もしない
-            NSLog(@"ERROR in \"outlineMenuArrayWithWholeString:\"");
+            NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
             continue;
         NS_ENDHANDLER
 
@@ -321,7 +321,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 for (NSInteger i = 1; i < 10; i++) {
                     matchedIndexString = [match substringAtIndex:i];
                     if (matchedIndexString != nil) {
-                        [pattern replaceOccurrencesOfRegularExpressionString:[NSString stringWithFormat:@"(?<!\\\\)\\$%li", (long)i]
+                        [pattern replaceOccurrencesOfRegularExpressionString:[NSString stringWithFormat:@"(?<!\\\\)\\$%zd", i]
                                                                   withString:matchedIndexString
                                                                      options:0
                                                                        range:NSMakeRange(0, [pattern length])];
@@ -339,7 +339,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
                 //行番号（$LN）置換
                 [pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$LN"
-                                                          withString:[NSString stringWithFormat:@"%lu", (unsigned long)curLine]
+                                                          withString:[NSString stringWithFormat:@"%tu", curLine]
                                                              options:0
                                                                range:NSMakeRange(0, [pattern length])];
             }
@@ -364,7 +364,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // イタリック
             BOOL isItalic = [dict[k_SCKey_italic] boolValue];
             // アンダーライン
-            NSUInteger theUnderlineMask = ([dict[k_SCKey_underline] boolValue]) ?
+            NSUInteger underlineMask = ([dict[k_SCKey_underline] boolValue]) ?
                     (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
             // 辞書生成
             matchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:matchRange],
@@ -372,15 +372,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                           k_outlineMenuItemSortKey: @(matchRange.location),
                           k_outlineMenuItemFontBold: @(isBold),
                           k_outlineMenuItemFontItalic: @(isItalic),
-                          k_outlineMenuItemUnderlineMask: @(theUnderlineMask)};
+                          k_outlineMenuItemUnderlineMask: @(underlineMask)};
             [outlineMenuDicts addObject:matchDict];
         }
     }
     if ([outlineMenuDicts count] > 0) {
-        NSSortDescriptor *theDescriptor = [[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey
-                                                                      ascending:YES
-                                                                       selector:@selector(compare:)];
-        [outlineMenuDicts sortUsingDescriptors:@[theDescriptor]];
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey
+                                                                   ascending:YES
+                                                                    selector:@selector(compare:)];
+        [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
         // ソート後に、冒頭のアイテムを追加
         [outlineMenuDicts insertObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)],
                                          k_outlineMenuItemTitle: NSLocalizedString(@"<Outline Menu>",@""),
@@ -421,11 +421,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSMutableString *)charString
 // ------------------------------------------------------
 {
-    NSArray *array = [self rangesSimpleWordsArrayDict:wordsDict withCharString:charString];
-    NSRange range;
+    NSArray *ranges = [self rangesSimpleWordsArrayDict:wordsDict withCharString:charString];
 
-    for (NSValue *value in array) {
-        range = [value rangeValue];
+    for (NSValue *value in ranges) {
+        NSRange range = [value rangeValue];
         range.location += [self updateRange].location;
 
         if ([self isPrinting]) {
@@ -476,7 +475,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     NS_HANDLER
         // 何もしない
-        NSLog(@"ERROR in \"rangesSimpleWordsArrayDict:withCharString:\"");
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
         return nil;
     NS_ENDHANDLER
 
@@ -588,7 +587,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         matchArray = [enumerator allObjects];
     NS_HANDLER
         // 何もしない
-        NSLog(@"ERROR in \"rangesRegularExpressionString:withIgnoreCase:doColoring:pairStringKind:\"");
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
         return nil;
     NS_ENDHANDLER
 
@@ -643,7 +642,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         matchArray = [enumerator allObjects];
     NS_HANDLER
         // 何もしない
-        NSLog(@"ERROR in \"rangesRegularExpressionBeginString:withEndString:withIgnoreCase:doColoring:pairStringKind:\" first NS_DURING");
+        NSLog(@"ERROR in \"%s\" first NS_DURING", __PRETTY_FUNCTION__);
         return nil;
     NS_ENDHANDLER
 
@@ -664,7 +663,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                 capture:0 error:NULL];
         NS_HANDLER
             // 何もしない
-            NSLog(@"ERROR in \"rangesRegularExpressionBeginString:withEndString:withIgnoreCase:doColoring:pairStringKind:\" second NS_DURING");
+            NSLog(@"ERROR in \"%s\" second NS_DURING", __PRETTY_FUNCTION__);
             return nil;
         NS_ENDHANDLER
 
@@ -779,8 +778,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // カラーリング対象がなければ、もどる
     if ([posArray count] < 1) { return; }
-    NSSortDescriptor *theDescriptor = [[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES];
-    [posArray sortUsingDescriptors:@[theDescriptor]];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES];
+    [posArray sortUsingDescriptors:@[descriptor]];
     coloringCount = [posArray count];
 
     QCKind = k_notUseKind;
@@ -868,17 +867,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSUInteger)numberOfEscapeSequenceInString:(NSString *)string
 // ------------------------------------------------------
 {
-    NSUInteger numberOfEscapeSequence = 0, length = [string length];
-    NSInteger i;
+    NSUInteger count = 0;
 
-    for (i = (length - 1); i >= 0; i--) {
+    for (NSInteger i = [string length] - 1; i >= 0; i--) {
         if ([string characterAtIndex:i] == '\\') {
-            numberOfEscapeSequence++;
+            count++;
         } else {
             break;
         }
     }
-    return numberOfEscapeSequence;
+    return count;
 }
 
 
@@ -1145,7 +1143,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setOtherInvisibleCharsAttrs];
     NS_HANDLER
         // 何もしない
-        NSLog(@"ERROR in \"doColoring\"");
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
     NS_ENDHANDLER
 
     // インジーケータシートを片づける

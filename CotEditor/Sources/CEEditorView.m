@@ -538,7 +538,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self splitView] setSyntaxStyleNameToSyntax:name];
         [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
         if (recolorNow) {
-            [self recoloringAllString];
+            [self recolorAllString];
             if ([self showNavigationBar]) {
                 [[self splitView] updateAllOutlineMenu];
             }
@@ -549,7 +549,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 全テキストを再カラーリング
-- (void)recoloringAllString
+- (void)recolorAllString
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
@@ -608,8 +608,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *singleCharInfo = nil;
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [theString length];
+    NSUInteger numberOfSelectedLines = 0;
     NSUInteger lineStart = 0, column = 0, index = 0;
     NSUInteger numberOfSelectedWords = 0, numberOfWords = 0;
+    BOOL isSelected = (selectedRange.length > 0);
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
     if ([[self textView] hasMarkedText]) {
@@ -627,9 +629,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         numberOfWords = [spellChecker countWordsInString:theString language:nil];
-        if (selectedRange.length > 0) {
-            numberOfSelectedWords = [spellChecker countWordsInString:[theString substringWithRange:selectedRange]
-                                                                                          language:nil];
+        if (isSelected) {
+            NSString *selectedString = [theString substringWithRange:selectedRange];
+            numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
+            numberOfSelectedWords = [spellChecker countWordsInString:selectedString language:nil];
         }
         
         // 改行コードをカウントしない場合は再計算
@@ -644,6 +647,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (shouldUpdateStatusBar) {
         [[self statusBar] setLinesInfo:numberOfLines];
+        [[self statusBar] setSelectedLinesInfo:numberOfSelectedLines];
         [[self statusBar] setCharsInfo:length];
         [[self statusBar] setSelectedCharsInfo:selectedRange.length];
         [[self statusBar] setWordsInfo:numberOfWords];
@@ -656,32 +660,49 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldUpdateDrawer) {
         NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo, *byteLengthInfo;
         
+        if (selectedRange.length == 2) {
+            unichar firstChar = [theString characterAtIndex:selectedRange.location];
+            unichar secondChar = [theString characterAtIndex:selectedRange.location + 1];
+            if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
+                UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
+                singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
+            }
+        }
         if (selectedRange.length == 1) {
             unichar character = [theString characterAtIndex:selectedRange.location];
-            singleCharInfo = [NSString stringWithFormat:@"0x%.4X", character];
+            singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
         }
         NSUInteger byteLength = [theString lengthOfBytesUsingEncoding:[[self document] encodingCode]];
         NSUInteger selectedByteLength = [[theString substringWithRange:selectedRange]
                                          lengthOfBytesUsingEncoding:[[self document] encodingCode]];
         
-        linesInfo = [NSString stringWithFormat:@"%ld", (long)numberOfLines];
+        linesInfo = [NSString stringWithFormat:@"%tu", numberOfLines];
+        if (isSelected) {
+            linesInfo = [linesInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedLines];
+        }
         [[self windowController] setLinesInfo:linesInfo];
         
-        charsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)length, (long)selectedRange.length] :
-                                                 [NSString stringWithFormat:@"%ld", (long)length];
+        charsInfo = [NSString stringWithFormat:@"%tu", length];
+        if (isSelected) {
+            charsInfo = [charsInfo stringByAppendingFormat:@" (%tu)", selectedRange.length];
+        }
         [[self windowController] setCharsInfo:charsInfo];
         
-        byteLengthInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)byteLength, (long)selectedByteLength] :
-                                                      [NSString stringWithFormat:@"%ld", (long)byteLength];
+        byteLengthInfo = [NSString stringWithFormat:@"%tu", byteLength];
+        if (isSelected) {
+            byteLengthInfo = [byteLengthInfo stringByAppendingFormat:@" (%tu)", selectedByteLength];
+        }
         [[self windowController] setByteLengthInfo:byteLengthInfo];
         
-        wordsInfo = (selectedRange.length > 0) ? [NSString stringWithFormat:@"%ld (%ld)", (long)numberOfWords, (long)numberOfSelectedWords] :
-                                                 [NSString stringWithFormat:@"%ld", (long)numberOfWords];
+        wordsInfo = [NSString stringWithFormat:@"%tu", numberOfWords];
+        if (isSelected) {
+            wordsInfo = [wordsInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedWords];
+        }
         [[self windowController] setWordsInfo:wordsInfo];
         
-        [[self windowController] setLocationInfo:[NSString stringWithFormat:@"%ld", (long)selectedRange.location]];
-        [[self windowController] setColumnInfo:[NSString stringWithFormat:@"%ld", (long)column]];
-        [[self windowController] setLineInfo:[NSString stringWithFormat:@"%ld", (long)currentLine]];
+        [[self windowController] setLocationInfo:[NSString stringWithFormat:@"%tu", selectedRange.location]];
+        [[self windowController] setColumnInfo:[NSString stringWithFormat:@"%tu", column]];
+        [[self windowController] setLineInfo:[NSString stringWithFormat:@"%tu", currentLine]];
         [[self windowController] setSingleCharInfo:singleCharInfo];
     }
 }
@@ -885,6 +906,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         title = [(CELayoutManager *)[[self textView] layoutManager] showInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         return ([[self document] canActivateShowInvisibleCharsItem]);
+    
+    } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
+        theState = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
     } else if (([menuItem action] == @selector(focusNextSplitTextView:)) || 
             ([menuItem action] == @selector(focusPrevSplitTextView:)) || 
@@ -965,6 +989,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [[self splitView] setShowInvisibles:!showInvisibles];
     [[[self windowController] toolbarController] updateToggleItem:k_showInvisibleCharsItemID setOn:!showInvisibles];
+}
+
+
+// ------------------------------------------------------
+/// ソフトタブの有効／無効をトグルに切り替える
+- (IBAction)toggleAutoTabExpand:(id)sender
+// ------------------------------------------------------
+{
+    BOOL isEnabled = ![[self textView] isAutoTabExpandEnabled];
+    
+    [[self splitView] setAutoTabExpandEnabled:isEnabled];
+    [[[self windowController] toolbarController] updateToggleItem:k_autoTabExpandItemID setOn:isEnabled];
 }
 
 

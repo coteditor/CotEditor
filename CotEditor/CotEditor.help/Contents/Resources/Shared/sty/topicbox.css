@@ -1,11 +1,11 @@
 /*
  * CotEditor Help Style Sheet for topic_box
- * $Id$
  */
+ 
 div.topic_box {
 	padding: 0;
 	min-height: 180px;
-	border: dotted 1px #cccccc;
+	border: dotted 1px #ccc;
 	margin-bottom: 1.5em;
 }
 

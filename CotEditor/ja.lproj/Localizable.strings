@@ -66,7 +66,7 @@ http://www.aynimac.com/
 "Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
 
 
-/* CEEditorViewCore */
+/* CETextViewCore */
 // undo action name
 "Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";
@@ -84,6 +84,7 @@ http://www.aynimac.com/
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
+"Inspect Glyph" = "グリフ情報を表示";
 
 // menu item title
 "Use Vertical Orientation" = "縦書きで表示";
@@ -93,6 +94,12 @@ http://www.aynimac.com/
 "Font" = "フォント";
 "Utility" = "ユーティリティ";
 "Select All" = "すべてを選択";
+
+
+/* CharacterPopover */
+"<a letter consisting of %d characters>" = "<%d字から成る文字>";
+"Emoji Style" = "絵文字スタイル";
+"Text Style" = "テキストスタイル";
 
 
 /* CEEditorView */
@@ -145,7 +152,7 @@ http://www.aynimac.com/
 
 /* CESyntax */
 // Outline Menu title
-"<Outline Menu>" = "< アウトラインメニュー >";
+"<Outline Menu>" = "<アウトラインメニュー>";
 "Coloring print text..." = "プリントテキストのカラーリング中...";
 "Coloring text..." = "テキストのカラーリング中...";
 
@@ -198,7 +205,7 @@ http://www.aynimac.com/
 "Style Name cannot contain “/”. Input another name." = "スタイル名に “/” を含むことはできません。ほかの名前を入力してください。";
 "Style Name cannot begin with “.”. Input another name." = "スタイル名を “.” から始めることはできません。ほかの名前を入力してください。";
 // selected Syntax coloring style name was original
-"The default style name cannot be changed." = "デフォルトのスタイル名は変更できません。";
+"Name of the bundled style cannot be changed." = "バンドルされているスタイルの名前は変更できません。";
 // Suffix of copied syntax coloring style
 " copy" = " コピー";
 // Delete syntax coloring style alert message
@@ -267,8 +274,9 @@ http://www.aynimac.com/
 "Shift lines to right" = "行を右へシフト";
 
 // Expand Tabs
-"Expand Tabs" = "タブを変換";
-"Toggle auto tab expand" = "自動タブ変換を切替";
+"Expand Tabs" = "タブを展開";
+"Toggle Auto Tab Expand" = "自動タブ展開を切替";
+"Toggle auto tab expand" = "自動タブ展開を切替";
 
 // Navigation Bar
 "Navigation Bar" = "ナビゲーションバー";

@@ -47,13 +47,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildAllEncodingMenus;
 
 // Action Message
-- (IBAction)openPreferences:(id)sender;
+- (IBAction)openPrefWindow:(id)sender;
 - (IBAction)openAppleScriptDictionary:(id)sender;
 - (IBAction)openScriptErrorWindow:(id)sender;
 - (IBAction)openHexColorCodeEditor:(id)sender;
 - (IBAction)openOpacityPanel:(id)sender;
 - (IBAction)openLineSpacingPanel:(id)sender;
 - (IBAction)openGoToPanel:(id)sender;
+- (IBAction)openUnicodeInputPanel:(id)sender;
 - (IBAction)newInDockMenu:(id)sender;
 - (IBAction)openInDockMenu:(id)sender;
 - (IBAction)openBundledDocument:(id)sender;

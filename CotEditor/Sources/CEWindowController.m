@@ -165,9 +165,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setModificatedInfo:[[fileAttributes fileModificationDate] description]];
     [self setOwnerInfo:[fileAttributes fileOwnerAccountName]];
     
-    NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON",@"") : nil;
+    NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil;
     [self setFinderLockInfo:finderLockInfo];
-    [self setPermissionInfo:[NSString stringWithFormat:@"%lu", (unsigned long)[fileAttributes filePosixPermissions]]];
+    [self setPermissionInfo:[NSString stringWithFormat:@"%tu", [fileAttributes filePosixPermissions]]];
     [self setFileSizeInfo:@([fileAttributes fileSize])];
 }
 

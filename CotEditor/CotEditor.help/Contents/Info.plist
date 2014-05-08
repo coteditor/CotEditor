@@ -17,7 +17,7 @@
 	<key>CFBundleSignature</key>
 	<string>CEHb</string>
 	<key>CFBundleVersion</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>CFBundleHelpTOCFile</key>
 	<string>CotEditorHelp.html</string>
 	<key>HPDBookAccessPath</key>
@@ -25,7 +25,7 @@
 	<key>HPDBookIconPath</key>
 	<string>../Shared/gfx/icon32.png</string>
 	<key>HPDBookIndexPath</key>
-	<string>CotEditorHelp.helpindex</string>
+	<string>CotEditor.helpindex</string>
 	<key>HPDBookTitle</key>
 	<string>CotEditor Help</string>
 	<key>HPDBookType</key>

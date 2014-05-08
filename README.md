@@ -5,6 +5,8 @@ CotEditor is a lightweight plain-text editor for OS X.
 
 __Distribution Site__ : <http://coteditor.github.io>
 
+![screenshot](http://coteditor.github.io/img/screenshot.png)
+
 
 
 About Source Code
@@ -21,29 +23,10 @@ This project uses ARC currently.
 
 
 ### License
+
+Copyright © 2005-2009 nakamuxu, Copyright © 2011, 2014 usami-k
+, Copyright © 2014 1024jp. All rights reserved.
+
 The source code is distributed under the terms of the GNU General Public License. See the bundled "LICENSE" for details.
 
-
-### Copyrights
-#### CotEditor
-- Copyright © 2005-2009 nakamuxu
-- Copyright © 2011, 2014 usami-k
-- Copyright © 2014 1024jp
-
-#### OgreKit <http://sonoisa.github.io/ogrekit/>
-Copyright © 2003-2010 Isao Sonobe. All rights reserved.
-
-#### Onigmo (Oniguruma-mod) <https://github.com/k-takata/Onigmo>
-Copyright © 2011-2013  K.Takata. All rights reserved. 
-
-#### Oniguruma <http://www.geocities.jp/kosako3/oniguruma/>
-Copyright © 2002-2007  K.Kosako. All rights reserved.
-
-#### UKXattrMetadataStore <http://www.zathras.de/angelweb/sourcecode.htm>
-Copyright © 2003 M. Uli Kusterer. All rights reserved.
-
-#### FJDDetectEncoding <http://blogs.dion.ne.jp/fujidana/archives/4169016.html>
-Copyright © 2006 FUJIDANA. All rights reserved.
-
-#### RegexKitLite <http://regexkit.sourceforge.net/RegexKitLite/>
-Copyright © 2008-2010 John Engelhart. All rights reserved.
+For frameworks and other external codes that CotEditor uses, see each individual file for their respective license.

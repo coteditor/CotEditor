@@ -59,7 +59,7 @@ extern NSString *const CESyntaxListDidUpdateNotification;
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)emptyStyle;
 - (BOOL)isBundledStyle:(NSString *)styleName;  // check only the name
-- (BOOL)isEqualToBundledStyle:(NSString *)styleName;  // check also the content
+- (BOOL)isEqualToBundledStyle:(NSDictionary *)style name:(NSString *)styleName;
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName;
 - (BOOL)importStyleFromURL:(NSURL *)fileURL;
 - (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;

@@ -62,7 +62,7 @@
 - (BOOL)isSeparator
 // ------------------------------------------------------
 {
-    return [[self objectValue] isEqualTo:CESeparatorString];
+    return [[[self attributedStringValue] string] isEqualTo:CESeparatorString];
 }
 
 @end

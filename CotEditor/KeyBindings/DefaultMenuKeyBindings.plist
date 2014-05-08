@@ -102,5 +102,7 @@
 	<string>selectPrevItemOfOutlineMenu:</string>
 	<key>~@</key>
 	<string>selectNextItemOfOutlineMenu:</string>
+	<key>~@i</key>
+	<string>showSelectionInfo:</string>
 </dict>
 </plist>

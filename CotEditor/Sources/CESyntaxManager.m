@@ -54,6 +54,14 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
 
 
 
+@interface CESyntaxManager (Migration)
+
+- (void)migrateDuplicatedDefaultColoringStylesInUserDomain;
+
+@end
+
+
+
 
 #pragma mark -
 
@@ -163,12 +171,9 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
                     [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
                 }
                 
-                NSArray *theArray;
                 NSUInteger count = 0;
-
                 for (NSString *key in syntaxDictKeys) {
-                    theArray = styleToReturn[key];
-                    count += [theArray count];
+                    count += [(NSArray *)styleToReturn[key] count];
                 }
                 styleToReturn[k_SCKey_numOfObjInArray] = @(count);
                 
@@ -200,30 +205,17 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
 
 
 // ------------------------------------------------------
-/// あるスタイルネームがデフォルトで用意されているものと同じかどうかを返す
-- (BOOL)isEqualToBundledStyle:(NSString *)styleName
+/// スタイルがバンドル版スタイルと同じ内容かどうかを返す
+- (BOOL)isEqualToBundledStyle:(NSDictionary *)style name:(NSString *)styleName
 // ------------------------------------------------------
 {
-    if ([styleName isEqualToString:@""]) { return NO; }
+    if (![self isBundledStyle:styleName]) { return NO; }
     
-    NSURL *destURL = [self URLForUserStyle:styleName];
-    NSURL *sourceURL = [self URLForBundledStyle:styleName];
+    // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
+    NSArray *keys = [[self emptyStyle] allKeys];
+    NSDictionary *bundledStyle = [[self bundledStyleWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
     
-    if (![sourceURL checkResourceIsReachableAndReturnError:nil] ||
-        ![destURL checkResourceIsReachableAndReturnError:nil])
-    {
-        return NO;
-    }
-    
-    // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
-    // ため、同じではない。ファイル同士を比較する。2008.05.06.
-    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
-    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
-    
-    return [sourcePList isEqualToDictionary:destPList];
-    
-    // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
-    //    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
+    return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
 }
 
 
@@ -371,7 +363,7 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
     }
     NSMutableString *copiedStyleName = [copyString mutableCopy];
     while ([[self styleNames] containsObject:copiedStyleName]) {
-        [copiedStyleName setString:[NSString stringWithFormat:@"%@ %li", copyString, (long)i]];
+        [copiedStyleName setString:[NSString stringWithFormat:@"%@ %tu", copyString, i]];
         i++;
     }
     return copiedStyleName;
@@ -701,6 +693,14 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
              URLByAppendingPathComponent:@"CotEditor/SyntaxColorings"];
 }
 
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CESyntaxManager (Migration)
 
 //------------------------------------------------------
 /// ユーザ領域にあるバンドル版と重複したstyleデータファイルを隔離
@@ -718,7 +718,7 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     
     for (NSString *styleName in [self bundledStyleNames]) {
-        if ([self isEqualToBundledStyle:styleName]) {
+        if ([self existsDuplicatedStyleInUserDomain:styleName]) {
             [fileManager createDirectoryAtURL:migrationDirURL withIntermediateDirectories:YES attributes:nil error:nil];
             
             NSURL *URL = [self URLForUserStyle:styleName];
@@ -730,6 +730,34 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
             [fileManager moveItemAtURL:URL toURL:migrationURL error:nil];
         }
     }
+}
+
+
+// ------------------------------------------------------
+/// バンドル版と全く同じ定義のファイルがユーザ領域にあるかどうかを返す
+- (BOOL)existsDuplicatedStyleInUserDomain:(NSString *)styleName
+// ------------------------------------------------------
+{
+    if ([styleName isEqualToString:@""]) { return NO; }
+    
+    NSURL *destURL = [self URLForUserStyle:styleName];
+    NSURL *sourceURL = [self URLForBundledStyle:styleName];
+    
+    if (![sourceURL checkResourceIsReachableAndReturnError:nil] ||
+        ![destURL checkResourceIsReachableAndReturnError:nil])
+    {
+        return NO;
+    }
+    
+    // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
+    // ため、同じではない。ファイル同士を比較する。2008.05.06.
+    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
+    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
+    
+    return [sourcePList isEqualToDictionary:destPList];
+    
+    // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
+    //    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
 }
 
 @end

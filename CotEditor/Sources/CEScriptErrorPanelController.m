@@ -36,6 +36,7 @@
 @interface CEScriptErrorPanelController ()
 
 @property (nonatomic, strong) IBOutlet NSTextView *textView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic) IBOutlet NSTextFinder *textFinder;
 
 @end
 
@@ -53,18 +54,16 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"ScriptErrorPanel"];
-    
-    return self;
+    return [super initWithWindowNibName:@"ScriptErrorPanel"];
 }
 
 
 // ------------------------------------------------------
-/// Scriptエラーログを追加する
-- (void)awakeFromNib
+/// ウインドウをロードした直後
+- (void)windowDidLoad
 // ------------------------------------------------------
 {
-    [[self textView] setFont:[NSFont messageFontOfSize:10]];
+    [[self textView] setFont:[NSFont messageFontOfSize:11]];
 }
 
 
@@ -72,13 +71,13 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// Scriptエラーログを追加する
+/// Scriptエラーログを追加
 - (void)addErrorString:(NSString *)string
 // ------------------------------------------------------
 {
     [[self textView] setEditable:YES];
     [[self textView] setSelectedRange:NSMakeRange([[[self textView] string] length], 0)];
-    [[self textView] insertText:string];
+    [[self textView] insertText:[NSString stringWithFormat:@"%@\n", string]];
     [[self textView] setEditable:NO];
 }
 
@@ -92,6 +91,44 @@
 // ------------------------------------------------------
 {
     [[self textView] setString:@""];
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEScriptErrorView
+
+// ------------------------------------------------------
+/// ショートカットキーを捕まえる
+- (BOOL)performKeyEquivalent:(NSEvent *)theEvent
+// ------------------------------------------------------
+{
+    // 通常の検索メニューが OgreKit によって書き換えられているので、自力でショートカットキーを捕まえる必要がある
+    NSTextFinder *textFinder = [(CEScriptErrorPanelController *)[[self window] windowController] textFinder];
+    
+    if ([[theEvent characters] isEqualToString:@"f"]) {
+        [textFinder performAction:NSTextFinderActionShowFindInterface];
+        return YES;
+        
+    } else if ([[theEvent characters] isEqualToString:@"g"] && [theEvent modifierFlags] & NSShiftKeyMask) {
+        [textFinder performAction:NSTextFinderActionPreviousMatch];
+        return YES;
+        
+    } else if ([[theEvent characters] isEqualToString:@"g"]) {
+        [textFinder performAction:NSTextFinderActionNextMatch];
+        return YES;
+        
+    } else if ([[theEvent characters] isEqualToString:@"e"]) {
+        [textFinder performAction:NSTextFinderActionSetSearchString];
+        return YES;
+        
+    }
+    
+    return NO;
 }
 
 @end

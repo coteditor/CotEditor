@@ -126,6 +126,7 @@ extern NSString *const k_key_setPrintFont;
 extern NSString *const k_key_printFontName;
 extern NSString *const k_key_printFontSize;
 extern NSString *const k_key_enableSmartQuotes;
+extern NSString *const k_key_enableSmartIndent;
 
 // print settings
 extern NSString *const k_key_printHeader;
@@ -174,7 +175,6 @@ extern NSString *const k_key_showColoringIndicatorTextLength;
 extern NSString *const k_key_runAppleScriptInLaunching;
 extern NSString *const k_key_showAlertForNotWritable;
 extern NSString *const k_key_notifyEditByAnother;
-extern NSString *const k_key_smartIndentStartChars;
 
 
 
@@ -388,20 +388,6 @@ extern NSString *const k_convertedChar;
 
 
 
-#pragma mark CEColorCodePanelController
-
-// ------------------------------------------------------
-// CEColorCodePanelController
-// ------------------------------------------------------
-
-extern NSInteger const k_exportForeColorButtonTag;
-extern NSInteger const k_exportBGColorButtonTag;
-extern NSInteger const k_addCodeToForeButtonTag;
-extern NSInteger const k_addCodeToBackButtonTag;
-extern NSString *const k_ColorCodeDataControllerKey;
-
-
-
 #pragma mark Preferences
 
 // ------------------------------------------------------
@@ -508,5 +494,3 @@ extern NSUInteger const k_size_of_readableKeyStringsList;
 
 extern unichar    const k_noPrintableKeyList[];
 extern NSUInteger const k_size_of_noPrintableKeyList;
-
-extern unichar const k_braceCharList[];

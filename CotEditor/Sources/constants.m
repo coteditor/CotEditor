@@ -128,6 +128,7 @@ NSString *const k_key_setPrintFont = @"setPrintFont";
 NSString *const k_key_printFontName = @"printFontName";
 NSString *const k_key_printFontSize = @"printFontSize";
 NSString *const k_key_enableSmartQuotes = @"enableSmartQuotes";
+NSString *const k_key_enableSmartIndent = @"enableSmartIndent";
 
 // print settings
 NSString *const k_key_printHeader = @"printHeader";
@@ -176,7 +177,6 @@ NSString *const k_key_showColoringIndicatorTextLength = @"showColoringIndicatorT
 NSString *const k_key_runAppleScriptInLaunching = @"runAppleScriptInLaunching";
 NSString *const k_key_showAlertForNotWritable = @"showAlertForNotWritable";
 NSString *const k_key_notifyEditByAnother = @"notifyEditByAnother";
-NSString *const k_key_smartIndentStartChars = @"smartIndentStartChars";
 
 
 
@@ -219,7 +219,7 @@ NSUInteger const k_notUseStartEnd = 0;
 NSUInteger const k_QC_Start = 1;
 NSUInteger const k_QC_End = 2;
 NSString  *const k_QCStrLength = @"QCStrLength";
-NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 // syntax coloring range buffer (in CEEditorView)
 NSUInteger const k_coloringRangeBufferLength = 50000;  // number of characters
@@ -411,20 +411,6 @@ NSString *const k_convertedChar = @"convertedChar";
 
 
 
-#pragma mark CEColorCodePanelController
-
-// ------------------------------------------------------
-// CEColorCodePanelController
-// ------------------------------------------------------
-
-NSInteger const k_exportForeColorButtonTag = 1000;
-NSInteger const k_exportBGColorButtonTag = 2000;
-NSInteger const k_addCodeToForeButtonTag = 1001;
-NSInteger const k_addCodeToBackButtonTag = 2001;
-NSString *const k_ColorCodeDataControllerKey = @"codeString";
-
-
-
 #pragma mark Preferences
 
 // ------------------------------------------------------
@@ -523,8 +509,6 @@ CFStringEncodings const k_CFStringEncodingList[] = {
     
     kCFStringEncodingShiftJIS, // Japanese (Shift JIS)
     kCFStringEncodingEUC_JP, // Japanese (EUC)
-    kCFStringEncodingInvalidId, // ----------
-    
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
     kCFStringEncodingShiftJIS_X0213, // Japanese (Shift JIS X0213)
     kCFStringEncodingMacJapanese, // Japanese (Mac OS)
@@ -667,5 +651,3 @@ unichar const k_noPrintableKeyList[] = {
     '\033', // = Escape
 };
 NSUInteger const k_size_of_noPrintableKeyList = sizeof(k_noPrintableKeyList) / sizeof(unichar);
-
-unichar const k_braceCharList[] = {0x0028, 0x005B, 0x007B, 0x003C}; // == ([{<

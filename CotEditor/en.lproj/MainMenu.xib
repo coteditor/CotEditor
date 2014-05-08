@@ -34,7 +34,7 @@
                             </menuItem>
                             <menuItem title="Preferences…" keyEquivalent="," id="129">
                                 <connections>
-                                    <action selector="openPreferences:" target="290" id="rSD-cP-wdk"/>
+                                    <action selector="openPrefWindow:" target="290" id="6u3-7x-oXn"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">
@@ -199,14 +199,20 @@
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Input BackSlash" tag="209" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
+                            <menuItem title="Input Backslash" tag="209" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
                                 <connections>
                                     <action selector="inputBackSlash:" target="-1" id="635"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Input YenMark" keyEquivalent="y" id="633">
+                            <menuItem title="Input Yen Mark" keyEquivalent="y" id="633">
                                 <connections>
                                     <action selector="inputYenMark:" target="-1" id="634"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Input Char in Unicode Hex…" id="tWx-pj-3PL">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openUnicodeInputPanel:" target="290" id="S5h-bp-QnD"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="660">
@@ -223,12 +229,12 @@
                                         <menuItem isSeparatorItem="YES" id="664">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="with &quot;charset=&quot;" id="665">
+                                        <menuItem title="with “charset=”" id="665">
                                             <connections>
                                                 <action selector="insertIANACharSetNameWithCharset:" target="-1" id="668"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="with &quot;encoding=&quot;" id="667">
+                                        <menuItem title="with “encoding=”" id="667">
                                             <connections>
                                                 <action selector="insertIANACharSetNameWithEncoding:" target="-1" id="669"/>
                                             </connections>
@@ -239,6 +245,13 @@
                             <menuItem isSeparatorItem="YES" id="174">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Inspect Glyph" keyEquivalent="i" id="ToR-yH-ahH">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showSelectionInfo:" target="-1" id="W48-su-Cpd"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="vE9-qd-dp1"/>
                             <menuItem title="Spelling" id="184">
                                 <menu key="submenu" title="Spelling" id="185">
                                     <items>
@@ -816,16 +829,16 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                            <menuItem title="CotEditor Web Site" id="g34-YV-E6o">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openWebSite:" target="290" id="04s-Jk-LhF"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Report Bug…" id="Bk3-xx-uft">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="reportBug:" target="290" id="KOP-ne-blB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="CotEditor Web Site" id="g34-YV-E6o">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openWebSite:" target="290" id="04s-Jk-LhF"/>
                                 </connections>
                             </menuItem>
                         </items>
