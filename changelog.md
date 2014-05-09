@@ -7,6 +7,7 @@ changelog
 
 ### mod
 - いくつかの設定やメニュー項目のラベル表記を変更（thanks to zom-san）
+- ドキュメントを更新
 
 
 ### fix
