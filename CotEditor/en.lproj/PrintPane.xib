@@ -45,12 +45,12 @@
                         <constraint firstAttribute="width" constant="220" id="76s-Ny-Xgv"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="KIj-uM-yBR"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3387">
+                    <popUpButtonCell key="cell" type="push" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1353" id="3387">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="1352">
                             <items>
-                                <menuItem title="Black text" id="1353">
+                                <menuItem title="Black and White" state="on" id="1353">
                                     <attributedString key="attributedTitle"/>
                                 </menuItem>
                                 <menuItem title="Same as document's setting" id="1354"/>
@@ -64,14 +64,14 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="950">
                     <rect key="frame" x="138" y="292" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3383">
+                    <popUpButtonCell key="cell" type="push" title="Print All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="954" id="3383">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="951">
                             <items>
-                                <menuItem title="(No Print)" id="952"/>
+                                <menuItem title="Don't Print" id="952"/>
                                 <menuItem title="Same as document's setting" id="953"/>
-                                <menuItem title="Print All" id="954"/>
+                                <menuItem title="Print All" state="on" id="954"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -91,12 +91,12 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="944">
                     <rect key="frame" x="138" y="325" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3381">
+                    <popUpButtonCell key="cell" type="push" title="Don't Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="946" id="3381">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="945">
                             <items>
-                                <menuItem title="(No Print)" id="946"/>
+                                <menuItem title="Don't Print" state="on" id="946"/>
                                 <menuItem title="Same as document's setting" id="947"/>
                                 <menuItem title="Print" id="948"/>
                             </items>
@@ -188,17 +188,17 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="YJo-is-zIW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="uuc-7D-Iot" id="3370">
+                    <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="896" id="3370">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="892">
                             <items>
-                                <menuItem title="(No Print)" id="895"/>
+                                <menuItem title="None" id="895"/>
                                 <menuItem isSeparatorItem="YES" id="894">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" state="on" tag="1" id="uuc-7D-Iot"/>
-                                <menuItem title="Document Name" tag="2" id="896"/>
+                                <menuItem title="Syntax Name" tag="1" id="uuc-7D-Iot"/>
+                                <menuItem title="Document Name" state="on" tag="2" id="896"/>
                                 <menuItem title="File Path" tag="3" id="897"/>
                                 <menuItem title="Print Date" tag="4" id="898"/>
                                 <menuItem title="Page Number" tag="5" id="893"/>
@@ -253,19 +253,19 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="900">
                     <rect key="frame" x="138" y="195" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3372">
+                    <popUpButtonCell key="cell" type="push" title="Print Date" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="904" id="3372">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="901">
                             <items>
-                                <menuItem title="(No Print)" id="906"/>
+                                <menuItem title="None" id="906"/>
                                 <menuItem isSeparatorItem="YES" id="907">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
                                 <menuItem title="Syntax Name" tag="1" id="plk-U5-NGA"/>
                                 <menuItem title="Document Name" tag="2" id="902"/>
                                 <menuItem title="File Path" tag="3" id="903"/>
-                                <menuItem title="Print Date" tag="4" id="904"/>
+                                <menuItem title="Print Date" state="on" tag="4" id="904"/>
                                 <menuItem title="Page Number" tag="5" id="905"/>
                             </items>
                         </menu>
@@ -318,12 +318,12 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="934">
                     <rect key="frame" x="138" y="103" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3378">
+                    <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="940" id="3378">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="935">
                             <items>
-                                <menuItem title="(No Print)" id="941"/>
+                                <menuItem title="None" id="941"/>
                                 <menuItem isSeparatorItem="YES" id="936">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
@@ -331,7 +331,7 @@
                                 <menuItem title="Document Name" tag="2" id="937"/>
                                 <menuItem title="File Path" tag="3" id="938"/>
                                 <menuItem title="Print Date" tag="4" id="939"/>
-                                <menuItem title="Page Number" tag="5" id="940"/>
+                                <menuItem title="Page Number" state="on" tag="5" id="940"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -343,16 +343,16 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="925">
                     <rect key="frame" x="138" y="72" width="225" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ckJ-Cw-ccE" id="3376">
+                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="3376">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="926">
                             <items>
-                                <menuItem title="(No Print)" id="927"/>
+                                <menuItem title="None" state="on" id="927"/>
                                 <menuItem isSeparatorItem="YES" id="928">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" state="on" tag="1" id="ckJ-Cw-ccE"/>
+                                <menuItem title="Syntax Name" tag="1" id="ckJ-Cw-ccE"/>
                                 <menuItem title="Document Name" tag="2" id="929"/>
                                 <menuItem title="File Path" tag="3" id="930"/>
                                 <menuItem title="Print Date" tag="4" id="931"/>

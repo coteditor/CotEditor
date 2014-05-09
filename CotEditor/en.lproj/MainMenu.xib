@@ -365,7 +365,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Set Window Opacity…" keyEquivalent="T" id="367">
+                            <menuItem title="Set View's Opacity…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="openOpacityPanel:" target="290" id="fLb-68-BsZ"/>
                                 </connections>
