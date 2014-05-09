@@ -86,6 +86,8 @@
 	<string>inputBackSlash:</string>
 	<key>^@h</key>
 	<string>editColorCode:</string>
+	<key>^@f</key>
+	<string>toggleFullScreen:</string>
 	<key>^~@</key>
 	<string>focusPrevSplitTextView:</string>
 	<key>^~@</key>
