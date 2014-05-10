@@ -59,8 +59,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // readonly
-@property (nonatomic, copy, readwrite) NSArray *completeWordsArray;
-@property (nonatomic, copy, readwrite) NSCharacterSet *completeFirstLetterSet;
+@property (nonatomic, copy, readwrite) NSArray *completionWords;
+@property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
 
 @end
 
@@ -113,7 +113,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([names containsObject:styleName] || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
         [self setColoringDictionary:[manager styleWithStyleName:styleName]];
 
-        [self setCompleteWordsArrayFromColoringDictionary];
+        [self setCompletionWordsFromColoringDictionary];
 
         _syntaxStyleName = styleName;
     }
@@ -136,68 +136,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 保持しているカラーリング辞書から補完文字列配列を生成
-- (void)setCompleteWordsArrayFromColoringDictionary
-// ------------------------------------------------------
-{
-    if ([self coloringDictionary] == nil) { return; }
-
-    NSMutableArray *tmpArray = [NSMutableArray array];
-    NSArray *completeArray = [self coloringDictionary][k_SCKey_completionsArray];
-    NSMutableString *tmpString = [NSMutableString string];
-    NSString *string = nil;
-    NSCharacterSet *charSet;
-
-    if (completeArray) {
-        for (NSDictionary *dict in completeArray) {
-            string = dict[k_SCKey_arrayKeyString];
-            [tmpArray addObject:string];
-            [tmpString appendString:[string substringToIndex:1]];
-        }
-
-    } else {
-        NSArray *array;
-        NSString *endStr = nil;
-        NSDictionary *strDict;
-        
-        NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
-        for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
-            [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
-        }
-
-        for (NSString *key in syntaxDictKeys) {
-            @autoreleasepool {
-                array = [self coloringDictionary][key];
-                for (strDict in array) {
-                    string = [strDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    endStr = [strDict[k_SCKey_endString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    if (([string length] > 0) &&
-                        ((endStr == nil) || ([endStr length] < 1)) &&
-                        (![strDict[k_SCKey_regularExpression] boolValue]))
-                    {
-                        [tmpArray addObject:string];
-                        [tmpString appendString:[string substringToIndex:1]];
-                    }
-                }
-            } // ==== end-autoreleasepool
-        }
-        // ソート
-        [tmpArray sortedArrayUsingSelector:@selector(compare:)];
-    }
-    // completeWordsArray を保持する
-    [self setCompleteWordsArray:tmpArray];
-
-    // completeFirstLetterSet を保持する
-    if ([tmpString length] > 0) {
-        charSet = [NSCharacterSet characterSetWithCharactersInString:tmpString];
-        [self setCompleteFirstLetterSet:charSet];
-    } else {
-        [self setCompleteFirstLetterSet:nil];
-    }
-}
-
-
-// ------------------------------------------------------
 /// 全体をカラーリング
 - (void)colorAllString:(NSString *)wholeString
 // ------------------------------------------------------
@@ -210,7 +148,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if ([self coloringDictionary] == nil) {
         [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
-        [self setCompleteWordsArrayFromColoringDictionary];
+        [self setCompletionWordsFromColoringDictionary];
     }
     if ([self coloringDictionary] == nil) { return; }
 
@@ -248,7 +186,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setUpdateRange:NSMakeRange(start, end - start)];
     if ([self coloringDictionary] == nil) {
         [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
-        [self setCompleteWordsArrayFromColoringDictionary];
+        [self setCompletionWordsFromColoringDictionary];
     }
     if ([self coloringDictionary] == nil) { return; }
 
@@ -415,6 +353,59 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// 保持しているカラーリング辞書から補完文字列配列を生成
+- (void)setCompletionWordsFromColoringDictionary
+// ------------------------------------------------------
+{
+    if ([self coloringDictionary] == nil) { return; }
+    
+    NSMutableArray *completionWords = [NSMutableArray array];
+    NSMutableString *firstCharsString = [NSMutableString string];
+    NSArray *completionDicts = [self coloringDictionary][k_SCKey_completionsArray];
+    
+    if (completionDicts) {
+        for (NSDictionary *dict in completionDicts) {
+            NSString *word = dict[k_SCKey_arrayKeyString];
+            [completionWords addObject:word];
+            [firstCharsString appendString:[word substringToIndex:1]];
+        }
+        
+    } else {
+        NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
+        for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
+            [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+        }
+        
+        NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        for (NSString *key in syntaxDictKeys) {
+            @autoreleasepool {
+                for (NSDictionary *wordDict in [self coloringDictionary][key]) {
+                    NSString *begin = [wordDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:trimCharSet];
+                    NSString *end = [wordDict[k_SCKey_endString] stringByTrimmingCharactersInSet:trimCharSet];
+                    if (([begin length] > 0) && ([end length] == 0) && ![wordDict[k_SCKey_regularExpression] boolValue]) {
+                        [completionWords addObject:begin];
+                        [firstCharsString appendString:[begin substringToIndex:1]];
+                    }
+                }
+            } // ==== end-autoreleasepool
+        }
+        // ソート
+        [completionWords sortedArrayUsingSelector:@selector(compare:)];
+    }
+    // completionWords を保持する
+    [self setCompletionWords:completionWords];
+    
+    // firstCompletionCharacterSet を保持する
+    if ([firstCharsString length] > 0) {
+        NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:firstCharsString];
+        [self setFirstCompletionCharacterSet:charSet];
+    } else {
+        [self setFirstCompletionCharacterSet:nil];
+    }
+}
+
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、カラーリング
@@ -890,7 +881,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                             dataForKey:k_key_invisibleCharactersColor]];
     if ([[[self layoutManager] firstTextView] textColor] == color) { return; }
     NSDictionary *attrs = @{};
-    NSMutableArray *targetArray = [NSMutableArray array];
+    NSMutableArray *ranges = [NSMutableArray array];
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
     NSString *controlStr;
     NSRange coloringRange;
@@ -905,17 +896,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         start = [scanner scanLocation];
         if ([scanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet]
                                 intoString:&controlStr]) {
-            [targetArray addObject:[NSValue valueWithRange:NSMakeRange(start, [controlStr length])]];
+            [ranges addObject:[NSValue valueWithRange:NSMakeRange(start, [controlStr length])]];
         }
     }
     if ([self isPrinting]) {
-        for (NSValue *value in targetArray) {
+        for (NSValue *value in ranges) {
             coloringRange = [value rangeValue];
             coloringRange.location += [self updateRange].location;
             [[[self layoutManager] firstTextView] setTextColor:color range:coloringRange];
         }
     } else {
-        for (NSValue *value in targetArray) {
+        for (NSValue *value in ranges) {
             coloringRange = [value rangeValue];
             coloringRange.location += [self updateRange].location;
             [[self layoutManager] addTemporaryAttributes:attrs forCharacterRange:coloringRange];
@@ -1172,10 +1163,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// カラーリングインジケータの値を設定
-- (void)setDoubleIndicator:(double)doubleIndicator
+- (void)setDoubleIndicator:(double)doubleValue
 // ------------------------------------------------------
 {
-    [[self coloringIndicator] setDoubleValue:doubleIndicator];
+    [[self coloringIndicator] setDoubleValue:doubleValue];
 }
 
 @end

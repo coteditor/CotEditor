@@ -484,10 +484,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 入力補完文字列に設定された最初の1文字のセットを返す
-- (NSCharacterSet *)completionsFirstLetterSet
+- (NSCharacterSet *)firstCompletionCharacterSet
 // ------------------------------------------------------
 {
-    return [[self syntax] completeFirstLetterSet];
+    return [[self syntax] firstCompletionCharacterSet];
 }
 
 
@@ -586,7 +586,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     //"カラーシンタックス辞書の語彙" をコピーする
     if (addingMode >= 1) {
-        NSArray *syntaxWords = [[self syntax] completeWordsArray];
+        NSArray *syntaxWords = [[self syntax] completionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
                 [outWords addObject:word];
