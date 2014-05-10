@@ -80,17 +80,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        // 行番号の文字属性辞書生成、保持
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSFont *lineNumFont = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName]
-                                              size:(CGFloat)[defaults doubleForKey:k_key_lineNumFontSize]];
+        CGFloat fontSize;
+        
+        // 行番号の文字属性辞書生成、保持
+        fontSize = (CGFloat)[defaults doubleForKey:k_key_lineNumFontSize];
+        NSFont *lineNumFont = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize];
+        if (!lineNumFont) {
+            lineNumFont = [NSFont userFixedPitchFontOfSize:fontSize];
+        }
         [self setLineNumAttrs:@{NSFontAttributeName: lineNumFont,
                                 NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
                                                                  [defaults dataForKey:k_key_lineNumFontColor]]}];
         
         // ヘッダ／フッタの文字属性辞書生成、保持
-        NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName]
-                                                   size:(CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize]];
+        fontSize = (CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize];
+        NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName] size:fontSize];
+        if (!headerFooterFont) {
+            headerFooterFont = [NSFont systemFontOfSize:fontSize];
+        }
         [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
                                      NSForegroundColorAttributeName: [NSColor textColor]}];
         
