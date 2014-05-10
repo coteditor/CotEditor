@@ -22,36 +22,36 @@ http://www.aynimac.com/
 
 /* CEDocument */
 // Undo/Redo Action name
-"Encoding to “%@”" = "エンコーディングを “%@” へ";
-"Line Endings to “%@”" = "改行コードを “%@” へ";
+"Encoding to “%@”" = "エンコーディングを“%@”へ";
+"Line Endings to “%@”" = "改行コードを“%@”へ";
 // convert or reinterpret alert
 "File encoding" = "エンコーディング";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
 "Cancel" = "キャンセル";
-"Do you want to convert or reinterpret it using “%@”?" = "“%@” を使って変換または再解釈しますか？";
+"Do you want to convert or reinterpret it using “%@”?" = "“%@”を使って変換または再解釈しますか？";
 
 "Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Chars" = "非互換文字を表示";
 
 "Continue Saving" = "保存を続行";
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは “%@” ですが、IANA 文字セット名は “%@” です。";
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA 文字セット名は“%@”です。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
 
 "Finder's lock could not be released." = "Finder のロックを解除できませんでした。";
 "You can use “Save As” to save a copy." = "「別名で保存」でコピーを保存できます。";
 
 "Discard Changes" = "変更内容を破棄";
-"The file “%@” has unsaved changes." = "ファイル “%@” の変更内容は保存されていません。";
+"The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
 "Do you want to discard the changes and reset the file encodidng?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
 
 "Can not reinterpret" = "再解釈できません。";
 "Done" = "OK";
-"The file “%@” could not be reinterpreted using the new encoding “%@”." = "ファイル “%@” はエンコード “%@” で再解釈できませんでした。";
+"The file “%@” could not be reinterpreted using the new encoding “%@”." = "ファイル“%@”はエンコード“%@”で再解釈できませんでした。";
 
 "new encoding" = "新しいエンコーディング";
 "Change Encoding" = "エンコーディングを変更";
-"The characters would have to be changed or deleted in saving as “%@”." = "“%@” で保存時に一部の文字を変更または削除する必要があります。";
+"The characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
 
@@ -166,14 +166,14 @@ http://www.aynimac.com/
 
 // Pref Format tab
 // encoding menu alert sheet
-"Are you sure you want to change to “%@”?" = "本当に “%@” へ変更しますか？";
-"Change to “%@”" = "“%@” へ変更";
-"Revert to “Auto-Detect”" = "“自動認識” へ戻す";
+"Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
+"Change to “%@”" = "“%@”へ変更";
+"Revert to “Auto-Detect”" = "“自動認識”へ戻す";
 "The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識” が推奨されます。";
 
 // installed syntax styles action menu
-"Duplicate “%@”…" = "“%@” を複製…";
-"Export “%@”…" = "“%@” を書き出し…";
+"Duplicate “%@”…" = "“%@”を複製…";
+"Export “%@”…" = "“%@”を書き出し…";
 
 
 /* CESyntaxEditSheetController */
@@ -201,7 +201,7 @@ http://www.aynimac.com/
 /* CESyntaxManager */
 // Syntax coloring style name errors
 "Input style name." = "スタイル名を入力してください。";
-"“%@” is already exist. Input another name." = "“%@” は既に使われています。ほかの名前を入力してください。";
+"“%@” is already exist. Input another name." = "“%@”は既に使われています。ほかの名前を入力してください。";
 "Style Name cannot contain “/”. Input another name." = "スタイル名に “/” を含むことはできません。ほかの名前を入力してください。";
 "Style Name cannot begin with “.”. Input another name." = "スタイル名を “.” から始めることはできません。ほかの名前を入力してください。";
 // selected Syntax coloring style name was original
@@ -209,7 +209,7 @@ http://www.aynimac.com/
 // Suffix of copied syntax coloring style
 " copy" = " コピー";
 // Delete syntax coloring style alert message
-"Delete the Syntax style “%@”?" = "シンタックススタイル “%@” を削除してもよろしいですか？";
+"Delete the Syntax style “%@”?" = "シンタックススタイル“%@”を削除してもよろしいですか？";
 // syntax coloring style alert button title
 "Cancel" = "キャンセル";
 "Delete" = "削除";
@@ -217,20 +217,20 @@ http://www.aynimac.com/
 // Delete syntax coloring style alert information
 "Deleted style cannot be restored." = "削除したスタイルは元に戻せません。";
 // Deleted error
-"Sorry, could not delete “%@”." = "“%@” を削除できませんでした。";
+"Sorry, could not delete “%@”." = "“%@”を削除できませんでした。";
 // Import syntax coloring style file choose openPanel button
 "Import" = "読み込み";
 // Importing same name style alert title
-"The “%@” style already exists." = "スタイル “%@” は既に存在しています。";
+"The “%@” style already exists." = "スタイル“%@”は既に存在しています。";
 // Importing same name style alert info
 "Do you want to replace it?\nReplaced style cannot be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
 // Imported error
 "Error occured." = "エラーが起きました。";
-"Sorry, could not import “%@”." = "“%@” を読み込めませんでした。";
+"Sorry, could not import “%@”." = "“%@”を読み込めませんでした。";
 // Export syntax coloring style file savePanel label
 "Export As:" = "書き出し：";
 // File Drop setting delete
-"Delete the File Drop setting for “%@”?" = "ファイルドロップ設定 “%@” を削除してもよろしいですか？";
+"Delete the File Drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
 "Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
 
 
@@ -241,9 +241,9 @@ http://www.aynimac.com/
 
 /* CEKeyBindingManager */
 // Sheet text
-"“%@” has already been used. Edit it again." = "“%@” は既に使われています。再編集してください。";
-"“%@” does NOT include Command key. Edit it again." = "“%@” にはコマンドキーが含まれていません。再編集してください。";
-"“%@” includes Command key. Edit it again." = "“%@” はコマンドキーを含んでいます。再編集してください。";
+"“%@” has already been used. Edit it again." = "“%@”は既に使われています。再編集してください。";
+"“%@” does NOT include Command key. Edit it again." = "“%@”にはコマンドキーが含まれていません。再編集してください。";
+"“%@” includes Command key. Edit it again." = "“%@”はコマンドキーを含んでいます。再編集してください。";
 
 /* Toolbar (Label, Palette label, Tooltip) */
 // Get Info
@@ -340,10 +340,10 @@ http://www.aynimac.com/
 "“Opt + click” to open in Script Editor." = "スクリプトエディタで開くには、“Opt + クリック” します。";
 
 // Alert message
-"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu“." = "スクリプト “%@” は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新” してください。";
+"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu“." = "スクリプト“%@”は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新” してください。";
 "%@\nErrorNumber: %i" = "%@\nエラー番号：%i";
-"Could not open the script file “%@”." = "スクリプトファイル “%@” を開けませんでした。";
-"Cannnot execute the script “%@”.\nShell scripts have to have the execute permission.\n\nCheck it's permission." = "スクリプト “%@” を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
-"Could not read the script “%@”." = "スクリプト “%@” を読み込めませんでした。";
+"Could not open the script file “%@”." = "スクリプトファイル“%@”を開けませんでした。";
+"Cannnot execute the script “%@”.\nShell scripts have to have the execute permission.\n\nCheck it's permission." = "スクリプト“%@”を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
+"Could not read the script “%@”." = "スクリプト“%@”を読み込めませんでした。";
 "SampleScript folder exists already." = "SampleScript フォルダはすでに存在します。";
-"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "新しいものに置き換えたい場合は、まず “%@” にある現存のフォルダを削除して下さい。";
+"If you want to replace it with the new one, remove the existing folder at “%@” at first." = "新しいものに置き換えたい場合は、まず“%@”にある現存のフォルダを削除して下さい。";
