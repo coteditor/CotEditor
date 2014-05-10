@@ -271,8 +271,12 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 - (IBAction)copySampleScriptToUserDomain:(id)sender
 // ------------------------------------------------------
 {
-    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"SampleScripts" withExtension:nil];
+    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"SampleScript" withExtension:nil];
     NSURL *destURL = [[self scriptDirectoryURL] URLByAppendingPathComponent:@"SampleScript"];
+    
+    if (![sourceURL checkResourceIsReachableAndReturnError:nil]) {
+        return;
+    }
     
     if (![destURL checkResourceIsReachableAndReturnError:nil]) {
         BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:nil];

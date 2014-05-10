@@ -365,7 +365,7 @@
                             <menuItem isSeparatorItem="YES" id="748">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="ウインドウの不透明度…" keyEquivalent="T" id="367">
+                            <menuItem title="ビューの不透明度…" keyEquivalent="T" id="367">
                                 <connections>
                                     <action selector="openOpacityPanel:" target="290" id="yHh-1j-g6F"/>
                                 </connections>

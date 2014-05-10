@@ -189,7 +189,7 @@
     
     switch ([self colorMode]) {
         case CEBlackColorPrint:
-            description = @"Black Text";
+            description = @"Black and White";
             break;
         case CESameAsDocumentColorPrint:
             description = @"Same as Document's Setting";

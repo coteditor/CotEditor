@@ -14,7 +14,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
-        <customView id="744" userLabel="Appearance Pane">
+        <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="744" userLabel="Appearance Pane">
             <rect key="frame" x="0.0" y="0.0" width="540" height="485"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -121,10 +121,10 @@
                     </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="824">
-                    <rect key="frame" x="282" y="386" width="29" height="14"/>
+                    <rect key="frame" x="282" y="386" width="33" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="lines" id="3292">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

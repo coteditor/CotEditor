@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -22,12 +22,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="ywH-Ua-doT"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="テキストを黒" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="590" id="722">
+                    <popUpButtonCell key="cell" type="push" title="白黒" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="590" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="587">
                             <items>
-                                <menuItem title="テキストを黒" state="on" id="590"/>
+                                <menuItem title="白黒" state="on" id="590"/>
                                 <menuItem title="書類の設定と同じ" id="589"/>
                             </items>
                         </menu>
@@ -56,7 +56,7 @@
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="425">
                             <items>
-                                <menuItem title="（プリントしない）" id="428"/>
+                                <menuItem title="プリントしない" id="428"/>
                                 <menuItem title="書類の設定と同じ" id="427"/>
                                 <menuItem title="すべてプリント" state="on" id="426"/>
                             </items>
@@ -81,12 +81,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="e5i-sG-u4f"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="717">
+                    <popUpButtonCell key="cell" type="push" title="プリントしない" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="420" id="717">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="417">
                             <items>
-                                <menuItem title="（プリントしない）" id="420"/>
+                                <menuItem title="プリントしない" state="on" id="420"/>
                                 <menuItem title="書類の設定と同じ" id="419"/>
                                 <menuItem title="プリント" id="418"/>
                             </items>
@@ -111,19 +111,19 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="プリント日時" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="206" id="704">
+                    <popUpButtonCell key="cell" type="push" title="書類名" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="202" id="704">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="199">
                             <items>
-                                <menuItem title="（プリントしない）" id="393"/>
+                                <menuItem title="なし" id="393"/>
                                 <menuItem isSeparatorItem="YES" id="394">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
                                 <menuItem title="シンタックス名" tag="1" id="UJ5-ki-qHL"/>
-                                <menuItem title="書類名" tag="2" id="202"/>
+                                <menuItem title="書類名" state="on" tag="2" id="202"/>
                                 <menuItem title="ファイルパス" tag="3" id="203"/>
-                                <menuItem title="プリント日時" state="on" tag="4" id="206"/>
+                                <menuItem title="プリント日時" tag="4" id="206"/>
                                 <menuItem title="ページ番号" tag="5" id="200"/>
                             </items>
                         </menu>
@@ -167,20 +167,20 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
                     <rect key="frame" x="104" y="154" width="215" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title="ページ番号" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
+                    <popUpButtonCell key="cell" type="push" title="プリント日時" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="311" id="709">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="306">
                             <items>
-                                <menuItem title="（プリントしない）" id="395"/>
+                                <menuItem title="なし" id="395"/>
                                 <menuItem isSeparatorItem="YES" tag="-1" id="396">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
                                 <menuItem title="シンタックス名" tag="1" id="6RR-gp-tKJ"/>
                                 <menuItem title="書類名" tag="2" id="312"/>
                                 <menuItem title="ファイルパス" tag="3" id="307"/>
-                                <menuItem title="プリント日時" tag="4" id="311"/>
-                                <menuItem title="ページ番号" state="on" tag="5" id="310"/>
+                                <menuItem title="プリント日時" state="on" tag="4" id="311"/>
+                                <menuItem title="ページ番号" tag="5" id="310"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -296,12 +296,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="rIT-s2-gwW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="715">
+                    <popUpButtonCell key="cell" type="push" title="なし" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="322">
                             <items>
-                                <menuItem title="（プリントしない）" id="399"/>
+                                <menuItem title="なし" state="on" id="399"/>
                                 <menuItem isSeparatorItem="YES" id="400">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
@@ -349,7 +349,7 @@
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="314">
                             <items>
-                                <menuItem title="（プリントしない）" id="397"/>
+                                <menuItem title="なし" id="397"/>
                                 <menuItem isSeparatorItem="YES" id="398">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPrintPanelAccessoryController">
@@ -22,12 +22,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="ywH-Ua-doT"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="722">
+                    <popUpButtonCell key="cell" type="push" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="590" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="587">
                             <items>
-                                <menuItem title="Black text" id="590"/>
+                                <menuItem title="Black and White" state="on" id="590"/>
                                 <menuItem title="Same as document's setting" id="589"/>
                             </items>
                         </menu>
@@ -51,14 +51,14 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="04O-p7-HaW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="719">
+                    <popUpButtonCell key="cell" type="push" title="Print all" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="426" id="719">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="425">
                             <items>
-                                <menuItem title="(No print)" id="428"/>
+                                <menuItem title="Don't Print" id="428"/>
                                 <menuItem title="Same as document's setting" id="427"/>
-                                <menuItem title="Print all" id="426"/>
+                                <menuItem title="Print all" state="on" id="426"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -81,12 +81,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="e5i-sG-u4f"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="717">
+                    <popUpButtonCell key="cell" type="push" title="Don't Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="420" id="717">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="417">
                             <items>
-                                <menuItem title="(No print)" id="420"/>
+                                <menuItem title="Don't Print" state="on" id="420"/>
                                 <menuItem title="Same as document's setting" id="419"/>
                                 <menuItem title="Print" id="418"/>
                             </items>
@@ -111,17 +111,17 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="704">
+                    <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="202" id="704">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="199">
                             <items>
-                                <menuItem title="(No print)" id="393"/>
+                                <menuItem title="None" id="393"/>
                                 <menuItem isSeparatorItem="YES" id="394">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
                                 <menuItem title="Syntax Name" tag="1" id="UJ5-ki-qHL"/>
-                                <menuItem title="Document Name" tag="2" id="202"/>
+                                <menuItem title="Document Name" state="on" tag="2" id="202"/>
                                 <menuItem title="File Path" tag="3" id="203"/>
                                 <menuItem title="Print Date" tag="4" id="206"/>
                                 <menuItem title="Page Number" tag="5" id="200"/>
@@ -167,19 +167,19 @@
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
                     <rect key="frame" x="117" y="156" width="215" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="6RR-gp-tKJ" id="709">
+                    <popUpButtonCell key="cell" type="push" title="Print Date" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="311" id="709">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="306">
                             <items>
-                                <menuItem title="(No print)" id="395"/>
+                                <menuItem title="None" id="395"/>
                                 <menuItem isSeparatorItem="YES" tag="-1" id="396">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" state="on" tag="1" id="6RR-gp-tKJ"/>
+                                <menuItem title="Syntax Name" tag="1" id="6RR-gp-tKJ"/>
                                 <menuItem title="Document Name" tag="2" id="312"/>
                                 <menuItem title="File Path" tag="3" id="307"/>
-                                <menuItem title="Print Date" tag="4" id="311"/>
+                                <menuItem title="Print Date" state="on" tag="4" id="311"/>
                                 <menuItem title="Page Number" tag="5" id="310"/>
                             </items>
                         </menu>
@@ -296,12 +296,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="rIT-s2-gwW"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="715">
+                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="322">
                             <items>
-                                <menuItem title="(No print)" id="399"/>
+                                <menuItem title="None" state="on" id="399"/>
                                 <menuItem isSeparatorItem="YES" id="400">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
@@ -344,20 +344,20 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="abT-dP-x7p"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="Ro5-rK-S7p" id="714">
+                    <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="314">
                             <items>
-                                <menuItem title="(No print)" id="397"/>
+                                <menuItem title="None" id="397"/>
                                 <menuItem isSeparatorItem="YES" id="398">
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </menuItem>
-                                <menuItem title="Syntax Name" state="on" tag="1" id="Ro5-rK-S7p"/>
+                                <menuItem title="Syntax Name" tag="1" id="Ro5-rK-S7p"/>
                                 <menuItem title="Document Name" tag="2" id="320"/>
                                 <menuItem title="File Path" tag="3" id="315"/>
                                 <menuItem title="Print Date" tag="4" id="319"/>
-                                <menuItem title="Page Number" tag="5" id="318"/>
+                                <menuItem title="Page Number" state="on" tag="5" id="318"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

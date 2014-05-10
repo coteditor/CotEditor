@@ -25,7 +25,7 @@
                 <string>footerOneAlignIndex</string>
             </declaredKeys>
         </arrayController>
-        <customView id="747" userLabel="File Drop Pane">
+        <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="747" userLabel="File Drop Pane">
             <rect key="frame" x="0.0" y="0.0" width="540" height="376"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>

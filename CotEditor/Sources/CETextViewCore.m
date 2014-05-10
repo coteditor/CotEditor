@@ -84,7 +84,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
         [self setTabWidth:[defaults integerForKey:k_key_tabWidth]];
         
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
@@ -102,6 +101,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // set the values
         [self setupColors];
+        [self setupFromDefaults];
         [self setFont:font];
         [self setMinSize:frameRect.size];
         [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -109,18 +109,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setAllowsUndo:YES];
         [self setRichText:NO];
         [self setImportsGraphics:NO];
-        [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
-        [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
         [self setUsesFindPanel:YES];
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
         [self setAcceptsGlyphInfo:YES];
-        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only for Mavericks and later
-            [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
-            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
-        }
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:k_key_lineSpacing]];
-        [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
@@ -128,9 +121,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setHighlightLineAdditionalRect:NSZeroRect];
         
         [self applyTypingAttributes];
+        
+        // 設定の変更を監視
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(setupFromDefaults)
+                                                     name:NSUserDefaultsDidChangeNotification
+                                                   object:nil];
     }
 
     return self;
+}
+
+
+// ------------------------------------------------------
+/// 後片付け
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -965,18 +973,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // ファイルがドロップされた
     } else if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
-        NSArray *files = [pboard propertyListForType:NSURLPboardType];
+        NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
+        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSURL *documentURL = [[[[self window] windowController] document] fileURL];
-        NSString *fileName, *fileNoSuffix, *dirName;
+        NSString *relativePath, *fileName, *fileNoSuffix, *dirName;
         NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
-        NSMutableString *relativePath = [NSMutableString string];
-        NSMutableString *newStr = [NSMutableString string];
+        NSString *stringToDrop;
 
-        for (NSURL *absoluteURL in files) {
+        for (NSString *path in files) {
+            NSURL *absoluteURL = [NSURL fileURLWithPath:path];
+            
             selectedRange = [self selectedRange];
-            for (NSDictionary *itemDict in fileDropArray) {
-                NSArray *extensions = [itemDict[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
+            for (NSDictionary *definition in fileDropDefs) {
+                NSArray *extensions = [definition[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
                 pathExtension = [absoluteURL pathExtension];
                 pathExtensionLower = [pathExtension lowercaseString];
                 pathExtensionUpper = [pathExtension uppercaseString];
@@ -984,73 +993,71 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 if ([extensions containsObject:pathExtensionLower] ||
                     [extensions containsObject:pathExtensionUpper])
                 {
-                    [newStr setString:itemDict[k_key_fileDropFormatString]];
-                } else {
-                    continue;
+                    stringToDrop = definition[k_key_fileDropFormatString];
                 }
             }
-            if ([newStr length] > 0) {
-                if (documentURL && ![[documentURL path] isEqualToString:[absoluteURL path]]) {
-                    NSArray *docPathArray = [documentURL pathComponents];
-                    NSArray *pathArray = [absoluteURL pathComponents];
-                    NSMutableString *tmpStr = [NSMutableString string];
-                    NSInteger j, theSame = 0, count = 0;
-                    NSInteger docArrayCount = (NSInteger)[docPathArray count];
-                    NSInteger pathArrayCount = (NSInteger)[pathArray count];
+            if ([stringToDrop length] > 0) {
+                if (documentURL && ![documentURL isEqual:absoluteURL]) {
+                    NSArray *docPathComponents = [documentURL pathComponents];
+                    NSArray *droppedPathComponents = [absoluteURL pathComponents];
+                    NSMutableArray *relativeComponents = [NSMutableArray array];
+                    NSUInteger sameCount = 0, count = 0;
+                    NSUInteger docCompnentsCount = [docPathComponents count];
+                    NSUInteger droppedCompnentsCount = [droppedPathComponents count];
 
-                    for (j = 0; j < docArrayCount; j++) {
-                        if (![docPathArray[j] isEqualToString:pathArray[j]]) {
-                            theSame = j;
-                            count = [docPathArray count] - theSame - 1;
+                    for (NSUInteger i = 0; i < docCompnentsCount; i++) {
+                        if (![docPathComponents[i] isEqualToString:droppedPathComponents[i]]) {
+                            sameCount = i;
+                            count = docCompnentsCount - sameCount - 1;
                             break;
                         }
                     }
-                    for (j = count; j > 0; j--) {
-                        [tmpStr appendString:@"../"];
+                    for (NSUInteger i = count; i > 0; i--) {
+                        [relativeComponents addObject:@".."];
                     }
-                    for (j = theSame; j < pathArrayCount; j++) {
-                        if ([tmpStr length] > 0) {
-                            [tmpStr appendString:@"/"];
-                        }
-                        [tmpStr appendString:pathArray[j]];
+                    for (NSUInteger i = sameCount; i < droppedCompnentsCount; i++) {
+                        [relativeComponents addObject:droppedPathComponents[i]];
                     }
-                    [relativePath setString:[tmpStr stringByStandardizingPath]];
+                    relativePath = [[NSURL fileURLWithPathComponents:relativeComponents] relativePath];
                 } else {
-                    [relativePath setString:[absoluteURL path]];
+                    relativePath = [absoluteURL path];
                 }
+                
                 fileName = [absoluteURL lastPathComponent];
                 fileNoSuffix = [fileName stringByDeletingPathExtension];
                 dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
-                [newStr replaceOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
-                                        withString:[absoluteURL path] options:0 range:NSMakeRange(0, [newStr length])];
-                [newStr replaceOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
-                                        withString:relativePath options:0 range:NSMakeRange(0, [newStr length])];
-                [newStr replaceOccurrencesOfString:@"<<<FILENAME>>>"
-                                        withString:fileName options:0 range:NSMakeRange(0, [newStr length])];
-                [newStr replaceOccurrencesOfString:@"<<<FILENAME-NOSUFFIX>>>"
-                                        withString:fileNoSuffix options:0 range:NSMakeRange(0, [newStr length])];
-                [newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION>>>"
-                                        withString:pathExtension options:0 range:NSMakeRange(0, [newStr length])];
-                [newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION-LOWER>>>"
-                                        withString:pathExtensionLower options:0 range:NSMakeRange(0, [newStr length])];
-                [newStr replaceOccurrencesOfString:@"<<<FILEEXTENSION-UPPER>>>"
-                                        withString:pathExtensionUpper options:0 range:NSMakeRange(0, [newStr length])];
-                [newStr replaceOccurrencesOfString:@"<<<DIRECTORY>>>"
-                                        withString:dirName options:0 range:NSMakeRange(0, [newStr length])];
+                
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
+                                                                       withString:[absoluteURL path]];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
+                                                                       withString:relativePath];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME>>>"
+                                                                       withString:fileName];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME-NOSUFFIX>>>"
+                                                                       withString:fileNoSuffix];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION>>>"
+                                                                       withString:pathExtension];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-LOWER>>>"
+                                                                       withString:pathExtensionLower];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-UPPER>>>"
+                                                                       withString:pathExtensionUpper];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<DIRECTORY>>>"
+                                                                       withString:dirName];
+                
                 NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
                 if (imageRep) {
                     // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
-                    [newStr replaceOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
-                                            withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsWide]]
-                                               options:0 range:NSMakeRange(0, [newStr length])];
-                    [newStr replaceOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
-                                            withString:[NSString stringWithFormat:@"%zd", [imageRep pixelsHigh]]
-                                               options:0 range:NSMakeRange(0, [newStr length])];
+                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
+                                                                           withString:[NSString stringWithFormat:@"%zd",
+                                                                                       [imageRep pixelsWide]]];
+                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
+                                                                           withString:[NSString stringWithFormat:@"%zd",
+                                                                                       [imageRep pixelsHigh]]];
                 }
                 // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
-                newRange = NSMakeRange(selectedRange.location, [newStr length]);
+                newRange = NSMakeRange(selectedRange.location, [stringToDrop length]);
                 // （Action名は自動で付けられる？ので、指定しない）
-                [self doReplaceString:newStr withRange:selectedRange withSelected:newRange withActionName:@""];
+                [self doReplaceString:stringToDrop withRange:selectedRange withSelected:newRange withActionName:@""];
                 // 挿入後、選択範囲を移動させておかないと複数オブジェクトをドロップされた時に重ね書きしてしまう
                 [self setSelectedRange:NSMakeRange(NSMaxRange(newRange), 0)];
                 success = YES;
@@ -1830,6 +1837,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
     NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
+}
+
+
+// ------------------------------------------------------
+/// 現在のユーザ設定を反映する
+- (void)setupFromDefaults
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
+    
+    [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
+    [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
+    
+    if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
+        [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
+        [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
+    }
+    [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
 }
 
 
