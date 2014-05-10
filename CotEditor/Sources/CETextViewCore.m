@@ -974,13 +974,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSMutableString *newStr = [NSMutableString string];
 
         for (NSString *absolutePath in files) {
-            if ([absolutePath isEqualToString:@""]) {
+            NSURL *absoluteURL = [NSURL URLWithString:absolutePath];
+            if (![absoluteURL isFileURL]) {
                 continue;
             }
             selectedRange = [self selectedRange];
             for (NSDictionary *itemDict in fileDropArray) {
                 NSArray *extensions = [itemDict[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
-                pathExtension = [absolutePath pathExtension];
+                pathExtension = [absoluteURL pathExtension];
                 pathExtensionLower = [pathExtension lowercaseString];
                 pathExtensionUpper = [pathExtension uppercaseString];
                 
@@ -993,9 +994,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
             }
             if ([newStr length] > 0) {
-                if (documentURL && ![[documentURL path] isEqualToString:absolutePath]) {
+                if (documentURL && ![documentURL isEqual:absoluteURL]) {
                     NSArray *docPathArray = [documentURL pathComponents];
-                    NSArray *pathArray = [absolutePath pathComponents];
+                    NSArray *pathArray = [absoluteURL pathComponents];
                     NSMutableString *tmpStr = [NSMutableString string];
                     NSInteger j, theSame = 0, count = 0;
                     NSInteger docArrayCount = (NSInteger)[docPathArray count];
@@ -1019,14 +1020,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     }
                     [relativePath setString:[tmpStr stringByStandardizingPath]];
                 } else {
-                    [relativePath setString:absolutePath];
+                    [relativePath setString:[absoluteURL path]];
                 }
                 
-                fileName = [absolutePath lastPathComponent];
+                fileName = [absoluteURL lastPathComponent];
                 fileNoSuffix = [fileName stringByDeletingPathExtension];
-                dirName = [[absolutePath stringByDeletingLastPathComponent] lastPathComponent];
+                dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
+                
                 [newStr replaceOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
-                                        withString:absolutePath options:0 range:NSMakeRange(0, [newStr length])];
+                                        withString:[absoluteURL path] options:0 range:NSMakeRange(0, [newStr length])];
                 [newStr replaceOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
                                         withString:relativePath options:0 range:NSMakeRange(0, [newStr length])];
                 [newStr replaceOccurrencesOfString:@"<<<FILENAME>>>"
@@ -1041,7 +1043,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                         withString:pathExtensionUpper options:0 range:NSMakeRange(0, [newStr length])];
                 [newStr replaceOccurrencesOfString:@"<<<DIRECTORY>>>"
                                         withString:dirName options:0 range:NSMakeRange(0, [newStr length])];
-                NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:[NSURL URLWithString:absolutePath]];
+                NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
                 if (imageRep) {
                     // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
                     [newStr replaceOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
