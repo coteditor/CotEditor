@@ -84,7 +84,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
         [self setTabWidth:[defaults integerForKey:k_key_tabWidth]];
         
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
@@ -102,6 +101,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // set the values
         [self setupColors];
+        [self setupFromDefaults];
         [self setFont:font];
         [self setMinSize:frameRect.size];
         [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -109,18 +109,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setAllowsUndo:YES];
         [self setRichText:NO];
         [self setImportsGraphics:NO];
-        [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
-        [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
         [self setUsesFindPanel:YES];
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
         [self setAcceptsGlyphInfo:YES];
-        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only for Mavericks and later
-            [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
-            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
-        }
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:k_key_lineSpacing]];
-        [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
@@ -128,9 +121,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setHighlightLineAdditionalRect:NSZeroRect];
         
         [self applyTypingAttributes];
+        
+        // 設定の変更を監視
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(setupFromDefaults)
+                                                     name:NSUserDefaultsDidChangeNotification
+                                                   object:nil];
     }
 
     return self;
+}
+
+
+// ------------------------------------------------------
+/// 後片付け
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -1829,6 +1837,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
     NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
+}
+
+
+// ------------------------------------------------------
+/// 現在のユーザ設定を反映する
+- (void)setupFromDefaults
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
+    
+    [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
+    [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
+    
+    if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
+        [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
+        [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
+    }
+    [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
 }
 
 
