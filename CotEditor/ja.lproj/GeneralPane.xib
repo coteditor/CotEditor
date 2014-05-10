@@ -19,9 +19,9 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="2739">
                     <rect key="frame" x="143" y="145" width="321" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="コンテキストメニューにスクリプトメニューを追加" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
+                    <buttonCell key="cell" type="check" title="コンテキストメニューのスクリプトメニューを展開" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3309">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AquaKana"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.inlineContextualScriptMenu" id="2741"/>
