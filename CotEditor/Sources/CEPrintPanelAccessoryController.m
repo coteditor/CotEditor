@@ -160,6 +160,10 @@
                                  @"lineNumberMode",
                                  @"invisibleCharsMode",
                                  @"printsHeader",
+                                 @"headerOneAlignmentType",
+                                 @"headerTwoAlignmentType",
+                                 @"footerOneAlignmentType",
+                                 @"footerTwoAlignmentType",
                                  
                                  // ヘッダ／フッタの設定に合わせてprintInfoのマージンを書き換えるため、
                                  // 直接設定の変更を監視するのではなくマージンの書き換え完了フラグを監視する
