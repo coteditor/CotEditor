@@ -72,6 +72,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CESyntax
 
+static NSArray *kSyntaxDictKeys;
+
+
+#pragma mark Superclass Class Methods
+
+// ------------------------------------------------------
+/// クラスの初期化
++ (void)initialize
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
+        for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
+            [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+        }
+        kSyntaxDictKeys = [syntaxDictKeys copy];
+    });
+}
+
+
+
 #pragma mark Public Methods
 
 //=======================================================
@@ -373,13 +395,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
     } else {
-        NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
-        for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
-            [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
-        }
-        
         NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-        for (NSString *key in syntaxDictKeys) {
+        for (NSString *key in kSyntaxDictKeys) {
             @autoreleasepool {
                 for (NSDictionary *wordDict in [self coloringDictionary][key]) {
                     NSString *begin = [wordDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:trimCharSet];
@@ -961,7 +978,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setModalSession:[NSApp beginModalSessionForWindow:sheet]];
     }
     
-    NSArray *array, *inArray;
+    NSArray *strDicts, *inArray;
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableString *simpleWordsChar = [NSMutableString stringWithString:k_allAlphabetChars];
     NSString *beginStr = nil, *endStr = nil;
@@ -971,14 +988,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
     double indicatorValue, beginDouble = 0.0;
     
-    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
-    for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
-        [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
-    }
-    
     NS_DURING
         // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
-        for (i = 0; i < k_size_of_allColoringArrays; i++) {
+        for (i = 0; i < [kSyntaxDictKeys count]; i++) {
 
             if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
                 // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
@@ -994,15 +1006,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 break;
             }
 
-            array = [self coloringDictionary][syntaxDictKeys[i]];
-            count = [array count];
+            strDicts = [self coloringDictionary][kSyntaxDictKeys[i]];
+            count = [strDicts count];
             [self setTextColor:[NSUnarchiver unarchiveObjectWithData:
                                 [[NSUserDefaults standardUserDefaults] dataForKey:k_key_allSyntaxColors[i]]]]; // ===== retain
             [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
-            if ([syntaxDictKeys[i] isEqualToString:k_SCKey_commentsArray]) {
-                [self setAttrToCommentsWithSyntaxArray:array withSingleQuotes:isSingleQuotes
+            if ([kSyntaxDictKeys[i] isEqualToString:k_SCKey_commentsArray]) {
+                [self setAttrToCommentsWithSyntaxArray:strDicts withSingleQuotes:isSingleQuotes
                                       withDoubleQuotes:isDoubleQuotes updateIndicator:[self isIndicatorShown]];
                 [self setTextColor:nil]; // ===== release
                 [self setCurrentAttrs:nil]; // ===== release
@@ -1020,23 +1032,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             NSMutableArray *targetArray = [[NSMutableArray alloc] initWithCapacity:10];
             NSArray *tmpArray = nil;
-            for (j = 0; j < count; j++) {
+            j = 0;
+            for (strDict in strDicts) {
                 @autoreleasepool {
-                    strDict = array[j];
                     beginStr = strDict[k_SCKey_beginString];
 
-                    if ([beginStr length] < 1) { continue; }
+                    if ([beginStr length] == 0) { continue; }
 
                     endStr = strDict[k_SCKey_endString];
 
                     if ([strDict[k_SCKey_regularExpression] boolValue]) {
-                        if ((endStr != nil) && ([endStr length] > 0)) {
+                        if ([endStr length] > 0) {
                             tmpArray = [self rangesRegularExpressionBeginString:beginStr
                                                                   withEndString:endStr
                                                                  withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
                                                                      doColoring:YES
                                                                  pairStringKind:k_notUseKind];
-                            if (tmpArray != nil) {
+                            if (tmpArray) {
                                 [targetArray addObject:tmpArray];
                             }
                         } else {
@@ -1044,12 +1056,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                             withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
                                                                 doColoring:YES
                                                             pairStringKind:k_notUseKind];
-                            if (tmpArray != nil) {
+                            if (tmpArray) {
                                 [targetArray addObject:tmpArray];
                             }
                         }
                     } else {
-                        if ((endStr != nil) && ([endStr length] > 0)) {
+                        if ([endStr length] > 0) {
                             // 開始／終了ともに入力されていたらクォートかどうかをチェック、最初に出てきたクォートのみを把握
                             if ([beginStr isEqualToString:@"\'"] && [endStr isEqualToString:@"\'"]) {
                                 if (!isSingleQuotes) {
@@ -1067,12 +1079,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                             }
                             tmpArray = [self rangesBeginString:beginStr withEndString:endStr
                                                     doColoring:YES pairStringKind:k_notUseKind];
-                            if (tmpArray != nil) {
+                            if (tmpArray) {
                                 [targetArray addObject:tmpArray];
                             }
                         } else {
                             NSNumber *len = @([beginStr length]);
-                            id wordsArray = simpleWordsDict[len];
+                            NSMutableArray *wordsArray = simpleWordsDict[len];
                             if (wordsArray) {
                                 [wordsArray addObject:beginStr];
                             } else {
@@ -1083,10 +1095,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         }
                     }
                     // インジケータ更新
-                    if ([self isIndicatorShown] && ((j % 10) == 0)) {
-                        indicatorValue = beginDouble + (double)(j / (double)count * k_perCompoIncrement);
-                        [self setDoubleIndicator:(double)indicatorValue];
-                        [[self coloringIndicator] displayIfNeeded];
+                    if ([self isIndicatorShown]) {
+                        if ((j % 10) == 0) {
+                            indicatorValue = beginDouble + (double)(j / (double)count * k_perCompoIncrement);
+                            [self setDoubleIndicator:(double)indicatorValue];
+                            [[self coloringIndicator] displayIfNeeded];
+                        }
+                        j++;
                     }
                 } // ==== end-autoreleasepool
             } // end-for (j)
