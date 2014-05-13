@@ -202,8 +202,8 @@ http://www.aynimac.com/
 // Syntax coloring style name errors
 "Input style name." = "スタイル名を入力してください。";
 "“%@” is already exist. Input another name." = "“%@”は既に使われています。ほかの名前を入力してください。";
-"Style Name cannot contain “/”. Input another name." = "スタイル名に “/” を含むことはできません。ほかの名前を入力してください。";
-"Style Name cannot begin with “.”. Input another name." = "スタイル名を “.” から始めることはできません。ほかの名前を入力してください。";
+"Style name cannot contain “/”. Input another name." = "スタイル名に “/” を含むことはできません。ほかの名前を入力してください。";
+"Style name cannot begin with “.”. Input another name." = "スタイル名を “.” から始めることはできません。ほかの名前を入力してください。";
 // selected Syntax coloring style name was original
 "Name of the bundled style cannot be changed." = "バンドルされているスタイルの名前は変更できません。";
 // Suffix of copied syntax coloring style

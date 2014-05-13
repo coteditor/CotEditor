@@ -360,9 +360,9 @@
         if ([styleName length] < 1) {  // 空は不可
             message = NSLocalizedString(@"Input style name.", nil);
         } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
-            message = NSLocalizedString(@"Style Name cannot contain “/”. Input another name.", nil);
-        } else if ([styleName rangeOfString:@"."].location == 0) {  // ファイル名としても使われるので、"." から始まる名前は不可
-            message = NSLocalizedString(@"Style Name cannot begin with “.”. Input another name.", nil);
+            message = NSLocalizedString(@"Style name cannot contain “/”. Input another name.", nil);
+        } else if ([styleName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
+            message = NSLocalizedString(@"Style name cannot begin with “.”. Input another name.", nil);
         } else if ([[[CESyntaxManager sharedManager] styleNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
             message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), duplicatedStyleName];
         }
