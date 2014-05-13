@@ -1348,7 +1348,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setTextColor:[theme textColor]];
     [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:[self backgroundAlpha]]];
     [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:[self backgroundAlpha]]];
-    [self setInsertionPointColor:[theme invisiblesColor]];
+    [self setInsertionPointColor:[theme insertionPointColor]];
     [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName: [theme selectionColor]}];
     
     // 背景色に合わせたスクローラのスタイルをセット

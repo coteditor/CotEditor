@@ -41,7 +41,6 @@
 @property (nonatomic, weak) IBOutlet NSTextField *fontField;
 
 @property (nonatomic) IBOutlet NSTableView *themeTableView;
-@property (nonatomic) IBOutlet NSButton *deleteThemeButton;
 
 @property (nonatomic) NSMutableDictionary *themeDict;
 @property (nonatomic) BOOL isBundled;
@@ -68,6 +67,10 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:[self themeTableView]];
+    
+    for (NSString *key in [[self themeDict] allKeys]) {
+        [[self themeDict] removeObserver:self forKeyPath:key];
+    }
 }
 
 
@@ -146,15 +149,6 @@
 }
 
 
-// ------------------------------------------------------
-/// テーブルのセルが編集された
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
-// ------------------------------------------------------
-{
-    [[CEThemeManager sharedManager] renameTheme:[self selectedTheme] toName:anObject];
-}
-
-
 //=======================================================
 // Delegate method (NSTableView)
 //  <== themeTableView
@@ -181,7 +175,7 @@
         }
         
         [self setThemeDict:themeDict];
-        [[self deleteThemeButton] setEnabled:!isBundled];
+        [self setIsBundled:isBundled];
     }
 }
 
@@ -196,15 +190,22 @@
 
 
 // ------------------------------------------------------
-///
+/// テーマ名が編集された
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 // ------------------------------------------------------
 {
-    NSString *newThemeName = [fieldEditor string];
+    NSString *newName = [fieldEditor string];
+    NSError *error = nil;
     
+    BOOL success = [[CEThemeManager sharedManager] renameTheme:[self selectedTheme] toName:newName error:&error];
     
+    if (error) {
+        NSAlert *alert = [NSAlert alertWithError:error];
+        NSBeep();
+        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+    }
     
-    return NO;
+    return success;
 }
 
 
@@ -335,8 +336,40 @@
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) return;
         
-        // TODO: duplicate check
-        [[CEThemeManager sharedManager] importTheme:[openPanel URL]];
+        NSURL *URL = [openPanel URL];
+        NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
+        
+        // 同名のファイルがある場合は上書きするかを訊く
+        NSString *duplicatedName;
+        for (NSString *name in [[CEThemeManager sharedManager] themeNames]) {
+            if ([name caseInsensitiveCompare:themeName] == NSOrderedSame) {
+                duplicatedName = name;
+                break;
+            }
+        }
+        if (duplicatedName) {
+            // オープンパネルを閉じる
+            [openPanel orderOut:nil];
+            [[openPanel sheetParent] makeKeyAndOrderFront:nil];
+            
+            NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"A theme named “%@” already exists.", nil), duplicatedName]
+                            defaultButton:NSLocalizedString(@"Cancel", nil)
+                          alternateButton:NSLocalizedString(@"Replace", nil)
+                              otherButton:nil
+                informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil)];
+            [alert beginSheetModalForWindow:[[self view] window]
+                              modalDelegate:self
+                             didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
+                                contextInfo:(__bridge_retained void *)(URL)];
+            return;
+        }
+        
+        NSError *error;
+        [[CEThemeManager sharedManager] importTheme:URL error:&error];
+        if (error) {
+            NSAlert *alert = [NSAlert alertWithError:error];
+            [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
+        }
     }];
 }
 
@@ -393,48 +426,39 @@
     }
     
     NSString *selectedTheme = [self selectedTheme];
+    NSError *error;
     
-    if ([[CEThemeManager sharedManager] removeTheme:selectedTheme]) {
+    if ([[CEThemeManager sharedManager] removeTheme:selectedTheme error:&error]) {
         /// TODO: 削除成功時の処理
         
     } else {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
-                                         defaultButton:nil
-                                       alternateButton:nil otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), selectedTheme];
+        NSAlert *errorAlert = [NSAlert alertWithError:error];
         NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+        [errorAlert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
 }
 
+
 // ------------------------------------------------------
-// 有効なテーマ名かチェックしてエラーメッセージを返す
-- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError **)error
+/// テーマ読み込みでの重複するテーマの上書き確認シートが閉じる直前
+- (void)importDuplicateThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    NSString *message;
-    // NSArray を case insensitive に検索するブロック
-    __block NSString *duplicatedThemeName;
-    BOOL (^caseInsensitiveContains)() = ^(id obj, NSUInteger idx, BOOL *stop){
-        BOOL found = (BOOL)([obj caseInsensitiveCompare:themeName] == NSOrderedSame);
-        if (found) { duplicatedThemeName = obj; }
-        return found;
-    };
-    
-    if ([themeName length] < 1) {  // 空は不可
-        message = NSLocalizedString(@"Input theme name.", nil);
-    } else if ([themeName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
-        message = NSLocalizedString(@"Theme name cannot contain “/”. Input another name.", nil);
-    } else if ([themeName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
-        message = NSLocalizedString(@"Theme name cannot begin with “.”. Input another name.", nil);
-    } else if ([[[CEThemeManager sharedManager] themeNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
-        message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), duplicatedThemeName];
+    if (returnCode != NSAlertDefaultReturn) {  // Cancel
+        return;
     }
     
-    return YES;
+    NSURL *URL = CFBridgingRelease(contextInfo);
+    NSError *error;
+    [[CEThemeManager sharedManager] importTheme:URL error:&error];
+    
+    if (error) {
+        NSAlert *alert = [NSAlert alertWithError:error];
+        [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
+    }
 }
 
 @end

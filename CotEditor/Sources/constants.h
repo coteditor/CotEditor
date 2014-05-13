@@ -41,6 +41,13 @@
 // separator
 extern NSString *const CESeparatorString;
 
+// Error domain
+extern NSString *const CEErrorDomain;
+
+typedef NS_ENUM(NSInteger, CEErrorCode) {
+    CEInvalidNameError,
+};
+
 // Localized Strings Table
 extern NSString *const k_printLocalizeTable;
 

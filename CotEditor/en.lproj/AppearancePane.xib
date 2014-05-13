@@ -7,7 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEAppearancePaneController">
             <connections>
-                <outlet property="deleteThemeButton" destination="ikC-kc-uJc" id="qqM-wc-5LQ"/>
                 <outlet property="fontField" destination="385" id="n5f-3y-xKI"/>
                 <outlet property="themeTableView" destination="YME-hT-ryc" id="3fJ-3G-Gqb"/>
                 <outlet property="view" destination="744" id="0ED-IT-XKF"/>
@@ -32,7 +31,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="385">
-                    <rect key="frame" x="120" y="413" width="260" height="22"/>
+                    <rect key="frame" x="111" y="413" width="260" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="4zH-Fv-QUF"/>
@@ -48,7 +47,7 @@
                     </connections>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="809">
-                    <rect key="frame" x="118" y="389" width="105" height="18"/>
+                    <rect key="frame" x="109" y="389" width="105" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="Anti-Aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -59,7 +58,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="387">
-                    <rect key="frame" x="382" y="407" width="90" height="32"/>
+                    <rect key="frame" x="373" y="407" width="90" height="32"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="8cj-Zi-DRd"/>
@@ -73,7 +72,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-sa-5cF">
-                    <rect key="frame" x="78" y="416" width="36" height="17"/>
+                    <rect key="frame" x="69" y="416" width="36" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Font:" id="Z85-S9-uID">
                         <font key="font" metaFont="system"/>
@@ -82,7 +81,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="860">
-                    <rect key="frame" x="118" y="328" width="241" height="18"/>
+                    <rect key="frame" x="109" y="328" width="241" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="Fix line height with composite font" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3296">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -93,7 +92,7 @@
                     </connections>
                 </button>
                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="827">
-                    <rect key="frame" x="120" y="352" width="68" height="26"/>
+                    <rect key="frame" x="111" y="352" width="68" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="65" id="kG7-jA-Oce"/>
@@ -123,7 +122,7 @@
                     </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="824">
-                    <rect key="frame" x="191" y="356" width="33" height="17"/>
+                    <rect key="frame" x="182" y="356" width="33" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="lines" id="3292">
                         <font key="font" metaFont="system"/>
@@ -132,7 +131,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-u9-gbq">
-                    <rect key="frame" x="27" y="356" width="87" height="17"/>
+                    <rect key="frame" x="18" y="356" width="87" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line spacing:" id="r1c-v3-qW1">
                         <font key="font" metaFont="system"/>
@@ -216,6 +215,11 @@
                     </buttonCell>
                     <connections>
                         <action selector="deleteTheme:" target="-2" id="VPD-tp-92v"/>
+                        <binding destination="-2" name="enabled" keyPath="isBundled" id="pZU-13-1vV">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r9Z-NB-TEE">
@@ -695,7 +699,7 @@
                 <constraint firstItem="cM2-sa-5cF" firstAttribute="centerY" secondItem="385" secondAttribute="centerY" id="cJk-fC-EtP"/>
                 <constraint firstItem="ICn-lI-aHs" firstAttribute="leading" secondItem="744" secondAttribute="leading" constant="20" symbolic="YES" id="cen-KE-Iix"/>
                 <constraint firstItem="AAx-kd-1PD" firstAttribute="top" secondItem="ICn-lI-aHs" secondAttribute="bottom" constant="8" symbolic="YES" id="gjn-7S-cCA"/>
-                <constraint firstItem="385" firstAttribute="leading" secondItem="744" secondAttribute="leading" constant="120" id="hbL-Zl-4wj"/>
+                <constraint firstItem="DSq-u9-gbq" firstAttribute="leading" secondItem="744" secondAttribute="leading" constant="20" symbolic="YES" id="jY6-yl-ZA0"/>
                 <constraint firstItem="r9Z-NB-TEE" firstAttribute="height" secondItem="AAx-kd-1PD" secondAttribute="height" id="lA4-0K-wtu"/>
                 <constraint firstItem="860" firstAttribute="leading" secondItem="DSq-u9-gbq" secondAttribute="trailing" constant="8" symbolic="YES" id="lZs-SE-BaS"/>
                 <constraint firstItem="827" firstAttribute="leading" secondItem="DSq-u9-gbq" secondAttribute="trailing" constant="8" symbolic="YES" id="ng5-iq-ibX"/>
