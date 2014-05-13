@@ -44,6 +44,7 @@
 @property (nonatomic) IBOutlet NSButton *deleteThemeButton;
 
 @property (nonatomic) NSMutableDictionary *themeDict;
+@property (nonatomic) BOOL isBundled;
 
 @end
 
@@ -194,6 +195,19 @@
 }
 
 
+// ------------------------------------------------------
+///
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
+// ------------------------------------------------------
+{
+    NSString *newThemeName = [fieldEditor string];
+    
+    
+    
+    return NO;
+}
+
+
 
 #pragma mark Action Messages
 
@@ -253,6 +267,7 @@
 - (IBAction)addTheme:(id)sender
 //------------------------------------------------------
 {
+    // TODO: implement
 }
 
 
@@ -393,6 +408,33 @@
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
+}
+
+// ------------------------------------------------------
+// 有効なテーマ名かチェックしてエラーメッセージを返す
+- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError **)error
+// ------------------------------------------------------
+{
+    NSString *message;
+    // NSArray を case insensitive に検索するブロック
+    __block NSString *duplicatedThemeName;
+    BOOL (^caseInsensitiveContains)() = ^(id obj, NSUInteger idx, BOOL *stop){
+        BOOL found = (BOOL)([obj caseInsensitiveCompare:themeName] == NSOrderedSame);
+        if (found) { duplicatedThemeName = obj; }
+        return found;
+    };
+    
+    if ([themeName length] < 1) {  // 空は不可
+        message = NSLocalizedString(@"Input theme name.", nil);
+    } else if ([themeName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
+        message = NSLocalizedString(@"Theme name cannot contain “/”. Input another name.", nil);
+    } else if ([themeName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
+        message = NSLocalizedString(@"Theme name cannot begin with “.”. Input another name.", nil);
+    } else if ([[[CEThemeManager sharedManager] themeNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
+        message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already exist. Input another name.", nil), duplicatedThemeName];
+    }
+    
+    return YES;
 }
 
 @end
