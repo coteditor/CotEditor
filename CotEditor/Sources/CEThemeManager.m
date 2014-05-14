@@ -125,7 +125,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         [self migrateTheme];
         
         // バンドルされているテーマの名前を読み込んでおく
-        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"plist" subdirectory:@"Themes"];
+        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"cottheme" subdirectory:@"Themes"];
         NSMutableArray *themeNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
             [themeNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
@@ -485,7 +485,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSURL *)URLForUserTheme:(NSString *)themeName
 //------------------------------------------------------
 {
-    return [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:@"plist"];
+    return [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:@"cottheme"];
 }
 
 
@@ -494,7 +494,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSURL *)URLForBundledTheme:(NSString *)themeName
 //------------------------------------------------------
 {
-    return [[NSBundle mainBundle] URLForResource:themeName withExtension:@"plist" subdirectory:@"Themes"];
+    return [[NSBundle mainBundle] URLForResource:themeName withExtension:@"cottheme" subdirectory:@"Themes"];
 }
 
 

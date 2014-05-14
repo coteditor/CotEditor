@@ -384,6 +384,59 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// ファイルを開く
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+// ------------------------------------------------------
+{
+    // テーマファイルの場合はインストール処理をする
+    if ([[filename pathExtension] isEqualToString:@"cottheme"]) {
+        NSURL *URL = [NSURL fileURLWithPath:filename];
+        NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
+        NSAlert *alert;
+        BOOL isDuplicated = NO;
+        
+        // すでに同名のテーマが存在する場合は置き換えて良いかを訊く
+        NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+        for (NSString *name in themeNames) {
+            if ([name caseInsensitiveCompare:themeName] == NSOrderedSame) {
+                BOOL isCustomized = NO;
+                BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:themeName cutomized:&isCustomized];
+                isDuplicated = (!isBundled || (isBundled && isCustomized));
+                break;
+            }
+        }
+        if (isDuplicated) {
+            alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a customized theme with the same name already exists.", nil), themeName]];
+            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
+            
+            NSInteger returnCode = [alert runModal];
+            if (returnCode == NSAlertFirstButtonReturn) {  // Canceled
+                return YES;
+            }
+        }
+        
+        // テーマ読み込みを実行
+        NSError *error = nil;
+        [[CEThemeManager sharedManager] importTheme:URL error:&error];
+        
+        if (error) {
+            alert = [NSAlert alertWithError:error];
+        } else {
+            [[NSSound soundNamed:@"Glass"] play];
+            alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” has been successfully installed.", nil), themeName]];
+        }
+        [alert runModal];
+        
+        return YES;
+    }
+    return NO;
+}
+
 
 // ------------------------------------------------------
 /// メニューの有効化／無効化を制御

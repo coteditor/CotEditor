@@ -19,6 +19,10 @@ http://www.aynimac.com/
 "Select Next Outline Item" = "次のアウトライン項目を選択";
 "Go To…" = "移動…";
 
+// Import theme
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
+"A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
+
 
 /* CEDocument */
 // Undo/Redo Action name
