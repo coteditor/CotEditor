@@ -480,7 +480,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             (lineEndingCharacter <= OgreWindowsNewlineCharacter)) {
         _lineEndingCharacter = lineEndingCharacter;
     } else {
-        NSInteger defaultLineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];        _lineEndingCharacter = defaultLineEnding;
+        NSInteger defaultLineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
+        _lineEndingCharacter = defaultLineEnding;
     }
     // set to textViewCore.
     switch (_lineEndingCharacter) {
