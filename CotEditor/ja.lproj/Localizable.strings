@@ -166,6 +166,15 @@ http://www.aynimac.com/
 // smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 以上）";
 
+// Appearance Pane
+"Duplicate “%@”" = "“%@”を複製";
+"Restore “%@”" = "“%@”を元に戻す";
+"Delete the theme “%@”?" = "“%@”テーマを削除してもよいですか？";
+"Deleted theme cannot be restored." = "削除したテーマは元に戻せません。";
+"A theme named “%@” already exists." = "“%@”という名前のテーマはすでに存在しています。";
+"Do you want to replace it?\nReplaced theme cannot be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
+
+
 // Pref Format tab
 // encoding menu alert sheet
 "Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
@@ -234,6 +243,15 @@ http://www.aynimac.com/
 // File Drop setting delete
 "Delete the File Drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
 "Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
+
+
+/* CEThemeManager */
+"Untitled" = "名称未設定";
+"Customized Theme" = "カスタムテーマ";
+"Theme name cannot be empty." = "テーマ名は空にできません。";
+"Theme name cannot contain “/”." = "テーマ名に“/”を含むことはできません。";
+"Theme name cannot begin with “.”." = "テーマ名を“.”から始めることはできません。";
+"Input another name." = "ほかの名前を入力してください。";
 
 
 /* CEWindowsController */
