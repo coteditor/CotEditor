@@ -99,7 +99,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
         // テーマの設定
-        [self setTheme:[[CETheme alloc] initWithThemeName:[defaults stringForKey:k_key_defaultTheme]]];
+        [self setTheme:[CETheme themeWithName:[defaults stringForKey:k_key_defaultTheme]]];
         
         // set the values
         [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];

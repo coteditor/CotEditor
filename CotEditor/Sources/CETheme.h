@@ -56,8 +56,12 @@
 @property (nonatomic, readonly) NSColor *commentsColor;
 
 
+/// return CETheme instance initialized with theme name
++ (CETheme *)themeWithName:(NSString *)themeName;
+
+
 /// default initializer
-- (instancetype)initWithThemeName:(NSString *)themeName;
+- (instancetype)initWithName:(NSString *)themeName;
 
 
 /// return corresponded color to the loop index in CESyntax

@@ -1359,7 +1359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)changeTheme:(id)sender
 // ------------------------------------------------------
 {
-    CETheme *theme = [[CETheme alloc] initWithThemeName:[sender title]];
+    CETheme *theme = [CETheme themeWithName:[sender title]];
     [[[self editorView] textView] setTheme:theme];
     [[[self editorView] textView] setSelectedRanges:[[[self editorView] textView] selectedRanges]];
     

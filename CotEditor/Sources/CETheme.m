@@ -70,11 +70,23 @@
 
 @implementation CETheme
 
+#pragma mark Class Methods
+
+//------------------------------------------------------
+/// 簡易イニシャライザ
++ (CETheme *)themeWithName:(NSString *)themeName
+//------------------------------------------------------
+{
+    return [[CETheme alloc] initWithName:themeName];
+}
+
+
+
 #pragma mark Public Methods
 
 //------------------------------------------------------
 // 初期化
-- (instancetype)initWithThemeName:(NSString *)themeName
+- (instancetype)initWithName:(NSString *)themeName
 //------------------------------------------------------
 {
     self = [super init];
