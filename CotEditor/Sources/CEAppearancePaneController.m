@@ -111,12 +111,19 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
+    BOOL isCustomized;
+    BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme] cutomized:&isCustomized];
+    
     if ([menuItem action] == @selector(exportTheme:)) {
         [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), [self selectedTheme]]];
-        return ![[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme]];
+        return (!isBundled || isCustomized);
         
     } else if ([menuItem action] == @selector(duplicateTheme:)) {
-        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), [self selectedTheme]]];
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”", nil), [self selectedTheme]]];
+    } else if ([menuItem action] == @selector(restoreTheme:)) {
+        [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), [self selectedTheme]]];
+        [menuItem setHidden:!isBundled];
+        return isCustomized;
     }
 
     return YES;
@@ -163,12 +170,6 @@
         BOOL isBundled;
         NSMutableDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:&isBundled];
         
-        // テーマ辞書の変更を監視
-        for (NSString *key in [themeDict allKeys]) {
-            [[self themeDict] removeObserver:self forKeyPath:key];
-            [themeDict addObserver:self forKeyPath:key options:0 context:NULL];
-        }
-        
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeDict]) {
             [[NSUserDefaults standardUserDefaults] setObject:[self selectedTheme] forKey:k_key_defaultTheme];
@@ -185,7 +186,7 @@
 - (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 // ------------------------------------------------------
 {
-    return  ![[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme]];
+    return ![[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme] cutomized:nil];
 }
 
 
@@ -268,7 +269,12 @@
 - (IBAction)addTheme:(id)sender
 //------------------------------------------------------
 {
-    // TODO: implement
+    NSString *themeName = nil;
+    if ([[CEThemeManager sharedManager] createNewTheme:&themeName]) {
+        NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+        NSInteger row = [themeNames indexOfObject:themeName];
+        [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    }
 }
 
 
@@ -375,6 +381,18 @@
 
 
 // ------------------------------------------------------
+/// カスタマイズされたバンドル版テーマをオリジナルに戻す
+- (IBAction)restoreTheme:(id)sender
+// ------------------------------------------------------
+{
+    [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme]];
+    
+    // 辞書をセットし直す
+    [self setThemeDict:[[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:nil]];
+}
+
+
+// ------------------------------------------------------
 /// システムのハイライトカラーを適応する
 - (IBAction)applySystemSelectionColor:(id)sender
 // ------------------------------------------------------
@@ -407,6 +425,21 @@
 }
 
 
+// ------------------------------------------------------
+/// テーマ辞書をセット
+- (void)setThemeDict:(NSMutableDictionary *)themeDict
+// ------------------------------------------------------
+{
+    // テーマ辞書の変更を監視
+    for (NSString *key in [themeDict allKeys]) {
+        [[self themeDict] removeObserver:self forKeyPath:key];
+        [themeDict addObserver:self forKeyPath:key options:0 context:NULL];
+    }
+    
+    _themeDict = themeDict;
+}
+
+
 //------------------------------------------------------
 /// 現在選択されているテーマ名を返す
 - (NSString *)selectedTheme
@@ -425,13 +458,10 @@
         return;
     }
     
-    NSString *selectedTheme = [self selectedTheme];
     NSError *error;
+    [[CEThemeManager sharedManager] removeTheme:[self selectedTheme] error:&error];
     
-    if ([[CEThemeManager sharedManager] removeTheme:selectedTheme error:&error]) {
-        /// TODO: 削除成功時の処理
-        
-    } else {
+    if (error) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
@@ -447,7 +477,7 @@
 - (void)importDuplicateThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode != NSAlertDefaultReturn) {  // Cancel
+    if (returnCode != NSAlertAlternateReturn) {  // Cancel
         return;
     }
     

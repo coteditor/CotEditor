@@ -161,10 +161,16 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名と同名のバンドルテーマが存在するかを返す
-- (BOOL)isBundledTheme:(NSString *)themeName
+- (BOOL)isBundledTheme:(NSString *)themeName cutomized:(BOOL *)isCustomized
 //------------------------------------------------------
 {
-    return [[self bundledThemeNames] containsObject:themeName];
+    BOOL isBundled = [[self bundledThemeNames] containsObject:themeName];
+    
+    if (isBundled && isCustomized) {
+        *isCustomized = [[self URLForUserTheme:themeName] checkResourceIsReachableAndReturnError:nil];
+    }
+    
+    return isBundled;
 }
 
 
@@ -245,6 +251,28 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     if (error && removeError) {
         *error = removeError;
+    }
+    
+    return success;
+}
+
+
+//------------------------------------------------------
+/// カスタマイズされたバンドルテーマをオリジナルに戻す
+- (BOOL)restoreTheme:(NSString *)themeName
+//------------------------------------------------------
+{
+    // バンドルテーマでないものはそもそもリストアできない
+    if (![self isBundledTheme:themeName cutomized:nil]) { return NO; }
+
+    BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName] error:nil];
+    
+    if (success) {
+        [self updateCache];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                            object:self
+                                                          userInfo:@{CEOldNameKey: themeName,
+                                                                     CENewNameKey: themeName}];
     }
     
     return success;
@@ -346,6 +374,44 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
                                                       toURL:[self URLForUserTheme:newThemeName] error:nil];
     
     if (success) {
+        [self updateCache];
+    }
+    
+    return success;
+}
+
+
+//------------------------------------------------------
+/// 新規テーマを作成
+- (BOOL)createNewTheme:(NSString *__autoreleasing *)themeName
+//------------------------------------------------------
+{
+    BOOL success = NO;
+    NSString *newThemeName = NSLocalizedString(@"Untitled", nil);
+    
+    // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
+    if (![self prepareUserThemeDirectory]) {
+        return NO;
+    }
+    
+    // すでに同名のファイルが存在したら数字を追加する
+    if ([[self URLForUserTheme:newThemeName] checkResourceIsReachableAndReturnError:nil]) {
+        NSString *proposedNewThemeName = newThemeName;
+        NSUInteger counter = 2;
+        while ([[self URLForUserTheme:proposedNewThemeName] checkResourceIsReachableAndReturnError:nil]) {
+            proposedNewThemeName = [newThemeName stringByAppendingFormat:@" %tu", counter];
+            counter++;
+        }
+        newThemeName = proposedNewThemeName;
+    }
+    
+    NSURL *URL = [self URLForUserTheme:newThemeName];
+    success = [[self plainTheme] writeToURL:URL atomically:YES];
+    
+    if (success) {
+        if (themeName) {
+            *themeName = newThemeName;
+        }
         [self updateCache];
     }
     
@@ -517,6 +583,29 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     return (!description);
+}
+
+
+//------------------------------------------------------
+/// 新規作成時のベースとなる何もないテーマ
+- (NSDictionary *)plainTheme
+//------------------------------------------------------
+{
+    return @{CEThemeTextColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeBackgroundColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
+             CEThemeInvisiblesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
+             CEThemeSelectionColorKey: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
+             CEThemeUsesSystemSelectionColorKey: @YES,
+             CEThemeInsertionPointColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:[NSColor colorWithWhite:0.94 alpha:1]],
+             CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeCommandsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeNumbersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeStringsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeCharactersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeCommentsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]]
+             };
 }
 
 @end

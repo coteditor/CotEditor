@@ -72,12 +72,14 @@ extern NSString *const CEThemeDidUpdateNotification;
 - (NSMutableDictionary *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled;
 
 // manage themes
-- (BOOL)isBundledTheme:(NSString *)themeName;
+- (BOOL)isBundledTheme:(NSString *)themeName cutomized:(BOOL *)isCustomized;
 - (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName;
 - (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)error;
 - (BOOL)removeTheme:(NSString *)themeName error:(NSError **)error;
+- (BOOL)restoreTheme:(NSString *)themeName;
 - (BOOL)duplicateTheme:(NSString *)themeName;
 - (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL;
 - (BOOL)importTheme:(NSURL *)URL error:(NSError **)error;
+- (BOOL)createNewTheme:(NSString **)themeName;
 
 @end

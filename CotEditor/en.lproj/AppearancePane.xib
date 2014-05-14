@@ -231,9 +231,14 @@
                         <menu key="menu" title="OtherViews" id="Q9U-FY-9AJ">
                             <items>
                                 <menuItem title="Theme Action" state="on" image="NSActionTemplate" hidden="YES" id="L9I-Yv-kY0"/>
-                                <menuItem title="Duplicate…" id="O6H-pl-VWp">
+                                <menuItem title="Duplicate" id="y0w-cO-gQS">
                                     <connections>
-                                        <action selector="duplicateTheme:" target="-2" id="jPM-rp-hHw"/>
+                                        <action selector="duplicateTheme:" target="-2" id="9wl-0G-GB2"/>
+                                    </connections>
+                                </menuItem>
+                                <menuItem title="Restore" id="O6H-pl-VWp">
+                                    <connections>
+                                        <action selector="restoreTheme:" target="-2" id="yt0-fg-LZH"/>
                                     </connections>
                                 </menuItem>
                                 <menuItem title="Export…" id="4B4-mq-8Fs">
