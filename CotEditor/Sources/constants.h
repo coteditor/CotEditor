@@ -57,6 +57,9 @@ extern NSString *const CEDocumentDidFinishOpenNotification;
 extern NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification;
 extern NSString *const CECatchMenuShortcutNotification;
 
+// Notification userInfo keys
+extern NSString *const CEOldNameKey;
+extern NSString *const CENewNameKey;
 
 
 #pragma mark User Defaults Keys

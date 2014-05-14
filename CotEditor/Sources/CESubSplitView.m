@@ -778,8 +778,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)themeDidUpdate:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([[notification userInfo][@"oldName"] isEqualToString:[[[self textView] theme] name]]) {
-        [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][@"newName"]]];
+    if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
+        [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
         [[self editorView] recolorAllString];
     }
 }

@@ -55,6 +55,10 @@ NSString *const CEDocumentDidFinishOpenNotification = @"documentDidFinishOpenNot
 NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification = @"setKeyCatchModeToCatchMenuShortcut";
 NSString *const CECatchMenuShortcutNotification = @"catchMenuShortcutNotification";
 
+// Notification userInfo keys
+NSString *const CEOldNameKey = @"CEOldNameKey";
+NSString *const CENewNameKey = @"CENewNameKey";
+
 
 
 #pragma mark User Defaults Keys

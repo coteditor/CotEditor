@@ -187,8 +187,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         
         [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                             object:self
-                                                          userInfo:@{@"oldName": themeName,
-                                                                     @"newName": themeName}];
+                                                          userInfo:@{CEOldNameKey: themeName,
+                                                                     CENewNameKey: themeName}];
     }
     
     return success;
@@ -219,8 +219,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         
         [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                             object:self
-                                                          userInfo:@{@"oldName": themeName,
-                                                                     @"newName": newThemeName}];
+                                                          userInfo:@{CEOldNameKey: themeName,
+                                                                     CENewNameKey: newThemeName}];
     }
     
     return success;
