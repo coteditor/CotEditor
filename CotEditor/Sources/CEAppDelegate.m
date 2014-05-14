@@ -262,7 +262,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // テーマ更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildThemeMenu)
-                                                 name:CEThemeDidUpdateNotification
+                                                 name:CEThemeListDidUpdateNotification
                                                object:nil];
 }
 

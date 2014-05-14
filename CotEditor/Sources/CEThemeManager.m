@@ -53,6 +53,7 @@ NSString *const CEThemeCommentsColorKey = @"commentsColor";
 NSString *const CEThemeUsesSystemSelectionColorKey = @"usesSystemSelectionColor";
 
 // notifications
+NSString *const CEThemeListDidUpdateNotification = @"CEThemeListDidUpdateNotification";
 NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
@@ -183,6 +184,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     
     if (success) {
         [self updateCache];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                            object:self
+                                                          userInfo:@{@"oldName": themeName,
+                                                                     @"newName": themeName}];
     }
     
     return success;
@@ -210,6 +216,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
             [[NSUserDefaults standardUserDefaults] setObject:newThemeName forKey:k_key_defaultTheme];
         }
         [self updateCache];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                            object:self
+                                                          userInfo:@{@"oldName": themeName,
+                                                                     @"newName": newThemeName}];
     }
     
     return success;
@@ -465,7 +476,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     // Notificationを発行
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeListDidUpdateNotification object:self];
 }
 
 

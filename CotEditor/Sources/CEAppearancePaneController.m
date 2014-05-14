@@ -90,7 +90,7 @@
     // テーマのラインナップが変更されたらテーブルビューを更新
     [[NSNotificationCenter defaultCenter] addObserver:[self themeTableView]
                                              selector:@selector(reloadData)
-                                                 name:CEThemeDidUpdateNotification
+                                                 name:CEThemeListDidUpdateNotification
                                                object:nil];
 }
 

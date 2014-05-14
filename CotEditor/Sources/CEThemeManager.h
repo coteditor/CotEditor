@@ -54,6 +54,7 @@ extern NSString *const CEThemeUsesSystemSelectionColorKey;  // only in archived 
 
 
 // notifications
+extern NSString *const CEThemeListDidUpdateNotification;
 extern NSString *const CEThemeDidUpdateNotification;
 
 
