@@ -239,10 +239,11 @@
     }
     
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the File Drop setting for “%@”?", nil), extension];
-    NSAlert *alert = [NSAlert alertWithMessageText:message
-                                     defaultButton:NSLocalizedString(@"Cancel", nil)
-                                   alternateButton:NSLocalizedString(@"Delete", nil) otherButton:nil
-                         informativeTextWithFormat:NSLocalizedString(@"Deleted setting cannot be restored.", nil)];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:message];
+    [alert setInformativeText:NSLocalizedString(@"Deleted setting cannot be restored.", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
     [alert beginSheetModalForWindow:[[self view] window]
                       modalDelegate:self
@@ -265,7 +266,7 @@
 - (void)deleteFileDropSettingAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode != NSAlertAlternateReturn) { return; } // != Delete
+    if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
     
     if ([[self fileDropController] selectionIndex] == NSNotFound) { return; }
     
