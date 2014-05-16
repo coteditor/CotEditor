@@ -249,6 +249,8 @@ extern NSString *const k_SCKey_italic;
 extern NSString *const k_SCKey_numOfObjInArray;
 extern NSString *const k_SCKey_keywordsArray;
 extern NSString *const k_SCKey_commandsArray;
+extern NSString *const k_SCKey_typesArray;
+extern NSString *const k_SCKey_variablesArray;
 extern NSString *const k_SCKey_valuesArray;
 extern NSString *const k_SCKey_numbersArray;
 extern NSString *const k_SCKey_stringsArray;

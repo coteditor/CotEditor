@@ -982,7 +982,7 @@ static NSArray *kSyntaxDictKeys;
     double indicatorValue, beginDouble = 0.0;
     
     @try {
-        // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
+        // Keywords > Commands > Types > Variables > Values > Numbers > Strings > Characters > Comments
         for (i = 0; i < [kSyntaxDictKeys count]; i++) {
 
             if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
@@ -1000,6 +1000,9 @@ static NSArray *kSyntaxDictKeys;
             }
             
             strDicts = [self coloringDictionary][kSyntaxDictKeys[i]];
+            if (!strDicts) {
+                continue;
+            }
             count = [strDicts count];
             [self setTextColor:[[self theme] syntaxColorWithIndex:i]]; // ===== retain
             [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain

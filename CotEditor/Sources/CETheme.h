@@ -49,6 +49,8 @@
 // syntax colors
 @property (nonatomic, readonly) NSColor *keywordsColor;
 @property (nonatomic, readonly) NSColor *commandsColor;
+@property (nonatomic, readonly) NSColor *typesColor;
+@property (nonatomic, readonly) NSColor *variablesColor;
 @property (nonatomic, readonly) NSColor *valuesColor;
 @property (nonatomic, readonly) NSColor *numbersColor;
 @property (nonatomic, readonly) NSColor *stringsColor;

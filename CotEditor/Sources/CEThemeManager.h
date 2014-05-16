@@ -44,6 +44,8 @@ extern NSString *const CEThemeLineHighlightColorKey;
 
 extern NSString *const CEThemeKeywordsColorKey;
 extern NSString *const CEThemeCommandsColorKey;
+extern NSString *const CEThemeTypesColorKey;
+extern NSString *const CEThemeVariablesColorKey;
 extern NSString *const CEThemeValuesColorKey;
 extern NSString *const CEThemeNumbersColorKey;
 extern NSString *const CEThemeStringsColorKey;
