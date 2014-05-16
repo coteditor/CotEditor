@@ -260,7 +260,6 @@
 		2A149DCA1902BEE800A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		2A149DCB1902C03000A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/GeneralPane.xib; sourceTree = "<group>"; };
 		2A149DCC1902C18F00A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/WindowPane.xib; sourceTree = "<group>"; };
-		2A149DCD1902C3A600A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/AppearancePane.xib; sourceTree = "<group>"; };
 		2A149DCE1902C4D500A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/EditPane.xib; sourceTree = "<group>"; };
 		2A149DCF1902C7E100A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/FormatPane.xib; sourceTree = "<group>"; };
 		2A149DD01902C9CA00A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/FileDropPane.xib; sourceTree = "<group>"; };
@@ -282,6 +281,7 @@
 		2A15833318E3B83F00601026 /* CEScriptErrorPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEScriptErrorPanelController.h; sourceTree = "<group>"; };
 		2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEScriptErrorPanelController.m; sourceTree = "<group>"; };
 		2A1CFD0C18E5B64F00A5B664 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/print.strings; sourceTree = "<group>"; };
+		2A294CD51926666B00DCB672 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/AppearancePane.xib; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDocument.h; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1227,7 +1227,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A149D9719016ABB00A9D6EF /* en */,
-				2A149DCD1902C3A600A9D6EF /* ja */,
+				2A294CD51926666B00DCB672 /* ja */,
 			);
 			name = AppearancePane.xib;
 			sourceTree = "<group>";
