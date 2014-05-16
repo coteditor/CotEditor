@@ -18,7 +18,7 @@ This project uses ARC currently.
 
 
 ### Development Environment
-- OS X 10.9.2
+- OS X Mavericks
 - Xcode 5.1
 
 
