@@ -632,7 +632,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     BOOL isCustomized = NO;
     for (NSString *classicKey in [self classicThemeKeyTable]) {
         NSString *modernKey = [self classicThemeKeyTable][classicKey];
-        NSColor *color = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:classicKey]];
+        NSData *oldData = [[NSUserDefaults standardUserDefaults] dataForKey:classicKey];
+        if (!oldData) {
+            continue;
+        }
+        NSColor *color = [NSUnarchiver unarchiveObjectWithData:oldData];
         
         if (color && ![color isEqual:theme[modernKey]]) {
             isCustomized = YES;
