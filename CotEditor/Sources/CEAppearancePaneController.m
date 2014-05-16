@@ -283,12 +283,12 @@
 - (IBAction)deleteTheme:(id)sender
 //------------------------------------------------------
 {
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the theme “%@”?", nil), [self selectedTheme]];
-    NSAlert *alert = [NSAlert alertWithMessageText:message
-                                     defaultButton:NSLocalizedString(@"Cancel", nil)
-                                   alternateButton:NSLocalizedString(@"Delete", nil)
-                                       otherButton:nil
-                         informativeTextWithFormat:NSLocalizedString(@"Deleted theme cannot be restored.", nil)];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the theme “%@”?", nil),
+                           [self selectedTheme]]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted theme cannot be restored.", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
     [alert beginSheetModalForWindow:[[self view] window]
                       modalDelegate:self
@@ -358,11 +358,12 @@
             [openPanel orderOut:nil];
             [[openPanel sheetParent] makeKeyAndOrderFront:nil];
             
-            NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"A theme named “%@” already exists.", nil), duplicatedName]
-                            defaultButton:NSLocalizedString(@"Cancel", nil)
-                          alternateButton:NSLocalizedString(@"Replace", nil)
-                              otherButton:nil
-                informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil)];
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"A theme named “%@” already exists.", nil), duplicatedName]];
+            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
+            
             [alert beginSheetModalForWindow:[[self view] window]
                               modalDelegate:self
                              didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
@@ -374,7 +375,7 @@
         [[CEThemeManager sharedManager] importTheme:URL error:&error];
         if (error) {
             NSAlert *alert = [NSAlert alertWithError:error];
-            [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
+            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
         }
     }];
 }
@@ -454,7 +455,7 @@
 - (void)deleteThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode != NSAlertAlternateReturn) {  // != Delete
+    if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
         return;
     }
     
@@ -477,7 +478,7 @@
 - (void)importDuplicateThemeAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode != NSAlertAlternateReturn) {  // Cancel
+    if (returnCode != NSAlertSecondButtonReturn) {  // Cancel
         return;
     }
     
@@ -487,7 +488,7 @@
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];
-        [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
+        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
     }
 }
 
