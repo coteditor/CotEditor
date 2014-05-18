@@ -82,7 +82,7 @@
     [self setFontFamilyNameAndSize];
     
     // デフォルトテーマを選択
-    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    NSArray *themeNames = [[[CEThemeManager sharedManager] themeNames] copy];
     NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]];
     [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     [[self themeTableView] setAllowsEmptySelection:NO];
