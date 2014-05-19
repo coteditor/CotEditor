@@ -67,6 +67,7 @@
 {
     // 各種セットアップ
     [self setContentFileDropController];
+    
     // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
     // 2008.07.15.
     [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
@@ -91,7 +92,7 @@
         NSString *format = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropFormatString];
         
         // 入力されていなければ行ごと削除
-        if ((extension == nil) && (format == nil)) {
+        if (!extension && !format) {
             // 削除実行フラグを偽に（編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るためのフラグ）
             [self setDoDeleteFileDrop:NO];
             [[self fileDropController] remove:self];
@@ -99,20 +100,20 @@
             // フォーマットを整える
             NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
             NSArray *components = [extension componentsSeparatedByString:@","];
-            NSMutableArray *newComps = [NSMutableArray array];
-            NSString *partStr, *newXtsnStr;
+            NSMutableArray *newComponents = [NSMutableArray array];
+            NSString *newExtension;
             
             for (NSString *component in components) {
-                partStr = [component stringByTrimmingCharactersInSet:trimSet];
+                NSString *partStr = [component stringByTrimmingCharactersInSet:trimSet];
                 if ([partStr length] > 0) {
-                    [newComps addObject:partStr];
+                    [newComponents addObject:partStr];
                 }
             }
-            newXtsnStr = [newComps componentsJoinedByString:@", "];
+            newExtension = [newComponents componentsJoinedByString:@", "];
             // 有効な文字列が生成できたら、UserDefaults に書き戻し、直ちに反映させる
-            if ((newXtsnStr != nil) && ([newXtsnStr length] > 0)) {
-                [[[self fileDropController] selection] setValue:newXtsnStr forKey:k_key_fileDropExtensions];
-            } else if (format == nil) {
+            if ([newExtension length] > 0) {
+                [[[self fileDropController] selection] setValue:newExtension forKey:k_key_fileDropExtensions];
+            } else if (!format) {
                 [[self fileDropController] remove:self];
             }
         }
@@ -216,9 +217,14 @@
     // 起動時に読み込み、変更完了／終了時に下記戻す処理を行う。
     // http://www.hmdt-web.net/bbs/bbs.cgi?bbsname=mkino&mode=res&no=203&oyano=203&line=0
     
-    NSMutableArray *fileDropArray = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray] mutableCopy];
+    NSArray *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
     
-    [[self fileDropController] setContent:fileDropArray];
+    NSMutableArray *content = [NSMutableArray array];
+    for (NSDictionary *dict in settings) {
+        [content addObject:[dict mutableCopy]];
+    }
+    
+    [[self fileDropController] setContent:content];
 }
 
 
@@ -234,7 +240,7 @@
     NSString *extension = selected[0][k_key_fileDropExtensions];
     if ([selected count] == 0) {
         return;
-    } else if (extension == nil) {
+    } else if (!extension) {
         extension = @"";
     }
     
