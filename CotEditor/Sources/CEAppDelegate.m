@@ -1,6 +1,6 @@
 /*
 =================================================
-CEAppController
+CEAppDelegate
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
