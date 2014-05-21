@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) CESubSplitView *masterView;
 @property (nonatomic) BOOL showNavigationBar;
 
+
 // Public method
 - (void)setOutlineMenuArray:(NSArray *)menus;
 - (void)selectOutlineMenuItemWithRange:(NSRange)range;
@@ -50,5 +51,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)canSelectPrevItem;
 - (BOOL)canSelectNextItem;
 - (void)setCloseSplitButtonEnabled:(BOOL)enabled;
+- (void)showOutlineIndicator;
 
 @end

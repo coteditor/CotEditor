@@ -31,7 +31,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import <OgreKit/OgreKit.h>
 #import "CESyntax.h"
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
@@ -222,131 +221,119 @@ static NSArray *kSyntaxDictKeys;
 - (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString
 // ------------------------------------------------------
 {
-// （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
-    NSMutableArray *outlineMenuDicts = [NSMutableArray array];
-    if ((wholeString == nil) || ([wholeString length] < 1) || ([[self syntaxStyleName] length] < 1)) {
+    __block NSMutableArray *outlineMenuDicts = [NSMutableArray array];
+    
+    if (!wholeString || ([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) {
         return outlineMenuDicts;
     }
     [self setWholeString:wholeString];
-
-    NSArray *REStringArray = [self coloringDictionary][k_SCKey_outlineMenuArray];
-    NSMutableString *pattern; 
-    NSString *title, *matchedIndexString;
-    NSRange matchRange;
-    NSUInteger index, lines, curLine, wholeLength = [wholeString length];
+    
     NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_outlineMenuMaxLength];
-
-    for (NSDictionary *dict in REStringArray) {
-        NSUInteger options = ([dict[k_SCKey_ignoreCase] boolValue]) ?  OgreIgnoreCaseOption : OgreNoneOption;
-        NSDictionary *matchDict;
-        OGRegularExpression *regex;
-        NSEnumerator *enumerator;
-        OGRegularExpressionMatch *match;
-
-        NS_DURING
-            regex = [OGRegularExpression regularExpressionWithString:dict[k_SCKey_beginString] options:options];
-        NS_HANDLER
-            // 何もしない
-            NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
-            continue;
-        NS_ENDHANDLER
-
-        enumerator = [regex matchEnumeratorInString:[self wholeString]];
-        while (match = [enumerator nextObject]) {
-            // マッチした範囲
-            matchRange = [match rangeOfMatchedString];
-            // メニュー項目タイトル
-            pattern = [dict[k_SCKey_arrayKeyString] mutableCopy];
-            if ([pattern isEqualToString:CESeparatorString]) {
-                // セパレータのとき
-                matchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:matchRange],
-                              k_outlineMenuItemTitle: CESeparatorString,
-                              k_outlineMenuItemSortKey: @(matchRange.location)};
-                [outlineMenuDicts addObject:matchDict];
-                continue;
-            } else if ((pattern == nil) || ([pattern length] < 1)) {
-                // パターン定義なし
-                pattern = [[match matchedString] mutableCopy];
-            } else {
-                // マッチ文字列（$0, $&）置換
-                [pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$0"
-                                                          withString:[match matchedString]
-                                                             options:0
-                                                               range:NSMakeRange(0, [pattern length])];
-                [pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$&"
-                                                          withString:[match matchedString]
-                                                             options:0
-                                                               range:NSMakeRange(0, [pattern length])];
-                // マッチ部分文字列（$1-9）置換
-                for (NSInteger i = 1; i < 10; i++) {
-                    matchedIndexString = [match substringAtIndex:i];
-                    if (matchedIndexString != nil) {
-                        [pattern replaceOccurrencesOfRegularExpressionString:[NSString stringWithFormat:@"(?<!\\\\)\\$%zd", i]
-                                                                  withString:matchedIndexString
-                                                                     options:0
-                                                                       range:NSMakeRange(0, [pattern length])];
-                    }
-                }
-                // マッチした範囲の開始位置の行
-                curLine = 1;
-                for (index = 0, lines = 0; index < wholeLength; lines++) {
-                    if (index <= matchRange.location) {
-                        curLine = lines + 1;
-                    } else {
-                        break;
-                    }
-                    index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-                }
-                //行番号（$LN）置換
-                [pattern replaceOccurrencesOfRegularExpressionString:@"(?<!\\\\)\\$LN"
-                                                          withString:[NSString stringWithFormat:@"%tu", curLine]
-                                                             options:0
-                                                               range:NSMakeRange(0, [pattern length])];
-            }
-            // 改行またはタブをスペースに置換
-            [pattern replaceOccurrencesOfRegularExpressionString:@"[\n\t]"
-                                                      withString:@" "
-                                                         options:0
-                                                           range:NSMakeRange(0, [pattern length])];
-            // エスケープされた「$」を置換
-            [pattern replaceOccurrencesOfRegularExpressionString:@"\\\\\\$(?=([0-9&]|LN))"
-                                                      withString:@"$"
-                                                         options:0
-                                                           range:NSMakeRange(0, [pattern length])];
-            // タイトル確定
-            if ([pattern length] > menuTitleMaxLength) {
-                title = [NSString stringWithFormat:@"%@ ...", [pattern substringToIndex:menuTitleMaxLength]];
-            } else {
-                title = [NSString stringWithString:pattern];
-            }
-            // ボールド
-            BOOL isBold = [dict[k_SCKey_bold] boolValue];
-            // イタリック
-            BOOL isItalic = [dict[k_SCKey_italic] boolValue];
-            // アンダーライン
-            NSUInteger underlineMask = ([dict[k_SCKey_underline] boolValue]) ?
-                    (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
-            // 辞書生成
-            matchDict = @{k_outlineMenuItemRange: [NSValue valueWithRange:matchRange],
-                          k_outlineMenuItemTitle: title,
-                          k_outlineMenuItemSortKey: @(matchRange.location),
-                          k_outlineMenuItemFontBold: @(isBold),
-                          k_outlineMenuItemFontItalic: @(isItalic),
-                          k_outlineMenuItemUnderlineMask: @(underlineMask)};
-            [outlineMenuDicts addObject:matchDict];
+    NSArray *definitions = [self coloringDictionary][k_SCKey_outlineMenuArray];
+    
+    for (NSDictionary *definition in definitions) {
+        NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
+        if ([definition[k_SCKey_ignoreCase] boolValue]) {
+            options |= NSRegularExpressionCaseInsensitive;
         }
+
+        NSError *error = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:definition[k_SCKey_beginString]
+                                                                               options:options
+                                                                                 error:&error];
+        if (error) {
+            NSLog(@"ERROR in \"%s\" with regex pattern \"%@\"", __PRETTY_FUNCTION__, definition[k_SCKey_beginString]);
+            continue;  // do nothing
+        }
+        
+        NSString *template = definition[k_SCKey_arrayKeyString];
+        // 置換テンプレート内の $& を $0 に置換
+        template = [template stringByReplacingOccurrencesOfString:@"(?<!\\\\)\\$&"
+                                                       withString:@"\\$0"
+                                                          options:NSRegularExpressionSearch
+                                                            range:NSMakeRange(0, [template length])];
+        
+        [regex enumerateMatchesInString:wholeString
+                                options:0
+                                  range:NSMakeRange(0, [wholeString length])
+                             usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+         {
+             // セパレータのとき
+             if ([template isEqualToString:CESeparatorString]) {
+                 [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:[result range]],
+                                               k_outlineMenuItemTitle: CESeparatorString,
+                                               k_outlineMenuItemSortKey: @([result range].location)}];
+                 return;
+             }
+             
+             // メニュー項目タイトル
+             NSString *title;
+             
+             if (!template || ([template length] == 0)) {
+                 // パターン定義なし
+                 title = [wholeString substringWithRange:[result range]];;
+                 
+             } else {
+                 // マッチ文字列をテンプレートで置換
+                 title = [regex replacementStringForResult:result
+                                                  inString:wholeString
+                                                    offset:0
+                                                  template:template];
+                 
+                 // マッチした範囲の開始位置の行を得る
+                 NSUInteger lineNum = 0, index = 0;
+                 while (index <= [result range].location) {
+                     index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
+                     lineNum++;
+                 }
+                 //行番号（$LN）置換
+                 title = [title stringByReplacingOccurrencesOfString:@"(?<!\\\\)\\$LN"
+                                                          withString:[NSString stringWithFormat:@"%tu", lineNum]
+                                                             options:NSRegularExpressionSearch
+                                                               range:NSMakeRange(0, [title length])];
+             }
+             
+             // 改行またはタブをスペースに置換
+             title = [title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+             title = [title stringByReplacingOccurrencesOfString:@"\t" withString:@" "];
+             
+             // 長過ぎる場合は末尾を省略
+             if ([title length] > menuTitleMaxLength) {
+                 title = [NSString stringWithFormat:@"%@ ...", [title substringToIndex:menuTitleMaxLength]];
+             }
+             
+             // ボールド
+             BOOL isBold = [definition[k_SCKey_bold] boolValue];
+             // イタリック
+             BOOL isItalic = [definition[k_SCKey_italic] boolValue];
+             // アンダーライン
+             NSUInteger underlineMask = [definition[k_SCKey_underline] boolValue] ?
+                                        (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
+             
+             // 辞書生成
+             [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:[result range]],
+                                           k_outlineMenuItemTitle: title,
+                                           k_outlineMenuItemSortKey: @([result range].location),
+                                           k_outlineMenuItemFontBold: @(isBold),
+                                           k_outlineMenuItemFontItalic: @(isItalic),
+                                           k_outlineMenuItemUnderlineMask: @(underlineMask)}];
+        }];
     }
+    
     if ([outlineMenuDicts count] > 0) {
+        // 出現順にソート
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey
                                                                    ascending:YES
                                                                     selector:@selector(compare:)];
         [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
-        // ソート後に、冒頭のアイテムを追加
+        
+        // 冒頭のアイテムを追加
         [outlineMenuDicts insertObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)],
-                                         k_outlineMenuItemTitle: NSLocalizedString(@"<Outline Menu>",@""),
+                                         k_outlineMenuItemTitle: NSLocalizedString(@"<Outline Menu>", nil),
                                          k_outlineMenuItemSortKey: @0U}
                                atIndex:0];
     }
+    
     return outlineMenuDicts;
 }
 

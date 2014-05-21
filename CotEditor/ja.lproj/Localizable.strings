@@ -138,6 +138,8 @@ http://www.aynimac.com/
 "Go to next item" = "次の項目へ";
 "Split view" = "エディタを分割";
 "Close split view" = "分割されたエディタを閉じる";
+// loading message
+"Extracting Outline…" = "アウトラインを抽出中…";
 
 
 /* CEStatusBarView */
