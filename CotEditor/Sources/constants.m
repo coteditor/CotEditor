@@ -177,6 +177,7 @@ NSString *const k_key_showColoringIndicatorTextLength = @"showColoringIndicatorT
 NSString *const k_key_runAppleScriptInLaunching = @"runAppleScriptInLaunching";
 NSString *const k_key_showAlertForNotWritable = @"showAlertForNotWritable";
 NSString *const k_key_notifyEditByAnother = @"notifyEditByAnother";
+NSString *const k_key_coloringRangeBufferLength = @"coloringRangeBufferLength";
 
 
 
@@ -220,9 +221,6 @@ NSUInteger const k_QC_Start = 1;
 NSUInteger const k_QC_End = 2;
 NSString  *const k_QCStrLength = @"QCStrLength";
 NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
-
-// syntax coloring range buffer (in CEEditorView)
-NSUInteger const k_coloringRangeBufferLength = 50000;  // number of characters
 
 // syntax coloring indicator
 CGFloat const k_perCompoIncrement = 80.0;

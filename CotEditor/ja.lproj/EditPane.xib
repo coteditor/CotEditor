@@ -19,9 +19,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
-                    <rect key="frame" x="163" y="377" width="167" height="18"/>
+                    <rect key="frame" x="163" y="377" width="162" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="“&lt; >” をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
+                    <buttonCell key="cell" type="check" title="“&lt; >”をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -31,20 +31,20 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="867">
-                    <rect key="frame" x="138" y="401" width="292" height="18"/>
+                    <rect key="frame" x="138" y="401" width="283" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="対応する括弧 “( )” “[ ]” “{ }” をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
+                    <buttonCell key="cell" type="check" title="対応する括弧“( )” “[ ]” “{ }”をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="AquaKana"/>
                     </buttonCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.highlightBraces" id="869"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
-                    <rect key="frame" x="138" y="449" width="202" height="18"/>
+                    <rect key="frame" x="138" y="449" width="190" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="“¥” と “\” のキーを入れ替える" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
+                    <buttonCell key="cell" type="check" title="“¥”と“\”のキーを入れ替える" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

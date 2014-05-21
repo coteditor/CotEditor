@@ -480,7 +480,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             (lineEndingCharacter <= OgreWindowsNewlineCharacter)) {
         _lineEndingCharacter = lineEndingCharacter;
     } else {
-        NSInteger defaultLineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];        _lineEndingCharacter = defaultLineEnding;
+        NSInteger defaultLineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
+        _lineEndingCharacter = defaultLineEnding;
     }
     // set to textViewCore.
     switch (_lineEndingCharacter) {
@@ -578,11 +579,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_showAlertForNotWritable]) {
 
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"The file is not writable.", nil)
-                                         defaultButton:nil
-                                       alternateButton:nil
-                                           otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
+        [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
 
         [alert beginSheetModalForWindow:[self window]
                           modalDelegate:self
@@ -1198,7 +1197,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         coloringRange = NSMakeRange(location, length);
     } else {
         // 表示領域の前もある程度カラーリングの対象に含める
-        NSUInteger buffer = MIN(charRange.location, k_coloringRangeBufferLength);
+        NSUInteger buffer = MIN(charRange.location,
+                                [[NSUserDefaults standardUserDefaults] integerForKey:k_key_coloringRangeBufferLength]);
         coloringRange.location -= buffer;
         coloringRange.length += buffer;
     }

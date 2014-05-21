@@ -91,7 +91,7 @@
                     </connections>
                 </button>
                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="827">
-                    <rect key="frame" x="211" y="382" width="68" height="26"/>
+                    <rect key="frame" x="120" y="382" width="68" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="65" id="kG7-jA-Oce"/>
@@ -121,7 +121,7 @@
                     </connections>
                 </comboBox>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="824">
-                    <rect key="frame" x="282" y="386" width="33" height="17"/>
+                    <rect key="frame" x="191" y="386" width="33" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="lines" id="3292">
                         <font key="font" metaFont="system"/>
@@ -129,19 +129,10 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="813">
-                    <rect key="frame" x="118" y="386" width="87" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Line spacing:" id="3291">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-u9-gbq">
-                    <rect key="frame" x="35" y="386" width="79" height="17"/>
+                    <rect key="frame" x="27" y="386" width="87" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line height:" id="r1c-v3-qW1">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line spacing:" id="r1c-v3-qW1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -504,6 +495,7 @@
                 <constraint firstItem="421" firstAttribute="centerY" secondItem="416" secondAttribute="centerY" id="38Y-4C-vZa"/>
                 <constraint firstItem="299" firstAttribute="height" secondItem="421" secondAttribute="height" id="5TJ-fE-b65"/>
                 <constraint firstItem="387" firstAttribute="centerY" secondItem="385" secondAttribute="centerY" id="5kL-2G-Ziv"/>
+                <constraint firstItem="860" firstAttribute="top" secondItem="827" secondAttribute="bottom" constant="12" id="714-af-A4z"/>
                 <constraint firstItem="423" firstAttribute="centerY" secondItem="419" secondAttribute="centerY" id="718-bW-Mzf"/>
                 <constraint firstItem="423" firstAttribute="leading" secondItem="419" secondAttribute="trailing" constant="8" symbolic="YES" id="7Ac-bK-PXx"/>
                 <constraint firstItem="ryE-0I-GfC" firstAttribute="leading" secondItem="744" secondAttribute="leading" constant="20" symbolic="YES" id="9CM-p7-EHX"/>
@@ -512,11 +504,11 @@
                 <constraint firstItem="297" firstAttribute="leading" secondItem="292" secondAttribute="leading" id="ASe-ZQ-Ft8"/>
                 <constraint firstItem="299" firstAttribute="top" secondItem="296" secondAttribute="bottom" constant="6" id="CZp-tO-vPN"/>
                 <constraint firstAttribute="bottom" secondItem="2154" secondAttribute="bottom" constant="20" symbolic="YES" id="ClW-zg-yXi"/>
-                <constraint firstItem="813" firstAttribute="top" secondItem="809" secondAttribute="bottom" constant="18" id="DFg-lT-SO2"/>
                 <constraint firstItem="385" firstAttribute="top" secondItem="744" secondAttribute="top" constant="20" symbolic="YES" id="DHC-TM-Mbr"/>
                 <constraint firstItem="216" firstAttribute="leading" secondItem="287" secondAttribute="leading" id="DbR-XD-f1C"/>
+                <constraint firstItem="827" firstAttribute="leading" secondItem="DSq-u9-gbq" secondAttribute="trailing" constant="8" symbolic="YES" id="FMY-2Y-0Pd"/>
                 <constraint firstItem="827" firstAttribute="baseline" secondItem="824" secondAttribute="baseline" id="GHg-dt-eoY"/>
-                <constraint firstItem="827" firstAttribute="baseline" secondItem="813" secondAttribute="baseline" id="GOV-gb-ist"/>
+                <constraint firstItem="827" firstAttribute="leading" secondItem="DSq-u9-gbq" secondAttribute="trailing" constant="8" symbolic="YES" id="Hml-jZ-boG"/>
                 <constraint firstItem="288" firstAttribute="top" secondItem="bGM-lp-YMW" secondAttribute="bottom" constant="12" id="Hwe-Ls-2Np"/>
                 <constraint firstItem="824" firstAttribute="baseline" secondItem="DSq-u9-gbq" secondAttribute="baseline" id="IRy-cM-22B"/>
                 <constraint firstItem="385" firstAttribute="leading" secondItem="cM2-sa-5cF" secondAttribute="trailing" constant="8" symbolic="YES" id="JAo-dD-ojS"/>
@@ -528,14 +520,13 @@
                 <constraint firstItem="297" firstAttribute="leading" secondItem="298" secondAttribute="trailing" constant="8" symbolic="YES" id="LQF-fn-yIm"/>
                 <constraint firstItem="2553" firstAttribute="top" secondItem="422" secondAttribute="bottom" constant="6" id="Mfv-c5-QRm"/>
                 <constraint firstItem="300" firstAttribute="centerY" secondItem="299" secondAttribute="centerY" id="Mna-MY-fo9"/>
-                <constraint firstItem="860" firstAttribute="leading" secondItem="813" secondAttribute="leading" id="Mnh-JZ-VTl"/>
                 <constraint firstItem="2154" firstAttribute="top" secondItem="292" secondAttribute="bottom" constant="10" id="O1Z-Pb-tqQ"/>
+                <constraint firstItem="827" firstAttribute="top" secondItem="809" secondAttribute="bottom" constant="15" id="OEQ-Mb-fjT"/>
                 <constraint firstItem="419" firstAttribute="baseline" secondItem="847" secondAttribute="baseline" id="OQ9-eR-7re"/>
                 <constraint firstItem="417" firstAttribute="centerY" secondItem="422" secondAttribute="centerY" id="ObT-fF-GDT"/>
                 <constraint firstItem="824" firstAttribute="baseline" secondItem="827" secondAttribute="baseline" id="PIP-fN-plB"/>
                 <constraint firstItem="299" firstAttribute="height" secondItem="216" secondAttribute="height" id="QAv-Cf-EdT"/>
                 <constraint firstItem="421" firstAttribute="leading" secondItem="416" secondAttribute="trailing" constant="8" symbolic="YES" id="Rmc-PV-e5n"/>
-                <constraint firstItem="860" firstAttribute="top" secondItem="813" secondAttribute="bottom" constant="12" id="Sm7-Ke-Rds"/>
                 <constraint firstItem="824" firstAttribute="leading" secondItem="827" secondAttribute="trailing" constant="8" symbolic="YES" id="T4W-be-e43"/>
                 <constraint firstItem="eyW-60-P7E" firstAttribute="leading" secondItem="bGM-lp-YMW" secondAttribute="leading" id="TEN-rv-7QN"/>
                 <constraint firstItem="289" firstAttribute="top" secondItem="287" secondAttribute="bottom" constant="6" id="VBh-Tw-cYh"/>
@@ -558,7 +549,6 @@
                 <constraint firstItem="419" firstAttribute="top" secondItem="eyW-60-P7E" secondAttribute="bottom" constant="12" id="jx8-JX-Rcw"/>
                 <constraint firstItem="422" firstAttribute="leading" secondItem="417" secondAttribute="trailing" constant="8" symbolic="YES" id="k8T-xL-l0v"/>
                 <constraint firstItem="296" firstAttribute="top" secondItem="293" secondAttribute="bottom" constant="6" id="kHJ-P4-q80"/>
-                <constraint firstItem="827" firstAttribute="leading" secondItem="813" secondAttribute="trailing" constant="8" symbolic="YES" id="lCQ-qp-Q4B"/>
                 <constraint firstItem="296" firstAttribute="centerY" secondItem="295" secondAttribute="centerY" id="lGe-Pw-sZM"/>
                 <constraint firstItem="422" firstAttribute="top" secondItem="848" secondAttribute="bottom" constant="6" id="lZh-tj-yh3"/>
                 <constraint firstItem="860" firstAttribute="leading" secondItem="DSq-u9-gbq" secondAttribute="trailing" constant="8" symbolic="YES" id="lZs-SE-BaS"/>
@@ -584,7 +574,6 @@
                 <constraint firstItem="299" firstAttribute="height" secondItem="297" secondAttribute="height" id="wEd-E8-UMu"/>
                 <constraint firstItem="ryE-0I-GfC" firstAttribute="top" secondItem="860" secondAttribute="bottom" constant="25" id="weu-8i-V8c"/>
                 <constraint firstItem="299" firstAttribute="height" secondItem="293" secondAttribute="height" id="xO4-ez-h5j"/>
-                <constraint firstItem="824" firstAttribute="baseline" secondItem="813" secondAttribute="baseline" id="xYu-al-N2r"/>
                 <constraint firstItem="XAZ-Gh-78m" firstAttribute="centerY" secondItem="2553" secondAttribute="centerY" id="yII-EU-vFj"/>
                 <constraint firstItem="297" firstAttribute="leading" secondItem="289" secondAttribute="leading" id="z33-fG-LWc"/>
                 <constraint firstItem="bGM-lp-YMW" firstAttribute="top" secondItem="Q1i-8g-boW" secondAttribute="bottom" constant="20" id="zQ3-JL-5uk"/>

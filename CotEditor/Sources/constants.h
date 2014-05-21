@@ -175,6 +175,7 @@ extern NSString *const k_key_showColoringIndicatorTextLength;
 extern NSString *const k_key_runAppleScriptInLaunching;
 extern NSString *const k_key_showAlertForNotWritable;
 extern NSString *const k_key_notifyEditByAnother;
+extern NSString *const k_key_coloringRangeBufferLength;
 
 
 
@@ -218,9 +219,6 @@ extern NSUInteger const k_QC_Start;
 extern NSUInteger const k_QC_End;
 extern NSString  *const k_QCStrLength;
 extern NSString  *const k_allAlphabetChars;
-
-// syntax coloring range buffer (in CEEditorView)
-extern NSUInteger const k_coloringRangeBufferLength;  // number of characters
 
 // syntax coloring indicator
 extern CGFloat const k_perCompoIncrement;

@@ -299,19 +299,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setWrapLinesWithNumber:(NSNumber *)number
 // ------------------------------------------------------
 {
-    if ([number boolValue]) {
-        [[[self textView] enclosingScrollView] setHasHorizontalScroller:NO];
-        [[self textView] setAutoresizingMask:NSViewWidthSizable];
+    NSTextView *textView = [self textView];
+    BOOL shouldWrap = [number boolValue];
+    BOOL isVertical = ([textView layoutOrientation] == NSTextLayoutOrientationVertical);
+    
+    // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
+    [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    
+    if (shouldWrap) {
+        [[textView enclosingScrollView] setHasHorizontalScroller:NO];
+        [textView setAutoresizingMask:NSViewWidthSizable];
         [self adjustTextFrameSize];
-        [[[self textView] textContainer] setWidthTracksTextView:YES]; // (will follow the width of the textview.)
-        [[self textView] sizeToFit];
-        [[self textView] setHorizontallyResizable:NO];
+        [[textView textContainer] setWidthTracksTextView:YES]; // (will follow the width of the textview.)
+        [textView sizeToFit];
+        [textView setHorizontallyResizable:NO];
     } else {
-        [[[self textView] enclosingScrollView] setHasHorizontalScroller:YES];
-        [[[self textView] textContainer] setWidthTracksTextView:NO];
-        [[[self textView] textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // set the frame size
-        [[self textView] setAutoresizingMask:NSViewNotSizable]; // (don't let it autosize, though.)
-        [[self textView] setHorizontallyResizable:YES];
+        [[textView enclosingScrollView] setHasHorizontalScroller:YES];
+        [[textView textContainer] setWidthTracksTextView:NO];
+        [[textView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // set the frame size
+        [textView setAutoresizingMask:NSViewNotSizable]; // (don't let it autosize, though.)
+        [textView setHorizontallyResizable:YES];
+    }
+    
+    // 縦書きモードの際は改めて縦書きにする
+    if (isVertical) {
+        [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
 
 }
@@ -484,10 +496,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 入力補完文字列に設定された最初の1文字のセットを返す
-- (NSCharacterSet *)completionsFirstLetterSet
+- (NSCharacterSet *)firstCompletionCharacterSet
 // ------------------------------------------------------
 {
-    return [[self syntax] completeFirstLetterSet];
+    return [[self syntax] firstCompletionCharacterSet];
 }
 
 
@@ -586,7 +598,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     //"カラーシンタックス辞書の語彙" をコピーする
     if (addingMode >= 1) {
-        NSArray *syntaxWords = [[self syntax] completeWordsArray];
+        NSArray *syntaxWords = [[self syntax] completionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
                 [outWords addObject:word];

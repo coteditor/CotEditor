@@ -535,7 +535,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
-    NSCharacterSet *charSet = [(CESubSplitView *)[self delegate] completionsFirstLetterSet];
+    NSCharacterSet *charSet = [(CESubSplitView *)[self delegate] firstCompletionCharacterSet];
     NSInteger begin = range.location;
 
     if (!charSet || [string length] == 0) { return range; }
@@ -982,6 +982,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         for (NSString *path in files) {
             NSURL *absoluteURL = [NSURL fileURLWithPath:path];
+            stringToDrop = nil;
             
             selectedRange = [self selectedRange];
             for (NSDictionary *definition in fileDropDefs) {

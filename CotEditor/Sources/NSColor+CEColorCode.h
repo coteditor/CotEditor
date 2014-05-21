@@ -39,10 +39,10 @@ typedef NS_ENUM(NSUInteger, CEColorCodeType) {
     CEColorCodeInvalid,   // nil
     CEColorCodeHex,       // #ffffff
     CEColorCodeShortHex,  // #fff
-    CEColorCodeCSSRGB,       // rgb(255,255,255)
-    CEColorCodeCSSRGBa,      // rgba(255,255,255,1)
-    CEColorCodeCSSHSL,       // hsl(0,0%,100%)
-    CEColorCodeCSSHSLa       // hsla(0,0%,100%,1)
+    CEColorCodeCSSRGB,    // rgb(255,255,255)
+    CEColorCodeCSSRGBa,   // rgba(255,255,255,1)
+    CEColorCodeCSSHSL,    // hsl(0,0%,100%)
+    CEColorCodeCSSHSLa    // hsla(0,0%,100%,1)
 };
 
 /// Creates and returns an NSColor object using the given color code. Or returns nil if color code is invalid.

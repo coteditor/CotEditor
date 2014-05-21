@@ -323,11 +323,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([self isDocumentEdited] &&
         ![self canReleaseFinderLockAtURL:[self fileURL] isLocked:nil lockAgain:YES])
     {
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock is On.", nil)
-                                         defaultButton:NSLocalizedString(@"Cancel", nil)
-                                       alternateButton:NSLocalizedString(@"Don't Save, and Close", nil)
-                                           otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?", nil)];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"Finder's lock is On.", nil)];
+        [alert setInformativeText:NSLocalizedString(@"Finder's lock could not be released. So, you can not save your changes on this file, but you will be able to save a copy somewhere else.\n\nDo you want to close?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Don't Save, and Close", nil)];
 
         for (NSButton *button in [alert buttons]) {
             if ([[button title] isEqualToString:NSLocalizedString(@"Don't Save, and Close", nil)]) {
@@ -594,7 +594,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (encoding == [self encodingCode]) {
         return YES;
     }
-    NSInteger result = NSAlertOtherReturn;
     BOOL shouldShowList = NO;
     if (updateDocument) {
 
@@ -605,15 +604,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (askLossy) {
             if (![curString canBeConvertedToEncoding:encoding]) {
                 NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:encoding];
-                NSString *messageText = [NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingNameStr];
-                NSAlert *alert = [NSAlert alertWithMessageText:messageText
-                                                 defaultButton:NSLocalizedString(@"Cancel", nil)
-                                               alternateButton:NSLocalizedString(@"Change Encoding", nil)
-                                                   otherButton:nil
-                                     informativeTextWithFormat:NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil)];
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingNameStr]];
+                [alert setInformativeText:NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil)];
+                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                [alert addButtonWithTitle:NSLocalizedString(@"Change Encoding", nil)];
 
-                result = [alert runModal];
-                if (result == NSAlertDefaultReturn) { // == Cancel
+                NSInteger returnCode = [alert runModal];
+                if (returnCode == NSAlertFirstButtonReturn) { // == Cancel
                     return NO;
                 }
                 shouldShowList = YES;
@@ -1055,11 +1053,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         defaultButton = @"Keep Unchanged";
         [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
     }
-    alert = [NSAlert alertWithMessageText:NSLocalizedString(messageText, nil)
-                            defaultButton:NSLocalizedString(defaultButton, nil)
-                          alternateButton:NSLocalizedString(@"Update", nil)
-                              otherButton:nil
-                informativeTextWithFormat:NSLocalizedString(informativeText, nil)];
+    alert = [[NSAlert alloc] init];
+    [alert setMessageText:NSLocalizedString(messageText, nil)];
+    [alert setInformativeText:NSLocalizedString(informativeText, nil)];
+    [alert addButtonWithTitle:NSLocalizedString(defaultButton, nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Update", nil)];
 
     // シートが表示中でなければ、表示
     if ([[self windowForSheet] attachedSheet] == nil) {
@@ -1303,36 +1301,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
     if (([[[self editorView] string] length] < 1) || (![self fileURL])) {
-        result = NSAlertDefaultReturn;
+        result = NSAlertFirstButtonReturn;
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"File encoding", nil)
-                                         defaultButton:NSLocalizedString(@"Convert", nil)
-                                       alternateButton:NSLocalizedString(@"Reinterpret", nil)
-                                           otherButton:NSLocalizedString(@"Cancel", nil)
-                             informativeTextWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"File encoding", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName]];
+        [alert addButtonWithTitle:NSLocalizedString(@"Convert", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Reinterpret", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
 
         result = [alert runModal];
     }
-    if (result == NSAlertDefaultReturn) { // = Convert 変換
+    if (result == NSAlertFirstButtonReturn) {  // = Convert 変換
 
         NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”",@""),
                     [NSString localizedNameOfStringEncoding:encoding]];
 
         [self doSetEncoding:encoding updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
 
-    } else if (result == NSAlertAlternateReturn) { // = Reinterpret 再解釈
+    } else if (result == NSAlertSecondButtonReturn) {  // = Reinterpret 再解釈
 
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
-            NSAlert *secondAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] path]]
-                                                   defaultButton:NSLocalizedString(@"Cancel", nil)
-                                                 alternateButton:NSLocalizedString(@"Discard Changes", nil)
-                                                     otherButton:nil
-                                       informativeTextWithFormat:NSLocalizedString(@"Do you want to discard the changes and reset the file encodidng?", nil)];
+            NSAlert *secondAlert = [[NSAlert alloc] init];
+            [secondAlert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] path]]];
+             [secondAlert setInformativeText:NSLocalizedString(@"Do you want to discard the changes and reset the file encodidng?", nil)];
+             [secondAlert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+             [secondAlert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
 
             NSInteger secondResult = [secondAlert runModal];
-            if (secondResult != NSAlertAlternateReturn) { // != Discard Change
+            if (secondResult != NSAlertSecondButtonReturn) { // != Discard Change
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
                 [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
                 return;
@@ -1344,11 +1343,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
         } else {
-            NSAlert *thirdAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Can not reinterpret", nil)
-                                                  defaultButton:NSLocalizedString(@"Done", nil)
-                                                alternateButton:nil
-                                                    otherButton:nil
-                                      informativeTextWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName];
+            NSAlert *thirdAlert = [[NSAlert alloc] init];
+            [thirdAlert setMessageText:NSLocalizedString(@"Can not reinterpret", nil)];
+            [thirdAlert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName]];
+            [thirdAlert addButtonWithTitle:NSLocalizedString(@"Done", nil)];
             [thirdAlert setAlertStyle:NSCriticalAlertStyle];
 
             NSBeep();
@@ -1684,14 +1682,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         NSString *IANANameStr = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
         NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
-        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingNameStr, IANANameStr]
-                                         defaultButton:NSLocalizedString(@"Cancel", nil)
-                                       alternateButton:NSLocalizedString(@"Continue Saving", nil)
-                                           otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingNameStr, IANANameStr]];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Continue Saving", nil)];
 
         NSInteger result = [alert runModal];
-        if (result != NSAlertAlternateReturn) { // == Cancel
+        if (result != NSAlertSecondButtonReturn) { // == Cancel
             return NO;
         }
     }
@@ -1709,15 +1707,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                             withEncoding:[self encodingCode]];
     if (![curString canBeConvertedToEncoding:[self encodingCode]]) {
         NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encodingCode]];
-        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]
-                                         defaultButton:NSLocalizedString(@"Show Incompatible Chars", nil)
-                                       alternateButton:NSLocalizedString(@"Save Available Strings", nil)
-                                           otherButton:NSLocalizedString(@"Cancel", nil)
-                             informativeTextWithFormat:NSLocalizedString(@"Do you want to continue processing?", nil)];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Show Incompatible Chars", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Save Available Strings", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
 
         NSInteger result = [alert runModal];
-        if (result != NSAlertAlternateReturn) { // != Save
-            if (result == NSAlertDefaultReturn) { // == show incompatible char
+        if (result != NSAlertSecondButtonReturn) { // != Save
+            if (result == NSAlertFirstButtonReturn) { // == show incompatible chars
                 [[self windowController] showIncompatibleCharList];
             }
             return NO;
@@ -1748,11 +1747,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ユーザがオーナーでないファイルに Finder Lock がかかっていたら編集／保存できない
     BOOL isFinderLockOn = NO;
     if (![self canReleaseFinderLockAtURL:url isLocked:&isFinderLockOn lockAgain:NO]) {
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)
-                                         defaultButton:nil
-                                       alternateButton:nil
-                                           otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"You can use “Save As” to save a copy.", nil)];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"Finder's lock could not be released.", nil)];
+        [alert setInformativeText:NSLocalizedString(@"You can use “Save As” to save a copy.", nil)];
         [alert setAlertStyle:NSCriticalAlertStyle];
         [alert runModal];
         return NO;
@@ -1835,7 +1832,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             contextInfo:(void *)inContextInfo
 // ------------------------------------------------------
 {
-    if (returnCode == NSAlertAlternateReturn) { // == Revert
+    if (returnCode == NSAlertSecondButtonReturn) { // == Revert
         // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
         if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
             [[self undoManager] removeAllActions];
@@ -1905,7 +1902,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id delegate = contextInfoDict[@"delegate"];
     SEL shouldCloseSelector = [contextInfoDict[@"shouldCloseSelector"] pointerValue];
     void *originalContextInfo = [contextInfoDict[@"contextInfo"] pointerValue];
-    BOOL shouldClose = (returnCode == NSAlertAlternateReturn); // YES == Don't Save and Close
+    BOOL shouldClose = (returnCode == NSAlertSecondButtonReturn); // YES == Don't Save and Close
     
     if (delegate) {
         void (*callback)(id, SEL, id, BOOL, void *) = (void (*)(id, SEL, id, BOOL, void *))objc_msgSend;

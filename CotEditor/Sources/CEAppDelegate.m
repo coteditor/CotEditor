@@ -1,6 +1,6 @@
 /*
 =================================================
-CEAppController
+CEAppDelegate
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -142,7 +142,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_defaultColoringStyleName: NSLocalizedString(@"None", nil),
                                k_key_delayColoring: @NO,
                                k_key_fileDropArray: @[@{k_key_fileDropExtensions: @"jpg, jpeg, gif, png",
-                                                        k_key_fileDropFormatString: @"<img src=\"<<<RELATIVE-PATH>>>\" alt =\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
+                                                        k_key_fileDropFormatString: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
                                k_key_NSDragAndDropTextDelay: @1,
                                k_key_smartInsertAndDelete: @NO,
                                k_key_enableSmartQuotes: @NO,
@@ -206,7 +206,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_showColoringIndicatorTextLength: @115000U, 
                                k_key_runAppleScriptInLaunching: @YES, 
                                k_key_showAlertForNotWritable: @YES, 
-                               k_key_notifyEditByAnother: @YES};
+                               k_key_notifyEditByAnother: @YES,
+                               k_key_coloringRangeBufferLength: @10000};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする

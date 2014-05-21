@@ -80,6 +80,25 @@
 {
     self = [super initWithNibName:@"PrintPanelAccessory" bundle:nil];
     if (self) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
+        [self setColorMode:[defaults integerForKey:k_key_printColorIndex]];
+        [self setLineNumberMode:[defaults integerForKey:k_key_printLineNumIndex]];
+        [self setInvisibleCharsMode:[defaults integerForKey:k_key_printInvisibleCharIndex]];
+        [self setPrintsHeader:[defaults boolForKey:k_key_printHeader]];
+        [self setHeaderOneInfoType:[defaults integerForKey:k_key_headerOneStringIndex]];
+        [self setHeaderOneAlignmentType:[defaults integerForKey:k_key_headerOneAlignIndex]];
+        [self setHeaderTwoInfoType:[defaults integerForKey:k_key_headerTwoStringIndex]];
+        [self setHeaderTwoAlignmentType:[defaults integerForKey:k_key_headerTwoAlignIndex]];
+        [self setPrintsHeaderSeparator:[defaults boolForKey:k_key_printHeaderSeparator]];
+        [self setPrintsFooter:[defaults boolForKey:k_key_printFooter]];
+        [self setFooterOneInfoType:[defaults integerForKey:k_key_footerOneStringIndex]];
+        [self setFooterOneAlignmentType:[defaults integerForKey:k_key_footerOneAlignIndex]];
+        [self setFooterTwoInfoType:[defaults integerForKey:k_key_footerTwoStringIndex]];
+        [self setFooterTwoAlignmentType:[defaults integerForKey:k_key_footerTwoAlignIndex]];
+        [self setPrintsFooterSeparator:[defaults boolForKey:k_key_printFooterSeparator]];
+        
         // マージンに関わるキー値を監視する
         for (NSString *key in [self keyPathsForValuesAffectingMargin]) {
             [self addObserver:self forKeyPath:key options:0 context:NULL];
@@ -98,32 +117,6 @@
     for (NSString *key in [self keyPathsForValuesAffectingMargin]) {
         [self removeObserver:self forKeyPath:key];
     }
-}
-
-
-// ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-    [self setColorMode:[defaults integerForKey:k_key_printColorIndex]];
-    [self setLineNumberMode:[defaults integerForKey:k_key_printLineNumIndex]];
-    [self setInvisibleCharsMode:[defaults integerForKey:k_key_printInvisibleCharIndex]];
-    [self setPrintsHeader:[defaults boolForKey:k_key_printHeader]];
-    [self setHeaderOneInfoType:[defaults integerForKey:k_key_headerOneStringIndex]];
-    [self setHeaderOneAlignmentType:[defaults integerForKey:k_key_headerOneAlignIndex]];
-    [self setHeaderTwoInfoType:[defaults integerForKey:k_key_headerTwoStringIndex]];
-    [self setHeaderTwoAlignmentType:[defaults integerForKey:k_key_headerTwoAlignIndex]];
-    [self setPrintsHeaderSeparator:[defaults boolForKey:k_key_printHeaderSeparator]];
-    [self setPrintsFooter:[defaults boolForKey:k_key_printFooter]];
-    [self setFooterOneInfoType:[defaults integerForKey:k_key_footerOneStringIndex]];
-    [self setFooterOneAlignmentType:[defaults integerForKey:k_key_footerOneAlignIndex]];
-    [self setFooterTwoInfoType:[defaults integerForKey:k_key_footerTwoStringIndex]];
-    [self setFooterTwoAlignmentType:[defaults integerForKey:k_key_footerTwoAlignIndex]];
-    [self setPrintsFooterSeparator:[defaults boolForKey:k_key_printFooterSeparator]];
 }
 
 
@@ -167,6 +160,10 @@
                                  @"lineNumberMode",
                                  @"invisibleCharsMode",
                                  @"printsHeader",
+                                 @"headerOneAlignmentType",
+                                 @"headerTwoAlignmentType",
+                                 @"footerOneAlignmentType",
+                                 @"footerTwoAlignmentType",
                                  
                                  // ヘッダ／フッタの設定に合わせてprintInfoのマージンを書き換えるため、
                                  // 直接設定の変更を監視するのではなくマージンの書き換え完了フラグを監視する
@@ -185,7 +182,7 @@
     // プリセットにアプリケーション独自の設定を保存するためには、KVOに準拠しつつ[printInfo printSettings]で全ての値を管理する必要がある。
     
     NSMutableArray *items = [NSMutableArray array];
-    NSString *description;
+    NSString *description = @"";
     
     switch ([self colorMode]) {
         case CEBlackColorPrint:

@@ -169,7 +169,7 @@ http://www.aynimac.com/
 "Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
 "Change to “%@”" = "“%@”へ変更";
 "Revert to “Auto-Detect”" = "“自動認識”へ戻す";
-"The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識” が推奨されます。";
+"The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識”が推奨されます。";
 
 // installed syntax styles action menu
 "Duplicate “%@”…" = "“%@”を複製…";
@@ -202,8 +202,8 @@ http://www.aynimac.com/
 // Syntax coloring style name errors
 "Input style name." = "スタイル名を入力してください。";
 "“%@” is already exist. Input another name." = "“%@”は既に使われています。ほかの名前を入力してください。";
-"Style Name cannot contain “/”. Input another name." = "スタイル名に “/” を含むことはできません。ほかの名前を入力してください。";
-"Style Name cannot begin with “.”. Input another name." = "スタイル名を “.” から始めることはできません。ほかの名前を入力してください。";
+"Style name cannot contain “/”. Input another name." = "スタイル名に“/”を含むことはできません。ほかの名前を入力してください。";
+"Style name cannot begin with “.”. Input another name." = "スタイル名を“.”から始めることはできません。ほかの名前を入力してください。";
 // selected Syntax coloring style name was original
 "Name of the bundled style cannot be changed." = "バンドルされているスタイルの名前は変更できません。";
 // Suffix of copied syntax coloring style
@@ -337,10 +337,10 @@ http://www.aynimac.com/
 "Copy bundled sample scripts to the scripts folder." = "バンドルされているサンプルスクリプトをスクリプトフォルダにコピーする。";
 
 // script menu item tooltips
-"“Opt + click” to open in Script Editor." = "スクリプトエディタで開くには、“Opt + クリック” します。";
+"“Opt + click” to open in Script Editor." = "スクリプトエディタで開くには、“Opt + クリック”します。";
 
 // Alert message
-"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu“." = "スクリプト“%@”は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新” してください。";
+"The script “%@” does not exist.\n\nCheck it and do “Update Script Menu“." = "スクリプト“%@”は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新”してください。";
 "%@\nErrorNumber: %i" = "%@\nエラー番号：%i";
 "Could not open the script file “%@”." = "スクリプトファイル“%@”を開けませんでした。";
 "Cannnot execute the script “%@”.\nShell scripts have to have the execute permission.\n\nCheck it's permission." = "スクリプト“%@”を実行できません。\nシェルスクリプトの場合は実行権が必要です。\n\nアクセス権を確認してください。";
