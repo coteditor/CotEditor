@@ -14,7 +14,7 @@ a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 #contents {
-	margin: 3em 1.5em 0 1.5em;
+	margin: 1.5em 1.5em 0 1.5em;
 }
 
 hr {
@@ -110,35 +110,6 @@ p#relbar {
 .figmarker {
 	font-weight: bold;
 	color: red;
-}
-
-#navbar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: -2px 6px 0;
-	border-bottom: 1px solid #bfbfbf;
-	background-color: #f2f2f2;
-	background-repeat: no-repeat;
-	float: left;
-	font-size: 85%;
-}
-
-#home {
-	position: absolute;
-	top: 2px;
-	left: 10px;
-}
-
-#index {
-	top: 2px;
-	right: 12px;
-	width: auto;
-	padding: 2px 25px 1px 8px;
-	background-color: #f2f2f2;
-	border-left: 1px solid #bfbfbf;
-	float: right;
 }
 
 img.snapshot {
