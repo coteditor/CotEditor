@@ -362,13 +362,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     
     // プリントビュー生成
-    NSSize paperSize = [[self printInfo] paperSize];
-    NSRect frame = NSMakeRect(0, 0,
-                              paperSize.width  - 2 * (k_printTextHorizontalMargin),
-                              paperSize.height - 2 * (k_printHFVerticalMargin));
-    CEPrintView *printView = [[CEPrintView alloc] initWithFrame:frame];
-    
-    // ドキュメント情報をプリントビューにセット
+    CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editorView] string]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
@@ -376,8 +370,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles]];
     [printView setDocumentShowsLineNum:[[self editorView] showLineNum]];
-    
-    // プリントビューに行間値を設定
     [printView setLineSpacing:[[[self editorView] textView] lineSpacing]];
     
     // プリントに使用するフォント
@@ -401,10 +393,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [printInfo setBottomMargin:k_printHFVerticalMargin];
     
     // プリントオペレーション生成、設定、プリント実行
-    NSPrintOperation *printOperation;
-    printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
+    NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
     [printOperation setJobTitle:[self displayName]];
-    // プリントパネルの表示を制御し、プログレスパネルは表示させる
     [printOperation setShowsProgressPanel:YES];
     [[printOperation printPanel] addAccessoryController:accessoryController];
     
