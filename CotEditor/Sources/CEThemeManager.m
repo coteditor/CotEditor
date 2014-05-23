@@ -178,17 +178,17 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを保存する
-- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName
+- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:theme
                                                                    format:NSPropertyListBinaryFormat_v1_0
                                                                   options:0
-                                                                    error:nil];
+                                                                    error:error];
     
     [self prepareUserThemeDirectory];
     
-    BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] atomically:YES];
+    BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:error];
     
     if (success) {
         [self updateCache];
@@ -205,7 +205,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名を変更する
-- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)error
+- (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -237,22 +237,18 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマ名に応じたテーマファイルを削除する
-- (BOOL)removeTheme:(NSString *)themeName error:(NSError **)error
+- (BOOL)removeTheme:(NSString *)themeName error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     BOOL success = NO;
-    NSError *removeError = nil;
     NSURL *URL = [self URLForUserTheme:themeName];
     
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:&removeError];
+        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:error];
     }
     
     if (success) {
         [self updateCache];
-    }
-    if (error && removeError) {
-        *error = removeError;
     }
     
     return success;
@@ -261,13 +257,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// カスタマイズされたバンドルテーマをオリジナルに戻す
-- (BOOL)restoreTheme:(NSString *)themeName
+- (BOOL)restoreTheme:(NSString *)themeName error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     // バンドルテーマでないものはそもそもリストアできない
     if (![self isBundledTheme:themeName cutomized:nil]) { return NO; }
 
-    BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName] error:nil];
+    BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName] error:error];
     
     if (success) {
         [self updateCache];
@@ -283,11 +279,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 外部テーマファイルをユーザ領域にコピーする
-- (BOOL)importTheme:(NSURL *)URL error:(NSError **)error
+- (BOOL)importTheme:(NSURL *)URL error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     __block BOOL success = NO;
-    __block NSError *copyError = nil;
     NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
     
     // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
@@ -299,18 +294,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:URL options:NSFileCoordinatorReadingWithoutChanges | NSFileCoordinatorReadingResolvesSymbolicLink
                            writingItemAtURL:[self URLForUserTheme:themeName] options:NSFileCoordinatorWritingForReplacing
-                                      error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+                                      error:error byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:&copyError];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:error];
          }
          
-         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&copyError];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:error];
      }];
-    
-    if (copyError && error) {
-        *error = copyError;
-    }
     
     if (success) {
         [self updateCache];
@@ -322,26 +313,25 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマファイルを指定のURLにコピーする
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL
+- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     __block BOOL success = NO;
-    __block NSError *error = nil;
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:[self URLForUserTheme:themeName] options:NSFileCoordinatorReadingWithoutChanges
                            writingItemAtURL:URL options:NSFileCoordinatorWritingForMoving
-                                      error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+                                      error:error byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:&error];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:error];
          }
          
-         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:error];
      }];
     
-    if (error) {
-        NSLog(@"Error: %@", [error description]);
+    if (*error) {
+        NSLog(@"Error: %@", [*error description]);
     }
     
     return success;
@@ -350,7 +340,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを複製する
-- (BOOL)duplicateTheme:(NSString *)themeName
+- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -370,7 +360,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedTheme:themeName]
-                                                      toURL:[self URLForUserTheme:newThemeName] error:nil];
+                                                      toURL:[self URLForUserTheme:newThemeName] error:error];
     
     if (success) {
         [self updateCache];
@@ -382,7 +372,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 新規テーマを作成
-- (BOOL)createUntitledTheme:(NSString *__autoreleasing *)themeName
+- (BOOL)createUntitledTheme:(NSString *__autoreleasing *)themeName error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -396,7 +386,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         counter++;
     }
     
-    success = [self saveTheme:[self plainTheme] name:newThemeName];
+    success = [self saveTheme:[self plainTheme] name:newThemeName error:error];
     
     if (success && themeName) {
         *themeName = newThemeName;
@@ -536,7 +526,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 // ------------------------------------------------------
 // 有効なテーマ名かチェックしてエラーメッセージを返す
-- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError **)error
+- (BOOL)validateThemeName:(NSString *)themeName originalName:(NSString *)originalThemeName error:(NSError *__autoreleasing *)error
 // ------------------------------------------------------
 {
     // 元の名前とのケース違いはOK
@@ -640,7 +630,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     // カスタマイズされたカラー設定があった場合は移行テーマを生成する
     if (isCustomized) {
         NSString *themeName = NSLocalizedString(@"Customized Theme", nil);
-        [self saveTheme:theme name:themeName];
+        [self saveTheme:theme name:themeName error:nil];
         // カスタマイズされたテーマを選択
         [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:k_key_defaultTheme];
     }

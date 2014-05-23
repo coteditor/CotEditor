@@ -101,7 +101,7 @@
 // ------------------------------------------------------
 {
     if (object == [self themeDict]) {
-        [[CEThemeManager sharedManager] saveTheme:[self themeDict] name:[self selectedTheme]];
+        [[CEThemeManager sharedManager] saveTheme:[self themeDict] name:[self selectedTheme] error:nil];
     }
 }
 
@@ -270,7 +270,7 @@
 //------------------------------------------------------
 {
     NSString *themeName = nil;
-    if ([[CEThemeManager sharedManager] createUntitledTheme:&themeName]) {
+    if ([[CEThemeManager sharedManager] createUntitledTheme:&themeName error:nil]) {
         NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
         [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
@@ -301,7 +301,7 @@
 - (IBAction)duplicateTheme:(id)sender
 //------------------------------------------------------
 {
-    [[CEThemeManager sharedManager] duplicateTheme:[self selectedTheme]];
+    [[CEThemeManager sharedManager] duplicateTheme:[self selectedTheme] error:nil];
 }
 
 
@@ -322,7 +322,7 @@
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
     
-        [[CEThemeManager sharedManager] exportTheme:selectedThemeName toURL:[savePanel URL]];
+        [[CEThemeManager sharedManager] exportTheme:selectedThemeName toURL:[savePanel URL] error:nil];
     }];
 }
 
@@ -386,7 +386,7 @@
 - (IBAction)restoreTheme:(id)sender
 // ------------------------------------------------------
 {
-    [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme]];
+    [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme] error:nil];
     
     // 辞書をセットし直す
     [self setThemeDict:[[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:nil]];

@@ -30,7 +30,6 @@
  =================================================
  */
 
-
 #import <Foundation/Foundation.h>
 
 
@@ -74,15 +73,17 @@ extern NSString *const CEThemeDidUpdateNotification;
 /// Theme dict in which objects are property list ready.
 - (NSMutableDictionary *)archivedTheme:(NSString *)themeName isBundled:(BOOL *)isBundled;
 
-// manage themes
+/// Return whether the theme that has the given name is bundled with the app.
 - (BOOL)isBundledTheme:(NSString *)themeName cutomized:(BOOL *)isCustomized;
-- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName;
+
+// manage themes
+- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName error:(NSError **)error;
 - (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)error;
 - (BOOL)removeTheme:(NSString *)themeName error:(NSError **)error;
-- (BOOL)restoreTheme:(NSString *)themeName;
-- (BOOL)duplicateTheme:(NSString *)themeName;
-- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL;
+- (BOOL)restoreTheme:(NSString *)themeName error:(NSError **)error;
+- (BOOL)duplicateTheme:(NSString *)themeName error:(NSError **)error;
+- (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError **)error;
 - (BOOL)importTheme:(NSURL *)URL error:(NSError **)error;
-- (BOOL)createUntitledTheme:(NSString **)themeName;
+- (BOOL)createUntitledTheme:(NSString **)themeName error:(NSError **)error;
 
 @end
