@@ -52,12 +52,13 @@ extern NSString *const CEThemeStringsColorKey;
 extern NSString *const CEThemeCharactersColorKey;
 extern NSString *const CEThemeCommentsColorKey;
 
-extern NSString *const CEThemeUsesSystemSelectionColorKey;  // only in archived theme
+extern NSString *const CEThemeUsesSystemSelectionColorKey;
 
 
 // notifications
 extern NSString *const CEThemeListDidUpdateNotification;
 extern NSString *const CEThemeDidUpdateNotification;
+
 
 
 @interface CEThemeManager : NSObject
@@ -82,6 +83,6 @@ extern NSString *const CEThemeDidUpdateNotification;
 - (BOOL)duplicateTheme:(NSString *)themeName;
 - (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL;
 - (BOOL)importTheme:(NSURL *)URL error:(NSError **)error;
-- (BOOL)createNewTheme:(NSString **)themeName;
+- (BOOL)createUntitledTheme:(NSString **)themeName;
 
 @end

@@ -385,7 +385,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 新規テーマを作成
-- (BOOL)createNewTheme:(NSString *__autoreleasing *)themeName
+- (BOOL)createUntitledTheme:(NSString *__autoreleasing *)themeName
 //------------------------------------------------------
 {
     BOOL success = NO;

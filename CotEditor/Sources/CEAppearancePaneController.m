@@ -270,7 +270,7 @@
 //------------------------------------------------------
 {
     NSString *themeName = nil;
-    if ([[CEThemeManager sharedManager] createNewTheme:&themeName]) {
+    if ([[CEThemeManager sharedManager] createUntitledTheme:&themeName]) {
         NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
         [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
