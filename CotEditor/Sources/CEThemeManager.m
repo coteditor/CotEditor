@@ -350,11 +350,12 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを複製する
-- (BOOL)duplicateTheme:(NSString *)themeName  // TODO:not implemented
+- (BOOL)duplicateTheme:(NSString *)themeName
 //------------------------------------------------------
 {
     BOOL success = NO;
-    NSString *newThemeName = [themeName stringByAppendingString:NSLocalizedString(@" copy", nil)];
+    NSString *nameBase = [themeName stringByAppendingString:NSLocalizedString(@" copy", nil)];
+    NSString *newThemeName = nameBase;
     
     // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
     if (![self prepareUserThemeDirectory]) {
@@ -362,14 +363,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
 
     // すでに同名のファイルが存在したら数字を追加する
-    if ([[self URLForUserTheme:newThemeName] checkResourceIsReachableAndReturnError:nil]) {
-        NSString *proposedNewThemeName = newThemeName;
-        NSUInteger counter = 2;
-        while ([[self URLForUserTheme:proposedNewThemeName] checkResourceIsReachableAndReturnError:nil]) {
-            proposedNewThemeName = [newThemeName stringByAppendingFormat:@" %tu", counter];
-            counter++;
-        }
-        newThemeName = proposedNewThemeName;
+    NSUInteger counter = 2;
+    while ([[self URLForUserTheme:newThemeName] checkResourceIsReachableAndReturnError:nil]) {
+        newThemeName = [nameBase stringByAppendingFormat:@" %tu", counter];
+        counter++;
     }
     
     success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedTheme:themeName]
@@ -389,36 +386,25 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 //------------------------------------------------------
 {
     BOOL success = NO;
-    NSString *newThemeName = NSLocalizedString(@"Untitled", nil);
-    
-    // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
-    if (![self prepareUserThemeDirectory]) {
-        return NO;
-    }
+    NSString *nameBase = NSLocalizedString(@"Untitled", nil);
+    NSString *newThemeName = nameBase;
     
     // すでに同名のファイルが存在したら数字を追加する
-    if ([[self URLForUserTheme:newThemeName] checkResourceIsReachableAndReturnError:nil]) {
-        NSString *proposedNewThemeName = newThemeName;
-        NSUInteger counter = 2;
-        while ([[self URLForUserTheme:proposedNewThemeName] checkResourceIsReachableAndReturnError:nil]) {
-            proposedNewThemeName = [newThemeName stringByAppendingFormat:@" %tu", counter];
-            counter++;
-        }
-        newThemeName = proposedNewThemeName;
+    NSUInteger counter = 2;
+    while ([[self URLForUserTheme:newThemeName] checkResourceIsReachableAndReturnError:nil]) {
+        newThemeName = [nameBase stringByAppendingFormat:@" %tu", counter];
+        counter++;
     }
     
-    NSURL *URL = [self URLForUserTheme:newThemeName];
-    success = [[self plainTheme] writeToURL:URL atomically:YES];
+    success = [self saveTheme:[self plainTheme] name:newThemeName];
     
-    if (success) {
-        if (themeName) {
-            *themeName = newThemeName;
-        }
-        [self updateCache];
+    if (success && themeName) {
+        *themeName = newThemeName;
     }
     
     return success;
 }
+
 
 
 #pragma mark Private Methods
