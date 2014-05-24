@@ -198,6 +198,11 @@
     NSString *newName = [fieldEditor string];
     NSError *error = nil;
     
+    // 空の場合は終わる（自動的に元の名前がセットされる）
+    if ([newName isEqualToString:@""]) {
+        return YES;
+    }
+    
     BOOL success = [[CEThemeManager sharedManager] renameTheme:[self selectedTheme] toName:newName error:&error];
     
     if (error) {
@@ -371,7 +376,7 @@
             return;
         }
         
-        NSError *error;
+        NSError *error = nil;
         [[CEThemeManager sharedManager] importTheme:URL error:&error];
         if (error) {
             NSAlert *alert = [NSAlert alertWithError:error];
@@ -459,7 +464,7 @@
         return;
     }
     
-    NSError *error;
+    NSError *error = nil;
     [[CEThemeManager sharedManager] removeTheme:[self selectedTheme] error:&error];
     
     if (error) {
@@ -483,7 +488,7 @@
     }
     
     NSURL *URL = CFBridgingRelease(contextInfo);
-    NSError *error;
+    NSError *error = nil;
     [[CEThemeManager sharedManager] importTheme:URL error:&error];
     
     if (error) {
