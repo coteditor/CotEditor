@@ -593,10 +593,10 @@
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0IM-sh-mYX">
-                                <rect key="frame" x="47" y="70" width="56" height="17"/>
+                                <rect key="frame" x="34" y="70" width="69" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="タイプ：" id="VL5-Wj-OJW">
-                                    <font key="font" metaFont="system"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="カテゴリ：" id="VL5-Wj-OJW">
+                                    <font key="font" size="13" name="AquaKana"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -606,7 +606,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.typesColor" id="g1Z-LR-la4">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.categoriesColor" id="bGB-t5-bM6">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>

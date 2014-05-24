@@ -51,7 +51,7 @@
 // syntax colors
 @property (nonatomic, readwrite) NSColor *keywordsColor;
 @property (nonatomic, readwrite) NSColor *commandsColor;
-@property (nonatomic, readwrite) NSColor *typesColor;
+@property (nonatomic, readwrite) NSColor *categoriesColor;
 @property (nonatomic, readwrite) NSColor *variablesColor;
 @property (nonatomic, readwrite) NSColor *valuesColor;
 @property (nonatomic, readwrite) NSColor *numbersColor;
@@ -113,7 +113,7 @@
         [self setLineHighLightColor:themeDict[CEThemeLineHighlightColorKey]];
         [self setKeywordsColor:themeDict[CEThemeKeywordsColorKey]];
         [self setCommandsColor:themeDict[CEThemeCommandsColorKey]];
-        [self setTypesColor:themeDict[CEThemeTypesColorKey]];
+        [self setCategoriesColor:themeDict[CEThemeCategoriesColorKey]];
         [self setVariablesColor:themeDict[CEThemeVariablesColorKey]];
         [self setValuesColor:themeDict[CEThemeValuesColorKey]];
         [self setNumbersColor:themeDict[CEThemeNumbersColorKey]];
@@ -148,7 +148,7 @@
     switch (index) {
         case 0: return [self keywordsColor];
         case 1: return [self commandsColor];
-        case 2: return [self typesColor];
+        case 2: return [self categoriesColor];
         case 3: return [self variablesColor];
         case 4: return [self valuesColor];
         case 5: return [self numbersColor];
