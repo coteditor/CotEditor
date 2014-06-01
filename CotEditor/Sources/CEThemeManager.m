@@ -182,7 +182,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 //------------------------------------------------------
 {
     NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:theme
-                                                                   format:NSPropertyListBinaryFormat_v1_0
+                                                                   format:NSPropertyListXMLFormat_v1_0
                                                                   options:0
                                                                     error:error];
     
