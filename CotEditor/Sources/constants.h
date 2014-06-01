@@ -45,7 +45,8 @@ extern NSString *const CESeparatorString;
 extern NSString *const CEErrorDomain;
 
 typedef NS_ENUM(NSInteger, CEErrorCode) {
-    CEInvalidNameError,
+    CEInvalidNameError = 1000,
+    CEThemeFileDuplicationError,
 };
 
 // Localized Strings Table

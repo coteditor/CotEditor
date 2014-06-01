@@ -345,42 +345,32 @@
     [openPanel setAllowedFileTypes:@[@"cottheme"]];
     
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelCancelButton) return;
+        if (result == NSFileHandlingPanelCancelButton) { return; }
         
         NSURL *URL = [openPanel URL];
-        NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
+        NSError *error = nil;
         
-        // 同名のファイルがある場合は上書きするかを訊く
-        NSString *duplicatedName;
-        for (NSString *name in [[CEThemeManager sharedManager] themeNames]) {
-            if ([name caseInsensitiveCompare:themeName] == NSOrderedSame) {
-                duplicatedName = name;
-                break;
-            }
-        }
-        if (duplicatedName) {
-            // オープンパネルを閉じる
+        // インポートを試みる
+        [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
+        
+        if (error) {
+            NSAlert *alert = [NSAlert alertWithError:error];
+            
             [openPanel orderOut:nil];
             [[openPanel sheetParent] makeKeyAndOrderFront:nil];
             
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"A theme named “%@” already exists.", nil), duplicatedName]];
-            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil)];
-            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-            [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
-            
-            [alert beginSheetModalForWindow:[[self view] window]
-                              modalDelegate:self
-                             didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
-                                contextInfo:(__bridge_retained void *)(URL)];
-            return;
-        }
-        
-        NSError *error = nil;
-        [[CEThemeManager sharedManager] importTheme:URL error:&error];
-        if (error) {
-            NSAlert *alert = [NSAlert alertWithError:error];
-            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+            // 同名のファイルがある場合は上書きするかを訊く
+            if ([error code] == CEThemeFileDuplicationError) {
+                [alert beginSheetModalForWindow:[[self view] window]
+                                  modalDelegate:self
+                                 didEndSelector:@selector(importDuplicateThemeAlertDidEnd:returnCode:contextInfo:)
+                                    contextInfo:(__bridge_retained void *)(URL)];
+            } else {
+                [alert beginSheetModalForWindow:[[self view] window]
+                                  modalDelegate:nil
+                                 didEndSelector:NULL
+                                    contextInfo:NULL];
+            }
         }
     }];
 }
@@ -489,7 +479,7 @@
     
     NSURL *URL = CFBridgingRelease(contextInfo);
     NSError *error = nil;
-    [[CEThemeManager sharedManager] importTheme:URL error:&error];
+    [[CEThemeManager sharedManager] importTheme:URL replace:YES error:&error];
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];

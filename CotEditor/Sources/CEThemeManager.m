@@ -279,11 +279,34 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 外部テーマファイルをユーザ領域にコピーする
-- (BOOL)importTheme:(NSURL *)URL error:(NSError *__autoreleasing *)error
+- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError *__autoreleasing *)error
 //------------------------------------------------------
 {
     __block BOOL success = NO;
     NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
+    
+    // 上書きをしない場合は重複をチェックする
+    if (!doReplace) {
+        BOOL isDuplicated = NO;
+        for (NSString *name in [self themeNames]) {
+            if ([name caseInsensitiveCompare:themeName] == NSOrderedSame) {
+                BOOL isCustomized = NO;
+                BOOL isBundled = [self isBundledTheme:themeName cutomized:&isCustomized];
+                isDuplicated = (!isBundled || (isBundled && isCustomized));
+                break;
+            }
+        }
+        if (isDuplicated) {
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), themeName],
+                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil),
+                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                             NSLocalizedString(@"Replace", nil)],
+                                       NSURLErrorKey: URL};
+            
+            *error = [NSError errorWithDomain:CEErrorDomain code:CEThemeFileDuplicationError userInfo:userInfo];
+            return NO;
+        }
+    }
     
     // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
     if (![self prepareUserThemeDirectory]) {
@@ -329,10 +352,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
          
          success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:error];
      }];
-    
-    if (*error) {
-        NSLog(@"Error: %@", [*error description]);
-    }
     
     return success;
 }

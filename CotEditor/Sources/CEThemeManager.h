@@ -83,7 +83,7 @@ extern NSString *const CEThemeDidUpdateNotification;
 - (BOOL)restoreTheme:(NSString *)themeName error:(NSError **)error;
 - (BOOL)duplicateTheme:(NSString *)themeName error:(NSError **)error;
 - (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError **)error;
-- (BOOL)importTheme:(NSURL *)URL error:(NSError **)error;
+- (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError **)error;
 - (BOOL)createUntitledTheme:(NSString **)themeName error:(NSError **)error;
 
 @end

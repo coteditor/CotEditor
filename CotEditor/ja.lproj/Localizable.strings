@@ -20,7 +20,6 @@ http://www.aynimac.com/
 "Go To…" = "移動…";
 
 // Import theme
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
 
@@ -175,7 +174,7 @@ http://www.aynimac.com/
 "Restore “%@”" = "“%@”を元に戻す";
 "Delete the theme “%@”?" = "“%@”テーマを削除してもよいですか？";
 "Deleted theme cannot be restored." = "削除したテーマは元に戻せません。";
-"A theme named “%@” already exists." = "“%@”という名前のテーマはすでに存在しています。";
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
 "Do you want to replace it?\nReplaced theme cannot be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
 
 
