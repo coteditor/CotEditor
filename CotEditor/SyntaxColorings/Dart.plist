@@ -265,13 +265,13 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^([\t ]*)([a-zA-Z]+) (\w+[\t ]*\(.*\))\s{</string>
+			<string>^([\t ]*)([a-zA-Z]+) (\w+[\t ]*\(.*\))\s\{</string>
 			<key>keyString</key>
 			<string>$1$2 $3</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^([\t ]*)class (.+)\s{</string>
+			<string>^([\t ]*)class (.+)\s\{</string>
 			<key>bold</key>
 			<true/>
 			<key>keyString</key>

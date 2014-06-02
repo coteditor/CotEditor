@@ -194,11 +194,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=([-=`:.'"~^_*+#]){3}\n)(.+)(?=\n\1{3,}$)</string>
+			<string>(?&lt;=[-=`:.'"~^_*+#]{3}\n)(.+)(?=\n([-=`:.'"~^_*+#])\2{2,}+$)</string>
 			<key>bold</key>
 			<true/>
 			<key>keyString</key>
-			<string>$2</string>
+			<string>$1</string>
 		</dict>
 	</array>
 	<key>stringsArray</key>
