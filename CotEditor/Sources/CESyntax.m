@@ -296,7 +296,7 @@ static NSArray *kSyntaxDictKeys;
              
              // 改行またはタブをスペースに置換
              title = [title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-             title = [title stringByReplacingOccurrencesOfString:@"\t" withString:@" "];
+             title = [title stringByReplacingOccurrencesOfString:@"\t" withString:@"    "];
              
              // 長過ぎる場合は末尾を省略
              if ([title length] > menuTitleMaxLength) {
