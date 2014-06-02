@@ -20,6 +20,10 @@ http://www.aynimac.com/
 "Go To…" = "移動…";
 
 // Import theme
+"“%@” is a CotEditor theme file." = "“%@”は CotEditor テーマファイルです。";
+"Do you want to install this theme?" = "テーマをインストールしますか？";
+"Install" = "インストール";
+"Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
 

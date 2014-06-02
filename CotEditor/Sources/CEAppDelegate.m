@@ -394,6 +394,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSURL *URL = [NSURL fileURLWithPath:filename];
         NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
         NSAlert *alert;
+        NSInteger returnCode;
+        
+        // テーマファイルをテキストファイルとして開くかを訊く
+        alert = [[NSAlert alloc] init];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"“%@” is a CotEditor theme file.", nil), [URL lastPathComponent]]];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to install this theme?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Install", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Open as Text File", nil)];
+        
+        returnCode = [alert runModal];
+        if (returnCode == NSAlertSecondButtonReturn) {  // Edit as Text File
+            return NO;
+        }
         
         // テーマ読み込みを実行
         NSError *error = nil;
@@ -403,7 +416,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([error code] == CEThemeFileDuplicationError) {
             alert = [NSAlert alertWithError:error];
             
-            NSInteger returnCode = [alert runModal];
+            returnCode = [alert runModal];
             if (returnCode == NSAlertFirstButtonReturn) {  // Canceled
                 return YES;
             } else {
