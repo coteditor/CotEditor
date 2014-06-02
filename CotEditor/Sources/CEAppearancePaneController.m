@@ -172,7 +172,15 @@
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeDict]) {
+            NSString *oldThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
+            
             [[NSUserDefaults standardUserDefaults] setObject:[self selectedTheme] forKey:k_key_defaultTheme];
+            
+            // 現在開いているウインドウのテーマも変更
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                                object:self
+                                                              userInfo:@{CEOldNameKey: oldThemeName,
+                                                                         CENewNameKey: [self selectedTheme]}];
         }
         
         [self setThemeDict:themeDict];
