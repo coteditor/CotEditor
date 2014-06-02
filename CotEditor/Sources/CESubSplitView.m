@@ -780,6 +780,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
         [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
+        [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
         [[self editorView] recolorAllString];
     }
 }
