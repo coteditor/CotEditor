@@ -297,13 +297,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
             }
         }
         if (isDuplicated) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), themeName],
-                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil),
-                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
-                                                                             NSLocalizedString(@"Replace", nil)],
-                                       NSURLErrorKey: URL};
-            
-            *error = [NSError errorWithDomain:CEErrorDomain code:CEThemeFileDuplicationError userInfo:userInfo];
+            if (error) {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), themeName],
+                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme cannot be restored.", nil),
+                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                                 NSLocalizedString(@"Replace", nil)],
+                                           NSURLErrorKey: URL};
+                *error = [NSError errorWithDomain:CEErrorDomain code:CEThemeFileDuplicationError userInfo:userInfo];
+            }
             return NO;
         }
     }
