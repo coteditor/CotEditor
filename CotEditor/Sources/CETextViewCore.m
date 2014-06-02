@@ -628,7 +628,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // （2ピクセル右に描画してるのは、調整）
         CGFloat x = column + insetWidth + linePadding + 2.5;
         [[NSGraphicsContext currentContext] setShouldAntialias:NO];
-        [[[self textColor] colorWithAlphaComponent:0.12] set];
+        [[[self textColor] colorWithAlphaComponent:0.16] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
     }
