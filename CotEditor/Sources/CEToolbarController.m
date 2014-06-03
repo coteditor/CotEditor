@@ -108,7 +108,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    NSArray *items = [[NSArray alloc] initWithArray:[[NSApp delegate] encodingMenuItems] copyItems:YES];
+    NSArray *items = [[NSArray alloc] initWithArray:[(CEAppDelegate *)[NSApp delegate] encodingMenuItems] copyItems:YES];
     
     [[self encodingPopupButton] removeAllItems];
     for (NSMenuItem *item in items) {

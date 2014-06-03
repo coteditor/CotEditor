@@ -70,6 +70,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frame];
     if (self) {
+        CGFloat scrollerWidth = [NSScroller scrollerWidthForControlSize:NSRegularControlSize
+                                                          scrollerStyle:NSScrollerStyleLegacy];
+        
         // setup outlineMenu
         NSRect outlineMenuFrame = frame;
         outlineMenuFrame.origin.x += k_outlineMenuLeftMargin;
@@ -139,9 +142,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // setup openSplitButton
         NSRect openSplitButtonFrame = frame;
-        openSplitButtonFrame.origin.x += (NSWidth(frame) - [NSScroller scrollerWidth]);
+        openSplitButtonFrame.origin.x += (NSWidth(frame) - scrollerWidth);
         openSplitButtonFrame.origin.y = 1.0;
-        openSplitButtonFrame.size.width = [NSScroller scrollerWidth];
+        openSplitButtonFrame.size.width = scrollerWidth;
         [self convertRect:openSplitButtonFrame toView:self];
         [self setOpenSplitButton:[[NSButton alloc] initWithFrame:openSplitButtonFrame]];
         [[self openSplitButton] setButtonType:NSMomentaryPushInButton];
@@ -155,9 +158,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // setup closeSplitButton
         NSRect closeSplitButtonFrame = frame;
-        closeSplitButtonFrame.origin.x += (NSWidth(frame) - [NSScroller scrollerWidth] * 2);
+        closeSplitButtonFrame.origin.x += (NSWidth(frame) - scrollerWidth * 2);
         closeSplitButtonFrame.origin.y = 1.0;
-        closeSplitButtonFrame.size.width = [NSScroller scrollerWidth];
+        closeSplitButtonFrame.size.width = scrollerWidth;
         [self convertRect:closeSplitButtonFrame toView:self];
         [self setCloseSplitButton:[[NSButton alloc] initWithFrame:closeSplitButtonFrame]];
         [[self closeSplitButton] setButtonType:NSMomentaryPushInButton];

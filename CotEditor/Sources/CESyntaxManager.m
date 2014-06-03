@@ -486,9 +486,7 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
                 
             } else if ([key isEqualToString:k_SCKey_outlineMenuArray]) {
                 error = nil;
-                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:beginStr
-                                                                                       options:0
-                                                                                         error:&error];
+                [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
                 if (error) {
                     [errorMessages addObject:[NSString stringWithFormat:@"%@ :((RE string) > %@\n  >>> Regex Error: \"%@\"",
                                               arrayNameDeletingArray, beginStr, [error localizedFailureReason]]];
