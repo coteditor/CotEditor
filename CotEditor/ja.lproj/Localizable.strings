@@ -198,6 +198,8 @@ http://www.aynimac.com/
 // menu items
 "Keywords" = "キーワード";
 "Commands" = "コマンド";
+"Categories" = "カテゴリ";
+"Variables" = "変数";
 "Values" = "値";
 "Numbers" = "数値";
 "Strings" = "文字列";
