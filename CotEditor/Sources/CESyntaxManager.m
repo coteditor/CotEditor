@@ -510,7 +510,7 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
              k_SCKey_extensions: [NSMutableArray array],
              k_SCKey_keywordsArray: [NSMutableArray array],
              k_SCKey_commandsArray: [NSMutableArray array],
-             k_SCKey_typesArray: [NSMutableArray array],
+             k_SCKey_categoriesArray: [NSMutableArray array],
              k_SCKey_variablesArray: [NSMutableArray array],
              k_SCKey_valuesArray: [NSMutableArray array],
              k_SCKey_numbersArray: [NSMutableArray array],
