@@ -35,8 +35,10 @@
 
 @implementation CEAlphaColorWell
 
-// ------------------------------------------------------
+#pragma mark Superclass Methods
 
+// ------------------------------------------------------
+/// acitave shared color panel
 - (void)activate:(BOOL)exclusive
 // ------------------------------------------------------
 {
@@ -46,7 +48,7 @@
 
 
 // ------------------------------------------------------
-
+/// deactivate shared color panel
 - (void)deactivate
 // ------------------------------------------------------
 {
