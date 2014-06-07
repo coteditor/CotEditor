@@ -198,7 +198,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (only bottom line)
-    [[NSColor controlShadowColor] set];
+    [[NSColor colorWithWhite:0.75 alpha:1] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
                               toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
 }
