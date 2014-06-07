@@ -46,6 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSDictionary *currentAttrs;
 @property (nonatomic, copy) NSDictionary *singleQuotesAttrs;
 @property (nonatomic, copy) NSDictionary *doubleQuotesAttrs;
+@property (nonatomic, copy) NSDictionary *simpleWordsCharacterSets;
 @property (nonatomic) NSColor *textColor;
 
 @property (nonatomic) NSRange updateRange;
@@ -119,6 +120,7 @@ static NSArray *kSyntaxDictKeys;
         [self setColoringDictionary:[manager styleWithStyleName:styleName]];
 
         [self setCompletionWordsFromColoringDictionary];
+        [self setSimpleWordsCharacterSet];
 
         _syntaxStyleName = styleName;
     }
@@ -153,6 +155,7 @@ static NSArray *kSyntaxDictKeys;
     if ([self coloringDictionary] == nil) {
         [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
         [self setCompletionWordsFromColoringDictionary];
+        [self setSimpleWordsCharacterSet];
     }
     if ([self coloringDictionary] == nil) { return; }
 
@@ -191,6 +194,7 @@ static NSArray *kSyntaxDictKeys;
     if ([self coloringDictionary] == nil) {
         [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
         [self setCompletionWordsFromColoringDictionary];
+        [self setSimpleWordsCharacterSet];
     }
     if ([self coloringDictionary] == nil) { return; }
 
@@ -396,11 +400,49 @@ static NSArray *kSyntaxDictKeys;
 
 
 // ------------------------------------------------------
-/// 指定された文字列をそのまま検索し、カラーリング
-- (void)setAttrToSimpleWordsDict:(NSMutableDictionary*)wordsDict charString:(NSString *)charString
+/// 保持しているカラーリング辞書から単純文字列検索のときに使う characterSet の辞書を生成
+- (void)setSimpleWordsCharacterSet
 // ------------------------------------------------------
 {
-    NSArray *ranges = [self rangesSimpleWordsDict:wordsDict charString:charString];
+    if ([self coloringDictionary] == nil) { return; }
+    
+    NSMutableDictionary *characterSets = [NSMutableDictionary dictionary];
+    NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    
+    for (NSString *key in kSyntaxDictKeys) {
+        @autoreleasepool {
+            NSMutableCharacterSet *charSet = [NSMutableCharacterSet characterSetWithCharactersInString:k_allAlphabetChars];
+            
+            for (NSDictionary *wordDict in [self coloringDictionary][key]) {
+                NSString *begin = [wordDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:trimCharSet];
+                NSString *end = [wordDict[k_SCKey_endString] stringByTrimmingCharactersInSet:trimCharSet];
+                BOOL isRegex = [wordDict[k_SCKey_regularExpression] boolValue];
+                
+                if ([begin length] > 0 && [end length] == 0 && !isRegex) {
+                    if ([wordDict[k_SCKey_ignoreCase] boolValue]) {
+                        [charSet addCharactersInString:[begin uppercaseString]];
+                        [charSet addCharactersInString:[begin lowercaseString]];
+                    } else {
+                        [charSet addCharactersInString:begin];
+                    }
+                }
+            }
+            [charSet removeCharactersInString:@"\n\t "];  // 改行、タブ、スペースは無視
+            
+            characterSets[key] = charSet;
+        } // ==== end-autoreleasepool
+    }
+    
+    [self setSimpleWordsCharacterSets:characterSets];
+}
+
+
+// ------------------------------------------------------
+/// 指定された文字列をそのまま検索し、カラーリング
+- (void)setAttrToSimpleWordsDict:(NSDictionary *)wordsDict ignoreCaseDict:(NSDictionary *)icWordsDict charSet:(NSCharacterSet *)charSet
+// ------------------------------------------------------
+{
+    NSArray *ranges = [self rangesSimpleWordsDict:wordsDict ignoreCaseDict:(NSDictionary *)icWordsDict charSet:charSet];
 
     for (NSValue *value in ranges) {
         NSRange range = [value rangeValue];
@@ -417,19 +459,13 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (NSArray *)rangesSimpleWordsDict:(NSMutableDictionary*)wordsDict charString:(NSString *)charString
+- (NSArray *)rangesSimpleWordsDict:(NSDictionary *)wordsDict ignoreCaseDict:(NSDictionary *)icWordsDict charSet:(NSCharacterSet *)charSet
 // ------------------------------------------------------
 {
+    NSMutableArray *ranges = [NSMutableArray array];
+    
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
     NSString *scannedString = nil;
-    NSMutableArray *ranges = [NSMutableArray array];
-    NSMutableCharacterSet *charSet;
-    NSRange range;
-    NSArray *words;
-    NSUInteger location = 0, length = 0;
-
-    charSet = [NSMutableCharacterSet characterSetWithCharactersInString:charString];
-    [charSet removeCharactersInString:@"\n\t "];  // 改行、タブ、スペースは無視
     
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
     [scanner setCaseSensitive:YES];
@@ -438,12 +474,26 @@ static NSArray *kSyntaxDictKeys;
         while (![scanner isAtEnd]) {
             [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
             if ([scanner scanCharactersFromSet:charSet intoString:&scannedString]) {
-                length = [scannedString length];
+                NSUInteger length = [scannedString length];
+                
                 if (length > 0) {
-                    location = [scanner scanLocation];
-                    words = wordsDict[@(length)];
-                    if ([words containsObject:scannedString]) {
-                        range = NSMakeRange(location - length, length);
+                    NSUInteger location = [scanner scanLocation];
+                    NSArray *words = wordsDict[@(length)];
+                    
+                    BOOL isFound = [words containsObject:scannedString];
+                    
+                    if (!isFound) {
+                        words = icWordsDict[@(length)];
+                        for (NSString *word in words) {
+                            if ([word caseInsensitiveCompare:scannedString] == NSOrderedSame) {
+                                isFound = YES;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (isFound) {
+                        NSRange range = NSMakeRange(location - length, length);
                         [ranges addObject:[NSValue valueWithRange:range]];
                     }
                 }
@@ -461,7 +511,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
-- (NSArray *)rangesBeginString:(NSString *)beginString endString:(NSString *)endString
+- (NSArray *)rangesBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase
                     doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // ------------------------------------------------------
 {
@@ -477,7 +527,7 @@ static NSArray *kSyntaxDictKeys;
     if (beginLength < 1) { return nil; }
     endLength = [endString length];
     [scanner setCharactersToBeSkipped:nil];
-    [scanner setCaseSensitive:YES];
+    [scanner setCaseSensitive:!ignoreCase];
     NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
     NSInteger i = 0;
 
@@ -684,10 +734,11 @@ static NSArray *kSyntaxDictKeys;
 {
     NSMutableArray *posArray = [NSMutableArray array];
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
+    NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSArray *tmpArray = nil;
     NSDictionary *strDict, *curRecord, *checkRecord, *attrs;
     NSString *beginStr = nil, *endStr = nil;
-    NSMutableString *simpleWordsChar = [NSMutableString string];
+    BOOL ignoresCase = NO;
     NSRange coloringRange;
     NSInteger i, j, index = 0, syntaxCount = [syntaxArray count], coloringCount;
     NSUInteger QCKind, start, end, checkStartEnd;
@@ -697,6 +748,7 @@ static NSArray *kSyntaxDictKeys;
     for (i = 0; i < syntaxCount; i++) {
         if ((i % 10 == 0) && [self isColoringCancelled]) { return; }
         strDict = syntaxArray[i];
+        ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
         beginStr = strDict[k_SCKey_beginString];
 
         if ([beginStr length] < 1) { continue; }
@@ -707,43 +759,46 @@ static NSArray *kSyntaxDictKeys;
             if ((endStr != nil) && ([endStr length] > 0)) {
                 tmpArray = [self rangesRegularExpressionBeginString:beginStr
                                                           endString:endStr
-                                                         ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                         ignoreCase:ignoresCase
                                                          doColoring:NO
                                                      pairStringKind:(k_QC_CommentBaseNum + i)];
                 [posArray addObjectsFromArray:tmpArray];
             } else {
                 tmpArray = [self rangesRegularExpressionString:beginStr
-                                                    ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                    ignoreCase:ignoresCase
                                                     doColoring:NO
                                                 pairStringKind:(k_QC_CommentBaseNum + i)];
                 [posArray addObjectsFromArray:tmpArray];
             }
         } else {
             if ((endStr != nil) && ([endStr length] > 0)) {
-                tmpArray = [self rangesBeginString:beginStr endString:endStr
-                                        doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
+                tmpArray = [self rangesBeginString:beginStr
+                                     endString:endStr
+                                    ignoreCase:ignoresCase
+                                        doColoring:NO
+                                    pairStringKind:(k_QC_CommentBaseNum + i)];
                 [posArray addObjectsFromArray:tmpArray];
             } else {
                 NSNumber *len = @([beginStr length]);
-                id wordsArray = simpleWordsDict[len];
+                NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
+                NSMutableArray *wordsArray = dict[len];
                 if (wordsArray) {
                     [wordsArray addObject:beginStr];
                 } else {
                     wordsArray = [NSMutableArray arrayWithObject:beginStr];
-                    simpleWordsDict[len] = wordsArray;
+                    dict[len] = wordsArray;
                 }
-                [simpleWordsChar appendString:beginStr];
             }
         }
     } // end-for
     // シングルクォート定義があれば位置配列を生成、マージ
     if (withSingleQuotes) {
-        [posArray addObjectsFromArray:[self rangesBeginString:@"\'" endString:@"\'"
+        [posArray addObjectsFromArray:[self rangesBeginString:@"\'" endString:@"\'" ignoreCase:NO
                                                    doColoring:NO pairStringKind:k_QC_SingleQ]];
     }
     // ダブルクォート定義があれば位置配列を生成、マージ
     if (withDoubleQuotes) {
-        [posArray addObjectsFromArray:[self rangesBeginString:@"\"" endString:@"\""
+        [posArray addObjectsFromArray:[self rangesBeginString:@"\"" endString:@"\"" ignoreCase:NO
                                                    doColoring:NO pairStringKind:k_QC_DoubleQ]];
     }
     // コメントもクォートもなければ、もどる
@@ -751,7 +806,9 @@ static NSArray *kSyntaxDictKeys;
 
     // まず、開始文字列だけのコメント定義があればカラーリング
     if (([simpleWordsDict count]) > 0) {
-        [self setAttrToSimpleWordsDict:simpleWordsDict charString:simpleWordsChar];
+        [self setAttrToSimpleWordsDict:simpleWordsDict
+                        ignoreCaseDict:simpleICWordsDict
+                               charSet:[self simpleWordsCharacterSets][k_SCKey_commentsArray]];
     }
 
     // カラーリング対象がなければ、もどる
@@ -933,8 +990,9 @@ static NSArray *kSyntaxDictKeys;
     
     NSArray *strDicts;
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    NSMutableString *simpleWordsChar = [NSMutableString stringWithString:k_allAlphabetChars];
+    NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSString *beginStr = nil, *endStr = nil;
+    BOOL ignoresCase = NO;
     NSDictionary *strDict;
     NSRange coloringRange;
     NSUInteger count;
@@ -986,6 +1044,7 @@ static NSArray *kSyntaxDictKeys;
             NSUInteger i = 0;
             for (strDict in strDicts) {
                 @autoreleasepool {
+                    ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
                     beginStr = strDict[k_SCKey_beginString];
 
                     if ([beginStr length] == 0) { continue; }
@@ -996,7 +1055,7 @@ static NSArray *kSyntaxDictKeys;
                         if ([endStr length] > 0) {
                             tmpArray = [self rangesRegularExpressionBeginString:beginStr
                                                                       endString:endStr
-                                                                     ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                                     ignoreCase:ignoresCase
                                                                      doColoring:YES
                                                                  pairStringKind:k_notUseKind];
                             if (tmpArray) {
@@ -1004,7 +1063,7 @@ static NSArray *kSyntaxDictKeys;
                             }
                         } else {
                             tmpArray = [self rangesRegularExpressionString:beginStr
-                                                                ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                                ignoreCase:ignoresCase
                                                                 doColoring:YES
                                                             pairStringKind:k_notUseKind];
                             if (tmpArray) {
@@ -1028,21 +1087,22 @@ static NSArray *kSyntaxDictKeys;
                                 }
                                 continue;
                             }
-                            tmpArray = [self rangesBeginString:beginStr endString:endStr
+                            tmpArray = [self rangesBeginString:beginStr endString:endStr ignoreCase:ignoresCase
                                                     doColoring:YES pairStringKind:k_notUseKind];
                             if (tmpArray) {
                                 [targetArray addObject:tmpArray];
                             }
                         } else {
                             NSNumber *len = @([beginStr length]);
-                            NSMutableArray *wordsArray = simpleWordsDict[len];
+                            NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
+                            NSMutableArray *wordsArray = dict[len];
                             if (wordsArray) {
                                 [wordsArray addObject:beginStr];
+                                
                             } else {
                                 wordsArray = [NSMutableArray arrayWithObject:beginStr];
-                                simpleWordsDict[len] = wordsArray;
+                                dict[len] = wordsArray;
                             }
-                            [simpleWordsChar appendString:beginStr];
                         }
                     }
                     // インジケータ更新
@@ -1055,12 +1115,13 @@ static NSArray *kSyntaxDictKeys;
                 } // ==== end-autoreleasepool
             } // end-for (i)
             if (([simpleWordsDict count]) > 0) {
-                tmpArray = [self rangesSimpleWordsDict:simpleWordsDict charString:simpleWordsChar];
-                if (tmpArray) {
+                tmpArray = [self rangesSimpleWordsDict:simpleWordsDict
+                                        ignoreCaseDict:simpleICWordsDict
+                                               charSet:[self simpleWordsCharacterSets][syntaxKey]];
+                if (tmpArray != nil) {
                     [targetArray addObject:tmpArray];
                 }
                 [simpleWordsDict removeAllObjects];
-                [simpleWordsChar setString:k_allAlphabetChars];
             }
             // カラーリング実行
             for (NSArray *ranges in targetArray) {

@@ -197,8 +197,6 @@
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="35" name="value" keyPath="arrangedObjects.ignoreCase" id="483"/>
-                                                                    <binding destination="35" name="editable" keyPath="arrangedObjects.regularExpression" id="694"/>
-                                                                    <binding destination="35" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="694" id="695"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -374,8 +372,6 @@
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="33" name="value" keyPath="arrangedObjects.ignoreCase" id="493"/>
-                                                                    <binding destination="33" name="editable" keyPath="arrangedObjects.regularExpression" id="696"/>
-                                                                    <binding destination="33" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="696" id="698"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -522,8 +518,6 @@
                                                                     <font key="font" metaFont="titleBar" size="12"/>
                                                                 </buttonCell>
                                                                 <connections>
-                                                                    <binding destination="CsA-p6-wjf" name="editable" keyPath="arrangedObjects.regularExpression" id="jVx-nq-QOZ"/>
-                                                                    <binding destination="CsA-p6-wjf" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="jVx-nq-QOZ" id="9ym-Ti-boj"/>
                                                                     <binding destination="CsA-p6-wjf" name="value" keyPath="arrangedObjects.ignoreCase" id="Xjm-zz-jv1"/>
                                                                 </connections>
                                                             </tableColumn>
@@ -671,8 +665,6 @@
                                                                     <font key="font" metaFont="titleBar" size="12"/>
                                                                 </buttonCell>
                                                                 <connections>
-                                                                    <binding destination="ZYC-4s-v8a" name="editable" keyPath="arrangedObjects.regularExpression" id="7VO-hj-3dU"/>
-                                                                    <binding destination="ZYC-4s-v8a" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="7VO-hj-3dU" id="dTx-d4-5eO"/>
                                                                     <binding destination="ZYC-4s-v8a" name="value" keyPath="arrangedObjects.ignoreCase" id="ex4-Dg-oqK"/>
                                                                 </connections>
                                                             </tableColumn>
@@ -791,8 +783,6 @@
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="174" name="value" keyPath="arrangedObjects.ignoreCase" id="504"/>
-                                                                    <binding destination="174" name="editable" keyPath="arrangedObjects.regularExpression" id="699"/>
-                                                                    <binding destination="174" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="699" id="701"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -938,8 +928,6 @@
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="236" name="value" keyPath="arrangedObjects.ignoreCase" id="517"/>
-                                                                    <binding destination="236" name="editable" keyPath="arrangedObjects.regularExpression" id="702"/>
-                                                                    <binding destination="236" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="702" id="704"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -1113,8 +1101,6 @@
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="239" name="value" keyPath="arrangedObjects.ignoreCase" id="529"/>
-                                                                    <binding destination="239" name="editable" keyPath="arrangedObjects.regularExpression" id="705"/>
-                                                                    <binding destination="239" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="705" id="707"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -1232,8 +1218,6 @@
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="242" name="value" keyPath="arrangedObjects.ignoreCase" id="541"/>
-                                                                    <binding destination="242" name="editable" keyPath="arrangedObjects.regularExpression" id="708"/>
-                                                                    <binding destination="242" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="708" id="710"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -1379,8 +1363,6 @@
                                                                 </buttonCell>
                                                                 <connections>
                                                                     <binding destination="34" name="value" keyPath="arrangedObjects.ignoreCase" id="553"/>
-                                                                    <binding destination="34" name="editable" keyPath="arrangedObjects.regularExpression" id="711"/>
-                                                                    <binding destination="34" name="enabled" keyPath="arrangedObjects.regularExpression" previousBinding="711" id="713"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
