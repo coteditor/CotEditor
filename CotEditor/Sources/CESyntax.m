@@ -414,7 +414,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、カラーリング
-- (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSMutableString *)charString
+- (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSString *)charString
 // ------------------------------------------------------
 {
     NSArray *ranges = [self rangesSimpleWordsArrayDict:wordsDict withCharString:charString];
@@ -434,37 +434,34 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSMutableString *)charString
+- (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSString *)charString
 // ------------------------------------------------------
 {
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
-    NSString *scanStr = nil;
-    NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
-    NSCharacterSet *charSet;
-    NSRange attrRange;
-    id wordsArray;
+    NSString *scannedString = nil;
+    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableCharacterSet *charSet;
+    NSRange range;
+    NSArray *words;
     NSUInteger location = 0, length = 0;
 
-    // 改行、タブ、スペースは無視
-    [charString chomp];
-    [charString replaceOccurrencesOfString:@"\t" withString:@"" options:0 range:NSMakeRange(0, [charString length])];
-    [charString replaceOccurrencesOfString:@" " withString:@"" options:0 range:NSMakeRange(0, [charString length])];
-
-    charSet = [NSCharacterSet characterSetWithCharactersInString:charString];
+    charSet = [NSMutableCharacterSet characterSetWithCharactersInString:charString];
+    [charSet removeCharactersInString:@"\n\t "];  // 改行、タブ、スペースは無視
+    
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
     [scanner setCaseSensitive:YES];
 
     @try {
         while (![scanner isAtEnd]) {
             [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
-            if ([scanner scanCharactersFromSet:charSet intoString:&scanStr]) {
-                length = [scanStr length];
+            if ([scanner scanCharactersFromSet:charSet intoString:&scannedString]) {
+                length = [scannedString length];
                 if (length > 0) {
                     location = [scanner scanLocation];
-                    wordsArray = wordsDict[@(length)];
-                    if ([wordsArray containsObject:scanStr]) {
-                        attrRange = NSMakeRange(location - length, length);
-                        [outArray addObject:[NSValue valueWithRange:attrRange]];
+                    words = wordsDict[@(length)];
+                    if ([words containsObject:scannedString]) {
+                        range = NSMakeRange(location - length, length);
+                        [ranges addObject:[NSValue valueWithRange:range]];
                     }
                 }
             }
@@ -475,7 +472,7 @@ static NSArray *kSyntaxDictKeys;
         return nil;
     }
 
-    return outArray;
+    return ranges;
 }
 
 
