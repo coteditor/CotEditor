@@ -454,7 +454,7 @@ static NSArray *kSyntaxDictKeys;
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
     [scanner setCaseSensitive:YES];
 
-    NS_DURING
+    @try {
         while (![scanner isAtEnd]) {
             [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
             if ([scanner scanCharactersFromSet:charSet intoString:&scanStr]) {
@@ -469,11 +469,11 @@ static NSArray *kSyntaxDictKeys;
                 }
             }
         }
-    NS_HANDLER
+    } @catch (NSException *exception) {
         // 何もしない
-        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        NSLog(@"ERROR in \"%s\", reason: %@", __PRETTY_FUNCTION__, [exception reason]);
         return nil;
-    NS_ENDHANDLER
+    }
 
     return outArray;
 }
@@ -578,14 +578,14 @@ static NSArray *kSyntaxDictKeys;
     NSInteger i, count = 0;
     NSUInteger QCStart = 0, QCEnd = 0;
 
-    NS_DURING
+    @try {
         enumerator = [[self localString] matchEnumeratorWithRegex:regexStr options:options];
         matchArray = [enumerator allObjects];
-    NS_HANDLER
+    } @catch (NSException *exception) {
         // 何もしない
-        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        NSLog(@"ERROR in \"%s\", reason: %@", __PRETTY_FUNCTION__, [exception reason]);
         return nil;
-    NS_ENDHANDLER
+    }
 
     if (doColoring) {
         return matchArray;
@@ -633,14 +633,14 @@ static NSArray *kSyntaxDictKeys;
     NSInteger i, count = 0;
     NSUInteger QCStart = 0, QCEnd = 0;
 
-    NS_DURING
+    @try {
         enumerator = [[self localString] matchEnumeratorWithRegex:beginString options:options];
         matchArray = [enumerator allObjects];
-    NS_HANDLER
+    } @catch (NSException *exception) {
         // 何もしない
-        NSLog(@"ERROR in \"%s\" first NS_DURING", __PRETTY_FUNCTION__);
+        NSLog(@"ERROR in \"%s\", reason: %@", __PRETTY_FUNCTION__, [exception reason]);
         return nil;
-    NS_ENDHANDLER
+    }
 
     count = [matchArray count];
     if (count > 0) {
@@ -651,17 +651,17 @@ static NSArray *kSyntaxDictKeys;
             return nil;
         }
         beginRange = [matchArray[i] rangeValue];
-        NS_DURING
+        @try {
             endRange = [[self localString] rangeOfRegex:endString
                                                 options:options
                                                 inRange:NSMakeRange(NSMaxRange(beginRange),
                                                                     [[self localString] length] - NSMaxRange(beginRange))
                                                 capture:0 error:NULL];
-        NS_HANDLER
+        } @catch (NSException *exception) {
             // 何もしない
-            NSLog(@"ERROR in \"%s\" second NS_DURING", __PRETTY_FUNCTION__);
+            NSLog(@"ERROR in \"%s\", reason: %@", __PRETTY_FUNCTION__, [exception reason]);
             return nil;
-        NS_ENDHANDLER
+        }
 
         if (endRange.location != NSNotFound) {
             attrRange = NSUnionRange(beginRange, endRange);
@@ -976,7 +976,7 @@ static NSArray *kSyntaxDictKeys;
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
     double indicatorValue, beginDouble = 0.0;
     
-    NS_DURING
+    @try {
         // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
         for (i = 0; i < [kSyntaxDictKeys count]; i++) {
 
@@ -1135,10 +1135,10 @@ static NSArray *kSyntaxDictKeys;
             [self setCurrentAttrs:nil];
         } // end-for (i)
         [self setOtherInvisibleCharsAttrs];
-    NS_HANDLER
+    } @catch (NSException *exception) {
         // 何もしない
-        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
-    NS_ENDHANDLER
+        NSLog(@"ERROR in \"%s\" reason: %@", __PRETTY_FUNCTION__, [exception reason]);
+    }
 
     // インジーケータシートを片づける
     if ([self isIndicatorShown]) {
