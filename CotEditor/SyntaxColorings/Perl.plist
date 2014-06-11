@@ -916,7 +916,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^([\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*{</string>
+			<string>^([\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\{</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>keyString</key>

@@ -563,34 +563,28 @@
 			<string>\@end\W(.*)$</string>
 			<key>bold</key>
 			<true/>
-			<key>keyString</key>
-			<string>$&amp;</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\@implementation\W(.*)$</string>
 			<key>bold</key>
 			<true/>
-			<key>keyString</key>
-			<string>$&amp;</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\@interface\W(.*)$</string>
 			<key>bold</key>
 			<true/>
-			<key>keyString</key>
-			<string>$&amp;</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^(\w[\w\s]*\s[\*]*)(\w+)\(([\s\w*&amp;,]*)\)\s*{</string>
+			<string>^(\w[\w\s]*\s[\*]*)(\w+)\(([\s\w*&amp;,]*)\)\s*\{</string>
 			<key>keyString</key>
 			<string>$1 $2($3)</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*([+-])([^)]*?\))([^{]*){</string>
+			<string>^[\t ]*([+-])([^)]*?\))([^{]*)\{</string>
 			<key>keyString</key>
 			<string>$1 $3</string>
 		</dict>

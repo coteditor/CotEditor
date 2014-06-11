@@ -45,6 +45,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSButton *openSplitButton;
 @property (nonatomic) NSButton *closeSplitButton;
 
+@property (nonatomic) NSProgressIndicator *outlineIndicator;
+@property (nonatomic) NSTextField *outlineLoadingMessage;
+
 @end
 
 
@@ -67,6 +70,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frame];
     if (self) {
+        CGFloat scrollerWidth = [NSScroller scrollerWidthForControlSize:NSRegularControlSize
+                                                          scrollerStyle:NSScrollerStyleLegacy];
+        
         // setup outlineMenu
         NSRect outlineMenuFrame = frame;
         outlineMenuFrame.origin.x += k_outlineMenuLeftMargin;
@@ -76,6 +82,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self convertRect:outlineMenuFrame toView:self];
         [self setOutlineMenu:[[CEOutlineMenuButton alloc] initWithFrame:outlineMenuFrame pullsDown:NO]];
         [[self outlineMenu] setAutoresizingMask:NSViewHeightSizable];
+        
+        // setup outline indicator
+        [self setOutlineIndicator:[[NSProgressIndicator alloc] init]];
+        [[self outlineIndicator] setStyle:NSProgressIndicatorSpinningStyle];
+        [[self outlineIndicator] setUsesThreadedAnimation:YES];
+        [[self outlineIndicator] setDisplayedWhenStopped:NO];
+        [[self outlineIndicator] setControlSize:NSSmallControlSize];
+        [[self outlineIndicator] sizeToFit];
+        NSRect indicatorFrame = [[self outlineIndicator] frame];
+        indicatorFrame.origin.x = outlineMenuFrame.origin.x + 6;
+        indicatorFrame = NSInsetRect(indicatorFrame, 2, 2);
+        [[self outlineIndicator] setFrame:indicatorFrame];
+        
+        // setup outline loading message
+        NSRect loadingMessageFrame = outlineMenuFrame;
+        loadingMessageFrame.origin.x = NSMaxX([[self outlineIndicator] frame]) + 2;
+        loadingMessageFrame.origin.y -= 1;
+        NSFont *messageFont = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_navigationBarFontName]
+                                              size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_navigationBarFontSize]];
+        messageFont = [[NSFontManager sharedFontManager] convertFont:messageFont toHaveTrait:NSItalicFontMask];
+        [self setOutlineLoadingMessage:[[NSTextField alloc] initWithFrame:loadingMessageFrame]];
+        [[self outlineLoadingMessage] setStringValue:NSLocalizedString(@"Extracting Outline…", nil)];
+        [[self outlineLoadingMessage] setTextColor:[NSColor disabledControlTextColor]];
+        [[self outlineLoadingMessage] setFont:messageFont];
+        [[self outlineLoadingMessage] setDrawsBackground:NO];
+        [[self outlineLoadingMessage] setEditable:NO];
+        [[self outlineLoadingMessage] setBordered:NO];
+        [[self outlineLoadingMessage] setHidden:YES];
+        [[self outlineLoadingMessage] setAutoresizingMask:NSViewHeightSizable];
 
         // setup prevButton
         NSRect prevButtonFrame = outlineMenuFrame;
@@ -107,9 +142,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // setup openSplitButton
         NSRect openSplitButtonFrame = frame;
-        openSplitButtonFrame.origin.x += (NSWidth(frame) - [NSScroller scrollerWidth]);
+        openSplitButtonFrame.origin.x += (NSWidth(frame) - scrollerWidth);
         openSplitButtonFrame.origin.y = 1.0;
-        openSplitButtonFrame.size.width = [NSScroller scrollerWidth];
+        openSplitButtonFrame.size.width = scrollerWidth;
         [self convertRect:openSplitButtonFrame toView:self];
         [self setOpenSplitButton:[[NSButton alloc] initWithFrame:openSplitButtonFrame]];
         [[self openSplitButton] setButtonType:NSMomentaryPushInButton];
@@ -123,9 +158,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // setup closeSplitButton
         NSRect closeSplitButtonFrame = frame;
-        closeSplitButtonFrame.origin.x += (NSWidth(frame) - [NSScroller scrollerWidth] * 2);
+        closeSplitButtonFrame.origin.x += (NSWidth(frame) - scrollerWidth * 2);
         closeSplitButtonFrame.origin.y = 1.0;
-        closeSplitButtonFrame.size.width = [NSScroller scrollerWidth];
+        closeSplitButtonFrame.size.width = scrollerWidth;
         [self convertRect:closeSplitButtonFrame toView:self];
         [self setCloseSplitButton:[[NSButton alloc] initWithFrame:closeSplitButtonFrame]];
         [[self closeSplitButton] setButtonType:NSMomentaryPushInButton];
@@ -139,6 +174,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         [self setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin)];
         [self addSubview:[self outlineMenu]];
+        [self addSubview:[self outlineIndicator]];
+        [self addSubview:[self outlineLoadingMessage]];
         [self addSubview:[self prevButton]];
         [self addSubview:[self nextButton]];
         [self addSubview:[self openSplitButton]];
@@ -161,7 +198,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (only bottom line)
-    [[NSColor controlShadowColor] set];
+    [[NSColor colorWithWhite:0.75 alpha:1] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
                               toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
 }
@@ -205,7 +242,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableAttributedString *title;
     NSFontTraitMask fontMask;
     NSNumber *underlineMaskNumber;
-
+    
+    // stop outine indicator
+    [[self outlineIndicator] stopAnimation:self];
+    [[self outlineLoadingMessage] setHidden:YES];
+    
     [[self outlineMenu] removeAllItems];
     if ([outlineMenuArray count] < 1) {
         [[self outlineMenu] setEnabled:NO];
@@ -387,6 +428,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self closeSplitButton] setHidden:!enabled];
 }
 
+
+// ------------------------------------------------------
+///
+- (void)showOutlineIndicator
+// ------------------------------------------------------
+{
+    if (![[self outlineMenu] isEnabled]) {
+        [[self outlineIndicator] startAnimation:self];
+        [[self outlineLoadingMessage] setHidden:NO];
+    }
+}
 
 
 #pragma mark Private Methods

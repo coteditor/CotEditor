@@ -30070,7 +30070,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^([\t ]*)(function)\s*([^{]*)(?={)</string>
+			<string>^([\t ]*)(function)\s*([^{]*)(?=\{)</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>

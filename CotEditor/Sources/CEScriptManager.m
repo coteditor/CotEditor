@@ -289,11 +289,9 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         
     } else if ([sender isKindOfClass:[NSMenuItem class]]) {
         // ユーザがメニューからコピーを実行し、すでにサンプルフォルダがあった場合は警告を出す
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"SampleScript folder exists already.", nil)
-                                         defaultButton:nil
-                                       alternateButton:nil
-                                           otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at “%@” at first.", nil), [destURL relativePath]];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"SampleScript folder exists already.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"If you want to replace it with the new one, remove the existing folder at “%@” at first.", nil), [destURL relativePath]]];
         [alert runModal];
     }
 }
@@ -472,11 +470,9 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 - (void)showAlertWithMessage:(NSString *)message
 //------------------------------------------------------
 {
-    NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Script Error", nil)
-                                     defaultButton:nil
-                                   alternateButton:nil
-                                       otherButton:nil
-                         informativeTextWithFormat:message, nil];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:NSLocalizedString(@"Script Error", nil)];
+    [alert setInformativeText:message];
     [alert setAlertStyle:NSCriticalAlertStyle];
     [alert runModal];
 }

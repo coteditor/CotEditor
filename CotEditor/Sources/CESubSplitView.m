@@ -299,19 +299,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setWrapLinesWithNumber:(NSNumber *)number
 // ------------------------------------------------------
 {
-    if ([number boolValue]) {
-        [[[self textView] enclosingScrollView] setHasHorizontalScroller:NO];
-        [[self textView] setAutoresizingMask:NSViewWidthSizable];
+    NSTextView *textView = [self textView];
+    BOOL shouldWrap = [number boolValue];
+    BOOL isVertical = ([textView layoutOrientation] == NSTextLayoutOrientationVertical);
+    
+    // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
+    [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    
+    if (shouldWrap) {
+        [[textView enclosingScrollView] setHasHorizontalScroller:NO];
+        [textView setAutoresizingMask:NSViewWidthSizable];
         [self adjustTextFrameSize];
-        [[[self textView] textContainer] setWidthTracksTextView:YES]; // (will follow the width of the textview.)
-        [[self textView] sizeToFit];
-        [[self textView] setHorizontallyResizable:NO];
+        [[textView textContainer] setWidthTracksTextView:YES]; // (will follow the width of the textview.)
+        [textView sizeToFit];
+        [textView setHorizontallyResizable:NO];
     } else {
-        [[[self textView] enclosingScrollView] setHasHorizontalScroller:YES];
-        [[[self textView] textContainer] setWidthTracksTextView:NO];
-        [[[self textView] textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // set the frame size
-        [[self textView] setAutoresizingMask:NSViewNotSizable]; // (don't let it autosize, though.)
-        [[self textView] setHorizontallyResizable:YES];
+        [[textView enclosingScrollView] setHasHorizontalScroller:YES];
+        [[textView textContainer] setWidthTracksTextView:NO];
+        [[textView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // set the frame size
+        [textView setAutoresizingMask:NSViewNotSizable]; // (don't let it autosize, though.)
+        [textView setHorizontallyResizable:YES];
+    }
+    
+    // 縦書きモードの際は改めて縦書きにする
+    if (isVertical) {
+        [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
 
 }
@@ -424,8 +436,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self stopUpdateOutlineMenuTimer];
-    [[self navigationBar] setOutlineMenuArray:[[[self editorView] syntax] outlineMenuArrayWithWholeString:[self string]]];
-    // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
+    
+    [[self navigationBar] showOutlineIndicator];
+    
+    // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *outlineMenuArray = [[[self editorView] syntax] outlineMenuArrayWithWholeString:[self string]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self navigationBar] setOutlineMenuArray:outlineMenuArray];
+            // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
+        });
+    });
 }
 
 

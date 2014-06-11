@@ -242,15 +242,15 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^([[:blank:]]*)(private)\s*([^{]*)(?={)</string>
+			<string>^([[:blank:]]*)(private)\s*([^{]*)(?=\{)</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^([[:blank:]]*)(protected)\s*([^{]*)(?={)</string>
+			<string>^([[:blank:]]*)(protected)\s*([^{]*)(?=\{)</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^([[:blank:]]*)(public)\s*([^{]*)(?={)</string>
+			<string>^([[:blank:]]*)(public)\s*([^{]*)(?=\{)</string>
 		</dict>
 		<dict>
 			<key>beginString</key>

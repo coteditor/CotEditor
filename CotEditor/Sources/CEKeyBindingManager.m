@@ -62,7 +62,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSDictionary *defaultMenuKeyBindingDict;
 @property (nonatomic, copy) NSDictionary *menuKeyBindingDict;
 @property (nonatomic, copy) NSDictionary *textKeyBindingDict;
-@property (nonatomic, copy) NSDictionary *noPrintableKeyDict;
+@property (nonatomic, copy) NSDictionary *unprintableKeyDict;
 @property (nonatomic, copy) NSString *currentKeySpecChars;
 
 @property (nonatomic) CEKeyBindingOutlineMode outlineMode;
@@ -114,7 +114,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        [self setNoPrintableKeyDict:[self noPrintableKeyDictionary]];
+        [self setUnprintableKeyDict:[self unprintableKeyDictionary]];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addCatchedMenuShortcutString:)
                                                      name:CECatchMenuShortcutNotification
@@ -1019,7 +1019,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)visibleCharFromIgnoringModChar:(NSString *)igunoresModChar
 //------------------------------------------------------
 {
-    NSString *outString = [self noPrintableKeyDict][igunoresModChar];
+    NSString *outString = [self unprintableKeyDict][igunoresModChar];
 
     return (outString) ? outString : igunoresModChar;
 }
@@ -1411,7 +1411,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
-- (NSDictionary *)noPrintableKeyDictionary
+- (NSDictionary *)unprintableKeyDictionary
 //------------------------------------------------------
 {
 // 下記の情報を参考にさせていただきました (2005.09.05)

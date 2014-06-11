@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESyntaxManager.h"
+#import "RegexKitLite.h"
 #import "constants.h"
 
 
@@ -483,16 +484,13 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
                     }
                 }
                 
-                // （outlineMenuは、過去の定義との互換性保持のためもあってOgreKitを使っている 2008.05.16）
             } else if ([key isEqualToString:k_SCKey_outlineMenuArray]) {
-                NS_DURING
-                    [OGRegularExpression regularExpressionWithString:beginStr];
-                NS_HANDLER
-                // 例外処理 (OgreKit付属のRegularExpressionTestのコードを参考にしています)
-                    [errorMessages addObject:[NSString stringWithFormat:
-                                              @"%@ :(RE string) > %@\n  >>> %@",
-                                              arrayNameDeletingArray, beginStr, [localException reason]]];
-                NS_ENDHANDLER
+                error = nil;
+                [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
+                if (error) {
+                    [errorMessages addObject:[NSString stringWithFormat:@"%@ :((RE string) > %@\n  >>> Regex Error: \"%@\"",
+                                              arrayNameDeletingArray, beginStr, [error localizedFailureReason]]];
+                }
             }
             tmpBeginStr = beginStr;
             tmpEndStr = endStr;

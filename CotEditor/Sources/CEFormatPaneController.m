@@ -221,12 +221,11 @@
     
     if (![[CESyntaxManager sharedManager] existsStyleFileWithStyleName:selectedStyleName]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), selectedStyleName];
-    NSAlert *alert = [NSAlert alertWithMessageText:message
-                                     defaultButton:NSLocalizedString(@"Cancel", nil)
-                                   alternateButton:NSLocalizedString(@"Delete", nil)
-                                       otherButton:nil
-                         informativeTextWithFormat:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Delete the syntax style “%@”?", nil), selectedStyleName]];
+    [alert setInformativeText:NSLocalizedString(@"Deleted style cannot be restored.", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
     [alert beginSheetModalForWindow:[[self view] window]
                       modalDelegate:self
@@ -261,12 +260,11 @@
             [openPanel orderOut:blockSelf];
             [[[blockSelf view] window] makeKeyAndOrderFront:blockSelf];
             
-            NSAlert *alert;
-            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName];
-            alert = [NSAlert alertWithMessageText:message
-                                    defaultButton:NSLocalizedString(@"Cancel", nil)
-                                  alternateButton:NSLocalizedString(@"Replace", nil) otherButton:nil
-                        informativeTextWithFormat:NSLocalizedString(@"Do you want to replace it?\nReplaced style cannot be restored.", nil)];
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
+            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced style cannot be restored.", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
             [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self
@@ -337,14 +335,12 @@
     
     if ([newTitle isEqualToString:NSLocalizedString(@"Auto-Detect", nil)]) { return; }
     
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to change to “%@”?", nil),
-                         newTitle];
-    NSString *altButtonTitle = [NSString stringWithFormat:NSLocalizedString(@"Change to “%@”", nil), newTitle];
-    NSAlert *alert = [NSAlert alertWithMessageText:message
-                                     defaultButton:NSLocalizedString(@"Revert to “Auto-Detect”", nil)
-                                   alternateButton:altButtonTitle
-                                       otherButton:nil
-                         informativeTextWithFormat:NSLocalizedString(@"The default “Auto-Detect” is recommended for most cases.", nil)];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to change to “%@”?", nil),
+                           newTitle]];
+    [alert setInformativeText:NSLocalizedString(@"The default “Auto-Detect” is recommended for most cases.", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Revert to “Auto-Detect”", nil)];
+    [alert addButtonWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Change to “%@”", nil), newTitle]];
     
     NSBeep();
     [alert beginSheetModalForWindow:[[self view] window]
@@ -435,7 +431,7 @@
                    returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode == NSAlertDefaultReturn) { // = revert to Auto-Detect
+    if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
         [[NSUserDefaults standardUserDefaults] setObject:@(k_autoDetectEncodingMenuTag)
                                                   forKey:k_key_encodingInOpen];
         // ファイルを開くエンコーディングをセット
@@ -454,10 +450,10 @@
         // インポートできなかったときは、セカンダリシートを閉じ、メッセージシートを表示
         [inWindow orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
-                                         defaultButton:nil
-                                       alternateButton:nil otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not import “%@”.", nil), [fileURL lastPathComponent]];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not import “%@”.", nil), [fileURL lastPathComponent]]];
+        
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
@@ -469,7 +465,7 @@
 - (void)deleteStyleAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode != NSAlertAlternateReturn) {  // != Delete
+    if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
         return;
     }
     
@@ -485,10 +481,9 @@
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];
-        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"Error occured.", nil)
-                                         defaultButton:nil
-                                       alternateButton:nil otherButton:nil
-                             informativeTextWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), selectedStyleName];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"Error occured.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Sorry, could not delete “%@”.", nil), selectedStyleName]];
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     }
@@ -500,7 +495,7 @@
 - (void)secondarySheedlDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 // ------------------------------------------------------
 {
-    if (returnCode == NSAlertAlternateReturn) { // = Replace
+    if (returnCode == NSAlertSecondButtonReturn) { // = Replace
         [self doImport:CFBridgingRelease(contextInfo) withCurrentSheetWindow:[alert window]];
     }
 }
