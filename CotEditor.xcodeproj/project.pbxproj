@@ -118,7 +118,6 @@
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
 		8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */; };
 		8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
-		8C3840930D16B75C00F76A4C /* UKXattrMetadataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8C3A7DEA0867EC9C00ECE052 /* startup.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A7DD80867EA9A00ECE052 /* startup.applescript */; };
 		8C3BEA2808BDBCA800BC2067 /* CEOutlineMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
@@ -382,8 +381,6 @@
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Script_CleanButton.tiff; path = toolbarIcons/Script_CleanButton.tiff; sourceTree = "<group>"; };
 		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = "<group>"; };
-		8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKXattrMetadataStore.h; sourceTree = "<group>"; };
-		8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKXattrMetadataStore.m; sourceTree = "<group>"; };
 		8C3A7DD80867EA9A00ECE052 /* startup.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = startup.applescript; path = internalScript/startup.applescript; sourceTree = "<group>"; };
 		8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOutlineMenuButton.h; sourceTree = "<group>"; };
 		8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOutlineMenuButton.m; sourceTree = "<group>"; };
@@ -894,8 +891,6 @@
 				8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */,
 				8C1305AD0DC4B71D00975AC6 /* RegexKitLite.h */,
 				8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */,
-				8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */,
-				8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */,
 			);
 			name = "Imported Sources";
 			path = CotEditor/ImportedSources;
@@ -1159,7 +1154,6 @@
 				2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,
-				8C3840930D16B75C00F76A4C /* UKXattrMetadataStore.m in Sources */,
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,
 				8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */,
 				2A149DD519032CC900A9D6EF /* CEUtilities.m in Sources */,

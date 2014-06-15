@@ -32,13 +32,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <objc/message.h>
+#import <sys/xattr.h>
 #import "CEDocument.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEUtilities.h"
 #import "ODBEditorSuite.h"
-#import "UKXattrMetadataStore.h"
 #import "NSData+MD5.h"
 #import "constants.h"
+
+
+// constants
+char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 @interface CEDocument ()
@@ -1787,11 +1791,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // クリエータなどを設定
         [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:[url path] error:nil];
         
-        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存 (Non-lossy ASCIIの場合は追加しない)
-        if (CFStringConvertNSStringEncodingToEncoding([self encodingCode]) != kCFStringEncodingNonLossyASCII) {
-            NSString *textEncoding = [[self currentIANACharSetName] stringByAppendingFormat:@";%@",
-                                      [@(CFStringConvertNSStringEncodingToEncoding([self encodingCode])) stringValue]];
-            [UKXattrMetadataStore setString:textEncoding forKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
+        // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
+        NSData *encodingData = [[[self currentIANACharSetName] stringByAppendingFormat:@";%u",
+                                 (unsigned int)CFStringConvertNSStringEncodingToEncoding([self encodingCode])]
+                                dataUsingEncoding:NSUTF8StringEncoding];
+        if (encodingData) {
+            setxattr([url fileSystemRepresentation], XATTR_ENCODING_KEY,
+                     [encodingData bytes], [encodingData length], 0, XATTR_NOFOLLOW);
         }
     }
     
@@ -1860,7 +1866,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSStringEncoding encoding = NSProprietaryStringEncoding;
 
-    NSString *string = [UKXattrMetadataStore stringForKey:@"com.apple.TextEncoding" atPath:[url path] traverseLink:NO];
+    // get xattr data
+    NSMutableData* data = nil;
+    const char *path = [url fileSystemRepresentation];
+    ssize_t bufferSize = getxattr(path, XATTR_ENCODING_KEY, NULL, 0, 0, XATTR_NOFOLLOW);
+    if (bufferSize > 0) {
+        data = [NSMutableData dataWithLength:bufferSize];
+        getxattr(path, XATTR_ENCODING_KEY, [data mutableBytes], [data length], 0, XATTR_NOFOLLOW);
+    }
+    
+    // parse value
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *strings = [string componentsSeparatedByString:@";"];
     if (([strings count] >= 2) && ([strings[1] length] > 1)) {
         // （配列の2番目の要素の末尾には改行コードが付加されているため、長さの最小は1）
