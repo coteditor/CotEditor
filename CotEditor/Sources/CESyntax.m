@@ -34,15 +34,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntax.h"
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
+#import "CEIndicatorSheetController.h"
 #import "RegexKitLite.h"
 #import "DEBUG_macro.h"
 #import "constants.h"
 
 
 @interface CESyntax ()
-
-@property (nonatomic, weak) IBOutlet NSProgressIndicator *coloringIndicator;
-@property (nonatomic, weak) IBOutlet NSTextField *coloringCaption;
 
 @property (nonatomic, copy) NSDictionary *coloringDictionary;
 @property (nonatomic, copy) NSDictionary *currentAttrs;
@@ -53,8 +51,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSRange updateRange;
 @property (nonatomic) NSModalSession modalSession;
 
+@property (nonatomic) CEIndicatorSheetController *indicatorSheetController;
 @property (nonatomic) BOOL isIndicatorShown;
-@property (nonatomic) NSUInteger showColoringIndicatorTextLength;
 
 
 // readonly
@@ -99,20 +97,6 @@ static NSArray *kSyntaxDictKeys;
 // Public method
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// 初期化
-- (instancetype)init
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        [self setShowColoringIndicatorTextLength:[[NSUserDefaults standardUserDefaults]
-                                                  integerForKey:k_key_showColoringIndicatorTextLength]];
-    }
-    return self;
-}
-
 
 // ------------------------------------------------------
 /// 全文字列の長さを返す
@@ -339,29 +323,21 @@ static NSArray *kSyntaxDictKeys;
 
 
 
-#pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// カラーリング中止、インジケータシートのモーダルを停止
-- (IBAction)cancelColoring:(id)sender
-// ------------------------------------------------------
-{
-    [NSApp abortModal];
-}
-
-
-
 #pragma mark Private Mthods
 
 //=======================================================
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// カラーリングがキャンセルされた
+- (BOOL)isColoringCancelled
+// ------------------------------------------------------
+{
+    return [self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse);
+}
+
 
 // ------------------------------------------------------
 /// 現在のテーマを返す
@@ -530,9 +506,7 @@ static NSArray *kSyntaxDictKeys;
         }
         while (1) {
             i++;
-            if ([self isIndicatorShown] && ((i % 10) == 0) &&
-                ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse))
-            {
+            if ((i % 10 == 0) && [self isColoringCancelled]) {
                 return nil;
             }
             [scanner scanUpToString:endString intoString:nil];
@@ -596,7 +570,7 @@ static NSArray *kSyntaxDictKeys;
              [ranges addObject:[NSValue valueWithRange:attrRange]];
              
          } else {
-             if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
+             if ([self isColoringCancelled]) {
                  *stop = YES;
                  return;
              }
@@ -651,7 +625,7 @@ static NSArray *kSyntaxDictKeys;
                                              const NSRange *capturedRanges,
                                              volatile BOOL *const stop)
      {
-         if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
+         if ([self isColoringCancelled]) {
              *stop = YES;
              return;
          }
@@ -718,13 +692,11 @@ static NSArray *kSyntaxDictKeys;
     NSRange coloringRange;
     NSInteger i, j, index = 0, syntaxCount = [syntaxArray count], coloringCount;
     NSUInteger QCKind, start, end, checkStartEnd;
-    double indicatorValue, beginDouble = [self doubleValueOfIndicator];
     BOOL hasEnd = NO;
 
     // コメント定義の位置配列を生成
     for (i = 0; i < syntaxCount; i++) {
-        if ([self isIndicatorShown] && ((i % 10) == 0) &&
-            ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) { return; }
+        if ((i % 10 == 0) && [self isColoringCancelled]) { return; }
         strDict = syntaxArray[i];
         beginStr = strDict[k_SCKey_beginString];
 
@@ -792,9 +764,8 @@ static NSArray *kSyntaxDictKeys;
     QCKind = k_notUseKind;
     while (index < coloringCount) {
         // インジケータ更新
-        if ((updateIndicator) && ((index % 10) == 0)) {
-            indicatorValue = beginDouble + (double)(index / (double)coloringCount * 200);
-            [self setDoubleIndicator:(double)indicatorValue];
+        if (updateIndicator && (index % 10 == 0)) {
+            [[self indicatorSheetController] progressIndicator:10.0 / coloringCount * 200];
         }
         curRecord = posArray[index];
         if (QCKind == k_notUseKind) {
@@ -948,32 +919,17 @@ static NSArray *kSyntaxDictKeys;
         [self setOtherInvisibleCharsAttrs];
         return;
     }
-
+    
+    NSWindow *documentWindow = [self isPrinting] ? [NSApp mainWindow] : [[[self layoutManager] firstTextView] window];
+    
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
-    NSWindow *documentWindow = nil;
-    NSWindow *sheet = nil;
-    if (([self showColoringIndicatorTextLength] > 0) && ([self updateRange].length > [self showColoringIndicatorTextLength])) {
-        if (![self coloringIndicator]) {
-            [NSBundle loadNibNamed:@"Indicator" owner:self];
-            [[self coloringIndicator] setIndeterminate:NO];
-        }
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
+    if ((indicatorThreshold > 0) && ([self updateRange].length > indicatorThreshold)) {
+        NSString *message = [self isPrinting] ? @"Coloring print text..." : @"Coloring text...";
+        [self setIndicatorSheetController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(message, nil)]];
+        [self setModalSession:[[self indicatorSheetController] beginSheetForWindow:documentWindow]];
         [self setIsIndicatorShown:YES];
-        [self setDoubleIndicator:0];
-        if ([self isPrinting]) {
-            documentWindow = [NSApp mainWindow];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Coloring print text...", nil)];
-        } else {
-            documentWindow = [[[self layoutManager] firstTextView] window];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Coloring text...", nil)];
-        }
-        sheet = [[self coloringIndicator] window];
-        [NSApp beginSheet:sheet
-           modalForWindow:documentWindow
-            modalDelegate:self
-           didEndSelector:NULL
-              contextInfo:NULL];
-        [self setModalSession:[NSApp beginModalSessionForWindow:sheet]];
     }
     
     NSArray *strDicts, *inArray;
@@ -984,14 +940,13 @@ static NSArray *kSyntaxDictKeys;
     NSRange coloringRange;
     NSInteger i, j, count;
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
-    double indicatorValue, beginDouble = 0.0;
     
     @try {
         // Keywords > Commands > Types > Variables > Values > Numbers > Strings > Characters > Comments
         for (i = 0; i < [kSyntaxDictKeys count]; i++) {
-
-            if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
-                // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
+            
+            // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
+            if ([self isColoringCancelled]) {
                 if ([self isPrinting]) {
                     [[[self layoutManager] firstTextView] setTextColor:[[[self layoutManager] firstTextView] textColor]
                                                                  range:[self updateRange]];
@@ -1022,14 +977,11 @@ static NSArray *kSyntaxDictKeys;
             }
             if (count < 1) {
                 if ([self isIndicatorShown]) {
-                    [self setDoubleIndicator:((i + 1) * 100.0)];
+                    [[self indicatorSheetController] progressIndicator:100.0];
                 }
                 continue;
             }
 
-            if ([self isIndicatorShown]) {
-                beginDouble = [self doubleValueOfIndicator];
-            }
             NSMutableArray *targetArray = [[NSMutableArray alloc] initWithCapacity:10];
             NSArray *tmpArray = nil;
             j = 0;
@@ -1097,9 +1049,7 @@ static NSArray *kSyntaxDictKeys;
                     // インジケータ更新
                     if ([self isIndicatorShown]) {
                         if ((j % 10) == 0) {
-                            indicatorValue = beginDouble + (double)(j / (double)count * k_perCompoIncrement);
-                            [self setDoubleIndicator:(double)indicatorValue];
-                            [[self coloringIndicator] displayIfNeeded];
+                            [[self indicatorSheetController] progressIndicator:10.0 / count * k_perCompoIncrement];
                         }
                         j++;
                     }
@@ -1141,7 +1091,7 @@ static NSArray *kSyntaxDictKeys;
                 }
             }
             if ([self isIndicatorShown]) {
-                [self setDoubleIndicator:((i + 1) * 100.0)];
+                [[self indicatorSheetController] progressIndicator:100.0];
             }
             [self setTextColor:nil];  // ===== release
             [self setCurrentAttrs:nil];
@@ -1155,8 +1105,7 @@ static NSArray *kSyntaxDictKeys;
     // インジーケータシートを片づける
     if ([self isIndicatorShown]) {
         [NSApp endModalSession:[self modalSession]];
-        [NSApp endSheet:sheet];
-        [sheet orderOut:self];
+        [[self indicatorSheetController] endSheet];
         [self setIsIndicatorShown:NO];
         [self setModalSession:nil];
     }
@@ -1164,24 +1113,6 @@ static NSArray *kSyntaxDictKeys;
     [self setSingleQuotesAttrs:nil];
     [self setDoubleQuotesAttrs:nil];
     [self setLocalString:nil];
-}
-
-
-// ------------------------------------------------------
-/// カラーリングインジケータの値を返す
-- (double)doubleValueOfIndicator
-// ------------------------------------------------------
-{
-    return [[self coloringIndicator] doubleValue];
-}
-
-
-// ------------------------------------------------------
-/// カラーリングインジケータの値を設定
-- (void)setDoubleIndicator:(double)doubleValue
-// ------------------------------------------------------
-{
-    [[self coloringIndicator] setDoubleValue:doubleValue];
 }
 
 @end
