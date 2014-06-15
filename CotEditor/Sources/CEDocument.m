@@ -364,6 +364,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // プリントビュー生成
     CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editorView] string]];
+    [printView setTheme:[[[self editorView] textView] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self editorView] syntaxStyleNameToColoring]];
@@ -1103,6 +1104,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                ([menuItem action] == @selector(setLineEndingCharToCRLF:)) ||
                ([menuItem action] == @selector(setLineEndingChar:))) {
         state = ([menuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
+    } else if ([menuItem action] == @selector(changeTheme:)) {
+        name = [[[[self editorView] textView] theme] name];
+        if (name && [[menuItem title] isEqualToString:name]) {
+            state = NSOnState;
+        }
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
         name = [[self editorView] syntaxStyleNameToColoring];
         if (name && [[menuItem title] isEqualToString:name]) {
@@ -1345,6 +1351,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
     [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
+}
+
+
+// ------------------------------------------------------
+/// 新しいテーマを適応
+- (IBAction)changeTheme:(id)sender
+// ------------------------------------------------------
+{
+    CETheme *theme = [CETheme themeWithName:[sender title]];
+    [[[self editorView] textView] setTheme:theme];
+    [[[self editorView] textView] setSelectedRanges:[[[self editorView] textView] selectedRanges]];
+    
+    [[self editorView] recolorAllString];
 }
 
 

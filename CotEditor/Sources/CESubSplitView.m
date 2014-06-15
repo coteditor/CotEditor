@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESubSplitView.h"
+#import "CEThemeManager.h"
 #import "constants.h"
 
 
@@ -150,6 +151,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(recolorAfterUndoAndRedo:)
                                                      name:NSUndoManagerDidUndoChangeNotification
+                                                   object:nil];
+        
+        // テーマの変更をキャッチ
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(themeDidUpdate:)
+                                                     name:CEThemeDidUpdateNotification
                                                    object:nil];
         
         [[self scrollView] setDocumentView:[self textView]];
@@ -763,6 +770,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     newWidth -= (NSWidth([[self lineNumView] frame]) + k_lineNumPadding * 2 );
     [[[self textView] textContainer] setContainerSize:NSMakeSize(newWidth, FLT_MAX)];
+}
+
+
+// ------------------------------------------------------
+/// テーマが更新された
+- (void)themeDidUpdate:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
+        [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
+        [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
+        [[self editorView] recolorAllString];
+    }
 }
 
 

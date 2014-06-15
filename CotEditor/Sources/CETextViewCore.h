@@ -57,6 +57,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 @property (nonatomic) CGFloat backgroundAlpha;  // ビューの不透明度
 
+@property (nonatomic) CETheme *theme;
+
 // readonly
 @property (nonatomic, readonly) NSColor *highlightLineColor;  // カレント行ハイライト色
 

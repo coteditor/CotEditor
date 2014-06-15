@@ -576,6 +576,13 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Theme" tag="4003" id="8z7-Jc-agP">
+                                <menu key="submenu" title="Theme" id="165-HJ-Xty">
+                                    <items>
+                                        <menuItem title="Item" id="J2y-fx-OEm"/>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="453">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>

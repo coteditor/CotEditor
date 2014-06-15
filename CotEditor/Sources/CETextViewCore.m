@@ -53,7 +53,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // readonly
 @property (nonatomic, readwrite) NSColor *highlightLineColor;  // カレント行ハイライト色
-@property (nonatomic, readwrite) NSColor *invisiblesColor;  // 不可視文字の文字色
 
 @end
 
@@ -99,8 +98,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
+        // テーマの設定
+        [self setTheme:[CETheme themeWithName:[defaults stringForKey:k_key_defaultTheme]]];
+        
         // set the values
-        [self setupColors];
         [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
@@ -612,23 +613,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ページガイド描画
     if ([(CESubSplitView *)[self delegate] showPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
-        NSImage *lineImg = [NSImage imageNamed:@"pageGuide"];
         CGFloat length = [self frame].size.height;
-        if ((column < k_pageGuideColumnMin) || (column > k_pageGuideColumnMax) || (lineImg == nil)) {
+        if ((column < k_pageGuideColumnMin) || (column > k_pageGuideColumnMax)) {
             return;
         }
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat insetWidth = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetWidth];
-        NSString *tmpStr = @"M";
-        column *= [tmpStr sizeWithAttributes:@{NSFontAttributeName:[self font]}].width;
+        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:[self font]}].width;
 
         if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
             length = [self frame].size.width;
         }
         
         // （2ピクセル右に描画してるのは、調整）
-        [lineImg drawInRect:NSMakeRect(column + insetWidth + linePadding + 2.0, 0, 1, length)
-                   fromRect:NSMakeRect(0, 0, 2, 1) operation:NSCompositeSourceOver fraction:0.5];
+        CGFloat x = column + insetWidth + linePadding + 2.5;
+        [[NSGraphicsContext currentContext] setShouldAntialias:NO];
+        [[[self textColor] colorWithAlphaComponent:0.16] set];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
+                                  toPoint:NSMakePoint(x, length)];
     }
     // テキストビューを透過させている時に影を更新描画する
     if ([[self backgroundColor] alphaComponent] < 1.0) {
@@ -1335,6 +1337,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// カラーリング設定を更新する
+- (void)setTheme:(CETheme *)theme;
+// ------------------------------------------------------
+{
+    NSColor *backgroundColor = [theme backgroundColor];
+    NSColor *highlightLineColor = [theme lineHighLightColor];
+    
+    [self setTextColor:[theme textColor]];
+    [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:[self backgroundAlpha]]];
+    [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:[self backgroundAlpha]]];
+    [self setInsertionPointColor:[theme insertionPointColor]];
+    [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName: [theme selectionColor]}];
+    
+    // 背景色に合わせたスクローラのスタイルをセット
+    CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
+    NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
+    [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
+    
+    _theme = theme;
+}
+
+
 
 #pragma mark Protocol
 
@@ -1854,31 +1879,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #pragma mark Private Mthods
-
-// ------------------------------------------------------
-/// カラーリング設定を更新する
-- (void)setupColors
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSColor *backgroundColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_backgroundColor]];
-    NSColor *highlightLineColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_highlightLineColor]];
-    
-    [self setTextColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_textColor]]];
-    [self setBackgroundColor:[backgroundColor colorWithAlphaComponent:[self backgroundAlpha]]];
-    [self setHighlightLineColor:[highlightLineColor colorWithAlphaComponent:[self backgroundAlpha]]];
-    [self setInvisiblesColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_invisibleCharactersColor]]];
-    [self setInsertionPointColor:[NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_insertionPointColor]]];
-    [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName:
-                                          [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_selectionColor]]}];
-    
-    // 背景色に合わせたスクローラのスタイルをセット
-    CGFloat brightness = [[backgroundColor colorUsingColorSpaceName:NSDeviceRGBColorSpace] brightnessComponent];
-    NSInteger knobStyle = (brightness < 0.5) ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
-    [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
-}
-
 
 // ------------------------------------------------------
 /// 変更を監視するデフォルトキー

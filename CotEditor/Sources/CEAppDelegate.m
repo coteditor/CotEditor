@@ -41,6 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
 #import "constants.h"
+#import "CEThemeManager.h"
 
 
 @interface CEAppDelegate ()
@@ -109,7 +110,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_tabWidth: @4U,
                                k_key_windowAlpha: @1.0f,
                                k_key_autoIndent: @YES,
-                               k_key_invisibleCharactersColor: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
                                k_key_showInvisibleSpace: @NO,
                                k_key_invisibleSpace: @0U,
                                k_key_showInvisibleTab: @NO,
@@ -120,24 +120,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_invisibleFullwidthSpace: @0U,
                                k_key_showOtherInvisibleChars: @NO,
                                k_key_highlightCurrentLine: @NO,
-                               k_key_textColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-                               k_key_backgroundColor: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
-                               k_key_insertionPointColor: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-                               k_key_selectionColor: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
-                               k_key_highlightLineColor: [NSArchiver archivedDataWithRootObject:
-                                                          [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0]],
-                               k_key_keywordsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0]],
-                               k_key_commandsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0]],
-                               k_key_numbersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-                               k_key_valuesColor: [NSArchiver archivedDataWithRootObject:
-                                                   [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0]],
-                               k_key_stringsColor: [NSArchiver archivedDataWithRootObject:
-                                                    [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0]],
-                               k_key_charactersColor: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-                               k_key_commentsColor: [NSArchiver archivedDataWithRootObject:
-                                                     [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]],
+                               k_key_defaultTheme: @"Classic",
                                k_key_doColoring: @YES,
                                k_key_defaultColoringStyleName: NSLocalizedString(@"None", nil),
                                k_key_delayColoring: @NO,
@@ -269,11 +252,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self buildSyntaxMenu];
     [[CEScriptManager sharedManager] buildScriptMenu:nil];
     [self cacheInvisibleGlyphs];
+    [self buildThemeMenu];
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxMenu)
                                                  name:CESyntaxListDidUpdateNotification
+                                               object:nil];
+    // テーマ更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildThemeMenu)
+                                                 name:CEThemeListDidUpdateNotification
                                                object:nil];
 }
 
@@ -394,6 +383,61 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return menu;
 }
 
+
+// ------------------------------------------------------
+/// ファイルを開く
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+// ------------------------------------------------------
+{
+    // テーマファイルの場合はインストール処理をする
+    if ([[filename pathExtension] isEqualToString:@"cottheme"]) {
+        NSURL *URL = [NSURL fileURLWithPath:filename];
+        NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
+        NSAlert *alert;
+        NSInteger returnCode;
+        
+        // テーマファイルをテキストファイルとして開くかを訊く
+        alert = [[NSAlert alloc] init];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"“%@” is a CotEditor theme file.", nil), [URL lastPathComponent]]];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to install this theme?", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Install", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Open as Text File", nil)];
+        
+        returnCode = [alert runModal];
+        if (returnCode == NSAlertSecondButtonReturn) {  // Edit as Text File
+            return NO;
+        }
+        
+        // テーマ読み込みを実行
+        NSError *error = nil;
+        [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
+        
+        // すでに同名のテーマが存在する場合は置き換えて良いかを訊く
+        if ([error code] == CEThemeFileDuplicationError) {
+            alert = [NSAlert alertWithError:error];
+            
+            returnCode = [alert runModal];
+            if (returnCode == NSAlertFirstButtonReturn) {  // Canceled
+                return YES;
+            } else {
+                error = nil;
+                [[CEThemeManager sharedManager] importTheme:URL replace:YES error:&error];
+            }
+        }
+        
+        if (error) {
+            alert = [NSAlert alertWithError:error];
+        } else {
+            [[NSSound soundNamed:@"Glass"] play];
+            alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” has been successfully installed.", nil), themeName]];
+        }
+        [alert runModal];
+        
+        return YES;
+    }
+    return NO;
+}
 
 
 // ------------------------------------------------------
@@ -660,6 +704,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItem:item];
+}
+
+
+//------------------------------------------------------
+/// メインメニューのテーマメニューを再構築する
+- (void)buildThemeMenu
+//------------------------------------------------------
+{
+    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"THEME"];
+    NSMenuItem *menuItem;
+    
+    for (NSString *themeName in themeNames) {
+        menuItem = [[NSMenuItem alloc] initWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
+        [menu addItem:menuItem];
+    }
+    
+    [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_themeMenuItemTag] setSubmenu:menu];
 }
 
 

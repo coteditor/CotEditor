@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>categoriesColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg5mYGD6DjIsLP4PT0lI/AYY=</data>
+	<key>keywordsColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg4aFBT+DmpkZPwABhg==</data>
+	<key>numbersColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg9nY2D6D4+LiPoPFxEQ/AYY=</data>
+	<key>stringsColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg6moKD6DoqEhP4OamRk/AYY=</data>
+	<key>charactersColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg93cXD+DychIPoO9vDw+AYY=</data>
+	<key>backgroundColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmAIOtrCw+g9nYWD4Bhg==</data>
+	<key>valuesColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg9TTUz+D2dhYPoODggI/AYY=</data>
+	<key>usesSystemSelectionColor</key>
+	<false/>
+	<key>textColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg4SDAz+DlZQUP4OXlhY/AYY=</data>
+	<key>variablesColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg7a1NT+DiokJPwABhg==</data>
+	<key>commandsColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg8zLSz+Dl5aWPoOxsLA9AYY=</data>
+	<key>selectionColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg7GwsD6D3dzcPoPr6uo+AYY=</data>
+	<key>lineHighlightColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg+Hg4DyD2dhYPoOFhIQ+AYY=</data>
+	<key>commentsColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg7GwsD6D3dzcPoPr6uo+AYY=</data>
+	<key>invisiblesColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg+Hg4DyD2dhYPoOFhIQ+AYY=</data>
+	<key>insertionPointColor</key>
+	<data>BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARmZmZmg4SDAz+DlZQUP4OXlhY/AYY=</data>
+</dict>
+</plist>

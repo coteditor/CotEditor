@@ -175,6 +175,10 @@
 			<key>keyString</key>
 			<string>xmp</string>
 		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>cottheme</string>
+		</dict>
 	</array>
 	<key>keywordsArray</key>
 	<array>

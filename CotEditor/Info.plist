@@ -66,6 +66,28 @@
 			<key>NSDocumentClass</key>
 			<string>CEDocument</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>cottheme</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>themeIcon.icns</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array/>
+			<key>CFBundleTypeName</key>
+			<string>CotEditor Theme</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.aynimac.CotEditor.theme</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>CotEditor</string>
@@ -101,5 +123,31 @@
 	<string>http://coteditor.github.io/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.property-list</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>CotEditor Theme</string>
+			<key>UTTypeIconFile</key>
+			<string>themeIcon.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.aynimac.CotEditor.theme</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cottheme</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/x-plist</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

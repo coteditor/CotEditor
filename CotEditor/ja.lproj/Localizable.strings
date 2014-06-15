@@ -19,6 +19,13 @@ http://www.aynimac.com/
 "Select Next Outline Item" = "次のアウトライン項目を選択";
 "Go To…" = "移動…";
 
+// Import theme
+"“%@” is a CotEditor theme file." = "“%@”は CotEditor テーマファイルです。";
+"Do you want to install this theme?" = "テーマをインストールしますか？";
+"Install" = "インストール";
+"Open as Text File" = "テキストファイルとして開く";
+"A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
+
 
 /* CEDocument */
 // Undo/Redo Action name
@@ -166,6 +173,15 @@ http://www.aynimac.com/
 // smart quotes/dashes
 " (on Mavericks and later)" = "（Mavericks 以上）";
 
+// Appearance Pane
+"Duplicate “%@”" = "“%@”を複製";
+"Restore “%@”" = "“%@”を元に戻す";
+"Delete the theme “%@”?" = "“%@”テーマを削除してもよいですか？";
+"Deleted theme cannot be restored." = "削除したテーマは元に戻せません。";
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
+"Do you want to replace it?\nReplaced theme cannot be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
+
+
 // Pref Format tab
 // encoding menu alert sheet
 "Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
@@ -182,6 +198,8 @@ http://www.aynimac.com/
 // menu items
 "Keywords" = "キーワード";
 "Commands" = "コマンド";
+"Categories" = "カテゴリ";
+"Variables" = "変数";
 "Values" = "値";
 "Numbers" = "数値";
 "Strings" = "文字列";
@@ -234,6 +252,15 @@ http://www.aynimac.com/
 // File Drop setting delete
 "Delete the File Drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
 "Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
+
+
+/* CEThemeManager */
+"Untitled" = "名称未設定";
+"Customized Theme" = "カスタムテーマ";
+"Theme name cannot be empty." = "テーマ名は空にできません。";
+"Theme name cannot contain “/”." = "テーマ名に“/”を含むことはできません。";
+"Theme name cannot begin with “.”." = "テーマ名を“.”から始めることはできません。";
+"Input another name." = "ほかの名前を入力してください。";
 
 
 /* CEWindowsController */

@@ -41,6 +41,14 @@
 // separator
 extern NSString *const CESeparatorString;
 
+// Error domain
+extern NSString *const CEErrorDomain;
+
+typedef NS_ENUM(NSInteger, CEErrorCode) {
+    CEInvalidNameError = 1000,
+    CEThemeFileDuplicationError,
+};
+
 // Localized Strings Table
 extern NSString *const k_printLocalizeTable;
 
@@ -50,6 +58,9 @@ extern NSString *const CEDocumentDidFinishOpenNotification;
 extern NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification;
 extern NSString *const CECatchMenuShortcutNotification;
 
+// Notification userInfo keys
+extern NSString *const CEOldNameKey;
+extern NSString *const CENewNameKey;
 
 
 #pragma mark User Defaults Keys
@@ -106,6 +117,7 @@ extern NSString *const k_key_showOtherInvisibleChars;
 extern NSString *const k_key_highlightCurrentLine;
 extern NSString *const k_key_doColoring;
 extern NSString *const k_key_defaultColoringStyleName;
+extern NSString *const k_key_defaultTheme;
 extern NSString *const k_key_delayColoring;
 extern NSString *const k_key_fileDropArray;
 extern NSString *const k_key_fileDropExtensions;
@@ -224,21 +236,6 @@ extern NSString  *const k_allAlphabetChars;
 extern CGFloat const k_perCompoIncrement;
 extern CGFloat const k_minIncrement;
 
-// syntax coloring color
-extern NSString *const k_key_textColor;
-extern NSString *const k_key_backgroundColor;
-extern NSString *const k_key_insertionPointColor;
-extern NSString *const k_key_selectionColor;
-extern NSString *const k_key_highlightLineColor;
-extern NSString *const k_key_keywordsColor;
-extern NSString *const k_key_commandsColor;
-extern NSString *const k_key_valuesColor;
-extern NSString *const k_key_numbersColor;
-extern NSString *const k_key_stringsColor;
-extern NSString *const k_key_charactersColor;
-extern NSString *const k_key_commentsColor;
-extern NSString *const k_key_allSyntaxColors[];
-
 // syntax style
 extern NSString *const k_SCKey_styleName;
 extern NSString *const k_SCKey_extensions;
@@ -253,6 +250,8 @@ extern NSString *const k_SCKey_italic;
 extern NSString *const k_SCKey_numOfObjInArray;
 extern NSString *const k_SCKey_keywordsArray;
 extern NSString *const k_SCKey_commandsArray;
+extern NSString *const k_SCKey_categoriesArray;
+extern NSString *const k_SCKey_variablesArray;
 extern NSString *const k_SCKey_valuesArray;
 extern NSString *const k_SCKey_numbersArray;
 extern NSString *const k_SCKey_stringsArray;
@@ -293,6 +292,7 @@ extern NSInteger const k_showInvisibleCharMenuItemTag;
 extern NSInteger const k_showInvisibleCharMenuItemTag;
 extern NSInteger const k_fileEncodingMenuItemTag;
 extern NSInteger const k_syntaxMenuItemTag;
+extern NSInteger const k_themeMenuItemTag;
 extern NSInteger const k_servicesMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
 extern NSInteger const k_windowPanelsMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
 extern NSInteger const k_scriptMenuDirectoryTag;  // Menu KeyBindings Setting でリストアップしないための定数

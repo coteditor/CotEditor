@@ -43,6 +43,9 @@
 // separator
 NSString *const CESeparatorString = @"-";
 
+// Error domain
+NSString *const CEErrorDomain = @"com.aynimac.CotEditor.ErrorDomain";
+
 // Localized Strings Table
 NSString *const k_printLocalizeTable =  @"print";
 
@@ -51,6 +54,10 @@ NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNot
 NSString *const CEDocumentDidFinishOpenNotification = @"documentDidFinishOpenNotification";
 NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification = @"setKeyCatchModeToCatchMenuShortcut";
 NSString *const CECatchMenuShortcutNotification = @"catchMenuShortcutNotification";
+
+// Notification userInfo keys
+NSString *const CEOldNameKey = @"CEOldNameKey";
+NSString *const CENewNameKey = @"CENewNameKey";
 
 
 
@@ -108,6 +115,7 @@ NSString *const k_key_showOtherInvisibleChars = @"showOtherInvisibleChars";
 NSString *const k_key_highlightCurrentLine = @"highlightCurrentLine";
 NSString *const k_key_doColoring = @"doSyntaxColoring";
 NSString *const k_key_defaultColoringStyleName = @"defaultColoringStyleName";
+NSString *const k_key_defaultTheme = @"defaultTheme";
 NSString *const k_key_delayColoring = @"delayColoring";
 NSString *const k_key_fileDropArray = @"fileDropArray";
 NSString *const k_key_fileDropExtensions = @"extensions";
@@ -226,29 +234,6 @@ NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN
 CGFloat const k_perCompoIncrement = 80.0;
 CGFloat const k_minIncrement = 3.4;
 
-// syntax coloring color
-NSString *const k_key_textColor = @"textColor";
-NSString *const k_key_backgroundColor = @"backgroundColor";
-NSString *const k_key_insertionPointColor = @"insertionPointColor";
-NSString *const k_key_selectionColor = @"selectionColor";
-NSString *const k_key_highlightLineColor = @"highlightLineColor";
-NSString *const k_key_keywordsColor = @"keywordsColor";
-NSString *const k_key_commandsColor = @"commandsColor";
-NSString *const k_key_valuesColor = @"valuesColor";
-NSString *const k_key_numbersColor = @"numbersColor";
-NSString *const k_key_stringsColor = @"stringsColor";
-NSString *const k_key_charactersColor = @"charactersColor";
-NSString *const k_key_commentsColor = @"commentsColor";
-NSString *const k_key_allSyntaxColors[] = {
-    @"keywordsColor",
-    @"commandsColor",
-    @"valuesColor",
-    @"numbersColor",
-    @"stringsColor",
-    @"charactersColor",
-    @"commentsColor"
-};
-
 // syntax style
 NSString *const k_SCKey_styleName = @"styleName";
 NSString *const k_SCKey_extensions = @"extensions";
@@ -263,6 +248,8 @@ NSString *const k_SCKey_italic = @"italic";
 NSString *const k_SCKey_numOfObjInArray = @"numOfObjInArray";
 NSString *const k_SCKey_keywordsArray = @"keywordsArray";
 NSString *const k_SCKey_commandsArray = @"commandsArray";
+NSString *const k_SCKey_categoriesArray = @"categoriesArray";
+NSString *const k_SCKey_variablesArray = @"variablesArray";
 NSString *const k_SCKey_valuesArray = @"valuesArray";
 NSString *const k_SCKey_numbersArray = @"numbersArray";
 NSString *const k_SCKey_stringsArray = @"stringsArray";
@@ -273,6 +260,8 @@ NSString *const k_SCKey_completionsArray = @"completionsArray";
 NSString *const k_SCKey_allColoringArrays[] = {
     @"keywordsArray",
     @"commandsArray",
+    @"categoriesArray",
+    @"variablesArray",
     @"valuesArray",
     @"numbersArray",
     @"stringsArray",
@@ -311,6 +300,7 @@ NSInteger const k_BSMenuItemTag = 209;
 NSInteger const k_showInvisibleCharMenuItemTag = 304;
 NSInteger const k_fileEncodingMenuItemTag = 4001;
 NSInteger const k_syntaxMenuItemTag = 4002;
+NSInteger const k_themeMenuItemTag = 4003;
 NSInteger const k_servicesMenuItemTag = 999;
 NSInteger const k_windowPanelsMenuItemTag = 7999;
 NSInteger const k_scriptMenuDirectoryTag = 8999;

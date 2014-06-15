@@ -1,6 +1,6 @@
 /*
  =================================================
- CETextViewProtocol
+ CEAlphaColorWell
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -8,7 +8,7 @@
  =================================================
  
  encoding="UTF-8"
- Created:2014-04-21 by 1024jp
+ Created:2014-06-05 by 1024jp
  
  -------------------------------------------------
  
@@ -30,14 +30,9 @@
  =================================================
  */
 
-#import <Foundation/Foundation.h>
-#import "CETheme.h"
+#import <Cocoa/Cocoa.h>
 
 
-@protocol CETextViewProtocol
-
-@required
-- (CGFloat)lineSpacing;
-- (CETheme *)theme;
+@interface CEAlphaColorWell : NSColorWell
 
 @end

@@ -365,6 +365,15 @@ static NSArray *kSyntaxDictKeys;
 //=======================================================
 
 // ------------------------------------------------------
+/// 現在のテーマを返す
+- (CETheme *)theme
+// ------------------------------------------------------
+{
+    return [(NSTextView<CETextViewProtocol> *)[[self layoutManager] firstTextView] theme];
+}
+
+
+// ------------------------------------------------------
 /// 保持しているカラーリング辞書から補完文字列配列を生成
 - (void)setCompletionWordsFromColoringDictionary
 // ------------------------------------------------------
@@ -879,8 +888,7 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 {
     if (![[self layoutManager] showOtherInvisibles]) { return; }
-    NSColor *color = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]
-                                                            dataForKey:k_key_invisibleCharactersColor]];
+    NSColor *color = [[self theme] invisiblesColor];
     if ([[[self layoutManager] firstTextView] textColor] == color) { return; }
     NSDictionary *attrs = @{};
     NSMutableArray *ranges = [NSMutableArray array];
@@ -974,7 +982,7 @@ static NSArray *kSyntaxDictKeys;
     double indicatorValue, beginDouble = 0.0;
     
     @try {
-        // Keywords > Commands > Values > Numbers > Strings > Characters > Comments
+        // Keywords > Commands > Types > Variables > Values > Numbers > Strings > Characters > Comments
         for (i = 0; i < [kSyntaxDictKeys count]; i++) {
 
             if ([self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse)) {
@@ -990,11 +998,13 @@ static NSArray *kSyntaxDictKeys;
                 }
                 break;
             }
-
+            
             strDicts = [self coloringDictionary][kSyntaxDictKeys[i]];
+            if (!strDicts) {
+                continue;
+            }
             count = [strDicts count];
-            [self setTextColor:[NSUnarchiver unarchiveObjectWithData:
-                                [[NSUserDefaults standardUserDefaults] dataForKey:k_key_allSyntaxColors[i]]]]; // ===== retain
+            [self setTextColor:[[self theme] syntaxColorWithIndex:i]]; // ===== retain
             [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
