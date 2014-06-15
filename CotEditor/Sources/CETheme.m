@@ -162,8 +162,8 @@
         return [self stringsColor];
     } else if ([key isEqualToString:k_SCKey_charactersArray]) {
         return [self charactersColor];
-    } else if ([key isEqualToString:k_SCKey_commandsArray]) {
-        return [self commandsColor];
+    } else if ([key isEqualToString:k_SCKey_commentsArray]) {
+        return [self commentsColor];
     } else {
         return [self textColor];
     }
