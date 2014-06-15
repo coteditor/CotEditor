@@ -7801,6 +7801,8 @@
 			<true/>
 		</dict>
 	</array>
+	<key>numOfObjInArray</key>
+	<integer>695</integer>
 	<key>numbersArray</key>
 	<array/>
 	<key>outlineMenuArray</key>
@@ -7859,187 +7861,187 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>\badd\b</string>
+			<string>add</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\ball\b</string>
+			<string>all</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\ballow,deny\b</string>
+			<string>allow,deny</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bappend\b</string>
+			<string>append</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bdeny,allow\b</string>
+			<string>deny,allow</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\becho\b</string>
+			<string>echo</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bExecCGI\b</string>
+			<string>ExecCGI</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bFollowSymLinks\b</string>
+			<string>FollowSymLinks</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bfrom\b</string>
+			<string>from</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bgone\b</string>
+			<string>gone</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bIncludes\b</string>
+			<string>Includes</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bIncludesNOEXEC\b</string>
+			<string>IncludesNOEXEC</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bMultiViews\b</string>
+			<string>Indexes</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bnone\b</string>
+			<string>MultiViews</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\boff\b</string>
+			<string>none</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bon\b</string>
+			<string>off</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bpermanent\b</string>
+			<string>on</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bseeothor\b</string>
+			<string>permanent</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bset\b</string>
+			<string>seeothor</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bSymLinksIfOwnerMatch\b</string>
+			<string>set</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\btemp\b</string>
+			<string>SymLinksIfOwnerMatch</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\bunset\b</string>
+			<string>temp</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\sIndexes\s</string>
+			<string>unset</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 </dict>

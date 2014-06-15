@@ -14,6 +14,7 @@ changelog
 ### mod
 
 - シンタックス定義で RE (正規表現) を無効にしていても IC (大文字小文字を無視) を有効にできるように変更
+    - この仕様変更にともない、“Apache” のシンタックス定義を更新
 - アウトライン抽出に用いる正規表現ライブラリを Oniguruma (OgreKit) から ICU (NSRegularExpression) に変更
     - 正規表現ライブラリの変更にともない、以下のシンタックス定義のアウトライン抽出定義を更新
         - “C, C++, Objective-C”, “CSS”, “Dart”, “Java”, “JavaScript”, “Perl”, “PHP”, “reStructuredText”, “Shell Script”
