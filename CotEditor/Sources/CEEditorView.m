@@ -1203,7 +1203,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         coloringRange.length += buffer;
     }
     
-    [[self syntax]  colorVisibleRange:coloringRange withWholeString:[self string]];
+    [[self syntax]  colorVisibleRange:coloringRange wholeString:[self string]];
 }
 
 

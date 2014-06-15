@@ -56,7 +56,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSUInteger)wholeStringLength;
 - (BOOL)setSyntaxStyleNameFromExtension:(NSString *)extension;
 - (void)colorAllString:(NSString *)wholeString;
-- (void)colorVisibleRange:(NSRange)range withWholeString:(NSString *)wholeString;
+- (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString;
 - (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString;
 
 @end

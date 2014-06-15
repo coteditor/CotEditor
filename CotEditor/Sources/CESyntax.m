@@ -163,7 +163,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)colorVisibleRange:(NSRange)range withWholeString:(NSString *)wholeString
+- (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString
 // ------------------------------------------------------
 {
     if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
@@ -252,7 +252,7 @@ static NSArray *kSyntaxDictKeys;
              // メニュー項目タイトル
              NSString *title;
              
-             if (!template || ([template length] == 0)) {
+             if ([template length] == 0) {
                  // パターン定義なし
                  title = [wholeString substringWithRange:[result range]];;
                  
@@ -397,7 +397,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、カラーリング
-- (void)setAttrToSimpleWordsDict:(NSMutableDictionary*)wordsDict withCharString:(NSString *)charString
+- (void)setAttrToSimpleWordsDict:(NSMutableDictionary*)wordsDict charString:(NSString *)charString
 // ------------------------------------------------------
 {
     NSArray *ranges = [self rangesSimpleWordsDict:wordsDict charString:charString];
@@ -751,7 +751,7 @@ static NSArray *kSyntaxDictKeys;
 
     // まず、開始文字列だけのコメント定義があればカラーリング
     if (([simpleWordsDict count]) > 0) {
-        [self setAttrToSimpleWordsDict:simpleWordsDict withCharString:simpleWordsChar];
+        [self setAttrToSimpleWordsDict:simpleWordsDict charString:simpleWordsChar];
     }
 
     // カラーリング対象がなければ、もどる
