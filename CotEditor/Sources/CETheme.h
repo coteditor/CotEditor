@@ -66,7 +66,7 @@
 - (instancetype)initWithName:(NSString *)themeName;
 
 
-/// return corresponded color to the loop index in CESyntax
-- (NSColor *)syntaxColorWithIndex:(NSUInteger)index;
+/// return corresponded color to keys of syntax definition format
+- (NSColor *)syntaxColorWithSyntaxKey:(NSString *)key;
 
 @end

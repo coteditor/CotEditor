@@ -32,6 +32,7 @@
 
 #import "CETheme.h"
 #import "CEThemeManager.h"
+#import "constants.h"
 
 
 @interface CETheme ()
@@ -141,22 +142,30 @@
 
 
 //------------------------------------------------------
-/// インデックスに対応したカラーを返す (CESyntaxが使用)
-- (NSColor *)syntaxColorWithIndex:(NSUInteger)index
+/// シンタックス定義の配列キーに対応したカラーを返す (CESyntaxが使用)
+- (NSColor *)syntaxColorWithSyntaxKey:(NSString *)key
 //------------------------------------------------------
 {
-    switch (index) {
-        case 0: return [self keywordsColor];
-        case 1: return [self commandsColor];
-        case 2: return [self categoriesColor];
-        case 3: return [self variablesColor];
-        case 4: return [self valuesColor];
-        case 5: return [self numbersColor];
-        case 6: return [self stringsColor];
-        case 7: return [self charactersColor];
-        case 8: return [self commentsColor];
-            
-        default: return [self textColor];
+    if ([key isEqualToString:k_SCKey_keywordsArray]) {
+        return [self keywordsColor];
+    } else if ([key isEqualToString:k_SCKey_commandsArray]) {
+        return [self commandsColor];
+    } else if ([key isEqualToString:k_SCKey_categoriesArray]) {
+        return [self categoriesColor];
+    } else if ([key isEqualToString:k_SCKey_variablesArray]) {
+        return [self variablesColor];
+    } else if ([key isEqualToString:k_SCKey_valuesArray]) {
+        return [self valuesColor];
+    } else if ([key isEqualToString:k_SCKey_numbersArray]) {
+        return [self numbersColor];
+    } else if ([key isEqualToString:k_SCKey_stringsArray]) {
+        return [self stringsColor];
+    } else if ([key isEqualToString:k_SCKey_charactersArray]) {
+        return [self charactersColor];
+    } else if ([key isEqualToString:k_SCKey_commandsArray]) {
+        return [self commandsColor];
+    } else {
+        return [self textColor];
     }
 }
 

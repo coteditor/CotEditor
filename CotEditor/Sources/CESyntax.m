@@ -145,8 +145,7 @@ static NSArray *kSyntaxDictKeys;
 - (void)colorAllString:(NSString *)wholeString
 // ------------------------------------------------------
 {
-    if ((wholeString == nil) || ([wholeString length] < 1) || 
-            ([[self syntaxStyleName] length] < 1)) { return; }
+    if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
 
     [self setWholeString:wholeString];
     [self setUpdateRange:NSMakeRange(0, [self wholeStringLength])];
@@ -167,8 +166,8 @@ static NSArray *kSyntaxDictKeys;
 - (void)colorVisibleRange:(NSRange)range withWholeString:(NSString *)wholeString
 // ------------------------------------------------------
 {
-    if ((wholeString == nil) || ([wholeString length] < 1) || 
-            ([[self syntaxStyleName] length] < 1)) { return; }
+    if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
+    
     [self setWholeString:wholeString];
 
     NSRange effectiveRange;
@@ -207,7 +206,7 @@ static NSArray *kSyntaxDictKeys;
 {
     __block NSMutableArray *outlineMenuDicts = [NSMutableArray array];
     
-    if (!wholeString || ([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) {
+    if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) {
         return outlineMenuDicts;
     }
     [self setWholeString:wholeString];
@@ -398,10 +397,10 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、カラーリング
-- (void)setAttrToSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSString *)charString
+- (void)setAttrToSimpleWordsDict:(NSMutableDictionary*)wordsDict withCharString:(NSString *)charString
 // ------------------------------------------------------
 {
-    NSArray *ranges = [self rangesSimpleWordsArrayDict:wordsDict withCharString:charString];
+    NSArray *ranges = [self rangesSimpleWordsDict:wordsDict charString:charString];
 
     for (NSValue *value in ranges) {
         NSRange range = [value rangeValue];
@@ -418,7 +417,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (NSArray *)rangesSimpleWordsArrayDict:(NSMutableDictionary*)wordsDict withCharString:(NSString *)charString
+- (NSArray *)rangesSimpleWordsDict:(NSMutableDictionary*)wordsDict charString:(NSString *)charString
 // ------------------------------------------------------
 {
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
@@ -462,7 +461,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
-- (NSArray *)rangesBeginString:(NSString *)beginString withEndString:(NSString *)endString
+- (NSArray *)rangesBeginString:(NSString *)beginString endString:(NSString *)endString
                     doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // ------------------------------------------------------
 {
@@ -545,7 +544,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列を正規表現として検索し、位置を返す
-- (NSArray *)rangesRegularExpressionString:(NSString *)regexStr withIgnoreCase:(BOOL)ignoreCase
+- (NSArray *)rangesRegularExpressionString:(NSString *)regexStr ignoreCase:(BOOL)ignoreCase
                                 doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // ------------------------------------------------------
 {
@@ -606,7 +605,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
-- (NSArray *)rangesRegularExpressionBeginString:(NSString *)beginString withEndString:(NSString *)endString withIgnoreCase:(BOOL)ignoreCase
+- (NSArray *)rangesRegularExpressionBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase
                                      doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
 // ------------------------------------------------------
 {
@@ -679,7 +678,7 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 /// コメントをカラーリング
 - (void)setAttrToCommentsWithSyntaxArray:(NSArray *)syntaxArray
-                        withSingleQuotes:(BOOL)withSingleQuotes withDoubleQuotes:(BOOL)withDoubleQuotes
+                            singleQuotes:(BOOL)withSingleQuotes doubleQuotes:(BOOL)withDoubleQuotes
                          updateIndicator:(BOOL)updateIndicator
 // ------------------------------------------------------
 {
@@ -707,21 +706,21 @@ static NSArray *kSyntaxDictKeys;
         if ([strDict[k_SCKey_regularExpression] boolValue]) {
             if ((endStr != nil) && ([endStr length] > 0)) {
                 tmpArray = [self rangesRegularExpressionBeginString:beginStr
-                                                      withEndString:endStr
-                                                     withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                          endString:endStr
+                                                         ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
                                                          doColoring:NO
                                                      pairStringKind:(k_QC_CommentBaseNum + i)];
                 [posArray addObjectsFromArray:tmpArray];
             } else {
                 tmpArray = [self rangesRegularExpressionString:beginStr
-                                                withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                    ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
                                                     doColoring:NO
                                                 pairStringKind:(k_QC_CommentBaseNum + i)];
                 [posArray addObjectsFromArray:tmpArray];
             }
         } else {
             if ((endStr != nil) && ([endStr length] > 0)) {
-                tmpArray = [self rangesBeginString:beginStr withEndString:endStr
+                tmpArray = [self rangesBeginString:beginStr endString:endStr
                                         doColoring:NO pairStringKind:(k_QC_CommentBaseNum + i)];
                 [posArray addObjectsFromArray:tmpArray];
             } else {
@@ -739,12 +738,12 @@ static NSArray *kSyntaxDictKeys;
     } // end-for
     // シングルクォート定義があれば位置配列を生成、マージ
     if (withSingleQuotes) {
-        [posArray addObjectsFromArray:[self rangesBeginString:@"\'" withEndString:@"\'"
+        [posArray addObjectsFromArray:[self rangesBeginString:@"\'" endString:@"\'"
                                                    doColoring:NO pairStringKind:k_QC_SingleQ]];
     }
     // ダブルクォート定義があれば位置配列を生成、マージ
     if (withDoubleQuotes) {
-        [posArray addObjectsFromArray:[self rangesBeginString:@"\"" withEndString:@"\""
+        [posArray addObjectsFromArray:[self rangesBeginString:@"\"" endString:@"\""
                                                    doColoring:NO pairStringKind:k_QC_DoubleQ]];
     }
     // コメントもクォートもなければ、もどる
@@ -752,7 +751,7 @@ static NSArray *kSyntaxDictKeys;
 
     // まず、開始文字列だけのコメント定義があればカラーリング
     if (([simpleWordsDict count]) > 0) {
-        [self setAttrToSimpleWordsArrayDict:simpleWordsDict withCharString:simpleWordsChar];
+        [self setAttrToSimpleWordsDict:simpleWordsDict withCharString:simpleWordsChar];
     }
 
     // カラーリング対象がなければ、もどる
@@ -786,7 +785,7 @@ static NSArray *kSyntaxDictKeys;
             } else if (QCKind >= k_QC_CommentBaseNum) {
                 attrs = [self currentAttrs];
             } else {
-                NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
+                NSLog(@"%s \n Can not set Attrs.", __PRETTY_FUNCTION__);
                 break;
             }
             end = [curRecord[k_QCPosition] unsignedIntegerValue] +
@@ -823,7 +822,7 @@ static NSArray *kSyntaxDictKeys;
                 } else if (QCKind >= k_QC_CommentBaseNum) {
                     attrs = [self currentAttrs];
                 } else {
-                    NSLog(@"setAttrToCommentsWithSyntaxArray:withSyngleQuotes::... \n Can not set Attrs.");
+                    NSLog(@"%s \n Can not set Attrs.", __PRETTY_FUNCTION__);
                     break;
                 }
                 coloringRange = NSMakeRange(start + [self updateRange].location, NSMaxRange([self updateRange]) - start);
@@ -914,7 +913,7 @@ static NSArray *kSyntaxDictKeys;
     // 現在あるカラーリングを削除、カラーリング不要なら不可視文字のカラーリングだけして戻る
     [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:[self updateRange]];
     if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) ||
-        ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None",@"")]))
+        ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None", @"")]))
     {
         [self setOtherInvisibleCharsAttrs];
         return;
@@ -932,18 +931,18 @@ static NSArray *kSyntaxDictKeys;
         [self setIsIndicatorShown:YES];
     }
     
-    NSArray *strDicts, *inArray;
+    NSArray *strDicts;
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableString *simpleWordsChar = [NSMutableString stringWithString:k_allAlphabetChars];
     NSString *beginStr = nil, *endStr = nil;
     NSDictionary *strDict;
     NSRange coloringRange;
-    NSInteger i, j, count;
+    NSUInteger count;
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
     
     @try {
-        // Keywords > Commands > Types > Variables > Values > Numbers > Strings > Characters > Comments
-        for (i = 0; i < [kSyntaxDictKeys count]; i++) {
+        // Keywords > Commands > Categories > Variables > Values > Numbers > Strings > Characters > Comments
+        for (NSString *syntaxKey in kSyntaxDictKeys) {
             
             // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
             if ([self isColoringCancelled]) {
@@ -954,23 +953,23 @@ static NSArray *kSyntaxDictKeys;
                     [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
                                                  forCharacterRange:[self updateRange]];
                     [[[CEDocumentController sharedDocumentController] documentForWindow:documentWindow]
-                     doSetSyntaxStyle:NSLocalizedString(@"None",@"") delay:YES];
+                     doSetSyntaxStyle:NSLocalizedString(@"None", @"") delay:YES];
                 }
                 break;
             }
             
-            strDicts = [self coloringDictionary][kSyntaxDictKeys[i]];
+            strDicts = [self coloringDictionary][syntaxKey];
             if (!strDicts) {
                 continue;
             }
             count = [strDicts count];
-            [self setTextColor:[[self theme] syntaxColorWithIndex:i]]; // ===== retain
+            [self setTextColor:[[self theme] syntaxColorWithSyntaxKey:syntaxKey]]; // ===== retain
             [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
-            if ([kSyntaxDictKeys[i] isEqualToString:k_SCKey_commentsArray]) {
-                [self setAttrToCommentsWithSyntaxArray:strDicts withSingleQuotes:isSingleQuotes
-                                      withDoubleQuotes:isDoubleQuotes updateIndicator:[self isIndicatorShown]];
+            if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
+                [self setAttrToCommentsWithSyntaxArray:strDicts singleQuotes:isSingleQuotes
+                                      doubleQuotes:isDoubleQuotes updateIndicator:[self isIndicatorShown]];
                 [self setTextColor:nil]; // ===== release
                 [self setCurrentAttrs:nil]; // ===== release
                 break;
@@ -984,7 +983,7 @@ static NSArray *kSyntaxDictKeys;
 
             NSMutableArray *targetArray = [[NSMutableArray alloc] initWithCapacity:10];
             NSArray *tmpArray = nil;
-            j = 0;
+            NSUInteger i = 0;
             for (strDict in strDicts) {
                 @autoreleasepool {
                     beginStr = strDict[k_SCKey_beginString];
@@ -996,8 +995,8 @@ static NSArray *kSyntaxDictKeys;
                     if ([strDict[k_SCKey_regularExpression] boolValue]) {
                         if ([endStr length] > 0) {
                             tmpArray = [self rangesRegularExpressionBeginString:beginStr
-                                                                  withEndString:endStr
-                                                                 withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                                      endString:endStr
+                                                                     ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
                                                                      doColoring:YES
                                                                  pairStringKind:k_notUseKind];
                             if (tmpArray) {
@@ -1005,7 +1004,7 @@ static NSArray *kSyntaxDictKeys;
                             }
                         } else {
                             tmpArray = [self rangesRegularExpressionString:beginStr
-                                                            withIgnoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
+                                                                ignoreCase:[strDict[k_SCKey_ignoreCase] boolValue]
                                                                 doColoring:YES
                                                             pairStringKind:k_notUseKind];
                             if (tmpArray) {
@@ -1015,7 +1014,7 @@ static NSArray *kSyntaxDictKeys;
                     } else {
                         if ([endStr length] > 0) {
                             // 開始／終了ともに入力されていたらクォートかどうかをチェック、最初に出てきたクォートのみを把握
-                            if ([beginStr isEqualToString:@"\'"] && [endStr isEqualToString:@"\'"]) {
+                            if ([beginStr isEqualToString:@"'"] && [endStr isEqualToString:@"'"]) {
                                 if (!isSingleQuotes) {
                                     isSingleQuotes = YES;
                                     [self setSingleQuotesAttrs:[self currentAttrs]]; // ===== retain
@@ -1029,7 +1028,7 @@ static NSArray *kSyntaxDictKeys;
                                 }
                                 continue;
                             }
-                            tmpArray = [self rangesBeginString:beginStr withEndString:endStr
+                            tmpArray = [self rangesBeginString:beginStr endString:endStr
                                                     doColoring:YES pairStringKind:k_notUseKind];
                             if (tmpArray) {
                                 [targetArray addObject:tmpArray];
@@ -1048,30 +1047,30 @@ static NSArray *kSyntaxDictKeys;
                     }
                     // インジケータ更新
                     if ([self isIndicatorShown]) {
-                        if ((j % 10) == 0) {
+                        if (i % 10 == 0) {
                             [[self indicatorSheetController] progressIndicator:10.0 / count * k_perCompoIncrement];
                         }
-                        j++;
+                        i++;
                     }
                 } // ==== end-autoreleasepool
-            } // end-for (j)
+            } // end-for (i)
             if (([simpleWordsDict count]) > 0) {
-                tmpArray = [self rangesSimpleWordsArrayDict:simpleWordsDict withCharString:simpleWordsChar];
-                if (tmpArray != nil) {
+                tmpArray = [self rangesSimpleWordsDict:simpleWordsDict charString:simpleWordsChar];
+                if (tmpArray) {
                     [targetArray addObject:tmpArray];
                 }
                 [simpleWordsDict removeAllObjects];
                 [simpleWordsChar setString:k_allAlphabetChars];
             }
             // カラーリング実行
-            for (inArray in targetArray) {
+            for (NSArray *ranges in targetArray) {
                 // IMP を使ってメソッド呼び出しを高速化
                 // http://www.mulle-kybernetik.com/artikel/Optimization/opti-3.html
                 // http://homepage.mac.com/mkino2/spec/optimize/methodCall.html
                 if ([self isPrinting]) {
                     IMP impSetTextColor = [[[self layoutManager] firstTextView] methodForSelector:@selector(setTextColor:range:)];
                     void (*funcSetTextColor)(id, SEL, id, NSRange) = (void(*)(id, SEL, id, NSRange))impSetTextColor;  // cast for ARC
-                    for (NSValue *value in inArray) {
+                    for (NSValue *value in ranges) {
                         coloringRange = [value rangeValue];
                         coloringRange.location += [self updateRange].location;
                         funcSetTextColor([[self layoutManager] firstTextView],
@@ -1081,7 +1080,7 @@ static NSArray *kSyntaxDictKeys;
                 } else {
                     IMP impAddTempAttrs = [[self layoutManager] methodForSelector:@selector(addTemporaryAttributes:forCharacterRange:)];
                     void (*funcAddTempAttrs)(id, SEL, id, NSRange) = (void(*)(id, SEL, id, NSRange))impAddTempAttrs;  // cast for ARC
-                    for (NSValue *value in inArray) {
+                    for (NSValue *value in ranges) {
                         coloringRange = [value rangeValue];
                         coloringRange.location += [self updateRange].location;
                         funcAddTempAttrs([self layoutManager],
@@ -1095,7 +1094,7 @@ static NSArray *kSyntaxDictKeys;
             }
             [self setTextColor:nil];  // ===== release
             [self setCurrentAttrs:nil];
-        } // end-for (i)
+        } // end-for (syntaxKey)
         [self setOtherInvisibleCharsAttrs];
     } @catch (NSException *exception) {
         // 何もしない
