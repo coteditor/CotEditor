@@ -262,10 +262,6 @@ extern NSString *const k_SCKey_completionsArray;
 extern NSString *const k_SCKey_allColoringArrays[];
 extern NSUInteger const k_size_of_allColoringArrays;
 
-// edit argument dictionary's key
-extern NSString *const k_key_oldStyleName;
-extern NSString *const k_key_newStyleName;
-
 
 
 #pragma mark Main Menu

@@ -271,11 +271,6 @@ NSString *const k_SCKey_allColoringArrays[] = {
 NSUInteger const k_size_of_allColoringArrays = sizeof(k_SCKey_allColoringArrays)/sizeof(k_SCKey_allColoringArrays[0]);
 
 
-// edit argument dictionary's key
-NSString *const k_key_oldStyleName = @"oldStyleName";
-NSString *const k_key_newStyleName = @"newStyleName";
-
-
 
 #pragma mark Main Menu
 

@@ -985,8 +985,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict
 // ------------------------------------------------------
 {
-    NSString *oldName = styleNameDict[k_key_oldStyleName];
-    NSString *newName = styleNameDict[k_key_newStyleName];
+    NSString *oldName = styleNameDict[CEOldNameKey];
+    NSString *newName = styleNameDict[CENewNameKey];
     NSString *curStyleName = [[self editorView] syntaxStyleNameToColoring];
 
     if ([oldName isEqualToString:curStyleName]) {

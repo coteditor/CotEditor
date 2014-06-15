@@ -200,8 +200,8 @@
     if ([sheetController savedNewStyleName]) {
         // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
         NSString *newName = [sheetController savedNewStyleName];
-        NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedName,
-                                        k_key_newStyleName: newName};
+        NSDictionary *styleNameDict = @{CEOldNameKey: selectedName,
+                                        CENewNameKey: newName};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
     }
@@ -473,8 +473,8 @@
     
     if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
         // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
-        NSDictionary *styleNameDict = @{k_key_oldStyleName: selectedStyleName,
-                                        k_key_newStyleName: NSLocalizedString(@"None", nil)};
+        NSDictionary *styleNameDict = @{CEOldNameKey: selectedStyleName,
+                                        CENewNameKey: NSLocalizedString(@"None", nil)};
         [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
                                                   withObject:styleNameDict];
     } else {
