@@ -113,7 +113,6 @@
 		8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F52600871861C00ABD124 /* openScriptMenu.applescript */; };
 		8C0FE15A08D7FDAA00B2B71B /* DefaultTextKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C0FE15908D7FDAA00B2B71B /* DefaultTextKeyBindings.plist */; };
 		8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8C1305B20DC4B83000975AC6 /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */; };
 		8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */; };
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
@@ -378,8 +377,6 @@
 		8C0FE15908D7FDAA00B2B71B /* DefaultTextKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultTextKeyBindings.plist; path = KeyBindings/DefaultTextKeyBindings.plist; sourceTree = "<group>"; };
 		8C1305AD0DC4B71D00975AC6 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		8C1305B00DC4B83000975AC6 /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
-		8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
 		8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptTerminology; path = CotEditor.scriptTerminology; sourceTree = "<group>"; };
 		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptSuite; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
@@ -897,8 +894,6 @@
 				8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */,
 				8C1305AD0DC4B71D00975AC6 /* RegexKitLite.h */,
 				8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */,
-				8C1305B00DC4B83000975AC6 /* RKLMatchEnumerator.h */,
-				8C1305B10DC4B83000975AC6 /* RKLMatchEnumerator.m */,
 				8C3840910D16B75C00F76A4C /* UKXattrMetadataStore.h */,
 				8C3840920D16B75C00F76A4C /* UKXattrMetadataStore.m */,
 			);
@@ -1167,7 +1162,6 @@
 				8C3840930D16B75C00F76A4C /* UKXattrMetadataStore.m in Sources */,
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,
 				8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */,
-				8C1305B20DC4B83000975AC6 /* RKLMatchEnumerator.m in Sources */,
 				2A149DD519032CC900A9D6EF /* CEUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
