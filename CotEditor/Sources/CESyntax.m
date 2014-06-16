@@ -733,7 +733,7 @@ static NSArray *kSyntaxDictKeys;
         endStr = strDict[k_SCKey_endString];
 
         if ([strDict[k_SCKey_regularExpression] boolValue]) {
-            if ((endStr != nil) && ([endStr length] > 0)) {
+            if (endStr && ([endStr length] > 0)) {
                 tmpArray = [self rangesRegularExpressionBeginString:beginStr
                                                           endString:endStr
                                                          ignoreCase:ignoresCase
@@ -748,7 +748,7 @@ static NSArray *kSyntaxDictKeys;
                 [posArray addObjectsFromArray:tmpArray];
             }
         } else {
-            if ((endStr != nil) && ([endStr length] > 0)) {
+            if (endStr && ([endStr length] > 0)) {
                 tmpArray = [self rangesBeginString:beginStr
                                      endString:endStr
                                     ignoreCase:ignoresCase
@@ -798,7 +798,7 @@ static NSArray *kSyntaxDictKeys;
     while (index < coloringCount) {
         // インジケータ更新
         if (updateIndicator && (index % 10 == 0)) {
-            [[self indicatorController] progressIndicator:10.0 / coloringCount * 200];
+            [[self indicatorController] progressIndicator:10.0 * 200 / coloringCount];
         }
         curRecord = posArray[index];
         if (QCKind == k_notUseKind) {
@@ -1053,7 +1053,7 @@ static NSArray *kSyntaxDictKeys;
                     // インジケータ更新
                     if ([self indicatorController]) {
                         if (i % 10 == 0) {
-                            [[self indicatorController] progressIndicator:10.0 / count * k_perCompoIncrement];
+                            [[self indicatorController] progressIndicator:10.0 * k_perCompoIncrement / count];
                         }
                         i++;
                     }
@@ -1063,7 +1063,7 @@ static NSArray *kSyntaxDictKeys;
                 tmpArray = [self rangesSimpleWordsDict:simpleWordsDict
                                         ignoreCaseDict:simpleICWordsDict
                                                charSet:[self simpleWordsCharacterSets][syntaxKey]];
-                if (tmpArray != nil) {
+                if (tmpArray) {
                     [targetArray addObject:tmpArray];
                 }
                 [simpleWordsDict removeAllObjects];
@@ -1107,7 +1107,8 @@ static NSArray *kSyntaxDictKeys;
     if ([self isPrinting]) {
         [[[self layoutManager] firstTextView] setTextColor:color range:range];
     } else {
-        [[self layoutManager] addTemporaryAttributes:@{NSForegroundColorAttributeName: color} forCharacterRange:range];
+        [[self layoutManager] addTemporaryAttribute:NSForegroundColorAttributeName
+                                              value:color forCharacterRange:range];
     }
 }
 
@@ -1118,8 +1119,7 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 {
     if ([self isPrinting]) {
-        [[[self layoutManager] firstTextView] setTextColor:[[[self layoutManager] firstTextView] textColor]
-                                                     range:range];
+        [[[self layoutManager] firstTextView] setTextColor:nil range:range];
     } else {
         [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
                                      forCharacterRange:range];
