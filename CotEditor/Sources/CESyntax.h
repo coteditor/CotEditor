@@ -32,28 +32,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "CELayoutManager.h"
 
 
-@class CETextViewCore;
+@class CELayoutManager;
 
 
 @interface CESyntax : NSObject
 
 @property (nonatomic) CELayoutManager *layoutManager;
-@property (nonatomic) NSString *wholeString;
-@property (nonatomic) NSString *localString;  // カラーリング対象文字列
 @property (nonatomic) NSString *syntaxStyleName;
-@property (nonatomic) BOOL isPrinting;  // プリンタ中かどうかを返す
-        // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
 // readonly
-@property (nonatomic, copy, readonly) NSArray *completionWords;  // 保持している入力補完文字列配列
-@property (nonatomic, copy, readonly) NSCharacterSet *firstCompletionCharacterSet;  // 保持している入力補完の最初の1文字のセット
+@property (nonatomic, copy, readonly) NSArray *completionWords;  // 入力補完文字列配列
+@property (nonatomic, copy, readonly) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 
 
 // Public method
-- (NSUInteger)wholeStringLength;
 - (BOOL)setSyntaxStyleNameFromExtension:(NSString *)extension;
 - (void)colorAllString:(NSString *)wholeString;
 - (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString;
