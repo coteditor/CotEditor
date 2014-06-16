@@ -249,6 +249,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     
     if (success) {
         [self updateCache];
+        
+        // 開いているウインドウのテーマをデフォルトに戻す
+        NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                            object:self
+                                                          userInfo:@{CEOldNameKey: themeName,
+                                                                     CENewNameKey: defaultThemeName}];
     }
     
     return success;
