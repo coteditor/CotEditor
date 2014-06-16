@@ -945,14 +945,13 @@ static NSArray *kSyntaxDictKeys;
         return;
     }
     
-    NSWindow *documentWindow = [self isPrinting] ? [NSApp mainWindow] : [[[self layoutManager] firstTextView] window];
+    NSWindow *documentWindow = [self isPrinting] ? nil : [[[self layoutManager] firstTextView] window];
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
-    if ((indicatorThreshold > 0) && ([self updateRange].length > indicatorThreshold)) {
-        NSString *message = [self isPrinting] ? @"Coloring print text..." : @"Coloring text...";
-        [self setIndicatorSheetController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(message, nil)]];
+    if (![self isPrinting] && (indicatorThreshold > 0) && ([self updateRange].length > indicatorThreshold)) {
+        [self setIndicatorSheetController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text...", nil)]];
         [self setModalSession:[[self indicatorSheetController] beginSheetForWindow:documentWindow]];
         [self setIsIndicatorShown:YES];
     }
