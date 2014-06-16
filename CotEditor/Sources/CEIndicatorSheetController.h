@@ -35,9 +35,12 @@
 
 @interface CEIndicatorSheetController : NSWindowController <NSWindowDelegate>
 
+@property (readonly) BOOL isCancelled;
+
+
 - (instancetype)initWithMessage:(NSString *)message;
 
-- (NSModalSession)beginSheetForWindow:(NSWindow *)window;
+- (void)beginSheetForWindow:(NSWindow *)window;
 - (void)endSheet;
 - (void)progressIndicator:(CGFloat)delta;
 
