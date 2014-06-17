@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESyntax.h"
+#import "CELayoutManager.h"
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
@@ -43,17 +44,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CESyntax ()
 
 @property (nonatomic, copy) NSDictionary *coloringDictionary;
-@property (nonatomic, copy) NSDictionary *currentAttrs;
-@property (nonatomic, copy) NSDictionary *singleQuotesAttrs;
-@property (nonatomic, copy) NSDictionary *doubleQuotesAttrs;
 @property (nonatomic, copy) NSDictionary *simpleWordsCharacterSets;
-@property (nonatomic) NSColor *textColor;
 
+@property (nonatomic, copy) NSString *wholeString;
+@property (nonatomic, copy) NSString *localString;  // カラーリング対象文字列
 @property (nonatomic) NSRange updateRange;
-@property (nonatomic) NSModalSession modalSession;
-
-@property (nonatomic) CEIndicatorSheetController *indicatorSheetController;
-@property (nonatomic) BOOL isIndicatorShown;
+@property (nonatomic) NSColor *textColor;
+@property (nonatomic) NSColor *singleQuotesColor;
+@property (nonatomic) NSColor *doubleQuotesColor;
+@property (nonatomic) CEIndicatorSheetController *indicatorController;
 
 
 // readonly
@@ -61,7 +60,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
 
 @end
-
 
 
 
@@ -98,15 +96,6 @@ static NSArray *kSyntaxDictKeys;
 // Public method
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// 全文字列の長さを返す
-- (NSUInteger)wholeStringLength
-// ------------------------------------------------------
-{
-    return [[self wholeString] length];
-}
-
 
 // ------------------------------------------------------
 /// 保持するstyle名をセット
@@ -150,7 +139,7 @@ static NSArray *kSyntaxDictKeys;
     if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
 
     [self setWholeString:wholeString];
-    [self setUpdateRange:NSMakeRange(0, [self wholeStringLength])];
+    [self setUpdateRange:NSMakeRange(0, [[self wholeString] length])];
 
     if ([self coloringDictionary] == nil) {
         [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
@@ -176,17 +165,17 @@ static NSArray *kSyntaxDictKeys;
     NSRange effectiveRange;
     NSUInteger start = range.location;
     NSUInteger end = NSMaxRange(range) - 1;
-    NSUInteger wholeLength = [self wholeStringLength];
+    NSUInteger wholeLength = [[self wholeString] length];
 
     // 直前／直後が同色ならカラーリング範囲を拡大する
     [[self layoutManager] temporaryAttributesAtCharacterIndex:start
                                         longestEffectiveRange:&effectiveRange
-                                                      inRange:NSMakeRange(0, [self wholeStringLength])];
+                                                      inRange:NSMakeRange(0, wholeLength)];
 
     start = effectiveRange.location;
     [[self layoutManager] temporaryAttributesAtCharacterIndex:end
                                         longestEffectiveRange:&effectiveRange
-                                                      inRange:NSMakeRange(0, [self wholeStringLength])];
+                                                      inRange:NSMakeRange(0, wholeLength)];
 
     end = (NSMaxRange(effectiveRange) < wholeLength) ? NSMaxRange(effectiveRange) : wholeLength;
 
@@ -334,15 +323,6 @@ static NSArray *kSyntaxDictKeys;
 //=======================================================
 
 // ------------------------------------------------------
-/// カラーリングがキャンセルされた
-- (BOOL)isColoringCancelled
-// ------------------------------------------------------
-{
-    return [self isIndicatorShown] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse);
-}
-
-
-// ------------------------------------------------------
 /// 現在のテーマを返す
 - (CETheme *)theme
 // ------------------------------------------------------
@@ -448,11 +428,7 @@ static NSArray *kSyntaxDictKeys;
         NSRange range = [value rangeValue];
         range.location += [self updateRange].location;
 
-        if ([self isPrinting]) {
-            [[[self layoutManager] firstTextView] setTextColor:[self textColor] range:range];
-        } else {
-            [[self layoutManager] addTemporaryAttributes:[self currentAttrs] forCharacterRange:range];
-        }
+        [self applyTextColor:[self textColor] range:range];
     }
 }
 
@@ -528,7 +504,7 @@ static NSArray *kSyntaxDictKeys;
     endLength = [endString length];
     [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
-    NSMutableArray *outArray = [[NSMutableArray alloc] initWithCapacity:10];
+    NSMutableArray *ranges = [[NSMutableArray alloc] initWithCapacity:10];
     NSInteger i = 0;
 
     while (![scanner isAtEnd]) {
@@ -545,7 +521,7 @@ static NSArray *kSyntaxDictKeys;
             }
             if (!doColoring) {
                 startEnd = (pairKind >= k_QC_CommentBaseNum) ? k_QC_Start : k_notUseStartEnd;
-                [outArray addObject:@{k_QCPosition: @(start),
+                [ranges addObject:@{k_QCPosition: @(start),
                                       k_QCPairKind: @(pairKind),
                                       k_QCStartEnd: @(startEnd),
                                       k_QCStrLength: @(beginLength)}];
@@ -555,7 +531,7 @@ static NSArray *kSyntaxDictKeys;
         }
         while (1) {
             i++;
-            if ((i % 10 == 0) && [self isColoringCancelled]) {
+            if ((i % 10 == 0) && [[self indicatorController] isCancelled]) {
                 return nil;
             }
             [scanner scanUpToString:endString intoString:nil];
@@ -572,10 +548,10 @@ static NSArray *kSyntaxDictKeys;
                     if (start < end) {
                         if (doColoring) {
                             attrRange = NSMakeRange(start, end - start);
-                            [outArray addObject:[NSValue valueWithRange:attrRange]];
+                            [ranges addObject:[NSValue valueWithRange:attrRange]];
                         } else {
                             startEnd = (pairKind >= k_QC_CommentBaseNum) ? k_QC_End : k_notUseStartEnd;
-                            [outArray addObject:@{k_QCPosition: @(end - endLength),
+                            [ranges addObject:@{k_QCPosition: @(end - endLength),
                                                   k_QCPairKind: @(pairKind),
                                                   k_QCStartEnd: @(startEnd),
                                                   k_QCStrLength: @(endLength)}];
@@ -588,7 +564,7 @@ static NSArray *kSyntaxDictKeys;
             }
         } // end-while (1)
     } // end-while (![scanner isAtEnd])
-    return outArray;
+    return ranges;
 }
 
 
@@ -619,7 +595,7 @@ static NSArray *kSyntaxDictKeys;
              [ranges addObject:[NSValue valueWithRange:attrRange]];
              
          } else {
-             if ([self isColoringCancelled]) {
+             if ([[self indicatorController] isCancelled]) {
                  *stop = YES;
                  return;
              }
@@ -674,7 +650,7 @@ static NSArray *kSyntaxDictKeys;
                                              const NSRange *capturedRanges,
                                              volatile BOOL *const stop)
      {
-         if ([self isColoringCancelled]) {
+         if ([[self indicatorController] isCancelled]) {
              *stop = YES;
              return;
          }
@@ -736,7 +712,8 @@ static NSArray *kSyntaxDictKeys;
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSArray *tmpArray = nil;
-    NSDictionary *strDict, *curRecord, *checkRecord, *attrs;
+    NSDictionary *strDict, *curRecord, *checkRecord;
+    NSColor *color;
     NSString *beginStr = nil, *endStr = nil;
     BOOL ignoresCase = NO;
     NSRange coloringRange;
@@ -746,7 +723,7 @@ static NSArray *kSyntaxDictKeys;
 
     // コメント定義の位置配列を生成
     for (i = 0; i < syntaxCount; i++) {
-        if ((i % 10 == 0) && [self isColoringCancelled]) { return; }
+        if ((i % 10 == 0) && [[self indicatorController] isCancelled]) { return; }
         strDict = syntaxArray[i];
         ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
         beginStr = strDict[k_SCKey_beginString];
@@ -756,7 +733,7 @@ static NSArray *kSyntaxDictKeys;
         endStr = strDict[k_SCKey_endString];
 
         if ([strDict[k_SCKey_regularExpression] boolValue]) {
-            if ((endStr != nil) && ([endStr length] > 0)) {
+            if (endStr && ([endStr length] > 0)) {
                 tmpArray = [self rangesRegularExpressionBeginString:beginStr
                                                           endString:endStr
                                                          ignoreCase:ignoresCase
@@ -771,7 +748,7 @@ static NSArray *kSyntaxDictKeys;
                 [posArray addObjectsFromArray:tmpArray];
             }
         } else {
-            if ((endStr != nil) && ([endStr length] > 0)) {
+            if (endStr && ([endStr length] > 0)) {
                 tmpArray = [self rangesBeginString:beginStr
                                      endString:endStr
                                     ignoreCase:ignoresCase
@@ -821,7 +798,7 @@ static NSArray *kSyntaxDictKeys;
     while (index < coloringCount) {
         // インジケータ更新
         if (updateIndicator && (index % 10 == 0)) {
-            [[self indicatorSheetController] progressIndicator:10.0 / coloringCount * 200];
+            [[self indicatorController] progressIndicator:10.0 * 200 / coloringCount];
         }
         curRecord = posArray[index];
         if (QCKind == k_notUseKind) {
@@ -836,11 +813,11 @@ static NSArray *kSyntaxDictKeys;
         }
         if (QCKind == [curRecord[k_QCPairKind] unsignedIntegerValue]) {
             if (QCKind == k_QC_SingleQ) {
-                attrs = [self singleQuotesAttrs];
+                color = [self singleQuotesColor];
             } else if (QCKind == k_QC_DoubleQ) {
-                attrs = [self doubleQuotesAttrs];
+                color = [self doubleQuotesColor];
             } else if (QCKind >= k_QC_CommentBaseNum) {
-                attrs = [self currentAttrs];
+                color = [self textColor];
             } else {
                 NSLog(@"%s \n Can not set Attrs.", __PRETTY_FUNCTION__);
                 break;
@@ -848,11 +825,7 @@ static NSArray *kSyntaxDictKeys;
             end = [curRecord[k_QCPosition] unsignedIntegerValue] +
                   [curRecord[k_QCStrLength] unsignedIntegerValue];
             coloringRange = NSMakeRange(start + [self updateRange].location, end - start);
-            if ([self isPrinting]) {
-                [[[self layoutManager] firstTextView] setTextColor:attrs[NSForegroundColorAttributeName] range:coloringRange];
-            } else {
-                [[self layoutManager] addTemporaryAttributes:attrs forCharacterRange:coloringRange];
-            }
+            [self applyTextColor:color range:coloringRange];
             QCKind = k_notUseKind;
             index++;
         } else {
@@ -873,22 +846,17 @@ static NSArray *kSyntaxDictKeys;
                 index = j;
             } else {
                 if (QCKind == k_QC_SingleQ) {
-                    attrs = [self singleQuotesAttrs];
+                    color = [self singleQuotesColor];
                 } else if (QCKind == k_QC_DoubleQ) {
-                    attrs = [self doubleQuotesAttrs];
+                    color = [self doubleQuotesColor];
                 } else if (QCKind >= k_QC_CommentBaseNum) {
-                    attrs = [self currentAttrs];
+                    color = [self textColor];
                 } else {
                     NSLog(@"%s \n Can not set Attrs.", __PRETTY_FUNCTION__);
                     break;
                 }
                 coloringRange = NSMakeRange(start + [self updateRange].location, NSMaxRange([self updateRange]) - start);
-                if ([self isPrinting]) {
-                    [[[self layoutManager] firstTextView] setTextColor:
-                     attrs[NSForegroundColorAttributeName] range:coloringRange];
-                } else {
-                    [[self layoutManager] addTemporaryAttributes:attrs forCharacterRange:coloringRange];
-                }
+                [self applyTextColor:color range:coloringRange];
                 break;
             }
         }
@@ -916,43 +884,31 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 不可視文字表示時に文字色を変更する
-- (void)setOtherInvisibleCharsAttrs
+- (void)applyColorToOtherInvisibleChars
 // ------------------------------------------------------
 {
     if (![[self layoutManager] showOtherInvisibles]) { return; }
     NSColor *color = [[self theme] invisiblesColor];
-    if ([[[self layoutManager] firstTextView] textColor] == color) { return; }
-    NSDictionary *attrs = @{};
+    if ([[self theme] textColor] == color) { return; }
     NSMutableArray *ranges = [NSMutableArray array];
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
     NSString *controlStr;
     NSRange coloringRange;
     NSInteger start;
 
-    if (![self isPrinting]) {
-        attrs = @{NSForegroundColorAttributeName: color};
-    }
-
     while (![scanner isAtEnd]) {
         [scanner scanUpToCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:nil];
         start = [scanner scanLocation];
-        if ([scanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet]
-                                intoString:&controlStr]) {
+        if ([scanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:&controlStr]) {
             [ranges addObject:[NSValue valueWithRange:NSMakeRange(start, [controlStr length])]];
         }
     }
-    if ([self isPrinting]) {
-        for (NSValue *value in ranges) {
-            coloringRange = [value rangeValue];
-            coloringRange.location += [self updateRange].location;
-            [[[self layoutManager] firstTextView] setTextColor:color range:coloringRange];
-        }
-    } else {
-        for (NSValue *value in ranges) {
-            coloringRange = [value rangeValue];
-            coloringRange.location += [self updateRange].location;
-            [[self layoutManager] addTemporaryAttributes:attrs forCharacterRange:coloringRange];
-        }
+    
+    for (NSValue *value in ranges) {
+        coloringRange = [value rangeValue];
+        coloringRange.location += [self updateRange].location;
+        
+        [self applyTextColor:color range:coloringRange];
     }
 }
 
@@ -962,79 +918,68 @@ static NSArray *kSyntaxDictKeys;
 - (void)doColoring
 // ------------------------------------------------------
 {
-    NSUInteger length = [self wholeStringLength];
-    if (length < 1) { return; }
+    if ([[self wholeString] length] == 0) { return; }
     [self setLocalString:[[self wholeString] substringWithRange:[self updateRange]]]; // カラーリング対象文字列を保持
-    if ([[self localString] length] < 1) { return; }
+    if ([[self localString] length] == 0) { return; }
 
-    // 現在あるカラーリングを削除、カラーリング不要なら不可視文字のカラーリングだけして戻る
-    [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName forCharacterRange:[self updateRange]];
+    // 現在あるカラーリングを削除
+    [self clearTextColorsInRange:[self updateRange]];
+    
+    // カラーリング不要なら不可視文字のカラーリングだけして戻る
     if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) ||
         ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None", @"")]))
     {
-        [self setOtherInvisibleCharsAttrs];
+        [self applyColorToOtherInvisibleChars];
         return;
     }
     
-    NSWindow *documentWindow = [self isPrinting] ? [NSApp mainWindow] : [[[self layoutManager] firstTextView] window];
+    NSWindow *documentWindow = [self isPrinting] ? nil : [[[self layoutManager] firstTextView] window];
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
     // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
-    if ((indicatorThreshold > 0) && ([self updateRange].length > indicatorThreshold)) {
-        NSString *message = [self isPrinting] ? @"Coloring print text..." : @"Coloring text...";
-        [self setIndicatorSheetController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(message, nil)]];
-        [self setModalSession:[[self indicatorSheetController] beginSheetForWindow:documentWindow]];
-        [self setIsIndicatorShown:YES];
+    if (![self isPrinting] && (indicatorThreshold > 0) && ([self updateRange].length > indicatorThreshold)) {
+        [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text...", nil)]];
+        [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
-    NSArray *strDicts;
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    NSString *beginStr = nil, *endStr = nil;
-    BOOL ignoresCase = NO;
-    NSDictionary *strDict;
-    NSRange coloringRange;
-    NSUInteger count;
     BOOL isSingleQuotes = NO, isDoubleQuotes = NO;
+    NSUInteger count;
     
     @try {
         // Keywords > Commands > Categories > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             
             // キャンセルされたら、現在あるカラーリング（途中まで色づけられたもの）を削除して戻る
-            if ([self isColoringCancelled]) {
-                if ([self isPrinting]) {
-                    [[[self layoutManager] firstTextView] setTextColor:[[[self layoutManager] firstTextView] textColor]
-                                                                 range:[self updateRange]];
-                } else {
-                    [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
-                                                 forCharacterRange:[self updateRange]];
+            if ([[self indicatorController] isCancelled]) {
+                [self clearTextColorsInRange:[self updateRange]];
+                
+                if (![self isPrinting]) {
                     [[[CEDocumentController sharedDocumentController] documentForWindow:documentWindow]
                      doSetSyntaxStyle:NSLocalizedString(@"None", @"") delay:YES];
                 }
                 break;
             }
             
-            strDicts = [self coloringDictionary][syntaxKey];
+            NSArray *strDicts = [self coloringDictionary][syntaxKey];
             if (!strDicts) {
                 continue;
             }
             count = [strDicts count];
             [self setTextColor:[[self theme] syntaxColorWithSyntaxKey:syntaxKey]]; // ===== retain
-            [self setCurrentAttrs:@{NSForegroundColorAttributeName: [self textColor]}]; // ===== retain
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
                 [self setAttrToCommentsWithSyntaxArray:strDicts singleQuotes:isSingleQuotes
-                                      doubleQuotes:isDoubleQuotes updateIndicator:[self isIndicatorShown]];
+                                          doubleQuotes:isDoubleQuotes updateIndicator:([self indicatorController])];
                 [self setTextColor:nil]; // ===== release
-                [self setCurrentAttrs:nil]; // ===== release
                 break;
             }
             if (count < 1) {
-                if ([self isIndicatorShown]) {
-                    [[self indicatorSheetController] progressIndicator:100.0];
+                if ([self indicatorController]) {
+                    [[self indicatorController] progressIndicator:100.0];
                 }
                 continue;
             }
@@ -1042,14 +987,14 @@ static NSArray *kSyntaxDictKeys;
             NSMutableArray *targetArray = [[NSMutableArray alloc] initWithCapacity:10];
             NSArray *tmpArray = nil;
             NSUInteger i = 0;
-            for (strDict in strDicts) {
+            for (NSDictionary *strDict in strDicts) {
                 @autoreleasepool {
-                    ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
-                    beginStr = strDict[k_SCKey_beginString];
+                    BOOL ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
+                    NSString *beginStr = strDict[k_SCKey_beginString];
 
                     if ([beginStr length] == 0) { continue; }
 
-                    endStr = strDict[k_SCKey_endString];
+                    NSString *endStr = strDict[k_SCKey_endString];
 
                     if ([strDict[k_SCKey_regularExpression] boolValue]) {
                         if ([endStr length] > 0) {
@@ -1076,14 +1021,14 @@ static NSArray *kSyntaxDictKeys;
                             if ([beginStr isEqualToString:@"'"] && [endStr isEqualToString:@"'"]) {
                                 if (!isSingleQuotes) {
                                     isSingleQuotes = YES;
-                                    [self setSingleQuotesAttrs:[self currentAttrs]]; // ===== retain
+                                    [self setSingleQuotesColor:[self textColor]]; // ===== retain
                                 }
                                 continue;
                             }
                             if ([beginStr isEqualToString:@"\""] && [endStr isEqualToString:@"\""]) {
                                 if (!isDoubleQuotes) {
                                     isDoubleQuotes = YES;
-                                    [self setDoubleQuotesAttrs:[self currentAttrs]]; // ===== retain
+                                    [self setDoubleQuotesColor:[self textColor]]; // ===== retain
                                 }
                                 continue;
                             }
@@ -1106,9 +1051,9 @@ static NSArray *kSyntaxDictKeys;
                         }
                     }
                     // インジケータ更新
-                    if ([self isIndicatorShown]) {
+                    if ([self indicatorController]) {
                         if (i % 10 == 0) {
-                            [[self indicatorSheetController] progressIndicator:10.0 / count * k_perCompoIncrement];
+                            [[self indicatorController] progressIndicator:10.0 * k_perCompoIncrement / count];
                         }
                         i++;
                     }
@@ -1118,61 +1063,67 @@ static NSArray *kSyntaxDictKeys;
                 tmpArray = [self rangesSimpleWordsDict:simpleWordsDict
                                         ignoreCaseDict:simpleICWordsDict
                                                charSet:[self simpleWordsCharacterSets][syntaxKey]];
-                if (tmpArray != nil) {
+                if (tmpArray) {
                     [targetArray addObject:tmpArray];
                 }
                 [simpleWordsDict removeAllObjects];
             }
             // カラーリング実行
             for (NSArray *ranges in targetArray) {
-                // IMP を使ってメソッド呼び出しを高速化
-                // http://www.mulle-kybernetik.com/artikel/Optimization/opti-3.html
-                // http://homepage.mac.com/mkino2/spec/optimize/methodCall.html
-                if ([self isPrinting]) {
-                    IMP impSetTextColor = [[[self layoutManager] firstTextView] methodForSelector:@selector(setTextColor:range:)];
-                    void (*funcSetTextColor)(id, SEL, id, NSRange) = (void(*)(id, SEL, id, NSRange))impSetTextColor;  // cast for ARC
-                    for (NSValue *value in ranges) {
-                        coloringRange = [value rangeValue];
-                        coloringRange.location += [self updateRange].location;
-                        funcSetTextColor([[self layoutManager] firstTextView],
-                                         @selector(setTextColor:range:),
-                                         [self textColor], coloringRange);
-                    }
-                } else {
-                    IMP impAddTempAttrs = [[self layoutManager] methodForSelector:@selector(addTemporaryAttributes:forCharacterRange:)];
-                    void (*funcAddTempAttrs)(id, SEL, id, NSRange) = (void(*)(id, SEL, id, NSRange))impAddTempAttrs;  // cast for ARC
-                    for (NSValue *value in ranges) {
-                        coloringRange = [value rangeValue];
-                        coloringRange.location += [self updateRange].location;
-                        funcAddTempAttrs([self layoutManager],
-                                         @selector(addTemporaryAttributes:forCharacterRange:),
-                                         [self currentAttrs], coloringRange);
-                    }
+                for (NSValue *value in ranges) {
+                    NSRange range = [value rangeValue];
+                    range.location += [self updateRange].location;
+                    
+                    [self applyTextColor:[self textColor] range:range];
                 }
             }
-            if ([self isIndicatorShown]) {
-                [[self indicatorSheetController] progressIndicator:100.0];
+            if ([self indicatorController]) {
+                [[self indicatorController] progressIndicator:100.0];
             }
             [self setTextColor:nil];  // ===== release
-            [self setCurrentAttrs:nil];
         } // end-for (syntaxKey)
-        [self setOtherInvisibleCharsAttrs];
+        [self applyColorToOtherInvisibleChars];
     } @catch (NSException *exception) {
         // 何もしない
         NSLog(@"ERROR in \"%s\" reason: %@", __PRETTY_FUNCTION__, [exception reason]);
     }
 
     // インジーケータシートを片づける
-    if ([self isIndicatorShown]) {
-        [NSApp endModalSession:[self modalSession]];
-        [[self indicatorSheetController] endSheet];
-        [self setIsIndicatorShown:NO];
-        [self setModalSession:nil];
+    if ([self indicatorController]) {
+        [[self indicatorController] endSheet];
+        [self setIndicatorController:nil];
     }
+    
     // 不要な変数を片づける
-    [self setSingleQuotesAttrs:nil];
-    [self setDoubleQuotesAttrs:nil];
     [self setLocalString:nil];
+}
+
+
+// ------------------------------------------------------
+/// 指定した範囲のテキストに色をつける
+- (void)applyTextColor:(NSColor *)color range:(NSRange)range
+// ------------------------------------------------------
+{
+    if ([self isPrinting]) {
+        [[[self layoutManager] firstTextView] setTextColor:color range:range];
+    } else {
+        [[self layoutManager] addTemporaryAttribute:NSForegroundColorAttributeName
+                                              value:color forCharacterRange:range];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 現在付いている色を解除する
+- (void)clearTextColorsInRange:(NSRange)range
+// ------------------------------------------------------
+{
+    if ([self isPrinting]) {
+        [[[self layoutManager] firstTextView] setTextColor:nil range:range];
+    } else {
+        [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
+                                     forCharacterRange:range];
+    }
 }
 
 @end

@@ -38,6 +38,7 @@
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
 
 @property (nonatomic, copy) NSString *message;
+@property (nonatomic) NSModalSession modalSession;
 
 @end
 
@@ -110,16 +111,13 @@
 
 // ------------------------------------------------------
 /// シートとして表示する
-- (NSModalSession)beginSheetForWindow:(NSWindow *)window
+- (void)beginSheetForWindow:(NSWindow *)window
 // ------------------------------------------------------
 {
-    [NSApp beginSheet:[self window]
-       modalForWindow:window
-        modalDelegate:self
-       didEndSelector:NULL
-          contextInfo:NULL];
+    [NSApp beginSheet:[self window] modalForWindow:window
+        modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     
-    return [NSApp beginModalSessionForWindow:[self window]];
+    [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
 }
 
 
@@ -128,9 +126,11 @@
 - (void)endSheet
 // ------------------------------------------------------
 {
-    [NSApp endSheet:[self window]];
-    [[self window] orderOut:self];
+    [NSApp endModalSession:[self modalSession]];
+    [self setModalSession:nil];
     
+    [NSApp endSheet:[self window]];
+    [self close];
 }
 
 // ------------------------------------------------------
@@ -139,6 +139,15 @@
 // ------------------------------------------------------
 {
     [[self indicator] setDoubleValue:[[self indicator] doubleValue] + (double)delta];
+}
+
+
+// ------------------------------------------------------
+/// キャンセルされたかどうかを返す
+- (BOOL)isCancelled
+// ------------------------------------------------------
+{
+    return [self modalSession] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse);
 }
 
 
