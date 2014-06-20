@@ -1216,12 +1216,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         length = MIN(length, max);
 
         coloringRange = NSMakeRange(location, length);
-    } else {
-        // 表示領域の前もある程度カラーリングの対象に含める
-        NSUInteger buffer = MIN(charRange.location,
-                                [[NSUserDefaults standardUserDefaults] integerForKey:k_key_coloringRangeBufferLength]);
-        coloringRange.location -= buffer;
-        coloringRange.length += buffer;
     }
     
     [[self syntax]  colorVisibleRange:coloringRange wholeString:[self string]];
