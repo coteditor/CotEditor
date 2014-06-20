@@ -444,7 +444,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self stopUpdateOutlineMenuTimer];
     
-    [[self navigationBar] showOutlineIndicator];
+    // 規定の文字数以上の場合にはインジケータを表示
+    // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
+    if (indicatorThreshold > 0 && indicatorThreshold < [[self string] length]) {
+        [[self navigationBar] showOutlineIndicator];
+    }
     
     // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

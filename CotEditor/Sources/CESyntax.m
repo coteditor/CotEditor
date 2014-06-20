@@ -202,7 +202,6 @@ static NSArray *kSyntaxDictKeys;
     if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) {
         return outlineMenuDicts;
     }
-    [self setWholeString:wholeString];
     
     NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_outlineMenuMaxLength];
     NSArray *definitions = [self coloringDictionary][k_SCKey_outlineMenuArray];
