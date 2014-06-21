@@ -39,6 +39,7 @@
 
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic) NSModalSession modalSession;
+@property BOOL isCancelButtonPressed;
 
 @end
 
@@ -79,6 +80,7 @@
     // init indicator
     [[self indicator] setIndeterminate:NO];
     [[self indicator] setDoubleValue:0];
+    [[self indicator] setUsesThreadedAnimation:YES];
 }
 
 
@@ -147,7 +149,7 @@
 - (BOOL)isCancelled
 // ------------------------------------------------------
 {
-    return [self modalSession] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse);
+    return [self modalSession] && [self isCancelButtonPressed];
 }
 
 
@@ -165,6 +167,7 @@
 // ------------------------------------------------------
 {
     [NSApp abortModal];
+    [self setIsCancelButtonPressed:YES];
 }
 
 @end

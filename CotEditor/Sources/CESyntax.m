@@ -71,7 +71,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
 
-@property (atomic, copy) NSString *coloringString;  // カラーリング対象文字列　colorString:range: 冒頭でセットされる
+@property (atomic, copy) NSString *coloringString;  // カラーリング対象文字列　coloringsForAllSyntaxWithString: 冒頭でセットされる
 @property (atomic) CEIndicatorSheetController *indicatorController;
 
 
@@ -157,7 +157,7 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 {
     if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
-
+    
     [self colorString:wholeString range:NSMakeRange(0, [wholeString length])];
 }
 
@@ -827,26 +827,8 @@ static NSArray *kSyntaxDictKeys;
 
 
 // ------------------------------------------------------
-/// 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
-- (NSUInteger)numberOfEscapeSequencesInString:(NSString *)string
-// ------------------------------------------------------
-{
-    NSUInteger count = 0;
-
-    for (NSInteger i = [string length] - 1; i >= 0; i--) {
-        if ([string characterAtIndex:i] == '\\') {
-            count++;
-        } else {
-            break;
-        }
-    }
-    return count;
-}
-
-
-// ------------------------------------------------------
 /// 不可視文字表示時にカラーリング範囲配列を返す
-- (NSArray *)coloringsForOtherInvisibleChars
+- (NSArray *)coloringsForOtherInvisibleCharsWithString:(NSString *)string
 // ------------------------------------------------------
 {
     if (![[self layoutManager] showOtherInvisibles]) { return nil; }
@@ -856,7 +838,7 @@ static NSArray *kSyntaxDictKeys;
     
     NSMutableArray *colorings = [NSMutableArray array];
     
-    NSScanner *scanner = [NSScanner scannerWithString:[self coloringString]];
+    NSScanner *scanner = [NSScanner scannerWithString:string];
     NSString *controlStr;
 
     while (![scanner isAtEnd]) {
@@ -875,42 +857,14 @@ static NSArray *kSyntaxDictKeys;
 
 
 // ------------------------------------------------------
-/// カラーリングを実行
-- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange
+/// 対象範囲の全てのカラーリング範囲配列を返す
+- (NSArray *)coloringsForAllSyntaxWithString:(NSString *)string
 // ------------------------------------------------------
 {
-    // カラーリング対象文字列を保持
-    [self setColoringString:[wholeString substringWithRange:coloringRange]];
-    if ([[self coloringString] length] == 0) { return; }
-    
-    // カラーリング辞書のチェック
-    if ([self coloringDictionary] == nil) {
-        [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
-        [self setCompletionWordsFromColoringDictionary];
-        [self setSimpleWordsCharacterSet];
-    }
-    if ([self coloringDictionary] == nil) { return; }
-    
-    // カラーリング不要なら不可視文字のカラーリングだけして戻る
-    if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) ||
-        ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None", @"")]))
-    {
-        [self applyColorings:[self coloringsForOtherInvisibleChars] range:coloringRange];
-        return;
-    }
-    
-    NSWindow *documentWindow = [self isPrinting] ? nil : [[[self layoutManager] firstTextView] window];
-    
-    // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
-    // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
-    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
-    if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
-        
-        [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text...", nil)]];
-        [[self indicatorController] beginSheetForWindow:documentWindow];
-    }
-    
     NSMutableArray *colorings = [NSMutableArray array];  // ColorKey と RangeKey の dict配列
+    
+    // カラーリング対象文字列を保持
+    [self setColoringString:string];
     
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
@@ -920,21 +874,11 @@ static NSArray *kSyntaxDictKeys;
         // Keywords > Commands > Categories > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             
-            // キャンセルされたら、現在あるカラーリングを削除して戻る
-            if ([[self indicatorController] isCancelled]) {
-                if (![self isPrinting]) {
-                    [[[CEDocumentController sharedDocumentController] documentForWindow:documentWindow]
-                     doSetSyntaxStyle:NSLocalizedString(@"None", @"") delay:YES];
-                }
-                [colorings removeAllObjects];
-                break;
-            }
-            
             NSArray *strDicts = [self coloringDictionary][syntaxKey];
             NSColor *textColor = [[self theme] syntaxColorWithSyntaxKey:syntaxKey];
             NSUInteger count = [strDicts count];
             if (!strDicts) { continue; }
-
+            
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
                 [colorings addObjectsFromArray:[self coloringsForCommentsWithSyntaxArray:strDicts
@@ -948,24 +892,29 @@ static NSArray *kSyntaxDictKeys;
                 }
                 continue;
             }
-
+            
             NSMutableArray *targetRanges = [[NSMutableArray alloc] initWithCapacity:10];
             for (NSDictionary *strDict in strDicts) {
+                // キャンセルされたら、現在あるカラーリングを削除して戻る
+                if ([[self indicatorController] isCancelled]) {
+                    return @[];
+                }
+                
                 @autoreleasepool {
                     NSString *beginStr = strDict[k_SCKey_beginString];
                     NSString *endStr = strDict[k_SCKey_endString];
                     BOOL ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
-
+                    
                     if ([beginStr length] == 0) { continue; }
-
+                    
                     if ([strDict[k_SCKey_regularExpression] boolValue]) {
                         if ([endStr length] > 0) {
-                                [targetRanges addObjectsFromArray:
-                                 [self rangesRegularExpressionBeginString:beginStr
-                                                                endString:endStr
-                                                               ignoreCase:ignoresCase
-                                                             returnFormat:QCRangeFormat
-                                                                 pairKind:nil]];
+                            [targetRanges addObjectsFromArray:
+                             [self rangesRegularExpressionBeginString:beginStr
+                                                            endString:endStr
+                                                           ignoreCase:ignoresCase
+                                                         returnFormat:QCRangeFormat
+                                                             pairKind:nil]];
                         } else {
                             [targetRanges addObjectsFromArray:
                              [self rangesRegularExpressionString:beginStr
@@ -1012,6 +961,7 @@ static NSArray *kSyntaxDictKeys;
                     }
                 } // ==== end-autoreleasepool
             } // end-for (strDict)
+            
             if ([simpleWordsDict count] > 0 || [simpleICWordsDict count] > 0) {
                 [targetRanges addObjectsFromArray:
                  [self rangesSimpleWords:simpleWordsDict
@@ -1030,24 +980,72 @@ static NSArray *kSyntaxDictKeys;
                 [[self indicatorController] progressIndicator:100.0];
             }
         } // end-for (syntaxKey)
-        [colorings addObjectsFromArray:[self coloringsForOtherInvisibleChars]];
         
     } @catch (NSException *exception) {
         // 何もしない
         NSLog(@"ERROR in \"%s\" reason: %@", __PRETTY_FUNCTION__, [exception reason]);
+    } @finally {
+        // カラーリング対象文字列を片づける
+        [self setColoringString:nil];
+        
     }
     
-    // 不要な変数を片づける
-    [self setColoringString:nil];
-    
-    // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
-    [self applyColorings:colorings range:coloringRange];
-    
-    // インジーケータシートを片づける
-    if ([self indicatorController]) {
-        [[self indicatorController] endSheet];
-        [self setIndicatorController:nil];
+    return colorings;
+}
+
+
+// ------------------------------------------------------
+/// カラーリングを実行
+- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange
+// ------------------------------------------------------
+{
+    // カラーリング辞書のチェック
+    if ([self coloringDictionary] == nil) {
+        [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
+        [self setCompletionWordsFromColoringDictionary];
+        [self setSimpleWordsCharacterSet];
     }
+    if ([self coloringDictionary] == nil) { return; }
+    
+    // カラーリング対象の文字列
+    NSString *coloringString = [wholeString substringWithRange:coloringRange];
+    if ([coloringString length] == 0) { return; }
+    
+    // カラーリング不要なら不可視文字のカラーリングだけして戻る
+    if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) ||
+        ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None", @"")]))
+    {
+        [self applyColorings:[self coloringsForOtherInvisibleCharsWithString:coloringString] range:coloringRange];
+        return;
+    }
+    
+    // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
+    // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
+    if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
+            NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
+            [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text...", nil)]];
+            [[self indicatorController] beginSheetForWindow:documentWindow];
+    }
+    
+    // バックグラウンドで抽出
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ @synchronized(self) {
+        NSArray *colorings = [self coloringsForAllSyntaxWithString:coloringString];
+        
+        // 不可視文字の追加
+        colorings = [colorings arrayByAddingObjectsFromArray:[self coloringsForOtherInvisibleCharsWithString:coloringString]];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
+            [self applyColorings:colorings range:coloringRange];
+            
+            // インジーケータシートを片づける
+            if ([self indicatorController]) {
+                [[self indicatorController] endSheet];
+                [self setIndicatorController:nil];
+            }
+        });
+    }}); // end bdispatch_async (background)
 }
 
 
@@ -1076,6 +1074,24 @@ static NSArray *kSyntaxDictKeys;
                                                   value:coloring[ColorKey] forCharacterRange:range];
         }
     }
+}
+
+
+// ------------------------------------------------------
+/// 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
+- (NSUInteger)numberOfEscapeSequencesInString:(NSString *)string
+// ------------------------------------------------------
+{
+    NSUInteger count = 0;
+    
+    for (NSInteger i = [string length] - 1; i >= 0; i--) {
+        if ([string characterAtIndex:i] == '\\') {
+            count++;
+        } else {
+            break;
+        }
+    }
+    return count;
 }
 
 @end
