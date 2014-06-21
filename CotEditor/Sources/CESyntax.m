@@ -41,6 +41,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
+// local constrains (QC might abbr of Quotes/Comment)
+static NSString *const QCPositionKey = @"QCPositionKey";
+static NSString *const QCPairKindKey = @"QCPairKindKey";
+static NSString *const QCStartEndKey = @"QCStartEndKey";
+static NSString *const QCLengthKey = @"QCLengthKey";
+
+typedef NS_ENUM(NSUInteger, QCPairKind) {
+    QCNotUseKind,
+    QCSingleQuotesKind,
+    QCDoubleQuotesKind,
+    QCCommentKind
+};
+
+typedef NS_ENUM(NSUInteger, QCStartEndType) {
+    QCNotUseStartEnd,
+    QCStart,
+    QCEnd
+};
+
+
 @interface CESyntax ()
 
 @property (nonatomic, copy) NSDictionary *coloringDictionary;
@@ -447,20 +467,21 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
 - (NSArray *)rangesBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase
-                    doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
+                    doColoring:(BOOL)doColoring pairStringKind:(QCPairKind)pairKind
 // ------------------------------------------------------
 {
     NSString *escapesCheckStr = nil;
     NSScanner *scanner = [NSScanner scannerWithString:[self localString]];
     NSUInteger localLength = [[self localString] length];
     NSUInteger start = 0, numberOfEscapes = 0, end = 0;
-    NSUInteger beginLength = 0, endLength = 0, escapesCheckLength;
-    NSUInteger startEnd = 0;
+    NSUInteger escapesCheckLength;
+    NSUInteger beginLength = [beginString length];
+    NSUInteger endLength = [endString length];
+    QCStartEndType startEnd = QCNotUseStartEnd;
     NSRange attrRange, tmpRange;
-
-    beginLength = [beginString length];
+    
     if (beginLength < 1) { return nil; }
-    endLength = [endString length];
+    
     [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
     NSMutableArray *ranges = [[NSMutableArray alloc] initWithCapacity:10];
@@ -479,11 +500,11 @@ static NSArray *kSyntaxDictKeys;
                 continue;
             }
             if (!doColoring) {
-                startEnd = (pairKind >= k_QC_CommentBaseNum) ? k_QC_Start : k_notUseStartEnd;
-                [ranges addObject:@{k_QCPosition: @(start),
-                                    k_QCPairKind: @(pairKind),
-                                    k_QCStartEnd: @(startEnd),
-                                    k_QCStrLength: @(beginLength)}];
+                startEnd = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
+                [ranges addObject:@{QCPositionKey: @(start),
+                                    QCPairKindKey: @(pairKind),
+                                    QCStartEndKey: @(startEnd),
+                                    QCLengthKey: @(beginLength)}];
             }
         } else {
             break;
@@ -509,11 +530,11 @@ static NSArray *kSyntaxDictKeys;
                             attrRange = NSMakeRange(start, end - start);
                             [ranges addObject:[NSValue valueWithRange:attrRange]];
                         } else {
-                            startEnd = (pairKind >= k_QC_CommentBaseNum) ? k_QC_End : k_notUseStartEnd;
-                            [ranges addObject:@{k_QCPosition: @(end - endLength),
-                                                k_QCPairKind: @(pairKind),
-                                                k_QCStartEnd: @(startEnd),
-                                                k_QCStrLength: @(endLength)}];
+                            startEnd = (pairKind == QCCommentKind) ? QCEnd : QCNotUseStartEnd;
+                            [ranges addObject:@{QCPositionKey: @(end - endLength),
+                                                QCPairKindKey: @(pairKind),
+                                                QCStartEndKey: @(startEnd),
+                                                QCLengthKey: @(endLength)}];
                         }
                         break;
                     }
@@ -531,7 +552,7 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 /// 指定された文字列を正規表現として検索し、位置を返す
 - (NSArray *)rangesRegularExpressionString:(NSString *)regexStr ignoreCase:(BOOL)ignoreCase
-                                doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
+                                doColoring:(BOOL)doColoring pairStringKind:(QCPairKind)pairKind
 // ------------------------------------------------------
 {
     __block NSMutableArray *ranges = [NSMutableArray array];
@@ -560,22 +581,17 @@ static NSArray *kSyntaxDictKeys;
                  return;
              }
              
-             NSUInteger QCStart = 0, QCEnd = 0;
+             QCStartEndType start = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
+             QCStartEndType end   = (pairKind == QCCommentKind) ? QCEnd : QCNotUseStartEnd;
              
-             if (pairKind >= k_QC_CommentBaseNum) {
-                 QCStart = k_QC_Start;
-                 QCEnd = k_QC_End;
-             } else {
-                 QCStart = QCEnd = k_notUseStartEnd;
-             }
-             [ranges addObject:@{k_QCPosition: @(attrRange.location),
-                                 k_QCPairKind: @(pairKind),
-                                 k_QCStartEnd: @(QCStart),
-                                 k_QCStrLength: @0U}];
-             [ranges addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
-                                 k_QCPairKind: @(pairKind),
-                                 k_QCStartEnd: @(QCEnd),
-                                 k_QCStrLength: @0U}];
+             [ranges addObject:@{QCPositionKey: @(attrRange.location),
+                                 QCPairKindKey: @(pairKind),
+                                 QCStartEndKey: @(start),
+                                 QCLengthKey: @0U}];
+             [ranges addObject:@{QCPositionKey: @(NSMaxRange(attrRange)),
+                                 QCPairKindKey: @(pairKind),
+                                 QCStartEndKey: @(end),
+                                 QCLengthKey: @0U}];
          }
      }];
     
@@ -592,7 +608,7 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
 - (NSArray *)rangesRegularExpressionBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase
-                                     doColoring:(BOOL)doColoring pairStringKind:(NSUInteger)pairKind
+                                     doColoring:(BOOL)doColoring pairStringKind:(QCPairKind)pairKind
 // ------------------------------------------------------
 {
     __block NSMutableArray *ranges = [NSMutableArray array];
@@ -633,21 +649,17 @@ static NSArray *kSyntaxDictKeys;
              [ranges addObject:[NSValue valueWithRange:attrRange]];
              
          } else {
-             NSUInteger QCStart = 0, QCEnd = 0;
-             if (pairKind >= k_QC_CommentBaseNum) {
-                 QCStart = k_QC_Start;
-                 QCEnd = k_QC_End;
-             } else {
-                 QCStart = QCEnd = k_notUseStartEnd;
-             }
-             [ranges addObject:@{k_QCPosition: @(attrRange.location),
-                                 k_QCPairKind: @(pairKind),
-                                 k_QCStartEnd: @(QCStart),
-                                 k_QCStrLength: @0U}];
-             [ranges addObject:@{k_QCPosition: @(NSMaxRange(attrRange)),
-                                 k_QCPairKind: @(pairKind),
-                                 k_QCStartEnd: @(QCEnd),
-                                 k_QCStrLength: @0U}];
+             QCStartEndType start = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
+             QCStartEndType end   = (pairKind == QCCommentKind) ? QCEnd : QCNotUseStartEnd;
+             
+             [ranges addObject:@{QCPositionKey: @(attrRange.location),
+                                 QCPairKindKey: @(pairKind),
+                                 QCStartEndKey: @(start),
+                                 QCLengthKey: @0U}];
+             [ranges addObject:@{QCPositionKey: @(NSMaxRange(attrRange)),
+                                 QCPairKindKey: @(pairKind),
+                                 QCStartEndKey: @(end),
+                                 QCLengthKey: @0U}];
          }
      }];
     
@@ -663,7 +675,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// コメントをカラーリング
-- (void)setAttrToCommentsWithSyntaxArray:(NSArray *)syntaxArray textColor:(NSColor *)textColor
+- (void)setAttrToCommentsWithSyntaxArray:(NSArray *)syntaxArray commentColor:(NSColor *)commentColor
                             singleQuotes:(BOOL)withSingleQuotes singleQuotesColor:(NSColor *)singleQuotesColor
                             doubleQuotes:(BOOL)withDoubleQuotes doubleQuotesColor:(NSColor *)doubleQuotesColor
 // ------------------------------------------------------
@@ -674,7 +686,6 @@ static NSArray *kSyntaxDictKeys;
     BOOL updatesIndicator = ([self indicatorController]);
 
     // コメント定義の位置配列を生成
-    NSUInteger i = 0;
     for (NSDictionary *strDict in syntaxArray) {
         if ([[self indicatorController] isCancelled]) { return; }
         
@@ -690,12 +701,12 @@ static NSArray *kSyntaxDictKeys;
                                                                               endString:endStr
                                                                              ignoreCase:ignoresCase
                                                                              doColoring:NO
-                                                                         pairStringKind:(k_QC_CommentBaseNum + i)]];
+                                                                         pairStringKind:QCCommentKind]];
             } else {
                 [positions addObjectsFromArray:[self rangesRegularExpressionString:beginStr
                                                                         ignoreCase:ignoresCase
                                                                         doColoring:NO
-                                                                    pairStringKind:(k_QC_CommentBaseNum + i)]];
+                                                                    pairStringKind:QCCommentKind]];
             }
         } else {
             if (endStr && ([endStr length] > 0)) {
@@ -703,7 +714,7 @@ static NSArray *kSyntaxDictKeys;
                                                              endString:endStr
                                                             ignoreCase:ignoresCase
                                                             doColoring:NO
-                                                        pairStringKind:(k_QC_CommentBaseNum + i)]];
+                                                        pairStringKind:QCCommentKind]];
             } else {
                 NSNumber *len = @([beginStr length]);
                 NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
@@ -716,17 +727,16 @@ static NSArray *kSyntaxDictKeys;
                 }
             }
         }
-        i++;
     } // end-for
     // シングルクォート定義があれば位置配列を生成、マージ
     if (withSingleQuotes) {
         [positions addObjectsFromArray:[self rangesBeginString:@"\'" endString:@"\'" ignoreCase:NO
-                                                    doColoring:NO pairStringKind:k_QC_SingleQ]];
+                                                    doColoring:NO pairStringKind:QCSingleQuotesKind]];
     }
     // ダブルクォート定義があれば位置配列を生成、マージ
     if (withDoubleQuotes) {
         [positions addObjectsFromArray:[self rangesBeginString:@"\"" endString:@"\"" ignoreCase:NO
-                                                    doColoring:NO pairStringKind:k_QC_DoubleQ]];
+                                                    doColoring:NO pairStringKind:QCDoubleQuotesKind]];
     }
     // コメントもクォートもなければ、もどる
     if (([positions count] < 1) && ([simpleWordsDict count] < 1)) { return; }
@@ -741,65 +751,66 @@ static NSArray *kSyntaxDictKeys;
             NSRange range = [value rangeValue];
             range.location += [self localRange].location;
             
-            [self applyTextColor:textColor range:range];
+            [self applyTextColor:commentColor range:range];
         }
     }
 
     // カラーリング対象がなければ、もどる
     if ([positions count] < 1) { return; }
     
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_QCPosition ascending:YES];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:QCPositionKey ascending:YES];
     [positions sortUsingDescriptors:@[descriptor]];
     
     NSUInteger coloringCount = [positions count];
     NSColor *color;
     NSRange coloringRange;
-    NSUInteger j, index = 0;
-    NSUInteger start, end, checkStartEnd;
-    NSUInteger QCKind = k_notUseKind;
+    NSUInteger i, index = 0;
+    NSUInteger start, end;
+    QCStartEndType checkStartEnd;
+    QCPairKind QCKind = QCNotUseKind;
     
     while (index < coloringCount) {
         // インジケータ更新
-        if (updatesIndicator && (index % 10 == 0)) {
+        if (updatesIndicator) {
             [[self indicatorController] progressIndicator:10.0 * 200 / coloringCount];
         }
         
         NSDictionary *curRecord = positions[index];
-        if (QCKind == k_notUseKind) {
-            if ([curRecord[k_QCStartEnd] unsignedIntegerValue] == k_QC_End) {
+        if (QCKind == QCNotUseKind) {
+            if ([curRecord[QCStartEndKey] unsignedIntegerValue] == QCEnd) {
                 index++;
                 continue;
             }
-            QCKind = [curRecord[k_QCPairKind] unsignedIntegerValue];
-            start = [curRecord[k_QCPosition] unsignedIntegerValue];
+            QCKind = [curRecord[QCPairKindKey] unsignedIntegerValue];
+            start = [curRecord[QCPositionKey] unsignedIntegerValue];
             index++;
             continue;
         }
         
-        if (QCKind == [curRecord[k_QCPairKind] unsignedIntegerValue]) {
-            if (QCKind == k_QC_SingleQ) {
+        if (QCKind == [curRecord[QCPairKindKey] unsignedIntegerValue]) {
+            if (QCKind == QCSingleQuotesKind) {
                 color = singleQuotesColor;
-            } else if (QCKind == k_QC_DoubleQ) {
+            } else if (QCKind == QCDoubleQuotesKind) {
                 color = doubleQuotesColor;
-            } else if (QCKind >= k_QC_CommentBaseNum) {
-                color = textColor;
+            } else if (QCKind == QCCommentKind) {
+                color = commentColor;
             } else {
                 NSLog(@"%s \n Can not set Attrs.", __PRETTY_FUNCTION__);
                 break;
             }
-            end = [curRecord[k_QCPosition] unsignedIntegerValue] + [curRecord[k_QCStrLength] unsignedIntegerValue];
+            end = [curRecord[QCPositionKey] unsignedIntegerValue] + [curRecord[QCLengthKey] unsignedIntegerValue];
             coloringRange = NSMakeRange(start + [self localRange].location, end - start);
             [self applyTextColor:color range:coloringRange];
-            QCKind = k_notUseKind;
+            QCKind = QCNotUseKind;
             index++;
         } else {
             // 「終わり」があるか調べる
             BOOL hasEnd = NO;
-            for (j = (index + 1); j < coloringCount; j++) {
-                NSDictionary *checkRecord = positions[j];
-                if (QCKind == [checkRecord[k_QCPairKind] unsignedIntegerValue]) {
-                    checkStartEnd = [checkRecord[k_QCStartEnd] unsignedIntegerValue];
-                    if ((checkStartEnd == k_notUseStartEnd) || (checkStartEnd == k_QC_End)) {
+            for (i = (index + 1); i < coloringCount; i++) {
+                NSDictionary *checkRecord = positions[i];
+                if (QCKind == [checkRecord[QCPairKindKey] unsignedIntegerValue]) {
+                    checkStartEnd = [checkRecord[QCStartEndKey] unsignedIntegerValue];
+                    if ((checkStartEnd == QCNotUseStartEnd) || (checkStartEnd == QCEnd)) {
                         hasEnd = YES;
                         break;
                     }
@@ -807,14 +818,14 @@ static NSArray *kSyntaxDictKeys;
             }
             // 「終わり」があればそこへジャンプ、なければ最後までカラーリングして、抜ける
             if (hasEnd) {
-                index = j;
+                index = i;
             } else {
-                if (QCKind == k_QC_SingleQ) {
+                if (QCKind == QCSingleQuotesKind) {
                     color = singleQuotesColor;
-                } else if (QCKind == k_QC_DoubleQ) {
+                } else if (QCKind == QCDoubleQuotesKind) {
                     color = doubleQuotesColor;
-                } else if (QCKind >= k_QC_CommentBaseNum) {
-                    color = textColor;
+                } else if (QCKind == QCCommentKind) {
+                    color = commentColor;
                 } else {
                     NSLog(@"%s \n Can not set Attrs.", __PRETTY_FUNCTION__);
                     break;
@@ -935,7 +946,7 @@ static NSArray *kSyntaxDictKeys;
 
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
-                [self setAttrToCommentsWithSyntaxArray:strDicts textColor:textColor
+                [self setAttrToCommentsWithSyntaxArray:strDicts commentColor:textColor
                                           singleQuotes:isSingleQuotes singleQuotesColor:singleQuotesColor
                                           doubleQuotes:isDoubleQuotes doubleQuotesColor:doubleQuotesColor];
                 break;
@@ -963,13 +974,13 @@ static NSArray *kSyntaxDictKeys;
                                                                 endString:endStr
                                                                ignoreCase:ignoresCase
                                                                doColoring:YES
-                                                           pairStringKind:k_notUseKind]];
+                                                           pairStringKind:QCNotUseKind]];
                         } else {
                             [targetRanges addObjectsFromArray:
                              [self rangesRegularExpressionString:beginStr
                                                       ignoreCase:ignoresCase
                                                       doColoring:YES
-                                                  pairStringKind:k_notUseKind]];
+                                                  pairStringKind:QCNotUseKind]];
                         }
                     } else {
                         if ([endStr length] > 0) {
@@ -993,7 +1004,7 @@ static NSArray *kSyntaxDictKeys;
                                            endString:endStr
                                           ignoreCase:ignoresCase
                                           doColoring:YES
-                                      pairStringKind:k_notUseKind]];
+                                      pairStringKind:QCNotUseKind]];
                         } else {
                             NSNumber *len = @([beginStr length]);
                             NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
