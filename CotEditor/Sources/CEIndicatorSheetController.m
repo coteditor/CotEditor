@@ -35,11 +35,13 @@
 
 @interface CEIndicatorSheetController ()
 
-@property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
+@property (weak) IBOutlet NSProgressIndicator *indicator;
 
-@property (nonatomic, copy) NSString *message;
-@property (nonatomic) NSModalSession modalSession;
-@property BOOL isCancelButtonPressed;
+@property (copy) NSString *message;
+@property NSModalSession modalSession;
+
+// readonly
+@property (readwrite) BOOL isCancelled;
 
 @end
 
@@ -65,6 +67,7 @@
     self = [super initWithWindowNibName:@"Indicator"];
     if (self) {
         [self setMessage:message];
+        [self setInformativeText:NSLocalizedString(@"Please wait for a while.", nil)];
     }
     return self;
 }
@@ -144,15 +147,6 @@
 }
 
 
-// ------------------------------------------------------
-/// キャンセルされたかどうかを返す
-- (BOOL)isCancelled
-// ------------------------------------------------------
-{
-    return [self modalSession] && [self isCancelButtonPressed];
-}
-
-
 
 #pragma mark Action Messages
 
@@ -167,7 +161,7 @@
 // ------------------------------------------------------
 {
     [NSApp abortModal];
-    [self setIsCancelButtonPressed:YES];
+    [self setIsCancelled:YES];
 }
 
 @end

@@ -163,7 +163,21 @@ http://www.aynimac.com/
 /* CESyntax */
 // Outline Menu title
 "<Outline Menu>" = "<アウトラインメニュー>";
+
+// coloring indicator
 "Coloring text..." = "テキストのカラーリング中...";
+"Please wait for a while." = "しばらくお待ちください...";
+"Extracting %@" = "%@を抽出中";
+"Applying colors to text" = "テキストにカラーを適応中";
+"keywords" = "キーワード";
+"commands" = "コマンド";
+"categories" = "カテゴリ";
+"variables" = "変数";
+"values" = "値";
+"numbers" = "数値";
+"strings" = "文字列";
+"characters" = "文字";
+"comments" = "コメント";
 
 
 /* CEPreferencesWindowController */

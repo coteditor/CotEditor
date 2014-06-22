@@ -47,10 +47,10 @@ static NSString *const QCPairKindKey = @"QCPairKindKey";
 static NSString *const QCStartEndKey = @"QCStartEndKey";
 static NSString *const QCLengthKey = @"QCLengthKey";
 
-static NSString *const QCCommentKind = @"QCCommentKind";  // for pairKind
-
 static NSString *const ColorKey = @"ColorKey";
 static NSString *const RangeKey = @"RangeKey";
+
+static NSString *const QCCommentKind = @"QCCommentKind";  // for pairKind
 
 typedef NS_ENUM(NSUInteger, QCStartEndType) {
     QCNotUseStartEnd,
@@ -486,7 +486,6 @@ static NSArray *kSyntaxDictKeys;
     NSUInteger endLength = [endString length];
     QCStartEndType startEnd = QCNotUseStartEnd;
     NSRange attrRange, escapesCheckRange;
-    NSInteger i = 0;
     
     QCStartEndType startType = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
     QCStartEndType endType   = (pairKind == QCCommentKind) ? QCEnd : QCNotUseStartEnd;
@@ -496,6 +495,10 @@ static NSArray *kSyntaxDictKeys;
     [scanner setCaseSensitive:!ignoreCase];
 
     while (![scanner isAtEnd]) {
+        if ([[self indicatorController] isCancelled]) {
+            return nil;
+        }
+        
         [scanner scanUpToString:beginString intoString:nil];
         start = [scanner scanLocation];
         if (start + beginLength < localLength) {
@@ -517,10 +520,6 @@ static NSArray *kSyntaxDictKeys;
             break;
         }
         while (1) {
-            i++;
-            if ((i % 10 == 0) && [[self indicatorController] isCancelled]) {
-                return nil;
-            }
             [scanner scanUpToString:endString intoString:nil];
             end = [scanner scanLocation] + endLength;
             if (end <= localLength) {
@@ -879,6 +878,13 @@ static NSArray *kSyntaxDictKeys;
             NSUInteger count = [strDicts count];
             if (!strDicts) { continue; }
             
+            // インジケータシートのメッセージを更新
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[self indicatorController] setInformativeText:
+                 [NSString stringWithFormat:NSLocalizedString(@"Extracting %@", nil),
+                  NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
+            });
+            
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
                 [colorings addObjectsFromArray:[self coloringsForCommentsWithSyntaxArray:strDicts
@@ -984,10 +990,10 @@ static NSArray *kSyntaxDictKeys;
     } @catch (NSException *exception) {
         // 何もしない
         NSLog(@"ERROR in \"%s\" reason: %@", __PRETTY_FUNCTION__, [exception reason]);
+        
     } @finally {
         // カラーリング対象文字列を片づける
         [self setColoringString:nil];
-        
     }
     
     return colorings;
@@ -1036,6 +1042,9 @@ static NSArray *kSyntaxDictKeys;
         colorings = [colorings arrayByAddingObjectsFromArray:[self coloringsForOtherInvisibleCharsWithString:coloringString]];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
+            // インジケータシートのメッセージを更新
+            [[self indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+            
             // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
             [self applyColorings:colorings range:coloringRange];
             
