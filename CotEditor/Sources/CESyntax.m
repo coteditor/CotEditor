@@ -901,9 +901,9 @@ static NSArray *kSyntaxDictKeys;
             
             NSMutableArray *targetRanges = [[NSMutableArray alloc] initWithCapacity:10];
             for (NSDictionary *strDict in strDicts) {
-                // キャンセルされたら、現在あるカラーリングを削除して戻る
+                // キャンセルされたら現在実行中の抽出は破棄して戻る
                 if ([[self indicatorController] isCancelled]) {
-                    return @[];
+                    return nil;
                 }
                 
                 @autoreleasepool {
@@ -987,6 +987,9 @@ static NSArray *kSyntaxDictKeys;
             }
         } // end-for (syntaxKey)
         
+        // 不可視文字の追加
+        [colorings addObjectsFromArray:[self coloringsForOtherInvisibleCharsWithString:string]];
+        
     } @catch (NSException *exception) {
         // 何もしない
         NSLog(@"ERROR in \"%s\" reason: %@", __PRETTY_FUNCTION__, [exception reason]);
@@ -1038,15 +1041,14 @@ static NSArray *kSyntaxDictKeys;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ @synchronized(self) {
         NSArray *colorings = [self coloringsForAllSyntaxWithString:coloringString];
         
-        // 不可視文字の追加
-        colorings = [colorings arrayByAddingObjectsFromArray:[self coloringsForOtherInvisibleCharsWithString:coloringString]];
-        
         dispatch_sync(dispatch_get_main_queue(), ^{
-            // インジケータシートのメッセージを更新
-            [[self indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-            
-            // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
-            [self applyColorings:colorings range:coloringRange];
+            if (colorings) {
+                // インジケータシートのメッセージを更新
+                [[self indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                
+                // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
+                [self applyColorings:colorings range:coloringRange];
+            }
             
             // インジーケータシートを片づける
             if ([self indicatorController]) {
