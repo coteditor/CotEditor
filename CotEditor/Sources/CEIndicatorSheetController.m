@@ -119,10 +119,14 @@
 - (void)beginSheetForWindow:(NSWindow *)window
 // ------------------------------------------------------
 {
-    [NSApp beginSheet:[self window] modalForWindow:window
-        modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    
-    [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [window beginSheet:[self window] completionHandler:nil];
+        
+    } else {
+        [NSApp beginSheet:[self window] modalForWindow:window
+            modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+        [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
+    }
 }
 
 
@@ -131,10 +135,12 @@
 - (void)endSheet
 // ------------------------------------------------------
 {
-    [NSApp endModalSession:[self modalSession]];
-    [self setModalSession:nil];
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) { // on Mountain Lion or earlier
+        [NSApp endModalSession:[self modalSession]];
+        [self setModalSession:nil];
+        [NSApp endSheet:[self window]];
+    }
     
-    [NSApp endSheet:[self window]];
     [self close];
 }
 
@@ -160,7 +166,13 @@
 - (IBAction)cancelColoring:(id)sender
 // ------------------------------------------------------
 {
-    [NSApp abortModal];
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [[[self window] parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
+        
+    } else {
+        [NSApp abortModal];
+    }
+    
     [self setIsCancelled:YES];
 }
 
