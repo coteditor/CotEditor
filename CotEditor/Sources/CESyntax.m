@@ -158,7 +158,7 @@ static NSArray *kSyntaxDictKeys;
 {
     if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
     
-    [self colorString:wholeString range:NSMakeRange(0, [wholeString length])];
+    [self colorString:wholeString range:NSMakeRange(0, [wholeString length]) onMainThread:NO];
 }
 
 
@@ -188,7 +188,7 @@ static NSArray *kSyntaxDictKeys;
     // 表示領域の前もある程度カラーリングの対象に含める
     start -= MIN(start, [[NSUserDefaults standardUserDefaults] integerForKey:k_key_coloringRangeBufferLength]);
     
-    [self colorString:wholeString range:NSMakeRange(start, end - start)];
+    [self colorString:wholeString range:NSMakeRange(start, end - start) onMainThread:YES];
 }
 
 
@@ -879,11 +879,9 @@ static NSArray *kSyntaxDictKeys;
             if (!strDicts) { continue; }
             
             // インジケータシートのメッセージを更新
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[self indicatorController] setInformativeText:
-                 [NSString stringWithFormat:NSLocalizedString(@"Extracting %@", nil),
-                  NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
-            });
+            [[self indicatorController] setInformativeText:
+             [NSString stringWithFormat:NSLocalizedString(@"Extracting %@", nil),
+              NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
             
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
@@ -1005,7 +1003,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange
+- (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange onMainThread:(BOOL)onMainThread
 // ------------------------------------------------------
 {
     // カラーリング辞書のチェック
@@ -1037,11 +1035,13 @@ static NSArray *kSyntaxDictKeys;
             [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
-    // バックグラウンドで抽出
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ @synchronized(self) {
+    dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    
+    // 任意のスレッドで実行
+    dispatch_async(queue, ^{ @synchronized(self) {
         NSArray *colorings = [self coloringsForAllSyntaxWithString:coloringString];
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        dispatch_block_t completion = ^{
             if (colorings) {
                 // インジケータシートのメッセージを更新
                 [[self indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
@@ -1055,8 +1055,15 @@ static NSArray *kSyntaxDictKeys;
                 [[self indicatorController] endSheet];
                 [self setIndicatorController:nil];
             }
-        });
-    }}); // end bdispatch_async (background)
+        };
+        
+        // メインスレッドで実行
+        if ([NSThread isMainThread]) {
+            completion();
+        } else {
+            dispatch_sync(dispatch_get_main_queue(), completion);
+        }
+    }}); // end dispatch_async+@synchronized
 }
 
 
