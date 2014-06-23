@@ -137,13 +137,17 @@
 - (void)endSheet
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) { // on Mountain Lion or earlier
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
+        
+    } else {
+        [NSApp abortModal];
         [NSApp endModalSession:[self modalSession]];
         [self setModalSession:nil];
         [NSApp endSheet:[self window]];
     }
     
-    [self close];
+    [[self window] close];
 }
 
 // ------------------------------------------------------
@@ -164,17 +168,10 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// カラーリング中止、インジケータシートのモーダルを停止
+/// カラーリング中止
 - (IBAction)cancelColoring:(id)sender
 // ------------------------------------------------------
 {
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
-        [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
-        
-    } else {
-        [NSApp abortModal];
-    }
-    
     [self setIsCancelled:YES];
 }
 

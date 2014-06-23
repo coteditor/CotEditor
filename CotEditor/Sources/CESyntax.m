@@ -1030,9 +1030,9 @@ static NSArray *kSyntaxDictKeys;
     // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
     if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
-            NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
-            [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text...", nil)]];
-            [[self indicatorController] beginSheetForWindow:documentWindow];
+        NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
+        [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text...", nil)]];
+        [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
     dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
