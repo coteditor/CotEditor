@@ -158,12 +158,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName
+- (void)setSyntaxWithName:(NSString *)syntaxName
 // ------------------------------------------------------
 {
     if (!syntaxName) { return; }
 
-    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxStyleNameToSyntax:)
+    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxWithName:)
                                      withObject:syntaxName];
 }
 

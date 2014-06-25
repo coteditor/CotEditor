@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setUseAntialiasWithNumber:(NSNumber *)inNumber;
 - (BOOL)showPageGuide;
 - (void)setCaretToBeginning;
-- (void)setSyntaxStyleNameToSyntax:(NSString *)inName;
+- (void)setSyntaxWithName:(NSString *)inName;
 - (void)recolorAllTextViewString;
 - (void)updateOutlineMenu;
 - (void)updateOutlineMenuSelection;

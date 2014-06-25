@@ -70,6 +70,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 @property (nonatomic) CELayoutManager *layoutManager;
 @property (atomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (atomic) BOOL isNone;
 
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
@@ -79,6 +80,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 
 // readonly
+@property (nonatomic, copy, readwrite) NSString *syntaxStyleName;
 @property (nonatomic, copy, readwrite) NSArray *completionWords;
 @property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
 @property (atomic, readwrite) BOOL isColoring;
@@ -123,35 +125,30 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// designated initializer
-- (instancetype)initWithSyntaxName:(NSString *)syntaxName layoutManager:(CELayoutManager *)layoutManager isPrinting:(BOOL)isPrinting
+- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(CELayoutManager *)layoutManager isPrinting:(BOOL)isPrinting
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        [self setSyntaxStyleName:syntaxName];
-        [self setLayoutManager:layoutManager];
-        [self setIsPrinting:isPrinting];
+        CESyntaxManager *manager = [CESyntaxManager sharedManager];
+        
+        if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
+            _isNone = YES;
+            _syntaxStyleName = NSLocalizedString(@"None", nil);
+        } else if ([[manager styleNames] containsObject:styleName]) {
+            _syntaxStyleName = styleName;
+            _coloringDictionary = [manager styleWithStyleName:styleName];
+            
+            [self setCompletionWordsFromColoringDictionary];
+            [self setSimpleWordsCharacterSet];
+        } else {
+            return nil;
+        }
+        
+        _layoutManager = layoutManager;
+        _isPrinting = isPrinting;
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-/// 保持するstyle名をセット
-- (void)setSyntaxStyleName:(NSString *)styleName
-// ------------------------------------------------------
-{
-    CESyntaxManager *manager = [CESyntaxManager sharedManager];
-    NSArray *names = [manager styleNames];
-
-    if ([names containsObject:styleName] || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        [self setColoringDictionary:[manager styleWithStyleName:styleName]];
-
-        [self setCompletionWordsFromColoringDictionary];
-        [self setSimpleWordsCharacterSet];
-
-        _syntaxStyleName = styleName;
-    }
 }
 
 
@@ -160,7 +157,7 @@ static NSArray *kSyntaxDictKeys;
 - (void)colorAllString:(NSString *)wholeString
 // ------------------------------------------------------
 {
-    if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
+    if ([wholeString length] == 0) { return; }
     
     [self colorString:wholeString range:NSMakeRange(0, [wholeString length]) onMainThread:NO];
 }
@@ -171,7 +168,7 @@ static NSArray *kSyntaxDictKeys;
 - (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString
 // ------------------------------------------------------
 {
-    if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) { return; }
+    if ([wholeString length] == 0) { return; }
     
     NSRange wholeRange = NSMakeRange(0, [wholeString length]);
     NSRange effectiveRange;
@@ -201,7 +198,7 @@ static NSArray *kSyntaxDictKeys;
 - (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString
 // ------------------------------------------------------
 {
-    if (([wholeString length] == 0) || ([[self syntaxStyleName] length] == 0)) {
+    if (([wholeString length] == 0) || [self isNone]) {
         return @[];
     }
     
@@ -335,12 +332,10 @@ static NSArray *kSyntaxDictKeys;
 
 
 // ------------------------------------------------------
-/// 保持しているカラーリング辞書から補完文字列配列を生成
+/// 保持しているカラーリング辞書から補完文字列配列を生成 (invoke in init)
 - (void)setCompletionWordsFromColoringDictionary
 // ------------------------------------------------------
 {
-    if ([self coloringDictionary] == nil) { return; }
-    
     NSMutableArray *completionWords = [NSMutableArray array];
     NSMutableString *firstCharsString = [NSMutableString string];
     NSArray *completionDicts = [self coloringDictionary][k_SCKey_completionsArray];
@@ -383,12 +378,10 @@ static NSArray *kSyntaxDictKeys;
 
 
 // ------------------------------------------------------
-/// 保持しているカラーリング辞書から単純文字列検索のときに使う characterSet の辞書を生成
+/// 保持しているカラーリング辞書から単純文字列検索のときに使う characterSet の辞書を生成 (invoke in init)
 - (void)setSimpleWordsCharacterSet
 // ------------------------------------------------------
 {
-    if ([self coloringDictionary] == nil) { return; }
-    
     NSMutableDictionary *characterSets = [NSMutableDictionary dictionary];
     NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     
@@ -1010,22 +1003,12 @@ static NSArray *kSyntaxDictKeys;
 - (void)colorString:(NSString *)wholeString range:(NSRange)coloringRange onMainThread:(BOOL)onMainThread
 // ------------------------------------------------------
 {
-    // カラーリング辞書のチェック
-    if ([self coloringDictionary] == nil) {
-        [self setColoringDictionary:[[CESyntaxManager sharedManager] styleWithStyleName:[self syntaxStyleName]]];
-        [self setCompletionWordsFromColoringDictionary];
-        [self setSimpleWordsCharacterSet];
-    }
-    if ([self coloringDictionary] == nil) { return; }
-    
     // カラーリング対象の文字列
     NSString *coloringString = [wholeString substringWithRange:coloringRange];
     if ([coloringString length] == 0) { return; }
     
     // カラーリング不要なら不可視文字のカラーリングだけして戻る
-    if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) ||
-        ([[self syntaxStyleName] isEqualToString:NSLocalizedString(@"None", @"")]))
-    {
+    if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) || [self isNone]) {
         [self applyColorings:[self coloringsForOtherInvisibleCharsWithString:coloringString] range:coloringRange];
         return;
     }

@@ -283,7 +283,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     BOOL success = (name && ![[[self syntax] syntaxStyleName] isEqualToString:name]);
     if (success) {
-        [[self syntax] setSyntaxStyleName:name];
+        [[self splitView] setSyntaxWithName:name];
     }
     
     NSString *newName = [[self syntax] syntaxStyleName];
@@ -543,8 +543,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self syntax]) {
-        [[self splitView] setSyntaxStyleNameToSyntax:name];
-        [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+        if (![[[self syntax] syntaxStyleName] isEqualToString:name]) {
+            [[self splitView] setSyntaxWithName:name];
+            [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+        }
         if (recolorNow) {
             [self recolorAllString];
             if ([self showNavigationBar]) {
@@ -1071,7 +1073,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
     [[self splitView] adjustSubviews];
-    [subSplitView setSyntaxStyleNameToSyntax:[[self syntax] syntaxStyleName]];
+    [subSplitView setSyntaxWithName:[[self syntax] syntaxStyleName]];
     [[subSplitView syntax] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[subSplitView textView]];
