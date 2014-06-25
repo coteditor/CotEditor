@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-// local constrains (QC might abbr of Quotes/Comment)
+// local constants (QC might abbr of Quotes/Comment)
 static NSString *const QCPositionKey = @"QCPositionKey";
 static NSString *const QCPairKindKey = @"QCPairKindKey";
 static NSString *const QCStartEndKey = @"QCStartEndKey";
@@ -130,17 +130,15 @@ static NSArray *kSyntaxDictKeys;
 {
     self = [super init];
     if (self) {
-        CESyntaxManager *manager = [CESyntaxManager sharedManager];
-        
         if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
             _isNone = YES;
             _syntaxStyleName = NSLocalizedString(@"None", nil);
-        } else if ([[manager styleNames] containsObject:styleName]) {
+        } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             _syntaxStyleName = styleName;
-            _coloringDictionary = [manager styleWithStyleName:styleName];
+            _coloringDictionary = [[CESyntaxManager sharedManager] styleWithStyleName:styleName];
             
             [self setCompletionWordsFromColoringDictionary];
-            [self setSimpleWordsCharacterSet];
+            [self setSimpleWordsCharacterSetFromColoringDictionary];
         } else {
             return nil;
         }
@@ -255,6 +253,7 @@ static NSArray *kSyntaxDictKeys;
                                                   inString:wholeString
                                                     offset:0
                                                   template:template];
+                 
                  
                  // マッチした範囲の開始位置の行を得る
                  NSUInteger lineNum = 0, index = 0;
@@ -379,7 +378,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 保持しているカラーリング辞書から単純文字列検索のときに使う characterSet の辞書を生成 (invoke in init)
-- (void)setSimpleWordsCharacterSet
+- (void)setSimpleWordsCharacterSetFromColoringDictionary
 // ------------------------------------------------------
 {
     NSMutableDictionary *characterSets = [NSMutableDictionary dictionary];
@@ -677,7 +676,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
-- (NSArray *)coloringsForCommentsWithSyntaxArray:(NSArray *)syntaxArray commentColor:(NSColor *)commentColor quoteColors:(NSDictionary *)quoteColors
+- (NSArray *)extractCommentsWithSyntaxArray:(NSArray *)syntaxArray quoteColors:(NSDictionary *)quoteColors
 // ------------------------------------------------------
 {
     NSMutableArray *colorings = [NSMutableArray array];
@@ -686,6 +685,7 @@ static NSArray *kSyntaxDictKeys;
     NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     BOOL updatesIndicator = ([self indicatorController]);
     NSUInteger maxLength = [[self coloringString] length];
+    NSColor *commentsColor = [[self theme] commentsColor];
 
     // コメント定義の位置配列を生成
     for (NSDictionary *strDict in syntaxArray) {
@@ -747,7 +747,7 @@ static NSArray *kSyntaxDictKeys;
                                           charSet:[self simpleWordsCharacterSets][k_SCKey_commentsArray]];
         
         for (NSValue *value in ranges) {
-            [colorings addObject:@{ColorKey: commentColor,
+            [colorings addObject:@{ColorKey: commentsColor,
                                    RangeKey: value}];
         }
     }
@@ -784,7 +784,7 @@ static NSArray *kSyntaxDictKeys;
         }
         
         if (searchPairKind == position[QCPairKindKey]) {
-            color = quoteColors[searchPairKind] ? : commentColor;
+            color = quoteColors[searchPairKind] ? : commentsColor;
             
             end = [position[QCPositionKey] unsignedIntegerValue] + [position[QCLengthKey] unsignedIntegerValue];
             
@@ -810,7 +810,7 @@ static NSArray *kSyntaxDictKeys;
             if (hasEnd) {
                 index = i;
             } else {
-                color = quoteColors[searchPairKind] ? : commentColor;
+                color = quoteColors[searchPairKind] ? : commentsColor;
                 
                 [colorings addObject:@{ColorKey: color,
                                        RangeKey: [NSValue valueWithRange:NSMakeRange(start, maxLength - start)]}];
@@ -824,7 +824,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 不可視文字表示時にカラーリング範囲配列を返す
-- (NSArray *)coloringsForOtherInvisibleCharsWithString:(NSString *)string
+- (NSArray *)extractOtherInvisibleCharsFromString:(NSString *)string
 // ------------------------------------------------------
 {
     if (![[self layoutManager] showOtherInvisibles]) { return nil; }
@@ -854,7 +854,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 対象範囲の全てのカラーリング範囲配列を返す
-- (NSArray *)coloringsForAllSyntaxWithString:(NSString *)string
+- (NSArray *)extractAllSyntaxFromString:(NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray *colorings = [NSMutableArray array];  // ColorKey と RangeKey の dict配列
@@ -882,9 +882,8 @@ static NSArray *kSyntaxDictKeys;
             
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
-                [colorings addObjectsFromArray:[self coloringsForCommentsWithSyntaxArray:strDicts
-                                                                            commentColor:textColor
-                                                                             quoteColors:quoteColors]];
+                [colorings addObjectsFromArray:[self extractCommentsWithSyntaxArray:strDicts
+                                                                        quoteColors:quoteColors]];
                 break;
             }
             if (count < 1) {
@@ -983,7 +982,7 @@ static NSArray *kSyntaxDictKeys;
         } // end-for (syntaxKey)
         
         // 不可視文字の追加
-        [colorings addObjectsFromArray:[self coloringsForOtherInvisibleCharsWithString:string]];
+        [colorings addObjectsFromArray:[self extractOtherInvisibleCharsFromString:string]];
         
     } @catch (NSException *exception) {
         // 何もしない
@@ -1009,7 +1008,7 @@ static NSArray *kSyntaxDictKeys;
     
     // カラーリング不要なら不可視文字のカラーリングだけして戻る
     if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) || [self isNone]) {
-        [self applyColorings:[self coloringsForOtherInvisibleCharsWithString:coloringString] range:coloringRange];
+        [self applyColorings:[self extractOtherInvisibleCharsFromString:coloringString] range:coloringRange];
         return;
     }
     
@@ -1028,7 +1027,7 @@ static NSArray *kSyntaxDictKeys;
     
     // 任意のスレッドで実行
     dispatch_async(queue, ^{ @synchronized(self) {
-        NSArray *colorings = [self coloringsForAllSyntaxWithString:coloringString];
+        NSArray *colorings = [self extractAllSyntaxFromString:coloringString];
         
         dispatch_block_t completion = ^{
             if (colorings) {
