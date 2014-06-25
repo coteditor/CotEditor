@@ -1073,14 +1073,16 @@ static NSArray *kSyntaxDictKeys;
     
     // カラーリング実行
     for (NSDictionary *coloring in colorings) {
-        NSRange range = [coloring[RangeKey] rangeValue];
-        range.location += coloringRange.location;
-        
-        if ([self isPrinting]) {
-            [[[self layoutManager] firstTextView] setTextColor:coloring[ColorKey] range:range];
-        } else {
-            [[self layoutManager] addTemporaryAttribute:NSForegroundColorAttributeName
-                                                  value:coloring[ColorKey] forCharacterRange:range];
+        @autoreleasepool {
+            NSRange range = [coloring[RangeKey] rangeValue];
+            range.location += coloringRange.location;
+            
+            if ([self isPrinting]) {
+                [[[self layoutManager] firstTextView] setTextColor:coloring[ColorKey] range:range];
+            } else {
+                [[self layoutManager] addTemporaryAttribute:NSForegroundColorAttributeName
+                                                      value:coloring[ColorKey] forCharacterRange:range];
+            }
         }
     }
 }
