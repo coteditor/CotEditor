@@ -168,7 +168,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil;
     [self setFinderLockInfo:finderLockInfo];
     [self setPermissionInfo:[NSString stringWithFormat:@"%tu", [fileAttributes filePosixPermissions]]];
+    NSNumber *beforeFileSize = [self fileSizeInfo];
     [self setFileSizeInfo:@([fileAttributes fileSize])];
+    if (![beforeFileSize isEqualToNumber:[self fileSizeInfo]]) {
+        [[self editorView] updateLineEndingsInStatusAndInfo:false];
+    }
 }
 
 

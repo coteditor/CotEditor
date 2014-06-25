@@ -955,20 +955,15 @@ static NSArray *kSyntaxDictKeys;
     // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
     NSWindow *documentWindow = nil;
     NSWindow *sheet = nil;
-    if (([self showColoringIndicatorTextLength] > 0) && ([self updateRange].length > [self showColoringIndicatorTextLength])) {
+    if (![self isPrinting] && ([self showColoringIndicatorTextLength] > 0) && ([self updateRange].length > [self showColoringIndicatorTextLength])) {
         if (![self coloringIndicator]) {
             [NSBundle loadNibNamed:@"Indicator" owner:self];
             [[self coloringIndicator] setIndeterminate:NO];
         }
         [self setIsIndicatorShown:YES];
         [self setDoubleIndicator:0];
-        if ([self isPrinting]) {
-            documentWindow = [NSApp mainWindow];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Coloring print text...", nil)];
-        } else {
-            documentWindow = [[[self layoutManager] firstTextView] window];
-            [[self coloringCaption] setStringValue:NSLocalizedString(@"Coloring text...", nil)];
-        }
+        documentWindow = [[[self layoutManager] firstTextView] window];
+        [[self coloringCaption] setStringValue:NSLocalizedString(@"Coloring text...", nil)];
         sheet = [[self coloringIndicator] window];
         [NSApp beginSheet:sheet
            modalForWindow:documentWindow

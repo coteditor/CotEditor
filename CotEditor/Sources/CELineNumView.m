@@ -68,6 +68,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                  selector:@selector(updateLineNumber:)
                                                      name:NSWindowDidResizeNotification
                                                    object:[self window]];
+        
+        // observe opacity setting change
+        [[NSUserDefaults standardUserDefaults] addObserver:self
+                                                forKeyPath:k_key_windowAlpha
+                                                   options:NSKeyValueObservingOptionNew
+                                                   context:nil];
     }
     return self;
 }
@@ -79,6 +85,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:k_key_windowAlpha];
+}
+
+
+
+// ------------------------------------------------------
+/// apply user defaults change
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    if ([keyPath isEqualToString:k_key_windowAlpha]) {
+        [self setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
+        [self setNeedsDisplay:YES];
+    }
 }
 
 
