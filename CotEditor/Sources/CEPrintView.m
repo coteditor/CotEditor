@@ -116,6 +116,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// ページ分割を自前でやるかを返す
+-(BOOL)knowsPageRange:(NSRangePointer)outRange
+// ------------------------------------------------------
+{
+    // テキストビューのサイズをマージンに合わせて更新
+    NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
+    [self setFrameSize:NSMakeSize([printInfo paperSize].width - (2 * k_printTextHorizontalMargin),
+                                  [printInfo paperSize].height - ([printInfo topMargin] + [printInfo bottomMargin]))];
+    
+	return [super knowsPageRange:outRange];
+}
+
+
+// ------------------------------------------------------
 /// ヘッダ／フッタの描画
 - (void)drawPageBorderWithSize:(NSSize)borderSize
 // ------------------------------------------------------
@@ -137,7 +151,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     // フレームを設定
-    [self setFrame:NSMakeRect(0, 0, borderSize.width, borderSize.height)];
+    [self setFrameSize:borderSize];
 
     // 描画開始
     // （このビューは isFlipped が YES なので drawAtPoint: は左上が原点となる）

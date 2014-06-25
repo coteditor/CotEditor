@@ -101,7 +101,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // set the values
         [self setupColors];
-        [self setupFromDefaults];
+        [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
+        [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
+        [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
+        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
+            [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
+            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
+        }
+        [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
         [self setFont:font];
         [self setMinSize:frameRect.size];
         [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -123,10 +130,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self applyTypingAttributes];
         
         // 設定の変更を監視
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(setupFromDefaults)
-                                                     name:NSUserDefaultsDidChangeNotification
-                                                   object:nil];
+        for (NSString *key in [self observedDefaultKeys]) {
+            [[NSUserDefaults standardUserDefaults] addObserver:self
+                                                    forKeyPath:key
+                                                       options:NSKeyValueObservingOptionNew
+                                                       context:NULL];
+        }
     }
 
     return self;
@@ -138,7 +147,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    for (NSString *key in [self observedDefaultKeys]) {
+        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
+    }
+}
+
+
+// ------------------------------------------------------
+/// ユーザ設定の変更を反映する
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    id newValue = change[NSKeyValueChangeNewKey];
+    
+    if ([keyPath isEqualToString:k_key_autoExpandTab]) {
+        [self setIsAutoTabExpandEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:k_key_smartInsertAndDelete]) {
+        [self setSmartInsertDeleteEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:k_key_checkSpellingAsType]) {
+        [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
+        
+    } else if ([keyPath isEqualToString:k_key_enableSmartQuotes]) {
+        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
+            [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
+            [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
+        }
+        
+    } else if ([keyPath isEqualToString:k_key_windowAlpha]) {
+        [self setBackgroundAlpha:(CGFloat)[newValue doubleValue]];
+    }
 }
 
 
@@ -294,7 +333,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSString *lineStr = [[self string] substringWithRange:
                              NSMakeRange(lineRange.location,
                                          lineRange.length - (NSMaxRange(lineRange) - NSMaxRange(selectedRange)))];
-        NSRange indentRange = [lineStr rangeOfString:@"^[ \\t]+" options:NSRegularExpressionSearch];
+        NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
         
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
         if ((indentRange.location != NSNotFound) &&
@@ -1842,22 +1881,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 現在のユーザ設定を反映する
-- (void)setupFromDefaults
+/// 変更を監視するデフォルトキー
+- (NSArray *)observedDefaultKeys
 // ------------------------------------------------------
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
-    
-    [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
-    [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
-    
-    if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-        [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
-        [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
-    }
-    [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
+    return @[k_key_windowAlpha,
+             k_key_autoExpandTab,
+             k_key_smartInsertAndDelete,
+             k_key_checkSpellingAsType,
+             k_key_enableSmartQuotes];
 }
 
 
