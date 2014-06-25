@@ -78,6 +78,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 // readonly
 @property (nonatomic, copy, readwrite) NSArray *completionWords;
 @property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
+@property (atomic, readwrite) BOOL isColoring;
 
 @end
 
@@ -1035,6 +1036,8 @@ static NSArray *kSyntaxDictKeys;
         [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
+    [self setIsColoring:YES];
+    
     dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     
     // 任意のスレッドで実行
@@ -1049,6 +1052,8 @@ static NSArray *kSyntaxDictKeys;
                 // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
                 [self applyColorings:colorings range:coloringRange];
             }
+            
+            [self setIsColoring:NO];
             
             // インジーケータシートを片づける
             if ([self indicatorController]) {

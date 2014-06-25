@@ -401,6 +401,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [syntax setLayoutManager:(CELayoutManager *)[[self textContainer] layoutManager]];
             [syntax setIsPrinting:YES];
             [syntax colorAllString:[self string]];
+            while ([syntax isColoring]) {
+                [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
+            }
             break;
     }
     
