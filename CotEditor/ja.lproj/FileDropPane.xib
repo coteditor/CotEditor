@@ -281,7 +281,7 @@ The parent directory name of the dropped file.
                         <rect key="frame" x="1" y="1" width="228" height="118"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="447">
                                 <rect key="frame" x="0.0" y="0.0" width="228" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -300,12 +300,33 @@ The parent directory name of the dropped file.
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        <connections>
-                                            <binding destination="451" name="value" keyPath="arrangedObjects.extensions" id="582"/>
-                                        </connections>
+                                        <prototypeCellViews>
+                                            <tableCellView id="fmA-3b-tDT">
+                                                <rect key="frame" x="1" y="1" width="225" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Juz-aM-RFA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="225" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Rmf-wL-xHg">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="fmA-3b-tDT" name="value" keyPath="objectValue.extensions" id="qGG-p5-lVE"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <connections>
+                                                    <outlet property="textField" destination="Juz-aM-RFA" id="XN7-q9-6zu"/>
+                                                </connections>
+                                            </tableCellView>
+                                        </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <binding destination="451" name="content" keyPath="arrangedObjects" id="XvQ-dB-LRJ"/>
                                     <outlet property="delegate" destination="-2" id="584"/>
                                 </connections>
                             </tableView>
