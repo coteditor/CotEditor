@@ -396,10 +396,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setBackgroundColor:[[self theme] backgroundColor]];
             
             // カラーリング実行オブジェクトを用意して実行
-            CESyntax *syntax = [[CESyntax alloc] init];
-            [syntax setSyntaxStyleName:[self syntaxName]];
-            [syntax setLayoutManager:(CELayoutManager *)[[self textContainer] layoutManager]];
-            [syntax setIsPrinting:YES];
+            CESyntax *syntax = [[CESyntax alloc] initWithSyntaxName:[self syntaxName]
+                                                      layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
+                                                         isPrinting:YES];
             [syntax colorAllString:[self string]];
             while ([syntax isColoring]) {
                 [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];

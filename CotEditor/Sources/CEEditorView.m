@@ -37,6 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEEditorView.h"
 #import "CEToolbarController.h"
+#import "CESyntaxManager.h"
 #import "constants.h"
 
 
@@ -278,10 +279,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)setSyntaxExtension:(NSString *)extension
 // ------------------------------------------------------
 {
-    BOOL success = [[self syntax] setSyntaxStyleNameFromExtension:extension];
-    NSString *name = [[self syntax] syntaxStyleName];
-
-    [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+    NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
+    
+    BOOL success = (name && ![[[self syntax] syntaxStyleName] isEqualToString:name]);
+    if (success) {
+        [[self syntax] setSyntaxStyleName:name];
+    }
+    
+    NSString *newName = [[self syntax] syntaxStyleName];
+    [self setIsColoring:(![newName isEqualToString:NSLocalizedString(@"None", nil)])];
     
     return success;
 }

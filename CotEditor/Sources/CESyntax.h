@@ -39,9 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESyntax : NSObject
 
-@property (nonatomic) CELayoutManager *layoutManager;
 @property (nonatomic) NSString *syntaxStyleName;
-@property (nonatomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
 // readonly
 @property (nonatomic, copy, readonly) NSArray *completionWords;  // 入力補完文字列配列
@@ -49,8 +47,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (atomic, readonly) BOOL isColoring;
 
 
-// Public method
-- (BOOL)setSyntaxStyleNameFromExtension:(NSString *)extension;
+/// designated initializer
+- (instancetype)initWithSyntaxName:(NSString *)syntaxName layoutManager:(CELayoutManager *)layoutManager isPrinting:(BOOL)isPrinting;
+
+// Public methods
 - (void)colorAllString:(NSString *)wholeString;
 - (void)colorVisibleRange:(NSRange)range wholeString:(NSString *)wholeString;
 - (NSArray *)outlineMenuArrayWithWholeString:(NSString *)wholeString;

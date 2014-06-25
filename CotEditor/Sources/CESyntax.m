@@ -68,6 +68,9 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 @interface CESyntax ()
 
+@property (nonatomic) CELayoutManager *layoutManager;
+@property (atomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
 
@@ -119,6 +122,21 @@ static NSArray *kSyntaxDictKeys;
 //=======================================================
 
 // ------------------------------------------------------
+/// designated initializer
+- (instancetype)initWithSyntaxName:(NSString *)syntaxName layoutManager:(CELayoutManager *)layoutManager isPrinting:(BOOL)isPrinting
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        [self setSyntaxStyleName:syntaxName];
+        [self setLayoutManager:layoutManager];
+        [self setIsPrinting:isPrinting];
+    }
+    return self;
+}
+
+
+// ------------------------------------------------------
 /// 保持するstyle名をセット
 - (void)setSyntaxStyleName:(NSString *)styleName
 // ------------------------------------------------------
@@ -134,21 +152,6 @@ static NSArray *kSyntaxDictKeys;
 
         _syntaxStyleName = styleName;
     }
-}
-
-
-// ------------------------------------------------------
-/// 拡張子からstyle名をセット
-- (BOOL)setSyntaxStyleNameFromExtension:(NSString *)extension
-// ------------------------------------------------------
-{
-    NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
-
-    if (name && ![[self syntaxStyleName] isEqualToString:name]) {
-        [self setSyntaxStyleName:name];
-        return YES;
-    }
-    return NO;
 }
 
 
