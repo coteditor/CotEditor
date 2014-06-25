@@ -168,7 +168,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSMutableIndexSet *selectIndexSet = [NSMutableIndexSet indexSet];
     NSMutableArray *draggingArray = [NSMutableArray array];
     NSMutableArray *newArray = [[self encodingsForTmp] mutableCopy];
-    NSInteger count = [draggingArray count];
     __block NSInteger newRow = row;
 
     [[self draggedIndexes] enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL *stop) {
@@ -181,6 +180,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }];
     
+    NSInteger count = [draggingArray count];
     for (NSUInteger i = 0; i < count; i++) {
         if (row != k_lastRow) {
             [newArray insertObject:draggingArray[i] atIndex:newRow];
