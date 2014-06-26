@@ -191,16 +191,10 @@
 
 // ------------------------------------------------------
 /// テーブルセルが編集可能かを返す
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 // ------------------------------------------------------
 {
-    NSTableCellView *cellView = [tableView makeViewWithIdentifier:[tableColumn identifier] owner:self];
-    NSString *name = [[cellView textField] stringValue];
-    BOOL isEditable = ![[CEThemeManager sharedManager] isBundledTheme:name cutomized:nil];
-    
-    [[cellView textField] setEditable:isEditable];
-    
-    return cellView;
+    return ![[CEThemeManager sharedManager] isBundledTheme:[self selectedTheme] cutomized:nil];
 }
 
 
