@@ -118,7 +118,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     self = [super init];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults ];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
         [self setHasUndoManager:YES];
         [self doSetEncoding:[defaults integerForKey:k_key_encodingInNew]
@@ -130,6 +130,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
                 [defaults boolForKey:k_key_showInvisibleNewLine] ||
                 [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
                 [defaults boolForKey:k_key_showOtherInvisibleChars]];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
                                                      name:CEDocumentDidFinishOpenNotification object:nil];
@@ -298,11 +299,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError **)outError
 // ------------------------------------------------------
 {
-    // フォルダをアイコンにドロップしても開けないようにする
-    BOOL isDirectory = NO;
-    [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
-    if (isDirectory) { return NO; }
-    
     // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
     [self setupODB];
     

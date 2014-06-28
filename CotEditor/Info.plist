@@ -8,9 +8,7 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>*</string>
-			</array>
+			<array/>
 			<key>CFBundleTypeIconFile</key>
 			<string>docGeneric</string>
 			<key>CFBundleTypeMIMETypes</key>
@@ -24,6 +22,10 @@
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.data</string>
+			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
