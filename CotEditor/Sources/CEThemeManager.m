@@ -297,7 +297,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         BOOL isDuplicated = NO;
         for (NSString *name in [self themeNames]) {
             if ([name caseInsensitiveCompare:themeName] == NSOrderedSame) {
-                BOOL isCustomized = NO;
+                BOOL isCustomized;
                 BOOL isBundled = [self isBundledTheme:themeName cutomized:&isCustomized];
                 isDuplicated = (!isBundled || (isBundled && isCustomized));
                 break;
@@ -517,10 +517,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:userDirURL
                                                                  includingPropertiesForKeys:nil
                                                                                     options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                      errorHandler:^BOOL(NSURL *url, NSError *error) {
-                                                                          NSLog(@"%@", [error description]);
-                                                                          return YES;
-                                                                      }];
+                                                                               errorHandler:^BOOL(NSURL *url, NSError *error)
+                                             {
+                                                 NSLog(@"%@", [error description]);
+                                                 return YES;
+                                             }];
         NSURL *URL;
         while (URL = [enumerator nextObject]) {
             NSString *name = [[URL lastPathComponent] stringByDeletingPathExtension];
@@ -529,6 +530,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
             }
         }
     }
+    
+    BOOL isListUpdated = ![themeNames isEqualToArray:[self themeNames]];
     [self setThemeNames:themeNames];
 
     // 定義をキャッシュする
@@ -547,7 +550,9 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     // Notificationを発行
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeListDidUpdateNotification object:self];
+    if (isListUpdated) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeListDidUpdateNotification object:self];
+    }
 }
 
 
