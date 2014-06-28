@@ -59,14 +59,14 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WT6-a5-cVO" userLabel="Menu View">
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WT6-a5-cVO" userLabel="Menu View">
                         <rect key="frame" x="20" y="53" width="140" height="317"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="Cq4-TF-1Wo">
                             <rect key="frame" x="1" y="1" width="138" height="315"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="18" id="YN4-Eb-iD3">
+                                <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="YN4-Eb-iD3">
                                     <rect key="frame" x="0.0" y="0.0" width="138" height="315"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="6" height="2"/>
@@ -85,16 +85,33 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
-                                            <connections>
-                                                <binding destination="GFH-ie-6ky" name="value" keyPath="arrangedObjects" id="ha8-my-cg0">
-                                                    <dictionary key="options">
-                                                        <bool key="NSConditionallySetsEditable" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                            </connections>
+                                            <prototypeCellViews>
+                                                <tableCellView id="qYR-bc-efz">
+                                                    <rect key="frame" x="3" y="1" width="132" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yDc-Gx-RAA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="132" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="aW1-te-9Nd" customClass="CEMenuItemCell">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="qYR-bc-efz" name="value" keyPath="objectValue" id="aI2-ca-IVq"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="textField" destination="yDc-Gx-RAA" id="UqZ-ES-Nwr"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
+                                        <binding destination="GFH-ie-6ky" name="content" keyPath="arrangedObjects" id="2kM-O1-ggg"/>
                                         <outlet property="delegate" destination="-2" id="QW6-VX-HoN"/>
                                     </connections>
                                 </tableView>
@@ -1892,7 +1909,7 @@
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn identifier="extensions" width="235" minWidth="40" maxWidth="1000" id="453">
-                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extension">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -2146,26 +2163,26 @@ DQ
                 <binding destination="-2" name="contentArray" keyPath="menuTitles" id="Iyc-Af-9ek"/>
             </connections>
         </arrayController>
-        <arrayController clearsFilterPredicateOnInsertion="NO" id="32" userLabel=" Style Controller">
+        <objectController id="qhW-MU-UWm" userLabel="Style Controller">
             <declaredKeys>
                 <string>styleName</string>
-                <string>commandsArray</string>
-                <string>commandsColor</string>
-                <string>commentsArray</string>
                 <string>keywordsArray</string>
-                <string>ignoreCase</string>
+                <string>commandsArray</string>
+                <string>categoriesArray</string>
+                <string>variablesArray</string>
                 <string>valuesArray</string>
-                <string>extensions</string>
+                <string>numbersArray</string>
                 <string>stringsArray</string>
                 <string>charactersArray</string>
-                <string>numbersArray</string>
+                <string>commentsArray</string>
                 <string>outlineMenuArray</string>
                 <string>completionsArray</string>
+                <string>extensions</string>
             </declaredKeys>
             <connections>
-                <binding destination="-2" name="contentObject" keyPath="style" id="nXz-10-OOM"/>
+                <binding destination="-2" name="contentObject" keyPath="style" id="QRL-Mu-jE5"/>
             </connections>
-        </arrayController>
+        </objectController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="35" userLabel="Keywords Controller">
             <declaredKeys>
                 <string>keyString</string>
@@ -2175,7 +2192,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.keywordsArray" id="139"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.keywordsArray" id="KsQ-T0-bXX"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="33" userLabel="Commands Controller">
@@ -2187,7 +2204,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.commandsArray" id="135"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.commandsArray" id="8fD-dq-8fk"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="Xf4-h5-a4r" userLabel="Categories Controller">
@@ -2199,7 +2216,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.categoriesArray" id="Sj0-vH-tZx"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.categoriesArray" id="hvS-Tw-2QF"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="5VS-Xp-FDy" userLabel="Variables Controller">
@@ -2211,7 +2228,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.variablesArray" id="Fww-xv-pco"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.variablesArray" id="e4P-8U-I10"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="174" userLabel="Values Controller">
@@ -2223,7 +2240,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.valuesArray" id="184"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.valuesArray" id="jZk-k4-U8O"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="236" userLabel="Numbers Controller">
@@ -2235,7 +2252,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.numbersArray" id="238"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.numbersArray" id="loG-ax-rYm"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="239" userLabel="Strings Controller">
@@ -2247,7 +2264,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.stringsArray" id="241"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.stringsArray" id="t9Z-zl-Fz1"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="242" userLabel="Characters Controller">
@@ -2259,7 +2276,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.charactersArray" id="244"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.charactersArray" id="x0Z-sq-CqY"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="34" userLabel="Comments Controller">
@@ -2271,7 +2288,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.commentsArray" id="137"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.commentsArray" id="Nec-eA-HUh"/>
             </connections>
         </arrayController>
         <arrayController id="722" userLabel="Outline Menu Controller">
@@ -2284,7 +2301,7 @@ DQ
                 <string>italic</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.outlineMenuArray" id="735"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.outlineMenuArray" id="vet-hu-eK4"/>
             </connections>
         </arrayController>
         <arrayController id="777" userLabel="Completions Controller">
@@ -2292,7 +2309,7 @@ DQ
                 <string>keyString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.completionsArray" id="788"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.completionsArray" id="bxK-T1-79n"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="197" userLabel="Extensions Controller">
@@ -2300,7 +2317,7 @@ DQ
                 <string>keyString</string>
             </declaredKeys>
             <connections>
-                <binding destination="32" name="contentArray" keyPath="selection.extensions" id="199"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.extensions" id="qgF-lb-Nim"/>
             </connections>
         </arrayController>
     </objects>
