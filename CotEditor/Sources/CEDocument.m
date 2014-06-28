@@ -425,7 +425,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 //------------------------------------------------------
 /// データから指定エンコードで文字列を得る
-- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)checksXattr
 //------------------------------------------------------
 {
     NSString *string = nil;
@@ -439,9 +439,9 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
 
     // 10.5+でのファイル拡張属性(com.apple.TextEncoding)を試す
-    if (boolXattr && (encoding != k_autoDetectEncodingMenuTag)) {
+    if (checksXattr && (encoding != k_autoDetectEncodingMenuTag)) {
         string = [[NSString alloc] initWithData:data encoding:encoding];
-        if (string == nil) {
+        if (!string) {
             encoding = k_autoDetectEncodingMenuTag;
         }
     }
@@ -521,7 +521,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
              ([data length] != ([string length] * 2)))) {
                     
             [self setInitialString:string];
-            // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
+            // (_initialString はあとで開放 == "- (void)setStringToEditorView".)
             [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
             return YES;
         }
@@ -532,21 +532,15 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// windowController に表示する文字列を返す
-- (NSString *)stringToWindowController
-// ------------------------------------------------------
-{
-    return [self initialString];
-}
-
-
-// ------------------------------------------------------
 /// editorView に文字列をセット
 - (void)setStringToEditorView
 // ------------------------------------------------------
 {
     [self setColoringExtension:[[self fileURL] pathExtension] coloring:NO];
-    [self setStringToTextView:[self stringToWindowController]];
+    
+    [self setStringToTextView:[self initialString]];
+    [self setInitialString:nil];  // release
+    
     if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
         [[self windowController] showIncompatibleCharList];
     }
@@ -1543,8 +1537,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         newEncoding = [self encodingFromComAppleTextEncodingAtURL:url];
         if ([data length] == 0) {
             result = YES;
-            [self setInitialString:[NSMutableString string] ];
-            // (_initialString はあとで開放 == "- (NSString *)stringToWindowController".)
+            [self setInitialString:@""];
+            // (_initialString はあとで開放 == "- (void)setStringToEditorView".)
         }
         if (newEncoding != NSProprietaryStringEncoding) {
             if ([data length] == 0) {

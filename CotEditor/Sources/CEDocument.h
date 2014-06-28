@@ -66,7 +66,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 // Public methods
 - (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
-- (NSString *)stringToWindowController;
 - (void)setStringToEditorView;
 - (void)setStringToTextView:(NSString *)string;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
