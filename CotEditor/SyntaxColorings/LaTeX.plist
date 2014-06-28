@@ -165,6 +165,14 @@
 			<key>keyString</key>
 			<string>TEX</string>
 		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>sty</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>cls</string>
+		</dict>
 	</array>
 	<key>keywordsArray</key>
 	<array>

@@ -387,6 +387,8 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tex</string>
+				<string>sty</string>
+				<string>cls</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>docTeX</string>
