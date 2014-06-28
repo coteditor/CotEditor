@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -66,7 +66,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                             <rect key="frame" x="1" y="17" width="378" height="170"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="47b-0u-aDN" id="WkV-Py-vpB">
+                                <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="47b-0u-aDN" id="WkV-Py-vpB">
                                     <rect key="frame" x="0.0" y="0.0" width="378" height="170"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="5" height="2"/>
@@ -85,6 +85,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="extension"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <connections>
                                                 <binding destination="oW9-gC-3kM" name="value" keyPath="arrangedObjects.extension" id="1BV-X9-cNI">
@@ -107,6 +108,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="primaryStyle"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <connections>
                                                 <binding destination="oW9-gC-3kM" name="value" keyPath="arrangedObjects.primaryStyle" id="4YH-Z1-6d1">
@@ -129,6 +131,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="doubledStyles"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <connections>
                                                 <binding destination="oW9-gC-3kM" name="value" keyPath="arrangedObjects.doubledStyles" id="U2A-EQ-azV">
@@ -190,7 +193,7 @@ CotEditorは自動的に最初のスタイルを使用します。</string>
                 <outlet property="delegate" destination="-2" id="gCa-2U-beW"/>
             </connections>
         </window>
-        <arrayController objectClassName="NSDictionary" editable="NO" id="oW9-gC-3kM">
+        <arrayController objectClassName="NSDictionary" editable="NO" avoidsEmptySelection="NO" id="oW9-gC-3kM">
             <declaredKeys>
                 <string>extention</string>
                 <string>primaryStyle</string>
