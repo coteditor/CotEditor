@@ -352,8 +352,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.netscape.javascript-</string>
-				<string>source</string>
+				<string>com.netscape.javascript-source</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
