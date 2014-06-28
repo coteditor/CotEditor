@@ -78,9 +78,9 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)doSetSyntaxStyle:(NSString *)name;
 - (void)doSetSyntaxStyle:(NSString *)name delay:(BOOL)needsDelay;
 - (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring;
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length;
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)scrollToCenteringSelection;
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
 - (void)getFileAttributes;

@@ -66,12 +66,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)textStorageDidProcessEditing:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSString *newString = [(NSTextStorage *)[notification object] string];
+    NSTextStorage *storage = (NSTextStorage *)[notification object];
 
-    [[[self editorView] textView] replaceAllStringTo:newString];
-    [self cleanUpTextStorage:(NSTextStorage *)[notification object]];
+    [[[self editorView] textView] replaceAllStringTo:[storage string]];
+    [self cleanUpTextStorage:storage];
 }
-
 
 
 
@@ -140,9 +139,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (CELineEnding)lineEnding
 // ------------------------------------------------------
 {
-    NSInteger code = [[self editorView] lineEndingCharacter];
-
-    switch (code) {
+    switch ([[self editorView] lineEndingCharacter]) {
         case 1:
             return CELineEndingCR;
             break;
@@ -195,7 +192,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *name = [self currentIANACharSetName];
 
     // 得られなければ空文字を返す
-    return (name) ? : @"";
+    return name ? : @"";
 }
 
 
@@ -316,7 +313,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSStringEncoding encoding = [CEUtilities encodingFromName:encodingName];
     BOOL success = NO;
 
-    if ((encoding == NSNotFound) || ([self fileURL] == nil)) {
+    if ((encoding == NSNotFound) || ![self fileURL]) {
         success = NO;
     } else if (encoding == [self encodingCode]) {
         success = YES;
@@ -339,36 +336,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [inCommand evaluatedArguments];
-    NSString *theSearch = arguments[@"targetString"];
-    if ((theSearch == nil) || ([theSearch length] < 1)) { return @NO; }
-    BOOL isRE = (arguments[@"regularExpression"]) ? [arguments[@"regularExpression"] boolValue] : NO;
-    BOOL ignoresCase = (arguments[@"ignoreCase"]) ? [arguments[@"ignoreCase"] boolValue] : NO;
-    BOOL isBackwards = (arguments[@"backwardsSearch"]) ? [arguments[@"backwardsSearch"] boolValue] : NO;
-    BOOL isWrapSearch = (arguments[@"wrapSearch"]) ? [arguments[@"wrapSearch"] boolValue] : NO;
+    NSString *searchStr = arguments[@"targetString"];
+    if ([searchStr length] == 0) { return @NO; }
+    BOOL isRegex = [arguments[@"regularExpression"] boolValue];
+    BOOL ignoresCase = [arguments[@"ignoreCase"] boolValue];
+    BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
+    BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
     NSString *wholeStr = [[self editorView] stringForSave];
     NSInteger wholeLength = [wholeStr length];
-    if (wholeLength < 1) { return @NO; }
+    if (wholeLength == 0) { return @NO; }
     NSRange selectionRange = [[self editorView] selectedRange];
     NSRange targetRange;
 
     if (isBackwards) {
         targetRange = NSMakeRange(0, selectionRange.location);
     } else {
-        targetRange = NSMakeRange(NSMaxRange(selectionRange), 
-                            wholeLength - NSMaxRange(selectionRange));
+        targetRange = NSMakeRange(NSMaxRange(selectionRange),
+                                  wholeLength - NSMaxRange(selectionRange));
     }
     NSUInteger mask = 0;
     if (ignoresCase) {
-        mask |= (isRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
+        mask |= isRegex ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
     if (isBackwards) {
         mask |= NSBackwardsSearch;
     }
 
-    BOOL success = [self doFind:theSearch range:targetRange option:mask withRegularExpression:isRE];
+    BOOL success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
     if (!success && isWrapSearch) {
         targetRange = NSMakeRange(0, wholeLength);
-        success = [self doFind:theSearch range:targetRange option:mask withRegularExpression:isRE];
+        success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
     }
     
     return @(success);
@@ -381,19 +378,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    NSString *search = arguments[@"targetString"];
-    if ((search == nil) || ([search length] < 1)) { return @NO; }
-    BOOL isRE = (arguments[@"regularExpression"]) ? [arguments[@"regularExpression"] boolValue] : NO;
-    BOOL ignoresCase = (arguments[@"ignoreCase"]) ? [arguments[@"ignoreCase"] boolValue] : NO;
-    BOOL isAll = (arguments[@"all"] != nil) ? [arguments[@"all"] boolValue] : NO;
-    BOOL isBackwards = (arguments[@"backwardsSearch"]) ? [arguments[@"backwardsSearch"] boolValue] : NO;
-    BOOL isWrapSearch = (arguments[@"wrapSearch"]) ? [arguments[@"wrapSearch"] boolValue] : NO;
+    NSString *searchStr = arguments[@"targetString"];
+    if ([searchStr length] == 0) { return @NO; }
+    BOOL isRegex = [arguments[@"regularExpression"] boolValue];
+    BOOL ignoresCase = [arguments[@"ignoreCase"] boolValue];
+    BOOL isAll = [arguments[@"all"] boolValue];
+    BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
+    BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
     NSString *wholeStr = [[self editorView] stringForSave];
     NSInteger wholeLength = [wholeStr length];
-    if (wholeLength < 1) { return @0; }
+    if (wholeLength == 0) { return @NO; }
     NSString *newString = arguments[@"newString"];
-    if ([search isEqualToString:newString]) { return @NO; }
-    if (newString == nil) { newString = @""; }
+    if ([searchStr isEqualToString:newString]) { return @NO; }
+    if (!newString) { newString = @""; }
     NSRange selectionRange, targetRange;
 
     if (isAll) {
@@ -403,13 +400,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (isBackwards) {
             targetRange = NSMakeRange(0, selectionRange.location);
         } else {
-            targetRange = NSMakeRange(NSMaxRange(selectionRange), 
-                                wholeLength - NSMaxRange(selectionRange));
+            targetRange = NSMakeRange(NSMaxRange(selectionRange),
+                                      wholeLength - NSMaxRange(selectionRange));
         }
     }
     NSUInteger mask = 0;
     if (ignoresCase) {
-        mask |= (isRE) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
+        mask |= (isRegex) ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
     }
     if (isBackwards) {
         mask |= NSBackwardsSearch;
@@ -419,12 +416,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger result = 0;
     if (isAll) {
         NSMutableString *tmpStr = [wholeStr mutableCopy]; // ===== copy
-        if (isRE) {
-            result = [tmpStr replaceOccurrencesOfRegularExpressionString:search
-                                                                 withString:newString options:mask range:targetRange];
+        if (isRegex) {
+            result = [tmpStr replaceOccurrencesOfRegularExpressionString:searchStr
+                                                              withString:newString options:mask range:targetRange];
         } else {
-            result = [tmpStr replaceOccurrencesOfString:search
-                                                withString:newString options:mask range:targetRange];
+            result = [tmpStr replaceOccurrencesOfString:searchStr
+                                             withString:newString options:mask range:targetRange];
         }
         if (result > 0) {
             [[[self editorView] textView] replaceAllStringTo:tmpStr];
@@ -432,10 +429,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
 
     } else {
-        success = [self doFind:search range:targetRange option:mask withRegularExpression:isRE];
-        if ((success == NO) && isWrapSearch) {
+        success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
+        if (!success && isWrapSearch) {
             targetRange = NSMakeRange(0, wholeLength);
-            success = [self doFind:search range:targetRange option:mask withRegularExpression:isRE];
+            success = [self doFind:searchStr range:targetRange option:mask withRegularExpression:isRegex];
         }
         if (success) {
             [[self selection] setContents:newString]; // （CETextSelection の setContents: の引数は NSString も可）
@@ -466,10 +463,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger location, length;
     NSRange range;
 
-    if ((rangeArray == nil) || ([rangeArray count] < 1)) { return [NSString string]; }
+    if ([rangeArray count] == 0) { return [NSString string]; }
     location = [rangeArray[0] integerValue];
     length = ([rangeArray count] > 1) ? [rangeArray[1] integerValue] : 1;
-    range = [self rangeInTextViewWithLocation:location withLength:length];
+    range = [self rangeInTextViewWithLocation:location length:length];
 
     if (NSEqualRanges(NSMakeRange(0, 0), range)) {
         return @"";
@@ -489,13 +486,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 /// 文字列を検索し、見つかったら選択して結果を返す
 - (BOOL)doFind:(NSString *)searchString range:(NSRange)range
-            option:(unsigned)option withRegularExpression:(BOOL)RE
+            option:(unsigned)option withRegularExpression:(BOOL)isRegex
 // ------------------------------------------------------
 {
     NSString *wholeStr = [[self editorView] string];
     NSRange searchedRange;
 
-    if (RE) {
+    if (isRegex) {
         searchedRange = [wholeStr rangeOfRegularExpressionString:searchString options:option range:range];
     } else {
         searchedRange = [wholeStr rangeOfString:searchString options:option range:range];

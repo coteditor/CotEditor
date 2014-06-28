@@ -37,28 +37,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @class CEDocument;
 
 // AppleScript Enum
-typedef enum {
+typedef NS_ENUM(NSUInteger, CECaseType) {
     CELowerCase = 'cClw',
     CEUpperCase = 'cCup',
     CECapitalized = 'cCcp'
-} CECaseType;
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CEWidthType) {
     CEFullwidth = 'rWfl',
     CEHalfwidth = 'rWhf',
-} CEWidthType;
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CEChangeKanaType) {
     CEHiragana = 'cHgn',
     CEKatakana = 'cKkn',
-} CEChangeKanaType;
+};
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, CEUNFType) {
     CENFC = 'cNfc',
     CENFD = 'cNfd',
     CENFKC = 'cNkc',
     CENFKD = 'cNkd',
-} CEUNFType;
+};
 
 
 @interface CETextSelection : NSObject <NSTextStorageDelegate>

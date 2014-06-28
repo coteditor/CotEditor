@@ -41,8 +41,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @end
 
-#pragma mark -
 
+
+
+
+#pragma mark -
 
 @implementation CETextSelection
 
@@ -87,14 +90,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)textStorageDidProcessEditing:(NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    NSString *newString = [(NSTextStorage *)[aNotification object] string];
+    NSTextStorage *storage = (NSTextStorage *)[aNotification object];
 
-    [[[[self document] editorView] textView] replaceSelectedStringTo:newString scroll:NO];
-    [self cleanUpTextStorage:(NSTextStorage *)[aNotification object]];
+    [[[[self document] editorView] textView] replaceSelectedStringTo:[storage string] scroll:NO];
+    [self cleanUpTextStorage:storage];
 }
 
-
 @end
+
 
 
 
@@ -160,7 +163,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSInteger location = [rangeArray[0] integerValue];
     NSInteger length = [rangeArray[1] integerValue];
 
-    [[self document] setSelectedCharacterRangeInTextViewWithLocation:location withLength:length];
+    [[self document] setSelectedCharacterRangeInTextViewWithLocation:location length:length];
 }
 
 
@@ -186,8 +189,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     rangeArray = @[@(currentLine),
-                 @(lastLine - currentLine + 1)];
-
+                   @(lastLine - currentLine + 1)];
+    
     return rangeArray;
 }
 
@@ -210,7 +213,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
 
-    [[self document] setSelectedLineRangeInTextViewWithLocation:location withLength:length];
+    [[self document] setSelectedLineRangeInTextViewWithLocation:location length:length];
 }
 
 
@@ -247,19 +250,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedLongValue];
+    CETextViewCore *textView = [[[self document] editorView] textView];
 
     switch (caseType) {
-    case CELowerCase:
-        [[[[self document] editorView] textView] exchangeLowercase:self];
-        break;
-    case CEUpperCase:
-        [[[[self document] editorView] textView] exchangeUppercase:self];
-        break;
-    case CECapitalized:
-        [[[[self document] editorView] textView] exchangeCapitalized:self];
-        break;
-    default:
-        break;
+        case CELowerCase:
+            [textView exchangeLowercase:self];
+            break;
+        case CEUpperCase:
+            [textView exchangeUppercase:self];
+            break;
+        case CECapitalized:
+            [textView exchangeCapitalized:self];
+            break;
     }
 }
 
@@ -271,16 +273,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEWidthType widthType = [arguments[@"widthType"] unsignedLongValue];
+    CETextViewCore *textView = [[[self document] editorView] textView];
 
     switch (widthType) {
-    case CEFullwidth:
-        [[[[self document] editorView] textView] exchangeFullwidthRoman:self];
-        break;
-    case CEHalfwidth:
-        [[[[self document] editorView] textView] exchangeHalfwidthRoman:self];
-        break;
-    default:
-        break;
+        case CEFullwidth:
+            [textView exchangeFullwidthRoman:self];
+            break;
+        case CEHalfwidth:
+            [textView exchangeHalfwidthRoman:self];
+            break;
     }
 }
 
@@ -292,11 +293,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedLongValue];
-
-    if (changeKanaType == CEHiragana) {
-        [[[[self document] editorView] textView] exchangeHiragana:self];
-    } else if (changeKanaType == CEKatakana) {
-        [[[[self document] editorView] textView] exchangeKatakana:self];
+    CETextViewCore *textView = [[[self document] editorView] textView];
+    
+    switch (changeKanaType) {
+        case CEHiragana:
+            [textView exchangeHiragana:self];
+            break;
+        case CEKatakana:
+            [textView exchangeKatakana:self];
+            break;
     }
 }
 
@@ -308,16 +313,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEUNFType UNFType = [arguments[@"unfType"] unsignedLongValue];
-    NSInteger typeCode = 0;
-
+    CETextViewCore *textView = [[[self document] editorView] textView];
+    
+    NSInteger typeCode;
     switch (UNFType) {
-    case CENFD: typeCode = 1; break;
-    case CENFKC: typeCode = 2; break;
-    case CENFKD: typeCode = 3; break;
-    default:
-        break;
+        case CENFC:  typeCode = 0; break;
+        case CENFD:  typeCode = 1; break;
+        case CENFKC: typeCode = 2; break;
+        case CENFKD: typeCode = 3; break;
     }
-    [[[[self document] editorView] textView] unicodeNormalization:@(typeCode)];
+    [textView unicodeNormalization:@(typeCode)];
 }
 
 @end

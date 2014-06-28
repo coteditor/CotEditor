@@ -475,11 +475,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         }
     }
 
-    if ((string == nil) && (encoding == k_autoDetectEncodingMenuTag)) {
+    if (!string && (encoding == k_autoDetectEncodingMenuTag)) {
         NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy];
-        NSInteger i = 0;
 
-        while (string == nil) {
+        for (NSUInteger i = 0; !string; i++) {
             encoding = CFStringConvertEncodingToNSStringEncoding([encodings[i] unsignedLongValue]);
             if ((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) {
                 break;
@@ -492,25 +491,24 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
                 break;
             }
             string = [[NSString alloc] initWithData:data encoding:encoding];
-            if (string != nil) {
+            if (string) {
                 // "charset="や"encoding="を読んでみて適正なエンコーディングが得られたら、そちらを優先
                 NSStringEncoding tmpEncoding = [self scannedCharsetOrEncodingFromString:string];
                 if ((tmpEncoding == NSProprietaryStringEncoding) || (tmpEncoding == encoding)) {
                     break;
                 }
                 NSString *tmpStr = [[NSString alloc] initWithData:data encoding:tmpEncoding];
-                if (tmpStr != nil) {
+                if (tmpStr) {
                     string = tmpStr;
                     encoding = tmpEncoding;
                 }
             }
-            i++;
         }
-    } else if (string == nil) {
+    } else if (!string) {
         string = [[NSString alloc] initWithData:data encoding:encoding];
     }
 
-    if ((string != nil) && (encoding != k_autoDetectEncodingMenuTag)) {
+    if (string && (encoding != k_autoDetectEncodingMenuTag)) {
         // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
         // 10.4+ ではスルー（2005.12.25）
         // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
@@ -580,8 +578,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         return YES;
     }
     BOOL shouldShowList = NO;
+    
     if (updateDocument) {
-
         shouldShowList = [[self windowController] needsIncompatibleCharDrawerUpdate];
         NSString *curString = [[self editorView] stringForSave];
         BOOL allowsLossy = NO;
@@ -806,7 +804,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     if (shouldUpdated) {
         // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
         NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
-        name = (!name || [name isEqualToString:@""]) ? [defaults stringForKey:k_key_defaultColoringStyleName]: name;
+        name = ([name length] > 0) ? name : [defaults stringForKey:k_key_defaultColoringStyleName];
         [[[self windowController] toolbarController] selectSyntaxItemWithTitle:name];
         if (doColoring) {
             [self recoloringAllStringOfDocument:nil];
@@ -817,7 +815,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
-- (NSRange)rangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length
+- (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
     CETextViewCore *textView = [[self editorView] textView];
@@ -846,10 +844,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// editorView 内部の textView で指定された部分を文字単位で選択
-- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length
+- (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    NSRange selectionRange = [self rangeInTextViewWithLocation:location withLength:length];
+    NSRange selectionRange = [self rangeInTextViewWithLocation:location length:length];
 
     [[self editorView] setSelectedRange:selectionRange];
 }
@@ -857,7 +855,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// editorView 内部の textView で指定された部分を行単位で選択
-- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location withLength:(NSInteger)length
+- (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
     CETextViewCore *textView = [[self editorView] textView];
@@ -927,10 +925,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     switch (type) {
         case CEGoToLine:
-            [self setSelectedLineRangeInTextViewWithLocation:location withLength:length];
+            [self setSelectedLineRangeInTextViewWithLocation:location length:length];
             break;
         case CEGoToCharacter:
-            [self setSelectedCharacterRangeInTextViewWithLocation:location withLength:length];
+            [self setSelectedCharacterRangeInTextViewWithLocation:location length:length];
             break;
     }
     [self scrollToCenteringSelection]; // 選択範囲が見えるようにスクロール
