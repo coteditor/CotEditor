@@ -1455,29 +1455,50 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="b7e-fo-MIO"/>
                                             </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="nI8-cM-hcS">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="nI8-cM-hcS">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="mqD-Eg-bhK" name="value" keyPath="selection.inlineDelimiter" id="bQw-Ik-BCi">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">Not defined</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TIg-sm-rkS">
                                             <rect key="frame" x="302" y="246" width="108" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="L2M-Fz-f48">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="L2M-Fz-f48">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="mqD-Eg-bhK" name="value" keyPath="selection.beginDelimiter" id="xjg-xP-byE">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">Not defined</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R6o-3b-d9H">
                                             <rect key="frame" x="302" y="214" width="108" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1rj-Dy-279">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="1rj-Dy-279">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="mqD-Eg-bhK" name="value" keyPath="selection.endDelimiter" id="7vx-GV-ich">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">Not defined</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tu6-5K-poW">
                                             <rect key="frame" x="222" y="274" width="110" height="17"/>
@@ -2283,14 +2304,14 @@ DQ
                 <string>outlineMenuArray</string>
                 <string>completionsArray</string>
                 <string>extensions</string>
+                <string>commentDelimiters</string>
             </declaredKeys>
             <connections>
-                <binding destination="-2" name="contentObject" keyPath="style" id="QRL-Mu-jE5"/>
+                <binding destination="-2" name="contentObject" keyPath="style" id="d39-X8-lAy"/>
             </connections>
         </objectController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="35" userLabel="Keywords Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>regularExpression</string>
                 <string>ignoreCase</string>
                 <string>beginString</string>
@@ -2302,7 +2323,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="33" userLabel="Commands Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2314,7 +2334,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="Xf4-h5-a4r" userLabel="Categories Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2326,7 +2345,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="5VS-Xp-FDy" userLabel="Variables Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2338,7 +2356,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="174" userLabel="Values Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2350,7 +2367,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="236" userLabel="Numbers Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2362,7 +2378,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="239" userLabel="Strings Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2374,7 +2389,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="242" userLabel="Characters Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2386,7 +2400,6 @@ DQ
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="34" userLabel="Comments Controller">
             <declaredKeys>
-                <string>keyString</string>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
                 <string>beginString</string>
@@ -2396,6 +2409,22 @@ DQ
                 <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.commentsArray" id="Nec-eA-HUh"/>
             </connections>
         </arrayController>
+        <objectController automaticallyPreparesContent="YES" id="mqD-Eg-bhK" userLabel="Comment Delimiters Controller">
+            <declaredKeys>
+                <string>inlineDelimiter</string>
+                <string>beginDelimiter</string>
+                <string>endDelimiter</string>
+            </declaredKeys>
+            <connections>
+                <binding destination="qhW-MU-UWm" name="contentObject" keyPath="selection.commentDelimiters" id="yGD-m8-rZT">
+                    <dictionary key="options">
+                        <bool key="NSDeletesObjectsOnRemove" value="YES"/>
+                        <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </objectController>
         <arrayController id="722" userLabel="Outline Menu Controller">
             <declaredKeys>
                 <string>beginString</string>
