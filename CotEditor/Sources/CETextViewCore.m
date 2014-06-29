@@ -130,7 +130,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         [self applyTypingAttributes];
         
-        [self setInlineCommentDelimiter:@"//"];
+//        [self setInlineCommentDelimiter:@"//"];
         [self setBlockCommentDelimietrs:@{@"begin": @"/*", @"end": @"*/"}];
         
         // 設定の変更を監視
@@ -1584,7 +1584,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             delimiter = [delimiter stringByAppendingString:@" "];
         }
         
-        // 現在の選択区域とシフトする行範囲を得る
+        // 現在の選択区域と置換する行範囲を得る
         NSRange selectedRange = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
         
@@ -1612,7 +1612,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             newLocation = selectedRange.location + [delimiter length];
         }
         // 置換実行
-        [self doReplaceString:newLine withRange:lineRange
+        [self doReplaceString:newLine
+                    withRange:lineRange
                  withSelected:NSMakeRange(newLocation, selectedRange.length + [delimiter length] * lines)
                withActionName:NSLocalizedString(@"Comment Out", nil)];
         return;
@@ -1628,9 +1629,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         NSString *newString = [@[beginDelimiter, selection, endDelimiter] componentsJoinedByString:spacer];
         
+        NSRange selected;
+        if ([selection length] == 0) {
+            selected = NSMakeRange([self selectedRange].location + [beginDelimiter length] + [spacer length], 0);
+        } else {
+            selected = NSMakeRange([self selectedRange].location, [newString length]) ;
+        }
+        
         [self doReplaceString:newString
                     withRange:NSMakeRange([self selectedRange].location, [selection length])
-                 withSelected:NSMakeRange([self selectedRange].location, [newString length]) withActionName:NSLocalizedString(@"Comment Out", nil)];
+                 withSelected:selected
+               withActionName:NSLocalizedString(@"Comment Out", nil)];
     }
 }
 
