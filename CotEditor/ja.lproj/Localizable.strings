@@ -266,6 +266,8 @@ http://www.aynimac.com/
 // File Drop setting delete
 "Delete the File Drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
 "Deleted setting cannot be restored." = "削除した設定は元に戻せません。";
+// Syntax Validation
+"Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
 
 
 /* CEThemeManager */
