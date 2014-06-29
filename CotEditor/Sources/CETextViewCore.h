@@ -52,6 +52,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSRect highlightLineAdditionalRect;  // ハイライト行で追加表示する矩形
 @property (nonatomic) BOOL isAutoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
+@property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
 
 @property (nonatomic, weak) NSView *slaveView;  // LineNumView
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
@@ -88,6 +89,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Action Message
 - (IBAction)shiftRight:(id)sender;
 - (IBAction)shiftLeft:(id)sender;
+- (IBAction)toggleComment:(id)sender;
+- (IBAction)commentOut:(id)sender;
+- (IBAction)uncomment:(id)sender;
 - (IBAction)toggleLayoutOrientation:(id)sender;
 - (IBAction)changeTabWidth:(id)sender;
 - (IBAction)exchangeLowercase:(id)sender;

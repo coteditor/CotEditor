@@ -137,6 +137,7 @@ NSString *const k_key_printFontName = @"printFontName";
 NSString *const k_key_printFontSize = @"printFontSize";
 NSString *const k_key_enableSmartQuotes = @"enableSmartQuotes";
 NSString *const k_key_enableSmartIndent = @"enableSmartIndent";
+NSString *const k_key_appendsCommentSpacer = @"appendsCommentSpacer";
 
 // print settings
 NSString *const k_key_printHeader = @"printHeader";

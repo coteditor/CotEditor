@@ -139,6 +139,7 @@ extern NSString *const k_key_printFontName;
 extern NSString *const k_key_printFontSize;
 extern NSString *const k_key_enableSmartQuotes;
 extern NSString *const k_key_enableSmartIndent;
+extern NSString *const k_key_appendsCommentSpacer;
 
 // print settings
 extern NSString *const k_key_printHeader;

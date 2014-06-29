@@ -40,6 +40,8 @@
 	<string>shiftLeft:</string>
 	<key>@]</key>
 	<string>shiftRight:</string>
+	<key>@/</key>
+	<string>toggleComment:</string>
 	<key>@a</key>
 	<string>selectAll:</string>
 	<key>@c</key>

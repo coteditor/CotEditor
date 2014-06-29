@@ -80,6 +80,8 @@ http://www.aynimac.com/
 "Insert Custom Text" = "カスタムテキストを挿入";
 "Shift Right" = "右へシフト";
 "Shift Left" = "左へシフト";
+"Comment Out" = "コメントアウト";
+"Uncomment" = "コメント解除";
 "To Lowercase" = "小文字に";
 "To Uppercase" = "大文字に";
 "To Capitalized" = "先頭の文字を大文字に";
@@ -96,6 +98,8 @@ http://www.aynimac.com/
 // menu item title
 "Use Vertical Orientation" = "縦書きで表示";
 "Use Horizontal Orientation" = "横書きで表示";
+"Comment Selection" = "選択範囲をコメントアウト";
+"Uncomment Seletion" = "選択範囲をコメント解除";
 
 // contextual menu title
 "Font" = "フォント";
