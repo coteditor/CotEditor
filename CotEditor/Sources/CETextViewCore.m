@@ -131,6 +131,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self applyTypingAttributes];
         
         [self setInlineCommentDelimiter:@"//"];
+        [self setBlockCommentDelimietrs:@{@"begin": @"/*", @"end": @"*/"}];
         
         // 設定の変更を監視
         for (NSString *key in [self observedDefaultKeys]) {
@@ -1408,7 +1409,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([menuItem action] == @selector(toggleComment:)) {
         NSString *title = [self canUncomment] ? @"Uncomment Selection" : @"Comment Selection";
         [menuItem setTitle:NSLocalizedString(title, nil)];
-        return [[self inlineCommentDelimiter] length] > 0;
+        return ([self inlineCommentDelimiter] || [self blockCommentDelimietrs]);
     }
 
     return [super validateMenuItem:menuItem];
@@ -1576,45 +1577,61 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)commentOut:(id)sender
 // ------------------------------------------------------
 {
-    NSString *delimiter = [self inlineCommentDelimiter];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer]) {
-        delimiter = [delimiter stringByAppendingString:@" "];
+    if ([self inlineCommentDelimiter]) {
+        NSString *delimiter = [self inlineCommentDelimiter];
+        
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer]) {
+            delimiter = [delimiter stringByAppendingString:@" "];
+        }
+        
+        // 現在の選択区域とシフトする行範囲を得る
+        NSRange selectedRange = [self selectedRange];
+        NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
+        
+        if (lineRange.length > 1) {
+            lineRange.length--; // 最末尾の改行分を減ずる
+        }
+        
+        // 置換する行を生成する
+        NSMutableString *newLine = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
+        NSString *newStr = [NSString stringWithFormat:@"%@%@", @"\n", delimiter];
+        NSUInteger lines = [newLine replaceOccurrencesOfString:@"\n"
+                                                    withString:newStr
+                                                       options:0
+                                                         range:NSMakeRange(0, [newLine length])];
+        [newLine insertString:delimiter atIndex:0];
+        // 置換後の選択位置の調整
+        NSUInteger newLocation;
+        if ((lineRange.location == selectedRange.location) && (selectedRange.length > 0) &&
+            ([[[self string] substringWithRange:selectedRange] hasSuffix:@"\n"]))
+        {
+            // 行頭から行末まで選択されていたときは、処理後も同様に選択する
+            newLocation = selectedRange.location;
+            lines++;
+        } else {
+            newLocation = selectedRange.location + [delimiter length];
+        }
+        // 置換実行
+        [self doReplaceString:newLine withRange:lineRange
+                 withSelected:NSMakeRange(newLocation, selectedRange.length + [delimiter length] * lines)
+               withActionName:NSLocalizedString(@"Comment Out", nil)];
+        return;
     }
     
-    if (!delimiter) { return; }  // コメントデリミッタが定義されていなかったら何もしない
-    
-    // 現在の選択区域とシフトする行範囲を得る
-    NSRange selectedRange = [self selectedRange];
-    NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-    
-    if (lineRange.length > 1) {
-        lineRange.length--; // 最末尾の改行分を減ずる
+    if ([self blockCommentDelimietrs]) {
+        NSString *selection = [[[self string] substringWithRange:[self selectedRange]]
+                               stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
+        NSString *beginDelimiter = [self blockCommentDelimietrs][@"begin"];
+        NSString *endDelimiter = [self blockCommentDelimietrs][@"end"];
+        NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] ? @" " : @"";
+        
+        NSString *newString = [@[beginDelimiter, selection, endDelimiter] componentsJoinedByString:spacer];
+        
+        [self doReplaceString:newString
+                    withRange:NSMakeRange([self selectedRange].location, [selection length])
+                 withSelected:NSMakeRange([self selectedRange].location, [newString length]) withActionName:NSLocalizedString(@"Comment Out", nil)];
     }
-    
-    // 置換する行を生成する
-    NSMutableString *newLine = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
-    NSString *newStr = [NSString stringWithFormat:@"%@%@", @"\n", delimiter];
-    NSUInteger lines = [newLine replaceOccurrencesOfString:@"\n"
-                                                withString:newStr
-                                                   options:0
-                                                     range:NSMakeRange(0, [newLine length])];
-    [newLine insertString:delimiter atIndex:0];
-    // 置換後の選択位置の調整
-    NSUInteger newLocation;
-    if ((lineRange.location == selectedRange.location) && (selectedRange.length > 0) &&
-        ([[[self string] substringWithRange:selectedRange] hasSuffix:@"\n"]))
-    {
-        // 行頭から行末まで選択されていたときは、処理後も同様に選択する
-        newLocation = selectedRange.location;
-        lines++;
-    } else {
-        newLocation = selectedRange.location + [delimiter length];
-    }
-    // 置換実行
-    [self doReplaceString:newLine withRange:lineRange
-             withSelected:NSMakeRange(newLocation, selectedRange.length + [delimiter length] * lines)
-           withActionName:NSLocalizedString(@"Comment Out", nil)];
 }
 
 
@@ -1623,8 +1640,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)uncomment:(id)sender
 // ------------------------------------------------------
 {
-    if ([[self inlineCommentDelimiter] length] == 0) { return; }
+    if (![self blockCommentDelimietrs] && ![self inlineCommentDelimiter]) { return; }
     
+    // block comment
+    if ([self blockCommentDelimietrs]) {
+        NSString *selection = [[[self string] substringWithRange:[self selectedRange]]
+                               stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
+        if ([selection length] > 0) {
+            NSString *beginDelimiter = [self blockCommentDelimietrs][@"begin"];
+            NSString *endDelimiter = [self blockCommentDelimietrs][@"end"];
+            
+            // uncomment block comment
+            if ([selection hasPrefix:beginDelimiter] && [selection hasSuffix:endDelimiter]) {
+                NSRange newRange = NSMakeRange([beginDelimiter length],
+                                               [selection length] - [beginDelimiter length] - [endDelimiter length]);
+                NSString *newString = [selection substringWithRange:newRange];
+                
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] &&
+                    [newString hasPrefix:@" "] && [newString hasSuffix:@" "])
+                {
+                    newString = [newString substringWithRange:NSMakeRange(1, [newString length] - 2)];
+                }
+                
+                [self doReplaceString:newString withRange:[self selectedRange]
+                         withSelected:NSMakeRange([self selectedRange].location, [newString length])
+                       withActionName:NSLocalizedString(@"Comment Out", nil)];
+                return;
+            }
+        }
+    }
+    
+    // inline comment
     BOOL hasSelection = [self selectedRange].length > 0;
     BOOL shouldRemoveSpacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer];
     
@@ -2209,21 +2256,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)canUncomment
 // ------------------------------------------------------
 {
-    if ([[self inlineCommentDelimiter] length] == 0) { return NO; }  // コメントデリミッタが定義されていなかったら何もしない
-    
-    NSRange linesRange = [[self string] lineRangeForRange:[self selectedRange]];
-    if (linesRange.length > 1) {
-        linesRange.length--; // 最末尾の改行分を減ずる
-    }
-    NSArray *lines = [[[self string] substringWithRange:linesRange] componentsSeparatedByString:@"\n"];
-    NSUInteger commentLineCount = 0;
-    for (NSString *line in lines) {
-        if ([line hasPrefix:[self inlineCommentDelimiter]]) {
-            commentLineCount++;
+    if ([self blockCommentDelimietrs]) {
+        NSString *selection = [[[self string] substringWithRange:[self selectedRange]]
+                               stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
+        if ([selection hasPrefix:[self blockCommentDelimietrs][@"begin"]] &&
+            [selection hasSuffix:[self blockCommentDelimietrs][@"end"]]) {
+            return YES;
         }
     }
     
-    return commentLineCount == [lines count];
+    if ([self inlineCommentDelimiter]) {
+        NSRange linesRange = [[self string] lineRangeForRange:[self selectedRange]];
+        if (linesRange.length > 1) {
+            linesRange.length--; // 最末尾の改行分を減ずる
+        }
+        NSArray *lines = [[[self string] substringWithRange:linesRange] componentsSeparatedByString:@"\n"];
+        NSUInteger commentLineCount = 0;
+        for (NSString *line in lines) {
+            if ([line hasPrefix:[self inlineCommentDelimiter]]) {
+                commentLineCount++;
+            }
+        }
+        
+        return commentLineCount == [lines count];
+    }
+    
+    return NO;
 }
 
 @end
