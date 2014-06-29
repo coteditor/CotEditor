@@ -117,15 +117,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// ページ分割を自前でやるかを返す
--(BOOL)knowsPageRange:(NSRangePointer)outRange
+-(BOOL)knowsPageRange:(NSRangePointer)aRange
 // ------------------------------------------------------
 {
     // テキストビューのサイズをマージンに合わせて更新
     NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    [self setFrameSize:NSMakeSize([printInfo paperSize].width - (2 * k_printTextHorizontalMargin),
-                                  [printInfo paperSize].height - ([printInfo topMargin] + [printInfo bottomMargin]))];
+    [self setFrameSize:NSMakeSize([printInfo paperSize].width - [printInfo leftMargin] - [printInfo rightMargin],
+                                  [printInfo paperSize].height - [printInfo topMargin] - [printInfo bottomMargin])];
+    [self sizeToFit];
     
-	return [super knowsPageRange:outRange];
+    return [super knowsPageRange:aRange];
 }
 
 
