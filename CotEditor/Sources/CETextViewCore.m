@@ -130,7 +130,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         [self applyTypingAttributes];
         
-//        [self setInlineCommentDelimiter:@"//"];
+        [self setInlineCommentDelimiter:@"//"];
         [self setBlockCommentDelimietrs:@{@"begin": @"/*", @"end": @"*/"}];
         
         // 設定の変更を監視
@@ -1577,70 +1577,58 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)commentOut:(id)sender
 // ------------------------------------------------------
 {
-    if ([self inlineCommentDelimiter]) {
-        NSString *delimiter = [self inlineCommentDelimiter];
-        
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer]) {
-            delimiter = [delimiter stringByAppendingString:@" "];
-        }
-        
-        // 現在の選択区域と置換する行範囲を得る
-        NSRange selectedRange = [self selectedRange];
-        NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-        
-        if (lineRange.length > 1) {
-            lineRange.length--; // 最末尾の改行分を減ずる
-        }
-        
-        // 置換する行を生成する
-        NSMutableString *newLine = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];
-        NSString *newStr = [NSString stringWithFormat:@"%@%@", @"\n", delimiter];
-        NSUInteger lines = [newLine replaceOccurrencesOfString:@"\n"
-                                                    withString:newStr
-                                                       options:0
-                                                         range:NSMakeRange(0, [newLine length])];
-        [newLine insertString:delimiter atIndex:0];
-        // 置換後の選択位置の調整
-        NSUInteger newLocation;
-        if ((lineRange.location == selectedRange.location) && (selectedRange.length > 0) &&
-            ([[[self string] substringWithRange:selectedRange] hasSuffix:@"\n"]))
-        {
-            // 行頭から行末まで選択されていたときは、処理後も同様に選択する
-            newLocation = selectedRange.location;
-            lines++;
-        } else {
-            newLocation = selectedRange.location + [delimiter length];
-        }
-        // 置換実行
-        [self doReplaceString:newLine
-                    withRange:lineRange
-                 withSelected:NSMakeRange(newLocation, selectedRange.length + [delimiter length] * lines)
-               withActionName:NSLocalizedString(@"Comment Out", nil)];
-        return;
+    if (![self blockCommentDelimietrs] && ![self inlineCommentDelimiter]) { return; }
+    
+    // determine comment out target
+    NSRange targetRange;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_commentsAtLineHead]) {
+        targetRange = [[self string] lineRangeForRange:[self selectedRange]];
+    } else {
+        targetRange = [self selectedRange];
+    }
+    // remove last return
+    if (targetRange.length > 0 && [[self string] characterAtIndex:NSMaxRange(targetRange) - 1] == '\n') {
+        targetRange.length--;
     }
     
-    if ([self blockCommentDelimietrs]) {
-        NSString *selection = [[[self string] substringWithRange:[self selectedRange]]
-                               stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSString *target = [[self string] substringWithRange:targetRange];
+    NSString *beginDelimiter, *endDelimiter;
+    NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] ? @" " : @"";
+    NSString *newString;
+    NSRange selected;
+    NSUInteger addedChars = 0;
+    
+    // insert delimiters
+    if ([self inlineCommentDelimiter]) {
+        beginDelimiter = [self inlineCommentDelimiter];
         
-        NSString *beginDelimiter = [self blockCommentDelimietrs][@"begin"];
-        NSString *endDelimiter = [self blockCommentDelimietrs][@"end"];
-        NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] ? @" " : @"";
+        newString = [target stringByReplacingOccurrencesOfString:@"\n"
+                                                      withString:[NSString stringWithFormat:@"\n%@%@", beginDelimiter, spacer]
+                                                         options:0
+                                                           range:NSMakeRange(0, [target length])];
+        newString = [@[beginDelimiter, newString] componentsJoinedByString:spacer];
+        addedChars = [newString length] - targetRange.length;
         
-        NSString *newString = [@[beginDelimiter, selection, endDelimiter] componentsJoinedByString:spacer];
+    } else if ([self blockCommentDelimietrs]) {
+        beginDelimiter = [self blockCommentDelimietrs][@"begin"];
+        endDelimiter = [self blockCommentDelimietrs][@"end"];
         
-        NSRange selected;
-        if ([selection length] == 0) {
-            selected = NSMakeRange([self selectedRange].location + [beginDelimiter length] + [spacer length], 0);
-        } else {
-            selected = NSMakeRange([self selectedRange].location, [newString length]) ;
-        }
-        
-        [self doReplaceString:newString
-                    withRange:NSMakeRange([self selectedRange].location, [selection length])
-                 withSelected:selected
-               withActionName:NSLocalizedString(@"Comment Out", nil)];
+        newString = [@[beginDelimiter, target, endDelimiter] componentsJoinedByString:spacer];
+        addedChars = [beginDelimiter length] + [spacer length];
     }
+    
+    // selection
+    if ([self selectedRange].length > 0) {
+        selected = NSMakeRange(targetRange.location, [newString length]);
+    } else {
+        selected = NSMakeRange([self selectedRange].location + addedChars, 0);
+    }
+    
+    // replace
+    [self doReplaceString:newString
+                withRange:targetRange
+             withSelected:selected
+           withActionName:NSLocalizedString(@"Comment Out", nil)];
 }
 
 
@@ -1651,77 +1639,84 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (![self blockCommentDelimietrs] && ![self inlineCommentDelimiter]) { return; }
     
+    BOOL hasUncommented = NO;
+    
+    // determine uncomment target
+    NSRange targetRange;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_commentsAtLineHead]) {
+        targetRange = [[self string] lineRangeForRange:[self selectedRange]];
+    } else {
+        targetRange = [self selectedRange];
+    }
+    // remove last return
+    if (targetRange.length > 0 && [[self string] characterAtIndex:NSMaxRange(targetRange) - 1] == '\n') {
+        targetRange.length--;
+    }
+    
+    NSString *target = [[self string] substringWithRange:targetRange];
+    NSString *beginDelimiter, *endDelimiter;
+    NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] ? @" " : @"";
+    NSString *newString;
+    NSRange selected;
+    NSUInteger removedChars = 0;
+    
     // block comment
     if ([self blockCommentDelimietrs]) {
-        NSString *selection = [[[self string] substringWithRange:[self selectedRange]]
-                               stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        
-        if ([selection length] > 0) {
-            NSString *beginDelimiter = [self blockCommentDelimietrs][@"begin"];
-            NSString *endDelimiter = [self blockCommentDelimietrs][@"end"];
+        if ([target length] > 0) {
+            beginDelimiter = [self blockCommentDelimietrs][@"begin"];
+            endDelimiter = [self blockCommentDelimietrs][@"end"];
             
-            // uncomment block comment
-            if ([selection hasPrefix:beginDelimiter] && [selection hasSuffix:endDelimiter]) {
-                NSRange newRange = NSMakeRange([beginDelimiter length],
-                                               [selection length] - [beginDelimiter length] - [endDelimiter length]);
-                NSString *newString = [selection substringWithRange:newRange];
+            // remove comment delimiters
+            if ([target hasPrefix:beginDelimiter] && [target hasSuffix:endDelimiter]) {
+                removedChars = [beginDelimiter length];
+                newString = [target substringWithRange:NSMakeRange([beginDelimiter length],
+                                                                   [target length] - [beginDelimiter length] - [endDelimiter length])];
                 
-                if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] &&
-                    [newString hasPrefix:@" "] && [newString hasSuffix:@" "])
-                {
+                if ([spacer length] > 0 && [newString hasPrefix:spacer] && [newString hasSuffix:spacer]) {
                     newString = [newString substringWithRange:NSMakeRange(1, [newString length] - 2)];
+                    removedChars++;
                 }
                 
-                [self doReplaceString:newString withRange:[self selectedRange]
-                         withSelected:NSMakeRange([self selectedRange].location, [newString length])
-                       withActionName:NSLocalizedString(@"Comment Out", nil)];
-                return;
+                hasUncommented = YES;
             }
         }
     }
     
     // inline comment
-    BOOL hasSelection = [self selectedRange].length > 0;
-    BOOL shouldRemoveSpacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer];
-    
-    NSRange linesRange = [[self string] lineRangeForRange:[self selectedRange]];
-    if (linesRange.length > 0 && [[self string] characterAtIndex:NSMaxRange(linesRange) - 1] == '\n') {
-        linesRange.length--;
-    }
-    NSString *string = [[self string] substringWithRange:linesRange];
-    
-    // remove comment delimiters
-    NSArray *lines = [string componentsSeparatedByString:@"\n"];
-    NSMutableString *newString = [NSMutableString string];
-    BOOL isFirstLine = YES;
-    NSUInteger removedCharsAtFirstLine = 0;
-    for (NSString *line in lines) {
-        NSString *newLine = [line stringByReplacingOccurrencesOfString:[self inlineCommentDelimiter]
-                                                            withString:@""
-                                                               options:NSAnchoredSearch
-                                                                 range:NSMakeRange(0, [line length])];
-        if (shouldRemoveSpacer && [newLine hasPrefix:@" "]) {
-            newLine = [newLine stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
+    if (!hasUncommented) {
+        beginDelimiter = [self inlineCommentDelimiter];
+        
+        // remove comment delimiters
+        NSArray *lines = [target componentsSeparatedByString:@"\n"];
+        NSMutableArray *newLines = [NSMutableArray array];
+        BOOL isFirstLine = YES;
+        for (NSString *line in lines) {
+            NSString *newLine = [line copy];
+            if ([line hasPrefix:beginDelimiter]) {
+                newLine = [line substringFromIndex:[beginDelimiter length]];
+                
+                if ([spacer length] > 0 && [newLine hasPrefix:spacer]) {
+                    newLine = [newLine substringFromIndex:[spacer length]];
+                }
+            }
+            
+            [newLines addObject:newLine];
+            removedChars += [line length] - [newLine length];
         }
-        if (isFirstLine) {
-            [newString appendString:newLine];
-            removedCharsAtFirstLine = [line length] - [newLine length];
-            isFirstLine = NO;
-        } else {
-            [newString appendFormat:@"\n%@", newLine];
-        }
+        
+        newString = [newLines componentsJoinedByString:@"\n"];
     }
     
     // set selection
     NSRange selection;
-    if (hasSelection) {
-        selection = NSMakeRange(linesRange.location, [newString length]);
+    if ([self selectedRange].length > 0) {
+        selection = NSMakeRange(targetRange.location, [newString length]);
     } else {
         selection = NSMakeRange([self selectedRange].location, 0);
-        selection.location -= selection.location > removedCharsAtFirstLine ? removedCharsAtFirstLine : selection.location;
+        selection.location -= MIN(MIN(selection.location, selection.location - targetRange.location), removedChars);
     }
     
-    [self doReplaceString:newString withRange:linesRange withSelected:selection
+    [self doReplaceString:newString withRange:targetRange withSelected:selection
            withActionName:NSLocalizedString(@"Uncomment", nil)];
 }
 
@@ -2265,22 +2260,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)canUncomment
 // ------------------------------------------------------
 {
+    if (![self blockCommentDelimietrs] && ![self inlineCommentDelimiter]) { return NO; }
+    
+    // determine comment out target
+    NSRange targetRange;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_commentsAtLineHead]) {
+        targetRange = [[self string] lineRangeForRange:[self selectedRange]];
+    } else {
+        targetRange = [self selectedRange];
+    }
+    // remove last return
+    if (targetRange.length > 0 && [[self string] characterAtIndex:NSMaxRange(targetRange) - 1] == '\n') {
+        targetRange.length--;
+    }
+    
+    NSString *target = [[self string] substringWithRange:targetRange];
+    
+    if ([target length] == 0) { return NO; }
+    
     if ([self blockCommentDelimietrs]) {
-        NSString *selection = [[[self string] substringWithRange:[self selectedRange]]
-                               stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        
-        if ([selection hasPrefix:[self blockCommentDelimietrs][@"begin"]] &&
-            [selection hasSuffix:[self blockCommentDelimietrs][@"end"]]) {
+        if ([target hasPrefix:[self blockCommentDelimietrs][@"begin"]] &&
+            [target hasSuffix:[self blockCommentDelimietrs][@"end"]]) {
             return YES;
         }
     }
     
     if ([self inlineCommentDelimiter]) {
-        NSRange linesRange = [[self string] lineRangeForRange:[self selectedRange]];
-        if (linesRange.length > 1) {
-            linesRange.length--; // 最末尾の改行分を減ずる
-        }
-        NSArray *lines = [[[self string] substringWithRange:linesRange] componentsSeparatedByString:@"\n"];
+        NSArray *lines = [target componentsSeparatedByString:@"\n"];
         NSUInteger commentLineCount = 0;
         for (NSString *line in lines) {
             if ([line hasPrefix:[self inlineCommentDelimiter]]) {
