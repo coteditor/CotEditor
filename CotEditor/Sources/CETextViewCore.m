@@ -1416,6 +1416,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// ツールバーアイコンの有効／無効を制御
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+// ------------------------------------------------------
+{
+    if ([theItem action] == @selector(toggleComment:)) {
+        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
+    }
+    
+    return YES;
+}
+
+
 
 #pragma mark Action Messages
 
