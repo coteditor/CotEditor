@@ -43,6 +43,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy, readonly) NSString *syntaxStyleName;
 @property (nonatomic, copy, readonly) NSArray *completionWords;  // 入力補完文字列配列
 @property (nonatomic, copy, readonly) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
+@property (nonatomic, copy, readonly) NSString *inlineCommentDelimiter;
+@property (nonatomic, copy, readonly) NSDictionary *blockCommentDelimiters;
 @property (atomic, readonly) BOOL isColoring;
 
 

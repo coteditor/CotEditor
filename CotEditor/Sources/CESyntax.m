@@ -86,6 +86,8 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (nonatomic, copy, readwrite) NSString *syntaxStyleName;
 @property (nonatomic, copy, readwrite) NSArray *completionWords;
 @property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
+@property (nonatomic, copy, readwrite) NSString *inlineCommentDelimiter;
+@property (nonatomic, copy, readwrite) NSDictionary *blockCommentDelimiters;
 @property (atomic, readwrite) BOOL isColoring;
 
 @end
@@ -142,6 +144,15 @@ static NSArray *kSyntaxDictKeys;
             
             [self setCompletionWordsFromColoringDictionary];
             [self setSimpleWordsCharacterSetFromColoringDictionary];
+            
+            NSDictionary *delimiters = _coloringDictionary[k_SCKey_commentDelimitersDict];
+            if ([delimiters[k_SCKey_inlineComment] length] > 0) {
+                _inlineCommentDelimiter = delimiters[k_SCKey_inlineComment];
+            }
+            if ([delimiters[k_SCKey_beginComment] length] > 0 && [delimiters[k_SCKey_endComment] length] > 0) {
+                _blockCommentDelimiters = @{@"begin": delimiters[k_SCKey_beginComment],
+                                            @"end": delimiters[k_SCKey_endComment]};
+            }
         } else {
             return nil;
         }
@@ -884,6 +895,21 @@ static NSArray *kSyntaxDictKeys;
             
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
+                if ([self inlineCommentDelimiter]) {
+                    NSString *beginString = [NSString stringWithFormat:@"%@.*",
+                                             [NSRegularExpression escapedPatternForString:[self inlineCommentDelimiter]]];
+                    strDicts = [strDicts arrayByAddingObject:@{k_SCKey_beginString: beginString,
+                                                               k_SCKey_endString: @"",
+                                                               k_SCKey_regularExpression: @YES,
+                                                               k_SCKey_ignoreCase: @NO}];
+                }
+                if ([self blockCommentDelimiters]) {
+                    strDicts = [strDicts arrayByAddingObject:@{k_SCKey_beginString: [self blockCommentDelimiters][@"begin"],
+                                                               k_SCKey_endString: [self blockCommentDelimiters][@"end"],
+                                                               k_SCKey_regularExpression: @NO,
+                                                               k_SCKey_ignoreCase: @NO}];
+                }
+                
                 [colorings addObjectsFromArray:[self extractCommentsWithSyntaxArray:strDicts
                                                                     quoteColorTypes:quoteTypes]];
                 break;

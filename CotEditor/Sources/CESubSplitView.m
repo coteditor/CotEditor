@@ -408,6 +408,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setSyntax:[[CESyntax alloc] initWithStyleName:styleName
                                                layoutManager:(CELayoutManager *)[[self textView] layoutManager]
                                                   isPrinting:NO]];
+        
+        [[self textView] setInlineCommentDelimiter:[[self syntax] inlineCommentDelimiter]];
+        [[self textView] setBlockCommentDelimiters:[[self syntax] blockCommentDelimiters]];
     }
 }
 
