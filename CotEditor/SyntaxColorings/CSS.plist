@@ -13,15 +13,15 @@
 	</array>
 	<key>commandsArray</key>
 	<array/>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>/*</string>
+		<key>endDelimiter</key>
+		<string>*/</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>/*</string>
-			<key>endString</key>
-			<string>*/</string>
-		</dict>
-	</array>
+	<array/>
 	<key>extensions</key>
 	<array>
 		<dict>

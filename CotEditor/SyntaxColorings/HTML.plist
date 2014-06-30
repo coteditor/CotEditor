@@ -586,15 +586,15 @@
 			<true/>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>&lt;!--</string>
+		<key>endDelimiter</key>
+		<string>--&gt;</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>&lt;!--</string>
-			<key>endString</key>
-			<string>--&gt;</string>
-		</dict>
-	</array>
+	<array/>
 	<key>completionsArray</key>
 	<array>
 		<dict>
@@ -3092,8 +3092,6 @@
 			<true/>
 		</dict>
 	</array>
-	<key>numOfObjInArray</key>
-	<integer>393</integer>
 	<key>numbersArray</key>
 	<array/>
 	<key>outlineMenuArray</key>

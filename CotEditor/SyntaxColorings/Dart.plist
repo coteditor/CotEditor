@@ -13,21 +13,17 @@
 			<true/>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>/*</string>
+		<key>endDelimiter</key>
+		<string>*/</string>
+		<key>inlineDelimiter</key>
+		<string>//</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>/*</string>
-			<key>endString</key>
-			<string>*/</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>//.*</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>completionsArray</key>
 	<array/>
 	<key>extensions</key>
@@ -240,8 +236,6 @@
 			<string>with</string>
 		</dict>
 	</array>
-	<key>numOfObjInArray</key>
-	<integer>64</integer>
 	<key>numbersArray</key>
 	<array>
 		<dict>

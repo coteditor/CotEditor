@@ -134,15 +134,13 @@
 			<string>wait</string>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>inlineDelimiter</key>
+		<string>#</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>^#(.*+)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>extensions</key>
 	<array>
 		<dict>

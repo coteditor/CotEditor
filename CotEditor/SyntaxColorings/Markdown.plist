@@ -52,15 +52,15 @@
 			<true/>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>&lt;!--</string>
+		<key>endDelimiter</key>
+		<string>--&gt;</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>&lt;!--</string>
-			<key>endString</key>
-			<string>--&gt;</string>
-		</dict>
-	</array>
+	<array/>
 	<key>completionsArray</key>
 	<array/>
 	<key>extensions</key>

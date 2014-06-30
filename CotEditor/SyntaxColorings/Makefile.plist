@@ -121,15 +121,13 @@
 			<string>YACCR</string>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>inlineDelimiter</key>
+		<string>#</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>#.*</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>completionsArray</key>
 	<array/>
 	<key>extensions</key>
@@ -203,8 +201,6 @@
 			<string>while</string>
 		</dict>
 	</array>
-	<key>numOfObjInArray</key>
-	<integer>47</integer>
 	<key>numbersArray</key>
 	<array/>
 	<key>outlineMenuArray</key>

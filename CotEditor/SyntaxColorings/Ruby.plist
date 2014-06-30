@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>charactersArray</key>
@@ -716,23 +716,17 @@
 			<false/>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>=begin</string>
+		<key>endDelimiter</key>
+		<string>=end</string>
+		<key>inlineDelimiter</key>
+		<string>#</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>#(.*+)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^=begin</string>
-			<key>endString</key>
-			<string>^=end</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>extensions</key>
 	<array>
 		<dict>

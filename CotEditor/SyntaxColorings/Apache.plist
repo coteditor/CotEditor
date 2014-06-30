@@ -5199,15 +5199,13 @@
 			<true/>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>inlineDelimiter</key>
+		<string>#</string>
+	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>^[ \t]*#.*+</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>completionsArray</key>
 	<array>
 		<dict>
@@ -7801,15 +7799,13 @@
 			<true/>
 		</dict>
 	</array>
-	<key>numOfObjInArray</key>
-	<integer>695</integer>
 	<key>numbersArray</key>
 	<array/>
 	<key>outlineMenuArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;Directory(?:Match)?[\t ]+"?(.*?)"?&gt;</string>
+			<string>^[\t ]*&lt;Directory(?:Match)?[\t ]+&quot;?(.*?)&quot;?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7817,7 +7813,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;Files(?:Match)?[\t ]+"?(.*?)"?&gt;</string>
+			<string>^[\t ]*&lt;Files(?:Match)?[\t ]+&quot;?(.*?)&quot;?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7825,7 +7821,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;Location(?:Match)[\t ]+"?(.*?)"?&gt;</string>
+			<string>^[\t ]*&lt;Location(?:Match)[\t ]+&quot;?(.*?)&quot;?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7833,7 +7829,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;VirtualHost[\t ]+"?(.*?)"?&gt;</string>
+			<string>^[\t ]*&lt;VirtualHost[\t ]+&quot;?(.*?)&quot;?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7844,15 +7840,15 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>"</string>
+			<string>&quot;</string>
 			<key>endString</key>
-			<string>"</string>
+			<string>&quot;</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>'</string>
+			<string>&apos;</string>
 			<key>endString</key>
-			<string>'</string>
+			<string>&apos;</string>
 		</dict>
 	</array>
 	<key>styleName</key>

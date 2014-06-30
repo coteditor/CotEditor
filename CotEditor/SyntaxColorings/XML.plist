@@ -46,6 +46,13 @@
 			<true/>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>&lt;!--</string>
+		<key>endDelimiter</key>
+		<string>--&gt;</string>
+	</dict>
 	<key>commentsArray</key>
 	<array>
 		<dict>
@@ -53,14 +60,6 @@
 			<string>(?#for SGML DTD)--(?:-[^-]|[^-])*--(?=[^&lt;&gt;]*&gt;)</string>
 			<key>regularExpression</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&lt;!--</string>
-			<key>endString</key>
-			<string>--&gt;</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>completionsArray</key>

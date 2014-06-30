@@ -15154,6 +15154,15 @@
 			<string>zlib_get_coding_type</string>
 		</dict>
 	</array>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>/*</string>
+		<key>endDelimiter</key>
+		<string>*/</string>
+		<key>inlineDelimiter</key>
+		<string>//</string>
+	</dict>
 	<key>commentsArray</key>
 	<array>
 		<dict>
@@ -15161,24 +15170,6 @@
 			<string>#[^\n]*?(?=$|\?&gt;)</string>
 			<key>regularExpression</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;!\\)//[^\n]*?(?=$|\?&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>/*</string>
-			<key>endString</key>
-			<string>*/</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>completionsArray</key>
