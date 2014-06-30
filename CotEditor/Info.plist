@@ -203,7 +203,7 @@
 				<string>coffee</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docCoffee</string>
+			<string>docCoffeeScript</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/coffeescript</string>
@@ -247,7 +247,7 @@
 				<string>dart</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docIcon</string>
+			<string>docDart</string>
 			<key>CFBundleTypeName</key>
 			<string>Dart Source</string>
 			<key>CFBundleTypeRole</key>
@@ -506,7 +506,7 @@
 				<string>pyw</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>docPyhon</string>
+			<string>docPython</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/x-python-script</string>
