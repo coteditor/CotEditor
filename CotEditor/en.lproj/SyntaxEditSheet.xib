@@ -1307,14 +1307,14 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="395">
-                                            <rect key="frame" x="8" y="28" width="402" height="145"/>
+                                            <rect key="frame" x="8" y="28" width="402" height="156"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="O5U-0X-IG1">
-                                                <rect key="frame" x="1" y="17" width="400" height="127"/>
+                                                <rect key="frame" x="1" y="17" width="400" height="138"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" headerView="1056" id="405">
-                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="127"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="138"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1431,15 +1431,6 @@
                                                 <binding destination="34" name="enabled" keyPath="canRemove" id="559"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iER-jr-R8x">
-                                            <rect key="frame" x="6" y="181" width="185" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Other keywords for coloring:" id="ELZ-aL-4c5">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EWX-v0-oak">
                                             <rect key="frame" x="6" y="274" width="112" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1538,6 +1529,7 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="395" firstAttribute="top" secondItem="R6o-3b-d9H" secondAttribute="bottom" constant="30" id="1lB-q1-klt"/>
                                         <constraint firstAttribute="bottom" secondItem="427" secondAttribute="bottom" id="1oR-DO-yZX"/>
                                         <constraint firstItem="R6o-3b-d9H" firstAttribute="centerY" secondItem="7aJ-Ao-6B9" secondAttribute="centerY" id="273-ao-s2h"/>
                                         <constraint firstItem="EWX-v0-oak" firstAttribute="leading" secondItem="438" secondAttribute="leading" constant="8" id="3nJ-qc-Mhm"/>
@@ -1548,7 +1540,6 @@
                                         <constraint firstAttribute="trailing" secondItem="395" secondAttribute="trailing" constant="8" id="Fe1-Xp-fWI"/>
                                         <constraint firstItem="427" firstAttribute="width" secondItem="417" secondAttribute="width" id="GvS-8Y-Gr9"/>
                                         <constraint firstItem="427" firstAttribute="leading" secondItem="438" secondAttribute="leading" constant="10" id="Inv-hh-Hw9"/>
-                                        <constraint firstItem="395" firstAttribute="top" secondItem="iER-jr-R8x" secondAttribute="bottom" constant="8" symbolic="YES" id="LZv-RP-OQg"/>
                                         <constraint firstItem="R6o-3b-d9H" firstAttribute="width" secondItem="TIg-sm-rkS" secondAttribute="width" id="MLo-kZ-2Sa"/>
                                         <constraint firstItem="bFk-sd-ygd" firstAttribute="leading" secondItem="W4y-af-ifa" secondAttribute="trailing" constant="8" symbolic="YES" id="N0Q-fk-krC"/>
                                         <constraint firstItem="xYx-pP-FgD" firstAttribute="trailing" secondItem="7aJ-Ao-6B9" secondAttribute="trailing" id="YCC-2T-Vo6"/>
@@ -1557,7 +1548,6 @@
                                         <constraint firstItem="Tu6-5K-poW" firstAttribute="leading" secondItem="xYx-pP-FgD" secondAttribute="leading" id="ftm-yt-emf"/>
                                         <constraint firstItem="xYx-pP-FgD" firstAttribute="leading" secondItem="bFk-sd-ygd" secondAttribute="trailing" constant="30" id="gEB-cE-uvr"/>
                                         <constraint firstItem="R6o-3b-d9H" firstAttribute="leading" secondItem="7aJ-Ao-6B9" secondAttribute="trailing" constant="8" symbolic="YES" id="gYB-Fr-cRt"/>
-                                        <constraint firstItem="iER-jr-R8x" firstAttribute="top" secondItem="R6o-3b-d9H" secondAttribute="bottom" constant="16" id="j1x-11-gam"/>
                                         <constraint firstItem="Tu6-5K-poW" firstAttribute="top" secondItem="EWX-v0-oak" secondAttribute="top" id="mdp-ho-Ssu"/>
                                         <constraint firstItem="W4y-af-ifa" firstAttribute="centerY" secondItem="bFk-sd-ygd" secondAttribute="centerY" id="miJ-zC-uwc"/>
                                         <constraint firstItem="R6o-3b-d9H" firstAttribute="width" secondItem="bFk-sd-ygd" secondAttribute="width" id="pNe-PE-NGf"/>
@@ -1567,7 +1557,6 @@
                                         <constraint firstItem="417" firstAttribute="top" secondItem="395" secondAttribute="bottom" constant="8" symbolic="YES" id="w1g-RP-YLI"/>
                                         <constraint firstItem="TIg-sm-rkS" firstAttribute="centerY" secondItem="xYx-pP-FgD" secondAttribute="centerY" id="wAx-E5-5A4"/>
                                         <constraint firstItem="EWX-v0-oak" firstAttribute="top" secondItem="438" secondAttribute="top" constant="12" id="ywP-Dc-ZSJ"/>
-                                        <constraint firstItem="iER-jr-R8x" firstAttribute="leading" secondItem="395" secondAttribute="leading" id="zJc-ey-lIX"/>
                                         <constraint firstItem="417" firstAttribute="leading" secondItem="427" secondAttribute="trailing" constant="-1" id="zsQ-Hl-LfR"/>
                                     </constraints>
                                 </view>
