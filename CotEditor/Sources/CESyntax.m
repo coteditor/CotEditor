@@ -676,7 +676,7 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
-- (NSArray *)extractCommentsWithSyntaxArray:(NSArray *)syntaxArray quoteColors:(NSDictionary *)quoteColors
+- (NSArray *)extractCommentsWithSyntaxArray:(NSArray *)syntaxArray quoteColorTypes:(NSDictionary *)quoteColorTypes
 // ------------------------------------------------------
 {
     NSMutableArray *colorings = [NSMutableArray array];
@@ -685,7 +685,6 @@ static NSArray *kSyntaxDictKeys;
     NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     BOOL updatesIndicator = ([self indicatorController]);
     NSUInteger maxLength = [[self coloringString] length];
-    NSColor *commentsColor = [[self theme] commentsColor];
 
     // コメント定義の位置配列を生成
     for (NSDictionary *strDict in syntaxArray) {
@@ -732,7 +731,7 @@ static NSArray *kSyntaxDictKeys;
     } // end-for
     
     // クォート定義があれば位置配列を生成、マージ
-    for (NSString *quote in quoteColors) {
+    for (NSString *quote in quoteColorTypes) {
         [positions addObjectsFromArray:[self rangesBeginString:quote endString:quote ignoreCase:NO
                                                   returnFormat:QCDictFormat pairKind:quote]];
     }
@@ -747,7 +746,7 @@ static NSArray *kSyntaxDictKeys;
                                           charSet:[self simpleWordsCharacterSets][k_SCKey_commentsArray]];
         
         for (NSValue *value in ranges) {
-            [colorings addObject:@{ColorKey: commentsColor,
+            [colorings addObject:@{ColorKey: k_SCKey_commentsArray,
                                    RangeKey: value}];
         }
     }
@@ -759,7 +758,7 @@ static NSArray *kSyntaxDictKeys;
     [positions sortUsingDescriptors:@[descriptor]];
     
     NSUInteger coloringCount = [positions count];
-    NSColor *color;
+    NSString *colorType;
     NSUInteger i, index = 0;
     NSUInteger start, end;
     NSString *searchPairKind = nil;
@@ -784,11 +783,11 @@ static NSArray *kSyntaxDictKeys;
         }
         
         if (searchPairKind == position[QCPairKindKey]) {
-            color = quoteColors[searchPairKind] ? : commentsColor;
+            colorType = quoteColorTypes[searchPairKind] ? : k_SCKey_commentsArray;
             
             end = [position[QCPositionKey] unsignedIntegerValue] + [position[QCLengthKey] unsignedIntegerValue];
             
-            [colorings addObject:@{ColorKey: color,
+            [colorings addObject:@{ColorKey: colorType,
                                    RangeKey: [NSValue valueWithRange:NSMakeRange(start, end - start)]}];
             
             searchPairKind = nil;
@@ -810,9 +809,9 @@ static NSArray *kSyntaxDictKeys;
             if (hasEnd) {
                 index = i;
             } else {
-                color = quoteColors[searchPairKind] ? : commentsColor;
+                colorType = quoteColorTypes[searchPairKind] ? : k_SCKey_commentsArray;
                 
-                [colorings addObject:@{ColorKey: color,
+                [colorings addObject:@{ColorKey: colorType,
                                        RangeKey: [NSValue valueWithRange:NSMakeRange(start, maxLength - start)]}];
                 break;
             }
@@ -829,9 +828,6 @@ static NSArray *kSyntaxDictKeys;
 {
     if (![[self layoutManager] showOtherInvisibles]) { return nil; }
     
-    NSColor *color = [[self theme] invisiblesColor];
-    if ([[self theme] textColor] == color) { return nil; }
-    
     NSMutableArray *colorings = [NSMutableArray array];
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
@@ -843,7 +839,7 @@ static NSArray *kSyntaxDictKeys;
         if ([scanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:&controlStr]) {
             NSRange range = NSMakeRange(start, [controlStr length]);
             
-            [colorings addObject:@{ColorKey: color,
+            [colorings addObject:@{ColorKey: @"invisibles",
                                    RangeKey: [NSValue valueWithRange:range]}];
         }
     }
@@ -864,26 +860,27 @@ static NSArray *kSyntaxDictKeys;
     
     NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
     NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    NSMutableDictionary *quoteColors = [NSMutableDictionary dictionaryWithCapacity:2];
+    NSMutableDictionary *quoteTypes = [NSMutableDictionary dictionaryWithCapacity:2];
     
     @try {
         // Keywords > Commands > Categories > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             
             NSArray *strDicts = [self coloringDictionary][syntaxKey];
-            NSColor *textColor = [[self theme] syntaxColorWithSyntaxKey:syntaxKey];
             NSUInteger count = [strDicts count];
             if (!strDicts) { continue; }
             
             // インジケータシートのメッセージを更新
-            [[self indicatorController] setInformativeText:
-             [NSString stringWithFormat:NSLocalizedString(@"Extracting %@", nil),
-              NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
+            if ([self indicatorController]) {
+                [[self indicatorController] setInformativeText:
+                 [NSString stringWithFormat:NSLocalizedString(@"Extracting %@", nil),
+                  NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
+            }
             
             // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
             if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
                 [colorings addObjectsFromArray:[self extractCommentsWithSyntaxArray:strDicts
-                                                                        quoteColors:quoteColors]];
+                                                                    quoteColorTypes:quoteTypes]];
                 break;
             }
             if (count < 1) {
@@ -928,8 +925,8 @@ static NSArray *kSyntaxDictKeys;
                             BOOL isQuoteFound = NO;
                             for (NSString *quote in @[@"'", @"\""]) {
                                 if ([beginStr isEqualToString:quote] && [endStr isEqualToString:quote]) {
-                                    if (!quoteColors[quote]) {
-                                        quoteColors[quote] = textColor;
+                                    if (!quoteTypes[quote]) {
+                                        quoteTypes[quote] = syntaxKey;
                                     }
                                     isQuoteFound = YES;
                                 }
@@ -972,7 +969,7 @@ static NSArray *kSyntaxDictKeys;
             }
             // カラーとrangeのペアを格納
             for (NSValue *value in targetRanges) {
-                [colorings addObject:@{ColorKey: textColor,
+                [colorings addObject:@{ColorKey: syntaxKey,
                                        RangeKey: value}];
             }
             
@@ -1073,14 +1070,21 @@ static NSArray *kSyntaxDictKeys;
     // カラーリング実行
     for (NSDictionary *coloring in colorings) {
         @autoreleasepool {
+            NSString *colorType = coloring[ColorKey];
+            NSColor *color;
+            if ([colorType isEqualToString:@"invisibles"]) {
+                color = [[self theme] invisiblesColor];
+            } else {
+                color = [[self theme] syntaxColorWithSyntaxKey:colorType];
+            }
             NSRange range = [coloring[RangeKey] rangeValue];
             range.location += coloringRange.location;
             
             if ([self isPrinting]) {
-                [[[self layoutManager] firstTextView] setTextColor:coloring[ColorKey] range:range];
+                [[[self layoutManager] firstTextView] setTextColor:color range:range];
             } else {
                 [[self layoutManager] addTemporaryAttribute:NSForegroundColorAttributeName
-                                                      value:coloring[ColorKey] forCharacterRange:range];
+                                                      value:color forCharacterRange:range];
             }
         }
     }
