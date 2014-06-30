@@ -130,9 +130,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         [self applyTypingAttributes];
         
-        [self setInlineCommentDelimiter:@"//"];
-        [self setBlockCommentDelimiters:@{@"begin": @"/*", @"end": @"*/"}];
-        
         // 設定の変更を監視
         for (NSString *key in [self observedDefaultKeys]) {
             [[NSUserDefaults standardUserDefaults] addObserver:self
