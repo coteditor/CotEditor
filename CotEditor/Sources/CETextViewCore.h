@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL isAutoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
-@property (nonatomic, copy) NSDictionary *blockCommentDelimietrs;  // ブロックコメント開始・終了文字列のペア
+@property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
 
 @property (nonatomic, weak) NSView *slaveView;  // LineNumView
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
@@ -93,6 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)toggleComment:(id)sender;
 - (IBAction)commentOut:(id)sender;
 - (IBAction)uncomment:(id)sender;
+- (IBAction)selectLines:(id)sender;
 - (IBAction)toggleLayoutOrientation:(id)sender;
 - (IBAction)changeTabWidth:(id)sender;
 - (IBAction)exchangeLowercase:(id)sender;

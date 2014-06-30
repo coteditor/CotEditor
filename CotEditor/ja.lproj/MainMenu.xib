@@ -195,6 +195,11 @@
                                     <action selector="selectAll:" target="-1" id="179"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="行を選択" keyEquivalent="l" id="Cwp-ys-LJc">
+                                <connections>
+                                    <action selector="selectLines:" target="-1" id="MP0-H8-6bm"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="630">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>

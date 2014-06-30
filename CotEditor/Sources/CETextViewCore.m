@@ -131,7 +131,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self applyTypingAttributes];
         
         [self setInlineCommentDelimiter:@"//"];
-        [self setBlockCommentDelimietrs:@{@"begin": @"/*", @"end": @"*/"}];
+        [self setBlockCommentDelimiters:@{@"begin": @"/*", @"end": @"*/"}];
         
         // 設定の変更を監視
         for (NSString *key in [self observedDefaultKeys]) {
@@ -1409,7 +1409,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([menuItem action] == @selector(toggleComment:)) {
         NSString *title = [self canUncomment] ? @"Uncomment Selection" : @"Comment Selection";
         [menuItem setTitle:NSLocalizedString(title, nil)];
-        return ([self inlineCommentDelimiter] || [self blockCommentDelimietrs]);
+        return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
     }
 
     return [super validateMenuItem:menuItem];
@@ -1577,7 +1577,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)commentOut:(id)sender
 // ------------------------------------------------------
 {
-    if (![self blockCommentDelimietrs] && ![self inlineCommentDelimiter]) { return; }
+    if (![self blockCommentDelimiters] && ![self inlineCommentDelimiter]) { return; }
     
     // determine comment out target
     NSRange targetRange;
@@ -1609,9 +1609,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         newString = [@[beginDelimiter, newString] componentsJoinedByString:spacer];
         addedChars = [newString length] - targetRange.length;
         
-    } else if ([self blockCommentDelimietrs]) {
-        beginDelimiter = [self blockCommentDelimietrs][@"begin"];
-        endDelimiter = [self blockCommentDelimietrs][@"end"];
+    } else if ([self blockCommentDelimiters]) {
+        beginDelimiter = [self blockCommentDelimiters][@"begin"];
+        endDelimiter = [self blockCommentDelimiters][@"end"];
         
         newString = [@[beginDelimiter, target, endDelimiter] componentsJoinedByString:spacer];
         addedChars = [beginDelimiter length] + [spacer length];
@@ -1637,7 +1637,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)uncomment:(id)sender
 // ------------------------------------------------------
 {
-    if (![self blockCommentDelimietrs] && ![self inlineCommentDelimiter]) { return; }
+    if (![self blockCommentDelimiters] && ![self inlineCommentDelimiter]) { return; }
     
     BOOL hasUncommented = NO;
     
@@ -1661,10 +1661,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUInteger removedChars = 0;
     
     // block comment
-    if ([self blockCommentDelimietrs]) {
+    if ([self blockCommentDelimiters]) {
         if ([target length] > 0) {
-            beginDelimiter = [self blockCommentDelimietrs][@"begin"];
-            endDelimiter = [self blockCommentDelimietrs][@"end"];
+            beginDelimiter = [self blockCommentDelimiters][@"begin"];
+            endDelimiter = [self blockCommentDelimiters][@"end"];
             
             // remove comment delimiters
             if ([target hasPrefix:beginDelimiter] && [target hasSuffix:endDelimiter]) {
@@ -1718,6 +1718,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     [self doReplaceString:newString withRange:targetRange withSelected:selection
            withActionName:NSLocalizedString(@"Uncomment", nil)];
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲を含む行全体を選択する
+- (IBAction)selectLines:(id)sender
+// ------------------------------------------------------
+{
+    [self setSelectedRange:[[self string] lineRangeForRange:[self selectedRange]]];
 }
 
 
@@ -2260,7 +2269,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)canUncomment
 // ------------------------------------------------------
 {
-    if (![self blockCommentDelimietrs] && ![self inlineCommentDelimiter]) { return NO; }
+    if (![self blockCommentDelimiters] && ![self inlineCommentDelimiter]) { return NO; }
     
     // determine comment out target
     NSRange targetRange;
@@ -2278,9 +2287,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if ([target length] == 0) { return NO; }
     
-    if ([self blockCommentDelimietrs]) {
-        if ([target hasPrefix:[self blockCommentDelimietrs][@"begin"]] &&
-            [target hasSuffix:[self blockCommentDelimietrs][@"end"]]) {
+    if ([self blockCommentDelimiters]) {
+        if ([target hasPrefix:[self blockCommentDelimiters][@"begin"]] &&
+            [target hasSuffix:[self blockCommentDelimiters][@"end"]]) {
             return YES;
         }
     }

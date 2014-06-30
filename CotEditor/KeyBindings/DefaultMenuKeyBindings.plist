@@ -44,6 +44,8 @@
 	<string>toggleComment:</string>
 	<key>@a</key>
 	<string>selectAll:</string>
+	<key>@l</key>
+	<string>selectLines:</string>
 	<key>@c</key>
 	<string>copy:</string>
 	<key>@e</key>
