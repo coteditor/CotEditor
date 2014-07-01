@@ -188,14 +188,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSDictionary *attributes = @{NSFontAttributeName: font,
                                      NSForegroundColorAttributeName: color};
         
-        CGFloat insetWidth = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth];
-        CGFloat insetHeight = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop];
+        NSPoint inset;
         if ([self isPrinting]) {
-            NSPoint thePoint = [textView textContainerOrigin];
-            insetWidth = thePoint.x;
-            insetHeight = thePoint.y;
+            inset = [textView textContainerOrigin];
+        } else {
+            inset = NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
+                                (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop]);
         }
-        NSSize size = NSMakeSize(insetWidth, insetHeight);
+        
         NSFont *replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
         NSGlyph glyph = [replaceFont glyphWithName:@"replacement"];
         
@@ -204,23 +204,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             unichar character = [completeStr characterAtIndex:charIndex];
 
             if ([self showSpace] && ((character == ' ') || (character == 0x00A0))) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [[self spaceCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
 
             } else if ([self showTab] && (character == '\t')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [[self tabCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
 
             } else if ([self showNewLine] && (character == '\n')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [[self theNewLineCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
 
             } else if ([self showFullwidthSpace] && (character == 0x3000)) { // Fullwidth-space (JP)
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:size];
+                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
                 [[self fullwidthSpaceCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
 
             } else if ([self showOtherInvisibles] && ([self glyphAtIndex:glyphIndex] == NSControlGlyph)) {
-                NSRange charRange = NSMakeRange(charIndex, 1);
+                NSUInteger charLength = CFStringIsSurrogateHighCharacter(character) ? 2 : 1;
+                NSRange charRange = NSMakeRange(charIndex, charLength);
                 NSString *baseStr = [completeStr substringWithRange:charRange];
                 NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:glyph forFont:replaceFont baseString:baseStr];
                 if (glyphInfo) {
@@ -235,6 +236,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
         }
     }
+    
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
 }
 
@@ -332,14 +334,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// グリフを描画する位置を返す
-- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex adjust:(NSSize)size
+- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex adjust:(NSPoint)adjust
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
     NSRect glyphRect = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
 
-    drawPoint.x += size.width;
-    drawPoint.y = glyphRect.origin.y + size.height;
+    drawPoint.x += adjust.x;
+    drawPoint.y = glyphRect.origin.y + adjust.y;
 
     return drawPoint;
 }
