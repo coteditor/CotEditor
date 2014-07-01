@@ -627,16 +627,12 @@ static NSArray *kSyntaxDictKeys;
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
 - (NSArray *)rangesRegularExpressionBeginString:(NSString *)beginString endString:(NSString *)endString ignoreCase:(BOOL)ignoreCase
-                                   returnFormat:(QCArrayFormat)returnFormat pairKind:(NSString *)pairKind
 // ------------------------------------------------------
 {
     __block NSMutableArray *ranges = [NSMutableArray array];
     NSString *string = [self coloringString];
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
-    
-    QCStartEndType startType = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
-    QCStartEndType endType   = (pairKind == QCCommentKind) ? QCEnd : QCNotUseStartEnd;
     
     [string enumerateStringsMatchedByRegex:beginString
                                    options:options
@@ -661,24 +657,8 @@ static NSArray *kSyntaxDictKeys;
                                          capture:0
                                            error:nil];
          
-         if (endRange.location == NSNotFound) {
-             return;
-         }
-         
-         NSRange range = NSUnionRange(beginRange, endRange);
-         
-         if (returnFormat == QCRangeFormat) {
-             [ranges addObject:[NSValue valueWithRange:range]];
-             
-         } else {
-             [ranges addObject:@{QCPositionKey: @(range.location),
-                                 QCPairKindKey: pairKind,
-                                 QCStartEndKey: @(startType),
-                                 QCLengthKey: @0U}];
-             [ranges addObject:@{QCPositionKey: @(NSMaxRange(range)),
-                                 QCPairKindKey: pairKind,
-                                 QCStartEndKey: @(endType),
-                                 QCLengthKey: @0U}];
+         if (endRange.location != NSNotFound) {
+             [ranges addObject:[NSValue valueWithRange:NSUnionRange(beginRange, endRange)]];
          }
      }];
     
@@ -694,59 +674,28 @@ static NSArray *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// クオートで囲まれた文字列とともにコメントをカラーリング
-- (NSArray *)extractCommentsWithSyntaxArray:(NSArray *)syntaxArray quoteColorTypes:(NSDictionary *)quoteColorTypes
+- (NSArray *)extractCommentsWithQuotes:(NSDictionary *)quoteColorTypes
 // ------------------------------------------------------
 {
     NSMutableArray *colorings = [NSMutableArray array];
     NSMutableArray *positions = [NSMutableArray array];
-    NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    BOOL updatesIndicator = ([self indicatorController]);
-    NSUInteger maxLength = [[self coloringString] length];
-
+    
     // コメント定義の位置配列を生成
-    for (NSDictionary *strDict in syntaxArray) {
-        if ([[self indicatorController] isCancelled]) { return nil; }
-        
-        BOOL ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
-        NSString *beginStr = strDict[k_SCKey_beginString];
-        NSString *endStr = strDict[k_SCKey_endString];
-
-        if ([beginStr length] < 1) { continue; }
-
-        if ([strDict[k_SCKey_regularExpression] boolValue]) {
-            if (endStr && ([endStr length] > 0)) {
-                [positions addObjectsFromArray:[self rangesRegularExpressionBeginString:beginStr
-                                                                              endString:endStr
-                                                                             ignoreCase:ignoresCase
-                                                                           returnFormat:QCDictFormat
-                                                                               pairKind:QCCommentKind]];
-            } else {
-                [positions addObjectsFromArray:[self rangesRegularExpressionString:beginStr
-                                                                        ignoreCase:ignoresCase
-                                                                      returnFormat:QCDictFormat
-                                                                          pairKind:QCCommentKind]];
-            }
-        } else {
-            if (endStr && ([endStr length] > 0)) {
-                [positions addObjectsFromArray:[self rangesBeginString:beginStr
-                                                             endString:endStr
-                                                            ignoreCase:ignoresCase
-                                                          returnFormat:QCDictFormat
-                                                              pairKind:QCCommentKind]];
-            } else {
-                NSNumber *len = @([beginStr length]);
-                NSMutableDictionary *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
-                NSMutableArray *wordsArray = dict[len];
-                if (wordsArray) {
-                    [wordsArray addObject:beginStr];
-                } else {
-                    wordsArray = [NSMutableArray arrayWithObject:beginStr];
-                    dict[len] = wordsArray;
-                }
-            }
-        }
-    } // end-for
+    if ([self inlineCommentDelimiter]) {
+        NSString *beginString = [NSString stringWithFormat:@"%@.*$",
+                                 [NSRegularExpression escapedPatternForString:[self inlineCommentDelimiter]]];
+        [positions addObjectsFromArray:[self rangesRegularExpressionString:beginString
+                                                                ignoreCase:NO
+                                                              returnFormat:QCDictFormat
+                                                                  pairKind:QCCommentKind]];
+    }
+    if ([self blockCommentDelimiters]) {
+        [positions addObjectsFromArray:[self rangesBeginString:[self blockCommentDelimiters][@"begin"]
+                                                     endString:[self blockCommentDelimiters][@"end"]
+                                                    ignoreCase:NO
+                                                  returnFormat:QCDictFormat
+                                                      pairKind:QCCommentKind]];
+    }
     
     // クォート定義があれば位置配列を生成、マージ
     for (NSString *quote in quoteColorTypes) {
@@ -755,22 +704,10 @@ static NSArray *kSyntaxDictKeys;
     }
     
     // コメントもクォートもなければ、もどる
-    if (([positions count] < 1) && ([simpleWordsDict count] < 1)) { return nil; }
-    
-    // まず、開始文字列だけのコメント定義があればカラーリング
-    if (([simpleWordsDict count]) > 0) {
-        NSArray *ranges = [self rangesSimpleWords:simpleWordsDict
-                                  ignoreCaseWords:simpleICWordsDict
-                                          charSet:[self simpleWordsCharacterSets][k_SCKey_commentsArray]];
-        
-        for (NSValue *value in ranges) {
-            [colorings addObject:@{ColorKey: k_SCKey_commentsArray,
-                                   RangeKey: value}];
-        }
-    }
-
-    // カラーリング対象がなければ、もどる
     if ([positions count] < 1) { return nil; }
+    
+    BOOL updatesIndicator = ([self indicatorController]);
+    NSUInteger maxLength = [[self coloringString] length];
     
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:QCPositionKey ascending:YES];
     [positions sortUsingDescriptors:@[descriptor]];
@@ -784,7 +721,6 @@ static NSArray *kSyntaxDictKeys;
     while (index < coloringCount) {
         // インジケータ更新
         if (updatesIndicator) {
-            
             [[self indicatorController] progressIndicator:10.0 * 200 / coloringCount];
         }
         
@@ -893,27 +829,6 @@ static NSArray *kSyntaxDictKeys;
                   NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
             }
             
-            // シングル／ダブルクォートのカラーリングがあったら、コメントとともに別メソッドでカラーリングする
-            if ([syntaxKey isEqualToString:k_SCKey_commentsArray]) {
-                if ([self inlineCommentDelimiter]) {
-                    NSString *beginString = [NSString stringWithFormat:@"%@.*",
-                                             [NSRegularExpression escapedPatternForString:[self inlineCommentDelimiter]]];
-                    strDicts = [strDicts arrayByAddingObject:@{k_SCKey_beginString: beginString,
-                                                               k_SCKey_endString: @"",
-                                                               k_SCKey_regularExpression: @YES,
-                                                               k_SCKey_ignoreCase: @NO}];
-                }
-                if ([self blockCommentDelimiters]) {
-                    strDicts = [strDicts arrayByAddingObject:@{k_SCKey_beginString: [self blockCommentDelimiters][@"begin"],
-                                                               k_SCKey_endString: [self blockCommentDelimiters][@"end"],
-                                                               k_SCKey_regularExpression: @NO,
-                                                               k_SCKey_ignoreCase: @NO}];
-                }
-                
-                [colorings addObjectsFromArray:[self extractCommentsWithSyntaxArray:strDicts
-                                                                    quoteColorTypes:quoteTypes]];
-                break;
-            }
             if (count < 1) {
                 if ([self indicatorController]) {
                     [[self indicatorController] progressIndicator:100.0];
@@ -938,9 +853,7 @@ static NSArray *kSyntaxDictKeys;
                             [targetRanges addObjectsFromArray:
                              [self rangesRegularExpressionBeginString:beginStr
                                                             endString:endStr
-                                                           ignoreCase:ignoresCase
-                                                         returnFormat:QCRangeFormat
-                                                             pairKind:nil]];
+                                                           ignoreCase:ignoresCase]];
                         } else {
                             [targetRanges addObjectsFromArray:
                              [self rangesRegularExpressionString:beginStr
@@ -1006,6 +919,9 @@ static NSArray *kSyntaxDictKeys;
                 [[self indicatorController] progressIndicator:100.0];
             }
         } // end-for (syntaxKey)
+        
+        [colorings addObjectsFromArray:[self extractCommentsWithQuotes:quoteTypes]];
+
         
         // 不可視文字の追加
         [colorings addObjectsFromArray:[self extractOtherInvisibleCharsFromString:string]];
