@@ -236,7 +236,7 @@
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="108">
                                                     <rect key="frame" x="0.0" y="0.0" width="210" height="481"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="59">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59">
                                                             <rect key="frame" x="19" y="457" width="81" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Creation Date:" id="680">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -259,7 +259,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="62">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="62">
                                                             <rect key="frame" x="-2" y="417" width="102" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Modification Date:" id="683">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -282,7 +282,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="413">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="413">
                                                             <rect key="frame" x="58" y="355" width="42" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Owner:" id="689">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -305,7 +305,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-fh-C8a">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-fh-C8a">
                                                             <rect key="frame" x="49" y="377" width="51" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="File Size:" id="U0l-4r-6ZD">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -329,7 +329,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="102">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="102">
                                                             <rect key="frame" x="35" y="333" width="65" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Permission:" id="685">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -352,7 +352,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="114">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="114">
                                                             <rect key="frame" x="23" y="311" width="77" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Finder's Lock:" id="687">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -375,7 +375,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="41">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="41">
                                                             <rect key="frame" x="52" y="289" width="48" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Creator:" id="672">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -398,7 +398,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="42">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="42">
                                                             <rect key="frame" x="67" y="267" width="33" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Type:" id="673">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -427,7 +427,7 @@
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="507">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="507">
                                                             <rect key="frame" x="43" y="236" width="57" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Encoding:" id="692">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -446,7 +446,7 @@
                                                                 <binding destination="-2" name="value" keyPath="encodingInfo" id="2ek-BM-fOa"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="509">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="509">
                                                             <rect key="frame" x="25" y="214" width="75" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Line Endings:" id="694">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -471,7 +471,7 @@
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="39">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="39">
                                                             <rect key="frame" x="65" y="183" width="35" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Lines:" id="670">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -490,7 +490,7 @@
                                                                 <binding destination="-2" name="value" keyPath="linesInfo" id="CFN-Kn-2f3"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="40">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="40">
                                                             <rect key="frame" x="35" y="161" width="65" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Characters:" id="671">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -509,7 +509,7 @@
                                                                 <binding destination="-2" name="value" keyPath="charsInfo" id="LxO-nU-8EH"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="661">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="661">
                                                             <rect key="frame" x="59" y="117" width="41" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Words:" id="696">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -528,7 +528,7 @@
                                                                 <binding destination="-2" name="value" keyPath="wordsInfo" id="4yw-op-mjA"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="57">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="57">
                                                             <rect key="frame" x="26" y="95" width="74" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Current Line:" id="679">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -547,7 +547,7 @@
                                                                 <binding destination="-2" name="value" keyPath="lineInfo" id="XfD-Dv-K7p"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-UV-cNg">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-UV-cNg">
                                                             <rect key="frame" x="47" y="73" width="53" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Location:" id="7Eo-jA-QRt">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -570,7 +570,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kud-ZS-Iyb">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kud-ZS-Iyb">
                                                             <rect key="frame" x="49" y="29" width="51" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Unicode:" id="j5R-qU-f98">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -593,7 +593,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0c5-6r-R0b">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0c5-6r-R0b">
                                                             <rect key="frame" x="30" y="139" width="70" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Byte Length:" id="oVh-Ta-PXw">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -616,7 +616,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="446">
+                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="446">
                                                             <rect key="frame" x="51" y="51" width="49" height="14"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Column:" id="691">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -692,7 +692,7 @@
                                                         <constraint firstItem="114" firstAttribute="baseline" secondItem="110" secondAttribute="baseline" id="e3J-Z4-BE3"/>
                                                         <constraint firstItem="446" firstAttribute="top" secondItem="z2Y-UV-cNg" secondAttribute="bottom" constant="8" symbolic="YES" id="eL3-pT-Zu1"/>
                                                         <constraint firstItem="x7g-Fl-5xS" firstAttribute="baseline" secondItem="kud-ZS-Iyb" secondAttribute="baseline" id="eYX-Qk-BVx"/>
-                                                        <constraint firstItem="62" firstAttribute="leading" secondItem="108" secondAttribute="leading" id="gA3-zF-jW3"/>
+                                                        <constraint firstItem="62" firstAttribute="leading" secondItem="108" secondAttribute="leading" priority="750" id="gA3-zF-jW3"/>
                                                         <constraint firstItem="114" firstAttribute="top" secondItem="102" secondAttribute="bottom" constant="8" symbolic="YES" id="gh5-Qg-yCg"/>
                                                         <constraint firstItem="z2Y-UV-cNg" firstAttribute="top" secondItem="57" secondAttribute="bottom" constant="8" symbolic="YES" id="hW6-3x-hOY"/>
                                                         <constraint firstAttribute="trailing" secondItem="511" secondAttribute="trailing" constant="20" symbolic="YES" id="hip-h2-ElJ"/>
