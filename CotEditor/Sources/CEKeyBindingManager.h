@@ -32,7 +32,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import "CEAppDelegate.h"
 
 
 typedef NS_ENUM(NSUInteger, CEKeyBindingOutlineMode) {
@@ -41,7 +40,7 @@ typedef NS_ENUM(NSUInteger, CEKeyBindingOutlineMode) {
 };
 
 
-@interface CEKeyBindingManager : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate>
+@interface CEKeyBindingManager : NSObject
 
 // class method
 + (instancetype)sharedManager;
@@ -51,12 +50,5 @@ typedef NS_ENUM(NSUInteger, CEKeyBindingOutlineMode) {
 - (NSWindow *)editSheetWindowOfMode:(CEKeyBindingOutlineMode)mode;
 - (BOOL)setupOutlineDataOfMode:(CEKeyBindingOutlineMode)mode;
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
-
-// Action Message
-- (IBAction)editKeyBindingKey:(id)sender;
-- (IBAction)deleteKeyBindingKey:(id)sender;
-- (IBAction)resetOutlineDataArrayToFactoryDefaults:(id)sender;
-- (IBAction)closeKeyBindingEditSheet:(id)sender;
-- (IBAction)doubleClickedOutlineViewRow:(id)sender;
 
 @end

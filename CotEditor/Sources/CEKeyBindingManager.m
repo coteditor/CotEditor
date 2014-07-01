@@ -32,11 +32,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEKeyBindingManager.h"
+#import "CEAppDelegate.h"
 #import "CEUtilities.h"
 #import "constants.h"
 
 
-@interface CEKeyBindingManager ()
+@interface CEKeyBindingManager () <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (nonatomic, strong) IBOutlet NSWindow *menuEditSheet;  // シートが閉じた時自動的に片付けられるようわざとweakにしたいのだが、OS X 10.7 に引っかかるのでstrong
 @property (nonatomic, weak) IBOutlet NSOutlineView *menuOutlineView;
@@ -161,7 +162,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"DefaultMenuKeyBindings" withExtension:@"plist"];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        [self setDefaultMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:URL]];
+        [self setDefaultMenuKeyBindingDict:[NSDictionary dictionaryWithContentsOfURL:URL]];
     }
     /// 定義ファイルのセットアップと読み込み
     [self setupMenuKeyBindingDictionary];
@@ -233,10 +234,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [[self menuDuplicateTextField] setStringValue:@""];
             [self setOutlineDataArray:[self mainMenuArrayForOutlineData:[NSApp mainMenu]]];
             [self setDuplicateKeyCheckArray:[self duplicateKeyCheckArrayWithMenu:[NSApp mainMenu]]];
-            [[self menuFactoryDefaultsButton] setEnabled:
-             (![[self menuKeyBindingDict] isEqualToDictionary:[self defaultMenuKeyBindingDict]])];
+            [[self menuFactoryDefaultsButton] setEnabled:[[self menuKeyBindingSettingFileURL]
+                                                          checkResourceIsReachableAndReturnError:nil]];
             [[self menuOutlineView] reloadData];
             [[self menuEditKeyButton] setEnabled:NO];
+            // 現在の設定がデフォルト設定ならばデフォルト値を入力する
+            if ([[self menuKeyBindingDict] isEqualToDictionary:[self defaultMenuKeyBindingDict]]) {
+                [self resetOutlineDataArrayToFactoryDefaults:nil];
+            }
         }
         break;
             
@@ -296,11 +301,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 // ------------------------------------------------------
 {
-    if (item == nil) {
-        return [[self outlineDataArray] count];
-    } else {
+    if (item) {
         NSMutableArray *children = item[k_children];
         return (children) ? [children count] : 0;
+    } else {
+        return [[self outlineDataArray] count];
     }
 }
 
@@ -310,10 +315,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 // ------------------------------------------------------
 {
-    if (item == nil) {
-        return YES;
-    } else {
+    if (item) {
         return (item[k_children] != nil);
+    } else {
+        return YES;
     }
 }
 
@@ -323,10 +328,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 // ------------------------------------------------------
 {
-    if (item == nil) {
-        return [self outlineDataArray][index];
-    } else {
+    if (item) {
         return item[k_children][index];
+    } else {
+        return [self outlineDataArray][index];
     }
 }
 
@@ -336,7 +341,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 // ------------------------------------------------------
 {
-    id theItem = (item == nil) ? [self outlineDataArray] : item;
+    id theItem = item ? : [self outlineDataArray];
     id identifier = [tableColumn identifier];
 
     if ([identifier isEqualToString:k_keyBindingKey]) {
@@ -352,11 +357,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSString *identifier = [tableColumn identifier];
-    if (([identifier isEqualToString:k_keyBindingKey]) && (item[k_children] == nil)) {
+    
+    if ([identifier isEqualToString:k_keyBindingKey] && !item[k_children]) {
+        
+        id theItem = item ? : [self outlineDataArray];
 
-        id theItem = (item == nil) ? [self outlineDataArray] : item;
-
-        if ([self currentKeySpecChars] == nil) {
+        if (![self currentKeySpecChars]) {
             // （値が既にセットされている時は更新しない）
             [self setCurrentKeySpecChars:[theItem valueForKey:identifier]];
         }
@@ -439,8 +445,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
 // ------------------------------------------------------
 {
-    NSButton *editButton = nil;
-
+    NSButton *editButton;
     switch ([self outlineMode]) {
         case CEMenuModeOutline:
             editButton = [self menuEditKeyButton];
@@ -448,9 +453,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         case CETextModeOutline:
             editButton = [self textEditKeyButton];
             break;
+        default:
+            return NO;
     }
-    
-    if (editButton == nil) { return NO; }
 
     // キー取得を停止
     [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
@@ -463,12 +468,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         [[self textInsertStringArrayController] setSelectionIndex:index];
         [[self textInsertStringTextView] setEditable:isEnabled];
-        NSColor *color = (isEnabled) ? [NSColor controlBackgroundColor] : [NSColor controlHighlightColor];
+        NSColor *color = isEnabled ? [NSColor controlBackgroundColor] : [NSColor controlHighlightColor];
         [[self textInsertStringTextView] setBackgroundColor:color];
     }
     
     // 編集ボタンを有効化／無効化
-    [editButton setEnabled:(item[k_children] == nil)];
+    [editButton setEnabled:(!item[k_children])];
 
     return YES;
 }
@@ -532,7 +537,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         case CEMenuModeOutline:
         {
             NSMutableArray *tmpArray = [[self outlineDataArray] mutableCopy];
-            if (tmpArray != nil) {
+            if (tmpArray) {
                 [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:tmpArray];
                 [self setOutlineDataArray:tmpArray];
                 [self setDuplicateKeyCheckArray:[[self duplicateKeyCheckArrayWithArray:[self outlineDataArray]] mutableCopy]];
@@ -671,38 +676,39 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+//------------------------------------------------------
+/// ユーザ設定ディレクトリがない場合は作成する
+- (BOOL)prepareUserSettingDicrectory
+//------------------------------------------------------
+{
+    NSURL *URL = [self userSettingDirecotryURL];
+    BOOL success;
+    
+    BOOL isDirectory;
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[URL path] isDirectory:&isDirectory];
+    
+    if (exists && isDirectory) {
+        return YES;
+        
+    } else if (!isDirectory) {
+        NSLog(@"Error! Key Bindings directory could not be found.");
+        return NO;
+    }
+    
+    return [[NSFileManager defaultManager] createDirectoryAtURL:URL
+                                    withIntermediateDirectories:YES attributes:nil error:nil];
+}
+
+
 // ------------------------------------------------------
 /// メニューキーバインディング定義ファイルのセットアップと読み込み
 - (void)setupMenuKeyBindingDictionary
 // ------------------------------------------------------
 {
-    NSURL *fileURL = [self menuKeyBindingSettingFileURL];
-    NSURL *dirURL = [self userSettingDirecotryURL];
-
-    // ディレクトリの存在チェック
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isDirectory = NO, success = NO;
-    BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
-    if (!exists) {
-        success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    if ((exists && isDirectory) || success) {
-        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultMenuKeyBindings" withExtension:@"plist"];
-
-        if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
-            ![fileURL checkResourceIsReachableAndReturnError:nil]) {
-            if (![fileManager copyItemAtURL:sourceURL toURL:fileURL error:nil]) {
-                NSLog(@"Error! Could not copy \"%@\" to \"%@\"...", sourceURL, fileURL);
-                return;
-            }
-        }
-    } else {
-        NSLog(@"Error! Key Bindings directory could not be found.");
-        return;
-    }
-
-    // データ読み込み
-    [self setMenuKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:fileURL]];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:
+                          [self menuKeyBindingSettingFileURL]] ? : [self defaultMenuKeyBindingDict];
+    
+    [self setMenuKeyBindingDict:dict];
 }
 
 
@@ -712,32 +718,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSURL *fileURL = [self textKeyBindingSettingFileURL];
-    NSURL *dirURL = [self userSettingDirecotryURL];
-
-    // ディレクトリの存在チェック
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isDirectory = NO, success = NO;
-    BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
-    if (!exists) {
-        success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    if ((exists && isDirectory) || (success)) {
+    
+    if ([self prepareUserSettingDicrectory]) {
         NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
-
+        
         if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
             ![fileURL checkResourceIsReachableAndReturnError:nil]) {
-            if (![fileManager copyItemAtURL:sourceURL toURL:fileURL error:nil]) {
+            if (![[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:fileURL error:nil]) {
                 NSLog(@"Error! Could not copy \"%@\" to \"%@\"...", sourceURL, fileURL);
                 return;
             }
         }
-    } else {
-        NSLog(@"Error! Key Bindings directory could not be found.");
-        return;
+        
+        // データ読み込み
+        [self setTextKeyBindingDict:[NSDictionary dictionaryWithContentsOfURL:fileURL]];
     }
-
-    // データ読み込み
-    [self setTextKeyBindingDict:[[NSDictionary alloc] initWithContentsOfURL:fileURL]];
 }
 
 
@@ -784,7 +779,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)resetAllMenuKeyBindingWithDictionary
 //------------------------------------------------------
 {
-    if ([self menuKeyBindingDict] == nil) { return; }
+    if (![self menuKeyBindingDict]) { return; }
 
     // まず、全メニューのショートカット定義をクリアする
     [self clearAllMenuKeyBindingOf:[NSApp mainMenu]];
@@ -824,8 +819,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                      fromString:keySpecChars
                                                             includingCommandKey:YES];
 
-            // theKeySpecChars があり Cmd が設定されている場合だけ、反映させる
-            if ((keySpecChars != nil) && ([keySpecChars length] > 0) && (modifierMask & NSCommandKeyMask)) {
+            // keySpecChars があり Cmd が設定されている場合だけ、反映させる
+            if (([keySpecChars length] > 0) && (modifierMask & NSCommandKeyMask)) {
                 // 日本語リソースが使われたとき、Input BackSlash の keyEquivalent を変更する
                 // （半角円マークのままだと半角カナ「エ」に化けるため）
                 if ([keyEquivalent isEqualToString:[NSString stringWithCharacters:&k_yenMark length:1]] &&
@@ -855,6 +850,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     for (NSMenuItem *item in [menu itemArray]) {
         if ([item isSeparatorItem] || ([[item title] length] < 1)) {
             continue;
+            
         } else if (([item hasSubmenu]) &&
                    ([item tag] != k_servicesMenuItemTag) &&
                    ([item tag] != k_windowPanelsMenuItemTag) &&
@@ -863,6 +859,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSMutableArray *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
             theDict = [@{k_title: [item title],
                          k_children: subArray} mutableCopy];
+            
         } else {
             selectorString = NSStringFromSelector([item action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
@@ -873,8 +870,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             {
                 continue;
             }
+            
             keyEquivalent = [item keyEquivalent];
-            if ((keyEquivalent != nil) && ([keyEquivalent length] > 0)) {
+            if ([keyEquivalent length] > 0) {
                 modifierMask = [item keyEquivalentModifierMask];
                 keySpecChars = [self keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierMask];
             } else {
@@ -903,7 +901,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id key;
 
     for (id selector in [self textKeyBindingSelectorStrArray]) {
-        if ((selector != nil) && [selector isKindOfClass:[NSString class]] && ([selector length] > 0)) {
+        if (([selector length] > 0) && [selector isKindOfClass:[NSString class]]) {
             if (usesFactoryDefaults) {
                 NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
                 NSDictionary *defaultDict = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
@@ -911,7 +909,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             } else {
                 keys = [[self textKeyBindingDict] allKeysForObject:selector];
             }
-            key = ((keys != nil) && ([keys count] > 0)) ? keys[0] : @"";
+            key = ([keys count] > 0) ? keys[0] : @"";
             
             theDict = [@{k_title: selector, //*****
                          k_keyBindingKey: key,
@@ -994,18 +992,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)readableKeyStringsFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)isShiftPressed
 //------------------------------------------------------
 {
-    NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
-    NSMutableString *keyStrings = [NSMutableString string];
-    unichar theChar;
-    NSInteger i;
-
     if (k_size_of_keySpecCharList != k_size_of_readableKeyStringsList) {
         NSLog(@"internal data error! 'k_keySpecCharList' and 'k_readableKeyStringsList' size is different.");
         return @"";
     }
+    
+    NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
+    NSMutableString *keyStrings = [NSMutableString string];
 
-    for (i = 0; i < k_size_of_keySpecCharList; i++) {
-        theChar = k_keySpecCharList[i];
+    for (NSUInteger i = 0; i < k_size_of_keySpecCharList; i++) {
+        unichar theChar = k_keySpecCharList[i];
         if ([modStringSet characterIsMember:theChar]) {
             [keyStrings appendFormat:@"%C", k_readableKeyStringsList[i]];
         }
@@ -1019,9 +1015,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)visibleCharFromIgnoringModChar:(NSString *)igunoresModChar
 //------------------------------------------------------
 {
-    NSString *outString = [self unprintableKeyDict][igunoresModChar];
-
-    return (outString) ? outString : igunoresModChar;
+    return [self unprintableKeyDict][igunoresModChar] ? : igunoresModChar;
 }
 
 
@@ -1066,26 +1060,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     BOOL showsMessage = NO;
 
-    if (([self duplicateKeyCheckArray] == nil) || (keySpec == nil)) { return showsMessage; }
+    if (![self duplicateKeyCheckArray] || !keySpec) { return showsMessage; }
 
     NSString *readableKeyStr;
 
     // 他のキーバインディングと重複している時
-    if (([keySpec length] > 0) && (![keySpec isEqualToString:oldSpec]) &&
-        ([[self duplicateKeyCheckArray] containsObject:keySpec]))
+    if (([keySpec length] > 0) && ![keySpec isEqualToString:oldSpec] &&
+        [[self duplicateKeyCheckArray] containsObject:keySpec])
     {
         // メッセージ表示
         readableKeyStr = [self readableKeyStringsFromKeySpecChars:keySpec];
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"“%@” has already been used. Edit it again.", nil),
+                             readableKeyStr];
         switch ([self outlineMode]) {
             case CEMenuModeOutline:
-                [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                         NSLocalizedString(@"“%@” has already been used. Edit it again.", nil), readableKeyStr]];
+                [[self menuDuplicateTextField] setStringValue:message];
                 [[self menuOkButton] setEnabled:NO];
                 break;
                 
             case CETextModeOutline:
-                [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                         NSLocalizedString(@"“%@” has already been used. Edit it again.", nil), readableKeyStr]];
+                [[self textDuplicateTextField] setStringValue:message];
                 [[self textOkButton] setEnabled:NO];
                 break;
         }
@@ -1146,11 +1140,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             showsMessage = YES;
             // 重複チェック配列更新
-            if ((oldSpec != nil) && ([oldSpec length] > 0) && (![keySpec isEqualToString:oldSpec])) {
+            if (([oldSpec length] > 0) && ![keySpec isEqualToString:oldSpec]) {
                 [[self duplicateKeyCheckArray] removeObject:oldSpec];
             }
             // 重複チェック配列更新
-            if ((keySpec != nil) && ([keySpec length] > 0) && (![keySpec isEqualToString:oldSpec])) {
+            if (([keySpec length] > 0) && ![keySpec isEqualToString:oldSpec]) {
                 [[self duplicateKeyCheckArray] addObject:keySpec];
             }
         }
@@ -1192,7 +1186,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)duplicateKeyCheckArrayWithArray:(NSArray *)array
 //------------------------------------------------------
 {
-    if (array == nil) { return nil; }
+    if (!array) { return nil; }
 
     NSMutableArray *duplicateKeyCheckArray = [NSMutableArray array];
     NSArray *childrenArray;
@@ -1205,7 +1199,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [duplicateKeyCheckArray addObjectsFromArray:childrenArray];
         }
         keySpecChars = [item valueForKey:k_keyBindingKey];
-        if ((keySpecChars != nil) && ([keySpecChars length] > 0)) {
+        if ([keySpecChars length] > 0) {
             if (![duplicateKeyCheckArray containsObject:keySpecChars]) {
                 [duplicateKeyCheckArray addObject:keySpecChars];
             }
@@ -1226,13 +1220,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     for (id item in array) {
         children = item[k_children];
-        if (children != nil) {
+        if (children) {
             childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
             [keyBindingDict addEntriesFromDictionary:childDict];
         }
         keySpecChars = [item valueForKey:k_keyBindingKey];
         selectorStr = [item valueForKey:k_selectorString];
-        if ((keySpecChars != nil) && (selectorStr != nil) && ([keySpecChars length] > 0) && ([selectorStr length] > 0)) {
+        if (([keySpecChars length] > 0) && ([selectorStr length] > 0)) {
             [keyBindingDict setValue:selectorStr forKey:keySpecChars];
         }
     }
@@ -1245,70 +1239,58 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)saveOutlineViewData
 //------------------------------------------------------
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *fileURL, *dirURL;
-    BOOL exists, isDirectory = NO, success = NO;
+    NSDictionary *dictToSave = [self keyBindingDictionaryFromOutlineViewDataArray:[self outlineDataArray]];
+    NSURL *dirURL = [self userSettingDirecotryURL];
+    NSURL *fileURL;
+    BOOL success = NO;
 
     switch ([self outlineMode]) {
         case CEMenuModeOutline:
         {
-            fileURL = [self menuKeyBindingSettingFileURL]; // データディレクトリパス取得
-            dirURL = [self userSettingDirecotryURL];
+            fileURL = [self menuKeyBindingSettingFileURL];
             
-            // ディレクトリの存在チェック
-            exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
-            if (!exists) {
-                success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
-            }
-            if ((exists && isDirectory) || (success)) {
-                [self setMenuKeyBindingDict:[self keyBindingDictionaryFromOutlineViewDataArray:[self outlineDataArray]]];
+            // デフォルトと同じ場合は現在のユーザ設定ファイルを削除する
+            if ([dictToSave isEqualToDictionary:[self defaultMenuKeyBindingDict]]) {
+                [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+                success = YES;
                 
-                if (![[self menuKeyBindingDict] writeToURL:fileURL atomically:YES]) {
-                    NSLog(@"Error! Could not save the Menu keyBindings setting file...");
-                    return;
-                }
             } else {
-                NSLog(@"Error! Key Bindings directory could not be found.");
-                return;
+                if ([self prepareUserSettingDicrectory]) {
+                    success = [dictToSave writeToURL:fileURL atomically:YES];
+                }
             }
+            
             // メニューに反映させる
+            if (success) {
+                [self setMenuKeyBindingDict:dictToSave];
+            } else {
+                NSLog(@"Error on saving the menu keybindings setting file.");
+            }
             [self resetAllMenuKeyBindingWithDictionary];
         }
         break;
         
         case CETextModeOutline:
         {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSArray *contents = [[[self textInsertStringArrayController] content] copy];
+            fileURL = [self textKeyBindingSettingFileURL];
             
-            fileURL = [self textKeyBindingSettingFileURL]; // データディレクトリパス取得
-            dirURL = [self userSettingDirecotryURL];
-            
-            // ディレクトリの存在チェック
-            exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
-            if (!exists) {
-                success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:YES attributes:nil error:nil];
-            }
-            if ((exists && isDirectory) || (success)) {
-                [self setTextKeyBindingDict:[self keyBindingDictionaryFromOutlineViewDataArray:[self outlineDataArray]]];
+            if ([self prepareUserSettingDicrectory]) {
+                [self setTextKeyBindingDict:dictToSave];
                 
-                if (![[self textKeyBindingDict] writeToURL:fileURL atomically:YES]) {
+                if (![dictToSave writeToURL:fileURL atomically:YES]) {
                     NSLog(@"Error! Could not save the Text keyBindings setting file...");
                     return;
                 }
-            } else {
-                NSLog(@"Error! Key Bindings directory could not be found.");
-                return;
             }
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSArray *contents = [[[self textInsertStringArrayController] content] copy];
             if (![contents isEqualToArray:[defaults arrayForKey:k_key_insertCustomTextArray]]) {
                 NSMutableArray *defaultsArray = [NSMutableArray array];
                 NSString *insertText;
                 
                 for (NSDictionary *dict in contents) {
-                    insertText = dict[k_key_insertCustomText];
-                    if (insertText == nil) {
-                        insertText = @"";
-                    }
+                    insertText = dict[k_key_insertCustomText] ? : @"";
                     [defaultsArray addObject:insertText];
                 }
                 [defaults setObject:defaultsArray forKey:k_key_insertCustomTextArray];
@@ -1326,8 +1308,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSArray *keys = [[self menuKeyBindingDict] allKeysForObject:selectorString];
-
-    if ((keys != nil) && ([keys count] > 0)) {
+    
+    if ([keys count] > 0) {
         return (NSString *)keys[0];
     }
     return @"";
@@ -1341,7 +1323,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *keys = [[self defaultMenuKeyBindingDict] allKeysForObject:selectorString];
 
-    if ((keys != nil) && ([keys count] > 0)) {
+    if ([keys count] > 0) {
         return (NSString *)keys[0];
     }
     return @"";
@@ -1358,7 +1340,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     for (id item in dataArray) {
         children = item[k_children];
-        if (children != nil) {
+        if (children) {
             [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:children];
         }
         selectorStr = [item valueForKey:k_selectorString];
@@ -1383,8 +1365,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         case CETextModeOutline:
             outlineView = [self textOutlineView];
             break;
+        
+        default:
+            return;
     }
-    if (outlineView == nil) { return; }
 
     NSInteger selectedRow = [outlineView selectedRow];
 

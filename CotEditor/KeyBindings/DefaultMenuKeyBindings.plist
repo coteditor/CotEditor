@@ -56,8 +56,6 @@
 	<string>getInfo:</string>
 	<key>@j</key>
 	<string>jumpToSelection:</string>
-	<key>@l</key>
-	<string>openGotoPanel:</string>
 	<key>@m</key>
 	<string>performMiniaturize:</string>
 	<key>@n</key>
@@ -84,27 +82,25 @@
 	<string>undo:</string>
 	<key>@¥</key>
 	<string>inputBackSlash:</string>
-	<key>^@h</key>
-	<string>editColorCode:</string>
 	<key>^@f</key>
 	<string>toggleFullScreen:</string>
+	<key>^@h</key>
+	<string>editColorCode:</string>
 	<key>^~@</key>
 	<string>focusPrevSplitTextView:</string>
 	<key>^~@</key>
 	<string>focusNextSplitTextView:</string>
-	<key>~@f</key>
-	<string>makeQuickFindFieldToFirstResponder:</string>
 	<key>~@g</key>
 	<string>replaceAndFind:</string>
 	<key>~@h</key>
 	<string>hideOtherApplications:</string>
+	<key>~@i</key>
+	<string>showSelectionInfo:</string>
 	<key>~@r</key>
 	<string>recoloringAllStringOfDocument:</string>
 	<key>~@</key>
 	<string>selectPrevItemOfOutlineMenu:</string>
 	<key>~@</key>
 	<string>selectNextItemOfOutlineMenu:</string>
-	<key>~@i</key>
-	<string>showSelectionInfo:</string>
 </dict>
 </plist>
