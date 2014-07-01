@@ -79,19 +79,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-/// 初期化
-- (instancetype)init
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        [self setRecolorWithBecomeKey:NO];
-    }
-    return self;
-}
-
-
-// ------------------------------------------------------
 /// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
 - (void)windowDidLoad
 // ------------------------------------------------------
@@ -105,9 +92,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 背景をセットアップ
     [self setAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
-    
-    // ツールバーをセットアップ
-    [[self toolbarController] setupToolbar];
     
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:[self editorView]];

@@ -37,9 +37,90 @@
                     </customView>
                 </subviews>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" id="fVR-to-zN3">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="77" height="22"/>
+                        <size key="maxSize" width="77" height="22"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" id="77">
+                            <rect key="frame" x="17" y="16" width="77" height="22"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="701">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
+                                <menu key="menu" title="OtherViews" id="76">
+                                    <items>
+                                        <menuItem title="LF" id="75">
+                                            <connections>
+                                                <action selector="setLineEndingChar:" target="-1" id="519"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="CR" tag="1" id="440">
+                                            <connections>
+                                                <action selector="setLineEndingChar:" target="-1" id="520"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="CR/LF" tag="2" id="441">
+                                            <connections>
+                                                <action selector="setLineEndingChar:" target="-1" id="521"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="69A39582-7ACA-4B46-BD98-FA09B10CB92C" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" id="d2p-GT-YXm">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="140" height="22"/>
+                        <size key="maxSize" width="140" height="22"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" id="90">
+                            <rect key="frame" x="135" y="16" width="140" height="22"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="87" id="702">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
+                                <menu key="menu" title="OtherViews" id="88">
+                                    <items>
+                                        <menuItem title=" " state="on" id="87"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" id="6gO-UF-7QW">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="120" height="22"/>
+                        <size key="maxSize" width="120" height="22"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" id="96">
+                            <rect key="frame" x="307" y="16" width="120" height="22"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="95" id="703">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
+                                <menu key="menu" title="OtherViews" id="93">
+                                    <items>
+                                        <menuItem title=" " state="on" id="95"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="fVR-to-zN3"/>
+                    <toolbarItem reference="d2p-GT-YXm"/>
+                    <toolbarItem reference="6gO-UF-7QW"/>
+                </defaultToolbarItems>
+                <connections>
+                    <outlet property="delegate" destination="71" id="X5f-12-CGH"/>
+                </connections>
+            </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
+            <point key="canvasLocation" x="187.5" y="67.5"/>
         </window>
         <drawer trailingOffset="15" id="32" userLabel="InfoDrawer">
             <size key="contentSize" width="200" height="381"/>
@@ -546,7 +627,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="733" id="122">
-                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="408"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -678,65 +759,6 @@
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
             </connections>
         </customObject>
-        <customView id="74" userLabel="Toolbar Items View">
-            <rect key="frame" x="0.0" y="0.0" width="505" height="60"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <subviews>
-                <popUpButton verticalHuggingPriority="750" id="96">
-                    <rect key="frame" x="307" y="16" width="120" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="95" id="703">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" title="OtherViews" id="93">
-                            <items>
-                                <menuItem title=" " state="on" id="95"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                </popUpButton>
-                <popUpButton verticalHuggingPriority="750" id="90">
-                    <rect key="frame" x="135" y="16" width="140" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="87" id="702">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" title="OtherViews" id="88">
-                            <items>
-                                <menuItem title=" " state="on" id="87"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                </popUpButton>
-                <popUpButton verticalHuggingPriority="750" id="77">
-                    <rect key="frame" x="17" y="16" width="77" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <popUpButtonCell key="cell" type="push" title="LF" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="75" id="701">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" title="OtherViews" id="76">
-                            <items>
-                                <menuItem title="LF" state="on" id="75">
-                                    <connections>
-                                        <action selector="setLineEndingChar:" target="-1" id="519"/>
-                                    </connections>
-                                </menuItem>
-                                <menuItem title="CR" tag="1" id="440">
-                                    <connections>
-                                        <action selector="setLineEndingChar:" target="-1" id="520"/>
-                                    </connections>
-                                </menuItem>
-                                <menuItem title="CR/LF" tag="2" id="441">
-                                    <connections>
-                                        <action selector="setLineEndingChar:" target="-1" id="521"/>
-                                    </connections>
-                                </menuItem>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                </popUpButton>
-            </subviews>
-        </customView>
         <arrayController id="127" userLabel="listController">
             <declaredKeys>
                 <string>lineNumber</string>

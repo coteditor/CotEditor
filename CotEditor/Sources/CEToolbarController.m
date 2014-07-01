@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEToolbarController ()
 
-@property (nonatomic) NSToolbar *toolbar;
+@property (nonatomic) IBOutlet NSToolbar *toolbar;
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSWindow *mainWindow;  // NSWindow は 10.7 では weak で持てないため
 @property (nonatomic) IBOutlet NSPopUpButton *lineEndingPopupButton;// Outletだが、片付けられてしまうため strong
@@ -68,24 +68,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [[self toolbar] setDelegate:nil]; // デリゲート解除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-// ------------------------------------------------------
-/// ツールバーをセットアップ
-- (void)setupToolbar
-// ------------------------------------------------------
-{
-    [self setToolbar:[[NSToolbar alloc] initWithIdentifier:k_docWindowToolbarID]];
-    
-    // ユーザカスタマイズ可、コンフィグ内容を保存、アイコン+ラベルに設定
-    [[self toolbar] setAllowsUserCustomization:YES];
-    [[self toolbar] setAutosavesConfiguration:YES];
-    [[self toolbar] setDisplayMode:NSToolbarDisplayModeIconAndLabel];
-    // デリゲートを自身に指定
-    [[self toolbar] setDelegate:self];
-    // ウィンドウへ接続
-    [[self mainWindow] setToolbar:[self toolbar]];
 }
 
 
