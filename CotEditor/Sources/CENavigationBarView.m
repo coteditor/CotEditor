@@ -171,8 +171,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self closeSplitButton] setImage:[NSImage imageNamed:@"closeSplitButtonImg"]];
         [[self closeSplitButton] setToolTip:NSLocalizedString(@"Close split view", @"")];
         [[self closeSplitButton] setHidden:YES];
-
-        [self setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin)];
+        
+        [self setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin | NSViewMaxYMargin)];
         [self addSubview:[self outlineMenu]];
         [self addSubview:[self outlineIndicator]];
         [self addSubview:[self outlineLoadingMessage]];
