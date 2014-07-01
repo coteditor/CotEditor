@@ -760,7 +760,7 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/x-plist</string>
+					<string>application/xml</string>
 				</array>
 			</dict>
 		</dict>
