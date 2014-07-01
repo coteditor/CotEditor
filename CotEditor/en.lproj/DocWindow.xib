@@ -112,11 +112,14 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="BcE-NT-y75"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="W1p-7F-VC5"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="fVR-to-zN3"/>
                     <toolbarItem reference="d2p-GT-YXm"/>
                     <toolbarItem reference="6gO-UF-7QW"/>
+                    <toolbarItem reference="W1p-7F-VC5"/>
                 </defaultToolbarItems>
                 <connections>
                     <outlet property="delegate" destination="71" id="X5f-12-CGH"/>
@@ -832,6 +835,7 @@
                 <outlet property="lineEndingPopupButton" destination="77" id="ypf-VV-99N"/>
                 <outlet property="mainWindow" destination="5" id="vCT-Gb-V4Y"/>
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
+                <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
             </connections>
         </customObject>
         <arrayController id="127" userLabel="Incompatible Controller">
@@ -841,5 +845,20 @@
                 <string>convertedChar</string>
             </declaredKeys>
         </arrayController>
+        <toolbar implicitIdentifier="09D11707-F4A3-4FD5-970E-AC5832E91C2B" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="Ph0-Lg-7Pm">
+            <allowedToolbarItems>
+                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="RYb-QT-R1G"/>
+                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="GSF-KV-d1a"/>
+                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="XU6-aN-jeI"/>
+                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Orc-bd-sET"/>
+                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="j6R-E7-SmH"/>
+            </allowedToolbarItems>
+            <defaultToolbarItems>
+                <toolbarItem reference="RYb-QT-R1G"/>
+                <toolbarItem reference="GSF-KV-d1a"/>
+                <toolbarItem reference="j6R-E7-SmH"/>
+                <toolbarItem reference="XU6-aN-jeI"/>
+            </defaultToolbarItems>
+        </toolbar>
     </objects>
 </document>

@@ -41,9 +41,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) IBOutlet NSToolbar *toolbar;
 
 @property (nonatomic, unsafe_unretained) IBOutlet NSWindow *mainWindow;  // NSWindow は 10.7 では weak で持てないため
-@property (nonatomic) IBOutlet NSPopUpButton *lineEndingPopupButton;// Outletだが、片付けられてしまうため strong
-@property (nonatomic) IBOutlet NSPopUpButton *encodingPopupButton;// Outletだが、片付けられてしまうため strong
-@property (nonatomic) IBOutlet NSPopUpButton *syntaxPopupButton;// Outletだが、片付けられてしまうため strong
+@property (nonatomic, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *encodingPopupButton;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
 
 @end
 
@@ -66,7 +66,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [[self toolbar] setDelegate:nil]; // デリゲート解除
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -76,7 +75,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateToggleItem:(NSString *)identifer setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
-    for (id item in [[self toolbar] items]) {
+    for (NSToolbarItem *item in [[self toolbar] items]) {
         if ([[item itemIdentifier] isEqualToString:identifer]) {
             [self doUpdateToggleItem:item setOn:setOn];
             break;
