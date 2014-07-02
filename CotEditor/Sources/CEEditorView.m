@@ -363,7 +363,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     _showLineNum = showLineNum;
     [[self splitView] setShowLineNum:showLineNum];
-    [[[self windowController] toolbarController] updateToggleItem:k_showLineNumItemID setOn:showLineNum];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showLineNumItemID setOn:showLineNum];
 }
 
 
@@ -387,7 +387,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self statusBar]) {
         [[self statusBar] setShowStatusBar:showStatusBar];
-        [[[self windowController] toolbarController] updateToggleItem:k_showStatusBarItemID setOn:showStatusBar];
+        [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
         [self updateLineEndingsInStatusAndInfo:NO];
         if (![self infoUpdateTimer]) {
             [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
@@ -403,7 +403,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     _showNavigationBar = showNavigationBar;
     [[self splitView] setShowNavigationBar:showNavigationBar];
-    [[[self windowController] toolbarController] updateToggleItem:k_showNavigationBarItemID setOn:showNavigationBar];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showNavigationBarItemID setOn:showNavigationBar];
 }
 
 
@@ -415,7 +415,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     _wrapLines = wrapLines;
     [[self splitView] setWrapLines:wrapLines];
     [self setNeedsDisplay:YES];
-    [[[self windowController] toolbarController] updateToggleItem:k_wrapLinesItemID setOn:wrapLines];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_wrapLinesItemID setOn:wrapLines];
 }
 
 
@@ -461,7 +461,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (_showPageGuide != showPageGuide) {
         _showPageGuide = showPageGuide;
-        [[[self windowController] toolbarController] updateToggleItem:k_showPageGuideItemID setOn:showPageGuide];
+        [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showPageGuideItemID setOn:showPageGuide];
     }
 }
 
@@ -994,7 +994,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL showInvisibles = [layoutManager showInvisibles];
 
     [[self splitView] setShowInvisibles:!showInvisibles];
-    [[[self windowController] toolbarController] updateToggleItem:k_showInvisibleCharsItemID setOn:!showInvisibles];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showInvisibleCharsItemID setOn:!showInvisibles];
 }
 
 
@@ -1006,7 +1006,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL isEnabled = ![[self textView] isAutoTabExpandEnabled];
     
     [[self splitView] setAutoTabExpandEnabled:isEnabled];
-    [[[self windowController] toolbarController] updateToggleItem:k_autoTabExpandItemID setOn:isEnabled];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_autoTabExpandItemID setOn:isEnabled];
 }
 
 

@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEToolbarController : NSObject
 
 // Public method
-- (void)updateToggleItem:(NSString *)identifer setOn:(BOOL)setOn;
+- (void)toggleItemWithIdentifier:(NSString *)identifer setOn:(BOOL)setOn;
 - (void)buildEncodingPopupButton;
 - (void)setSelectEncoding:(NSInteger)encoding;
 - (void)setSelectEndingItemIndex:(NSInteger)index;

@@ -71,12 +71,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// トグルアイテムの状態を更新
-- (void)updateToggleItem:(NSString *)identifer setOn:(BOOL)setOn
+- (void)toggleItemWithIdentifier:(NSString *)identifer setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
     for (NSToolbarItem *item in [[self toolbar] items]) {
         if ([[item itemIdentifier] isEqualToString:identifer]) {
-            [self doUpdateToggleItem:item setOn:setOn];
+            [self toggleItem:item setOn:setOn];
             break;
         }
     }
@@ -186,11 +186,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             // ツールバーアイテムを有効化できなければツールチップを変更
             if (canActivate) {
                 [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in text",@"")];
-                [self doUpdateToggleItem:item setOn:YES];
+                [self toggleItem:item setOn:YES];
                 [item setAction:@selector(toggleShowInvisibleChars:)];
             } else {
                 [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.",@"")];
-                [self doUpdateToggleItem:item setOn:NO];
+                [self toggleItem:item setOn:NO];
                 [item setAction:nil];
             }
             
@@ -214,7 +214,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         if (toggleKey) {
-            [self doUpdateToggleItem:item setOn:[[NSUserDefaults standardUserDefaults] boolForKey:toggleKey]];
+            [self toggleItem:item setOn:[[NSUserDefaults standardUserDefaults] boolForKey:toggleKey]];
         }
     }
     
@@ -243,7 +243,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// トグルアイテムの状態を更新
-- (void)doUpdateToggleItem:(NSToolbarItem *)item setOn:(BOOL)setOn
+- (void)toggleItem:(NSToolbarItem *)item setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
     NSString *identifer = [item itemIdentifier];
