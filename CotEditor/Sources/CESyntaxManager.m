@@ -406,6 +406,7 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
         }
     }
     [style[k_SCKey_extensions] removeObjectsInArray:emptyDicts];
+    [style removeObjectForKey:k_SCKey_numOfObjInArray];
     
     if ([name length] > 0) {
         saveURL = [self URLForUserStyle:name];
