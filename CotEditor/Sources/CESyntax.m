@@ -50,7 +50,8 @@ static NSString *const QCLengthKey = @"QCLengthKey";
 static NSString *const ColorKey = @"ColorKey";
 static NSString *const RangeKey = @"RangeKey";
 
-static NSString *const QCCommentKind = @"QCCommentKind";  // for pairKind
+static NSString *const QCInlineCommentKind = @"QCInlineCommentKind";  // for pairKind
+static NSString *const QCBlockCommentKind = @"QCBlockCommentKind";  // for pairKind
 static NSString *const InvisiblesType = @"invisibles";
 
 typedef NS_ENUM(NSUInteger, QCStartEndType) {
@@ -501,8 +502,9 @@ static NSArray *kSyntaxDictKeys;
     QCStartEndType startEnd = QCNotUseStartEnd;
     NSRange attrRange, escapesCheckRange;
     
-    QCStartEndType startType = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
-    QCStartEndType endType   = (pairKind == QCCommentKind) ? QCEnd : QCNotUseStartEnd;
+    BOOL isComment = ([pairKind isEqualToString:QCInlineCommentKind] || [pairKind isEqualToString:QCBlockCommentKind]);
+    QCStartEndType startType = isComment ? QCStart : QCNotUseStartEnd;
+    QCStartEndType endType   = isComment ? QCEnd : QCNotUseStartEnd;
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCharactersToBeSkipped:nil];
@@ -579,8 +581,9 @@ static NSArray *kSyntaxDictKeys;
     uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
     
-    QCStartEndType startType = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
-    QCStartEndType endType   = (pairKind == QCCommentKind) ? QCEnd : QCNotUseStartEnd;
+    BOOL isComment = ([pairKind isEqualToString:QCInlineCommentKind] || [pairKind isEqualToString:QCBlockCommentKind]);
+    QCStartEndType startType = isComment ? QCStart : QCNotUseStartEnd;
+    QCStartEndType endType   = isComment ? QCEnd : QCNotUseStartEnd;
     
     [string enumerateStringsMatchedByRegex:regexStr
                                    options:options
@@ -682,19 +685,19 @@ static NSArray *kSyntaxDictKeys;
     
     // コメント定義の位置配列を生成
     if ([self inlineCommentDelimiter]) {
-        NSString *beginString = [NSString stringWithFormat:@"%@.*$",
+        NSString *beginString = [NSString stringWithFormat:@"%@.*",
                                  [NSRegularExpression escapedPatternForString:[self inlineCommentDelimiter]]];
         [positions addObjectsFromArray:[self rangesRegularExpressionString:beginString
                                                                 ignoreCase:NO
                                                               returnFormat:QCDictFormat
-                                                                  pairKind:QCCommentKind]];
+                                                                  pairKind:QCInlineCommentKind]];
     }
     if ([self blockCommentDelimiters]) {
         [positions addObjectsFromArray:[self rangesBeginString:[self blockCommentDelimiters][@"begin"]
                                                      endString:[self blockCommentDelimiters][@"end"]
                                                     ignoreCase:NO
                                                   returnFormat:QCDictFormat
-                                                      pairKind:QCCommentKind]];
+                                                      pairKind:QCBlockCommentKind]];
     }
     
     // クォート定義があれば位置配列を生成、マージ
