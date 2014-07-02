@@ -32,6 +32,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEAppDelegate.h"
+#import "CEKeyBindingManager.h"
+#import "CEScriptManager.h"
+#import "CEThemeManager.h"
 #import "CEPreferencesWindowController.h"
 #import "CEByteCountTransformer.h"
 #import "CEOpacityPanelController.h"
@@ -41,7 +44,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
 #import "constants.h"
-#import "CEThemeManager.h"
 
 
 @interface CEAppDelegate ()

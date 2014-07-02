@@ -34,8 +34,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <Cocoa/Cocoa.h>
 #import "CEDocumentController.h"
 #import "CESyntaxManager.h"
-#import "CEKeyBindingManager.h"
-#import "CEScriptManager.h"
 
 
 @interface CEAppDelegate : NSObject <NSApplicationDelegate>
@@ -45,19 +43,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)buildAllEncodingMenus;
-
-// Action Message
-- (IBAction)openPrefWindow:(id)sender;
-- (IBAction)openAppleScriptDictionary:(id)sender;
-- (IBAction)openScriptErrorWindow:(id)sender;
-- (IBAction)openHexColorCodeEditor:(id)sender;
-- (IBAction)openOpacityPanel:(id)sender;
-- (IBAction)openLineSpacingPanel:(id)sender;
-- (IBAction)openGoToPanel:(id)sender;
-- (IBAction)openUnicodeInputPanel:(id)sender;
-- (IBAction)newInDockMenu:(id)sender;
-- (IBAction)openInDockMenu:(id)sender;
-- (IBAction)openBundledDocument:(id)sender;
-- (IBAction)openWebSite:(id)sender;
 
 @end
