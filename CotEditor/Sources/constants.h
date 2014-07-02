@@ -405,6 +405,7 @@ extern NSString *const k_getInfoItemID;
 extern NSString *const k_showIncompatibleCharItemID;
 extern NSString *const k_biggerFontItemID;
 extern NSString *const k_smallerFontItemID;
+extern NSString *const k_toggleCommentItemID;
 extern NSString *const k_shiftLeftItemID;
 extern NSString *const k_shiftRightItemID;
 extern NSString *const k_autoTabExpandItemID;

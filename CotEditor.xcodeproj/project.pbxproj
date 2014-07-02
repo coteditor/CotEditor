@@ -64,6 +64,7 @@
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A3FB2B218EDBB1400D9CB2C /* swapArrowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
+		2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A45AB9B1960BDED0020E72B /* Comment.tiff */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */; };
@@ -287,6 +288,7 @@
 		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditSheetController.h; sourceTree = "<group>"; };
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrowTemplate.pdf; path = images/swapArrowTemplate.pdf; sourceTree = "<group>"; };
+		2A45AB9B1960BDED0020E72B /* Comment.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Comment.tiff; path = toolbarIcons/Comment.tiff; sourceTree = "<group>"; };
 		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
 		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
@@ -900,6 +902,7 @@
 				8C081B4A07D0A85A0060191A /* getInfo.tiff */,
 				8C98366608C0211D00746F92 /* IncompatibleChar.tiff */,
 				8CA71BCC07D2A79100C146B0 /* biggerFont.tiff */,
+				2A45AB9B1960BDED0020E72B /* Comment.tiff */,
 				8CA71BCD07D2A79100C146B0 /* smallerFont.tiff */,
 				2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */,
 				8CEF66C00995E47F00C65A84 /* InvisibleChar_Hide.tiff */,
@@ -1045,6 +1048,7 @@
 				8CE68109090A1C6900D50390 /* Pref_Edit.tiff in Resources */,
 				8CE6810A090A1C6900D50390 /* Pref_General.tiff in Resources */,
 				8CE6810B090A1C6900D50390 /* Pref_KeyBinding.tiff in Resources */,
+				2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */,
 				8CE6810C090A1C6900D50390 /* Pref_Format.tiff in Resources */,
 				2A149DA719016ABB00A9D6EF /* EditPane.xib in Resources */,
 				8CE6810D090A1C6900D50390 /* Pref_Window.tiff in Resources */,

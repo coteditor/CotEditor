@@ -140,6 +140,11 @@
                             <action selector="shiftRight:" target="-1" id="hhI-4y-I9e"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="B2145AC0-57C3-4B25-97B4-983428C1C2EC" explicitItemIdentifier="toggleCommentItemID" label="コメント" paletteLabel="コメントを切替" toolTip="選択範囲をコメントアウト／コメント解除" tag="-1" image="Comment" id="cIM-Hx-SKX">
+                        <connections>
+                            <action selector="toggleComment:" target="-1" id="NOk-Gb-s42"/>
+                        </connections>
+                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="41C8148D-0754-4566-894B-7622CA52F8E5" explicitItemIdentifier="autoTabExpandItemID" label="タブを展開" paletteLabel="自動タブ展開を切替" toolTip="自動タブ展開を切替" tag="-1" image="AutoTabExpand_On" id="zry-bG-j2J">
                         <connections>
                             <action selector="toggleAutoTabExpand:" target="-1" id="FhV-mw-Thf"/>
@@ -924,6 +929,7 @@
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="24" height="24"/>
+        <image name="Comment" width="64" height="64"/>
         <image name="EditColorCode" width="24" height="24"/>
         <image name="IncompatibleChar" width="64" height="64"/>
         <image name="InvisibleChar_Show" width="64" height="64"/>

@@ -432,6 +432,7 @@ NSString *const k_getInfoItemID = @"searchFieldItemID";
 NSString *const k_showIncompatibleCharItemID = @"showIncompatibleCharItemID";
 NSString *const k_biggerFontItemID = @"biggerFontItemID";
 NSString *const k_smallerFontItemID = @"smallerFontItemID";
+NSString *const k_toggleCommentItemID = @"toggleCommentItemID";
 NSString *const k_shiftLeftItemID = @"shiftLeftItemID";
 NSString *const k_shiftRightItemID = @"shiftRightItemID";
 NSString *const k_autoTabExpandItemID = @"autoTabExpandItemID";
