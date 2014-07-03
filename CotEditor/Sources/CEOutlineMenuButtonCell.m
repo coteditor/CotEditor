@@ -50,11 +50,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (![self isEnabled]) { return; }
     
-    NSImage *centerImage = [NSImage imageNamed:@"popUpButtonBG_center"];
-    NSImage *leftImage = [NSImage imageNamed:@"popUpButtonBG_left"];
-    NSImage *rightImage= [NSImage imageNamed:@"popUpButtonArrow"];
+    // fill background
+    [[NSColor colorWithWhite:0.98 alpha:1.0] set];
+    [NSBezierPath fillRect:cellFrame];
     
-    NSDrawThreePartImage(cellFrame, leftImage, centerImage, rightImage, NO, NSCompositeSourceOver, 1.0, YES);
+    // draw frame border (horizontal side lines)
+    [[NSColor colorWithWhite:0.75 alpha:1] set];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(0.5, 0)
+                              toPoint:NSMakePoint(0.5, NSMaxY(cellFrame))];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(cellFrame) - 0.5, 0)
+                              toPoint:NSMakePoint(NSMaxX(cellFrame) - 0.5, NSMaxY(cellFrame))];
+    
+    // draw popup arrow image
+    NSImage *arrowImage = [NSImage imageNamed:@"popUpButtonArrowTemplate"];
+    [arrowImage drawAtPoint:NSMakePoint(NSMaxX(cellFrame) - [arrowImage size].width - 4, 1)
+                   fromRect:cellFrame operation:NSCompositeSourceOver fraction:0.67];
     
     [super drawInteriorWithFrame:cellFrame inView:controlView];
 }
