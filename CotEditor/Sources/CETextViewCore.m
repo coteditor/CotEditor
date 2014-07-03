@@ -506,7 +506,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [outMenu addItem:addItem];
             }
         } else{
-            [ASMenuItem setImage:[NSImage imageNamed:@"scriptMenuIcon"]];
+            [ASMenuItem setImage:[NSImage imageNamed:@"scriptMenuTemplate"]];
             [ASMenuItem setTag:k_scriptMenuTag];
             [ASMenuItem setSubmenu:ASSubMenu];
             [outMenu addItem:ASMenuItem];

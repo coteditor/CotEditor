@@ -331,7 +331,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     NSMenuItem *menuItem = [[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex];
 
     [menuItem setTitle:NSLocalizedString(@"Script Menu", @"")];
-    [menuItem setImage:[NSImage imageNamed:@"scriptMenuIcon"]];
+    [menuItem setImage:[NSImage imageNamed:@"scriptMenuTemplate"]];
 }
 
 
