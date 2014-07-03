@@ -178,8 +178,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_infoUpdateInterval: @0.2f, 
                                k_key_incompatibleCharInterval: @0.42f, 
                                k_key_outlineMenuInterval: @0.37f, 
-                               k_key_navigationBarFontName: @"Helvetica", 
-                               k_key_navigationBarFontSize: @11.0f, 
                                k_key_outlineMenuMaxLength: @110U, 
                                k_key_headerFooterFontName: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
                                k_key_headerFooterFontSize: @10.0f, 

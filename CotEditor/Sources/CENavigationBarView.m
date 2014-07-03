@@ -99,8 +99,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRect loadingMessageFrame = outlineMenuFrame;
         loadingMessageFrame.origin.x = NSMaxX([[self outlineIndicator] frame]) + 2;
         loadingMessageFrame.origin.y -= 1;
-        NSFont *messageFont = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_navigationBarFontName]
-                                              size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_navigationBarFontSize]];
+        NSFont *messageFont = [NSFont fontWithName:k_navigationBarFontName
+                                              size:[NSFont smallSystemFontSize]];
         messageFont = [[NSFontManager sharedFontManager] convertFont:messageFont toHaveTrait:NSItalicFontMask];
         [self setOutlineLoadingMessage:[[NSTextField alloc] initWithFrame:loadingMessageFrame]];
         [[self outlineLoadingMessage] setStringValue:NSLocalizedString(@"Extracting Outline…", nil)];
@@ -234,8 +234,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMenu *menu;
     NSMenuItem *menuItem;
-    NSFont *defaultFont = [NSFont fontWithName:[defaults stringForKey:k_key_navigationBarFontName]
-                                          size:(CGFloat)[defaults doubleForKey:k_key_navigationBarFontSize]];
+    NSFont *defaultFont = [NSFont fontWithName:k_navigationBarFontName
+                                          size:[NSFont smallSystemFontSize]];
 
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
     NSFont *font;

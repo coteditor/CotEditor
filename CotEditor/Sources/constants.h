@@ -173,8 +173,6 @@ extern NSString *const k_key_lineNumUpdateInterval;
 extern NSString *const k_key_infoUpdateInterval;
 extern NSString *const k_key_incompatibleCharInterval;
 extern NSString *const k_key_outlineMenuInterval;
-extern NSString *const k_key_navigationBarFontName;
-extern NSString *const k_key_navigationBarFontSize;
 extern NSString *const k_key_outlineMenuMaxLength;
 extern NSString *const k_key_headerFooterFontName;
 extern NSString *const k_key_headerFooterFontSize;
@@ -335,6 +333,7 @@ extern CGFloat const k_navigationBarHeight;
 extern CGFloat const k_outlineMenuLeftMargin;
 extern CGFloat const k_outlineMenuWidth;
 extern CGFloat const k_outlineButtonWidth;
+extern NSString *const k_navigationBarFontName;
 
 
 

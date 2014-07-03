@@ -172,7 +172,6 @@ NSString *const k_key_infoUpdateInterval = @"infoUpdateInterval";
 NSString *const k_key_incompatibleCharInterval = @"incompatibleCharInterval";
 NSString *const k_key_outlineMenuInterval = @"outlineMenuInterval";
 NSString *const k_key_navigationBarFontName = @"navigationBarFontName";
-NSString *const k_key_navigationBarFontSize = @"navigationBarFontSize";
 NSString *const k_key_outlineMenuMaxLength = @"outlineMenuMaxLength";
 NSString *const k_key_headerFooterFontName = @"headerFooterFontName";
 NSString *const k_key_headerFooterFontSize = @"headerFooterFontSize";
@@ -348,6 +347,7 @@ CGFloat const k_navigationBarHeight = 16.0;
 CGFloat const k_outlineMenuLeftMargin = 70.0;
 CGFloat const k_outlineMenuWidth = 300.0;
 CGFloat const k_outlineButtonWidth = 20.0;
+NSString *const k_navigationBarFontName = @"Helvetica";
 
 
 
