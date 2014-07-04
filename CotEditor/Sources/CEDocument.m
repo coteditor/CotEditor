@@ -922,16 +922,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// toolbar のエンコーディングメニューアイテムを再生成する  TODO: どこからも呼ばれてない？
-- (void)rebuildToolbarEncodingItem
-// ------------------------------------------------------
-{
-    [[[self windowController] toolbarController] buildEncodingPopupButton];
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
-}
-
-
-// ------------------------------------------------------
 /// 指定されたスタイルを適用していたら、WindowController のリカラーフラグを立てる
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict
 // ------------------------------------------------------

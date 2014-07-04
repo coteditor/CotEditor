@@ -89,6 +89,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSArray *items = [[NSArray alloc] initWithArray:[(CEAppDelegate *)[NSApp delegate] encodingMenuItems] copyItems:YES];
+    NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
     
     [[self encodingPopupButton] removeAllItems];
     for (NSMenuItem *item in items) {
@@ -96,12 +97,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [item setTarget:nil];
         [[[self encodingPopupButton] menu] addItem:item];
     }
+    
+    [self setSelectedEncoding:encoding];
 }
 
 
 // ------------------------------------------------------
 /// エンコーディングポップアップの選択項目を設定
-- (void)setSelectedEncoding:(NSInteger)encoding
+- (void)setSelectedEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
     for (NSMenuItem *menuItem in [[self encodingPopupButton] itemArray]) {

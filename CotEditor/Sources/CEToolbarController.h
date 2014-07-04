@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Public method
 - (void)toggleItemWithIdentifier:(NSString *)identifer setOn:(BOOL)setOn;
 - (void)buildEncodingPopupButton;
-- (void)setSelectedEncoding:(NSInteger)encoding;
+- (void)setSelectedEncoding:(NSStringEncoding)encoding;
 - (void)setSelectedLineEndingWithIndex:(NSUInteger)index;
 - (void)setSelectedSyntaxWithName:(NSString *)name;
 

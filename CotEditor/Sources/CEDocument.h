@@ -78,7 +78,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)scrollToCenteringSelection;
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
-- (void)rebuildToolbarEncodingItem;
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict;
 - (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName;
 - (NSString *)currentIANACharSetName;
