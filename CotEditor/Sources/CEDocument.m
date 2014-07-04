@@ -517,25 +517,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     [self setColoringExtension:[[self fileURL] pathExtension] coloring:NO];
     
-    [self setStringToTextView:[self initialString]];
-    [self setInitialString:nil];  // release
-    
-    if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
-        [[self windowController] showIncompatibleCharList];
-    }
-    [self setIsWritableToEditorViewWithURL:[self fileURL]];
-}
-
-
-// ------------------------------------------------------
-/// 新たな文字列をセット
-- (void)setStringToTextView:(NSString *)string
-// ------------------------------------------------------
-{
-    if (string) {
-        OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:string];
+    if ([self initialString]) {
+        OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
         [self setLineEndingCharToView:lineEnding]; // for update toolbar item
-        [[self editorView] setString:string]; // （editorView の setString 内でキャレットを先頭に移動させている）
+        [[self editorView] setString:[self initialString]]; // （editorView の setString 内でキャレットを先頭に移動させている）
     } else {
         [[self editorView] setString:@""];
     }
@@ -546,6 +531,12 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
     [[self editorView] updateColoringAndOutlineMenuWithDelay];
+    [self setInitialString:nil];  // release
+    
+    if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
+        [[self windowController] showIncompatibleCharList];
+    }
+    [self setIsWritableToEditorViewWithURL:[self fileURL]];
 }
 
 
@@ -724,28 +715,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [self doSetSyntaxStyle:name];
     }
     
-}
-
-
-// ------------------------------------------------------
-/// editorViewを通じてcoloringStyleインスタンスにドキュメント拡張子をセット
-- (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring
-// ------------------------------------------------------
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults boolForKey:k_key_doColoring]) { return; }
-
-    BOOL shouldUpdated = [[self editorView] setSyntaxExtension:extension];
-
-    if (shouldUpdated) {
-        // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
-        NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
-        name = ([name length] > 0) ? name : [defaults stringForKey:k_key_defaultColoringStyleName];
-        [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
-        if (doColoring) {
-            [self recoloringAllStringOfDocument:nil];
-        }
-    }
 }
 
 
@@ -1337,6 +1306,28 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         return outString;
     } else {
         return string;
+    }
+}
+
+
+// ------------------------------------------------------
+/// editorViewを通じてcoloringStyleインスタンスにドキュメント拡張子をセット
+- (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:k_key_doColoring]) { return; }
+    
+    BOOL shouldUpdated = [[self editorView] setSyntaxExtension:extension];
+    
+    if (shouldUpdated) {
+        // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
+        NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
+        name = ([name length] > 0) ? name : [defaults stringForKey:k_key_defaultColoringStyleName];
+        [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
+        if (doColoring) {
+            [self recoloringAllStringOfDocument:nil];
+        }
     }
 }
 

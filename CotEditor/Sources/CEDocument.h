@@ -55,14 +55,13 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
 @property (nonatomic, readonly) NSStringEncoding encoding;
-@property (nonatomic, copy, readonly) NSDictionary *fileAttributes;
+@property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
 @property (nonatomic, readonly) CETextSelection *selection;
 
 
 // Public methods
 - (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
 - (void)setStringToEditorView;
-- (void)setStringToTextView:(NSString *)string;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
@@ -70,7 +69,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)setLineEndingCharToView:(NSInteger)newLineEnding;
 - (void)doSetSyntaxStyle:(NSString *)name;
 - (void)doSetSyntaxStyle:(NSString *)name delay:(BOOL)needsDelay;
-- (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring;
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
