@@ -199,6 +199,9 @@
                     <toolbarItem reference="W1p-7F-VC5"/>
                     <toolbarItem reference="ogy-SR-Vqr"/>
                 </defaultToolbarItems>
+                <connections>
+                    <outlet property="delegate" destination="71" id="3nC-cf-jdv"/>
+                </connections>
             </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>

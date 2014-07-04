@@ -101,7 +101,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// エンコーディングポップアップの選択項目を設定
-- (void)setSelectEncoding:(NSInteger)encoding
+- (void)setSelectedEncoding:(NSInteger)encoding
 // ------------------------------------------------------
 {
     for (NSMenuItem *menuItem in [[self encodingPopupButton] itemArray]) {
@@ -115,11 +115,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 改行コードポップアップの選択項目を設定
-- (void)setSelectEndingItemIndex:(NSInteger)index
+- (void)setSelectedLineEndingWithIndex:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSInteger max = [[[self lineEndingPopupButton] itemArray] count];
-    if ((index < 0) || (index >= max)) { return; }
+    if (index >= [[self lineEndingPopupButton] numberOfItems]) { return; }
 
     [[self lineEndingPopupButton] selectItemAtIndex:index];
 }
@@ -144,20 +143,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                             keyEquivalent:@""];
     }
     
-    [self selectSyntaxItemWithTitle:title];
+    [self setSelectedSyntaxWithName:title];
 }
 
 
 // ------------------------------------------------------
 /// シンタックスカラーリングポップアップの選択項目をタイトル名で設定
-- (void)selectSyntaxItemWithTitle:(NSString *)title
+- (void)setSelectedSyntaxWithName:(NSString *)name
 // ------------------------------------------------------
 {
-    NSMenuItem *menuItem = [[self syntaxPopupButton] itemWithTitle:title];
-    if (menuItem) {
-        [[self syntaxPopupButton] selectItem:menuItem];
-    } else {
-        [[self syntaxPopupButton] selectItemAtIndex:0]; // "None" を選択
+    [[self syntaxPopupButton] selectItemWithTitle:name];
+    if (![[self syntaxPopupButton] selectedItem]) {
+        [[self syntaxPopupButton] selectItemAtIndex:0];  // select "None"
     }
 }
 
@@ -175,49 +172,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    for (NSToolbarItem *item in [[self toolbar] items]) {
-        NSString *identifier = [item itemIdentifier];
-        NSString *toggleKey = nil;
-        
-        if ([identifier isEqualToString:k_showInvisibleCharsItemID]) {
-            // Show Invisible Characters
-            BOOL canActivate = [[[[self window] windowController] document] canActivateShowInvisibleCharsItem];
-            
-            // ツールバーアイテムを有効化できなければツールチップを変更
-            if (canActivate) {
-                [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in text",@"")];
-                [self toggleItem:item setOn:YES];
-                [item setAction:@selector(toggleShowInvisibleChars:)];
-            } else {
-                [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.",@"")];
-                [self toggleItem:item setOn:NO];
-                [item setAction:nil];
-            }
-            
-        } else if ([identifier isEqualToString:k_autoTabExpandItemID]) {
-            toggleKey = k_key_autoExpandTab;
-            
-        } else if ([identifier isEqualToString:k_showNavigationBarItemID]) {
-            toggleKey = k_key_showNavigationBar;
-            
-        } else if ([identifier isEqualToString:k_showLineNumItemID]) {
-            toggleKey = k_key_showLineNumbers;
-            
-        } else if ([identifier isEqualToString:k_showStatusBarItemID]) {
-            toggleKey = k_key_showStatusBar;
-            
-        } else if ([identifier isEqualToString:k_showPageGuideItemID]) {
-            toggleKey = k_key_showPageGuide;
-            
-        } else if ([identifier isEqualToString:k_wrapLinesItemID]) {
-            toggleKey = k_key_wrapLines;
-        }
-        
-        if (toggleKey) {
-            [self toggleItem:item setOn:[[NSUserDefaults standardUserDefaults] boolForKey:toggleKey]];
-        }
-    }
-    
     [self buildEncodingPopupButton];
     [self buildSyntaxPopupButton];
     
@@ -230,6 +184,51 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                              selector:@selector(buildEncodingPopupButton)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
+}
+
+
+//=======================================================
+// Delegate method (NSToolbarDelegate)
+//  <== toolbar
+//=======================================================
+
+// ------------------------------------------------------
+/// ツールバーアイテムの状態を設定
+- (void)toolbarWillAddItem:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    NSToolbarItem *item = [notification userInfo][@"item"];
+    NSString *identifier = [item itemIdentifier];
+    CEEditorView *editorView = [[[self window] windowController] editorView];
+    
+    if ([identifier isEqualToString:k_showInvisibleCharsItemID]) {
+        BOOL canActivate = [[[[self window] windowController] document] canActivateShowInvisibleCharsItem];
+        
+        // ツールバーアイテムを有効化できなければツールチップを変更
+        if (!canActivate) {
+            [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.",nil)];
+            [self toggleItem:item setOn:NO];
+            [item setAction:nil];
+        }
+        
+    } else if ([identifier isEqualToString:k_autoTabExpandItemID]) {
+        [self toggleItem:item setOn:[[editorView textView] isAutoTabExpandEnabled]];
+        
+    } else if ([identifier isEqualToString:k_showNavigationBarItemID]) {
+        [self toggleItem:item setOn:[editorView showNavigationBar]];
+        
+    } else if ([identifier isEqualToString:k_showLineNumItemID]) {
+        [self toggleItem:item setOn:[editorView showLineNum]];
+        
+    } else if ([identifier isEqualToString:k_showStatusBarItemID]) {
+        [self toggleItem:item setOn:[editorView showStatusBar]];
+        
+    } else if ([identifier isEqualToString:k_showPageGuideItemID]) {
+        [self toggleItem:item setOn:[editorView showPageGuide]];
+        
+    } else if ([identifier isEqualToString:k_wrapLinesItemID]) {
+        [self toggleItem:item setOn:[editorView wrapLines]];
+    }
 }
 
 

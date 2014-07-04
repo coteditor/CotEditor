@@ -34,13 +34,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <Cocoa/Cocoa.h>
 
 
-@interface CEToolbarController : NSObject
+@interface CEToolbarController : NSObject <NSToolbarDelegate>
 
 // Public method
 - (void)toggleItemWithIdentifier:(NSString *)identifer setOn:(BOOL)setOn;
 - (void)buildEncodingPopupButton;
-- (void)setSelectEncoding:(NSInteger)encoding;
-- (void)setSelectEndingItemIndex:(NSInteger)index;
-- (void)selectSyntaxItemWithTitle:(NSString *)title;
+- (void)setSelectedEncoding:(NSInteger)encoding;
+- (void)setSelectedLineEndingWithIndex:(NSUInteger)index;
+- (void)setSelectedSyntaxWithName:(NSString *)name;
 
 @end

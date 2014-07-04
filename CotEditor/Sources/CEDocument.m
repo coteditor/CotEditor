@@ -747,7 +747,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     [[self editorView] setLineEndingCharacter:newLineEnding];
-    [[[self windowController] toolbarController] setSelectEndingItemIndex:newLineEnding];
+    [[[self windowController] toolbarController] setSelectedLineEndingWithIndex:newLineEnding];
 }
 
 
@@ -758,7 +758,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     if ([name length] > 0) {
         [[self editorView] setSyntaxStyleNameToColoring:name recolorNow:YES];
-        [[[self windowController] toolbarController] selectSyntaxItemWithTitle:name];
+        [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
     }
 }
 
@@ -795,7 +795,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
         NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
         name = ([name length] > 0) ? name : [defaults stringForKey:k_key_defaultColoringStyleName];
-        [[[self windowController] toolbarController] selectSyntaxItemWithTitle:name];
+        [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
         if (doColoring) {
             [self recoloringAllStringOfDocument:nil];
         }
@@ -936,7 +936,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     [[[self windowController] toolbarController] buildEncodingPopupButton];
-    [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
 }
 
 
@@ -1292,7 +1292,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             NSInteger secondResult = [secondAlert runModal];
             if (secondResult != NSAlertSecondButtonReturn) { // != Discard Change
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-                [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
+                [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
                 return;
             }
         }
@@ -1313,7 +1313,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         }
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-    [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
 }
 
 
@@ -1478,7 +1478,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
-    [[[self windowController] toolbarController] setSelectEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
     // ステータスバー、ドローワを更新
     [[self editorView] updateLineEndingsInStatusAndInfo:NO];
 }
