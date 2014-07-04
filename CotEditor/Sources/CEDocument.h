@@ -96,7 +96,5 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (IBAction)insertIANACharSetName:(id)sender;
 - (IBAction)insertIANACharSetNameWithCharset:(id)sender;
 - (IBAction)insertIANACharSetNameWithEncoding:(id)sender;
-- (IBAction)selectPrevItemOfOutlineMenu:(id)sender;
-- (IBAction)selectNextItemOfOutlineMenu:(id)sender;
 
 @end

@@ -122,6 +122,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)toggleShowInvisibleChars:(id)sender;
 - (IBAction)toggleShowPageGuide:(id)sender;
 - (IBAction)toggleAutoTabExpand:(id)sender;
+- (IBAction)selectPrevItemOfOutlineMenu:(id)sender;
+- (IBAction)selectNextItemOfOutlineMenu:(id)sender;
 - (IBAction)openSplitTextView:(id)sender;
 - (IBAction)closeSplitTextView:(id)sender;
 - (IBAction)focusNextSplitTextView:(id)sender;

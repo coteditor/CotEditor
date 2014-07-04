@@ -916,6 +916,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         theState = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
+    } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
+        return ([[self navigationBar] canSelectPrevItem]);
+    } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
+        return ([[self navigationBar] canSelectNextItem]);
+        
     } else if (([menuItem action] == @selector(focusNextSplitTextView:)) ||
                ([menuItem action] == @selector(focusPrevSplitTextView:)) ||
                ([menuItem action] == @selector(closeSplitTextView:))) {
@@ -1017,6 +1022,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setShowPageGuide:![self showPageGuide]];
     [[self splitView] setNeedsDisplay:YES];
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
+- (IBAction)selectPrevItemOfOutlineMenu:(id)sender
+// ------------------------------------------------------
+{
+    [[self navigationBar] selectPrevItem];
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
+- (IBAction)selectNextItemOfOutlineMenu:(id)sender
+// ------------------------------------------------------
+{
+    [[self navigationBar] selectNextItem];
 }
 
 

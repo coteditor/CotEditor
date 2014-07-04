@@ -1048,10 +1048,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         if ((![[self editorView] isWritable]) && (![[self editorView] isAlertedNotWritable])) {
             return NO;
         }
-    } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
-        return ([[[self editorView] navigationBar] canSelectPrevItem]);
-    } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
-        return ([[[self editorView] navigationBar] canSelectNextItem]);
     } else if ([menuItem action] == @selector(setEncoding:)) {
         state = ([menuItem tag] == [self encodingCode]) ? NSOnState : NSOffState;
     } else if (([menuItem action] == @selector(setLineEndingCharToLF:)) ||
@@ -1380,25 +1376,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [[[self editorView] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
     }
 }
-
-
-// ------------------------------------------------------
-/// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectPrevItemOfOutlineMenu:(id)sender
-// ------------------------------------------------------
-{
-    [[[self editorView] navigationBar] selectPrevItem];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectNextItemOfOutlineMenu:(id)sender
-// ------------------------------------------------------
-{
-    [[[self editorView] navigationBar] selectNextItem];
-}
-
 
 
 
