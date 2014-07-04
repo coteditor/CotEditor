@@ -38,6 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // notifications
 NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
+NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification";
 
 
 @interface CESyntaxManager ()
@@ -313,6 +314,10 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
         if (success) {
             // 内部で持っているキャッシュ用データを更新
             [self updateCache];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                                object:@{CEOldNameKey: styleName,
+                                                                         CENewNameKey: NSLocalizedString(@"None", nil)}];
         } else {
             NSLog(@"Error. Could not remove \"%@\".", URL);
         }
@@ -426,6 +431,10 @@ NSString *const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotif
     }
     // 内部で持っているキャッシュ用データを更新
     [self updateCache];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                        object:@{CEOldNameKey: oldName,
+                                                                 CENewNameKey: name}];
 }
 
 

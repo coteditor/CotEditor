@@ -261,7 +261,6 @@
         [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:14] byExtendingSelection:NO];
         return;
     }
-    [self setSavedNewStyleName:styleName];
     
     [[CESyntaxManager sharedManager] saveStyle:[self style] name:styleName oldName:[self originalStyleName]];
     

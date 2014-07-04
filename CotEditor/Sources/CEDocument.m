@@ -922,26 +922,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 指定されたスタイルを適用していたら、WindowController のリカラーフラグを立てる
-- (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict
-// ------------------------------------------------------
-{
-    NSString *oldName = styleNameDict[CEOldNameKey];
-    NSString *newName = styleNameDict[CENewNameKey];
-    NSString *curStyleName = [[self editorView] syntaxStyleNameToColoring];
-
-    if ([oldName isEqualToString:curStyleName]) {
-        if (oldName && newName && ![oldName isEqualToString:newName]) {
-            [[self editorView] setSyntaxStyleNameToColoring:newName recolorNow:NO];
-        }
-        if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
-            [[self windowController] setRecolorWithBecomeKey:YES];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
 /// 設定されたエンコーディングの IANA Charset 名を返す
 - (NSString *)currentIANACharSetName
 // ------------------------------------------------------

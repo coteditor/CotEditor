@@ -38,6 +38,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
 extern NSString *const CESyntaxListDidUpdateNotification;
 
+/// Posted when a syntax style is updated.  Information about new/previous style name is in userInfo.
+extern NSString *const CESyntaxDidUpdateNotification;
+
 
 @interface CESyntaxManager : NSObject
 

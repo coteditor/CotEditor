@@ -80,7 +80,7 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [self setupSyntaxStylesMenus];
+    [self setupSyntaxStyleMenus];
     
     // インストール済みシンタックス定義をダブルクリックしたら編集シートが出るようにセット
     [[self syntaxTableView] setDoubleAction:@selector(openSyntaxEditSheet:)];
@@ -93,7 +93,7 @@
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(setupSyntaxStylesMenus)
+                                             selector:@selector(setupSyntaxStyleMenus)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
     
@@ -194,17 +194,6 @@
         modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
     
-    
-    // === 以下、シートを閉じる処理
-    // OKボタンが押されていたとき（キャンセルでも、最初の状態に戻していいかもしれない (1/21)） ********
-    if ([sheetController savedNewStyleName]) {
-        // 当該スタイルを適用しているドキュメントに前面に出たときの再カラーリングフラグを立てる
-        NSString *newName = [sheetController savedNewStyleName];
-        NSDictionary *styleNameDict = @{CEOldNameKey: selectedName,
-                                        CENewNameKey: newName};
-        [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
-                                                  withObject:styleNameDict];
-    }
     // シートを閉じる
     [NSApp endSheet:sheet];
     [sheetController close];
@@ -388,7 +377,7 @@
 
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルメニューを生成
-- (void)setupSyntaxStylesMenus
+- (void)setupSyntaxStyleMenus
 // ------------------------------------------------------
 {
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
@@ -471,13 +460,7 @@
     
     NSString *selectedStyleName = [[self stylesController] selectedObjects][0];
     
-    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
-        // 当該スタイルを適用しているドキュメントを"None"スタイルにし、前面に出たときの再カラーリングフラグを立てる
-        NSDictionary *styleNameDict = @{CEOldNameKey: selectedStyleName,
-                                        CENewNameKey: NSLocalizedString(@"None", nil)};
-        [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(setRecolorFlagToWindowControllerWithStyleName:)
-                                                  withObject:styleNameDict];
-    } else {
+    if (![[CESyntaxManager sharedManager] removeStyleFileWithStyleName:selectedStyleName]) {
         // 削除できなければ、その旨をユーザに通知
         [[alert window] orderOut:self];
         [[[self view] window] makeKeyAndOrderFront:self];

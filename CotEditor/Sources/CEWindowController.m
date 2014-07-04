@@ -99,6 +99,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // テキストを表示
     [[self document] setStringToEditorView];
+    
+    // シンタックス定義の変更を監視
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(syntaxDidUpdate:)
+                                                 name:CESyntaxDidUpdateNotification
+                                               object:nil];
+}
+
+
+// ------------------------------------------------------
+/// あとかたづけ
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -407,6 +422,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 検索結果表示エフェクトを追加
     [[[self editorView] textView] showFindIndicatorForRange:range];
+}
+
+
+
+#pragma mark Private Methods
+
+//=======================================================
+// Private method
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// 指定されたスタイルを適用していたら、リカラーフラグを立てる
+- (void)syntaxDidUpdate:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    NSString *currentName = [[self editorView] syntaxStyleNameToColoring];
+    NSString *oldName = [notification userInfo][CEOldNameKey];
+    NSString *newName = [notification userInfo][CENewNameKey];
+    
+    if ([oldName isEqualToString:currentName]) {
+        if (![oldName isEqualToString:newName]) {
+            [[self editorView] setSyntaxStyleNameToColoring:newName recolorNow:NO];
+        }
+        if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
+            [self setRecolorWithBecomeKey:YES];
+        }
+    }
 }
 
 @end

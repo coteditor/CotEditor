@@ -43,10 +43,6 @@ typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
 
 @interface CESyntaxEditSheetController : NSWindowController <NSTextFieldDelegate, NSTableViewDelegate, NSWindowDelegate>
 
-/// saved new style name, or nil if canceled
-@property (nonatomic) NSString *savedNewStyleName;
-
-
 /// default initializer (return nil if styleName is invalid)
 - (instancetype)initWithStyle:(NSString *)styleName mode:(CESyntaxEditSheetMode)mode;
 
