@@ -57,6 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // readonly
 @property (nonatomic, readwrite) CESplitView *splitView;
+@property (nonatomic, readwrite) BOOL canActivateShowInvisibles;
 
 @end
 
@@ -81,7 +82,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _canActivateShowInvisibles = ([defaults boolForKey:k_key_showInvisibleSpace] ||
+                                      [defaults boolForKey:k_key_showInvisibleTab] ||
+                                      [defaults boolForKey:k_key_showInvisibleNewLine] ||
+                                      [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
+                                      [defaults boolForKey:k_key_showOtherInvisibleChars]);
+        
         [self setupViews];
+        
+        [self setShowInvisibles:_canActivateShowInvisibles];
     }
     return self;
 }
@@ -103,15 +113,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Public method
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// textViewCoreのundoManager を返す
-- (NSUndoManager *)undoManagerForTextView:(NSTextView *)textView
-// ------------------------------------------------------
-{
-    return [[self document] undoManager];
-}
-
 
 // ------------------------------------------------------
 /// documentを返す
@@ -763,26 +764,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 不可視文字の表示／非表示を設定
-- (void)setShowInvisibleChars:(BOOL)showInvisibleChars
+/// 不可視文字の表示／非表示を返す
+- (BOOL)showInvisibles
 // ------------------------------------------------------
 {
-    [[self splitView] setShowInvisibles:showInvisibleChars];
+    return [(CELayoutManager *)[[self textView] layoutManager] showInvisibles];
 }
 
 
 // ------------------------------------------------------
-/// 不可視文字表示メニューのツールチップを更新
-- (void)updateShowInvisibleCharsMenuToolTip
+/// 不可視文字の表示／非表示を設定
+- (void)setShowInvisibles:(BOOL)showInvisibles
 // ------------------------------------------------------
 {
-    NSMenuItem *menuItem = [[[[NSApp mainMenu] itemAtIndex:k_viewMenuIndex] submenu] itemWithTag:k_showInvisibleCharMenuItemTag];
-
-    NSString *toolTip = @"";
-    if (![[self document] canActivateShowInvisibleCharsItem]) {
-        toolTip = @"To display invisible characters, set in Preferences and re-open the document.";
-    }
-    [menuItem setToolTip:NSLocalizedString(toolTip, @"")];
+    [[self splitView] setShowInvisibles:showInvisibles];
 }
 
 
@@ -909,16 +904,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         title = [self showPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
         
     } else if ([menuItem action] == @selector(toggleShowInvisibleChars:)) {
-        title = [(CELayoutManager *)[[self textView] layoutManager] showInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
+        title = [self showInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
         [menuItem setTitle:NSLocalizedString(title, nil)];
-        return ([[self document] canActivateShowInvisibleCharsItem]);
+        
+        if (![self canActivateShowInvisibles]) {
+            [menuItem setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.", nil)];
+        }
+        
+        return [self canActivateShowInvisibles];
     
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         theState = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
-    } else if (([menuItem action] == @selector(focusNextSplitTextView:)) || 
-            ([menuItem action] == @selector(focusPrevSplitTextView:)) || 
-            ([menuItem action] == @selector(closeSplitTextView:))) {
+    } else if (([menuItem action] == @selector(focusNextSplitTextView:)) ||
+               ([menuItem action] == @selector(focusPrevSplitTextView:)) ||
+               ([menuItem action] == @selector(closeSplitTextView:))) {
         return ([[[self splitView] subviews] count] > 1);
     }
     
@@ -1041,7 +1041,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setupViewParamsInInit:NO];
     [[subSplitView textView] setFont:[[self textView] font]];
     [[subSplitView textView] setLineSpacing:[[self textView] lineSpacing]];
-    [self setShowInvisibleChars:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
+    [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
     [[self splitView] adjustSubviews];
     [subSplitView setSyntaxStyleNameToSyntax:[[self syntax] syntaxStyleName]];

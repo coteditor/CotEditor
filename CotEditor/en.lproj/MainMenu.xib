@@ -326,7 +326,7 @@
                             <menuItem isSeparatorItem="YES" id="366">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Show Invisible Characters" tag="304" id="788">
+                            <menuItem title="Show Invisible Characters" id="788">
                                 <connections>
                                     <action selector="toggleShowInvisibleChars:" target="-1" id="791"/>
                                 </connections>

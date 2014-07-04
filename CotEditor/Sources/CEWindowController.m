@@ -97,8 +97,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self document] setEditorView:[self editorView]];
     // デフォルト改行コードをセット
     [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
-    // 不可視文字の表示／非表示をセット
-    [[self editorView] setShowInvisibleChars:[[self document] canActivateShowInvisibleCharsItem]];
     // テキストを表示
     [[self document] setStringToEditorView];
 }
@@ -253,10 +251,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)windowDidBecomeKey:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    // 不可視文字表示メニューのツールチップを更新
-    [[self editorView] updateShowInvisibleCharsMenuToolTip];
-    
-
     // シートを表示していなければ、各種更新実行
     if ([[self window] attachedSheet] == nil) {
         // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行

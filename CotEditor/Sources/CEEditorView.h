@@ -63,11 +63,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL isWritable;
 @property (nonatomic) BOOL isAlertedNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic) BOOL showPageGuide;
+@property (nonatomic) BOOL showInvisibles;
 @property (nonatomic) BOOL isColoring;
 
 @property (nonatomic) CETextViewCore *textView;
 
 @property (nonatomic, readonly) CESplitView *splitView;
+@property (nonatomic, readonly) BOOL canActivateShowInvisibles;
 
 
 // Public method
@@ -104,8 +106,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)alertForNotWritable;
 - (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
 - (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
-- (void)setShowInvisibleChars:(BOOL)showInvisibleChars;
-- (void)updateShowInvisibleCharsMenuToolTip;
 - (void)setupColoringTimer;
 - (void)setupIncompatibleCharTimer;
 - (void)setupInfoUpdateTimer;

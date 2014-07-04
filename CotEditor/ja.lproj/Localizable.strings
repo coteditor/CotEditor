@@ -125,7 +125,8 @@ http://www.aynimac.com/
 "Wrap Lines" = "行を折り返す";
 
 // show invisible char menu tooltip
-"To display invisible characters, set in Preferences and re-open the document." = "不可視文字を表示させるには、環境設定を変更し書類を開き直してください。";
+"Show or hide invisible characters in document" = "書類中の不可視文字を表示／隠す";
+"To display invisible characters, set in Preferences and re-open the document" = "不可視文字を表示させるには、環境設定を変更し書類を開き直してください";
 
 // Alert strings
 "The file is not writable." = "このファイルは書き込み不可です。";

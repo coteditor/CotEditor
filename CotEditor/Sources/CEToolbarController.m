@@ -32,14 +32,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEToolbarController.h"
-#import "CEDocument.h"
+#import "CEEditorView.h"
 #import "constants.h"
 
 
 @interface CEToolbarController ()
 
 @property (nonatomic, weak) IBOutlet NSToolbar *toolbar;
-@property (nonatomic, unsafe_unretained) IBOutlet NSWindow *window;  // NSWindow は 10.7 では weak で持てないため
+@property (nonatomic, weak) IBOutlet CEEditorView *editorView;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
@@ -199,16 +199,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSToolbarItem *item = [notification userInfo][@"item"];
     NSString *identifier = [item itemIdentifier];
-    CEEditorView *editorView = [[[self window] windowController] editorView];
+    CEEditorView *editorView = [self editorView];
     
     if ([identifier isEqualToString:k_showInvisibleCharsItemID]) {
-        BOOL canActivate = [[[[self window] windowController] document] canActivateShowInvisibleCharsItem];
+        [self toggleItem:item setOn:[editorView showInvisibles]];
         
-        // ツールバーアイテムを有効化できなければツールチップを変更
-        if (!canActivate) {
-            [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.",nil)];
-            [self toggleItem:item setOn:NO];
+        // ツールバーアイテムを有効化できなければボタンを無効状態に
+        if ([editorView canActivateShowInvisibles]) {
+            [item setAction:@selector(toggleShowInvisibleChars:)];
+            [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
+        } else {
             [item setAction:nil];
+            [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.", nil)];
         }
         
     } else if ([identifier isEqualToString:k_autoTabExpandItemID]) {

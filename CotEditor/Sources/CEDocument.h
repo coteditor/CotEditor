@@ -54,7 +54,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
-@property (nonatomic, readonly) BOOL canActivateShowInvisibleCharsItem;// 不可視文字表示メニュー／ツールバーアイテムを有効化できるか
 @property (nonatomic, readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
 @property (nonatomic, copy, readonly) NSDictionary *fileAttributes;  // ファイル属性情報辞書
 @property (nonatomic, readonly) CETextSelection *selection;

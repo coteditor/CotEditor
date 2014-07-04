@@ -342,14 +342,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange;
+    BOOL showInvisibles = [number boolValue];
     BOOL shouldReselect = NO;
 
-    if ([number boolValue]) {
+    if (showInvisibles) {
         shouldReselect = YES;
         selectedRange = [[self textView] selectedRange];
         [[self textView] setSelectedRange:NSMakeRange(0, 0)]; // （選択範囲をリセットしておき、あとで再選択）
     }
-    [(CELayoutManager *)[[self textView] layoutManager] setShowInvisibles:[number boolValue]];
+    [(CELayoutManager *)[[self textView] layoutManager] setShowInvisibles:showInvisibles];
     [[self textView] setNeedsDisplay:YES];
     if (shouldReselect) {
         // （不可視文字が選択状態で表示／非表示を切り替えられた時、不可視文字の背景選択色を描画するための時間差での選択処理）

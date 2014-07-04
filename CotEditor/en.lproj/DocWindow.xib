@@ -909,11 +909,11 @@
         </customView>
         <customObject id="71" userLabel="Toolbar Controller" customClass="CEToolbarController">
             <connections>
+                <outlet property="editorView" destination="27" id="0jC-be-e8j"/>
                 <outlet property="encodingPopupButton" destination="90" id="9ae-Bd-vPQ"/>
                 <outlet property="lineEndingPopupButton" destination="77" id="ypf-VV-99N"/>
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
                 <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
-                <outlet property="window" destination="5" id="vEB-O5-kKX"/>
             </connections>
         </customObject>
         <arrayController id="127" userLabel="Incompatible Controller">

@@ -282,8 +282,6 @@ extern NSInteger const k_openMenuItemTag;
 extern NSInteger const k_openHiddenMenuItemTag;
 extern NSInteger const k_openRecentMenuItemTag;
 extern NSInteger const k_BSMenuItemTag;
-extern NSInteger const k_showInvisibleCharMenuItemTag;
-extern NSInteger const k_showInvisibleCharMenuItemTag;
 extern NSInteger const k_fileEncodingMenuItemTag;
 extern NSInteger const k_syntaxMenuItemTag;
 extern NSInteger const k_themeMenuItemTag;

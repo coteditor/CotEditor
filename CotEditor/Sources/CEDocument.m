@@ -60,7 +60,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // readonly
 @property (nonatomic, readwrite) CEWindowController *windowController;
-@property (nonatomic, readwrite) BOOL canActivateShowInvisibleCharsItem;
 @property (nonatomic, readwrite) NSStringEncoding encodingCode;
 @property (nonatomic, copy, readwrite) NSDictionary *fileAttributes;
 @property (nonatomic, readwrite) CETextSelection *selection;
@@ -108,18 +107,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     self = [super init];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
         [self setHasUndoManager:YES];
-        [self doSetEncoding:[defaults integerForKey:k_key_encodingInNew]
+        [self doSetEncoding:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew]
              updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         [self setSelection:[[CETextSelection alloc] initWithDocument:self]];
-        [self setCanActivateShowInvisibleCharsItem:
-                [defaults boolForKey:k_key_showInvisibleSpace] ||
-                [defaults boolForKey:k_key_showInvisibleTab] ||
-                [defaults boolForKey:k_key_showInvisibleNewLine] ||
-                [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
-                [defaults boolForKey:k_key_showOtherInvisibleChars]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
@@ -931,7 +922,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// toolbar のエンコーディングメニューアイテムを再生成する
+/// toolbar のエンコーディングメニューアイテムを再生成する  TODO: どこからも呼ばれてない？
 - (void)rebuildToolbarEncodingItem
 // ------------------------------------------------------
 {
@@ -959,7 +950,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 指定されたスタイルを適用していたら WindowController のリカラーフラグを立て、スタイル名を"None"にする
+/// 指定されたスタイルを適用していたら WindowController のリカラーフラグを立て、スタイル名を"None"にする  TODO: どこからも呼ばれてない？
 - (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
