@@ -848,8 +848,11 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     CETextViewCore *textView = [[self editorView] textView];
     NSUInteger wholeLength = [[textView string] length];
-    OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@"^"];
-    NSArray *matches = [regex allMatchesInString:[textView string]];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
+                                                                           options:NSRegularExpressionAnchorsMatchLines
+                                                                             error:nil];
+    NSArray *matches = [regex matchesInString:[textView string] options:0
+                                        range:NSMakeRange(0, [[textView string] length])];
 
     if (matches) {
         NSInteger count = [matches count];
@@ -876,8 +879,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             }
             if ((newLocation <= 0) || (newLength <= 0)) { return; }
 
-            OGRegularExpressionMatch *match = matches[(newLocation - 1)];
-            NSRange range = [match rangeOfMatchedString];
+            NSTextCheckingResult *result = matches[(newLocation - 1)];
+            NSRange range = [result range];
             NSRange tmpRange = range;
             NSInteger i;
 
