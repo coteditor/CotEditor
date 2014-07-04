@@ -32,17 +32,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Cocoa/Cocoa.h>
-#import <OgreKit/OgreKit.h>
-#import "CEApplication.h"
 #import "CEDocumentController.h"
-#import "CEEditorView.h"
 #import "CEWindowController.h"
 #import "CETextSelection.h"
+#import "CEEditorView.h"
 
 
 @class CEEditorView;
 @class CEWindowController;
-@class UKXattrMetadataStore;
 
 
 typedef NS_ENUM(NSUInteger, CEGoToType) {
