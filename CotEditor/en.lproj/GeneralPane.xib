@@ -28,7 +28,7 @@
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3439">
                     <rect key="frame" x="102" y="121" width="220" height="18"/>
-                    <buttonCell key="cell" type="check" title="Append extension “txt” on save" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3440">
+                    <buttonCell key="cell" type="check" title="Append preferred extension on save" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3440">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

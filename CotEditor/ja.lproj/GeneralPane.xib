@@ -27,8 +27,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3439">
-                    <rect key="frame" x="143" y="121" width="245" height="18"/>
-                    <buttonCell key="cell" type="check" title="ファイル保存時に拡張子“txt”をつける" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3440">
+                    <rect key="frame" x="143" y="121" width="360" height="18"/>
+                    <buttonCell key="cell" type="check" title="ファイル保存時にシンタックスに対応した拡張子をつける" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3440">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
                     </buttonCell>

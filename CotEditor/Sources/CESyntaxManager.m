@@ -157,6 +157,23 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 // ------------------------------------------------------
+/// style名に応じた拡張子配列を返す
+- (NSString *)defaultExensionWithStyleName:(NSString *)styleName
+// ------------------------------------------------------
+{
+    NSDictionary *extensions = [self styleWithStyleName:styleName][k_SCKey_extensions];
+    
+    for (NSDictionary *dict in extensions) {
+        if (YES) {  // TODO: implement
+            return dict[k_SCKey_arrayKeyString];
+        }
+    }
+    
+    return nil;
+}
+
+
+// ------------------------------------------------------
 /// style名に応じたstyle辞書を返す
 - (NSDictionary *)styleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------

@@ -292,7 +292,11 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             }
         }
         if (text) {
-            [text setString:[fileName stringByAppendingPathExtension:@"txt"]];
+            NSString *styleName = [[self editor] syntaxStyleName];
+            NSString *extension = [[CESyntaxManager sharedManager] defaultExensionWithStyleName:styleName];
+            
+            
+            [text setString:[fileName stringByAppendingPathExtension:extension]];
             // 拡張子をのぞいた部分を選択状態にする
             [text setSelectedRange:NSMakeRange(0, [[fileName stringByDeletingPathExtension] length])];
         }
