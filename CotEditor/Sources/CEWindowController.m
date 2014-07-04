@@ -415,8 +415,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)selectIncompatibleRange:(id)sender
 // ------------------------------------------------------
 {
-    NSRange range = [[[self listController] selectedObjects][0][k_incompatibleRange] rangeValue];
+    if ([[[self listController] selectedObjects] count] == 0) { return; }
 
+    NSRange range = [[[self listController] selectedObjects][0][k_incompatibleRange] rangeValue];
+    
     [[self editorView] setSelectedRange:range];
     [[self window] makeFirstResponder:[[self editorView] textView]];
     [[[self editorView] textView] scrollRangeToVisible:range];
