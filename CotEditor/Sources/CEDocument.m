@@ -157,7 +157,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [[self undoManager] endUndoGrouping];
     [[self undoManager] undo];
     
-    
     id token = [self changeCountTokenForSaveOperation:saveOperation];
     
     // 新規書類を最初に保存する場合のフラグをセット
@@ -194,8 +193,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 // ------------------------------------------------------
 {
-    BOOL shouldAppendBOM = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_saveUTF8BOM];
-    
     // エンコーディングを見て、半角円マークを変換しておく
     NSString *string = [self convertedCharacterString:[[self editorView] stringForSave] withEncoding:[self encoding]];
     
@@ -203,7 +200,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
     
     // 必要であれば UTF-8 BOM 追加 (2008.12.13)
-    if (shouldAppendBOM && ([self encoding] == NSUTF8StringEncoding)) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_saveUTF8BOM] &&
+        ([self encoding] == NSUTF8StringEncoding)) {
         const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         NSMutableData *mutableData = [NSMutableData dataWithBytes:utf8Bom length:3];
         [mutableData appendData:data];
@@ -310,13 +308,9 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Don't Save, and Close", nil)];
 
-        for (NSButton *button in [alert buttons]) {
-            if ([[button title] isEqualToString:NSLocalizedString(@"Don't Save, and Close", nil)]) {
-                [button setKeyEquivalent:@"d"];
-                [button setKeyEquivalentModifierMask:NSCommandKeyMask];
-                break;
-            }
-        }
+        NSButton *dontSaveButton = [alert buttons][1];
+        [dontSaveButton setKeyEquivalent:@"d"];
+        [dontSaveButton setKeyEquivalentModifierMask:NSCommandKeyMask];
         
         NSDictionary *contextInfoDict = @{@"delegate": delegate,
                                          @"shouldCloseSelector": [NSValue valueWithPointer:shouldCloseSelector],
@@ -459,8 +453,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     if (!string && (encoding == k_autoDetectEncodingMenuTag)) {
         NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy];
 
-        for (NSUInteger i = 0; !string; i++) {
-            encoding = CFStringConvertEncodingToNSStringEncoding([encodings[i] unsignedLongValue]);
+        for (NSNumber *encodingNumber in encodings) {
+            encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
             if ((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) {
                 break;
             } else if ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) {
@@ -483,6 +477,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
                     string = tmpStr;
                     encoding = tmpEncoding;
                 }
+                break;
             }
         }
     } else if (!string) {
@@ -542,8 +537,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// 新規エンコーディングをセット
-- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
-        askLossy:(BOOL)askLossy  lossy:(BOOL)lossy  asActionName:(NSString *)actionName
+- (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName
 // ------------------------------------------------------
 {
     if (encoding == [self encoding]) {
@@ -583,14 +577,16 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         if (shouldShowList) {
             [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
         }
-        [[undoManager prepareWithInvocationTarget:self] doSetEncoding:[self encoding]]; // エンコード値設定
+        [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]]; // エンコード値設定
+        [[undoManager prepareWithInvocationTarget:self] updateEncodingInToolbarAndInfo];
         [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCount減値
         if (actionName) {
             [undoManager setActionName:actionName];
         }
         [self updateChangeCount:NSChangeDone];
     }
-    [self doSetEncoding:encoding];
+    [self setEncoding:encoding];
+    [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
     }
@@ -725,11 +721,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     CETextViewCore *textView = [[self editorView] textView];
     NSUInteger wholeLength = [[textView string] length];
-    NSInteger newLocation, newLength;
     NSRange range = NSMakeRange(0, 0);
 
-    newLocation = (location < 0) ? (wholeLength + location) : location;
-    newLength = (length < 0) ? (wholeLength - newLocation + length) : length;
+    NSInteger newLocation = (location < 0) ? (wholeLength + location) : location;
+    NSInteger newLength = (length < 0) ? (wholeLength - newLocation + length) : length;
     if ((newLocation < wholeLength) && ((newLocation + newLength) > wholeLength)) {
         newLength = wholeLength - newLocation;
     }
@@ -796,8 +791,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             }
             if ((newLocation <= 0) || (newLength <= 0)) { return; }
 
-            NSTextCheckingResult *result = matches[(newLocation - 1)];
-            NSRange range = [result range];
+            NSTextCheckingResult *match = matches[(newLocation - 1)];
+            NSRange range = [match range];
             NSRange tmpRange = range;
             NSInteger i;
 
@@ -818,15 +813,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 選択範囲が見えるようにスクロール
-- (void)scrollToCenteringSelection
-// ------------------------------------------------------
-{
-    [[[self editorView] textView] scrollRangeToVisible:[[[self editorView] textView] selectedRange]];
-}
-
-
-// ------------------------------------------------------
 /// 選択範囲を変更する
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type
 // ------------------------------------------------------
@@ -839,8 +825,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             [self setSelectedCharacterRangeInTextViewWithLocation:location length:length];
             break;
     }
-    [self scrollToCenteringSelection]; // 選択範囲が見えるようにスクロール
-    [[[self editorView] textView] showFindIndicatorForRange:[[[self editorView] textView] selectedRange]];  // 検索結果表示エフェクトを追加
+    
+    NSTextView *textView = [[self editorView] textView];
+    [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
+    [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
     [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
 }
 
@@ -867,9 +855,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     if (![self showUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
 
-    NSAlert *alert;
     NSString *messageText, *informativeText, *defaultButton;
-
     if ([self isDocumentEdited]) {
         messageText = @"The file has been modified by another process. There are also unsaved changes in CotEditor.";
         informativeText = @"Do you want to keep CotEditor's edition or update to the modified edition?";
@@ -880,7 +866,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         defaultButton = @"Keep Unchanged";
         [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
     }
-    alert = [[NSAlert alloc] init];
+    
+    NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:NSLocalizedString(messageText, nil)];
     [alert setInformativeText:NSLocalizedString(informativeText, nil)];
     [alert addButtonWithTitle:NSLocalizedString(defaultButton, nil)];
@@ -902,8 +889,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     } else {
         [self setIsRevertingForExternalFileUpdate:YES];
         [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        NSInteger theResult = [alert runModal]; // アラート表示
-        [self alertForModByAnotherProcessDidEnd:alert returnCode:theResult contextInfo:NULL];
+        NSInteger result = [alert runModal]; // アラート表示
+        [self alertForModByAnotherProcessDidEnd:alert returnCode:result contextInfo:NULL];
     }
 }
 
@@ -948,7 +935,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         }
     } else if ([menuItem action] == @selector(recoloringAllStringOfDocument:)) {
         name = [[self editorView] syntaxStyleNameToColoring];
-        if (name && [name isEqualToString:NSLocalizedString(@"None",@"")]) {
+        if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
     }
@@ -969,7 +956,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 -(BOOL)validateToolbarItem:(NSToolbarItem *)item
 // ------------------------------------------------------
 {
-    if ([[item itemIdentifier] isEqualToString:k_syntaxReColorAllItemID]) {
+    if ([item action] == @selector(recoloringAllStringOfDocument:)) {
         NSString *name = [[self editorView] syntaxStyleNameToColoring];
         if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
@@ -1041,9 +1028,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)documentDidFinishOpen:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] != [self editorView]) { return; }
-
-    [self showAlertForNotWritable];
+    if ([notification object] == [self editorView]) { return; }
+    
+    // EditorView で、書き込み禁止アラートを表示
+    [[self editorView] alertForNotWritable];
 }
 
 
@@ -1293,25 +1281,16 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSString *)convertedCharacterString:(NSString *)string withEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    NSUInteger length = [string length];
-
-    if (length > 0) {
-        NSMutableString *outString = [string mutableCopy]; // ===== mutableCopy
-        if ([CEUtilities isInvalidYenEncoding:encoding]) {
-            [outString replaceOccurrencesOfString:[NSString stringWithCharacters:&k_yenMark length:1]
-                                       withString:@"\\"
-                                          options:0
-                                            range:NSMakeRange(0, length)];
-        }
-        return outString;
-    } else {
-        return string;
+    if (([string length] > 0) && [CEUtilities isInvalidYenEncoding:encoding]) {
+        return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&k_yenMark length:1]
+                                                 withString:@"\\"];
     }
+    return string;
 }
 
 
 // ------------------------------------------------------
-/// editorViewを通じてcoloringStyleインスタンスにドキュメント拡張子をセット
+/// editorViewを通じてsyntaxインスタンスにドキュメント拡張子をセット
 - (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
@@ -1329,17 +1308,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             [self recoloringAllStringOfDocument:nil];
         }
     }
-}
-
-
-// ------------------------------------------------------
-/// エンコード値を保存
-- (void)doSetEncoding:(NSStringEncoding)encoding
-// ------------------------------------------------------
-{
-    [self setEncoding:encoding];
-    // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
-    [self updateEncodingInToolbarAndInfo];
 }
 
 
@@ -1514,9 +1482,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         askLossy:(BOOL)askLossy  lossy:(BOOL)lossy  asActionName:(NSString *)actionName
 // ------------------------------------------------------
 {
-    [[[self undoManager] prepareWithInvocationTarget:self] 
-      doSetEncoding:encoding updateDocument:updateDocument
-          askLossy:askLossy lossy:lossy asActionName:actionName];
+    [[[self undoManager] prepareWithInvocationTarget:self] doSetEncoding:encoding updateDocument:updateDocument
+                                                                askLossy:askLossy lossy:lossy asActionName:actionName];
 }
 
 
@@ -1534,8 +1501,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (BOOL)acceptSaveDocumentWithIANACharSetName
 // ------------------------------------------------------
 {
-    NSStringEncoding IANACharSetEncoding = 
-            [self scannedCharsetOrEncodingFromString:[[self editorView] stringForSave]];
+    NSStringEncoding IANACharSetEncoding = [self scannedCharsetOrEncodingFromString:[[self editorView] stringForSave]];
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
 
@@ -1598,9 +1564,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     BOOL success = NO;
     NSData *data = [self dataOfType:typeName error:nil];
     
-    if (data == nil) { return NO; }
+    if (!data) { return NO; }
     
-
     // 設定すべきfileAttributesを準備しておく
     NSDictionary *attributes = [self fileAttributesToWriteToURL:url
                                                          ofType:typeName
@@ -1693,24 +1658,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 外部プロセスによる変更の通知アラートが閉じた
-- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode
-            contextInfo:(void *)inContextInfo
-// ------------------------------------------------------
-{
-    if (returnCode == NSAlertSecondButtonReturn) { // == Revert
-        // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
-        if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
-            [[self undoManager] removeAllActions];
-            [self updateChangeCount:NSChangeCleared];
-        }
-    }
-    [self setIsRevertingForExternalFileUpdate:YES];
-    [self setShowUpdateAlertWithBecomeKey:NO];
-}
-
-
-// ------------------------------------------------------
 /// ファイル拡張属性(com.apple.TextEncoding)からエンコーディングを得る
 - (NSStringEncoding)encodingFromComAppleTextEncodingAtURL:(NSURL *)url
 // ------------------------------------------------------
@@ -1758,11 +1705,19 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// EditorView で、書き込み禁止アラートを表示
-- (void)showAlertForNotWritable
+/// 外部プロセスによる変更の通知アラートが閉じた
+- (void)alertForModByAnotherProcessDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)inContextInfo
 // ------------------------------------------------------
 {
-    [[self editorView] alertForNotWritable];
+    if (returnCode == NSAlertSecondButtonReturn) { // == Revert
+        // Revert 確認アラートを表示させないため、実行メソッドを直接呼び出す
+        if ([self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil]) {
+            [[self undoManager] removeAllActions];
+            [self updateChangeCount:NSChangeCleared];
+        }
+    }
+    [self setIsRevertingForExternalFileUpdate:YES];
+    [self setShowUpdateAlertWithBecomeKey:NO];
 }
 
 

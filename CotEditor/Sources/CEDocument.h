@@ -72,7 +72,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)scrollToCenteringSelection;
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
 - (NSString *)currentIANACharSetName;
 - (void)showUpdatedByExternalProcessAlert;

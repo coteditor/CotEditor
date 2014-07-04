@@ -449,7 +449,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)handleScroll:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [self scrollToCenteringSelection];
+    NSTextView *textView = [[self editorView] textView];
+    [textView scrollRangeToVisible:[textView selectedRange]];
 }
 
 
