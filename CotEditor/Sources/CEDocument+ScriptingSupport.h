@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, CELineEnding) {
 - (NSNumber *)length;
 - (CELineEnding)lineEnding;
 - (void)setLineEnding:(CELineEnding)lineEnding;
-- (NSString *)encoding;
+- (NSString *)encodingName;
 - (NSString *)IANACharSetName;
 - (NSString *)coloringStyle;
 - (void)setColoringStyle:(NSString *)styleName;

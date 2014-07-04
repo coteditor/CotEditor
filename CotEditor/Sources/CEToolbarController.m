@@ -93,7 +93,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     [[self encodingPopupButton] removeAllItems];
     for (NSMenuItem *item in items) {
-        [item setAction:@selector(setEncoding:)];
+        [item setAction:@selector(changeEncoding:)];
         [item setTarget:nil];
         [[[self encodingPopupButton] menu] addItem:item];
     }

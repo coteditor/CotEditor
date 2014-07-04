@@ -60,7 +60,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // readonly
 @property (nonatomic, readwrite) CEWindowController *windowController;
-@property (nonatomic, readwrite) NSStringEncoding encodingCode;
+@property (nonatomic, readwrite) NSStringEncoding encoding;
 @property (nonatomic, copy, readwrite) NSDictionary *fileAttributes;
 @property (nonatomic, readwrite) CETextSelection *selection;
 
@@ -197,13 +197,13 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     BOOL shouldAppendBOM = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_saveUTF8BOM];
     
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *string = [self convertedCharacterString:[[self editorView] stringForSave] withEncoding:[self encodingCode]];
+    NSString *string = [self convertedCharacterString:[[self editorView] stringForSave] withEncoding:[self encoding]];
     
     // stringから保存用のdataを得る
-    NSData *data = [string dataUsingEncoding:[self encodingCode] allowLossyConversion:YES];
+    NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
     
     // 必要であれば UTF-8 BOM 追加 (2008.12.13)
-    if (shouldAppendBOM && ([self encodingCode] == NSUTF8StringEncoding)) {
+    if (shouldAppendBOM && ([self encoding] == NSUTF8StringEncoding)) {
         const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         NSMutableData *mutableData = [NSMutableData dataWithBytes:utf8Bom length:3];
         [mutableData appendData:data];
@@ -555,7 +555,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         askLossy:(BOOL)askLossy  lossy:(BOOL)lossy  asActionName:(NSString *)actionName
 // ------------------------------------------------------
 {
-    if (encoding == [self encodingCode]) {
+    if (encoding == [self encoding]) {
         return YES;
     }
     BOOL shouldShowList = NO;
@@ -592,7 +592,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         if (shouldShowList) {
             [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
         }
-        [[undoManager prepareWithInvocationTarget:self] doSetEncoding:[self encodingCode]]; // エンコード値設定
+        [[undoManager prepareWithInvocationTarget:self] doSetEncoding:[self encoding]]; // エンコード値設定
         [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCount減値
         if (actionName) {
             [undoManager setActionName:actionName];
@@ -627,7 +627,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSArray *)markupCharCanNotBeConvertedToCurrentEncoding
 // ------------------------------------------------------
 {
-    return [self markupCharCanNotBeConvertedToEncoding:[self encodingCode]];
+    return [self markupCharCanNotBeConvertedToEncoding:[self encoding]];
 }
 
 
@@ -927,7 +927,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     NSString *charSetName = nil;
-    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encodingCode]);
+    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
 
     if (cfEncoding != kCFStringEncodingInvalidId) {
         charSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
@@ -1005,8 +1005,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         if ((![[self editorView] isWritable]) && (![[self editorView] isAlertedNotWritable])) {
             return NO;
         }
-    } else if ([menuItem action] == @selector(setEncoding:)) {
-        state = ([menuItem tag] == [self encodingCode]) ? NSOnState : NSOffState;
+    } else if ([menuItem action] == @selector(changeEncoding:)) {
+        state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
     } else if (([menuItem action] == @selector(setLineEndingCharToLF:)) ||
                ([menuItem action] == @selector(setLineEndingCharToCR:)) ||
                ([menuItem action] == @selector(setLineEndingCharToCRLF:)) ||
@@ -1190,13 +1190,13 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-- (IBAction)setEncoding:(id)sender
+- (IBAction)changeEncoding:(id)sender
 /// ドキュメントに新しいエンコーディングをセットする
 // ------------------------------------------------------
 {
     NSStringEncoding encoding = [sender tag];
 
-    if ((encoding < 1) || (encoding == [self encodingCode])) {
+    if ((encoding < 1) || (encoding == [self encoding])) {
         return;
     }
     NSInteger result;
@@ -1236,7 +1236,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             NSInteger secondResult = [secondAlert runModal];
             if (secondResult != NSAlertSecondButtonReturn) { // != Discard Change
                 // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-                [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
+                [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
                 return;
             }
         }
@@ -1257,7 +1257,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         }
     }
     // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
 }
 
 
@@ -1391,7 +1391,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)doSetEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    [self setEncodingCode:encoding];
+    [self setEncoding:encoding];
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
 }
@@ -1403,7 +1403,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
     // ステータスバー、ドローワを更新
     [[self editorView] updateLineEndingsInStatusAndInfo:NO];
 }
@@ -1593,13 +1593,13 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
 
-    if ((IANACharSetEncoding != NSProprietaryStringEncoding) && (IANACharSetEncoding != [self encodingCode]) &&
+    if ((IANACharSetEncoding != NSProprietaryStringEncoding) && (IANACharSetEncoding != [self encoding]) &&
         (!(((IANACharSetEncoding == ShiftJIS) || (IANACharSetEncoding == X0213)) &&
-           (([self encodingCode] == ShiftJIS) || ([self encodingCode] == X0213))))) {
+           (([self encoding] == ShiftJIS) || ([self encoding] == X0213))))) {
             // （Shift-JIS の時は要注意 = scannedCharsetOrEncodingFromString: を参照）
 
         NSString *IANANameStr = [NSString localizedNameOfStringEncoding:IANACharSetEncoding];
-        NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:[self encodingCode]];
+        NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:[self encoding]];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The encoding is “%@”, but the IANA charset name in text is “%@”.", nil), encodingNameStr, IANANameStr]];
         [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
@@ -1622,9 +1622,9 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     // エンコーディングを見て、半角円マークを変換しておく
     NSString *curString = [self convertedCharacterString:[[self editorView] stringForSave]
-                                            withEncoding:[self encodingCode]];
-    if (![curString canBeConvertedToEncoding:[self encodingCode]]) {
-        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encodingCode]];
+                                            withEncoding:[self encoding]];
+    if (![curString canBeConvertedToEncoding:[self encoding]]) {
+        NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The characters would have to be changed or deleted in saving as “%@”.", nil), encodingName]];
         [alert setInformativeText:NSLocalizedString(@"Do you want to continue processing?", nil)];
@@ -1698,7 +1698,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         
         // ファイル拡張属性(com.apple.TextEncoding)にエンコーディングを保存
         NSData *encodingData = [[[self currentIANACharSetName] stringByAppendingFormat:@";%u",
-                                 (unsigned int)CFStringConvertNSStringEncodingToEncoding([self encodingCode])]
+                                 (unsigned int)CFStringConvertNSStringEncodingToEncoding([self encoding])]
                                 dataUsingEncoding:NSUTF8StringEncoding];
         if (encodingData) {
             setxattr([url fileSystemRepresentation], XATTR_ENCODING_KEY,

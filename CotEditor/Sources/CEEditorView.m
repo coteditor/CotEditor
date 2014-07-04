@@ -679,9 +679,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             unichar character = [wholeString characterAtIndex:selectedRange.location];
             singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
         }
-        NSUInteger byteLength = [wholeString lengthOfBytesUsingEncoding:[[self document] encodingCode]];
+        NSUInteger byteLength = [wholeString lengthOfBytesUsingEncoding:[[self document] encoding]];
         NSUInteger selectedByteLength = [[wholeString substringWithRange:selectedRange]
-                                         lengthOfBytesUsingEncoding:[[self document] encodingCode]];
+                                         lengthOfBytesUsingEncoding:[[self document] encoding]];
         
         linesInfo = [NSString stringWithFormat:@"%tu", numberOfLines];
         if (hasSelection) {

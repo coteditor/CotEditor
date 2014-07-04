@@ -177,10 +177,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// エンコーディング名を返す(Unicode text型)
-- (NSString *)encoding
+- (NSString *)encodingName
 // ------------------------------------------------------
 {
-    return [NSString localizedNameOfStringEncoding:[self encodingCode]];
+    return [NSString localizedNameOfStringEncoding:[self encoding]];
 }
 
 
@@ -289,7 +289,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (encoding == NSNotFound) {
         success = NO;
-    } else if (encoding == [self encodingCode]) {
+    } else if (encoding == [self encoding]) {
         success = YES;
     } else {
         NSString *actionName = @"TEST";
@@ -315,14 +315,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if ((encoding == NSNotFound) || ![self fileURL]) {
         success = NO;
-    } else if (encoding == [self encodingCode]) {
+    } else if (encoding == [self encoding]) {
         success = YES;
     } else if ([self stringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding xattr:NO]) {
         [self setStringToEditorView];
         // ダーティーフラグをクリア
         [self updateChangeCount:NSChangeCleared];
         // ツールバーアイテムの選択状態をセット
-        [[[self windowController] toolbarController] setSelectedEncoding:[self encodingCode]];
+        [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
         success = YES;
     }
 

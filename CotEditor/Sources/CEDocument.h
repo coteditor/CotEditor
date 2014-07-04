@@ -54,8 +54,8 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
-@property (nonatomic, readonly) NSStringEncoding encodingCode;  // 表示しているファイルのエンコーディング
-@property (nonatomic, copy, readonly) NSDictionary *fileAttributes;  // ファイル属性情報辞書
+@property (nonatomic, readonly) NSStringEncoding encoding;
+@property (nonatomic, copy, readonly) NSDictionary *fileAttributes;
 @property (nonatomic, readonly) CETextSelection *selection;
 
 
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (IBAction)setLineEndingCharToCR:(id)sender;
 - (IBAction)setLineEndingCharToCRLF:(id)sender;
 - (IBAction)setLineEndingChar:(id)sender;
-- (IBAction)setEncoding:(id)sender;
+- (IBAction)changeEncoding:(id)sender;
 - (IBAction)changeTheme:(id)sender;
 - (IBAction)changeSyntaxStyle:(id)sender;
 - (IBAction)recoloringAllStringOfDocument:(id)sender;
