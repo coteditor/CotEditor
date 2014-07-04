@@ -259,8 +259,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // シートを表示していなければ、各種更新実行
     if ([[self window] attachedSheet] == nil) {
-        // 情報の更新
-        [[self document] getFileAttributes];
         // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
         if ([self recolorWithBecomeKey]) {
             [self setRecolorWithBecomeKey:NO];

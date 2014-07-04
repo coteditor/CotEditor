@@ -926,27 +926,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// ファイル情報辞書を保持
-- (void)getFileAttributes
-// ------------------------------------------------------
-{
-    __block NSDictionary *attributes;
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:nil
-                                 byAccessor:^(NSURL *newURL)
-     {
-         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-     }];
-
-    if (attributes) {
-        [self setFileAttributes:attributes];
-        [[self windowController] updateFileAttrsInformation];
-    }
-}
-
-
-// ------------------------------------------------------
 /// toolbar のエンコーディングメニューアイテムを再生成する
 - (void)rebuildToolbarEncodingItem
 // ------------------------------------------------------
@@ -1183,7 +1162,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // Notification method (CESplitView)
 //  <== CESplitView
 //=======================================================
-
 
 // ------------------------------------------------------
 /// 書類オープン処理が完了した
@@ -1434,6 +1412,27 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// ファイル情報辞書を更新
+- (void)getFileAttributes
+// ------------------------------------------------------
+{
+    __block NSDictionary *attributes;
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil
+                                 byAccessor:^(NSURL *newURL)
+     {
+         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+     }];
+    
+    if (attributes) {
+        [self setFileAttributes:attributes];
+        [[self windowController] updateFileAttrsInformation];
+    }
+}
+
 
 // ------------------------------------------------------
 /// 半角円マークを使えないエンコードの時はバックスラッシュに変換した文字列を返す
