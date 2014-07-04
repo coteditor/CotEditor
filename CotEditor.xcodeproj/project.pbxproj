@@ -98,6 +98,7 @@
 		2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToPanelController.m */; };
@@ -347,6 +348,8 @@
 		2AB4326D1912ADAC00835004 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GlyphPopover.xib; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
 		2AB432701912AF7200835004 /* CEGlyphPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGlyphPopoverController.m; sourceTree = "<group>"; };
+		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
+		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
 		2AFFB70618D7BC9300118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB70818D7BCB300118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
@@ -813,12 +816,14 @@
 			children = (
 				259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */,
 				259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */,
-				258D708707D456DF0062A3E5 /* CETextSelection.h */,
-				258D708807D456DF0062A3E5 /* CETextSelection.m */,
 				2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */,
 				8CC1925407E2D84500B54AE4 /* CEDocument+ScriptingSupport.h */,
 				8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */,
+				258D708707D456DF0062A3E5 /* CETextSelection.h */,
+				258D708807D456DF0062A3E5 /* CETextSelection.m */,
+				2AD84CA81966314100DE49BD /* CEODBEventSender.h */,
+				2AD84CA91966314100DE49BD /* CEODBEventSender.m */,
 			);
 			name = Document;
 			sourceTree = "<group>";
@@ -1135,6 +1140,7 @@
 				8CF02E1608B9B9F8004044EB /* CENavigationBarView.m in Sources */,
 				2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */,
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
+				2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */,
 				8C3BEA2808BDBCA800BC2067 /* CEOutlineMenuButton.m in Sources */,
 				8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */,
 				8CE4859908CD617B004817E1 /* CEApplication.m in Sources */,

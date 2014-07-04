@@ -34,9 +34,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <objc/message.h>
 #import <sys/xattr.h>
 #import "CEDocument.h"
+#import "CEODBEventSender.h"
 #import "CEPrintPanelAccessoryController.h"
+#import "CEPrintView.h"
 #import "CEUtilities.h"
-#import "ODBEditorSuite.h"
 #import "NSData+MD5.h"
 #import "constants.h"
 
@@ -53,10 +54,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (atomic) BOOL showUpdateAlertWithBecomeKey;
 @property (atomic) BOOL isRevertingForExternalFileUpdate;
 @property (nonatomic, copy) NSString *initialString;  // 初期表示文字列に表示する文字列;
-
-// ODB Editor Suite 対応プロパティ (本当は ODBEditorSuite カテゴリに持たせたいけど面倒そうなので)
-@property (nonatomic) NSAppleEventDescriptor *fileSender; // ファイルクライアントのシグネチャ
-@property (nonatomic) NSAppleEventDescriptor *fileToken; // ファイルクライアントの追加文字列
+@property (nonatomic) CEODBEventSender *ODBEventSender;
 
 // readonly
 @property (nonatomic, readwrite) CEWindowController *windowController;
@@ -64,16 +62,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (nonatomic, readwrite) NSStringEncoding encodingCode;
 @property (nonatomic, copy, readwrite) NSDictionary *fileAttributes;
 @property (nonatomic, readwrite) CETextSelection *selection;
-
-@end
-
-
-
-@interface CEDocument (ODBEditorSuite)
-
-- (void)setupODB;
-- (void)sendModifiedEventToODBClientWithURL:(NSURL *)URLToSave operation:(NSSaveOperationType)saveOperationType;
-- (void)sendCloseEventToODBClient;
 
 @end
 
@@ -195,7 +183,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [self getFileAttributes];
         
         // 外部エディタプロトコル(ODB Editor Suite)のファイル更新通知送信
-        [self sendModifiedEventToODBClientWithURL:url operation:saveOperation];
+        [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
         
         // ファイル保存更新を Finder へ通知（デスクトップに保存した時に白紙アイコンになる問題への対応）
         [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[url path]];
@@ -300,7 +288,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
-    [self setupODB];
+    [self setODBEventSender:[[CEODBEventSender alloc] init]];
     
     NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
@@ -409,7 +397,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // 外部エディタプロトコル(ODB Editor Suite)のファイルクローズを送信
-    [self sendCloseEventToODBClient];
+    [[self ODBEventSender] sendCloseEventWithURL:[self fileURL]];
     
     [super close];
 }
@@ -1923,112 +1911,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         if (shouldClose) {
             [[NSApplication sharedApplication] terminate:nil];
         }
-    }
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CEDocument (ODBEditorSuite)
-
-#pragma mark Public Methods
-
-// ------------------------------------------------------
-/// 外部エディタプロトコル(ODB Editor Suite)用の値をセット
-- (void)setupODB
-// ------------------------------------------------------
-{
-    // この部分は、Smultron を参考にさせていただきました。(2005.04.20)
-    // This part is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-    // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-    // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-    
-    NSAppleEventDescriptor *descriptor, *AEPropDescriptor, *fileSender, *fileToken;
-    
-    descriptor = [[NSAppleEventManager sharedAppleEventManager] currentAppleEvent];
-    
-    fileSender = [descriptor paramDescriptorForKeyword:keyFileSender];
-    
-    if (fileSender) {
-        fileToken = [descriptor paramDescriptorForKeyword:keyFileSenderToken];
-    } else {
-        AEPropDescriptor = [descriptor paramDescriptorForKeyword:keyAEPropData];
-        fileSender = [AEPropDescriptor paramDescriptorForKeyword:keyFileSender];
-        fileToken = [AEPropDescriptor paramDescriptorForKeyword:keyFileSenderToken];
-    }
-    
-    if (fileSender) {
-        [self setFileSender:fileSender];
-        if (fileToken) {
-            [self setFileToken:fileToken];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// 外部エディタプロトコル(ODB Editor Suite)対応メソッド: ファイルクライアントにファイル更新を通知する
-- (void)sendModifiedEventToODBClientWithURL:(NSURL *)URLToSave operation:(NSSaveOperationType)saveOperationType
-// ------------------------------------------------------
-{
-    AEEventID type = (saveOperationType == NSSaveAsOperation) ? keyNewLocation : kAEModifiedFile;
-    
-    [self sendODBEventWithType:type URL:URLToSave];
-}
-
-
-// ------------------------------------------------------
-/// 外部エディタプロトコル(ODB Editor Suite)対応メソッド: ファイルクライアントにファイルクローズを通知する
-- (void)sendCloseEventToODBClient
-// ------------------------------------------------------
-{
-    [self sendODBEventWithType:kAEClosedFile URL:[self fileURL]];
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// ファイルクライアントに通知を送る
-- (void)sendODBEventWithType:(AEEventID)eventType URL:(NSURL *)fileURL
-// ------------------------------------------------------
-{
-    if (!fileURL) { return; }
-    
-    OSType creatorCode = [[self fileSender] typeCodeValue];
-    if (creatorCode == 0) { return; }
-    
-    NSAppleEventDescriptor *creatorDescriptor, *eventDescriptor, *fileDescriptor;
-    
-    creatorDescriptor = [NSAppleEventDescriptor descriptorWithDescriptorType:typeApplSignature
-                                                                       bytes:&creatorCode
-                                                                      length:sizeof(OSType)];
-    
-    eventDescriptor = [NSAppleEventDescriptor appleEventWithEventClass:kODBEditorSuite
-                                                               eventID:eventType
-                                                      targetDescriptor:creatorDescriptor
-                                                              returnID:kAutoGenerateReturnID
-                                                         transactionID:kAnyTransactionID];
-    
-    NSData *urlData = [[fileURL absoluteString] dataUsingEncoding:NSUTF8StringEncoding];
-    fileDescriptor = [NSAppleEventDescriptor descriptorWithDescriptorType:typeFileURL
-                                                                     data:urlData];
-    [eventDescriptor setParamDescriptor:fileDescriptor forKeyword:keyDirectObject];
-    
-    if ([self fileToken]) {
-        [eventDescriptor setParamDescriptor:[self fileToken] forKeyword:keySenderToken];
-    }
-    
-    AESendMessage([eventDescriptor aeDesc], NULL, kAENoReply, kAEDefaultTimeout);
-    
-    // 複数回コールされてしまう場合の予防措置
-    if (eventType == kAEClosedFile || eventType == keyNewLocation) {
-        [self setFileSender:nil];
     }
 }
 
