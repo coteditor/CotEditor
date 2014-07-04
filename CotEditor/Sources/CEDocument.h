@@ -65,9 +65,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)setStringToTextView:(NSString *)string;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
-- (void)clearAllMarkupForIncompatibleChar;
-- (NSArray *)markupCharCanNotBeConvertedToCurrentEncoding;
-- (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)encoding;
+- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
 - (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding;
 - (void)setLineEndingCharToView:(NSInteger)newLineEnding;
 - (void)doSetSyntaxStyle:(NSString *)name;

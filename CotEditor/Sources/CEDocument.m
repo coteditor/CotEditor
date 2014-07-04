@@ -608,100 +608,55 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 背景色の変更を取り消し
-- (void)clearAllMarkupForIncompatibleChar
+/// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
+- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    NSArray *managers = [[self editorView] allLayoutManagers];
-
-    for (NSLayoutManager *manager in managers) {
-        // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
-        [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                        forCharacterRange:NSMakeRange(0, [[[self editorView] string] length])];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 現在のエンコードにコンバートできない文字列をマークアップし、その配列を返す
-- (NSArray *)markupCharCanNotBeConvertedToCurrentEncoding
-// ------------------------------------------------------
-{
-    return [self markupCharCanNotBeConvertedToEncoding:[self encoding]];
-}
-
-
-// ------------------------------------------------------
-/// 指定されたエンコードにコンバートできない文字列をマークアップし、その配列を返す
-- (NSArray *)markupCharCanNotBeConvertedToEncoding:(NSStringEncoding)encoding
-// ------------------------------------------------------
-{
-    NSMutableArray *outArray = [NSMutableArray array];
-    NSString *wholeString = [[self editorView] stringForSave];
-    NSUInteger wholeLength = [wholeString length];
-    NSData *data = [wholeString dataUsingEncoding:encoding allowLossyConversion:YES];
+    NSMutableArray *uncompatibleChars = [NSMutableArray array];
+    NSString *currentString = [[self editorView] stringForSave];
+    NSUInteger currentLength = [currentString length];
+    NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
     NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
 
-    if ((convertedString == nil) || ([convertedString length] != wholeLength)) { // 正しいリストが取得できない時
+    if (!convertedString || ([convertedString length] != currentLength)) { // 正しいリストが取得できない時
         return nil;
     }
 
-    // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
-    [self clearAllMarkupForIncompatibleChar];
-
     // 削除／変換される文字をリストアップ
-    NSArray *managers = [[self editorView] allLayoutManagers];
-    NSColor *foreColor = [[[self editorView] textView] textColor];
-    NSColor *backColor = [[[self editorView] textView] backgroundColor];
-    NSColor *incompatibleColor;
-    NSDictionary *attrs;
-    NSString *curChar, *convertedChar;
     NSString *yenMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
-    unichar wholeUnichar, convertedUnichar;
-    NSUInteger i, lines, index, curLine;
-    CGFloat BG_R, BG_G, BG_B, F_R, F_G, F_B;
 
-    // 文字色と背景色の中間色を得る
-    [[foreColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&F_R green:&F_G blue:&F_B alpha:nil];
-    [[backColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&BG_R green:&BG_G blue:&BG_B alpha:nil];
-    incompatibleColor = [NSColor colorWithCalibratedRed:((BG_R + F_R) / 2)
-                                                  green:((BG_G + F_G) / 2)
-                                                   blue:((BG_B + F_B) / 2)
-                                                  alpha:1.0];
-    attrs = @{NSBackgroundColorAttributeName: incompatibleColor};
-
-    for (i = 0; i < wholeLength; i++) {
-        wholeUnichar = [wholeString characterAtIndex:i];
-        convertedUnichar = [convertedString characterAtIndex:i];
-        if (wholeUnichar != convertedUnichar) {
-            curChar = [wholeString substringWithRange:NSMakeRange(i, 1)];
-            convertedChar = [convertedString substringWithRange:NSMakeRange(i, 1)];
-
-            if (([CEUtilities isInvalidYenEncoding:encoding]) &&
-                    ([curChar isEqualToString:yenMarkChar])) {
-                curChar = yenMarkChar;
-                convertedChar = @"\\";
-            }
-
-            for (NSLayoutManager *manager in managers) {
-                [manager addTemporaryAttributes:attrs forCharacterRange:NSMakeRange(i, 1)];
-            }
-            curLine = 1;
-            for (index = 0, lines = 0; index < wholeLength; lines++) {
-                if (index <= i) {
-                    curLine = lines + 1;
-                } else {
-                    break;
-                }
-                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-            }
-            [outArray addObject:[@{k_listLineNumber: @(curLine),
-                                   k_incompatibleRange: [NSValue valueWithRange:NSMakeRange(i, 1)],
-                                   k_incompatibleChar: curChar,
-                                   k_convertedChar: convertedChar} mutableCopy]];
+    for (NSUInteger i = 0; i < currentLength; i++) {
+        unichar currentUnichar = [currentString characterAtIndex:i];
+        unichar convertedUnichar = [convertedString characterAtIndex:i];
+        
+        if (currentUnichar == convertedUnichar) { continue; }
+        
+        NSRange charRange = NSMakeRange(i, 1);
+        NSString *currentChar = [currentString substringWithRange:charRange];
+        NSString *convertedChar = [convertedString substringWithRange:charRange];
+        
+        if ([CEUtilities isInvalidYenEncoding:encoding] && [currentChar isEqualToString:yenMarkChar]) {
+            currentChar = yenMarkChar;
+            convertedChar = @"\\";
         }
+        
+        NSUInteger curLine = 1;
+        for (NSUInteger index = 0, lines = 0; index < currentLength; lines++) {
+            if (index <= i) {
+                curLine = lines + 1;
+            } else {
+                break;
+            }
+            index = NSMaxRange([currentString lineRangeForRange:NSMakeRange(index, 0)]);
+        }
+        
+        [uncompatibleChars addObject:[@{k_listLineNumber: @(curLine),
+                                        k_incompatibleRange: [NSValue valueWithRange:charRange],
+                                        k_incompatibleChar: currentChar,
+                                        k_convertedChar: convertedChar} mutableCopy]];
     }
-    return outArray;
+    
+    return uncompatibleChars;
 }
 
 

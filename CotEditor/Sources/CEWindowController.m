@@ -178,10 +178,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateIncompatibleCharList
 // ------------------------------------------------------
 {
-    NSArray *contents = [[self document] markupCharCanNotBeConvertedToCurrentEncoding];
+    NSArray *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
+    
+    [self markupIncompatibleChars:contents];
 
-    [[self listErrorTextField] setHidden:(contents != nil)]; // リストが取得できなかった時のメッセージを表示
-
+    [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示
     [[self listController] setContent:contents];
 }
 
@@ -343,7 +344,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)drawerDidClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    [[self document] clearAllMarkupForIncompatibleChar];
+    [self clearAllMarkup];
     // テキストビューの表示だけをクリアし、リストはそのまま
 }
 
@@ -448,6 +449,51 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
             [self setRecolorWithBecomeKey:YES];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// 背景色(検索のハイライト含む)の変更を取り消し
+- (void)clearAllMarkup
+// ------------------------------------------------------
+{
+    NSArray *managers = [[self editorView] allLayoutManagers];
+    
+    for (NSLayoutManager *manager in managers) {
+        [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                        forCharacterRange:NSMakeRange(0, [[[self editorView] string] length])];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 現在のエンコードにコンバートできない文字列をマークアップし、その配列を返す
+- (void)markupIncompatibleChars:(NSArray *)uncompatibleChars
+// ------------------------------------------------------
+{
+    // 非互換文字をハイライト
+    // 文字色と背景色の中間色を得る
+    NSColor *foreColor = [[[self editorView] textView] textColor];
+    NSColor *backColor = [[[self editorView] textView] backgroundColor];
+    CGFloat BG_R, BG_G, BG_B, F_R, F_G, F_B;
+    [[foreColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&F_R green:&F_G blue:&F_B alpha:nil];
+    [[backColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&BG_R green:&BG_G blue:&BG_B alpha:nil];
+    NSColor *incompatibleColor = [NSColor colorWithCalibratedRed:((BG_R + F_R) / 2)
+                                                           green:((BG_G + F_G) / 2)
+                                                            blue:((BG_B + F_B) / 2)
+                                                           alpha:1.0];
+    
+    // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
+    [self clearAllMarkup];
+    
+    NSArray *layoutManagers = [[self editorView] allLayoutManagers];
+    for (NSDictionary *uncompatible in uncompatibleChars) {
+        for (NSLayoutManager *manager in layoutManagers) {
+            [manager addTemporaryAttribute:NSBackgroundColorAttributeName
+                                     value:incompatibleColor
+                         forCharacterRange:[uncompatible[k_incompatibleRange] rangeValue]];
         }
     }
 }
