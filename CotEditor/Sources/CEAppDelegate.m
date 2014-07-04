@@ -122,7 +122,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_invisibleFullwidthSpace: @0U,
                                k_key_showOtherInvisibleChars: @NO,
                                k_key_highlightCurrentLine: @NO,
-                               k_key_defaultTheme: @"Classic",
+                               k_key_defaultTheme: @"Dendrobates",
                                k_key_doColoring: @YES,
                                k_key_defaultColoringStyleName: NSLocalizedString(@"None", nil),
                                k_key_delayColoring: @NO,
