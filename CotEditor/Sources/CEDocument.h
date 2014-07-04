@@ -79,7 +79,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)scrollToCenteringSelection;
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
 - (void)setRecolorFlagToWindowControllerWithStyleName:(NSDictionary *)styleNameDict;
-- (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName;
 - (NSString *)currentIANACharSetName;
 - (void)showUpdatedByExternalProcessAlert;
 

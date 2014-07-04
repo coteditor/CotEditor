@@ -934,22 +934,9 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         if (oldName && newName && ![oldName isEqualToString:newName]) {
             [[self editorView] setSyntaxStyleNameToColoring:newName recolorNow:NO];
         }
-        [[self windowController] setRecolorWithBecomeKey:YES];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 指定されたスタイルを適用していたら WindowController のリカラーフラグを立て、スタイル名を"None"にする  TODO: どこからも呼ばれてない？
-- (void)setStyleToNoneAndRecolorFlagWithStyleName:(NSString *)styleName
-// ------------------------------------------------------
-{
-    NSString *curStyleName = [[self editorView] syntaxStyleNameToColoring];
-
-    // 指定されたスタイル名と違ったら、無視
-    if ([curStyleName isEqualToString:styleName]) {
-        [[self windowController] setRecolorWithBecomeKey:YES];
-        [[self editorView] setSyntaxStyleNameToColoring:NSLocalizedString(@"None",@"") recolorNow:NO];
+        if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
+            [[self windowController] setRecolorWithBecomeKey:YES];
+        }
     }
 }
 
