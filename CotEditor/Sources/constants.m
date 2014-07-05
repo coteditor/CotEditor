@@ -162,7 +162,6 @@ NSString *const k_key_colorCodeType = @"colorCodeType";
 
 // hidden settings
 NSString *const k_key_lineNumFontName = @"lineNumFontName";
-NSString *const k_key_lineNumFontSize = @"lineNumFontSize";
 NSString *const k_key_lineNumFontColor = @"lineNumFontColor";
 NSString *const k_key_basicColoringDelay = @"basicColoringDelay";
 NSString *const k_key_firstColoringDelay = @"firstColoringDelay";

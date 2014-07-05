@@ -164,7 +164,6 @@ extern NSString *const k_key_colorCodeType;
 
 // hidden settings（隠し設定の値は CEAppDelegate の initialize で設定している）
 extern NSString *const k_key_lineNumFontName;
-extern NSString *const k_key_lineNumFontSize;
 extern NSString *const k_key_lineNumFontColor;
 extern NSString *const k_key_basicColoringDelay;
 extern NSString *const k_key_firstColoringDelay;

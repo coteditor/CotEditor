@@ -169,7 +169,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                
                                /* -------- 以下、隠し設定 -------- */
                                k_key_lineNumFontName: @"ArialNarrow",
-                               k_key_lineNumFontSize: @10.0f, 
                                k_key_lineNumFontColor: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
                                k_key_basicColoringDelay: @0.001f, 
                                k_key_firstColoringDelay: @0.3f, 

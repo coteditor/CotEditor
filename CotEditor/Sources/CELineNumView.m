@@ -92,8 +92,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     // fill in the background
     NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
     [backgroundColor set];
@@ -109,15 +107,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         dirtyRect.origin.y += horizontalScrollAdj; // (shift the drawing frame reference up.)
         dirtyRect.size.height -= horizontalScrollAdj; // (and shrink it the same distance.)
     }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CGFloat masterFontSize = [[[[self masterView] textView] font] pointSize];
+    
     // setup drawing attributes for the font size and color.
-    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
-    CGFloat fontSize = (CGFloat)[defaults doubleForKey:k_key_lineNumFontSize];
-    NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize];
-    if (font == nil) {
-        font = [NSFont paletteFontOfSize:9];
-    }
-    attrs[NSFontAttributeName] = font;
-    attrs[NSForegroundColorAttributeName] = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_lineNumFontColor]];
+    CGFloat fontSize = round(0.9 * masterFontSize);
+    NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize] ? : [NSFont paletteFontOfSize:fontSize];
+    NSDictionary *attrs = @{NSFontAttributeName: font,
+                            NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
+                                                             [defaults dataForKey:k_key_lineNumFontColor]]};
     
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
@@ -154,7 +153,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return;
     }
-    adj = k_lineNumFontDescender - ([[[[self masterView] textView] font] pointSize] + fontSize) / 2 - insetAdj;
+    adj = k_lineNumFontDescender - (masterFontSize + fontSize) / 2 - insetAdj;
     
     for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
         charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];

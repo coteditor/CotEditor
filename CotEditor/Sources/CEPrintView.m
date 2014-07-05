@@ -55,7 +55,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, copy) NSDictionary *headerFooterAttrs;
-@property (nonatomic, copy) NSDictionary *lineNumAttrs;
 
 @end
 
@@ -81,20 +80,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super initWithFrame:frameRect];
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        CGFloat fontSize;
-        
-        // 行番号の文字属性辞書生成、保持
-        fontSize = (CGFloat)[defaults doubleForKey:k_key_lineNumFontSize];
-        NSFont *lineNumFont = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize];
-        if (!lineNumFont) {
-            lineNumFont = [NSFont userFixedPitchFontOfSize:fontSize];
-        }
-        [self setLineNumAttrs:@{NSFontAttributeName: lineNumFont,
-                                NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
-                                                                 [defaults dataForKey:k_key_lineNumFontColor]]}];
         
         // ヘッダ／フッタの文字属性辞書生成、保持
-        fontSize = (CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize];
+        CGFloat fontSize = (CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize];
         NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName] size:fontSize];
         if (!headerFooterFont) {
             headerFooterFont = [NSFont systemFontOfSize:fontSize];
@@ -237,11 +225,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 行番号を印字
     if ([self printsLineNum]) {
-        CGFloat lineNumFontSize = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_lineNumFontSize];
-
+        
+        // 行番号の文字属性辞書生成
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        CGFloat masterFontSize = [[self font] pointSize];
+        CGFloat lineNumFontSize = round(0.9 * masterFontSize);
+        NSFont *lineNumFont = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:lineNumFontSize] ? : [NSFont userFixedPitchFontOfSize:lineNumFontSize];
+        NSDictionary *attrs = @{NSFontAttributeName: lineNumFont,
+                                NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
+                                                                 [defaults dataForKey:k_key_lineNumFontColor]]};
+        
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
-        CGFloat charWidth = [@"8" sizeWithAttributes:[self lineNumAttrs]].width;
+        CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
         
         // setup the variables we need for the loop
         NSRange range;       // a range for counting lines
@@ -262,7 +258,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         lineNum = 1;
         glyphCount = 0;
         xAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
-        yAdj = ([[self font] pointSize] - lineNumFontSize) / 2;
+        yAdj = (lineNumFontSize - masterFontSize);
 
         for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
             charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
@@ -271,16 +267,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
                 numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 if (NSPointInRect(numRect.origin, dirtyRect)) {
-                    if (lastLineNum != lineNum) {
-                        numStr = [NSString stringWithFormat:@"%tu:", lineNum];
-                        reqWidth = charWidth * [numStr length];
-                    } else {
-                        numStr = @"-:";
-                        reqWidth = 8.0; // @"-:"のときに必要なピクセル値。変更時、注意。*****
-                    }
+                    numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu:", lineNum] : @"-:";
+                    reqWidth = charWidth * [numStr length];
                     numPoint = NSMakePoint(dirtyRect.origin.x - reqWidth + xAdj,
                                            numRect.origin.y + yAdj);
-                    [numStr drawAtPoint:numPoint withAttributes:[self lineNumAttrs]]; // draw the line number.
+                    [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the line number.
                     lastLineNum = lineNum;
                 }
                 glyphCount = NSMaxRange(range);
@@ -315,6 +306,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // layoutManagerにもフォントを設定する
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
+    
     [super setFont:font];
 }
 
