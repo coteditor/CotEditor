@@ -565,7 +565,7 @@ static NSArray *kSyntaxDictKeys;
 {
     __block NSMutableArray *ranges = [NSMutableArray array];
     NSString *string = [self coloringString];
-    uint32_t options = RKLMultiline | ignoreCase ? RKLCaseless : 0;
+    uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
     
     QCStartEndType startType = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
@@ -621,7 +621,7 @@ static NSArray *kSyntaxDictKeys;
 {
     __block NSMutableArray *ranges = [NSMutableArray array];
     NSString *string = [self coloringString];
-    uint32_t options = RKLMultiline | ignoreCase ? RKLCaseless : 0;
+    uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
     NSError *error = nil;
     
     QCStartEndType startType = (pairKind == QCCommentKind) ? QCStart : QCNotUseStartEnd;
