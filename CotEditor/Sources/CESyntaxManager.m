@@ -44,13 +44,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 @interface CESyntaxManager ()
 
 @property (nonatomic, copy) NSArray *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
-@property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
-@property (nonatomic, copy) NSArray *extensions;  // 拡張子配列
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
+@property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
+@property (nonatomic, copy) NSDictionary *filenameToStyleTable;
 
 
 // readonly
 @property (nonatomic, copy, readwrite) NSDictionary *extensionConflicts;
+@property (nonatomic, copy, readwrite) NSDictionary *filenameConflicts;
 
 @end
 
@@ -148,13 +149,16 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 // ------------------------------------------------------
-/// 拡張子に応じたstyle名を返す
-- (NSString *)syntaxNameFromExtension:(NSString *)extension
+/// ファイル名に応じたstyle名を返す
+- (NSString *)styleNameFromFileName:(NSString *)fileName
 // ------------------------------------------------------
 {
-    NSString *syntaxName = [self extensionToStyleTable][extension];
-
-    return syntaxName ? : [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
+    NSString *styleName = [self filenameToStyleTable][fileName];
+    
+    styleName = styleName ? : [self extensionToStyleTable][[fileName pathExtension]];
+    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
+    
+    return styleName;
 }
 
 
@@ -633,36 +637,55 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (void)setupExtensionAndSyntaxTable
 // ------------------------------------------------------
 {
-    NSMutableDictionary *table = [NSMutableDictionary dictionary];
-    NSMutableDictionary *conflictDict = [NSMutableDictionary dictionary];
-    NSMutableArray *extensions = [NSMutableArray array];
-    id extension, addedName = nil;
-    NSArray *extensionDicts;
+    NSMutableDictionary *extensionTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary *extensionConflicts = [NSMutableDictionary dictionary];
+    NSMutableDictionary *filenameTable = [NSMutableDictionary dictionary];
+    NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
+    NSString *addedName = nil;
 
     for (NSMutableDictionary *style in [self styles]) {
-        extensionDicts = style[k_SCKey_extensions];
-        if (!extensionDicts) { continue; }
-        for (NSDictionary *extensionDict in extensionDicts) {
-            extension = extensionDict[k_SCKey_arrayKeyString];
-            if ((addedName = table[extension])) { // 同じ拡張子を持つものがすでにあるとき
-                NSMutableArray *errorArray = conflictDict[extension];
-                if (!errorArray) {
-                    errorArray = [NSMutableArray array];
-                    [conflictDict setValue:errorArray forKey:extension];
+        NSString *styleName = style[k_SCKey_styleName];
+        NSArray *extensionDicts = style[k_SCKey_extensions];
+        NSArray *filenameDicts = style[k_SCKey_filenames];
+        
+        for (NSDictionary *dict in extensionDicts) {
+            NSString *extension = dict[k_SCKey_arrayKeyString];
+            if ((addedName = extensionTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
+                NSMutableArray *errors = extensionConflicts[extension];
+                if (!errors) {
+                    errors = [NSMutableArray array];
+                    [extensionConflicts setValue:errors forKey:extension];
                 }
-                if (![errorArray containsObject:addedName]) {
-                    [errorArray addObject:addedName];
+                if (![errors containsObject:addedName]) {
+                    [errors addObject:addedName];
                 }
-                [errorArray addObject:style[k_SCKey_styleName]];
+                [errors addObject:style[k_SCKey_styleName]];
             } else {
-                [table setValue:style[k_SCKey_styleName] forKey:extension];
-                [extensions addObject:extension];
+                [extensionTable setValue:styleName forKey:extension];
+            }
+        }
+        
+        for (NSDictionary *dict in filenameDicts) {
+            NSString *filename = dict[k_SCKey_arrayKeyString];
+            if ((addedName = filenameTable[filename])) { // 同じファイル名を持つものがすでにあるとき
+                NSMutableArray *errors = filenameConflicts[filename];
+                if (!errors) {
+                    errors = [NSMutableArray array];
+                    [filenameConflicts setValue:errors forKey:filename];
+                }
+                if (![errors containsObject:addedName]) {
+                    [errors addObject:addedName];
+                }
+                [errors addObject:style[k_SCKey_styleName]];
+            } else {
+                [filenameTable setValue:styleName forKey:filename];
             }
         }
     }
-    [self setExtensionToStyleTable:table];
-    [self setExtensionConflicts:conflictDict];
-    [self setExtensions:extensions];
+    [self setExtensionToStyleTable:extensionTable];
+    [self setExtensionConflicts:extensionConflicts];
+    [self setFilenameToStyleTable:filenameTable];
+    [self setFilenameConflicts:filenameConflicts];
 }
 
 

@@ -47,6 +47,7 @@ extern NSString *const CESyntaxDidUpdateNotification;
 // readonly
 /// 拡張子重複エラー辞書
 @property (nonatomic, copy, readonly) NSDictionary *extensionConflicts;
+@property (nonatomic, copy, readonly) NSDictionary *filenameConflicts;
 
 
 // class method
@@ -55,7 +56,7 @@ extern NSString *const CESyntaxDidUpdateNotification;
 
 // public methods
 - (NSArray *)styleNames;
-- (NSString *)syntaxNameFromExtension:(NSString *)extension;
+- (NSString *)styleNameFromFileName:(NSString *)fileName;
 - (NSDictionary *)styleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)emptyStyle;

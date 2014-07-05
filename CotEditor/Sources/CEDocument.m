@@ -1279,7 +1279,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_doColoring]) { return; }
     
-    NSString *styleName = [[CESyntaxManager sharedManager] syntaxNameFromExtension:[fileName pathExtension]];
+    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:fileName];
     
     [[self editorView] setSyntaxStyleName:styleName recolorNow:doColoring];
     
