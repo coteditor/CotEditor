@@ -1698,7 +1698,9 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     BOOL isWritable = YES; // default = YES
     
     if ([url checkResourceIsReachableAndReturnError:nil]) {
-        isWritable = [[NSFileManager defaultManager] isWritableFileAtPath:[url path]];
+        NSNumber *isWritableNum = nil;
+        [url getResourceValue:&isWritableNum forKey:NSURLIsWritableKey error:nil];
+        isWritable = [isWritableNum boolValue];
     }
     [[self editorView] setIsWritable:isWritable];
 }
