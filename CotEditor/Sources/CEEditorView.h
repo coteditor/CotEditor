@@ -89,7 +89,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceTextViewAllStringTo:(NSString *)string;
 - (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
 - (void)appendTextViewAfterAllStringTo:(NSString *)string;
-- (BOOL)setSyntaxExtension:(NSString *)extension;
 - (NSFont *)font;
 - (void)setFont:(NSFont *)font;
 - (NSRange)selectedRange;
@@ -99,8 +98,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)shouldUseAntialias;
 - (void)toggleShouldUseAntialias;
 
-- (NSString *)syntaxStyleNameToColoring;
-- (void)setSyntaxStyleNameToColoring:(NSString *)inName recolorNow:(BOOL)recolorNow;
+- (NSString *)syntaxStyleName;
+- (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
 - (void)recolorAllString;
 - (void)updateColoringAndOutlineMenuWithDelay;
 - (void)alertForNotWritable;

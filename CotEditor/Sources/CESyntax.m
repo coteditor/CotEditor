@@ -72,7 +72,6 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 @property (nonatomic) CELayoutManager *layoutManager;
 @property (atomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
-@property (atomic) BOOL isNone;
 
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
@@ -89,7 +88,8 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
 @property (nonatomic, copy, readwrite) NSString *inlineCommentDelimiter;
 @property (nonatomic, copy, readwrite) NSDictionary *blockCommentDelimiters;
-@property (atomic, readwrite) BOOL isColoring;
+@property (nonatomic, readwrite) BOOL isNone;
+@property (nonatomic, readwrite) BOOL isColoring;
 
 @end
 

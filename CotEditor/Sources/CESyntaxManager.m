@@ -154,7 +154,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 {
     NSString *syntaxName = [self extensionToStyleTable][extension];
 
-    return (syntaxName) ? syntaxName : [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
+    return syntaxName ? : [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
 }
 
 

@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEPrintView.h"
 #import "CEODBEventSender.h"
 #import "CEApplication.h"
+#import "CESyntaxManager.h"
 #import "CEUtilities.h"
 #import "NSData+MD5.h"
 #import "constants.h"
@@ -168,7 +169,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     if (success) {
         // 新規保存時、カラーリングのために拡張子を保持
         if (isFirstSave) {
-            [self setColoringExtension:[url pathExtension] coloring:YES];
+            [self setSyntaxStyleWithFileName:[url lastPathComponent] coloring:YES];
         }
 
         // 保持しているファイル情報／表示する文書情報を更新
@@ -342,7 +343,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [printView setTheme:[[[self editorView] textView] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
-    [printView setSyntaxName:[[self editorView] syntaxStyleNameToColoring]];
+    [printView setSyntaxName:[[self editorView] syntaxStyleName]];
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
     [printView setDocumentShowsInvisibles:[(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles]];
     [printView setDocumentShowsLineNum:[[self editorView] showLineNum]];
@@ -510,7 +511,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)setStringToEditorView
 // ------------------------------------------------------
 {
-    [self setColoringExtension:[[self fileURL] pathExtension] coloring:NO];
+    [self setSyntaxStyleWithFileName:[[self fileURL] lastPathComponent] coloring:NO];
     
     if ([self initialString]) {
         OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
@@ -690,7 +691,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     if ([name length] > 0) {
-        [[self editorView] setSyntaxStyleNameToColoring:name recolorNow:YES];
+        [[self editorView] setSyntaxStyleName:name recolorNow:YES];
         [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
     }
 }
@@ -911,12 +912,12 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             state = NSOnState;
         }
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
-        name = [[self editorView] syntaxStyleNameToColoring];
+        name = [[self editorView] syntaxStyleName];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
     } else if ([menuItem action] == @selector(recoloringAllStringOfDocument:)) {
-        name = [[self editorView] syntaxStyleNameToColoring];
+        name = [[self editorView] syntaxStyleName];
         if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
@@ -939,7 +940,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     if ([item action] == @selector(recoloringAllStringOfDocument:)) {
-        NSString *name = [[self editorView] syntaxStyleNameToColoring];
+        NSString *name = [[self editorView] syntaxStyleName];
         if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
@@ -1272,24 +1273,18 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// editorViewを通じてsyntaxインスタンスにドキュメント拡張子をセット
-- (void)setColoringExtension:(NSString *)extension coloring:(BOOL)doColoring
+/// editorViewを通じてsyntaxインスタンスをセット
+- (void)setSyntaxStyleWithFileName:(NSString *)fileName coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults boolForKey:k_key_doColoring]) { return; }
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_doColoring]) { return; }
     
-    BOOL shouldUpdated = [[self editorView] setSyntaxExtension:extension];
+    NSString *styleName = [[CESyntaxManager sharedManager] syntaxNameFromExtension:[fileName pathExtension]];
     
-    if (shouldUpdated) {
-        // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
-        NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
-        name = ([name length] > 0) ? name : [defaults stringForKey:k_key_defaultColoringStyleName];
-        [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
-        if (doColoring) {
-            [self recoloringAllStringOfDocument:nil];
-        }
-    }
+    [[self editorView] setSyntaxStyleName:styleName recolorNow:doColoring];
+    
+    // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:styleName];
 }
 
 
