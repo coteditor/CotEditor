@@ -697,24 +697,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// ディレイをかけて新しいシンタックスカラーリングスタイルを適用（ほぼNone専用）
-- (void)doSetSyntaxStyle:(NSString *)name delay:(BOOL)needsDelay
-// ------------------------------------------------------
-{
-    if (needsDelay) {
-        if ([name length] > 0) {
-            [[self editorView] setSyntaxStyleNameToColoring:name recolorNow:NO];
-            [[[self windowController] toolbarController]
-                    performSelector:@selector(selectSyntaxItemWithTitle:) withObject:name afterDelay:0];
-        }
-    } else {
-        [self doSetSyntaxStyle:name];
-    }
-    
-}
-
-
-// ------------------------------------------------------
 /// マイナス指定された文字範囲／長さをNSRangeにコンバートして返す
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
