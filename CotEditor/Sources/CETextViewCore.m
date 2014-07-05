@@ -175,9 +175,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
             [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
         }
-        
-    } else if ([keyPath isEqualToString:k_key_windowAlpha]) {
-        [self setBackgroundAlpha:(CGFloat)[newValue doubleValue]];
     }
 }
 
@@ -1887,8 +1884,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)observedDefaultKeys
 // ------------------------------------------------------
 {
-    return @[k_key_windowAlpha,
-             k_key_autoExpandTab,
+    return @[k_key_autoExpandTab,
              k_key_smartInsertAndDelete,
              k_key_checkSpellingAsType,
              k_key_enableSmartQuotes];

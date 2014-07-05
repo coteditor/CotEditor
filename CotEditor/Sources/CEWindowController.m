@@ -105,6 +105,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                              selector:@selector(syntaxDidUpdate:)
                                                  name:CESyntaxDidUpdateNotification
                                                object:nil];
+    
+    // observe opacity setting change
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:k_key_windowAlpha
+                                               options:NSKeyValueObservingOptionNew
+                                               context:nil];
 }
 
 
@@ -114,6 +120,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:k_key_windowAlpha];
+}
+
+
+// ------------------------------------------------------
+/// apply user defaults change
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
+{
+    if ([keyPath isEqualToString:k_key_windowAlpha]) {
+        [self setAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
+    }
 }
 
 
@@ -203,7 +221,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (CGFloat)alpha
 // ------------------------------------------------------
 {
-    return [[[[self editorView] textView] backgroundColor] alphaComponent];
+    return [[[self editorView] textView] backgroundAlpha];
 }
 
 // ------------------------------------------------------
@@ -216,8 +234,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     sanitizedAlpha = MAX(sanitizedAlpha, 0.2);
     sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
     
-    [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
     [[self window] setOpaque:(sanitizedAlpha == 1.0)];
+    [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
+    [[[self window] contentView] setNeedsDisplay:YES];
 }
 
 
