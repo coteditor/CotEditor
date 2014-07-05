@@ -606,7 +606,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
     NSString *wholeString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
-    NSString *singleCharInfo = nil;
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [wholeString length];
     NSUInteger numberOfSelectedLines = 0;
@@ -665,7 +664,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self statusBar] updateLeftField];
     }
     if (updatesDrawer) {
-        NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo, *byteLengthInfo;
+        NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo, *byteLengthInfo, *singleCharInfo;
         
         if (selectedRange.length == 2) {
             unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
@@ -721,10 +720,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     BOOL shouldUpdateStatusBar = [[self statusBar] showStatusBar];
-    BOOL shouldUpdateDrawer = (inBool) ? YES : [[self windowController] needsInfoDrawerUpdate];
+    BOOL shouldUpdateDrawer = inBool ? YES : [[self windowController] needsInfoDrawerUpdate];
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
-    NSString *encodingInfo, *lineEndingsInfo;
+    NSString *lineEndingsInfo;
     
     switch ([self lineEndingCharacter]) {
         case OgreLfNewlineCharacter:
@@ -749,7 +748,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             return;
     }
     
-    encodingInfo = [[self document] currentIANACharSetName];
+    NSString *encodingInfo = [[self document] currentIANACharSetName];
     if (shouldUpdateStatusBar) {
         [[self statusBar] setEncodingInfo:encodingInfo];
         [[self statusBar] setLineEndingsInfo:lineEndingsInfo];
@@ -995,8 +994,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)toggleShowInvisibleChars:(id)sender
 // ------------------------------------------------------
 {
-    CELayoutManager *layoutManager = (CELayoutManager *)[[self textView] layoutManager];
-    BOOL showInvisibles = [layoutManager showInvisibles];
+    BOOL showInvisibles = [(CELayoutManager *)[[self textView] layoutManager] showInvisibles];
 
     [[self splitView] setShowInvisibles:!showInvisibles];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showInvisibleCharsItemID setOn:!showInvisibles];
@@ -1051,7 +1049,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CESubSplitView *masterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
             (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate] :
             [(CENavigationBarView *)[sender superview] masterView];
-    if (masterView == nil) { return; }
+    if (!masterView) { return; }
     NSRect subSplitFrame = [masterView bounds];
     NSRange selectedRange = [[masterView textView] selectedRange];
     CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:subSplitFrame];

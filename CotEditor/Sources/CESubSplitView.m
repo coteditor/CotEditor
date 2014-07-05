@@ -131,8 +131,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self syntax] setIsPrinting:NO];
 
         // TextView 生成
-        NSRect textFrame;
-        textFrame.origin = NSZeroPoint;
+        NSRect textFrame = NSZeroRect;
         textFrame.size = [[self scrollView] contentSize]; // (frame will start at upper left.)
         [self setTextView:[[CETextViewCore alloc] initWithFrame:textFrame textContainer:container]];
         [[self textView] setDelegate:self];
@@ -577,12 +576,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
         if ((replacementLineEndingChar != OgreNonbreakingNewlineCharacter) &&
             (replacementLineEndingChar != OgreLfNewlineCharacter)) {
-            // （theNewStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
+            // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
             newStr = [OGRegularExpression replaceNewlineCharactersInString:replacementString
                                                              withCharacter:OgreLfNewlineCharacter];
         }
     }
-    if (newStr != nil) {
+    if (newStr) {
         // （Action名は自動で付けられる？ので、指定しない）
         [(CETextViewCore *)aTextView doReplaceString:newStr
                                            withRange:affectedCharRange
@@ -597,17 +596,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 補完候補リストをセット
-- (NSArray *)textView:(NSTextView *)aTextView completions:(NSArray *)words 
+- (NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words 
         forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 // ------------------------------------------------------
 {
     NSMutableOrderedSet *outWords = [NSMutableOrderedSet orderedSet];
     NSUInteger addingMode = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_completeAddStandardWords];
-    NSString *partialWord = [[aTextView string] substringWithRange:charRange];
+    NSString *partialWord = [[textView string] substringWithRange:charRange];
 
     //"ファイル中の語彙" を検索して outArray に入れる
     if (addingMode != 3) {
-        NSString *documentString = [aTextView string];
+        NSString *documentString = [textView string];
         NSString *pattern = [NSString stringWithFormat:@"(?:^|\\b|(?<=\\W))%@\\w+?(?:$|\\b)",
                              [NSRegularExpression escapedPatternForString:partialWord]];
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];

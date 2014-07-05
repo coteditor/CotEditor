@@ -670,7 +670,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //subsplitview
     if ((convertedRect.origin.y >= 0) &&
-        (convertedRect.origin.y < (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightBottom]))
+        (convertedRect.origin.y < [[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightBottom]))
     {
         [self scrollPoint:NSMakePoint(NSMinX(rect), NSMaxY(rect))];
     }
@@ -731,11 +731,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)applyTypingAttributes
 // ------------------------------------------------------
 {
-    NSDictionary *attrs = @{NSParagraphStyleAttributeName: [self paragraphStyle],
-                            NSFontAttributeName: [self font],
-                            NSForegroundColorAttributeName: [self textColor]};
-    
-    [self setTypingAttributes:attrs];
+    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self paragraphStyle],
+                                NSFontAttributeName: [self font],
+                                NSForegroundColorAttributeName: [self textColor]}];
 }
 
 
@@ -756,13 +754,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
 // ------------------------------------------------------
 {
-    if (string == nil) { return; }
+    if (!string) { return; }
+    
     NSRange selectedRange = [self selectedRange];
     NSString *actionName = (selectedRange.length > 0) ? @"Replace Text" : @"Insert Text";
-    NSRange newRange = NSMakeRange(selectedRange.location, [string length]);
 
-    [self doInsertString:string withRange:selectedRange 
-            withSelected:newRange withActionName:NSLocalizedString(actionName, nil) scroll:doScroll];
+    [self doInsertString:string
+               withRange:selectedRange
+            withSelected:NSMakeRange(selectedRange.location, [string length])
+          withActionName:NSLocalizedString(actionName, nil)
+                  scroll:doScroll];
 }
 
 
@@ -771,12 +772,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceAllStringTo:(NSString *)string
 // ------------------------------------------------------
 {
-    NSRange newRange = NSMakeRange(0, [string length]);
-
-    if (string) {
-        [self doReplaceString:string withRange:NSMakeRange(0, [[self string] length])
-                 withSelected:newRange withActionName:NSLocalizedString(@"Replace Text", nil)];
-    }
+    if (!string) { return; }
+    
+    [self doReplaceString:string
+                withRange:NSMakeRange(0, [[self string] length])
+             withSelected:NSMakeRange(0, [string length])
+           withActionName:NSLocalizedString(@"Replace Text", nil)];
 }
 
 
@@ -785,12 +786,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)insertAfterSelection:(NSString *)string
 // ------------------------------------------------------
 {
-    if (string == nil) { return; }
-    NSRange selectedRange = [self selectedRange];
-    NSRange newRange = NSMakeRange(NSMaxRange(selectedRange), [string length]);
+    if (!string) { return; }
 
-    [self doInsertString:string withRange:NSMakeRange(NSMaxRange(selectedRange), 0)
-            withSelected:newRange withActionName:NSLocalizedString(@"Insert Text", nil) scroll:NO];
+    [self doInsertString:string
+               withRange:NSMakeRange(NSMaxRange([self selectedRange]), 0)
+            withSelected:NSMakeRange(NSMaxRange([self selectedRange]), [string length])
+          withActionName:NSLocalizedString(@"Insert Text", nil)
+                  scroll:NO];
 }
 
 
@@ -799,11 +801,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)appendAllString:(NSString *)string
 // ------------------------------------------------------
 {
-    if (string == nil) { return; }
-    NSRange newRange = NSMakeRange([[self string] length], [string length]);
+    if (!string) { return; }
 
-    [self doInsertString:string withRange:NSMakeRange([[self string] length], 0)
-            withSelected:newRange withActionName:NSLocalizedString(@"Insert Text", nil) scroll:NO];
+    [self doInsertString:string
+               withRange:NSMakeRange([[self string] length], 0)
+            withSelected:NSMakeRange([[self string] length], [string length])
+          withActionName:NSLocalizedString(@"Insert Text", nil)
+                  scroll:NO];
 }
 
 
@@ -816,13 +820,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     NSArray *texts = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_insertCustomTextArray];
 
-    if (patternNum < (NSInteger)[texts count]) {
+    if (patternNum < [texts count]) {
         NSString *string = texts[patternNum];
-        NSRange selectedRange = [self selectedRange];
-        NSRange newRange = NSMakeRange(selectedRange.location + [string length], 0);
 
-        [self doInsertString:string withRange:selectedRange
-                withSelected:newRange withActionName:NSLocalizedString(@"Insert Custom Text", nil) scroll:YES];
+        [self doInsertString:string
+                   withRange:[self selectedRange]
+                withSelected:NSMakeRange([self selectedRange].location + [string length], 0)
+              withActionName:NSLocalizedString(@"Insert Custom Text", nil)
+                      scroll:YES];
     }
 }
 
@@ -1278,14 +1283,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing
 // ------------------------------------------------------
 {
-    if (lineSpacing != [self lineSpacing]) {
-        NSRange range = NSMakeRange(0, [[self string] length]);
-
-        [self setLineSpacing:lineSpacing];
-        // テキストを再描画
-        [[self layoutManager] invalidateLayoutForCharacterRange:range isSoft:NO actualCharacterRange:nil];
-        [self updateLineNumberAndAdjustScroll];
-    }
+    if (lineSpacing == [self lineSpacing]) { return; }
+    
+    NSRange range = NSMakeRange(0, [[self string] length]);
+    
+    [self setLineSpacing:lineSpacing];
+    // テキストを再描画
+    [[self layoutManager] invalidateLayoutForCharacterRange:range isSoft:NO actualCharacterRange:nil];
+    [self updateLineNumberAndAdjustScroll];
 }
 
 
@@ -1386,7 +1391,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             ([menuItem action] == @selector(unicodeNormalizationNFC:)) || 
             ([menuItem action] == @selector(unicodeNormalizationNFKD:)) || 
             ([menuItem action] == @selector(unicodeNormalizationNFKC:)) || 
-            ([menuItem action] == @selector(unicodeNormalization:))) {
+            ([menuItem action] == @selector(unicodeNormalization:)))
+    {
         return (length > 0);
         // （カラーコード編集メニューは常に有効）
 
@@ -1488,17 +1494,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 置換する行を生成する
     NSArray *lines = [[[self string] substringWithRange:lineRange] componentsSeparatedByString:@"\n"];
     NSMutableString *newLine = [NSMutableString string];
-    NSMutableString *tmpLine = [NSMutableString string];
-    BOOL spaceDeleted;
-    NSUInteger numberOfDeleted = 0, totalDeleted = 0;
+    NSUInteger totalDeleted = 0;
     NSInteger newLocation = selectedRange.location, newLength = selectedRange.length;
-    NSUInteger i, j, count = [lines count];
+    NSUInteger count = [lines count];
 
     // 選択区域を含む行をスキャンし、冒頭のスペース／タブを削除
-    for (i = 0; i < count; i++) {
-        [tmpLine setString:lines[i]];
-        spaceDeleted = NO;
-        for (j = 0; j < shiftLength; j++) {
+    for (NSUInteger i = 0; i < count; i++) {
+        NSUInteger numberOfDeleted = 0;
+        NSMutableString *tmpLine = [lines[i] mutableCopy];
+        BOOL spaceDeleted = NO;
+        for (NSUInteger j = 0; j < shiftLength; j++) {
             if ([tmpLine length] == 0) {
                 break;
             }
@@ -1536,7 +1541,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [newLine appendString:@"\n"];
         }
         totalDeleted += numberOfDeleted;
-        numberOfDeleted = 0;
     }
     // シフトされなかったら中止
     if (totalDeleted == 0) { return; }
@@ -1655,8 +1659,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange selectedRange = [self selectedRange];
 
     if (selectedRange.length > 0) {
-        NSString *newStr = 
-                [self fullToHalfwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
+        NSString *newStr = [self fullToHalfwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange 
@@ -1692,8 +1695,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange selectedRange = [self selectedRange];
 
     if (selectedRange.length > 0) {
-        NSString *newStr = 
-                [self katakanaToHiraganaStringFrom:[[self string] substringWithRange:selectedRange]];
+        NSString *newStr = [self katakanaToHiraganaStringFrom:[[self string] substringWithRange:selectedRange]];
         if (newStr) {
             NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
             [self doInsertString:newStr withRange:selectedRange
@@ -1940,11 +1942,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSMutableString *fullRoman = [NSMutableString string];
     NSCharacterSet *latinCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange((NSUInteger)'!', 94)];
-    unichar theChar;
-    NSUInteger i, count = [halfRoman length];
+    NSUInteger count = [halfRoman length];
 
-    for (i = 0; i < count; i++) {
-        theChar = [halfRoman characterAtIndex:i];
+    for (NSUInteger i = 0; i < count; i++) {
+        unichar theChar = [halfRoman characterAtIndex:i];
         if ([latinCharSet characterIsMember:theChar]) {
             [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
 // 半角カナには未対応（2/21） *********************
@@ -1965,11 +1966,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSMutableString *halfRoman = [NSMutableString string];
     NSCharacterSet *fullwidthCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(65281, 94)];
-    unichar theChar;
-    NSUInteger i, count = [fullRoman length];
+    NSUInteger count = [fullRoman length];
 
-    for (i = 0; i < count; i++) {
-        theChar = [fullRoman characterAtIndex:i];
+    for (NSUInteger i = 0; i < count; i++) {
+        unichar theChar = [fullRoman characterAtIndex:i];
         if ([fullwidthCharSet characterIsMember:theChar]) {
             [halfRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar - 65248)]];
         } else {
@@ -1987,11 +1987,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSMutableString *katakana = [NSMutableString string];
     NSCharacterSet *hiraganaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12353, 86)];
-    unichar theChar;
-    NSUInteger i, count = [hiragana length];
+    NSUInteger count = [hiragana length];
 
-    for (i = 0; i < count; i++) {
-        theChar = [hiragana characterAtIndex:i];
+    for (NSUInteger i = 0; i < count; i++) {
+        unichar theChar = [hiragana characterAtIndex:i];
         if ([hiraganaCharSet characterIsMember:theChar]) {
             [katakana appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 96)]];
         } else {
@@ -2009,11 +2008,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSMutableString *hiragana = [NSMutableString string];
     NSCharacterSet *katakanaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12449, 86)];
-    unichar theChar;
-    NSUInteger i, count = [katakana length];
+    NSUInteger count = [katakana length];
 
-    for (i = 0; i < count; i++) {
-        theChar = [katakana characterAtIndex:i];
+    for (NSUInteger i = 0; i < count; i++) {
+        unichar theChar = [katakana characterAtIndex:i];
         if ([katakanaCharSet characterIsMember:theChar]) {
             [hiragana appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar - 96)]];
         } else {
