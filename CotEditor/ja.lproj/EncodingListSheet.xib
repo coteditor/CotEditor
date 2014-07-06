@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -54,10 +54,10 @@
                                                     <rect key="frame" x="1" y="1" width="252" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vLt-R1-DAA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="252" height="17"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vLt-R1-DAA">
+                                                            <rect key="frame" x="4" y="0.0" width="244" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ZuN-IS-DY9">
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ZuN-IS-DY9" customClass="CEMenuItemCell">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -67,6 +67,12 @@
                                                             </connections>
                                                         </textField>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="vLt-R1-DAA" firstAttribute="top" secondItem="8oK-NS-IL4" secondAttribute="top" id="FTf-fe-5oT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vLt-R1-DAA" secondAttribute="trailing" constant="6" id="Wjj-Ta-OSe"/>
+                                                        <constraint firstItem="vLt-R1-DAA" firstAttribute="leading" secondItem="8oK-NS-IL4" secondAttribute="leading" constant="6" id="bCT-r1-yCy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="vLt-R1-DAA" secondAttribute="bottom" id="sql-4B-lUy"/>
+                                                    </constraints>
                                                     <connections>
                                                         <outlet property="textField" destination="vLt-R1-DAA" id="m44-Cm-TMU"/>
                                                     </connections>
@@ -140,7 +146,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55">
-                        <rect key="frame" x="284" y="208" width="97" height="16"/>
+                        <rect key="frame" x="284" y="230" width="97" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="区切り線を削除" bezelStyle="rounded" alignment="center" controlSize="mini" enabled="NO" borderStyle="border" inset="2" id="3393">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -201,7 +207,7 @@ DQ
                     <constraint firstItem="54" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="LzJ-7I-MxY"/>
                     <constraint firstItem="62" firstAttribute="top" secondItem="37" secondAttribute="top" constant="20" symbolic="YES" id="N7H-D8-BSH"/>
                     <constraint firstItem="43" firstAttribute="leading" secondItem="42" secondAttribute="trailing" constant="12" symbolic="YES" id="Nt9-gb-shF"/>
-                    <constraint firstItem="55" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="30" id="QDo-Jt-bsV"/>
+                    <constraint firstItem="55" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="8" symbolic="YES" id="QDo-Jt-bsV"/>
                     <constraint firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="20" symbolic="YES" id="RUg-QY-MXl"/>
                     <constraint firstItem="38" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="Syx-Wi-LNT"/>
                     <constraint firstItem="38" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="a28-Q1-dxx"/>
