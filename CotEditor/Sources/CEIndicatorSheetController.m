@@ -35,10 +35,14 @@
 
 @interface CEIndicatorSheetController ()
 
-@property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
+@property (weak) IBOutlet NSProgressIndicator *indicator;
+@property NSWindow *parentWindow;
 
-@property (nonatomic, copy) NSString *message;
-@property (nonatomic) NSModalSession modalSession;
+@property (copy) NSString *message;
+@property NSModalSession modalSession;
+
+// readonly
+@property (readwrite) BOOL isCancelled;
 
 @end
 
@@ -64,6 +68,7 @@
     self = [super initWithWindowNibName:@"Indicator"];
     if (self) {
         [self setMessage:message];
+        [self setInformativeText:NSLocalizedString(@"Please wait for a while.", nil)];
     }
     return self;
 }
@@ -79,6 +84,7 @@
     // init indicator
     [[self indicator] setIndeterminate:NO];
     [[self indicator] setDoubleValue:0];
+    [[self indicator] setUsesThreadedAnimation:YES];
 }
 
 
@@ -114,10 +120,15 @@
 - (void)beginSheetForWindow:(NSWindow *)window
 // ------------------------------------------------------
 {
-    [NSApp beginSheet:[self window] modalForWindow:window
-        modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    
-    [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [window beginSheet:[self window] completionHandler:nil];
+        [self setParentWindow:window];
+        
+    } else {
+        [NSApp beginSheet:[self window] modalForWindow:window
+            modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+        [self setModalSession:[NSApp beginModalSessionForWindow:[self window]]];
+    }
 }
 
 
@@ -126,11 +137,17 @@
 - (void)endSheet
 // ------------------------------------------------------
 {
-    [NSApp endModalSession:[self modalSession]];
-    [self setModalSession:nil];
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [[self parentWindow] endSheet:[self window] returnCode:NSModalResponseCancel];
+        
+    } else {
+        [NSApp abortModal];
+        [NSApp endModalSession:[self modalSession]];
+        [self setModalSession:nil];
+        [NSApp endSheet:[self window]];
+    }
     
-    [NSApp endSheet:[self window]];
-    [self close];
+    [[self window] close];
 }
 
 // ------------------------------------------------------
@@ -139,15 +156,6 @@
 // ------------------------------------------------------
 {
     [[self indicator] setDoubleValue:[[self indicator] doubleValue] + (double)delta];
-}
-
-
-// ------------------------------------------------------
-/// キャンセルされたかどうかを返す
-- (BOOL)isCancelled
-// ------------------------------------------------------
-{
-    return [self modalSession] && ([NSApp runModalSession:[self modalSession]] != NSRunContinuesResponse);
 }
 
 
@@ -160,11 +168,11 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// カラーリング中止、インジケータシートのモーダルを停止
+/// カラーリング中止
 - (IBAction)cancelColoring:(id)sender
 // ------------------------------------------------------
 {
-    [NSApp abortModal];
+    [self setIsCancelled:YES];
 }
 
 @end

@@ -37,6 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEEditorView.h"
 #import "CEToolbarController.h"
+#import "CESyntaxManager.h"
 #import "constants.h"
 
 
@@ -278,10 +279,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)setSyntaxExtension:(NSString *)extension
 // ------------------------------------------------------
 {
-    BOOL success = [[self syntax] setSyntaxStyleNameFromExtension:extension];
-    NSString *name = [[self syntax] syntaxStyleName];
-
-    [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+    NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
+    
+    BOOL success = (name && ![[[self syntax] syntaxStyleName] isEqualToString:name]);
+    if (success) {
+        [[self splitView] setSyntaxWithName:name];
+    }
+    
+    NSString *newName = [[self syntax] syntaxStyleName];
+    [self setIsColoring:(![newName isEqualToString:NSLocalizedString(@"None", nil)])];
     
     return success;
 }
@@ -537,8 +543,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self syntax]) {
-        [[self splitView] setSyntaxStyleNameToSyntax:name];
-        [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+        if (![[[self syntax] syntaxStyleName] isEqualToString:name]) {
+            [[self splitView] setSyntaxWithName:name];
+            [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+        }
         if (recolorNow) {
             [self recolorAllString];
             if ([self showNavigationBar]) {
@@ -1065,7 +1073,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
     [[self splitView] adjustSubviews];
-    [subSplitView setSyntaxStyleNameToSyntax:[[self syntax] syntaxStyleName]];
+    [subSplitView setSyntaxWithName:[[self syntax] syntaxStyleName]];
     [[subSplitView syntax] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[subSplitView textView]];
@@ -1216,12 +1224,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         length = MIN(length, max);
 
         coloringRange = NSMakeRange(location, length);
-    } else {
-        // 表示領域の前もある程度カラーリングの対象に含める
-        NSUInteger buffer = MIN(charRange.location,
-                                [[NSUserDefaults standardUserDefaults] integerForKey:k_key_coloringRangeBufferLength]);
-        coloringRange.location -= buffer;
-        coloringRange.length += buffer;
     }
     
     [[self syntax]  colorVisibleRange:coloringRange wholeString:[self string]];

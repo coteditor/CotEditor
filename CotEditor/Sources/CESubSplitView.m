@@ -125,10 +125,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
         [layoutManager addTextContainer:container];
 
-        [self setSyntax:[[CESyntax alloc] init]];
-        [[self syntax] setSyntaxStyleName:NSLocalizedString(@"None",@"")];
-        [[self syntax] setLayoutManager:layoutManager];
-        [[self syntax] setIsPrinting:NO];
+        [self setSyntax:[[CESyntax alloc] initWithStyleName:NSLocalizedString(@"None", @"")
+                                               layoutManager:layoutManager
+                                                  isPrinting:NO]];
 
         // TextView 生成
         NSRect textFrame = NSZeroRect;
@@ -402,10 +401,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// シンタックススタイルを設定
-- (void)setSyntaxStyleNameToSyntax:(NSString *)styleName
+- (void)setSyntaxWithName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    [[self syntax] setSyntaxStyleName:styleName];
+    if (![[[self syntax] syntaxStyleName] isEqualToString:styleName]) {
+        [self setSyntax:[[CESyntax alloc] initWithStyleName:styleName
+                                               layoutManager:(CELayoutManager *)[[self textView] layoutManager]
+                                                  isPrinting:NO]];
+    }
 }
 
 

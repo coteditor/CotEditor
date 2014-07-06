@@ -48,13 +48,16 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="51">
-                        <rect key="frame" x="102" y="47" width="136" height="14"/>
+                        <rect key="frame" x="102" y="47" width="284" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="しばらくお待ちください..." id="75">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="informativeText" id="xVO-4z-Wle"/>
+                        </connections>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58">
                         <rect key="frame" x="272" y="13" width="118" height="32"/>
@@ -65,6 +68,9 @@
                         <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="76">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
                         </buttonCell>
                         <connections>
                             <action selector="cancelColoring:" target="-2" id="65"/>
@@ -74,6 +80,7 @@
                 <constraints>
                     <constraint firstItem="29" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="AH8-w1-4Xa"/>
                     <constraint firstItem="29" firstAttribute="leading" secondItem="7" secondAttribute="leading" constant="20" symbolic="YES" id="K54-lf-Cz2"/>
+                    <constraint firstAttribute="trailing" secondItem="51" secondAttribute="trailing" constant="20" symbolic="YES" id="PIv-qI-afQ"/>
                     <constraint firstItem="50" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="Wdw-J3-1be"/>
                     <constraint firstAttribute="trailing" secondItem="58" secondAttribute="trailing" constant="20" symbolic="YES" id="cQu-U6-TL7"/>
                     <constraint firstItem="51" firstAttribute="leading" secondItem="47" secondAttribute="leading" id="e7k-D4-8RU"/>

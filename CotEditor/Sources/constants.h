@@ -216,17 +216,6 @@ extern CGFloat const k_lineSpacingMax;
 
 // syntax coloring
 extern NSUInteger const k_ESCheckLength;
-extern NSString  *const k_QCPosition;
-extern NSString  *const k_QCPairKind;
-extern NSUInteger const k_notUseKind;
-extern NSUInteger const k_QC_SingleQ;
-extern NSUInteger const k_QC_DoubleQ;
-extern NSUInteger const k_QC_CommentBaseNum;
-extern NSString  *const k_QCStartEnd;
-extern NSUInteger const k_notUseStartEnd;
-extern NSUInteger const k_QC_Start;
-extern NSUInteger const k_QC_End;
-extern NSString  *const k_QCStrLength;
 extern NSString  *const k_allAlphabetChars;
 
 // syntax coloring indicator

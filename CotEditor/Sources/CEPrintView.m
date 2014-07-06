@@ -55,6 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, copy) NSDictionary *headerFooterAttrs;
+@property (nonatomic) CESyntax *syntax;
 
 @end
 
@@ -396,11 +397,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setBackgroundColor:[[self theme] backgroundColor]];
             
             // カラーリング実行オブジェクトを用意して実行
-            CESyntax *syntax = [[CESyntax alloc] init];
-            [syntax setSyntaxStyleName:[self syntaxName]];
-            [syntax setLayoutManager:(CELayoutManager *)[[self textContainer] layoutManager]];
-            [syntax setIsPrinting:YES];
-            [syntax colorAllString:[self string]];
+            if (![self syntax]) {
+                [self setSyntax:[[CESyntax alloc] initWithStyleName:[self syntaxName]
+                                                      layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
+                                                         isPrinting:YES]];
+            }
+            [[self syntax] colorAllString:[self string]];
+            while ([[self syntax] isColoring]) {
+                [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
+            }
             break;
     }
     

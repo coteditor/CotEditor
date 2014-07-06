@@ -215,17 +215,6 @@ CGFloat const k_lineSpacingMax = 10.0;
 
 // syntax coloring
 NSUInteger const k_ESCheckLength = 16;
-NSString  *const k_QCPosition = @"QCPosition";
-NSString  *const k_QCPairKind = @"QCPairKind";
-NSUInteger const k_notUseKind = 0;
-NSUInteger const k_QC_SingleQ = 1;
-NSUInteger const k_QC_DoubleQ = 2;
-NSUInteger const k_QC_CommentBaseNum = 100;
-NSString  *const k_QCStartEnd = @"QCStartEnd";
-NSUInteger const k_notUseStartEnd = 0;
-NSUInteger const k_QC_Start = 1;
-NSUInteger const k_QC_End = 2;
-NSString  *const k_QCStrLength = @"QCStrLength";
 NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 // syntax coloring indicator

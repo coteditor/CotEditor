@@ -35,6 +35,7 @@
 
 @interface CEIndicatorSheetController : NSWindowController <NSWindowDelegate>
 
+@property (copy) NSString *informativeText;
 @property (readonly) BOOL isCancelled;
 
 

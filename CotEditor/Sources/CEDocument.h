@@ -68,7 +68,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding;
 - (void)setLineEndingCharToView:(NSInteger)newLineEnding;
 - (void)doSetSyntaxStyle:(NSString *)name;
-- (void)doSetSyntaxStyle:(NSString *)name delay:(BOOL)needsDelay;
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;

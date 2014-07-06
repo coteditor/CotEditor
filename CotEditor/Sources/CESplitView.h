@@ -45,7 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled;
 - (void)setAllCaretToBeginning;
 - (void)releaseAllEditorView;
-- (void)setSyntaxStyleNameToSyntax:(NSString *)syntaxName;
+- (void)setSyntaxWithName:(NSString *)syntaxName;
 - (void)recoloringAllTextView;
 - (void)updateAllOutlineMenu;
 - (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha;
