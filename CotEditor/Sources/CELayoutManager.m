@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CETextViewProtocol.h"
 #import "CEPrintView.h"
 #import "CEATSTypesetter.h"
-#import "CEUtilities.h"
+#import "CEUtils.h"
 #import "constants.h"
 
 
@@ -81,10 +81,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self = [super init]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [self setSpaceCharacter:[CEUtilities invisibleSpaceCharacter:[defaults integerForKey:k_key_invisibleSpace]]];
-        [self setTabCharacter:[CEUtilities invisibleTabCharacter:[defaults integerForKey:k_key_invisibleTab]]];
-        [self setNewLineCharacter:[CEUtilities invisibleNewLineCharacter:[defaults integerForKey:k_key_invisibleNewLine]]];
-        [self setFullwidthSpaceCharacter:[CEUtilities invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
+        [self setSpaceCharacter:[CEUtils invisibleSpaceCharacter:[defaults integerForKey:k_key_invisibleSpace]]];
+        [self setTabCharacter:[CEUtils invisibleTabCharacter:[defaults integerForKey:k_key_invisibleTab]]];
+        [self setNewLineCharacter:[CEUtils invisibleNewLineCharacter:[defaults integerForKey:k_key_invisibleNewLine]]];
+        [self setFullwidthSpaceCharacter:[CEUtils invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
 
         // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
         [self setShowSpace:[defaults boolForKey:k_key_showInvisibleSpace]];

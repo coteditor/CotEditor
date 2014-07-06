@@ -33,7 +33,7 @@
 
 #import "CEEditPaneController.h"
 #import "CEDocument.h"
-#import "CEUtilities.h"
+#import "CEUtils.h"
 #import "constants.h"
 
 
@@ -73,22 +73,22 @@
         NSUInteger i;
         NSMutableArray *spaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleSpaceCharList];
         for (i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
-            [spaces addObject:[CEUtilities invisibleSpaceCharacter:i]];
+            [spaces addObject:[CEUtils invisibleSpaceCharacter:i]];
         }
         [self setInvisibleSpaces:spaces];
         NSMutableArray *tabs = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleTabCharList];
         for (i = 0; i < k_size_of_invisibleTabCharList; i++) {
-            [tabs addObject:[CEUtilities invisibleTabCharacter:i]];
+            [tabs addObject:[CEUtils invisibleTabCharacter:i]];
         }
         [self setInvisibleTabs:tabs];
         NSMutableArray *newLines = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleNewLineCharList];
         for (i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
-            [newLines addObject:[CEUtilities invisibleNewLineCharacter:i]];
+            [newLines addObject:[CEUtils invisibleNewLineCharacter:i]];
         }
         [self setInvisibleNewLines:newLines];
         NSMutableArray *fullWidthSpaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleFullwidthSpaceCharList];
         for (i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
-            [fullWidthSpaces addObject:[CEUtilities invisibleFullwidthSpaceCharacter:i]];
+            [fullWidthSpaces addObject:[CEUtils invisibleFullwidthSpaceCharacter:i]];
         }
         [self setInvisibleFullWidthSpaces:fullWidthSpaces];
     }

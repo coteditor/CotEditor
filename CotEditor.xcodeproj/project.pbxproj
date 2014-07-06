@@ -51,7 +51,7 @@
 		2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */; };
 		2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */; };
 		2A149DC51901885A00A9D6EF /* CEKeyBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsController.m */; };
-		2A149DD519032CC900A9D6EF /* CEUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEUtilities.m */; };
+		2A149DD519032CC900A9D6EF /* CEUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEUtils.m */; };
 		2A149DD719033CBB00A9D6EF /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* constants.m */; };
 		2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
 		2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
@@ -260,8 +260,8 @@
 		2A149DD01902C9CA00A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/FileDropPane.xib; sourceTree = "<group>"; };
 		2A149DD11902CA5D00A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/KeyBindingsPane.xib; sourceTree = "<group>"; };
 		2A149DD21902CAFE00A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PrintPane.xib; sourceTree = "<group>"; };
-		2A149DD319032CC900A9D6EF /* CEUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUtilities.h; sourceTree = "<group>"; };
-		2A149DD419032CC900A9D6EF /* CEUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUtilities.m; sourceTree = "<group>"; };
+		2A149DD319032CC900A9D6EF /* CEUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUtils.h; sourceTree = "<group>"; };
+		2A149DD419032CC900A9D6EF /* CEUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUtils.m; sourceTree = "<group>"; };
 		2A149DD619033CBB00A9D6EF /* constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
 		2A15830518E24CB300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SyntaxExtensionConflictSheet.xib; sourceTree = "<group>"; };
 		2A15831618E3688300601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EncodingListSheet.xib; sourceTree = "<group>"; };
@@ -648,8 +648,8 @@
 		2A15832B18E3A25C00601026 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				2A149DD319032CC900A9D6EF /* CEUtilities.h */,
-				2A149DD419032CC900A9D6EF /* CEUtilities.m */,
+				2A149DD319032CC900A9D6EF /* CEUtils.h */,
+				2A149DD419032CC900A9D6EF /* CEUtils.m */,
 				2A73F17B18EF573B00BFB5E5 /* CEByteCountTransformer.h */,
 				2A73F17C18EF573B00BFB5E5 /* CEByteCountTransformer.m */,
 				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
@@ -1157,7 +1157,7 @@
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,
 				8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */,
-				2A149DD519032CC900A9D6EF /* CEUtilities.m in Sources */,
+				2A149DD519032CC900A9D6EF /* CEUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

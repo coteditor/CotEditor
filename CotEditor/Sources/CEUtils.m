@@ -1,6 +1,6 @@
 /*
  =================================================
- CEUtilities
+ CEUtils
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -31,11 +31,11 @@
  =================================================
  */
 
-#import "CEUtilities.h"
+#import "CEUtils.h"
 #import "constants.h"
 
 
-@implementation CEUtilities
+@implementation CEUtils
 
 static NSArray *_invalidYenEncodings;
 

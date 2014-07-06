@@ -1,6 +1,6 @@
 /*
  =================================================
- CEUtilities
+ CEUtils
  (for CotEditor)
  
  Copyright (C) 2004-2007 nakamuxu.
@@ -34,7 +34,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CEUtilities : NSObject
+@interface CEUtils : NSObject
 
 /// 非表示半角スペース表示用文字を返す
 + (NSString *)invisibleSpaceCharacter:(NSUInteger)index;

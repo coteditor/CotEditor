@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEScriptManager.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEDocument.h"
-#import "CEUtilities.h"
+#import "CEUtils.h"
 #import "constants.h"
 
 
@@ -461,7 +461,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 {
     NSString *keySpec = [[fileName stringByDeletingPathExtension] pathExtension];
 
-    return [CEUtilities keyEquivalentAndModifierMask:modifierMask fromString:keySpec includingCommandKey:YES];
+    return [CEUtils keyEquivalentAndModifierMask:modifierMask fromString:keySpec includingCommandKey:YES];
 }
 
 

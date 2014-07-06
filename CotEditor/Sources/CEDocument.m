@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEODBEventSender.h"
 #import "CEApplication.h"
 #import "CESyntaxManager.h"
-#import "CEUtilities.h"
+#import "CEUtils.h"
 #import "NSData+MD5.h"
 #import "constants.h"
 
@@ -477,7 +477,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         NSString *currentChar = [currentString substringWithRange:charRange];
         NSString *convertedChar = [convertedString substringWithRange:charRange];
         
-        if ([CEUtilities isInvalidYenEncoding:encoding] && [currentChar isEqualToString:yenMarkChar]) {
+        if ([CEUtils isInvalidYenEncoding:encoding] && [currentChar isEqualToString:yenMarkChar]) {
             currentChar = yenMarkChar;
             convertedChar = @"\\";
         }
@@ -1213,7 +1213,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSString *)convertedCharacterString:(NSString *)string withEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    if (([string length] > 0) && [CEUtilities isInvalidYenEncoding:encoding]) {
+    if (([string length] > 0) && [CEUtils isInvalidYenEncoding:encoding]) {
         return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&k_yenMark length:1]
                                                  withString:@"\\"];
     }
