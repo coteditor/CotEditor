@@ -141,7 +141,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)makeWindowControllers
 // ------------------------------------------------------
 {
-    [self setWindowController:[[CEWindowController alloc] initWithWindowNibName:@"DocWindow"]]; // ===== alloc
+    [self setWindowController:[[CEWindowController alloc] initWithWindowNibName:@"DocumentWindow"]]; // ===== alloc
     [self addWindowController:[self windowController]];
 }
 
