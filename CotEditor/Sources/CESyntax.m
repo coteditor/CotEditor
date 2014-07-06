@@ -867,7 +867,7 @@ static NSArray *kSyntaxDictKeys;
                         if ([endStr length] > 0) {
                             // 開始／終了ともに入力されていたらクォートかどうかをチェック、最初に出てきたクォートのみを把握
                             BOOL isQuoteFound = NO;
-                            for (NSString *quote in @[@"'", @"\""]) {
+                            for (NSString *quote in @[@"'", @"\"", @"`"]) {
                                 if ([beginStr isEqualToString:quote] && [endStr isEqualToString:quote]) {
                                     if (!quoteTypes[quote]) {
                                         quoteTypes[quote] = syntaxKey;
