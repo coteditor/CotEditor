@@ -251,7 +251,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_insertCustomTextArray];
             NSArray *factoryDefaultsOfInsertTextArray = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
             NSMutableArray *contentArray = [NSMutableArray array];
-            NSMutableDictionary *dict;
             
             [[self textDuplicateTextField] setStringValue:@""];
             [self setOutlineDataArray:[self textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO]];
@@ -262,8 +261,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
               ![factoryDefaultsOfInsertTextArray isEqualToArray:insertTextArray])];
             [[self textOutlineView] reloadData];
             for (id object in insertTextArray) {
-                dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
-                [contentArray addObject:dict];
+                [contentArray addObject:[@{k_key_insertCustomText: object} mutableCopy]];
             }
             [[self textInsertStringArrayController] setContent:contentArray];
             [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
@@ -343,7 +341,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     id theItem = item ? : [self outlineDataArray];
-    id identifier = [tableColumn identifier];
+    NSString *identifier = [tableColumn identifier];
 
     if ([identifier isEqualToString:k_keyBindingKey]) {
         return [self readableKeyStringsFromKeySpecChars:[theItem valueForKey:identifier]];
@@ -706,8 +704,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupMenuKeyBindingDictionary
 // ------------------------------------------------------
 {
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:
-                          [self menuKeyBindingSettingFileURL]] ? : [self defaultMenuKeyBindingDict];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
+                       : [self defaultMenuKeyBindingDict];
     
     [self setMenuKeyBindingDict:dict];
 }
@@ -844,15 +842,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSMutableArray *outArray = [NSMutableArray array];
-    NSMutableDictionary *theDict;
-    NSString *selectorString, *keyEquivalent, *keySpecChars;
-    NSUInteger modifierMask;
 
     for (NSMenuItem *item in [menu itemArray]) {
-        if ([item isSeparatorItem] || ([[item title] length] < 1)) {
-            continue;
-            
-        } else if (([item hasSubmenu]) &&
+        if ([item isSeparatorItem] || ([[item title] length] == 0)) { continue; }
+        
+        NSMutableDictionary *theDict;
+        if (([item hasSubmenu]) &&
                    ([item tag] != k_servicesMenuItemTag) &&
                    ([item tag] != k_windowPanelsMenuItemTag) &&
                    ([item tag] != k_scriptMenuDirectoryTag))
@@ -862,7 +857,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                          k_children: subArray} mutableCopy];
             
         } else {
-            selectorString = NSStringFromSelector([item action]);
+            NSString *selectorString = NSStringFromSelector([item action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
             if ([[self selectorStringsToIgnore] containsObject:selectorString] ||
                 ([item tag] == k_servicesMenuItemTag) ||
@@ -872,9 +867,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 continue;
             }
             
-            keyEquivalent = [item keyEquivalent];
+            NSString *keyEquivalent = [item keyEquivalent];
+            NSString *keySpecChars;
             if ([keyEquivalent length] > 0) {
-                modifierMask = [item keyEquivalentModifierMask];
+                NSUInteger modifierMask = [item keyEquivalentModifierMask];
                 keySpecChars = [self keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierMask];
             } else {
                 keySpecChars = @"";
@@ -897,26 +893,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // usesFactoryDefaults == YES で標準設定を返す。NO なら現在の設定を返す。
 
     NSMutableArray *textKeySpecCharArray = [NSMutableArray array];
-    NSMutableDictionary *theDict;
-    NSArray *keys;
-    id key;
 
     for (id selector in [self textKeyBindingSelectorStrArray]) {
-        if (([selector length] > 0) && [selector isKindOfClass:[NSString class]]) {
-            if (usesFactoryDefaults) {
-                NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
-                NSDictionary *defaultDict = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
-                keys = [defaultDict allKeysForObject:selector];
-            } else {
-                keys = [[self textKeyBindingDict] allKeysForObject:selector];
-            }
-            key = ([keys count] > 0) ? keys[0] : @"";
-            
-            theDict = [@{k_title: selector, //*****
-                         k_keyBindingKey: key,
-                         k_selectorString: selector} mutableCopy];
-            [textKeySpecCharArray addObject:theDict];
+        if (([selector length] == 0) || ![selector isKindOfClass:[NSString class]]) { continue; }
+        
+        NSArray *keys;
+        if (usesFactoryDefaults) {
+            NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
+            NSDictionary *defaultDict = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
+            keys = [defaultDict allKeysForObject:selector];
+        } else {
+            keys = [[self textKeyBindingDict] allKeysForObject:selector];
         }
+        NSString *key = ([keys count] > 0) ? keys[0] : @"";
+        
+        [textKeySpecCharArray addObject:[@{k_title: selector, //*****
+                                           k_keyBindingKey: key,
+                                           k_selectorString: selector} mutableCopy]];
     }
     return textKeySpecCharArray;
 }
@@ -1160,8 +1153,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSMutableArray *duplicateKeyCheckArray = [NSMutableArray array];
-    NSString *keyEquivalent, *keySpecChars;
-    NSUInteger modifierFlags;
 
     for (NSMenuItem *item in [menu itemArray]) {
         if ([item hasSubmenu]) {
@@ -1169,10 +1160,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [duplicateKeyCheckArray addObjectsFromArray:theTmpArray];
             continue;
         }
-        keyEquivalent = [item keyEquivalent];
+        NSString *keyEquivalent = [item keyEquivalent];
         if ([keyEquivalent length] > 0) {
-            modifierFlags = [item keyEquivalentModifierMask];
-            keySpecChars = [self keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierFlags];
+            NSUInteger modifierFlags = [item keyEquivalentModifierMask];
+            NSString *keySpecChars = [self keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierFlags];
             if ([keySpecChars length] > 1) {
                 [duplicateKeyCheckArray addObject:keySpecChars];
             }
@@ -1190,16 +1181,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (!array) { return nil; }
 
     NSMutableArray *duplicateKeyCheckArray = [NSMutableArray array];
-    NSArray *childrenArray;
-    id children, keySpecChars;
 
     for (id item in array) {
-        children = item[k_children];
+        NSArray *children = item[k_children];
         if (children != nil) {
-            childrenArray = [self duplicateKeyCheckArrayWithArray:children];
+            NSArray *childrenArray = [self duplicateKeyCheckArrayWithArray:children];
             [duplicateKeyCheckArray addObjectsFromArray:childrenArray];
         }
-        keySpecChars = [item valueForKey:k_keyBindingKey];
+        NSString *keySpecChars = [item valueForKey:k_keyBindingKey];
         if ([keySpecChars length] > 0) {
             if (![duplicateKeyCheckArray containsObject:keySpecChars]) {
                 [duplicateKeyCheckArray addObject:keySpecChars];
@@ -1216,17 +1205,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //------------------------------------------------------
 {
     NSMutableDictionary *keyBindingDict = [NSMutableDictionary dictionary];
-    NSDictionary *childDict;
-    id children, keySpecChars, selectorStr;
 
     for (id item in array) {
-        children = item[k_children];
+        NSArray *children = item[k_children];
         if (children) {
-            childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
+            NSDictionary *childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
             [keyBindingDict addEntriesFromDictionary:childDict];
         }
-        keySpecChars = [item valueForKey:k_keyBindingKey];
-        selectorStr = [item valueForKey:k_selectorString];
+        NSString *keySpecChars = [item valueForKey:k_keyBindingKey];
+        NSString *selectorStr = [item valueForKey:k_selectorString];
         if (([keySpecChars length] > 0) && ([selectorStr length] > 0)) {
             [keyBindingDict setValue:selectorStr forKey:keySpecChars];
         }
@@ -1335,16 +1322,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:(NSMutableArray *)dataArray
 //------------------------------------------------------
 {
-    NSMutableArray *children;
-    id selectorStr, keySpecChars;
-
     for (id item in dataArray) {
-        children = item[k_children];
+        NSMutableArray *children = item[k_children];
         if (children) {
             [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:children];
         }
-        selectorStr = [item valueForKey:k_selectorString];
-        keySpecChars = [self keySpecCharsInDefaultDictionaryFromSelectorString:selectorStr];
+        NSString *selectorStr = [item valueForKey:k_selectorString];
+        NSString *keySpecChars = [self keySpecCharsInDefaultDictionaryFromSelectorString:selectorStr];
         [item setValue:keySpecChars forKey:k_keyBindingKey];
     }
 }
