@@ -1,6 +1,6 @@
 /*
  =================================================
- CESyntaxExtensionConflictSheetController
+ CESyntaxMappingConflictsSheetController
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -30,13 +30,14 @@
  =================================================
  */
 
-#import "CESyntaxExtensionConflictSheetController.h"
+#import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxManager.h"
 
 
-@interface CESyntaxExtensionConflictSheetController ()
+@interface CESyntaxMappingConflictsSheetController ()
 
-@property (nonatomic) IBOutlet NSArrayController *arrayController;
+@property (nonatomic, copy) NSArray *extensionConflicts;
+@property (nonatomic, copy) NSArray *filenameConflicts;
 
 @end
 
@@ -45,7 +46,7 @@
 
 #pragma mark -
 
-@implementation CESyntaxExtensionConflictSheetController
+@implementation CESyntaxMappingConflictsSheetController
 
 #pragma mark NSWindowController Methods
 
@@ -54,20 +55,36 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"SyntaxExtensionConflictSheet"];
+    self = [super initWithWindowNibName:@"SyntaxMappingConflictSheet"];
     if (self) {
         [[self window] setLevel:NSModalPanelWindowLevel];
+        
+        NSDictionary *errorDict = [[CESyntaxManager sharedManager] extensionConflicts];
+        NSMutableArray *conflicts = [NSMutableArray array];
+        for (NSString *key in errorDict) {
+            NSMutableArray *styles = [errorDict[key] mutableCopy];
+            NSString *primaryStyle = styles[0];
+            [styles removeObjectAtIndex:0];
+            [conflicts addObject:@{@"name": key,
+                                 @"primaryStyle": primaryStyle,
+                                 @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
+        }
+        [self setExtensionConflicts:conflicts];
+        
+        
+        errorDict = [[CESyntaxManager sharedManager] filenameConflicts];
+        conflicts = [NSMutableArray array];
+        for (NSString *key in errorDict) {
+            NSMutableArray *styles = [errorDict[key] mutableCopy];
+            NSString *primaryStyle = styles[0];
+            [styles removeObjectAtIndex:0];
+            [conflicts addObject:@{@"name": key,
+                                   @"primaryStyle": primaryStyle,
+                                   @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
+        }
+        [self setFilenameConflicts:conflicts];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
-// ------------------------------------------------------
-{
-    [self setupErrorDict];
 }
 
 
@@ -80,30 +97,6 @@
 // ------------------------------------------------------
 {
     [NSApp stopModal];
-}
-
-
-
-#pragma mark Private Methods
-
-//------------------------------------------------------
-/// シートに表示するエラー内容をセット
-- (void)setupErrorDict
-//------------------------------------------------------
-{
-    NSDictionary *errorDict = [[CESyntaxManager sharedManager] extensionConflicts];
-    
-    NSMutableArray *objects = [NSMutableArray array];
-    for (id key in errorDict) {
-        NSMutableArray *styles = [errorDict[key] mutableCopy];
-        NSString *primaryStyle = styles[0];
-        [styles removeObjectAtIndex:0];
-        [objects addObject:@{@"extension": key,
-                             @"primaryStyle": primaryStyle,
-                             @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
-    }
-    
-    [[self arrayController] setContent:objects];
 }
 
 @end

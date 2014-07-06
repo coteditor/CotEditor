@@ -66,7 +66,7 @@ extern NSString *const CESyntaxDidUpdateNotification;
 - (BOOL)importStyleFromURL:(NSURL *)fileURL;
 - (BOOL)exportStyle:(NSString *)styleName toURL:(NSURL *)fileURL;
 - (BOOL)removeStyleFileWithStyleName:(NSString *)styleName;
-- (BOOL)existsExtensionConflict;
+- (BOOL)existsMappingConflict;
 - (NSString *)copiedStyleName:(NSString *)originalName;
 - (void)saveStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName;
 - (NSArray *)validateSyntax:(NSDictionary *)style;
