@@ -162,7 +162,7 @@
                         <rect key="frame" x="1" y="1" width="258" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="i9j-3p-xYF">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="i9j-3p-xYF">
                                 <rect key="frame" x="0.0" y="0.0" width="258" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -181,12 +181,34 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        <connections>
-                                            <binding destination="Qfx-DD-EBP" name="value" keyPath="arrangedObjects" id="Ugz-eD-97A"/>
-                                        </connections>
+                                        <prototypeCellViews>
+                                            <tableCellView id="nws-Zt-YPg">
+                                                <rect key="frame" x="1" y="1" width="255" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJo-bQ-gQ2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="255" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="aK0-bq-SrF">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="nws-Zt-YPg" name="value" keyPath="objectValue" id="j12-Z3-OjV"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <connections>
+                                                    <outlet property="textField" destination="EJo-bQ-gQ2" id="a1b-M8-pPS"/>
+                                                </connections>
+                                            </tableCellView>
+                                        </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <binding destination="Qfx-DD-EBP" name="content" keyPath="arrangedObjects" id="zG9-k3-Edj"/>
+                                    <binding destination="Qfx-DD-EBP" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="zG9-k3-Edj" id="a8e-0q-tBi"/>
                                     <outlet property="delegate" destination="-2" id="wTf-76-aUv"/>
                                 </connections>
                             </tableView>
