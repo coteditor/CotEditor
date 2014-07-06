@@ -108,19 +108,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CFStringEncoding cfEncoding = [[self encodingsForTmp][rowIndex] unsignedLongValue];
-    NSString *string;
+    NSMutableAttributedString *attrString;
 
-    if (cfEncoding == kCFStringEncodingInvalidId) { // = separator
-        string = CESeparatorString;
+    if (cfEncoding == kCFStringEncodingInvalidId) {  // = separator
+        attrString = [[NSMutableAttributedString alloc] initWithString:CESeparatorString];
+        
     } else {
         NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-        NSString *ianaName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
-        if (ianaName == nil) {
-            ianaName = @"-";
-        }
-        string = [NSString stringWithFormat:@"%@ : [%@]", [NSString localizedNameOfStringEncoding:encoding], ianaName];
+        NSString *encodingStr = [NSString localizedNameOfStringEncoding:encoding];
+        NSString *ianaName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding) ? : @"-";
+        
+        attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@  : %@",
+                                                                        encodingStr, ianaName]];
+        [attrString addAttributes:@{NSForegroundColorAttributeName: [NSColor disabledControlTextColor]}
+                            range:NSMakeRange([encodingStr length] + 2, [ianaName length] + 2)];
     }
-    return string;
+    
+    return attrString;
 }
 
 
