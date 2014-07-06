@@ -385,17 +385,22 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (void)saveStyle:(NSMutableDictionary *)style name:(NSString *)name oldName:(NSString *)oldName
 //------------------------------------------------------
 {
-    NSURL *saveURL;
-    NSMutableArray *keyStrings;
-    NSSortDescriptor *descriptorOne = [[NSSortDescriptor alloc] initWithKey:k_SCKey_beginString
-                                                                  ascending:YES
-                                                                   selector:@selector(caseInsensitiveCompare:)];
-    NSSortDescriptor *descriptorTwo = [[NSSortDescriptor alloc] initWithKey:k_SCKey_arrayKeyString
-                                                                  ascending:YES
-                                                                   selector:@selector(caseInsensitiveCompare:)];
-    NSArray *descriptors = @[descriptorOne, descriptorTwo];
+    if ([name length] == 0) { return; }
     
-    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays + 2];
+    // sanitize
+    [(NSMutableArray *)style[k_SCKey_extensions] removeObject:@{}];
+    [(NSMutableArray *)style[k_SCKey_filenames] removeObject:@{}];
+    [style removeObjectForKey:k_SCKey_numOfObjInArray];
+    
+    // sort
+    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:k_SCKey_beginString
+                                                           ascending:YES
+                                                            selector:@selector(caseInsensitiveCompare:)],
+                             [NSSortDescriptor sortDescriptorWithKey:k_SCKey_arrayKeyString
+                                                           ascending:YES
+                                                            selector:@selector(caseInsensitiveCompare:)]];
+    
+    NSMutableArray *syntaxDictKeys = [NSMutableArray array];
     for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
         [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
     }
@@ -403,39 +408,29 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                           k_SCKey_completionsArray]];
     
     for (NSString *key in syntaxDictKeys) {
-        keyStrings = style[key];
-        [keyStrings sortUsingDescriptors:descriptors];
+        [style[key] sortUsingDescriptors:descriptors];
     }
     
-    
-    NSMutableArray *emptyDicts = [NSMutableArray array];
-    for (NSDictionary *extensionDict in style[k_SCKey_extensions]) {
-        if (extensionDict[k_SCKey_arrayKeyString] == nil) {
-            [emptyDicts addObject:extensionDict];
-        }
+    // save
+    NSURL *saveURL = [self URLForUserStyle:name];
+    // style名が変更されたときは、古いファイルを削除する
+    if (![name isEqualToString:oldName]) {
+        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName] error:nil];
     }
-    [style[k_SCKey_extensions] removeObjectsInArray:emptyDicts];
-    [style removeObjectForKey:k_SCKey_numOfObjInArray];
-    
-    if ([name length] > 0) {
-        saveURL = [self URLForUserStyle:name];
-        // style名が変更されたときは、古いファイルを削除する
-        if (![name isEqualToString:oldName]) {
-            [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName] error:nil];
+    // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
+    if ([style isEqualToDictionary:[self bundledStyleWithStyleName:name]]) {
+        if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
+            [[NSFileManager defaultManager] removeItemAtURL:saveURL error:nil];
         }
-        // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
-        if ([style isEqualToDictionary:[[self bundledStyleWithStyleName:name] mutableCopy]]) {
-            if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
-                [[NSFileManager defaultManager] removeItemAtURL:saveURL error:nil];
-            }
-        } else {
-            // 保存
-            [style writeToURL:saveURL atomically:YES];
-        }
+    } else {
+        // 保存
+        [style writeToURL:saveURL atomically:YES];
     }
+    
     // 内部で持っているキャッシュ用データを更新
     [self updateCache];
     
+    // notify
     [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
                                                         object:@{CEOldNameKey: oldName,
                                                                  CENewNameKey: name}];
@@ -531,6 +526,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 {
     return @{k_SCKey_styleName: [NSMutableString string],
              k_SCKey_extensions: [NSMutableArray array],
+             k_SCKey_filenames: [NSMutableArray array],
              k_SCKey_keywordsArray: [NSMutableArray array],
              k_SCKey_commandsArray: [NSMutableArray array],
              k_SCKey_categoriesArray: [NSMutableArray array],
@@ -541,7 +537,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
              k_SCKey_charactersArray: [NSMutableArray array],
              k_SCKey_commentsArray: [NSMutableArray array],
              k_SCKey_outlineMenuArray: [NSMutableArray array],
-             k_SCKey_completionsArray: [NSMutableArray array]};
+             k_SCKey_completionsArray: [NSMutableArray array],
+             k_SCKey_commentDelimitersDict: [NSMutableDictionary dictionary]};
 }
 
 
@@ -650,6 +647,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         
         for (NSDictionary *dict in extensionDicts) {
             NSString *extension = dict[k_SCKey_arrayKeyString];
+            
+            if (!extension) { continue; }
+            
             if ((addedName = extensionTable[extension])) { // 同じ拡張子を持つものがすでにあるとき
                 NSMutableArray *errors = extensionConflicts[extension];
                 if (!errors) {
@@ -667,6 +667,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         
         for (NSDictionary *dict in filenameDicts) {
             NSString *filename = dict[k_SCKey_arrayKeyString];
+            
+            if (!filename) { continue; }
+            
             if ((addedName = filenameTable[filename])) { // 同じファイル名を持つものがすでにあるとき
                 NSMutableArray *errors = filenameConflicts[filename];
                 if (!errors) {

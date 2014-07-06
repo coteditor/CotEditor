@@ -7676,6 +7676,13 @@
 			<string>conf</string>
 		</dict>
 	</array>
+	<key>filenames</key>
+	<array>
+		<dict>
+			<key>keyString</key>
+			<string>.htaccess</string>
+		</dict>
+	</array>
 	<key>keywordsArray</key>
 	<array>
 		<dict>

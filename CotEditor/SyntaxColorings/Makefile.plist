@@ -132,6 +132,17 @@
 	<array/>
 	<key>extensions</key>
 	<array/>
+	<key>filenames</key>
+	<array>
+		<dict>
+			<key>keyString</key>
+			<string>Makefile</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>makefile</string>
+		</dict>
+	</array>
 	<key>keywordsArray</key>
 	<array>
 		<dict>
