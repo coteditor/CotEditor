@@ -999,7 +999,7 @@ static NSArray *kSyntaxDictKeys;
         }
         
         // 全文を抽出した場合は抽出結果をキャッシュする
-        if (coloringRange.length == [wholeString length]) {
+        if (([colorings count] > 0) && (coloringRange.length == [wholeString length])) {
             [self setCacheColorings:colorings];
             [self setCacheHash:[wholeString hash]];
         }
