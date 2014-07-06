@@ -196,10 +196,6 @@ extern NSString *const k_key_coloringRangeBufferLength;
 // Setting Values
 // ------------------------------------------------------
 
-// Tab width values
-extern NSUInteger const k_tabWidthMin;
-extern NSUInteger const k_tabWidthMax;
-
 // Page guide column values
 extern NSUInteger const k_pageGuideColumnMin;
 extern NSUInteger const k_pageGuideColumnMax;
@@ -306,8 +302,6 @@ extern NSString *const k_issueTrackerURL;
 // ------------------------------------------------------
 
 // CEEditorView and subView's dict key
-extern NSString *const k_invocationAfterAlert;
-extern NSString *const k_argsArrayAfterAlert;
 extern NSString *const k_outlineMenuItemRange;
 extern NSString *const k_outlineMenuItemTitle;
 extern NSString *const k_outlineMenuItemSortKey;

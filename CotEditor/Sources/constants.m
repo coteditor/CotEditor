@@ -195,10 +195,6 @@ NSString *const k_key_coloringRangeBufferLength = @"coloringRangeBufferLength";
 // Setting Values
 // ------------------------------------------------------
 
-// Tab width values
-NSUInteger const k_tabWidthMin =  1;
-NSUInteger const k_tabWidthMax = 99;
-
 // Page guide column values
 NSUInteger const k_pageGuideColumnMin =    1;
 NSUInteger const k_pageGuideColumnMax = 1000;
@@ -320,8 +316,6 @@ NSString *const k_issueTrackerURL = @"https://github.com/coteditor/CotEditor/iss
 // ------------------------------------------------------
 
 // CEEditorView and subView's dict key
-NSString *const k_invocationAfterAlert = @"invocationAfterAlert";
-NSString *const k_argsArrayAfterAlert = @"argsArrayAfterAlert";
 NSString *const k_outlineMenuItemRange = @"outlineMenuItemRange";
 NSString *const k_outlineMenuItemTitle = @"outlineMenuItemTitle";
 NSString *const k_outlineMenuItemSortKey = @"outlineMenuItemSortKey";
