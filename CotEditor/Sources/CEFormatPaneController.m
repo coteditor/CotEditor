@@ -33,7 +33,7 @@
 
 #import "CEFormatPaneController.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxExtensionConflictSheetController.h"
+#import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "CEAppDelegate.h"
@@ -111,8 +111,8 @@
 // ------------------------------------------------------
 {
     // 拡張子重複エラー表示メニューの有効化を制御
-    if ([menuItem action] == @selector(openSyntaxExtensionConflictSheet:)) {
-        return [[CESyntaxManager sharedManager] existsExtensionConflict];
+    if ([menuItem action] == @selector(openSyntaxMappingConflictSheet:)) {
+        return [[CESyntaxManager sharedManager] existsMappingConflict];
         
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     } if ([menuItem action] == @selector(exportSyntaxStyle:)) {
@@ -293,11 +293,11 @@
 
 
 // ------------------------------------------------------
-/// カラーシンタックス拡張子重複エラー表示シートを開き、閉じる
-- (IBAction)openSyntaxExtensionConflictSheet:(id)sender
+/// シンタックスマッピング重複エラー表示シートを開き、閉じる
+- (IBAction)openSyntaxMappingConflictSheet:(id)sender
 // ------------------------------------------------------
 {
-    CESyntaxExtensionConflictSheetController *sheetController = [[CESyntaxExtensionConflictSheetController alloc] init];
+    CESyntaxMappingConflictsSheetController *sheetController = [[CESyntaxMappingConflictsSheetController alloc] init];
     NSWindow *sheet = [sheetController window];
     
     // シートウィンドウを表示してモーダルループに入る

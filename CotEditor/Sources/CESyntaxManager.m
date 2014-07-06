@@ -333,11 +333,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 //------------------------------------------------------
-/// 拡張子重複エラーがあるかどうかを返す
-- (BOOL)existsExtensionConflict
+/// マッピング重複エラーがあるかどうかを返す
+- (BOOL)existsMappingConflict
 //------------------------------------------------------
 {
-    return ([[self extensionConflicts] count] > 0);
+    return (([[self extensionConflicts] count] > 0) || ([[self filenameConflicts] count] > 0));
 }
 
 

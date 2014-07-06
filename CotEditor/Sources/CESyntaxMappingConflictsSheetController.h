@@ -1,6 +1,6 @@
 /*
  =================================================
- CESyntaxExtensionConflictSheetController
+ CESyntaxMappingConflictsSheetController
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -33,7 +33,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface CESyntaxExtensionConflictSheetController : NSWindowController <NSWindowDelegate>
+@interface CESyntaxMappingConflictsSheetController : NSWindowController <NSWindowDelegate>
 
 // default initializer
 - (instancetype)init;
