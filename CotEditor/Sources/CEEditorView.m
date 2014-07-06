@@ -216,9 +216,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEEditorView > setString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextViewCore > performDragOperation:
-    //  * ドロップ（別書類または別アプリから） = CETextViewCore > readSelectionFromPasteboard:type:
+    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
@@ -497,7 +497,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             return;
     }
     for (NSTextContainer *container in subSplitViews) {
-        [(CETextViewCore *)[container textView] setLineEndingString:newLineString];
+        [(CETextView *)[container textView] setLineEndingString:newLineString];
     }
     if (shouldUpdate) {
         [self updateLineEndingsInStatusAndInfo:NO];
@@ -1035,7 +1035,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CESubSplitView *masterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
-            (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate] :
+            (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate] :
             [(CENavigationBarView *)[sender superview] masterView];
     if (!masterView) { return; }
     NSRect subSplitFrame = [masterView bounds];
@@ -1069,7 +1069,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     BOOL isSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
-    CESubSplitView *firstResponderSubSplitView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
+    CESubSplitView *firstResponderSubSplitView = (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate];
     CESubSplitView *subSplitViewToClose = (isSenderMenu) ?
             firstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
     if (subSplitViewToClose == nil) { return; }
@@ -1257,7 +1257,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSArray *subSplitViews = [[self splitView] subviews];
     NSInteger count = [subSplitViews count];
     if (count < 2) { return; }
-    CESubSplitView *currentView = (CESubSplitView *)[(CETextViewCore *)[[self window] firstResponder] delegate];
+    CESubSplitView *currentView = (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate];
     NSInteger index = [subSplitViews indexOfObject:currentView];
 
     if (isOnNext) { // == Next

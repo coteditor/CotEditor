@@ -1,6 +1,6 @@
 /*
 =================================================
-CETextViewCore
+CETextView
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -35,7 +35,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CETextViewCore.h"
+#import "CETextView.h"
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
-@interface CETextViewCore ()
+@interface CETextView ()
 
 @property (nonatomic) NSRect insertionRect;
 @property (nonatomic) NSPoint textContainerOriginPoint;
@@ -61,7 +61,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma mark -
 
-@implementation CETextViewCore
+@implementation CETextView
 
 #pragma mark NSTextView Methods
 
@@ -938,9 +938,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEEditorView > setString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextViewCore > performDragOperation:
-    //  * ドロップ（別書類または別アプリから） = CETextViewCore > readSelectionFromPasteboard:type:
+    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
@@ -993,9 +993,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // # テキスト編集時の改行コードの置換場所
         //  * ファイルオープン = CEEditorView > setString:
         //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-        //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
-        //  * ドロップ（同一書類内） = CETextViewCore > performDragOperation:
-        //  * ドロップ（別書類または別アプリから） = CETextViewCore > readSelectionFromPasteboard:type:
+        //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+        //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+        //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
         //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
         //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 

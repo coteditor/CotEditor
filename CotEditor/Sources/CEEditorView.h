@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CELineNumView.h"
 #import "CEStatusBarView.h"
 #import "CENavigationBarView.h"
-#import "CETextViewCore.h"
+#import "CETextView.h"
 #import "CEWindowController.h"
 #import "CESyntax.h"
 #import "CELayoutManager.h"
@@ -66,7 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL showInvisibles;
 @property (nonatomic) BOOL isColoring;
 
-@property (nonatomic) CETextViewCore *textView;
+@property (nonatomic) CETextView *textView;
 
 @property (nonatomic, readonly) CESplitView *splitView;
 @property (nonatomic, readonly) BOOL canActivateShowInvisibles;

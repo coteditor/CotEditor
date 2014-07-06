@@ -106,7 +106,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (![self isPrinting] && [self fixLineHeight]) {
         // 複合フォントで行の高さがばらつくのを防止する
-        // （CETextViewCore で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
+        // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         // 挿入すると行間がズレる」問題が生じる）
         // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）

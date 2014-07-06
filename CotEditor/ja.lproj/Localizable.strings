@@ -73,7 +73,7 @@ http://www.aynimac.com/
 "Do you want to keep unchanged or update to the modified edition?" = "未編集のままにしますか、それとも変更された内容に更新しますか？";
 
 
-/* CETextViewCore */
+/* CETextView */
 // undo action name
 "Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";

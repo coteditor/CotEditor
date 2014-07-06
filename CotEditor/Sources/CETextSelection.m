@@ -250,7 +250,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedLongValue];
-    CETextViewCore *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editorView] textView];
 
     switch (caseType) {
         case CELowerCase:
@@ -273,7 +273,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEWidthType widthType = [arguments[@"widthType"] unsignedLongValue];
-    CETextViewCore *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editorView] textView];
 
     switch (widthType) {
         case CEFullwidth:
@@ -293,7 +293,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedLongValue];
-    CETextViewCore *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editorView] textView];
     
     switch (changeKanaType) {
         case CEHiragana:
@@ -313,7 +313,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEUNFType UNFType = [arguments[@"unfType"] unsignedLongValue];
-    CETextViewCore *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editorView] textView];
     
     NSInteger typeCode;
     switch (UNFType) {

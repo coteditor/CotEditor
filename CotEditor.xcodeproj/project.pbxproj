@@ -23,7 +23,7 @@
 		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
 		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; };
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
-		25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */; };
+		25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
 		2A0722F316D3CF2E00F49864 /* scriptMenuTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F216D3CF2E00F49864 /* scriptMenuTemplate.pdf */; };
@@ -213,8 +213,8 @@
 		25B2C23507FA667400F4EFC7 /* CELineNumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineNumView.m; sourceTree = "<group>"; };
 		25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarView.h; sourceTree = "<group>"; };
 		25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarView.m; sourceTree = "<group>"; };
-		25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextViewCore.h; sourceTree = "<group>"; };
-		25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextViewCore.m; sourceTree = "<group>"; };
+		25B2C24A07FA6BC400F4EFC7 /* CETextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextView.h; sourceTree = "<group>"; };
+		25B2C24B07FA6BC400F4EFC7 /* CETextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextView.m; sourceTree = "<group>"; };
 		2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPanelAccessoryController.h; sourceTree = "<group>"; };
 		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
 		2A07202D18E0E421006F3A43 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
@@ -795,8 +795,8 @@
 			isa = PBXGroup;
 			children = (
 				2A607B04190582CE00F3A991 /* CETextViewProtocol.h */,
-				25B2C24A07FA6BC400F4EFC7 /* CETextViewCore.h */,
-				25B2C24B07FA6BC400F4EFC7 /* CETextViewCore.m */,
+				25B2C24A07FA6BC400F4EFC7 /* CETextView.h */,
+				25B2C24B07FA6BC400F4EFC7 /* CETextView.m */,
 				8C65C0E507927D0F0028D94A /* CELayoutManager.h */,
 				8C65C0E607927D0F0028D94A /* CELayoutManager.m */,
 				8C83A48009485F27004E48A8 /* CEATSTypesetter.h */,
@@ -1139,7 +1139,7 @@
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
 				2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
-				25B2C24D07FA6BC400F4EFC7 /* CETextViewCore.m in Sources */,
+				25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */,
 				2A5D2B9118E1EC790020AA1F /* CESyntaxExtensionConflictSheetController.m in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarView.m in Sources */,
 				2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */,

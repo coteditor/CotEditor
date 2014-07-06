@@ -100,7 +100,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 複合フォントで行の高さがばらつくのを防止する
     // （CELayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
     // 通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない）
-    // （CETextViewCore で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
+    // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
     // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
     // 挿入すると行間がズレる」問題が生じる）
     CGFloat defaultLineHeight = [manager defaultLineHeightForTextFont];

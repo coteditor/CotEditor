@@ -35,7 +35,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEEditorView.h"
 #import "CELineNumView.h"
 #import "CENavigationBarView.h"
-#import "CETextViewCore.h"
+#import "CETextView.h"
 #import "CESyntax.h"
 
 
@@ -45,7 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // readonly
 @property (nonatomic, readonly) NSScrollView *scrollView;
-@property (nonatomic, readonly) CETextViewCore *textView;
+@property (nonatomic, readonly) CETextView *textView;
 @property (nonatomic, readonly) CELineNumView *lineNumView;
 @property (nonatomic, readonly) CENavigationBarView *navigationBar;
 @property (nonatomic, readonly) CESyntax *syntax;
@@ -58,7 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceTextStorage:(NSTextStorage *)inTextStorage;
 - (BOOL)isWritable;
 - (BOOL)isAlertedNotWritable;
-- (void)setTextViewToEditorView:(CETextViewCore *)inTextView;
+- (void)setTextViewToEditorView:(CETextView *)inTextView;
 - (void)setShowLineNumWithNumber:(NSNumber *)inNumber;
 - (void)setShowNavigationBarWithNumber:(NSNumber *)inNumber;
 - (void)setWrapLinesWithNumber:(NSNumber *)inNumber;

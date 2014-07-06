@@ -52,7 +52,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // readonly
 @property (nonatomic, readwrite) NSScrollView *scrollView;
-@property (nonatomic, readwrite) CETextViewCore *textView;
+@property (nonatomic, readwrite) CETextView *textView;
 @property (nonatomic, readwrite) CELineNumView *lineNumView;
 @property (nonatomic, readwrite) CENavigationBarView *navigationBar;
 @property (nonatomic, readwrite) CESyntax *syntax;
@@ -132,7 +132,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // TextView 生成
         NSRect textFrame = NSZeroRect;
         textFrame.size = [[self scrollView] contentSize]; // (frame will start at upper left.)
-        [self setTextView:[[CETextViewCore alloc] initWithFrame:textFrame textContainer:container]];
+        [self setTextView:[[CETextView alloc] initWithFrame:textFrame textContainer:container]];
         [[self textView] setDelegate:self];
         
         // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
@@ -271,7 +271,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// テキストビューをエディタビューにセット
-- (void)setTextViewToEditorView:(CETextViewCore *)textView
+- (void)setTextViewToEditorView:(CETextView *)textView
 // ------------------------------------------------------
 {
     [[self editorView] setTextView:textView];
@@ -547,7 +547,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Delegate and Notification
 
 //=======================================================
-// Delegate method (CETextViewCore)
+// Delegate method (CETextView)
 //  <== textView
 //=======================================================
 
@@ -562,16 +562,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEEditorView > setString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextViewCore > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextViewCore > performDragOperation:
-    //  * ドロップ（別書類または別アプリから） = CETextViewCore > readSelectionFromPasteboard:type:
+    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
     if ((replacementString == nil) || // = attributesのみの変更
             ([replacementString length] == 0) || // = 文章の削除
-            ([(CETextViewCore *)aTextView isSelfDrop]) || // = 自己内ドラッグ&ドロップ
-            ([(CETextViewCore *)aTextView isReadingFromPboard]) || // = ペーストまたはドロップ
+            ([(CETextView *)aTextView isSelfDrop]) || // = 自己内ドラッグ&ドロップ
+            ([(CETextView *)aTextView isReadingFromPboard]) || // = ペーストまたはドロップ
             ([[aTextView undoManager] isUndoing])) { return YES; } // = アンドゥ中
 
     NSString *newStr = nil;
@@ -588,10 +588,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     if (newStr) {
         // （Action名は自動で付けられる？ので、指定しない）
-        [(CETextViewCore *)aTextView doReplaceString:newStr
-                                           withRange:affectedCharRange
-                                        withSelected:NSMakeRange(affectedCharRange.location + [newStr length], 0)
-                                      withActionName:@""];
+        [(CETextView *)aTextView doReplaceString:newStr
+                                       withRange:affectedCharRange
+                                    withSelected:NSMakeRange(affectedCharRange.location + [newStr length], 0)
+                                  withActionName:@""];
 
         return NO;
     }
@@ -645,7 +645,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //=======================================================
 // Notification method (NSTextView)
-//  <== CETextViewCore
+//  <== CETextView
 //=======================================================
 
 // ------------------------------------------------------
@@ -660,7 +660,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self updateInfo];
 
     // フラグが立っていたら、入力補完を再度実行する
-    // （フラグは CETextViewCore > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
+    // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
     if ([[self textView] isReCompletion]) {
         [[self textView] setIsReCompletion:NO];
         [[self textView] performSelector:@selector(complete:) withObject:nil afterDelay:0.05];

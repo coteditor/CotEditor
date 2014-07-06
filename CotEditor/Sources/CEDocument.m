@@ -157,7 +157,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // (保存の前後で編集内容がグルーピングされてしまう例：キー入力後保存し、キャレットを動かすなどしないでそのまま入力
     // した場合、ダーティーフラグがたたず、アンドゥすると保存前まで戻されてしまう。さらに、戻された状態でリドゥすると、
     // 保存後の入力までが行われる。つまり、保存をはさんで前後の内容が同一アンドゥグループに入ってしまうための不具合)
-    // CETextViewCore > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
+    // CETextView > doInsertString:withRange:withSelected:withActionName: でも同様の対処を行っている
     // ****** 何かもっとうまい回避方法があるはずなんだが … (2005.08.05) *******
     [[self undoManager] beginUndoGrouping];
     [[self undoManager] endUndoGrouping];
@@ -722,7 +722,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextViewCore *textView = [[self editorView] textView];
+    CETextView *textView = [[self editorView] textView];
     NSUInteger wholeLength = [[textView string] length];
     NSRange range = NSMakeRange(0, 0);
     
@@ -761,7 +761,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextViewCore *textView = [[self editorView] textView];
+    CETextView *textView = [[self editorView] textView];
     NSUInteger wholeLength = [[textView string] length];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
                                                                            options:NSRegularExpressionAnchorsMatchLines
