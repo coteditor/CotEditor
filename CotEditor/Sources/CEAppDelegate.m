@@ -132,6 +132,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_smartInsertAndDelete: @NO,
                                k_key_enableSmartQuotes: @NO,
                                k_key_enableSmartIndent: @YES,
+                               k_key_appendsCommentSpacer: @YES,
+                               k_key_commentsAtLineHead: @YES,
                                k_key_shouldAntialias: @YES,
                                k_key_completeAddStandardWords: @0U,
                                k_key_showPageGuide: @NO,

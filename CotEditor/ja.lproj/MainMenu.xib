@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6154.21"/>
     </dependencies>
@@ -193,6 +193,11 @@
                             <menuItem title="すべてを選択" keyEquivalent="a" id="172">
                                 <connections>
                                     <action selector="selectAll:" target="-1" id="179"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="行を選択" keyEquivalent="l" id="Cwp-ys-LJc">
+                                <connections>
+                                    <action selector="selectLines:" target="-1" id="MP0-H8-6bm"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="630">
@@ -584,6 +589,11 @@
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="453">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="選択範囲をコメントアウト" keyEquivalent="/" id="0z7-Ga-XN2">
+                                <connections>
+                                    <action selector="toggleComment:" target="-1" id="OR1-ZH-ozf"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="右へシフト" keyEquivalent="]" id="454">
                                 <connections>

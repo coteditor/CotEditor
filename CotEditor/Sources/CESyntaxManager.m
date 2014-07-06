@@ -507,6 +507,15 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         }
     }
     
+    // validate block comment delimiter pair
+    NSString *beginDelimiter = style[k_SCKey_commentDelimitersDict][k_SCKey_beginComment];
+    NSString *endDelimiter = style[k_SCKey_commentDelimitersDict][k_SCKey_endComment];
+    if (([beginDelimiter length] >  0 && [endDelimiter length] == 0) ||
+        ([beginDelimiter length] == 0 && [endDelimiter length] >  0))
+    {
+        [errorMessages addObject:NSLocalizedString(@"Block comment needs both begin delimiter and end delimiter.", nil)];
+    }
+    
     return errorMessages;
 }
 
