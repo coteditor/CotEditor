@@ -43,7 +43,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak, readonly) CEEditorView *editorView;
 @property (nonatomic, weak, readonly) CEToolbarController *toolbarController;
 @property (nonatomic) CGFloat alpha;
-@property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
 // document information (for binding in drawer)
 @property (nonatomic, copy) NSString *encodingInfo;// 文書のエンコーディング情報

@@ -39,6 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEWindowController ()
 
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
+@property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
 // document information (for binding)
 @property (nonatomic, copy) NSString *createdInfo;
@@ -490,11 +491,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 現在のエンコードにコンバートできない文字列をマークアップし、その配列を返す
+/// 現在のエンコードにコンバートできない文字列をマークアップ
 - (void)markupIncompatibleChars:(NSArray *)uncompatibleChars
 // ------------------------------------------------------
 {
-    // 非互換文字をハイライト
     // 文字色と背景色の中間色を得る
     NSColor *foreColor = [[[self editorView] textView] textColor];
     NSColor *backColor = [[[self editorView] textView] backgroundColor];
@@ -509,6 +509,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
     [self clearAllMarkup];
     
+    // 非互換文字をハイライト
     NSArray *layoutManagers = [[self editorView] allLayoutManagers];
     for (NSDictionary *uncompatible in uncompatibleChars) {
         for (NSLayoutManager *manager in layoutManagers) {
