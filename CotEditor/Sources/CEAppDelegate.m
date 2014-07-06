@@ -357,16 +357,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// アプリがアクティブになった
-- (void)applicationDidBecomeActive:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    // 各ドキュメントに外部プロセスによって変更保存されていた場合の通知を行わせる
-    [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(showUpdatedByExternalProcessAlert)];
-}
-
-
-// ------------------------------------------------------
 /// Dock メニュー生成
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 // ------------------------------------------------------

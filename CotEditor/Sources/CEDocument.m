@@ -116,6 +116,11 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
                                                      name:CEDocumentDidFinishOpenNotification object:nil];
+        
+        // アプリケーションがアクティブになったタイミングで外部プロセスによって変更保存されていた場合の通知を行なう
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(showUpdatedByExternalProcessAlert)
+                                                     name:NSApplicationDidBecomeActiveNotification object:nil];
     }
     return self;
 }
@@ -399,110 +404,18 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 //
 //=======================================================
 
-//------------------------------------------------------
-/// データから指定エンコードで文字列を得る
-- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)checksXattr
-//------------------------------------------------------
+// ------------------------------------------------------
+/// 設定されたエンコーディングの IANA Charset 名を返す
+- (NSString *)currentIANACharSetName
+// ------------------------------------------------------
 {
-    NSString *string = nil;
-    BOOL shouldSkipISO2022JP = NO;
-    BOOL shouldSkipUTF8 = NO;
-    BOOL shouldSkipUTF16 = NO;
-
-    // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
-    // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
-    // FJDDetectEncoding を参考にさせていただきました (2006.09.30)
-    // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
-
-    // 10.5+でのファイル拡張属性(com.apple.TextEncoding)を試す
-    if (checksXattr && (encoding != k_autoDetectEncodingMenuTag)) {
-        string = [[NSString alloc] initWithData:data encoding:encoding];
-        if (!string) {
-            encoding = k_autoDetectEncodingMenuTag;
-        }
+    NSString *charSetName = nil;
+    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
+    
+    if (cfEncoding != kCFStringEncodingInvalidId) {
+        charSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
     }
-
-    if (([data length] > 0) && (encoding == k_autoDetectEncodingMenuTag)) {
-        const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
-        // BOM付きUTF-8判定
-        if (memchr([data bytes], *utf8Bom, 3) != NULL) {
-            shouldSkipUTF8 = YES;
-            string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            if (string != nil) {
-                encoding = NSUTF8StringEncoding;
-            }
-        // UTF-16判定
-        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
-                   (memchr([data bytes], 0xfeff, 2) != NULL)) {
-
-            shouldSkipUTF16 = YES;
-            string = [[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding];
-            if (string != nil) {
-                encoding = NSUnicodeStringEncoding;
-            }
-
-        // ISO 2022-JP判定
-        } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
-            shouldSkipISO2022JP = YES;
-            string = [[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding];
-            if (string != nil) {
-                encoding = NSISO2022JPStringEncoding;
-            }
-        }
-    }
-
-    if (!string && (encoding == k_autoDetectEncodingMenuTag)) {
-        NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy];
-
-        for (NSNumber *encodingNumber in encodings) {
-            encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
-            if ((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) {
-                break;
-            } else if ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) {
-                break;
-            } else if ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16) {
-                break;
-            } else if (encoding == NSProprietaryStringEncoding) {
-                NSLog(@"theEncoding == NSProprietaryStringEncoding");
-                break;
-            }
-            string = [[NSString alloc] initWithData:data encoding:encoding];
-            if (string) {
-                // "charset="や"encoding="を読んでみて適正なエンコーディングが得られたら、そちらを優先
-                NSStringEncoding tmpEncoding = [self scannedCharsetOrEncodingFromString:string];
-                if ((tmpEncoding == NSProprietaryStringEncoding) || (tmpEncoding == encoding)) {
-                    break;
-                }
-                NSString *tmpStr = [[NSString alloc] initWithData:data encoding:tmpEncoding];
-                if (tmpStr) {
-                    string = tmpStr;
-                    encoding = tmpEncoding;
-                }
-                break;
-            }
-        }
-    } else if (!string) {
-        string = [[NSString alloc] initWithData:data encoding:encoding];
-    }
-
-    if (string && (encoding != k_autoDetectEncodingMenuTag)) {
-        // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
-        // 10.4+ ではスルー（2005.12.25）
-        // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
-        // (下記の現象と同じ理由で発生していると思われる）
-        // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
-        if (([data length] <= 8192) ||
-            (([data length] > 8192) && ([data length] != ([string length] * 2 + 1)) &&
-             ([data length] != ([string length] * 2)))) {
-                    
-            [self setInitialString:string];
-            // (_initialString はあとで開放 == "- (void)setStringToEditorView".)
-            [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
-            return YES;
-        }
-    }
-
-    return NO;
+    return charSetName;
 }
 
 
@@ -533,6 +446,166 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [[self windowController] showIncompatibleCharList];
     }
     [self setIsWritableToEditorViewWithURL:[self fileURL]];
+}
+
+
+// ------------------------------------------------------
+/// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
+- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
+// ------------------------------------------------------
+{
+    NSMutableArray *uncompatibleChars = [NSMutableArray array];
+    NSString *currentString = [[self editorView] stringForSave];
+    NSUInteger currentLength = [currentString length];
+    NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
+    NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
+    
+    if (!convertedString || ([convertedString length] != currentLength)) { // 正しいリストが取得できない時
+        return nil;
+    }
+    
+    // 削除／変換される文字をリストアップ
+    NSString *yenMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
+    
+    for (NSUInteger i = 0; i < currentLength; i++) {
+        unichar currentUnichar = [currentString characterAtIndex:i];
+        unichar convertedUnichar = [convertedString characterAtIndex:i];
+        
+        if (currentUnichar == convertedUnichar) { continue; }
+        
+        NSRange charRange = NSMakeRange(i, 1);
+        NSString *currentChar = [currentString substringWithRange:charRange];
+        NSString *convertedChar = [convertedString substringWithRange:charRange];
+        
+        if ([CEUtilities isInvalidYenEncoding:encoding] && [currentChar isEqualToString:yenMarkChar]) {
+            currentChar = yenMarkChar;
+            convertedChar = @"\\";
+        }
+        
+        NSUInteger curLine = 1;
+        for (NSUInteger index = 0, lines = 0; index < currentLength; lines++) {
+            if (index <= i) {
+                curLine = lines + 1;
+            } else {
+                break;
+            }
+            index = NSMaxRange([currentString lineRangeForRange:NSMakeRange(index, 0)]);
+        }
+        
+        [uncompatibleChars addObject:[@{k_listLineNumber: @(curLine),
+                                        k_incompatibleRange: [NSValue valueWithRange:charRange],
+                                        k_incompatibleChar: currentChar,
+                                        k_convertedChar: convertedChar} mutableCopy]];
+    }
+    
+    return uncompatibleChars;
+}
+
+
+//------------------------------------------------------
+/// データから指定エンコードで文字列を得る
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)checksXattr
+//------------------------------------------------------
+{
+    NSString *string = nil;
+    BOOL shouldSkipISO2022JP = NO;
+    BOOL shouldSkipUTF8 = NO;
+    BOOL shouldSkipUTF16 = NO;
+    
+    // ISO 2022-JP / UTF-8 / UTF-16の判定は、「藤棚工房別棟 −徒然−」の
+    // 「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました」で公開されている
+    // FJDDetectEncoding を参考にさせていただきました (2006.09.30)
+    // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
+    
+    // 10.5+でのファイル拡張属性(com.apple.TextEncoding)を試す
+    if (checksXattr && (encoding != k_autoDetectEncodingMenuTag)) {
+        string = [[NSString alloc] initWithData:data encoding:encoding];
+        if (!string) {
+            encoding = k_autoDetectEncodingMenuTag;
+        }
+    }
+    
+    if (([data length] > 0) && (encoding == k_autoDetectEncodingMenuTag)) {
+        const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
+        // BOM付きUTF-8判定
+        if (memchr([data bytes], *utf8Bom, 3) != NULL) {
+            shouldSkipUTF8 = YES;
+            string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            if (string != nil) {
+                encoding = NSUTF8StringEncoding;
+            }
+            // UTF-16判定
+        } else if ((memchr([data bytes], 0xfffe, 2) != NULL) ||
+                   (memchr([data bytes], 0xfeff, 2) != NULL)) {
+            
+            shouldSkipUTF16 = YES;
+            string = [[NSString alloc] initWithData:data encoding:NSUnicodeStringEncoding];
+            if (string != nil) {
+                encoding = NSUnicodeStringEncoding;
+            }
+            
+            // ISO 2022-JP判定
+        } else if (memchr([data bytes], 0x1b, [data length]) != NULL) {
+            shouldSkipISO2022JP = YES;
+            string = [[NSString alloc] initWithData:data encoding:NSISO2022JPStringEncoding];
+            if (string != nil) {
+                encoding = NSISO2022JPStringEncoding;
+            }
+        }
+    }
+    
+    if (!string && (encoding == k_autoDetectEncodingMenuTag)) {
+        NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy];
+        
+        for (NSNumber *encodingNumber in encodings) {
+            encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
+            if ((encoding == NSISO2022JPStringEncoding) && shouldSkipISO2022JP) {
+                break;
+            } else if ((encoding == NSUTF8StringEncoding) && shouldSkipUTF8) {
+                break;
+            } else if ((encoding == NSUnicodeStringEncoding) && shouldSkipUTF16) {
+                break;
+            } else if (encoding == NSProprietaryStringEncoding) {
+                NSLog(@"theEncoding == NSProprietaryStringEncoding");
+                break;
+            }
+            string = [[NSString alloc] initWithData:data encoding:encoding];
+            if (string) {
+                // "charset="や"encoding="を読んでみて適正なエンコーディングが得られたら、そちらを優先
+                NSStringEncoding tmpEncoding = [self scannedCharsetOrEncodingFromString:string];
+                if ((tmpEncoding == NSProprietaryStringEncoding) || (tmpEncoding == encoding)) {
+                    break;
+                }
+                NSString *tmpStr = [[NSString alloc] initWithData:data encoding:tmpEncoding];
+                if (tmpStr) {
+                    string = tmpStr;
+                    encoding = tmpEncoding;
+                }
+                break;
+            }
+        }
+    } else if (!string) {
+        string = [[NSString alloc] initWithData:data encoding:encoding];
+    }
+    
+    if (string && (encoding != k_autoDetectEncodingMenuTag)) {
+        // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
+        // 10.4+ ではスルー（2005.12.25）
+        // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
+        // (下記の現象と同じ理由で発生していると思われる）
+        // https://www.codingmonkeys.de/bugs/browse/HYR-529?page=all
+        if (([data length] <= 8192) ||
+            (([data length] > 8192) && ([data length] != ([string length] * 2 + 1)) &&
+             ([data length] != ([string length] * 2)))) {
+                
+                [self setInitialString:string];
+                // (_initialString はあとで開放 == "- (void)setStringToEditorView".)
+                [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+                return YES;
+            }
+    }
+    
+    return NO;
 }
 
 
@@ -596,59 +669,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
-- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
-// ------------------------------------------------------
-{
-    NSMutableArray *uncompatibleChars = [NSMutableArray array];
-    NSString *currentString = [[self editorView] stringForSave];
-    NSUInteger currentLength = [currentString length];
-    NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
-    NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
-
-    if (!convertedString || ([convertedString length] != currentLength)) { // 正しいリストが取得できない時
-        return nil;
-    }
-
-    // 削除／変換される文字をリストアップ
-    NSString *yenMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
-
-    for (NSUInteger i = 0; i < currentLength; i++) {
-        unichar currentUnichar = [currentString characterAtIndex:i];
-        unichar convertedUnichar = [convertedString characterAtIndex:i];
-        
-        if (currentUnichar == convertedUnichar) { continue; }
-        
-        NSRange charRange = NSMakeRange(i, 1);
-        NSString *currentChar = [currentString substringWithRange:charRange];
-        NSString *convertedChar = [convertedString substringWithRange:charRange];
-        
-        if ([CEUtilities isInvalidYenEncoding:encoding] && [currentChar isEqualToString:yenMarkChar]) {
-            currentChar = yenMarkChar;
-            convertedChar = @"\\";
-        }
-        
-        NSUInteger curLine = 1;
-        for (NSUInteger index = 0, lines = 0; index < currentLength; lines++) {
-            if (index <= i) {
-                curLine = lines + 1;
-            } else {
-                break;
-            }
-            index = NSMaxRange([currentString lineRangeForRange:NSMakeRange(index, 0)]);
-        }
-        
-        [uncompatibleChars addObject:[@{k_listLineNumber: @(curLine),
-                                        k_incompatibleRange: [NSValue valueWithRange:charRange],
-                                        k_incompatibleChar: currentChar,
-                                        k_convertedChar: convertedChar} mutableCopy]];
-    }
-    
-    return uncompatibleChars;
-}
-
-
-// ------------------------------------------------------
 /// 改行コードを変更する
 - (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding
 // ------------------------------------------------------
@@ -690,10 +710,10 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)doSetSyntaxStyle:(NSString *)name
 // ------------------------------------------------------
 {
-    if ([name length] > 0) {
-        [[self editorView] setSyntaxStyleName:name recolorNow:YES];
-        [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
-    }
+    if ([name length] == 0) { return; }
+    
+    [[self editorView] setSyntaxStyleName:name recolorNow:YES];
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
 }
 
 
@@ -705,7 +725,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     CETextViewCore *textView = [[self editorView] textView];
     NSUInteger wholeLength = [[textView string] length];
     NSRange range = NSMakeRange(0, 0);
-
+    
     NSInteger newLocation = (location < 0) ? (wholeLength + location) : location;
     NSInteger newLength = (length < 0) ? (wholeLength - newLocation + length) : length;
     if ((newLocation < wholeLength) && ((newLocation + newLength) > wholeLength)) {
@@ -731,7 +751,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     NSRange selectionRange = [self rangeInTextViewWithLocation:location length:length];
-
+    
     [[self editorView] setSelectedRange:selectionRange];
 }
 
@@ -748,7 +768,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
                                                                              error:nil];
     NSArray *matches = [regex matchesInString:[textView string] options:0
                                         range:NSMakeRange(0, [[textView string] length])];
-
+    
     if (matches) {
         NSInteger count = [matches count];
         if (location == 0) {
@@ -757,7 +777,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             [textView setSelectedRange:NSMakeRange(wholeLength, 0)];
         } else {
             NSInteger newLocation, newLength;
-
+            
             newLocation = (location < 0) ? (count + location + 1) : location;
             if (length < 0) {
                 newLength = count - newLocation + length + 1;
@@ -773,12 +793,12 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
                 newLength = 1;
             }
             if ((newLocation <= 0) || (newLength <= 0)) { return; }
-
+            
             NSTextCheckingResult *match = matches[(newLocation - 1)];
             NSRange range = [match range];
             NSRange tmpRange = range;
             NSInteger i;
-
+            
             for (i = 0; i < newLength; i++) {
                 if (NSMaxRange(tmpRange) > wholeLength) {
                     break;
@@ -813,68 +833,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
     [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
     [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
-}
-
-
-// ------------------------------------------------------
-/// 設定されたエンコーディングの IANA Charset 名を返す
-- (NSString *)currentIANACharSetName
-// ------------------------------------------------------
-{
-    NSString *charSetName = nil;
-    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
-
-    if (cfEncoding != kCFStringEncodingInvalidId) {
-        charSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
-    }
-    return charSetName;
-}
-
-
-// ------------------------------------------------------
-/// 外部プロセスによって更新されたことをシート／ダイアログで通知
-- (void)showUpdatedByExternalProcessAlert
-// ------------------------------------------------------
-{
-    if (![self showUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
-
-    NSString *messageText, *informativeText, *defaultButton;
-    if ([self isDocumentEdited]) {
-        messageText = @"The file has been modified by another process. There are also unsaved changes in CotEditor.";
-        informativeText = @"Do you want to keep CotEditor's edition or update to the modified edition?";
-        defaultButton = @"Keep CotEditor's Edition";
-    } else {
-        messageText = @"The file has been modified by another process.";
-        informativeText = @"Do you want to keep unchanged or Update to the modified edition?";
-        defaultButton = @"Keep Unchanged";
-        [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
-    }
-    
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:NSLocalizedString(messageText, nil)];
-    [alert setInformativeText:NSLocalizedString(informativeText, nil)];
-    [alert addButtonWithTitle:NSLocalizedString(defaultButton, nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Update", nil)];
-
-    // シートが表示中でなければ、表示
-    if ([[self windowForSheet] attachedSheet] == nil) {
-        [self setIsRevertingForExternalFileUpdate:YES];
-        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        [alert beginSheetModalForWindow:[self windowForSheet]
-                    modalDelegate:self 
-                    didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:) 
-                    contextInfo:NULL];
-
-    } else if ([self isRevertingForExternalFileUpdate]) {
-        // （同じ外部プロセスによる変更通知アラートシートを表示中の時は、なにもしない）
-
-    // 既にシートが出ている時はダイアログで表示
-    } else {
-        [self setIsRevertingForExternalFileUpdate:YES];
-        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        NSInteger result = [alert runModal]; // アラート表示
-        [self alertForModByAnotherProcessDidEnd:alert returnCode:result contextInfo:NULL];
-    }
 }
 
 
@@ -1680,6 +1638,53 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         isWritable = [isWritableNum boolValue];
     }
     [[self editorView] setIsWritable:isWritable];
+}
+
+
+// ------------------------------------------------------
+/// 外部プロセスによって更新されたことをシート／ダイアログで通知
+- (void)showUpdatedByExternalProcessAlert
+// ------------------------------------------------------
+{
+    if (![self showUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
+    
+    NSString *messageText, *informativeText, *defaultButton;
+    if ([self isDocumentEdited]) {
+        messageText = @"The file has been modified by another process. There are also unsaved changes in CotEditor.";
+        informativeText = @"Do you want to keep CotEditor's edition or update to the modified edition?";
+        defaultButton = @"Keep CotEditor's Edition";
+    } else {
+        messageText = @"The file has been modified by another process.";
+        informativeText = @"Do you want to keep unchanged or Update to the modified edition?";
+        defaultButton = @"Keep Unchanged";
+        [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
+    }
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:NSLocalizedString(messageText, nil)];
+    [alert setInformativeText:NSLocalizedString(informativeText, nil)];
+    [alert addButtonWithTitle:NSLocalizedString(defaultButton, nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Update", nil)];
+    
+    // シートが表示中でなければ、表示
+    if ([[self windowForSheet] attachedSheet] == nil) {
+        [self setIsRevertingForExternalFileUpdate:YES];
+        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        [alert beginSheetModalForWindow:[self windowForSheet]
+                          modalDelegate:self
+                         didEndSelector:@selector(alertForModByAnotherProcessDidEnd:returnCode:contextInfo:)
+                            contextInfo:NULL];
+        
+    } else if ([self isRevertingForExternalFileUpdate]) {
+        // （同じ外部プロセスによる変更通知アラートシートを表示中の時は、なにもしない）
+        
+        // 既にシートが出ている時はダイアログで表示
+    } else {
+        [self setIsRevertingForExternalFileUpdate:YES];
+        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
+        NSInteger result = [alert runModal]; // アラート表示
+        [self alertForModByAnotherProcessDidEnd:alert returnCode:result contextInfo:NULL];
+    }
 }
 
 

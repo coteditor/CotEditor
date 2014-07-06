@@ -60,20 +60,21 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 
 // Public methods
-- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
+- (NSString *)currentIANACharSetName;
 - (void)setStringToEditorView;
+- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
-- (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
+
 - (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding;
 - (void)setLineEndingCharToView:(NSInteger)newLineEnding;
 - (void)doSetSyntaxStyle:(NSString *)name;
+
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
-- (NSString *)currentIANACharSetName;
-- (void)showUpdatedByExternalProcessAlert;
 
 // Action Message
 - (IBAction)setLineEndingCharToLF:(id)sender;
