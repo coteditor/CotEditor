@@ -226,6 +226,7 @@ CGFloat const k_minIncrement = 3.4;
 // syntax style
 NSString *const k_SCKey_styleName = @"styleName";
 NSString *const k_SCKey_extensions = @"extensions";
+NSString *const k_SCKey_filenames = @"filenames";
 NSString *const k_SCKey_ignoreCase = @"ignoreCase";
 NSString *const k_SCKey_regularExpression = @"regularExpression";
 NSString *const k_SCKey_arrayKeyString = @"keyString";

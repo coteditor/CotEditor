@@ -227,6 +227,7 @@ extern CGFloat const k_minIncrement;
 // syntax style
 extern NSString *const k_SCKey_styleName;
 extern NSString *const k_SCKey_extensions;
+extern NSString *const k_SCKey_filenames;
 extern NSString *const k_SCKey_ignoreCase;
 extern NSString *const k_SCKey_regularExpression;
 extern NSString *const k_SCKey_arrayKeyString;

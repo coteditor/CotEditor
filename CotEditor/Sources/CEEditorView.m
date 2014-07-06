@@ -37,7 +37,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEEditorView.h"
 #import "CEToolbarController.h"
-#import "CESyntaxManager.h"
 #import "constants.h"
 
 
@@ -271,25 +270,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self textView] appendAllString:string];
-}
-
-
-// ------------------------------------------------------
-/// 文書の拡張子をCESyntaxへセット
-- (BOOL)setSyntaxExtension:(NSString *)extension
-// ------------------------------------------------------
-{
-    NSString *name = [[CESyntaxManager sharedManager] syntaxNameFromExtension:extension];
-    
-    BOOL success = (name && ![[[self syntax] syntaxStyleName] isEqualToString:name]);
-    if (success) {
-        [[self splitView] setSyntaxWithName:name];
-    }
-    
-    NSString *newName = [[self syntax] syntaxStyleName];
-    [self setIsColoring:(![newName isEqualToString:NSLocalizedString(@"None", nil)])];
-    
-    return success;
 }
 
 
@@ -530,22 +510,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// シンタックススタイル名を返す
-- (NSString *)syntaxStyleNameToColoring
+- (NSString *)syntaxStyleName
 // ------------------------------------------------------
 {
-    return ([self syntax]) ? [[self syntax] syntaxStyleName] : nil;
+    return [[self syntax] syntaxStyleName];
 }
 
 
 // ------------------------------------------------------
 /// シンタックススタイル名をセット
-- (void)setSyntaxStyleNameToColoring:(NSString *)name recolorNow:(BOOL)recolorNow
+- (void)setSyntaxStyleName:(NSString *)name recolorNow:(BOOL)recolorNow
 // ------------------------------------------------------
 {
     if ([self syntax]) {
         if (![[[self syntax] syntaxStyleName] isEqualToString:name]) {
             [[self splitView] setSyntaxWithName:name];
-            [self setIsColoring:(![name isEqualToString:NSLocalizedString(@"None", nil)])];
+            [self setIsColoring:![[self syntax] isNone]];
         }
         if (recolorNow) {
             [self recolorAllString];

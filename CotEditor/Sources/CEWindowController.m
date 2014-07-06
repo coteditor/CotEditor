@@ -291,7 +291,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
         if ([self recolorWithBecomeKey]) {
             [self setRecolorWithBecomeKey:NO];
-            [[self document] doSetSyntaxStyle:[[self editorView] syntaxStyleNameToColoring]];
+            [[self document] doSetSyntaxStyle:[[self editorView] syntaxStyleName]];
         }
     }
 }
@@ -460,13 +460,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)syntaxDidUpdate:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSString *currentName = [[self editorView] syntaxStyleNameToColoring];
+    NSString *currentName = [[self editorView] syntaxStyleName];
     NSString *oldName = [notification userInfo][CEOldNameKey];
     NSString *newName = [notification userInfo][CENewNameKey];
     
     if ([oldName isEqualToString:currentName]) {
         if (![oldName isEqualToString:newName]) {
-            [[self editorView] setSyntaxStyleNameToColoring:newName recolorNow:NO];
+            [[self editorView] setSyntaxStyleName:newName recolorNow:NO];
         }
         if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
             [self setRecolorWithBecomeKey:YES];

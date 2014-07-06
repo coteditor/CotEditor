@@ -311,7 +311,7 @@
              CESeparatorString,
              NSLocalizedString(@"Outline Menu", nil),
              NSLocalizedString(@"Completion List", nil),
-             NSLocalizedString(@"Extensions", nil),
+             NSLocalizedString(@"File Mapping", nil),
              CESeparatorString,
              NSLocalizedString(@"Syntax Validation", nil)];
 }

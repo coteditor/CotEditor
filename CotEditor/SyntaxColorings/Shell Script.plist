@@ -148,6 +148,29 @@
 			<string>sh</string>
 		</dict>
 	</array>
+	<key>filenames</key>
+	<array>
+		<dict>
+			<key>keyString</key>
+			<string>.profile</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>.bash_profile</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>.bashrc</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>.zshrc</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>.zshenv</string>
+		</dict>
+	</array>
 	<key>keywordsArray</key>
 	<array>
 		<dict>
@@ -266,7 +289,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\${*[0-9]+}*</string>
+			<string>\$\{?[0-9]+\}?</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>

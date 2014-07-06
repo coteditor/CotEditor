@@ -225,7 +225,7 @@ http://www.aynimac.com/
 "Comments" = "コメント";
 "Outline Menu" = "アウトラインメニュー";
 "Completion List" = "入力補完リスト";
-"Extensions" = "拡張子";
+"File Mapping" = "ファイル関連付け";
 "Syntax Validation" = "シンタックスの検証";
 
 // syntax element check result (no error)
