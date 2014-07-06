@@ -1108,6 +1108,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// ドキュメント全体を再カラーリング
+- (IBAction)recoloringAllStringOfDocument:(id)sender
+// ------------------------------------------------------
+{
+    [self recolorAllString];
+}
+
+
 
 #pragma mark Private Methods
 

@@ -127,5 +127,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)closeSplitTextView:(id)sender;
 - (IBAction)focusNextSplitTextView:(id)sender;
 - (IBAction)focusPrevSplitTextView:(id)sender;
+- (IBAction)recoloringAllStringOfDocument:(id)sender;
 
 @end

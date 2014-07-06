@@ -84,7 +84,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (IBAction)changeEncoding:(id)sender;
 - (IBAction)changeTheme:(id)sender;
 - (IBAction)changeSyntaxStyle:(id)sender;
-- (IBAction)recoloringAllStringOfDocument:(id)sender;
 - (IBAction)insertIANACharSetName:(id)sender;
 - (IBAction)insertIANACharSetNameWithCharset:(id)sender;
 - (IBAction)insertIANACharSetNameWithEncoding:(id)sender;

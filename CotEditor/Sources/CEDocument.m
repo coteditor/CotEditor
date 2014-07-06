@@ -1141,15 +1141,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// ドキュメント全体を再カラーリング
-- (IBAction)recoloringAllStringOfDocument:(id)sender
-// ------------------------------------------------------
-{
-    [[self editorView] recolorAllString];
-}
-
-
-// ------------------------------------------------------
 /// IANA文字コード名を挿入する
 - (IBAction)insertIANACharSetName:(id)sender
 // ------------------------------------------------------
