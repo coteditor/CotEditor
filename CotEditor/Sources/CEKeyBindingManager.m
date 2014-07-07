@@ -33,7 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEKeyBindingManager.h"
 #import "CEApplication.h"
-#import "CEAppDelegate.h"
 #import "CEUtils.h"
 #import "constants.h"
 
