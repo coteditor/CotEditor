@@ -552,10 +552,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         {
             NSMutableArray *contents = [NSMutableArray array];
             NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
-            NSMutableDictionary *dict;
             
             for (id object in defaultInsertTexts) {
-                dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
                 [contents addObject:dict];
             }
             [[self textOutlineView] deselectAll:nil];
@@ -1424,9 +1423,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return nil;
     }
     NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:k_size_of_noPrintableKeyList];
-    NSInteger i;
 
-    for (i = 0; i < k_size_of_noPrintableKeyList; i++) {
+    for (NSInteger i = 0; i < k_size_of_noPrintableKeyList; i++) {
         [keys addObject:[NSString stringWithFormat:@"%C", k_noPrintableKeyList[i]]];
     }
 

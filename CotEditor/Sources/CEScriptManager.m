@@ -180,7 +180,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     if ([sender isMemberOfClass:[NSMenuItem class]]) {
         URL = [sender representedObject];
     }
-    if (URL == nil) { return; }
+    if (!URL) { return; }
 
     // ファイルがない場合は警告して抜ける
     if (![URL checkResourceIsReachableAndReturnError:nil]) {
@@ -219,11 +219,10 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     if (isModifierPressed) { return; }
 
     if ([[self AppleScriptExtensions] containsObject:extension]) {
-        NSAppleScript *appleScript = nil;
         NSDictionary *errorInfo = nil;
         NSAppleEventDescriptor *descriptor;
         
-        appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo];
+        NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:&errorInfo];
         if (appleScript) {
             descriptor = [appleScript executeAndReturnError:&errorInfo];
         }
@@ -259,7 +258,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 {
     NSURL *URL = [[NSBundle mainBundle] URLForResource:@"openScriptMenu" withExtension:@"applescript"];
     
-    if (URL == nil) { return; }
+    if (!URL) { return; }
     
     NSAppleScript *appleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
     [appleScript executeAndReturnError:nil];
@@ -358,11 +357,10 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     
     // ディレクトリの存在チェック
     NSNumber *isDirectory = @NO;
-    BOOL success = NO;
     [directoryURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
     if (![isDirectory boolValue]) {
-        success = [[NSFileManager defaultManager] createDirectoryAtURL:directoryURL
-                                              withIntermediateDirectories:YES attributes:nil error:nil];
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:directoryURL
+                                                withIntermediateDirectories:YES attributes:nil error:nil];
         
         if (!success) {
             NSLog(@"Error. ScriptMenu directory could not found.");
@@ -485,7 +483,7 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
 {
     NSData *data = [NSData dataWithContentsOfURL:URL];
     
-    if (!data || ([data length] < 1)) { return nil; }
+    if ([data length] == 0) { return nil; }
     
     NSString *scriptString = nil;
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
@@ -523,9 +521,6 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     NSString *outputType = nil;
     NSString *inputString = nil;
     NSData *inputData = nil;
-    NSTask *task = [[NSTask alloc] init];
-    NSPipe *outPipe = [NSPipe pipe];
-    NSPipe *errorPipe = [NSPipe pipe];
     BOOL docExists = NO;
     BOOL hasError = NO;
 
@@ -533,8 +528,6 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
         docExists = YES;
         document = [NSApp orderedDocuments][0];
     }
-    [self setOutputHandle:[outPipe fileHandleForReading]];
-    [self setErrorHandle:[errorPipe fileHandleForReading]];
     [scanner setCaseSensitive:YES];
     while (![scanner isAtEnd]) {
         [scanner scanUpToString:@"%%%{CotEditorXInput=" intoString:nil];
@@ -601,6 +594,12 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     // タスク実行準備
     // （task に引数をセットすると一部のスクリプトが誤動作する。例えば、Perl 5.8.xで「use encoding 'utf8'」のうえ
     // printコマンドを使用すると文字化けすることがある。2009-03-31）
+    NSTask *task = [[NSTask alloc] init];
+    NSPipe *outPipe = [NSPipe pipe];
+    NSPipe *errorPipe = [NSPipe pipe];
+    [self setOutputHandle:[outPipe fileHandleForReading]];
+    [self setErrorHandle:[errorPipe fileHandleForReading]];
+    
     [task setLaunchPath:[URL path]];
     [task setCurrentDirectoryPath:NSHomeDirectory()];
     [task setStandardInput:[NSPipe pipe]];
@@ -626,7 +625,6 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
     NSData *outputData = [aNotification userInfo][NSFileHandleNotificationDataItem];
     CEDocument *document = nil;
     NSString *outputString = nil;
-    NSPasteboard *pasteboard;
 
     if ([[NSApp orderedDocuments] count] > 0) {
         document = [NSApp orderedDocuments][0];
@@ -652,20 +650,21 @@ typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
                 case CEAppendToAllTextType:
                     [[document editorView] appendTextViewAfterAllStringTo:outputString];
                     break;
-                case CEPasteboardType:
-                    pasteboard = [NSPasteboard generalPasteboard];
+                case CEPasteboardType: {
+                    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
                     [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
                     if (![pasteboard setString:outputString forType:NSStringPboardType]) {
                         NSBeep();
                     }
                     break;
+                }
             }
         }
         [self setOutputType:CENoOutputType];
         [self setOutputHandle:nil];
     } else if ([[aNotification object] isEqualTo:[self errorHandle]]) {
         outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
-        if ((outputString != nil) && ([outputString length] > 0)) {
+        if ([outputString length] > 0) {
             [self showScriptErrorLog:[NSString stringWithFormat:@"[ %@ ]\n%@", [[NSDate date] description], outputString]];
         }
         [self setErrorHandle:nil];

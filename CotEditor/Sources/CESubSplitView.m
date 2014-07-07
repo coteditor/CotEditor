@@ -40,13 +40,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) NSTimer *lineNumUpdateTimer;
 @property (nonatomic) NSTimer *outlineMenuTimer;
-@property (nonatomic) NSTimeInterval lineNumUpdateInterval;
-@property (nonatomic) NSTimeInterval outlineMenuInterval;
-@property (nonatomic) NSRange hilightedLineRange;
-@property (nonatomic) NSRect hilightedLineRect;
 
 @property (nonatomic) BOOL highlightCurrentLine;
-@property (nonatomic) BOOL hadMarkedText;
 @property (nonatomic) NSInteger lastCursorLocation;
 
 
@@ -170,15 +165,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // ビューのパラメータをセット
         [[self textView] setTextContainerInset:
                 NSMakeSize((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
-                           ((CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop] +
-                            (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightBottom]) / 2
-                           )];
-        [self setLineNumUpdateTimer:nil];
-        [self setOutlineMenuTimer:nil];
-        [self setLineNumUpdateInterval:[defaults doubleForKey:k_key_lineNumUpdateInterval]];
-        [self setOutlineMenuInterval:[defaults doubleForKey:k_key_outlineMenuInterval]];
+                           (CGFloat)([defaults doubleForKey:k_key_textContainerInsetHeightTop] +
+                                     [defaults doubleForKey:k_key_textContainerInsetHeightBottom]) / 2)];
         [self setHighlightCurrentLine:[defaults boolForKey:k_key_highlightCurrentLine]];
-        [self setHadMarkedText:NO];
 
     }
     return self;
@@ -568,33 +557,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
-    if ((replacementString == nil) || // = attributesのみの変更
-            ([replacementString length] == 0) || // = 文章の削除
-            ([(CETextView *)aTextView isSelfDrop]) || // = 自己内ドラッグ&ドロップ
-            ([(CETextView *)aTextView isReadingFromPboard]) || // = ペーストまたはドロップ
-            ([[aTextView undoManager] isUndoing])) { return YES; } // = アンドゥ中
-
-    NSString *newStr = nil;
-
-    if (![replacementString isEqualToString:@"\n"]) {
-        OgreNewlineCharacter replacementLineEndingChar = [OGRegularExpression newlineCharacterInString:replacementString];
-        // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
-        if ((replacementLineEndingChar != OgreNonbreakingNewlineCharacter) &&
-            (replacementLineEndingChar != OgreLfNewlineCharacter)) {
-            // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
-            newStr = [OGRegularExpression replaceNewlineCharactersInString:replacementString
-                                                             withCharacter:OgreLfNewlineCharacter];
+    if (!replacementString ||  // = attributesのみの変更
+        ([replacementString length] == 0) ||  // = 文章の削除
+        [(CETextView *)aTextView isSelfDrop] ||  // = 自己内ドラッグ&ドロップ
+        [(CETextView *)aTextView isReadingFromPboard] ||  // = ペーストまたはドロップ
+        [[aTextView undoManager] isUndoing] ||  // = アンドゥ中
+        [replacementString isEqualToString:@"\n"])
+    {
+        return YES;
+    }
+    
+    OgreNewlineCharacter replacementLineEndingChar = [OGRegularExpression newlineCharacterInString:replacementString];
+    // 挿入／置換する文字列に改行コードが含まれていたら、LF に置換する
+    if ((replacementLineEndingChar != OgreNonbreakingNewlineCharacter) &&
+        (replacementLineEndingChar != OgreLfNewlineCharacter)) {
+        // （newStrが使用されるのはスクリプトからの入力時。キー入力は条件式を通過しない）
+        NSString *newStr = [OGRegularExpression replaceNewlineCharactersInString:replacementString
+                                                                   withCharacter:OgreLfNewlineCharacter];
+        
+        if (newStr) {
+            // （Action名は自動で付けられる？ので、指定しない）
+            [(CETextView *)aTextView doReplaceString:newStr
+                                           withRange:affectedCharRange
+                                        withSelected:NSMakeRange(affectedCharRange.location + [newStr length], 0)
+                                      withActionName:@""];
+            
+            return NO;
         }
     }
-    if (newStr) {
-        // （Action名は自動で付けられる？ので、指定しない）
-        [(CETextView *)aTextView doReplaceString:newStr
-                                       withRange:affectedCharRange
-                                    withSelected:NSMakeRange(affectedCharRange.location + [newStr length], 0)
-                                  withActionName:@""];
-
-        return NO;
-    }
+    
     return YES;
 }
 
@@ -820,11 +811,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateInfo
 // ------------------------------------------------------
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     // 行番号更新
+    NSTimeInterval lineNumUpdateInterval = [defaults doubleForKey:k_key_lineNumUpdateInterval];
     if ([self lineNumUpdateTimer]) {
-        [[self lineNumUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self lineNumUpdateInterval]]];
+        [[self lineNumUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:lineNumUpdateInterval]];
     } else {
-        [self setLineNumUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:[self lineNumUpdateInterval]
+        [self setLineNumUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:lineNumUpdateInterval
                                                                      target:self
                                                                    selector:@selector(doUpdateLineNumberWithTimer:)
                                                                    userInfo:nil
@@ -832,10 +826,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     // アウトラインメニュー項目更新
+    NSTimeInterval outlineMenuInterval = [defaults doubleForKey:k_key_outlineMenuInterval];
     if ([self outlineMenuTimer]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self outlineMenuInterval]]];
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
     } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:[self outlineMenuInterval]
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
                                                                    target:self
                                                                  selector:@selector(doUpdateOutlineMenuWithTimer:)
                                                                  userInfo:nil
@@ -875,12 +870,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         ((!NSEqualRects(attrsRect, NSZeroRect)) && ([[self string] length] > 0))) {
         // 文字背景色を塗っても右側に生じる「空白」の矩形を得る
         CGFloat additionalWidth = [[[self textView] textContainer] containerSize].width
-                        - attrsRect.size.width - attrsRect.origin.x
-                        - [[self textView] textContainerInset].width
-                        - [[[self textView] textContainer] lineFragmentPadding];
+                                  - attrsRect.size.width - attrsRect.origin.x
+                                  - [[self textView] textContainerInset].width
+                                  - [[[self textView] textContainer] lineFragmentPadding];
         NSRect additionalRect = NSMakeRect(NSMaxX(attrsRect),
-                    NSMinY(attrsRect) + [[self textView] textContainerOrigin].y, additionalWidth, 
-                    [layoutManager lineHeight]);
+                                           NSMinY(attrsRect) + [[self textView] textContainerOrigin].y, additionalWidth,
+                                           [layoutManager lineHeight]);
     //NSLog(NSStringFromRange(glyphRange));
     //NSLog(NSStringFromRect(attrsRect));
     //NSLog(NSStringFromRange(lineRange));
@@ -909,8 +904,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     [[self textStorage] addAttributes:dict range:lineRange];
     [[self textStorage] endEditing];
-    [self setHilightedLineRange:lineRange];
-    [self setHadMarkedText:[[self textView] hasMarkedText]];
 }
 
 @end

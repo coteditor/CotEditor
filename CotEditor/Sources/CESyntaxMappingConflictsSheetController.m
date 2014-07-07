@@ -59,30 +59,8 @@
     if (self) {
         [[self window] setLevel:NSModalPanelWindowLevel];
         
-        NSDictionary *errorDict = [[CESyntaxManager sharedManager] extensionConflicts];
-        NSMutableArray *conflicts = [NSMutableArray array];
-        for (NSString *key in errorDict) {
-            NSMutableArray *styles = [errorDict[key] mutableCopy];
-            NSString *primaryStyle = styles[0];
-            [styles removeObjectAtIndex:0];
-            [conflicts addObject:@{@"name": key,
-                                 @"primaryStyle": primaryStyle,
-                                 @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
-        }
-        [self setExtensionConflicts:conflicts];
-        
-        
-        errorDict = [[CESyntaxManager sharedManager] filenameConflicts];
-        conflicts = [NSMutableArray array];
-        for (NSString *key in errorDict) {
-            NSMutableArray *styles = [errorDict[key] mutableCopy];
-            NSString *primaryStyle = styles[0];
-            [styles removeObjectAtIndex:0];
-            [conflicts addObject:@{@"name": key,
-                                   @"primaryStyle": primaryStyle,
-                                   @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
-        }
-        [self setFilenameConflicts:conflicts];
+        [self setExtensionConflicts:[[self class] parseConflictDict:[[CESyntaxManager sharedManager] extensionConflicts]]];
+        [self setFilenameConflicts:[[self class] parseConflictDict:[[CESyntaxManager sharedManager] filenameConflicts]]];
     }
     return self;
 }
@@ -97,6 +75,28 @@
 // ------------------------------------------------------
 {
     [NSApp stopModal];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// conflictDict をテーブル用に変換
++ (NSArray *)parseConflictDict:(NSDictionary *)conflictDict
+// ------------------------------------------------------
+{
+    NSMutableArray *conflicts = [NSMutableArray array];
+    for (NSString *key in conflictDict) {
+        NSMutableArray *styles = [conflictDict[key] mutableCopy];
+        NSString *primaryStyle = styles[0];
+        [styles removeObjectAtIndex:0];
+        [conflicts addObject:@{@"name": key,
+                               @"primaryStyle": primaryStyle,
+                               @"doubledStyles":  [styles componentsJoinedByString:@", "]}];
+    }
+    
+    return conflicts;
 }
 
 @end

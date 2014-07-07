@@ -189,10 +189,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)IANACharSetName
 // ------------------------------------------------------
 {
-    NSString *name = [self currentIANACharSetName];
-
-    // 得られなければ空文字を返す
-    return name ? : @"";
+    return [self currentIANACharSetName] ? : @"";  // 得られなければ空文字を返す
 }
 
 
@@ -461,13 +458,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     NSArray *rangeArray = arguments[@"range"];
-    NSInteger location, length;
-    NSRange range;
 
     if ([rangeArray count] == 0) { return [NSString string]; }
-    location = [rangeArray[0] integerValue];
-    length = ([rangeArray count] > 1) ? [rangeArray[1] integerValue] : 1;
-    range = [self rangeInTextViewWithLocation:location length:length];
+    NSInteger location = [rangeArray[0] integerValue];
+    NSInteger length = ([rangeArray count] > 1) ? [rangeArray[1] integerValue] : 1;
+    NSRange range = [self rangeInTextViewWithLocation:location length:length];
 
     if (NSEqualRanges(NSMakeRange(0, 0), range)) {
         return @"";

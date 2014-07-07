@@ -54,10 +54,7 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"EncodingListSheet"];
-    if (self) {
-    }
-    return self;
+    return [super initWithWindowNibName:@"EncodingListSheet"];
 }
 
 

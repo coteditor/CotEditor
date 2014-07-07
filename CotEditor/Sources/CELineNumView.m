@@ -195,7 +195,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             [self setWidth:curWidth]; // set a wider width if needed.
         }
-        numPoint = NSMakePoint((curWidth - reqWidth - k_lineNumPadding),
+        numPoint = NSMakePoint(curWidth - reqWidth - k_lineNumPadding,
                                crDistance - numRect.origin.y + adj);
         [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the last line number.
     }

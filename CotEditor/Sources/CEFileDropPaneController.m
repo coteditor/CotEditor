@@ -101,7 +101,6 @@
             NSCharacterSet *trimSet = [NSCharacterSet characterSetWithCharactersInString:@"./ \t\r\n"];
             NSArray *components = [extension componentsSeparatedByString:@","];
             NSMutableArray *newComponents = [NSMutableArray array];
-            NSString *newExtension;
             
             for (NSString *component in components) {
                 NSString *partStr = [component stringByTrimmingCharactersInSet:trimSet];
@@ -109,7 +108,7 @@
                     [newComponents addObject:partStr];
                 }
             }
-            newExtension = [newComponents componentsJoinedByString:@", "];
+            NSString *newExtension = [newComponents componentsJoinedByString:@", "];
             // 有効な文字列が生成できたら、UserDefaults に書き戻し、直ちに反映させる
             if ([newExtension length] > 0) {
                 [[[self fileDropController] selection] setValue:newExtension forKey:k_key_fileDropExtensions];

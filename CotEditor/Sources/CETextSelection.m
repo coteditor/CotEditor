@@ -146,11 +146,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)range
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [[[self document] editorView] selectedRange];
-    NSArray *rangeArray = @[@(selectedRange.location),
-                            @(selectedRange.length)];
+    NSRange range = [[[self document] editorView] selectedRange];
 
-    return rangeArray;
+    return @[@(range.location),
+             @(range.length)];
 }
 
 
@@ -174,11 +173,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSRange selectedRange = [[[self document] editorView] selectedRange];
     NSString *string = [[[self document] editorView] stringForSave];
-    NSUInteger lines = 0, currentLine = 0, index = 0, lastLine = 0, length = [string length];
-    NSArray *rangeArray;
+    NSUInteger currentLine = 0, lastLine = 0, length = [string length];
 
     if (length > 0) {
-        for (index = 0, lines = 0; index < length; lines++) {
+        for (NSUInteger index = 0, lines = 0; index < length; lines++) {
             if (index <= selectedRange.location) {
                 currentLine = lines + 1;
             }
@@ -188,10 +186,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             index = NSMaxRange([string lineRangeForRange:NSMakeRange(index, 0)]);
         }
     }
-    rangeArray = @[@(currentLine),
-                   @(lastLine - currentLine + 1)];
     
-    return rangeArray;
+    return @[@(currentLine),
+             @(lastLine - currentLine + 1)];;
 }
 
 

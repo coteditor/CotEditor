@@ -197,12 +197,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
     // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
-    if (![self hasMarkedText] && (charIgnoringMod != nil)) {
+    if (![self hasMarkedText] && charIgnoringMod) {
         NSUInteger modFlags = [theEvent modifierFlags];
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
                                                                                        modifierFrags:modFlags];
         NSInteger length = [selectorStr length];
-        if ((selectorStr != nil) && (length > 0)) {
+        if (selectorStr && (length > 0)) {
             if (([selectorStr hasPrefix:@"insertCustomText"]) && (length == 20)) {
                 NSInteger theNum = [[selectorStr substringFromIndex:17] integerValue];
                 [self insertCustomTextWithPatternNum:theNum];
@@ -573,11 +573,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
     NSCharacterSet *charSet = [(CESubSplitView *)[self delegate] firstCompletionCharacterSet];
-    NSInteger begin = range.location;
 
     if (!charSet || [string length] == 0) { return range; }
 
     // 入力補完文字列の先頭となりえない文字が出てくるまで補完文字列対象を広げる
+    NSInteger begin = range.location;
     for (NSInteger i = range.location; i >= 0; i--) {
         if ([charSet characterIsMember:[string characterAtIndex:i]]) {
             begin = i;
@@ -646,7 +646,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 完全にスクロールさせる
     // （setTextContainerInset で上下に空白領域を挿入している関係で、ちゃんとスクロールしない場合があることへの対策）
     NSUInteger length = [[self string] length];
-    NSRect rect = NSZeroRect, convertedRect;
+    NSRect rect = NSZeroRect;
     
     if (length == range.location) {
         rect = [[self layoutManager] extraLineFragmentRect];
@@ -665,7 +665,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     if (NSEqualRects(rect, NSZeroRect)) { return; }
     
-    convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //subsplitview
+    NSRect convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //subsplitview
     if ((convertedRect.origin.y >= 0) &&
         (convertedRect.origin.y < [[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightBottom]))
     {
@@ -848,10 +848,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)readablePasteboardTypes
 // ------------------------------------------------------
 {
-    NSMutableArray *types = [NSMutableArray arrayWithArray:[super readablePasteboardTypes]];
-
-    [types addObject:NSFilenamesPboardType];
-    return types;
+    return [[super readablePasteboardTypes] arrayByAddingObject:NSFilenamesPboardType];
 }
 
 
@@ -860,7 +857,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)pasteboardTypesForString
 // ------------------------------------------------------
 {
-    return @[NSStringPboardType, @"public.utf8-plain-text"];
+    return @[NSPasteboardTypeString, @"public.utf8-plain-text"];
 }
 
 
@@ -889,8 +886,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSArray *extensions = [item[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
             if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
                 NSString *string = [self string];
-                NSUInteger length = [string length];
-                if (length > 0) {
+                if ([string length] > 0) {
                     // 挿入ポイントを自前で描画する
                     CGFloat partialFraction;
                     NSLayoutManager *layoutManager = [self layoutManager];
@@ -898,7 +894,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                               inTextContainer:[self textContainer]
                                                fractionOfDistanceThroughGlyph:&partialFraction];
                     NSPoint glypthIndexPoint;
-                    NSRect lineRect, insertionRect;
                     if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
                             NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
                                                                         inTextContainer:[self textContainer]];
@@ -907,8 +902,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     } else {
                         glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
                     }
-                    lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
-                    insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
+                    NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
+                    NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
                     if (!NSEqualRects([self insertionRect], insertionRect)) {
                         // 古い自前挿入ポイントが描かれたままになることへの対応
                         [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
@@ -952,9 +947,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // アンドゥの登録で文字列範囲の計算が面倒なので、ここでPasteboardを書き換えてしまう）
         NSPasteboard *pboard = [sender draggingPasteboard];
         NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
-        if (pboardType != nil) {
+        if (pboardType) {
             NSString *string = [pboard stringForType:pboardType];
-            if (string != nil) {
+            if (string) {
                 OgreNewlineCharacter newlineChar = [OGRegularExpression newlineCharacterInString:string];
                 if ((newlineChar != OgreNonbreakingNewlineCharacter) &&
                     (newlineChar != OgreLfNewlineCharacter)) {
@@ -1019,13 +1014,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSURL *documentURL = [[[[self window] windowController] document] fileURL];
-        NSString *relativePath, *fileName, *fileNoSuffix, *dirName;
-        NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
-        NSString *stringToDrop;
 
         for (NSString *path in files) {
             NSURL *absoluteURL = [NSURL fileURLWithPath:path];
-            stringToDrop = nil;
+            NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
+            NSString *stringToDrop = nil;
             
             selectedRange = [self selectedRange];
             for (NSDictionary *definition in fileDropDefs) {
@@ -1041,6 +1034,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
             }
             if ([stringToDrop length] > 0) {
+                NSString *relativePath;
                 if (documentURL && ![documentURL isEqual:absoluteURL]) {
                     NSArray *docPathComponents = [documentURL pathComponents];
                     NSArray *droppedPathComponents = [absoluteURL pathComponents];
@@ -1067,9 +1061,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     relativePath = [absoluteURL path];
                 }
                 
-                fileName = [absoluteURL lastPathComponent];
-                fileNoSuffix = [fileName stringByDeletingPathExtension];
-                dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
+                NSString *fileName = [absoluteURL lastPathComponent];
+                NSString *fileNoSuffix = [fileName stringByDeletingPathExtension];
+                NSString *dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
                 
                 stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
                                                                        withString:[absoluteURL path]];
@@ -1127,151 +1121,87 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-	if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {// If it's not a double-click return unchanged
+	if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {  // If it's not a double-click return unchanged
 		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
 	}
-	
-	NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
-	NSInteger originalLocation = location;
 
 	NSString *completeString = [self string];
-	unichar characterToCheck = [completeString characterAtIndex:location];
-	NSUInteger skipMatchingBrace = 0;
 	NSInteger lengthOfString = [completeString length];
 	if (lengthOfString == (NSInteger)proposedSelRange.location) { // To avoid crash if a double-click occurs after any text
 		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
 	}
 	
-	BOOL triedToMatchBrace = NO;
-	
-	if (characterToCheck == ')') {
-		triedToMatchBrace = YES;
-		while (location--) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == '(') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(location, originalLocation - location + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == ')') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
-	} else if (characterToCheck == '}') {
-		triedToMatchBrace = YES;
-		while (location--) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == '{') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(location, originalLocation - location + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == '}') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
-	} else if (characterToCheck == ']') {
-		triedToMatchBrace = YES;
-		while (location--) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == '[') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(location, originalLocation - location + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == ']') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
-	} else if (characterToCheck == '>') {
-		triedToMatchBrace = YES;
-		while (location--) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == '<') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(location, originalLocation - location + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == '>') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
-	} else if (characterToCheck == '(') {
-		triedToMatchBrace = YES;
-		while (++location < lengthOfString) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == ')') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(originalLocation, location - originalLocation + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == '(') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
-	} else if (characterToCheck == '{') {
-		triedToMatchBrace = YES;
-		while (++location < lengthOfString) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == '}') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(originalLocation, location - originalLocation + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == '{') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
-	} else if (characterToCheck == '[') {
-		triedToMatchBrace = YES;
-		while (++location < lengthOfString) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == ']') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(originalLocation, location - originalLocation + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == '[') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
-	} else if (characterToCheck == '<') {
-		triedToMatchBrace = YES;
-		while (++location < lengthOfString) {
-			characterToCheck = [completeString characterAtIndex:location];
-			if (characterToCheck == '>') {
-				if (!skipMatchingBrace) {
-					return NSMakeRange(originalLocation, location - originalLocation + 1);
-				} else {
-					skipMatchingBrace--;
-				}
-			} else if (characterToCheck == '<') {
-				skipMatchingBrace++;
-			}
-		}
-		NSBeep();
+	NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
+    
+    unichar beginBrace, endBrace;
+    BOOL isEndBrace = NO;
+    switch ([completeString characterAtIndex:location]) {
+        case ')':
+            isEndBrace = YES;
+        case '(':
+            beginBrace = '(';
+            endBrace = ')';
+            break;
+            
+        case '}':
+            isEndBrace = YES;
+        case '{':
+            beginBrace = '{';
+            endBrace = '}';
+            break;
+            
+        case ']':
+            isEndBrace = YES;
+        case '[':
+            beginBrace = '[';
+            endBrace = ']';
+            break;
+            
+        case '>':
+            isEndBrace = YES;
+        case '<':
+            beginBrace = '<';
+            endBrace = '>';
+            break;
+            
+        default:
+            return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
     }
+    
+	NSInteger originalLocation = location;
+	NSUInteger skipMatchingBrace = 0;
+    
+    if (isEndBrace) {
+        while (location--) {
+            unichar characterToCheck = [completeString characterAtIndex:location];
+            if (characterToCheck == beginBrace) {
+                if (!skipMatchingBrace) {
+                    return NSMakeRange(location, originalLocation - location + 1);
+                } else {
+                    skipMatchingBrace--;
+                }
+            } else if (characterToCheck == endBrace) {
+                skipMatchingBrace++;
+            }
+        }
+    } else {
+        while (++location < lengthOfString) {
+            unichar characterToCheck = [completeString characterAtIndex:location];
+            if (characterToCheck == endBrace) {
+                if (!skipMatchingBrace) {
+                    return NSMakeRange(originalLocation, location - originalLocation + 1);
+                } else {
+                    skipMatchingBrace--;
+                }
+            } else if (characterToCheck == beginBrace) {
+                skipMatchingBrace++;
+            }
+        }
+    }
+    NSBeep();
 
 	// If it has a found a "starting" brace but not found a match, a double-click should only select the "starting" brace and not what it usually would select at a double-click
-	if (triedToMatchBrace) {
-		return [super selectionRangeForProposedRange:NSMakeRange(proposedSelRange.location, 1) granularity:NSSelectByCharacter];
-	} else {
-		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
-	}
+    return [super selectionRangeForProposedRange:NSMakeRange(proposedSelRange.location, 1) granularity:NSSelectByCharacter];
 }
 
 
@@ -1375,8 +1305,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    NSUInteger length = [self selectedRange].length;
-
     if (([menuItem action] == @selector(exchangeLowercase:)) || 
             ([menuItem action] == @selector(exchangeUppercase:)) || 
             ([menuItem action] == @selector(exchangeCapitalized:)) || 
@@ -1390,7 +1318,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             ([menuItem action] == @selector(unicodeNormalizationNFKC:)) || 
             ([menuItem action] == @selector(unicodeNormalization:)))
     {
-        return (length > 0);
+        return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
 
     } else if ([menuItem action] == @selector(setLineSpacingFromMenu:)) {
@@ -1667,7 +1595,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *beginDelimiter, *endDelimiter;
     NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] ? @" " : @"";
     NSString *newString;
-    NSRange selected;
     NSUInteger removedChars = 0;
     
     // block comment
@@ -1699,7 +1626,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // remove comment delimiters
         NSArray *lines = [target componentsSeparatedByString:@"\n"];
         NSMutableArray *newLines = [NSMutableArray array];
-        BOOL isFirstLine = YES;
         for (NSString *line in lines) {
             NSString *newLine = [line copy];
             if ([line hasPrefix:beginDelimiter]) {
@@ -1769,14 +1695,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-
-    if (selectedRange.length > 0) {
-        NSString *newStr = [[[self string] substringWithRange:selectedRange] lowercaseString];
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"To Lowercase", nil) scroll:YES];
-        }
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *newStr = [[[self string] substringWithRange:selectedRange] lowercaseString];
+    if (newStr) {
+        [self doInsertString:newStr withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(@"To Lowercase", nil) scroll:YES];
     }
 }
 
@@ -1787,14 +1713,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-
-    if (selectedRange.length > 0) {
-        NSString *newStr = [[[self string] substringWithRange:selectedRange] uppercaseString];
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"To Uppercase", nil) scroll:YES];
-        }
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *newStr = [[[self string] substringWithRange:selectedRange] uppercaseString];
+    if (newStr) {
+        [self doInsertString:newStr withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(@"To Uppercase", nil) scroll:YES];
     }
 }
 
@@ -1805,14 +1731,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-
-    if (selectedRange.length > 0) {
-        NSString *newStr = [[[self string] substringWithRange:selectedRange] capitalizedString];
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange
-                    withSelected:newRange withActionName:NSLocalizedString(@"To Capitalized", nil) scroll:YES];
-        }
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *newStr = [[[self string] substringWithRange:selectedRange] capitalizedString];
+    if (newStr) {
+        [self doInsertString:newStr withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(@"To Capitalized", nil) scroll:YES];
     }
 }
 
@@ -1823,14 +1749,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-
-    if (selectedRange.length > 0) {
-        NSString *newStr = [self halfToFullwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"To Fullwidth (ja_JP/Roman)", nil) scroll:YES];
-        }
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *newStr = [self halfToFullwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
+    if (newStr) {
+        [self doInsertString:newStr withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(@"To Fullwidth (ja_JP/Roman)", nil) scroll:YES];
     }
 }
 
@@ -1841,14 +1767,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-
-    if (selectedRange.length > 0) {
-        NSString *newStr = [self fullToHalfwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"To Halfwidth (ja_JP/Roman)", nil) scroll:YES];
-        }
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *newStr = [self fullToHalfwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
+    if (newStr) {
+        [self doInsertString:newStr withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(@"To Halfwidth (ja_JP/Roman)", nil) scroll:YES];
     }
 }
 
@@ -1859,14 +1785,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-
-    if (selectedRange.length > 0) {
-        NSString *newStr = [self hiraganaToKatakanaStringFrom:[[self string] substringWithRange:selectedRange]];
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:NSLocalizedString(@"Hiragana to Katakana (ja_JP)",@"") scroll:YES];
-        }
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *newStr = [self hiraganaToKatakanaStringFrom:[[self string] substringWithRange:selectedRange]];
+    if (newStr) {
+        [self doInsertString:newStr withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(@"Hiragana to Katakana (ja_JP)",@"") scroll:YES];
     }
 }
 
@@ -1877,14 +1803,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [self selectedRange];
-
-    if (selectedRange.length > 0) {
-        NSString *newStr = [self katakanaToHiraganaStringFrom:[[self string] substringWithRange:selectedRange]];
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange
-                    withSelected:newRange withActionName:NSLocalizedString(@"Katakana to Hiragana (ja_JP)",@"") scroll:YES];
-        }
+    
+    if (selectedRange.length == 0) { return; }
+    
+    NSString *newStr = [self katakanaToHiraganaStringFrom:[[self string] substringWithRange:selectedRange]];
+    if (newStr) {
+        [self doInsertString:newStr withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(@"Katakana to Hiragana (ja_JP)",@"") scroll:YES];
     }
 }
 
@@ -1932,6 +1858,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSRange selectedRange = [self selectedRange];
     NSInteger switchType;
+    
+    if (selectedRange.length == 0) { return; }
 
     if ([sender isKindOfClass:[NSMenuItem class]]) {
         switchType = [sender tag];
@@ -1940,35 +1868,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         return;
     }
-    if (selectedRange.length > 0) {
-        NSString *actionName = nil, *newStr = nil, *originalStr = [[self string] substringWithRange:selectedRange];
-
-        switch (switchType) {
+    
+    NSString *originalStr = [[self string] substringWithRange:selectedRange];
+    NSString *actionName = nil, *newStr = nil;
+    
+    switch (switchType) {
         case 0: // from D
             newStr = [originalStr decomposedStringWithCanonicalMapping];
-            actionName = [NSString stringWithString:NSLocalizedString(@"NFD", nil)];
+            actionName = @"NFD";
             break;
         case 1: // from C
             newStr = [originalStr precomposedStringWithCanonicalMapping];
-            actionName = [NSString stringWithString:NSLocalizedString(@"NFC", nil)];
+            actionName = @"NFC";
             break;
         case 2: // from KD
             newStr = [originalStr decomposedStringWithCompatibilityMapping];
-            actionName = [NSString stringWithString:NSLocalizedString(@"NFKD", nil)];
+            actionName = @"NFKD";
             break;
         case 3: // from KC
             newStr = [originalStr precomposedStringWithCompatibilityMapping];
-            actionName = [NSString stringWithString:NSLocalizedString(@"NFKC", nil)];
+            actionName = @"NFKC";
             break;
         default:
             break;
             return;
-        }
-        if (newStr) {
-            NSRange newRange = NSMakeRange(selectedRange.location, [newStr length]);
-            [self doInsertString:newStr withRange:selectedRange 
-                    withSelected:newRange withActionName:actionName scroll:YES];
-        }
+    }
+    if (newStr) {
+        [self doInsertString:newStr
+                   withRange:selectedRange
+                withSelected:NSMakeRange(selectedRange.location, [newStr length])
+              withActionName:NSLocalizedString(actionName, nil)
+                      scroll:YES];
     }
 }
 
@@ -2132,8 +2062,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([latinCharSet characterIsMember:theChar]) {
             [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
 // 半角カナには未対応（2/21） *********************
-//        } else if ([theHankakuKanaCharSet characterIsMember:theChar]) {
-//            [fullString appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
+//        } else if ([hankakuKanaCharSet characterIsMember:theChar]) {
+//            [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
         } else {
             [fullRoman appendString:[halfRoman substringWithRange:NSMakeRange(i, 1)]];
         }
@@ -2242,7 +2172,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceLineEndingToDocCharInPboard:(NSPasteboard *)pboard
 // ------------------------------------------------------
 {
-    if (pboard == nil) { return; }
+    if (!pboard) { return; }
 
     OgreNewlineCharacter newlineChar = [[(CESubSplitView *)[self delegate] editorView] lineEndingCharacter];
 

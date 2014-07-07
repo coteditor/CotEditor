@@ -32,7 +32,6 @@
  */
 
 #import "CEEditPaneController.h"
-#import "CEDocument.h"
 #import "CEUtils.h"
 #import "constants.h"
 
@@ -70,24 +69,23 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // 不可視文字表示ポップアップ用の選択肢をセットする
-        NSUInteger i;
         NSMutableArray *spaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleSpaceCharList];
-        for (i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
+        for (NSUInteger i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
             [spaces addObject:[CEUtils invisibleSpaceCharacter:i]];
         }
         [self setInvisibleSpaces:spaces];
         NSMutableArray *tabs = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleTabCharList];
-        for (i = 0; i < k_size_of_invisibleTabCharList; i++) {
+        for (NSUInteger i = 0; i < k_size_of_invisibleTabCharList; i++) {
             [tabs addObject:[CEUtils invisibleTabCharacter:i]];
         }
         [self setInvisibleTabs:tabs];
         NSMutableArray *newLines = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleNewLineCharList];
-        for (i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
+        for (NSUInteger i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
             [newLines addObject:[CEUtils invisibleNewLineCharacter:i]];
         }
         [self setInvisibleNewLines:newLines];
         NSMutableArray *fullWidthSpaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleFullwidthSpaceCharList];
-        for (i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
+        for (NSUInteger i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
             [fullWidthSpaces addObject:[CEUtils invisibleFullwidthSpaceCharacter:i]];
         }
         [self setInvisibleFullWidthSpaces:fullWidthSpaces];
@@ -107,41 +105,6 @@
         [[self smartQuoteCheckButton] setState:NSOffState];
         [[self smartQuoteCheckButton] setTitle:[NSString stringWithFormat:@"%@%@", [[self smartQuoteCheckButton] title],
                                                 NSLocalizedString(@" (on Mavericks and later)", nil)]];
-    }
-}
-
-
-
-#pragma mark Action Messages
-
-//=======================================================
-// Action messages
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// すべてのテキストビューのスマートインサート／デリート実行を設定
-- (IBAction)setSmartInsertAndDeleteToAllTextView:(id)sender
-// ------------------------------------------------------
-{
-    BOOL isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_smartInsertAndDelete];
-    
-    for (CEDocument *document in [NSApp orderedDocuments]) {
-        [[[[document windowController] editorView] textView] setSmartInsertDeleteEnabled:isEnabled];
-    }
-}
-
-
-// ------------------------------------------------------
-/// すべてのテキストビューのスマート引用符／ダッシュ実行を設定
-- (IBAction)setSmartQuotesToAllTextView:(id)sender
-// ------------------------------------------------------
-{
-    BOOL isEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartQuotes];
-    
-    for (CEDocument *document in [NSApp orderedDocuments]) {
-        [[[[document windowController] editorView] textView] setAutomaticDashSubstitutionEnabled:isEnabled];
-        [[[[document windowController] editorView] textView] setAutomaticQuoteSubstitutionEnabled:isEnabled];
     }
 }
 

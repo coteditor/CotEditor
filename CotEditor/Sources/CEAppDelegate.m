@@ -73,9 +73,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // Encoding list
-    NSUInteger size = k_size_of_CFStringEncodingList;
-    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:size];
-    for (NSUInteger i = 0; i < size; i++) {
+    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:k_size_of_CFStringEncodingList];
+    for (NSUInteger i = 0; i < k_size_of_CFStringEncodingList; i++) {
         [encodings addObject:@(k_CFStringEncodingList[i])];
     }
     
@@ -597,13 +596,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                         create:YES
                                          error:nil]
                   URLByAppendingPathComponent:@"CotEditor"];
-    BOOL isDirectory = NO, success = NO;
+    BOOL isDirectory = NO;
 
     if (![fileManager fileExistsAtPath:[URL path] isDirectory:&isDirectory]) {
-        success = [fileManager createDirectoryAtURL:URL
-                        withIntermediateDirectories:YES
-                                         attributes:nil
-                                              error:nil];
+        BOOL success = [fileManager createDirectoryAtURL:URL
+                             withIntermediateDirectories:YES
+                                              attributes:nil
+                                                   error:nil];
         if (!success) {
             NSLog(@"Failed to create support directory for CotEditor...");
         }
@@ -620,10 +619,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
     NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
-    NSMenuItem *item;
     
     for (NSNumber *encodingNumber in encodings) {
         CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
+        NSMenuItem *item;
         if (cfEncoding == kCFStringEncodingInvalidId) {
             item = [NSMenuItem separatorItem];
         } else {
@@ -705,10 +704,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"THEME"];
-    NSMenuItem *menuItem;
     
     for (NSString *themeName in themeNames) {
-        menuItem = [[NSMenuItem alloc] initWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
         [menu addItem:menuItem];
     }
     

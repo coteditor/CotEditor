@@ -78,7 +78,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (([self keyCatchMode] == CECatchMenuShortCutMode) && ([anEvent type] == NSKeyDown)) {
         NSString *charIgnoringMod = [anEvent charactersIgnoringModifiers];
-        if ((charIgnoringMod != nil) && ([charIgnoringMod length] > 0)) {
+        if ([charIgnoringMod length] > 0) {
             unichar theChar = [charIgnoringMod characterAtIndex:0];
             NSUInteger modifierFlags = [anEvent modifierFlags];
             NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];

@@ -230,9 +230,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (BOOL)existsStyleFileWithStyleName:(NSString *)styleName
 //------------------------------------------------------
 {
-    NSURL *URL = [self URLForUserStyle:styleName];
-
-    return [URL checkResourceIsReachableAndReturnError:nil];
+    return [[self URLForUserStyle:styleName] checkResourceIsReachableAndReturnError:nil];
 }
 
 
@@ -310,11 +308,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 {
     BOOL success = NO;
     if ([styleName length] < 1) { return success; }
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSURL *URL = [self URLForUserStyle:styleName];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [fileManager removeItemAtURL:URL error:nil];
+        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
         if (success) {
             // 内部で持っているキャッシュ用データを更新
             [self updateCache];
@@ -347,14 +344,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //------------------------------------------------------
 {
     NSString *baseName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *copyString;
-    NSRange copiedStrRange;
     BOOL copiedState = NO;
-    NSUInteger i = 2;
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@" copy$", nil)
                                                                            options:0 error:nil];
-    copiedStrRange = [regex rangeOfFirstMatchInString:baseName options:0 range:NSMakeRange(0, [baseName length])];
+    NSRange copiedStrRange = [regex rangeOfFirstMatchInString:baseName options:0 range:NSMakeRange(0, [baseName length])];
     if (copiedStrRange.location != NSNotFound) {
         copiedState = YES;
     } else {
@@ -364,14 +358,16 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             copiedState = YES;
         }
     }
+    NSString *copyString;
     if (copiedState) {
         copyString = [NSString stringWithFormat:@"%@%@",
-                    [baseName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
-                    NSLocalizedString(@" copy", nil)];
+                      [baseName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
+                      NSLocalizedString(@" copy", nil)];
     } else {
         copyString = [NSString stringWithFormat:@"%@%@", baseName, NSLocalizedString(@" copy", nil)];
     }
     NSMutableString *copiedStyleName = [copyString mutableCopy];
+    NSUInteger i = 2;
     while ([[self styleNames] containsObject:copiedStyleName]) {
         [copiedStyleName setString:[NSString stringWithFormat:@"%@ %tu", copyString, i]];
         i++;
@@ -443,10 +439,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 // ------------------------------------------------------
 {
     NSMutableArray *errorMessages = [NSMutableArray array];
-    NSArray *array;
-    NSString *beginStr, *endStr, *tmpBeginStr = nil, *tmpEndStr = nil;
-    NSString *arrayNameDeletingArray = nil;
-    NSInteger capCount;
+    NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
     NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(k_size_of_allColoringArrays + 1)];
@@ -456,12 +449,12 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     [syntaxDictKeys addObject:k_SCKey_outlineMenuArray];
     
     for (NSString *key in syntaxDictKeys) {
-        array = style[key];
-        arrayNameDeletingArray = [key substringToIndex:([key length] - 5)];
+        NSArray *array = style[key];
+        NSString *arrayNameDeletingArray = [key substringToIndex:([key length] - 5)];
         
         for (NSDictionary *dict in array) {
-            beginStr = dict[k_SCKey_beginString];
-            endStr = dict[k_SCKey_endString];
+            NSString *beginStr = dict[k_SCKey_beginString];
+            NSString *endStr = dict[k_SCKey_endString];
             
             if ([tmpBeginStr isEqualToString:beginStr] &&
                 ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
@@ -470,7 +463,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                           arrayNameDeletingArray, beginStr]];
                 
             } else if ([dict[k_SCKey_regularExpression] boolValue]) {
-                capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
+                NSInteger capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
                 if (capCount == -1) { // エラーのとき
                     [errorMessages addObject:[NSString stringWithFormat:
                                               @"%@ :(Begin string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
@@ -481,7 +474,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                               [error userInfo][RKLICURegexPostContextErrorKey]]];
                 }
                 if (endStr != nil) {
-                    capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
+                    NSInteger capCount = [endStr captureCountWithOptions:RKLNoOptions error:&error];
                     if (capCount == -1) { // エラーのとき
                         [errorMessages addObject:[NSString stringWithFormat:
                                                   @"%@ :(End string) > %@\n  >>> Error \"%@\" in column %@: %@<<HERE>>%@",
@@ -571,7 +564,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
 
     // ディレクトリの存在チェック
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDirectory = NO, success = NO;
     BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
     if (!exists) {
@@ -622,7 +615,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     }
     
     // 定義をアルファベット順にソートする
-    NSArray *sortedKeys = [[styles allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *sortedKeys = [[styles allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     NSArray *sortedStyles = [styles objectsForKeys:sortedKeys notFoundMarker:[NSNull null]];
     
     [self setStyles:sortedStyles];
@@ -760,7 +753,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSURL *migrationDirURL = [[[self userStyleDirectoryURL] URLByDeletingLastPathComponent]
                               URLByAppendingPathComponent:@"SyntaxColorings (old)"];
     
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     
     for (NSString *styleName in [self bundledStyleNames]) {
         if ([self existsDuplicatedStyleInUserDomain:styleName]) {

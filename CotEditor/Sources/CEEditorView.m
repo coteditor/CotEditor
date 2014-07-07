@@ -83,11 +83,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self = [super initWithFrame:frameRect];
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
         _canActivateShowInvisibles = ([defaults boolForKey:k_key_showInvisibleSpace] ||
                                       [defaults boolForKey:k_key_showInvisibleTab] ||
                                       [defaults boolForKey:k_key_showInvisibleNewLine] ||
                                       [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
                                       [defaults boolForKey:k_key_showOtherInvisibleChars]);
+        
+        _basicColoringDelay = [defaults doubleForKey:k_key_basicColoringDelay];
+        _firstColoringDelay = [defaults doubleForKey:k_key_firstColoringDelay];
+        _secondColoringDelay = [defaults doubleForKey:k_key_secondColoringDelay];
+        _infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
+        _incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
         
         [self setupViews];
         
@@ -303,9 +310,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                    withCharacter:[self lineEndingCharacter]];
         NSString *lenStr = [self substringWithSelectionForSave];
 
-        return (NSMakeRange([locStr length], [lenStr length]));
+        return NSMakeRange([locStr length], [lenStr length]);
     }
-    return ([[self textView] selectedRange]);
+    return [[self textView] selectedRange];
 }
 
 
@@ -349,6 +356,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     _showLineNum = showLineNum;
+    
     [[self splitView] setShowLineNum:showLineNum];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showLineNumItemID setOn:showLineNum];
 }
@@ -359,11 +367,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)showStatusBar
 // ------------------------------------------------------
 {
-    if ([self statusBar]) {
-        return [[self statusBar] showStatusBar];
-    } else {
-        return NO;
-    }
+    return [self statusBar] ? [[self statusBar] showStatusBar] : NO;
 }
 
 
@@ -372,13 +376,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setShowStatusBar:(BOOL)showStatusBar
 // ------------------------------------------------------
 {
-    if ([self statusBar]) {
-        [[self statusBar] setShowStatusBar:showStatusBar];
-        [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
-        [self updateLineEndingsInStatusAndInfo:NO];
-        if (![self infoUpdateTimer]) {
-            [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
-        }
+    if (![self statusBar]) { return; }
+    
+    [[self statusBar] setShowStatusBar:showStatusBar];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
+    [self updateLineEndingsInStatusAndInfo:NO];
+    if (![self infoUpdateTimer]) {
+        [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
     }
 }
 
@@ -389,6 +393,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     _showNavigationBar = showNavigationBar;
+    
     [[self splitView] setShowNavigationBar:showNavigationBar];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showNavigationBarItemID setOn:showNavigationBar];
 }
@@ -400,6 +405,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     _wrapLines = wrapLines;
+    
     [[self splitView] setWrapLines:wrapLines];
     [self setNeedsDisplay:YES];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_wrapLinesItemID setOn:wrapLines];
@@ -522,16 +528,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxStyleName:(NSString *)name recolorNow:(BOOL)recolorNow
 // ------------------------------------------------------
 {
-    if ([self syntax]) {
-        if (![[[self syntax] syntaxStyleName] isEqualToString:name]) {
-            [[self splitView] setSyntaxWithName:name];
-            [self setIsColoring:![[self syntax] isNone]];
-        }
-        if (recolorNow) {
-            [self recolorAllString];
-            if ([self showNavigationBar]) {
-                [[self splitView] updateAllOutlineMenu];
-            }
+    if (![self syntax]) { return; }
+    
+    if (![[[self syntax] syntaxStyleName] isEqualToString:name]) {
+        [[self splitView] setSyntaxWithName:name];
+        [self setIsColoring:![[self syntax] isNone]];
+    }
+    if (recolorNow) {
+        [self recolorAllString];
+        if ([self showNavigationBar]) {
+            [[self splitView] updateAllOutlineMenu];
         }
     }
 }
@@ -587,12 +593,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     BOOL updatesStatusBar = [[self statusBar] showStatusBar];
-    BOOL updatesDrawer = (doUpdate) ? YES : [[self windowController] needsInfoDrawerUpdate];
+    BOOL updatesDrawer = doUpdate ? YES : [[self windowController] needsInfoDrawerUpdate];
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
     NSString *wholeString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [wholeString length];
@@ -619,6 +624,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         // 単語数カウント
         if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarWords]) {
+            NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
             numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
             if (hasSelection) {
                 numberOfSelectedWords = [spellChecker countWordsInString:[self substringWithSelection]
@@ -652,8 +658,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self statusBar] updateLeftField];
     }
     if (updatesDrawer) {
-        NSString *linesInfo, *charsInfo, *selectInfo, *wordsInfo, *byteLengthInfo, *singleCharInfo;
-        
+        NSString *singleCharInfo;
         if (selectedRange.length == 2) {
             unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
             unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
@@ -670,25 +675,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSUInteger selectedByteLength = [[wholeString substringWithRange:selectedRange]
                                          lengthOfBytesUsingEncoding:[[self document] encoding]];
         
-        linesInfo = [NSString stringWithFormat:@"%tu", numberOfLines];
+        NSString *linesInfo = [NSString stringWithFormat:@"%tu", numberOfLines];
         if (hasSelection) {
             linesInfo = [linesInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedLines];
         }
         [[self windowController] setLinesInfo:linesInfo];
         
-        charsInfo = [NSString stringWithFormat:@"%tu", length];
+        NSString *charsInfo = [NSString stringWithFormat:@"%tu", length];
         if (hasSelection) {
             charsInfo = [charsInfo stringByAppendingFormat:@" (%tu)", selectedRange.length];
         }
         [[self windowController] setCharsInfo:charsInfo];
         
-        byteLengthInfo = [NSString stringWithFormat:@"%tu", byteLength];
+        NSString *byteLengthInfo = [NSString stringWithFormat:@"%tu", byteLength];
         if (hasSelection) {
             byteLengthInfo = [byteLengthInfo stringByAppendingFormat:@" (%tu)", selectedByteLength];
         }
         [[self windowController] setByteLengthInfo:byteLengthInfo];
         
-        wordsInfo = [NSString stringWithFormat:@"%tu", numberOfWords];
+        NSString *wordsInfo = [NSString stringWithFormat:@"%tu", numberOfWords];
         if (hasSelection) {
             wordsInfo = [wordsInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedWords];
         }
@@ -1070,16 +1075,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     BOOL isSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
     CESubSplitView *firstResponderSubSplitView = (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate];
-    CESubSplitView *subSplitViewToClose = (isSenderMenu) ?
+    CESubSplitView *subSplitViewToClose = isSenderMenu ?
             firstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
-    if (subSplitViewToClose == nil) { return; }
+    if (!subSplitViewToClose) { return; }
     NSArray *subViews = [[self splitView] subviews];
     NSUInteger count = [subViews count];
     NSUInteger deleteIndex = [subViews indexOfObject:subSplitViewToClose];
-    NSUInteger index = 0;
 
     if (isSenderMenu || (deleteIndex == [subViews indexOfObject:firstResponderSubSplitView])) {
-        index = deleteIndex + 1;
+        NSUInteger index = deleteIndex + 1;
         if (index >= count) {
             index = count - 2;
         }
@@ -1130,8 +1134,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupViews
 // ------------------------------------------------------
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
     // Create and configure the statusBar
     NSRect statusFrame = [self bounds];
     statusFrame.size.height = 0.0;
@@ -1154,14 +1156,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [self setupViewParamsInInit:YES];
     // （不可視文字の表示／非表示のセットは全て生成が終ってから、CEWindowController > windowDidLoad で行う）
-    [self setColoringTimer:nil];
-    [self setInfoUpdateTimer:nil];
-    [self setInfoUpdateTimer:nil];
-    [self setBasicColoringDelay:[defaults doubleForKey:k_key_basicColoringDelay]];
-    [self setFirstColoringDelay:[defaults doubleForKey:k_key_firstColoringDelay]];
-    [self setSecondColoringDelay:[defaults doubleForKey:k_key_secondColoringDelay]];
-    [self setInfoUpdateInterval:[defaults doubleForKey:k_key_infoUpdateInterval]];
-    [self setIncompatibleCharInterval:[defaults doubleForKey:k_key_incompatibleCharInterval]];
 }
 
 
