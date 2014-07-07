@@ -599,9 +599,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL countLineEnding = [defaults boolForKey:k_key_countLineEndingAsChar];
     NSString *wholeString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
     NSRange selectedRange = [self selectedRange];
-    NSUInteger column = 0, currentLine = 0, length = [wholeString length];
+    NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
     NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
     NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
     NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
@@ -612,10 +613,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     if (length > 0) {
-        NSString *selectedString = (selectedRange.length > 0) ? [[self string] substringWithRange:selectedRange] : @"";
         BOOL hasSelection = (selectedRange.length > 0);
+        NSString *selectedString = hasSelection ? [[self string] substringWithRange:selectedRange] : @"";
         NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
-        column = selectedRange.location - lineRange.location;
+        column = selectedRange.location - lineRange.location;  // as length
+        column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
         
         for (NSUInteger index = 0; index < length; numberOfLines++) {
             if (index <= selectedRange.location) {
@@ -637,32 +639,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
         }
         
-        // 文字数カウント (改行コードをカウントしない場合はあとで)
-        if ((updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) &&
-            [defaults boolForKey:k_key_countLineEndingAsChar])
-        {
-            numberOfChars = [wholeString numberOfComposedCharacters];
+        // location カウント
+        if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarLocation]) {
+            NSString *locString = [wholeString substringToIndex:selectedRange.location];
+            NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
+            
+            location = [str numberOfComposedCharacters];
+        }
+        
+        // 文字数カウント
+        if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
+            NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
+            numberOfChars = [str numberOfComposedCharacters];
             if (hasSelection) {
-                numberOfSelectedChars = [selectedString numberOfComposedCharacters];
+                str = countLineEnding ? selectedString : [OGRegularExpression chomp:selectedString];
+                numberOfSelectedChars = [str numberOfComposedCharacters];
             }
         }
         
         // 改行コードをカウントしない場合は再計算
-        if (![defaults boolForKey:k_key_countLineEndingAsChar]) {
-            NSString *locStr = [OGRegularExpression chomp:[wholeString substringToIndex:selectedRange.location]];
-            NSString *selectedStr = [OGRegularExpression chomp:selectedString];
-            NSString *wholeStr = [OGRegularExpression chomp:wholeString];
-
-            selectedRange.location = [locStr length];
-            selectedRange.length = [selectedStr length];
-            length = [wholeStr length];
-            
-            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
-                numberOfChars = [wholeStr numberOfComposedCharacters];
-                if (hasSelection) {
-                    numberOfSelectedChars = [selectedStr numberOfComposedCharacters];
-                }
-            }
+        if (!countLineEnding) {
+            selectedRange.length = [[OGRegularExpression chomp:selectedString] length];
+            length = [[OGRegularExpression chomp:wholeString] length];
         }
     }
     
@@ -675,7 +673,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self statusBar] setSelectedLengthInfo:selectedRange.length];
         [[self statusBar] setWordsInfo:numberOfWords];
         [[self statusBar] setSelectedWordsInfo:numberOfSelectedWords];
-        [[self statusBar] setLocationInfo:selectedRange.location];
+        [[self statusBar] setLocationInfo:location];
         [[self statusBar] setLineInfo:currentLine];
         [[self statusBar] setColumnInfo:column];
         [[self statusBar] updateLeftField];
@@ -706,7 +704,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self windowController] setLengthInfo:length selected:selectedRange.length];
         [[self windowController] setByteLengthInfo:byteLength selected:selectedByteLength];
         [[self windowController] setWordsInfo:numberOfWords selected:numberOfSelectedWords];
-        [[self windowController] setLocationInfo:selectedRange.location];
+        [[self windowController] setLocationInfo:location];
         [[self windowController] setColumnInfo:column];
         [[self windowController] setLineInfo:currentLine];
         [[self windowController] setSingleCharInfo:singleCharInfo];
