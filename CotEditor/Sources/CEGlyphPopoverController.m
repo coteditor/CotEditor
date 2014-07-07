@@ -53,32 +53,6 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 
 @implementation CEGlyphPopoverController
 
-#pragma mark Class Methods
-
-// ------------------------------------------------------
-/// 1文字かチェック
-+ (BOOL)isSingleCharacter:(NSString *)string
-// ------------------------------------------------------
-{
-    if ([string length] == 0) { return NO; }
-    
-    NSRange composedRange = [string rangeOfComposedCharacterSequenceAtIndex:0];
-    
-    // check whether the string is a national flag emoji
-    if (composedRange.length == 2 && [string length] == 4) {
-        NSRange regionalIndicatorRange = NSMakeRange(0xDDE6, 0xDDFF - 0xDDE6 + 1);
-        if (NSLocationInRange([string characterAtIndex:1], regionalIndicatorRange) &&
-            NSLocationInRange([string characterAtIndex:3], regionalIndicatorRange))
-        {
-            return YES;
-        }
-    }
-    
-    return ([string length] == composedRange.length);
-}
-
-
-
 #pragma mark Public Methods
 
 // ------------------------------------------------------
@@ -86,6 +60,8 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 - (instancetype)initWithCharacter:(NSString *)character
 // ------------------------------------------------------
 {
+    if ([character numberOfComposedCharacters] != 1) { return nil; }
+    
     self = [super initWithNibName:@"GlyphPopover" bundle:nil];
     if (self) {
         [self setGlyph:character];

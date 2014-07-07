@@ -510,7 +510,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     
-    if ([CEGlyphPopoverController isSingleCharacter:[[self string] substringWithRange:[self selectedRange]]]) {
+    if ([[[self string] substringWithRange:[self selectedRange]] numberOfComposedCharacters] == 1) {
         [outMenu insertItemWithTitle:NSLocalizedString(@"Inspect Character", nil)
                               action:@selector(showSelectionInfo:)
                        keyEquivalent:@""
@@ -1330,7 +1330,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [menuItem setTitle:NSLocalizedString(title, nil)];
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {
         NSString *selection = [[self string] substringWithRange:[self selectedRange]];
-        return [CEGlyphPopoverController isSingleCharacter:selection];
+        return ([selection numberOfComposedCharacters] == 1);
     } else if ([menuItem action] == @selector(toggleComment:)) {
         NSString *title = [self canUncomment] ? @"Uncomment Selection" : @"Comment Selection";
         [menuItem setTitle:NSLocalizedString(title, nil)];
@@ -1975,12 +1975,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSRange selectedRange = [self selectedRange];
     NSString *selectedString = [[self string] substringWithRange:selectedRange];
-    
-    if (![CEGlyphPopoverController isSingleCharacter:selectedString]) {
-        return;
-    }
-    
     CEGlyphPopoverController *popoverController = [[CEGlyphPopoverController alloc] initWithCharacter:selectedString];
+    
+    if (!popoverController) { return; }
     
     NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:selectedRange actualCharacterRange:NULL];
     NSRect selectedRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];

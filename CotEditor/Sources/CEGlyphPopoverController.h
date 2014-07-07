@@ -31,15 +31,12 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "NSString+ComposedCharacter.h"
 
 
 @interface CEGlyphPopoverController : NSViewController
 
-/// pre-check for surrogate-pair, ligature and emoji
-+ (BOOL)isSingleCharacter:(NSString *)string;
-
-
-/// default initializer (singleString must be a single character (or a surrogate-pair).)
+/// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)
 - (instancetype)initWithCharacter:(NSString *)singleString;
 
 /// show popover
