@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
                 <outlet property="editorView" destination="27" id="eIp-jK-o9H"/>
+                <outlet property="infoNumberFormatter" destination="ZXE-Ki-WDP" id="3BB-um-DS8"/>
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
                 <outlet property="listTableView" destination="122" id="l9j-Tq-Th8"/>
@@ -572,6 +573,7 @@
                                                             </textFieldCell>
                                                             <connections>
                                                                 <binding destination="-2" name="value" keyPath="lineInfo" id="XfD-Dv-K7p"/>
+                                                                <outlet property="formatter" destination="ZXE-Ki-WDP" id="Mx5-qi-Ryd"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-UV-cNg">
@@ -595,6 +597,7 @@
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
                                                                 </binding>
+                                                                <outlet property="formatter" destination="ZXE-Ki-WDP" id="L2T-8v-izc"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kud-ZS-Iyb">
@@ -664,6 +667,7 @@
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
                                                                 </binding>
+                                                                <outlet property="formatter" destination="ZXE-Ki-WDP" id="Wj2-rx-AAf"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -1034,6 +1038,7 @@
             </declaredKeys>
         </arrayController>
         <customObject id="M21-bo-PEe" customClass="NSFontManager"/>
+        <numberFormatter formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="ZXE-Ki-WDP"/>
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="24" height="24"/>

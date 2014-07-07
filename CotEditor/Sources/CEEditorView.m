@@ -601,12 +601,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *wholeString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
     NSRange selectedRange = [self selectedRange];
-    NSUInteger numberOfLines = 0, currentLine = 0, length = [wholeString length];
-    NSUInteger numberOfSelectedLines = 0;
-    NSUInteger column = 0;
+    NSUInteger column = 0, currentLine = 0, length = [wholeString length];
+    NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
     NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
-    NSUInteger numberOfSelectedWords = 0, numberOfWords = 0;
-    BOOL hasSelection = (selectedRange.length > 0);
+    NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
 
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
     if ([[self textView] hasMarkedText]) {
@@ -614,23 +612,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     if (length > 0) {
+        NSString *selectedString = (selectedRange.length > 0) ? [[self string] substringWithRange:selectedRange] : @"";
+        BOOL hasSelection = (selectedRange.length > 0);
         NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
         column = selectedRange.location - lineRange.location;
         
-        NSUInteger index = 0;
-        for (index = 0, numberOfLines = 0; index < length; numberOfLines++) {
+        for (NSUInteger index = 0; index < length; numberOfLines++) {
             if (index <= selectedRange.location) {
                 currentLine = numberOfLines + 1;
             }
             index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-        }
-        
-        // 文字数カウント
-        if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
-            numberOfChars = [wholeString numberOfComposedCharacters];
-            if (hasSelection) {
-                numberOfSelectedChars = [[self substringWithSelection] numberOfComposedCharacters];
-            }
         }
         
         // 単語数カウント
@@ -638,29 +629,43 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
             numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
             if (hasSelection) {
-                numberOfSelectedWords = [spellChecker countWordsInString:[self substringWithSelection]
+                numberOfSelectedWords = [spellChecker countWordsInString:selectedString
                                                                 language:nil];
             }
         }
         if (hasSelection) {
-            numberOfSelectedLines = [[[self substringWithSelection] componentsSeparatedByString:@"\n"] count];
+            numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
+        }
+        
+        // 文字数カウント (改行コードをカウントしない場合はあとで)
+        if ((updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) &&
+            [defaults boolForKey:k_key_countLineEndingAsChar])
+        {
+            numberOfChars = [wholeString numberOfComposedCharacters];
+            if (hasSelection) {
+                numberOfSelectedChars = [selectedString numberOfComposedCharacters];
+            }
         }
         
         // 改行コードをカウントしない場合は再計算
         if (![defaults boolForKey:k_key_countLineEndingAsChar]) {
-            NSString *locStr = [wholeString substringToIndex:selectedRange.location];
+            NSString *locStr = [OGRegularExpression chomp:[wholeString substringToIndex:selectedRange.location]];
+            NSString *selectedStr = [OGRegularExpression chomp:selectedString];
+            NSString *wholeStr = [OGRegularExpression chomp:wholeString];
 
-            selectedRange.location = [[OGRegularExpression chomp:locStr] length];
-            selectedRange.length = [[OGRegularExpression chomp:[self substringWithSelection]] length];
-            length = [[OGRegularExpression chomp:wholeString] length];
+            selectedRange.location = [locStr length];
+            selectedRange.length = [selectedStr length];
+            length = [wholeStr length];
             
-            numberOfChars -= numberOfLines - 1;
-            if (hasSelection) {
-                numberOfSelectedChars -= numberOfSelectedLines - 1;
+            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
+                numberOfChars = [wholeStr numberOfComposedCharacters];
+                if (hasSelection) {
+                    numberOfSelectedChars = [selectedStr numberOfComposedCharacters];
+                }
             }
         }
     }
-
+    
     if (updatesStatusBar) {
         [[self statusBar] setLinesInfo:numberOfLines];
         [[self statusBar] setSelectedLinesInfo:numberOfSelectedLines];
@@ -677,55 +682,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     if (updatesDrawer) {
         NSString *singleCharInfo;
-        if (selectedRange.length == 2) {
-            unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
-            unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
-            if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
-                UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
+        {
+            if (selectedRange.length == 2) {
+                unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
+                unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
+                if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
+                    UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
+                    singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
+                }
+            }
+            if (selectedRange.length == 1) {
+                unichar character = [wholeString characterAtIndex:selectedRange.location];
+                singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
             }
         }
-        if (selectedRange.length == 1) {
-            unichar character = [wholeString characterAtIndex:selectedRange.location];
-            singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
-        }
+        
         NSUInteger byteLength = [wholeString lengthOfBytesUsingEncoding:[[self document] encoding]];
         NSUInteger selectedByteLength = [[wholeString substringWithRange:selectedRange]
                                          lengthOfBytesUsingEncoding:[[self document] encoding]];
         
-        NSString *linesInfo = [NSString stringWithFormat:@"%tu", numberOfLines];
-        if (hasSelection) {
-            linesInfo = [linesInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedLines];
-        }
-        [[self windowController] setLinesInfo:linesInfo];
-        
-        NSString *charsInfo = [NSString stringWithFormat:@"%tu", numberOfChars];
-        if (hasSelection) {
-            charsInfo = [charsInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedChars];
-        }
-        [[self windowController] setCharsInfo:charsInfo];
-        
-        NSString *lengthInfo = [NSString stringWithFormat:@"%tu", length];
-        if (hasSelection) {
-            lengthInfo = [lengthInfo stringByAppendingFormat:@" (%tu)", selectedRange.length];
-        }
-        [[self windowController] setLengthInfo:lengthInfo];
-        
-        NSString *byteLengthInfo = [NSString stringWithFormat:@"%tu", byteLength];
-        if (hasSelection) {
-            byteLengthInfo = [byteLengthInfo stringByAppendingFormat:@" (%tu)", selectedByteLength];
-        }
-        [[self windowController] setByteLengthInfo:byteLengthInfo];
-        
-        NSString *wordsInfo = [NSString stringWithFormat:@"%tu", numberOfWords];
-        if (hasSelection) {
-            wordsInfo = [wordsInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedWords];
-        }
-        [[self windowController] setWordsInfo:wordsInfo];
-        
-        [[self windowController] setLocationInfo:[NSString stringWithFormat:@"%tu", selectedRange.location]];
-        [[self windowController] setColumnInfo:[NSString stringWithFormat:@"%tu", column]];
-        [[self windowController] setLineInfo:[NSString stringWithFormat:@"%tu", currentLine]];
+        [[self windowController] setLinesInfo:numberOfLines selected:numberOfSelectedLines];
+        [[self windowController] setCharsInfo:numberOfChars selected:numberOfSelectedChars];
+        [[self windowController] setLengthInfo:length selected:selectedRange.length];
+        [[self windowController] setByteLengthInfo:byteLength selected:selectedByteLength];
+        [[self windowController] setWordsInfo:numberOfWords selected:numberOfSelectedWords];
+        [[self windowController] setLocationInfo:selectedRange.location];
+        [[self windowController] setColumnInfo:column];
+        [[self windowController] setLineInfo:currentLine];
         [[self windowController] setSingleCharInfo:singleCharInfo];
     }
 }
