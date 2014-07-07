@@ -81,8 +81,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     NSDictionary *defaults = @{k_key_showLineNumbers: @YES,
                                k_key_showStatusBar: @YES,
-                               k_key_showStatusBarChars: @YES,
                                k_key_showStatusBarLines: @YES,
+                               k_key_showStatusBarLength: @NO,
+                               k_key_showStatusBarChars: @YES,
                                k_key_showStatusBarWords: @NO,
                                k_key_showStatusBarLocation: @YES,
                                k_key_showStatusBarLine: @YES,

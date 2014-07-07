@@ -49,6 +49,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSInteger selectedLinesInfo;
 @property (nonatomic) NSInteger charsInfo;
 @property (nonatomic) NSInteger selectedCharsInfo;
+@property (nonatomic) NSInteger lengthInfo;
+@property (nonatomic) NSInteger selectedLengthInfo;
 @property (nonatomic) NSInteger wordsInfo;
 @property (nonatomic) NSInteger selectedWordsInfo;
 @property (nonatomic) NSInteger locationInfo;

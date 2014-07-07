@@ -48,7 +48,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *encodingInfo;// 文書のエンコーディング情報
 @property (nonatomic, copy) NSString *lineEndingsInfo;  // 文書の改行コード情報
 @property (nonatomic, copy) NSString *linesInfo;  // 行数
-@property (nonatomic, copy) NSString *charsInfo;  // 文字数
+@property (nonatomic, copy) NSString *charsInfo;  // 文字数 (composed)
+@property (nonatomic, copy) NSString *lengthInfo;  // 文字数 (char length)
 @property (nonatomic, copy) NSString *wordsInfo;  // 単語数
 @property (nonatomic, copy) NSString *locationInfo;  // 文頭からのキャレット位置
 @property (nonatomic, copy) NSString *lineInfo;  // 現在行

@@ -73,6 +73,7 @@ extern NSString *const CENewNameKey;
 extern NSString *const k_key_showLineNumbers;
 extern NSString *const k_key_showStatusBar;
 extern NSString *const k_key_showStatusBarLines;
+extern NSString *const k_key_showStatusBarLength;
 extern NSString *const k_key_showStatusBarChars;
 extern NSString *const k_key_showStatusBarWords;
 extern NSString *const k_key_showStatusBarLocation;

@@ -37,6 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEEditorView.h"
 #import "CEToolbarController.h"
+#import "NSString+ComposedCharacter.h"
 #import "constants.h"
 
 
@@ -602,7 +603,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRange selectedRange = [self selectedRange];
     NSUInteger numberOfLines = 0, currentLine = 0, length = [wholeString length];
     NSUInteger numberOfSelectedLines = 0;
-    NSUInteger lineStart = 0, column = 0, index = 0;
+    NSUInteger column = 0;
+    NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
     NSUInteger numberOfSelectedWords = 0, numberOfWords = 0;
     BOOL hasSelection = (selectedRange.length > 0);
 
@@ -612,14 +614,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     if (length > 0) {
-        lineStart = [wholeString lineRangeForRange:selectedRange].location;
-        column = selectedRange.location - lineStart;
-
+        NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
+        column = selectedRange.location - lineRange.location;
+        
+        NSUInteger index = 0;
         for (index = 0, numberOfLines = 0; index < length; numberOfLines++) {
             if (index <= selectedRange.location) {
                 currentLine = numberOfLines + 1;
             }
             index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
+        }
+        
+        // 文字数カウント
+        if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
+            numberOfChars = [wholeString numberOfComposedCharacters];
+            if (hasSelection) {
+                numberOfSelectedChars = [[self substringWithSelection] numberOfComposedCharacters];
+            }
         }
         
         // 単語数カウント
@@ -642,14 +653,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             selectedRange.location = [[OGRegularExpression chomp:locStr] length];
             selectedRange.length = [[OGRegularExpression chomp:[self substringWithSelection]] length];
             length = [[OGRegularExpression chomp:wholeString] length];
+            
+            numberOfChars -= numberOfLines - 1;
+            if (hasSelection) {
+                numberOfSelectedChars -= numberOfSelectedLines - 1;
+            }
         }
     }
 
     if (updatesStatusBar) {
         [[self statusBar] setLinesInfo:numberOfLines];
         [[self statusBar] setSelectedLinesInfo:numberOfSelectedLines];
-        [[self statusBar] setCharsInfo:length];
-        [[self statusBar] setSelectedCharsInfo:selectedRange.length];
+        [[self statusBar] setCharsInfo:numberOfChars];
+        [[self statusBar] setSelectedCharsInfo:numberOfSelectedChars];
+        [[self statusBar] setLengthInfo:length];
+        [[self statusBar] setSelectedLengthInfo:selectedRange.length];
         [[self statusBar] setWordsInfo:numberOfWords];
         [[self statusBar] setSelectedWordsInfo:numberOfSelectedWords];
         [[self statusBar] setLocationInfo:selectedRange.location];
@@ -681,11 +699,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         [[self windowController] setLinesInfo:linesInfo];
         
-        NSString *charsInfo = [NSString stringWithFormat:@"%tu", length];
+        NSString *charsInfo = [NSString stringWithFormat:@"%tu", numberOfChars];
         if (hasSelection) {
-            charsInfo = [charsInfo stringByAppendingFormat:@" (%tu)", selectedRange.length];
+            charsInfo = [charsInfo stringByAppendingFormat:@" (%tu)", numberOfSelectedChars];
         }
         [[self windowController] setCharsInfo:charsInfo];
+        
+        NSString *lengthInfo = [NSString stringWithFormat:@"%tu", length];
+        if (hasSelection) {
+            lengthInfo = [lengthInfo stringByAppendingFormat:@" (%tu)", selectedRange.length];
+        }
+        [[self windowController] setLengthInfo:lengthInfo];
         
         NSString *byteLengthInfo = [NSString stringWithFormat:@"%tu", byteLength];
         if (hasSelection) {
