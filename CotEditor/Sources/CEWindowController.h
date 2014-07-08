@@ -45,16 +45,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) CGFloat alpha;
 
 // document information (for binding in drawer)
-@property (nonatomic, copy) NSString *encodingInfo;// 文書のエンコーディング情報
-@property (nonatomic, copy) NSString *lineEndingsInfo;  // 文書の改行コード情報
-@property (nonatomic, copy) NSString *linesInfo;  // 行数
-@property (nonatomic, copy) NSString *charsInfo;  // 文字数
-@property (nonatomic, copy) NSString *wordsInfo;  // 単語数
-@property (nonatomic, copy) NSString *locationInfo;  // 文頭からのキャレット位置
-@property (nonatomic, copy) NSString *lineInfo;  // 現在行
-@property (nonatomic, copy) NSString *columnInfo;  // 文書の行頭からのキャレット位置
-@property (nonatomic, copy) NSString *singleCharInfo;  // 文書の選択文字
-@property (nonatomic, copy) NSString *byteLengthInfo;  //  現在のエンコーディングでのバイト数
+@property (nonatomic, copy) NSString *encodingInfo;    // encoding of document
+@property (nonatomic, copy) NSString *lineEndingsInfo; // line endings of document
+@property (nonatomic) NSUInteger columnInfo;           // caret location from line head
+@property (nonatomic) NSUInteger locationInfo;         // caret location from begining ob document
+@property (nonatomic) NSUInteger lineInfo;             // current line
+@property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
 
 // Public method
 - (BOOL)needsInfoDrawerUpdate;
@@ -62,6 +58,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateFileAttrsInformation;
 - (void)updateIncompatibleCharList;
 - (void)showIncompatibleCharList;
+
+- (void)setLinesInfo:(NSUInteger)lines selected:(NSUInteger)selectedLines;                // number of lines
+- (void)setCharsInfo:(NSUInteger)chars selected:(NSUInteger)selectedChars;                // number of composed characters
+- (void)setLengthInfo:(NSUInteger)length selected:(NSUInteger)selectedLength;             // character length
+- (void)setByteLengthInfo:(NSUInteger)byteLength selected:(NSUInteger)selectedByteLength; //  byte length in current encoding
+- (void)setWordsInfo:(NSUInteger)words selected:(NSUInteger)selectedWords;                // number of words
 
 // Action Message
 - (IBAction)getInfo:(id)sender;

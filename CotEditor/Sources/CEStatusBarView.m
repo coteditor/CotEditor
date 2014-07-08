@@ -178,6 +178,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedCharsInfo])]];
         }
     }
+    if ([defaults boolForKey:k_key_showStatusBarLength]) {
+        if ([status length] > 0) { [status appendString:space]; }
+        [status appendFormat:NSLocalizedString(@"Length: %@", nil), [formatter stringFromNumber:@([self lengthInfo])]];
+        
+        if ([self selectedLengthInfo] > 0) {
+            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedLengthInfo])]];
+        }
+    }
     if ([defaults boolForKey:k_key_showStatusBarWords]) {
         if ([status length] > 0) { [status appendString:space]; }
         [status appendFormat:NSLocalizedString(@"Words: %@", nil), [formatter stringFromNumber:@([self wordsInfo])]];

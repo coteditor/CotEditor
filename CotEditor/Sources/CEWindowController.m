@@ -52,6 +52,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *permissionInfo;
 @property (nonatomic) NSNumber *fileSizeInfo;
 
+@property (nonatomic, copy) NSString *linesInfo;
+@property (nonatomic, copy) NSString *charsInfo;
+@property (nonatomic, copy) NSString *lengthInfo;
+@property (nonatomic, copy) NSString *wordsInfo;
+@property (nonatomic, copy) NSString *byteLengthInfo;
+
 // IBOutlets
 @property (nonatomic) IBOutlet NSArrayController *listController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
@@ -59,6 +65,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
 @property (nonatomic, weak) IBOutlet NSTableView *listTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *listErrorTextField;
+@property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
 
 // readonly
 @property (nonatomic, weak, readwrite) IBOutlet CEToolbarController *toolbarController;
@@ -241,6 +248,51 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[[self window] contentView] setNeedsDisplay:YES];
 }
 
+
+// ------------------------------------------------------
+/// 単語数情報をセット
+- (void)setWordsInfo:(NSUInteger)words selected:(NSUInteger)selectedWords
+// ------------------------------------------------------
+{
+    [self setWordsInfo:[self formatCount:words selected:selectedWords]];
+}
+
+
+// ------------------------------------------------------
+/// バイト長情報をセット
+- (void)setByteLengthInfo:(NSUInteger)byteLength selected:(NSUInteger)selectedByteLength
+// ------------------------------------------------------
+{
+    [self setByteLengthInfo:[self formatCount:byteLength selected:selectedByteLength]];
+}
+
+
+// ------------------------------------------------------
+/// 文字数情報をセット
+- (void)setCharsInfo:(NSUInteger)chars selected:(NSUInteger)selectedChars
+// ------------------------------------------------------
+{
+    [self setCharsInfo:[self formatCount:chars selected:selectedChars]];
+}
+
+
+// ------------------------------------------------------
+/// 文字長情報をセット
+- (void)setLengthInfo:(NSUInteger)length selected:(NSUInteger)selectedLength
+// ------------------------------------------------------
+{
+    [self setLengthInfo:[self formatCount:length selected:selectedLength]];
+}
+
+
+// ------------------------------------------------------
+/// 行数情報をセット
+- (void)setLinesInfo:(NSUInteger)lines selected:(NSUInteger)selectedLines
+// ------------------------------------------------------
+{
+    [self setLinesInfo:[self formatCount:lines selected:selectedLines]];
+}
+    
 
 
 #pragma mark Protocol
@@ -473,6 +525,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
             [self setRecolorWithBecomeKey:YES];
         }
+    }
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲内の情報も併記するドロワー用情報のフォーマット
+- (NSString *)formatCount:(NSUInteger)count selected:(NSUInteger)selectedCount
+// ------------------------------------------------------
+{
+    NSNumberFormatter *formatter = [self infoNumberFormatter];
+    
+    if (selectedCount > 0) {
+        return [NSString stringWithFormat:@"%@ (%@)",
+                [formatter stringFromNumber:@(count)], [formatter stringFromNumber:@(selectedCount)]];
+    } else {
+        return [NSString stringWithFormat:@"%@", [formatter stringFromNumber:@(count)]];
     }
 }
 

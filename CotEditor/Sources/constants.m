@@ -71,6 +71,7 @@ NSString *const CENewNameKey = @"CENewNameKey";
 NSString *const k_key_showLineNumbers = @"showLineNumbers";
 NSString *const k_key_showStatusBar = @"showStatusArea";
 NSString *const k_key_showStatusBarLines = @"showStatusBarLines";
+NSString *const k_key_showStatusBarLength = @"showStatusBarLength";
 NSString *const k_key_showStatusBarChars = @"showStatusBarChars";
 NSString *const k_key_showStatusBarWords = @"showStatusBarWords";
 NSString *const k_key_showStatusBarLocation = @"showStatusBarLocation";
