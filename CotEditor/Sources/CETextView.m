@@ -1112,7 +1112,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// マウスでのテキスト選択時の挙動を制御、ダブルクリックでの括弧内選択機能を追加
+/// マウスでのテキスト選択時の挙動を制御
 - (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange granularity:(NSSelectionGranularity)granularity
 // ------------------------------------------------------
 {
@@ -1130,9 +1130,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 	if (lengthOfString == (NSInteger)proposedSelRange.location) { // To avoid crash if a double-click occurs after any text
 		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
 	}
-	
-	NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
     
+	NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
+    NSRange wordRange = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByWord];
+    
+    // 特定の文字を単語区切りとして扱う
+    if (wordRange.length > 1) {
+        NSString *word = [completeString substringWithRange:wordRange];
+        NSScanner *scanner = [NSScanner scannerWithString:word];
+        NSCharacterSet *breakCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@".:"];
+        
+        NSRange newWrodRange = wordRange;
+        while ([scanner scanUpToCharactersFromSet:breakCharacterSet intoString:nil]) {
+            NSUInteger breakLocation = [scanner scanLocation];
+            if (wordRange.location + breakLocation < location) {
+                newWrodRange.location = wordRange.location + breakLocation + 1;
+                newWrodRange.length = wordRange.length - (breakLocation + 1);
+            } else {
+                newWrodRange.length -= wordRange.length - breakLocation;
+                break;
+            }
+            [scanner scanCharactersFromSet:breakCharacterSet intoString:nil];
+        }
+        return newWrodRange;
+    }
+    
+    // ダブルクリックでの括弧内選択
     unichar beginBrace, endBrace;
     BOOL isEndBrace = NO;
     switch ([completeString characterAtIndex:location]) {
@@ -1164,8 +1187,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             endBrace = '>';
             break;
             
-        default:
-            return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
+        default: {
+            return wordRange;
+        }
     }
     
 	NSInteger originalLocation = location;
