@@ -598,117 +598,131 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL countLineEnding = [defaults boolForKey:k_key_countLineEndingAsChar];
-    NSString *wholeString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : [self string];
-    NSRange selectedRange = [self selectedRange];
-    NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
-    NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
-    NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
-    NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
-
-    // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
-    if ([[self textView] hasMarkedText]) {
-        selectedRange.length = 0;
-    }
+    NSString *textViewString = [self string];
+    NSString *wholeString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : textViewString;
+    NSStringEncoding encoding = [[self document] encoding];
+    __block NSRange selectedRange = [self selectedRange];
+    __block CEStatusBarView *statusBar = [self statusBar];
+    __block CEWindowController *windowController = [self windowController];
     
-    if (length > 0) {
-        BOOL hasSelection = (selectedRange.length > 0);
-        NSString *selectedString = hasSelection ? [[self string] substringWithRange:selectedRange] : @"";
-        NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
-        column = selectedRange.location - lineRange.location;  // as length
-        column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
+    // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        BOOL countLineEnding = [defaults boolForKey:k_key_countLineEndingAsChar];
+        NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
+        NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
+        NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
+        NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
         
-        for (NSUInteger index = 0; index < length; numberOfLines++) {
-            if (index <= selectedRange.location) {
-                currentLine = numberOfLines + 1;
-            }
-            index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
+        // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
+        if ([[self textView] hasMarkedText]) {
+            selectedRange.length = 0;
         }
         
-        // 単語数カウント
-        if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarWords]) {
-            NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
-            numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
-            if (hasSelection) {
-                numberOfSelectedWords = [spellChecker countWordsInString:selectedString
-                                                                language:nil];
-            }
-        }
-        if (hasSelection) {
-            numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
-        }
-        
-        // location カウント
-        if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarLocation]) {
-            NSString *locString = [wholeString substringToIndex:selectedRange.location];
-            NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
+        if (length > 0) {
+            BOOL hasSelection = (selectedRange.length > 0);
+            NSString *selectedString = hasSelection ? [textViewString substringWithRange:selectedRange] : @"";
+            NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
+            column = selectedRange.location - lineRange.location;  // as length
+            column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
             
-            location = [str numberOfComposedCharacters];
-        }
-        
-        // 文字数カウント
-        if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
-            NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
-            numberOfChars = [str numberOfComposedCharacters];
-            if (hasSelection) {
-                str = countLineEnding ? selectedString : [OGRegularExpression chomp:selectedString];
-                numberOfSelectedChars = [str numberOfComposedCharacters];
+            for (NSUInteger index = 0; index < length; numberOfLines++) {
+                if (index <= selectedRange.location) {
+                    currentLine = numberOfLines + 1;
+                }
+                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
             }
-        }
-        
-        // 改行コードをカウントしない場合は再計算
-        if (!countLineEnding) {
-            selectedRange.length = [[OGRegularExpression chomp:selectedString] length];
-            length = [[OGRegularExpression chomp:wholeString] length];
-        }
-    }
-    
-    if (updatesStatusBar) {
-        [[self statusBar] setLinesInfo:numberOfLines];
-        [[self statusBar] setSelectedLinesInfo:numberOfSelectedLines];
-        [[self statusBar] setCharsInfo:numberOfChars];
-        [[self statusBar] setSelectedCharsInfo:numberOfSelectedChars];
-        [[self statusBar] setLengthInfo:length];
-        [[self statusBar] setSelectedLengthInfo:selectedRange.length];
-        [[self statusBar] setWordsInfo:numberOfWords];
-        [[self statusBar] setSelectedWordsInfo:numberOfSelectedWords];
-        [[self statusBar] setLocationInfo:location];
-        [[self statusBar] setLineInfo:currentLine];
-        [[self statusBar] setColumnInfo:column];
-        [[self statusBar] updateLeftField];
-    }
-    if (updatesDrawer) {
-        NSString *singleCharInfo;
-        {
-            if (selectedRange.length == 2) {
-                unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
-                unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
-                if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
-                    UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                    singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
+            
+            // 単語数カウント
+            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarWords]) {
+                NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
+                numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
+                if (hasSelection) {
+                    numberOfSelectedWords = [spellChecker countWordsInString:selectedString
+                                                                    language:nil];
                 }
             }
-            if (selectedRange.length == 1) {
-                unichar character = [wholeString characterAtIndex:selectedRange.location];
-                singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
+            if (hasSelection) {
+                numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
+            }
+            
+            // location カウント
+            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarLocation]) {
+                NSString *locString = [wholeString substringToIndex:selectedRange.location];
+                NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
+                
+                location = [str numberOfComposedCharacters];
+            }
+            
+            // 文字数カウント
+            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
+                NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
+                numberOfChars = [str numberOfComposedCharacters];
+                if (hasSelection) {
+                    str = countLineEnding ? selectedString : [OGRegularExpression chomp:selectedString];
+                    numberOfSelectedChars = [str numberOfComposedCharacters];
+                }
+            }
+            
+            // 改行コードをカウントしない場合は再計算
+            if (!countLineEnding) {
+                selectedRange.length = [[OGRegularExpression chomp:selectedString] length];
+                length = [[OGRegularExpression chomp:wholeString] length];
             }
         }
         
-        NSUInteger byteLength = [wholeString lengthOfBytesUsingEncoding:[[self document] encoding]];
-        NSUInteger selectedByteLength = [[wholeString substringWithRange:selectedRange]
-                                         lengthOfBytesUsingEncoding:[[self document] encoding]];
+        NSString *singleCharInfo;
+        NSUInteger byteLength = 0, selectedByteLength = 0;
+        if (updatesDrawer) {
+            {
+                if (selectedRange.length == 2) {
+                    unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
+                    unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
+                    if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
+                        UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
+                        singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
+                    }
+                }
+                if (selectedRange.length == 1) {
+                    unichar character = [wholeString characterAtIndex:selectedRange.location];
+                    singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
+                }
+            }
+            
+            byteLength = [wholeString lengthOfBytesUsingEncoding:encoding];
+            selectedByteLength = [[wholeString substringWithRange:selectedRange]
+                                  lengthOfBytesUsingEncoding:encoding];
+        }
         
-        [[self windowController] setLinesInfo:numberOfLines selected:numberOfSelectedLines];
-        [[self windowController] setCharsInfo:numberOfChars selected:numberOfSelectedChars];
-        [[self windowController] setLengthInfo:length selected:selectedRange.length];
-        [[self windowController] setByteLengthInfo:byteLength selected:selectedByteLength];
-        [[self windowController] setWordsInfo:numberOfWords selected:numberOfSelectedWords];
-        [[self windowController] setLocationInfo:location];
-        [[self windowController] setColumnInfo:column];
-        [[self windowController] setLineInfo:currentLine];
-        [[self windowController] setSingleCharInfo:singleCharInfo];
-    }
+        // apply to UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (updatesStatusBar) {
+                [statusBar setLinesInfo:numberOfLines];
+                [statusBar setSelectedLinesInfo:numberOfSelectedLines];
+                [statusBar setCharsInfo:numberOfChars];
+                [statusBar setSelectedCharsInfo:numberOfSelectedChars];
+                [statusBar setLengthInfo:length];
+                [statusBar setSelectedLengthInfo:selectedRange.length];
+                [statusBar setWordsInfo:numberOfWords];
+                [statusBar setSelectedWordsInfo:numberOfSelectedWords];
+                [statusBar setLocationInfo:location];
+                [statusBar setLineInfo:currentLine];
+                [statusBar setColumnInfo:column];
+                [statusBar updateLeftField];
+            }
+            if (updatesDrawer) {
+                [windowController setLinesInfo:numberOfLines selected:numberOfSelectedLines];
+                [windowController setCharsInfo:numberOfChars selected:numberOfSelectedChars];
+                [windowController setLengthInfo:length selected:selectedRange.length];
+                [windowController setByteLengthInfo:byteLength selected:selectedByteLength];
+                [windowController setWordsInfo:numberOfWords selected:numberOfSelectedWords];
+                [windowController setLocationInfo:location];
+                [windowController setColumnInfo:column];
+                [windowController setLineInfo:currentLine];
+                [windowController setSingleCharInfo:singleCharInfo];
+            }
+        });
+    });
 }
 
 
