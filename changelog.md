@@ -14,6 +14,7 @@ changelog
     - この仕様変更にともない、“Apache”, “Makefile”, “Shell Script” のシンタックス定義を更新
     - シンタックス編集シートでの表記を「拡張子」(Extensions) から「ファイル関連付け」(File Mapping) に変更
 - 「編集」に「行を選択」コマンドを追加
+- 行番号をクリック／ドラッグして行を選択
 
 
 ### mod
