@@ -288,19 +288,19 @@
 			<key>beginString</key>
 			<string>[\\¥]section\*?\{(.*)\}</string>
 			<key>keyString</key>
-			<string>- $1</string>
+			<string>    $1</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>[\\¥]subsection\*?\{(.*)\}</string>
 			<key>keyString</key>
-			<string>-- $1</string>
+			<string>        $1</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>[\\¥]subsubsection\*?\{(.*)\}</string>
 			<key>keyString</key>
-			<string>--- $1</string>
+			<string>            $1</string>
 		</dict>
 	</array>
 	<key>stringsArray</key>
