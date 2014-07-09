@@ -175,7 +175,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSHeight(numRect) - numRect.origin.y;
-            if (NSIntersectsRect(numRect, dirtyRect)) {
+            if ([self needsToDrawRect:numRect]) {
                 numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu", lineNum] : @"-";
                 reqWidth = charWidth * [numStr length];
                 curWidth = NSWidth([self frame]);
