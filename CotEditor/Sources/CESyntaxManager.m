@@ -241,6 +241,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 {
     NSURL *destURL = [[self userStyleDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
     
+    // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
+    if (![self prepareUserStyleDirectory]) {
+        return NO;
+    }
+    
     __block BOOL success = NO;
     __block NSError *error = nil;
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
@@ -407,6 +412,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         [style[key] sortUsingDescriptors:descriptors];
     }
     
+    // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
+    if (![self prepareUserStyleDirectory]) {
+        return;
+    }
+    
     // save
     NSURL *saveURL = [self URLForUserStyle:name];
     // style名が変更されたときは、古いファイルを削除する
@@ -543,12 +553,83 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //
 //=======================================================
 
+//------------------------------------------------------
+/// Application Support内のstyleデータファイル保存ディレクトリ
+- (NSURL *)userStyleDirectoryURL
+//------------------------------------------------------
+{
+    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                   inDomain:NSUserDomainMask
+                                          appropriateForURL:nil
+                                                     create:NO
+                                                      error:nil]
+            URLByAppendingPathComponent:@"CotEditor/SyntaxColorings"];
+}
+
+
+//------------------------------------------------------
+/// ユーザ領域のテーマ保存用ディレクトリの存在をチェックし、ない場合は作成する
+- (BOOL)prepareUserStyleDirectory
+//------------------------------------------------------
+{
+    BOOL success = NO;
+    NSError *error = nil;
+    NSURL *URL = [self userStyleDirectoryURL];
+    NSNumber *isDirectory;
+    
+    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
+        success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
+                                           withIntermediateDirectories:YES attributes:nil error:&error];
+    } else {
+        success = [isDirectory boolValue];
+    }
+    
+    if (!success) {
+        NSLog(@"failed to create a directory at \"%@\".", URL);
+    }
+    
+    return success;
+}
+
+
+//------------------------------------------------------
+/// style名から有効なstyle定義ファイルのURLを返す
+- (NSURL *)URLForUsedStyle:(NSString *)styleName
+//------------------------------------------------------
+{
+    NSURL *URL = [self URLForUserStyle:styleName];
+    
+    if (![URL checkResourceIsReachableAndReturnError:nil]) {
+        URL = [self URLForBundledStyle:styleName];
+    }
+    
+    return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+}
+
+
+//------------------------------------------------------
+/// style名からバンドル領域のstyle定義ファイルのURLを返す
+- (NSURL *)URLForBundledStyle:(NSString *)styleName
+//------------------------------------------------------
+{
+    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"plist" subdirectory:@"SyntaxColorings"];
+}
+
+
+//------------------------------------------------------
+/// style名からユーザ領域のstyle定義ファイルのURLを返す
+- (NSURL *)URLForUserStyle:(NSString *)styleName
+//------------------------------------------------------
+{
+    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+}
+
 // ------------------------------------------------------
 /// 内部で持っているキャッシュ用データを更新
 - (void)updateCache
 // ------------------------------------------------------
 {
-    [self setupColoringStyles];
+    [self cacheStyles];
     [self setupExtensionAndSyntaxTable];
     
     // ラインナップの更新を通知する
@@ -558,28 +639,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 //------------------------------------------------------
 /// styleのファイルからのセットアップと読み込み
-- (void)setupColoringStyles
+- (void)cacheStyles
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-
-    // ディレクトリの存在チェック
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isDirectory = NO, success = NO;
-    BOOL exists = [fileManager fileExistsAtPath:[dirURL path] isDirectory:&isDirectory];
-    if (!exists) {
-		NSError *createDirError = nil;
-		success = [fileManager createDirectoryAtURL:dirURL withIntermediateDirectories:NO attributes:nil error:&createDirError];
-		if (createDirError != nil) {
-			NSLog(@"Error. SyntaxStyles directory could not be created.");
-			return;
-		}
-		
-    }
-    if (!(exists && isDirectory) && !success) {
-        NSLog(@"Error. SyntaxStyles directory could not be found.");
-        return;
-    }
 
     // styleデータの読み込み
     NSMutableDictionary *styles = [NSMutableDictionary dictionary];
@@ -596,21 +659,25 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     }
     
     // ユーザ版を読み込む
-    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:dirURL
-                                          includingPropertiesForKeys:nil
-                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                        errorHandler:^BOOL(NSURL *url, NSError *error) {
-                                                            NSLog(@"Error on seeking SyntaxStyle Files Directory.");
-                                                            return YES;
-                                                        }];
-    while (URL = [enumerator nextObject]) {
-        styleDict = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
-        // URLが無効だった場合などに、dictがnilになる場合がある
-        if (styleDict) {
-            styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
-            // k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
-            styleDict[k_SCKey_styleName] = styleName;
-            styles[[styleName lowercaseString]] = styleDict; // dictがnilになってここで落ちる（MacBook Airの場合
+    if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
+        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager]
+                                             enumeratorAtURL:dirURL
+                                             includingPropertiesForKeys:nil
+                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                             errorHandler:^BOOL(NSURL *url, NSError *error)
+                                             {
+                                                 NSLog(@"Error on seeking SyntaxStyle Files Directory.");
+                                                 return YES;
+                                             }];
+        while (URL = [enumerator nextObject]) {
+            styleDict = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+            // URLが無効だった場合などに、dictがnilになる場合がある
+            if (styleDict) {
+                styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
+                // k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
+                styleDict[k_SCKey_styleName] = styleName;
+                styles[[styleName lowercaseString]] = styleDict;
+            }
         }
     }
     
@@ -682,53 +749,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     [self setExtensionConflicts:extensionConflicts];
     [self setFilenameToStyleTable:filenameTable];
     [self setFilenameConflicts:filenameConflicts];
-}
-
-
-//------------------------------------------------------
-/// style名から有効なstyle定義ファイルのURLを返す
-- (NSURL *)URLForUsedStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    NSURL *URL = [self URLForUserStyle:styleName];
-    
-    if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        URL = [self URLForBundledStyle:styleName];
-    }
-    
-    return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
-}
-
-
-//------------------------------------------------------
-/// style名からバンドル領域のstyle定義ファイルのURLを返す
-- (NSURL *)URLForBundledStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"plist" subdirectory:@"SyntaxColorings"];
-}
-
-
-//------------------------------------------------------
-/// style名からユーザ領域のstyle定義ファイルのURLを返す
-- (NSURL *)URLForUserStyle:(NSString *)styleName
-//------------------------------------------------------
-{
-    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-}
-
-
-//------------------------------------------------------
-/// Application Support内のstyleデータファイル保存ディレクトリ
-- (NSURL *)userStyleDirectoryURL
-//------------------------------------------------------
-{
-    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                   inDomain:NSUserDomainMask
-                                          appropriateForURL:nil
-                                                     create:NO
-                                                      error:nil]
-             URLByAppendingPathComponent:@"CotEditor/SyntaxColorings"];
 }
 
 @end

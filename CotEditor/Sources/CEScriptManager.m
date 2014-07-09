@@ -98,7 +98,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     self = [super init];
     if (self) {
-        [self setupScriptFolder];
+        [self copySampleScriptToUserDomain:self];
     }
     return self;
 }
@@ -251,6 +251,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     }
     
     if (![destURL checkResourceIsReachableAndReturnError:nil]) {
+        [[NSFileManager defaultManager] createDirectoryAtURL:[destURL URLByDeletingLastPathComponent]
+                                 withIntermediateDirectories:NO attributes:nil error:nil];
         BOOL success = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destURL error:nil];
         
         if (success) {
@@ -460,31 +462,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 // Private method
 //
 //=======================================================
-
-//------------------------------------------------------
-/// Scriptフォルダの準備をする
-- (void)setupScriptFolder
-//------------------------------------------------------
-{
-    NSURL *directoryURL = [[self class] scriptDirectoryURL]; // データディレクトリパス取得
-    
-    // ディレクトリの存在チェック
-    NSNumber *isDirectory = @NO;
-    [directoryURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
-    if (![isDirectory boolValue]) {
-        BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:directoryURL
-                                                withIntermediateDirectories:YES attributes:nil error:nil];
-        
-        if (!success) {
-            NSLog(@"Error. ScriptMenu directory could not found.");
-            return;
-        }
-        
-        // サンプルスクリプトをユーザ領域にコピー
-        [self copySampleScriptToUserDomain:self];
-    }
-}
-
 
 //------------------------------------------------------
 /// ファイルを読み込みメニューアイテムを生成／追加する
