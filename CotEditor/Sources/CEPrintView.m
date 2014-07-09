@@ -364,20 +364,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setXOffset:0];
     }
     
-    // 制御文字印字を取得
-    BOOL showsControls;
+    // 不可視文字の扱いを取得
+    BOOL showInvisibles;
     switch ([accessoryController invisibleCharsMode]) {
         case CENoInvisibleCharsPrint:
-            showsControls = NO;
+            showInvisibles = NO;
             break;
         case CESameAsDocumentInvisibleCharsPrint:
-            showsControls = [self documentShowsInvisibles];
+            showInvisibles = [self documentShowsInvisibles];
             break;
         case CEAllInvisibleCharsPrint:
-            showsControls = YES;
+            showInvisibles = YES;
             break;
     }
-    [[[self textContainer] layoutManager] setShowsControlCharacters:showsControls];
+    [(CELayoutManager *)[self layoutManager] setShowInvisibles:showInvisibles];
     
     
     // カラーリングの設定

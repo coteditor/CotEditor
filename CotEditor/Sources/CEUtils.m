@@ -65,12 +65,22 @@ static const NSArray *invalidYenEncodings;
 
 // ------------------------------------------------------
 /// 非表示半角スペース表示用文字を返す
-+ (NSString *)invisibleSpaceCharacter:(NSUInteger)index
++ (unichar)invisibleSpaceChar:(NSUInteger)index
 // ------------------------------------------------------
 {
     NSUInteger max = k_size_of_invisibleSpaceCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleSpaceCharList[sanitizedIndex];
+    
+    return k_invisibleSpaceCharList[sanitizedIndex];
+}
+
+
+// ------------------------------------------------------
+/// 非表示半角スペース表示用文字を NSString 型で返す
++ (NSString *)invisibleSpaceCharacter:(NSUInteger)index
+// ------------------------------------------------------
+{
+    unichar theUnichar = [CEUtils invisibleSpaceChar:index];
     
     return [NSString stringWithCharacters:&theUnichar length:1];
 }
@@ -78,12 +88,22 @@ static const NSArray *invalidYenEncodings;
 
 // ------------------------------------------------------
 /// 非表示タブ表示用文字を返す
-+ (NSString *)invisibleTabCharacter:(NSUInteger)index
++ (unichar)invisibleTabChar:(NSUInteger)index
 // ------------------------------------------------------
 {
     NSUInteger max = k_size_of_invisibleTabCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleTabCharList[sanitizedIndex];
+    
+    return k_invisibleTabCharList[sanitizedIndex];
+}
+
+
+// ------------------------------------------------------
+/// 非表示タブ表示用文字を NSString 型で返す
++ (NSString *)invisibleTabCharacter:(NSUInteger)index
+// ------------------------------------------------------
+{
+    unichar theUnichar = [CEUtils invisibleTabChar:index];
     
     return [NSString stringWithCharacters:&theUnichar length:1];
 }
@@ -91,25 +111,45 @@ static const NSArray *invalidYenEncodings;
 
 // ------------------------------------------------------
 /// 非表示改行表示用文字を返す
-+ (NSString *)invisibleNewLineCharacter:(NSUInteger)index
++ (unichar)invisibleNewLineChar:(NSUInteger)index
 // ------------------------------------------------------
 {
     NSUInteger max = k_size_of_invisibleNewLineCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleNewLineCharList[sanitizedIndex];
+    
+    return k_invisibleNewLineCharList[sanitizedIndex];
+}
+
+
+// ------------------------------------------------------
+/// 非表示改行表示用文字を NSString 型で返す
++ (NSString *)invisibleNewLineCharacter:(NSUInteger)index
+// ------------------------------------------------------
+{
+    unichar theUnichar = [CEUtils invisibleNewLineChar:index];
     
     return [NSString stringWithCharacters:&theUnichar length:1];
 }
 
 
 // ------------------------------------------------------
-/// 非表示全角スペース表示用文字を返す
-+ (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
+/// 非表示改行表示用文字を返す
++ (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index
 // ------------------------------------------------------
 {
     NSUInteger max = k_size_of_invisibleFullwidthSpaceCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
-    unichar theUnichar = k_invisibleFullwidthSpaceCharList[sanitizedIndex];
+    
+    return k_invisibleFullwidthSpaceCharList[sanitizedIndex];
+}
+
+
+// ------------------------------------------------------
+/// 非表示全角スペース表示用文字を NSString 型で返す
++ (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
+// ------------------------------------------------------
+{
+    unichar theUnichar = [CEUtils invisibleNewLineChar:index];
     
     return [NSString stringWithCharacters:&theUnichar length:1];
 }
