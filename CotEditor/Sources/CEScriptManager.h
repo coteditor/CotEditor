@@ -42,9 +42,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Public method
 - (void)buildScriptMenu:(id)sender;
 - (NSMenu *)contexualMenu;
-- (void)launchScript:(id)sender;
 
 // Action Message
+- (IBAction)launchScript:(id)sender;
 - (IBAction)openScriptFolder:(id)sender;
 - (IBAction)copySampleScriptToUserDomain:(id)sender;
 
