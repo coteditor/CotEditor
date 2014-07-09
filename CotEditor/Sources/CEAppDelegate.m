@@ -344,12 +344,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                           action:@selector(openGoToPanel:)
                                    keyEquivalent:@"l"];
     [findMenu addItem:menuItem];
-
+    
     // AppleScript 起動のスピードアップのため一度動かしておく
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_runAppleScriptInLaunching]) {
-        NSURL *URL = [[NSBundle mainBundle] URLForResource:@"startup" withExtension:@"applescript"];
-        NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithContentsOfURL:URL error:nil];
-        [AppleScript executeAndReturnError:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *source = @"tell application \"CotEditor\" to number of documents";
+            NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
+            [AppleScript executeAndReturnError:nil];
+        });
     }
     
     // KeyBindingManagerをセットアップ

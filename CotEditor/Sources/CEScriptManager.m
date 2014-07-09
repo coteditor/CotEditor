@@ -54,15 +54,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 };
 
 
-@interface CEScriptManager ()
-
-@property (nonatomic) NSFileHandle *outputHandle;
-@property (nonatomic) NSFileHandle *errorHandle;
-@property (nonatomic) CEScriptOutputType outputType;
-
-@end
-
-
 
 
 #pragma mark -
@@ -108,24 +99,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     self = [super init];
     if (self) {
         [self setupScriptFolder];
-        
-        // ノーティフィケーションセンタへデータ出力読み込み完了の通知を依頼
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(receiveOutput:)
-                                                     name:NSFileHandleReadToEndOfFileCompletionNotification
-                                                   object:nil];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-/// あとかたづけ
-- (void)dealloc
-// ------------------------------------------------------
-{
-    // ノーティフィケーションセンタから自身を排除
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -409,22 +384,22 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 + (NSString *)documentStringWithInputType:(CEScriptInputType)inputType error:(BOOL *)hasError
 // ------------------------------------------------------
 {
-    CEDocument *document = ([[NSApp orderedDocuments] count] > 0) ? [NSApp orderedDocuments][0] : nil;
+    CEEditorView *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editorView];
     
     switch (inputType) {
         case CEInputSelectionType:
-            if (document) {
-                NSRange selectedRange = [[[document editorView] textView] selectedRange];
-                return [[[document editorView] string] substringWithRange:selectedRange];
-                // ([[document editorView] string] は改行コードLFの文字列を返すが、[[document editorView] selectedRange] は
+            if (editor) {
+                NSRange selectedRange = [[editor textView] selectedRange];
+                return [[editor string] substringWithRange:selectedRange];
+                // ([editor string] は改行コードLFの文字列を返すが、[editor selectedRange] は
                 // 改行コードを反映させた範囲を返すので、「CR/LF」では使えない。そのため、
-                // [[[document editorView] textView] selectedRange] を使う必要がある。2009-04-12
+                // [[editor textView] selectedRange] を使う必要がある。2009-04-12
             }
             break;
             
         case CEInputAllTextType:
-            if (document) {
-                return [[document editorView] string];
+            if (editor) {
+                return [editor string];
             }
             break;
             
@@ -628,95 +603,80 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         return;
     }
 
+    // 入力を読み込む
     CEScriptInputType inputType = [[self class] scanInputType:script];
     BOOL hasError = NO;
-    NSString *inputString = [[self class] documentStringWithInputType:inputType error:&hasError];
+    NSString *input = [[self class] documentStringWithInputType:inputType error:&hasError];
     if (hasError) {
         [self showScriptError:@"NO document, no Input."];
         return;
     }
     
-    // output type を保持する
-    [self setOutputType:[[self class] scanOutputType:script]];
+    // 出力タイプを得る
+    CEScriptOutputType outputType = [[self class] scanOutputType:script];
 
     // タスク実行準備
     // （task に引数をセットすると一部のスクリプトが誤動作する。例えば、Perl 5.8.xで「use encoding 'utf8'」のうえ
     // printコマンドを使用すると文字化けすることがある。2009-03-31）
     NSTask *task = [[NSTask alloc] init];
-    NSPipe *outPipe = [NSPipe pipe];
-    NSPipe *errorPipe = [NSPipe pipe];
-    [self setOutputHandle:[outPipe fileHandleForReading]];
-    [self setErrorHandle:[errorPipe fileHandleForReading]];
-    
     [task setLaunchPath:[URL path]];
     [task setCurrentDirectoryPath:NSHomeDirectory()];
-    [task setStandardInput:[NSPipe pipe]];
-    [task setStandardOutput:outPipe];
-    [task setStandardError:errorPipe];
-    // 出力をバックグラウンドで行うように指示
-    [[[task standardOutput] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
-    [[[task standardError] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
-
-    [task launch];
     
-    if ([inputString length] > 0) {
-        NSData *inputData = [inputString dataUsingEncoding:NSUTF8StringEncoding];
-        [[[task standardInput] fileHandleForWriting] writeData:inputData];
-        [[[task standardInput] fileHandleForWriting] closeFile];
-    }
-}
-
-
-// ------------------------------------------------------
-/// シェルスクリプトの出力を取得
-- (void)receiveOutput:(NSNotification *)aNotification
-// ------------------------------------------------------
-{
-    NSData *outputData = [aNotification userInfo][NSFileHandleNotificationDataItem];
-    
-    if (!outputData) { return; }
-    
-    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
-    
-    if ([[aNotification object] isEqualTo:[self outputHandle]]) {
-        CEDocument *document = ([[NSApp orderedDocuments] count] > 0) ? [NSApp orderedDocuments][0] : nil;
+    // Standard Error
+    __block typeof(self) blockSelf = self;
+    [task setStandardError:[NSPipe pipe]];
+    [[[task standardError] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        NSString *error = [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
         
-        if (outputString) {
-            switch ([self outputType]) {
+        if ([error length] > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [blockSelf showScriptError:error];
+            });
+        }
+    }];
+    
+    // Standard Output
+    [task setStandardOutput:[NSPipe pipe]];
+    [[[task standardOutput] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        NSString *output = [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
+        CEEditorView *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editorView];
+        
+        if (!output) { return; }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            switch (outputType) {
                 case CEReplaceSelectionType:
-                    [[document editorView] replaceTextViewSelectedStringTo:outputString scroll:NO];
+                    [editor replaceTextViewSelectedStringTo:output scroll:NO];
                     break;
                 case CEReplaceAllTextType:
-                    [[document editorView] replaceTextViewAllStringTo:outputString];
+                    [editor replaceTextViewAllStringTo:output];
                     break;
                 case CEInsertAfterSelectionType:
-                    [[document editorView] insertTextViewAfterSelectionStringTo:outputString];
+                    [editor insertTextViewAfterSelectionStringTo:output];
                     break;
                 case CEAppendToAllTextType:
-                    [[document editorView] appendTextViewAfterAllStringTo:outputString];
+                    [editor appendTextViewAfterAllStringTo:output];
                     break;
                 case CEPasteboardType: {
                     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
                     [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
-                    if (![pasteboard setString:outputString forType:NSStringPboardType]) {
+                    if (![pasteboard setString:output forType:NSStringPboardType]) {
                         NSBeep();
                     }
                     break;
                 }
                 case CENoOutputType:
-                    // do nothing
-                    break;
+                    break;  // do nothing
             }
-        }
-        [self setOutputType:CENoOutputType];
-        [self setOutputHandle:nil];
-        
-    } else if ([[aNotification object] isEqualTo:[self errorHandle]]) {
-        if ([outputString length] > 0) {
-            [self showScriptError:outputString];
-        }
-        [self setErrorHandle:nil];
+        });
+    }];
+    
+    if ([input length] > 0) {
+        [[[task standardInput] fileHandleForWriting] writeData:[input dataUsingEncoding:NSUTF8StringEncoding]];
+        [[[task standardInput] fileHandleForWriting] closeFile];
     }
+    
+    [task launch];
 }
 
 
@@ -725,7 +685,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (void)showScriptError:(NSString *)newError
 // ------------------------------------------------------
 {
-    [[CEScriptErrorPanelController sharedController] showWindow:self];
+    [[CEScriptErrorPanelController sharedController] showWindow:nil];
     [[CEScriptErrorPanelController sharedController] addErrorString:[NSString stringWithFormat:@"[%@]\n%@",
                                                                      [[NSDate date] description], newError]];
 }
