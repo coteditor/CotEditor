@@ -415,6 +415,44 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 }
 
 
+// ------------------------------------------------------
+/// 出力タイプに即したスクリプト結果を現在の書類に反映
++ (void)setOutputToDocument:(NSString *)output outputType:(CEScriptOutputType)outputType
+// ------------------------------------------------------
+{
+    CEEditorView *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editorView];
+    
+    switch (outputType) {
+        case CEReplaceSelectionType:
+            [editor replaceTextViewSelectedStringTo:output scroll:NO];
+            break;
+            
+        case CEReplaceAllTextType:
+            [editor replaceTextViewAllStringTo:output];
+            break;
+            
+        case CEInsertAfterSelectionType:
+            [editor insertTextViewAfterSelectionStringTo:output];
+            break;
+            
+        case CEAppendToAllTextType:
+            [editor appendTextViewAfterAllStringTo:output];
+            break;
+            
+        case CEPasteboardType: {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
+            if (![pasteboard setString:output forType:NSStringPboardType]) {
+                NSBeep();
+            }
+            break;
+        }
+        case CENoOutputType:
+            break;  // do nothing
+    }
+}
+
+
 
 #pragma mark Private Methods
 
@@ -639,36 +677,12 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [task setStandardOutput:[NSPipe pipe]];
     [[[task standardOutput] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
         NSString *output = [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-        CEEditorView *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editorView];
         
-        if (!output) { return; }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            switch (outputType) {
-                case CEReplaceSelectionType:
-                    [editor replaceTextViewSelectedStringTo:output scroll:NO];
-                    break;
-                case CEReplaceAllTextType:
-                    [editor replaceTextViewAllStringTo:output];
-                    break;
-                case CEInsertAfterSelectionType:
-                    [editor insertTextViewAfterSelectionStringTo:output];
-                    break;
-                case CEAppendToAllTextType:
-                    [editor appendTextViewAfterAllStringTo:output];
-                    break;
-                case CEPasteboardType: {
-                    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-                    [pasteboard declareTypes:@[NSStringPboardType] owner:nil];
-                    if (![pasteboard setString:output forType:NSStringPboardType]) {
-                        NSBeep();
-                    }
-                    break;
-                }
-                case CENoOutputType:
-                    break;  // do nothing
-            }
-        });
+        if (output) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[blockSelf class] setOutputToDocument:output outputType:outputType];
+            });
+        }
     }];
     
     if ([input length] > 0) {
