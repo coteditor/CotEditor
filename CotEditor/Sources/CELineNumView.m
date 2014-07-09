@@ -318,15 +318,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat y = [self convertPoint:[[self window] convertScreenToBase:point] fromView:nil].y;
     if (y < 0) {
         [textView scrollLineDown:nil];
-    } else if (NSHeight([self bounds]) - y < 0) {
+    } else if (y > NSHeight([self bounds])) {
         [textView scrollLineUp:nil];
     }
     
-    // get current index
-    NSUInteger currentIndex = [textView characterIndexForPoint:point];
-    
     // select lines
-    NSRange range = [[textView string] lineRangeForRange:NSMakeRange(MIN([self clickedIndex], currentIndex),
+    NSUInteger currentIndex = [textView characterIndexForPoint:point];
+    NSRange range = [[textView string] lineRangeForRange:NSMakeRange(MIN(currentIndex, [self clickedIndex]),
                                                                      abs(currentIndex - [self clickedIndex]))];
     [textView setSelectedRange:range];
 }
