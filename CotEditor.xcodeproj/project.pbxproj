@@ -98,9 +98,9 @@
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
 		2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
+		2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
-		2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToPanelController.m */; };
@@ -350,9 +350,9 @@
 		2AB4326D1912ADAC00835004 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GlyphPopover.xib; sourceTree = "<group>"; };
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
 		2AB432701912AF7200835004 /* CEGlyphPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGlyphPopoverController.m; sourceTree = "<group>"; };
+		2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComposedCharacter.m"; sourceTree = "<group>"; };
 		2AD2F7171969FE7D000DD47E /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxMappingConflictSheet.xib; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
-		2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComposedCharacter.m"; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
 		2AFFB70618D7BC9300118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
@@ -1549,6 +1549,7 @@
 		8C71D95808640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_MODEL_TUNING = G3;
 				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -1561,6 +1562,7 @@
 		8C71D95908640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_MODEL_TUNING = G3;
 				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
