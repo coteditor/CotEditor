@@ -31,8 +31,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
+@import ObjectiveC.message;
 #import "CEDocument.h"
-#import <objc/message.h>
 #import <sys/xattr.h>
 #import <OgreKit/OgreKit.h>
 #import "CEPrintPanelAccessoryController.h"

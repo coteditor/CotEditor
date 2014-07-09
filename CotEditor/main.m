@@ -2,11 +2,13 @@
 //  main.m
 //  CotEditor
 //
-//  Created by naka on 04/12/08.
-//  Copyright __MyCompanyName__ 2004 . All rights reserved.
+//  Created by nakamuxu on 2004-12-08.
+//  © 2004 nakamuxu.
+//  © 2014 CotEditor Project
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 
 int main(int argc, char *argv[])
 {

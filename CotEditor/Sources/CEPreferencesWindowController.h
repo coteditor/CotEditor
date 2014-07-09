@@ -30,7 +30,7 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 
 @interface CEPreferencesWindowController : NSWindowController <NSWindowDelegate>

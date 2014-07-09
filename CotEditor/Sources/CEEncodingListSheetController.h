@@ -29,7 +29,8 @@
  
  =================================================
  */
-#import <Cocoa/Cocoa.h>
+
+@import Cocoa;
 
 
 @interface CEEncodingListSheetController : NSWindowController <NSWindowDelegate>

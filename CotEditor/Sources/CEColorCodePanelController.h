@@ -30,7 +30,6 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
 #import "CEPanelController.h"
 
 

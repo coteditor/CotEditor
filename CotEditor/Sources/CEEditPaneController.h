@@ -31,7 +31,7 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 
 @interface CEEditPaneController : NSViewController

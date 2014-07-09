@@ -31,7 +31,7 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 
 typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {

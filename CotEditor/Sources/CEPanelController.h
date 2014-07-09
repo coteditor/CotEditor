@@ -32,7 +32,7 @@
  =================================================
  */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #import "CEWindowController.h"
 
 
