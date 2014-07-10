@@ -119,7 +119,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         // 重複しているユーザ領域の定義ファイルを隔離
         [self migrateDuplicatedDefaultColoringStylesInUserDomain];
         
-        [self updateCache];
+        [self updateCacheWithCompletionHandler:nil];
     }
     return self;
 }
@@ -268,7 +268,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     
     if (success) {
         // 内部で持っているキャッシュ用データを更新
-        [self updateCache];
+        [self updateCacheWithCompletionHandler:nil];
     }
     
     return success;
@@ -319,11 +319,13 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
         if (success) {
             // 内部で持っているキャッシュ用データを更新
-            [self updateCache];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                                object:@{CEOldNameKey: styleName,
-                                                                         CENewNameKey: NSLocalizedString(@"None", nil)}];
+            __block typeof(self) blockSelf = self;
+            [self updateCacheWithCompletionHandler:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                                    object:blockSelf
+                                                                  userInfo:@{CEOldNameKey: styleName,
+                                                                             CENewNameKey: NSLocalizedString(@"None", nil)}];
+            }];
         } else {
             NSLog(@"Error. Could not remove \"%@\".", URL);
         }
@@ -434,12 +436,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     }
     
     // 内部で持っているキャッシュ用データを更新
-    [self updateCache];
-    
-    // notify
-    [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                        object:@{CEOldNameKey: oldName,
-                                                                 CENewNameKey: name}];
+    [self updateCacheWithCompletionHandler:^{
+        // notify
+        __block typeof(self) blockSelf = self;
+        [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                            object:blockSelf
+                                                          userInfo:@{CEOldNameKey: oldName,
+                                                                     CENewNameKey: name}];
+    }];
 }
 
 
@@ -626,14 +630,23 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 // ------------------------------------------------------
 /// 内部で持っているキャッシュ用データを更新
-- (void)updateCache
+- (void)updateCacheWithCompletionHandler:(void (^)())completionHandler
 // ------------------------------------------------------
 {
-    [self cacheStyles];
-    [self setupExtensionAndSyntaxTable];
-    
-    // ラインナップの更新を通知する
-    [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxListDidUpdateNotification object:nil];
+    __block typeof(self) blockSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [blockSelf cacheStyles];
+        [blockSelf setupExtensionAndSyntaxTable];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Notificationを発行
+            [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxListDidUpdateNotification object:blockSelf];
+            
+            if (completionHandler) {
+                completionHandler();
+            }
+        });
+    });
 }
 
 
