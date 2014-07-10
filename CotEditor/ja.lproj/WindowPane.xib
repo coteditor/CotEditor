@@ -191,6 +191,7 @@
                     </textFieldCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.windowHeight" id="643"/>
+                        <outlet property="nextKeyView" destination="620" id="E8b-G5-UNg"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="619">
@@ -222,6 +223,7 @@
                     </textFieldCell>
                     <connections>
                         <binding destination="26" name="value" keyPath="values.windowWidth" id="640"/>
+                        <outlet property="nextKeyView" destination="624" id="aan-36-MG5"/>
                     </connections>
                 </textField>
                 <box autoresizesSubviews="NO" wantsLayer="YES" verticalHuggingPriority="750" alphaValue="0.75" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="h76-8K-zux">
