@@ -226,13 +226,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 行番号を印字
     if ([self printsLineNum]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         // 行番号の文字属性辞書生成
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         CGFloat masterFontSize = [[self font] pointSize];
-        CGFloat lineNumFontSize = round(0.9 * masterFontSize);
-        NSFont *lineNumFont = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:lineNumFontSize] ? : [NSFont userFixedPitchFontOfSize:lineNumFontSize];
-        NSDictionary *attrs = @{NSFontAttributeName: lineNumFont,
+        CGFloat fontSize = round(0.9 * masterFontSize);
+        NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize] ? : [NSFont userFixedPitchFontOfSize:fontSize];
+        NSDictionary *attrs = @{NSFontAttributeName: font,
                                 NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
                                                                  [defaults dataForKey:k_key_lineNumFontColor]]};
         
@@ -241,38 +241,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
         
         // setup the variables we need for the loop
-        NSRange range;       // a range for counting lines
-        NSString *str = [self string];
-        NSString *numStr;    // a temporary string for Line Number
-        NSUInteger glyphIndex, lastLineNum, glyphCount; // glyph counter
-        NSUInteger charIndex;
-        NSUInteger lineNum;   // line counter
-        CGFloat reqWidth;    // width calculator holder -- width needed to show string
-        CGFloat xAdj = 0.0;    // adjust horizontal value for line number drawing
-        CGFloat yAdj = 0.0;    // adjust vertical value for line number drawing
-        NSRect numRect;      // rectange holder
-        NSPoint numPoint;    // point holder
-        NSLayoutManager *layoutManager = [self layoutManager]; // get _owner's layout manager.
+        NSString *string = [self string];
+        NSLayoutManager *layoutManager = [self layoutManager]; // get owner's layout manager.
+        
         NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
+        
+        // adjust values for line number drawing
+        CGFloat xAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
+        CGFloat yAdj = (fontSize - masterFontSize);
+        
+        // counters
+        NSUInteger lastLineNum = 0;
+        NSUInteger lineNum = 1;
+        NSUInteger glyphCount = 0;
 
-        lastLineNum = 0;
-        lineNum = 1;
-        glyphCount = 0;
-        xAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
-        yAdj = (lineNumFontSize - masterFontSize);
-
-        for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
-            charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
-            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[str lineRangeForRange:NSMakeRange(charIndex, 0)]
+        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
+            NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
+            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                           actualCharacterRange:NULL]);
             while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
-                numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+                NSRange range;
+                NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
                 if (NSPointInRect(numRect.origin, dirtyRect)) {
-                    numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu:", lineNum] : @"-:";
-                    reqWidth = charWidth * [numStr length];
-                    numPoint = NSMakePoint(dirtyRect.origin.x - reqWidth + xAdj,
+                    NSString *numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu:", lineNum] : @"-:";
+                    CGFloat requiredWidth = charWidth * [numStr length];
+                    NSPoint point = NSMakePoint(dirtyRect.origin.x - requiredWidth + xAdj,
                                            numRect.origin.y + yAdj);
-                    [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the line number.
+                    [numStr drawAtPoint:point withAttributes:attrs]; // draw the line number.
                     lastLineNum = lineNum;
                 }
                 glyphCount = NSMaxRange(range);

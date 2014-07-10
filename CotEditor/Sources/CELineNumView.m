@@ -108,6 +108,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
     [backgroundColor set];
     [NSBezierPath fillRect:dirtyRect];
+    
     // draw frame border (0.5px)
     [[NSColor controlShadowColor] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect))
@@ -121,9 +122,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CGFloat masterFontSize = [[[[self masterView] textView] font] pointSize];
     
     // setup drawing attributes for the font size and color.
+    CGFloat masterFontSize = [[[[self masterView] textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
     NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize] ? : [NSFont paletteFontOfSize:fontSize];
     NSDictionary *attrs = @{NSFontAttributeName: font,
@@ -135,59 +136,53 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
     
     // setup the variables we need for the loop
-    NSRange range;       // a range for counting lines
-    NSString *str = [[self masterView] string];
-    NSString *numStr;    // a temporary string for Line Number
-    NSUInteger glyphIndex, glyphCount; // glyph counter
-    NSUInteger charIndex;
-    NSUInteger lineNum, lastLineNum;   // line counter
-    CGFloat reqWidth;      // width calculator holder -- width needed to show string
-    CGFloat curWidth;      // width calculator holder -- my current width
-    CGFloat adj = 0;       // adjust vertical value for line number drawing
-    CGFloat insetAdj = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop];
-    NSRect numRect;      // rectange holder
-    NSPoint numPoint;    // point holder
-    NSLayoutManager *layoutManager = [[[self masterView] textView] layoutManager]; // get _owner's layout manager.
+    NSString *string = [[self masterView] string];
+    NSLayoutManager *layoutManager = [[[self masterView] textView] layoutManager]; // get owner's layout manager.
     
-    lastLineNum = 0;
-    lineNum = 1;
-    glyphCount = 0;
-    
-    CGFloat crDistance;
     NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
     
-    if(numberOfGlyphs > 0) {
-        //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
-        numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:NULL];
+    if (numberOfGlyphs == 0) { return; }
+    
+    //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
+    CGFloat crDistance;
+    {
+        NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:0 effectiveRange:NULL];
         crDistance = numRect.origin.y - NSHeight(numRect);
         numRect = [self convertRect:numRect fromView:[[self masterView] textView]];
         crDistance = numRect.origin.y - crDistance;
-    } else {
-        return;
     }
-    adj = k_lineNumFontDescender - (masterFontSize + fontSize) / 2 - insetAdj;
     
-    for (glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
-        charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
-        glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[str lineRangeForRange:NSMakeRange(charIndex, 0)]
+    // adjust values for line number drawing
+    CGFloat insetAdj = (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop];
+    CGFloat adj = k_lineNumFontDescender - (masterFontSize + fontSize) / 2 - insetAdj;
+    
+    // counters
+    NSUInteger lastLineNum = 0;
+    NSUInteger lineNum = 1;
+    NSUInteger glyphCount = 0;
+    
+    for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
+        NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
+        glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                       actualCharacterRange:NULL]);
         while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
-            numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+            NSRange range;
+            NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSHeight(numRect) - numRect.origin.y;
             if ([self needsToDrawRect:numRect]) {
-                numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu", lineNum] : @"-";
-                reqWidth = charWidth * [numStr length];
-                curWidth = NSWidth([self frame]);
-                if ((curWidth - k_lineNumPadding) < reqWidth) {
-                    while ((curWidth - k_lineNumPadding) < reqWidth) {
-                        curWidth += charWidth;
+                NSString *numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu", lineNum] : @"-";
+                CGFloat requiredWidth = charWidth * [numStr length];
+                CGFloat currentWidth = NSWidth([self frame]);
+                if ((currentWidth - k_lineNumPadding) < requiredWidth) {
+                    while ((currentWidth - k_lineNumPadding) < requiredWidth) {
+                        currentWidth += charWidth;
                     }
-                    [self setWidth:curWidth]; // set a wider width if needed.
+                    [self setWidth:currentWidth]; // set a wider width if needed.
                 }
-                numPoint = NSMakePoint(curWidth - reqWidth - k_lineNumPadding,
-                                       numRect.origin.y + adj + NSHeight(numRect));
-                [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the line number.
+                NSPoint point = NSMakePoint(currentWidth - requiredWidth - k_lineNumPadding,
+                                            numRect.origin.y + adj + NSHeight(numRect));
+                [numStr drawAtPoint:point withAttributes:attrs]; // draw the line number.
                 lastLineNum = lineNum;
             } else if (NSMaxY(numRect) < 0) { // no need to draw
                 return;
@@ -196,20 +191,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     // Draw the last "extra" line number.
-    numRect = [layoutManager extraLineFragmentRect];
+    NSRect numRect = [layoutManager extraLineFragmentRect];
     if (!NSEqualSizes(numRect.size, NSZeroSize)) {
-        numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu", lineNum] : @" ";
-        reqWidth = charWidth * [numStr length];
-        curWidth = NSWidth([self frame]);
-        if ((curWidth - k_lineNumPadding) < reqWidth) {
-            while ((curWidth - k_lineNumPadding) < reqWidth) {
-                curWidth += charWidth;
+        NSString *numStr = (lastLineNum != lineNum) ? [NSString stringWithFormat:@"%tu", lineNum] : @" ";
+        CGFloat requiredWidth = charWidth * [numStr length];
+        CGFloat currentWidth = NSWidth([self frame]);
+        if ((currentWidth - k_lineNumPadding) < requiredWidth) {
+            while ((currentWidth - k_lineNumPadding) < requiredWidth) {
+                currentWidth += charWidth;
             }
-            [self setWidth:curWidth]; // set a wider width if needed.
+            [self setWidth:currentWidth]; // set a wider width if needed.
         }
-        numPoint = NSMakePoint(curWidth - reqWidth - k_lineNumPadding,
+        NSPoint point = NSMakePoint(currentWidth - requiredWidth - k_lineNumPadding,
                                crDistance - numRect.origin.y + adj);
-        [numStr drawAtPoint:numPoint withAttributes:attrs]; // draw the last line number.
+        [numStr drawAtPoint:point withAttributes:attrs]; // draw the last line number.
     }
 }
 

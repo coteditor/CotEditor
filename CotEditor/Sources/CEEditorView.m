@@ -49,12 +49,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSTimer *infoUpdateTimer;
 @property (nonatomic) NSTimer *incompatibleCharTimer;
 
-@property (nonatomic) NSTimeInterval basicColoringDelay;
-@property (nonatomic) NSTimeInterval firstColoringDelay;
-@property (nonatomic) NSTimeInterval secondColoringDelay;
-@property (nonatomic) NSTimeInterval infoUpdateInterval;
-@property (nonatomic) NSTimeInterval incompatibleCharInterval;
-
 
 // readonly
 @property (nonatomic, readwrite) CESplitView *splitView;
@@ -69,10 +63,43 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEEditorView
 
-#pragma mark NSView methods
+static NSTimeInterval basicColoringDelay;
+static NSTimeInterval firstColoringDelay;
+static NSTimeInterval secondColoringDelay;
+static NSTimeInterval infoUpdateInterval;
+static NSTimeInterval incompatibleCharInterval;
+
+
+#pragma mark Class Methods
 
 //=======================================================
-// NSView method
+// Class method
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// クラス初期化
++ (void)initialize
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        basicColoringDelay = [defaults doubleForKey:k_key_basicColoringDelay];
+        firstColoringDelay = [defaults doubleForKey:k_key_firstColoringDelay];
+        secondColoringDelay = [defaults doubleForKey:k_key_secondColoringDelay];
+        infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
+        incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
+    });
+}
+
+
+
+#pragma mark Sperclass Methods
+
+//=======================================================
+// Sperclass method
 //
 //=======================================================
 
@@ -91,12 +118,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                       [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
                                       [defaults boolForKey:k_key_showOtherInvisibleChars]);
         
-        _basicColoringDelay = [defaults doubleForKey:k_key_basicColoringDelay];
-        _firstColoringDelay = [defaults doubleForKey:k_key_firstColoringDelay];
-        _secondColoringDelay = [defaults doubleForKey:k_key_secondColoringDelay];
-        _infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
-        _incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
-        
         [self setupViews];
         
         [self setShowInvisibles:_canActivateShowInvisibles];
@@ -110,12 +131,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [self stopAllTimer];
+    [self stopAllTimers];
 }
 
 
 
-#pragma mark Public methods
+#pragma mark Public Methods
 
 //=======================================================
 // Public method
@@ -533,7 +554,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if (![[[self syntax] syntaxStyleName] isEqualToString:name]) {
         [[self splitView] setSyntaxWithName:name];
-        [self setIsColoring:![[self syntax] isNone]];
     }
     if (recolorNow) {
         [self recolorAllString];
@@ -797,27 +817,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setupColoringTimer
 // ------------------------------------------------------
 {
-    if ([self isColoring]) {
-        // 遅延カラーリング
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_delayColoring]) {
-            if ([self coloringTimer]) {
-                [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self secondColoringDelay]]];
-            } else {
-                [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:[self firstColoringDelay]
-                                                                        target:self
-                                                                      selector:@selector(doColoringWithTimer:)
-                                                                      userInfo:nil repeats:NO]];
-            }
-        } else {
-            if ([self coloringTimer]) {
-                [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self basicColoringDelay]]];
-            } else {
-                [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:[self basicColoringDelay]
-                                                                        target:self
-                                                                      selector:@selector(doColoringWithTimer:)
-                                                                      userInfo:nil repeats:NO]];
-            }
-        }
+    if ([[self syntax] isNone]) { return; }
+    
+    BOOL delay = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_delayColoring];
+    
+    if ([self coloringTimer]) {
+        NSTimeInterval interval = delay ? secondColoringDelay : basicColoringDelay;
+        [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+        
+    } else {
+        NSTimeInterval interval = delay ? firstColoringDelay : basicColoringDelay;
+        [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                target:self
+                                                              selector:@selector(doColoringWithTimer:)
+                                                              userInfo:nil repeats:NO]];
     }
 }
 
@@ -829,9 +842,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
         if ([self incompatibleCharTimer]) {
-            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self incompatibleCharInterval]]];
+            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
         } else {
-            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:[self incompatibleCharInterval]
+            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
                                                                             target:self
                                                                           selector:@selector(doUpdateIncompatibleCharListWithTimer:)
                                                                           userInfo:nil
@@ -847,9 +860,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:[self infoUpdateInterval]]];
+        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
     } else {
-        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:[self infoUpdateInterval]
+        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
                                                                   target:self
                                                                 selector:@selector(doUpdateInfoWithTimer:)
                                                                 userInfo:nil
@@ -871,7 +884,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 全タイマーを停止
-- (void)stopAllTimer
+- (void)stopAllTimers
 // ------------------------------------------------------
 {
     [self stopColoringTimer];

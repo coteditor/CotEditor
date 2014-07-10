@@ -37,7 +37,7 @@
 
 @implementation CEUtils
 
-static NSArray *_invalidYenEncodings;
+static const NSArray *invalidYenEncodings;
 
 
 #pragma mark Superclass Class Methods
@@ -55,7 +55,7 @@ static NSArray *_invalidYenEncodings;
             [encodings addObject:@(encoding)];
         }
         
-        _invalidYenEncodings = [encodings copy];
+        invalidYenEncodings = [encodings copy];
     });
 }
 
@@ -143,7 +143,7 @@ static NSArray *_invalidYenEncodings;
 + (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    return ([_invalidYenEncodings containsObject:@(encoding)]);
+    return ([invalidYenEncodings containsObject:@(encoding)]);
 }
 
 

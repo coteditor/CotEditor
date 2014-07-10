@@ -673,18 +673,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [menu removeAllItems];
     
     // None を追加
-    [menu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
-                                             action:@selector(changeSyntaxStyle:)
-                                      keyEquivalent:@""]];
+    [menu addItemWithTitle:NSLocalizedString(@"None", nil)
+                    action:@selector(changeSyntaxStyle:)
+             keyEquivalent:@""];
     
     [menu addItem:[NSMenuItem separatorItem]];
     
     // シンタックススタイルをラインナップ
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     for (NSString *styleName in styleNames) {
-        [menu addItem:[[NSMenuItem alloc] initWithTitle:styleName
-                                                 action:@selector(changeSyntaxStyle:)
-                                          keyEquivalent:@""]];
+        [menu addItemWithTitle:styleName
+                        action:@selector(changeSyntaxStyle:)
+                 keyEquivalent:@""];
     }
     
     [menu addItem:[NSMenuItem separatorItem]];
@@ -708,9 +708,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
     for (NSString *themeName in themeNames) {
-        [menu addItem:[[NSMenuItem alloc] initWithTitle:themeName
-                                                 action:@selector(changeTheme:)
-                                          keyEquivalent:@""]];
+        [menu addItemWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
     }
 }
 
