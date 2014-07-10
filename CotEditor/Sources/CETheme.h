@@ -30,7 +30,7 @@
  =================================================
  */
 
-@import Foundation;
+@import AppKit;
 
 
 @interface CETheme : NSObject
@@ -64,9 +64,5 @@
 
 /// default initializer
 - (instancetype)initWithName:(NSString *)themeName;
-
-
-/// return corresponded color to keys of syntax definition format
-- (NSColor *)syntaxColorWithSyntaxKey:(NSString *)key;
 
 @end

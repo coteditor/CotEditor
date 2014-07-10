@@ -1026,12 +1026,31 @@ static NSArray *kSyntaxDictKeys;
     for (NSDictionary *coloring in colorings) {
         @autoreleasepool {
             NSColor *color;
-            if ([coloring[ColorKey] isEqualToString:InvisiblesType]) {
+            NSString *colorType = coloring[ColorKey];
+            if ([colorType isEqualToString:InvisiblesType]) {
                 if (![[self layoutManager] showOtherInvisibles]) { continue; }
                 
                 color = [theme invisiblesColor];
+            } else if ([colorType isEqualToString:k_SCKey_keywordsArray]) {
+                color = [theme keywordsColor];
+            } else if ([colorType isEqualToString:k_SCKey_commandsArray]) {
+                color = [theme commandsColor];
+            } else if ([colorType isEqualToString:k_SCKey_categoriesArray]) {
+                color = [theme categoriesColor];
+            } else if ([colorType isEqualToString:k_SCKey_variablesArray]) {
+                color = [theme variablesColor];
+            } else if ([colorType isEqualToString:k_SCKey_valuesArray]) {
+                color = [theme valuesColor];
+            } else if ([colorType isEqualToString:k_SCKey_numbersArray]) {
+                color = [theme numbersColor];
+            } else if ([colorType isEqualToString:k_SCKey_stringsArray]) {
+                color = [theme stringsColor];
+            } else if ([colorType isEqualToString:k_SCKey_charactersArray]) {
+                color = [theme charactersColor];
+            } else if ([colorType isEqualToString:k_SCKey_commentsArray]) {
+                color = [theme commentsColor];
             } else {
-                color = [theme syntaxColorWithSyntaxKey:coloring[ColorKey]];
+                color = [theme textColor];
             }
             
             NSRange range = [coloring[RangeKey] rangeValue];

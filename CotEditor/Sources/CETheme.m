@@ -32,7 +32,6 @@
 
 #import "CETheme.h"
 #import "CEThemeManager.h"
-#import "constants.h"
 
 
 @interface CETheme ()
@@ -138,35 +137,6 @@
         return [NSColor selectedTextBackgroundColor];
     }
     return _selectionColor;
-}
-
-
-//------------------------------------------------------
-/// シンタックス定義の配列キーに対応したカラーを返す
-- (NSColor *)syntaxColorWithSyntaxKey:(NSString *)key
-//------------------------------------------------------
-{
-    if ([key isEqualToString:k_SCKey_keywordsArray]) {
-        return [self keywordsColor];
-    } else if ([key isEqualToString:k_SCKey_commandsArray]) {
-        return [self commandsColor];
-    } else if ([key isEqualToString:k_SCKey_categoriesArray]) {
-        return [self categoriesColor];
-    } else if ([key isEqualToString:k_SCKey_variablesArray]) {
-        return [self variablesColor];
-    } else if ([key isEqualToString:k_SCKey_valuesArray]) {
-        return [self valuesColor];
-    } else if ([key isEqualToString:k_SCKey_numbersArray]) {
-        return [self numbersColor];
-    } else if ([key isEqualToString:k_SCKey_stringsArray]) {
-        return [self stringsColor];
-    } else if ([key isEqualToString:k_SCKey_charactersArray]) {
-        return [self charactersColor];
-    } else if ([key isEqualToString:k_SCKey_commentsArray]) {
-        return [self commentsColor];
-    } else {
-        return [self textColor];
-    }
 }
 
 @end
