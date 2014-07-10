@@ -123,14 +123,17 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSMenuItem *menuItem;
 
     [self addChildFileItemTo:menu fromDir:[[self class] scriptDirectoryURL]];
+    
     if ([menu numberOfItems] > 0) {
         [menu addItem:[NSMenuItem separatorItem]];
     }
+    
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
                                           action:@selector(openScriptFolder:)
                                    keyEquivalent:@"a"];
     [menuItem setTarget:self];
     [menu addItem:menuItem];
+    
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Copy Sample to Scripts Folder", nil)
                                           action:@selector(copySampleScriptToUserDomain:)
                                    keyEquivalent:@""];
@@ -140,6 +143,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [menuItem setTag:k_scriptMenuDirectoryTag];  // Alternate表示のための修飾キーをCotEditor menu key bindingsの対応外にする
     [menuItem setToolTip:NSLocalizedString(@"Copy bundled sample scripts to the scripts folder.", nil)];
     [menu addItem:menuItem];
+    
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
                                           action:@selector(buildScriptMenu:)
                                    keyEquivalent:@""];

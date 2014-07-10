@@ -226,13 +226,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-// ------------------------------------------------------
-/// すべてのエンコーディングメニューを生成
-- (void)buildAllEncodingMenus
-// ------------------------------------------------------
+//------------------------------------------------------
+/// エンコーディングメニューアイテムを生成
+- (void)buildEncodingMenuItems
+//------------------------------------------------------
 {
-    [self buildEncodingMenuItems];
-    [self buildFormatEncodingMenu];
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
+    
+    for (NSNumber *encodingNumber in encodings) {
+        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
+        NSMenuItem *item;
+        
+        if (cfEncoding == kCFStringEncodingInvalidId) {
+            item = [NSMenuItem separatorItem];
+        } else {
+            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+            NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
+            item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
+            [item setTag:encoding];
+        }
+        
+        [items addObject:item];
+    }
+    
+    [self setEncodingMenuItems:items];
+    
+    // リストのできあがりを通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
 }
 
 
@@ -249,19 +270,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [self setupSupportDirectory];
-    [self buildAllEncodingMenus];
-    [self buildSyntaxMenu];
-    [[CEScriptManager sharedManager] buildScriptMenu:nil];
     [self cacheInvisibleGlyphs];
+    [self buildEncodingMenuItems];
+    [self setupSupportDirectory];
+    
+    // build menus
+    [self buildEncodingMenu];
+    [self buildSyntaxMenu];
     [self buildThemeMenu];
+    [[CEScriptManager sharedManager] buildScriptMenu:nil];
+    
+    // エンコーディングリスト更新の通知依頼
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildEncodingMenu)
+                                                 name:CEEncodingListDidUpdateNotification
+                                               object:nil];
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxMenu)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
-    // テーマ更新の通知依頼
+    // テーマリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildThemeMenu)
                                                  name:CEThemeListDidUpdateNotification
@@ -295,6 +325,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (shouldReopen) {
         return YES;
+        
     } else if (flag) {
         // Re-Open に応えない設定でウィンドウがあるときは、すべてのウィンドウをチェックしひとつでも通常通り表示されていれば
         // NO を返し何もしない。表示されているウィンドウがすべて Dock にしまわれているときは、そのうちひとつを通常表示させる
@@ -617,45 +648,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 //------------------------------------------------------
-/// エンコーディングメニューアイテムを生成
-- (void)buildEncodingMenuItems
-//------------------------------------------------------
-{
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
-    
-    for (NSNumber *encodingNumber in encodings) {
-        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
-        NSMenuItem *item;
-        if (cfEncoding == kCFStringEncodingInvalidId) {
-            item = [NSMenuItem separatorItem];
-        } else {
-            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-            NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
-            item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
-            [item setTag:encoding];
-        }
-        
-        [items addObject:item];
-    }
-    
-    [self setEncodingMenuItems:items];
-    
-    // リストのできあがりを通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
-}
-
-
-//------------------------------------------------------
 /// フォーマットのエンコーディングメニューアイテムを生成
-- (void)buildFormatEncodingMenu
+- (void)buildEncodingMenu
 //------------------------------------------------------
 {
-    NSArray *items = [[NSArray alloc] initWithArray:[self encodingMenuItems] copyItems:YES];
-    
     NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag] submenu];
-    
     [menu removeAllItems];
+    
+    NSArray *items = [[NSArray alloc] initWithArray:[self encodingMenuItems] copyItems:YES];
     for (NSMenuItem *item in items) {
         [item setAction:@selector(changeEncoding:)];
         [item setTarget:nil];
@@ -669,34 +669,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
-    NSMenuItem *syntaxMenuItem = [[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag];
-    [syntaxMenuItem setSubmenu:[[NSMenu alloc] initWithTitle:@"SYNTAX"]]; // まず開放しておかないと、同じキーボードショートカットキーが設定できない
-    NSMenu *menu = [syntaxMenuItem submenu];
-    NSMenuItem *item;
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag] submenu];
+    [menu removeAllItems];
     
     // None を追加
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
-                                      action:@selector(changeSyntaxStyle:)
-                               keyEquivalent:@""];
-    [menu addItem:item];
+    [menu addItem:[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"None", nil)
+                                             action:@selector(changeSyntaxStyle:)
+                                      keyEquivalent:@""]];
+    
     [menu addItem:[NSMenuItem separatorItem]];
     
     // シンタックススタイルをラインナップ
     NSArray *styleNames = [[CESyntaxManager sharedManager] styleNames];
     for (NSString *styleName in styleNames) {
-        item = [[NSMenuItem alloc] initWithTitle:styleName
-                                          action:@selector(changeSyntaxStyle:)
-                                   keyEquivalent:@""];
-        [item setTarget:nil];
-        [menu addItem:item];
+        [menu addItem:[[NSMenuItem alloc] initWithTitle:styleName
+                                                 action:@selector(changeSyntaxStyle:)
+                                          keyEquivalent:@""]];
     }
     
-    // 全文字列を再カラーリングするメニューを追加
-    item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
-                                      action:@selector(recoloringAllStringOfDocument:)
-                               keyEquivalent:@"r"];
-    [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:[NSMenuItem separatorItem]];
+    
+    // 全文字列を再カラーリングするメニューを追加
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
+                                                  action:@selector(recoloringAllStringOfDocument:)
+                                           keyEquivalent:@"r"];
+    [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:item];
 }
 
@@ -706,15 +703,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)buildThemeMenu
 //------------------------------------------------------
 {
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_themeMenuItemTag] submenu];
+    [menu removeAllItems];
+    
     NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
-    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"THEME"];
-    
     for (NSString *themeName in themeNames) {
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
-        [menu addItem:menuItem];
+        [menu addItem:[[NSMenuItem alloc] initWithTitle:themeName
+                                                 action:@selector(changeTheme:)
+                                          keyEquivalent:@""]];
     }
-    
-    [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_themeMenuItemTag] setSubmenu:menu];
 }
 
 

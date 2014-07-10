@@ -76,7 +76,7 @@
 // ------------------------------------------------------
 {
     [[self dataSource] writeEncodingsToUserDefaults]; // エンコーディングを保存
-    [(CEAppDelegate *)[NSApp delegate] buildAllEncodingMenus];
+    [(CEAppDelegate *)[NSApp delegate] buildEncodingMenuItems];
     
     [NSApp stopModal];
 }

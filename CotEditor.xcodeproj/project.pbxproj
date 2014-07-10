@@ -119,7 +119,6 @@
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
 		8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */; };
 		8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
-		8C3A7DEA0867EC9C00ECE052 /* startup.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A7DD80867EA9A00ECE052 /* startup.applescript */; };
 		8C3BEA2808BDBCA800BC2067 /* CEOutlineMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
 		8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */; };
@@ -384,7 +383,6 @@
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Script_CleanButton.tiff; path = toolbarIcons/Script_CleanButton.tiff; sourceTree = "<group>"; };
 		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = "<group>"; };
-		8C3A7DD80867EA9A00ECE052 /* startup.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = startup.applescript; path = internalScript/startup.applescript; sourceTree = "<group>"; };
 		8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOutlineMenuButton.h; sourceTree = "<group>"; };
 		8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOutlineMenuButton.m; sourceTree = "<group>"; };
 		8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = LineNumber_Hide.tiff; path = toolbarIcons/LineNumber_Hide.tiff; sourceTree = "<group>"; };
@@ -511,7 +509,6 @@
 		259B181207E530DA00C5FD26 /* InternalScript */ = {
 			isa = PBXGroup;
 			children = (
-				8C3A7DD80867EA9A00ECE052 /* startup.applescript */,
 				2585914B080F503A0038F387 /* openDictionary.applescript */,
 				8C0F52600871861C00ABD124 /* openScriptMenu.applescript */,
 			);
@@ -1033,7 +1030,6 @@
 				2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */,
 				8C3E2D610808E210009894D1 /* WrapLines_Off.tiff in Resources */,
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
-				8C3A7DEA0867EC9C00ECE052 /* startup.applescript in Resources */,
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
 				8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */,
