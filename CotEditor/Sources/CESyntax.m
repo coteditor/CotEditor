@@ -77,6 +77,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
 @property (atomic, copy) NSArray *cacheColorings;  // extracting results cache of the last whole string coloring
 @property (atomic) NSUInteger cacheHash;
+@property (atomic) dispatch_queue_t coloringQueue;
 
 @property (atomic, copy) NSString *coloringString;  // カラーリング対象文字列　coloringsForAllSyntaxWithString: 冒頭でセットされる
 @property (atomic) CEIndicatorSheetController *indicatorController;
@@ -178,7 +179,7 @@ static NSArray *kSyntaxDictKeys;
                     NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
                     for (NSString *key in kSyntaxDictKeys) {
                         @autoreleasepool {
-                            for (NSDictionary *wordDict in [self coloringDictionary][key]) {
+                            for (NSDictionary *wordDict in _coloringDictionary[key]) {
                                 NSString *begin = [wordDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:trimCharSet];
                                 NSString *end = [wordDict[k_SCKey_endString] stringByTrimmingCharactersInSet:trimCharSet];
                                 if (([begin length] > 0) && ([end length] == 0) && ![wordDict[k_SCKey_regularExpression] boolValue]) {
@@ -241,6 +242,10 @@ static NSArray *kSyntaxDictKeys;
                 _blockCommentDelimiters = @{@"begin": delimiters[k_SCKey_beginComment],
                                             @"end": delimiters[k_SCKey_endComment]};
             }
+            
+            // queue
+            _coloringQueue = dispatch_queue_create("com.aynimac.CotEditor.ColoringQueue", DISPATCH_QUEUE_CONCURRENT);
+
             
         } else {
             return nil;
@@ -820,10 +825,6 @@ static NSArray *kSyntaxDictKeys;
         // Keywords > Commands > Categories > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             
-            NSArray *strDicts = [self coloringDictionary][syntaxKey];
-            NSUInteger count = [strDicts count];
-            if (!strDicts) { continue; }
-            
             // インジケータシートのメッセージを更新
             if ([self indicatorController]) {
                 [[self indicatorController] setInformativeText:
@@ -831,12 +832,15 @@ static NSArray *kSyntaxDictKeys;
                   NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
             }
             
-            if (count < 1) {
+            NSArray *strDicts = [self coloringDictionary][syntaxKey];
+            if ([strDicts count] == 0) {
                 if ([self indicatorController]) {
                     [[self indicatorController] progressIndicator:100.0];
                 }
                 continue;
             }
+            
+            CGFloat indicatorDelta = k_perCompoIncrement / [strDicts count];
             
             NSMutableArray *targetRanges = [[NSMutableArray alloc] initWithCapacity:10];
             for (NSDictionary *strDict in strDicts) {
@@ -898,7 +902,7 @@ static NSArray *kSyntaxDictKeys;
                     }
                     // インジケータ更新
                     if ([self indicatorController]) {
-                        [[self indicatorController] progressIndicator:k_perCompoIncrement / count];
+                        [[self indicatorController] progressIndicator:indicatorDelta];
                     }
                 } // ==== end-autoreleasepool
             } // end-for (strDict)
@@ -967,10 +971,10 @@ static NSArray *kSyntaxDictKeys;
     
     [self setIsColoring:YES];
     
-    dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : [self coloringQueue];
     
     // 任意のスレッドで実行
-    dispatch_async(queue, ^{ @synchronized(self) {
+    dispatch_barrier_async(queue, ^{
         NSArray *colorings = [self extractAllSyntaxFromString:coloringString];
         
         dispatch_block_t completion = ^{
@@ -1003,7 +1007,7 @@ static NSArray *kSyntaxDictKeys;
             [self setCacheColorings:colorings];
             [self setCacheHash:[wholeString hash]];
         }
-    }}); // end dispatch_async+@synchronized
+    }); // end dispatch_barrier_async
 }
 
 
@@ -1012,16 +1016,17 @@ static NSArray *kSyntaxDictKeys;
 - (void)applyColorings:(NSArray *)colorings range:(NSRange)coloringRange
 // ------------------------------------------------------
 {
+    CETheme *theme = [(NSTextView<CETextViewProtocol> *)[[self layoutManager] firstTextView] theme];
+    
     // 現在あるカラーリングを削除
     if ([self isPrinting]) {
-        [[[self layoutManager] firstTextView] setTextColor:nil range:coloringRange];
+        [[[self layoutManager] firstTextView] setTextColor:[theme textColor] range:coloringRange];
     } else {
         [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
                                      forCharacterRange:coloringRange];
     }
     
     // カラーリング実行
-    CETheme *theme = [(NSTextView<CETextViewProtocol> *)[[self layoutManager] firstTextView] theme];
     for (NSDictionary *coloring in colorings) {
         @autoreleasepool {
             NSColor *color;
