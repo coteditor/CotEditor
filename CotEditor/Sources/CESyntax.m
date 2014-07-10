@@ -335,22 +335,19 @@ static NSArray *kSyntaxDictKeys;
         }
         
         NSString *template = definition[k_SCKey_arrayKeyString];
-        // 置換テンプレート内の $& を $0 に置換
-        template = [template stringByReplacingOccurrencesOfString:@"(?<!\\\\)\\$&"
-                                                       withString:@"\\$0"
-                                                          options:NSRegularExpressionSearch
-                                                            range:NSMakeRange(0, [template length])];
         
         [regex enumerateMatchesInString:wholeString
                                 options:0
                                   range:NSMakeRange(0, [wholeString length])
                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
          {
+             NSRange range = [result range];
+             
              // セパレータのとき
              if ([template isEqualToString:CESeparatorString]) {
-                 [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:[result range]],
+                 [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:range],
                                                k_outlineMenuItemTitle: CESeparatorString,
-                                               k_outlineMenuItemSortKey: @([result range].location)}];
+                                               k_outlineMenuItemSortKey: @(range.location)}];
                  return;
              }
              
@@ -359,7 +356,7 @@ static NSArray *kSyntaxDictKeys;
              
              if ([template length] == 0) {
                  // パターン定義なし
-                 title = [wholeString substringWithRange:[result range]];;
+                 title = [wholeString substringWithRange:range];;
                  
              } else {
                  // マッチ文字列をテンプレートで置換
@@ -371,7 +368,7 @@ static NSArray *kSyntaxDictKeys;
                  
                  // マッチした範囲の開始位置の行を得る
                  NSUInteger lineNum = 0, index = 0;
-                 while (index <= [result range].location) {
+                 while (index <= range.location) {
                      index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
                      lineNum++;
                  }
@@ -400,9 +397,9 @@ static NSArray *kSyntaxDictKeys;
              (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
              
              // 辞書生成
-             [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:[result range]],
+             [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:range],
                                            k_outlineMenuItemTitle: title,
-                                           k_outlineMenuItemSortKey: @([result range].location),
+                                           k_outlineMenuItemSortKey: @(range.location),
                                            k_outlineMenuItemFontBold: @(isBold),
                                            k_outlineMenuItemFontItalic: @(isItalic),
                                            k_outlineMenuItemUnderlineMask: @(underlineMask)}];
@@ -443,37 +440,36 @@ static NSArray *kSyntaxDictKeys;
     NSMutableArray *ranges = [NSMutableArray array];
     
     NSScanner *scanner = [NSScanner scannerWithString:[self coloringString]];
-    NSString *scannedString = nil;
-    
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"\n\t "]];
     [scanner setCaseSensitive:YES];
-
+    
     @try {
         while (![scanner isAtEnd]) {
+            NSString *scannedString = nil;
             [scanner scanUpToCharactersFromSet:charSet intoString:NULL];
             if ([scanner scanCharactersFromSet:charSet intoString:&scannedString]) {
                 NSUInteger length = [scannedString length];
                 
-                if (length > 0) {
-                    NSUInteger location = [scanner scanLocation];
-                    NSArray *words = wordsDict[@(length)];
-                    
-                    BOOL isFound = [words containsObject:scannedString];
-                    
-                    if (!isFound) {
-                        words = icWordsDict[@(length)];
-                        for (NSString *word in words) {
-                            if ([word caseInsensitiveCompare:scannedString] == NSOrderedSame) {
-                                isFound = YES;
-                                break;
-                            }
+                if (length == 0) { continue; }
+                
+                NSUInteger location = [scanner scanLocation];
+                NSArray *words = wordsDict[@(length)];
+                
+                BOOL isFound = [words containsObject:scannedString];
+                
+                if (!isFound) {
+                    words = icWordsDict[@(length)];
+                    for (NSString *word in words) {
+                        if ([word caseInsensitiveCompare:scannedString] == NSOrderedSame) {
+                            isFound = YES;
+                            break;
                         }
                     }
-                    
-                    if (isFound) {
-                        NSRange range = NSMakeRange(location - length, length);
-                        [ranges addObject:[NSValue valueWithRange:range]];
-                    }
+                }
+                
+                if (isFound) {
+                    NSRange range = NSMakeRange(location - length, length);
+                    [ranges addObject:[NSValue valueWithRange:range]];
                 }
             }
         }
