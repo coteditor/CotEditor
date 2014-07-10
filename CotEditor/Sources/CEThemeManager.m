@@ -135,7 +135,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         [self setBundledThemeNames:themeNames];
         
         // 読み込む
-        [self updateCache];
+        [self updateCacheWithCompletionHandler:nil];
     }
     return self;
 }
@@ -191,12 +191,13 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:error];
     
     if (success) {
-        [self updateCache];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                            object:self
-                                                          userInfo:@{CEOldNameKey: themeName,
-                                                                     CENewNameKey: themeName}];
+        __block typeof(self) blockSelf = self;
+        [self updateCacheWithCompletionHandler:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                                object:blockSelf
+                                                              userInfo:@{CEOldNameKey: themeName,
+                                                                         CENewNameKey: themeName}];
+        }];
     }
     
     return success;
@@ -223,12 +224,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         if ([[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme] isEqualToString:themeName]) {
             [[NSUserDefaults standardUserDefaults] setObject:newThemeName forKey:k_key_defaultTheme];
         }
-        [self updateCache];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                            object:self
-                                                          userInfo:@{CEOldNameKey: themeName,
-                                                                     CENewNameKey: newThemeName}];
+        __block typeof(self) blockSelf = self;
+        [self updateCacheWithCompletionHandler:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                                object:blockSelf
+                                                              userInfo:@{CEOldNameKey: themeName,
+                                                                         CENewNameKey: newThemeName}];
+        }];
     }
     
     return success;
@@ -248,14 +251,16 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     if (success) {
-        [self updateCache];
-        
-        // 開いているウインドウのテーマをデフォルトに戻す
-        NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                            object:self
-                                                          userInfo:@{CEOldNameKey: themeName,
-                                                                     CENewNameKey: defaultThemeName}];
+        [self updateCacheWithCompletionHandler:^{
+            // 開いているウインドウのテーマをデフォルトに戻す
+            NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
+            
+            __block typeof(self) blockSelf = self;
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                                object:blockSelf
+                                                              userInfo:@{CEOldNameKey: themeName,
+                                                                         CENewNameKey: defaultThemeName}];
+        }];
     }
     
     return success;
@@ -264,20 +269,27 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// カスタマイズされたバンドルテーマをオリジナルに戻す
-- (BOOL)restoreTheme:(NSString *)themeName error:(NSError *__autoreleasing *)error
+- (BOOL)restoreTheme:(NSString *)themeName completionHandler:(void (^)(NSError *))completionHandler
 //------------------------------------------------------
 {
     // バンドルテーマでないものはそもそもリストアできない
     if (![self isBundledTheme:themeName cutomized:nil]) { return NO; }
 
-    BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName] error:error];
+    NSError *error = nil;
+    BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName] error:&error];
     
     if (success) {
-        [self updateCache];
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                            object:self
-                                                          userInfo:@{CEOldNameKey: themeName,
-                                                                     CENewNameKey: themeName}];
+        __block typeof(self) blockSelf = self;
+        [self updateCacheWithCompletionHandler:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
+                                                                object:blockSelf
+                                                              userInfo:@{CEOldNameKey: themeName,
+                                                                         CENewNameKey: themeName}];
+            
+            if (completionHandler) {
+                completionHandler(error);
+            }
+        }];
     }
     
     return success;
@@ -335,7 +347,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
      }];
     
     if (success) {
-        [self updateCache];
+        [self updateCacheWithCompletionHandler:nil];
     }
     
     return success;
@@ -390,7 +402,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
                                                       toURL:[self URLForUserTheme:newThemeName] error:error];
     
     if (success) {
-        [self updateCache];
+        [self updateCacheWithCompletionHandler:nil];
     }
     
     return success;
@@ -505,54 +517,63 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 内部で持っているキャッシュ用データを更新
-- (void)updateCache
+- (void)updateCacheWithCompletionHandler:(void (^)())completionHandler
 //------------------------------------------------------
 {
-    NSURL *userDirURL = [self userThemeDirectoryURL];
-    
-    NSMutableArray *themeNames = [[self bundledThemeNames] mutableCopy];
-    
-    // ユーザ定義用ディレクトリが存在する場合は読み込む
-    if ([userDirURL checkResourceIsReachableAndReturnError:nil]) {
-        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:userDirURL
-                                                                 includingPropertiesForKeys:nil
-                                                                                    options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                               errorHandler:^BOOL(NSURL *url, NSError *error)
-                                             {
-                                                 NSLog(@"%@", [error description]);
-                                                 return YES;
-                                             }];
-        NSURL *URL;
-        while (URL = [enumerator nextObject]) {
-            NSString *name = [[URL lastPathComponent] stringByDeletingPathExtension];
-            if (![themeNames containsObject:name]) {
-                [themeNames addObject:name];
+    __block typeof(self) blockSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *userDirURL = [blockSelf userThemeDirectoryURL];
+        
+        NSMutableArray *themeNames = [[blockSelf bundledThemeNames] mutableCopy];
+        
+        // ユーザ定義用ディレクトリが存在する場合は読み込む
+        if ([userDirURL checkResourceIsReachableAndReturnError:nil]) {
+            NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:userDirURL
+                                                                     includingPropertiesForKeys:nil
+                                                                                        options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                   errorHandler:^BOOL(NSURL *url, NSError *error)
+                                                 {
+                                                     NSLog(@"%@", [error description]);
+                                                     return YES;
+                                                 }];
+            NSURL *URL;
+            while (URL = [enumerator nextObject]) {
+                NSString *name = [[URL lastPathComponent] stringByDeletingPathExtension];
+                if (![themeNames containsObject:name]) {
+                    [themeNames addObject:name];
+                }
             }
         }
-    }
-    
-    BOOL isListUpdated = ![themeNames isEqualToArray:[self themeNames]];
-    [self setThemeNames:themeNames];
-
-    // 定義をキャッシュする
-    NSMutableDictionary *themes = [NSMutableDictionary dictionary];
-    for (NSString *name in [self themeNames]) {
-        themes[name] = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
-                                                                 options:NSPropertyListMutableContainersAndLeaves
-                                                                  format:NULL
-                                                                   error:nil];
-    }
-    [self setArchivedThemes:themes];
-    
-    // デフォルトテーマが見当たらないときはリセットする
-    if (![[self themeNames] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]]) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:k_key_defaultTheme];
-    }
-    
-    // Notificationを発行
-    if (isListUpdated) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeListDidUpdateNotification object:self];
-    }
+        
+        BOOL isListUpdated = ![themeNames isEqualToArray:[self themeNames]];
+        [self setThemeNames:themeNames];
+        
+        // 定義をキャッシュする
+        NSMutableDictionary *themes = [NSMutableDictionary dictionary];
+        for (NSString *name in [blockSelf themeNames]) {
+            themes[name] = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
+                                                                     options:NSPropertyListMutableContainersAndLeaves
+                                                                      format:NULL
+                                                                       error:nil];
+        }
+        [self setArchivedThemes:themes];
+        
+        // デフォルトテーマが見当たらないときはリセットする
+        if (![[blockSelf themeNames] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:k_key_defaultTheme];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Notificationを発行
+            if (isListUpdated) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeListDidUpdateNotification object:blockSelf];
+            }
+            
+            if (completionHandler) {
+                completionHandler();
+            }
+        });
+    });
 }
 
 

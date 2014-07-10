@@ -389,10 +389,12 @@
 - (IBAction)restoreTheme:(id)sender
 // ------------------------------------------------------
 {
-    [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme] error:nil];
-    
-    // 辞書をセットし直す
-    [self setThemeDict:[[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:nil]];
+    [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme] completionHandler:^(NSError *error) {
+        if (!error) {
+            // 辞書をセットし直す
+            [self setThemeDict:[[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:nil]];
+        }
+    }];
 }
 
 
