@@ -90,7 +90,6 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (nonatomic, copy, readwrite) NSString *inlineCommentDelimiter;
 @property (nonatomic, copy, readwrite) NSDictionary *blockCommentDelimiters;
 @property (nonatomic, readwrite) BOOL isNone;
-@property (nonatomic, readwrite) BOOL isColoring;
 
 @end
 
@@ -271,7 +270,7 @@ static NSArray *kSyntaxDictKeys;
     if ([wholeString hash] == [self cacheHash]) {
         [self applyColorings:[self cacheColorings] range:range];
     } else {
-        [self colorString:wholeString range:range onMainThread:NO];
+        [self colorString:wholeString range:range onMainThread:[self isPrinting]];
     }
 }
 
@@ -965,45 +964,46 @@ static NSArray *kSyntaxDictKeys;
         [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
-    [self setIsColoring:YES];
-    
-    dispatch_queue_t queue = onMainThread ? dispatch_get_main_queue() : [self coloringQueue];
-    
-    // 任意のスレッドで実行
-    dispatch_barrier_async(queue, ^{
-        NSArray *colorings = [self extractAllSyntaxFromString:coloringString];
+    __block typeof(self) blockSelf = self;
+    dispatch_block_t colorBlock = ^{
+        NSArray *colorings = [blockSelf extractAllSyntaxFromString:coloringString];
         
-        dispatch_block_t completion = ^{
+        dispatch_block_t mainThreadBlock = ^{
             if (colorings) {
                 // インジケータシートのメッセージを更新
-                [[self indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                [[blockSelf indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
                 
                 // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
-                [self applyColorings:colorings range:coloringRange];
+                [blockSelf applyColorings:colorings range:coloringRange];
             }
             
-            [self setIsColoring:NO];
-            
             // インジーケータシートを片づける
-            if ([self indicatorController]) {
-                [[self indicatorController] endSheet];
-                [self setIndicatorController:nil];
+            if ([blockSelf indicatorController]) {
+                [[blockSelf indicatorController] endSheet];
+                [blockSelf setIndicatorController:nil];
             }
         };
         
         // メインスレッドで実行
         if ([NSThread isMainThread]) {
-            completion();
+            mainThreadBlock();
         } else {
-            dispatch_sync(dispatch_get_main_queue(), completion);
+            dispatch_sync(dispatch_get_main_queue(), mainThreadBlock);
         }
         
         // 全文を抽出した場合は抽出結果をキャッシュする
         if (([colorings count] > 0) && (coloringRange.length == [wholeString length])) {
-            [self setCacheColorings:colorings];
-            [self setCacheHash:[wholeString hash]];
+            [blockSelf setCacheColorings:colorings];
+            [blockSelf setCacheHash:[wholeString hash]];
         }
-    }); // end dispatch_barrier_async
+    };
+    
+    // 任意のスレッドで実行
+    if (onMainThread) {
+        colorBlock();
+    } else {
+        dispatch_async([self coloringQueue], colorBlock);
+    }
 }
 
 

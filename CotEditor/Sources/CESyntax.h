@@ -46,7 +46,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy, readonly) NSString *inlineCommentDelimiter;
 @property (nonatomic, copy, readonly) NSDictionary *blockCommentDelimiters;
 @property (nonatomic, readonly) BOOL isNone;
-@property (nonatomic, readonly) BOOL isColoring;
 
 
 /// designated initializer (return nil if no corresponded style dictionary can been found.)
