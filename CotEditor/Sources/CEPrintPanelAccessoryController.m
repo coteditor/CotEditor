@@ -31,12 +31,16 @@
  */
 
 #import "CEPrintPanelAccessoryController.h"
+#import "CEThemeManager.h"
 #import "constants.h"
 
 
 @interface CEPrintPanelAccessoryController ()
 
-@property (nonatomic, readwrite) CEColorPrintMode colorMode;
+@property (nonatomic) IBOutlet NSPopUpButton *themePopup;
+
+
+@property (nonatomic, readwrite) NSString *theme;
 @property (nonatomic, readwrite) CELineNumberPrintMode lineNumberMode;
 @property (nonatomic, readwrite) CEInvisibleCharsPrintMode invisibleCharsMode;
 
@@ -80,10 +84,11 @@
 {
     self = [super initWithNibName:@"PrintPanelAccessory" bundle:nil];
     if (self) {
+        [self updateThemeList];
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-        [self setColorMode:[defaults integerForKey:k_key_printColorIndex]];
         [self setLineNumberMode:[defaults integerForKey:k_key_printLineNumIndex]];
         [self setInvisibleCharsMode:[defaults integerForKey:k_key_printInvisibleCharIndex]];
         [self setPrintsHeader:[defaults boolForKey:k_key_printHeader]];
@@ -99,10 +104,19 @@
         [self setFooterTwoAlignmentType:[defaults integerForKey:k_key_footerTwoAlignIndex]];
         [self setPrintsFooterSeparator:[defaults boolForKey:k_key_printFooterSeparator]];
         
+        // ドキュメントと同じテーマを使用する場合はセットしておく
+        CEColorPrintMode colorMode = [defaults integerForKey:k_key_printColorIndex];
+        if (colorMode == CESameAsDocumentColorPrint) {
+            NSString *defaultTheme = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
+            [self setTheme:defaultTheme];
+        }
+        
         // マージンに関わるキー値を監視する
         for (NSString *key in [self keyPathsForValuesAffectingMargin]) {
             [self addObserver:self forKeyPath:key options:0 context:NULL];
         }
+        
+        [self updateThemeList];
     }
     return self;
 }
@@ -121,7 +135,7 @@
 
 
 // ------------------------------------------------------
-/// printInfoがセットされた
+/// printInfoがセットされた （新たにプリントシートが表示される）
 - (void)setRepresentedObject:(id)representedObject
 // ------------------------------------------------------
 {
@@ -129,6 +143,9 @@
     
     // printInfoの値をヘッダ／フッタのマージンに反映させる
     [self updateVerticalOffset];
+    
+    // 現在のテーマラインナップを反映させる
+    [self updateThemeList];
 }
 
 
@@ -156,7 +173,7 @@
 - (NSSet *)keyPathsForValuesAffectingPreview
 // ------------------------------------------------------
 {
-    return [NSSet setWithArray:@[@"colorMode",
+    return [NSSet setWithArray:@[@"theme",
                                  @"lineNumberMode",
                                  @"invisibleCharsMode",
                                  @"printsHeader",
@@ -184,16 +201,8 @@
     NSMutableArray *items = [NSMutableArray array];
     NSString *description = @"";
     
-    switch ([self colorMode]) {
-        case CEBlackColorPrint:
-            description = @"Black and White";
-            break;
-        case CESameAsDocumentColorPrint:
-            description = @"Same as Document's Setting";
-            break;
-    }
-    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Color", k_printLocalizeTable, nil),
-                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    [items addObject:[self localizedSummaryItemWithName:@"Color"
+                                            description:[self theme]]];
     
     switch ([self lineNumberMode]) {
         case CENoLinePrint:
@@ -206,8 +215,8 @@
             description = @"Print";
             break;
     }
-    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Line Number", k_printLocalizeTable, nil),
-                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    [items addObject:[self localizedSummaryItemWithName:@"Line Number"
+                                            description:description]];
     
     switch ([self invisibleCharsMode]) {
         case CENoInvisibleCharsPrint:
@@ -220,57 +229,39 @@
             description = @"Print All";
             break;
     }
-    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Invisible Characters", k_printLocalizeTable, nil),
-                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    [items addObject:[self localizedSummaryItemWithName:@"Invisible Characters"
+                                            description:description]];
     
+    [items addObject:[self localizedSummaryItemWithName:@"Header Footer"
+                                            description:([self printsHeader] ? @"On" : @"Off")]];
     
-    description = [self printsHeader] ? @"On" : @"Off";
-    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Header", k_printLocalizeTable, nil),
-                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
     if ([self printsHeader]) {
-        description = [self printInfoDescription:[self headerOneInfoType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 1", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
-        
-        description = [self alignmentDescription:[self headerOneAlignmentType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 1 Alignment", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
-        
-        description = [self printInfoDescription:[self headerTwoInfoType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 2", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
-        
-        description = [self alignmentDescription:[self headerTwoAlignmentType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Header Line 2 Alignment", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        [items addObject:[self localizedSummaryItemWithName:@"Header Line 1"
+                                                description:[self printInfoDescription:[self headerOneInfoType]]]];
+        [items addObject:[self localizedSummaryItemWithName:@"Header Line 1 Alignment"
+                                                description:[self alignmentDescription:[self headerOneAlignmentType]]]];
+        [items addObject:[self localizedSummaryItemWithName:@"Header Line 2"
+                                                description:[self printInfoDescription:[self headerTwoInfoType]]]];
+        [items addObject:[self localizedSummaryItemWithName:@"Header Line 2 Alignment"
+                                                description:[self alignmentDescription:[self headerTwoAlignmentType]]]];
     }
-    description = [self printsHeaderSeparator] ? @"On" : @"Off";
-    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Header Separator", k_printLocalizeTable, nil),
-                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    [items addObject:[self localizedSummaryItemWithName:@"Print Header Separator"
+                                            description:([self printsHeaderSeparator] ? @"On" : @"Off")]];
     
-    description = [self printsFooter] ? @"On" : @"Off";
-    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Footer", k_printLocalizeTable, nil),
-                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    [items addObject:[self localizedSummaryItemWithName:@"Print Footer"
+                                            description:([self printsFooter] ? @"On" : @"Off")]];
     if ([self printsFooter]) {
-        description = [self printInfoDescription:[self footerOneInfoType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 1", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
-        
-        description = [self alignmentDescription:[self footerOneAlignmentType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 1 Alignment", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
-        
-        description = [self printInfoDescription:[self footerTwoInfoType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 2", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
-        
-        description = [self alignmentDescription:[self footerTwoInfoType]];
-        [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Footer Line 2 Alignment", k_printLocalizeTable, nil),
-                           NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 1"
+                                                description:[self printInfoDescription:[self footerOneInfoType]]]];
+        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 1 Alignment"
+                                                description:[self alignmentDescription:[self footerOneAlignmentType]]]];
+        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 2"
+                                                description:[self printInfoDescription:[self footerTwoInfoType]]]];
+        [items addObject:[self localizedSummaryItemWithName:@"Footer Line 2 Alignment"
+                                                description:[self alignmentDescription:[self footerTwoAlignmentType]]]];
     }
-    description = [self printsFooterSeparator] ? @"On" : @"Off";
-    [items addObject:@{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(@"Print Footer Separator", k_printLocalizeTable, nil),
-                       NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)}];
+    [items addObject:[self localizedSummaryItemWithName:@"Print Footer Separator"
+                                            description:([self printsFooterSeparator] ? @"On" : @"Off")]];
     
     return items;
 }
@@ -283,6 +274,16 @@
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// localizedSummaryItems で返す辞書を生成
+- (NSDictionary *)localizedSummaryItemWithName:(NSString *)name description:(NSString *)description
+// ------------------------------------------------------
+{
+    return @{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(name, k_printLocalizeTable, nil),
+             NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)};
+}
+
 
 // ------------------------------------------------------
 /// マージンを再計算する
@@ -392,6 +393,35 @@
                                  @"footerOneInfoType",
                                  @"footerTwoInfoType",
                                  @"printsFooterSeparator"]];
+}
+
+
+// ------------------------------------------------------
+/// テーマの一覧を更新する
+- (void)updateThemeList
+// ------------------------------------------------------
+{
+    [[self themePopup] removeAllItems];
+    
+    [[self themePopup] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
+    
+    [[[self themePopup] menu] addItem:[NSMenuItem separatorItem]];
+    
+    [[self themePopup] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
+    [[[self themePopup] itemWithTitle:NSLocalizedString(@"Theme", nil)] setAction:nil];
+    
+    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    for (NSString *themeName in themeNames) {
+        [[self themePopup] addItemWithTitle:themeName];
+        [[[self themePopup] lastItem] setIndentationLevel:1];
+    }
+    
+    // 選択すべきテーマがなかったら白黒にする
+    if (![themeNames containsObject:[self theme]]) {
+        [[self themePopup] selectItemAtIndex:0];
+    } else {
+        [[self themePopup] selectItemWithTitle:[self theme]];
+    }
 }
 
 @end

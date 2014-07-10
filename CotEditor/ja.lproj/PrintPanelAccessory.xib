@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPrintPanelAccessoryController">
             <connections>
+                <outlet property="themePopup" destination="585" id="mex-di-MIU"/>
                 <outlet property="view" destination="196" id="5dt-Bk-3DO"/>
             </connections>
         </customObject>
@@ -18,7 +19,6 @@
             <subviews>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="585">
                     <rect key="frame" x="104" y="310" width="215" height="26"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="ywH-Ua-doT"/>
                     </constraints>
@@ -33,12 +33,11 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <binding destination="-2" name="selectedIndex" keyPath="colorMode" id="n1a-Rs-81Y"/>
+                        <binding destination="-2" name="selectedValue" keyPath="theme" id="aH5-5E-TcJ"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="584">
                     <rect key="frame" x="44" y="315" width="56" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="カラー：" id="721">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +46,6 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="424">
                     <rect key="frame" x="104" y="248" width="215" height="26"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="04O-p7-HaW"/>
                     </constraints>
@@ -68,7 +66,6 @@
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="423">
                     <rect key="frame" x="18" y="253" width="82" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="不可視文字：" id="718">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -77,7 +74,6 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="416">
                     <rect key="frame" x="104" y="279" width="215" height="26"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="e5i-sG-u4f"/>
                     </constraints>
@@ -98,7 +94,6 @@
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="415">
                     <rect key="frame" x="44" y="284" width="56" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="行番号：" id="716">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -107,7 +102,6 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
                     <rect key="frame" x="104" y="185" width="215" height="26"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
                     </constraints>
@@ -135,7 +129,6 @@
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="216">
                     <rect key="frame" x="18" y="133" width="217" height="18"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="ヘッダの下に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="705">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
@@ -146,7 +139,6 @@
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="256">
                     <rect key="frame" x="35" y="190" width="65" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="ヘッダ1：" id="706">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -155,7 +147,6 @@
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="303">
                     <rect key="frame" x="18" y="215" width="126" height="18"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="ヘッダをプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="708">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
@@ -166,7 +157,6 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
                     <rect key="frame" x="104" y="154" width="215" height="26"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" title="プリント日時" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="311" id="709">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -191,7 +181,6 @@
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="257">
                     <rect key="frame" x="35" y="159" width="65" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="ヘッダ2：" id="707">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -200,8 +189,7 @@
                 </textField>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
                     <rect key="frame" x="322" y="186" width="80" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
@@ -218,8 +206,7 @@
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
                     <rect key="frame" x="322" y="67" width="80" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
@@ -236,8 +223,7 @@
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
                     <rect key="frame" x="322" y="155" width="80" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
@@ -254,8 +240,7 @@
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
                     <rect key="frame" x="322" y="36" width="80" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
                         <font key="font" metaFont="system"/>
                         <segments>
                             <segment toolTip="左揃え" image="leftAlignTemplate" width="24"/>
@@ -272,7 +257,6 @@
                 </segmentedControl>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="276">
                     <rect key="frame" x="18" y="14" width="217" height="18"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="フッタの上に区切り線をプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="710">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
@@ -283,7 +267,6 @@
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="296">
                     <rect key="frame" x="35" y="40" width="65" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="フッタ2：" id="712">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -292,7 +275,6 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="321">
                     <rect key="frame" x="104" y="35" width="215" height="26"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="rIT-s2-gwW"/>
                     </constraints>
@@ -320,7 +302,6 @@
                 </popUpButton>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="295">
                     <rect key="frame" x="35" y="71" width="65" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="フッタ1：" id="711">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -329,7 +310,6 @@
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="304">
                     <rect key="frame" x="18" y="94" width="126" height="18"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="フッタをプリント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="713">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="13" name="AquaKana"/>
@@ -340,7 +320,6 @@
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="313">
                     <rect key="frame" x="104" y="66" width="215" height="26"/>
-                    <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="abT-dP-x7p"/>
                     </constraints>

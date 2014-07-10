@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
 @interface CEPrintPanelAccessoryController : NSViewController <NSPrintPanelAccessorizing>
 
-@property (nonatomic, readonly) CEColorPrintMode colorMode;
+@property (nonatomic, readonly) NSString *theme;
 @property (nonatomic, readonly) CELineNumberPrintMode lineNumberMode;
 @property (nonatomic, readonly) CEInvisibleCharsPrintMode invisibleCharsMode;
 

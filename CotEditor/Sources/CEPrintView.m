@@ -381,24 +381,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     
     // カラーリングの設定
-    switch ([accessoryController colorMode]) {
-        case CEBlackColorPrint:
-            [self setTextColor:[NSColor blackColor]];
-            [self setBackgroundColor:[NSColor whiteColor]];
-            break;
-            
-        case CESameAsDocumentColorPrint:
-            [self setTextColor:[[self theme] textColor]];
-            [self setBackgroundColor:[[self theme] backgroundColor]];
-            
-            // カラーリング実行オブジェクトを用意して実行
-            if (![self syntax]) {
-                [self setSyntax:[[CESyntax alloc] initWithStyleName:[self syntaxName]
-                                                      layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
-                                                         isPrinting:YES]];
-            }
-            [[self syntax] colorAllString:[self string]];
-            break;
+    if ([[accessoryController theme] isEqualToString:NSLocalizedString(@"Black and White", nil)]) {
+        [self setTextColor:[NSColor blackColor]];
+        [self setBackgroundColor:[NSColor whiteColor]];
+        
+    } else {
+        [self setTheme:[CETheme themeWithName:[accessoryController theme]]];
+        [self setTextColor:[[self theme] textColor]];
+        [self setBackgroundColor:[[self theme] backgroundColor]];
+        
+        // カラーリング実行オブジェクトを用意して実行
+        if (![self syntax]) {
+            [self setSyntax:[[CESyntax alloc] initWithStyleName:[self syntaxName]
+                                                  layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
+                                                     isPrinting:YES]];
+        }
+        [[self syntax] colorAllString:[self string]];
     }
     
     // ヘッダを設定

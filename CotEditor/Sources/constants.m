@@ -133,15 +133,16 @@ NSString *const k_key_fixLineHeight = @"fixLineHeight";
 NSString *const k_key_highlightBraces = @"highlightBraces";
 NSString *const k_key_highlightLtGt = @"highlightLtGt";
 NSString *const k_key_saveUTF8BOM = @"saveUTF8BOM";
-NSString *const k_key_setPrintFont = @"setPrintFont";
-NSString *const k_key_printFontName = @"printFontName";
-NSString *const k_key_printFontSize = @"printFontSize";
 NSString *const k_key_enableSmartQuotes = @"enableSmartQuotes";
 NSString *const k_key_enableSmartIndent = @"enableSmartIndent";
 NSString *const k_key_appendsCommentSpacer = @"appendsCommentSpacer";
 NSString *const k_key_commentsAtLineHead = @"commentsAtLineHead";
 
 // print settings
+NSString *const k_key_setPrintFont = @"setPrintFont";
+NSString *const k_key_printFontName = @"printFontName";
+NSString *const k_key_printFontSize = @"printFontSize";
+NSString *const k_key_printTheme = @"printTheme";
 NSString *const k_key_printHeader = @"printHeader";
 NSString *const k_key_headerOneStringIndex = @"headerOneStringIndex";
 NSString *const k_key_headerTwoStringIndex = @"headerTwoStringIndex";
