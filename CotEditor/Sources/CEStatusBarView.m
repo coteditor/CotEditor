@@ -46,15 +46,13 @@ static const CGFloat defaultHeight = 20.0;
 
 @interface CEStatusBarView ()
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
-
-@property (nonatomic) NSTextField *leftTextField;
-@property (nonatomic) NSTextField *rightTextField;
-
 @property (nonatomic) NSNumberFormatter *decimalFormatter;
 @property (nonatomic) CEByteCountTransformer *byteCountTransformer;
 
-@property (nonatomic) NSImageView *readOnlyView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
+@property (nonatomic) IBOutlet NSTextField *leftTextField;
+@property (nonatomic) IBOutlet NSTextField *rightTextField;
+@property (nonatomic) IBOutlet NSImageView *readOnlyView;
 
 @end
 
@@ -79,7 +77,6 @@ static const CGFloat defaultHeight = 20.0;
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        
         [self setShowStatusBar:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_showStatusBar]];
         
         // set number formatter
@@ -88,44 +85,6 @@ static const CGFloat defaultHeight = 20.0;
         
         // set transformer
         [self setByteCountTransformer:[[CEByteCountTransformer alloc] init]];
-        
-        // setup TextField
-        NSFont *font = [NSFont controlContentFontOfSize:[NSFont smallSystemFontSize]];
-        
-        NSRect textFieldFrame = frameRect;
-        textFieldFrame.origin.x += k_statusBarReadOnlyWidth;
-        textFieldFrame.origin.y -= (defaultHeight - [font pointSize]) / 4;
-        textFieldFrame.size.width -= k_statusBarReadOnlyWidth + k_statusBarRightPadding;
-        
-        [self setLeftTextField:[[NSTextField allocWithZone:nil] initWithFrame:textFieldFrame]];
-        [[self leftTextField] setEditable:NO];
-        [[self leftTextField] setSelectable:NO];
-        [[self leftTextField] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-        [[self leftTextField] setFont:font];
-        [[self leftTextField] setBordered:NO];
-        [[self leftTextField] setDrawsBackground:NO];
-        [[self leftTextField] setAlignment:NSLeftTextAlignment];
-
-        [self setRightTextField:[[NSTextField allocWithZone:nil] initWithFrame:textFieldFrame]];
-        [[self rightTextField] setEditable:NO];
-        [[self rightTextField] setSelectable:NO];
-        [[self rightTextField] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-        [[self rightTextField] setFont:font];
-        [[self rightTextField] setBordered:NO];
-        [[self rightTextField] setDrawsBackground:NO];
-        [[self rightTextField] setAlignment:NSRightTextAlignment];
-
-        // setup ReadOnly icon
-        NSRect readOnlyFrame = frameRect;
-        readOnlyFrame.size.width = k_statusBarReadOnlyWidth;
-        [self setReadOnlyView:[[NSImageView alloc] initWithFrame:readOnlyFrame]];
-        [[self readOnlyView] setAutoresizingMask:NSViewHeightSizable];
-
-        [self setShowsReadOnlyIcon:NO];
-        
-        [self addSubview:[self leftTextField]];
-        [self addSubview:[self rightTextField]];
-        [self addSubview:[self readOnlyView]];
     }
     return self;
 }
@@ -136,9 +95,7 @@ static const CGFloat defaultHeight = 20.0;
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    if (![self showStatusBar]) {
-        return;
-    }
+    if (![self showStatusBar]) { return; }
     
     // fill in background
     [[NSColor windowBackgroundColor] set];
@@ -261,13 +218,7 @@ static const CGFloat defaultHeight = 20.0;
 - (void)setShowsReadOnlyIcon:(BOOL)showsReadOnlyIcon
 // ------------------------------------------------------
 {
-    if (showsReadOnlyIcon) {
-        [[self readOnlyView] setImage:[NSImage imageNamed:@"lockedTemplate"]];
-        [[self readOnlyView] setToolTip:NSLocalizedString(@"This document is read only.", nil)];
-    } else {
-        [[self readOnlyView] setImage:nil];
-        [[self readOnlyView] setToolTip:nil];
-    }
+    [[self readOnlyView] setHidden:!showsReadOnlyIcon];
 }
 
 @end

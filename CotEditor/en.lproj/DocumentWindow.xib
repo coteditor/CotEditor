@@ -39,11 +39,45 @@
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
                         <rect key="frame" x="0.0" y="0.0" width="507" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <imageView toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
+                                <rect key="frame" x="16" y="2" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="lockedTemplate" id="2Vs-vL-w3p"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-2k-nOK">
+                                <rect key="frame" x="38" y="3" width="33" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="b1b-Kr-R8m">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QO1-yr-imY">
+                                <rect key="frame" x="466" y="3" width="33" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="W4S-dh-6hG">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                         <constraints>
+                            <constraint firstItem="EP1-My-tQo" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="16" id="4Pi-na-EuU"/>
+                            <constraint firstAttribute="trailing" secondItem="QO1-yr-imY" secondAttribute="trailing" constant="10" id="8g0-6j-4iF"/>
+                            <constraint firstAttribute="centerY" secondItem="EP1-My-tQo" secondAttribute="centerY" id="McB-rh-aAx"/>
+                            <constraint firstItem="G7a-2k-nOK" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="40" id="T8V-uH-nUh"/>
                             <constraint firstAttribute="height" constant="20" id="rVp-Pk-2Bh"/>
+                            <constraint firstAttribute="centerY" secondItem="QO1-yr-imY" secondAttribute="centerY" id="tYP-eB-pNq"/>
+                            <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
                         </constraints>
                         <connections>
                             <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="JaP-An-S1G"/>
+                            <outlet property="leftTextField" destination="G7a-2k-nOK" id="3AV-y7-tVW"/>
+                            <outlet property="readOnlyView" destination="EP1-My-tQo" id="5o9-lu-EMS"/>
+                            <outlet property="rightTextField" destination="QO1-yr-imY" id="xN4-3Z-trr"/>
                         </connections>
                     </customView>
                 </subviews>
@@ -1070,6 +1104,7 @@
         <image name="WrapLines_On" width="64" height="64"/>
         <image name="biggerFont" width="64" height="64"/>
         <image name="getInfo" width="64" height="64"/>
+        <image name="lockedTemplate" width="16" height="16"/>
         <image name="smallerFont" width="64" height="64"/>
     </resources>
 </document>
