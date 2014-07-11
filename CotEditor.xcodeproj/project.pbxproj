@@ -101,6 +101,7 @@
 		2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
+		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToPanelController.m */; };
@@ -354,6 +355,8 @@
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
+		2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarController.h; sourceTree = "<group>"; };
+		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
 		2AFFB70618D7BC9300118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB70818D7BCB300118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpacityPanel.xib; sourceTree = "<group>"; };
 		2AFFB71418D7DCC000118477 /* CEPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPanelController.h; sourceTree = "<group>"; };
@@ -674,14 +677,14 @@
 				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
 				25B2C23407FA667400F4EFC7 /* CELineNumView.h */,
 				25B2C23507FA667400F4EFC7 /* CELineNumView.m */,
-				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
-				25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */,
 				8CF02E1308B9B9F8004044EB /* CENavigationBarView.h */,
 				8CF02E1408B9B9F8004044EB /* CENavigationBarView.m */,
 				8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */,
 				8C3BEA2608BDBCA800BC2067 /* CEOutlineMenuButton.m */,
 				8C99DDF808BD8940001F618C /* CEOutlineMenuButtonCell.h */,
 				8C99DDF908BD8940001F618C /* CEOutlineMenuButtonCell.m */,
+				25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */,
+				25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -841,6 +844,8 @@
 				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
 				8CB0122B07CA0EFA00221EDC /* CEToolbarController.h */,
 				8CB0122C07CA0EFA00221EDC /* CEToolbarController.m */,
+				2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */,
+				2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */,
 			);
 			name = Window;
 			sourceTree = "<group>";
@@ -1144,6 +1149,7 @@
 				25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */,
 				2A5D2B9118E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarView.m in Sources */,
+				2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */,
 				2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */,
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
 				2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */,

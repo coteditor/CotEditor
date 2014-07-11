@@ -13,7 +13,7 @@
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
                 <outlet property="listTableView" destination="122" id="l9j-Tq-Th8"/>
-                <outlet property="statusBar" destination="Rjm-Sf-4Mf" id="G4e-Co-xxd"/>
+                <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="JbQ-Wl-HQq"/>
                 <outlet property="tabView" destination="115" id="IkX-yr-sKW"/>
                 <outlet property="tabViewSelectionPopUpButton" destination="142" id="sTA-Fy-CDo"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
@@ -41,18 +41,28 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <imageView toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
-                                <rect key="frame" x="16" y="2" width="16" height="16"/>
+                                <rect key="frame" x="8" y="2" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="lockedTemplate" id="2Vs-vL-w3p"/>
+                                <connections>
+                                    <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showReadOnly" id="Pmv-oP-XjF">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-2k-nOK">
-                                <rect key="frame" x="38" y="3" width="33" height="14"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-2k-nOK">
+                                <rect key="frame" x="34" y="3" width="33" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="b1b-Kr-R8m">
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="b1b-Kr-R8m">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="ZaC-Gi-qyq" name="value" keyPath="editorStatus" id="WLy-Pc-sLL"/>
+                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QO1-yr-imY">
                                 <rect key="frame" x="466" y="3" width="33" height="14"/>
@@ -62,23 +72,21 @@
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="ZaC-Gi-qyq" name="value" keyPath="documentStatus" id="K0i-Sk-yYU"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="EP1-My-tQo" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="16" id="4Pi-na-EuU"/>
+                            <constraint firstItem="EP1-My-tQo" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="8" id="4Pi-na-EuU"/>
+                            <constraint firstItem="QO1-yr-imY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="G7a-2k-nOK" secondAttribute="trailing" constant="8" symbolic="YES" id="5h0-ME-eO2"/>
                             <constraint firstAttribute="trailing" secondItem="QO1-yr-imY" secondAttribute="trailing" constant="10" id="8g0-6j-4iF"/>
                             <constraint firstAttribute="centerY" secondItem="EP1-My-tQo" secondAttribute="centerY" id="McB-rh-aAx"/>
-                            <constraint firstItem="G7a-2k-nOK" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="40" id="T8V-uH-nUh"/>
+                            <constraint firstItem="G7a-2k-nOK" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="36" id="T8V-uH-nUh"/>
                             <constraint firstAttribute="height" constant="20" id="rVp-Pk-2Bh"/>
                             <constraint firstAttribute="centerY" secondItem="QO1-yr-imY" secondAttribute="centerY" id="tYP-eB-pNq"/>
                             <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
                         </constraints>
-                        <connections>
-                            <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="JaP-An-S1G"/>
-                            <outlet property="leftTextField" destination="G7a-2k-nOK" id="3AV-y7-tVW"/>
-                            <outlet property="readOnlyView" destination="EP1-My-tQo" id="5o9-lu-EMS"/>
-                            <outlet property="rightTextField" destination="QO1-yr-imY" id="xN4-3Z-trr"/>
-                        </connections>
                     </customView>
                 </subviews>
                 <constraints>
@@ -870,7 +878,7 @@
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="roM-fQ-mIk">
                                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="8E8-BP-yGs">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="128" id="8E8-BP-yGs">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -913,7 +921,7 @@
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G0h-zN-0Fm">
                                                                             <rect key="frame" x="0.0" y="0.0" width="74" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="vbU-FC-UH2">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="foo" id="vbU-FC-UH2">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -956,7 +964,7 @@
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HnR-aF-WDu">
                                                                             <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="IUn-K9-sqf">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="bar" id="IUn-K9-sqf">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1069,16 +1077,23 @@
                 <constraint firstItem="142" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="20" symbolic="YES" id="z1f-RB-gge"/>
             </constraints>
         </customView>
-        <customObject id="71" userLabel="Toolbar Controller" customClass="CEToolbarController">
+        <customObject id="71" customClass="CEToolbarController">
             <connections>
-                <outlet property="editorView" destination="27" id="0jC-be-e8j"/>
                 <outlet property="encodingPopupButton" destination="90" id="9ae-Bd-vPQ"/>
                 <outlet property="lineEndingPopupButton" destination="77" id="ypf-VV-99N"/>
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
                 <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
+                <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>
             </connections>
         </customObject>
-        <arrayController id="127" userLabel="Incompatible Controller">
+        <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">
+            <connections>
+                <outlet property="decimalFormatter" destination="ZXE-Ki-WDP" id="DI4-1N-0dW"/>
+                <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
+                <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
+            </connections>
+        </viewController>
+        <arrayController id="127" userLabel="Incompatibles Controller">
             <declaredKeys>
                 <string>lineNumber</string>
                 <string>incompatibleChar</string>

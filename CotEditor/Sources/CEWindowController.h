@@ -40,11 +40,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEWindowController : NSWindowController <NSWindowDelegate, NSDrawerDelegate, NSTabViewDelegate, OgreTextFindDataSource>
 
-@property (nonatomic, weak, readonly) CEEditorView *editorView;
-@property (nonatomic, weak, readonly) CEToolbarController *toolbarController;
 @property (nonatomic) CGFloat alpha;
 
-@property (nonatomic) BOOL showStatusBar;
+@property (nonatomic, readonly, weak) CEEditorView *editorView;
+@property (nonatomic, readonly, weak) CEToolbarController *toolbarController;
+@property (nonatomic, readonly) BOOL showStatusBar;
 
 // Public method
 - (void)setIsWritable:(BOOL)isWritable;

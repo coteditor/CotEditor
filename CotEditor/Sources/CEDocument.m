@@ -261,7 +261,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     // ファイル名に拡張子がない場合は追加する
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendExtensionAtSaving]) {
-        NSSavePanel *savePanel = (NSSavePanel *)[[[self editorView] window] attachedSheet];
+        NSSavePanel *savePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
         NSString *fileName = [savePanel nameFieldStringValue];
         
         if (![[fileName pathExtension] isEqualToString:@""]) { return; }
@@ -435,17 +435,15 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
         [self setLineEndingCharToView:lineEnding]; // for update toolbar item
         [[self editorView] setString:[self initialString]]; // （editorView の setString 内でキャレットを先頭に移動させている）
+        [self setInitialString:nil];  // release
     } else {
         [[self editorView] setString:@""];
     }
     // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
     [self updateEncodingInToolbarAndInfo];
-    // テキストビューへフォーカスを移動
-    [[[self editorView] window] makeFirstResponder:[[[[self editorView] splitView] subviews][0] textView]];
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
     [[self editorView] updateColoringAndOutlineMenuWithDelay];
-    [self setInitialString:nil];  // release
     
     if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
         [[self windowController] showIncompatibleCharList];

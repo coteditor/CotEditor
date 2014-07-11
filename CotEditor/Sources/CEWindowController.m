@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEWindowController.h"
 #import "CEDocumentController.h"
-#import "CEStatusBarView.h"
+#import "CEStatusBarController.h"
 #import "CESyntaxManager.h"
 #import "NSString+ComposedCharacter.h"
 #import "constants.h"
@@ -70,7 +70,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSUInteger lineInfo;             // current line
 
 // IBOutlets
-@property (nonatomic, weak) IBOutlet CEStatusBarView *statusBar;
+@property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
 @property (nonatomic) IBOutlet NSArrayController *listController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
 @property (nonatomic, weak) IBOutlet NSTabView *tabView;
@@ -80,8 +80,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
 
 // readonly
-@property (nonatomic, weak, readwrite) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, weak, readwrite) IBOutlet CEEditorView *editorView;
+@property (nonatomic, readwrite, weak) IBOutlet CEToolbarController *toolbarController;
+@property (nonatomic, readwrite, weak) IBOutlet CEEditorView *editorView;
+@property (nonatomic, readwrite) BOOL showStatusBar;
 
 @end
 
@@ -148,7 +149,12 @@ static NSTimeInterval incompatibleCharInterval;
     // テキストを表示
     [[self document] setStringToEditorView];
     
-    [[self statusBar] setShowsReadOnlyIcon:![[self document] isWritable]];
+    // setup status bar
+    [[self statusBarController] setShowStatusBar:[defaults boolForKey:k_key_showStatusBar]];
+    [[self statusBarController] setShowReadOnly:![[self document] isWritable]];
+    
+    // テキストビューへフォーカスを移動
+    [[self window] makeFirstResponder:[[[[self editorView] splitView] subviews][0] textView]];
     
     // シンタックス定義の変更を監視
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -310,7 +316,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (BOOL)showStatusBar
 // ------------------------------------------------------
 {
-    return [[self statusBar] showStatusBar];
+    return [[self statusBarController] showStatusBar];
 }
 
 
@@ -319,9 +325,9 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)setShowStatusBar:(BOOL)showStatusBar
 // ------------------------------------------------------
 {
-    if (![self statusBar]) { return; }
+    if (![self statusBarController]) { return; }
     
-    [[self statusBar] setShowStatusBar:showStatusBar];
+    [[self statusBarController] setShowStatusBar:showStatusBar];
     [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
     [self updateLineEndingsInStatusAndInfo:NO];
     
@@ -336,8 +342,8 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)setIsWritable:(BOOL)isWritable
 // ------------------------------------------------------
 {
-    if ([self statusBar]) {
-        [[self statusBar] setShowsReadOnlyIcon:!isWritable];
+    if ([self statusBarController]) {
+        [[self statusBarController] setShowReadOnly:!isWritable];
     }
 }
 
@@ -347,7 +353,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate
 // ------------------------------------------------------
 {
-    BOOL updatesStatusBar = [[self statusBar] showStatusBar];
+    BOOL updatesStatusBar = [[self statusBarController] showStatusBar];
     BOOL updatesDrawer = doUpdate ? YES : [self needsInfoDrawerUpdate];
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
@@ -356,7 +362,7 @@ static NSTimeInterval incompatibleCharInterval;
     NSString *wholeString = ([[self editorView] lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [[self editorView] stringForSave] : textViewString;
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editorView] selectedRange];
-    __block CEStatusBarView *statusBar = [self statusBar];
+    __block CEStatusBarController *statusBar = [self statusBarController];
     __block typeof(self) blockSelf = self;
     
     // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
@@ -462,14 +468,14 @@ static NSTimeInterval incompatibleCharInterval;
                 [statusBar setLocationInfo:location];
                 [statusBar setLineInfo:currentLine];
                 [statusBar setColumnInfo:column];
-                [statusBar updateLeftField];
+                [statusBar updateEditorStatus];
             }
             if (updatesDrawer) {
-                [blockSelf setLinesInfo:numberOfLines selected:numberOfSelectedLines];
-                [blockSelf setCharsInfo:numberOfChars selected:numberOfSelectedChars];
-                [blockSelf setLengthInfo:length selected:selectedRange.length];
-                [blockSelf setByteLengthInfo:byteLength selected:selectedByteLength];
-                [blockSelf setWordsInfo:numberOfWords selected:numberOfSelectedWords];
+                [blockSelf setLinesInfo:[blockSelf formatCount:numberOfLines selected:numberOfSelectedLines]];
+                [blockSelf setCharsInfo:[blockSelf formatCount:numberOfChars selected:numberOfSelectedChars]];
+                [blockSelf setLengthInfo:[blockSelf formatCount:length selected:selectedRange.length]];
+                [blockSelf setByteLengthInfo:[blockSelf formatCount:byteLength selected:selectedByteLength]];
+                [blockSelf setWordsInfo:[blockSelf formatCount:numberOfWords selected:numberOfSelectedWords]];
                 [blockSelf setLocationInfo:location];
                 [blockSelf setColumnInfo:column];
                 [blockSelf setLineInfo:currentLine];
@@ -485,7 +491,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool
 // ------------------------------------------------------
 {
-    BOOL shouldUpdateStatusBar = [[self statusBar] showStatusBar];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] showStatusBar];
     BOOL shouldUpdateDrawer = inBool ? YES : [self needsInfoDrawerUpdate];
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
@@ -516,10 +522,10 @@ static NSTimeInterval incompatibleCharInterval;
     
     NSString *encodingInfo = [[self document] currentIANACharSetName];
     if (shouldUpdateStatusBar) {
-        [[self statusBar] setEncodingInfo:encodingInfo];
-        [[self statusBar] setLineEndingsInfo:lineEndingsInfo];
-        [[self statusBar] setFileSizeInfo:[[[self document] fileAttributes] fileSize]];
-        [[self statusBar] updateRightField];
+        [[self statusBarController] setEncodingInfo:encodingInfo];
+        [[self statusBarController] setLineEndingsInfo:lineEndingsInfo];
+        [[self statusBarController] setFileSizeInfo:[[[self document] fileAttributes] fileSize]];
+        [[self statusBarController] updateDocumentStatus];
     }
     if (shouldUpdateDrawer) {
         [self setEncodingInfo:encodingInfo];
@@ -618,22 +624,6 @@ static NSTimeInterval incompatibleCharInterval;
             [[self document] doSetSyntaxStyle:[[self editorView] syntaxStyleName]];
         }
     }
-}
-
-
-// ------------------------------------------------------
-/// ウィンドウが閉じる直前
-- (void)windowWillClose:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    // デリゲートをやめる
-    [[self drawer] setDelegate:nil];
-    [[self tabView] setDelegate:nil];
-
-    // バインディング停止
-    //（自身の変数 tabViewSelectedIndex を使わせている関係で、放置しておくと自身が retain されたままになる）
-    [[self tabViewSelectionPopUpButton] unbind:@"selectedIndex"];
-    [[self tabView] unbind:@"selectedIndex"];
 }
 
 
@@ -805,51 +795,6 @@ static NSTimeInterval incompatibleCharInterval;
             [self setRecolorWithBecomeKey:YES];
         }
     }
-}
-
-
-// ------------------------------------------------------
-/// 単語数情報をセット
-- (void)setWordsInfo:(NSUInteger)words selected:(NSUInteger)selectedWords
-// ------------------------------------------------------
-{
-    [self setWordsInfo:[self formatCount:words selected:selectedWords]];
-}
-
-
-// ------------------------------------------------------
-/// バイト長情報をセット
-- (void)setByteLengthInfo:(NSUInteger)byteLength selected:(NSUInteger)selectedByteLength
-// ------------------------------------------------------
-{
-    [self setByteLengthInfo:[self formatCount:byteLength selected:selectedByteLength]];
-}
-
-
-// ------------------------------------------------------
-/// 文字数情報をセット
-- (void)setCharsInfo:(NSUInteger)chars selected:(NSUInteger)selectedChars
-// ------------------------------------------------------
-{
-    [self setCharsInfo:[self formatCount:chars selected:selectedChars]];
-}
-
-
-// ------------------------------------------------------
-/// 文字長情報をセット
-- (void)setLengthInfo:(NSUInteger)length selected:(NSUInteger)selectedLength
-// ------------------------------------------------------
-{
-    [self setLengthInfo:[self formatCount:length selected:selectedLength]];
-}
-
-
-// ------------------------------------------------------
-/// 行数情報をセット
-- (void)setLinesInfo:(NSUInteger)lines selected:(NSUInteger)selectedLines
-// ------------------------------------------------------
-{
-    [self setLinesInfo:[self formatCount:lines selected:selectedLines]];
 }
 
 

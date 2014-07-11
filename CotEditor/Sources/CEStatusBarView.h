@@ -9,13 +9,8 @@ CEStatusBarView
 =================================================
 
 encoding="UTF-8"
-Created:2005.03.30
-
-------------
-This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
-JSDTextView is released as public domain.
-arranged by nakamuxu, Dec 2004.
-arranged by 1024jp, Mar 2014.
+Created on 2005-03-30 by nakamuxu
+ 
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -39,33 +34,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @import Cocoa;
 
 
-@class CEEditorView;
-
 @interface CEStatusBarView : NSView
-
-@property (nonatomic) BOOL showStatusBar;
-
-@property (nonatomic) NSInteger linesInfo;
-@property (nonatomic) NSInteger selectedLinesInfo;
-@property (nonatomic) NSInteger charsInfo;
-@property (nonatomic) NSInteger selectedCharsInfo;
-@property (nonatomic) NSInteger lengthInfo;
-@property (nonatomic) NSInteger selectedLengthInfo;
-@property (nonatomic) NSInteger wordsInfo;
-@property (nonatomic) NSInteger selectedWordsInfo;
-@property (nonatomic) NSInteger locationInfo;
-@property (nonatomic) NSInteger lineInfo;
-@property (nonatomic) NSInteger columnInfo;
-
-@property (nonatomic, copy) NSString *encodingInfo;
-@property (nonatomic, copy) NSString *lineEndingsInfo;
-@property (nonatomic) NSInteger fileSizeInfo;
-
-
-// Public method
-
-- (void)setShowsReadOnlyIcon:(BOOL)showsReadOnlyIcon;
-- (void)updateLeftField;
-- (void)updateRightField;
 
 @end

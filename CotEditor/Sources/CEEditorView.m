@@ -890,46 +890,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// カラーリング実行
-- (void)doColoringNow
-// ------------------------------------------------------
-{
-    if ([self coloringTimer]) { return; }
-
-    NSRect visibleRect = [[[[self textView] enclosingScrollView] contentView] documentVisibleRect];
-    NSRange glyphRange = [[[self textView] layoutManager] glyphRangeForBoundingRect:visibleRect
-                                                                    inTextContainer:[[self textView] textContainer]];
-    NSRange charRange = [[[self textView] layoutManager] characterRangeForGlyphRange:glyphRange
-                                                                    actualGlyphRange:NULL];
-    NSRange selectedRange = [[self textView] selectedRange];
-    NSRange coloringRange = charRange;
-
-    // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
-    if (!NSLocationInRange(selectedRange.location, charRange)) {
-        NSInteger location = selectedRange.location - charRange.length;
-        if (location < 0) { location = 0; }
-        NSInteger length = selectedRange.length + charRange.length;
-        NSInteger max = [[self string] length] - location;
-        length = MIN(length, max);
-
-        coloringRange = NSMakeRange(location, length);
-    }
-    
-    [[self syntax]  colorVisibleRange:coloringRange wholeString:[self string]];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、カラーリング実行
-- (void)doColoringWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopColoringTimer];
-    [self doColoringNow];
-}
-
-
-// ------------------------------------------------------
 /// 分割された前／後のテキストビューにフォーカス移動
 - (void)focusOtherSplitTextViewOnNext:(BOOL)isOnNext
 // ------------------------------------------------------
@@ -952,6 +912,46 @@ static NSTimeInterval secondColoringDelay;
     } else if (index >= count) {
         [[self window] makeFirstResponder:[subSplitViews[0] textView]];
     }
+}
+
+
+// ------------------------------------------------------
+/// カラーリング実行
+- (void)doColoringNow
+// ------------------------------------------------------
+{
+    if ([self coloringTimer]) { return; }
+    
+    NSRect visibleRect = [[[[self textView] enclosingScrollView] contentView] documentVisibleRect];
+    NSRange glyphRange = [[[self textView] layoutManager] glyphRangeForBoundingRect:visibleRect
+                                                                    inTextContainer:[[self textView] textContainer]];
+    NSRange charRange = [[[self textView] layoutManager] characterRangeForGlyphRange:glyphRange
+                                                                    actualGlyphRange:NULL];
+    NSRange selectedRange = [[self textView] selectedRange];
+    NSRange coloringRange = charRange;
+    
+    // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
+    if (!NSLocationInRange(selectedRange.location, charRange)) {
+        NSInteger location = selectedRange.location - charRange.length;
+        if (location < 0) { location = 0; }
+        NSInteger length = selectedRange.length + charRange.length;
+        NSInteger max = [[self string] length] - location;
+        length = MIN(length, max);
+        
+        coloringRange = NSMakeRange(location, length);
+    }
+    
+    [[self syntax] colorVisibleRange:coloringRange wholeString:[self string]];
+}
+
+
+// ------------------------------------------------------
+/// タイマーの設定時刻に到達、カラーリング実行
+- (void)doColoringWithTimer:(NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self stopColoringTimer];
+    [self doColoringNow];
 }
 
 

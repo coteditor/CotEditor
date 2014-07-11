@@ -34,14 +34,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEToolbarController.h"
 #import "CEAppDelegate.h"
 #import "CESyntaxManager.h"
-#import "CEEditorView.h"
+#import "CEWindowController.h"
 #import "constants.h"
 
 
 @interface CEToolbarController ()
 
 @property (nonatomic, weak) IBOutlet NSToolbar *toolbar;
-@property (nonatomic, weak) IBOutlet CEEditorView *editorView;
+@property (nonatomic, weak) IBOutlet CEWindowController *windowController;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
@@ -204,7 +204,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSToolbarItem *item = [notification userInfo][@"item"];
     NSString *identifier = [item itemIdentifier];
-    CEEditorView *editorView = [self editorView];
+    CEEditorView *editorView = [[self windowController] editorView];
     
     if ([identifier isEqualToString:k_showInvisibleCharsItemID]) {
         [self toggleItem:item setOn:[editorView showInvisibles]];
@@ -228,7 +228,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self toggleItem:item setOn:[editorView showLineNum]];
         
     } else if ([identifier isEqualToString:k_showStatusBarItemID]) {
-        [self toggleItem:item setOn:[[[[self editorView] window] windowController] showStatusBar]];
+        [self toggleItem:item setOn:[[self windowController] showStatusBar]];
         
     } else if ([identifier isEqualToString:k_showPageGuideItemID]) {
         [self toggleItem:item setOn:[editorView showPageGuide]];
