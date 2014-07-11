@@ -44,6 +44,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak, readonly) CEToolbarController *toolbarController;
 @property (nonatomic) CGFloat alpha;
 
+@property (nonatomic) BOOL showStatusBar;
+@property (nonatomic) BOOL isWritable;
+@property (nonatomic) BOOL isAlertedNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
+
 // document information (for binding in drawer)
 @property (nonatomic, copy) NSString *encodingInfo;    // encoding of document
 @property (nonatomic, copy) NSString *lineEndingsInfo; // line endings of document
@@ -58,6 +62,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateFileAttrsInformation;
 - (void)updateIncompatibleCharList;
 - (void)showIncompatibleCharList;
+- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
+- (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
+- (void)alertForNotWritable;
 
 - (void)setLinesInfo:(NSUInteger)lines selected:(NSUInteger)selectedLines;                // number of lines
 - (void)setCharsInfo:(NSUInteger)chars selected:(NSUInteger)selectedChars;                // number of composed characters
@@ -69,5 +76,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)getInfo:(id)sender;
 - (IBAction)toggleIncompatibleCharList:(id)sender;
 - (IBAction)selectIncompatibleRange:(id)sender;
+- (IBAction)toggleShowStatusBar:(id)sender;
 
 @end

@@ -854,7 +854,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
     if ([menuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
-        if ((![[self editorView] isWritable]) && (![[self editorView] isAlertedNotWritable])) {
+        if ((![[self windowController] isWritable]) && (![[self windowController] isAlertedNotWritable])) {
             return NO;
         }
     } else if ([menuItem action] == @selector(changeEncoding:)) {
@@ -972,7 +972,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     if ([notification object] == [self editorView]) { return; }
     
     // EditorView で、書き込み禁止アラートを表示
-    [[self editorView] alertForNotWritable];
+    [[self windowController] alertForNotWritable];
 }
 
 
@@ -1245,7 +1245,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // ツールバーのエンコーディングメニューを更新
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
     // ステータスバー、ドローワを更新
-    [[self editorView] updateLineEndingsInStatusAndInfo:NO];
+    [[self windowController] updateLineEndingsInStatusAndInfo:NO];
 }
 
 
@@ -1628,7 +1628,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [url getResourceValue:&isWritableNum forKey:NSURLIsWritableKey error:nil];
         isWritable = [isWritableNum boolValue];
     }
-    [[self editorView] setIsWritable:isWritable];
+    [[self windowController] setIsWritable:isWritable];
 }
 
 

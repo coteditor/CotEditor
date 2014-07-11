@@ -245,7 +245,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)isWritable
 // ------------------------------------------------------
 {
-    return [[self editorView] isWritable];
+    return [[[self editorView] windowController] isWritable];
 }
 
 
@@ -254,7 +254,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)isAlertedNotWritable
 // ------------------------------------------------------
 {
-    return [[self editorView] isAlertedNotWritable];
+    return [[[self editorView] windowController] isAlertedNotWritable];
 }
 
 

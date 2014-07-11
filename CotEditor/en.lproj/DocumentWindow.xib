@@ -13,6 +13,7 @@
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
                 <outlet property="listTableView" destination="122" id="l9j-Tq-Th8"/>
+                <outlet property="statusBar" destination="Rjm-Sf-4Mf" id="G4e-Co-xxd"/>
                 <outlet property="tabView" destination="115" id="IkX-yr-sKW"/>
                 <outlet property="tabViewSelectionPopUpButton" destination="142" id="sTA-Fy-CDo"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
@@ -33,14 +34,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="27" customClass="CEEditorView">
-                        <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
+                        <rect key="frame" x="0.0" y="20" width="507" height="393"/>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
+                        <rect key="frame" x="0.0" y="0.0" width="507" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="rVp-Pk-2Bh"/>
+                        </constraints>
                     </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="27" firstAttribute="top" secondItem="6" secondAttribute="top" id="8N0-AV-EaF"/>
-                    <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" id="QP6-CB-Zhr"/>
+                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="27" secondAttribute="bottom" id="Eq8-n3-yZC"/>
+                    <constraint firstAttribute="bottom" secondItem="Rjm-Sf-4Mf" secondAttribute="bottom" id="Mte-Of-4Jj"/>
                     <constraint firstItem="27" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="SZe-4j-OOt"/>
+                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="Sph-UK-4Zn"/>
                     <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" id="j06-yM-irz"/>
+                    <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
                 </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">

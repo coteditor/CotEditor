@@ -39,7 +39,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESplitView.h"
 #import "CESubSplitView.h"
 #import "CELineNumView.h"
-#import "CEStatusBarView.h"
 #import "CENavigationBarView.h"
 #import "CETextView.h"
 #import "CEWindowController.h"
@@ -58,10 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) BOOL showLineNum;
 @property (nonatomic) BOOL showNavigationBar;
-@property (nonatomic) BOOL showStatusBar;
 @property (nonatomic) BOOL wrapLines;
-@property (nonatomic) BOOL isWritable;
-@property (nonatomic) BOOL isAlertedNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic) BOOL showPageGuide;
 @property (nonatomic) BOOL showInvisibles;
 
@@ -101,9 +97,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
 - (void)recolorAllString;
 - (void)updateColoringAndOutlineMenuWithDelay;
-- (void)alertForNotWritable;
-- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
-- (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
 - (void)setupColoringTimer;
 - (void)setupIncompatibleCharTimer;
 - (void)setupInfoUpdateTimer;
@@ -113,7 +106,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Action Message
 - (IBAction)toggleShowLineNum:(id)sender;
-- (IBAction)toggleShowStatusBar:(id)sender;
 - (IBAction)toggleShowNavigationBar:(id)sender;
 - (IBAction)toggleWrapLines:(id)sender;
 - (IBAction)toggleUseAntialias:(id)sender;

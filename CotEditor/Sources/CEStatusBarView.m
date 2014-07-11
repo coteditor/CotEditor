@@ -130,7 +130,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    if (![self masterView] || ![self showStatusBar]) {
+    if (![self showStatusBar]) {
         return;
     }
     
@@ -281,11 +281,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat adjHeight = height - NSHeight([self frame]);
     NSRect newFrame;
 
-    // set masterView height
-    newFrame = [[[self masterView] splitView] frame];
-    newFrame.origin.y += adjHeight;
-    newFrame.size.height -= adjHeight;
-    [[[self masterView] splitView] setFrame:newFrame];
+//    // set masterView height
+//    newFrame = [[[self masterView] splitView] frame];
+//    newFrame.origin.y += adjHeight;
+//    newFrame.size.height -= adjHeight;
+//    [[[self masterView] splitView] setFrame:newFrame];
     
     // set statusBar height
     newFrame = [self frame];
