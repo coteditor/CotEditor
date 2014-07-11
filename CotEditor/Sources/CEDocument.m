@@ -445,7 +445,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
         [[self windowController] showIncompatibleCharList];
     }
-    [self setIsWritableToEditorViewWithURL:[self fileURL]];
+    [self setIsWritableToStatusBarWithURL:[self fileURL]];
 }
 
 
@@ -1549,7 +1549,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         success = (success && lockSuccess);
     }
     
-    [self setIsWritableToEditorViewWithURL:url];
+    [self setIsWritableToStatusBarWithURL:url];
     
     return success;
 }
@@ -1617,8 +1617,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 書き込み可能かを EditorView にセット
-- (void)setIsWritableToEditorViewWithURL:(NSURL *)url
+/// 書き込み可能かをステータスバーにセット
+- (void)setIsWritableToStatusBarWithURL:(NSURL *)url
 // ------------------------------------------------------
 {
     BOOL isWritable = YES; // default = YES

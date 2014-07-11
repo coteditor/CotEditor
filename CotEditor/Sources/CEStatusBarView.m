@@ -37,12 +37,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEStatusBarView.h"
-#import "CEEditorView.h"
 #import "CEByteCountTransformer.h"
 #import "constants.h"
 
 
+static const CGFloat defaultHeight = 20.0;
+
+
 @interface CEStatusBarView ()
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @property (nonatomic) NSTextField *leftTextField;
 @property (nonatomic) NSTextField *rightTextField;
@@ -75,6 +79,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
+        
+        [self setShowStatusBar:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_showStatusBar]];
+        
         // set number formatter
         [self setDecimalFormatter:[[NSNumberFormatter alloc] init]];
         [[self decimalFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -87,7 +94,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         NSRect textFieldFrame = frameRect;
         textFieldFrame.origin.x += k_statusBarReadOnlyWidth;
-        textFieldFrame.origin.y -= (k_statusBarHeight - [font pointSize]) / 4;
+        textFieldFrame.origin.y -= (defaultHeight - [font pointSize]) / 4;
         textFieldFrame.size.width -= k_statusBarReadOnlyWidth + k_statusBarRightPadding;
         
         [self setLeftTextField:[[NSTextField allocWithZone:nil] initWithFrame:textFieldFrame]];
@@ -111,11 +118,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // setup ReadOnly icon
         NSRect readOnlyFrame = frameRect;
         readOnlyFrame.size.width = k_statusBarReadOnlyWidth;
-        [self setReadOnlyView:[[NSImageView allocWithZone:nil] initWithFrame:readOnlyFrame]];
+        [self setReadOnlyView:[[NSImageView alloc] initWithFrame:readOnlyFrame]];
         [[self readOnlyView] setAutoresizingMask:NSViewHeightSizable];
 
         [self setShowsReadOnlyIcon:NO];
-        [self setAutoresizingMask:NSViewWidthSizable];
         
         [self addSubview:[self leftTextField]];
         [self addSubview:[self rightTextField]];
@@ -244,8 +250,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (showStatusBar != [self showStatusBar]) {
         _showStatusBar = showStatusBar;
 
-        CGFloat height = [self showStatusBar] ? k_statusBarHeight : 0.0;
-        [self setHeight:height];
+        CGFloat height = [self showStatusBar] ? defaultHeight : 0.0;
+        [[self heightConstraint] setConstant:height];
     }
 }
 
@@ -262,37 +268,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self readOnlyView] setImage:nil];
         [[self readOnlyView] setToolTip:nil];
     }
-}
-
-
-
-#pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// 高さをセット
-- (void)setHeight:(CGFloat)height
-// ------------------------------------------------------
-{
-    CGFloat adjHeight = height - NSHeight([self frame]);
-    NSRect newFrame;
-
-//    // set masterView height
-//    newFrame = [[[self masterView] splitView] frame];
-//    newFrame.origin.y += adjHeight;
-//    newFrame.size.height -= adjHeight;
-//    [[[self masterView] splitView] setFrame:newFrame];
-    
-    // set statusBar height
-    newFrame = [self frame];
-    newFrame.size.height += adjHeight;
-    [self setFrame:newFrame];
-
-    [[[self window] contentView] setNeedsDisplay:YES];
 }
 
 @end

@@ -328,7 +328,6 @@ NSString *const k_outlineMenuItemUnderlineMask = @"outlineMenuItemUnderlineMask"
 // CEEditorView and subView's constants
 CGFloat const k_defaultLineNumWidth = 32.0;
 CGFloat const k_lineNumPadding = 2.0;
-CGFloat const k_statusBarHeight = 20.0;
 CGFloat const k_statusBarRightPadding = 10.0;
 CGFloat const k_statusBarReadOnlyWidth = k_defaultLineNumWidth;
 CGFloat const k_lineNumFontDescender = -2.1;

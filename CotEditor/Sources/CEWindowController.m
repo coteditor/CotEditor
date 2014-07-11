@@ -45,7 +45,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
 
-// document information (for binding)
+// document information (for binding in drawer)
+@property (nonatomic, copy) NSString *encodingInfo;    // encoding of document
+@property (nonatomic, copy) NSString *lineEndingsInfo; // line endings of document
+@property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
 @property (nonatomic, copy) NSString *createdInfo;
 @property (nonatomic, copy) NSString *modificatedInfo;
 @property (nonatomic, copy) NSString *ownerInfo;
@@ -54,12 +57,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *finderLockInfo;
 @property (nonatomic, copy) NSString *permissionInfo;
 @property (nonatomic) NSNumber *fileSizeInfo;
-
 @property (nonatomic, copy) NSString *linesInfo;
 @property (nonatomic, copy) NSString *charsInfo;
 @property (nonatomic, copy) NSString *lengthInfo;
 @property (nonatomic, copy) NSString *wordsInfo;
 @property (nonatomic, copy) NSString *byteLengthInfo;
+@property (nonatomic) NSUInteger columnInfo;           // caret location from line head
+@property (nonatomic) NSUInteger locationInfo;         // caret location from begining ob document
+@property (nonatomic) NSUInteger lineInfo;             // current line
 
 // IBOutlets
 @property (nonatomic, weak) IBOutlet CEStatusBarView *statusBar;
@@ -91,7 +96,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //=======================================================
 
+// ------------------------------------------------------
+/// クラス初期化
 - (instancetype)initWithWindowNibName:(NSString *)windowNibName owner:(id)owner
+// ------------------------------------------------------
 {
     self = [super initWithWindowNibName:windowNibName owner:owner];
     if (self) {
@@ -122,8 +130,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // テキストを表示
     [[self document] setStringToEditorView];
-    
-    [[self statusBar] setShowStatusBar:[defaults boolForKey:k_key_showStatusBar]];
     
     // シンタックス定義の変更を監視
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -164,11 +170,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    NSInteger theState = NSOffState;
-    NSString *title;
-    
     if ([menuItem action] == @selector(toggleShowStatusBar:)) {
-        title = [self showStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
+        NSString *title = [self showStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
+        [menuItem setTitle:title];
     }
     
     return YES;
@@ -284,7 +288,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)showStatusBar
 // ------------------------------------------------------
 {
-    return [self statusBar] ? [[self statusBar] showStatusBar] : NO;
+    return [[self statusBar] showStatusBar];
 }
 
 
@@ -298,54 +302,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self statusBar] setShowStatusBar:showStatusBar];
     [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
     [self updateLineEndingsInStatusAndInfo:NO];
+    
 //    if (![self infoUpdateTimer]) {
-//        [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
+        [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
 //    }
-}
-
-
-// ------------------------------------------------------
-/// 単語数情報をセット
-- (void)setWordsInfo:(NSUInteger)words selected:(NSUInteger)selectedWords
-// ------------------------------------------------------
-{
-    [self setWordsInfo:[self formatCount:words selected:selectedWords]];
-}
-
-
-// ------------------------------------------------------
-/// バイト長情報をセット
-- (void)setByteLengthInfo:(NSUInteger)byteLength selected:(NSUInteger)selectedByteLength
-// ------------------------------------------------------
-{
-    [self setByteLengthInfo:[self formatCount:byteLength selected:selectedByteLength]];
-}
-
-
-// ------------------------------------------------------
-/// 文字数情報をセット
-- (void)setCharsInfo:(NSUInteger)chars selected:(NSUInteger)selectedChars
-// ------------------------------------------------------
-{
-    [self setCharsInfo:[self formatCount:chars selected:selectedChars]];
-}
-
-
-// ------------------------------------------------------
-/// 文字長情報をセット
-- (void)setLengthInfo:(NSUInteger)length selected:(NSUInteger)selectedLength
-// ------------------------------------------------------
-{
-    [self setLengthInfo:[self formatCount:length selected:selectedLength]];
-}
-
-
-// ------------------------------------------------------
-/// 行数情報をセット
-- (void)setLinesInfo:(NSUInteger)lines selected:(NSUInteger)selectedLines
-// ------------------------------------------------------
-{
-    [self setLinesInfo:[self formatCount:lines selected:selectedLines]];
 }
 
 
@@ -399,7 +359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editorView] selectedRange];
     __block CEStatusBarView *statusBar = [self statusBar];
-    __block CEWindowController *windowController = self;
+    __block typeof(self) blockSelf = self;
     
     // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -507,15 +467,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 [statusBar updateLeftField];
             }
             if (updatesDrawer) {
-                [windowController setLinesInfo:numberOfLines selected:numberOfSelectedLines];
-                [windowController setCharsInfo:numberOfChars selected:numberOfSelectedChars];
-                [windowController setLengthInfo:length selected:selectedRange.length];
-                [windowController setByteLengthInfo:byteLength selected:selectedByteLength];
-                [windowController setWordsInfo:numberOfWords selected:numberOfSelectedWords];
-                [windowController setLocationInfo:location];
-                [windowController setColumnInfo:column];
-                [windowController setLineInfo:currentLine];
-                [windowController setSingleCharInfo:singleCharInfo];
+                [blockSelf setLinesInfo:numberOfLines selected:numberOfSelectedLines];
+                [blockSelf setCharsInfo:numberOfChars selected:numberOfSelectedChars];
+                [blockSelf setLengthInfo:length selected:selectedRange.length];
+                [blockSelf setByteLengthInfo:byteLength selected:selectedByteLength];
+                [blockSelf setWordsInfo:numberOfWords selected:numberOfSelectedWords];
+                [blockSelf setLocationInfo:location];
+                [blockSelf setColumnInfo:column];
+                [blockSelf setLineInfo:currentLine];
+                [blockSelf setSingleCharInfo:singleCharInfo];
             }
         });
     });
@@ -811,6 +771,51 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setRecolorWithBecomeKey:YES];
         }
     }
+}
+
+
+// ------------------------------------------------------
+/// 単語数情報をセット
+- (void)setWordsInfo:(NSUInteger)words selected:(NSUInteger)selectedWords
+// ------------------------------------------------------
+{
+    [self setWordsInfo:[self formatCount:words selected:selectedWords]];
+}
+
+
+// ------------------------------------------------------
+/// バイト長情報をセット
+- (void)setByteLengthInfo:(NSUInteger)byteLength selected:(NSUInteger)selectedByteLength
+// ------------------------------------------------------
+{
+    [self setByteLengthInfo:[self formatCount:byteLength selected:selectedByteLength]];
+}
+
+
+// ------------------------------------------------------
+/// 文字数情報をセット
+- (void)setCharsInfo:(NSUInteger)chars selected:(NSUInteger)selectedChars
+// ------------------------------------------------------
+{
+    [self setCharsInfo:[self formatCount:chars selected:selectedChars]];
+}
+
+
+// ------------------------------------------------------
+/// 文字長情報をセット
+- (void)setLengthInfo:(NSUInteger)length selected:(NSUInteger)selectedLength
+// ------------------------------------------------------
+{
+    [self setLengthInfo:[self formatCount:length selected:selectedLength]];
+}
+
+
+// ------------------------------------------------------
+/// 行数情報をセット
+- (void)setLinesInfo:(NSUInteger)lines selected:(NSUInteger)selectedLines
+// ------------------------------------------------------
+{
+    [self setLinesInfo:[self formatCount:lines selected:selectedLines]];
 }
 
 

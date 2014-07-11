@@ -241,24 +241,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ドキュメントが書き込みできるかどうかを返す
-- (BOOL)isWritable
-// ------------------------------------------------------
-{
-    return [[[self editorView] windowController] isWritable];
-}
-
-
-// ------------------------------------------------------
-/// 「書き込み禁止」アラートを表示したかどうかを返す
-- (BOOL)isAlertedNotWritable
-// ------------------------------------------------------
-{
-    return [[[self editorView] windowController] isAlertedNotWritable];
-}
-
-
-// ------------------------------------------------------
 /// テキストビューをエディタビューにセット
 - (void)setTextViewToEditorView:(CETextView *)textView
 // ------------------------------------------------------

@@ -42,6 +42,9 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="rVp-Pk-2Bh"/>
                         </constraints>
+                        <connections>
+                            <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="JaP-An-S1G"/>
+                        </connections>
                     </customView>
                 </subviews>
                 <constraints>
