@@ -13,6 +13,7 @@
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
                 <outlet property="listTableView" destination="122" id="l9j-Tq-Th8"/>
+                <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="JbQ-Wl-HQq"/>
                 <outlet property="tabView" destination="115" id="IkX-yr-sKW"/>
                 <outlet property="tabViewSelectionPopUpButton" destination="142" id="sTA-Fy-CDo"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
@@ -33,14 +34,69 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="27" customClass="CEEditorView">
-                        <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
+                        <rect key="frame" x="0.0" y="20" width="507" height="393"/>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
+                        <rect key="frame" x="0.0" y="0.0" width="507" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <imageView toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
+                                <rect key="frame" x="8" y="2" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="lockedTemplate" id="2Vs-vL-w3p"/>
+                                <connections>
+                                    <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showReadOnly" id="Pmv-oP-XjF">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-2k-nOK">
+                                <rect key="frame" x="34" y="3" width="33" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="b1b-Kr-R8m">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="ZaC-Gi-qyq" name="value" keyPath="editorStatus" id="WLy-Pc-sLL"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QO1-yr-imY">
+                                <rect key="frame" x="466" y="3" width="33" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="W4S-dh-6hG">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="ZaC-Gi-qyq" name="value" keyPath="documentStatus" id="K0i-Sk-yYU"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="EP1-My-tQo" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="8" id="4Pi-na-EuU"/>
+                            <constraint firstItem="QO1-yr-imY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="G7a-2k-nOK" secondAttribute="trailing" constant="8" symbolic="YES" id="5h0-ME-eO2"/>
+                            <constraint firstAttribute="trailing" secondItem="QO1-yr-imY" secondAttribute="trailing" constant="10" id="8g0-6j-4iF"/>
+                            <constraint firstAttribute="centerY" secondItem="EP1-My-tQo" secondAttribute="centerY" id="McB-rh-aAx"/>
+                            <constraint firstItem="G7a-2k-nOK" firstAttribute="leading" secondItem="Rjm-Sf-4Mf" secondAttribute="leading" constant="36" id="T8V-uH-nUh"/>
+                            <constraint firstAttribute="height" constant="20" id="rVp-Pk-2Bh"/>
+                            <constraint firstAttribute="centerY" secondItem="QO1-yr-imY" secondAttribute="centerY" id="tYP-eB-pNq"/>
+                            <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
+                        </constraints>
                     </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="27" firstAttribute="top" secondItem="6" secondAttribute="top" id="8N0-AV-EaF"/>
-                    <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" id="QP6-CB-Zhr"/>
+                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="27" secondAttribute="bottom" id="Eq8-n3-yZC"/>
+                    <constraint firstAttribute="bottom" secondItem="Rjm-Sf-4Mf" secondAttribute="bottom" id="Mte-Of-4Jj"/>
                     <constraint firstItem="27" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="SZe-4j-OOt"/>
+                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="Sph-UK-4Zn"/>
                     <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" id="j06-yM-irz"/>
+                    <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
                 </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
@@ -254,8 +310,8 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="60">
-                                                            <rect key="frame" x="38" y="439" width="125" height="14"/>
-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2005-03-19 00:00:00" id="681">
+                                                            <rect key="frame" x="58" y="439" width="108" height="14"/>
+                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2005-03-19 00:00" id="681">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -266,6 +322,7 @@
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
                                                                 </binding>
+                                                                <outlet property="formatter" destination="j41-as-DJo" id="MoX-Xo-f67"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="62">
@@ -277,8 +334,8 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                                                            <rect key="frame" x="38" y="399" width="125" height="14"/>
-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00:00" id="682">
+                                                            <rect key="frame" x="58" y="399" width="108" height="14"/>
+                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00" id="682">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -289,6 +346,7 @@
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
                                                                 </binding>
+                                                                <outlet property="formatter" destination="j41-as-DJo" id="B1I-4J-FNT"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="413">
@@ -692,7 +750,7 @@
                                                         <constraint firstItem="661" firstAttribute="baseline" secondItem="662" secondAttribute="baseline" id="E5t-Ay-flE"/>
                                                         <constraint firstItem="yGj-rp-wdm" firstAttribute="leading" secondItem="rnY-fh-C8a" secondAttribute="trailing" constant="8" symbolic="YES" id="FQh-GP-x0A"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="413" secondAttribute="trailing" id="GB5-ER-Q9y"/>
-                                                        <constraint firstItem="61" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="40" id="GRN-2E-BLk"/>
+                                                        <constraint firstItem="61" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="60" id="GRN-2E-BLk"/>
                                                         <constraint firstItem="56" firstAttribute="baseline" secondItem="57" secondAttribute="baseline" id="Gqm-Fk-Nxj"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="102" secondAttribute="trailing" id="H03-VD-fDU"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="57" secondAttribute="trailing" id="H5Q-dI-IZJ"/>
@@ -736,7 +794,7 @@
                                                         <constraint firstItem="41" firstAttribute="top" secondItem="114" secondAttribute="bottom" constant="8" symbolic="YES" id="jJp-S7-Ucy"/>
                                                         <constraint firstItem="47" firstAttribute="leading" secondItem="42" secondAttribute="trailing" constant="8" symbolic="YES" id="jWZ-nI-wbe"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="39" secondAttribute="trailing" id="ky5-5f-dOB"/>
-                                                        <constraint firstItem="60" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="40" id="lGn-5v-86I"/>
+                                                        <constraint firstItem="60" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="60" id="lGn-5v-86I"/>
                                                         <constraint firstItem="509" firstAttribute="top" secondItem="507" secondAttribute="bottom" constant="8" symbolic="YES" id="lNj-Ey-mNb"/>
                                                         <constraint firstItem="47" firstAttribute="baseline" secondItem="42" secondAttribute="baseline" id="ler-c1-bKK"/>
                                                         <constraint firstItem="102" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="mMn-C9-D0X"/>
@@ -822,7 +880,7 @@
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="roM-fQ-mIk">
                                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="8E8-BP-yGs">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="128" id="8E8-BP-yGs">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -865,7 +923,7 @@
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="G0h-zN-0Fm">
                                                                             <rect key="frame" x="0.0" y="0.0" width="74" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="vbU-FC-UH2">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="foo" id="vbU-FC-UH2">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -908,7 +966,7 @@
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HnR-aF-WDu">
                                                                             <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="IUn-K9-sqf">
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="bar" id="IUn-K9-sqf">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1021,16 +1079,23 @@
                 <constraint firstItem="142" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="20" symbolic="YES" id="z1f-RB-gge"/>
             </constraints>
         </customView>
-        <customObject id="71" userLabel="Toolbar Controller" customClass="CEToolbarController">
+        <customObject id="71" customClass="CEToolbarController">
             <connections>
-                <outlet property="editorView" destination="27" id="0jC-be-e8j"/>
                 <outlet property="encodingPopupButton" destination="90" id="9ae-Bd-vPQ"/>
                 <outlet property="lineEndingPopupButton" destination="77" id="ypf-VV-99N"/>
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
                 <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
+                <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>
             </connections>
         </customObject>
-        <arrayController id="127" userLabel="Incompatible Controller">
+        <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">
+            <connections>
+                <outlet property="decimalFormatter" destination="ZXE-Ki-WDP" id="DI4-1N-0dW"/>
+                <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
+                <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
+            </connections>
+        </viewController>
+        <arrayController id="127" userLabel="Incompatibles Controller">
             <declaredKeys>
                 <string>lineNumber</string>
                 <string>incompatibleChar</string>
@@ -1039,6 +1104,7 @@
         </arrayController>
         <customObject id="M21-bo-PEe" customClass="NSFontManager"/>
         <numberFormatter formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="ZXE-Ki-WDP"/>
+        <dateFormatter formatterBehavior="custom10_4" dateStyle="medium" timeStyle="short" dateFormat="yyyy-MM-dd HH:mm" id="j41-as-DJo"/>
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="24" height="24"/>
@@ -1056,6 +1122,7 @@
         <image name="WrapLines_On" width="64" height="64"/>
         <image name="biggerFont" width="64" height="64"/>
         <image name="getInfo" width="64" height="64"/>
+        <image name="lockedTemplate" width="16" height="16"/>
         <image name="smallerFont" width="64" height="64"/>
     </resources>
 </document>

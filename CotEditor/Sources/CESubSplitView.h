@@ -56,8 +56,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)string;
 - (void)viewDidEndLiveResize;
 - (void)replaceTextStorage:(NSTextStorage *)inTextStorage;
-- (BOOL)isWritable;
-- (BOOL)isAlertedNotWritable;
 - (void)setTextViewToEditorView:(CETextView *)inTextView;
 - (void)setShowLineNumWithNumber:(NSNumber *)inNumber;
 - (void)setShowNavigationBarWithNumber:(NSNumber *)inNumber;

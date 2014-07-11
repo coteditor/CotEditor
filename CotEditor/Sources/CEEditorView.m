@@ -37,17 +37,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEEditorView.h"
 #import "CEToolbarController.h"
-#import "NSString+ComposedCharacter.h"
 #import "constants.h"
 
 
 @interface CEEditorView ()
 
-@property (nonatomic) CEStatusBarView *statusBar;
-
 @property (nonatomic) NSTimer *coloringTimer;
-@property (nonatomic) NSTimer *infoUpdateTimer;
-@property (nonatomic) NSTimer *incompatibleCharTimer;
 
 
 // readonly
@@ -66,8 +61,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 static NSTimeInterval basicColoringDelay;
 static NSTimeInterval firstColoringDelay;
 static NSTimeInterval secondColoringDelay;
-static NSTimeInterval infoUpdateInterval;
-static NSTimeInterval incompatibleCharInterval;
 
 
 #pragma mark Class Methods
@@ -89,8 +82,6 @@ static NSTimeInterval incompatibleCharInterval;
         basicColoringDelay = [defaults doubleForKey:k_key_basicColoringDelay];
         firstColoringDelay = [defaults doubleForKey:k_key_firstColoringDelay];
         secondColoringDelay = [defaults doubleForKey:k_key_secondColoringDelay];
-        infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
-        incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
     });
 }
 
@@ -131,7 +122,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [self stopAllTimers];
+    [self stopColoringTimer];
 }
 
 
@@ -385,31 +376,6 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// ステータスバーを表示するかどうかを返す
-- (BOOL)showStatusBar
-// ------------------------------------------------------
-{
-    return [self statusBar] ? [[self statusBar] showStatusBar] : NO;
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーを表示する／しないをセット
-- (void)setShowStatusBar:(BOOL)showStatusBar
-// ------------------------------------------------------
-{
-    if (![self statusBar]) { return; }
-    
-    [[self statusBar] setShowStatusBar:showStatusBar];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
-    [self updateLineEndingsInStatusAndInfo:NO];
-    if (![self infoUpdateTimer]) {
-        [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
-    }
-}
-
-
-// ------------------------------------------------------
 /// ナビバーを表示する／しないをセット
 - (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ------------------------------------------------------
@@ -431,19 +397,6 @@ static NSTimeInterval incompatibleCharInterval;
     [[self splitView] setWrapLines:wrapLines];
     [self setNeedsDisplay:YES];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_wrapLinesItemID setOn:wrapLines];
-}
-
-
-// ------------------------------------------------------
-/// 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
-- (void)setIsWritable:(BOOL)isWritable
-// ------------------------------------------------------
-{
-    _isWritable = isWritable;
-    
-    if ([self statusBar]) {
-        [[self statusBar] setShowsReadOnlyIcon:!isWritable];
-    }
 }
 
 
@@ -528,10 +481,8 @@ static NSTimeInterval incompatibleCharInterval;
         [(CETextView *)[container textView] setLineEndingString:newLineString];
     }
     if (shouldUpdate) {
-        [self updateLineEndingsInStatusAndInfo:NO];
-        if (![self infoUpdateTimer]) {
-            [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
-        }
+        [[self windowController] updateLineEndingsInStatusAndInfo:NO];
+        [[self windowController] updateDocumentInfoStringWithDrawerForceUpdate:NO];
     }
 }
 
@@ -587,214 +538,6 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// 書き込み禁止アラートを表示
-- (void)alertForNotWritable
-// ------------------------------------------------------
-{
-    if ([self isWritable] || [self isAlertedNotWritable]) { return; }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_showAlertForNotWritable]) {
-
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
-        [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
-
-        [alert beginSheetModalForWindow:[self window]
-                          modalDelegate:self
-                         didEndSelector:NULL
-                            contextInfo:NULL];
-    }
-    [self setIsAlertedNotWritable:YES];
-}
-
-
-// ------------------------------------------------------
-/// ドローワの文書情報を更新
-- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate
-// ------------------------------------------------------
-{
-    BOOL updatesStatusBar = [[self statusBar] showStatusBar];
-    BOOL updatesDrawer = doUpdate ? YES : [[self windowController] needsInfoDrawerUpdate];
-    
-    if (!updatesStatusBar && !updatesDrawer) { return; }
-    
-    NSString *textViewString = [self string];
-    NSString *wholeString = ([self lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [self stringForSave] : textViewString;
-    NSStringEncoding encoding = [[self document] encoding];
-    __block NSRange selectedRange = [self selectedRange];
-    __block CEStatusBarView *statusBar = [self statusBar];
-    __block CEWindowController *windowController = [self windowController];
-    
-    // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        BOOL countLineEnding = [defaults boolForKey:k_key_countLineEndingAsChar];
-        NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
-        NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
-        NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
-        NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
-        
-        // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
-        if ([[self textView] hasMarkedText]) {
-            selectedRange.length = 0;
-        }
-        
-        if (length > 0) {
-            BOOL hasSelection = (selectedRange.length > 0);
-            NSString *selectedString = hasSelection ? [textViewString substringWithRange:selectedRange] : @"";
-            NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
-            column = selectedRange.location - lineRange.location;  // as length
-            column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
-            
-            for (NSUInteger index = 0; index < length; numberOfLines++) {
-                if (index <= selectedRange.location) {
-                    currentLine = numberOfLines + 1;
-                }
-                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
-            }
-            
-            // 単語数カウント
-            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarWords]) {
-                NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
-                numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
-                if (hasSelection) {
-                    numberOfSelectedWords = [spellChecker countWordsInString:selectedString
-                                                                    language:nil];
-                }
-            }
-            if (hasSelection) {
-                numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
-            }
-            
-            // location カウント
-            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarLocation]) {
-                NSString *locString = [wholeString substringToIndex:selectedRange.location];
-                NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
-                
-                location = [str numberOfComposedCharacters];
-            }
-            
-            // 文字数カウント
-            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
-                NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
-                numberOfChars = [str numberOfComposedCharacters];
-                if (hasSelection) {
-                    str = countLineEnding ? selectedString : [OGRegularExpression chomp:selectedString];
-                    numberOfSelectedChars = [str numberOfComposedCharacters];
-                }
-            }
-            
-            // 改行コードをカウントしない場合は再計算
-            if (!countLineEnding) {
-                selectedRange.length = [[OGRegularExpression chomp:selectedString] length];
-                length = [[OGRegularExpression chomp:wholeString] length];
-            }
-        }
-        
-        NSString *singleCharInfo;
-        NSUInteger byteLength = 0, selectedByteLength = 0;
-        if (updatesDrawer) {
-            {
-                if (selectedRange.length == 2) {
-                    unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
-                    unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
-                    if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
-                        UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
-                        singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
-                    }
-                }
-                if (selectedRange.length == 1) {
-                    unichar character = [wholeString characterAtIndex:selectedRange.location];
-                    singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
-                }
-            }
-            
-            byteLength = [wholeString lengthOfBytesUsingEncoding:encoding];
-            selectedByteLength = [[wholeString substringWithRange:selectedRange]
-                                  lengthOfBytesUsingEncoding:encoding];
-        }
-        
-        // apply to UI
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (updatesStatusBar) {
-                [statusBar setLinesInfo:numberOfLines];
-                [statusBar setSelectedLinesInfo:numberOfSelectedLines];
-                [statusBar setCharsInfo:numberOfChars];
-                [statusBar setSelectedCharsInfo:numberOfSelectedChars];
-                [statusBar setLengthInfo:length];
-                [statusBar setSelectedLengthInfo:selectedRange.length];
-                [statusBar setWordsInfo:numberOfWords];
-                [statusBar setSelectedWordsInfo:numberOfSelectedWords];
-                [statusBar setLocationInfo:location];
-                [statusBar setLineInfo:currentLine];
-                [statusBar setColumnInfo:column];
-                [statusBar updateLeftField];
-            }
-            if (updatesDrawer) {
-                [windowController setLinesInfo:numberOfLines selected:numberOfSelectedLines];
-                [windowController setCharsInfo:numberOfChars selected:numberOfSelectedChars];
-                [windowController setLengthInfo:length selected:selectedRange.length];
-                [windowController setByteLengthInfo:byteLength selected:selectedByteLength];
-                [windowController setWordsInfo:numberOfWords selected:numberOfSelectedWords];
-                [windowController setLocationInfo:location];
-                [windowController setColumnInfo:column];
-                [windowController setLineInfo:currentLine];
-                [windowController setSingleCharInfo:singleCharInfo];
-            }
-        });
-    });
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーと情報ドローワの改行コード表記を更新
-- (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool
-// ------------------------------------------------------
-{
-    BOOL shouldUpdateStatusBar = [[self statusBar] showStatusBar];
-    BOOL shouldUpdateDrawer = inBool ? YES : [[self windowController] needsInfoDrawerUpdate];
-    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
-    
-    NSString *lineEndingsInfo;
-    
-    switch ([self lineEndingCharacter]) {
-        case OgreLfNewlineCharacter:
-            lineEndingsInfo = @"LF";
-            break;
-        case OgreCrNewlineCharacter:
-            lineEndingsInfo = @"CR";
-            break;
-        case OgreCrLfNewlineCharacter:
-            lineEndingsInfo = @"CRLF";
-            break;
-        case OgreUnicodeLineSeparatorNewlineCharacter:
-            lineEndingsInfo = @"U-lineSep"; // Unicode line separator
-            break;
-        case OgreUnicodeParagraphSeparatorNewlineCharacter:
-            lineEndingsInfo = @"U-paraSep"; // Unicode paragraph separator
-            break;
-        case OgreNonbreakingNewlineCharacter:
-            lineEndingsInfo = @""; // 改行なしの場合
-            break;
-        default:
-            return;
-    }
-    
-    NSString *encodingInfo = [[self document] currentIANACharSetName];
-    if (shouldUpdateStatusBar) {
-        [[self statusBar] setEncodingInfo:encodingInfo];
-        [[self statusBar] setLineEndingsInfo:lineEndingsInfo];
-        [[self statusBar] setFileSizeInfo:[[[self document] fileAttributes] fileSize]];
-        [[self statusBar] updateRightField];
-    }
-    if (shouldUpdateDrawer) {
-        [[self windowController] setEncodingInfo:encodingInfo];
-        [[self windowController] setLineEndingsInfo:lineEndingsInfo];
-    }
-}
-
-
-// ------------------------------------------------------
 /// 不可視文字の表示／非表示を返す
 - (BOOL)showInvisibles
 // ------------------------------------------------------
@@ -836,42 +579,6 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// 非互換文字更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
-        if ([self incompatibleCharTimer]) {
-            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
-        } else {
-            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
-                                                                            target:self
-                                                                          selector:@selector(doUpdateIncompatibleCharListWithTimer:)
-                                                                          userInfo:nil
-                                                                           repeats:NO]];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
-    } else {
-        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
-                                                                  target:self
-                                                                selector:@selector(doUpdateInfoWithTimer:)
-                                                                userInfo:nil
-                                                                 repeats:NO]];
-    }
-}
-
-
-// ------------------------------------------------------
 /// テキストビュー分割削除ボタンの有効／無効を更新
 - (void)updateCloseSubSplitViewButton
 // ------------------------------------------------------
@@ -879,17 +586,6 @@ static NSTimeInterval incompatibleCharInterval;
     BOOL enabled = ([[[self splitView] subviews] count] > 1);
 
     [[self splitView] setCloseSubSplitViewButtonEnabled:enabled];
-}
-
-
-// ------------------------------------------------------
-/// 全タイマーを停止
-- (void)stopAllTimers
-// ------------------------------------------------------
-{
-    [self stopColoringTimer];
-    [self stopInfoUpdateTimer];
-    [self stopIncompatibleCharTimer];
 }
 
 
@@ -911,9 +607,6 @@ static NSTimeInterval incompatibleCharInterval;
 
     if ([menuItem action] == @selector(toggleShowLineNum:)) {
         title = [self showLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
-        
-    } else if ([menuItem action] == @selector(toggleShowStatusBar:)) {
-        title = [self showStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
         
     } else if ([menuItem action] == @selector(toggleShowNavigationBar:)) {
         title = [self showNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
@@ -975,15 +668,6 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     [self setShowLineNum:![self showLineNum]];
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーの表示をトグルに切り替える
-- (IBAction)toggleShowStatusBar:(id)sender
-// ------------------------------------------------------
-{
-    [self setShowStatusBar:![self showStatusBar]];
 }
 
 
@@ -1166,13 +850,6 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)setupViews
 // ------------------------------------------------------
 {
-    // Create and configure the statusBar
-    NSRect statusFrame = [self bounds];
-    statusFrame.size.height = 0.0;
-    [self setStatusBar:[[CEStatusBarView alloc] initWithFrame:statusFrame]];
-    [[self statusBar] setMasterView:self];
-    [self addSubview:[self statusBar]];
-
     // Create CESplitView -- this will enclose everything else.
     NSRect splitFrame = [self bounds];
     [self setSplitView:[[CESplitView alloc] initWithFrame:splitFrame]];
@@ -1201,77 +878,14 @@ static NSTimeInterval incompatibleCharInterval;
 
         [self setShowLineNum:[defaults boolForKey:k_key_showLineNumbers]];
         [self setShowNavigationBar:[defaults boolForKey:k_key_showNavigationBar]];
-        [[self statusBar] setShowStatusBar:[defaults boolForKey:k_key_showStatusBar]];
         [self setWrapLines:[defaults boolForKey:k_key_wrapLines]];
         [self setShowPageGuide:[defaults boolForKey:k_key_showPageGuide]];
-        [self setIsWritable:YES];
-        [self setIsAlertedNotWritable:NO];
     } else {
         [self setShowLineNum:[self showLineNum]];
         [self setShowNavigationBar:[self showNavigationBar]];
         [self setWrapLines:[self wrapLines]];
         [self setShowPageGuide:[self showPageGuide]];
     }
-}
-
-
-// ------------------------------------------------------
-/// カラーリング実行
-- (void)doColoringNow
-// ------------------------------------------------------
-{
-    if ([self coloringTimer]) { return; }
-
-    NSRect visibleRect = [[[[self textView] enclosingScrollView] contentView] documentVisibleRect];
-    NSRange glyphRange = [[[self textView] layoutManager] glyphRangeForBoundingRect:visibleRect
-                                                                    inTextContainer:[[self textView] textContainer]];
-    NSRange charRange = [[[self textView] layoutManager] characterRangeForGlyphRange:glyphRange
-                                                                    actualGlyphRange:NULL];
-    NSRange selectedRange = [[self textView] selectedRange];
-    NSRange coloringRange = charRange;
-
-    // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
-    if (!NSLocationInRange(selectedRange.location, charRange)) {
-        NSInteger location = selectedRange.location - charRange.length;
-        if (location < 0) { location = 0; }
-        NSInteger length = selectedRange.length + charRange.length;
-        NSInteger max = [[self string] length] - location;
-        length = MIN(length, max);
-
-        coloringRange = NSMakeRange(location, length);
-    }
-    
-    [[self syntax]  colorVisibleRange:coloringRange wholeString:[self string]];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、カラーリング実行
-- (void)doColoringWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopColoringTimer];
-    [self doColoringNow];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、情報更新
-- (void)doUpdateInfoWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopInfoUpdateTimer];
-    [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、非互換文字情報更新
-- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopIncompatibleCharTimer];
-    [[self windowController] updateIncompatibleCharList];
 }
 
 
@@ -1301,6 +915,44 @@ static NSTimeInterval incompatibleCharInterval;
 }
 
 
+// ------------------------------------------------------
+/// カラーリング実行
+- (void)doColoringNow
+// ------------------------------------------------------
+{
+    if ([self coloringTimer]) { return; }
+    
+    NSRect visibleRect = [[[[self textView] enclosingScrollView] contentView] documentVisibleRect];
+    NSRange glyphRange = [[[self textView] layoutManager] glyphRangeForBoundingRect:visibleRect
+                                                                    inTextContainer:[[self textView] textContainer]];
+    NSRange charRange = [[[self textView] layoutManager] characterRangeForGlyphRange:glyphRange
+                                                                    actualGlyphRange:NULL];
+    NSRange selectedRange = [[self textView] selectedRange];
+    NSRange coloringRange = charRange;
+    
+    // = 選択領域（編集場所）が見えないときは編集場所周辺を更新
+    if (!NSLocationInRange(selectedRange.location, charRange)) {
+        NSInteger location = selectedRange.location - charRange.length;
+        if (location < 0) { location = 0; }
+        NSInteger length = selectedRange.length + charRange.length;
+        NSInteger max = [[self string] length] - location;
+        length = MIN(length, max);
+        
+        coloringRange = NSMakeRange(location, length);
+    }
+    
+    [[self syntax] colorVisibleRange:coloringRange wholeString:[self string]];
+}
+
+
+// ------------------------------------------------------
+/// タイマーの設定時刻に到達、カラーリング実行
+- (void)doColoringWithTimer:(NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self stopColoringTimer];
+    [self doColoringNow];
+}
 
 
 // ------------------------------------------------------
@@ -1311,30 +963,6 @@ static NSTimeInterval incompatibleCharInterval;
     if ([self coloringTimer]) {
         [[self coloringTimer] invalidate];
         [self setColoringTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文書情報更新タイマーを停止
-- (void)stopInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] invalidate];
-        [self setInfoUpdateTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字情報更新タイマーを停止
-- (void)stopIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if ([self incompatibleCharTimer]) {
-        [[self incompatibleCharTimer] invalidate];
-        [self setIncompatibleCharTimer:nil];
     }
 }
 

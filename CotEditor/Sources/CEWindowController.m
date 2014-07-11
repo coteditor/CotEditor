@@ -33,7 +33,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEWindowController.h"
 #import "CEDocumentController.h"
+#import "CEStatusBarController.h"
 #import "CESyntaxManager.h"
+#import "NSString+ComposedCharacter.h"
 #import "constants.h"
 
 
@@ -42,23 +44,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
-// document information (for binding)
-@property (nonatomic, copy) NSString *createdInfo;
-@property (nonatomic, copy) NSString *modificatedInfo;
+@property (nonatomic) NSTimer *infoUpdateTimer;
+@property (nonatomic) NSTimer *incompatibleCharTimer;
+
+
+// document information (for binding in drawer)
+@property (nonatomic, copy) NSString *encodingInfo;    // encoding of document
+@property (nonatomic, copy) NSString *lineEndingsInfo; // line endings of document
+@property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
+@property (nonatomic, copy) NSDate *createdInfo;
+@property (nonatomic, copy) NSDate *modificatedInfo;
 @property (nonatomic, copy) NSString *ownerInfo;
 @property (nonatomic, copy) NSString *typeInfo;
 @property (nonatomic, copy) NSString *creatorInfo;
 @property (nonatomic, copy) NSString *finderLockInfo;
 @property (nonatomic, copy) NSString *permissionInfo;
 @property (nonatomic) NSNumber *fileSizeInfo;
-
 @property (nonatomic, copy) NSString *linesInfo;
 @property (nonatomic, copy) NSString *charsInfo;
-@property (nonatomic, copy) NSString *lengthInfo;
 @property (nonatomic, copy) NSString *wordsInfo;
+@property (nonatomic, copy) NSString *lengthInfo;
 @property (nonatomic, copy) NSString *byteLengthInfo;
+@property (nonatomic) NSUInteger columnInfo;           // caret location from line head
+@property (nonatomic) NSUInteger locationInfo;         // caret location from begining of document
+@property (nonatomic) NSUInteger lineInfo;             // current line
 
 // IBOutlets
+@property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
 @property (nonatomic) IBOutlet NSArrayController *listController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
 @property (nonatomic, weak) IBOutlet NSTabView *tabView;
@@ -68,8 +80,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
 
 // readonly
-@property (nonatomic, weak, readwrite) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, weak, readwrite) IBOutlet CEEditorView *editorView;
+@property (nonatomic, readwrite, weak) IBOutlet CEToolbarController *toolbarController;
+@property (nonatomic, readwrite, weak) IBOutlet CEEditorView *editorView;
+@property (nonatomic, readwrite) BOOL showStatusBar;
 
 @end
 
@@ -79,6 +92,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark -
 
 @implementation CEWindowController
+
+static NSTimeInterval infoUpdateInterval;
+static NSTimeInterval incompatibleCharInterval;
+
+
+#pragma mark Class Methods
+
+//=======================================================
+// Class method
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// クラス初期化
++ (void)initialize
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
+        incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
+    });
+}
+
+
 
 #pragma mark NSWindowController Methods
 
@@ -109,6 +149,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // テキストを表示
     [[self document] setStringToEditorView];
     
+    // setup status bar
+    [[self statusBarController] setShowStatusBar:[defaults boolForKey:k_key_showStatusBar]];
+    [[self statusBarController] setShowReadOnly:![[self document] isWritable]];
+    
+    // テキストビューへフォーカスを移動
+    [[self window] makeFirstResponder:[[[[self editorView] splitView] subviews][0] textView]];
+    
     // シンタックス定義の変更を監視
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(syntaxDidUpdate:)
@@ -130,6 +177,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:k_key_windowAlpha];
+    
+    [self stopInfoUpdateTimer];
+    [self stopIncompatibleCharTimer];
 }
 
 
@@ -143,6 +193,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 }
 
+// ------------------------------------------------------
+/// メニュー項目の有効・無効を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if ([menuItem action] == @selector(toggleShowStatusBar:)) {
+        NSString *title = [self showStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
+        [menuItem setTitle:title];
+    }
+    
+    return YES;
+}
 
 
 #pragma mark Public Methods
@@ -185,8 +247,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [self setCreatorInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSCreatorCode])];
     [self setTypeInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSTypeCode])];
-    [self setCreatedInfo:[[fileAttributes fileCreationDate] description]];
-    [self setModificatedInfo:[[fileAttributes fileModificationDate] description]];
+    [self setCreatedInfo:[fileAttributes fileCreationDate]];
+    [self setModificatedInfo:[fileAttributes fileModificationDate]];
     [self setOwnerInfo:[fileAttributes fileOwnerAccountName]];
     
     NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil;
@@ -195,7 +257,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSNumber *beforeFileSize = [self fileSizeInfo];
     [self setFileSizeInfo:@([fileAttributes fileSize])];
     if (![beforeFileSize isEqualToNumber:[self fileSizeInfo]]) {
-        [[self editorView] updateLineEndingsInStatusAndInfo:false];
+        [self updateLineEndingsInStatusAndInfo:false];
     }
 }
 
@@ -250,47 +312,261 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 単語数情報をセット
-- (void)setWordsInfo:(NSUInteger)words selected:(NSUInteger)selectedWords
+/// ステータスバーを表示するかどうかを返す
+- (BOOL)showStatusBar
 // ------------------------------------------------------
 {
-    [self setWordsInfo:[self formatCount:words selected:selectedWords]];
+    return [[self statusBarController] showStatusBar];
 }
 
 
 // ------------------------------------------------------
-/// バイト長情報をセット
-- (void)setByteLengthInfo:(NSUInteger)byteLength selected:(NSUInteger)selectedByteLength
+/// ステータスバーを表示する／しないをセット
+- (void)setShowStatusBar:(BOOL)showStatusBar
 // ------------------------------------------------------
 {
-    [self setByteLengthInfo:[self formatCount:byteLength selected:selectedByteLength]];
+    if (![self statusBarController]) { return; }
+    
+    [[self statusBarController] setShowStatusBar:showStatusBar];
+    [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
+    [self updateLineEndingsInStatusAndInfo:NO];
+    
+    if (![self infoUpdateTimer]) {
+        [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
+    }
 }
 
 
 // ------------------------------------------------------
-/// 文字数情報をセット
-- (void)setCharsInfo:(NSUInteger)chars selected:(NSUInteger)selectedChars
+/// 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
+- (void)setIsWritable:(BOOL)isWritable
 // ------------------------------------------------------
 {
-    [self setCharsInfo:[self formatCount:chars selected:selectedChars]];
+    if ([self statusBarController]) {
+        [[self statusBarController] setShowReadOnly:!isWritable];
+    }
 }
 
 
 // ------------------------------------------------------
-/// 文字長情報をセット
-- (void)setLengthInfo:(NSUInteger)length selected:(NSUInteger)selectedLength
+/// ドローワの文書情報を更新
+- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate
 // ------------------------------------------------------
 {
-    [self setLengthInfo:[self formatCount:length selected:selectedLength]];
+    BOOL updatesStatusBar = [[self statusBarController] showStatusBar];
+    BOOL updatesDrawer = doUpdate ? YES : [self needsInfoDrawerUpdate];
+    
+    if (!updatesStatusBar && !updatesDrawer) { return; }
+    
+    NSString *textViewString = [[self editorView] string];
+    NSString *wholeString = ([[self editorView] lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [[self editorView] stringForSave] : textViewString;
+    NSStringEncoding encoding = [[self document] encoding];
+    __block NSRange selectedRange = [[self editorView] selectedRange];
+    __block CEStatusBarController *statusBar = [self statusBarController];
+    __block typeof(self) blockSelf = self;
+    
+    // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        BOOL countLineEnding = [defaults boolForKey:k_key_countLineEndingAsChar];
+        NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
+        NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
+        NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
+        NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
+        
+        // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
+        if ([[[self editorView] textView] hasMarkedText]) {
+            selectedRange.length = 0;
+        }
+        
+        if (length > 0) {
+            BOOL hasSelection = (selectedRange.length > 0);
+            NSString *selectedString = hasSelection ? [textViewString substringWithRange:selectedRange] : @"";
+            NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
+            column = selectedRange.location - lineRange.location;  // as length
+            column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
+            
+            for (NSUInteger index = 0; index < length; numberOfLines++) {
+                if (index <= selectedRange.location) {
+                    currentLine = numberOfLines + 1;
+                }
+                index = NSMaxRange([wholeString lineRangeForRange:NSMakeRange(index, 0)]);
+            }
+            
+            // 単語数カウント
+            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarWords]) {
+                NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
+                numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
+                if (hasSelection) {
+                    numberOfSelectedWords = [spellChecker countWordsInString:selectedString
+                                                                    language:nil];
+                }
+            }
+            if (hasSelection) {
+                numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
+            }
+            
+            // location カウント
+            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarLocation]) {
+                NSString *locString = [wholeString substringToIndex:selectedRange.location];
+                NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
+                
+                location = [str numberOfComposedCharacters];
+            }
+            
+            // 文字数カウント
+            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
+                NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
+                numberOfChars = [str numberOfComposedCharacters];
+                if (hasSelection) {
+                    str = countLineEnding ? selectedString : [OGRegularExpression chomp:selectedString];
+                    numberOfSelectedChars = [str numberOfComposedCharacters];
+                }
+            }
+            
+            // 改行コードをカウントしない場合は再計算
+            if (!countLineEnding) {
+                selectedRange.length = [[OGRegularExpression chomp:selectedString] length];
+                length = [[OGRegularExpression chomp:wholeString] length];
+            }
+        }
+        
+        NSString *singleCharInfo;
+        NSUInteger byteLength = 0, selectedByteLength = 0;
+        if (updatesDrawer) {
+            {
+                if (selectedRange.length == 2) {
+                    unichar firstChar = [wholeString characterAtIndex:selectedRange.location];
+                    unichar secondChar = [wholeString characterAtIndex:selectedRange.location + 1];
+                    if (CFStringIsSurrogateHighCharacter(firstChar) && CFStringIsSurrogateLowCharacter(secondChar)) {
+                        UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(firstChar, secondChar);
+                        singleCharInfo = [NSString stringWithFormat:@"U+%04tX", pair];
+                    }
+                }
+                if (selectedRange.length == 1) {
+                    unichar character = [wholeString characterAtIndex:selectedRange.location];
+                    singleCharInfo = [NSString stringWithFormat:@"U+%.4X", character];
+                }
+            }
+            
+            byteLength = [wholeString lengthOfBytesUsingEncoding:encoding];
+            selectedByteLength = [[wholeString substringWithRange:selectedRange]
+                                  lengthOfBytesUsingEncoding:encoding];
+        }
+        
+        // apply to UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (updatesStatusBar) {
+                [statusBar setLinesInfo:numberOfLines];
+                [statusBar setSelectedLinesInfo:numberOfSelectedLines];
+                [statusBar setCharsInfo:numberOfChars];
+                [statusBar setSelectedCharsInfo:numberOfSelectedChars];
+                [statusBar setLengthInfo:length];
+                [statusBar setSelectedLengthInfo:selectedRange.length];
+                [statusBar setWordsInfo:numberOfWords];
+                [statusBar setSelectedWordsInfo:numberOfSelectedWords];
+                [statusBar setLocationInfo:location];
+                [statusBar setLineInfo:currentLine];
+                [statusBar setColumnInfo:column];
+                [statusBar updateEditorStatus];
+            }
+            if (updatesDrawer) {
+                [blockSelf setLinesInfo:[blockSelf formatCount:numberOfLines selected:numberOfSelectedLines]];
+                [blockSelf setCharsInfo:[blockSelf formatCount:numberOfChars selected:numberOfSelectedChars]];
+                [blockSelf setLengthInfo:[blockSelf formatCount:length selected:selectedRange.length]];
+                [blockSelf setByteLengthInfo:[blockSelf formatCount:byteLength selected:selectedByteLength]];
+                [blockSelf setWordsInfo:[blockSelf formatCount:numberOfWords selected:numberOfSelectedWords]];
+                [blockSelf setLocationInfo:location];
+                [blockSelf setColumnInfo:column];
+                [blockSelf setLineInfo:currentLine];
+                [blockSelf setSingleCharInfo:singleCharInfo];
+            }
+        });
+    });
 }
 
 
 // ------------------------------------------------------
-/// 行数情報をセット
-- (void)setLinesInfo:(NSUInteger)lines selected:(NSUInteger)selectedLines
+/// ステータスバーと情報ドローワの改行コード表記を更新
+- (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool
 // ------------------------------------------------------
 {
-    [self setLinesInfo:[self formatCount:lines selected:selectedLines]];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] showStatusBar];
+    BOOL shouldUpdateDrawer = inBool ? YES : [self needsInfoDrawerUpdate];
+    if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
+    
+    NSString *lineEndingsInfo;
+    
+    switch ([[self editorView] lineEndingCharacter]) {
+        case OgreLfNewlineCharacter:
+            lineEndingsInfo = @"LF";
+            break;
+        case OgreCrNewlineCharacter:
+            lineEndingsInfo = @"CR";
+            break;
+        case OgreCrLfNewlineCharacter:
+            lineEndingsInfo = @"CRLF";
+            break;
+        case OgreUnicodeLineSeparatorNewlineCharacter:
+            lineEndingsInfo = @"U-lineSep"; // Unicode line separator
+            break;
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:
+            lineEndingsInfo = @"U-paraSep"; // Unicode paragraph separator
+            break;
+        case OgreNonbreakingNewlineCharacter:
+            lineEndingsInfo = @""; // 改行なしの場合
+            break;
+        default:
+            return;
+    }
+    
+    NSString *encodingInfo = [[self document] currentIANACharSetName];
+    if (shouldUpdateStatusBar) {
+        [[self statusBarController] setEncodingInfo:encodingInfo];
+        [[self statusBarController] setLineEndingsInfo:lineEndingsInfo];
+        [[self statusBarController] setFileSizeInfo:[[[self document] fileAttributes] fileSize]];
+        [[self statusBarController] updateDocumentStatus];
+    }
+    if (shouldUpdateDrawer) {
+        [self setEncodingInfo:encodingInfo];
+        [self setLineEndingsInfo:lineEndingsInfo];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 非互換文字更新タイマーのファイヤーデイトを設定時間後にセット
+- (void)setupIncompatibleCharTimer
+// ------------------------------------------------------
+{
+    if ([self needsIncompatibleCharDrawerUpdate]) {
+        if ([self incompatibleCharTimer]) {
+            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
+        } else {
+            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
+                                                                            target:self
+                                                                          selector:@selector(doUpdateIncompatibleCharListWithTimer:)
+                                                                          userInfo:nil
+                                                                           repeats:NO]];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
+- (void)setupInfoUpdateTimer
+// ------------------------------------------------------
+{
+    if ([self infoUpdateTimer]) {
+        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
+    } else {
+        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
+                                                                  target:self
+                                                                selector:@selector(doUpdateInfoWithTimer:)
+                                                                userInfo:nil
+                                                                 repeats:NO]];
+    }
 }
     
 
@@ -352,22 +628,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// ウィンドウが閉じる直前
-- (void)windowWillClose:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    // デリゲートをやめる
-    [[self drawer] setDelegate:nil];
-    [[self tabView] setDelegate:nil];
-
-    // バインディング停止
-    //（自身の変数 tabViewSelectedIndex を使わせている関係で、放置しておくと自身が retain されたままになる）
-    [[self tabViewSelectionPopUpButton] unbind:@"selectedIndex"];
-    [[self tabView] unbind:@"selectedIndex"];
-}
-
-
-// ------------------------------------------------------
 /// フルスクリーンを開始
 - (void)windowWillEnterFullScreen:(NSNotification *)notification
 // ------------------------------------------------------
@@ -399,8 +659,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([[tabViewItem identifier] isEqualToString:k_infoIdentifier]) {
         [self updateFileAttrsInformation];
-        [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
-        [[self editorView] updateLineEndingsInStatusAndInfo:YES];
+        [self updateDocumentInfoStringWithDrawerForceUpdate:YES];
+        [self updateLineEndingsInStatusAndInfo:YES];
     } else if ([[tabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
         [self updateIncompatibleCharList];
     }
@@ -442,8 +702,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if (tabState) {
             // 情報の更新
             [self updateFileAttrsInformation];
-            [[self editorView] updateDocumentInfoStringWithDrawerForceUpdate:YES];
-            [[self editorView] updateLineEndingsInStatusAndInfo:YES];
+            [self updateDocumentInfoStringWithDrawerForceUpdate:YES];
+            [self updateLineEndingsInStatusAndInfo:YES];
         } else {
             [[self tabView] selectTabViewItemWithIdentifier:k_infoIdentifier];
         }
@@ -498,6 +758,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // 検索結果表示エフェクトを追加
     [[[self editorView] textView] showFindIndicatorForRange:range];
+}
+
+
+// ------------------------------------------------------
+/// ステータスバーの表示をトグルに切り替える
+- (IBAction)toggleShowStatusBar:(id)sender
+// ------------------------------------------------------
+{
+    [self setShowStatusBar:![self showStatusBar]];
 }
 
 
@@ -586,6 +855,50 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                      value:incompatibleColor
                          forCharacterRange:[uncompatible[k_incompatibleRange] rangeValue]];
         }
+    }
+}
+
+
+// ------------------------------------------------------
+/// タイマーの設定時刻に到達、情報更新
+- (void)doUpdateInfoWithTimer:(NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self stopInfoUpdateTimer];
+    [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
+}
+
+
+// ------------------------------------------------------
+/// タイマーの設定時刻に到達、非互換文字情報更新
+- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self stopIncompatibleCharTimer];
+    [self updateIncompatibleCharList];
+}
+
+
+// ------------------------------------------------------
+/// 文書情報更新タイマーを停止
+- (void)stopInfoUpdateTimer
+// ------------------------------------------------------
+{
+    if ([self infoUpdateTimer]) {
+        [[self infoUpdateTimer] invalidate];
+        [self setInfoUpdateTimer:nil];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 非互換文字情報更新タイマーを停止
+- (void)stopIncompatibleCharTimer
+// ------------------------------------------------------
+{
+    if ([self incompatibleCharTimer]) {
+        [[self incompatibleCharTimer] invalidate];
+        [self setIncompatibleCharTimer:nil];
     }
 }
 

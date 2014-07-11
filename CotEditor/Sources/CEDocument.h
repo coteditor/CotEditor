@@ -57,6 +57,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (nonatomic, readonly) NSStringEncoding encoding;
 @property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
 @property (nonatomic, readonly) CETextSelection *selection;
+@property (nonatomic, readonly) BOOL isWritable;
 
 
 // Public methods

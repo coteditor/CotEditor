@@ -155,7 +155,6 @@ http://www.aynimac.com/
 
 
 /* CEStatusBarView */
-"This document is read only." = "書類は書き込み不可です。";
 "Lines: %@" = "行数：%@";
 "Chars: %@" = "文字数：%@";
 "Words: %@" = "単語数：%@";

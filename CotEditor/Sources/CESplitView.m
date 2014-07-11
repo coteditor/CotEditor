@@ -57,7 +57,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        [self setFinishedOpen:NO];
         [self setDividerStyle:NSSplitViewDividerStylePaneSplitter];
     }
     return self;
