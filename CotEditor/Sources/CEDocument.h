@@ -54,15 +54,16 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
+@property (nonatomic, readonly) CETextSelection *selection;
 @property (nonatomic, readonly) NSStringEncoding encoding;
 @property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
-@property (nonatomic, readonly) CETextSelection *selection;
 @property (nonatomic, readonly) BOOL isWritable;
 
 
 // Public methods
-- (NSString *)currentIANACharSetName;
 - (void)setStringToEditorView;
+
+- (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
 - (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
@@ -77,7 +78,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
 
-// Action Message
+// Action Messages
 - (IBAction)setLineEndingCharToLF:(id)sender;
 - (IBAction)setLineEndingCharToCR:(id)sender;
 - (IBAction)setLineEndingCharToCRLF:(id)sender;
