@@ -36,6 +36,7 @@
 
 
 static const CGFloat defaultHeight = 20.0;
+static const NSTimeInterval duration = 0.1;
 
 
 @interface CEStatusBarController ()
@@ -174,7 +175,12 @@ static const CGFloat defaultHeight = 20.0;
     _showStatusBar = showStatusBar;
     
     CGFloat height = [self showStatusBar] ? defaultHeight : 0.0;
-    [[self heightConstraint] setConstant:height];
+    
+    // resize with animation
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [context setDuration:duration];
+        [[[self heightConstraint] animator] setConstant:height];
+    } completionHandler:nil];
 }
 
 @end
