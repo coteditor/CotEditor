@@ -56,6 +56,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (atomic, copy) NSString *fileMD5;
 @property (atomic) BOOL showUpdateAlertWithBecomeKey;
 @property (atomic) BOOL isRevertingForExternalFileUpdate;
+@property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *initialString;  // 初期表示文字列に表示する文字列;
 @property (nonatomic) CEODBEventSender *ODBEventSender;
 
@@ -64,6 +65,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (nonatomic, readwrite) NSStringEncoding encoding;
 @property (nonatomic, copy, readwrite) NSDictionary *fileAttributes;
 @property (nonatomic, readwrite) CETextSelection *selection;
+@property (nonatomic ,readwrite) BOOL isWritable;
 
 @end
 
@@ -112,6 +114,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [self doSetEncoding:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew]
              updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
         [self setSelection:[[CETextSelection alloc] initWithDocument:self]];
+        [self setIsWritable:YES];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
@@ -287,6 +290,11 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // 外部エディタプロトコル(ODB Editor Suite)用の値をセット
     [self setODBEventSender:[[CEODBEventSender alloc] init]];
     
+    // 書き込み可能かをチェック
+    NSNumber *isWritableNum = nil;
+    [url getResourceValue:&isWritableNum forKey:NSURLIsWritableKey error:nil];
+    [self setIsWritable:[isWritableNum boolValue]];
+    
     NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
 
     return [self readFromURL:url withEncoding:encoding];
@@ -442,7 +450,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
         [[self windowController] showIncompatibleCharList];
     }
-    [self setIsWritableToStatusBarWithURL:[self fileURL]];
 }
 
 
@@ -851,9 +858,7 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
     if ([menuItem action] == @selector(saveDocument:)) {
         // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
-        if ((![[self windowController] isWritable]) && (![[self windowController] isAlertedNotWritable])) {
-            return NO;
-        }
+        return ([self isWritable] || [self didAlertNotWritable]);
     } else if ([menuItem action] == @selector(changeEncoding:)) {
         state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
     } else if (([menuItem action] == @selector(setLineEndingCharToLF:)) ||
@@ -966,10 +971,8 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)documentDidFinishOpen:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [self editorView]) { return; }
-    
-    // EditorView で、書き込み禁止アラートを表示
-    [[self windowController] alertForNotWritable];
+    // 書き込み禁止アラートを表示
+    [self showNotWritableAlert];
 }
 
 
@@ -1546,8 +1549,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         success = (success && lockSuccess);
     }
     
-    [self setIsWritableToStatusBarWithURL:url];
-    
     return success;
 }
 
@@ -1614,18 +1615,23 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 書き込み可能かをステータスバーにセット
-- (void)setIsWritableToStatusBarWithURL:(NSURL *)url
+/// 書き込み禁止アラートを表示
+- (void)showNotWritableAlert
 // ------------------------------------------------------
 {
-    BOOL isWritable = YES; // default = YES
+    if ([self isWritable] || [self didAlertNotWritable]) { return; }
     
-    if ([url checkResourceIsReachableAndReturnError:nil]) {
-        NSNumber *isWritableNum = nil;
-        [url getResourceValue:&isWritableNum forKey:NSURLIsWritableKey error:nil];
-        isWritable = [isWritableNum boolValue];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_showAlertForNotWritable]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
+        [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
+        
+        [alert beginSheetModalForWindow:[self windowForSheet]
+                          modalDelegate:self
+                         didEndSelector:NULL
+                            contextInfo:NULL];
     }
-    [[self windowController] setIsWritable:isWritable];
+    [self setDidAlertNotWritable:YES];
 }
 
 

@@ -127,19 +127,6 @@ static NSTimeInterval incompatibleCharInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// クラス初期化
-- (instancetype)initWithWindowNibName:(NSString *)windowNibName owner:(id)owner
-// ------------------------------------------------------
-{
-    self = [super initWithWindowNibName:windowNibName owner:owner];
-    if (self) {
-        [self setIsWritable:YES];
-        [self setIsAlertedNotWritable:NO];
-    }
-    return self;
-}
-
-// ------------------------------------------------------
 /// ウィンドウ表示の準備完了時、サイズを設定し文字列／不透明度をセット
 - (void)windowDidLoad
 // ------------------------------------------------------
@@ -160,6 +147,8 @@ static NSTimeInterval incompatibleCharInterval;
     [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // テキストを表示
     [[self document] setStringToEditorView];
+    
+    [[self statusBar] setShowsReadOnlyIcon:![[self document] isWritable]];
     
     // シンタックス定義の変更を監視
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -347,33 +336,9 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)setIsWritable:(BOOL)isWritable
 // ------------------------------------------------------
 {
-    _isWritable = isWritable;
-    
     if ([self statusBar]) {
         [[self statusBar] setShowsReadOnlyIcon:!isWritable];
     }
-}
-
-
-// ------------------------------------------------------
-/// 書き込み禁止アラートを表示
-- (void)alertForNotWritable
-// ------------------------------------------------------
-{
-    if ([self isWritable] || [self isAlertedNotWritable]) { return; }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_showAlertForNotWritable]) {
-        
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
-        [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
-        
-        [alert beginSheetModalForWindow:[self window]
-                          modalDelegate:self
-                         didEndSelector:NULL
-                            contextInfo:NULL];
-    }
-    [self setIsAlertedNotWritable:YES];
 }
 
 

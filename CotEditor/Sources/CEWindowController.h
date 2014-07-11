@@ -45,10 +45,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) CGFloat alpha;
 
 @property (nonatomic) BOOL showStatusBar;
-@property (nonatomic) BOOL isWritable;
-@property (nonatomic) BOOL isAlertedNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 
 // Public method
+- (void)setIsWritable:(BOOL)isWritable;
 - (BOOL)needsInfoDrawerUpdate;
 - (BOOL)needsIncompatibleCharDrawerUpdate;
 - (void)updateFileAttrsInformation;
@@ -56,7 +55,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)showIncompatibleCharList;
 - (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
 - (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
-- (void)alertForNotWritable;
 - (void)setupIncompatibleCharTimer;
 - (void)setupInfoUpdateTimer;
 
