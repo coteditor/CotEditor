@@ -52,8 +52,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *encodingInfo;    // encoding of document
 @property (nonatomic, copy) NSString *lineEndingsInfo; // line endings of document
 @property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
-@property (nonatomic, copy) NSString *createdInfo;
-@property (nonatomic, copy) NSString *modificatedInfo;
+@property (nonatomic, copy) NSDate *createdInfo;
+@property (nonatomic, copy) NSDate *modificatedInfo;
 @property (nonatomic, copy) NSString *ownerInfo;
 @property (nonatomic, copy) NSString *typeInfo;
 @property (nonatomic, copy) NSString *creatorInfo;
@@ -62,11 +62,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSNumber *fileSizeInfo;
 @property (nonatomic, copy) NSString *linesInfo;
 @property (nonatomic, copy) NSString *charsInfo;
-@property (nonatomic, copy) NSString *lengthInfo;
 @property (nonatomic, copy) NSString *wordsInfo;
+@property (nonatomic, copy) NSString *lengthInfo;
 @property (nonatomic, copy) NSString *byteLengthInfo;
 @property (nonatomic) NSUInteger columnInfo;           // caret location from line head
-@property (nonatomic) NSUInteger locationInfo;         // caret location from begining ob document
+@property (nonatomic) NSUInteger locationInfo;         // caret location from begining of document
 @property (nonatomic) NSUInteger lineInfo;             // current line
 
 // IBOutlets
@@ -247,8 +247,8 @@ static NSTimeInterval incompatibleCharInterval;
 
     [self setCreatorInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSCreatorCode])];
     [self setTypeInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSTypeCode])];
-    [self setCreatedInfo:[[fileAttributes fileCreationDate] description]];
-    [self setModificatedInfo:[[fileAttributes fileModificationDate] description]];
+    [self setCreatedInfo:[fileAttributes fileCreationDate]];
+    [self setModificatedInfo:[fileAttributes fileModificationDate]];
     [self setOwnerInfo:[fileAttributes fileOwnerAccountName]];
     
     NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil;

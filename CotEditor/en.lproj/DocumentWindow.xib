@@ -310,8 +310,8 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="60">
-                                                            <rect key="frame" x="38" y="439" width="125" height="14"/>
-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2005-03-19 00:00:00" id="681">
+                                                            <rect key="frame" x="58" y="439" width="108" height="14"/>
+                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2005-03-19 00:00" id="681">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -322,6 +322,7 @@
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
                                                                 </binding>
+                                                                <outlet property="formatter" destination="j41-as-DJo" id="MoX-Xo-f67"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="62">
@@ -333,8 +334,8 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                                                            <rect key="frame" x="38" y="399" width="125" height="14"/>
-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00:00" id="682">
+                                                            <rect key="frame" x="58" y="399" width="108" height="14"/>
+                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00" id="682">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -345,6 +346,7 @@
                                                                         <string key="NSNullPlaceholder"> - </string>
                                                                     </dictionary>
                                                                 </binding>
+                                                                <outlet property="formatter" destination="j41-as-DJo" id="B1I-4J-FNT"/>
                                                             </connections>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="413">
@@ -748,7 +750,7 @@
                                                         <constraint firstItem="661" firstAttribute="baseline" secondItem="662" secondAttribute="baseline" id="E5t-Ay-flE"/>
                                                         <constraint firstItem="yGj-rp-wdm" firstAttribute="leading" secondItem="rnY-fh-C8a" secondAttribute="trailing" constant="8" symbolic="YES" id="FQh-GP-x0A"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="413" secondAttribute="trailing" id="GB5-ER-Q9y"/>
-                                                        <constraint firstItem="61" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="40" id="GRN-2E-BLk"/>
+                                                        <constraint firstItem="61" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="60" id="GRN-2E-BLk"/>
                                                         <constraint firstItem="56" firstAttribute="baseline" secondItem="57" secondAttribute="baseline" id="Gqm-Fk-Nxj"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="102" secondAttribute="trailing" id="H03-VD-fDU"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="57" secondAttribute="trailing" id="H5Q-dI-IZJ"/>
@@ -792,7 +794,7 @@
                                                         <constraint firstItem="41" firstAttribute="top" secondItem="114" secondAttribute="bottom" constant="8" symbolic="YES" id="jJp-S7-Ucy"/>
                                                         <constraint firstItem="47" firstAttribute="leading" secondItem="42" secondAttribute="trailing" constant="8" symbolic="YES" id="jWZ-nI-wbe"/>
                                                         <constraint firstItem="0c5-6r-R0b" firstAttribute="trailing" secondItem="39" secondAttribute="trailing" id="ky5-5f-dOB"/>
-                                                        <constraint firstItem="60" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="40" id="lGn-5v-86I"/>
+                                                        <constraint firstItem="60" firstAttribute="leading" secondItem="108" secondAttribute="leading" constant="60" id="lGn-5v-86I"/>
                                                         <constraint firstItem="509" firstAttribute="top" secondItem="507" secondAttribute="bottom" constant="8" symbolic="YES" id="lNj-Ey-mNb"/>
                                                         <constraint firstItem="47" firstAttribute="baseline" secondItem="42" secondAttribute="baseline" id="ler-c1-bKK"/>
                                                         <constraint firstItem="102" firstAttribute="baseline" secondItem="101" secondAttribute="baseline" id="mMn-C9-D0X"/>
@@ -1102,6 +1104,7 @@
         </arrayController>
         <customObject id="M21-bo-PEe" customClass="NSFontManager"/>
         <numberFormatter formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="ZXE-Ki-WDP"/>
+        <dateFormatter formatterBehavior="custom10_4" dateStyle="medium" timeStyle="short" dateFormat="yyyy-MM-dd HH:mm" id="j41-as-DJo"/>
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="24" height="24"/>
