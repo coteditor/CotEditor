@@ -57,6 +57,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
 - (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
 - (void)alertForNotWritable;
+- (void)setupIncompatibleCharTimer;
+- (void)setupInfoUpdateTimer;
 
 // Action Message
 - (IBAction)getInfo:(id)sender;

@@ -44,6 +44,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
+@property (nonatomic) NSTimer *infoUpdateTimer;
+@property (nonatomic) NSTimer *incompatibleCharTimer;
+
 
 // document information (for binding in drawer)
 @property (nonatomic, copy) NSString *encodingInfo;    // encoding of document
@@ -88,6 +91,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark -
 
 @implementation CEWindowController
+
+static NSTimeInterval infoUpdateInterval;
+static NSTimeInterval incompatibleCharInterval;
+
+
+#pragma mark Class Methods
+
+//=======================================================
+// Class method
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// クラス初期化
++ (void)initialize
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
+        incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
+    });
+}
+
+
 
 #pragma mark NSWindowController Methods
 
@@ -152,6 +182,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:k_key_windowAlpha];
+    
+    [self stopInfoUpdateTimer];
+    [self stopIncompatibleCharTimer];
 }
 
 
@@ -303,9 +336,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
     [self updateLineEndingsInStatusAndInfo:NO];
     
-//    if (![self infoUpdateTimer]) {
+    if (![self infoUpdateTimer]) {
         [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
-//    }
+    }
 }
 
 
@@ -526,6 +559,42 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldUpdateDrawer) {
         [self setEncodingInfo:encodingInfo];
         [self setLineEndingsInfo:lineEndingsInfo];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 非互換文字更新タイマーのファイヤーデイトを設定時間後にセット
+- (void)setupIncompatibleCharTimer
+// ------------------------------------------------------
+{
+    if ([self needsIncompatibleCharDrawerUpdate]) {
+        if ([self incompatibleCharTimer]) {
+            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
+        } else {
+            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
+                                                                            target:self
+                                                                          selector:@selector(doUpdateIncompatibleCharListWithTimer:)
+                                                                          userInfo:nil
+                                                                           repeats:NO]];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
+- (void)setupInfoUpdateTimer
+// ------------------------------------------------------
+{
+    if ([self infoUpdateTimer]) {
+        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
+    } else {
+        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
+                                                                  target:self
+                                                                selector:@selector(doUpdateInfoWithTimer:)
+                                                                userInfo:nil
+                                                                 repeats:NO]];
     }
 }
     
@@ -876,6 +945,50 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                      value:incompatibleColor
                          forCharacterRange:[uncompatible[k_incompatibleRange] rangeValue]];
         }
+    }
+}
+
+
+// ------------------------------------------------------
+/// タイマーの設定時刻に到達、情報更新
+- (void)doUpdateInfoWithTimer:(NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self stopInfoUpdateTimer];
+    [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
+}
+
+
+// ------------------------------------------------------
+/// タイマーの設定時刻に到達、非互換文字情報更新
+- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self stopIncompatibleCharTimer];
+    [self updateIncompatibleCharList];
+}
+
+
+// ------------------------------------------------------
+/// 文書情報更新タイマーを停止
+- (void)stopInfoUpdateTimer
+// ------------------------------------------------------
+{
+    if ([self infoUpdateTimer]) {
+        [[self infoUpdateTimer] invalidate];
+        [self setInfoUpdateTimer:nil];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 非互換文字情報更新タイマーを停止
+- (void)stopIncompatibleCharTimer
+// ------------------------------------------------------
+{
+    if ([self incompatibleCharTimer]) {
+        [[self incompatibleCharTimer] invalidate];
+        [self setIncompatibleCharTimer:nil];
     }
 }
 

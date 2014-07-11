@@ -43,8 +43,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEEditorView ()
 
 @property (nonatomic) NSTimer *coloringTimer;
-@property (nonatomic) NSTimer *infoUpdateTimer;
-@property (nonatomic) NSTimer *incompatibleCharTimer;
 
 
 // readonly
@@ -63,8 +61,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 static NSTimeInterval basicColoringDelay;
 static NSTimeInterval firstColoringDelay;
 static NSTimeInterval secondColoringDelay;
-static NSTimeInterval infoUpdateInterval;
-static NSTimeInterval incompatibleCharInterval;
 
 
 #pragma mark Class Methods
@@ -86,8 +82,6 @@ static NSTimeInterval incompatibleCharInterval;
         basicColoringDelay = [defaults doubleForKey:k_key_basicColoringDelay];
         firstColoringDelay = [defaults doubleForKey:k_key_firstColoringDelay];
         secondColoringDelay = [defaults doubleForKey:k_key_secondColoringDelay];
-        infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
-        incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
     });
 }
 
@@ -128,7 +122,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [self stopAllTimers];
+    [self stopColoringTimer];
 }
 
 
@@ -488,9 +482,7 @@ static NSTimeInterval incompatibleCharInterval;
     }
     if (shouldUpdate) {
         [[self windowController] updateLineEndingsInStatusAndInfo:NO];
-        if (![self infoUpdateTimer]) {
-            [[self windowController] updateDocumentInfoStringWithDrawerForceUpdate:NO];
-        }
+        [[self windowController] updateDocumentInfoStringWithDrawerForceUpdate:NO];
     }
 }
 
@@ -587,42 +579,6 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// 非互換文字更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
-        if ([self incompatibleCharTimer]) {
-            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
-        } else {
-            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
-                                                                            target:self
-                                                                          selector:@selector(doUpdateIncompatibleCharListWithTimer:)
-                                                                          userInfo:nil
-                                                                           repeats:NO]];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文書情報更新タイマーのファイヤーデイトを設定時間後にセット
-- (void)setupInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
-    } else {
-        [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
-                                                                  target:self
-                                                                selector:@selector(doUpdateInfoWithTimer:)
-                                                                userInfo:nil
-                                                                 repeats:NO]];
-    }
-}
-
-
-// ------------------------------------------------------
 /// テキストビュー分割削除ボタンの有効／無効を更新
 - (void)updateCloseSubSplitViewButton
 // ------------------------------------------------------
@@ -630,17 +586,6 @@ static NSTimeInterval incompatibleCharInterval;
     BOOL enabled = ([[[self splitView] subviews] count] > 1);
 
     [[self splitView] setCloseSubSplitViewButtonEnabled:enabled];
-}
-
-
-// ------------------------------------------------------
-/// 全タイマーを停止
-- (void)stopAllTimers
-// ------------------------------------------------------
-{
-    [self stopColoringTimer];
-    [self stopInfoUpdateTimer];
-    [self stopIncompatibleCharTimer];
 }
 
 
@@ -985,26 +930,6 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// タイマーの設定時刻に到達、情報更新
-- (void)doUpdateInfoWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopInfoUpdateTimer];
-    [[self windowController] updateDocumentInfoStringWithDrawerForceUpdate:NO];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、非互換文字情報更新
-- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self stopIncompatibleCharTimer];
-    [[self windowController] updateIncompatibleCharList];
-}
-
-
-// ------------------------------------------------------
 /// 分割された前／後のテキストビューにフォーカス移動
 - (void)focusOtherSplitTextViewOnNext:(BOOL)isOnNext
 // ------------------------------------------------------
@@ -1030,8 +955,6 @@ static NSTimeInterval incompatibleCharInterval;
 }
 
 
-
-
 // ------------------------------------------------------
 /// カラーリング更新タイマーを停止
 - (void)stopColoringTimer
@@ -1040,30 +963,6 @@ static NSTimeInterval incompatibleCharInterval;
     if ([self coloringTimer]) {
         [[self coloringTimer] invalidate];
         [self setColoringTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文書情報更新タイマーを停止
-- (void)stopInfoUpdateTimer
-// ------------------------------------------------------
-{
-    if ([self infoUpdateTimer]) {
-        [[self infoUpdateTimer] invalidate];
-        [self setInfoUpdateTimer:nil];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 非互換文字情報更新タイマーを停止
-- (void)stopIncompatibleCharTimer
-// ------------------------------------------------------
-{
-    if ([self incompatibleCharTimer]) {
-        [[self incompatibleCharTimer] invalidate];
-        [self setIncompatibleCharTimer:nil];
     }
 }
 

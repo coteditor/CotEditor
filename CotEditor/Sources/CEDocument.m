@@ -301,9 +301,6 @@ char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // このメソッドは下記のページの情報を参考にさせていただきました(2005.07.08)
 // http://www.cocoadev.com/index.pl?ReplaceSaveChangesSheet
 
-    // 各種更新タイマーを停止
-    [[self editorView] stopAllTimers];
-
     // Finder のロックが解除できず、かつダーティーフラグがたっているときは相応のダイアログを出す
     if ([self isDocumentEdited] &&
         ![self canReleaseFinderLockAtURL:[self fileURL] isLocked:nil lockAgain:YES])
