@@ -47,11 +47,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSTimer *infoUpdateTimer;
 @property (nonatomic) NSTimer *incompatibleCharTimer;
 
-
 // document information (for binding in drawer)
-@property (nonatomic, copy) NSString *encodingInfo;    // encoding of document
-@property (nonatomic, copy) NSString *lineEndingsInfo; // line endings of document
-@property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
+@property (nonatomic, copy) NSString *encodingInfo;
+@property (nonatomic, copy) NSString *lineEndingsInfo;
 @property (nonatomic, copy) NSDate *createdInfo;
 @property (nonatomic, copy) NSDate *modificatedInfo;
 @property (nonatomic, copy) NSString *ownerInfo;
@@ -60,6 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *finderLockInfo;
 @property (nonatomic, copy) NSString *permissionInfo;
 @property (nonatomic) NSNumber *fileSizeInfo;
+// editor information (for binding in drawer)
 @property (nonatomic, copy) NSString *linesInfo;
 @property (nonatomic, copy) NSString *charsInfo;
 @property (nonatomic, copy) NSString *wordsInfo;
@@ -68,21 +67,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSUInteger columnInfo;           // caret location from line head
 @property (nonatomic) NSUInteger locationInfo;         // caret location from begining of document
 @property (nonatomic) NSUInteger lineInfo;             // current line
+@property (nonatomic, copy) NSString *singleCharInfo;  // Unicode of selected single character (or surrogate-pair)
 
 // IBOutlets
 @property (nonatomic) IBOutlet CEStatusBarController *statusBarController;
 @property (nonatomic) IBOutlet NSArrayController *listController;
 @property (nonatomic) IBOutlet NSDrawer *drawer;
 @property (nonatomic, weak) IBOutlet NSTabView *tabView;
-@property (nonatomic, weak) IBOutlet NSPopUpButton *tabViewSelectionPopUpButton;
-@property (nonatomic, weak) IBOutlet NSTableView *listTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *listErrorTextField;
 @property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
 
 // readonly
 @property (nonatomic, readwrite, weak) IBOutlet CEToolbarController *toolbarController;
 @property (nonatomic, readwrite, weak) IBOutlet CEEditorView *editorView;
-@property (nonatomic, readwrite) BOOL showStatusBar;
 
 @end
 
@@ -539,16 +536,16 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)setupIncompatibleCharTimer
 // ------------------------------------------------------
 {
-    if ([self needsIncompatibleCharDrawerUpdate]) {
-        if ([self incompatibleCharTimer]) {
-            [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
-        } else {
-            [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
-                                                                            target:self
-                                                                          selector:@selector(doUpdateIncompatibleCharListWithTimer:)
-                                                                          userInfo:nil
-                                                                           repeats:NO]];
-        }
+    if (![self needsIncompatibleCharDrawerUpdate]) { return; }
+    
+    if ([self incompatibleCharTimer]) {
+        [[self incompatibleCharTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:incompatibleCharInterval]];
+    } else {
+        [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
+                                                                        target:self
+                                                                      selector:@selector(doUpdateIncompatibleCharListWithTimer:)
+                                                                      userInfo:nil
+                                                                       repeats:NO]];
     }
 }
 
@@ -574,28 +571,12 @@ static NSTimeInterval incompatibleCharInterval;
 #pragma mark Protocol
 
 //=======================================================
-// NSNibAwaking Protocol
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
-// ------------------------------------------------------
-{
-    // クリック時に当該文字列を選択するように設定
-    [[self listTableView] setTarget:self];
-    [[self listTableView] setAction:@selector(selectIncompatibleRange:)];
-}
-
-
-//=======================================================
 // OgreKit Protocol
 //
 //=======================================================
 
 // ------------------------------------------------------
-/// *OgreKit method. to pass the main textView.
+/// OgreKit method that passes the main textView.
 - (void)tellMeTargetToFindIn:(id)textFinder
 // ------------------------------------------------------
 {

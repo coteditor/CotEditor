@@ -12,10 +12,8 @@
                 <outlet property="infoNumberFormatter" destination="ZXE-Ki-WDP" id="3BB-um-DS8"/>
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
-                <outlet property="listTableView" destination="122" id="l9j-Tq-Th8"/>
                 <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="JbQ-Wl-HQq"/>
                 <outlet property="tabView" destination="115" id="IkX-yr-sKW"/>
-                <outlet property="tabViewSelectionPopUpButton" destination="142" id="sTA-Fy-CDo"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
                 <outlet property="window" destination="5" id="31"/>
             </connections>
@@ -269,7 +267,7 @@
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
         </window>
-        <drawer trailingOffset="15" id="32" userLabel="Info Drawer">
+        <drawer trailingOffset="15" id="32">
             <size key="contentSize" width="200" height="381"/>
             <size key="minContentSize" width="200" height="50"/>
             <size key="maxContentSize" width="600" height="400"/>
@@ -990,6 +988,7 @@
                                                         </tableColumn>
                                                     </tableColumns>
                                                     <connections>
+                                                        <action selector="selectIncompatibleRange:" target="-2" id="htF-ql-5vQ"/>
                                                         <binding destination="127" name="content" keyPath="arrangedObjects" id="6JP-Cy-VW9"/>
                                                         <binding destination="127" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="6JP-Cy-VW9" id="faq-Ij-fb3"/>
                                                         <binding destination="127" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="faq-Ij-fb3" id="yWo-SZ-ZJF"/>
