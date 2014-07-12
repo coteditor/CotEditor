@@ -242,19 +242,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 行番号表示設定をセット
-- (void)setShowLineNumWithNumber:(NSNumber *)number
+- (void)setShowLineNum:(BOOL)showLineNum
 // ------------------------------------------------------
 {
-    [[self lineNumView] setShowLineNum:[number boolValue]];
+    [[self lineNumView] setShowLineNum:showLineNum];
 }
 
 
 // ------------------------------------------------------
 /// ナビゲーションバーを表示／非表示
-- (void)setShowNavigationBarWithNumber:(NSNumber *)number
+- (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShowNavigationBar:[number boolValue]];
+    [[self navigationBar] setShowNavigationBar:showNavigationBar];
     if (![self outlineMenuTimer]) {
         [self updateOutlineMenu];
     }
@@ -263,17 +263,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// ラップする／しないを切り替える
-- (void)setWrapLinesWithNumber:(NSNumber *)number
+- (void)setWrapLines:(BOOL)wrapLines
 // ------------------------------------------------------
 {
     NSTextView *textView = [self textView];
-    BOOL shouldWrap = [number boolValue];
     BOOL isVertical = ([textView layoutOrientation] == NSTextLayoutOrientationVertical);
     
     // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
     [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
     
-    if (shouldWrap) {
+    if (wrapLines) {
         [[textView enclosingScrollView] setHasHorizontalScroller:NO];
         [textView setAutoresizingMask:NSViewWidthSizable];
         [self adjustTextFrameSize];
@@ -298,11 +297,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 不可視文字の表示／非表示を切り替える
-- (void)setShowInvisiblesWithNumber:(NSNumber *)number
+- (void)setShowInvisibles:(BOOL)showInvisibles
 // ------------------------------------------------------
 {
     NSRange selectedRange;
-    BOOL showInvisibles = [number boolValue];
     BOOL shouldReselect = NO;
 
     if (showInvisibles) {
@@ -324,21 +322,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// ソフトタブの有効／無効を切り替える
-- (void)setAutoTabExpandEnabledWithNumber:(NSNumber *)number
+- (void)setAutoTabExpandEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self textView] setIsAutoTabExpandEnabled:[number boolValue]];
+    [[self textView] setIsAutoTabExpandEnabled:isEnabled];
 }
 
 
 // ------------------------------------------------------
 /// アンチエイリアス適用を切り替える
-- (void)setUseAntialiasWithNumber:(NSNumber *)number
+- (void)setUseAntialias:(BOOL)useAntialias
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
 
-    [manager setUseAntialias:[number boolValue]];
+    [manager setUseAntialias:useAntialias];
     [[self textView] setNeedsDisplay:YES];
 }
 
@@ -453,10 +451,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// テキストビュー分割削除ボタンの有効化／無効化を制御
-- (void)updateCloseSubSplitViewButtonWithNumber:(NSNumber *)number
+- (void)updateCloseSubSplitViewButton:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self navigationBar] setCloseSplitButtonEnabled:[number boolValue]];
+    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
 }
 
 
@@ -495,11 +493,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// テキストビューに背景色をセット
-- (void)setBackgroundColorAlphaWithNumber:(NSNumber *)number
+- (void)setBackgroundColorAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    CGFloat alpha = (CGFloat)[number doubleValue];
-    
     [[self textView] setBackgroundAlpha:alpha];
     [[self lineNumView] setBackgroundAlpha:alpha];
 }

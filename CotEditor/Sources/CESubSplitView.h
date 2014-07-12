@@ -56,21 +56,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)viewDidEndLiveResize;
 - (void)replaceTextStorage:(NSTextStorage *)inTextStorage;
 - (void)setTextViewToEditorView:(CETextView *)inTextView;
-- (void)setShowLineNumWithNumber:(NSNumber *)inNumber;
-- (void)setShowNavigationBarWithNumber:(NSNumber *)inNumber;
-- (void)setWrapLinesWithNumber:(NSNumber *)inNumber;
-- (void)setShowInvisiblesWithNumber:(NSNumber *)inNumber;
-- (void)setAutoTabExpandEnabledWithNumber:(NSNumber *)inNumber;
-- (void)setUseAntialiasWithNumber:(NSNumber *)inNumber;
+- (void)setShowLineNum:(BOOL)showLineNum;
+- (void)setShowNavigationBar:(BOOL)setNavigationBar;
+- (void)setWrapLines:(BOOL)wrapLines;
+- (void)setShowInvisibles:(BOOL)showInvisibles;
+- (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
+- (void)setUseAntialias:(BOOL)useAntialias;
+- (void)updateCloseSubSplitViewButton:(BOOL)isEnabled;
 - (BOOL)showPageGuide;
 - (void)setCaretToBeginning;
-- (void)setSyntaxWithName:(NSString *)inName;
+- (void)setSyntaxWithName:(NSString *)styleName;
 - (void)recolorAllTextViewString;
 - (void)updateOutlineMenu;
 - (void)updateOutlineMenuSelection;
 - (void)stopUpdateLineNumberTimer;
 - (void)stopUpdateOutlineMenuTimer;
 - (NSCharacterSet *)firstCompletionCharacterSet;
-- (void)setBackgroundColorAlphaWithNumber:(NSNumber *)inNumber;
+- (void)setBackgroundColorAlpha:(CGFloat)alpha;
 
 @end

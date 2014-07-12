@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESplitView.h"
+#import "CESubSplitView.h"
 #import "constants.h"
 
 
@@ -71,8 +72,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setShowLineNum:(BOOL)showLineNum
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowLineNumWithNumber:)
-                                     withObject:@(showLineNum)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setShowLineNum:showLineNum];
+    }
 }
 
 
@@ -81,8 +83,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowNavigationBarWithNumber:)
-                                     withObject:@(showNavigationBar)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setShowNavigationBar:showNavigationBar];
+    }
 }
 
 
@@ -91,8 +94,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setWrapLines:(BOOL)wrapLines
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setWrapLinesWithNumber:)
-                                     withObject:@(wrapLines)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setWrapLines:wrapLines];
+    }
 }
 
 
@@ -101,8 +105,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setShowInvisibles:(BOOL)showInvisibles
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setShowInvisiblesWithNumber:)
-                                     withObject:@(showInvisibles)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setShowInvisibles:showInvisibles];
+    }
 }
 
 
@@ -111,8 +116,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setAutoTabExpandEnabledWithNumber:)
-                                     withObject:@(isEnabled)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setAutoTabExpandEnabled:isEnabled];
+    }
 }
 
 
@@ -121,8 +127,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setUseAntialias:(BOOL)useAntialias
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setUseAntialiasWithNumber:)
-                                     withObject:@(useAntialias)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setUseAntialias:useAntialias];
+    }
 }
 
 
@@ -131,8 +138,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(updateCloseSubSplitViewButtonWithNumber:)
-                                     withObject:@(isEnabled)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview updateCloseSubSplitViewButton:isEnabled];
+    }
 }
 
 
@@ -141,7 +149,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setAllCaretToBeginning
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setCaretToBeginning)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setCaretToBeginning];
+    }
 }
 
 
@@ -152,8 +162,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (!syntaxName) { return; }
 
-    [[self subviews] makeObjectsPerformSelector:@selector(setSyntaxWithName:)
-                                     withObject:syntaxName];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setSyntaxWithName:syntaxName];
+    }
 }
 
 
@@ -162,7 +173,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)recoloringAllTextView
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(recolorAllTextViewString)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview recolorAllTextViewString];
+    }
+    
     if (![self finishedOpen]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
                                                             object:[self superview]]; // superView = CEEditorView
@@ -176,7 +190,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateAllOutlineMenu
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(updateOutlineMenu)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview updateOutlineMenu];
+    }
 }
 
 
@@ -185,8 +201,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    [[self subviews] makeObjectsPerformSelector:@selector(setBackgroundColorAlphaWithNumber:)
-                                     withObject:@(alpha)];
+    for (CESubSplitView *subview in [self subviews]) {
+        [subview setBackgroundColorAlpha:alpha];
+    }
 }
 
 @end
