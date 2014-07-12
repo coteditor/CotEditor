@@ -771,7 +771,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 行番号更新
-- (void)doUpdateLineNumberWithTimer:(NSTimer *)timer
+- (void)updateLineNumberWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
@@ -781,7 +781,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// アウトラインメニュー更新
-- (void)doUpdateOutlineMenuWithTimer:(NSTimer *)timer
+- (void)updateOutlineMenuWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
     [self updateOutlineMenu]; // （updateOutlineMenu 内で stopUpdateOutlineMenuTimer を実行している）
@@ -802,7 +802,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self setLineNumUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:lineNumUpdateInterval
                                                                      target:self
-                                                                   selector:@selector(doUpdateLineNumberWithTimer:)
+                                                                   selector:@selector(updateLineNumberWithTimer:)
                                                                    userInfo:nil
                                                                     repeats:NO]];
     }
@@ -814,7 +814,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
                                                                    target:self
-                                                                 selector:@selector(doUpdateOutlineMenuWithTimer:)
+                                                                 selector:@selector(updateOutlineMenuWithTimer:)
                                                                  userInfo:nil
                                                                   repeats:NO]];
     }

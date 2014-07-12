@@ -424,7 +424,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     } else {
         [[self editorView] setString:@""];
     }
-    // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
+    // ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
     [self updateEncodingInToolbarAndInfo];
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
@@ -665,7 +665,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     }
     
     [self setEncoding:encoding];
-    [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
+    [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
     
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
@@ -1209,7 +1209,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     if (attributes) {
         [self setFileAttributes:attributes];
-        [[self windowController] updateFileAttrsInformation];
+        [[self windowController] updateFileAttributesInfo];
     }
 }
 
@@ -1231,14 +1231,14 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// ツールバーのエンコーディングメニュー、ステータスバー、ドローワを更新
+/// ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
 - (void)updateEncodingInToolbarAndInfo
 // ------------------------------------------------------
 {
     // ツールバーのエンコーディングメニューを更新
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
-    // ステータスバー、ドローワを更新
-    [[self windowController] updateLineEndingsInStatusAndInfo:NO];
+    // ステータスバー、ドロワーを更新
+    [[self windowController] updateEncodingAndLineEndingsInfo:NO];
 }
 
 

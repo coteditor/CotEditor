@@ -50,11 +50,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setIsWritable:(BOOL)isWritable;
 - (BOOL)needsInfoDrawerUpdate;
 - (BOOL)needsIncompatibleCharDrawerUpdate;
-- (void)updateFileAttrsInformation;
-- (void)updateIncompatibleCharList;
 - (void)showIncompatibleCharList;
-- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate;
-- (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool;
+- (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer;
+- (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer;
+- (void)updateFileAttributesInfo;
 - (void)setupIncompatibleCharTimer;
 - (void)setupInfoUpdateTimer;
 

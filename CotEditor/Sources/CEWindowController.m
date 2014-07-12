@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEWindowController ()
 
-@property (nonatomic) NSUInteger tabViewSelectedIndex; // ドローワのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
+@property (nonatomic) NSUInteger tabViewSelectedIndex; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
 @property (nonatomic) NSTimer *infoUpdateTimer;
@@ -57,7 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *creatorInfo;
 @property (nonatomic, copy) NSString *finderLockInfo;
 @property (nonatomic, copy) NSString *permissionInfo;
-@property (nonatomic) NSNumber *fileSizeInfo;
+@property (nonatomic) unsigned long long fileSizeInfo;
 // editor information (for binding in drawer)
 @property (nonatomic, copy) NSString *linesInfo;
 @property (nonatomic, copy) NSString *charsInfo;
@@ -212,7 +212,7 @@ static NSTimeInterval incompatibleCharInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// 文書情報ドローワ内容を更新すべきかを返す
+/// 文書情報ドロワー内容を更新すべきかを返す
 - (BOOL)needsInfoDrawerUpdate
 // ------------------------------------------------------
 {
@@ -224,7 +224,7 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// 非互換文字ドローワ内容を更新すべきかを返す
+/// 非互換文字ドロワー内容を更新すべきかを返す
 - (BOOL)needsIncompatibleCharDrawerUpdate
 // ------------------------------------------------------
 {
@@ -232,44 +232,6 @@ static NSTimeInterval incompatibleCharInterval;
     BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
 
     return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
-}
-
-
-// ------------------------------------------------------
-/// すべての文書情報を更新
-- (void)updateFileAttrsInformation
-// ------------------------------------------------------
-{
-    NSDictionary *fileAttributes = [[self document] fileAttributes];
-
-    [self setCreatorInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSCreatorCode])];
-    [self setTypeInfo:NSFileTypeForHFSTypeCode([fileAttributes fileHFSTypeCode])];
-    [self setCreatedInfo:[fileAttributes fileCreationDate]];
-    [self setModificatedInfo:[fileAttributes fileModificationDate]];
-    [self setOwnerInfo:[fileAttributes fileOwnerAccountName]];
-    
-    NSString *finderLockInfo = [fileAttributes fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil;
-    [self setFinderLockInfo:finderLockInfo];
-    [self setPermissionInfo:[NSString stringWithFormat:@"%tu", [fileAttributes filePosixPermissions]]];
-    NSNumber *beforeFileSize = [self fileSizeInfo];
-    [self setFileSizeInfo:@([fileAttributes fileSize])];
-    if (![beforeFileSize isEqualToNumber:[self fileSizeInfo]]) {
-        [self updateLineEndingsInStatusAndInfo:false];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 変換不可文字列リストを更新
-- (void)updateIncompatibleCharList
-// ------------------------------------------------------
-{
-    NSArray *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
-    
-    [self markupIncompatibleChars:contents];
-
-    [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示
-    [[self listController] setContent:contents];
 }
 
 
@@ -285,73 +247,12 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// テキストビューの不透明度を返す
-- (CGFloat)alpha
-// ------------------------------------------------------
-{
-    return [[[self editorView] textView] backgroundAlpha];
-}
-
-// ------------------------------------------------------
-/// テキストビューの不透明度を変更する
-- (void)setAlpha:(CGFloat)alpha
-// ------------------------------------------------------
-{
-    CGFloat sanitizedAlpha = alpha;
-    
-    sanitizedAlpha = MAX(sanitizedAlpha, 0.2);
-    sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
-    
-    [[self window] setOpaque:(sanitizedAlpha == 1.0)];
-    [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
-    [[[self window] contentView] setNeedsDisplay:YES];
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーを表示するかどうかを返す
-- (BOOL)showStatusBar
-// ------------------------------------------------------
-{
-    return [[self statusBarController] showStatusBar];
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーを表示する／しないをセット
-- (void)setShowStatusBar:(BOOL)showStatusBar
-// ------------------------------------------------------
-{
-    if (![self statusBarController]) { return; }
-    
-    [[self statusBarController] setShowStatusBar:showStatusBar];
-    [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
-    [self updateLineEndingsInStatusAndInfo:NO];
-    
-    if (![self infoUpdateTimer]) {
-        [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
-- (void)setIsWritable:(BOOL)isWritable
-// ------------------------------------------------------
-{
-    if ([self statusBarController]) {
-        [[self statusBarController] setShowReadOnly:!isWritable];
-    }
-}
-
-
-// ------------------------------------------------------
-/// ドローワの文書情報を更新
-- (void)updateDocumentInfoStringWithDrawerForceUpdate:(BOOL)doUpdate
+/// 情報ドロワーとステータスバーの文書情報を更新
+- (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer
 // ------------------------------------------------------
 {
     BOOL updatesStatusBar = [[self statusBarController] showStatusBar];
-    BOOL updatesDrawer = doUpdate ? YES : [self needsInfoDrawerUpdate];
+    BOOL updatesDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
@@ -484,16 +385,16 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
-/// ステータスバーと情報ドローワの改行コード表記を更新
-- (void)updateLineEndingsInStatusAndInfo:(BOOL)inBool
+/// 情報ドロワーとステータスバーの改行コード／エンコーディング表記を更新
+- (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer
 // ------------------------------------------------------
 {
     BOOL shouldUpdateStatusBar = [[self statusBarController] showStatusBar];
-    BOOL shouldUpdateDrawer = inBool ? YES : [self needsInfoDrawerUpdate];
+    BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
+    
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
     NSString *lineEndingsInfo;
-    
     switch ([[self editorView] lineEndingCharacter]) {
         case OgreLfNewlineCharacter:
             lineEndingsInfo = @"LF";
@@ -505,10 +406,10 @@ static NSTimeInterval incompatibleCharInterval;
             lineEndingsInfo = @"CRLF";
             break;
         case OgreUnicodeLineSeparatorNewlineCharacter:
-            lineEndingsInfo = @"U-lineSep"; // Unicode line separator
+            lineEndingsInfo = @"Unicode-lineSep"; // Unicode line separator
             break;
         case OgreUnicodeParagraphSeparatorNewlineCharacter:
-            lineEndingsInfo = @"U-paraSep"; // Unicode paragraph separator
+            lineEndingsInfo = @"Unicode-paraSep"; // Unicode paragraph separator
             break;
         case OgreNonbreakingNewlineCharacter:
             lineEndingsInfo = @""; // 改行なしの場合
@@ -518,16 +419,36 @@ static NSTimeInterval incompatibleCharInterval;
     }
     
     NSString *encodingInfo = [[self document] currentIANACharSetName];
+    
+    [self setEncodingInfo:encodingInfo];
+    [self setLineEndingsInfo:lineEndingsInfo];
+    
+    [[self statusBarController] setEncodingInfo:encodingInfo];
+    [[self statusBarController] setLineEndingsInfo:lineEndingsInfo];
     if (shouldUpdateStatusBar) {
-        [[self statusBarController] setEncodingInfo:encodingInfo];
-        [[self statusBarController] setLineEndingsInfo:lineEndingsInfo];
-        [[self statusBarController] setFileSizeInfo:[[[self document] fileAttributes] fileSize]];
         [[self statusBarController] updateDocumentStatus];
     }
-    if (shouldUpdateDrawer) {
-        [self setEncodingInfo:encodingInfo];
-        [self setLineEndingsInfo:lineEndingsInfo];
-    }
+}
+
+
+// ------------------------------------------------------
+/// 情報ドロワーとステータスバーのファイル情報を更新
+- (void)updateFileAttributesInfo
+// ------------------------------------------------------
+{
+    NSDictionary *attrs = [[self document] fileAttributes];
+    
+    [self setCreatedInfo:[attrs fileCreationDate]];
+    [self setModificatedInfo:[attrs fileModificationDate]];
+    [self setOwnerInfo:[attrs fileOwnerAccountName]];
+    [self setTypeInfo:NSFileTypeForHFSTypeCode([attrs fileHFSTypeCode])];
+    [self setCreatorInfo:NSFileTypeForHFSTypeCode([attrs fileHFSCreatorCode])];
+    [self setFinderLockInfo:([attrs fileIsImmutable] ? NSLocalizedString(@"ON", nil) : nil)];
+    [self setPermissionInfo:[NSString stringWithFormat:@"%tu", [attrs filePosixPermissions]]];
+    [self setFileSizeInfo:[attrs fileSize]];
+    
+    [[self statusBarController] setFileSizeInfo:[attrs fileSize]];
+    [[self statusBarController] updateDocumentStatus];
 }
 
 
@@ -543,7 +464,7 @@ static NSTimeInterval incompatibleCharInterval;
     } else {
         [self setIncompatibleCharTimer:[NSTimer scheduledTimerWithTimeInterval:incompatibleCharInterval
                                                                         target:self
-                                                                      selector:@selector(doUpdateIncompatibleCharListWithTimer:)
+                                                                      selector:@selector(updateIncompatibleCharListWithTimer:)
                                                                       userInfo:nil
                                                                        repeats:NO]];
     }
@@ -560,9 +481,73 @@ static NSTimeInterval incompatibleCharInterval;
     } else {
         [self setInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
                                                                   target:self
-                                                                selector:@selector(doUpdateInfoWithTimer:)
+                                                                selector:@selector(updateEditorStatusInfoWithTimer:)
                                                                 userInfo:nil
                                                                  repeats:NO]];
+    }
+}
+
+
+
+#pragma mark Accessors
+
+// ------------------------------------------------------
+/// テキストビューの不透明度を返す
+- (CGFloat)alpha
+// ------------------------------------------------------
+{
+    return [[[self editorView] textView] backgroundAlpha];
+}
+
+// ------------------------------------------------------
+/// テキストビューの不透明度を変更する
+- (void)setAlpha:(CGFloat)alpha
+// ------------------------------------------------------
+{
+    CGFloat sanitizedAlpha = alpha;
+    
+    sanitizedAlpha = MAX(sanitizedAlpha, 0.2);
+    sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
+    
+    [[self window] setOpaque:(sanitizedAlpha == 1.0)];
+    [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
+    [[[self window] contentView] setNeedsDisplay:YES];
+}
+
+
+// ------------------------------------------------------
+/// ステータスバーを表示するかどうかを返す
+- (BOOL)showStatusBar
+// ------------------------------------------------------
+{
+    return [[self statusBarController] showStatusBar];
+}
+
+
+// ------------------------------------------------------
+/// ステータスバーを表示する／しないをセット
+- (void)setShowStatusBar:(BOOL)showStatusBar
+// ------------------------------------------------------
+{
+    if (![self statusBarController]) { return; }
+    
+    [[self statusBarController] setShowStatusBar:showStatusBar];
+    [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
+    [self updateEncodingAndLineEndingsInfo:NO];
+    
+    if (![self infoUpdateTimer]) {
+        [self updateEditorStatusInfo:NO];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
+- (void)setIsWritable:(BOOL)isWritable
+// ------------------------------------------------------
+{
+    if ([self statusBarController]) {
+        [[self statusBarController] setShowReadOnly:!isWritable];
     }
 }
     
@@ -634,14 +619,14 @@ static NSTimeInterval incompatibleCharInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// ドローワのタブが切り替えられる直前に内容の更新を行う
+/// ドロワーのタブが切り替えられる直前に内容の更新を行う
 - (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
 // ------------------------------------------------------
 {
     if ([[tabViewItem identifier] isEqualToString:k_infoIdentifier]) {
-        [self updateFileAttrsInformation];
-        [self updateDocumentInfoStringWithDrawerForceUpdate:YES];
-        [self updateLineEndingsInStatusAndInfo:YES];
+        [self updateFileAttributesInfo];
+        [self updateEditorStatusInfo:YES];
+        [self updateEncodingAndLineEndingsInfo:YES];
     } else if ([[tabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
         [self updateIncompatibleCharList];
     }
@@ -654,7 +639,7 @@ static NSTimeInterval incompatibleCharInterval;
 //=======================================================
 
 // ------------------------------------------------------
-/// ドローワが閉じたらテキストビューのマークアップをクリア
+/// ドロワーが閉じたらテキストビューのマークアップをクリア
 - (void)drawerDidClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
@@ -682,9 +667,9 @@ static NSTimeInterval incompatibleCharInterval;
     if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
         if (tabState) {
             // 情報の更新
-            [self updateFileAttrsInformation];
-            [self updateDocumentInfoStringWithDrawerForceUpdate:YES];
-            [self updateLineEndingsInStatusAndInfo:YES];
+            [self updateFileAttributesInfo];
+            [self updateEditorStatusInfo:YES];
+            [self updateEncodingAndLineEndingsInfo:YES];
         } else {
             [[self tabView] selectTabViewItemWithIdentifier:k_infoIdentifier];
         }
@@ -796,6 +781,20 @@ static NSTimeInterval incompatibleCharInterval;
 
 
 // ------------------------------------------------------
+/// 非互換文字リストを更新
+- (void)updateIncompatibleCharList
+// ------------------------------------------------------
+{
+    NSArray *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
+    
+    [self markupIncompatibleChars:contents];
+    
+    [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示
+    [[self listController] setContent:contents];
+}
+
+
+// ------------------------------------------------------
 /// 背景色(検索のハイライト含む)の変更を取り消し
 - (void)clearAllMarkup
 // ------------------------------------------------------
@@ -811,18 +810,18 @@ static NSTimeInterval incompatibleCharInterval;
 
 // ------------------------------------------------------
 /// 現在のエンコードにコンバートできない文字列をマークアップ
-- (void)markupIncompatibleChars:(NSArray *)uncompatibleChars
+- (void)markupIncompatibleChars:(NSArray *)incompatibleChars
 // ------------------------------------------------------
 {
     // 文字色と背景色の中間色を得る
     NSColor *foreColor = [[[self editorView] textView] textColor];
     NSColor *backColor = [[[self editorView] textView] backgroundColor];
-    CGFloat BG_R, BG_G, BG_B, F_R, F_G, F_B;
-    [[foreColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&F_R green:&F_G blue:&F_B alpha:nil];
+    CGFloat BG_R, BG_G, BG_B, FG_R, FG_G, FG_B;
+    [[foreColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&FG_R green:&FG_G blue:&FG_B alpha:nil];
     [[backColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&BG_R green:&BG_G blue:&BG_B alpha:nil];
-    NSColor *incompatibleColor = [NSColor colorWithCalibratedRed:((BG_R + F_R) / 2)
-                                                           green:((BG_G + F_G) / 2)
-                                                            blue:((BG_B + F_B) / 2)
+    NSColor *incompatibleColor = [NSColor colorWithCalibratedRed:((BG_R + FG_R) / 2)
+                                                           green:((BG_G + FG_G) / 2)
+                                                            blue:((BG_B + FG_B) / 2)
                                                            alpha:1.0];
     
     // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
@@ -830,11 +829,11 @@ static NSTimeInterval incompatibleCharInterval;
     
     // 非互換文字をハイライト
     NSArray *layoutManagers = [[self editorView] allLayoutManagers];
-    for (NSDictionary *uncompatible in uncompatibleChars) {
+    for (NSDictionary *incompatible in incompatibleChars) {
         for (NSLayoutManager *manager in layoutManagers) {
             [manager addTemporaryAttribute:NSBackgroundColorAttributeName
                                      value:incompatibleColor
-                         forCharacterRange:[uncompatible[k_incompatibleRange] rangeValue]];
+                         forCharacterRange:[incompatible[k_incompatibleRange] rangeValue]];
         }
     }
 }
@@ -842,17 +841,17 @@ static NSTimeInterval incompatibleCharInterval;
 
 // ------------------------------------------------------
 /// タイマーの設定時刻に到達、情報更新
-- (void)doUpdateInfoWithTimer:(NSTimer *)timer
+- (void)updateEditorStatusInfoWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopInfoUpdateTimer];
-    [self updateDocumentInfoStringWithDrawerForceUpdate:NO];
+    [self updateEditorStatusInfo:NO];
 }
 
 
 // ------------------------------------------------------
 /// タイマーの設定時刻に到達、非互換文字情報更新
-- (void)doUpdateIncompatibleCharListWithTimer:(NSTimer *)timer
+- (void)updateIncompatibleCharListWithTimer:(NSTimer *)timer
 // ------------------------------------------------------
 {
     [self stopIncompatibleCharTimer];

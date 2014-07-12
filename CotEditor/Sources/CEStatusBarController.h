@@ -54,7 +54,7 @@
 // document status
 @property (nonatomic, copy) NSString *encodingInfo;
 @property (nonatomic, copy) NSString *lineEndingsInfo;
-@property (nonatomic) NSInteger fileSizeInfo;
+@property (nonatomic) unsigned long long fileSizeInfo;
 
 
 // Public method
