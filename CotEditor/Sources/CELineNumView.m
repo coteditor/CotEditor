@@ -45,7 +45,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CELineNumView ()
 
 @property (nonatomic) NSTimer *draggingTimer;
-@property (nonatomic) NSUInteger clickedIndex;
 
 @end
 
@@ -215,16 +214,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // get start point
-    NSPoint point = [[self window] convertBaseToScreen:[theEvent locationInWindow]];
-    [self setClickedIndex:[[[self masterView] textView] characterIndexForPoint:point]];
+    NSPoint point = [[self window] convertRectToScreen:NSMakeRect([theEvent locationInWindow].x,
+                                                                  [theEvent locationInWindow].y, 0, 0)].origin;
+    NSUInteger index = [[[self masterView] textView] characterIndexForPoint:point];
     
-    [self selectLines];  // for single click event
+    [self selectLines:nil];  // for single click event
     
     // repeat while dragging
     [self setDraggingTimer:[NSTimer scheduledTimerWithTimeInterval:0.05
                                                             target:self
-                                                          selector:@selector(selectLines)
-                                                          userInfo:nil
+                                                          selector:@selector(selectLines:)
+                                                          userInfo:@(index)
                                                            repeats:YES]];
 }
 
@@ -303,14 +303,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// select lines while dragging event
-- (void)selectLines
+- (void)selectLines:(NSTimer *)timer
 // ------------------------------------------------------
 {
     CETextView *textView = [[self masterView] textView];
     NSPoint point = [NSEvent mouseLocation];  // screen based point
     
     // scroll text view if needed
-    CGFloat y = [self convertPoint:[[self window] convertScreenToBase:point] fromView:nil].y;
+    CGFloat y = [self convertPoint:[[self window] convertRectFromScreen:NSMakeRect(point.x, point.y, 0, 0)].origin
+                          fromView:nil].y;
     if (y < 0) {
         [textView scrollLineDown:nil];
     } else if (y > NSHeight([self bounds])) {
@@ -319,8 +320,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // select lines
     NSUInteger currentIndex = [textView characterIndexForPoint:point];
-    NSRange range = [[textView string] lineRangeForRange:NSMakeRange(MIN(currentIndex, [self clickedIndex]),
-                                                                     abs(currentIndex - [self clickedIndex]))];
+    NSUInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
+    NSRange range = [[textView string] lineRangeForRange:NSMakeRange(MIN(currentIndex, clickedIndex),
+                                                                     abs(currentIndex - clickedIndex))];
     [textView setSelectedRange:range];
 }
 
