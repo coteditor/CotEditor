@@ -146,16 +146,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// subSplitView が持つ editorView への参照を削除
-- (void)releaseAllEditorView
-// ------------------------------------------------------
-{
-    // （dealloc は親階層から行われるため、あらかじめ「子」が持っている「親」を開放しておく）
-    [[self subviews] makeObjectsPerformSelector:@selector(releaseEditorView)];
-}
-
-
-// ------------------------------------------------------
 /// シンタックススタイルを設定
 - (void)setSyntaxWithName:(NSString *)syntaxName
 // ------------------------------------------------------

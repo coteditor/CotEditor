@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESubSplitView : NSView <NSTextViewDelegate>
 
-@property (nonatomic) CEEditorView *editorView;
+@property (nonatomic, weak) CEEditorView *editorView;
 
 // readonly
 @property (nonatomic, readonly) NSScrollView *scrollView;
@@ -52,7 +52,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // Public method
-- (void)releaseEditorView;
 - (NSString *)string;
 - (void)viewDidEndLiveResize;
 - (void)replaceTextStorage:(NSTextStorage *)inTextStorage;
