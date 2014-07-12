@@ -151,7 +151,7 @@ static NSTimeInterval incompatibleCharInterval;
     [[self statusBarController] setShowReadOnly:![[self document] isWritable]];
     
     // テキストビューへフォーカスを移動
-    [[self window] makeFirstResponder:[[[[self editorView] splitView] subviews][0] textView]];
+    [[self window] makeFirstResponder:[[self editorView] textView]];
     
     // シンタックス定義の変更を監視
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -510,7 +510,7 @@ static NSTimeInterval incompatibleCharInterval;
     sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
     
     [[self window] setOpaque:(sanitizedAlpha == 1.0)];
-    [[[self editorView] splitView] setAllBackgroundColorWithAlpha:sanitizedAlpha];
+    [[self editorView] setBackgroundAlpha:sanitizedAlpha];
     [[[self window] contentView] setNeedsDisplay:YES];
 }
 

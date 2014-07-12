@@ -36,7 +36,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 @import Cocoa;
-#import "CESplitView.h"
 #import "CESubSplitView.h"
 #import "CETextView.h"
 #import "CEWindowController.h"
@@ -60,7 +59,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) CETextView *textView;
 
-@property (nonatomic, readonly) CESplitView *splitView;
 @property (nonatomic, readonly) BOOL canActivateShowInvisibles;
 
 
@@ -95,6 +93,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateColoringAndOutlineMenuWithDelay;
 - (void)setupColoringTimer;
 - (void)updateCloseSubSplitViewButton;
+
+- (void)setBackgroundAlpha:(CGFloat)alpha;
 
 
 // Action Message
