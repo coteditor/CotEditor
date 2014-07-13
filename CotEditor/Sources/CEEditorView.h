@@ -38,13 +38,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @import Cocoa;
 #import "CESplitView.h"
 #import "CESubSplitView.h"
-#import "CELineNumView.h"
-#import "CENavigationBarView.h"
 #import "CETextView.h"
 #import "CEWindowController.h"
 #import "CESyntax.h"
 #import "CELayoutManager.h"
-#import "CEScriptManager.h"
 
 
 @class CEDocument;
@@ -71,7 +68,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (CEDocument *)document;
 - (CEWindowController *)windowController;
 - (NSTextStorage *)textStorage;
-- (CENavigationBarView *)navigationBar;
 - (CESyntax *)syntax;
 
 - (NSString *)string;

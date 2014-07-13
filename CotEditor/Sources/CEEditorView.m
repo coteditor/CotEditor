@@ -37,6 +37,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEEditorView.h"
 #import "CEToolbarController.h"
+#import "CENavigationBarView.h"
+#import "CELineNumView.h"
 #import "constants.h"
 
 
@@ -158,15 +160,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [[self textView] textStorage];
-}
-
-
-// ------------------------------------------------------
-/// navigationBarを返す
-- (CENavigationBarView *)navigationBar
-// ------------------------------------------------------
-{
-    return [(CESubSplitView *)[[self textView] delegate] navigationBar];
 }
 
 
@@ -886,6 +879,15 @@ static NSTimeInterval secondColoringDelay;
         [self setWrapLines:[self wrapLines]];
         [self setShowPageGuide:[self showPageGuide]];
     }
+}
+
+
+// ------------------------------------------------------
+/// navigationBarを返す
+- (CENavigationBarView *)navigationBar
+// ------------------------------------------------------
+{
+    return [(CESubSplitView *)[[self textView] delegate] navigationBar];
 }
 
 
