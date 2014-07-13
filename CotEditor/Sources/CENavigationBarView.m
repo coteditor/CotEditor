@@ -123,6 +123,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self prevButton] setImagePosition:NSImageOnly];
         [[self prevButton] setAction:@selector(selectPrevItem)];
         [[self prevButton] setTarget:self];
+        [[self prevButton] setImage:[NSImage imageNamed:@"prevButtonImg"]];
+        [[self prevButton] setHidden:YES];
         [[self prevButton] setToolTip:NSLocalizedString(@"Go to prev item", @"")];
         [[self prevButton] setAutoresizingMask:NSViewHeightSizable];
 
@@ -137,6 +139,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self nextButton] setImagePosition:NSImageOnly];
         [[self nextButton] setAction:@selector(selectNextItem)];
         [[self nextButton] setTarget:self];
+        [[self nextButton] setImage:[NSImage imageNamed:@"nextButtonImg"]];
+        [[self nextButton] setHidden:YES];
         [[self nextButton] setToolTip:NSLocalizedString(@"Go to next item", @"")];
         [[self nextButton] setAutoresizingMask:NSViewHeightSizable];
 
@@ -231,68 +235,62 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setOutlineMenuArray:(NSArray *)outlineMenuArray
 // ------------------------------------------------------
 {
-    NSMenu *menu;
-    NSMenuItem *menuItem;
-    NSFont *defaultFont = [NSFont fontWithName:k_navigationBarFontName
-                                          size:[NSFont smallSystemFontSize]];
-
-    NSFontManager *fontManager = [NSFontManager sharedFontManager];
-    NSFont *font;
-    NSMutableAttributedString *title;
-    NSFontTraitMask fontMask;
-    NSNumber *underlineMaskNumber;
-    
     // stop outine indicator
     [[self outlineIndicator] stopAnimation:self];
     [[self outlineLoadingMessage] setHidden:YES];
     
     [[self outlineMenu] removeAllItems];
-    if ([outlineMenuArray count] < 1) {
-        [[self outlineMenu] setEnabled:NO];
-        [[self prevButton] setEnabled:NO];
-        [[self prevButton] setImage:nil];
-        [[self nextButton] setEnabled:NO];
-        [[self nextButton] setImage:nil];
-    } else {
-        menu = [[self outlineMenu] menu];
-        for (NSDictionary *outlineItem in outlineMenuArray) {
-            if ([[outlineItem valueForKey:k_outlineMenuItemTitle] isEqualToString:CESeparatorString]) {
-                // セパレータ
-                [menu addItem:[NSMenuItem separatorItem]];
-            } else {
-                underlineMaskNumber = [outlineItem[k_outlineMenuItemUnderlineMask] copy];
-                fontMask = ([[outlineItem valueForKey:k_outlineMenuItemFontBold] boolValue]) ? NSBoldFontMask : 0;
-                font = [fontManager convertFont:defaultFont toHaveTrait:fontMask];
-                
-                title = [[NSMutableAttributedString alloc] initWithString:outlineItem[k_outlineMenuItemTitle]
-                                                               attributes:@{NSFontAttributeName: font}];
-                if (underlineMaskNumber) {
-                    [title addAttribute:NSUnderlineStyleAttributeName
-                                  value:underlineMaskNumber
-                                  range:NSMakeRange(0, [title length])];
-                }
-                if ([outlineItem[k_outlineMenuItemFontItalic] boolValue]) {
-                    [title addAttribute:NSFontAttributeName
-                                  value:[fontManager convertFont:font toHaveTrait:NSItalicFontMask]
-                                  range:NSMakeRange(0, [title length])];
-                }
-                menuItem = [[NSMenuItem alloc] initWithTitle:@" "
-                                                      action:@selector(setSelectedRangeWithNSValue:) keyEquivalent:@""];
-                [menuItem setTarget:[[self masterView] textView]];
-                [menuItem setAttributedTitle:title];
-                [menuItem setRepresentedObject:[outlineItem valueForKey:k_outlineMenuItemRange]];
-                [menu addItem:menuItem];
-            }
-        }
-        // （メニューの再描画時のちらつき防止のため、ここで選択項目をセットする 2008.05.17.）
-        [self selectOutlineMenuItemWithRange:[[[self masterView] editorView] selectedRange]];
-        [[self outlineMenu] setMenu:menu];
-        [[self outlineMenu] setEnabled:YES];
-        [[self prevButton] setImage:[NSImage imageNamed:@"prevButtonImg"]];
-        [[self prevButton] setEnabled:YES];
-        [[self nextButton] setImage:[NSImage imageNamed:@"nextButtonImg"]];
-        [[self nextButton] setEnabled:YES];
+    
+    if ([outlineMenuArray count] == 0) {
+        [[self outlineMenu] setHidden:YES];
+        [[self prevButton] setHidden:YES];
+        [[self nextButton] setHidden:YES];
+        
+        return;
     }
+    
+    NSMenu *menu = [[self outlineMenu] menu];
+    NSFont *defaultFont = [NSFont fontWithName:k_navigationBarFontName
+                                          size:[NSFont smallSystemFontSize]];
+    
+    for (NSDictionary *outlineItem in outlineMenuArray) {
+        if ([[outlineItem valueForKey:k_outlineMenuItemTitle] isEqualToString:CESeparatorString]) {
+            [menu addItem:[NSMenuItem separatorItem]];
+            
+        } else {
+            NSFontManager *fontManager = [NSFontManager sharedFontManager];
+            NSNumber *underlineMaskNumber = [outlineItem[k_outlineMenuItemUnderlineMask] copy];
+            NSFontTraitMask fontMask = ([[outlineItem valueForKey:k_outlineMenuItemFontBold] boolValue]) ? NSBoldFontMask : 0;
+            NSFont *font = [fontManager convertFont:defaultFont toHaveTrait:fontMask];
+            
+            NSMutableAttributedString *title = [[NSMutableAttributedString alloc]
+                                                initWithString:outlineItem[k_outlineMenuItemTitle]
+                                                attributes:@{NSFontAttributeName: font}];
+            if (underlineMaskNumber) {
+                [title addAttribute:NSUnderlineStyleAttributeName
+                              value:underlineMaskNumber
+                              range:NSMakeRange(0, [title length])];
+            }
+            if ([outlineItem[k_outlineMenuItemFontItalic] boolValue]) {
+                [title addAttribute:NSFontAttributeName
+                              value:[fontManager convertFont:font toHaveTrait:NSItalicFontMask]
+                              range:NSMakeRange(0, [title length])];
+            }
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@" "
+                                                              action:@selector(setSelectedRangeWithNSValue:)
+                                                       keyEquivalent:@""];
+            [menuItem setTarget:[[self masterView] textView]];
+            [menuItem setAttributedTitle:title];
+            [menuItem setRepresentedObject:[outlineItem valueForKey:k_outlineMenuItemRange]];
+            [menu addItem:menuItem];
+        }
+    }
+    // （メニューの再描画時のちらつき防止のため、ここで選択項目をセットする 2008.05.17.）
+    [self selectOutlineMenuItemWithRange:[[[self masterView] editorView] selectedRange]];
+    [[self outlineMenu] setMenu:menu];
+    [[self outlineMenu] setHidden:NO];
+    [[self prevButton] setHidden:NO];
+    [[self nextButton] setHidden:NO];
 }
 
 
@@ -304,10 +302,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (![[self outlineMenu] isEnabled]) { return; }
     
     NSMenu *menu = [[self outlineMenu] menu];
-    NSMenuItem *menuItem;
     NSInteger i;
     NSInteger count = [menu numberOfItems];
-    NSUInteger markedLocation;
     NSUInteger location = range.location;
     if (count < 1) { return; }
 
@@ -315,8 +311,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         i = 1;
     } else {
         for (i = 1; i < count; i++) {
-            menuItem = [menu itemAtIndex:i];
-            markedLocation = [[menuItem representedObject] rangeValue].location;
+            NSMenuItem *menuItem = [menu itemAtIndex:i];
+            NSUInteger markedLocation = [[menuItem representedObject] rangeValue].location;
             if (markedLocation > location) {
                 break;
             }
@@ -360,17 +356,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)selectPrevItem
 // ------------------------------------------------------
 {
-    if ([self canSelectPrevItem]) {
-        NSInteger targetIndex = [[self outlineMenu] indexOfSelectedItem] - 1;
-
-        while ([[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
-            targetIndex--;
-            if (targetIndex < 0) {
-                break;
-            }
+    if (![self canSelectPrevItem]) { return; }
+    
+    NSInteger targetIndex = [[self outlineMenu] indexOfSelectedItem] - 1;
+    
+    while ([[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
+        targetIndex--;
+        if (targetIndex < 0) {
+            break;
         }
-        [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
     }
+    [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
 }
 
 
@@ -379,19 +375,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)selectNextItem
 // ------------------------------------------------------
 {
-    if ([self canSelectNextItem]) {
-        NSInteger targetIndex = [[self outlineMenu] indexOfSelectedItem] + 1;
-        NSInteger maxIndex = [[self outlineMenu] numberOfItems] - 1;
-
-        while ([[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
-            targetIndex++;
-            if (targetIndex > maxIndex) {
-                break;
-            }
+    if (![self canSelectNextItem]) { return; }
+    
+    NSInteger targetIndex = [[self outlineMenu] indexOfSelectedItem] + 1;
+    NSInteger maxIndex = [[self outlineMenu] numberOfItems] - 1;
+    
+    while ([[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
+        targetIndex++;
+        if (targetIndex > maxIndex) {
+            break;
         }
-        if (![[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
-            [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
-        }
+    }
+    if (![[[self outlineMenu] itemAtIndex:targetIndex] isSeparatorItem]) {
+        [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
     }
 }
 
@@ -429,7 +425,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-///
+/// start displaying outline indicator
 - (void)showOutlineIndicator
 // ------------------------------------------------------
 {
@@ -453,23 +449,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     CGFloat adjHeight = height - NSHeight([self frame]);
-    NSRect newFrame;
 
     // set masterView height
-    newFrame = [[[self masterView] scrollView] frame];
-    newFrame.size.height -= adjHeight;
-    [[[self masterView] scrollView] setFrame:newFrame];
+    NSRect masterFrame = [[[self masterView] scrollView] frame];
+    masterFrame.size.height -= adjHeight;
+    [[[self masterView] scrollView] setFrame:masterFrame];
     
     // set LineNumView height
-    newFrame = [[[self masterView] lineNumView] frame];
-    newFrame.size.height -= adjHeight;
-    [[[self masterView] lineNumView] setFrame:newFrame];
+    NSRect lineNumFrame = [[[self masterView] lineNumView] frame];
+    lineNumFrame.size.height -= adjHeight;
+    [[[self masterView] lineNumView] setFrame:lineNumFrame];
 
     // set navigationBar height
-    newFrame = [self frame];
-    newFrame.origin.y -= adjHeight;
-    newFrame.size.height += adjHeight;
-    [self setFrame:newFrame];
+    NSRect myFrame = [self frame];
+    myFrame.origin.y -= adjHeight;
+    myFrame.size.height += adjHeight;
+    [self setFrame:myFrame];
 
     [[[self window] contentView] setNeedsDisplay:YES];
 }
