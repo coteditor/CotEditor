@@ -86,7 +86,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRect lineMumFrame = frameRect;
         lineMumFrame.size.width = 0.0; // default width (about invisible).
         [self setLineNumView:[[CELineNumView alloc] initWithFrame:lineMumFrame]];
-        [[self lineNumView] setMasterView:self];
         [self addSubview:[self lineNumView]];
 
         // navigationBar 生成
@@ -129,6 +128,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         textFrame.size = [[self scrollView] contentSize]; // (frame will start at upper left.)
         [self setTextView:[[CETextView alloc] initWithFrame:textFrame textContainer:container]];
         [[self textView] setDelegate:self];
+        
+        [[self lineNumView] setTextView:[self textView]];
         
         // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self

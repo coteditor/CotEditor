@@ -38,11 +38,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @import Cocoa;
 
-@class CESubSplitView;
 
 @interface CELineNumView : NSView
 
-@property (nonatomic, weak) CESubSplitView *masterView;
+@property (nonatomic, unsafe_unretained) NSTextView *textView;  // should be weak, just because it is NSTextView.
 @property (nonatomic) BOOL showLineNum;
 @property (nonatomic) CGFloat backgroundAlpha;
 

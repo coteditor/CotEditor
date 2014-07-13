@@ -38,7 +38,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CELineNumView.h"
-#import "CEEditorView.h"
 #import "constants.h"
 
 
@@ -98,9 +97,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    if (![self masterView] || ![self showLineNum]) {
-        return;
-    }
+    if (![self showLineNum] || ![self textView]) { return; }
     
     // fill in the background
     NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
@@ -113,8 +110,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                               toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMinY(dirtyRect))];
     
     // adjust rect so we won't later draw into the scrollbar area
-    if ([[[self masterView] scrollView] hasHorizontalScroller]) {
-        CGFloat horizontalScrollAdj = NSHeight([[[[self masterView] scrollView] horizontalScroller] frame]) / 2;
+    if ([[self scrollView] hasHorizontalScroller]) {
+        CGFloat horizontalScrollAdj = NSHeight([[[self scrollView] horizontalScroller] frame]) / 2;
         dirtyRect.origin.y += horizontalScrollAdj; // (shift the drawing frame reference up.)
         dirtyRect.size.height -= horizontalScrollAdj; // (and shrink it the same distance.)
     }
@@ -122,7 +119,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // setup drawing attributes for the font size and color.
-    CGFloat masterFontSize = [[[[self masterView] textView] font] pointSize];
+    CGFloat masterFontSize = [[[self textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
     NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize] ? : [NSFont paletteFontOfSize:fontSize];
     NSDictionary *attrs = @{NSFontAttributeName: font,
@@ -134,8 +131,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat charWidth = [@"8" sizeWithAttributes:attrs].width;
     
     // setup the variables we need for the loop
-    NSString *string = [[self masterView] string];
-    NSLayoutManager *layoutManager = [[[self masterView] textView] layoutManager]; // get owner's layout manager.
+    NSString *string = [[self textView] string];
+    NSLayoutManager *layoutManager = [[self textView] layoutManager]; // get owner's layout manager.
     
     NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
     
@@ -146,7 +143,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     {
         NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:0 effectiveRange:NULL];
         crDistance = numRect.origin.y - NSHeight(numRect);
-        numRect = [self convertRect:numRect fromView:[[self masterView] textView]];
+        numRect = [self convertRect:numRect fromView:[self textView]];
         crDistance = numRect.origin.y - crDistance;
     }
     
@@ -208,14 +205,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// start selecting correspondent lines in text view with dragg / click event
+/// start selecting correspondent lines in text view with drag / click event
 - (void)mouseDown:(NSEvent *)theEvent
 // ------------------------------------------------------
 {
     // get start point
     NSPoint point = [[self window] convertRectToScreen:NSMakeRect([theEvent locationInWindow].x,
                                                                   [theEvent locationInWindow].y, 0, 0)].origin;
-    NSUInteger index = [[[self masterView] textView] characterIndexForPoint:point];
+    NSUInteger index = [[self textView] characterIndexForPoint:point];
     
     [self selectLines:nil];  // for single click event
     
@@ -229,7 +226,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// end selecting correspondent lines in text view with dragg event
+/// end selecting correspondent lines in text view with drag event
 - (void)mouseUp:(NSEvent *)theEvent
 // ------------------------------------------------------
 {
@@ -278,6 +275,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
+/// return scroll view of the textView (not enclosing scroll view of self)
+- (NSScrollView *)scrollView
+// ------------------------------------------------------
+{
+    return [[self textView] enclosingScrollView];
+}
+
+
+// ------------------------------------------------------
 /// set view width.
 - (void)setWidth:(CGFloat)width
 // ------------------------------------------------------
@@ -286,10 +292,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSRect newFrame;
 
     // set masterView width
-    newFrame = [[[self masterView] scrollView] frame];
+    newFrame = [[self scrollView] frame];
     newFrame.origin.x += adjWidth;
     newFrame.size.width -= adjWidth;
-    [[[self masterView] scrollView] setFrame:newFrame];
+    [[self scrollView] setFrame:newFrame];
     
     // set LineNumView width
     newFrame = [self frame];
@@ -305,7 +311,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)selectLines:(NSTimer *)timer
 // ------------------------------------------------------
 {
-    CETextView *textView = [[self masterView] textView];
+    NSTextView *textView = [self textView];
     NSPoint point = [NSEvent mouseLocation];  // screen based point
     
     // scroll text view if needed
