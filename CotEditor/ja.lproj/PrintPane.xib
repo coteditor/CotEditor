@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPrintPaneController">
             <connections>
+                <outlet property="colorPopupButton" destination="1350" id="KqE-4Q-dMY"/>
                 <outlet property="fontField" destination="1007" id="j6k-GL-zAX"/>
                 <outlet property="view" destination="882" id="PRb-ld-8dC"/>
             </connections>
@@ -58,6 +59,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <action selector="changePrintTheme:" target="-2" id="0H6-BT-QyN"/>
                         <binding destination="26" name="selectedIndex" keyPath="values.printColorIndex" id="1674"/>
                     </connections>
                 </popUpButton>

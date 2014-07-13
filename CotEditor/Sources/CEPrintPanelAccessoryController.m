@@ -104,11 +104,15 @@
         [self setFooterTwoAlignmentType:[defaults integerForKey:k_key_footerTwoAlignIndex]];
         [self setPrintsFooterSeparator:[defaults boolForKey:k_key_printFooterSeparator]];
         
-        // ドキュメントと同じテーマを使用する場合はセットしておく
-        CEColorPrintMode colorMode = [defaults integerForKey:k_key_printColorIndex];
-        if (colorMode == CESameAsDocumentColorPrint) {
-            NSString *defaultTheme = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
-            [self setTheme:defaultTheme];
+        // テーマを使用する場合はセットしておく
+        switch ([defaults integerForKey:k_key_printColorIndex]) {
+            case CEBlackColorPrint:
+                break;
+            case CESameAsDocumentColorPrint:
+                [self setTheme:[defaults stringForKey:k_key_defaultTheme]];
+                break;
+            default:
+                [self setTheme:[defaults stringForKey:k_key_printTheme]];
         }
         
         // マージンに関わるキー値を監視する

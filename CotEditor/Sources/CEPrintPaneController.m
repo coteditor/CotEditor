@@ -32,12 +32,14 @@
  */
 
 #import "CEPrintPaneController.h"
+#import "CEThemeManager.h"
 #import "constants.h"
 
 
 @interface CEPrintPaneController ()
 
 @property (nonatomic, weak) IBOutlet NSTextField *fontField;
+@property (nonatomic, weak) IBOutlet NSPopUpButton *colorPopupButton;
 
 @end
 
@@ -61,8 +63,23 @@
 // ------------------------------------------------------
 {
     [self setFontFamilyNameAndSize];
+    [self setupColorMenu];
+    
+    // observe theme list update
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setupColorMenu)
+                                                 name:CEThemeListDidUpdateNotification
+                                               object:nil];
 }
 
+
+// ------------------------------------------------------
+/// あとかたづけ
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 #pragma mark Action Messages
@@ -103,6 +120,20 @@
 }
 
 
+// ------------------------------------------------------
+/// 印刷用テーマ設定が変更された
+- (IBAction)changePrintTheme:(id)sender
+// ------------------------------------------------------
+{
+    NSPopUpButton *popup = (NSPopUpButton *)sender;
+    NSUInteger index = [popup indexOfSelectedItem];
+    
+    NSString *theme = (index > 2) ? [popup titleOfSelectedItem] : nil;  // 白黒／書類と同じでは印刷用テーマを指定しない
+    [[NSUserDefaults standardUserDefaults] setObject:theme forKey:k_key_printTheme];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:k_key_printColorIndex];
+}
+
+
 
 #pragma mark Private Methods
 
@@ -117,6 +148,39 @@
     NSString *localizedName = [font displayName];
     
     [[self fontField] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
+}
+
+
+//------------------------------------------------------
+/// カラー設定要ポップアップを設定
+- (void)setupColorMenu
+//------------------------------------------------------
+{
+    NSUInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_printColorIndex];
+    NSString *themeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_printTheme];
+    NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
+    
+    [[self colorPopupButton] removeAllItems];
+    
+    // setup popup menu
+    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
+    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Same as Document", nil)];
+    [[[self colorPopupButton] menu] addItem:[NSMenuItem separatorItem]];
+    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
+    [[[self colorPopupButton] lastItem] setAction:nil];
+    for (NSString *name in themeNames) {
+        [[self colorPopupButton] addItemWithTitle:name];
+        [[[self colorPopupButton] lastItem] setIndentationLevel:1];
+    }
+    
+    // select menu
+    if ([themeNames containsObject:themeName]) {
+        [[self colorPopupButton] selectItemWithTitle:themeName];
+    } else if (themeName || index == 1) {
+        [[self colorPopupButton] selectItemAtIndex:1];  // same as document
+    } else {
+        [[self colorPopupButton] selectItemAtIndex:0];  // black and white
+    }
 }
 
 @end
