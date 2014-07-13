@@ -32,7 +32,6 @@
 #import "CETextViewProtocol.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
-#import "RegexKitLite.h"
 #import "NSString+MD5.h"
 #import "Constants.h"
 
@@ -581,33 +580,30 @@ static CGFloat kPerCompoIncrement;
     
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
-    uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
-    NSError *error = nil;
+    NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
+    if (ignoreCase) {
+        options |= NSRegularExpressionCaseInsensitive;
+    }
     
-    [string enumerateStringsMatchedByRegex:regexStr
-                                   options:options
-                                   inRange:NSMakeRange(0, [string length])
-                                     error:&error
-                        enumerationOptions:RKLRegexEnumerationCapturedStringsNotRequired
-                                usingBlock:^(NSInteger captureCount,
-                                             NSString *const __unsafe_unretained *capturedStrings,
-                                             const NSRange *capturedRanges,
-                                             volatile BOOL *const stop)
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:options error:&error];
+    if (error) {
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        return @[];
+    }
+    
+    [regex enumerateMatchesInString:string
+                            options:0
+                              range:NSMakeRange(0, [string length])
+                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
          if ([indicator isCancelled]) {
              *stop = YES;
              return;
          }
          
-         NSRange range = capturedRanges[0];
-         [ranges addObject:[NSValue valueWithRange:range]];
+         [ranges addObject:[NSValue valueWithRange:[result range]]];
      }];
-    
-    if (error && ![[error userInfo][RKLICURegexErrorNameErrorKey] isEqualToString:@"U_ZERO_ERROR"]) {
-        // 何もしない
-        NSLog(@"ERROR: %@", [error localizedDescription]);
-        return @[];
-    }
     
     return ranges;
 }
@@ -620,42 +616,39 @@ static CGFloat kPerCompoIncrement;
 {
     NSMutableArray *ranges = [NSMutableArray array];
     CEIndicatorSheetController *indicator = [self indicatorController];
-    uint32_t options = RKLMultiline | (ignoreCase ? RKLCaseless : 0);
-    NSError *error = nil;
+    NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
+    if (ignoreCase) {
+        options |= NSRegularExpressionCaseInsensitive;
+    }
     
-    [string enumerateStringsMatchedByRegex:beginString
-                                   options:options
-                                   inRange:NSMakeRange(0, [string length])
-                                     error:&error
-                        enumerationOptions:RKLRegexEnumerationCapturedStringsNotRequired
-                                usingBlock:^(NSInteger captureCount,
-                                             NSString *const __unsafe_unretained *capturedStrings,
-                                             const NSRange *capturedRanges,
-                                             volatile BOOL *const stop)
+    NSError *error = nil;
+    NSRegularExpression *beginRegex = [NSRegularExpression regularExpressionWithPattern:beginString options:options error:&error];
+    NSRegularExpression *endRegex = [NSRegularExpression regularExpressionWithPattern:endString options:options error:&error];
+    
+    if (error) {
+        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        return @[];
+    }
+    
+    [beginRegex enumerateMatchesInString:string
+                                 options:0
+                                   range:NSMakeRange(0, [string length])
+                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
          if ([indicator isCancelled]) {
              *stop = YES;
              return;
          }
          
-         NSRange beginRange = capturedRanges[0];
-         NSRange endRange = [string rangeOfRegex:endString
-                                         options:options
-                                         inRange:NSMakeRange(NSMaxRange(beginRange),
-                                                             [string length] - NSMaxRange(beginRange))
-                                         capture:0
-                                           error:nil];
+         NSRange beginRange = [result range];
+         NSRange endRange = [endRegex rangeOfFirstMatchInString:string options:0
+                                                          range:NSMakeRange(NSMaxRange(beginRange),
+                                                                            [string length] - NSMaxRange(beginRange))];
          
          if (endRange.location != NSNotFound) {
              [ranges addObject:[NSValue valueWithRange:NSUnionRange(beginRange, endRange)]];
          }
      }];
-    
-    if (error && ![[error userInfo][RKLICURegexErrorNameErrorKey] isEqualToString:@"U_ZERO_ERROR"]) {
-        // 何もしない
-        NSLog(@"ERROR: %@", [error localizedDescription]);
-        return @[];
-    }
     
     return ranges;
 }

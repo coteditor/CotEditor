@@ -356,7 +356,6 @@
 "End string" = "结束字符串";
 "RE string" = "正则表达式";
 "multiple registered." = "重复注册";
-"Error “%@” in column %@: %@<<HERE>>%@" = "错误 “%@” (%@列) ：%@<<这里>>%@";
 "Error: %@" = "错误： %@";
 
 

@@ -31,7 +31,6 @@
 #import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxManager.h"
 #import "CEAppDelegate.h"
-#import "RegexKitLite.h"
 #import "Constants.h"
 
 
@@ -473,28 +472,25 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
                                      CESyntaxValidationMessageKey: NSLocalizedString(@"multiple registered.", nil)}];
                 
             } else if ([dict[CESyntaxRegularExpressionKey] boolValue]) {
-                if ([beginStr captureCountWithOptions:RKLNoOptions error:&error] == -1) { // エラーのとき
-                    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error “%@” in column %@: %@<<HERE>>%@", nil),
-                                         [error userInfo][RKLICURegexErrorNameErrorKey],
-                                         [error userInfo][RKLICURegexOffsetErrorKey],
-                                         [error userInfo][RKLICURegexPreContextErrorKey],
-                                         [error userInfo][RKLICURegexPostContextErrorKey]];
+                error = nil;
+                [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
+                if (error) {
                     [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
                                          CESyntaxValidationRoleKey: NSLocalizedString(@"Begin string", nil),
                                          CESyntaxValidationStringKey: beginStr,
-                                         CESyntaxValidationMessageKey: message}];
+                                         CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
+                                                                        [error localizedFailureReason]]}];
                 }
+                
                 if (endStr) {
-                    if ([endStr captureCountWithOptions:RKLNoOptions error:&error] == -1) { // エラーのとき
-                        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Error “%@” in column %@: %@<<HERE>>%@", nil),
-                                             [error userInfo][RKLICURegexErrorNameErrorKey],
-                                             [error userInfo][RKLICURegexOffsetErrorKey],
-                                             [error userInfo][RKLICURegexPreContextErrorKey],
-                                             [error userInfo][RKLICURegexPostContextErrorKey]];
+                    error = nil;
+                    [NSRegularExpression regularExpressionWithPattern:endStr options:0 error:&error];
+                    if (error) {
                         [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
                                              CESyntaxValidationRoleKey: NSLocalizedString(@"End string", nil),
                                              CESyntaxValidationStringKey: endStr,
-                                             CESyntaxValidationMessageKey: message}];
+                                             CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
+                                                                            [error localizedFailureReason]]}];
                     }
                 }
                 
@@ -506,7 +502,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
                                          CESyntaxValidationRoleKey: NSLocalizedString(@"RE string", nil),
                                          CESyntaxValidationStringKey: beginStr,
                                          CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
-                                                      [error localizedFailureReason]]}];
+                                                                        [error localizedFailureReason]]}];
                 }
             }
             tmpBeginStr = beginStr;
