@@ -313,9 +313,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldReselect) {
         // （不可視文字が選択状態で表示／非表示を切り替えられた時、不可視文字の背景選択色を描画するための時間差での選択処理）
         // （もっとスマートな解決方法はないものか...？ 2006.09.25）
-        [[self textView] performSelector:@selector(selectTextRangeValue:)
-                              withObject:[NSValue valueWithRange:selectedRange]
-                              afterDelay:0];
+        __block CETextView *textView = [self textView];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [textView setSelectedRange:selectedRange];
+        });
     }
 }
 
@@ -434,18 +435,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateOutlineMenuSelection
 // ------------------------------------------------------
 {
-    if (![self outlineMenuTimer]) {
-        if ([[self textView] updateOutlineMenuItemSelection]) {
-            [[self navigationBar] performSelector:@selector(selectOutlineMenuItemWithRangeValue:)
-                                       withObject:[NSValue valueWithRange:[[self textView] selectedRange]]
-                                       afterDelay:0.01];
+    if ([self outlineMenuTimer]) { return; }
+    
+    __block typeof(self) blockSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ([[blockSelf textView] updateOutlineMenuItemSelection]) {
+            [[blockSelf navigationBar] selectOutlineMenuItemWithRange:[[blockSelf textView] selectedRange]];
         } else {
-            [[self textView] setUpdateOutlineMenuItemSelection:YES];
-            [[self navigationBar] performSelector:@selector(updatePrevNextButtonEnabled)
-                                       withObject:nil
-                                       afterDelay:0.01];
+            [[blockSelf textView] setUpdateOutlineMenuItemSelection:YES];
+            [[blockSelf navigationBar] updatePrevNextButtonEnabled];
         }
-    }
+    });
 }
 
 
@@ -621,9 +621,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
-    if ([[self textView] isReCompletion]) {
-        [[self textView] setIsReCompletion:NO];
-        [[self textView] performSelector:@selector(complete:) withObject:nil afterDelay:0.05];
+    __block CETextView *textView = [self textView];
+    if ([textView isReCompletion]) {
+        [textView setIsReCompletion:NO];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [textView complete:nil];
+        });
     }
 }
 
@@ -717,7 +720,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[[self window] windowController] setupInfoUpdateTimer];
     // 全テキストを再カラーリング
-    [self performSelector:@selector(recolorAllTextViewString) withObject:nil afterDelay:0];
+    __block typeof(self) blockSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [blockSelf recolorAllTextViewString];
+    });
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
 }

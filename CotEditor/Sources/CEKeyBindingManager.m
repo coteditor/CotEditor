@@ -414,8 +414,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         item[identifier] = object;
         // 他の値とダブっていたら、再び編集状態にする
         if (![self showDuplicateKeySpecCharsMessageWithKeySpecChars:object oldChars:[self currentKeySpecChars]]) {
-            [self performSelector:@selector(performEditOutlineViewSelectedKeyBindingKeyColumn)
-                       withObject:nil afterDelay:0 inModes:@[NSModalPanelRunLoopMode]];
+            __block typeof(self) blockSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [blockSelf performEditOutlineViewSelectedKeyBindingKeyColumn];
+            });
         }
     }
     switch ([self outlineMode]) {

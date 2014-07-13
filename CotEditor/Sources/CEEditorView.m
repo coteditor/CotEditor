@@ -525,9 +525,12 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
-    // （下記のメソッドの実行順序を変更すると、Tigerで大きめの書類を開いたときに異常に遅くなるので注意。 2008.05.03.）
-    [[self splitView] performSelector:@selector(recoloringAllTextView) withObject:nil afterDelay:0.03];
-    [[self splitView] performSelector:@selector(updateAllOutlineMenu) withObject:nil afterDelay:0];
+    
+    __block CESplitView *splitView = [self splitView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [splitView updateAllOutlineMenu];
+        [splitView recoloringAllTextView];
+    });
 }
 
 

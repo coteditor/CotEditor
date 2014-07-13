@@ -1286,15 +1286,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 文字列を選択
-- (void)selectTextRangeValue:(NSValue *)rangeValue
-// ------------------------------------------------------
-{
-    [self setSelectedRange:[rangeValue rangeValue]];
-}
-
-
-// ------------------------------------------------------
 /// カラーリング設定を更新する
 - (void)setTheme:(CETheme *)theme;
 // ------------------------------------------------------

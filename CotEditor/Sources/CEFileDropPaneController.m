@@ -172,7 +172,10 @@
     [[self fileDropController] add:self];
     
     // ディレイをかけて fileDropController からのバインディングによる行追加を先に実行させる
-    [self performSelector:@selector(editNewAddedRowOfFileDropTableView) withObject:nil afterDelay:0];
+    __block typeof(self) blockSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [blockSelf editNewAddedRowOfFileDropTableView];
+    });
 }
 
 
@@ -186,7 +189,10 @@
     // フォーカスを移し、値入力を確定
     [[sender window] makeFirstResponder:sender];
     // ディレイをかけて controlTextDidEndEditing: の自動編集を実行させる
-    [self performSelector:@selector(doDeleteFileDropSetting) withObject:nil afterDelay:0];
+    __block typeof(self) blockSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [blockSelf doDeleteFileDropSetting];
+    });
 }
 
 
