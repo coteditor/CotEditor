@@ -242,19 +242,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 行番号表示設定をセット
-- (void)setShowLineNumWithNumber:(NSNumber *)number
+- (void)setShowLineNum:(BOOL)showLineNum
 // ------------------------------------------------------
 {
-    [[self lineNumView] setShowLineNum:[number boolValue]];
+    [[self lineNumView] setShowLineNum:showLineNum];
 }
 
 
 // ------------------------------------------------------
 /// ナビゲーションバーを表示／非表示
-- (void)setShowNavigationBarWithNumber:(NSNumber *)number
+- (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShowNavigationBar:[number boolValue]];
+    [[self navigationBar] setShowNavigationBar:showNavigationBar];
     if (![self outlineMenuTimer]) {
         [self updateOutlineMenu];
     }
@@ -263,17 +263,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// ラップする／しないを切り替える
-- (void)setWrapLinesWithNumber:(NSNumber *)number
+- (void)setWrapLines:(BOOL)wrapLines
 // ------------------------------------------------------
 {
     NSTextView *textView = [self textView];
-    BOOL shouldWrap = [number boolValue];
     BOOL isVertical = ([textView layoutOrientation] == NSTextLayoutOrientationVertical);
     
     // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
     [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
     
-    if (shouldWrap) {
+    if (wrapLines) {
         [[textView enclosingScrollView] setHasHorizontalScroller:NO];
         [textView setAutoresizingMask:NSViewWidthSizable];
         [self adjustTextFrameSize];
@@ -298,11 +297,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 不可視文字の表示／非表示を切り替える
-- (void)setShowInvisiblesWithNumber:(NSNumber *)number
+- (void)setShowInvisibles:(BOOL)showInvisibles
 // ------------------------------------------------------
 {
     NSRange selectedRange;
-    BOOL showInvisibles = [number boolValue];
     BOOL shouldReselect = NO;
 
     if (showInvisibles) {
@@ -315,30 +313,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (shouldReselect) {
         // （不可視文字が選択状態で表示／非表示を切り替えられた時、不可視文字の背景選択色を描画するための時間差での選択処理）
         // （もっとスマートな解決方法はないものか...？ 2006.09.25）
-        [[self textView] performSelector:@selector(selectTextRangeValue:)
-                              withObject:[NSValue valueWithRange:selectedRange]
-                              afterDelay:0];
+        __block CETextView *textView = [self textView];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [textView setSelectedRange:selectedRange];
+        });
     }
 }
 
 
 // ------------------------------------------------------
 /// ソフトタブの有効／無効を切り替える
-- (void)setAutoTabExpandEnabledWithNumber:(NSNumber *)number
+- (void)setAutoTabExpandEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self textView] setIsAutoTabExpandEnabled:[number boolValue]];
+    [[self textView] setIsAutoTabExpandEnabled:isEnabled];
 }
 
 
 // ------------------------------------------------------
 /// アンチエイリアス適用を切り替える
-- (void)setUseAntialiasWithNumber:(NSNumber *)number
+- (void)setUseAntialias:(BOOL)useAntialias
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
 
-    [manager setUseAntialias:[number boolValue]];
+    [manager setUseAntialias:useAntialias];
     [[self textView] setNeedsDisplay:YES];
 }
 
@@ -436,27 +435,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateOutlineMenuSelection
 // ------------------------------------------------------
 {
-    if (![self outlineMenuTimer]) {
-        if ([[self textView] updateOutlineMenuItemSelection]) {
-            [[self navigationBar] performSelector:@selector(selectOutlineMenuItemWithRangeValue:)
-                                       withObject:[NSValue valueWithRange:[[self textView] selectedRange]]
-                                       afterDelay:0.01];
+    if ([self outlineMenuTimer]) { return; }
+    
+    __block typeof(self) blockSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ([[blockSelf textView] updateOutlineMenuItemSelection]) {
+            [[blockSelf navigationBar] selectOutlineMenuItemWithRange:[[blockSelf textView] selectedRange]];
         } else {
-            [[self textView] setUpdateOutlineMenuItemSelection:YES];
-            [[self navigationBar] performSelector:@selector(updatePrevNextButtonEnabled)
-                                       withObject:nil
-                                       afterDelay:0.01];
+            [[blockSelf textView] setUpdateOutlineMenuItemSelection:YES];
+            [[blockSelf navigationBar] updatePrevNextButtonEnabled];
         }
-    }
+    });
 }
 
 
 // ------------------------------------------------------
 /// テキストビュー分割削除ボタンの有効化／無効化を制御
-- (void)updateCloseSubSplitViewButtonWithNumber:(NSNumber *)number
+- (void)updateCloseSubSplitViewButton:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self navigationBar] setCloseSplitButtonEnabled:[number boolValue]];
+    [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
 }
 
 
@@ -495,11 +493,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// テキストビューに背景色をセット
-- (void)setBackgroundColorAlphaWithNumber:(NSNumber *)number
+- (void)setBackgroundColorAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    CGFloat alpha = (CGFloat)[number doubleValue];
-    
     [[self textView] setBackgroundAlpha:alpha];
     [[self lineNumView] setBackgroundAlpha:alpha];
 }
@@ -625,9 +621,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
-    if ([[self textView] isReCompletion]) {
-        [[self textView] setIsReCompletion:NO];
-        [[self textView] performSelector:@selector(complete:) withObject:nil afterDelay:0.05];
+    __block CETextView *textView = [self textView];
+    if ([textView isReCompletion]) {
+        [textView setIsReCompletion:NO];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [textView complete:nil];
+        });
     }
 }
 
@@ -721,7 +720,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[[self window] windowController] setupInfoUpdateTimer];
     // 全テキストを再カラーリング
-    [self performSelector:@selector(recolorAllTextViewString) withObject:nil afterDelay:0];
+    __block typeof(self) blockSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [blockSelf recolorAllTextViewString];
+    });
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
 }

@@ -122,7 +122,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    [self performSelector:@selector(cleanUpTextStorage:) withObject:storage afterDelay:0.5];
+    __block typeof(self) blockSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [blockSelf cleanUpTextStorage:storage];
+    });
 
     return storage;
 }

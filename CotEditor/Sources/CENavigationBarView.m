@@ -333,15 +333,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// アウトラインメニューの選択項目を設定
-- (void)selectOutlineMenuItemWithRangeValue:(NSValue *)rangeValue
-// ------------------------------------------------------
-{
-    [self selectOutlineMenuItemWithRange:[rangeValue rangeValue]];
-}
-
-
-// ------------------------------------------------------
 /// 前／次移動ボタンの有効／無効を切り替え
 - (void)updatePrevNextButtonEnabled
 // ------------------------------------------------------

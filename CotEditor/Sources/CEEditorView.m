@@ -36,6 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEEditorView.h"
+#import "CESplitView.h"
 #import "CEToolbarController.h"
 #import "CENavigationBarView.h"
 #import "CELineNumView.h"
@@ -45,10 +46,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEEditorView ()
 
 @property (nonatomic) NSTimer *coloringTimer;
+@property (nonatomic) CESplitView *splitView;
 
 
 // readonly
-@property (nonatomic, readwrite) CESplitView *splitView;
 @property (nonatomic, readwrite) BOOL canActivateShowInvisibles;
 
 @end
@@ -524,9 +525,12 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
-    // （下記のメソッドの実行順序を変更すると、Tigerで大きめの書類を開いたときに異常に遅くなるので注意。 2008.05.03.）
-    [[self splitView] performSelector:@selector(recoloringAllTextView) withObject:nil afterDelay:0.03];
-    [[self splitView] performSelector:@selector(updateAllOutlineMenu) withObject:nil afterDelay:0];
+    
+    __block CESplitView *splitView = [self splitView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [splitView updateAllOutlineMenu];
+        [splitView recoloringAllTextView];
+    });
 }
 
 
@@ -579,6 +583,15 @@ static NSTimeInterval secondColoringDelay;
     BOOL enabled = ([[[self splitView] subviews] count] > 1);
 
     [[self splitView] setCloseSubSplitViewButtonEnabled:enabled];
+}
+
+
+// ------------------------------------------------------
+/// 背景の不透明度をセット
+- (void)setBackgroundAlpha:(CGFloat)alpha
+// ------------------------------------------------------
+{
+    [[self splitView] setAllBackgroundColorWithAlpha:alpha];
 }
 
 

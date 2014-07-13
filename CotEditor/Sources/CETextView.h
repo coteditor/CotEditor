@@ -85,7 +85,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing;
 - (void)doReplaceString:(NSString *)inString withRange:(NSRange)inRange 
             withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
-- (void)selectTextRangeValue:(NSValue *)inRangeValue;
 
 // Action Message
 - (IBAction)shiftRight:(id)sender;
