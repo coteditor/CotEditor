@@ -1,6 +1,6 @@
 /*
 =================================================
-CESyntax
+CESyntaxParser
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @class CELayoutManager;
 
 
-@interface CESyntax : NSObject
+@interface CESyntaxParser : NSObject
 
 // readonly
 @property (nonatomic, copy, readonly) NSString *syntaxStyleName;

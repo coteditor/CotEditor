@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "CEPrintView.h"
 #import "CELayoutManager.h"
-#import "CESyntax.h"
+#import "CESyntaxParser.h"
 #import "constants.h"
 
 
@@ -55,7 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, copy) NSDictionary *headerFooterAttrs;
-@property (nonatomic) CESyntax *syntax;
+@property (nonatomic) CESyntaxParser *syntaxParser;
 
 @end
 
@@ -391,12 +391,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setBackgroundColor:[[self theme] backgroundColor]];
         
         // カラーリング実行オブジェクトを用意して実行
-        if (![self syntax]) {
-            [self setSyntax:[[CESyntax alloc] initWithStyleName:[self syntaxName]
-                                                  layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
-                                                     isPrinting:YES]];
+        if (![self syntaxParser]) {
+            [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:[self syntaxName]
+                                                              layoutManager:(CELayoutManager *)[[self textContainer] layoutManager]
+                                                                 isPrinting:YES]];
         }
-        [[self syntax] colorAllString:[self string]];
+        [[self syntaxParser] colorAllString:[self string]];
     }
     
     // ヘッダを設定

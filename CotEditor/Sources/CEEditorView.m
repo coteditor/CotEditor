@@ -166,10 +166,10 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// syntaxオブジェクトを返す
-- (CESyntax *)syntax
+- (CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
-    return [(CESubSplitView *)[[self textView] delegate] syntax];
+    return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
 }
 
 
@@ -486,7 +486,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSString *)syntaxStyleName
 // ------------------------------------------------------
 {
-    return [[self syntax] syntaxStyleName];
+    return [[self syntaxParser] syntaxStyleName];
 }
 
 
@@ -495,9 +495,9 @@ static NSTimeInterval secondColoringDelay;
 - (void)setSyntaxStyleName:(NSString *)name recolorNow:(BOOL)recolorNow
 // ------------------------------------------------------
 {
-    if (![self syntax]) { return; }
+    if (![self syntaxParser]) { return; }
     
-    if (![[[self syntax] syntaxStyleName] isEqualToString:name]) {
+    if (![[[self syntaxParser] syntaxStyleName] isEqualToString:name]) {
         [[self splitView] setSyntaxWithName:name];
     }
     if (recolorNow) {
@@ -557,7 +557,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)setupColoringTimer
 // ------------------------------------------------------
 {
-    if ([[self syntax] isNone]) { return; }
+    if ([[self syntaxParser] isNone]) { return; }
     
     BOOL delay = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_delayColoring];
     
@@ -780,8 +780,8 @@ static NSTimeInterval secondColoringDelay;
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
     [[self splitView] adjustSubviews];
-    [subSplitView setSyntaxWithName:[[self syntax] syntaxStyleName]];
-    [[subSplitView syntax] colorAllString:[self string]];
+    [subSplitView setSyntaxWithName:[[self syntaxParser] syntaxStyleName]];
+    [[subSplitView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[subSplitView textView]];
     [self setLineEndingCharacter:[self lineEndingCharacter]];
@@ -956,7 +956,7 @@ static NSTimeInterval secondColoringDelay;
         coloringRange = NSMakeRange(location, length);
     }
     
-    [[self syntax] colorVisibleRange:coloringRange wholeString:[self string]];
+    [[self syntaxParser] colorVisibleRange:coloringRange wholeString:[self string]];
 }
 
 

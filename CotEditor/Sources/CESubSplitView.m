@@ -50,7 +50,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readwrite) CETextView *textView;
 @property (nonatomic, readwrite) CELineNumView *lineNumView;
 @property (nonatomic, readwrite) CENavigationBarView *navigationBar;
-@property (nonatomic, readwrite) CESyntax *syntax;
+@property (nonatomic, readwrite) CESyntaxParser *syntaxParser;
 @property (nonatomic, readwrite) NSTextStorage *textStorage;
 
 @end
@@ -115,13 +115,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [layoutManager setUseAntialias:[defaults boolForKey:k_key_shouldAntialias]];
         [layoutManager setFixLineHeight:[defaults boolForKey:k_key_fixLineHeight]];
 
-        // NSTextContainer と CESyntax を生成
+        // NSTextContainer と CESyntaxParser を生成
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
         [layoutManager addTextContainer:container];
 
-        [self setSyntax:[[CESyntax alloc] initWithStyleName:NSLocalizedString(@"None", @"")
-                                               layoutManager:layoutManager
-                                                  isPrinting:NO]];
+        [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", @"")
+                                                          layoutManager:layoutManager
+                                                             isPrinting:NO]];
 
         // TextView 生成
         NSRect textFrame = NSZeroRect;
@@ -365,13 +365,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxWithName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![[[self syntax] syntaxStyleName] isEqualToString:styleName]) {
-        [self setSyntax:[[CESyntax alloc] initWithStyleName:styleName
-                                               layoutManager:(CELayoutManager *)[[self textView] layoutManager]
-                                                  isPrinting:NO]];
+    if (![[[self syntaxParser] syntaxStyleName] isEqualToString:styleName]) {
+        [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName
+                                                          layoutManager:(CELayoutManager *)[[self textView] layoutManager]
+                                                             isPrinting:NO]];
         
-        [[self textView] setInlineCommentDelimiter:[[self syntax] inlineCommentDelimiter]];
-        [[self textView] setBlockCommentDelimiters:[[self syntax] blockCommentDelimiters]];
+        [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
+        [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
     }
 }
 
@@ -381,7 +381,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)recolorAllTextViewString
 // ------------------------------------------------------
 {
-    [[self syntax] colorAllString:[[self textView] string]];
+    [[self syntaxParser] colorAllString:[[self textView] string]];
 }
 
 
@@ -420,7 +420,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *outlineMenuArray = [[[self editorView] syntax] outlineMenuArrayWithWholeString:[self string]];
+        NSArray *outlineMenuArray = [[[self editorView] syntaxParser] outlineMenuArrayWithWholeString:[self string]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self navigationBar] setOutlineMenuArray:outlineMenuArray];
@@ -487,7 +487,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSCharacterSet *)firstCompletionCharacterSet
 // ------------------------------------------------------
 {
-    return [[self syntax] firstCompletionCharacterSet];
+    return [[self syntaxParser] firstCompletionCharacterSet];
 }
 
 
@@ -585,7 +585,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     //"カラーシンタックス辞書の語彙" をコピーする
     if (addingMode >= 1) {
-        NSArray *syntaxWords = [[self syntax] completionWords];
+        NSArray *syntaxWords = [[self syntaxParser] completionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
                 [outWords addObject:word];

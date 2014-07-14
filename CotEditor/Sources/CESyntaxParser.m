@@ -1,6 +1,6 @@
 /*
 =================================================
-CESyntax
+CESyntaxParser
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CESyntax.h"
+#import "CESyntaxParser.h"
 #import "CELayoutManager.h"
 #import "CEEditorView.h"
 #import "CESyntaxManager.h"
@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 
 
-@interface CESyntax ()
+@interface CESyntaxParser ()
 
 @property (nonatomic) CELayoutManager *layoutManager;
 @property (atomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 #pragma mark -
 
-@implementation CESyntax
+@implementation CESyntaxParser
 
 static NSArray *kSyntaxDictKeys;
 
@@ -521,7 +521,7 @@ static NSArray *kSyntaxDictKeys;
             escapesCheckLength = (start < k_ESCheckLength) ? start : k_ESCheckLength;
             escapesCheckRange = NSMakeRange(start - escapesCheckLength, escapesCheckLength);
             escapesCheckStr = [string substringWithRange:escapesCheckRange];
-            numberOfEscapes = [CESyntax numberOfEscapeSequencesInString:escapesCheckStr];
+            numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
             if (numberOfEscapes % 2 == 1) {
                 continue;
             }
@@ -542,7 +542,7 @@ static NSArray *kSyntaxDictKeys;
                 escapesCheckLength = ((end - endLength) < k_ESCheckLength) ? (end - endLength) : k_ESCheckLength;
                 escapesCheckRange = NSMakeRange(end - endLength - escapesCheckLength, escapesCheckLength);
                 escapesCheckStr = [string substringWithRange:escapesCheckRange];
-                numberOfEscapes = [CESyntax numberOfEscapeSequencesInString:escapesCheckStr];
+                numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
                 if (numberOfEscapes % 2 == 1) {
                     continue;
                 } else {

@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CELineNumView.h"
 #import "CENavigationBarView.h"
 #import "CETextView.h"
-#import "CESyntax.h"
+#import "CESyntaxParser.h"
 
 
 @interface CESubSplitView : NSView <NSTextViewDelegate>
@@ -48,7 +48,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readonly) CETextView *textView;
 @property (nonatomic, readonly) CELineNumView *lineNumView;
 @property (nonatomic, readonly) CENavigationBarView *navigationBar;
-@property (nonatomic, readonly) CESyntax *syntax;
+@property (nonatomic, readonly) CESyntaxParser *syntaxParser;
 
 
 // Public method

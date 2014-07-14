@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESubSplitView.h"
 #import "CETextView.h"
 #import "CEWindowController.h"
-#import "CESyntax.h"
+#import "CESyntaxParser.h"
 #import "CELayoutManager.h"
 
 
@@ -66,7 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (CEDocument *)document;
 - (CEWindowController *)windowController;
 - (NSTextStorage *)textStorage;
-- (CESyntax *)syntax;
+- (CESyntaxParser *)syntaxParser;
 
 - (NSString *)string;
 - (NSString *)stringForSave;
