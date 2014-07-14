@@ -1125,6 +1125,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 	if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {  // If it's not a double-click return unchanged
 		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
 	}
+    
+    // do not continue custom process if selection contains multiple lines (for dragging event with double-click)
+    if ([[[[self string] substringWithRange:proposedSelRange] componentsSeparatedByString:@"\n"] count] > 1) {
+		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
+    }
 
 	NSString *completeString = [self string];
 	NSInteger lengthOfString = [completeString length];
