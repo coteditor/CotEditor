@@ -190,17 +190,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
-        CGFontRef cgFont = CTFontCopyGraphicsFont((CTFontRef)font, NULL);
-        CFAutorelease(cgFont);
         CGContextSaveGState(context);
         CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextSetFont(context, cgFont);
+        CGContextSetFont(context, CTFontCopyGraphicsFont((CTFontRef)font, NULL));
         CGContextSetFontSize(context, [font pointSize]);
         
-        // adjust drawing origin
+        // adjust drawing coordinate
         NSPoint inset = [textView textContainerOrigin];
-        CGFloat ascent = (CGFloat)CGFontGetAscent(cgFont) / CGFontGetUnitsPerEm(cgFont) * 96.0;
-        CGAffineTransform transform = CGAffineTransformMakeTranslation(inset.x, inset.y + ascent + [font pointSize] - 96.0);
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
+        transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent((CTFontRef)font));
         CGContextSetTextMatrix(context, transform);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
@@ -358,7 +357,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
     NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL].origin;
     
-    return CGPointMake(drawPoint.x, glyphPoint.y);
+    return CGPointMake(drawPoint.x, -glyphPoint.y);
 }
 
 
