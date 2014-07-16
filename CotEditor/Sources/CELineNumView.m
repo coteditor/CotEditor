@@ -127,15 +127,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // setup the variables we need for the loop
     NSString *string = [[self textView] string];
-    NSLayoutManager *layoutManager = [[self textView] layoutManager]; // get owner's layout manager.
-    NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
     
-    if (numberOfGlyphs == 0) { return; }
+    if ([string length] == 0) { return; }
+    
+    NSLayoutManager *layoutManager = [[self textView] layoutManager]; // get owner's layout manager.
     
     // setup drawing attributes for the font size
     CGFloat masterFontSize = [[[self textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
     CTFontRef font = CTFontCreateWithName((CFStringRef)[self fontName], fontSize, nil);
+    CFAutorelease(font);
     
     //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
     CGFloat crDistance;
@@ -149,9 +150,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
-    CGContextSetFillColorWithColor(context, [[self numberColor] CGColor]);
-    CGContextSetFont(context, CTFontCopyGraphicsFont(font, NULL));
+    
+    CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
+    CGContextSetFont(context, cgFont);
     CGContextSetFontSize(context, fontSize);
+    CGContextSetFillColorWithColor(context, [[self numberColor] CGColor]);
+    CFRelease(cgFont);
     
     // prepare '-' glyph (wrapped mark)
     CGGlyph dashGlyph;
@@ -174,61 +178,64 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat diff = (masterFontSize - fontSize) / 2;
     CGFloat ascent = CTFontGetAscent(font);
     CGContextSetTextMatrix(context, CGAffineTransformMakeTranslation(-k_lineNumPadding, - inset - diff - ascent));
-    CFRelease(font);
+    
+    // get glyph range which line number should be drawn
+    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:[[self textView] visibleRect]
+                                                         inTextContainer:[[self textView] textContainer]];
+    // count line endings to find first line number to draw
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
+    NSUInteger startLineNum = [regex numberOfMatchesInString:string options:0
+                                                       range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:
+                                                                             visibleGlyphRange.location])] + 1;
     
     // counters
-    NSUInteger lineNum = 1;
+    NSUInteger glyphCount = visibleGlyphRange.location;
+    NSUInteger endGlyphIndex = NSMaxRange(visibleGlyphRange);
+    NSUInteger lineNum = startLineNum;
     NSUInteger lastLineNum = 0;
-    NSUInteger glyphCount = 0;
     
-    for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNum++) { // count "REAL" lines
+    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < endGlyphIndex; lineNum++) { // count "REAL" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                       actualCharacterRange:NULL]);
+        
         while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
             NSRange range;
             NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSMaxY(numRect);
             
-            if (NSIntersectsRect(numRect, dirtyRect)) {
-                if (lastLineNum == lineNum) {  // wrapped line
-                    CGPoint position = CGPointMake(NSWidth([self frame]) - charWidth, NSMaxY(numRect));
-                    CGContextShowGlyphsAtPositions(context, &dashGlyph, &position, 1);  // draw wrapped mark
-                    
-                } else {  // new line
-                    int digit = (int)log10(lineNum) + 1;
-                    
-                    // adjust frame width
-                    CGFloat currentWidth = NSWidth([self frame]);
-                    CGFloat requiredWidth = charWidth * digit;
-                    if ((currentWidth - k_lineNumPadding) < requiredWidth) {
-                        while ((currentWidth - k_lineNumPadding) < requiredWidth) {
-                            currentWidth += charWidth;
-                        }
-                        [self setWidth:currentWidth]; // set a wider width if needed.
+            if (lastLineNum == lineNum) {  // wrapped line
+                CGPoint position = CGPointMake(NSWidth([self frame]) - charWidth, NSMaxY(numRect));
+                CGContextShowGlyphsAtPositions(context, &dashGlyph, &position, 1);  // draw wrapped mark
+                
+            } else {  // new line
+                int digit = (int)log10(lineNum) + 1;
+                
+                // adjust frame width
+                CGFloat currentWidth = NSWidth([self frame]);
+                CGFloat requiredWidth = charWidth * digit;
+                if ((currentWidth - k_lineNumPadding) < requiredWidth) {
+                    while ((currentWidth - k_lineNumPadding) < requiredWidth) {
+                        currentWidth += charWidth;
                     }
-                    
-                    // get glyphs and positions
-                    CGGlyph glyphs[digit];
-                    CGPoint positions[digit];
-                    for (int i = 0; i < digit; i++) {
-                        int index = (lineNum % (int)pow(10, i + 1)) / pow(10, i);  // get number of desired digit
-                        
-                        glyphs[i] = digitGlyphs[index];
-                        positions[i] = CGPointMake(currentWidth - (i + 1) * charWidth, NSMaxY(numRect));
-                    }
-                    
-                    CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
+                    [self setWidth:currentWidth]; // set a wider width if needed.
                 }
                 
-                lastLineNum = lineNum;
+                // get glyphs and positions
+                CGGlyph glyphs[digit];
+                CGPoint positions[digit];
+                for (int i = 0; i < digit; i++) {
+                    int index = (lineNum % (int)pow(10, i + 1)) / pow(10, i);  // get number of desired digit
+                    
+                    glyphs[i] = digitGlyphs[index];
+                    positions[i] = CGPointMake(currentWidth - (i + 1) * charWidth, NSMaxY(numRect));
+                }
                 
-            } else if (NSMaxY(numRect) < 0) { // no need to draw
-                CGContextRestoreGState(context);
-                return;
+                CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
             }
             
+            lastLineNum = lineNum;
             glyphCount = NSMaxRange(range);
         }
     }
