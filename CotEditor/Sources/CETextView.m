@@ -591,6 +591,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)scrollRangeToVisible:(NSRange)range
 // ------------------------------------------------------
 {
+    // 矢印キーが押されているときは1行ずつのスクロールにする
+    if ([NSEvent modifierFlags] & NSNumericPadKeyMask) {
+        NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:range actualCharacterRange:nil];
+        NSRect glyphRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
+        CGFloat buffer = [[self font] pointSize] / 2;
+        
+        glyphRect = NSInsetRect(glyphRect, -buffer, -buffer);
+        glyphRect = NSOffsetRect(glyphRect, [self textContainerOrigin].x, [self textContainerOrigin].y);
+        
+        [super scrollRectToVisible:glyphRect];  // move minimum distance
+        
+        return;
+    }
+    
     [super scrollRangeToVisible:range];
     
     // 完全にスクロールさせる
