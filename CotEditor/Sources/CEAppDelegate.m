@@ -38,6 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEThemeManager.h"
 #import "CEPreferencesWindowController.h"
 #import "CEByteCountTransformer.h"
+#import "CELineHeightTransformer.h"
 #import "CEOpacityPanelController.h"
 #import "CELineSpacingPanelController.h"
 #import "CEGoToPanelController.h"
@@ -206,6 +207,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // transformer 登録
     [NSValueTransformer setValueTransformer:[[CEByteCountTransformer alloc] init]
                                     forName:@"CEByteCountTransformer"];
+    [NSValueTransformer setValueTransformer:[[CELineHeightTransformer alloc] init]
+                                    forName:@"CELineHeightTransformer"];
 }
 
 
