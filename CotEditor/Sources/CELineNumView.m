@@ -283,7 +283,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // get start point
     NSPoint point = [[self window] convertRectToScreen:NSMakeRect([theEvent locationInWindow].x,
                                                                   [theEvent locationInWindow].y, 0, 0)].origin;
-    int index = [[self textView] characterIndexForPoint:point];
+    NSUInteger index = [[self textView] characterIndexForPoint:point];
     
     [self selectLines:nil];  // for single click event
     
@@ -395,8 +395,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     // select lines
-    int currentIndex = [textView characterIndexForPoint:point];
-    int clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
+    NSUInteger currentIndex = [textView characterIndexForPoint:point];
+    NSUInteger clickedIndex = timer ? [[timer userInfo] unsignedIntegerValue] : currentIndex;
     NSRange range = [[textView string] lineRangeForRange:NSMakeRange(MIN(currentIndex, clickedIndex),
                                                                      abs(currentIndex - clickedIndex))];
     [textView setSelectedRange:range];
