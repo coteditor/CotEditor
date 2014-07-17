@@ -140,7 +140,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                k_key_completeAddStandardWords: @0U,
                                k_key_showPageGuide: @NO,
                                k_key_pageGuideColumn: @80,
-                               k_key_lineSpacing: @0.0f,
+                               k_key_lineSpacing: @0.3f,
                                k_key_swapYenAndBackSlashKey: @NO,
                                k_key_fixLineHeight: @YES,
                                k_key_highlightBraces: @YES,

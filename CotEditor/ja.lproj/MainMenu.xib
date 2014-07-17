@@ -487,47 +487,37 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="行間" id="751">
-                                <menu key="submenu" title="行間" id="752">
+                            <menuItem title="行の高さ" id="751">
+                                <menu key="submenu" title="行の高さ" id="752">
                                     <items>
-                                        <menuItem title="0" id="753">
+                                        <menuItem title="1.0" id="753">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="760"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="0.25" id="759">
+                                        <menuItem title="1.1" id="759">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="761"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="0.5" id="755">
+                                        <menuItem title="1.2" id="755">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="762"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="0.75" id="758">
+                                        <menuItem title="1.3" id="758">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="766"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="1.0" id="754">
+                                        <menuItem title="1.4" id="754">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="763"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="1.25" id="767">
+                                        <menuItem title="1.5" id="767">
                                             <connections>
                                                 <action selector="setLineSpacingFromMenu:" target="-1" id="768"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="1.5" id="756">
-                                            <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="764"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="1.75" id="769">
-                                            <connections>
-                                                <action selector="setLineSpacingFromMenu:" target="-1" id="770"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="2.0" id="757">

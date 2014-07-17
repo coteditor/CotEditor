@@ -77,7 +77,7 @@
 - (IBAction)apply:(id)sender
 // ------------------------------------------------------
 {
-    [[[[self documentWindowController] editorView] textView] setLineSpacing:[self lineSpacing]];
+    [[[[self documentWindowController] editorView] textView] setNewLineSpacingAndUpdate:[self lineSpacing]];
     [[self window] close];
 }
 

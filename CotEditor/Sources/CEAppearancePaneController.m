@@ -231,22 +231,6 @@
 //
 //=======================================================
 
-//------------------------------------------------------
-/// 行間値を調整
-- (IBAction)setupCustomLineSpacing:(id)sender
-//------------------------------------------------------
-{
-    // IB で Formatter が設定できないのでメソッドで行ってる。
-    
-    CGFloat value = (CGFloat)[sender doubleValue];
-    
-    if (value < k_lineSpacingMin) { value = k_lineSpacingMin; }
-    if (value > k_lineSpacingMax) { value = k_lineSpacingMax; }
-    
-    [sender setStringValue:[NSString stringWithFormat:@"%.2f", value]];
-}
-
-
 // ------------------------------------------------------
 /// フォントパネルを表示
 - (IBAction)showFonts:(id)sender

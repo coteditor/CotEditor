@@ -202,10 +202,6 @@ extern NSString *const k_key_coloringRangeBufferLength;
 extern NSUInteger const k_pageGuideColumnMin;
 extern NSUInteger const k_pageGuideColumnMax;
 
-// custom line spacing values
-extern CGFloat const k_lineSpacingMin;
-extern CGFloat const k_lineSpacingMax;
-
 
 
 #pragma mark Syntax
