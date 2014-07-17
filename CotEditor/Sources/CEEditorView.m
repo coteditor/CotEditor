@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESplitView.h"
 #import "CEToolbarController.h"
 #import "CENavigationBarView.h"
-#import "CELineNumView.h"
+#import "CELineNumberView.h"
 #import "constants.h"
 
 

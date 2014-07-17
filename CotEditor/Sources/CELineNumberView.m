@@ -1,6 +1,6 @@
 /*
 =================================================
-CELineNumView
+CELineNumberView
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -38,11 +38,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 @import CoreText;
-#import "CELineNumView.h"
+#import "CELineNumberView.h"
 #import "constants.h"
 
 
-@interface CELineNumView ()
+@interface CELineNumberView ()
 
 @property (nonatomic) NSTimer *draggingTimer;
 
@@ -56,7 +56,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma mark -
 
-@implementation CELineNumView
+@implementation CELineNumberView
 
 #pragma mark Superclass Methods
 
@@ -368,7 +368,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     newFrame.size.width -= adjWidth;
     [[self scrollView] setFrame:newFrame];
     
-    // set LineNumView width
+    // set lineNumberView width
     newFrame = [self frame];
     newFrame.size.width += adjWidth;
     [self setFrame:newFrame];

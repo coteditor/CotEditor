@@ -446,10 +446,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     masterFrame.size.height -= adjHeight;
     [[[self masterView] scrollView] setFrame:masterFrame];
     
-    // set LineNumView height
-    NSRect lineNumFrame = [[[self masterView] lineNumView] frame];
-    lineNumFrame.size.height -= adjHeight;
-    [[[self masterView] lineNumView] setFrame:lineNumFrame];
+    // set lineNumberView height
+    NSRect lineNumberFrame = [[[self masterView] lineNumberView] frame];
+    lineNumberFrame.size.height -= adjHeight;
+    [[[self masterView] lineNumberView] setFrame:lineNumberFrame];
 
     // set navigationBar height
     NSRect myFrame = [self frame];

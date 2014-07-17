@@ -55,7 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
 @property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
 
-@property (nonatomic, weak) NSView *slaveView;  // LineNumView
+@property (nonatomic, weak) NSView *slaveView;  // lineNumberView
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 @property (nonatomic) CGFloat backgroundAlpha;  // ビューの不透明度
 

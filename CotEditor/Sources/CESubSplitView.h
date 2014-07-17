@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @import Cocoa;
 #import "CEEditorView.h"
-#import "CELineNumView.h"
+#import "CELineNumberView.h"
 #import "CENavigationBarView.h"
 #import "CETextView.h"
 #import "CESyntaxParser.h"
@@ -46,7 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // readonly
 @property (nonatomic, readonly) NSScrollView *scrollView;
 @property (nonatomic, readonly) CETextView *textView;
-@property (nonatomic, readonly) CELineNumView *lineNumView;
+@property (nonatomic, readonly) CELineNumberView *lineNumberView;
 @property (nonatomic, readonly) CENavigationBarView *navigationBar;
 @property (nonatomic, readonly) CESyntaxParser *syntaxParser;
 

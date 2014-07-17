@@ -48,7 +48,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // readonly
 @property (nonatomic, readwrite) NSScrollView *scrollView;
 @property (nonatomic, readwrite) CETextView *textView;
-@property (nonatomic, readwrite) CELineNumView *lineNumView;
+@property (nonatomic, readwrite) CELineNumberView *lineNumberView;
 @property (nonatomic, readwrite) CENavigationBarView *navigationBar;
 @property (nonatomic, readwrite) CESyntaxParser *syntaxParser;
 @property (nonatomic, readwrite) NSTextStorage *textStorage;
@@ -82,11 +82,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         [self setLastCursorLocation:0];
 
-        // LineNumView 生成
+        // LineNumberView 生成
         NSRect lineMumFrame = frameRect;
         lineMumFrame.size.width = 0.0; // default width (about invisible).
-        [self setLineNumView:[[CELineNumView alloc] initWithFrame:lineMumFrame]];
-        [self addSubview:[self lineNumView]];
+        [self setLineNumberView:[[CELineNumberView alloc] initWithFrame:lineMumFrame]];
+        [self addSubview:[self lineNumberView]];
 
         // navigationBar 生成
         NSRect navigationFrame = frameRect;
@@ -129,7 +129,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setTextView:[[CETextView alloc] initWithFrame:textFrame textContainer:container]];
         [[self textView] setDelegate:self];
         
-        [[self lineNumView] setTextView:[self textView]];
+        [[self lineNumberView] setTextView:[self textView]];
         
         // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -156,9 +156,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self scrollView] setDocumentView:[self textView]];
 
         // slave view をセット
-        [[self textView] setSlaveView:[self lineNumView]]; // (the textview will also update slaveView.)
-        [[self textView] setPostsBoundsChangedNotifications:YES]; // observer = lineNumView
-        [[NSNotificationCenter defaultCenter] addObserver:[self lineNumView]
+        [[self textView] setSlaveView:[self lineNumberView]]; // (the textview will also update slaveView.)
+        [[self textView] setPostsBoundsChangedNotifications:YES]; // observer = lineNumberView
+        [[NSNotificationCenter defaultCenter] addObserver:[self lineNumberView]
                                                  selector:@selector(updateLineNumber:)
                                                      name:NSViewBoundsDidChangeNotification
                                                    object:[[self scrollView] contentView]];
@@ -183,7 +183,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self stopUpdateLineNumberTimer];
     [self stopUpdateOutlineMenuTimer];
     [self setEditorView:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumView]];
+    [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumberView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
     [[self textView] setDelegate:nil];
@@ -245,7 +245,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setShowLineNum:(BOOL)showLineNum
 // ------------------------------------------------------
 {
-    [[self lineNumView] setShowLineNum:showLineNum];
+    [[self lineNumberView] setShowLineNum:showLineNum];
 }
 
 
@@ -497,7 +497,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[self textView] setBackgroundAlpha:alpha];
-    [[self lineNumView] setBackgroundAlpha:alpha];
+    [[self lineNumberView] setBackgroundAlpha:alpha];
 }
 
 
@@ -744,7 +744,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSInteger newWidth = [[self scrollView] contentSize].width;
 
-    newWidth -= (NSWidth([[self lineNumView] frame]) + k_lineNumPadding * 2 );
+    newWidth -= (NSWidth([[self lineNumberView] frame]) + k_lineNumPadding * 2 );
     [[[self textView] textContainer] setContainerSize:NSMakeSize(newWidth, FLT_MAX)];
 }
 
@@ -768,7 +768,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self stopUpdateLineNumberTimer];
-    [[self lineNumView] updateLineNumber:self];
+    [[self lineNumberView] updateLineNumber:self];
 }
 
 

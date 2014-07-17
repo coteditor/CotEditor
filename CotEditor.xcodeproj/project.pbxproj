@@ -21,7 +21,7 @@
 		259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
-		25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumView.m */; };
+		25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
 		25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
@@ -210,8 +210,8 @@
 		259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEDocumentController.m; sourceTree = "<group>"; };
 		25AC0919077190EB00B0C91C /* CEPrefEncodingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrefEncodingDataSource.h; sourceTree = "<group>"; };
 		25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrefEncodingDataSource.m; sourceTree = "<group>"; };
-		25B2C23407FA667400F4EFC7 /* CELineNumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineNumView.h; sourceTree = "<group>"; };
-		25B2C23507FA667400F4EFC7 /* CELineNumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineNumView.m; sourceTree = "<group>"; };
+		25B2C23407FA667400F4EFC7 /* CELineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineNumberView.h; sourceTree = "<group>"; };
+		25B2C23507FA667400F4EFC7 /* CELineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineNumberView.m; sourceTree = "<group>"; };
 		25B2C24107FA68D100F4EFC7 /* CEStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarView.h; sourceTree = "<group>"; };
 		25B2C24207FA68D100F4EFC7 /* CEStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarView.m; sourceTree = "<group>"; };
 		25B2C24A07FA6BC400F4EFC7 /* CETextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextView.h; sourceTree = "<group>"; };
@@ -675,8 +675,8 @@
 				8C8CCCAF09D6803400A008E5 /* CESplitView.m */,
 				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
 				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
-				25B2C23407FA667400F4EFC7 /* CELineNumView.h */,
-				25B2C23507FA667400F4EFC7 /* CELineNumView.m */,
+				25B2C23407FA667400F4EFC7 /* CELineNumberView.h */,
+				25B2C23507FA667400F4EFC7 /* CELineNumberView.m */,
 				8CF02E1308B9B9F8004044EB /* CENavigationBarView.h */,
 				8CF02E1408B9B9F8004044EB /* CENavigationBarView.m */,
 				8C3BEA2508BDBCA800BC2067 /* CEOutlineMenuButton.h */,
@@ -1142,7 +1142,7 @@
 				2AFFB71B18D7F18300118477 /* CEGoToPanelController.m in Sources */,
 				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
 				2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */,
-				25B2C23707FA667400F4EFC7 /* CELineNumView.m in Sources */,
+				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
 				2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEStatusBarView.m in Sources */,
