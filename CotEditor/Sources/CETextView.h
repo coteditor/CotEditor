@@ -42,7 +42,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @class CEEditorView;
 
 
-@interface CETextView : NSTextView <CETextViewProtocol>
+@interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
 
 @property (nonatomic) BOOL isReCompletion;  // 再度入力補完をするか
 @property (nonatomic) BOOL updateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか

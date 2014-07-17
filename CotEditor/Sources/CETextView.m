@@ -212,59 +212,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             return;
         }
-        
-        // 縦書きのときの矢印キー移動を乗っ取る
-        if (([self layoutOrientation] == NSTextLayoutOrientationVertical) &&
-            ([theEvent modifierFlags] & NSNumericPadKeyMask))  // arrow keys have this mask
-        {
-            NSString *arrow = [theEvent charactersIgnoringModifiers];
-            BOOL isShiftPressed = ([theEvent modifierFlags] & NSShiftKeyMask) > 0;
-            BOOL isOptionPressed = ([theEvent modifierFlags] & NSAlternateKeyMask) > 0;
-            
-            if ([arrow length] == 1) {
-                switch([arrow characterAtIndex:0]) {
-                    case NSUpArrowFunctionKey:
-                        if (isOptionPressed & isShiftPressed) {
-                            [self moveWordBackwardAndModifySelection:self];
-                        } else if (isOptionPressed) {
-                            [self moveWordBackward:self];
-                        } else if (isShiftPressed) {
-                            [self moveBackwardAndModifySelection:self];
-                        } else {
-                            [self moveBackward:self];
-                        }
-                        return;
-                        
-                    case NSDownArrowFunctionKey:
-                        if (isOptionPressed & isShiftPressed) {
-                            [self moveWordForwardAndModifySelection:self];
-                        } else if (isOptionPressed) {
-                            [self moveWordForward:self];
-                        } else if (isShiftPressed) {
-                            [self moveForwardAndModifySelection:self];
-                        } else {
-                            [self moveForward:self];
-                        }
-                        return;
-                        
-                    case NSRightArrowFunctionKey:
-                        if (isShiftPressed) {
-                            [self moveUpAndModifySelection:self];
-                        } else {
-                            [self moveUp:self];
-                        }
-                        return;
-                        
-                    case NSLeftArrowFunctionKey:
-                        if (isShiftPressed) {
-                            [self moveDownAndModifySelection:self];
-                        } else {
-                            [self moveDown:self];
-                        }
-                        return;
-                }
-            }
-        }
     }
     
     [super keyDown:theEvent];
@@ -272,25 +219,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 文字列入力、'¥' と '\' を入れ替える
-- (void)insertText:(id)aString
+/// 文字列入力、'¥' と '\' を入れ替える (NSTextInputClient)
+- (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_swapYenAndBackSlashKey] && ([aString length] == 1)) {
         NSEvent *event = [NSApp currentEvent];
         NSUInteger flags = [NSEvent modifierFlags];
-
+        
         if (([event type] == NSKeyDown) && (flags == 0)) {
+            NSString *yen = [NSString stringWithCharacters:&k_yenMark length:1];
             if ([aString isEqualToString:@"\\"]) {
-                [self inputYenMark:nil];
+                [super insertText:yen replacementRange:replacementRange];
                 return;
-            } else if ([aString isEqualToString:[NSString stringWithCharacters:&k_yenMark length:1]]) {
-                [self inputBackSlash:nil];
+            } else if ([aString isEqualToString:yen]) {
+                [super insertText:@"\\" replacementRange:replacementRange];
                 return;
             }
         }
     }
-    [super insertText:aString];
+    
+    [super insertText:aString replacementRange:replacementRange];
 }
 
 
