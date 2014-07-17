@@ -536,7 +536,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
              k_SCKey_filenames: [NSMutableArray array],
              k_SCKey_keywordsArray: [NSMutableArray array],
              k_SCKey_commandsArray: [NSMutableArray array],
-             k_SCKey_categoriesArray: [NSMutableArray array],
+             k_SCKey_typesArray: [NSMutableArray array],
              k_SCKey_variablesArray: [NSMutableArray array],
              k_SCKey_valuesArray: [NSMutableArray array],
              k_SCKey_numbersArray: [NSMutableArray array],

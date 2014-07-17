@@ -818,7 +818,7 @@ static CGFloat kPerCompoIncrement;
     NSMutableDictionary *quoteTypes = [NSMutableDictionary dictionaryWithCapacity:2];
     
     @try {
-        // Keywords > Commands > Categories > Variables > Values > Numbers > Strings > Characters > Comments
+        // Keywords > Commands > Types > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             // インジケータシートのメッセージを更新
             if ([self indicatorController]) {
@@ -1034,8 +1034,8 @@ static CGFloat kPerCompoIncrement;
                 color = [theme keywordsColor];
             } else if ([colorType isEqualToString:k_SCKey_commandsArray]) {
                 color = [theme commandsColor];
-            } else if ([colorType isEqualToString:k_SCKey_categoriesArray]) {
-                color = [theme categoriesColor];
+            } else if ([colorType isEqualToString:k_SCKey_typesArray]) {
+                color = [theme typesColor];
             } else if ([colorType isEqualToString:k_SCKey_variablesArray]) {
                 color = [theme variablesColor];
             } else if ([colorType isEqualToString:k_SCKey_valuesArray]) {

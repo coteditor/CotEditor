@@ -413,7 +413,7 @@
                                     </constraints>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="2" identifier="Categories" id="KdB-rQ-VZY" userLabel="Categories Tab">
+                            <tabViewItem label="2" identifier="Types" id="KdB-rQ-VZY" userLabel="Types Tab">
                                 <view key="view" id="mvb-uD-e4N">
                                     <rect key="frame" x="10" y="7" width="418" height="303"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2299,7 +2299,7 @@ DQ
                 <string>styleName</string>
                 <string>keywordsArray</string>
                 <string>commandsArray</string>
-                <string>categoriesArray</string>
+                <string>typesArray</string>
                 <string>variablesArray</string>
                 <string>valuesArray</string>
                 <string>numbersArray</string>
@@ -2338,7 +2338,7 @@ DQ
                 <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.commandsArray" id="8fD-dq-8fk"/>
             </connections>
         </arrayController>
-        <arrayController clearsFilterPredicateOnInsertion="NO" id="Xf4-h5-a4r" userLabel="Categories Controller">
+        <arrayController clearsFilterPredicateOnInsertion="NO" id="Xf4-h5-a4r" userLabel="Types Controller">
             <declaredKeys>
                 <string>ignoreCase</string>
                 <string>regularExpression</string>
@@ -2346,7 +2346,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.categoriesArray" id="hvS-Tw-2QF"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.typesArray" id="hvS-Tw-2QF"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="5VS-Xp-FDy" userLabel="Variables Controller">
