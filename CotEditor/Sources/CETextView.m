@@ -1343,7 +1343,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // （カラーコード編集メニューは常に有効）
 
     } else if ([menuItem action] == @selector(setLineSpacingFromMenu:)) {
-        [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue]) ? NSOnState : NSOffState)];
+        [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue] - 1.0) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
@@ -1985,7 +1985,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)setLineSpacingFromMenu:(id)sender
 // ------------------------------------------------------
 {
-    [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue]];
+    [self setNewLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
 }
 
 

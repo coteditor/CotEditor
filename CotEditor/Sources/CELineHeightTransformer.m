@@ -1,6 +1,6 @@
 /*
  =================================================
- CELineSpacingPanelController
+ CELineHeightTransformer
  (for CotEditor)
  
  Copyright (C) 2014 CotEditor Project
@@ -8,7 +8,7 @@
  =================================================
  
  encoding="UTF-8"
- Created:2014-03-16 by 1024jp
+ Created on 2014-07-14 by 1024jp
  
  -------------------------------------------------
  
@@ -30,55 +30,64 @@
  =================================================
  */
 
-#import "CELineSpacingPanelController.h"
+#import "CELineHeightTransformer.h"
 
 
-@interface CELineSpacingPanelController ()
+@implementation CELineHeightTransformer
 
-@property (nonatomic) CGFloat lineSpacing;
+#pragma mark Class Methods
 
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CELineSpacingPanelController
-
-#pragma mark Superclass Methods
+//=======================================================
+// Class method
+//
+//=======================================================
 
 // ------------------------------------------------------
-/// initializer of panelController
-- (instancetype)init
+/// Class of transformed value
++ (Class)transformedValueClass
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"LineSpacingPanel"];
-    
-    return self;
+    return [NSNumber class];
 }
 
 
 // ------------------------------------------------------
-/// invoke when frontmost document window changed
-- (void)keyDocumentDidChange
+/// Can reverse transformeation?
++ (BOOL)allowsReverseTransformation
 // ------------------------------------------------------
 {
-    [self setLineSpacing:[[[[self documentWindowController] editorView] textView] lineSpacing]];
-    
+    return YES;
 }
 
 
 
-#pragma mark Action Messages
+#pragma mark NSValueTransformer Methods
+
+//=======================================================
+// NSValueTransformer method
+//
+//=======================================================
 
 // ------------------------------------------------------
-/// apply to the frontmost document window
-- (IBAction)apply:(id)sender
+/// From line spacing to line height (NSNumber -> NSNumber)
+- (id)transformedValue:(id)value
 // ------------------------------------------------------
 {
-    [[[[self documentWindowController] editorView] textView] setNewLineSpacingAndUpdate:[self lineSpacing]];
-    [[self window] close];
+    if (!value) { return nil; }
+    
+    return @([value doubleValue] + 1.0);
+}
+
+
+// ------------------------------------------------------
+/// From line height to line spacing (NSNumber -> NSNumber)
+- (id)reverseTransformedValue:(id)value
+// ------------------------------------------------------
+{
+    if (!value) { return nil; }
+    
+    return @([value doubleValue] - 1.0);
+    
 }
 
 @end

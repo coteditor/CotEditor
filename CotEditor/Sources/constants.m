@@ -201,10 +201,6 @@ NSString *const k_key_coloringRangeBufferLength = @"coloringRangeBufferLength";
 NSUInteger const k_pageGuideColumnMin =    1;
 NSUInteger const k_pageGuideColumnMax = 1000;
 
-// custom line spacing values
-CGFloat const k_lineSpacingMin =  0.0;
-CGFloat const k_lineSpacingMax = 10.0;
-
 
 
 #pragma mark Syntax
