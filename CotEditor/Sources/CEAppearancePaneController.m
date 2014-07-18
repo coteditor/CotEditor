@@ -42,6 +42,7 @@
 
 @property (nonatomic) IBOutlet NSTableView *themeTableView;
 
+@property (nonatomic) NSArray *themeNames;
 @property (nonatomic) NSMutableDictionary *themeDict;
 @property (nonatomic) BOOL isBundled;
 
@@ -66,7 +67,7 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:[self themeTableView]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     for (NSString *key in [[self themeDict] allKeys]) {
         [[self themeDict] removeObserver:self forKeyPath:key];
@@ -81,15 +82,17 @@
 {
     [self setFontFamilyNameAndSize];
     
+    [self setupThemeList];
+    
     // デフォルトテーマを選択
-    NSArray *themeNames = [[[CEThemeManager sharedManager] themeNames] copy];
+    NSArray *themeNames = [[self themeNames] copy];
     NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]];
     [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     [[self themeTableView] setAllowsEmptySelection:NO];
     
     // テーマのラインナップが変更されたらテーブルビューを更新
-    [[NSNotificationCenter defaultCenter] addObserver:[self themeTableView]
-                                             selector:@selector(reloadData)
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setupThemeList)
                                                  name:CEThemeListDidUpdateNotification
                                                object:nil];
 }
@@ -101,7 +104,7 @@
 // ------------------------------------------------------
 {
     if (object == [self themeDict]) {
-        [[CEThemeManager sharedManager] saveTheme:[self themeDict] name:[self selectedTheme] error:nil];
+        [[CEThemeManager sharedManager] saveTheme:[self themeDict] name:[self selectedTheme] completionHandler:nil];
     }
 }
 
@@ -125,7 +128,7 @@
         [menuItem setHidden:!isBundled];
         return isCustomized;
     }
-
+    
     return YES;
 }
 
@@ -143,7 +146,7 @@
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 // ------------------------------------------------------
 {
-    return [[[CEThemeManager sharedManager] themeNames] count];
+    return [[self themeNames] count];
 }
 
 
@@ -152,7 +155,7 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 // ------------------------------------------------------
 {
-    return [[CEThemeManager sharedManager] themeNames][rowIndex];
+    return [self themeNames][rowIndex];
 }
 
 
@@ -254,7 +257,7 @@
     NSFont *newFont = [sender convertFont:[NSFont systemFontOfSize:0]];
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
-
+    
     [[NSUserDefaults standardUserDefaults] setObject:name forKey:k_key_fontName];
     [[NSUserDefaults standardUserDefaults] setFloat:size forKey:k_key_fontSize];
     [self setFontFamilyNameAndSize];
@@ -266,12 +269,12 @@
 - (IBAction)addTheme:(id)sender
 //------------------------------------------------------
 {
-    NSString *themeName = nil;
-    if ([[CEThemeManager sharedManager] createUntitledTheme:&themeName error:nil]) {
+    __block typeof(self) blockSelf = self;
+    [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
         NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
-        [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
-    }
+        [[blockSelf themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    }];
 }
 
 
@@ -318,7 +321,7 @@
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
-    
+        
         [[CEThemeManager sharedManager] exportTheme:selectedThemeName toURL:[savePanel URL] error:nil];
     }];
 }
@@ -435,7 +438,7 @@
 - (NSString *)selectedTheme
 //------------------------------------------------------
 {
-    return [[CEThemeManager sharedManager] themeNames][[[self themeTableView] selectedRow]];
+    return [self themeNames][[[self themeTableView] selectedRow]];
 }
 
 
@@ -479,6 +482,13 @@
         NSAlert *alert = [NSAlert alertWithError:error];
         [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
     }
+}
+
+
+- (void)setupThemeList
+{
+    [self setThemeNames:[[CEThemeManager sharedManager] themeNames]];
+    [[self themeTableView] reloadData];
 }
 
 @end

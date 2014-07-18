@@ -178,17 +178,18 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// テーマを保存する
-- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName error:(NSError *__autoreleasing *)error
+- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *))completionHandler
 //------------------------------------------------------
 {
+    NSError *error = nil;
     NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:theme
                                                                    format:NSPropertyListXMLFormat_v1_0
                                                                   options:0
-                                                                    error:error];
+                                                                    error:&error];
     
     [self prepareUserThemeDirectory];
     
-    BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:error];
+    BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:&error];
     
     if (success) {
         __block typeof(self) blockSelf = self;
@@ -197,7 +198,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
                                                                 object:blockSelf
                                                               userInfo:@{CEOldNameKey: themeName,
                                                                          CENewNameKey: themeName}];
+            if (completionHandler) {
+                completionHandler(error);
+            }
         }];
+    } else {
+        if (completionHandler) {
+            completionHandler(error);
+        }
     }
     
     return success;
@@ -251,11 +259,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     if (success) {
+        __block typeof(self) blockSelf = self;
         [self updateCacheWithCompletionHandler:^{
             // 開いているウインドウのテーマをデフォルトに戻す
             NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
             
-            __block typeof(self) blockSelf = self;
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                                 object:blockSelf
                                                               userInfo:@{CEOldNameKey: themeName,
@@ -290,6 +298,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
                 completionHandler(error);
             }
         }];
+    } else {
+        if (completionHandler) {
+            completionHandler(error);
+        }
     }
     
     return success;
@@ -411,7 +423,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// 新規テーマを作成
-- (BOOL)createUntitledTheme:(NSString *__autoreleasing *)themeName error:(NSError *__autoreleasing *)error
+- (BOOL)createUntitledThemeWithCompletionHandler:(void (^)(NSString *, NSError *))completionHandler
 //------------------------------------------------------
 {
     BOOL success = NO;
@@ -425,11 +437,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         counter++;
     }
     
-    success = [self saveTheme:[self plainTheme] name:newThemeName error:error];
-    
-    if (success && themeName) {
-        *themeName = newThemeName;
-    }
+    success = [self saveTheme:[self plainTheme] name:newThemeName completionHandler:^(NSError *error) {
+        if (completionHandler) {
+            completionHandler(newThemeName, error);
+        }
+    }];
     
     return success;
 }
@@ -683,7 +695,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     // カスタマイズされたカラー設定があった場合は移行テーマを生成する
     if (isCustomized) {
         NSString *themeName = NSLocalizedString(@"Customized Theme", nil);
-        [self saveTheme:theme name:themeName error:nil];
+        [self saveTheme:theme name:themeName completionHandler:nil];
         // カスタマイズされたテーマを選択
         [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:k_key_defaultTheme];
     }
