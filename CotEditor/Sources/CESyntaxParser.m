@@ -300,7 +300,10 @@ static NSArray *kSyntaxDictKeys;
     // 表示領域の前もある程度カラーリングの対象に含める
     start -= MIN(start, [[NSUserDefaults standardUserDefaults] integerForKey:k_key_coloringRangeBufferLength]);
     
-    [self colorString:wholeString range:NSMakeRange(start, end - start) onMainThread:YES];
+    NSRange coloringRange = NSMakeRange(start, end - start);
+    coloringRange = [wholeString lineRangeForRange:coloringRange];
+    
+    [self colorString:wholeString range:coloringRange onMainThread:YES];
 }
 
 
