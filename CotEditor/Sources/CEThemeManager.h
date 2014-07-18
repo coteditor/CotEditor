@@ -77,13 +77,13 @@ extern NSString *const CEThemeDidUpdateNotification;
 - (BOOL)isBundledTheme:(NSString *)themeName cutomized:(BOOL *)isCustomized;
 
 // manage themes
-- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName error:(NSError **)error;
+- (BOOL)saveTheme:(NSDictionary *)theme name:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
 - (BOOL)renameTheme:(NSString *)themeName toName:(NSString *)newThemeName error:(NSError **)error;
 - (BOOL)removeTheme:(NSString *)themeName error:(NSError **)error;
 - (BOOL)restoreTheme:(NSString *)themeName completionHandler:(void (^)(NSError *error))completionHandler;
 - (BOOL)duplicateTheme:(NSString *)themeName error:(NSError **)error;
 - (BOOL)exportTheme:(NSString *)themeName toURL:(NSURL *)URL error:(NSError **)error;
 - (BOOL)importTheme:(NSURL *)URL replace:(BOOL)doReplace error:(NSError **)error;
-- (BOOL)createUntitledTheme:(NSString **)themeName error:(NSError **)error;
+- (BOOL)createUntitledThemeWithCompletionHandler:(void (^)(NSString *themeName, NSError *error))completionHandler;
 
 @end
