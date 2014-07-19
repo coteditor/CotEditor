@@ -194,6 +194,27 @@
 			<true/>
 		</dict>
 	</array>
+	<key>numbersArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)[[:alnum:]_\-.]+:(?=\w)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\b)[[:alnum:]_\-.]+:(?=\w[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)[[:alnum:]_\-.]+:(?=(\w|[\-.])+\s*=)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>outlineMenuArray</key>
 	<array/>
 	<key>stringsArray</key>
@@ -224,24 +245,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>(?#for SGML DTD)(?&lt;!ATTLIST)\s+[O\-]\s+[O\-](?=\s[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)[[:alnum:]_\-.]+:(?=\w)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\b)[[:alnum:]_\-.]+:(?=\w[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)[[:alnum:]_\-.]+:(?=(\w|[\-.])+\s*=)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
