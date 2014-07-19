@@ -2,15 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>charactersArray</key>
-	<array/>
-	<key>commandsArray</key>
+	<key>typesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
 			<string>@(?:\w|\.)+</string>
-			<key>regularExpression</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28,6 +24,11 @@
 			<key>beginString</key>
 			<string>@staticmethod</string>
 		</dict>
+	</array>
+	<key>charactersArray</key>
+	<array/>
+	<key>commandsArray</key>
+	<array>
 		<dict>
 			<key>beginString</key>
 			<string>__abs__</string>
@@ -1461,10 +1462,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>cls</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>Ellipsis</string>
 		</dict>
 		<dict>
@@ -1541,15 +1538,22 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>self</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>softspace</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>True</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>cls</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>self</string>
 		</dict>
 	</array>
 </dict>
