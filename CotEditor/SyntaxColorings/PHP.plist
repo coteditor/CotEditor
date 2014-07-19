@@ -2,6 +2,65 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>bool</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>boolean</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>callable</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>double</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>int</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>integer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mixed</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>null</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>number</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>object</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>resource</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>string</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>void</string>
+		</dict>
+	</array>
 	<key>charactersArray</key>
 	<array>
 		<dict>
@@ -2743,6 +2802,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>DOMDocument</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>domxml_new_doc</string>
 			<key>ignoreCase</key>
 			<false/>
@@ -4711,6 +4774,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>hexdec</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>highlight_file</string>
 			<key>ignoreCase</key>
 			<false/>
@@ -5567,6 +5634,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>imagefilledellipse</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>imagefilledpolygon</string>
 			<key>ignoreCase</key>
 			<false/>
@@ -5808,6 +5879,10 @@
 			<false/>
 			<key>regularExpression</key>
 			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>imagesetbrush</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27220,7 +27295,19 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>inc.php</string>
+			<string>php4</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>php5</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>phps</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>phtml</string>
 		</dict>
 	</array>
 	<key>keywordsArray</key>
@@ -27233,6 +27320,354 @@
 			<key>beginString</key>
 			<string>?&gt;</string>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>abstract</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>and</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>as</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>binary</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>break</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>case</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>catch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>class</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clone</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>const</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>continue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>declare</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>default</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>do</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>else</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>elseif</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>endfor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>endforeach</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>endif</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>endswitch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>endwhile</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>exit</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>extends</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>final</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>finally</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>for</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>foreach</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>function</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>global</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>goto</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>if</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>implements</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>include</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>include_once</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>instanceof</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>insteadof</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>interface</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>namespace</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>new</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>or</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>private</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>protected</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>public</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>real</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>require</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>require_once</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>return</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>static</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>switch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>throw</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>trait</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>try</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>unset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>use</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>var</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>while</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>xor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>yield</string>
+		</dict>
+	</array>
+	<key>numbersArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>\b-?0b[01]+\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b-?0x[0-9a-f]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b-?\d*\.?\d+\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
+	<key>outlineMenuArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>^([\t ]*)(((?:(?:final|static|public|protected|private)[\t ]+)+)function)\s*([^{;]*)(?=[{;])</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>keyString</key>
+			<string>   $3: $4</string>
+			<key>underline</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^([\t ]*)(abstract (public|protected|private)[\t ]+function)\s*([^{;]*)(?=[{;])</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>italic</key>
+			<true/>
+			<key>keyString</key>
+			<string>   abstract $3: $4</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^([\t ]*)(function)\s*([^{]*)(?=\{)</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>keyString</key>
+			<string>   $3</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^[\t ]*((?:final[\t ]+)?class)[\t ]+(.*)\{</string>
+			<key>bold</key>
+			<true/>
+			<key>ignoreCase</key>
+			<false/>
+			<key>italic</key>
+			<false/>
+			<key>keyString</key>
+			<string>$1: $2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^[\t ]*(abstract class)[\t ]+(.*)\{</string>
+			<key>bold</key>
+			<true/>
+			<key>ignoreCase</key>
+			<false/>
+			<key>italic</key>
+			<true/>
+			<key>keyString</key>
+			<string>$1: $2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^[\t ]*(interface)[\t ]+(.*)\{</string>
+			<key>bold</key>
+			<false/>
+			<key>ignoreCase</key>
+			<false/>
+			<key>italic</key>
+			<true/>
+			<key>keyString</key>
+			<string>$1: $2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^[\t ]*(trait)[\t ]+(.*)\{</string>
+			<key>ignoreCase</key>
+			<false/>
+			<key>italic</key>
+			<true/>
+			<key>keyString</key>
+			<string>$1: $2</string>
+		</dict>
+	</array>
+	<key>stringsArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>"</string>
+			<key>endString</key>
+			<string>"</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+	</array>
+	<key>styleName</key>
+	<string>PHP</string>
+	<key>valuesArray</key>
+	<array>
 		<dict>
 			<key>beginString</key>
 			<string>__CLASS__</string>
@@ -27343,23 +27778,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>abstract</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>ALT_DIGITS</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>AM_STR</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>and</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>as</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27383,22 +27806,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>binary</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>bool</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>boolean</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>break</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>BUS_ADRALN</string>
 		</dict>
 		<dict>
@@ -27411,11 +27818,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>callable</string>
+			<string>CAL_FRENCH</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>case</string>
+			<string>CAL_GREGORIAN</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>CAL_JEWISH</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>CAL_JULIAN</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27427,15 +27842,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>catch</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>CHAR_MAX</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>class</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27463,10 +27870,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>clone</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>CODESET</string>
 		</dict>
 		<dict>
@@ -27480,14 +27883,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>CONNECTION_TIMEOUT</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>const</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>continue</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27671,14 +28066,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>declare</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>default</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>DEFAULT_INCLUDE_PATH</string>
 		</dict>
 		<dict>
@@ -27687,55 +28074,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>do</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>DOMDocument</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>double</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>E_ALL</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>E_COMPILE_ERROR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>E_COMPILE_WARNING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>E_CORE_ERROR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>E_CORE_WARNING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27744,26 +28099,14 @@
 		<dict>
 			<key>beginString</key>
 			<string>E_ERROR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>E_NOTICE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>E_PARSE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27772,10 +28115,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>E_USER</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27784,10 +28123,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>E_USER_ERROR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27796,46 +28131,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>E_USER_WARNING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>E_WARNING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>else</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>elseif</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>endfor</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>endforeach</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>endif</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>endswitch</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>endwhile</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27880,42 +28179,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>ERA_D_FMT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>ERA_D_T_FMT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>ERA_T_FMT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>ERA_YEAR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>exit</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>extends</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -27944,30 +28219,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>EXTR_SKIP</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>final</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>finally</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>float</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>for</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>foreach</string>
+			<string>false</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28004,26 +28259,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>FRAC_DIGITS</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>FrenchToJD</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>function</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>global</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28031,47 +28266,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>goto</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>GregorianToJD</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>GROUPING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>HexDec</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>HTML_ENTITIES</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>HTML_SPECIALCHARS</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28143,10 +28346,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>if</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>ILL_BADSTK</string>
 		</dict>
 		<dict>
@@ -28179,123 +28378,47 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>ImageFilledEllipse</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>ImageSetBrush</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>ImageSetPixel</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>IMG_FILTER_PIXELATE</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>implements</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>include</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>include_once</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>INFO_ALL</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INFO_CONFIGURATION</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INFO_CREDITS</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INFO_ENVIRONMENT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INFO_GENERAL</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INFO_LICENSE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INFO_MODULES</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INFO_VARIABLES</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INI_ALL</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INI_PERDIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28308,54 +28431,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>INI_SYSTEM</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INI_USER</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>instanceof</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>insteadof</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>int</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INT_CURR_SYMBOL</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>INT_FRAC_DIGITS</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>integer</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>interface</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28396,54 +28483,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>IPV6_MULTICAST_LOOP</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>JDDayOfWeek</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>JDMonthName</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>JDToFrench</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>JDToGregorian</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>JDToJewish</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>JDToJulian</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28508,58 +28547,30 @@
 		<dict>
 			<key>beginString</key>
 			<string>LC_ALL</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LC_COLLATE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LC_CTYPE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LC_MESSAGES</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LC_MONETARY</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LC_NUMERIC</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LC_TIME</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28584,330 +28595,166 @@
 		<dict>
 			<key>beginString</key>
 			<string>LOCK_EX</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOCK_NB</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOCK_SH</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOCK_UN</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_ALERT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_AUTH</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_AUTHPRIV</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_CONS</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_CRIT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_CRON</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_DAEMON</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_DEBUG</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_EMERG</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_ERR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_INFO</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_KERN</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL0</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL1</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL2</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL3</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL4</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL5</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL6</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LOCAL7</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_LPR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_MAIL</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_NDELAY</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_NEWS</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_NOTICE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_NOWAIT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_ODELAY</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_PERROR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_PID</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_SYSLOG</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_USER</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_UUCP</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>LOG_WARNING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_1_PI</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_2_PI</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_2_SQRTPI</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_E</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28916,18 +28763,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>M_LN10</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_LN2</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -28936,58 +28775,30 @@
 		<dict>
 			<key>beginString</key>
 			<string>M_LOG10E</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_LOG2E</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_PI</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_PI_2</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_PI_4</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_SQRT1_2</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>M_SQRT2</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29024,122 +28835,62 @@
 		<dict>
 			<key>beginString</key>
 			<string>MON_1</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_10</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_11</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_12</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_2</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_3</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_4</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_5</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_6</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_7</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_8</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_9</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_DECIMAL_POINT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_GROUPING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>MON_THOUSANDS_SEP</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29152,86 +28903,34 @@
 		<dict>
 			<key>beginString</key>
 			<string>N_CS_PRECEDES</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>N_SEP_BY_SPACE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>N_SIGN_POSN</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>namespace</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>NEGATIVE_SIGN</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>new</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>NOEXPR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>NOSTR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>NOTICE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>object</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>OCI-Collection</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>OCI-Lob</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
+			<string>NULL</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29263,55 +28962,27 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>or</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>P_CS_PRECEDES</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>P_SEP_BY_SPACE</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>P_SIGN_POSN</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PATHINFO_BASENAME</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PATHINFO_DIRNAME</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PATHINFO_EXTENSION</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29320,42 +28991,22 @@
 		<dict>
 			<key>beginString</key>
 			<string>PEAR_EXTENSION_DIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PEAR_INSTALL_DIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PHP_BINDIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PHP_CONFIG_FILE_PATH</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PHP_DATADIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29364,26 +29015,14 @@
 		<dict>
 			<key>beginString</key>
 			<string>PHP_EXTENSION_DIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PHP_LIBDIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PHP_LOCALSTATEDIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29392,10 +29031,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>PHP_OS</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29408,10 +29043,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>PHP_OUTPUT_HANDLER_CONT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29420,10 +29051,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>PHP_OUTPUT_HANDLER_END</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29444,10 +29071,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>PHP_OUTPUT_HANDLER_START</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29476,18 +29099,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>PHP_SYSCONFDIR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>PHP_VERSION</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29536,10 +29151,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>PM_STR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29568,10 +29179,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>POSITIVE_SIGN</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29599,63 +29206,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>private</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>protected</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>public</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>RADIXCHAR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>real</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>require</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>require_once</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>return</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>SEEK_CUR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>SEEK_END</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>SEEK_SET</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29724,70 +29287,34 @@
 		<dict>
 			<key>beginString</key>
 			<string>SORT_ASC</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>SORT_DESC</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>SORT_NUMERIC</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>SORT_REGULAR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>SORT_STRING</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>static</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>STR_PAD_BOTH</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>STR_PAD_LEFT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>STR_PAD_RIGHT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29824,10 +29351,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>STREAM_SHUT_WR</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>string</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29891,55 +29414,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>switch</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>T_FMT</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>T_FMT_AMPM</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>T_STD_DES</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>THOUSANDS_SEP</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>THOUSEP</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>throw</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>trait</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29951,7 +29442,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>try</string>
+			<string>true</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -29959,47 +29450,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>unset</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>UPLOAD_ERR_EXTENSION</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>use</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>var</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>while</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>xor</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>YESEXPR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>YESSTR</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>yield</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -30014,126 +29473,11 @@
 			<string>ZLIB_ENCODING_RAW</string>
 		</dict>
 	</array>
-	<key>numbersArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>\b-?0b[01]+\b</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>\b-?0x[0-9a-f]+\b</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>\b-?\d*\.?\d+\b</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
-	<key>outlineMenuArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>^([\t ]*)(((?:(?:final|static|public|protected|private)[\t ]+)+)function)\s*([^{;]*)(?=[{;])</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>keyString</key>
-			<string>   $3: $4</string>
-			<key>underline</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^([\t ]*)(abstract (public|protected|private)[\t ]+function)\s*([^{;]*)(?=[{;])</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>italic</key>
-			<true/>
-			<key>keyString</key>
-			<string>   abstract $3: $4</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^([\t ]*)(function)\s*([^{]*)(?=\{)</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>keyString</key>
-			<string>   $3</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^[\t ]*((?:final[\t ]+)?class)[\t ]+(.*)\{</string>
-			<key>bold</key>
-			<true/>
-			<key>ignoreCase</key>
-			<false/>
-			<key>italic</key>
-			<false/>
-			<key>keyString</key>
-			<string>$1: $2</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^[\t ]*(abstract class)[\t ]+(.*)\{</string>
-			<key>bold</key>
-			<true/>
-			<key>ignoreCase</key>
-			<false/>
-			<key>italic</key>
-			<true/>
-			<key>keyString</key>
-			<string>$1: $2</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^[\t ]*(interface)[\t ]+(.*)\{</string>
-			<key>bold</key>
-			<false/>
-			<key>ignoreCase</key>
-			<false/>
-			<key>italic</key>
-			<true/>
-			<key>keyString</key>
-			<string>$1: $2</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^[\t ]*(trait)[\t ]+(.*)\{</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>italic</key>
-			<true/>
-			<key>keyString</key>
-			<string>$1: $2</string>
-		</dict>
-	</array>
-	<key>stringsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>"</string>
-			<key>endString</key>
-			<string>"</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-	</array>
-	<key>styleName</key>
-	<string>PHP</string>
-	<key>valuesArray</key>
+	<key>variablesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
 			<string>&amp;?\$[a-zA-Z_¥x7f-¥xff][a-zA-Z0-9_¥x7f-¥xff]*</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
