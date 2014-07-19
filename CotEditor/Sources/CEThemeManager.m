@@ -734,9 +734,9 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
              CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:
                                     [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0]],
              CEThemeAttributesColorKey: [NSArchiver archivedDataWithRootObject:
-                                         [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0]],
+                                         [NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0]],
              CEThemeVariablesColorKey: [NSArchiver archivedDataWithRootObject:
-                                        [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.074 alpha:1.0]],
+                                        [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0]],
              CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:
                                      [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0]],
              CEThemeNumbersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
