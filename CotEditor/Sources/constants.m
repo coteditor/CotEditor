@@ -231,7 +231,7 @@ NSString *const k_SCKey_italic = @"italic";
 NSString *const k_SCKey_numOfObjInArray = @"numOfObjInArray";
 NSString *const k_SCKey_keywordsArray = @"keywordsArray";
 NSString *const k_SCKey_commandsArray = @"commandsArray";
-NSString *const k_SCKey_categoriesArray = @"categoriesArray";
+NSString *const k_SCKey_typesArray = @"typesArray";
 NSString *const k_SCKey_variablesArray = @"variablesArray";
 NSString *const k_SCKey_valuesArray = @"valuesArray";
 NSString *const k_SCKey_numbersArray = @"numbersArray";
@@ -244,7 +244,7 @@ NSString *const k_SCKey_completionsArray = @"completionsArray";
 NSString *const k_SCKey_allColoringArrays[] = {
     @"keywordsArray",
     @"commandsArray",
-    @"categoriesArray",
+    @"typesArray",
     @"variablesArray",
     @"valuesArray",
     @"numbersArray",

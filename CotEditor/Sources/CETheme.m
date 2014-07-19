@@ -51,7 +51,7 @@
 // syntax colors
 @property (nonatomic, readwrite) NSColor *keywordsColor;
 @property (nonatomic, readwrite) NSColor *commandsColor;
-@property (nonatomic, readwrite) NSColor *categoriesColor;
+@property (nonatomic, readwrite) NSColor *typesColor;
 @property (nonatomic, readwrite) NSColor *variablesColor;
 @property (nonatomic, readwrite) NSColor *valuesColor;
 @property (nonatomic, readwrite) NSColor *numbersColor;
@@ -113,7 +113,7 @@
         [self setLineHighLightColor:themeDict[CEThemeLineHighlightColorKey]];
         [self setKeywordsColor:themeDict[CEThemeKeywordsColorKey]];
         [self setCommandsColor:themeDict[CEThemeCommandsColorKey]];
-        [self setCategoriesColor:themeDict[CEThemeCategoriesColorKey]];
+        [self setTypesColor:themeDict[CEThemeTypesColorKey]];
         [self setVariablesColor:themeDict[CEThemeVariablesColorKey]];
         [self setValuesColor:themeDict[CEThemeValuesColorKey]];
         [self setNumbersColor:themeDict[CEThemeNumbersColorKey]];

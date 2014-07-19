@@ -174,7 +174,7 @@ http://www.aynimac.com/
 "Applying colors to text" = "テキストにカラーを適応中";
 "keywords" = "キーワード";
 "commands" = "コマンド";
-"categories" = "カテゴリ";
+"types" = "タイプ";
 "variables" = "変数";
 "values" = "値";
 "numbers" = "数値";
@@ -215,7 +215,7 @@ http://www.aynimac.com/
 // menu items
 "Keywords" = "キーワード";
 "Commands" = "コマンド";
-"Categories" = "カテゴリ";
+"Types" = "タイプ";
 "Variables" = "変数";
 "Values" = "値";
 "Numbers" = "数値";

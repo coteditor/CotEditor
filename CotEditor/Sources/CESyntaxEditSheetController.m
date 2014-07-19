@@ -301,7 +301,7 @@
 {
     return @[NSLocalizedString(@"Keywords", nil),
              NSLocalizedString(@"Commands", nil),
-             NSLocalizedString(@"Categories", nil),
+             NSLocalizedString(@"Types", nil),
              NSLocalizedString(@"Variables", nil),
              NSLocalizedString(@"Values", nil),
              NSLocalizedString(@"Numbers", nil),
