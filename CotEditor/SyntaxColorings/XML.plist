@@ -194,7 +194,32 @@
 			<true/>
 		</dict>
 	</array>
-	<key>numbersArray</key>
+	<key>outlineMenuArray</key>
+	<array/>
+	<key>stringsArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>"</string>
+			<key>endString</key>
+			<string>"</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;\S+?;</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=NDATA)\s+[[:alnum:]_\-.]+(?=\s*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
+	<key>styleName</key>
+	<string>XML</string>
+	<key>typesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
@@ -221,31 +246,6 @@
 			<true/>
 		</dict>
 	</array>
-	<key>outlineMenuArray</key>
-	<array/>
-	<key>stringsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>"</string>
-			<key>endString</key>
-			<string>"</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;\S+?;</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=NDATA)\s+[[:alnum:]_\-.]+(?=\s*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
-	<key>styleName</key>
-	<string>XML</string>
 	<key>valuesArray</key>
 	<array>
 		<dict>

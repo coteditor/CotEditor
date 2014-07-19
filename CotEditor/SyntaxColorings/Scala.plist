@@ -11,53 +11,6 @@
 			<string>'</string>
 		</dict>
 	</array>
-	<key>commandsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>Array</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Boolean</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Byte</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Char</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Double</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Float</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Int</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Long</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Short</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>String</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Unit</string>
-		</dict>
-	</array>
 	<key>commentDelimiters</key>
 	<dict>
 		<key>beginDelimiter</key>
@@ -352,6 +305,53 @@
 	</array>
 	<key>styleName</key>
 	<string>Scala</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>Array</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Boolean</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Byte</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Char</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Double</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Int</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Long</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Short</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>String</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Unit</string>
+		</dict>
+	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>
@@ -364,6 +364,13 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>true</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
 			<string>super(?=\.)</string>
 			<key>regularExpression</key>
 			<true/>
@@ -373,10 +380,6 @@
 			<string>this(?=\.)</string>
 			<key>regularExpression</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>true</string>
 		</dict>
 	</array>
 </dict>

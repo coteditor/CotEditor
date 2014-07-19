@@ -313,15 +313,18 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>true</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
 			<string>super</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>this</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>true</string>
 		</dict>
 	</array>
 </dict>

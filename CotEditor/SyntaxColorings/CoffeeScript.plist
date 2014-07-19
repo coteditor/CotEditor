@@ -25,10 +25,6 @@
 			<key>regularExpression</key>
 			<true/>
 		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>this</string>
-		</dict>
 	</array>
 	<key>commentDelimiters</key>
 	<dict>
@@ -285,6 +281,13 @@
 		<dict>
 			<key>beginString</key>
 			<string>yes</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>this</string>
 		</dict>
 	</array>
 </dict>

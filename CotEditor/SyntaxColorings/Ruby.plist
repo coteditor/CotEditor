@@ -13,6 +13,7 @@
 	</array>
 	<key>commandsArray</key>
 	<array>
+		<dict/>
 		<dict>
 			<key>beginString</key>
 			<string>.class</string>
@@ -34,12 +35,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>abort</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Array</string>
 			<key>regularExpression</key>
 			<false/>
 		</dict>
@@ -207,12 +202,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>Float</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>fork</string>
 			<key>regularExpression</key>
 			<false/>
@@ -316,12 +305,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>instance_variables</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>Integer</string>
 			<key>regularExpression</key>
 			<false/>
 		</dict>
@@ -586,12 +569,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>srand</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>String</string>
 			<key>regularExpression</key>
 			<false/>
 		</dict>
@@ -1080,6 +1057,29 @@
 	</array>
 	<key>styleName</key>
 	<string>Ruby</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>Array</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Class</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Integer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>String</string>
+		</dict>
+	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>

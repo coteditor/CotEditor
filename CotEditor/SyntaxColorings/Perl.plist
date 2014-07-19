@@ -1180,6 +1180,21 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>__FILE__</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__LINE__</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
 			<string>(?&lt;!\$)\$,</string>
 			<key>regularExpression</key>
 			<true/>
@@ -1429,18 +1444,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>\$~</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>__FILE__</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>__LINE__</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>

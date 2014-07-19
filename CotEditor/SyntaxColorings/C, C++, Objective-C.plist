@@ -626,6 +626,17 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>true</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>YES</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
 			<string>self</string>
 		</dict>
 		<dict>
@@ -635,14 +646,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>this</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>true</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>YES</string>
 		</dict>
 	</array>
 </dict>

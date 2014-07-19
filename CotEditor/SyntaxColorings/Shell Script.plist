@@ -261,6 +261,17 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>false</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>true</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
 			<string>$!</string>
 		</dict>
 		<dict>

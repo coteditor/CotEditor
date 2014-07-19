@@ -1780,5 +1780,12 @@
 			<string>zIndex</string>
 		</dict>
 	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>this</string>
+		</dict>
+	</array>
 </dict>
 </plist>
