@@ -365,14 +365,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setSyntaxWithName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![[[self syntaxParser] syntaxStyleName] isEqualToString:styleName]) {
-        [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName
-                                                          layoutManager:(CELayoutManager *)[[self textView] layoutManager]
-                                                             isPrinting:NO]];
-        
-        [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
-        [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
-    }
+    [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:styleName
+                                                      layoutManager:(CELayoutManager *)[[self textView] layoutManager]
+                                                         isPrinting:NO]];
+    
+    [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
+    [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
 }
 
 

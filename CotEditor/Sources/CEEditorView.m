@@ -497,9 +497,8 @@ static NSTimeInterval secondColoringDelay;
 {
     if (![self syntaxParser]) { return; }
     
-    if (![[[self syntaxParser] syntaxStyleName] isEqualToString:name]) {
-        [[self splitView] setSyntaxWithName:name];
-    }
+    [[self splitView] setSyntaxWithName:name];
+    
     if (recolorNow) {
         [self recolorAllString];
         if ([self showNavigationBar]) {

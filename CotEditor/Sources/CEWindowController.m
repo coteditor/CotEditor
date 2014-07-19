@@ -754,7 +754,7 @@ static NSTimeInterval incompatibleCharInterval;
     NSString *newName = [notification userInfo][CENewNameKey];
     
     if ([oldName isEqualToString:currentName]) {
-        if (![oldName isEqualToString:newName]) {
+        if ([oldName isEqualToString:newName]) {
             [[self editorView] setSyntaxStyleName:newName recolorNow:NO];
         }
         if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
