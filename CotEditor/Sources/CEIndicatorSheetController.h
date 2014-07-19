@@ -43,6 +43,6 @@
 
 - (void)beginSheetForWindow:(NSWindow *)window;
 - (void)endSheet;
-- (void)progressIndicator:(CGFloat)delta;
+- (void)progressIndicator:(CGFloat)delta;  // max = 100
 
 @end

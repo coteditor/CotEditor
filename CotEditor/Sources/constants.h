@@ -214,10 +214,6 @@ extern NSUInteger const k_pageGuideColumnMax;
 extern NSUInteger const k_ESCheckLength;
 extern NSString  *const k_allAlphabetChars;
 
-// syntax coloring indicator
-extern CGFloat const k_perCompoIncrement;
-extern CGFloat const k_minIncrement;
-
 // syntax style
 extern NSString *const k_SCKey_styleName;
 extern NSString *const k_SCKey_extensions;

@@ -213,10 +213,6 @@ NSUInteger const k_pageGuideColumnMax = 1000;
 NSUInteger const k_ESCheckLength = 16;
 NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
-// syntax coloring indicator
-CGFloat const k_perCompoIncrement = 80.0;
-CGFloat const k_minIncrement = 3.4;
-
 // syntax style
 NSString *const k_SCKey_styleName = @"styleName";
 NSString *const k_SCKey_extensions = @"extensions";

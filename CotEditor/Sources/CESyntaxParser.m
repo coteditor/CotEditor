@@ -101,6 +101,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @implementation CESyntaxParser
 
 static NSArray *kSyntaxDictKeys;
+static CGFloat kPerCompoIncrement;
 
 
 #pragma mark Class Methods
@@ -117,6 +118,9 @@ static NSArray *kSyntaxDictKeys;
             [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
         }
         kSyntaxDictKeys = [syntaxDictKeys copy];
+        
+        // カラーリングインジケータの上昇幅を決定する（+1 はコメント＋引用符抽出用）
+        kPerCompoIncrement = 98.0 / (k_size_of_allColoringArrays + 1);
     });
 }
 
@@ -711,7 +715,6 @@ static NSArray *kSyntaxDictKeys;
     // コメントもクォートもなければ、もどる
     if ([positions count] < 1) { return nil; }
     
-    BOOL updatesIndicator = ([self indicatorController]);
     NSUInteger maxLength = [[self coloringString] length];
     
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:QCPositionKey ascending:YES];
@@ -724,11 +727,6 @@ static NSArray *kSyntaxDictKeys;
     NSString *searchPairKind = nil;
     
     while (index < coloringCount) {
-        // インジケータ更新
-        if (updatesIndicator) {
-            [[self indicatorController] progressIndicator:10.0 * 200 / coloringCount];
-        }
-        
         NSDictionary *position = positions[index];
         if (!searchPairKind) {
             if ([position[QCStartEndKey] unsignedIntegerValue] == QCEnd) {
@@ -822,7 +820,6 @@ static NSArray *kSyntaxDictKeys;
     @try {
         // Keywords > Commands > Categories > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
-            
             // インジケータシートのメッセージを更新
             if ([self indicatorController]) {
                 [[self indicatorController] setInformativeText:
@@ -833,12 +830,12 @@ static NSArray *kSyntaxDictKeys;
             NSArray *strDicts = [self coloringDictionary][syntaxKey];
             if ([strDicts count] == 0) {
                 if ([self indicatorController]) {
-                    [[self indicatorController] progressIndicator:100.0];
+                    [[self indicatorController] progressIndicator:kPerCompoIncrement];
                 }
                 continue;
             }
             
-            CGFloat indicatorDelta = k_perCompoIncrement / [strDicts count];
+            CGFloat indicatorDelta = kPerCompoIncrement / [strDicts count];
             
             NSMutableArray *targetRanges = [[NSMutableArray alloc] initWithCapacity:10];
             for (NSDictionary *strDict in strDicts) {
@@ -918,13 +915,12 @@ static NSArray *kSyntaxDictKeys;
                 [colorings addObject:@{ColorKey: syntaxKey,
                                        RangeKey: value}];
             }
-            
-            if ([self indicatorController]) {
-                [[self indicatorController] progressIndicator:100.0];
-            }
         } // end-for (syntaxKey)
         
         [colorings addObjectsFromArray:[self extractCommentsWithQuotes:quoteTypes]];
+        if ([self indicatorController]) {
+            [[self indicatorController] progressIndicator:kPerCompoIncrement];
+        }
 
         
         // 不可視文字の追加
