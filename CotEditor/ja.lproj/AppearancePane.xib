@@ -235,17 +235,17 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cFD-BM-Yto">
                                 <rect key="frame" x="60" y="43" width="43" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="変数：" id="fj8-JV-Eu9">
-                                    <font key="font" metaFont="system"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="属性：" id="fj8-JV-Eu9">
+                                    <font key="font" size="13" name="AquaKana"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zI7-Fa-5kc">
-                                <rect key="frame" x="73" y="16" width="30" height="17"/>
+                                <rect key="frame" x="60" y="16" width="43" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="値：" id="zsM-3M-oR0">
-                                    <font key="font" metaFont="system"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="変数：" id="zsM-3M-oR0">
+                                    <font key="font" size="13" name="AquaKana"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -260,7 +260,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zbO-y9-3Jd">
-                                <rect key="frame" x="218" y="124" width="43" height="17"/>
+                                <rect key="frame" x="218" y="97" width="43" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="数値：" id="Rtt-zv-UGM">
                                     <font key="font" metaFont="system"/>
@@ -269,7 +269,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TEH-Mi-iNN">
-                                <rect key="frame" x="218" y="70" width="43" height="17"/>
+                                <rect key="frame" x="218" y="43" width="43" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字：" id="mNE-qs-pDY">
                                     <font key="font" metaFont="system"/>
@@ -285,7 +285,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n31-9c-StR">
-                                <rect key="frame" x="192" y="43" width="69" height="17"/>
+                                <rect key="frame" x="192" y="16" width="69" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="コメント：" id="MTc-B1-wQj">
                                     <font key="font" metaFont="system"/>
@@ -454,7 +454,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="sOH-9q-xJJ" customClass="CEAlphaColorWell">
-                                <rect key="frame" x="267" y="121" width="44" height="23"/>
+                                <rect key="frame" x="267" y="94" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -466,7 +466,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I9s-Ey-FKS" customClass="CEAlphaColorWell">
-                                <rect key="frame" x="267" y="67" width="44" height="23"/>
+                                <rect key="frame" x="267" y="40" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -478,7 +478,7 @@
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aRC-RH-U34">
-                                <rect key="frame" x="205" y="97" width="56" height="17"/>
+                                <rect key="frame" x="205" y="70" width="56" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字列：" id="5hb-fk-CZj">
                                     <font key="font" metaFont="system"/>
@@ -494,7 +494,7 @@
                                 </connections>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Jas-a5-waY" customClass="CEAlphaColorWell">
-                                <rect key="frame" x="267" y="94" width="44" height="23"/>
+                                <rect key="frame" x="267" y="67" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -506,7 +506,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0QB-2s-52D" customClass="CEAlphaColorWell">
-                                <rect key="frame" x="267" y="40" width="44" height="23"/>
+                                <rect key="frame" x="267" y="13" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -546,7 +546,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.variablesColor" id="u6Y-d2-eDD">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.attributesColor" id="clk-1q-Nfy">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
@@ -579,7 +579,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.valuesColor" id="GuE-bM-iS1">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.variablesColor" id="OvO-qT-ulM">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </colorWell>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="idN-2L-nEK">
+                                <rect key="frame" x="231" y="124" width="30" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="値：" id="itQ-GN-wrb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="dQj-Id-MqQ" customClass="CEAlphaColorWell">
+                                <rect key="frame" x="267" y="121" width="44" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.valuesColor" id="W2X-FJ-qan">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSUnarchiveFromData</string>
                                         </dictionary>
@@ -617,6 +638,7 @@
                         <constraint firstItem="xGf-GM-max" firstAttribute="top" secondItem="69j-wx-PLQ" secondAttribute="bottom" constant="10" id="AAq-le-l0l"/>
                         <constraint firstItem="nad-EU-3x3" firstAttribute="leading" secondItem="RMs-Sz-z19" secondAttribute="trailing" constant="8" symbolic="YES" id="AEq-5w-slY"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="ecY-Ip-Ysm" secondAttribute="width" id="AGD-u2-F0n"/>
+                        <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="dQj-Id-MqQ" secondAttribute="width" id="Aw8-uP-vtr"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="height" secondItem="iSJ-uN-Hiy" secondAttribute="height" id="BQe-FJ-V8Y"/>
                         <constraint firstItem="cFD-BM-Yto" firstAttribute="centerY" secondItem="iSJ-uN-Hiy" secondAttribute="centerY" id="CYq-ep-lys"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="height" secondItem="I9s-Ey-FKS" secondAttribute="height" id="Cec-J1-81T"/>
@@ -625,8 +647,10 @@
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="I9s-Ey-FKS" secondAttribute="width" id="DjH-K3-qcQ"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="v5M-W5-fwH" secondAttribute="width" id="Fiv-Tk-CGe"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="height" secondItem="sOH-9q-xJJ" secondAttribute="height" id="G6i-T0-RNM"/>
+                        <constraint firstItem="gMF-xa-iQn" firstAttribute="trailing" secondItem="dQj-Id-MqQ" secondAttribute="trailing" id="GkH-5L-Dkz"/>
                         <constraint firstItem="gMF-xa-iQn" firstAttribute="trailing" secondItem="nad-EU-3x3" secondAttribute="trailing" id="Hb2-AS-pdq"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="leading" secondItem="Xkg-Fa-jaY" secondAttribute="leading" id="HhO-il-rhI"/>
+                        <constraint firstItem="zbO-y9-3Jd" firstAttribute="top" secondItem="idN-2L-nEK" secondAttribute="bottom" constant="10" id="Ii1-xv-QKo"/>
                         <constraint firstItem="hY1-2C-DCR" firstAttribute="top" secondItem="3wj-QI-vwV" secondAttribute="bottom" constant="10" id="JSU-qr-z3T"/>
                         <constraint firstItem="Jas-a5-waY" firstAttribute="centerY" secondItem="aRC-RH-U34" secondAttribute="centerY" id="KUo-OL-tzo"/>
                         <constraint firstItem="Xkg-Fa-jaY" firstAttribute="leading" secondItem="69j-wx-PLQ" secondAttribute="trailing" constant="8" symbolic="YES" id="KuF-E7-NYv"/>
@@ -653,6 +677,7 @@
                         <constraint firstItem="YAB-g2-y0t" firstAttribute="leading" secondItem="hY1-2C-DCR" secondAttribute="trailing" constant="8" symbolic="YES" id="auv-kT-g0h"/>
                         <constraint firstItem="I9s-Ey-FKS" firstAttribute="centerY" secondItem="TEH-Mi-iNN" secondAttribute="centerY" id="c9o-eT-zma"/>
                         <constraint firstItem="Lw4-LL-Mcq" firstAttribute="top" secondItem="SCv-f0-WMr" secondAttribute="bottom" constant="8" symbolic="YES" id="cos-VG-yED"/>
+                        <constraint firstItem="dQj-Id-MqQ" firstAttribute="leading" secondItem="idN-2L-nEK" secondAttribute="trailing" constant="8" symbolic="YES" id="dNF-yg-zID"/>
                         <constraint firstItem="sOH-9q-xJJ" firstAttribute="leading" secondItem="zbO-y9-3Jd" secondAttribute="trailing" constant="8" symbolic="YES" id="e2S-HS-XKp"/>
                         <constraint firstItem="2wC-ep-5PI" firstAttribute="leading" secondItem="ecY-Ip-Ysm" secondAttribute="leading" id="e3d-jf-rPj"/>
                         <constraint firstItem="2wC-ep-5PI" firstAttribute="leading" secondItem="YAB-g2-y0t" secondAttribute="leading" id="eNl-uy-BQ3"/>
@@ -662,6 +687,7 @@
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="height" secondItem="Jas-a5-waY" secondAttribute="height" id="fda-IN-amC"/>
                         <constraint firstItem="Rba-vC-wV9" firstAttribute="leading" secondItem="0IM-sh-mYX" secondAttribute="trailing" constant="8" symbolic="YES" id="fmC-iv-Ub3"/>
                         <constraint firstItem="YAB-g2-y0t" firstAttribute="height" secondItem="XgP-0h-0xG" secondAttribute="height" id="fx3-0d-xU6"/>
+                        <constraint firstItem="2wC-ep-5PI" firstAttribute="top" secondItem="dQj-Id-MqQ" secondAttribute="top" id="gRs-ed-B76"/>
                         <constraint firstItem="aRC-RH-U34" firstAttribute="top" secondItem="zbO-y9-3Jd" secondAttribute="bottom" constant="10" id="guV-pg-Kk4"/>
                         <constraint firstItem="69j-wx-PLQ" firstAttribute="centerY" secondItem="Xkg-Fa-jaY" secondAttribute="centerY" id="h3B-1H-dYp"/>
                         <constraint firstItem="YAB-g2-y0t" firstAttribute="width" secondItem="XgP-0h-0xG" secondAttribute="width" id="hUJ-x9-Xkt"/>
@@ -670,6 +696,7 @@
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="gMF-xa-iQn" secondAttribute="width" id="isA-an-gFr"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="leading" secondItem="Lw4-LL-Mcq" secondAttribute="trailing" constant="8" symbolic="YES" id="jEk-P2-Ndb"/>
                         <constraint firstItem="Rba-vC-wV9" firstAttribute="width" secondItem="XgP-0h-0xG" secondAttribute="width" id="jcL-zt-NKC"/>
+                        <constraint firstItem="idN-2L-nEK" firstAttribute="centerY" secondItem="dQj-Id-MqQ" secondAttribute="centerY" id="jyS-6z-qH7"/>
                         <constraint firstItem="gMF-xa-iQn" firstAttribute="centerY" secondItem="782-zm-Q77" secondAttribute="centerY" id="klf-p5-xYg"/>
                         <constraint firstItem="gMF-xa-iQn" firstAttribute="trailing" secondItem="Jas-a5-waY" secondAttribute="trailing" id="kyh-UE-WcY"/>
                         <constraint firstItem="ecY-Ip-Ysm" firstAttribute="leading" secondItem="zI7-Fa-5kc" secondAttribute="trailing" constant="8" symbolic="YES" id="mBj-eE-6rs"/>
@@ -680,6 +707,7 @@
                         <constraint firstItem="TEH-Mi-iNN" firstAttribute="top" secondItem="aRC-RH-U34" secondAttribute="bottom" constant="10" id="q5v-hS-tPa"/>
                         <constraint firstItem="2wC-ep-5PI" firstAttribute="leading" secondItem="iSJ-uN-Hiy" secondAttribute="leading" id="qgS-bS-hhY"/>
                         <constraint firstItem="gMF-xa-iQn" firstAttribute="trailing" secondItem="0QB-2s-52D" secondAttribute="trailing" id="qwl-hI-vIU"/>
+                        <constraint firstItem="XgP-0h-0xG" firstAttribute="height" secondItem="dQj-Id-MqQ" secondAttribute="height" id="rff-de-HTg"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="Xkg-Fa-jaY" secondAttribute="width" id="rkh-1K-Tog"/>
                         <constraint firstItem="Jas-a5-waY" firstAttribute="leading" secondItem="aRC-RH-U34" secondAttribute="trailing" constant="8" symbolic="YES" id="sdr-01-vDU"/>
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="0QB-2s-52D" secondAttribute="width" id="syn-sW-EAb"/>
@@ -694,7 +722,6 @@
                         <constraint firstItem="XgP-0h-0xG" firstAttribute="width" secondItem="Jas-a5-waY" secondAttribute="width" id="yxe-L6-UoF"/>
                         <constraint firstItem="n31-9c-StR" firstAttribute="top" secondItem="TEH-Mi-iNN" secondAttribute="bottom" constant="10" id="z11-BE-feu"/>
                         <constraint firstItem="gMF-xa-iQn" firstAttribute="trailing" secondItem="I9s-Ey-FKS" secondAttribute="trailing" id="zTm-K1-AeJ"/>
-                        <constraint firstItem="2wC-ep-5PI" firstAttribute="top" secondItem="sOH-9q-xJJ" secondAttribute="top" id="zkX-6Z-lKn"/>
                     </constraints>
                     <color key="borderColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

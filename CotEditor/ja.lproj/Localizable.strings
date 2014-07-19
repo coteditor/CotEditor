@@ -175,6 +175,7 @@ http://www.aynimac.com/
 "keywords" = "キーワード";
 "commands" = "コマンド";
 "types" = "タイプ";
+"attributes" = "属性";
 "variables" = "変数";
 "values" = "値";
 "numbers" = "数値";
@@ -216,6 +217,7 @@ http://www.aynimac.com/
 "Keywords" = "キーワード";
 "Commands" = "コマンド";
 "Types" = "タイプ";
+"Attributes" = "属性";
 "Variables" = "変数";
 "Values" = "値";
 "Numbers" = "数値";

@@ -45,6 +45,7 @@ NSString *const CEThemeLineHighlightColorKey = @"lineHighlightColor";
 NSString *const CEThemeKeywordsColorKey = @"keywordsColor";
 NSString *const CEThemeCommandsColorKey = @"commandsColor";
 NSString *const CEThemeTypesColorKey = @"typesColor";
+NSString *const CEThemeAttributesColorKey = @"attributesColor";
 NSString *const CEThemeVariablesColorKey = @"variablesColor";
 NSString *const CEThemeValuesColorKey = @"valuesColor";
 NSString *const CEThemeNumbersColorKey = @"numbersColor";
@@ -651,6 +652,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
              CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeCommandsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
+             CEThemeAttributesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeVariablesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeNumbersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
@@ -731,6 +733,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
                                        [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0]],
              CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:
                                     [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0]],
+             CEThemeAttributesColorKey: [NSArchiver archivedDataWithRootObject:
+                                         [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0]],
              CEThemeVariablesColorKey: [NSArchiver archivedDataWithRootObject:
                                         [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.074 alpha:1.0]],
              CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:

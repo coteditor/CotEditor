@@ -52,6 +52,7 @@
 @property (nonatomic, readwrite) NSColor *keywordsColor;
 @property (nonatomic, readwrite) NSColor *commandsColor;
 @property (nonatomic, readwrite) NSColor *typesColor;
+@property (nonatomic, readwrite) NSColor *attributesColor;
 @property (nonatomic, readwrite) NSColor *variablesColor;
 @property (nonatomic, readwrite) NSColor *valuesColor;
 @property (nonatomic, readwrite) NSColor *numbersColor;
@@ -114,6 +115,7 @@
         [self setKeywordsColor:themeDict[CEThemeKeywordsColorKey]];
         [self setCommandsColor:themeDict[CEThemeCommandsColorKey]];
         [self setTypesColor:themeDict[CEThemeTypesColorKey]];
+        [self setAttributesColor:themeDict[CEThemeAttributesColorKey]];
         [self setVariablesColor:themeDict[CEThemeVariablesColorKey]];
         [self setValuesColor:themeDict[CEThemeValuesColorKey]];
         [self setNumbersColor:themeDict[CEThemeNumbersColorKey]];
