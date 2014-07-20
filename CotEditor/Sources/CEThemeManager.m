@@ -134,8 +134,15 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         }
         [self setBundledThemeNames:themeNames];
         
-        // 読み込む
-        [self updateCacheWithCompletionHandler:nil];
+        // cache user themes asynchronously but wait until the process will be done
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [self updateCacheWithCompletionHandler:^{
+            dispatch_semaphore_signal(semaphore);
+        }];
+        while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {  // avoid dead lock
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+        dispatch_release(semaphore);
     }
     return self;
 }

@@ -108,7 +108,15 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         }
         [self setBundledStyleNames:styleNames];
         
-        [self updateCacheWithCompletionHandler:nil];
+        // cache user styles asynchronously but wait until the process will be done
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [self updateCacheWithCompletionHandler:^{
+            dispatch_semaphore_signal(semaphore);
+        }];
+        while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {  // avoid dead lock
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+        dispatch_release(semaphore);
     }
     return self;
 }
