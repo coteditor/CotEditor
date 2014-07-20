@@ -126,6 +126,7 @@ extern NSString *const k_key_fileDropFormatString;
 extern NSString *const k_key_NSDragAndDropTextDelay;
 extern NSString *const k_key_smartInsertAndDelete;
 extern NSString *const k_key_shouldAntialias;
+extern NSString *const k_key_autoComplete;
 extern NSString *const k_key_completeAddStandardWords;
 extern NSString *const k_key_showPageGuide;
 extern NSString *const k_key_pageGuideColumn;

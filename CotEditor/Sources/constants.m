@@ -124,6 +124,7 @@ NSString *const k_key_fileDropFormatString = @"formatString";
 NSString *const k_key_NSDragAndDropTextDelay = @"NSDragAndDropTextDelay";
 NSString *const k_key_smartInsertAndDelete = @"smartInsertAndDelete";
 NSString *const k_key_shouldAntialias = @"shouldAntialias";
+NSString *const k_key_autoComplete = @"autoComplete";
 NSString *const k_key_completeAddStandardWords = @"completeAddStandardWords";
 NSString *const k_key_showPageGuide = @"showPageGuide";
 NSString *const k_key_pageGuideColumn = @"pageGuideColumn";
