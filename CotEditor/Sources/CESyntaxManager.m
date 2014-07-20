@@ -57,14 +57,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 
-@interface CESyntaxManager (Migration)
-
-- (void)migrateDuplicatedDefaultColoringStylesInUserDomain;
-
-@end
-
-
-
 
 #pragma mark -
 
@@ -115,9 +107,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             [styleNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
         }
         [self setBundledStyleNames:styleNames];
-        
-        // 重複しているユーザ領域の定義ファイルを隔離
-        [self migrateDuplicatedDefaultColoringStylesInUserDomain];
         
         [self updateCacheWithCompletionHandler:nil];
     }
@@ -762,73 +751,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     [self setExtensionConflicts:extensionConflicts];
     [self setFilenameToStyleTable:filenameTable];
     [self setFilenameConflicts:filenameConflicts];
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CESyntaxManager (Migration)
-
-//------------------------------------------------------
-/// ユーザ領域にあるバンドル版と重複したstyleデータファイルを隔離
-- (void)migrateDuplicatedDefaultColoringStylesInUserDomain
-//------------------------------------------------------
-{
-    // CotEditor 1.4.1までで自動的にコピーされたバンドル版定義ファイルを別のディレクトリに隔離する (2014-04-07 by 1024jp)
-    // CotEditor 1.5で実装されたこのメソッドは、後に十分に移行が完了した時点で取り除く予定
-    
-    if (![[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil]) { return; }
-    
-    NSURL *migrationDirURL = [[[self userStyleDirectoryURL] URLByDeletingLastPathComponent]
-                              URLByAppendingPathComponent:@"SyntaxColorings (old)"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    for (NSString *styleName in [self bundledStyleNames]) {
-        if ([self existsDuplicatedStyleInUserDomain:styleName]) {
-            [fileManager createDirectoryAtURL:migrationDirURL withIntermediateDirectories:YES attributes:nil error:nil];
-            
-            NSURL *URL = [self URLForUserStyle:styleName];
-            NSURL *migrationURL = [[migrationDirURL URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
-            
-            if ([migrationDirURL checkResourceIsReachableAndReturnError:nil]) {
-                [fileManager removeItemAtURL:migrationURL error:nil];
-            }
-            [fileManager moveItemAtURL:URL toURL:migrationURL error:nil];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// バンドル版と全く同じ定義のファイルがユーザ領域にあるかどうかを返す
-- (BOOL)existsDuplicatedStyleInUserDomain:(NSString *)styleName
-// ------------------------------------------------------
-{
-    if ([styleName isEqualToString:@""]) { return NO; }
-    
-    NSURL *destURL = [self URLForUserStyle:styleName];
-    NSURL *sourceURL = [self URLForBundledStyle:styleName];
-    
-    if (![sourceURL checkResourceIsReachableAndReturnError:nil] ||
-        ![destURL checkResourceIsReachableAndReturnError:nil])
-    {
-        return NO;
-    }
-    
-    // （[self syntaxWithStyleName:[self selectedStyleName]]] で返ってくる辞書には numOfObjInArray が付加されている
-    // ため、同じではない。ファイル同士を比較する。2008.05.06.
-    NSDictionary *sourcePList = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
-    NSDictionary *destPList = [NSDictionary dictionaryWithContentsOfURL:destURL];
-    
-    return [sourcePList isEqualToDictionary:destPList];
-    
-    // NSFileManager の contentsEqualAtPath:andPath: では、宣言部分の「Apple Computer（Tiger以前）」と「Apple（Leopard）」の違いが引っかかってしまうため、使えなくなった。 2008.05.06.
-    //    return ([theFileManager contentsEqualAtPath:[sourceURL path] andPath:[destURL path]]);
 }
 
 @end
