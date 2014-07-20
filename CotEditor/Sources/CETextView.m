@@ -240,6 +240,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     [super insertText:aString replacementRange:replacementRange];
+    
+    // auto complete
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoComplete] &&
+        [aString rangeOfCharacterFromSet:[NSCharacterSet alphanumericCharacterSet]].location != NSNotFound)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self complete:self];
+        });
+    }
 }
 
 
@@ -371,7 +380,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // complete リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
     // （フラグは CEEditorView > textDidChange: で評価される）
-    if (isFinal && ([event type] == NSKeyDown)) {
+    if (isFinal && ([event type] == NSKeyDown) && ![event modifierFlags]) {
         NSString *inputChar = [event charactersIgnoringModifiers];
         unichar theUnichar = [inputChar characterAtIndex:0];
 

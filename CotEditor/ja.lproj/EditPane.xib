@@ -15,11 +15,11 @@
         <customObject id="-3" userLabel="Application"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="614"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="638"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
-                    <rect key="frame" x="163" y="435" width="162" height="18"/>
+                    <rect key="frame" x="155" y="459" width="162" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="“&lt; >”をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3305">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -31,7 +31,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="867">
-                    <rect key="frame" x="138" y="459" width="283" height="18"/>
+                    <rect key="frame" x="130" y="483" width="283" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="対応する括弧“( )” “[ ]” “{ }”をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3304">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -42,7 +42,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
-                    <rect key="frame" x="138" y="507" width="190" height="18"/>
+                    <rect key="frame" x="130" y="531" width="190" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="“¥”と“\”のキーを入れ替える" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -53,7 +53,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="xfm-pV-cUt">
-                    <rect key="frame" x="138" y="483" width="178" height="18"/>
+                    <rect key="frame" x="130" y="507" width="178" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="現在の行をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="HsL-6G-ZN3">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -64,7 +64,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="138" y="579" width="282" height="18"/>
+                    <rect key="frame" x="130" y="603" width="282" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="スマートインサート／デリートを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -75,7 +75,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="598">
-                    <rect key="frame" x="138" y="531" width="230" height="18"/>
+                    <rect key="frame" x="130" y="555" width="230" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="選択テキストをすぐにドラッグ開始" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -86,7 +86,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
-                    <rect key="frame" x="138" y="555" width="256" height="18"/>
+                    <rect key="frame" x="130" y="579" width="256" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="スマート引用符／ダッシュを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -97,7 +97,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-ly-fKQ">
-                    <rect key="frame" x="18" y="141" width="199" height="17"/>
+                    <rect key="frame" x="130" y="141" width="199" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="入力補完候補リストに含む単語：" id="dLj-Kh-KtX">
                         <font key="font" metaFont="system"/>
@@ -106,7 +106,7 @@
                     </textFieldCell>
                 </textField>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="686">
-                    <rect key="frame" x="140" y="51" width="346" height="86"/>
+                    <rect key="frame" x="157" y="51" width="346" height="86"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="346" height="20"/>
@@ -140,7 +140,7 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="78" y="577" width="56" height="17"/>
+                    <rect key="frame" x="70" y="601" width="56" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="編集時：" id="SqI-BC-ar9">
                         <font key="font" size="13" name="AquaKana"/>
@@ -149,7 +149,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4B0-Kj-mzX">
-                    <rect key="frame" x="52" y="402" width="82" height="17"/>
+                    <rect key="frame" x="44" y="426" width="82" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="インデント：" id="9bX-ei-1x8">
                         <font key="font" metaFont="system"/>
@@ -158,7 +158,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="283">
-                    <rect key="frame" x="138" y="352" width="95" height="17"/>
+                    <rect key="frame" x="130" y="376" width="95" height="17"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="インデント幅：" id="3287">
                         <font key="font" metaFont="system"/>
@@ -167,7 +167,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="282">
-                    <rect key="frame" x="239" y="350" width="40" height="22"/>
+                    <rect key="frame" x="231" y="374" width="40" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="8n8-kM-Jo2"/>
@@ -189,7 +189,7 @@
                     </connections>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="160">
-                    <rect key="frame" x="138" y="377" width="178" height="18"/>
+                    <rect key="frame" x="130" y="401" width="178" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="タブを空白に自動的に展開" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3283">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -200,7 +200,7 @@
                     </connections>
                 </button>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iub-4d-NyY">
-                    <rect key="frame" x="280" y="347" width="19" height="27"/>
+                    <rect key="frame" x="272" y="371" width="19" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="ajw-Bh-Oc0"/>
                     <connections>
@@ -208,7 +208,7 @@
                     </connections>
                 </stepper>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="209">
-                    <rect key="frame" x="138" y="401" width="113" height="18"/>
+                    <rect key="frame" x="130" y="425" width="113" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="自動インデント" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -230,7 +230,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="69">
-                    <rect key="frame" x="138" y="258" width="100" height="18"/>
+                    <rect key="frame" x="130" y="282" width="100" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="行を折り返す" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3274">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -241,7 +241,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fR5-Ie-WnP">
-                    <rect key="frame" x="65" y="259" width="69" height="17"/>
+                    <rect key="frame" x="57" y="283" width="69" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="折り返し：" id="P1I-gs-RgX">
                         <font key="font" metaFont="system"/>
@@ -250,7 +250,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="dhF-Zu-Ysd">
-                    <rect key="frame" x="138" y="316" width="204" height="18"/>
+                    <rect key="frame" x="130" y="340" width="204" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="コメント記号にスペースを追加" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="WQl-NZ-CVc">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -261,7 +261,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uwh-E6-Tdo">
-                    <rect key="frame" x="65" y="317" width="69" height="17"/>
+                    <rect key="frame" x="57" y="341" width="69" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="コメント：" id="w8J-fQ-izs">
                         <font key="font" metaFont="system"/>
@@ -270,7 +270,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N9e-hF-BPy">
-                    <rect key="frame" x="302" y="352" width="56" height="17"/>
+                    <rect key="frame" x="294" y="376" width="56" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="スペース" id="as9-us-CuG">
                         <font key="font" metaFont="system"/>
@@ -279,7 +279,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="235">
-                    <rect key="frame" x="138" y="224" width="74" height="18"/>
+                    <rect key="frame" x="130" y="248" width="74" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="スペース" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3257">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -290,7 +290,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="236">
-                    <rect key="frame" x="228" y="219" width="55" height="26"/>
+                    <rect key="frame" x="220" y="243" width="55" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="rr2-Bh-XY1"/>
@@ -311,7 +311,7 @@
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="243">
-                    <rect key="frame" x="228" y="195" width="55" height="26"/>
+                    <rect key="frame" x="220" y="219" width="55" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3259">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -329,7 +329,7 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="244">
-                    <rect key="frame" x="138" y="200" width="48" height="18"/>
+                    <rect key="frame" x="130" y="224" width="48" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="タブ" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3260">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -340,7 +340,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="874">
-                    <rect key="frame" x="138" y="176" width="126" height="18"/>
+                    <rect key="frame" x="130" y="200" width="126" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="ほかの不可視文字" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3263">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -351,7 +351,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r9C-0B-mga">
-                    <rect key="frame" x="26" y="225" width="108" height="17"/>
+                    <rect key="frame" x="18" y="249" width="108" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="不可視文字表示：" id="pjW-HE-ngH">
                         <font key="font" metaFont="system"/>
@@ -360,7 +360,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="221">
-                    <rect key="frame" x="318" y="225" width="87" height="18"/>
+                    <rect key="frame" x="310" y="249" width="87" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="改行コード" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3255">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -371,7 +371,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                    <rect key="frame" x="422" y="219" width="55" height="26"/>
+                    <rect key="frame" x="414" y="243" width="55" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3256">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -389,7 +389,7 @@
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="247">
-                    <rect key="frame" x="422" y="195" width="55" height="26"/>
+                    <rect key="frame" x="414" y="219" width="55" height="26"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="3261">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -407,7 +407,7 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="249">
-                    <rect key="frame" x="318" y="200" width="100" height="18"/>
+                    <rect key="frame" x="310" y="224" width="100" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="全角スペース" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3262">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -418,7 +418,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="NYb-54-Clb">
-                    <rect key="frame" x="138" y="292" width="100" height="18"/>
+                    <rect key="frame" x="130" y="316" width="100" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="常に行頭から" bezelStyle="regularSquare" imagePosition="left" inset="2" id="552-Rw-RWZ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -428,20 +428,43 @@
                         <binding destination="26" name="value" keyPath="values.commentsAtLineHead" id="UP9-CR-8Lh"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="E3D-ws-f4s">
+                    <rect key="frame" x="130" y="166" width="100" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <buttonCell key="cell" type="check" title="自動入力補完" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="TXb-6g-uiX">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" size="13" name="AquaKana"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.autoCompletion" id="bew-k0-JUE"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H57-OI-MHk">
+                    <rect key="frame" x="57" y="164" width="69" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="入力補完：" id="MIT-0h-S3I">
+                        <font key="font" size="13" name="AquaKana"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
+                <constraint firstItem="E3D-ws-f4s" firstAttribute="top" secondItem="874" secondAttribute="bottom" constant="20" id="0dv-iN-FAr"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="598" secondAttribute="leading" id="1WI-eR-rZQ"/>
                 <constraint firstItem="235" firstAttribute="baseline" secondItem="r9C-0B-mga" secondAttribute="baseline" id="2UF-ql-3mk"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="160" secondAttribute="leading" id="2YC-uB-api"/>
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
+                <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="Dte-ly-fKQ" secondAttribute="leading" id="3w6-oS-gK5"/>
                 <constraint firstItem="235" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="20" id="4yM-UG-Uyb"/>
                 <constraint firstItem="xfm-pV-cUt" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="10" id="5kg-ZC-bZV"/>
+                <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="712-7r-8SE"/>
+                <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="H57-OI-MHk" secondAttribute="trailing" constant="8" symbolic="YES" id="7OA-aM-BRs"/>
                 <constraint firstItem="221" firstAttribute="leading" secondItem="249" secondAttribute="leading" id="7h3-GD-axK"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="NYb-54-Clb" secondAttribute="bottom" constant="20" id="7mv-wh-scA"/>
                 <constraint firstItem="867" firstAttribute="top" secondItem="xfm-pV-cUt" secondAttribute="bottom" constant="10" id="8Ve-rU-zbj"/>
                 <constraint firstItem="NYb-54-Clb" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="9CA-E0-QmL"/>
-                <constraint firstItem="Dte-ly-fKQ" firstAttribute="top" secondItem="874" secondAttribute="bottom" constant="20" id="Dtl-t7-Ui3"/>
                 <constraint firstItem="Uwh-E6-Tdo" firstAttribute="baseline" secondItem="dhF-Zu-Ysd" secondAttribute="baseline" id="Fie-4M-6hS"/>
                 <constraint firstItem="160" firstAttribute="top" secondItem="209" secondAttribute="bottom" constant="10" id="Frm-gK-yPu"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="dhF-Zu-Ysd" secondAttribute="leading" id="GGE-HQ-WU9"/>
@@ -451,7 +474,6 @@
                 <constraint firstItem="644" firstAttribute="leading" secondItem="IXD-kJ-dvh" secondAttribute="trailing" constant="8" symbolic="YES" id="Kcl-7N-AbQ"/>
                 <constraint firstItem="NYb-54-Clb" firstAttribute="top" secondItem="dhF-Zu-Ysd" secondAttribute="bottom" constant="10" id="LQS-HT-5qw"/>
                 <constraint firstItem="z5v-7l-1C4" firstAttribute="top" secondItem="686" secondAttribute="bottom" constant="10" id="Lx4-jO-suz"/>
-                <constraint firstItem="Dte-ly-fKQ" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="NWu-TP-uXA"/>
                 <constraint firstItem="598" firstAttribute="top" secondItem="mK4-4e-plf" secondAttribute="bottom" constant="10" id="NgJ-zt-QxU"/>
                 <constraint firstItem="dhF-Zu-Ysd" firstAttribute="top" secondItem="283" secondAttribute="bottom" constant="20" id="Oiw-gK-N1j"/>
                 <constraint firstItem="247" firstAttribute="leading" secondItem="249" secondAttribute="trailing" constant="8" symbolic="YES" id="QB9-YF-TQu"/>
@@ -478,23 +500,25 @@
                 <constraint firstItem="221" firstAttribute="leading" secondItem="236" secondAttribute="trailing" constant="40" id="h5l-Uw-WGb"/>
                 <constraint firstItem="xfm-pV-cUt" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="hsJ-XX-NQk"/>
                 <constraint firstItem="244" firstAttribute="leading" secondItem="874" secondAttribute="leading" id="i2U-51-7J6"/>
+                <constraint firstItem="r9C-0B-mga" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="iGO-dq-4UX"/>
                 <constraint firstItem="282" firstAttribute="leading" secondItem="283" secondAttribute="trailing" constant="8" symbolic="YES" id="iOw-EV-67G"/>
                 <constraint firstItem="mK4-4e-plf" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="10" id="jbL-02-1xF"/>
                 <constraint firstItem="209" firstAttribute="top" secondItem="870" secondAttribute="bottom" constant="20" id="kKQ-zf-Ke1"/>
                 <constraint firstItem="244" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="kga-1X-UJZ"/>
+                <constraint firstItem="686" firstAttribute="leading" secondItem="Dte-ly-fKQ" secondAttribute="leading" constant="25" id="khU-IM-CJi"/>
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="244" secondAttribute="baseline" id="kjY-LB-qSG"/>
                 <constraint firstItem="224" firstAttribute="baseline" secondItem="221" secondAttribute="baseline" id="lPP-JM-GMF"/>
                 <constraint firstAttribute="trailing" secondItem="z5v-7l-1C4" secondAttribute="trailing" constant="20" symbolic="YES" id="mrm-H0-0da"/>
-                <constraint firstItem="IXD-kJ-dvh" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="80" id="q04-xq-mqK"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="236" secondAttribute="width" id="q7A-SC-Ewq"/>
+                <constraint firstItem="H57-OI-MHk" firstAttribute="baseline" secondItem="E3D-ws-f4s" secondAttribute="baseline" id="qx0-Kj-O7k"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="224" secondAttribute="width" id="rFX-pM-okS"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="844" secondAttribute="leading" id="sce-Ba-PNP"/>
                 <constraint firstItem="iub-4d-NyY" firstAttribute="leading" secondItem="282" secondAttribute="trailing" constant="4" id="tek-TW-5hT"/>
                 <constraint firstItem="4B0-Kj-mzX" firstAttribute="baseline" secondItem="209" secondAttribute="baseline" id="tmg-CX-EMK"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="baseline" secondItem="644" secondAttribute="baseline" id="tyZ-uJ-B5y"/>
+                <constraint firstItem="Dte-ly-fKQ" firstAttribute="top" secondItem="E3D-ws-f4s" secondAttribute="bottom" constant="10" id="uKO-DQ-zpF"/>
                 <constraint firstItem="244" firstAttribute="leading" secondItem="235" secondAttribute="leading" id="v19-ZV-o22"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="xBh-wa-ujM"/>
-                <constraint firstItem="644" firstAttribute="leading" secondItem="686" secondAttribute="leading" id="xTe-02-91b"/>
                 <constraint firstItem="867" firstAttribute="leading" secondItem="870" secondAttribute="leading" constant="-25" id="yDq-t7-IbV"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="yEK-ut-qCX"/>
                 <constraint firstItem="243" firstAttribute="baseline" secondItem="244" secondAttribute="baseline" id="zZy-Lj-HeQ"/>
