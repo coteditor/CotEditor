@@ -468,6 +468,9 @@ NSString *const k_selectorString = @"selectorString";
 // Encoding menu
 NSInteger const k_autoDetectEncodingMenuTag = 0;
 
+// Max length to scan encding declaration
+NSUInteger const k_maxEncodingScanLength = 2000;
+
 
 CFStringEncodings const k_CFStringEncodingList[] = {
     kCFStringEncodingUTF8, // Unicode (UTF-8)

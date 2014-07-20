@@ -1321,7 +1321,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_referToEncodingTag] || ([string length] < 9)) {
         return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
     }
-    NSScanner *scanner = [NSScanner scannerWithString:string];
+    NSScanner *scanner = [NSScanner scannerWithString:[string substringToIndex:k_maxEncodingScanLength]];  // 文書前方のみスキャンする
     NSCharacterSet *stopSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\' </>\n\r"];
     NSString *scannedStr = nil;
 

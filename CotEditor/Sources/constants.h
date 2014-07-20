@@ -440,6 +440,9 @@ extern NSString *const k_selectorString;
 // Encoding menu
 extern NSInteger const k_autoDetectEncodingMenuTag;
 
+// Max length to scan encding declaration
+extern NSUInteger        const k_maxEncodingScanLength;
+
 extern CFStringEncodings const k_CFStringEncodingList[];
 extern NSUInteger        const k_size_of_CFStringEncodingList;
 
