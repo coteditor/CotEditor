@@ -15,7 +15,7 @@
         <customObject id="-3" userLabel="Application"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="540" height="638"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="614"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="870">
@@ -42,7 +42,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
-                    <rect key="frame" x="130" y="531" width="190" height="18"/>
+                    <rect key="frame" x="130" y="507" width="190" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="“¥”と“\”のキーを入れ替える" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -52,19 +52,8 @@
                         <binding destination="26" name="value" keyPath="values.swapYenAndBackSlashKey" id="846"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="xfm-pV-cUt">
-                    <rect key="frame" x="130" y="507" width="178" height="18"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <buttonCell key="cell" type="check" title="現在の行をハイライト表示" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="HsL-6G-ZN3">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="value" keyPath="values.highlightCurrentLine" id="Khj-Bd-ZLa"/>
-                    </connections>
-                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="130" y="603" width="282" height="18"/>
+                    <rect key="frame" x="130" y="579" width="282" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="スマートインサート／デリートを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -75,7 +64,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="598">
-                    <rect key="frame" x="130" y="555" width="230" height="18"/>
+                    <rect key="frame" x="130" y="531" width="230" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="選択テキストをすぐにドラッグ開始" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3301">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -86,7 +75,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mK4-4e-plf">
-                    <rect key="frame" x="130" y="579" width="256" height="18"/>
+                    <rect key="frame" x="130" y="555" width="256" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <buttonCell key="cell" type="check" title="スマート引用符／ダッシュを有効にする" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="nA4-HY-d71">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -140,7 +129,7 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="70" y="601" width="56" height="17"/>
+                    <rect key="frame" x="70" y="577" width="56" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="編集時：" id="SqI-BC-ar9">
                         <font key="font" size="13" name="AquaKana"/>
@@ -458,12 +447,10 @@
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="Dte-ly-fKQ" secondAttribute="leading" id="3w6-oS-gK5"/>
                 <constraint firstItem="235" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="20" id="4yM-UG-Uyb"/>
-                <constraint firstItem="xfm-pV-cUt" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="10" id="5kg-ZC-bZV"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="712-7r-8SE"/>
                 <constraint firstItem="E3D-ws-f4s" firstAttribute="leading" secondItem="H57-OI-MHk" secondAttribute="trailing" constant="8" symbolic="YES" id="7OA-aM-BRs"/>
                 <constraint firstItem="221" firstAttribute="leading" secondItem="249" secondAttribute="leading" id="7h3-GD-axK"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="NYb-54-Clb" secondAttribute="bottom" constant="20" id="7mv-wh-scA"/>
-                <constraint firstItem="867" firstAttribute="top" secondItem="xfm-pV-cUt" secondAttribute="bottom" constant="10" id="8Ve-rU-zbj"/>
                 <constraint firstItem="NYb-54-Clb" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="9CA-E0-QmL"/>
                 <constraint firstItem="Uwh-E6-Tdo" firstAttribute="baseline" secondItem="dhF-Zu-Ysd" secondAttribute="baseline" id="Fie-4M-6hS"/>
                 <constraint firstItem="160" firstAttribute="top" secondItem="209" secondAttribute="bottom" constant="10" id="Frm-gK-yPu"/>
@@ -490,6 +477,7 @@
                 <constraint firstItem="249" firstAttribute="baseline" secondItem="247" secondAttribute="baseline" id="abF-SR-IDN"/>
                 <constraint firstItem="243" firstAttribute="width" secondItem="247" secondAttribute="width" id="bJI-zN-7dz"/>
                 <constraint firstItem="870" firstAttribute="top" secondItem="867" secondAttribute="bottom" constant="10" id="bLh-rA-4nS"/>
+                <constraint firstItem="867" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="10" id="bQy-3Z-nS3"/>
                 <constraint firstItem="244" firstAttribute="top" secondItem="235" secondAttribute="bottom" constant="10" id="dx8-My-4SK"/>
                 <constraint firstItem="69" firstAttribute="leading" secondItem="fR5-Ie-WnP" secondAttribute="trailing" constant="8" symbolic="YES" id="e18-6y-ozt"/>
                 <constraint firstItem="dhF-Zu-Ysd" firstAttribute="leading" secondItem="Uwh-E6-Tdo" secondAttribute="trailing" constant="8" symbolic="YES" id="eAm-4I-XN7"/>
@@ -498,7 +486,6 @@
                 <constraint firstItem="236" firstAttribute="leading" secondItem="243" secondAttribute="leading" id="fBh-m9-U8F"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="top" secondItem="s6I-DY-Ii0" secondAttribute="top" constant="20" symbolic="YES" id="gJQ-Aw-eFi"/>
                 <constraint firstItem="221" firstAttribute="leading" secondItem="236" secondAttribute="trailing" constant="40" id="h5l-Uw-WGb"/>
-                <constraint firstItem="xfm-pV-cUt" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="hsJ-XX-NQk"/>
                 <constraint firstItem="244" firstAttribute="leading" secondItem="874" secondAttribute="leading" id="i2U-51-7J6"/>
                 <constraint firstItem="r9C-0B-mga" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="iGO-dq-4UX"/>
                 <constraint firstItem="282" firstAttribute="leading" secondItem="283" secondAttribute="trailing" constant="8" symbolic="YES" id="iOw-EV-67G"/>
