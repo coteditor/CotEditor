@@ -3262,7 +3262,7 @@
 	</array>
 	<key>styleName</key>
 	<string>HTML</string>
-	<key>valuesArray</key>
+	<key>attributesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
