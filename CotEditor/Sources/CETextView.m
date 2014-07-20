@@ -738,7 +738,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setBackgroundColor:[[self backgroundColor] colorWithAlphaComponent:alpha]];
     [self setHighlightLineColor:[[self highlightLineColor] colorWithAlphaComponent:alpha]];
     
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) {
+    if (floor(NSAppKitVersionNumber) > 1265) { // on Yosemite and later
+        [[self enclosingScrollView] setWantsLayer:YES];
+    } else if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion or Mavericks
         [[self enclosingScrollView] setWantsLayer:(alpha == 1.0)];
     }
     
