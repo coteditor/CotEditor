@@ -16,18 +16,18 @@
         <window title="Document Coloring..." allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="180" y="593" width="404" height="132"/>
+            <rect key="contentRect" x="180" y="593" width="404" height="118"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="7">
-                <rect key="frame" x="0.0" y="0.0" width="404" height="132"/>
+                <rect key="frame" x="0.0" y="0.0" width="404" height="118"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
-                        <rect key="frame" x="20" y="68" width="364" height="20"/>
+                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
+                        <rect key="frame" x="20" y="61" width="364" height="12"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                        <rect key="frame" x="18" y="95" width="99" height="17"/>
+                        <rect key="frame" x="18" y="81" width="99" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Coloring text..." id="74">
                             <font key="font" metaFont="system"/>
@@ -39,7 +39,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="51">
-                        <rect key="frame" x="18" y="47" width="368" height="14"/>
+                        <rect key="frame" x="18" y="39" width="368" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please wait for a while." id="75">
                             <font key="font" metaFont="smallSystem"/>
@@ -77,6 +77,7 @@ Gw
                     <constraint firstItem="51" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="8" symbolic="YES" id="ShX-e9-DsK"/>
                     <constraint firstItem="47" firstAttribute="top" secondItem="50" secondAttribute="bottom" constant="8" symbolic="YES" id="U1A-D6-m83"/>
                     <constraint firstItem="51" firstAttribute="leading" secondItem="50" secondAttribute="leading" id="ZGA-lI-scb"/>
+                    <constraint firstItem="58" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="20" symbolic="YES" id="cWF-fS-UIC"/>
                     <constraint firstAttribute="trailing" secondItem="51" secondAttribute="trailing" constant="20" symbolic="YES" id="oEG-pg-Qxv"/>
                     <constraint firstItem="50" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="owa-m9-NVI"/>
                 </constraints>

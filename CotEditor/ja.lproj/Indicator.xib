@@ -16,18 +16,18 @@
         <window title="書類をカラーリングしています..." allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="180" y="593" width="404" height="132"/>
+            <rect key="contentRect" x="180" y="593" width="404" height="128"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="7">
-                <rect key="frame" x="0.0" y="0.0" width="404" height="132"/>
+                <rect key="frame" x="0.0" y="0.0" width="404" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
-                        <rect key="frame" x="20" y="68" width="364" height="20"/>
+                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
+                        <rect key="frame" x="20" y="71" width="364" height="12"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                        <rect key="frame" x="18" y="95" width="173" height="17"/>
+                        <rect key="frame" x="18" y="91" width="173" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="テキストのカラーリング中..." id="74">
                             <font key="font" metaFont="system"/>
@@ -39,7 +39,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="51">
-                        <rect key="frame" x="18" y="47" width="368" height="14"/>
+                        <rect key="frame" x="18" y="49" width="368" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="しばらくお待ちください..." id="75">
                             <font key="font" metaFont="smallSystem"/>
@@ -70,6 +70,7 @@ Gw
                 </subviews>
                 <constraints>
                     <constraint firstItem="50" firstAttribute="leading" secondItem="7" secondAttribute="leading" constant="20" symbolic="YES" id="2Su-LY-OHO"/>
+                    <constraint firstItem="58" firstAttribute="top" secondItem="51" secondAttribute="bottom" constant="8" symbolic="YES" id="6M3-5X-hkr"/>
                     <constraint firstAttribute="trailing" secondItem="51" secondAttribute="trailing" constant="20" symbolic="YES" id="PIv-qI-afQ"/>
                     <constraint firstItem="50" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="Wdw-J3-1be"/>
                     <constraint firstAttribute="trailing" secondItem="58" secondAttribute="trailing" constant="20" symbolic="YES" id="cQu-U6-TL7"/>
