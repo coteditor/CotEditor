@@ -63,7 +63,7 @@ extern NSString *const CEOldNameKey;
 extern NSString *const CENewNameKey;
 
 
-#pragma mark User Defaults Keys
+#pragma mark User Defaults
 
 // ------------------------------------------------------
 // User Defaults Keys
@@ -190,6 +190,50 @@ extern NSString *const k_key_runAppleScriptInLaunching;
 extern NSString *const k_key_showAlertForNotWritable;
 extern NSString *const k_key_notifyEditByAnother;
 extern NSString *const k_key_coloringRangeBufferLength;
+
+
+
+// ------------------------------------------------------
+// User Defaults Values
+// ------------------------------------------------------
+
+typedef NS_ENUM(NSUInteger, CELineEnding) {
+    CELineEndingLF,
+    CELineEndingCR,
+    CELineEndingCRLF
+};
+
+typedef NS_ENUM(NSUInteger, CEColorPrintMode) {
+    CEBlackColorPrint,
+    CESameAsDocumentColorPrint
+};
+
+typedef NS_ENUM(NSUInteger, CELineNumberPrintMode) {
+    CENoLinePrint,
+    CESameAsDocumentLinePrint,
+    CEDoLinePrint
+};
+
+typedef NS_ENUM(NSUInteger, CEInvisibleCharsPrintMode) {
+    CENoInvisibleCharsPrint,
+    CESameAsDocumentInvisibleCharsPrint,
+    CEAllInvisibleCharsPrint
+};
+
+typedef NS_ENUM(NSUInteger, CEPrintInfoType) {
+    CENoPrintInfo,
+    CESyntaxNamePrintInfo,
+    CEDocumentNamePrintInfo,
+    CEFilePathPrintInfo,
+    CEPrintDatePrintInfo,
+    CEPageNumberPrintInfo
+};
+
+typedef NS_ENUM(NSUInteger, CEAlignmentType) {
+    CEAlignLeft,
+    CEAlignCenter,
+    CEAlignRight
+};
 
 
 

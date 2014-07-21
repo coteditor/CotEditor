@@ -139,18 +139,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 改行コードを返す(enum型)
-- (CELineEnding)lineEnding
+- (CEOSALineEnding)lineEnding
 // ------------------------------------------------------
 {
     switch ([[self editorView] lineEndingCharacter]) {
-        case 1:
-            return CELineEndingCR;
+        case OgreCrNewlineCharacter:
+            return CEOSALineEndingCR;
             break;
-        case 2:
-            return CELineEndingCRLF;
+        case OgreCrLfNewlineCharacter:
+            return CEOSALineEndingCRLF;
             break;
         default:
-            return CELineEndingLF;
+            return CEOSALineEndingLF;
             break;
     }
 }
@@ -158,19 +158,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 改行コードをセット
-- (void)setLineEnding:(CELineEnding)lineEnding
+- (void)setLineEnding:(CEOSALineEnding)lineEnding
 // ------------------------------------------------------
 {
     NSInteger code;
 
     switch (lineEnding) {
-        case CELineEndingCR:
+        case CEOSALineEndingCR:
             code = 1;
             break;
-        case CELineEndingCRLF:
+        case CEOSALineEndingCRLF:
             code = 2;
             break;
-        case CELineEndingLF:
+        case CEOSALineEndingLF:
             code = 0;
             break;
     }

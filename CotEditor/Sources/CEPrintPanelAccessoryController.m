@@ -32,7 +32,6 @@
 
 #import "CEPrintPanelAccessoryController.h"
 #import "CEThemeManager.h"
-#import "constants.h"
 
 
 @interface CEPrintPanelAccessoryController ()

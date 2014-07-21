@@ -38,10 +38,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEDocument (ScriptingSupport) <NSTextStorageDelegate>
 
 // AppleScript Enum
-typedef NS_ENUM(NSUInteger, CELineEnding) {
-    CELineEndingLF = 'leLF',
-    CELineEndingCR = 'leCR',
-    CELineEndingCRLF = 'leCL'
+typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
+    CEOSALineEndingLF = 'leLF',
+    CEOSALineEndingCR = 'leCR',
+    CEOSALineEndingCRLF = 'leCL'
 };
 
 // Public method
@@ -53,8 +53,8 @@ typedef NS_ENUM(NSUInteger, CELineEnding) {
 - (NSTextStorage *)contents;
 - (void)setContents:(id)object;
 - (NSNumber *)length;
-- (CELineEnding)lineEnding;
-- (void)setLineEnding:(CELineEnding)lineEnding;
+- (CEOSALineEnding)lineEnding;
+- (void)setLineEnding:(CEOSALineEnding)lineEnding;
 - (NSString *)encodingName;
 - (NSString *)IANACharSetName;
 - (NSString *)coloringStyle;
