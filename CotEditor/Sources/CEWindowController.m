@@ -146,6 +146,8 @@ static NSTimeInterval incompatibleCharInterval;
     // テキストを表示
     [[self document] setStringToEditorView];
     
+    [self updateFileAttributesInfo];
+    
     // setup status bar
     [[self statusBarController] setShowStatusBar:[defaults boolForKey:k_key_showStatusBar]];
     [[self statusBarController] setShowReadOnly:![[self document] isWritable]];
