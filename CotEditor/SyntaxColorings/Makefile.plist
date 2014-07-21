@@ -8,40 +8,6 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>$%</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$*</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$+</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$&lt;</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$?</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$@</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$^</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^\w+(?= +[?:+]?= )</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>AR</string>
 		</dict>
 		<dict>
@@ -147,7 +113,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^[^ ]+(?= *:)</string>
+			<string>^[^ ]+(?= *:[^=])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -228,14 +194,54 @@
 	<key>styleName</key>
 	<string>Makefile</string>
 	<key>valuesArray</key>
+	<array/>
+	<key>variablesArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>$%</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>$(</string>
 			<key>endString</key>
 			<string>)</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$*</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$+</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$&lt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$?</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$@</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$^</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>${</string>
+			<key>endString</key>
+			<string>}</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^[-\w]+(?= +[?:+]?= )</string>
 			<key>regularExpression</key>
-			<false/>
+			<true/>
 		</dict>
 	</array>
 </dict>

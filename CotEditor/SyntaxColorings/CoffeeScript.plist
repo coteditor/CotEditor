@@ -18,14 +18,7 @@
 		</dict>
 	</array>
 	<key>commandsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>@[a-zA-Z0-9$_]*</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>commentDelimiters</key>
 	<dict>
 		<key>beginDelimiter</key>
@@ -240,6 +233,15 @@
 	</array>
 	<key>styleName</key>
 	<string>CoffeeScript</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>@[a-zA-Z0-9$_]*</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>

@@ -2,9 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>charactersArray</key>
-	<array/>
-	<key>commandsArray</key>
+	<key>attributesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
@@ -13,6 +11,10 @@
 			<true/>
 		</dict>
 	</array>
+	<key>charactersArray</key>
+	<array/>
+	<key>commandsArray</key>
+	<array/>
 	<key>commentDelimiters</key>
 	<dict>
 		<key>beginDelimiter</key>

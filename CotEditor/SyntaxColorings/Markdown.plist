@@ -30,28 +30,7 @@
 		</dict>
 	</array>
 	<key>commandsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>(?#h1).+\n\=+[\t ]*$</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?#h1-6)^#{1,6}[ \t]?</string>
-			<key>endString</key>
-			<string>$</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?#h2).+\n\-+[\t ]*$</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>commentDelimiters</key>
 	<dict>
 		<key>beginDelimiter</key>
@@ -298,6 +277,29 @@
 	</array>
 	<key>styleName</key>
 	<string>Markdown</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?#h1).+\n\=+[\t ]*$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?#h1-6)^#{1,6}[ \t]?</string>
+			<key>endString</key>
+			<string>$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?#h2).+\n\-+[\t ]*$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>

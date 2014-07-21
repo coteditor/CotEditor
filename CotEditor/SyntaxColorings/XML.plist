@@ -2,6 +2,93 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>attributesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?#for SGML DTD)(?&lt;=\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=[(|])#PCDATA(?=\b)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\[)\s*(?:IGNORE|INCLUDE)\s*(?=\[)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)#(?:FIXED|IMPLIED|REQUIRED)(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)(?:ANY|EMPTY)(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)(?:PUBLIC|SYSTEM)(?=\s+["'])</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)[[:alnum:]_\-.:]+(?=\s*=)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)CDATA(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ENTIT(?:Y|IES)(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)ID(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)IDREFS?(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)NDATA(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)NMTOKENS?(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)NOTATION(?=[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>charactersArray</key>
 	<array>
 		<dict>
@@ -183,13 +270,13 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)[[:alnum:]_\-.:]+(?=[[:space:]/&gt;])</string>
+			<string>(?&lt;=&lt;/?)[[:alnum:]_\-.:]+(?=[\n\t /&gt;])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=[[:space:](|,])[[:alnum:]_\-.:%]+(?=[[:space:])|,]?[^&lt;&gt;\[]*[&gt;\[])</string>
+			<string>(?&lt;=[\n\t (|,])[[:alnum:]_\-.:%]+(?=[\n\t )|,]?[^&lt;&gt;\[]*[&gt;\[])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -245,93 +332,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>(?#for SGML DTD)(?&lt;!ATTLIST)\s+[O\-]\s+[O\-](?=\s[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
-	<key>attributesArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>(?#for SGML DTD)(?&lt;=\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=[(|])#PCDATA(?=\b)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\[)\s*(?:IGNORE|INCLUDE)\s*(?=\[)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)#(?:FIXED|IMPLIED|REQUIRED)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)(?:ANY|EMPTY)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)(?:PUBLIC|SYSTEM)(?=\s+["'])</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)[[:alnum:]_\-.:]+(?=\s*=)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)CDATA(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)ENTIT(?:Y|IES)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)ID(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)IDREFS?(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)NDATA(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)NMTOKENS?(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)NOTATION(?=[^&lt;&gt;]*&gt;)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>

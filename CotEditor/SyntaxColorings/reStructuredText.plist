@@ -28,20 +28,7 @@
 		</dict>
 	</array>
 	<key>commandsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>^([-=`:.'"~^_*+#]{3,})\n.+\n\1$</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^.+\n([-=`:.'"~^_*+#])\1{2,}$</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>commentsArray</key>
 	<array>
 		<dict>
@@ -222,6 +209,21 @@
 	</array>
 	<key>styleName</key>
 	<string>reStructuredText</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>^([-=`:.'"~^_*+#]{3,})\n.+\n\1$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^.+\n([-=`:.'"~^_*+#])\1{2,}$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>

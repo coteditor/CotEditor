@@ -20,16 +20,7 @@
 		</dict>
 	</array>
 	<key>commandsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>^h[1-6]([\[{()=&gt;]\S*)?\.[\t ]</string>
-			<key>endString</key>
-			<string>$</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>commentsArray</key>
 	<array/>
 	<key>completionsArray</key>
@@ -175,6 +166,17 @@
 	</array>
 	<key>styleName</key>
 	<string>Textile</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>^h[1-6]([\[{()=&gt;]\S*)?\.[\t ]</string>
+			<key>endString</key>
+			<string>$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>
