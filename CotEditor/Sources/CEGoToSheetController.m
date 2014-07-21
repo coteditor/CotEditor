@@ -30,13 +30,13 @@
  =================================================
  */
 
-#import "CEGoToPanelController.h"
+#import "CEGoToSheetController.h"
 
 
-@interface CEGoToPanelController ()
+@interface CEGoToSheetController ()
 
-@property (nonatomic, copy) NSString  *locationString;
-@property (nonatomic) NSUInteger gotoType;
+@property (nonatomic) NSString *location;
+@property (nonatomic) CEGoToType gotoType;
 
 @end
 
@@ -45,27 +45,33 @@
 
 #pragma mark -
 
-@implementation CEGoToPanelController
+@implementation CEGoToSheetController
 
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initializer of panelController
-- (instancetype)init
+/// initializer of sheetController
+- (instancetype)init;
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"GoToPanel"];
-    
-    return self;
+    return [super initWithWindowNibName:@"GoToSheet"];
 }
 
 
+
+#pragma mark Public Methods
+
 // ------------------------------------------------------
-/// invoke when frontmost document window changed
-- (void)keyDocumentDidChange
+/// begin sheet for document
+- (void)beginSheetForDocument:(CEDocument *)document
 // ------------------------------------------------------
 {
-    [self setLocationString:@""];
+    [self setDocument:document];
+    
+    [NSApp beginSheet:[self window]
+       modalForWindow:[document windowForSheet]
+        modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+    [NSApp runModalForWindow:[self window]];
 }
 
 
@@ -73,19 +79,31 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// apply to the frontmost document window
+/// apply to the parent document window
 - (IBAction)apply:(id)sender
 // ------------------------------------------------------
 {
-    NSArray *theArray = [[self locationString] componentsSeparatedByString:@":"];
+    NSArray *locLen = [[self location] componentsSeparatedByString:@":"];
     
-    if ([theArray count] > 0) {
-        NSInteger location = [theArray[0] integerValue];
-        NSInteger length = ([theArray count] > 1) ? [theArray[1] integerValue] : 0;
+    if ([locLen count] > 0) {
+        NSInteger location = [locLen[0] integerValue];
+        NSInteger length = ([locLen count] > 1) ? [locLen[1] integerValue] : 0;
         
-        [[[self documentWindowController] document] gotoLocation:location withLength:length type:[self gotoType]];
-        [[self window] close];
+        [[self document] gotoLocation:location withLength:length type:[self gotoType]];
     }
+    [self close:sender];
+}
+
+
+// ------------------------------------------------------
+/// close sheet
+- (IBAction)close:(id)sender
+// ------------------------------------------------------
+{
+    [NSApp stopModal];
+    [NSApp endSheet:[self window]];
+    [self close];
+    
 }
 
 @end

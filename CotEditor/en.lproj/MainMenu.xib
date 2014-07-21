@@ -753,17 +753,12 @@
                                                 <action selector="openOpacityPanel:" target="290" id="fZ3-6h-0om"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Go To Panel" keyEquivalent="2" id="656">
-                                            <connections>
-                                                <action selector="openGoToPanel:" target="290" id="kSu-Ge-YRz"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Color Code Panel" keyEquivalent="3" id="651">
+                                        <menuItem title="Color Code Panel" tag="2" keyEquivalent="2" id="651">
                                             <connections>
                                                 <action selector="openHexColorCodeEditor:" target="290" id="652"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Script Error Panel" keyEquivalent="4" id="653">
+                                        <menuItem title="Script Error Panel" keyEquivalent="3" id="653">
                                             <connections>
                                                 <action selector="openScriptErrorWindow:" target="290" id="654"/>
                                             </connections>

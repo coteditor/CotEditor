@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CELineHeightTransformer.h"
 #import "CEOpacityPanelController.h"
 #import "CELineSpacingPanelController.h"
-#import "CEGoToPanelController.h"
+#import "CEGoToSheetController.h"
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
@@ -376,7 +376,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [findMenu addItem:[NSMenuItem separatorItem]];
     menuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Go To…", nil)
-                                          action:@selector(openGoToPanel:)
+                                          action:@selector(gotoLocation:)
                                    keyEquivalent:@"l"];
     [findMenu addItem:menuItem];
     
@@ -549,10 +549,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// Go Toパネルを開く
-- (IBAction)openGoToPanel:(id)sender
+- (IBAction)gotoLocation:(id)sender
 // ------------------------------------------------------
 {
-    [[CEGoToPanelController sharedController] showWindow:self];
+    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
+    [sheetController beginSheetForDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
 }
 
 

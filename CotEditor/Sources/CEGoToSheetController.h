@@ -30,9 +30,12 @@
  =================================================
  */
 
-#import "CEPanelController.h"
+@import AppKit;
+#import "CEDocument.h"
 
 
-@interface CEGoToPanelController : CEPanelController
+@interface CEGoToSheetController : NSWindowController <NSWindowDelegate>
+
+- (void)beginSheetForDocument:(CEDocument *)document;
 
 @end

@@ -753,17 +753,12 @@
                                                 <action selector="openOpacityPanel:" target="290" id="Ayh-8i-wKk"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="移動パネル" keyEquivalent="2" id="656">
-                                            <connections>
-                                                <action selector="openGoToPanel:" target="290" id="6lP-yW-Lui"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="カラーコードパネル" keyEquivalent="3" id="651">
+                                        <menuItem title="カラーコードパネル" keyEquivalent="2" id="651">
                                             <connections>
                                                 <action selector="openHexColorCodeEditor:" target="290" id="652"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="スクリプトエラーパネル" keyEquivalent="4" id="653">
+                                        <menuItem title="スクリプトエラーパネル" keyEquivalent="3" id="653">
                                             <connections>
                                                 <action selector="openScriptErrorWindow:" target="290" id="654"/>
                                             </connections>
