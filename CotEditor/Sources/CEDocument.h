@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
-- (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type;
+- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
 
 // Action Messages
 - (IBAction)setLineEndingCharToLF:(id)sender;

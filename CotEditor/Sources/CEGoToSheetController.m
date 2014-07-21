@@ -89,7 +89,7 @@
         NSInteger location = [locLen[0] integerValue];
         NSInteger length = ([locLen count] > 1) ? [locLen[1] integerValue] : 0;
         
-        [[self document] gotoLocation:location withLength:length type:[self gotoType]];
+        [[self document] gotoLocation:location length:length type:[self gotoType]];
     }
     [self close:sender];
 }

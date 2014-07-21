@@ -823,7 +823,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// 選択範囲を変更する
-- (void)gotoLocation:(NSInteger)location withLength:(NSInteger)length type:(CEGoToType)type
+- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type
 // ------------------------------------------------------
 {
     switch (type) {
