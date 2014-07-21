@@ -142,7 +142,7 @@ static NSTimeInterval incompatibleCharInterval;
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:[self editorView]];
     // デフォルト改行コードをセット
-    [[self document] setLineEndingCharToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
+    [[self document] setLineEndingToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // テキストを表示
     [[self document] setStringToEditorView];
     

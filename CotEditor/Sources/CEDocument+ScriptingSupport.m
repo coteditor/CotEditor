@@ -161,20 +161,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setLineEnding:(CEOSALineEnding)lineEnding
 // ------------------------------------------------------
 {
-    NSInteger code;
+    CELineEnding code;
 
     switch (lineEnding) {
         case CEOSALineEndingCR:
-            code = 1;
+            code = CELineEndingCR;
             break;
         case CEOSALineEndingCRLF:
-            code = 2;
+            code = CELineEndingCRLF;
             break;
         case CEOSALineEndingLF:
-            code = 0;
+            code = CELineEndingLF;
             break;
     }
-    [self doSetNewLineEndingCharacterCode:code];
+    [self doSetLineEnding:code];
 }
 
 

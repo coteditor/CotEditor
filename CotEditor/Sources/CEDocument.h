@@ -36,6 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEWindowController.h"
 #import "CETextSelection.h"
 #import "CEEditorView.h"
+#import "constants.h"
 
 
 @class CEEditorView;
@@ -69,8 +70,8 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
-- (void)doSetNewLineEndingCharacterCode:(NSInteger)newLineEnding;
-- (void)setLineEndingCharToView:(NSInteger)newLineEnding;
+- (void)doSetLineEnding:(CELineEnding)lineEnding;
+- (void)setLineEndingToView:(CELineEnding)lineEnding;
 - (void)doSetSyntaxStyle:(NSString *)name;
 
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;

@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 @import Cocoa;
+#import "constants.h"
 
 
 @interface CEToolbarController : NSObject <NSToolbarDelegate>
@@ -40,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)toggleItemWithIdentifier:(NSString *)identifer setOn:(BOOL)setOn;
 - (void)buildEncodingPopupButton;
 - (void)setSelectedEncoding:(NSStringEncoding)encoding;
-- (void)setSelectedLineEndingWithIndex:(NSUInteger)index;
+- (void)setSelectedLineEnding:(CELineEnding)lineEnding;
 - (void)setSelectedSyntaxWithName:(NSString *)name;
 
 @end

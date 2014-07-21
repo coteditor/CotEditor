@@ -120,12 +120,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 改行コードポップアップの選択項目を設定
-- (void)setSelectedLineEndingWithIndex:(NSUInteger)index
+- (void)setSelectedLineEnding:(CELineEnding)lineEnding
 // ------------------------------------------------------
 {
-    if (index >= [[self lineEndingPopupButton] numberOfItems]) { return; }
+    if (lineEnding >= [[self lineEndingPopupButton] numberOfItems]) { return; }
 
-    [[self lineEndingPopupButton] selectItemAtIndex:index];
+    [[self lineEndingPopupButton] selectItemAtIndex:lineEnding];
 }
 
 

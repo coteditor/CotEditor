@@ -418,7 +418,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     if ([self initialString]) {
         OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
-        [self setLineEndingCharToView:lineEnding]; // for update toolbar item
+        [self setLineEndingToView:lineEnding]; // for update toolbar item
         [[self editorView] setString:[self initialString]]; // （editorView の setString 内でキャレットを先頭に移動させている）
         [self setInitialString:nil];  // release
     } else {
@@ -677,7 +677,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// 改行コードを変更する
-- (void)doSetNewLineEndingCharacterCode:(NSInteger)lineEnding
+- (void)doSetLineEnding:(CELineEnding)lineEnding
 // ------------------------------------------------------
 {
     NSInteger currentEnding = [[self editorView] lineEndingCharacter];
@@ -691,24 +691,23 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
     // Undo登録
     NSUndoManager *undoManager = [self undoManager];
-    [[undoManager prepareWithInvocationTarget:self] 
-                redoSetNewLineEndingCharacterCode:lineEnding]; // undo内redo
-    [[undoManager prepareWithInvocationTarget:self] setLineEndingCharToView:currentEnding]; // 元の改行コード
+    [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding]; // undo内redo
+    [[undoManager prepareWithInvocationTarget:self] setLineEndingToView:currentEnding]; // 元の改行コード
     [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
     [undoManager setActionName:actionName];
 
-    [self setLineEndingCharToView:lineEnding];
+    [self setLineEndingToView:lineEnding];
     [self updateChangeCount:NSChangeDone]; // changeCountインクリメント
 }
 
 
 // ------------------------------------------------------
-/// 改行コード番号をセット
-- (void)setLineEndingCharToView:(NSInteger)lineEnding
+/// 改行コードをセット
+- (void)setLineEndingToView:(CELineEnding)lineEnding
 // ------------------------------------------------------
 {
     [[self editorView] setLineEndingCharacter:lineEnding];
-    [[[self windowController] toolbarController] setSelectedLineEndingWithIndex:lineEnding];
+    [[[self windowController] toolbarController] setSelectedLineEnding:lineEnding];
 }
 
 
@@ -1044,7 +1043,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (IBAction)setLineEndingChar:(id)sender
 // ------------------------------------------------------
 {
-    [self doSetNewLineEndingCharacterCode:[sender tag]];
+    [self doSetLineEnding:[sender tag]];
 }
 
 
@@ -1616,10 +1615,10 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// 改行コードを変更するアクションのRedo登録
-- (void)redoSetNewLineEndingCharacterCode:(NSInteger)newLineEnding
+- (void)redoSetLineEnding:(CELineEnding)lineEnding
 // ------------------------------------------------------
 {
-    [[[self undoManager] prepareWithInvocationTarget:self] doSetNewLineEndingCharacterCode:newLineEnding];
+    [[[self undoManager] prepareWithInvocationTarget:self] doSetLineEnding:lineEnding];
 }
 
 
