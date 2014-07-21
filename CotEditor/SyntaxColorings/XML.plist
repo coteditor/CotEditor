@@ -6,85 +6,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?#for SGML DTD)(?&lt;=\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=[(|])#PCDATA(?=\b)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\[)\s*(?:IGNORE|INCLUDE)\s*(?=\[)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)#(?:FIXED|IMPLIED|REQUIRED)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)(?:ANY|EMPTY)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)(?:PUBLIC|SYSTEM)(?=\s+["'])</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>(?&lt;=\s)[[:alnum:]_\-.:]+(?=\s*=)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)CDATA(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)ENTIT(?:Y|IES)(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)ID(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)IDREFS?(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)NDATA(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)NMTOKENS?(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)NOTATION(?=[^&lt;&gt;]*&gt;)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -114,14 +36,6 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;)![A-Z]*</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>(?&lt;=&lt;)\?[[:alnum:]_\-.:]+</string>
 			<key>regularExpression</key>
 			<true/>
@@ -141,14 +55,7 @@
 		<string>--&gt;</string>
 	</dict>
 	<key>commentsArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>(?#for SGML DTD)--(?:-[^-]|[^-])*--(?=[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>completionsArray</key>
 	<array/>
 	<key>extensions</key>
@@ -160,10 +67,6 @@
 		<dict>
 			<key>keyString</key>
 			<string>xsl</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>dtd</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
@@ -274,34 +177,9 @@
 			<key>regularExpression</key>
 			<true/>
 		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=[\n\t (|,])[[:alnum:]_\-.:%]+(?=[\n\t )|,]?[^&lt;&gt;\[]*[&gt;\[])</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
 	</array>
 	<key>numbersArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)[[:alnum:]_\-.]+:(?=\w)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\b)[[:alnum:]_\-.]+:(?=\w[^&lt;&gt;]*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\s)[[:alnum:]_\-.]+:(?=(\w|[\-.])+\s*=)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>outlineMenuArray</key>
 	<array/>
 	<key>stringsArray</key>
@@ -318,12 +196,6 @@
 			<key>regularExpression</key>
 			<true/>
 		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=NDATA)\s+[[:alnum:]_\-.]+(?=\s*&gt;)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
 	</array>
 	<key>styleName</key>
 	<string>XML</string>
@@ -331,7 +203,30 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?#for SGML DTD)(?&lt;!ATTLIST)\s+[O\-]\s+[O\-](?=\s[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;)![A-Z]*</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
+	<key>valuesArray</key>
+	<array/>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=&lt;/?)[[:alnum:]_\-.]+:(?=\w)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\b)[[:alnum:]_\-.]+:(?=\w[^&lt;&gt;]*&gt;)</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\s)[[:alnum:]_\-.]+:(?=(\w|[\-.])+\s*=)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>

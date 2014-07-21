@@ -1416,6 +1416,14 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>(?&lt;=&lt;)!DOCTYPE\s</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>(?&lt;=\s)onabort(?=\b[^&lt;&gt;]*&gt;)</string>
 			<key>ignoreCase</key>
 			<true/>
@@ -4637,14 +4645,6 @@
 	<string>HTML</string>
 	<key>typesArray</key>
 	<array>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=&lt;)!DOCTYPE\s</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>(?&lt;=&lt;)\?(\w|[\-.:])+</string>
