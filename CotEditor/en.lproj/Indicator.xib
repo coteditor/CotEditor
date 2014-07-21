@@ -22,21 +22,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="404" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="29">
-                        <rect key="frame" x="20" y="48" width="64" height="64"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="64" id="Bvw-aM-Js4"/>
-                            <constraint firstAttribute="height" constant="64" id="dMR-DV-H2Q"/>
-                        </constraints>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="appIcon" id="73"/>
-                    </imageView>
                     <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
-                        <rect key="frame" x="104" y="68" width="280" height="20"/>
+                        <rect key="frame" x="20" y="68" width="364" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                        <rect key="frame" x="102" y="95" width="99" height="17"/>
+                        <rect key="frame" x="18" y="95" width="99" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Coloring text..." id="74">
                             <font key="font" metaFont="system"/>
@@ -48,7 +39,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="51">
-                        <rect key="frame" x="102" y="47" width="284" height="14"/>
+                        <rect key="frame" x="18" y="47" width="368" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please wait for a while." id="75">
                             <font key="font" metaFont="smallSystem"/>
@@ -81,13 +72,11 @@ Gw
                     <constraint firstAttribute="bottom" secondItem="58" secondAttribute="bottom" constant="20" symbolic="YES" id="171-Vf-Yrf"/>
                     <constraint firstAttribute="trailing" secondItem="47" secondAttribute="trailing" constant="20" symbolic="YES" id="1Ul-Yp-zSt"/>
                     <constraint firstItem="51" firstAttribute="leading" secondItem="47" secondAttribute="leading" id="3py-K1-Kpx"/>
-                    <constraint firstItem="50" firstAttribute="leading" secondItem="29" secondAttribute="trailing" constant="20" id="B4m-XE-2we"/>
+                    <constraint firstItem="50" firstAttribute="leading" secondItem="7" secondAttribute="leading" constant="20" symbolic="YES" id="B9Q-i3-wSU"/>
                     <constraint firstAttribute="trailing" secondItem="58" secondAttribute="trailing" constant="20" symbolic="YES" id="M8T-7L-cDb"/>
-                    <constraint firstItem="29" firstAttribute="leading" secondItem="7" secondAttribute="leading" constant="20" symbolic="YES" id="SES-bh-wbn"/>
                     <constraint firstItem="51" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="8" symbolic="YES" id="ShX-e9-DsK"/>
                     <constraint firstItem="47" firstAttribute="top" secondItem="50" secondAttribute="bottom" constant="8" symbolic="YES" id="U1A-D6-m83"/>
                     <constraint firstItem="51" firstAttribute="leading" secondItem="50" secondAttribute="leading" id="ZGA-lI-scb"/>
-                    <constraint firstItem="29" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="nIv-YS-caB"/>
                     <constraint firstAttribute="trailing" secondItem="51" secondAttribute="trailing" constant="20" symbolic="YES" id="oEG-pg-Qxv"/>
                     <constraint firstItem="50" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="owa-m9-NVI"/>
                 </constraints>
@@ -97,7 +86,4 @@ Gw
             </connections>
         </window>
     </objects>
-    <resources>
-        <image name="appIcon" width="512" height="512"/>
-    </resources>
 </document>
