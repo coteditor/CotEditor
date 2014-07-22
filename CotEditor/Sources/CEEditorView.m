@@ -183,16 +183,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// 改行コードを指定のものに置換したメインtextViewの文字列を返す
-- (NSString *)stringForSave
-// ------------------------------------------------------
-{
-    return [OGRegularExpression replaceNewlineCharactersInString:[self string]
-                                                   withCharacter:[[self document] lineEnding]];
-}
-
-
-// ------------------------------------------------------
 /// メインtextViewの指定された範囲の文字列を返す
 - (NSString *)substringWithRange:(NSRange)range
 // ------------------------------------------------------
@@ -316,10 +306,10 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     if ([[[self textView] lineEndingString] length] > 1) {
-        NSString *tmpLocStr = [[self stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
+        NSString *tmpLocStr = [[[self document] stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
         NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
                                                                    withCharacter:OgreLfNewlineCharacter];
-        NSString *tmpLenStr = [[self stringForSave] substringWithRange:charRange];
+        NSString *tmpLenStr = [[[self document] stringForSave] substringWithRange:charRange];
         NSString *lenStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLenStr
                                                                    withCharacter:OgreLfNewlineCharacter];
         [[self textView] setSelectedRange:NSMakeRange([locStr length], [lenStr length])];

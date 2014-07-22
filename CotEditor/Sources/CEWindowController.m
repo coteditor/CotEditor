@@ -256,8 +256,8 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    NSString *textViewString = [[self editorView] string];
-    NSString *wholeString = ([[self document] lineEnding] == OgreCrLfNewlineCharacter) ? [[self editorView] stringForSave] : textViewString;
+    NSString *wholeString = ([[self document] lineEnding] == OgreCrLfNewlineCharacter) ? [[self document] stringForSave] : [[self editorView] string];
+    NSString *selectedString = [[self editorView] substringWithSelection] ? : @"";
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editorView] selectedRange];
     __block CEStatusBarController *statusBar = [self statusBarController];
@@ -279,7 +279,6 @@ static NSTimeInterval incompatibleCharInterval;
         
         if (length > 0) {
             BOOL hasSelection = (selectedRange.length > 0);
-            NSString *selectedString = hasSelection ? [textViewString substringWithRange:selectedRange] : @"";
             NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
             column = selectedRange.location - lineRange.location;  // as length
             column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];

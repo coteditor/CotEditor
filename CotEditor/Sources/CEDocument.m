@@ -196,7 +196,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *string = [self convertCharacterString:[[self editorView] stringForSave] withEncoding:[self encoding]];
+    NSString *string = [self convertCharacterString:[self stringForSave] withEncoding:[self encoding]];
     
     // stringから保存用のdataを得る
     NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
@@ -412,6 +412,15 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 //=======================================================
 
 // ------------------------------------------------------
+/// 改行コードを指定のものに置換したメイン textView の文字列を返す
+- (NSString *)stringForSave
+// ------------------------------------------------------
+{
+    return [OGRegularExpression replaceNewlineCharactersInString:[[self editorView] string]
+                                                   withCharacter:[self lineEnding]];
+}
+
+// ------------------------------------------------------
 /// editorView に文字列をセット
 - (void)setStringToEditorView
 // ------------------------------------------------------
@@ -476,7 +485,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     NSMutableArray *uncompatibleChars = [NSMutableArray array];
-    NSString *currentString = [[self editorView] stringForSave];
+    NSString *currentString = [self stringForSave];
     NSUInteger currentLength = [currentString length];
     NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
     NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
@@ -643,7 +652,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     if (updateDocument) {
         shouldShowList = [[self windowController] needsIncompatibleCharDrawerUpdate];
-        NSString *curString = [[self editorView] stringForSave];
+        NSString *curString = [self stringForSave];
         BOOL allowsLossy = NO;
 
         if (askLossy) {
@@ -1455,7 +1464,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (BOOL)acceptSaveDocumentWithIANACharSetName
 // ------------------------------------------------------
 {
-    NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:[[self editorView] stringForSave]];
+    NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:[self stringForSave]];
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
 
@@ -1558,8 +1567,8 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *curString = [self convertCharacterString:[[self editorView] stringForSave]
-                                            withEncoding:[self encoding]];
+    NSString *curString = [self convertCharacterString:[self stringForSave]
+                                          withEncoding:[self encoding]];
     
     if (![curString canBeConvertedToEncoding:[self encoding]]) {
         NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];

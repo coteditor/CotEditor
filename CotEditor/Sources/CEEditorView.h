@@ -67,7 +67,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (CESyntaxParser *)syntaxParser;
 
 - (NSString *)string;
-- (NSString *)stringForSave;
 - (NSString *)substringWithRange:(NSRange)range;
 - (NSString *)substringWithSelection;
 - (NSString *)substringWithSelectionForSave;

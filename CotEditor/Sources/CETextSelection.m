@@ -136,11 +136,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setContents:(id)ContentsObject
 // ------------------------------------------------------
 {
+    NSString *string;
+    
     if ([ContentsObject isKindOfClass:[NSTextStorage class]]) {
-        [[[self document] editorView] replaceTextViewSelectedStringTo:[ContentsObject string] scroll:NO];
+        string = [ContentsObject string];
     } else if ([ContentsObject isKindOfClass:[NSString class]]) {
-        [[[self document] editorView] replaceTextViewSelectedStringTo:ContentsObject scroll:NO];
+        string = ContentsObject;
+    } else {
+        return;
     }
+    
+    [[[self document] editorView] replaceTextViewSelectedStringTo:string scroll:NO];
 }
 
 
@@ -175,7 +181,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     NSRange selectedRange = [[[self document] editorView] selectedRange];
-    NSString *string = [[[self document] editorView] stringForSave];
+    NSString *string = [[self document] stringForSave];
     NSUInteger currentLine = 0, lastLine = 0, length = [string length];
 
     if (length > 0) {
