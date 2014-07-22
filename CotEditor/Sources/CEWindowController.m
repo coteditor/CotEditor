@@ -259,7 +259,7 @@ static NSTimeInterval incompatibleCharInterval;
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
     NSString *textViewString = [[self editorView] string];
-    NSString *wholeString = ([[self editorView] lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [[self editorView] stringForSave] : textViewString;
+    NSString *wholeString = ([[self document] lineEnding] == OgreCrLfNewlineCharacter) ? [[self editorView] stringForSave] : textViewString;
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editorView] selectedRange];
     __block CEStatusBarController *statusBar = [self statusBarController];
@@ -397,7 +397,7 @@ static NSTimeInterval incompatibleCharInterval;
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
     NSString *lineEndingsInfo;
-    switch ([[self editorView] lineEndingCharacter]) {
+    switch ([[self document] lineEnding]) {
         case OgreLfNewlineCharacter:
             lineEndingsInfo = @"LF";
             break;

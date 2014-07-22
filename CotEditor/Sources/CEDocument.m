@@ -64,6 +64,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (nonatomic, readwrite) CEWindowController *windowController;
 @property (nonatomic, readwrite) CETextSelection *selection;
 @property (nonatomic, readwrite) NSStringEncoding encoding;
+@property (nonatomic, readwrite) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readwrite, copy) NSDictionary *fileAttributes;
 @property (nonatomic ,readwrite) BOOL isWritable;
 
@@ -113,6 +114,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [self setHasUndoManager:YES];
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew];
+        _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _isWritable = YES;
         
@@ -410,6 +412,14 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 //=======================================================
 
 // ------------------------------------------------------
+/// 文書の改行コードを返す
+- (OgreNewlineCharacter)lineEnding
+// ------------------------------------------------------
+{
+    return [self editorView] ? [[self editorView] lineEndingCharacter] : _lineEnding;
+}
+
+// ------------------------------------------------------
 /// editorView に文字列をセット
 - (void)setStringToEditorView
 // ------------------------------------------------------
@@ -680,7 +690,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)doSetLineEnding:(CELineEnding)lineEnding
 // ------------------------------------------------------
 {
-    NSInteger currentEnding = [[self editorView] lineEndingCharacter];
+    OgreNewlineCharacter currentEnding = [self lineEnding];
 
     // 現在と同じ改行コードなら、何もしない
     if (currentEnding == lineEnding) {
@@ -863,12 +873,12 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         return ([self isWritable] || [self didAlertNotWritable]);
     } else if ([menuItem action] == @selector(changeEncoding:)) {
         state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
-    } else if (([menuItem action] == @selector(setLineEndingCharToLF:)) ||
-               ([menuItem action] == @selector(setLineEndingCharToCR:)) ||
-               ([menuItem action] == @selector(setLineEndingCharToCRLF:)) ||
-               ([menuItem action] == @selector(setLineEndingChar:)))
+    } else if (([menuItem action] == @selector(changeLineEndingToLF:)) ||
+               ([menuItem action] == @selector(changeLineEndingToCR:)) ||
+               ([menuItem action] == @selector(changeLineEndingToCRLF:)) ||
+               ([menuItem action] == @selector(changeLineEnding:)))
     {
-        state = ([menuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
+        state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
     } else if ([menuItem action] == @selector(changeTheme:)) {
         name = [[[[self editorView] textView] theme] name];
         if (name && [[menuItem title] isEqualToString:name]) {
@@ -1013,34 +1023,34 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingCharToLF:(id)sender
+- (IBAction)changeLineEndingToLF:(id)sender
 // ------------------------------------------------------
 {
-    [self setLineEndingChar:sender];
+    [self changeLineEnding:sender];
 }
 
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingCharToCR:(id)sender
+- (IBAction)changeLineEndingToCR:(id)sender
 // ------------------------------------------------------
 {
-    [self setLineEndingChar:sender];
+    [self changeLineEnding:sender];
 }
 
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingCharToCRLF:(id)sender
+- (IBAction)changeLineEndingToCRLF:(id)sender
 // ------------------------------------------------------
 {
-    [self setLineEndingChar:sender];
+    [self changeLineEnding:sender];
 }
 
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingChar:(id)sender
+- (IBAction)changeLineEnding:(id)sender
 // ------------------------------------------------------
 {
     [self doSetLineEnding:[sender tag]];

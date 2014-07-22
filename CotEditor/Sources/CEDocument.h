@@ -56,6 +56,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
 @property (nonatomic, readonly) CETextSelection *selection;
+@property (nonatomic, readonly) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readonly) NSStringEncoding encoding;
 @property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
 @property (nonatomic, readonly) BOOL isWritable;
@@ -80,10 +81,10 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
 
 // Action Messages
-- (IBAction)setLineEndingCharToLF:(id)sender;
-- (IBAction)setLineEndingCharToCR:(id)sender;
-- (IBAction)setLineEndingCharToCRLF:(id)sender;
-- (IBAction)setLineEndingChar:(id)sender;
+- (IBAction)changeLineEndingToLF:(id)sender;
+- (IBAction)changeLineEndingToCR:(id)sender;
+- (IBAction)changeLineEndingToCRLF:(id)sender;
+- (IBAction)changeLineEnding:(id)sender;
 - (IBAction)changeEncoding:(id)sender;
 - (IBAction)changeTheme:(id)sender;
 - (IBAction)changeSyntaxStyle:(id)sender;

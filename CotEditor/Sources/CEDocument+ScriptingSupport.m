@@ -139,10 +139,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 改行コードを返す(enum型)
-- (CEOSALineEnding)lineEnding
+- (CEOSALineEnding)lineEndingChar
 // ------------------------------------------------------
 {
-    switch ([[self editorView] lineEndingCharacter]) {
+    switch ([self lineEnding]) {
         case OgreCrNewlineCharacter:
             return CEOSALineEndingCR;
             break;
@@ -158,12 +158,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 改行コードをセット
-- (void)setLineEnding:(CEOSALineEnding)lineEnding
+- (void)setLineEndingChar:(CEOSALineEnding)lineEndingChar
 // ------------------------------------------------------
 {
     CELineEnding code;
 
-    switch (lineEnding) {
+    switch (lineEndingChar) {
         case CEOSALineEndingCR:
             code = CELineEndingCR;
             break;

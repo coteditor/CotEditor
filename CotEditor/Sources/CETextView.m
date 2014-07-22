@@ -2180,7 +2180,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (!pboard) { return; }
 
-    OgreNewlineCharacter newlineChar = [[(CESubSplitView *)[self delegate] editorView] lineEndingCharacter];
+    OgreNewlineCharacter newlineChar = [[[[self window] windowController] document] lineEnding];
 
     if (newlineChar != OgreLfNewlineCharacter) {
         NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
