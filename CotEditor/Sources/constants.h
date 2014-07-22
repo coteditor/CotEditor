@@ -173,6 +173,7 @@ extern NSString *const k_key_lineNumFontColor;
 extern NSString *const k_key_basicColoringDelay;
 extern NSString *const k_key_firstColoringDelay;
 extern NSString *const k_key_secondColoringDelay;
+extern NSString *const k_key_autoCompletionDelay;
 extern NSString *const k_key_lineNumUpdateInterval;
 extern NSString *const k_key_infoUpdateInterval;
 extern NSString *const k_key_incompatibleCharInterval;

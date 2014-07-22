@@ -171,6 +171,7 @@ NSString *const k_key_lineNumFontColor = @"lineNumFontColor";
 NSString *const k_key_basicColoringDelay = @"basicColoringDelay";
 NSString *const k_key_firstColoringDelay = @"firstColoringDelay";
 NSString *const k_key_secondColoringDelay = @"secondColoringDelay";
+NSString *const k_key_autoCompletionDelay = @"autoCompletionDelay";
 NSString *const k_key_lineNumUpdateInterval = @"lineNumUpdateInterval";
 NSString *const k_key_infoUpdateInterval = @"infoUpdateInterval";
 NSString *const k_key_incompatibleCharInterval = @"incompatibleCharInterval";

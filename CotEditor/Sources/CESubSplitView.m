@@ -595,6 +595,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (addingMode == 2) {
         [outWords addObjectsFromArray:words];
     }
+    
+    // 入力済みの単語と同じ候補しかないときは表示しない
+    if ([outWords count] == 1 && [outWords[0] isEqualToString:partialWord]) {
+        return nil;
+    }
 
     return [outWords array];
 }
@@ -619,12 +624,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
-    __block CETextView *textView = [self textView];
-    if ([textView isReCompletion]) {
-        [textView setIsReCompletion:NO];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [textView complete:nil];
-        });
+    if ([[self textView] isReCompletion]) {
+        [[self textView] setIsReCompletion:NO];
+        [[self textView] completeAfterDelay:0.05];
     }
 }
 

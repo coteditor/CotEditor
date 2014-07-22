@@ -66,6 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // Public method
+- (void)completeAfterDelay:(NSTimeInterval)delay;
 - (void)drawHighlightLineAdditionalRect;
 - (void)applyTypingAttributes;
 - (void)replaceSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
@@ -80,11 +81,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)readSelectionFromPasteboard:(NSPasteboard *)inPboard type:(NSString *)inType;
 - (NSRange)selectionRangeForProposedRange:(NSRange)inProposedSelRange
                               granularity:(NSSelectionGranularity)inGranularity;
-- (BOOL)isReCompletion;
-- (void)setIsReCompletion:(BOOL)inValue;
 - (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing;
 - (void)doReplaceString:(NSString *)inString withRange:(NSRange)inRange 
-            withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
+           withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;
 
 // Action Message
 - (IBAction)shiftRight:(id)sender;
