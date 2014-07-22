@@ -56,8 +56,8 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
 @property (nonatomic, readonly) CETextSelection *selection;
-@property (nonatomic, readonly) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readonly) NSStringEncoding encoding;
+@property (nonatomic, readonly) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
 @property (nonatomic, readonly) BOOL isWritable;
 
@@ -72,7 +72,6 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
 - (void)doSetLineEnding:(CELineEnding)lineEnding;
-- (void)setLineEndingToView:(CELineEnding)lineEnding;
 - (void)doSetSyntaxStyle:(NSString *)name;
 
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;

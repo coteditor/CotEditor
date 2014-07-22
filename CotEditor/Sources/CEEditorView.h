@@ -49,8 +49,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEEditorView : NSView
 
-@property (nonatomic) OgreNewlineCharacter lineEndingCharacter;
-
 @property (nonatomic) BOOL showLineNum;
 @property (nonatomic) BOOL showNavigationBar;
 @property (nonatomic) BOOL wrapLines;
@@ -73,7 +71,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)substringWithRange:(NSRange)range;
 - (NSString *)substringWithSelection;
 - (NSString *)substringWithSelectionForSave;
-- (void)setString:(NSString *)inString;
+- (void)setLineEndingCharacter:(OgreNewlineCharacter)lineEndingCharacter;
+- (void)setString:(NSString *)string;
 - (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)doScroll;
 - (void)replaceTextViewAllStringTo:(NSString *)string;
 - (void)insertTextViewAfterSelectionStringTo:(NSString *)string;

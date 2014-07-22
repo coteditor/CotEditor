@@ -188,7 +188,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [OGRegularExpression replaceNewlineCharactersInString:[self string]
-                                                   withCharacter:[self lineEndingCharacter]];
+                                                   withCharacter:[[self document] lineEnding]];
 }
 
 
@@ -216,7 +216,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [OGRegularExpression replaceNewlineCharactersInString:[self substringWithSelection]
-                                                   withCharacter:[self lineEndingCharacter]];
+                                                   withCharacter:[[self document] lineEnding]];
 }
 
 
@@ -225,27 +225,14 @@ static NSTimeInterval secondColoringDelay;
 - (void)setString:(NSString *)string
 // ------------------------------------------------------
 {
-    // 表示する文字列内の改行コードをLFに統一する
-    // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEEditorView > setString:
-    //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
-
-    NSString *newLineString = [OGRegularExpression replaceNewlineCharactersInString:string
-                                                                      withCharacter:OgreLfNewlineCharacter];
-
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
     // 設定されたフォントでないもので表示されることがあるため、リセットする
     [[self textView] setString:@""];
     [[self textView] applyTypingAttributes];
-    [[self textView] setString:newLineString];
+    [[self textView] setString:string];
+    
     // キャレットを先頭に移動
-    if ([newLineString length] > 0) {
+    if ([string length] > 0) {
         [[self splitView] setAllCaretToBeginning];
     }
 }
@@ -314,7 +301,7 @@ static NSTimeInterval secondColoringDelay;
         NSRange range = [[self textView] selectedRange];
         NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
         NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
-                                                                   withCharacter:[self lineEndingCharacter]];
+                                                                   withCharacter:[[self document] lineEnding]];
         NSString *lenStr = [self substringWithSelectionForSave];
 
         return NSMakeRange([locStr length], [lenStr length]);
@@ -433,20 +420,11 @@ static NSTimeInterval secondColoringDelay;
 - (void)setLineEndingCharacter:(OgreNewlineCharacter)lineEndingCharacter
 // ------------------------------------------------------
 {
-    NSArray *subSplitViews = [[self splitView] subviews];
     NSString *newLineString;
-    BOOL shouldUpdate = (_lineEndingCharacter != lineEndingCharacter);
-    unichar theChar[2];
-
-    if ((lineEndingCharacter > OgreNonbreakingNewlineCharacter) && 
-            (lineEndingCharacter <= OgreWindowsNewlineCharacter)) {
-        _lineEndingCharacter = lineEndingCharacter;
-    } else {
-        NSInteger defaultLineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
-        _lineEndingCharacter = defaultLineEnding;
-    }
-    // set to textViewCore.
-    switch (_lineEndingCharacter) {
+    unichar chars[2];
+    
+    // set to textView.
+    switch (lineEndingCharacter) {
         case OgreLfNewlineCharacter:
             newLineString = @"\n";  // LF
             break;
@@ -457,12 +435,12 @@ static NSTimeInterval secondColoringDelay;
             newLineString = @"\r\n";
             break;
         case OgreUnicodeLineSeparatorNewlineCharacter:  // Unicode line separator
-            theChar[0] = 0x2028; theChar[1] = 0;
-            newLineString = [[NSString alloc] initWithCharacters:theChar length:1];
+            chars[0] = 0x2028; chars[1] = 0;
+            newLineString = [[NSString alloc] initWithCharacters:chars length:1];
             break;
         case OgreUnicodeParagraphSeparatorNewlineCharacter:  // Unicode paragraph separator
-            theChar[0] = 0x2029; theChar[1] = 0;
-            newLineString = [[NSString alloc] initWithCharacters:theChar length:1];
+            chars[0] = 0x2029; chars[1] = 0;
+            newLineString = [[NSString alloc] initWithCharacters:chars length:1];
             break;
         case OgreNonbreakingNewlineCharacter:  // 改行なしの場合
             newLineString = @"";
@@ -471,13 +449,13 @@ static NSTimeInterval secondColoringDelay;
         default:
             return;
     }
-    for (NSTextContainer *container in subSplitViews) {
+    
+    for (NSTextContainer *container in [[self splitView] subviews]) {
         [(CETextView *)[container textView] setLineEndingString:newLineString];
     }
-    if (shouldUpdate) {
-        [[self windowController] updateEncodingAndLineEndingsInfo:NO];
-        [[self windowController] updateEditorStatusInfo:NO];
-    }
+    
+    [[self windowController] updateEncodingAndLineEndingsInfo:NO];
+    [[self windowController] updateEditorStatusInfo:NO];
 }
 
 
@@ -783,7 +761,7 @@ static NSTimeInterval secondColoringDelay;
     [[subSplitView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[subSplitView textView]];
-    [self setLineEndingCharacter:[self lineEndingCharacter]];
+    [self setLineEndingCharacter:[[self document] lineEnding]];
     [[subSplitView textView] centerSelectionInVisibleArea:self];
     [self updateCloseSubSplitViewButton];
 }

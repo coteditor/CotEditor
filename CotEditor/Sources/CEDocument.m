@@ -412,25 +412,34 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 //=======================================================
 
 // ------------------------------------------------------
-/// 文書の改行コードを返す
-- (OgreNewlineCharacter)lineEnding
-// ------------------------------------------------------
-{
-    return [self editorView] ? [[self editorView] lineEndingCharacter] : _lineEnding;
-}
-
-// ------------------------------------------------------
 /// editorView に文字列をセット
 - (void)setStringToEditorView
 // ------------------------------------------------------
 {
     [self setSyntaxStyleWithFileName:[[self fileURL] lastPathComponent] coloring:NO];
     
+    // 表示する文字列内の改行コードをLFに統一する
+    // （その他の編集は、下記の通りの別の場所で置換している）
+    // # テキスト編集時の改行コードの置換場所
+    //  * ファイルオープン = CEDocument > setStringToEditorView
+    //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
+    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    
     if ([self initialString]) {
         OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
-        [self setLineEndingToView:lineEnding]; // for update toolbar item
-        [[self editorView] setString:[self initialString]]; // （editorView の setString 内でキャレットを先頭に移動させている）
+        [self setLineEnding:lineEnding];
+        [self applyLineEndingToView]; // to update toolbar
+        
+        NSString *string = [OGRegularExpression replaceNewlineCharactersInString:[self initialString]
+                                                                   withCharacter:OgreLfNewlineCharacter];
+        
+        [[self editorView] setString:string]; // （editorView の setString 内でキャレットを先頭に移動させている）
         [self setInitialString:nil];  // release
+        
     } else {
         [[self editorView] setString:@""];
     }
@@ -702,22 +711,14 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // Undo登録
     NSUndoManager *undoManager = [self undoManager];
     [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding]; // undo内redo
-    [[undoManager prepareWithInvocationTarget:self] setLineEndingToView:currentEnding]; // 元の改行コード
+    [[undoManager prepareWithInvocationTarget:self] setLineEnding:currentEnding]; // 元の改行コード
+    [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView]; // 元の改行コード
     [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
     [undoManager setActionName:actionName];
 
-    [self setLineEndingToView:lineEnding];
+    [self setLineEnding:lineEnding];
+    [self applyLineEndingToView];
     [self updateChangeCount:NSChangeDone]; // changeCountインクリメント
-}
-
-
-// ------------------------------------------------------
-/// 改行コードをセット
-- (void)setLineEndingToView:(CELineEnding)lineEnding
-// ------------------------------------------------------
-{
-    [[self editorView] setLineEndingCharacter:lineEnding];
-    [[[self windowController] toolbarController] setSelectedLineEnding:lineEnding];
 }
 
 
@@ -1248,6 +1249,16 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding]];
     // ステータスバー、ドロワーを更新
     [[self windowController] updateEncodingAndLineEndingsInfo:NO];
+}
+
+
+// ------------------------------------------------------
+/// 改行コードをエディタに反映
+- (void)applyLineEndingToView
+// ------------------------------------------------------
+{
+    [[self editorView] setLineEndingCharacter:[self lineEnding]];
+    [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
 }
 
 

@@ -141,8 +141,6 @@ static NSTimeInterval incompatibleCharInterval;
     
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:[self editorView]];
-    // デフォルト改行コードをセット
-    [[self document] setLineEndingToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // テキストを表示
     [[self document] setStringToEditorView];
     
@@ -405,7 +403,7 @@ static NSTimeInterval incompatibleCharInterval;
             lineEndingsInfo = @"CR";
             break;
         case OgreCrLfNewlineCharacter:
-            lineEndingsInfo = @"CRLF";
+            lineEndingsInfo = @"CR/LF";
             break;
         case OgreUnicodeLineSeparatorNewlineCharacter:
             lineEndingsInfo = @"Unicode-lineSep"; // Unicode line separator
