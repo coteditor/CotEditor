@@ -32,7 +32,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 @import Cocoa;
-#import "CEDocumentController.h"
 #import "CEWindowController.h"
 #import "CETextSelection.h"
 #import "CEEditorView.h"
@@ -57,21 +56,28 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (nonatomic, readonly) CEWindowController *windowController;
 @property (nonatomic, readonly) CETextSelection *selection;
 @property (nonatomic, readonly) NSStringEncoding encoding;
+@property (nonatomic, readonly) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
 @property (nonatomic, readonly) BOOL isWritable;
 
 
 // Public methods
+
+/// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
+- (NSString *)stringForSave;
+
 - (void)setStringToEditorView;
 
 - (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
-- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;
+- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)boolXattr;  // TODO: rename to readStringFromData:~
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
+- (NSString *)lineEndingString;
+- (NSString *)lineEndingName;
 - (void)doSetLineEnding:(CELineEnding)lineEnding;
-- (void)setLineEndingToView:(CELineEnding)lineEnding;
+
 - (void)doSetSyntaxStyle:(NSString *)name;
 
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
@@ -80,10 +86,10 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;
 
 // Action Messages
-- (IBAction)setLineEndingCharToLF:(id)sender;
-- (IBAction)setLineEndingCharToCR:(id)sender;
-- (IBAction)setLineEndingCharToCRLF:(id)sender;
-- (IBAction)setLineEndingChar:(id)sender;
+- (IBAction)changeLineEndingToLF:(id)sender;
+- (IBAction)changeLineEndingToCR:(id)sender;
+- (IBAction)changeLineEndingToCRLF:(id)sender;
+- (IBAction)changeLineEnding:(id)sender;
 - (IBAction)changeEncoding:(id)sender;
 - (IBAction)changeTheme:(id)sender;
 - (IBAction)changeSyntaxStyle:(id)sender;

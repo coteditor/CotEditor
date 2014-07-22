@@ -541,17 +541,17 @@
                                     <items>
                                         <menuItem title="Unix (LF)" id="295">
                                             <connections>
-                                                <action selector="setLineEndingCharToLF:" target="-1" id="608"/>
+                                                <action selector="changeLineEndingToLF:" target="-1" id="608"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Macintosh (CR)" tag="1" id="297">
                                             <connections>
-                                                <action selector="setLineEndingCharToCR:" target="-1" id="683"/>
+                                                <action selector="changeLineEndingToCR:" target="-1" id="683"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Windows (CR/LF)" tag="2" id="298">
                                             <connections>
-                                                <action selector="setLineEndingCharToCRLF:" target="-1" id="684"/>
+                                                <action selector="changeLineEndingToCRLF:" target="-1" id="684"/>
                                             </connections>
                                         </menuItem>
                                     </items>

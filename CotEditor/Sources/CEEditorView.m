@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEToolbarController.h"
 #import "CENavigationBarView.h"
 #import "CELineNumberView.h"
+#import "CESyntaxParser.h"
 #import "constants.h"
 
 
@@ -165,30 +166,11 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// syntaxオブジェクトを返す
-- (CESyntaxParser *)syntaxParser
-// ------------------------------------------------------
-{
-    return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
-}
-
-
-// ------------------------------------------------------
 /// メインtextViewの文字列を返す（改行コードはLF固定）
 - (NSString *)string
 // ------------------------------------------------------
 {
     return ([[self textView] string]);
-}
-
-
-// ------------------------------------------------------
-/// 改行コードを指定のものに置換したメインtextViewの文字列を返す
-- (NSString *)stringForSave
-// ------------------------------------------------------
-{
-    return [OGRegularExpression replaceNewlineCharactersInString:[self string]
-                                                   withCharacter:[self lineEndingCharacter]];
 }
 
 
@@ -216,7 +198,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [OGRegularExpression replaceNewlineCharactersInString:[self substringWithSelection]
-                                                   withCharacter:[self lineEndingCharacter]];
+                                                   withCharacter:[[self document] lineEnding]];
 }
 
 
@@ -225,29 +207,30 @@ static NSTimeInterval secondColoringDelay;
 - (void)setString:(NSString *)string
 // ------------------------------------------------------
 {
-    // 表示する文字列内の改行コードをLFに統一する
-    // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEEditorView > setString:
-    //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
-
-    NSString *newLineString = [OGRegularExpression replaceNewlineCharactersInString:string
-                                                                      withCharacter:OgreLfNewlineCharacter];
-
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
     // 設定されたフォントでないもので表示されることがあるため、リセットする
     [[self textView] setString:@""];
     [[self textView] applyTypingAttributes];
-    [[self textView] setString:newLineString];
+    [[self textView] setString:string];
+    
     // キャレットを先頭に移動
-    if ([newLineString length] > 0) {
+    if ([string length] > 0) {
         [[self splitView] setAllCaretToBeginning];
     }
+}
+
+
+// ------------------------------------------------------
+/// 改行コードをセット
+- (void)setLineEndingString:(NSString *)lineEndingString
+// ------------------------------------------------------
+{
+    for (NSTextContainer *container in [[self splitView] subviews]) {
+        [(CETextView *)[container textView] setLineEndingString:lineEndingString];
+    }
+    
+    [[self windowController] updateEncodingAndLineEndingsInfo:NO];
+    [[self windowController] updateEditorStatusInfo:NO];
 }
 
 
@@ -314,7 +297,7 @@ static NSTimeInterval secondColoringDelay;
         NSRange range = [[self textView] selectedRange];
         NSString *tmpLocStr = [[self string] substringWithRange:NSMakeRange(0, range.location)];
         NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
-                                                                   withCharacter:[self lineEndingCharacter]];
+                                                                   withCharacter:[[self document] lineEnding]];
         NSString *lenStr = [self substringWithSelectionForSave];
 
         return NSMakeRange([locStr length], [lenStr length]);
@@ -329,10 +312,10 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     if ([[[self textView] lineEndingString] length] > 1) {
-        NSString *tmpLocStr = [[self stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
+        NSString *tmpLocStr = [[[self document] stringForSave] substringWithRange:NSMakeRange(0, charRange.location)];
         NSString *locStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLocStr
                                                                    withCharacter:OgreLfNewlineCharacter];
-        NSString *tmpLenStr = [[self stringForSave] substringWithRange:charRange];
+        NSString *tmpLenStr = [[[self document] stringForSave] substringWithRange:charRange];
         NSString *lenStr = [OGRegularExpression replaceNewlineCharactersInString:tmpLenStr
                                                                    withCharacter:OgreLfNewlineCharacter];
         [[self textView] setSelectedRange:NSMakeRange([locStr length], [lenStr length])];
@@ -424,59 +407,6 @@ static NSTimeInterval secondColoringDelay;
     if (_showPageGuide != showPageGuide) {
         _showPageGuide = showPageGuide;
         [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showPageGuideItemID setOn:showPageGuide];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 改行コードをセット（OgreNewlineCharacter型）
-- (void)setLineEndingCharacter:(OgreNewlineCharacter)lineEndingCharacter
-// ------------------------------------------------------
-{
-    NSArray *subSplitViews = [[self splitView] subviews];
-    NSString *newLineString;
-    BOOL shouldUpdate = (_lineEndingCharacter != lineEndingCharacter);
-    unichar theChar[2];
-
-    if ((lineEndingCharacter > OgreNonbreakingNewlineCharacter) && 
-            (lineEndingCharacter <= OgreWindowsNewlineCharacter)) {
-        _lineEndingCharacter = lineEndingCharacter;
-    } else {
-        NSInteger defaultLineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
-        _lineEndingCharacter = defaultLineEnding;
-    }
-    // set to textViewCore.
-    switch (_lineEndingCharacter) {
-        case OgreLfNewlineCharacter:
-            newLineString = @"\n";  // LF
-            break;
-        case OgreCrNewlineCharacter:  // CR
-            newLineString = @"\r";
-            break;
-        case OgreCrLfNewlineCharacter:  // CR+LF
-            newLineString = @"\r\n";
-            break;
-        case OgreUnicodeLineSeparatorNewlineCharacter:  // Unicode line separator
-            theChar[0] = 0x2028; theChar[1] = 0;
-            newLineString = [[NSString alloc] initWithCharacters:theChar length:1];
-            break;
-        case OgreUnicodeParagraphSeparatorNewlineCharacter:  // Unicode paragraph separator
-            theChar[0] = 0x2029; theChar[1] = 0;
-            newLineString = [[NSString alloc] initWithCharacters:theChar length:1];
-            break;
-        case OgreNonbreakingNewlineCharacter:  // 改行なしの場合
-            newLineString = @"";
-            break;
-            
-        default:
-            return;
-    }
-    for (NSTextContainer *container in subSplitViews) {
-        [(CETextView *)[container textView] setLineEndingString:newLineString];
-    }
-    if (shouldUpdate) {
-        [[self windowController] updateEncodingAndLineEndingsInfo:NO];
-        [[self windowController] updateEditorStatusInfo:NO];
     }
 }
 
@@ -783,7 +713,7 @@ static NSTimeInterval secondColoringDelay;
     [[subSplitView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[subSplitView textView]];
-    [self setLineEndingCharacter:[self lineEndingCharacter]];
+    [[subSplitView textView] setLineEndingString:[[self document] lineEndingString]];
     [[subSplitView textView] centerSelectionInVisibleArea:self];
     [self updateCloseSubSplitViewButton];
 }
@@ -900,6 +830,15 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CESubSplitView *)[[self textView] delegate] navigationBar];
+}
+
+
+// ------------------------------------------------------
+/// syntaxオブジェクトを返す
+- (CESyntaxParser *)syntaxParser
+// ------------------------------------------------------
+{
+    return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
 }
 
 

@@ -141,8 +141,6 @@ static NSTimeInterval incompatibleCharInterval;
     
     // ドキュメントオブジェクトに CEEditorView インスタンスをセット
     [[self document] setEditorView:[self editorView]];
-    // デフォルト改行コードをセット
-    [[self document] setLineEndingToView:[defaults integerForKey:k_key_defaultLineEndCharCode]];
     // テキストを表示
     [[self document] setStringToEditorView];
     
@@ -258,8 +256,8 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    NSString *textViewString = [[self editorView] string];
-    NSString *wholeString = ([[self editorView] lineEndingCharacter] == OgreCrLfNewlineCharacter) ? [[self editorView] stringForSave] : textViewString;
+    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[self editorView] string];
+    NSString *selectedString = [[self editorView] substringWithSelection] ? : @"";
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editorView] selectedRange];
     __block CEStatusBarController *statusBar = [self statusBarController];
@@ -281,7 +279,6 @@ static NSTimeInterval incompatibleCharInterval;
         
         if (length > 0) {
             BOOL hasSelection = (selectedRange.length > 0);
-            NSString *selectedString = hasSelection ? [textViewString substringWithRange:selectedRange] : @"";
             NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
             column = selectedRange.location - lineRange.location;  // as length
             column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
@@ -396,30 +393,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
-    NSString *lineEndingsInfo;
-    switch ([[self editorView] lineEndingCharacter]) {
-        case OgreLfNewlineCharacter:
-            lineEndingsInfo = @"LF";
-            break;
-        case OgreCrNewlineCharacter:
-            lineEndingsInfo = @"CR";
-            break;
-        case OgreCrLfNewlineCharacter:
-            lineEndingsInfo = @"CRLF";
-            break;
-        case OgreUnicodeLineSeparatorNewlineCharacter:
-            lineEndingsInfo = @"Unicode-lineSep"; // Unicode line separator
-            break;
-        case OgreUnicodeParagraphSeparatorNewlineCharacter:
-            lineEndingsInfo = @"Unicode-paraSep"; // Unicode paragraph separator
-            break;
-        case OgreNonbreakingNewlineCharacter:
-            lineEndingsInfo = @""; // 改行なしの場合
-            break;
-        default:
-            return;
-    }
-    
+    NSString *lineEndingsInfo = [[self document] lineEndingName];
     NSString *encodingInfo = [[self document] currentIANACharSetName];
     
     [self setEncodingInfo:encodingInfo];

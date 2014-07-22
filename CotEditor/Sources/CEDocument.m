@@ -35,10 +35,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEDocument.h"
 #import <sys/xattr.h>
 #import <OgreKit/OgreKit.h>
+#import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "CEODBEventSender.h"
-#import "CEApplication.h"
 #import "CESyntaxManager.h"
 #import "CEUtils.h"
 #import "NSData+MD5.h"
@@ -64,6 +64,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (nonatomic, readwrite) CEWindowController *windowController;
 @property (nonatomic, readwrite) CETextSelection *selection;
 @property (nonatomic, readwrite) NSStringEncoding encoding;
+@property (nonatomic, readwrite) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readwrite, copy) NSDictionary *fileAttributes;
 @property (nonatomic ,readwrite) BOOL isWritable;
 
@@ -113,6 +114,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         [self setHasUndoManager:YES];
         
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew];
+        _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _isWritable = YES;
         
@@ -194,7 +196,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *string = [self convertCharacterString:[[self editorView] stringForSave] withEncoding:[self encoding]];
+    NSString *string = [self convertCharacterString:[self stringForSave] withEncoding:[self encoding]];
     
     // stringから保存用のdataを得る
     NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
@@ -410,17 +412,43 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 //=======================================================
 
 // ------------------------------------------------------
+/// 改行コードを指定のものに置換したメイン textView の文字列を返す
+- (NSString *)stringForSave
+// ------------------------------------------------------
+{
+    return [OGRegularExpression replaceNewlineCharactersInString:[[self editorView] string]
+                                                   withCharacter:[self lineEnding]];
+}
+
+// ------------------------------------------------------
 /// editorView に文字列をセット
 - (void)setStringToEditorView
 // ------------------------------------------------------
 {
     [self setSyntaxStyleWithFileName:[[self fileURL] lastPathComponent] coloring:NO];
     
+    // 表示する文字列内の改行コードをLFに統一する
+    // （その他の編集は、下記の通りの別の場所で置換している）
+    // # テキスト編集時の改行コードの置換場所
+    //  * ファイルオープン = CEDocument > setStringToEditorView
+    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    
     if ([self initialString]) {
         OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
-        [self setLineEndingToView:lineEnding]; // for update toolbar item
-        [[self editorView] setString:[self initialString]]; // （editorView の setString 内でキャレットを先頭に移動させている）
+        [self setLineEnding:lineEnding];
+        [self applyLineEndingToView]; // to update toolbar
+        
+        NSString *string = [OGRegularExpression replaceNewlineCharactersInString:[self initialString]
+                                                                   withCharacter:OgreLfNewlineCharacter];
+        
+        [[self editorView] setString:string]; // （editorView の setString 内でキャレットを先頭に移動させている）
         [self setInitialString:nil];  // release
+        
     } else {
         [[self editorView] setString:@""];
     }
@@ -441,13 +469,12 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSString *)currentIANACharSetName
 // ------------------------------------------------------
 {
-    NSString *charSetName = nil;
     CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
     
     if (cfEncoding != kCFStringEncodingInvalidId) {
-        charSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
+        return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
     }
-    return charSetName;
+    return nil;
 }
 
 
@@ -457,7 +484,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     NSMutableArray *uncompatibleChars = [NSMutableArray array];
-    NSString *currentString = [[self editorView] stringForSave];
+    NSString *currentString = [self stringForSave];
     NSUInteger currentLength = [currentString length];
     NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
     NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
@@ -624,7 +651,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     if (updateDocument) {
         shouldShowList = [[self windowController] needsIncompatibleCharDrawerUpdate];
-        NSString *curString = [[self editorView] stringForSave];
+        NSString *curString = [self stringForSave];
         BOOL allowsLossy = NO;
 
         if (askLossy) {
@@ -676,38 +703,75 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// 改行コードを変更する
-- (void)doSetLineEnding:(CELineEnding)lineEnding
+/// Return line ending in NSString
+- (NSString *)lineEndingString
 // ------------------------------------------------------
 {
-    NSInteger currentEnding = [[self editorView] lineEndingCharacter];
-
-    // 現在と同じ改行コードなら、何もしない
-    if (currentEnding == lineEnding) {
-        return;
+    switch ([self lineEnding]) {
+        case OgreLfNewlineCharacter:  // LF (NSNewlineCharacter)
+            return @"\n";
+        case OgreCrNewlineCharacter:  // CR (NSCarriageReturnCharacter)
+            return @"\r";
+        case OgreCrLfNewlineCharacter:  // CR+LF
+            return @"\r\n";
+        case OgreUnicodeLineSeparatorNewlineCharacter:
+            return [NSString stringWithFormat:@"%C", (unichar)NSLineSeparatorCharacter];
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:
+            return [NSString stringWithFormat:@"%C", (unichar)NSParagraphSeparatorCharacter];
+        case OgreNonbreakingNewlineCharacter:  // 改行なし
+            return @"";
+        default:
+            return nil;
     }
-
-    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", @""), k_lineEndingNames[lineEnding]];
-
-    // Undo登録
-    NSUndoManager *undoManager = [self undoManager];
-    [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding]; // undo内redo
-    [[undoManager prepareWithInvocationTarget:self] setLineEndingToView:currentEnding]; // 元の改行コード
-    [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
-    [undoManager setActionName:actionName];
-
-    [self setLineEndingToView:lineEnding];
-    [self updateChangeCount:NSChangeDone]; // changeCountインクリメント
 }
 
 
 // ------------------------------------------------------
-/// 改行コードをセット
-- (void)setLineEndingToView:(CELineEnding)lineEnding
+/// Return line ending name to display
+- (NSString *)lineEndingName
 // ------------------------------------------------------
 {
-    [[self editorView] setLineEndingCharacter:lineEnding];
-    [[[self windowController] toolbarController] setSelectedLineEnding:lineEnding];
+    switch ([self lineEnding]) {
+        case OgreLfNewlineCharacter:
+            return @"LF";
+        case OgreCrNewlineCharacter:
+            return @"CR";
+        case OgreCrLfNewlineCharacter:
+            return @"CR/LF";
+        case OgreUnicodeLineSeparatorNewlineCharacter:
+            return @"Unicode-lineSep";
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:
+            return @"Unicode-paraSep";
+        case OgreNonbreakingNewlineCharacter: // 改行なし
+            return @"";
+        default:
+            return nil;
+    }
+}
+
+
+// ------------------------------------------------------
+/// 改行コードを変更する
+- (void)doSetLineEnding:(CELineEnding)lineEnding
+// ------------------------------------------------------
+{
+    // 現在と同じ改行コードなら、何もしない
+    if (lineEnding == [self lineEnding]) { return; }
+    
+    OgreNewlineCharacter currentLineEnding = [self lineEnding];
+
+    // Undo登録
+    NSUndoManager *undoManager = [self undoManager];
+    [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding]; // undo内redo
+    [[undoManager prepareWithInvocationTarget:self] setLineEnding:currentLineEnding]; // 元の改行コード
+    [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView]; // 元の改行コード
+    [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
+    [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", @""),
+                                k_lineEndingNames[lineEnding]]];
+
+    [self setLineEnding:lineEnding];
+    [self applyLineEndingToView];
+    [self updateChangeCount:NSChangeDone]; // changeCountインクリメント
 }
 
 
@@ -863,12 +927,12 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         return ([self isWritable] || [self didAlertNotWritable]);
     } else if ([menuItem action] == @selector(changeEncoding:)) {
         state = ([menuItem tag] == [self encoding]) ? NSOnState : NSOffState;
-    } else if (([menuItem action] == @selector(setLineEndingCharToLF:)) ||
-               ([menuItem action] == @selector(setLineEndingCharToCR:)) ||
-               ([menuItem action] == @selector(setLineEndingCharToCRLF:)) ||
-               ([menuItem action] == @selector(setLineEndingChar:)))
+    } else if (([menuItem action] == @selector(changeLineEndingToLF:)) ||
+               ([menuItem action] == @selector(changeLineEndingToCR:)) ||
+               ([menuItem action] == @selector(changeLineEndingToCRLF:)) ||
+               ([menuItem action] == @selector(changeLineEnding:)))
     {
-        state = ([menuItem tag] == [[self editorView] lineEndingCharacter]) ? NSOnState : NSOffState;
+        state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
     } else if ([menuItem action] == @selector(changeTheme:)) {
         name = [[[[self editorView] textView] theme] name];
         if (name && [[menuItem title] isEqualToString:name]) {
@@ -1013,34 +1077,34 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingCharToLF:(id)sender
+- (IBAction)changeLineEndingToLF:(id)sender
 // ------------------------------------------------------
 {
-    [self setLineEndingChar:sender];
+    [self changeLineEnding:sender];
 }
 
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingCharToCR:(id)sender
+- (IBAction)changeLineEndingToCR:(id)sender
 // ------------------------------------------------------
 {
-    [self setLineEndingChar:sender];
+    [self changeLineEnding:sender];
 }
 
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingCharToCRLF:(id)sender
+- (IBAction)changeLineEndingToCRLF:(id)sender
 // ------------------------------------------------------
 {
-    [self setLineEndingChar:sender];
+    [self changeLineEnding:sender];
 }
 
 
 // ------------------------------------------------------
 /// ドキュメントに新しい改行コードをセットする
-- (IBAction)setLineEndingChar:(id)sender
+- (IBAction)changeLineEnding:(id)sender
 // ------------------------------------------------------
 {
     [self doSetLineEnding:[sender tag]];
@@ -1242,6 +1306,16 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
+/// 改行コードをエディタに反映
+- (void)applyLineEndingToView
+// ------------------------------------------------------
+{
+    [[self editorView] setLineEndingString:[self lineEndingString]];
+    [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
+}
+
+
+// ------------------------------------------------------
 /// ファイルを読み込み、成功したかどうかを返す
 - (BOOL)readFromURL:(NSURL *)url withEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
@@ -1434,7 +1508,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (BOOL)acceptSaveDocumentWithIANACharSetName
 // ------------------------------------------------------
 {
-    NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:[[self editorView] stringForSave]];
+    NSStringEncoding IANACharSetEncoding = [self scanCharsetOrEncodingFromString:[self stringForSave]];
     NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
     NSStringEncoding X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
 
@@ -1537,8 +1611,8 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *curString = [self convertCharacterString:[[self editorView] stringForSave]
-                                            withEncoding:[self encoding]];
+    NSString *curString = [self convertCharacterString:[self stringForSave]
+                                          withEncoding:[self encoding]];
     
     if (![curString canBeConvertedToEncoding:[self encoding]]) {
         NSString *encodingName = [NSString localizedNameOfStringEncoding:[self encoding]];

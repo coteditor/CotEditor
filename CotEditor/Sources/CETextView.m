@@ -920,12 +920,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ドロップによる編集で改行コードをLFに統一する
     // （その他の編集は、下記の通りの別の場所で置換している）
     // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEEditorView > setString:
+    //  * ファイルオープン = CEDocument > setStringToEditorView
+    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
     //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
     //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
     // まず、自己内ドラッグかどうかのフラグを立てる
@@ -975,12 +975,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // ペースト、他からのドロップによる編集で改行コードをLFに統一する
         // （その他の編集は、下記の通りの別の場所で置換している）
         // # テキスト編集時の改行コードの置換場所
-        //  * ファイルオープン = CEEditorView > setString:
+        //  * ファイルオープン = CEDocument > setStringToEditorView
+        //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
         //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
         //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-        //  * ドロップ（同一書類内） = CETextView > performDragOperation:
         //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-        //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+        //  * ドロップ（同一書類内） = CETextView > performDragOperation:
         //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
 
         NSString *pboardStr = [pboard stringForType:NSStringPboardType];
@@ -2180,7 +2180,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (!pboard) { return; }
 
-    OgreNewlineCharacter newlineChar = [[(CESubSplitView *)[self delegate] editorView] lineEndingCharacter];
+    OgreNewlineCharacter newlineChar = [[[[self window] windowController] document] lineEnding];
 
     if (newlineChar != OgreLfNewlineCharacter) {
         NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];

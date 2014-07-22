@@ -86,7 +86,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
-    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:[[self editorView] stringForSave]];
+    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:[self stringForSave]];
 
     [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
@@ -133,16 +133,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSNumber *)length
 // ------------------------------------------------------
 {
-    return @([[[self editorView] stringForSave] length]);
+    return @([[self stringForSave] length]);
 }
 
 
 // ------------------------------------------------------
 /// 改行コードを返す(enum型)
-- (CEOSALineEnding)lineEnding
+- (CEOSALineEnding)lineEndingChar
 // ------------------------------------------------------
 {
-    switch ([[self editorView] lineEndingCharacter]) {
+    switch ([self lineEnding]) {
         case OgreCrNewlineCharacter:
             return CEOSALineEndingCR;
             break;
@@ -158,12 +158,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 改行コードをセット
-- (void)setLineEnding:(CEOSALineEnding)lineEnding
+- (void)setLineEndingChar:(CEOSALineEnding)lineEndingChar
 // ------------------------------------------------------
 {
     CELineEnding code;
 
-    switch (lineEnding) {
+    switch (lineEndingChar) {
         case CEOSALineEndingCR:
             code = CELineEndingCR;
             break;
@@ -342,7 +342,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL ignoresCase = [arguments[@"ignoreCase"] boolValue];
     BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
     BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
-    NSString *wholeStr = [[self editorView] stringForSave];
+    NSString *wholeStr = [self stringForSave];
     NSInteger wholeLength = [wholeStr length];
     if (wholeLength == 0) { return @NO; }
     NSRange selectionRange = [[self editorView] selectedRange];
@@ -385,7 +385,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL isAll = [arguments[@"all"] boolValue];
     BOOL isBackwards = [arguments[@"backwardsSearch"] boolValue];
     BOOL isWrapSearch = [arguments[@"wrapSearch"] boolValue];
-    NSString *wholeStr = [[self editorView] stringForSave];
+    NSString *wholeStr = [self stringForSave];
     NSInteger wholeLength = [wholeStr length];
     if (wholeLength == 0) { return @NO; }
     NSString *newString = arguments[@"newString"];
