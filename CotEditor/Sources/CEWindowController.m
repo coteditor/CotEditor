@@ -256,7 +256,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    NSString *wholeString = ([[self document] lineEnding] == OgreCrLfNewlineCharacter) ? [[self document] stringForSave] : [[self editorView] string];
+    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[self editorView] string];
     NSString *selectedString = [[self editorView] substringWithSelection] ? : @"";
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editorView] selectedRange];
@@ -393,30 +393,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
     
-    NSString *lineEndingsInfo;
-    switch ([[self document] lineEnding]) {
-        case OgreLfNewlineCharacter:
-            lineEndingsInfo = @"LF";
-            break;
-        case OgreCrNewlineCharacter:
-            lineEndingsInfo = @"CR";
-            break;
-        case OgreCrLfNewlineCharacter:
-            lineEndingsInfo = @"CR/LF";
-            break;
-        case OgreUnicodeLineSeparatorNewlineCharacter:
-            lineEndingsInfo = @"Unicode-lineSep"; // Unicode line separator
-            break;
-        case OgreUnicodeParagraphSeparatorNewlineCharacter:
-            lineEndingsInfo = @"Unicode-paraSep"; // Unicode paragraph separator
-            break;
-        case OgreNonbreakingNewlineCharacter:
-            lineEndingsInfo = @""; // 改行なしの場合
-            break;
-        default:
-            return;
-    }
-    
+    NSString *lineEndingsInfo = [[self document] lineEndingName];
     NSString *encodingInfo = [[self document] currentIANACharSetName];
     
     [self setEncodingInfo:encodingInfo];

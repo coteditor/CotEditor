@@ -229,6 +229,20 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// 改行コードをセット
+- (void)setLineEndingString:(NSString *)lineEndingString
+// ------------------------------------------------------
+{
+    for (NSTextContainer *container in [[self splitView] subviews]) {
+        [(CETextView *)[container textView] setLineEndingString:lineEndingString];
+    }
+    
+    [[self windowController] updateEncodingAndLineEndingsInfo:NO];
+    [[self windowController] updateEditorStatusInfo:NO];
+}
+
+
+// ------------------------------------------------------
 /// 選択文字列を置換する
 - (void)replaceTextViewSelectedStringTo:(NSString *)string scroll:(BOOL)doScroll
 // ------------------------------------------------------
@@ -402,50 +416,6 @@ static NSTimeInterval secondColoringDelay;
         _showPageGuide = showPageGuide;
         [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showPageGuideItemID setOn:showPageGuide];
     }
-}
-
-
-// ------------------------------------------------------
-/// 改行コードをセット（OgreNewlineCharacter型）
-- (void)setLineEndingCharacter:(OgreNewlineCharacter)lineEndingCharacter
-// ------------------------------------------------------
-{
-    NSString *newLineString;
-    unichar chars[2];
-    
-    // set to textView.
-    switch (lineEndingCharacter) {
-        case OgreLfNewlineCharacter:
-            newLineString = @"\n";  // LF
-            break;
-        case OgreCrNewlineCharacter:  // CR
-            newLineString = @"\r";
-            break;
-        case OgreCrLfNewlineCharacter:  // CR+LF
-            newLineString = @"\r\n";
-            break;
-        case OgreUnicodeLineSeparatorNewlineCharacter:  // Unicode line separator
-            chars[0] = 0x2028; chars[1] = 0;
-            newLineString = [[NSString alloc] initWithCharacters:chars length:1];
-            break;
-        case OgreUnicodeParagraphSeparatorNewlineCharacter:  // Unicode paragraph separator
-            chars[0] = 0x2029; chars[1] = 0;
-            newLineString = [[NSString alloc] initWithCharacters:chars length:1];
-            break;
-        case OgreNonbreakingNewlineCharacter:  // 改行なしの場合
-            newLineString = @"";
-            break;
-            
-        default:
-            return;
-    }
-    
-    for (NSTextContainer *container in [[self splitView] subviews]) {
-        [(CETextView *)[container textView] setLineEndingString:newLineString];
-    }
-    
-    [[self windowController] updateEncodingAndLineEndingsInfo:NO];
-    [[self windowController] updateEditorStatusInfo:NO];
 }
 
 
@@ -751,7 +721,7 @@ static NSTimeInterval secondColoringDelay;
     [[subSplitView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[subSplitView textView]];
-    [self setLineEndingCharacter:[[self document] lineEnding]];
+    [[subSplitView textView] setLineEndingString:[[self document] lineEndingString]];
     [[subSplitView textView] centerSelectionInVisibleArea:self];
     [self updateCloseSubSplitViewButton];
 }

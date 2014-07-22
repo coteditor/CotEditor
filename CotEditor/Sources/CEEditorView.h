@@ -70,8 +70,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)substringWithRange:(NSRange)range;
 - (NSString *)substringWithSelection;
 - (NSString *)substringWithSelectionForSave;
-- (void)setLineEndingCharacter:(OgreNewlineCharacter)lineEndingCharacter;
 - (void)setString:(NSString *)string;
+- (void)setLineEndingString:(NSString *)lineEndingString;
 - (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)doScroll;
 - (void)replaceTextViewAllStringTo:(NSString *)string;
 - (void)insertTextViewAfterSelectionStringTo:(NSString *)string;

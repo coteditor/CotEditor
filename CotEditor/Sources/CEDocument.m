@@ -469,13 +469,12 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSString *)currentIANACharSetName
 // ------------------------------------------------------
 {
-    NSString *charSetName = nil;
     CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
     
     if (cfEncoding != kCFStringEncodingInvalidId) {
-        charSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
+        return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
     }
-    return charSetName;
+    return nil;
 }
 
 
@@ -704,26 +703,71 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
+/// Return line ending in NSString
+- (NSString *)lineEndingString
+// ------------------------------------------------------
+{
+    switch ([self lineEnding]) {
+        case OgreLfNewlineCharacter:  // LF (NSNewlineCharacter)
+            return @"\n";
+        case OgreCrNewlineCharacter:  // CR (NSCarriageReturnCharacter)
+            return @"\r";
+        case OgreCrLfNewlineCharacter:  // CR+LF
+            return @"\r\n";
+        case OgreUnicodeLineSeparatorNewlineCharacter:
+            return [NSString stringWithFormat:@"%C", (unichar)NSLineSeparatorCharacter];
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:
+            return [NSString stringWithFormat:@"%C", (unichar)NSParagraphSeparatorCharacter];
+        case OgreNonbreakingNewlineCharacter:  // 改行なし
+            return @"";
+        default:
+            return nil;
+    }
+}
+
+
+// ------------------------------------------------------
+/// Return line ending name to display
+- (NSString *)lineEndingName
+// ------------------------------------------------------
+{
+    switch ([self lineEnding]) {
+        case OgreLfNewlineCharacter:
+            return @"LF";
+        case OgreCrNewlineCharacter:
+            return @"CR";
+        case OgreCrLfNewlineCharacter:
+            return @"CR/LF";
+        case OgreUnicodeLineSeparatorNewlineCharacter:
+            return @"Unicode-lineSep";
+        case OgreUnicodeParagraphSeparatorNewlineCharacter:
+            return @"Unicode-paraSep";
+        case OgreNonbreakingNewlineCharacter: // 改行なし
+            return @"";
+        default:
+            return nil;
+    }
+}
+
+
+// ------------------------------------------------------
 /// 改行コードを変更する
 - (void)doSetLineEnding:(CELineEnding)lineEnding
 // ------------------------------------------------------
 {
-    OgreNewlineCharacter currentEnding = [self lineEnding];
-
     // 現在と同じ改行コードなら、何もしない
-    if (currentEnding == lineEnding) {
-        return;
-    }
-
-    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", @""), k_lineEndingNames[lineEnding]];
+    if (lineEnding == [self lineEnding]) { return; }
+    
+    OgreNewlineCharacter currentLineEnding = [self lineEnding];
 
     // Undo登録
     NSUndoManager *undoManager = [self undoManager];
     [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding]; // undo内redo
-    [[undoManager prepareWithInvocationTarget:self] setLineEnding:currentEnding]; // 元の改行コード
+    [[undoManager prepareWithInvocationTarget:self] setLineEnding:currentLineEnding]; // 元の改行コード
     [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView]; // 元の改行コード
     [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
-    [undoManager setActionName:actionName];
+    [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", @""),
+                                k_lineEndingNames[lineEnding]]];
 
     [self setLineEnding:lineEnding];
     [self applyLineEndingToView];
@@ -1266,7 +1310,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)applyLineEndingToView
 // ------------------------------------------------------
 {
-    [[self editorView] setLineEndingCharacter:[self lineEnding]];
+    [[self editorView] setLineEndingString:[self lineEndingString]];
     [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
 }
 

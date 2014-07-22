@@ -75,7 +75,10 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding updateDocument:(BOOL)updateDocument
              askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(NSString *)actionName;
 
+- (NSString *)lineEndingString;
+- (NSString *)lineEndingName;
 - (void)doSetLineEnding:(CELineEnding)lineEnding;
+
 - (void)doSetSyntaxStyle:(NSString *)name;
 
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length;
