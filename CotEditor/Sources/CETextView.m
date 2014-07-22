@@ -50,6 +50,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSRect insertionRect;
 @property (nonatomic) NSPoint textContainerOriginPoint;
 @property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
+@property (nonatomic) NSTimer *completionTimer;
 
 
 // readonly
@@ -152,6 +153,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     for (NSString *key in [self observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
+    [self stopCompletionTimer];
 }
 
 
@@ -241,13 +243,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     [super insertText:aString replacementRange:replacementRange];
     
-    // auto complete
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoComplete] &&
-        [aString rangeOfCharacterFromSet:[NSCharacterSet alphanumericCharacterSet]].location != NSNotFound)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self complete:self];
-        });
+    // auto completion
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoComplete]) {
+        [self completeAfterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_autoCompletionDelay]];
     }
 }
 
@@ -377,10 +375,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSEvent *event = [[self window] currentEvent];
     NSRange range;
     BOOL shouldReselect = NO;
+    
+    [self stopCompletionTimer];
 
     // complete リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
     // （フラグは CEEditorView > textDidChange: で評価される）
-    if (isFinal && ([event type] == NSKeyDown) && ![event modifierFlags]) {
+    if (isFinal && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
         NSString *inputChar = [event charactersIgnoringModifiers];
         unichar theUnichar = [inputChar characterAtIndex:0];
 
@@ -682,6 +682,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Public method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// ディレイをかけて入力補完リストを表示
+- (void)completeAfterDelay:(NSTimeInterval)delay
+// ------------------------------------------------------
+{
+    if ([self completionTimer]) {
+        [[self completionTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:delay]];
+    } else {
+        [self setCompletionTimer:[NSTimer scheduledTimerWithTimeInterval:delay
+                                                                  target:self
+                                                                selector:@selector(completionWithTimer:)
+                                                                userInfo:nil
+                                                                 repeats:NO]];
+    }
+}
 
 
 // ------------------------------------------------------
@@ -2237,6 +2253,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     return NO;
+}
+
+
+// ------------------------------------------------------
+/// 入力補完リストの表示
+- (void)completionWithTimer:(NSTimer *)timer
+// ------------------------------------------------------
+{
+    [self stopCompletionTimer];
+    
+    if (![self hasMarkedText]) {  // do not perform completion if input is not specified (for Japanese input)
+        [self complete:self];
+    }
+}
+
+
+// ------------------------------------------------------
+/// 入力補完タイマーを停止
+- (void)stopCompletionTimer
+// ------------------------------------------------------
+{
+    [[self completionTimer] invalidate];
+    [self setCompletionTimer:nil];
 }
 
 @end
