@@ -362,6 +362,12 @@
                                     <action selector="focusPrevSplitTextView:" target="-1" id="800"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="分割エディタを縦に配置" id="9mm-gy-5KY">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleSplitOrientation:" target="-1" id="oAG-oG-Sbo"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="分割エディタを閉じる" keyEquivalent="'" id="796">
                                 <connections>
                                     <action selector="closeSplitTextView:" target="-1" id="798"/>

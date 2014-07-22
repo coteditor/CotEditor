@@ -60,6 +60,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+// ------------------------------------------------------
+/// メニュー項目の有効化／無効化を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if ([menuItem action] == @selector(toggleSplitOrientation:)) {
+        NSString *title = [self isVertical] ? @"Stack Views Horizontally" : @"Stack Views Vertically";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        return [[self subviews] count] > 1;
+    }
+    return YES;
+}
+
+
 
 #pragma mark Public Methods
 
@@ -200,6 +214,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     for (CESubSplitView *subview in [self subviews]) {
         [subview setBackgroundColorAlpha:alpha];
     }
+}
+
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// 分割方向を変更する
+- (IBAction)toggleSplitOrientation:(id)sender
+// ------------------------------------------------------
+{
+    [self setVertical:![self isVertical]];
 }
 
 @end
