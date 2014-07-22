@@ -35,10 +35,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEDocument.h"
 #import <sys/xattr.h>
 #import <OgreKit/OgreKit.h>
+#import "CEDocumentController.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "CEODBEventSender.h"
-#import "CEApplication.h"
 #import "CESyntaxManager.h"
 #import "CEUtils.h"
 #import "NSData+MD5.h"
