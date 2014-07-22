@@ -52,15 +52,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 初期化
-- (instancetype)initWithFrame:(NSRect)frameRect
+// 分割方向によってデバイダーのスタイルを変える
+- (NSSplitViewDividerStyle)dividerStyle
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect];
-    if (self) {
-        [self setDividerStyle:NSSplitViewDividerStylePaneSplitter];
-    }
-    return self;
+    return [self isVertical] ? NSSplitViewDividerStyleThin : NSSplitViewDividerStylePaneSplitter;
 }
 
 
