@@ -418,7 +418,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *outlineMenuArray = [[[self editorView] syntaxParser] outlineMenuArrayWithWholeString:[self string]];
+        NSArray *outlineMenuArray = [[self syntaxParser] outlineMenuArrayWithWholeString:[self string]];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self navigationBar] setOutlineMenuArray:outlineMenuArray];

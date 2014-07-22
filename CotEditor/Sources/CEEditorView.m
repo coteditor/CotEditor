@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEToolbarController.h"
 #import "CENavigationBarView.h"
 #import "CELineNumberView.h"
+#import "CESyntaxParser.h"
 #import "constants.h"
 
 
@@ -161,15 +162,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [[self textView] textStorage];
-}
-
-
-// ------------------------------------------------------
-/// syntaxオブジェクトを返す
-- (CESyntaxParser *)syntaxParser
-// ------------------------------------------------------
-{
-    return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
 }
 
 
@@ -838,6 +830,15 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CESubSplitView *)[[self textView] delegate] navigationBar];
+}
+
+
+// ------------------------------------------------------
+/// syntaxオブジェクトを返す
+- (CESyntaxParser *)syntaxParser
+// ------------------------------------------------------
+{
+    return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
 }
 
 
