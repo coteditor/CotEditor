@@ -526,7 +526,7 @@ static NSTimeInterval secondColoringDelay;
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    NSInteger theState = NSOffState;
+    NSInteger state = NSOffState;
     NSString *title;
 
     if ([menuItem action] == @selector(toggleShowLineNum:)) {
@@ -539,7 +539,7 @@ static NSTimeInterval secondColoringDelay;
         title = [self wrapLines] ? @"Unwrap Lines" : @"Wrap Lines";
         
     } else if ([menuItem action] == @selector(toggleUseAntialias:)) {
-        if ([self shouldUseAntialias]) {theState = NSOnState;}
+        state = [self shouldUseAntialias] ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(toggleShowPageGuide:)) {
         title = [self showPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
@@ -555,7 +555,7 @@ static NSTimeInterval secondColoringDelay;
         return [self canActivateShowInvisibles];
     
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
-        theState = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
+        state = [[self textView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
         return ([[self navigationBar] canSelectPrevItem]);
@@ -571,7 +571,7 @@ static NSTimeInterval secondColoringDelay;
     if (title) {
         [menuItem setTitle:NSLocalizedString(title, nil)];
     } else {
-        [menuItem setState:theState];
+        [menuItem setState:state];
     }
     
     return YES;
