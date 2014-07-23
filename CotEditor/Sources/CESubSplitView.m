@@ -135,7 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textDidReplaceAll:)
                                                      name:@"textDidReplaceAllNotification"
-                                                   object:nil];
+                                                   object:[self textView]];
         
         // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
