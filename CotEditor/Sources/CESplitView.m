@@ -52,11 +52,49 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-// 分割方向によってデバイダーのスタイルを変える
+/// 初期設定
+- (instancetype)initWithFrame:(NSRect)frameRect
+// ------------------------------------------------------
+{
+    self = [super initWithFrame:frameRect];
+    if (self) {
+        [self setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
+    }
+    return self;
+}
+
+
+// ------------------------------------------------------
+/// 分割方向によってデバイダーのスタイルを変える
 - (NSSplitViewDividerStyle)dividerStyle
 // ------------------------------------------------------
 {
     return [self isVertical] ? NSSplitViewDividerStyleThin : NSSplitViewDividerStylePaneSplitter;
+}
+
+
+// ------------------------------------------------------
+/// 分割方向を変える
+- (void)setVertical:(BOOL)flag
+// ------------------------------------------------------
+{
+    [super setVertical:flag];
+    
+    // ナビゲーションバーの分割ボタンを更新
+    for (CESubSplitView *subview in [self subviews]) {
+        [[subview navigationBar] setSplitOrientationVertical:flag];
+    }
+}
+
+
+// ------------------------------------------------------
+/// ビューが分割された
+- (void)addSubview:(NSView *)aView
+// ------------------------------------------------------
+{
+    [[(CESubSplitView *)aView navigationBar] setSplitOrientationVertical:[self isVertical]];
+    
+    [super addSubview:aView];
 }
 
 

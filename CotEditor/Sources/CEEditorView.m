@@ -779,7 +779,6 @@ static NSTimeInterval secondColoringDelay;
     // Create CESplitView -- this will enclose everything else.
     NSRect splitFrame = [self bounds];
     [self setSplitView:[[CESplitView alloc] initWithFrame:splitFrame]];
-    [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
     [[self splitView] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
     [self addSubview:[self splitView]];
 
@@ -788,7 +787,7 @@ static NSTimeInterval secondColoringDelay;
     [subSplitView setEditorView:self];
     [self setTextView:[subSplitView textView]];
     [[self splitView] addSubview:subSplitView];
-
+    
     [self setupViewParamsInInit:YES];
     // （不可視文字の表示／非表示のセットは全て生成が終ってから、CEWindowController > windowDidLoad で行う）
 }
