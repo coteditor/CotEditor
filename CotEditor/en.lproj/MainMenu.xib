@@ -362,6 +362,12 @@
                                     <action selector="focusPrevSplitTextView:" target="-1" id="800"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Stack Views Vertically" id="u46-te-4c4">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleSplitOrientation:" target="-1" id="wPh-lV-vs2"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Close Split View" keyEquivalent="'" id="796">
                                 <connections>
                                     <action selector="closeSplitTextView:" target="-1" id="798"/>

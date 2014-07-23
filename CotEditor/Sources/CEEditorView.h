@@ -88,7 +88,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)recolorAllString;
 - (void)updateColoringAndOutlineMenuWithDelay;
 - (void)setupColoringTimer;
-- (void)updateCloseSubSplitViewButton;
 
 - (void)setBackgroundAlpha:(CGFloat)alpha;
 

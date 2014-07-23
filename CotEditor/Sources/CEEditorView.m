@@ -505,17 +505,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効／無効を更新
-- (void)updateCloseSubSplitViewButton
-// ------------------------------------------------------
-{
-    BOOL enabled = ([[[self splitView] subviews] count] > 1);
-
-    [[self splitView] setCloseSubSplitViewButtonEnabled:enabled];
-}
-
-
-// ------------------------------------------------------
 /// 背景の不透明度をセット
 - (void)setBackgroundAlpha:(CGFloat)alpha
 // ------------------------------------------------------
@@ -715,7 +704,9 @@ static NSTimeInterval secondColoringDelay;
     [[self window] makeFirstResponder:[subSplitView textView]];
     [[subSplitView textView] setLineEndingString:[[self document] lineEndingString]];
     [[subSplitView textView] centerSelectionInVisibleArea:self];
+    [subSplitView setShowNavigationBar:[self showNavigationBar]];  // update navigation bar layout (おそらくAutolayoutならいらない)
     [self updateCloseSubSplitViewButton];
+    
 }
 
 
@@ -788,7 +779,7 @@ static NSTimeInterval secondColoringDelay;
     // Create CESplitView -- this will enclose everything else.
     NSRect splitFrame = [self bounds];
     [self setSplitView:[[CESplitView alloc] initWithFrame:splitFrame]];
-    [[self splitView] setVertical:NO];
+    [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
     [[self splitView] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
     [self addSubview:[self splitView]];
 
@@ -865,6 +856,17 @@ static NSTimeInterval secondColoringDelay;
     } else if (index >= count) {
         [[self window] makeFirstResponder:[subSplitViews[0] textView]];
     }
+}
+
+
+// ------------------------------------------------------
+/// テキストビュー分割削除ボタンの有効／無効を更新
+- (void)updateCloseSubSplitViewButton
+// ------------------------------------------------------
+{
+    BOOL enabled = ([[[self splitView] subviews] count] > 1);
+    
+    [[self splitView] setCloseSubSplitViewButtonEnabled:enabled];
 }
 
 

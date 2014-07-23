@@ -70,6 +70,7 @@ extern NSString *const CENewNameKey;
 // ------------------------------------------------------
 
 // normal settings
+extern NSString *const k_key_splitViewVertical;
 extern NSString *const k_key_showLineNumbers;
 extern NSString *const k_key_showStatusBar;
 extern NSString *const k_key_showStatusBarLines;

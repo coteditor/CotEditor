@@ -52,15 +52,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 初期化
-- (instancetype)initWithFrame:(NSRect)frameRect
+// 分割方向によってデバイダーのスタイルを変える
+- (NSSplitViewDividerStyle)dividerStyle
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect];
-    if (self) {
-        [self setDividerStyle:NSSplitViewDividerStylePaneSplitter];
+    return [self isVertical] ? NSSplitViewDividerStyleThin : NSSplitViewDividerStylePaneSplitter;
+}
+
+
+// ------------------------------------------------------
+/// メニュー項目の有効化／無効化を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if ([menuItem action] == @selector(toggleSplitOrientation:)) {
+        NSString *title = [self isVertical] ? @"Stack Views Horizontally" : @"Stack Views Vertically";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        return [[self subviews] count] > 1;
     }
-    return self;
+    return YES;
 }
 
 
@@ -204,6 +214,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     for (CESubSplitView *subview in [self subviews]) {
         [subview setBackgroundColorAlpha:alpha];
     }
+}
+
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// 分割方向を変更する
+- (IBAction)toggleSplitOrientation:(id)sender
+// ------------------------------------------------------
+{
+    [self setVertical:![self isVertical]];
 }
 
 @end

@@ -80,7 +80,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [encodings addObject:@(k_CFStringEncodingList[i])];
     }
     
-    NSDictionary *defaults = @{k_key_showLineNumbers: @YES,
+    NSDictionary *defaults = @{k_key_splitViewVertical: @NO,
+                               k_key_showLineNumbers: @YES,
                                k_key_showStatusBar: @YES,
                                k_key_showStatusBarLines: @YES,
                                k_key_showStatusBarLength: @NO,

@@ -102,6 +102,7 @@
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
+		2ADB29BD197F0503003537F5 /* openSplitButtonImgVertical.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2ADB29BC197F0503003537F5 /* openSplitButtonImgVertical.pdf */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
@@ -357,6 +358,7 @@
 		2AD5322919779FD000A925CA /* CELineHeightTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHeightTransformer.m; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
+		2ADB29BC197F0503003537F5 /* openSplitButtonImgVertical.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitButtonImgVertical.pdf; path = images/openSplitButtonImgVertical.pdf; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
 		2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarController.h; sourceTree = "<group>"; };
 		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				2A7846D618FDFAFB006BDF00 /* lockedTemplate.pdf */,
 				2A0722FB16D3CF4F00F49864 /* nextButtonImg.pdf */,
 				2A0722FC16D3CF4F00F49864 /* openSplitButtonImg.pdf */,
+				2ADB29BC197F0503003537F5 /* openSplitButtonImgVertical.pdf */,
 				2A0722FE16D3CF4F00F49864 /* popUpButtonArrowTemplate.pdf */,
 				2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */,
 				2A07230316D3CF4F00F49864 /* rightAlignTemplate.pdf */,
@@ -1055,6 +1058,7 @@
 				2A149DAA19016ABB00A9D6EF /* GeneralPane.xib in Resources */,
 				8C0FE15A08D7FDAA00B2B71B /* DefaultTextKeyBindings.plist in Resources */,
 				8CE68107090A1C6900D50390 /* Pref_Appearance.tiff in Resources */,
+				2ADB29BD197F0503003537F5 /* openSplitButtonImgVertical.pdf in Resources */,
 				8CE68108090A1C6900D50390 /* Pref_FileDrop.tiff in Resources */,
 				8CE68109090A1C6900D50390 /* Pref_Edit.tiff in Resources */,
 				8CE6810A090A1C6900D50390 /* Pref_General.tiff in Resources */,

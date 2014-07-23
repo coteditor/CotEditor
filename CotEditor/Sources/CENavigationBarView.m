@@ -156,7 +156,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self openSplitButton] setImagePosition:NSImageOnly];
         [[self openSplitButton] setAction:@selector(openSplitTextView:)];
         [[self openSplitButton] setAutoresizingMask:(NSViewHeightSizable | NSViewMinXMargin)];
-        [[self openSplitButton] setImage:[NSImage imageNamed:@"openSplitButtonImg"]];
+        [[self openSplitButton] setImage:[self openSplitButtonImage]];
         [[self openSplitButton] setToolTip:NSLocalizedString(@"Split view", @"")];
         [[self openSplitButton] setEnabled:YES];
 
@@ -458,6 +458,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setFrame:myFrame];
 
     [[[self window] contentView] setNeedsDisplay:YES];
+}
+
+
+// ------------------------------------------------------
+/// return image for open split view button
+- (NSImage *)openSplitButtonImage
+// ------------------------------------------------------
+{
+    NSString *imageName = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical] ? @"openSplitButtonImgVertical" : @"openSplitButtonImg";
+    
+    return [NSImage imageNamed:imageName];
 }
 
 @end
