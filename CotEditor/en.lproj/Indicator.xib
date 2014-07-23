@@ -13,24 +13,24 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="Document Coloring..." allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel" customClass="NSPanel">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="180" y="593" width="404" height="118"/>
+            <rect key="contentRect" x="180" y="593" width="420" height="106"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="7">
-                <rect key="frame" x="0.0" y="0.0" width="404" height="118"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="106"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
-                        <rect key="frame" x="20" y="61" width="364" height="12"/>
+                        <rect key="frame" x="20" y="49" width="380" height="12"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                        <rect key="frame" x="18" y="81" width="99" height="17"/>
+                        <rect key="frame" x="18" y="69" width="102" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Coloring text..." id="74">
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -39,7 +39,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="51">
-                        <rect key="frame" x="18" y="39" width="368" height="14"/>
+                        <rect key="frame" x="18" y="27" width="270" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please wait for a while." id="75">
                             <font key="font" metaFont="smallSystem"/>
@@ -51,7 +51,7 @@
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                        <rect key="frame" x="272" y="13" width="118" height="32"/>
+                        <rect key="frame" x="288" y="13" width="118" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="106" id="H7e-yY-CVY"/>
@@ -77,8 +77,8 @@ Gw
                     <constraint firstItem="51" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="8" symbolic="YES" id="ShX-e9-DsK"/>
                     <constraint firstItem="47" firstAttribute="top" secondItem="50" secondAttribute="bottom" constant="8" symbolic="YES" id="U1A-D6-m83"/>
                     <constraint firstItem="51" firstAttribute="leading" secondItem="50" secondAttribute="leading" id="ZGA-lI-scb"/>
-                    <constraint firstItem="58" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="20" symbolic="YES" id="cWF-fS-UIC"/>
-                    <constraint firstAttribute="trailing" secondItem="51" secondAttribute="trailing" constant="20" symbolic="YES" id="oEG-pg-Qxv"/>
+                    <constraint firstItem="58" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="8" id="cWF-fS-UIC"/>
+                    <constraint firstItem="58" firstAttribute="leading" secondItem="51" secondAttribute="trailing" constant="8" symbolic="YES" id="gdF-Lw-OAM"/>
                     <constraint firstItem="50" firstAttribute="top" secondItem="7" secondAttribute="top" constant="20" symbolic="YES" id="owa-m9-NVI"/>
                 </constraints>
             </view>

@@ -854,7 +854,7 @@ static CGFloat kPerCompoIncrement;
             // インジケータシートのメッセージを更新
             if ([self indicatorController]) {
                 [[self indicatorController] setInformativeText:
-                 [NSString stringWithFormat:NSLocalizedString(@"Extracting %@", nil),
+                 [NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
                   NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
             }
             
@@ -978,7 +978,7 @@ static CGFloat kPerCompoIncrement;
     NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
     if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
         NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
-        [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text...", nil)]];
+        [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)]];
         [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
