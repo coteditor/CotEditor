@@ -22,10 +22,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>@final</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>@IBAction</string>
 		</dict>
 		<dict>
@@ -39,10 +35,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>@IBOutlet</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>@lazy</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -184,6 +176,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>final</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>for</string>
 		</dict>
 		<dict>
@@ -220,7 +216,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>internal</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>is</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lazy</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -268,7 +272,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>private</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>protocol</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>public</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -370,17 +382,25 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^([ \t]*)(@final )?class[ \t]+(\w+)(?=[\s:][^\w])</string>
+			<string>//[ \t]*(MARK:|TODO:|FIXME)[ \t](.+)</string>
+			<key>bold</key>
+			<true/>
+			<key>keyString</key>
+			<string>$2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^([ \t]*)(@IBAction )?(override )?((?:public|internal|private) )?(class )?func[ \t]*(\w*)\((.*)\)</string>
+			<key>keyString</key>
+			<string>$1$2$3$4$5func $6($7)</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^([ \t]*)(final )?class[ \t]+(\w+)(?=[\s:][^\w])</string>
 			<key>bold</key>
 			<true/>
 			<key>keyString</key>
 			<string>$1$2class $3</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^([ \t]*)(@IBAction )?(override )?(class )?func[ \t]*(\w*)\((.*)\)</string>
-			<key>keyString</key>
-			<string>$1$2$3$4func $5($6)</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
