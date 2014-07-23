@@ -68,6 +68,7 @@ NSString *const CENewNameKey = @"CENewNameKey";
 // ------------------------------------------------------
 
 // user defaults
+NSString *const k_key_layoutTextVertical = @"layoutTextVertical";
 NSString *const k_key_splitViewVertical = @"splitViewVertical";
 NSString *const k_key_showLineNumbers = @"showLineNumbers";
 NSString *const k_key_showStatusBar = @"showStatusArea";
