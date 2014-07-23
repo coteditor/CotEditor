@@ -197,7 +197,7 @@ static NSTimeInterval incompatibleCharInterval;
 {
     if ([menuItem action] == @selector(toggleShowStatusBar:)) {
         NSString *title = [self showStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
-        [menuItem setTitle:title];
+        [menuItem setTitle:NSLocalizedString(title, nil)];
     }
     
     return YES;
