@@ -417,11 +417,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
+    NSString *wholeString = [[self string] copy];  // 解析中に参照元が変更されると困るのでコピーする
+    __block typeof(self) blockSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *outlineMenuArray = [[self syntaxParser] outlineMenuArrayWithWholeString:[self string]];
+        NSArray *outlineMenuArray = [[blockSelf syntaxParser] outlineMenuArrayWithWholeString:wholeString];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[self navigationBar] setOutlineMenuArray:outlineMenuArray];
+            [[blockSelf navigationBar] setOutlineMenuArray:outlineMenuArray];
             // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
         });
     });
