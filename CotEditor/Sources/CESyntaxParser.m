@@ -42,6 +42,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // local constants (QC might abbr of Quotes/Comment)
+static NSString *const ColorKey = @"ColorKey";
+static NSString *const RangeKey = @"RangeKey";
+static NSString *const InvisiblesType = @"invisibles";
+
 static NSString *const QCPositionKey = @"QCPositionKey";
 static NSString *const QCPairKindKey = @"QCPairKindKey";
 static NSString *const QCStartEndKey = @"QCStartEndKey";
@@ -49,10 +53,6 @@ static NSString *const QCLengthKey = @"QCLengthKey";
 
 static NSString *const QCInlineCommentKind = @"QCInlineCommentKind";  // for pairKind
 static NSString *const QCBlockCommentKind = @"QCBlockCommentKind";  // for pairKind
-
-static NSString *const ColorKey = @"ColorKey";
-static NSString *const RangeKey = @"RangeKey";
-static NSString *const InvisiblesType = @"invisibles";
 
 typedef NS_ENUM(NSUInteger, QCStartEndType) {
     QCNotUseStartEnd,
@@ -1032,13 +1032,15 @@ static CGFloat kPerCompoIncrement;
 {
     CELayoutManager *layoutManager = [self layoutManager];
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
+    BOOL isPrinting = [self isPrinting];
+    BOOL showInvisibles = [[self layoutManager] showOtherInvisibles];
     
     // 現在あるカラーリングを削除
-    if ([self isPrinting]) {
+    if (isPrinting) {
         [[layoutManager firstTextView] setTextColor:[theme textColor] range:coloringRange];
     } else {
         [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
-                                     forCharacterRange:coloringRange];
+                              forCharacterRange:coloringRange];
     }
     
     // カラーリング実行
@@ -1047,7 +1049,7 @@ static CGFloat kPerCompoIncrement;
             NSColor *color;
             NSString *colorType = coloring[ColorKey];
             if ([colorType isEqualToString:InvisiblesType]) {
-                if (![layoutManager showOtherInvisibles]) { continue; }
+                if (!showInvisibles) { continue; }
                 
                 color = [theme invisiblesColor];
             } else if ([colorType isEqualToString:k_SCKey_keywordsArray]) {
@@ -1077,11 +1079,11 @@ static CGFloat kPerCompoIncrement;
             NSRange range = [coloring[RangeKey] rangeValue];
             range.location += coloringRange.location;
             
-            if ([self isPrinting]) {
+            if (isPrinting) {
                 [[layoutManager firstTextView] setTextColor:color range:range];
             } else {
                 [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
-                                                      value:color forCharacterRange:range];
+                                               value:color forCharacterRange:range];
             }
         }
     }
