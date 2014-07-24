@@ -582,7 +582,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         CGFloat length = ([self layoutOrientation] == NSTextLayoutOrientationVertical) ? NSWidth([self frame]) : NSHeight([self frame]);
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat inset = [self textContainerOrigin].x;
-        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:[self font]}].width;
+        column *= [@"M" sizeWithAttributes:@{NSFontAttributeName:[(CELayoutManager *)[self layoutManager] textFont]}].width;
         
         // （2ピクセル右に描画してるのは、調整）
         CGFloat x = column + inset + linePadding + 2.5;
