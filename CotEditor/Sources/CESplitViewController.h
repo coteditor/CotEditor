@@ -1,14 +1,15 @@
 /*
  =================================================
- CESplitView
+ CESplitViewController
  (for CotEditor)
  
+ Copyright (C) 2004-2007 nakamuxu.
  Copyright (C) 2014 CotEditor Project
  http://coteditor.github.io
  =================================================
  
  encoding="UTF-8"
- Created on 2014-07-26 by 1024jp
+ Created on 2006-03-26 by nakamuxu
  
  -------------------------------------------------
  
@@ -30,11 +31,26 @@
  =================================================
  */
 
-@import Cocoa;
+@import AppKit;
 
 
-@interface CESplitView : NSSplitView
+@interface CESplitViewController : NSViewController
 
-- (IBAction)toggleSplitOrientation:(id)sender;
+/// designated initializer
+- (instancetype)initWithFrame:(NSRect)frame;
+
+
+- (void)setShowLineNum:(BOOL)showLineNum;
+- (void)setShowNavigationBar:(BOOL)showNavigationBar;
+- (void)setWrapLines:(BOOL)wrapLines;
+- (void)setShowInvisibles:(BOOL)showInvisibles;
+- (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
+- (void)setUseAntialias:(BOOL)useAntialias;
+- (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled;
+- (void)setAllCaretToBeginning;
+- (void)setSyntaxWithName:(NSString *)syntaxName;
+- (void)recoloringAllTextView;
+- (void)updateAllOutlineMenu;
+- (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha;
 
 @end

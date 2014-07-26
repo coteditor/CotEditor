@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CEEditorView.h"
-#import "CESplitView.h"
+#import "CESplitViewController.h"
 #import "CEToolbarController.h"
 #import "CENavigationBarView.h"
 #import "CELineNumberView.h"
@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEEditorView ()
 
 @property (nonatomic) NSTimer *coloringTimer;
-@property (nonatomic) CESplitView *splitView;
+@property (nonatomic) CESplitViewController *splitViewController;
 
 
 // readonly
@@ -215,7 +215,7 @@ static NSTimeInterval secondColoringDelay;
     
     // キャレットを先頭に移動
     if ([string length] > 0) {
-        [[self splitView] setAllCaretToBeginning];
+        [[self splitViewController] setAllCaretToBeginning];
     }
 }
 
@@ -225,7 +225,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)setLineEndingString:(NSString *)lineEndingString
 // ------------------------------------------------------
 {
-    for (NSTextContainer *container in [[self splitView] subviews]) {
+    for (NSTextContainer *container in [[[self splitViewController] view] subviews]) {
         [(CETextView *)[container textView] setLineEndingString:lineEndingString];
     }
     
@@ -330,7 +330,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSArray *)allLayoutManagers
 // ------------------------------------------------------
 {
-    NSArray *subSplitViews = [[self splitView] subviews];
+    NSArray *subSplitViews = [[[self splitViewController] view] subviews];
     NSMutableArray *managers = [NSMutableArray array];
 
     for (NSTextContainer *container in subSplitViews) {
@@ -347,7 +347,7 @@ static NSTimeInterval secondColoringDelay;
 {
     _showLineNum = showLineNum;
     
-    [[self splitView] setShowLineNum:showLineNum];
+    [[self splitViewController] setShowLineNum:showLineNum];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showLineNumItemID setOn:showLineNum];
 }
 
@@ -359,7 +359,7 @@ static NSTimeInterval secondColoringDelay;
 {
     _showNavigationBar = showNavigationBar;
     
-    [[self splitView] setShowNavigationBar:showNavigationBar];
+    [[self splitViewController] setShowNavigationBar:showNavigationBar];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showNavigationBarItemID setOn:showNavigationBar];
 }
 
@@ -371,7 +371,7 @@ static NSTimeInterval secondColoringDelay;
 {
     _wrapLines = wrapLines;
     
-    [[self splitView] setWrapLines:wrapLines];
+    [[self splitViewController] setWrapLines:wrapLines];
     [self setNeedsDisplay:YES];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_wrapLinesItemID setOn:wrapLines];
 }
@@ -395,7 +395,7 @@ static NSTimeInterval secondColoringDelay;
 {
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
 
-    [[self splitView] setUseAntialias:![manager useAntialias]];
+    [[self splitViewController] setUseAntialias:![manager useAntialias]];
 }
 
 
@@ -427,12 +427,12 @@ static NSTimeInterval secondColoringDelay;
 {
     if (![self syntaxParser]) { return; }
     
-    [[self splitView] setSyntaxWithName:name];
+    [[self splitViewController] setSyntaxWithName:name];
     
     if (recolorNow) {
         [self recolorAllString];
         if ([self showNavigationBar]) {
-            [[self splitView] updateAllOutlineMenu];
+            [[self splitViewController] updateAllOutlineMenu];
         }
     }
 }
@@ -444,7 +444,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
-    [[self splitView] recoloringAllTextView];
+    [[self splitViewController] recoloringAllTextView];
 }
 
 
@@ -455,10 +455,10 @@ static NSTimeInterval secondColoringDelay;
 {
     [self stopColoringTimer];
     
-    __block CESplitView *splitView = [self splitView];
+    __block CESplitViewController *splitViewController = [self splitViewController];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [splitView updateAllOutlineMenu];
-        [splitView recoloringAllTextView];
+        [splitViewController updateAllOutlineMenu];
+        [splitViewController recoloringAllTextView];
     });
 }
 
@@ -477,7 +477,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)setShowInvisibles:(BOOL)showInvisibles
 // ------------------------------------------------------
 {
-    [[self splitView] setShowInvisibles:showInvisibles];
+    [[self splitViewController] setShowInvisibles:showInvisibles];
 }
 
 
@@ -509,7 +509,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)setBackgroundAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    [[self splitView] setAllBackgroundColorWithAlpha:alpha];
+    [[self splitViewController] setAllBackgroundColorWithAlpha:alpha];
 }
 
 
@@ -565,7 +565,7 @@ static NSTimeInterval secondColoringDelay;
     } else if (([menuItem action] == @selector(focusNextSplitTextView:)) ||
                ([menuItem action] == @selector(focusPrevSplitTextView:)) ||
                ([menuItem action] == @selector(closeSplitTextView:))) {
-        return ([[[self splitView] subviews] count] > 1);
+        return ([[[[self splitViewController] view] subviews] count] > 1);
     }
     
     if (title) {
@@ -629,7 +629,7 @@ static NSTimeInterval secondColoringDelay;
 {
     BOOL showInvisibles = [(CELayoutManager *)[[self textView] layoutManager] showInvisibles];
 
-    [[self splitView] setShowInvisibles:!showInvisibles];
+    [[self splitViewController] setShowInvisibles:!showInvisibles];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showInvisibleCharsItemID setOn:!showInvisibles];
 }
 
@@ -641,7 +641,7 @@ static NSTimeInterval secondColoringDelay;
 {
     BOOL isEnabled = ![[self textView] isAutoTabExpandEnabled];
     
-    [[self splitView] setAutoTabExpandEnabled:isEnabled];
+    [[self splitViewController] setAutoTabExpandEnabled:isEnabled];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_autoTabExpandItemID setOn:isEnabled];
 }
 
@@ -652,7 +652,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self setShowPageGuide:![self showPageGuide]];
-    [[self splitView] setNeedsDisplay:YES];
+    [[[self splitViewController] view] setNeedsDisplay:YES];
 }
 
 
@@ -690,14 +690,14 @@ static NSTimeInterval secondColoringDelay;
     [subSplitView replaceTextStorage:[[self textView] textStorage]];
     [subSplitView setEditorView:self];
     // あらたなsubViewは、押された追加ボタンが属する（またはフォーカスのある）subSplitViewのすぐ下に挿入する
-    [[self splitView] addSubview:subSplitView positioned:NSWindowAbove relativeTo:masterView];
-    [[self splitView] adjustSubviews];
+    [[[self splitViewController] view] addSubview:subSplitView positioned:NSWindowAbove relativeTo:masterView];
+    [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
     [self setupViewParamsInInit:NO];
     [[subSplitView textView] setFont:[[self textView] font]];
     [[subSplitView textView] setLineSpacing:[[self textView] lineSpacing]];
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
-    [[self splitView] adjustSubviews];
+    [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
     [subSplitView setSyntaxWithName:[[self syntaxParser] syntaxStyleName]];
     [[subSplitView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
@@ -720,7 +720,7 @@ static NSTimeInterval secondColoringDelay;
     CESubSplitView *subSplitViewToClose = isSenderMenu ?
             firstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
     if (!subSplitViewToClose) { return; }
-    NSArray *subViews = [[self splitView] subviews];
+    NSArray *subViews = [[[self splitViewController] view] subviews];
     NSUInteger count = [subViews count];
     NSUInteger deleteIndex = [subViews indexOfObject:subSplitViewToClose];
 
@@ -778,15 +778,14 @@ static NSTimeInterval secondColoringDelay;
 {
     // Create CESplitView -- this will enclose everything else.
     NSRect splitFrame = [self bounds];
-    [self setSplitView:[[CESplitView alloc] initWithFrame:splitFrame]];
-    [[self splitView] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-    [self addSubview:[self splitView]];
+    [self setSplitViewController:[[CESplitViewController alloc] initWithFrame:splitFrame]];
+    [self addSubview:[[self splitViewController] view]];
 
     NSRect subSplitFrame = [self bounds];
     CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:subSplitFrame];
     [subSplitView setEditorView:self];
     [self setTextView:[subSplitView textView]];
-    [[self splitView] addSubview:subSplitView];
+    [[[self splitViewController] view] addSubview:subSplitView];
     
     [self setupViewParamsInInit:YES];
     // （不可視文字の表示／非表示のセットは全て生成が終ってから、CEWindowController > windowDidLoad で行う）
@@ -837,7 +836,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)focusOtherSplitTextViewOnNext:(BOOL)isOnNext
 // ------------------------------------------------------
 {
-    NSArray *subSplitViews = [[self splitView] subviews];
+    NSArray *subSplitViews = [[[self splitViewController] view] subviews];
     NSInteger count = [subSplitViews count];
     if (count < 2) { return; }
     CESubSplitView *currentView = (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate];
@@ -863,9 +862,9 @@ static NSTimeInterval secondColoringDelay;
 - (void)updateCloseSubSplitViewButton
 // ------------------------------------------------------
 {
-    BOOL enabled = ([[[self splitView] subviews] count] > 1);
+    BOOL enabled = ([[[[self splitViewController] view] subviews] count] > 1);
     
-    [[self splitView] setCloseSubSplitViewButtonEnabled:enabled];
+    [[self splitViewController] setCloseSubSplitViewButtonEnabled:enabled];
 }
 
 
