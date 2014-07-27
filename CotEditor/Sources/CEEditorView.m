@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEEditorView ()
 
 @property (nonatomic) NSTimer *coloringTimer;
-@property (nonatomic) CESplitViewController *splitViewController;
+@property (nonatomic) IBOutlet CESplitViewController *splitViewController;
 
 
 // readonly
@@ -112,12 +112,24 @@ static NSTimeInterval secondColoringDelay;
                                       [defaults boolForKey:k_key_showInvisibleNewLine] ||
                                       [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
                                       [defaults boolForKey:k_key_showOtherInvisibleChars]);
-        
-        [self setupViews];
-        
-        [self setShowInvisibles:_canActivateShowInvisibles];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// Nibファイル読み込み直後
+- (void)awakeFromNib
+// ------------------------------------------------------
+{
+    CESubSplitView *subSplitView = [[[self splitViewController] view] subviews][0];
+    [subSplitView setEditorView:self];
+    [self setTextView:[subSplitView textView]];
+    
+    [self setupViewParamsInInit:YES];
+    // （不可視文字の表示／非表示のセットは全て生成が終ってから、CEWindowController > windowDidLoad で行う）
+    [self setShowInvisibles:[self canActivateShowInvisibles]];
+    
 }
 
 
@@ -170,7 +182,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSString *)string
 // ------------------------------------------------------
 {
-    return ([[self textView] string]);
+    return [[self textView] string];
 }
 
 
@@ -770,27 +782,6 @@ static NSTimeInterval secondColoringDelay;
 // Private method
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// サブビューの初期化
-- (void)setupViews
-// ------------------------------------------------------
-{
-    // Create CESplitView -- this will enclose everything else.
-    NSRect splitFrame = [self bounds];
-    [self setSplitViewController:[[CESplitViewController alloc] initWithFrame:splitFrame]];
-    [self addSubview:[[self splitViewController] view]];
-
-    NSRect subSplitFrame = [self bounds];
-    CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:subSplitFrame];
-    [subSplitView setEditorView:self];
-    [self setTextView:[subSplitView textView]];
-    [[[self splitViewController] view] addSubview:subSplitView];
-    
-    [self setupViewParamsInInit:YES];
-    // （不可視文字の表示／非表示のセットは全て生成が終ってから、CEWindowController > windowDidLoad で行う）
-}
-
 
 // ------------------------------------------------------
 /// サブビューに初期値を設定

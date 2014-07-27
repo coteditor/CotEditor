@@ -50,18 +50,11 @@
 @implementation CESplitViewController
 
 // ------------------------------------------------------
-/// 初期化
-- (instancetype)initWithFrame:(NSRect)frame
+/// Nibファイル読み込み直後
+- (void)awakeFromNib
 // ------------------------------------------------------
 {
-    self = [super init];
-    if (self) {
-        CESplitView *splitView = [[CESplitView alloc] initWithFrame:frame];
-        [splitView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
-        [splitView setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
-        [self setView:splitView];
-    }
-    return self;
+    [(NSSplitView *)[self view] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
 }
 
 

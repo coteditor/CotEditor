@@ -36,10 +36,6 @@
 
 @interface CESplitViewController : NSViewController
 
-/// designated initializer
-- (instancetype)initWithFrame:(NSRect)frame;
-
-
 - (void)setShowLineNum:(BOOL)showLineNum;
 - (void)setShowNavigationBar:(BOOL)showNavigationBar;
 - (void)setWrapLines:(BOOL)wrapLines;
@@ -47,6 +43,7 @@
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUseAntialias:(BOOL)useAntialias;
 - (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled;
+
 - (void)setAllCaretToBeginning;
 - (void)setSyntaxWithName:(NSString *)syntaxName;
 - (void)recoloringAllTextView;

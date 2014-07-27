@@ -33,6 +33,32 @@
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="27" customClass="CEEditorView">
                         <rect key="frame" x="0.0" y="20" width="507" height="393"/>
+                        <subviews>
+                            <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="EZ5-nO-Yw9" customClass="CESplitView">
+                                <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
+                                <subviews>
+                                    <customView fixedFrame="YES" id="suX-pu-3n4" customClass="CESubSplitView">
+                                        <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </customView>
+                                </subviews>
+                                <holdingPriorities>
+                                    <real value="250"/>
+                                </holdingPriorities>
+                                <connections>
+                                    <outlet property="delegate" destination="Kiv-YO-hzO" id="6rv-Ci-nef"/>
+                                </connections>
+                            </splitView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EZ5-nO-Yw9" secondAttribute="trailing" id="bwS-9e-bfZ"/>
+                            <constraint firstAttribute="bottom" secondItem="EZ5-nO-Yw9" secondAttribute="bottom" id="oGS-lU-utG"/>
+                            <constraint firstItem="EZ5-nO-Yw9" firstAttribute="top" secondItem="27" secondAttribute="top" id="r6u-tf-n4q"/>
+                            <constraint firstItem="EZ5-nO-Yw9" firstAttribute="leading" secondItem="27" secondAttribute="leading" id="viB-GZ-WGu"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="splitViewController" destination="Kiv-YO-hzO" id="d9Q-Za-Di1"/>
+                        </connections>
                     </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
                         <rect key="frame" x="0.0" y="0.0" width="507" height="20"/>
@@ -259,6 +285,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
+            <point key="canvasLocation" x="245.5" y="177.5"/>
         </window>
         <drawer trailingOffset="15" id="32">
             <size key="contentSize" width="200" height="381"/>
@@ -1081,6 +1108,11 @@
                 <outlet property="decimalFormatter" destination="ZXE-Ki-WDP" id="DI4-1N-0dW"/>
                 <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
+            </connections>
+        </viewController>
+        <viewController id="Kiv-YO-hzO" customClass="CESplitViewController">
+            <connections>
+                <outlet property="view" destination="EZ5-nO-Yw9" id="bgC-qE-uBi"/>
             </connections>
         </viewController>
         <arrayController id="127" userLabel="Incompatibles Controller">
