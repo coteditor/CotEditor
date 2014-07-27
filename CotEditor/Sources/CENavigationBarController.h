@@ -34,16 +34,14 @@
 @import AppKit;
 
 
-@class CESubSplitView;
-
 @interface CENavigationBarController : NSViewController
 
-@property (nonatomic, weak) CESubSplitView *masterView;
+@property (nonatomic, unsafe_unretained) NSTextView *textView;
 @property (nonatomic) BOOL showNavigationBar;
 
 
 // Public method
-- (void)setOutlineMenuArray:(NSArray *)menus;
+- (void)setOutlineMenuArray:(NSArray *)outlineItems;
 - (void)selectOutlineMenuItemWithRange:(NSRange)range;
 - (void)updatePrevNextButtonEnabled;
 - (BOOL)canSelectPrevItem;
@@ -55,7 +53,7 @@
 
 
 // action messages
-- (void)selectPrevItem:(id)sender;
-- (void)selectNextItem:(id)sender;
+- (IBAction)selectPrevItem:(id)sender;
+- (IBAction)selectNextItem:(id)sender;
 
 @end

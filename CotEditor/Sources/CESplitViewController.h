@@ -42,7 +42,7 @@
 - (void)setShowInvisibles:(BOOL)showInvisibles;
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUseAntialias:(BOOL)useAntialias;
-- (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled;
+- (void)updateCloseSubSplitViewButton;
 
 - (void)moveAllCaretToBeginning;
 - (void)setSyntaxWithName:(NSString *)syntaxName;

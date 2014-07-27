@@ -139,6 +139,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
+    [self setTextView:nil];
 }
 
 
@@ -708,18 +709,27 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)openSplitTextView:(id)sender
 // ------------------------------------------------------
 {
-    CESubSplitView *masterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
-            (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate] :  // from menu bar
-            (CESubSplitView *)[[sender superview] superview];  // from navigation bar
-    if (!masterView) { return; }
-    NSRect subSplitFrame = [masterView bounds];
-    NSRange selectedRange = [[masterView textView] selectedRange];
-    CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:subSplitFrame];
+    CESubSplitView *currentSubSplitView;
+    
+    // 閉じるべき CESubSplitView を探す
+    id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
+    while (view) {
+        if ([view isKindOfClass:[CESubSplitView class]]) {
+            currentSubSplitView = (CESubSplitView *)view;
+            break;
+        }
+        view = [view superview];
+    }
+    
+    if (!currentSubSplitView) { return; }
+    
+    NSRange selectedRange = [[currentSubSplitView textView] selectedRange];
+    CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:[currentSubSplitView frame]];
 
     [subSplitView replaceTextStorage:[[self textView] textStorage]];
     [subSplitView setEditorView:self];
     // あらたなsubViewは、押された追加ボタンが属する（またはフォーカスのある）subSplitViewのすぐ下に挿入する
-    [[[self splitViewController] view] addSubview:subSplitView positioned:NSWindowAbove relativeTo:masterView];
+    [[[self splitViewController] view] addSubview:subSplitView positioned:NSWindowAbove relativeTo:currentSubSplitView];
     [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
     [self setupViewParamsInInit:NO];
     [[subSplitView textView] setFont:[[self textView] font]];
@@ -734,7 +744,7 @@ static NSTimeInterval secondColoringDelay;
     [[subSplitView textView] setLineEndingString:[[self document] lineEndingString]];
     [[subSplitView textView] centerSelectionInVisibleArea:self];
     [subSplitView setShowNavigationBar:[self showNavigationBar]];  // update navigation bar layout (おそらくAutolayoutならいらない)
-    [self updateCloseSubSplitViewButton];
+    [[self splitViewController] updateCloseSubSplitViewButton];
     
 }
 
@@ -744,24 +754,35 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)closeSplitTextView:(id)sender
 // ------------------------------------------------------
 {
-    BOOL isSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
-    CESubSplitView *firstResponderSubSplitView = (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate];
-    CESubSplitView *subSplitViewToClose = isSenderMenu ?
-            firstResponderSubSplitView : (CESubSplitView *)[[sender superview] superview];
+    CESubSplitView *subSplitViewToClose;
+    
+    // 閉じるべき CESubSplitView を探す
+    id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
+    while (view) {
+        if ([view isKindOfClass:[CESubSplitView class]]) {
+            subSplitViewToClose = (CESubSplitView *)view;
+            break;
+        }
+        view = [view superview];
+    }
+    
     if (!subSplitViewToClose) { return; }
-    NSArray *subViews = [[[self splitViewController] view] subviews];
-    NSUInteger count = [subViews count];
-    NSUInteger deleteIndex = [subViews indexOfObject:subSplitViewToClose];
-
-    if (isSenderMenu || (deleteIndex == [subViews indexOfObject:firstResponderSubSplitView])) {
+    
+    // フォーカスのあるテキストビューの場合はフォーカスを隣に移す
+    if ([[self window] firstResponder] == [subSplitViewToClose textView]) {
+        NSArray *subViews = [[[self splitViewController] view] subviews];
+        NSUInteger count = [subViews count];
+        NSUInteger deleteIndex = [subViews indexOfObject:subSplitViewToClose];
         NSUInteger index = deleteIndex + 1;
         if (index >= count) {
             index = count - 2;
         }
         [[self window] makeFirstResponder:[subViews[index] textView]];
     }
+    
+    // 閉じる
     [subSplitViewToClose removeFromSuperview];
-    [self updateCloseSubSplitViewButton];
+    [[self splitViewController] updateCloseSubSplitViewButton];
 }
 
 
@@ -833,17 +854,6 @@ static NSTimeInterval secondColoringDelay;
         [managers addObject:[[container textView] layoutManager]];
     }
     return managers;
-}
-
-
-// ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効／無効を更新
-- (void)updateCloseSubSplitViewButton
-// ------------------------------------------------------
-{
-    BOOL enabled = ([[[[self splitViewController] view] subviews] count] > 1);
-    
-    [[self splitViewController] setCloseSubSplitViewButtonEnabled:enabled];
 }
 
 

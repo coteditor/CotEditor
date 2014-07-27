@@ -79,8 +79,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-        [self setLastCursorLocation:0];
+        
+        _highlightCurrentLine = [defaults boolForKey:k_key_highlightCurrentLine];
 
         // LineNumberView 生成
         [self setLineNumberView:[[CELineNumberView alloc] initWithFrame:NSZeroRect]];
@@ -89,7 +89,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         // navigationBar 生成
         [self setNavigationBar:[[CENavigationBarController alloc] init]];
-        [[self navigationBar] setMasterView:self];
         [self addSubview:[[self navigationBar] view]];
 
         // scrollView 生成
@@ -140,6 +139,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self textView] setDelegate:self];
         
         [[self lineNumberView] setTextView:[self textView]];
+        [[self navigationBar] setTextView:[self textView]];
         
         // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -178,7 +178,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 NSMakeSize((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                            (CGFloat)([defaults doubleForKey:k_key_textContainerInsetHeightTop] +
                                      [defaults doubleForKey:k_key_textContainerInsetHeightBottom]) / 2)];
-        [self setHighlightCurrentLine:[defaults boolForKey:k_key_highlightCurrentLine]];
 
     }
     return self;
@@ -192,11 +191,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self stopUpdateLineNumberTimer];
     [self stopUpdateOutlineMenuTimer];
-    [self setEditorView:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumberView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    [[self textView] setDelegate:nil];
 }
 
 

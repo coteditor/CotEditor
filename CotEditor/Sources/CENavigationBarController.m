@@ -32,7 +32,6 @@
  */
 
 #import "CENavigationBarController.h"
-#import "CEEditorView.h"
 #import "constants.h"
 
 
@@ -53,6 +52,9 @@ static const NSTimeInterval duration = 0.1;
 @property (nonatomic, weak) IBOutlet NSTextField *outlineLoadingMessage;
 
 @end
+
+
+
 
 #pragma mark -
 
@@ -117,7 +119,7 @@ static const NSTimeInterval duration = 0.1;
 
 // ------------------------------------------------------
 /// 配列を元にアウトラインメニューを生成
-- (void)setOutlineMenuArray:(NSArray *)outlineMenuArray
+- (void)setOutlineMenuArray:(NSArray *)outlineItems
 // ------------------------------------------------------
 {
     // stop outine indicator
@@ -126,7 +128,7 @@ static const NSTimeInterval duration = 0.1;
     
     [[self outlineMenu] removeAllItems];
     
-    if ([outlineMenuArray count] == 0) {
+    if ([outlineItems count] == 0) {
         [[self outlineMenu] setHidden:YES];
         [[self prevButton] setHidden:YES];
         [[self nextButton] setHidden:YES];
@@ -138,14 +140,15 @@ static const NSTimeInterval duration = 0.1;
     NSFont *defaultFont = [NSFont fontWithName:k_navigationBarFontName
                                           size:[NSFont smallSystemFontSize]];
     
-    for (NSDictionary *outlineItem in outlineMenuArray) {
-        if ([[outlineItem valueForKey:k_outlineMenuItemTitle] isEqualToString:CESeparatorString]) {
+    for (NSDictionary *outlineItem in outlineItems) {
+        if ([outlineItem[k_outlineMenuItemTitle] isEqualToString:CESeparatorString]) {
             [menu addItem:[NSMenuItem separatorItem]];
             
         } else {
             NSFontManager *fontManager = [NSFontManager sharedFontManager];
-            NSNumber *underlineMaskNumber = [outlineItem[k_outlineMenuItemUnderlineMask] copy];
-            NSFontTraitMask fontMask = ([[outlineItem valueForKey:k_outlineMenuItemFontBold] boolValue]) ? NSBoldFontMask : 0;
+            NSNumber *underlineMaskNumber = outlineItem[k_outlineMenuItemUnderlineMask];
+            NSFontTraitMask fontMask = [outlineItem[k_outlineMenuItemFontBold] boolValue] ? NSBoldFontMask : 0;
+            fontMask |= [outlineItem[k_outlineMenuItemFontItalic] boolValue] ? NSItalicFontMask : 0;
             NSFont *font = [fontManager convertFont:defaultFont toHaveTrait:fontMask];
             
             NSMutableAttributedString *title = [[NSMutableAttributedString alloc]
@@ -156,22 +159,17 @@ static const NSTimeInterval duration = 0.1;
                               value:underlineMaskNumber
                               range:NSMakeRange(0, [title length])];
             }
-            if ([outlineItem[k_outlineMenuItemFontItalic] boolValue]) {
-                [title addAttribute:NSFontAttributeName
-                              value:[fontManager convertFont:font toHaveTrait:NSItalicFontMask]
-                              range:NSMakeRange(0, [title length])];
-            }
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@" "
                                                               action:@selector(setSelectedRangeWithNSValue:)
                                                        keyEquivalent:@""];
-            [menuItem setTarget:[[self masterView] textView]];
+            [menuItem setTarget:[self textView]];
             [menuItem setAttributedTitle:title];
             [menuItem setRepresentedObject:[outlineItem valueForKey:k_outlineMenuItemRange]];
             [menu addItem:menuItem];
         }
     }
     // （メニューの再描画時のちらつき防止のため、ここで選択項目をセットする 2008.05.17.）
-    [self selectOutlineMenuItemWithRange:[[[self masterView] editorView] selectedRange]];
+    [self selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
     [[self outlineMenu] setMenu:menu];
     [[self outlineMenu] setHidden:NO];
     [[self prevButton] setHidden:NO];
@@ -272,7 +270,7 @@ static const NSTimeInterval duration = 0.1;
 
 
 // ------------------------------------------------------
-/// set closeSplitButton enabled or disabled
+/// set image of open split view button
 - (void)setSplitOrientationVertical:(BOOL)isVertical
 // ------------------------------------------------------
 {

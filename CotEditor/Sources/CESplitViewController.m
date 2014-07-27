@@ -32,7 +32,6 @@
  */
 
 #import "CESplitViewController.h"
-#import "CESplitView.h"
 #import "CESubSplitView.h"
 #import "constants.h"
 
@@ -56,6 +55,7 @@
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
+    [self updateOpenSubSplitViewButtons];
     [[[[self view] window] firstResponder] setNextResponder:self];
 }
 
@@ -157,10 +157,12 @@
 
 
 // ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効／無効を設定
-- (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled
+/// テキストビュー分割削除ボタンの有効／無効を更新
+- (void)updateCloseSubSplitViewButton
 // ------------------------------------------------------
 {
+    BOOL isEnabled = ([[[self view] subviews] count] > 1);
+    
     for (CESubSplitView *subview in [[self view] subviews]) {
         [subview updateCloseSubSplitViewButton:isEnabled];
     }
@@ -239,6 +241,8 @@
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:![[self splitView] isVertical]];
+    
+    [self updateOpenSubSplitViewButtons];
 }
 
 
@@ -300,6 +304,17 @@
     }
     
     [[[self view] window] makeFirstResponder:[nextSubview textView]];
+}
+
+
+// ------------------------------------------------------
+/// テキストビュー分割ボタンの画像を更新
+- (void)updateOpenSubSplitViewButtons
+// ------------------------------------------------------
+{
+    for (CESubSplitView *subview in [[self view] subviews]) {
+        [[subview navigationBar] setSplitOrientationVertical:[[self splitView] isVertical]];
+    }
 }
 
 @end
