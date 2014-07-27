@@ -44,9 +44,9 @@
 - (void)setUseAntialias:(BOOL)useAntialias;
 - (void)setCloseSubSplitViewButtonEnabled:(BOOL)isEnabled;
 
-- (void)setAllCaretToBeginning;
+- (void)moveAllCaretToBeginning;
 - (void)setSyntaxWithName:(NSString *)syntaxName;
-- (void)recoloringAllTextView;
+- (void)recolorAllTextView;
 - (void)updateAllOutlineMenu;
 - (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha;
 

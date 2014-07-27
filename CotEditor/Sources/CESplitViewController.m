@@ -140,7 +140,7 @@
 
 // ------------------------------------------------------
 /// キャレットを先頭に移動
-- (void)setAllCaretToBeginning
+- (void)moveAllCaretToBeginning
 // ------------------------------------------------------
 {
     for (CESubSplitView *subview in [[self view] subviews]) {
@@ -164,7 +164,7 @@
 
 // ------------------------------------------------------
 /// 全てを再カラーリング、文書表示処理の完了をポスト（ここが最終地点）
-- (void)recoloringAllTextView
+- (void)recolorAllTextView
 // ------------------------------------------------------
 {
     for (CESubSplitView *subview in [[self view] subviews]) {

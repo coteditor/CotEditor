@@ -227,7 +227,7 @@ static NSTimeInterval secondColoringDelay;
     
     // キャレットを先頭に移動
     if ([string length] > 0) {
-        [[self splitViewController] setAllCaretToBeginning];
+        [[self splitViewController] moveAllCaretToBeginning];
     }
 }
 
@@ -456,7 +456,7 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self stopColoringTimer];
-    [[self splitViewController] recoloringAllTextView];
+    [[self splitViewController] recolorAllTextView];
 }
 
 
@@ -470,7 +470,7 @@ static NSTimeInterval secondColoringDelay;
     __block CESplitViewController *splitViewController = [self splitViewController];
     dispatch_async(dispatch_get_main_queue(), ^{
         [splitViewController updateAllOutlineMenu];
-        [splitViewController recoloringAllTextView];
+        [splitViewController recolorAllTextView];
     });
 }
 
