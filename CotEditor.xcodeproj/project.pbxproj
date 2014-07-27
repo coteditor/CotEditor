@@ -361,6 +361,7 @@
 		2AD2860D1985627700C9342F /* openSplitTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitTemplate.pdf; path = images/openSplitTemplate.pdf; sourceTree = "<group>"; };
 		2AD2860E1985627700C9342F /* upTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = upTemplate.pdf; path = images/upTemplate.pdf; sourceTree = "<group>"; };
 		2AD28616198569CC00C9342F /* openSplitVerticalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitVerticalTemplate.pdf; path = images/openSplitVerticalTemplate.pdf; sourceTree = "<group>"; };
+		2AD2861819856E2300C9342F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/NavigationBar.xib; sourceTree = "<group>"; };
 		2AD2F7171969FE7D000DD47E /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxMappingConflictSheet.xib; sourceTree = "<group>"; };
 		2AD5322819779FD000A925CA /* CELineHeightTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineHeightTransformer.h; sourceTree = "<group>"; };
 		2AD5322919779FD000A925CA /* CELineHeightTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHeightTransformer.m; sourceTree = "<group>"; };
@@ -1374,6 +1375,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A5411C219852C1C008B43DA /* en */,
+				2AD2861819856E2300C9342F /* ja */,
 			);
 			name = NavigationBar.xib;
 			sourceTree = "<group>";
