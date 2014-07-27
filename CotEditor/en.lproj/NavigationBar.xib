@@ -23,9 +23,8 @@
             <rect key="frame" x="-199" y="40" width="560" height="16"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
-                    <rect key="frame" x="32" y="1" width="20" height="15"/>
+                    <rect key="frame" x="31" y="1" width="20" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="O4A-b9-5SW"/>
                         <constraint firstAttribute="width" constant="20" id="YCW-yn-jru"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" title="Previous Outline Item" bezelStyle="smallSquare" image="prevButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
@@ -38,7 +37,7 @@
                     </connections>
                 </button>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="DpS-Kt-hzm">
-                    <rect key="frame" x="52" y="1" width="300" height="15"/>
+                    <rect key="frame" x="51" y="1" width="300" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="0WD-FU-fJf"/>
                         <constraint firstAttribute="width" constant="300" id="c7e-CV-OBo"/>
@@ -56,10 +55,9 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
-                    <rect key="frame" x="352" y="1" width="20" height="15"/>
+                    <rect key="frame" x="351" y="1" width="20" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="1PN-qX-wNW"/>
-                        <constraint firstAttribute="height" constant="15" id="XnB-xB-mpq"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" title="Next Outline Item" bezelStyle="smallSquare" image="nextButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -73,7 +71,6 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
                     <rect key="frame" x="545" y="1" width="15" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="Psv-sD-BKC"/>
                         <constraint firstAttribute="width" constant="15" id="e7y-hz-Kt5"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" title="Split View" bezelStyle="smallSquare" image="openSplitButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Snx-y4-0J6">
@@ -88,7 +85,6 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
                     <rect key="frame" x="530" y="1" width="15" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="3M4-Vp-DqU"/>
                         <constraint firstAttribute="width" constant="15" id="5Tr-XS-blf"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" title="Close Split View" bezelStyle="smallSquare" image="closeSplitButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="naK-la-7Mj">
@@ -119,19 +115,23 @@
             <constraints>
                 <constraint firstAttribute="height" constant="16" id="2Bw-hw-aAP"/>
                 <constraint firstItem="aUE-uy-XLQ" firstAttribute="leading" secondItem="dmz-oV-5PB" secondAttribute="trailing" constant="8" symbolic="YES" id="9k5-2q-Bp3"/>
+                <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" priority="750" constant="1" id="AWD-Jd-Jva"/>
+                <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" priority="750" constant="1" id="Av7-dW-7rR"/>
                 <constraint firstItem="dmz-oV-5PB" firstAttribute="centerY" secondItem="aUE-uy-XLQ" secondAttribute="centerY" id="DnV-nM-v3e"/>
+                <constraint firstAttribute="bottom" secondItem="DpS-Kt-hzm" secondAttribute="bottom" priority="750" constant="1" id="EG2-Ys-UNt"/>
                 <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" id="EMn-Rp-qEZ"/>
                 <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="DpS-Kt-hzm" secondAttribute="trailing" id="G17-hO-3OV"/>
-                <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="J30-ed-4kS"/>
+                <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Iaq-ix-Y1D"/>
                 <constraint firstAttribute="centerY" secondItem="dmz-oV-5PB" secondAttribute="centerY" id="Vba-Oy-CJO"/>
-                <constraint firstItem="DpS-Kt-hzm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="aHG-9U-JPv"/>
-                <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="b7e-eN-nUd"/>
-                <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="32" id="bJJ-rX-XaX"/>
-                <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="h8f-Qx-r1J"/>
+                <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="31" id="bJJ-rX-XaX"/>
+                <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="bK7-kZ-LYL"/>
+                <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="cQZ-8M-KVZ"/>
+                <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="kQP-Ap-Eba"/>
+                <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" priority="750" constant="1" id="mfh-Y4-05A"/>
                 <constraint firstItem="dmz-oV-5PB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="60" id="nDC-oP-cob"/>
                 <constraint firstItem="DpS-Kt-hzm" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" id="qWV-mx-Hgz"/>
                 <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" id="qZ8-nx-wlZ"/>
-                <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="seJ-i1-Ngl"/>
+                <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" priority="750" constant="1" id="sMO-mr-IIf"/>
             </constraints>
             <accessibility description="Navigation Bar"/>
             <point key="canvasLocation" x="-47" y="51"/>

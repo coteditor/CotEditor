@@ -36,6 +36,10 @@
 #import "constants.h"
 
 
+static const CGFloat defaultHeight = 16.0;
+static const NSTimeInterval duration = 0.1;
+
+
 @interface CENavigationBarController ()
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *outlineMenu;
@@ -49,8 +53,6 @@
 @property (nonatomic, weak) IBOutlet NSTextField *outlineLoadingMessage;
 
 @end
-
-
 
 #pragma mark -
 
@@ -102,8 +104,13 @@
     if (showNavigationBar != [self showNavigationBar]) {
         _showNavigationBar = showNavigationBar;
         
-        CGFloat height = [self showNavigationBar] ? k_navigationBarHeight : 0.0;
-        [self setHeight:height];
+        CGFloat height = [self showNavigationBar] ? defaultHeight : 0.0;
+        
+        // resize with animation
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            [context setDuration:duration];
+            [[[self heightConstraint] animator] setConstant:height];
+        } completionHandler:nil];
     }
 }
 
@@ -319,23 +326,6 @@
         }
     }
     [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
-}
-
-
-
-#pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// set view height.
-- (void)setHeight:(CGFloat)height
-// ------------------------------------------------------
-{
-    [[self heightConstraint] setConstant:height];
 }
 
 @end

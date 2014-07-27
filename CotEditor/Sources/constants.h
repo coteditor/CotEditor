@@ -356,10 +356,6 @@ extern NSString *const k_outlineMenuItemUnderlineMask;
 extern CGFloat const k_defaultLineNumWidth;
 extern CGFloat const k_lineNumPadding;
 extern CGFloat const k_lineNumFontDescender;
-extern CGFloat const k_navigationBarHeight;
-extern CGFloat const k_outlineMenuLeftMargin;
-extern CGFloat const k_outlineMenuWidth;
-extern CGFloat const k_outlineButtonWidth;
 extern NSString *const k_navigationBarFontName;
 
 

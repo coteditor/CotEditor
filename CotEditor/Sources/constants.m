@@ -328,10 +328,6 @@ NSString *const k_outlineMenuItemUnderlineMask = @"outlineMenuItemUnderlineMask"
 CGFloat const k_defaultLineNumWidth = 32.0;
 CGFloat const k_lineNumPadding = 2.0;
 CGFloat const k_lineNumFontDescender = -2.1;
-CGFloat const k_navigationBarHeight = 16.0;
-CGFloat const k_outlineMenuLeftMargin = 70.0;
-CGFloat const k_outlineMenuWidth = 300.0;
-CGFloat const k_outlineButtonWidth = 20.0;
 NSString *const k_navigationBarFontName = @"Helvetica";
 
 
