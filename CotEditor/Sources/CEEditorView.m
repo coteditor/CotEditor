@@ -574,9 +574,7 @@ static NSTimeInterval secondColoringDelay;
     } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
         return ([[self navigationBar] canSelectNextItem]);
         
-    } else if (([menuItem action] == @selector(focusNextSplitTextView:)) ||
-               ([menuItem action] == @selector(focusPrevSplitTextView:)) ||
-               ([menuItem action] == @selector(closeSplitTextView:))) {
+    } else if ([menuItem action] == @selector(closeSplitTextView:)) {
         return ([[[[self splitViewController] view] subviews] count] > 1);
     }
     
@@ -749,24 +747,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// 次の分割されたテキストビューへフォーカス移動
-- (IBAction)focusNextSplitTextView:(id)sender
-// ------------------------------------------------------
-{
-    [self focusOtherSplitTextViewOnNext:YES];
-}
-
-
-// ------------------------------------------------------
-/// 前の分割されたテキストビューへフォーカス移動
-- (IBAction)focusPrevSplitTextView:(id)sender
-// ------------------------------------------------------
-{
-    [self focusOtherSplitTextViewOnNext:NO];
-}
-
-
-// ------------------------------------------------------
 /// ドキュメント全体を再カラーリング
 - (IBAction)recoloringAllStringOfDocument:(id)sender
 // ------------------------------------------------------
@@ -819,32 +799,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
-}
-
-
-// ------------------------------------------------------
-/// 分割された前／後のテキストビューにフォーカス移動
-- (void)focusOtherSplitTextViewOnNext:(BOOL)isOnNext
-// ------------------------------------------------------
-{
-    NSArray *subSplitViews = [[[self splitViewController] view] subviews];
-    NSInteger count = [subSplitViews count];
-    if (count < 2) { return; }
-    CESubSplitView *currentView = (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate];
-    NSInteger index = [subSplitViews indexOfObject:currentView];
-
-    if (isOnNext) { // == Next
-        index++;
-    } else { // == Prev
-        index--;
-    }
-    if (index < 0) {
-        [[self window] makeFirstResponder:[[subSplitViews lastObject] textView]];
-    } else if (index < count) {
-        [[self window] makeFirstResponder:[subSplitViews[index] textView]];
-    } else if (index >= count) {
-        [[self window] makeFirstResponder:[subSplitViews[0] textView]];
-    }
 }
 
 

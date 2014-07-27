@@ -45,6 +45,7 @@
 
 
 
+
 #pragma mark -
 
 @implementation CESplitViewController
@@ -54,7 +55,35 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [(NSSplitView *)[self view] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
+    [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
+    [[[self view] superview] setNextResponder:self];
+}
+
+
+// ------------------------------------------------------
+/// メニューの有効化／無効化を制御
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if ([menuItem action] == @selector(toggleSplitOrientation:)) {
+        NSString *title = [[self splitView] isVertical] ? @"Stack Views Horizontally" : @"Stack Views Vertically";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        return ([[[self view] subviews] count] > 1);
+        
+    } else if (([menuItem action] == @selector(focusNextSplitTextView:)) ||
+               ([menuItem action] == @selector(focusPrevSplitTextView:))) {
+        return ([[[self view] subviews] count] > 1);
+    }
+    
+    return YES;
+}
+
+// ------------------------------------------------------
+/// 自身の view として NSSplitView を返す (NSSplitViewController のメソッド)
+- (NSSplitView *)splitView
+// ------------------------------------------------------
+{
+    return (NSSplitView *)[super view];
 }
 
 
@@ -198,6 +227,79 @@
     for (CESubSplitView *subview in [[self view] subviews]) {
         [subview setBackgroundColorAlpha:alpha];
     }
+}
+
+
+
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// 分割方向を変更する
+- (IBAction)toggleSplitOrientation:(id)sender
+// ------------------------------------------------------
+{
+    [[self splitView] setVertical:![[self splitView] isVertical]];
+}
+
+
+// ------------------------------------------------------
+/// 次の分割されたテキストビューへフォーカス移動
+- (IBAction)focusNextSplitTextView:(id)sender
+// ------------------------------------------------------
+{
+    [self focusOtherSplitTextViewOnNext:YES];
+}
+
+
+// ------------------------------------------------------
+/// 前の分割されたテキストビューへフォーカス移動
+- (IBAction)focusPrevSplitTextView:(id)sender
+// ------------------------------------------------------
+{
+    [self focusOtherSplitTextViewOnNext:NO];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// 現在フォーカスのある分割ビューを返す
+- (CESubSplitView *)currentSubview
+// ------------------------------------------------------
+{
+    return (CESubSplitView *)[(NSTextView *)[[[self view] window] firstResponder] delegate];
+}
+
+
+// ------------------------------------------------------
+/// 分割された前／後のテキストビューにフォーカス移動
+- (void)focusOtherSplitTextViewOnNext:(BOOL)onNext
+// ------------------------------------------------------
+{
+    NSUInteger count = [[[self view] subviews] count];
+    
+    if (count < 2) { return; }
+    
+    NSArray *subviews = [[self view] subviews];
+    NSInteger index = [subviews indexOfObject:[self currentSubview]];
+    CESubSplitView *nextSubview;
+    
+    if (onNext) {  // == Next
+        index++;
+    } else {  // == Prev
+        index--;
+    }
+    
+    if (index < 0) {
+        nextSubview = [subviews lastObject];
+    } else if (index >= count) {
+        nextSubview = subviews[0];
+    } else {
+        nextSubview = subviews[index];
+    }
+    
+    [[[self view] window] makeFirstResponder:[nextSubview textView]];
 }
 
 @end

@@ -34,7 +34,7 @@
 @import AppKit;
 
 
-@interface CESplitViewController : NSViewController
+@interface CESplitViewController : NSViewController <NSSplitViewDelegate>
 
 - (void)setShowLineNum:(BOOL)showLineNum;
 - (void)setShowNavigationBar:(BOOL)showNavigationBar;
@@ -49,5 +49,9 @@
 - (void)recolorAllTextView;
 - (void)updateAllOutlineMenu;
 - (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha;
+
+- (IBAction)toggleSplitOrientation:(id)sender;
+- (IBAction)focusNextSplitTextView:(id)sender;
+- (IBAction)focusPrevSplitTextView:(id)sender;
 
 @end

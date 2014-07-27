@@ -35,6 +35,4 @@
 
 @interface CESplitView : NSSplitView
 
-- (IBAction)toggleSplitOrientation:(id)sender;
-
 @end

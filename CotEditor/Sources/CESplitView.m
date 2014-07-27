@@ -45,29 +45,4 @@
     return [self isVertical] ? NSSplitViewDividerStyleThin : NSSplitViewDividerStylePaneSplitter;
 }
 
-
-// ------------------------------------------------------
-/// メニューの有効化／無効化を制御
-- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if ([menuItem action] == @selector(toggleSplitOrientation:)) {
-        NSString *title = [self isVertical] ? @"Stack Views Horizontally" : @"Stack Views Vertically";
-        [menuItem setTitle:NSLocalizedString(title, nil)];
-    }
-    return YES;
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// 分割方向を変更する
-- (IBAction)toggleSplitOrientation:(id)sender
-// ------------------------------------------------------
-{
-    [self setVertical:![self isVertical]];
-}
-
 @end
