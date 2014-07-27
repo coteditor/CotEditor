@@ -338,17 +338,36 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// 全layoutManagerを配列で返す
-- (NSArray *)allLayoutManagers
+/// 現在のエンコードにコンバートできない文字列をマークアップ
+- (void)markupRanges:(NSArray *)ranges
 // ------------------------------------------------------
 {
-    NSArray *subSplitViews = [[[self splitViewController] view] subviews];
-    NSMutableArray *managers = [NSMutableArray array];
-
-    for (NSTextContainer *container in subSplitViews) {
-        [managers addObject:[[container textView] layoutManager]];
+    NSColor *color = [[[self textView] theme] markupColor];
+    
+    // ハイライト
+    NSArray *layoutManagers = [self allLayoutManagers];
+    for (NSValue *rangeValue in ranges) {
+        NSRange range = [rangeValue rangeValue];
+        
+        for (NSLayoutManager *manager in layoutManagers) {
+            [manager addTemporaryAttribute:NSBackgroundColorAttributeName value:color
+                         forCharacterRange:range];
+        }
     }
-    return managers;
+}
+
+
+// ------------------------------------------------------
+/// 背景色(検索のハイライト含む)の変更を取り消し
+- (void)clearAllMarkup
+// ------------------------------------------------------
+{
+    NSArray *managers = [self allLayoutManagers];
+    
+    for (NSLayoutManager *manager in managers) {
+        [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
+                        forCharacterRange:NSMakeRange(0, [[self string] length])];
+    }
 }
 
 
@@ -799,6 +818,21 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
+}
+
+
+// ------------------------------------------------------
+/// 全layoutManagerを配列で返す
+- (NSArray *)allLayoutManagers
+// ------------------------------------------------------
+{
+    NSArray *subSplitViews = [[[self splitViewController] view] subviews];
+    NSMutableArray *managers = [NSMutableArray array];
+    
+    for (NSTextContainer *container in subSplitViews) {
+        [managers addObject:[[container textView] layoutManager]];
+    }
+    return managers;
 }
 
 

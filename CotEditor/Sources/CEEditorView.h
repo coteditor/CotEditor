@@ -74,11 +74,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceTextViewAllStringTo:(NSString *)string;
 - (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
 - (void)appendTextViewAfterAllStringTo:(NSString *)string;
+
 - (NSFont *)font;
 - (void)setFont:(NSFont *)font;
+
 - (NSRange)selectedRange;
 - (void)setSelectedRange:(NSRange)charRange;
-- (NSArray *)allLayoutManagers;
+
+- (void)markupRanges:(NSArray *)ranges;
+- (void)clearAllMarkup;
 
 - (BOOL)shouldUseAntialias;
 - (void)toggleShouldUseAntialias;

@@ -619,7 +619,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)drawerDidClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    [self clearAllMarkup];
+    [[self editorView] clearAllMarkup];
     // テキストビューの表示だけをクリアし、リストはそのまま
 }
 
@@ -763,55 +763,16 @@ static NSTimeInterval incompatibleCharInterval;
 {
     NSArray *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
     
-    [self markupIncompatibleChars:contents];
+    NSMutableArray *ranges = [NSMutableArray array];
+    for (NSDictionary *incompatible in contents) {
+        [ranges addObject:incompatible[k_incompatibleRange]];
+    }
+    [[self editorView] clearAllMarkup];
+    [[self editorView] markupRanges:ranges];
+    
     
     [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示
     [[self listController] setContent:contents];
-}
-
-
-// ------------------------------------------------------
-/// 背景色(検索のハイライト含む)の変更を取り消し
-- (void)clearAllMarkup
-// ------------------------------------------------------
-{
-    NSArray *managers = [[self editorView] allLayoutManagers];
-    
-    for (NSLayoutManager *manager in managers) {
-        [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                        forCharacterRange:NSMakeRange(0, [[[self editorView] string] length])];
-    }
-}
-
-
-// ------------------------------------------------------
-/// 現在のエンコードにコンバートできない文字列をマークアップ
-- (void)markupIncompatibleChars:(NSArray *)incompatibleChars
-// ------------------------------------------------------
-{
-    // 文字色と背景色の中間色を得る
-    NSColor *foreColor = [[[self editorView] textView] textColor];
-    NSColor *backColor = [[[self editorView] textView] backgroundColor];
-    CGFloat BG_R, BG_G, BG_B, FG_R, FG_G, FG_B;
-    [[foreColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&FG_R green:&FG_G blue:&FG_B alpha:nil];
-    [[backColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&BG_R green:&BG_G blue:&BG_B alpha:nil];
-    NSColor *incompatibleColor = [NSColor colorWithCalibratedRed:((BG_R + FG_R) / 2)
-                                                           green:((BG_G + FG_G) / 2)
-                                                            blue:((BG_B + FG_B) / 2)
-                                                           alpha:1.0];
-    
-    // 現存の背景色カラーリングをすべて削除（検索のハイライトも削除される）
-    [self clearAllMarkup];
-    
-    // 非互換文字をハイライト
-    NSArray *layoutManagers = [[self editorView] allLayoutManagers];
-    for (NSDictionary *incompatible in incompatibleChars) {
-        for (NSLayoutManager *manager in layoutManagers) {
-            [manager addTemporaryAttribute:NSBackgroundColorAttributeName
-                                     value:incompatibleColor
-                         forCharacterRange:[incompatible[k_incompatibleRange] rangeValue]];
-        }
-    }
 }
 
 
