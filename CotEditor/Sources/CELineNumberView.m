@@ -45,6 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CELineNumberView ()
 
 @property (nonatomic) NSTimer *draggingTimer;
+@property (nonatomic) NSLayoutConstraint *thicknessConstraint;
 
 @property (nonatomic) NSString *fontName;
 @property (nonatomic) NSColor *numberColor;
@@ -81,6 +82,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _fontName = [font fontName];
         _numberColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_lineNumFontColor]];
         _backgroundAlpha = 1.0;
+        
+        // set thickness constraint
+        _thicknessConstraint = [NSLayoutConstraint constraintWithItem:self
+                                                            attribute:NSLayoutAttributeWidth
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:nil
+                                                            attribute:NSLayoutAttributeNotAnAttribute
+                                                           multiplier:1
+                                                             constant:0];
+        [self addConstraint:_thicknessConstraint];
         
         // observe window resize
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -359,21 +370,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setWidth:(CGFloat)width
 // ------------------------------------------------------
 {
-    CGFloat adjWidth = width - NSWidth([self frame]);
-    NSRect newFrame;
-
-    // set masterView width
-    newFrame = [[self scrollView] frame];
-    newFrame.origin.x += adjWidth;
-    newFrame.size.width -= adjWidth;
-    [[self scrollView] setFrame:newFrame];
-    
-    // set lineNumberView width
-    newFrame = [self frame];
-    newFrame.size.width += adjWidth;
-    [self setFrame:newFrame];
-
-    [self setNeedsDisplay:YES];
+    [[self thicknessConstraint] setConstant:width];
 }
 
 

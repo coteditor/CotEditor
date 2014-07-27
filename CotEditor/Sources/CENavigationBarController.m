@@ -335,26 +335,7 @@
 - (void)setHeight:(CGFloat)height
 // ------------------------------------------------------
 {
-    CGFloat adjHeight = height - NSHeight([[self view] frame]);
-
-    // set masterView height
-    NSRect masterFrame = [[[self masterView] scrollView] frame];
-    masterFrame.size.height -= adjHeight;
-    [[[self masterView] scrollView] setFrame:masterFrame];
-    
-    // set lineNumberView height
-    NSRect lineNumberFrame = [[[self masterView] lineNumberView] frame];
-    lineNumberFrame.size.height -= adjHeight;
-    [[[self masterView] lineNumberView] setFrame:lineNumberFrame];
-
-    // set navigationBar height
-    NSRect myFrame = [[self view] frame];
-    myFrame.origin.y -= adjHeight;
-    myFrame.size.height += adjHeight;
-    [[self view] setFrame:myFrame];
-//    [[self heightConstraint] setConstant:height];
-
-    [[[[self view] window] contentView] setNeedsDisplay:YES];
+    [[self heightConstraint] setConstant:height];
 }
 
 @end
