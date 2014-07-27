@@ -8,7 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
-                <outlet property="editorView" destination="27" id="eIp-jK-o9H"/>
+                <outlet property="editorView" destination="6" id="pnK-gZ-UaH"/>
                 <outlet property="infoNumberFormatter" destination="ZXE-Ki-WDP" id="3BB-um-DS8"/>
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
@@ -27,39 +27,10 @@
             <rect key="contentRect" x="7" y="567" width="507" height="413"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="400" height="200"/>
-            <view key="contentView" id="6">
+            <view key="contentView" id="6" customClass="CEEditorView">
                 <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="27" customClass="CEEditorView">
-                        <rect key="frame" x="0.0" y="20" width="507" height="393"/>
-                        <subviews>
-                            <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="Ezm-P5-z5i" customClass="CESplitView">
-                                <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
-                                <subviews>
-                                    <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CESubSplitView">
-                                        <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </customView>
-                                </subviews>
-                                <holdingPriorities>
-                                    <real value="250"/>
-                                </holdingPriorities>
-                                <connections>
-                                    <outlet property="delegate" destination="cfo-zY-w3h" id="ZBq-Sz-8et"/>
-                                </connections>
-                            </splitView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Ezm-P5-z5i" secondAttribute="bottom" id="0Ys-Ek-28O"/>
-                            <constraint firstItem="Ezm-P5-z5i" firstAttribute="leading" secondItem="27" secondAttribute="leading" id="BHQ-71-ozY"/>
-                            <constraint firstAttribute="trailing" secondItem="Ezm-P5-z5i" secondAttribute="trailing" id="NdT-CU-gdA"/>
-                            <constraint firstItem="Ezm-P5-z5i" firstAttribute="top" secondItem="27" secondAttribute="top" id="fXc-gE-tPG"/>
-                        </constraints>
-                        <connections>
-                            <outlet property="splitViewController" destination="cfo-zY-w3h" id="rbj-c5-ZE7"/>
-                        </connections>
-                    </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
                         <rect key="frame" x="0.0" y="0.0" width="507" height="20"/>
                         <subviews>
@@ -108,16 +79,34 @@
                             <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
                         </constraints>
                     </customView>
+                    <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="Ezm-P5-z5i" customClass="CESplitView">
+                        <rect key="frame" x="0.0" y="20" width="507" height="393"/>
+                        <subviews>
+                            <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CESubSplitView">
+                                <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </customView>
+                        </subviews>
+                        <holdingPriorities>
+                            <real value="250"/>
+                        </holdingPriorities>
+                        <connections>
+                            <outlet property="delegate" destination="cfo-zY-w3h" id="ZBq-Sz-8et"/>
+                        </connections>
+                    </splitView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="27" firstAttribute="top" secondItem="6" secondAttribute="top" id="8N0-AV-EaF"/>
-                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="27" secondAttribute="bottom" id="Eq8-n3-yZC"/>
                     <constraint firstAttribute="bottom" secondItem="Rjm-Sf-4Mf" secondAttribute="bottom" id="Mte-Of-4Jj"/>
-                    <constraint firstItem="27" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="SZe-4j-OOt"/>
+                    <constraint firstItem="Ezm-P5-z5i" firstAttribute="top" secondItem="6" secondAttribute="top" id="OFO-iX-l4a"/>
+                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="Ezm-P5-z5i" secondAttribute="bottom" id="Qxe-Mj-JW8"/>
                     <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="Sph-UK-4Zn"/>
-                    <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" id="j06-yM-irz"/>
+                    <constraint firstAttribute="trailing" secondItem="Ezm-P5-z5i" secondAttribute="trailing" id="Z2L-9l-fFD"/>
                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
+                    <constraint firstItem="Ezm-P5-z5i" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="wbM-Gh-RXF"/>
                 </constraints>
+                <connections>
+                    <outlet property="splitViewController" destination="cfo-zY-w3h" id="zbF-Xh-Jye"/>
+                </connections>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
