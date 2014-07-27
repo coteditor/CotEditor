@@ -32,11 +32,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESubSplitView.h"
+#import "CELineNumberView.h"
 #import "CEThemeManager.h"
 #import "constants.h"
 
 
 @interface CESubSplitView ()
+
+@property (nonatomic) NSScrollView *scrollView;
+@property (nonatomic) CELineNumberView *lineNumberView;
+@property (nonatomic) NSTextStorage *textStorage;
 
 @property (nonatomic) NSTimer *lineNumUpdateTimer;
 @property (nonatomic) NSTimer *outlineMenuTimer;
@@ -46,12 +51,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // readonly
-@property (nonatomic, readwrite) NSScrollView *scrollView;
 @property (nonatomic, readwrite) CETextView *textView;
-@property (nonatomic, readwrite) CELineNumberView *lineNumberView;
 @property (nonatomic, readwrite) CENavigationBarController *navigationBar;
 @property (nonatomic, readwrite) CESyntaxParser *syntaxParser;
-@property (nonatomic, readwrite) NSTextStorage *textStorage;
 
 @end
 

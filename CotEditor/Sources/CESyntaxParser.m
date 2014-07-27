@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @interface CESyntaxParser ()
 
 @property (nonatomic) NSLayoutManager *layoutManager;
-@property (atomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;

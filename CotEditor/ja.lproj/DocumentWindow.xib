@@ -30,6 +30,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="EZ5-nO-Yw9" customClass="CESplitView">
+                        <rect key="frame" x="0.0" y="20" width="507" height="393"/>
+                        <subviews>
+                            <customView fixedFrame="YES" id="suX-pu-3n4" customClass="CESubSplitView">
+                                <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </customView>
+                        </subviews>
+                        <holdingPriorities>
+                            <real value="250"/>
+                        </holdingPriorities>
+                        <connections>
+                            <outlet property="delegate" destination="Kiv-YO-hzO" id="6rv-Ci-nef"/>
+                        </connections>
+                    </splitView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
                         <rect key="frame" x="0.0" y="0.0" width="507" height="20"/>
                         <subviews>
@@ -78,21 +93,6 @@
                             <constraint firstAttribute="centerY" secondItem="G7a-2k-nOK" secondAttribute="centerY" id="wwt-6v-1Di"/>
                         </constraints>
                     </customView>
-                    <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="EZ5-nO-Yw9" customClass="CESplitView">
-                        <rect key="frame" x="0.0" y="20" width="507" height="393"/>
-                        <subviews>
-                            <customView fixedFrame="YES" id="suX-pu-3n4" customClass="CESubSplitView">
-                                <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </customView>
-                        </subviews>
-                        <holdingPriorities>
-                            <real value="250"/>
-                        </holdingPriorities>
-                        <connections>
-                            <outlet property="delegate" destination="Kiv-YO-hzO" id="6rv-Ci-nef"/>
-                        </connections>
-                    </splitView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="EZ5-nO-Yw9" secondAttribute="trailing" id="6t9-yP-DXd"/>
