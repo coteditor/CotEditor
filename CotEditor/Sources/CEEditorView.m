@@ -447,7 +447,7 @@ static NSTimeInterval secondColoringDelay;
 - (NSString *)syntaxStyleName
 // ------------------------------------------------------
 {
-    return [[self syntaxParser] syntaxStyleName];
+    return [[self syntaxParser] styleName];
 }
 
 
@@ -727,7 +727,7 @@ static NSTimeInterval secondColoringDelay;
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
     [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
-    [subSplitView setSyntaxWithName:[[self syntaxParser] syntaxStyleName]];
+    [subSplitView setSyntaxWithName:[[self syntaxParser] styleName]];
     [[subSplitView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:[subSplitView textView]];
