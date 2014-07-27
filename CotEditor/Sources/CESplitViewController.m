@@ -56,7 +56,7 @@
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
-    [[[self view] superview] setNextResponder:self];
+    [[[[self view] window] firstResponder] setNextResponder:self];
 }
 
 
