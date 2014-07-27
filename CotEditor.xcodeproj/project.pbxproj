@@ -93,7 +93,7 @@
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A961C5618FC699E002076B6 /* Version History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4F18FC699E002076B6 /* Version History.rtf */; };
-		2A9A144B18B67846001080D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Images.xcassets */; };
+		2A9A144B18B67846001080D6 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A144A18B67846001080D6 /* Icons.xcassets */; };
 		2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */; };
 		2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* GlyphPopover.xib */; };
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
@@ -347,7 +347,7 @@
 		2A961C5A18FC69D0002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
 		2A961C5B18FC69D4002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/AppleScript.rtf; sourceTree = "<group>"; };
 		2A961C5C18FC69D9002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ShellScript.rtf; sourceTree = "<group>"; };
-		2A9A144A18B67846001080D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2A9A144A18B67846001080D6 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		2AA562A818E8F630009CD7A2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
 		2AA84DCF196381A1000BB9D3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIndicatorSheetController.h; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		25972A7107B87293005EB175 /* images */ = {
+		25972A7107B87293005EB175 /* Images */ = {
 			isa = PBXGroup;
 			children = (
 				2A0722F216D3CF2E00F49864 /* scriptMenuTemplate.pdf */,
@@ -518,7 +518,7 @@
 				2AD2860E1985627700C9342F /* upTemplate.pdf */,
 				2A07230516D3CF4F00F49864 /* opacityGuide.pdf */,
 			);
-			name = images;
+			name = Images;
 			sourceTree = "<group>";
 		};
 		259B181207E530DA00C5FD26 /* InternalScript */ = {
@@ -684,16 +684,8 @@
 		2A15832C18E3A29A00601026 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2588E9BD07C47ACC0060021D /* CEEditorView.h */,
-				2588E9BE07C47ACC0060021D /* CEEditorView.m */,
-				2A5411BE1983E5FA008B43DA /* CESplitViewController.h */,
-				2A5411BF1983E5FA008B43DA /* CESplitViewController.m */,
 				8C8CCCAE09D6803400A008E5 /* CESplitView.h */,
 				8C8CCCAF09D6803400A008E5 /* CESplitView.m */,
-				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
-				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
-				8CF02E1308B9B9F8004044EB /* CENavigationBarController.h */,
-				8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */,
 				2A5411C7198549A7008B43DA /* CENavigationBarView.h */,
 				2A5411C8198549A7008B43DA /* CENavigationBarView.m */,
 				8C99DDF808BD8940001F618C /* CEOutlineMenuButtonCell.h */,
@@ -755,8 +747,9 @@
 				2A15832D18E3A3E000601026 /* Preferences */,
 				2A42825318FCC22100386899 /* Document */,
 				2A42825418FCC23400386899 /* Window */,
+				2AD2861919856F3100C9342F /* Editor View Controllers */,
 				2A15832C18E3A29A00601026 /* Views */,
-				2A42825218FCC1C100386899 /* TextView */,
+				2A42825218FCC1C100386899 /* Text View */,
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2A15832B18E3A25C00601026 /* Utilities */,
 				25859E90076D88ED0020F779 /* constants.h */,
@@ -780,9 +773,9 @@
 			isa = PBXGroup;
 			children = (
 				2A149DC91902BC3900A9D6EF /* Nibs */,
-				2A9A144A18B67846001080D6 /* Images.xcassets */,
+				2A9A144A18B67846001080D6 /* Icons.xcassets */,
 				8CB0122007CA0CCD00221EDC /* Toolbar Icons */,
-				25972A7107B87293005EB175 /* images */,
+				25972A7107B87293005EB175 /* Images */,
 				2A961C4418FC6979002076B6 /* Documents */,
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
@@ -813,7 +806,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2A42825218FCC1C100386899 /* TextView */ = {
+		2A42825218FCC1C100386899 /* Text View */ = {
 			isa = PBXGroup;
 			children = (
 				2A607B04190582CE00F3A991 /* CETextViewProtocol.h */,
@@ -832,7 +825,7 @@
 				2AACC9571942A82900E3FF63 /* CEIndicatorSheetController.h */,
 				2AACC9581942A82900E3FF63 /* CEIndicatorSheetController.m */,
 			);
-			name = TextView;
+			name = "Text View";
 			sourceTree = "<group>";
 		};
 		2A42825318FCC22100386899 /* Document */ = {
@@ -877,6 +870,21 @@
 				2A961C4D18FC699E002076B6 /* ShellScript.rtf */,
 			);
 			name = Documents;
+			sourceTree = "<group>";
+		};
+		2AD2861919856F3100C9342F /* Editor View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2588E9BD07C47ACC0060021D /* CEEditorView.h */,
+				2588E9BE07C47ACC0060021D /* CEEditorView.m */,
+				2A5411BE1983E5FA008B43DA /* CESplitViewController.h */,
+				2A5411BF1983E5FA008B43DA /* CESplitViewController.m */,
+				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
+				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
+				8CF02E1308B9B9F8004044EB /* CENavigationBarController.h */,
+				8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */,
+			);
+			name = "Editor View Controllers";
 			sourceTree = "<group>";
 		};
 		2AFFB72E18D8E87900118477 /* Panel Controllers */ = {
@@ -1093,7 +1101,7 @@
 				2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A07230716D3CF4F00F49864 /* centerAlignTemplate.pdf in Resources */,
-				2A9A144B18B67846001080D6 /* Images.xcassets in Resources */,
+				2A9A144B18B67846001080D6 /* Icons.xcassets in Resources */,
 				2A07230B16D3CF4F00F49864 /* leftAlignTemplate.pdf in Resources */,
 				2A149DAD19016ABB00A9D6EF /* WindowPane.xib in Resources */,
 				2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */,
