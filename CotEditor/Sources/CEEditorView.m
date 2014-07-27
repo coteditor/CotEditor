@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CEEditorView.h"
 #import "CESplitViewController.h"
 #import "CEToolbarController.h"
-#import "CENavigationBarView.h"
+#import "CENavigationBarController.h"
 #import "CELineNumberView.h"
 #import "CESyntaxParser.h"
 #import "constants.h"
@@ -671,7 +671,7 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)selectPrevItemOfOutlineMenu:(id)sender
 // ------------------------------------------------------
 {
-    [[self navigationBar] selectPrevItem];
+    [[self navigationBar] selectPrevItem:sender];
 }
 
 
@@ -680,7 +680,7 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)selectNextItemOfOutlineMenu:(id)sender
 // ------------------------------------------------------
 {
-    [[self navigationBar] selectNextItem];
+    [[self navigationBar] selectNextItem:sender];
 }
 
 
@@ -690,8 +690,8 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     CESubSplitView *masterView = ([sender isMemberOfClass:[NSMenuItem class]]) ? 
-            (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate] :
-            [(CENavigationBarView *)[sender superview] masterView];
+            (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate] :  // from menu bar
+            (CESubSplitView *)[[sender superview] superview];  // from navigation bar
     if (!masterView) { return; }
     NSRect subSplitFrame = [masterView bounds];
     NSRange selectedRange = [[masterView textView] selectedRange];
@@ -728,7 +728,7 @@ static NSTimeInterval secondColoringDelay;
     BOOL isSenderMenu = [sender isMemberOfClass:[NSMenuItem class]];
     CESubSplitView *firstResponderSubSplitView = (CESubSplitView *)[(CETextView *)[[self window] firstResponder] delegate];
     CESubSplitView *subSplitViewToClose = isSenderMenu ?
-            firstResponderSubSplitView : [(CENavigationBarView *)[sender superview] masterView];
+            firstResponderSubSplitView : (CESubSplitView *)[[sender superview] superview];
     if (!subSplitViewToClose) { return; }
     NSArray *subViews = [[[self splitViewController] view] subviews];
     NSUInteger count = [subViews count];
@@ -786,7 +786,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// navigationBarを返す
-- (CENavigationBarView *)navigationBar
+- (CENavigationBarController *)navigationBar
 // ------------------------------------------------------
 {
     return [(CESubSplitView *)[[self textView] delegate] navigationBar];

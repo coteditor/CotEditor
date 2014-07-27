@@ -150,16 +150,6 @@ http://www.aynimac.com/
 "Stack Views Vertically" = "分割エディタを縦に配置";
 
 
-/* CENavigationBarView */
-// Tooltip
-"Go to prev item" = "前の項目へ";
-"Go to next item" = "次の項目へ";
-"Split view" = "エディタを分割";
-"Close split view" = "分割されたエディタを閉じる";
-// loading message
-"Extracting Outline…" = "アウトラインを抽出中…";
-
-
 /* CEStatusBarView */
 "Lines: %@" = "行数：%@";
 "Chars: %@" = "文字数：%@";

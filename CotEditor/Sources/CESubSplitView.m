@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readwrite) NSScrollView *scrollView;
 @property (nonatomic, readwrite) CETextView *textView;
 @property (nonatomic, readwrite) CELineNumberView *lineNumberView;
-@property (nonatomic, readwrite) CENavigationBarView *navigationBar;
+@property (nonatomic, readwrite) CENavigationBarController *navigationBar;
 @property (nonatomic, readwrite) CESyntaxParser *syntaxParser;
 @property (nonatomic, readwrite) NSTextStorage *textStorage;
 
@@ -83,29 +83,39 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setLastCursorLocation:0];
 
         // LineNumberView 生成
-        NSRect lineMumFrame = frameRect;
-        lineMumFrame.size.width = 0.0; // default width (about invisible).
-        [self setLineNumberView:[[CELineNumberView alloc] initWithFrame:lineMumFrame]];
+        [self setLineNumberView:[[CELineNumberView alloc] initWithFrame:NSZeroRect]];
+        [[self lineNumberView] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addSubview:[self lineNumberView]];
 
         // navigationBar 生成
-        NSRect navigationFrame = frameRect;
-        navigationFrame.origin.y = NSHeight(navigationFrame);
-        navigationFrame.size.height = 0.0;
-        [self setNavigationBar:[[CENavigationBarView alloc] initWithFrame:navigationFrame]];
+        [self setNavigationBar:[[CENavigationBarController alloc] init]];
         [[self navigationBar] setMasterView:self];
-        [self addSubview:[self navigationBar]];
+        [self addSubview:[[self navigationBar] view]];
 
-        [self setScrollView:[[NSScrollView alloc] initWithFrame:frameRect]];
+        // scrollView 生成
+        [self setScrollView:[[NSScrollView alloc] initWithFrame:NSZeroRect]];
         [[self scrollView] setBorderType:NSNoBorder];
         [[self scrollView] setHasVerticalScroller:YES];
         [[self scrollView] setHasHorizontalScroller:YES];
-        [[self scrollView] setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+        [[self scrollView] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [[self scrollView] setAutohidesScrollers:NO];
         [[self scrollView] setDrawsBackground:NO];
         [[[self scrollView] contentView] setAutoresizesSubviews:YES];
-        // （splitViewをリサイズした時に最後までナビバーを表示させるため、その下に配置する）
-        [self addSubview:[self scrollView] positioned:NSWindowBelow relativeTo:[self navigationBar]];
+        [self addSubview:[self scrollView]];
+        
+        // setup autolayout
+        NSDictionary *views = @{@"navBar": [[self navigationBar] view],
+                                @"lineNumView": [self lineNumberView],
+                                @"scrollView": [self scrollView]};
+        [[[self navigationBar] view] setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navBar]|"
+                                                                     options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[lineNumView][scrollView]|"
+                                                                     options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[navBar][scrollView]|"
+                                                                     options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[navBar][lineNumView]|"
+                                                                     options:0 metrics:nil views:views]];
 
         // TextStorage と LayoutManager を生成
         [self setTextStorage:[[NSTextStorage alloc] init]];
@@ -204,20 +214,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     return ([[self textView] string]);
-}
-
-
-// ------------------------------------------------------
-/// ライブリサイズが終了した
-- (void)viewDidEndLiveResize
-// ------------------------------------------------------
-{
-    // ナビゲーションバーを表示させているときにスプリットビューを最小までリサイズしてから広げると、テキストが
-    // ナビバーを上書きしてしまうことへの対応措置。
-    if ([[self editorView] showNavigationBar]) {
-        [[self scrollView] setFrameSize:NSMakeSize([[self scrollView] frame].size.width,
-                                                   [self frame].size.height - k_navigationBarHeight)];
-    }
 }
 
 
