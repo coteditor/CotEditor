@@ -150,7 +150,7 @@ http://www.aynimac.com/
 "Stack Views Vertically" = "分割エディタを縦に配置";
 
 
-/* CENavigationBarView */
+/* CENavigationBarController */
 // Tooltip
 "Go to prev item" = "前の項目へ";
 "Go to next item" = "次の項目へ";

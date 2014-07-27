@@ -1,14 +1,15 @@
 /*
  =================================================
- CENavigationBarView
+ CENavigationBarController
  (for CotEditor)
  
+ Copyright (C) 2004-2007 nakamuxu.
  Copyright (C) 2014 CotEditor Project
  http://coteditor.github.io
  =================================================
  
  encoding="UTF-8"
- Created on 2014-07-27 by 1024jp
+ Created on 2005-08-22 by nakamuxu
  
  -------------------------------------------------
  
@@ -33,6 +34,28 @@
 @import AppKit;
 
 
-@interface CENavigationBarView : NSView
+@class CESubSplitView;
+
+@interface CENavigationBarController : NSViewController
+
+@property (nonatomic, weak) CESubSplitView *masterView;
+@property (nonatomic) BOOL showNavigationBar;
+
+
+// Public method
+- (void)setOutlineMenuArray:(NSArray *)menus;
+- (void)selectOutlineMenuItemWithRange:(NSRange)range;
+- (void)updatePrevNextButtonEnabled;
+- (BOOL)canSelectPrevItem;
+- (BOOL)canSelectNextItem;
+- (void)showOutlineIndicator;
+
+- (void)setCloseSplitButtonEnabled:(BOOL)enabled;
+- (void)setSplitOrientationVertical:(BOOL)isVertical;
+
+
+// action messages
+- (void)selectPrevItem:(id)sender;
+- (void)selectNextItem:(id)sender;
 
 @end

@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readwrite) NSScrollView *scrollView;
 @property (nonatomic, readwrite) CETextView *textView;
 @property (nonatomic, readwrite) CELineNumberView *lineNumberView;
-@property (nonatomic, readwrite) CENavigationBarView *navigationBar;
+@property (nonatomic, readwrite) CENavigationBarController *navigationBar;
 @property (nonatomic, readwrite) CESyntaxParser *syntaxParser;
 @property (nonatomic, readwrite) NSTextStorage *textStorage;
 
@@ -92,9 +92,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         NSRect navigationFrame = frameRect;
         navigationFrame.origin.y = NSHeight(navigationFrame);
         navigationFrame.size.height = 0.0;
-        [self setNavigationBar:[[CENavigationBarView alloc] initWithFrame:navigationFrame]];
+        [self setNavigationBar:[[CENavigationBarController alloc] init]];
         [[self navigationBar] setMasterView:self];
-        [self addSubview:[self navigationBar]];
+        [[[self navigationBar] view] setFrame:navigationFrame];
+        [[[self navigationBar] view] setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin | NSViewMaxYMargin)];
+        [[[self navigationBar] view] setTranslatesAutoresizingMaskIntoConstraints:YES];
+        [self addSubview:[[self navigationBar] view]];
 
         [self setScrollView:[[NSScrollView alloc] initWithFrame:frameRect]];
         [[self scrollView] setBorderType:NSNoBorder];
@@ -105,7 +108,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self scrollView] setDrawsBackground:NO];
         [[[self scrollView] contentView] setAutoresizesSubviews:YES];
         // （splitViewをリサイズした時に最後までナビバーを表示させるため、その下に配置する）
-        [self addSubview:[self scrollView] positioned:NSWindowBelow relativeTo:[self navigationBar]];
+        [self addSubview:[self scrollView] positioned:NSWindowBelow relativeTo:[[self navigationBar] view]];
 
         // TextStorage と LayoutManager を生成
         [self setTextStorage:[[NSTextStorage alloc] init]];

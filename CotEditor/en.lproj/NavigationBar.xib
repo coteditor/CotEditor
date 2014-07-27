@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CENavigationBarController">
+            <connections>
+                <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="Gnu-Vd-iWG"/>
+                <outlet property="nextButton" destination="BUj-TD-scp" id="sqN-tw-kmB"/>
+                <outlet property="openSplitButton" destination="syK-XU-x2I" id="dAh-OB-gho"/>
+                <outlet property="outlineIndicator" destination="dmz-oV-5PB" id="sIx-BP-cnB"/>
+                <outlet property="outlineLoadingMessage" destination="aUE-uy-XLQ" id="sRr-ZL-0Ri"/>
+                <outlet property="outlineMenu" destination="DpS-Kt-hzm" id="Uex-EY-eMF"/>
+                <outlet property="prevButton" destination="MlW-Dz-FOk" id="Qkb-Gd-z8H"/>
+                <outlet property="view" destination="c22-O7-iKe" id="upR-hv-zYz"/>
+            </connections>
+        </customObject>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe" customClass="CENavigationBarView">
+            <rect key="frame" x="0.0" y="0.0" width="560" height="16"/>
+            <subviews>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
+                    <rect key="frame" x="32" y="1" width="20" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="O4A-b9-5SW"/>
+                        <constraint firstAttribute="width" constant="20" id="YCW-yn-jru"/>
+                    </constraints>
+                    <buttonCell key="cell" type="smallSquare" title="Previous Outline Item" bezelStyle="smallSquare" image="prevButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <accessibility description="Jump to previous outline item"/>
+                    <connections>
+                        <action selector="selectPrevItem:" target="-2" id="mna-PP-NeJ"/>
+                    </connections>
+                </button>
+                <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="DpS-Kt-hzm">
+                    <rect key="frame" x="52" y="1" width="300" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="0WD-FU-fJf"/>
+                        <constraint firstAttribute="width" constant="300" id="c7e-CV-OBo"/>
+                    </constraints>
+                    <popUpButtonCell key="cell" type="smallSquare" title="&lt;Outline Menu>" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="UE9-BG-Ggr" id="g73-Rx-Es7" customClass="CEOutlineMenuButtonCell">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <menu key="menu" id="Vdo-Jz-Z3I">
+                            <items>
+                                <menuItem title="&lt;Outline Menu>" state="on" id="UE9-BG-Ggr"/>
+                                <menuItem title="Item 2" id="ukv-Ec-6vm"/>
+                                <menuItem title="Item 3" id="HFU-gs-ltH"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                </popUpButton>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
+                    <rect key="frame" x="352" y="1" width="20" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="1PN-qX-wNW"/>
+                        <constraint firstAttribute="height" constant="15" id="XnB-xB-mpq"/>
+                    </constraints>
+                    <buttonCell key="cell" type="smallSquare" title="Next Outline Item" bezelStyle="smallSquare" image="nextButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <accessibility description="Jump to next outline item"/>
+                    <connections>
+                        <action selector="selectNextItem:" target="-2" id="Cn5-jX-ZwS"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
+                    <rect key="frame" x="545" y="1" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="Psv-sD-BKC"/>
+                        <constraint firstAttribute="width" constant="15" id="e7y-hz-Kt5"/>
+                    </constraints>
+                    <buttonCell key="cell" type="smallSquare" title="Split View" bezelStyle="smallSquare" image="openSplitButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Snx-y4-0J6">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <accessibility description="Split view"/>
+                    <connections>
+                        <action selector="openSplitTextView:" target="-1" id="ZwK-oA-S7Q"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
+                    <rect key="frame" x="530" y="1" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="3M4-Vp-DqU"/>
+                        <constraint firstAttribute="width" constant="15" id="5Tr-XS-blf"/>
+                    </constraints>
+                    <buttonCell key="cell" type="smallSquare" title="Close Split View" bezelStyle="smallSquare" image="closeSplitButtonImg" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="naK-la-7Mj">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <accessibility description="Close plit view"/>
+                    <connections>
+                        <action selector="closeSplitTextView:" target="-1" id="Jwi-1c-6Si"/>
+                    </connections>
+                </button>
+                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="dmz-oV-5PB">
+                    <rect key="frame" x="60" y="1" width="14" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="dmz-oV-5PB" secondAttribute="height" multiplier="1:1" id="IwX-Ed-6Q8"/>
+                        <constraint firstAttribute="width" constant="14" id="qxQ-FS-c4T"/>
+                    </constraints>
+                </progressIndicator>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aUE-uy-XLQ">
+                    <rect key="frame" x="80" y="0.0" width="101" height="17"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Extracting Outline..." id="kZ7-05-KYb">
+                        <font key="font" size="11" name="HelveticaNeue-Italic"/>
+                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="aUE-uy-XLQ" firstAttribute="leading" secondItem="dmz-oV-5PB" secondAttribute="trailing" constant="8" symbolic="YES" id="9k5-2q-Bp3"/>
+                <constraint firstItem="dmz-oV-5PB" firstAttribute="centerY" secondItem="aUE-uy-XLQ" secondAttribute="centerY" id="DnV-nM-v3e"/>
+                <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" id="EMn-Rp-qEZ"/>
+                <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="DpS-Kt-hzm" secondAttribute="trailing" id="G17-hO-3OV"/>
+                <constraint firstItem="dmz-oV-5PB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="1" id="IaF-ao-ZPV"/>
+                <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="J30-ed-4kS"/>
+                <constraint firstItem="DpS-Kt-hzm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="aHG-9U-JPv"/>
+                <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="b7e-eN-nUd"/>
+                <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="32" id="bJJ-rX-XaX"/>
+                <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="h8f-Qx-r1J"/>
+                <constraint firstItem="dmz-oV-5PB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="60" id="nDC-oP-cob"/>
+                <constraint firstItem="DpS-Kt-hzm" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" id="qWV-mx-Hgz"/>
+                <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" id="qZ8-nx-wlZ"/>
+                <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="seJ-i1-Ngl"/>
+            </constraints>
+            <accessibility description="Navigation Bar"/>
+            <point key="canvasLocation" x="-81" y="99"/>
+        </customView>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+    </objects>
+    <resources>
+        <image name="closeSplitButtonImg" width="15" height="15"/>
+        <image name="nextButtonImg" width="20" height="15"/>
+        <image name="openSplitButtonImg" width="15" height="15"/>
+        <image name="prevButtonImg" width="20" height="15"/>
+    </resources>
+</document>
