@@ -36,35 +36,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation CEOutlineMenuButtonCell
 
-#pragma mark NSPopUpButtonCell Methods
-
-//=======================================================
-// NSPopUpButtonCell method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// セルの描画
+/// draw cell
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 // ------------------------------------------------------
 {
     if (![self isEnabled]) { return; }
     
-    // fill background
-    [[NSColor colorWithWhite:0.98 alpha:1.0] set];
-    [NSBezierPath fillRect:cellFrame];
-    
-    // draw frame border (horizontal side lines)
-    [[NSColor colorWithWhite:0.75 alpha:1] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(0.5, 0)
-                              toPoint:NSMakePoint(0.5, NSMaxY(cellFrame))];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(cellFrame) - 0.5, 0)
-                              toPoint:NSMakePoint(NSMaxX(cellFrame) - 0.5, NSMaxY(cellFrame))];
+    // draw background
+    [super drawBezelWithFrame:cellFrame inView:controlView];
     
     // draw popup arrow image
     NSImage *arrowImage = [NSImage imageNamed:@"popUpButtonArrowTemplate"];
-    [arrowImage drawAtPoint:NSMakePoint(NSMaxX(cellFrame) - [arrowImage size].width - 4, 1)
+    [arrowImage drawAtPoint:NSMakePoint(NSMaxX(cellFrame) - [arrowImage size].width - 6, 3)
                    fromRect:cellFrame operation:NSCompositeSourceOver fraction:0.67];
+    
+    // shift content 1px
+    cellFrame.origin.y += 1.0;
     
     [super drawInteriorWithFrame:cellFrame inView:controlView];
 }

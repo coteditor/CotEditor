@@ -28,12 +28,8 @@
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
 		2A0722F316D3CF2E00F49864 /* scriptMenuTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F216D3CF2E00F49864 /* scriptMenuTemplate.pdf */; };
 		2A07230716D3CF4F00F49864 /* centerAlignTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F516D3CF4F00F49864 /* centerAlignTemplate.pdf */; };
-		2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F716D3CF4F00F49864 /* closeSplitButtonImg.pdf */; };
 		2A07230B16D3CF4F00F49864 /* leftAlignTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722F916D3CF4F00F49864 /* leftAlignTemplate.pdf */; };
-		2A07230D16D3CF4F00F49864 /* nextButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722FB16D3CF4F00F49864 /* nextButtonImg.pdf */; };
-		2A07230E16D3CF4F00F49864 /* openSplitButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722FC16D3CF4F00F49864 /* openSplitButtonImg.pdf */; };
 		2A07231016D3CF4F00F49864 /* popUpButtonArrowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0722FE16D3CF4F00F49864 /* popUpButtonArrowTemplate.pdf */; };
-		2A07231316D3CF4F00F49864 /* prevButtonImg.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */; };
 		2A07231516D3CF4F00F49864 /* rightAlignTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230316D3CF4F00F49864 /* rightAlignTemplate.pdf */; };
 		2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A07230516D3CF4F00F49864 /* opacityGuide.pdf */; };
 		2A149DA619016ABB00A9D6EF /* AppearancePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9619016ABB00A9D6EF /* AppearancePane.xib */; };
@@ -103,9 +99,13 @@
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
 		2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2AD2860F1985627700C9342F /* closeSplitTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2860B1985627700C9342F /* closeSplitTemplate.pdf */; };
+		2AD286101985627800C9342F /* downTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2860C1985627700C9342F /* downTemplate.pdf */; };
+		2AD286111985627800C9342F /* openSplitTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2860D1985627700C9342F /* openSplitTemplate.pdf */; };
+		2AD286121985627800C9342F /* upTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2860E1985627700C9342F /* upTemplate.pdf */; };
+		2AD28617198569CC00C9342F /* openSplitVerticalTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD28616198569CC00C9342F /* openSplitVerticalTemplate.pdf */; };
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
-		2ADB29BD197F0503003537F5 /* openSplitButtonImgVertical.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2ADB29BC197F0503003537F5 /* openSplitButtonImgVertical.pdf */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
@@ -225,12 +225,8 @@
 		2A07202D18E0E421006F3A43 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
 		2A0722F216D3CF2E00F49864 /* scriptMenuTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = scriptMenuTemplate.pdf; path = images/scriptMenuTemplate.pdf; sourceTree = "<group>"; };
 		2A0722F516D3CF4F00F49864 /* centerAlignTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = centerAlignTemplate.pdf; path = images/centerAlignTemplate.pdf; sourceTree = "<group>"; };
-		2A0722F716D3CF4F00F49864 /* closeSplitButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = closeSplitButtonImg.pdf; path = images/closeSplitButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722F916D3CF4F00F49864 /* leftAlignTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = leftAlignTemplate.pdf; path = images/leftAlignTemplate.pdf; sourceTree = "<group>"; };
-		2A0722FB16D3CF4F00F49864 /* nextButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = nextButtonImg.pdf; path = images/nextButtonImg.pdf; sourceTree = "<group>"; };
-		2A0722FC16D3CF4F00F49864 /* openSplitButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitButtonImg.pdf; path = images/openSplitButtonImg.pdf; sourceTree = "<group>"; };
 		2A0722FE16D3CF4F00F49864 /* popUpButtonArrowTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = popUpButtonArrowTemplate.pdf; path = images/popUpButtonArrowTemplate.pdf; sourceTree = "<group>"; };
-		2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = prevButtonImg.pdf; path = images/prevButtonImg.pdf; sourceTree = "<group>"; };
 		2A07230316D3CF4F00F49864 /* rightAlignTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rightAlignTemplate.pdf; path = images/rightAlignTemplate.pdf; sourceTree = "<group>"; };
 		2A07230516D3CF4F00F49864 /* opacityGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = opacityGuide.pdf; path = images/opacityGuide.pdf; sourceTree = "<group>"; };
 		2A0E160F18E79FFA00AAD872 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MenuKeyBindingEditSheet.xib; sourceTree = "<group>"; };
@@ -360,12 +356,16 @@
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
 		2AB432701912AF7200835004 /* CEGlyphPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGlyphPopoverController.m; sourceTree = "<group>"; };
 		2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComposedCharacter.m"; sourceTree = "<group>"; };
+		2AD2860B1985627700C9342F /* closeSplitTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = closeSplitTemplate.pdf; path = images/closeSplitTemplate.pdf; sourceTree = "<group>"; };
+		2AD2860C1985627700C9342F /* downTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = downTemplate.pdf; path = images/downTemplate.pdf; sourceTree = "<group>"; };
+		2AD2860D1985627700C9342F /* openSplitTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitTemplate.pdf; path = images/openSplitTemplate.pdf; sourceTree = "<group>"; };
+		2AD2860E1985627700C9342F /* upTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = upTemplate.pdf; path = images/upTemplate.pdf; sourceTree = "<group>"; };
+		2AD28616198569CC00C9342F /* openSplitVerticalTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitVerticalTemplate.pdf; path = images/openSplitVerticalTemplate.pdf; sourceTree = "<group>"; };
 		2AD2F7171969FE7D000DD47E /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxMappingConflictSheet.xib; sourceTree = "<group>"; };
 		2AD5322819779FD000A925CA /* CELineHeightTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineHeightTransformer.h; sourceTree = "<group>"; };
 		2AD5322919779FD000A925CA /* CELineHeightTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHeightTransformer.m; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
-		2ADB29BC197F0503003537F5 /* openSplitButtonImgVertical.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitButtonImgVertical.pdf; path = images/openSplitButtonImgVertical.pdf; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
 		2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarController.h; sourceTree = "<group>"; };
 		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
@@ -504,17 +504,17 @@
 				2A0722F216D3CF2E00F49864 /* scriptMenuTemplate.pdf */,
 				2A0722F516D3CF4F00F49864 /* centerAlignTemplate.pdf */,
 				2A7846D818FDFBEB006BDF00 /* clearTemplate.pdf */,
-				2A0722F716D3CF4F00F49864 /* closeSplitButtonImg.pdf */,
 				2A7846D418FDF98D006BDF00 /* editTemplate.pdf */,
 				2A0722F916D3CF4F00F49864 /* leftAlignTemplate.pdf */,
 				2A7846D618FDFAFB006BDF00 /* lockedTemplate.pdf */,
-				2A0722FB16D3CF4F00F49864 /* nextButtonImg.pdf */,
-				2A0722FC16D3CF4F00F49864 /* openSplitButtonImg.pdf */,
-				2ADB29BC197F0503003537F5 /* openSplitButtonImgVertical.pdf */,
 				2A0722FE16D3CF4F00F49864 /* popUpButtonArrowTemplate.pdf */,
-				2A07230116D3CF4F00F49864 /* prevButtonImg.pdf */,
 				2A07230316D3CF4F00F49864 /* rightAlignTemplate.pdf */,
 				2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */,
+				2AD2860B1985627700C9342F /* closeSplitTemplate.pdf */,
+				2AD2860C1985627700C9342F /* downTemplate.pdf */,
+				2AD2860D1985627700C9342F /* openSplitTemplate.pdf */,
+				2AD28616198569CC00C9342F /* openSplitVerticalTemplate.pdf */,
+				2AD2860E1985627700C9342F /* upTemplate.pdf */,
 				2A07230516D3CF4F00F49864 /* opacityGuide.pdf */,
 			);
 			name = images;
@@ -1018,12 +1018,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
+				2AD286121985627800C9342F /* upTemplate.pdf in Resources */,
 				2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */,
 				25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */,
 				258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */,
+				2AD286111985627800C9342F /* openSplitTemplate.pdf in Resources */,
 				2588E9CE07C4851C0060021D /* Indicator.xib in Resources */,
 				8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */,
+				2AD286101985627800C9342F /* downTemplate.pdf in Resources */,
 				8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */,
 				2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
@@ -1042,6 +1045,7 @@
 				8CA71BCF07D2A79100C146B0 /* smallerFont.tiff in Resources */,
 				8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */,
 				8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */,
+				2AD28617198569CC00C9342F /* openSplitVerticalTemplate.pdf in Resources */,
 				8C3E2D560808E203009894D1 /* Shift_Left.tiff in Resources */,
 				8C3E2D570808E203009894D1 /* Shift_Right.tiff in Resources */,
 				8C3E2D5E0808E210009894D1 /* StatusArea_Hide.tiff in Resources */,
@@ -1066,7 +1070,6 @@
 				2A149DAA19016ABB00A9D6EF /* GeneralPane.xib in Resources */,
 				8C0FE15A08D7FDAA00B2B71B /* DefaultTextKeyBindings.plist in Resources */,
 				8CE68107090A1C6900D50390 /* Pref_Appearance.tiff in Resources */,
-				2ADB29BD197F0503003537F5 /* openSplitButtonImgVertical.pdf in Resources */,
 				8CE68108090A1C6900D50390 /* Pref_FileDrop.tiff in Resources */,
 				8CE68109090A1C6900D50390 /* Pref_Edit.tiff in Resources */,
 				8CE6810A090A1C6900D50390 /* Pref_General.tiff in Resources */,
@@ -1090,14 +1093,11 @@
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictSheet.xib in Resources */,
 				2A07230716D3CF4F00F49864 /* centerAlignTemplate.pdf in Resources */,
 				2A9A144B18B67846001080D6 /* Images.xcassets in Resources */,
-				2A07230916D3CF4F00F49864 /* closeSplitButtonImg.pdf in Resources */,
 				2A07230B16D3CF4F00F49864 /* leftAlignTemplate.pdf in Resources */,
 				2A149DAD19016ABB00A9D6EF /* WindowPane.xib in Resources */,
 				2A7572BF18B3BBAE00878F66 /* CotEditor.help in Resources */,
 				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
-				2A07230D16D3CF4F00F49864 /* nextButtonImg.pdf in Resources */,
 				2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */,
-				2A07230E16D3CF4F00F49864 /* openSplitButtonImg.pdf in Resources */,
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A149DA819016ABB00A9D6EF /* FileDropPane.xib in Resources */,
 				2A07231016D3CF4F00F49864 /* popUpButtonArrowTemplate.pdf in Resources */,
@@ -1105,10 +1105,10 @@
 				2A961C5618FC699E002076B6 /* Version History.rtf in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */,
-				2A07231316D3CF4F00F49864 /* prevButtonImg.pdf in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
 				2A07231516D3CF4F00F49864 /* rightAlignTemplate.pdf in Resources */,
 				2A1CFD0D18E5B64F00A5B664 /* print.strings in Resources */,
+				2AD2860F1985627700C9342F /* closeSplitTemplate.pdf in Resources */,
 				2A7846D918FDFBEB006BDF00 /* clearTemplate.pdf in Resources */,
 				2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */,
 				2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */,
