@@ -197,6 +197,22 @@
 
 
 // ------------------------------------------------------
+/// テーマを設定
+- (void)setTheme:(CETheme *)theme
+// ------------------------------------------------------
+{
+    if (!theme) { return; }
+    
+    for (CESubSplitView *subview in [[self view] subviews]) {
+        CETextView *textView = [subview textView];
+        [textView setTheme:theme];
+        [subview recolorAllTextViewString];
+        [textView setSelectedRanges:[textView selectedRanges]];  //  選択範囲の再描画
+    }
+}
+
+
+// ------------------------------------------------------
 /// シンタックススタイルを設定
 - (void)setSyntaxWithName:(NSString *)syntaxName
 // ------------------------------------------------------

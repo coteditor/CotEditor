@@ -364,7 +364,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // プリントビュー生成
     CEPrintView *printView = [[CEPrintView alloc] init];
     [printView setString:[[self editor] string]];
-    [printView setTheme:[[[self editor] textView] theme]];
+    [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self editor] syntaxStyleName]];
@@ -934,7 +934,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
     } else if ([menuItem action] == @selector(changeTheme:)) {
-        name = [[[[self editor] textView] theme] name];
+        name = [[[self editor] theme] name];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
@@ -1187,12 +1187,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (IBAction)changeTheme:(id)sender
 // ------------------------------------------------------
 {
-    CETheme *theme = [CETheme themeWithName:[sender title]];
-    
-    [[[self editor] textView] setTheme:theme];
-    [[[self editor] textView] setSelectedRanges:[[[self editor] textView] selectedRanges]];  //  選択範囲の再描画
-    
-    [[self editor] recolorAllString];
+    [[self editor] setThemeWithName:[sender title]];
 }
 
 

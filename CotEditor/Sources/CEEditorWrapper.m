@@ -418,6 +418,27 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// テーマを適応する
+- (void)setThemeWithName:(NSString *)themeName
+// ------------------------------------------------------
+{
+    if ([themeName length] == 0) { return; }
+    
+    CETheme *theme = [CETheme themeWithName:themeName];
+    
+    [[self splitViewController] setTheme:theme];
+}
+
+
+// ------------------------------------------------------
+- (CETheme *)theme
+// ------------------------------------------------------
+{
+    return [[self textView] theme];
+}
+
+
+// ------------------------------------------------------
 /// アンチエイリアス適用をトグルに切り替え
 - (void)toggleShouldUseAntialias
 // ------------------------------------------------------
@@ -730,6 +751,7 @@ static NSTimeInterval secondColoringDelay;
     [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
     [self setupViewParamsInInit:NO];
     [[subSplitView textView] setFont:[[self textView] font]];
+    [[subSplitView textView] setTheme:[self theme]];
     [[subSplitView textView] setLineSpacing:[[self textView] lineSpacing]];
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
@@ -742,7 +764,6 @@ static NSTimeInterval secondColoringDelay;
     [[subSplitView textView] centerSelectionInVisibleArea:self];
     [subSplitView setShowNavigationBar:[self showNavigationBar]];  // update navigation bar layout (おそらくAutolayoutならいらない)
     [[self splitViewController] updateCloseSubSplitViewButton];
-    
 }
 
 

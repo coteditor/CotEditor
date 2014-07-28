@@ -34,6 +34,9 @@
 @import AppKit;
 
 
+@class CETheme;
+
+
 @interface CESplitViewController : NSViewController <NSSplitViewDelegate>
 
 - (NSArray *)layoutManagers;
@@ -47,6 +50,7 @@
 - (void)updateCloseSubSplitViewButton;
 
 - (void)moveAllCaretToBeginning;
+- (void)setTheme:(CETheme *)theme;
 - (void)setSyntaxWithName:(NSString *)syntaxName;
 - (void)recolorAllTextView;
 - (void)updateAllOutlineMenu;
