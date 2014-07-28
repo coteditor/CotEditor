@@ -79,7 +79,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // readonly
 @property (nonatomic, readwrite, weak) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, readwrite, weak) IBOutlet CEEditorView *editorView;
+@property (nonatomic, readwrite, weak) IBOutlet CEEditorWrapper *editor;
 
 @end
 
@@ -139,10 +139,12 @@ static NSTimeInterval incompatibleCharInterval;
     [self setAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     
-    // ドキュメントオブジェクトに CEEditorView インスタンスをセット
-    [[self document] setEditorView:[self editorView]];
+    [[self window] setNextResponder:[self editor]];
+    
+    // ドキュメントオブジェクトに CEEditorWrapper インスタンスをセット
+    [[self document] setEditor:[self editor]];
     // テキストを表示
-    [[self document] setStringToEditorView];
+    [[self document] setStringToEditor];
     
     [self updateFileAttributesInfo];
     
@@ -151,7 +153,7 @@ static NSTimeInterval incompatibleCharInterval;
     [[self statusBarController] setShowReadOnly:![[self document] isWritable]];
     
     // テキストビューへフォーカスを移動
-    [[self window] makeFirstResponder:[[self editorView] textView]];
+    [[self window] makeFirstResponder:[[self editor] textView]];
     
     // シンタックス定義の変更を監視
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -256,10 +258,10 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[self editorView] string];
-    NSString *selectedString = [[self editorView] substringWithSelection] ? : @"";
+    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[self editor] string];
+    NSString *selectedString = [[self editor] substringWithSelection] ? : @"";
     NSStringEncoding encoding = [[self document] encoding];
-    __block NSRange selectedRange = [[self editorView] selectedRange];
+    __block NSRange selectedRange = [[self editor] selectedRange];
     __block CEStatusBarController *statusBar = [self statusBarController];
     __block typeof(self) blockSelf = self;
     
@@ -273,7 +275,7 @@ static NSTimeInterval incompatibleCharInterval;
         NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
         
         // IM で変換途中の文字列は選択範囲としてカウントしない (2007.05.20)
-        if ([[[self editorView] textView] hasMarkedText]) {
+        if ([[[self editor] textView] hasMarkedText]) {
             selectedRange.length = 0;
         }
         
@@ -472,7 +474,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (CGFloat)alpha
 // ------------------------------------------------------
 {
-    return [[[self editorView] textView] backgroundAlpha];
+    return [[[self editor] textView] backgroundAlpha];
 }
 
 // ------------------------------------------------------
@@ -486,7 +488,7 @@ static NSTimeInterval incompatibleCharInterval;
     sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
     
     [[self window] setOpaque:(sanitizedAlpha == 1.0)];
-    [[self editorView] setBackgroundAlpha:sanitizedAlpha];
+    [[self editor] setBackgroundAlpha:sanitizedAlpha];
     [[[self window] contentView] setNeedsDisplay:YES];
 }
 
@@ -541,7 +543,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)tellMeTargetToFindIn:(id)textFinder
 // ------------------------------------------------------
 {
-    [textFinder setTargetToFindIn:[[self editorView] textView]];
+    [textFinder setTargetToFindIn:[[self editor] textView]];
 }
 
 
@@ -563,7 +565,7 @@ static NSTimeInterval incompatibleCharInterval;
         // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
         if ([self recolorWithBecomeKey]) {
             [self setRecolorWithBecomeKey:NO];
-            [[self document] doSetSyntaxStyle:[[self editorView] syntaxStyleName]];
+            [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
         }
     }
 }
@@ -619,7 +621,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)drawerDidClose:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    [[self editorView] clearAllMarkup];
+    [[self editor] clearAllMarkup];
     // テキストビューの表示だけをクリアし、リストはそのまま
 }
 
@@ -694,12 +696,12 @@ static NSTimeInterval incompatibleCharInterval;
 
     NSRange range = [[[self listController] selectedObjects][0][k_incompatibleRange] rangeValue];
     
-    [[self editorView] setSelectedRange:range];
-    [[self window] makeFirstResponder:[[self editorView] textView]];
-    [[[self editorView] textView] scrollRangeToVisible:range];
+    [[self editor] setSelectedRange:range];
+    [[self window] makeFirstResponder:[[self editor] textView]];
+    [[[self editor] textView] scrollRangeToVisible:range];
 
     // 検索結果表示エフェクトを追加
-    [[[self editorView] textView] showFindIndicatorForRange:range];
+    [[[self editor] textView] showFindIndicatorForRange:range];
 }
 
 
@@ -725,13 +727,13 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)syntaxDidUpdate:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSString *currentName = [[self editorView] syntaxStyleName];
+    NSString *currentName = [[self editor] syntaxStyleName];
     NSString *oldName = [notification userInfo][CEOldNameKey];
     NSString *newName = [notification userInfo][CENewNameKey];
     
     if ([oldName isEqualToString:currentName]) {
         if ([oldName isEqualToString:newName]) {
-            [[self editorView] setSyntaxStyleName:newName recolorNow:NO];
+            [[self editor] setSyntaxStyleName:newName recolorNow:NO];
         }
         if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
             [self setRecolorWithBecomeKey:YES];
@@ -767,8 +769,8 @@ static NSTimeInterval incompatibleCharInterval;
     for (NSDictionary *incompatible in contents) {
         [ranges addObject:incompatible[k_incompatibleRange]];
     }
-    [[self editorView] clearAllMarkup];
-    [[self editorView] markupRanges:ranges];
+    [[self editor] clearAllMarkup];
+    [[self editor] markupRanges:ranges];
     
     
     [[self listErrorTextField] setHidden:([contents count] > 0)]; // リストが取得できなかった時のメッセージを表示

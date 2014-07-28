@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @import Cocoa;
 #import <OgreKit/OgreKit.h>
 #import "CEDocument.h"
-#import "CEEditorView.h"
+#import "CEEditorWrapper.h"
 #import "CEToolbarController.h"
 
 
@@ -42,7 +42,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) CGFloat alpha;
 
-@property (nonatomic, readonly, weak) CEEditorView *editorView;
+@property (nonatomic, readonly, weak) CEEditorWrapper *editor;
 @property (nonatomic, readonly, weak) CEToolbarController *toolbarController;
 @property (nonatomic, readonly) BOOL showStatusBar;
 

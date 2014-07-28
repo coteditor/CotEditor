@@ -120,6 +120,7 @@
     for (CESubSplitView *subview in [[self view] subviews]) {
         [subview setWrapLines:wrapLines];
     }
+    [[self view] setNeedsDisplay:YES];
 }
 
 
@@ -204,7 +205,7 @@
     
     if (![self finishedOpen]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
-                                                            object:[[self view] superview]]; // superView = CEEditorView
+                                                            object:[[self view] window]];
         [self setFinishedOpen:YES];
     }
 }

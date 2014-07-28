@@ -227,10 +227,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// テキストビューをエディタビューにセット
-- (void)setTextViewToEditorView:(CETextView *)textView
+- (void)setTextViewToEditorWrapper:(CETextView *)textView
 // ------------------------------------------------------
 {
-    [[self editorView] setTextView:textView];
+    [[self editorWrapper] setTextView:textView];
 }
 
 
@@ -341,7 +341,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)showPageGuide
 // ------------------------------------------------------
 {
-    return [[self editorView] showPageGuide];
+    return [[self editorWrapper] showPageGuide];
 }
 
 
@@ -512,7 +512,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // キー入力、スクリプトによる編集で改行コードをLFに統一する
     // （その他の編集は、下記の通りの別の場所で置換している）
     // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditorView
+    //  * ファイルオープン = CEDocument > setStringToEditor
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextView > readSelectionFromPasteboard:type:
@@ -612,7 +612,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // カラーリング実行
-    [[self editorView] setupColoringTimer];
+    [[self editorWrapper] setupColoringTimer];
 
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
@@ -752,7 +752,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
         [[self textView] setTheme:[CETheme themeWithName:[notification userInfo][CENewNameKey]]];
         [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
-        [[self editorView] recolorAllString];
+        [[self editorWrapper] recolorAllString];
     }
 }
 

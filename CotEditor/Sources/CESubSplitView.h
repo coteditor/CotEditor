@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 @import Cocoa;
-#import "CEEditorView.h"
+#import "CEEditorWrapper.h"
 #import "CENavigationBarController.h"
 #import "CETextView.h"
 #import "CESyntaxParser.h"
@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CESubSplitView : NSView <NSTextViewDelegate>
 
-@property (nonatomic, weak) CEEditorView *editorView;
+@property (nonatomic, weak) CEEditorWrapper *editorWrapper;
 
 // readonly
 @property (nonatomic, readonly) CETextView *textView;
@@ -50,8 +50,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (NSString *)string;
-- (void)replaceTextStorage:(NSTextStorage *)inTextStorage;
-- (void)setTextViewToEditorView:(CETextView *)inTextView;
+- (void)replaceTextStorage:(NSTextStorage *)textStorage;
+- (void)setTextViewToEditorWrapper:(CETextView *)textView;
 - (void)setShowLineNum:(BOOL)showLineNum;
 - (void)setShowNavigationBar:(BOOL)setNavigationBar;
 - (void)setWrapLines:(BOOL)wrapLines;

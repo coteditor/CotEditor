@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CELayoutManager.h"
 
 
-@class CEEditorView;
+@class CEEditorWrapper;
 
 
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>

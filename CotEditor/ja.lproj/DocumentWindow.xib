@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
-                <outlet property="editorView" destination="6" id="N4n-pA-uC7"/>
+                <outlet property="editor" destination="vT9-kp-fRw" id="KPl-ae-chL"/>
                 <outlet property="infoNumberFormatter" destination="ZXE-Ki-WDP" id="3BB-um-DS8"/>
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
@@ -26,7 +27,7 @@
             <rect key="contentRect" x="7" y="567" width="507" height="413"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="400" height="200"/>
-            <view key="contentView" id="6" customClass="CEEditorView">
+            <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -103,9 +104,6 @@
                     <constraint firstItem="EZ5-nO-Yw9" firstAttribute="top" secondItem="6" secondAttribute="top" id="pOS-gv-Hc9"/>
                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
                 </constraints>
-                <connections>
-                    <outlet property="splitViewController" destination="Kiv-YO-hzO" id="eaw-CQ-mnm"/>
-                </connections>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
@@ -1089,6 +1087,11 @@
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
                 <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
                 <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>
+            </connections>
+        </customObject>
+        <customObject id="vT9-kp-fRw" customClass="CEEditorWrapper">
+            <connections>
+                <outlet property="splitViewController" destination="Kiv-YO-hzO" id="e5r-0q-Jjx"/>
             </connections>
         </customObject>
         <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">

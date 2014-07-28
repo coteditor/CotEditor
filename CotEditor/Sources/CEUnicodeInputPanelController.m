@@ -111,7 +111,7 @@ static const NSRegularExpression *unicodeRegex;
     NSUInteger length = CFStringGetSurrogatePairForLongCharacter(longChar, chars) ? 2 : 1;
     NSString *character = [[NSString alloc] initWithCharacters:chars length:length];
     
-    [[[[self documentWindowController] editorView] textView] insertText:character];
+    [[[[self documentWindowController] editor] textView] insertText:character];
     [[self window] performClose:sender];
     [self setUnicode:@""];
 }
