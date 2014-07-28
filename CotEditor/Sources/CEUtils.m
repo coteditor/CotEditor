@@ -149,7 +149,7 @@ static const NSArray *invalidYenEncodings;
 + (NSString *)invisibleFullwidthSpaceCharacter:(NSUInteger)index
 // ------------------------------------------------------
 {
-    unichar theUnichar = [CEUtils invisibleNewLineChar:index];
+    unichar theUnichar = [CEUtils invisibleFullwidthSpaceChar:index];
     
     return [NSString stringWithCharacters:&theUnichar length:1];
 }
