@@ -204,13 +204,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSToolbarItem *item = [notification userInfo][@"item"];
     NSString *identifier = [item itemIdentifier];
-    CEEditorView *editorView = [[self windowController] editorView];
+    CEEditorWrapper *editor = [[self windowController] editor];
     
     if ([identifier isEqualToString:k_showInvisibleCharsItemID]) {
-        [self toggleItem:item setOn:[editorView showInvisibles]];
+        [self toggleItem:item setOn:[editor showInvisibles]];
         
         // ツールバーアイテムを有効化できなければボタンを無効状態に
-        if ([editorView canActivateShowInvisibles]) {
+        if ([editor canActivateShowInvisibles]) {
             [item setAction:@selector(toggleShowInvisibleChars:)];
             [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
         } else {
@@ -219,22 +219,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
     } else if ([identifier isEqualToString:k_autoTabExpandItemID]) {
-        [self toggleItem:item setOn:[[editorView textView] isAutoTabExpandEnabled]];
+        [self toggleItem:item setOn:[[editor textView] isAutoTabExpandEnabled]];
         
     } else if ([identifier isEqualToString:k_showNavigationBarItemID]) {
-        [self toggleItem:item setOn:[editorView showNavigationBar]];
+        [self toggleItem:item setOn:[editor showNavigationBar]];
         
     } else if ([identifier isEqualToString:k_showLineNumItemID]) {
-        [self toggleItem:item setOn:[editorView showLineNum]];
+        [self toggleItem:item setOn:[editor showLineNum]];
         
     } else if ([identifier isEqualToString:k_showStatusBarItemID]) {
         [self toggleItem:item setOn:[[self windowController] showStatusBar]];
         
     } else if ([identifier isEqualToString:k_showPageGuideItemID]) {
-        [self toggleItem:item setOn:[editorView showPageGuide]];
+        [self toggleItem:item setOn:[editor showPageGuide]];
         
     } else if ([identifier isEqualToString:k_wrapLinesItemID]) {
-        [self toggleItem:item setOn:[editorView wrapLines]];
+        [self toggleItem:item setOn:[editor wrapLines]];
     }
 }
 

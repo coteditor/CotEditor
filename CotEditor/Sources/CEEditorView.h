@@ -9,12 +9,8 @@ CEEditorView
 =================================================
 
 encoding="UTF-8"
-Created:2004.12.08
+Created:2006.03.18
  
-------------
-This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
-JSDTextView is released as public domain.
-arranged by nakamuxu, Dec 2004.
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -36,76 +32,42 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 @import Cocoa;
-#import "CESubSplitView.h"
+#import "CEEditorWrapper.h"
+#import "CENavigationBarController.h"
 #import "CETextView.h"
-#import "CEWindowController.h"
-#import "CELayoutManager.h"
+#import "CESyntaxParser.h"
 
 
-@class CEDocument;
-@class CEWindowController;
+@interface CEEditorView : NSView <NSTextViewDelegate>
 
+@property (nonatomic, weak) CEEditorWrapper *editorWrapper;
 
-@interface CEEditorView : NSView
-
-@property (nonatomic) BOOL showLineNum;
-@property (nonatomic) BOOL showNavigationBar;
-@property (nonatomic) BOOL wrapLines;
-@property (nonatomic) BOOL showPageGuide;
-@property (nonatomic) BOOL showInvisibles;
-
-@property (nonatomic) CETextView *textView;
-
-@property (nonatomic, readonly) BOOL canActivateShowInvisibles;
+// readonly
+@property (nonatomic, readonly) CETextView *textView;
+@property (nonatomic, readonly) CENavigationBarController *navigationBar;
+@property (nonatomic, readonly) CESyntaxParser *syntaxParser;
 
 
 // Public method
-- (CEDocument *)document;
-- (CEWindowController *)windowController;
-- (NSTextStorage *)textStorage;
-
 - (NSString *)string;
-- (NSString *)substringWithRange:(NSRange)range;
-- (NSString *)substringWithSelection;
-- (NSString *)substringWithSelectionForSave;
-- (void)setString:(NSString *)string;
-- (void)setLineEndingString:(NSString *)lineEndingString;
-- (void)replaceTextViewSelectedStringTo:(NSString *)inString scroll:(BOOL)doScroll;
-- (void)replaceTextViewAllStringTo:(NSString *)string;
-- (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
-- (void)appendTextViewAfterAllStringTo:(NSString *)string;
-- (NSFont *)font;
-- (void)setFont:(NSFont *)font;
-- (NSRange)selectedRange;
-- (void)setSelectedRange:(NSRange)charRange;
-- (NSArray *)allLayoutManagers;
-
-- (BOOL)shouldUseAntialias;
-- (void)toggleShouldUseAntialias;
-
-- (NSString *)syntaxStyleName;
-- (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;
-- (void)recolorAllString;
-- (void)updateColoringAndOutlineMenuWithDelay;
-- (void)setupColoringTimer;
-
-- (void)setBackgroundAlpha:(CGFloat)alpha;
-
-
-// Action Message
-- (IBAction)toggleShowLineNum:(id)sender;
-- (IBAction)toggleShowNavigationBar:(id)sender;
-- (IBAction)toggleWrapLines:(id)sender;
-- (IBAction)toggleUseAntialias:(id)sender;
-- (IBAction)toggleShowInvisibleChars:(id)sender;
-- (IBAction)toggleShowPageGuide:(id)sender;
-- (IBAction)toggleAutoTabExpand:(id)sender;
-- (IBAction)selectPrevItemOfOutlineMenu:(id)sender;
-- (IBAction)selectNextItemOfOutlineMenu:(id)sender;
-- (IBAction)openSplitTextView:(id)sender;
-- (IBAction)closeSplitTextView:(id)sender;
-- (IBAction)focusNextSplitTextView:(id)sender;
-- (IBAction)focusPrevSplitTextView:(id)sender;
-- (IBAction)recoloringAllStringOfDocument:(id)sender;
+- (void)replaceTextStorage:(NSTextStorage *)textStorage;
+- (void)setTextViewToEditorWrapper:(CETextView *)textView;
+- (void)setShowLineNum:(BOOL)showLineNum;
+- (void)setShowNavigationBar:(BOOL)setNavigationBar;
+- (void)setWrapLines:(BOOL)wrapLines;
+- (void)setShowInvisibles:(BOOL)showInvisibles;
+- (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
+- (void)setUseAntialias:(BOOL)useAntialias;
+- (void)updateCloseSplitViewButton:(BOOL)isEnabled;
+- (BOOL)showPageGuide;
+- (void)setCaretToBeginning;
+- (void)setSyntaxWithName:(NSString *)styleName;
+- (void)recolorAllTextViewString;
+- (void)updateOutlineMenu;
+- (void)updateOutlineMenuSelection;
+- (void)stopUpdateLineNumberTimer;
+- (void)stopUpdateOutlineMenuTimer;
+- (NSCharacterSet *)firstCompletionCharacterSet;
+- (void)setBackgroundColorAlpha:(CGFloat)alpha;
 
 @end

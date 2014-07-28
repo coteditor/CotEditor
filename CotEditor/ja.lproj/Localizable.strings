@@ -113,7 +113,7 @@ http://www.aynimac.com/
 "Text Style" = "テキストスタイル";
 
 
-/* CEEditorView */
+/* CEEditorWrapper */
 // menu items
 "Hide Line Numbers" = "行番号を隠す";
 "Show Line Numbers" = "行番号を表示";
@@ -148,16 +148,6 @@ http://www.aynimac.com/
 // menu items
 "Stack Views Horizontally" = "分割エディタを横に配置";
 "Stack Views Vertically" = "分割エディタを縦に配置";
-
-
-/* CENavigationBarView */
-// Tooltip
-"Go to prev item" = "前の項目へ";
-"Go to next item" = "次の項目へ";
-"Split view" = "エディタを分割";
-"Close split view" = "分割されたエディタを閉じる";
-// loading message
-"Extracting Outline…" = "アウトラインを抽出中…";
 
 
 /* CEStatusBarView */

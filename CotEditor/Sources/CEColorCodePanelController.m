@@ -184,7 +184,7 @@
 - (IBAction)insertCodeToDocument:(id)sender
 // ------------------------------------------------------
 {
-    [[[self documentWindowController] editorView] replaceTextViewSelectedStringTo:[self colorCode] scroll:YES];
+    [[[self documentWindowController] editor] replaceTextViewSelectedStringTo:[self colorCode] scroll:YES];
 }
 
 

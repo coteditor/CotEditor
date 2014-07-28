@@ -45,6 +45,7 @@
 @property (nonatomic, readonly) NSColor *selectionColor;
 @property (nonatomic, readonly) NSColor *insertionPointColor;
 @property (nonatomic, readonly) NSColor *lineHighLightColor;
+@property (nonatomic, readonly) NSColor *markupColor;
 
 // syntax colors
 @property (nonatomic, readonly) NSColor *keywordsColor;

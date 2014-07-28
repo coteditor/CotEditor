@@ -338,13 +338,13 @@ extern NSString *const k_issueTrackerURL;
 
 
 
-#pragma mark CEEditorView
+#pragma mark CEEditorWrapper
 
 // ------------------------------------------------------
-// CEEditorView
+// CEEditorWrapper
 // ------------------------------------------------------
 
-// CEEditorView and subView's dict key
+// CEEditorWrapper and subView's dict key
 extern NSString *const k_outlineMenuItemRange;
 extern NSString *const k_outlineMenuItemTitle;
 extern NSString *const k_outlineMenuItemSortKey;
@@ -352,14 +352,10 @@ extern NSString *const k_outlineMenuItemFontBold;
 extern NSString *const k_outlineMenuItemFontItalic;
 extern NSString *const k_outlineMenuItemUnderlineMask;
 
-// CEEditorView and subView's constants
+// CEEditorWrapper and subView's constants
 extern CGFloat const k_defaultLineNumWidth;
 extern CGFloat const k_lineNumPadding;
 extern CGFloat const k_lineNumFontDescender;
-extern CGFloat const k_navigationBarHeight;
-extern CGFloat const k_outlineMenuLeftMargin;
-extern CGFloat const k_outlineMenuWidth;
-extern CGFloat const k_outlineButtonWidth;
 extern NSString *const k_navigationBarFontName;
 
 

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
-                <outlet property="editorView" destination="27" id="eIp-jK-o9H"/>
+                <outlet property="editor" destination="vT9-kp-fRw" id="KPl-ae-chL"/>
                 <outlet property="infoNumberFormatter" destination="ZXE-Ki-WDP" id="3BB-um-DS8"/>
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
@@ -31,9 +30,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="27" customClass="CEEditorView">
+                    <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="EZ5-nO-Yw9" customClass="CESplitView">
                         <rect key="frame" x="0.0" y="20" width="507" height="393"/>
-                    </customView>
+                        <subviews>
+                            <customView fixedFrame="YES" id="suX-pu-3n4" customClass="CEEditorView">
+                                <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </customView>
+                        </subviews>
+                        <holdingPriorities>
+                            <real value="250"/>
+                        </holdingPriorities>
+                        <connections>
+                            <outlet property="delegate" destination="Kiv-YO-hzO" id="6rv-Ci-nef"/>
+                        </connections>
+                    </splitView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEStatusBarView">
                         <rect key="frame" x="0.0" y="0.0" width="507" height="20"/>
                         <subviews>
@@ -84,12 +95,12 @@
                     </customView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="27" firstAttribute="top" secondItem="6" secondAttribute="top" id="8N0-AV-EaF"/>
-                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="27" secondAttribute="bottom" id="Eq8-n3-yZC"/>
+                    <constraint firstAttribute="trailing" secondItem="EZ5-nO-Yw9" secondAttribute="trailing" id="6t9-yP-DXd"/>
+                    <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="top" secondItem="EZ5-nO-Yw9" secondAttribute="bottom" id="E0A-hV-4Pz"/>
                     <constraint firstAttribute="bottom" secondItem="Rjm-Sf-4Mf" secondAttribute="bottom" id="Mte-Of-4Jj"/>
-                    <constraint firstItem="27" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="SZe-4j-OOt"/>
                     <constraint firstItem="Rjm-Sf-4Mf" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="Sph-UK-4Zn"/>
-                    <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" id="j06-yM-irz"/>
+                    <constraint firstItem="EZ5-nO-Yw9" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="mdi-u6-5lz"/>
+                    <constraint firstItem="EZ5-nO-Yw9" firstAttribute="top" secondItem="6" secondAttribute="top" id="pOS-gv-Hc9"/>
                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
                 </constraints>
             </view>
@@ -259,6 +270,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
+            <point key="canvasLocation" x="245.5" y="177.5"/>
         </window>
         <drawer trailingOffset="15" id="32">
             <size key="contentSize" width="200" height="381"/>
@@ -1076,11 +1088,21 @@
                 <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>
             </connections>
         </customObject>
+        <customObject id="vT9-kp-fRw" customClass="CEEditorWrapper">
+            <connections>
+                <outlet property="splitViewController" destination="Kiv-YO-hzO" id="e5r-0q-Jjx"/>
+            </connections>
+        </customObject>
         <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">
             <connections>
                 <outlet property="decimalFormatter" destination="ZXE-Ki-WDP" id="DI4-1N-0dW"/>
                 <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
+            </connections>
+        </viewController>
+        <viewController id="Kiv-YO-hzO" customClass="CESplitViewController">
+            <connections>
+                <outlet property="view" destination="EZ5-nO-Yw9" id="bgC-qE-uBi"/>
             </connections>
         </viewController>
         <arrayController id="127" userLabel="Incompatibles Controller">

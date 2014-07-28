@@ -34,11 +34,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @import Cocoa;
 #import "CEWindowController.h"
 #import "CETextSelection.h"
-#import "CEEditorView.h"
+#import "CEEditorWrapper.h"
 #import "constants.h"
 
 
-@class CEEditorView;
+@class CEEditorWrapper;
 @class CEWindowController;
 
 
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 
 @interface CEDocument : NSDocument
 
-@property (nonatomic) CEEditorView *editorView;
+@property (nonatomic) CEEditorWrapper *editor;
 
 // readonly properties
 @property (nonatomic, readonly) CEWindowController *windowController;
@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 /// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
 - (NSString *)stringForSave;
 
-- (void)setStringToEditorView;
+- (void)setStringToEditor;
 
 - (NSString *)currentIANACharSetName;
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;

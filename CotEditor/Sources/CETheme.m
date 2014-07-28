@@ -47,6 +47,7 @@
 @property (nonatomic, readwrite) NSColor *selectionColor;
 @property (nonatomic, readwrite) NSColor *insertionPointColor;
 @property (nonatomic, readwrite) NSColor *lineHighLightColor;
+@property (nonatomic, readwrite) NSColor *markupColor;
 
 // syntax colors
 @property (nonatomic, readwrite) NSColor *keywordsColor;
@@ -104,26 +105,36 @@
         }
         
         // プロパティをセット
-        [self setName:themeName];
+        _name = themeName;
         
-        [self setTextColor:themeDict[CEThemeTextColorKey]];
-        [self setBackgroundColor:themeDict[CEThemeBackgroundColorKey]];
-        [self setInvisiblesColor:themeDict[CEThemeInvisiblesColorKey]];
-        [self setSelectionColor:themeDict[CEThemeSelectionColorKey]];
-        [self setInsertionPointColor:themeDict[CEThemeInsertionPointColorKey]];
-        [self setLineHighLightColor:themeDict[CEThemeLineHighlightColorKey]];
-        [self setKeywordsColor:themeDict[CEThemeKeywordsColorKey]];
-        [self setCommandsColor:themeDict[CEThemeCommandsColorKey]];
-        [self setTypesColor:themeDict[CEThemeTypesColorKey]];
-        [self setAttributesColor:themeDict[CEThemeAttributesColorKey]];
-        [self setVariablesColor:themeDict[CEThemeVariablesColorKey]];
-        [self setValuesColor:themeDict[CEThemeValuesColorKey]];
-        [self setNumbersColor:themeDict[CEThemeNumbersColorKey]];
-        [self setStringsColor:themeDict[CEThemeStringsColorKey]];
-        [self setCharactersColor:themeDict[CEThemeCharactersColorKey]];
-        [self setCommentsColor:themeDict[CEThemeCommentsColorKey]];
+        _textColor = themeDict[CEThemeTextColorKey];
+        _backgroundColor = themeDict[CEThemeBackgroundColorKey];
+        _invisiblesColor = themeDict[CEThemeInvisiblesColorKey];
+        _selectionColor = themeDict[CEThemeSelectionColorKey];
+        _insertionPointColor = themeDict[CEThemeInsertionPointColorKey];
+        _lineHighLightColor = themeDict[CEThemeLineHighlightColorKey];
+        _keywordsColor = themeDict[CEThemeKeywordsColorKey];
+        _commandsColor = themeDict[CEThemeCommandsColorKey];
+        _typesColor = themeDict[CEThemeTypesColorKey];
+        _attributesColor = themeDict[CEThemeAttributesColorKey];
+        _variablesColor = themeDict[CEThemeVariablesColorKey];
+        _valuesColor = themeDict[CEThemeValuesColorKey];
+        _numbersColor = themeDict[CEThemeNumbersColorKey];
+        _stringsColor = themeDict[CEThemeStringsColorKey];
+        _charactersColor = themeDict[CEThemeCharactersColorKey];
+        _commentsColor = themeDict[CEThemeCommentsColorKey];
         
-        [self setUsesSystemSelectionColor:[themeDict[CEThemeUsesSystemSelectionColorKey] boolValue]];
+        _usesSystemSelectionColor = [themeDict[CEThemeUsesSystemSelectionColorKey] boolValue];
+        
+        // 文字カラーと背景カラーの中間色であるマークアップカラーを生成
+        CGFloat BG_R, BG_G, BG_B, FG_R, FG_G, FG_B;
+        [[_textColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&FG_R green:&FG_G blue:&FG_B alpha:nil];
+        [[_backgroundColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&BG_R green:&BG_G blue:&BG_B alpha:nil];
+        _markupColor = [NSColor colorWithCalibratedRed:((BG_R + FG_R) / 2)
+                                                 green:((BG_G + FG_G) / 2)
+                                                  blue:((BG_B + FG_B) / 2)
+                                                 alpha:1.0];
+        
     }
     return self;
 }

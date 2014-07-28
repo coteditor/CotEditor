@@ -45,6 +45,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CELineNumberView ()
 
 @property (nonatomic) NSTimer *draggingTimer;
+@property (nonatomic) NSLayoutConstraint *thicknessConstraint;
 
 @property (nonatomic) NSString *fontName;
 @property (nonatomic) NSColor *numberColor;
@@ -81,6 +82,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _fontName = [font fontName];
         _numberColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_lineNumFontColor]];
         _backgroundAlpha = 1.0;
+        
+        // set thickness constraint
+        _thicknessConstraint = [NSLayoutConstraint constraintWithItem:self
+                                                            attribute:NSLayoutAttributeWidth
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:nil
+                                                            attribute:NSLayoutAttributeNotAnAttribute
+                                                           multiplier:1
+                                                             constant:0];
+        [self addConstraint:_thicknessConstraint];
         
         // observe window resize
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -141,7 +152,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
     CGFloat crDistance;
     {
-        NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:0 effectiveRange:NULL];
+        NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:0 effectiveRange:NULL withoutAdditionalLayout:YES];
         crDistance = numRect.origin.y - NSHeight(numRect);
         numRect = [self convertRect:numRect fromView:[self textView]];
         crDistance = numRect.origin.y - crDistance;
@@ -201,7 +212,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
             NSRange range;
-            NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+            NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSMaxY(numRect);
             
@@ -241,7 +252,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     // Draw the last "extra" line number.
-    NSRect numRect = [layoutManager extraLineFragmentRect];
+    NSRect numRect = [layoutManager extraLineFragmentUsedRect];
     if (!NSEqualSizes(numRect.size, NSZeroSize)) {
         numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
         numRect.origin.y = crDistance - NSMaxY(numRect);
@@ -359,21 +370,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setWidth:(CGFloat)width
 // ------------------------------------------------------
 {
-    CGFloat adjWidth = width - NSWidth([self frame]);
-    NSRect newFrame;
-
-    // set masterView width
-    newFrame = [[self scrollView] frame];
-    newFrame.origin.x += adjWidth;
-    newFrame.size.width -= adjWidth;
-    [[self scrollView] setFrame:newFrame];
-    
-    // set lineNumberView width
-    newFrame = [self frame];
-    newFrame.size.width += adjWidth;
-    [self setFrame:newFrame];
-
-    [self setNeedsDisplay:YES];
+    [[self thicknessConstraint] setConstant:width];
 }
 
 

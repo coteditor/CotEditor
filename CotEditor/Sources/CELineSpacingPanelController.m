@@ -64,7 +64,7 @@
 - (void)keyDocumentDidChange
 // ------------------------------------------------------
 {
-    [self setLineSpacing:[[[[self documentWindowController] editorView] textView] lineSpacing]];
+    [self setLineSpacing:[[[[self documentWindowController] editor] textView] lineSpacing]];
     
 }
 
@@ -77,7 +77,7 @@
 - (IBAction)apply:(id)sender
 // ------------------------------------------------------
 {
-    [[[[self documentWindowController] editorView] textView] setNewLineSpacingAndUpdate:[self lineSpacing]];
+    [[[[self documentWindowController] editor] textView] setNewLineSpacingAndUpdate:[self lineSpacing]];
     [[self window] close];
 }
 

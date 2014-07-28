@@ -32,8 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CESyntaxParser.h"
-#import "CELayoutManager.h"
-#import "CEEditorView.h"
+#import "CETextViewProtocol.h"
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
 #import "RegexKitLite.h"
@@ -70,8 +69,8 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 @interface CESyntaxParser ()
 
-@property (nonatomic) CELayoutManager *layoutManager;
-@property (atomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic) NSLayoutManager *layoutManager;
+@property (nonatomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
@@ -80,12 +79,12 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (atomic) NSUInteger cacheHash;
 @property (atomic) dispatch_queue_t coloringQueue;
 
-@property (atomic, copy) NSString *coloringString;  // カラーリング対象文字列　coloringsForAllSyntaxWithString: 冒頭でセットされる
+@property (atomic, copy) NSString *coloringString;  // カラーリング対象文字列　extractAllSyntaxFromString: 冒頭でセットされる
 @property (atomic) CEIndicatorSheetController *indicatorController;
 
 
 // readonly
-@property (nonatomic, copy, readwrite) NSString *syntaxStyleName;
+@property (nonatomic, copy, readwrite) NSString *styleName;
 @property (nonatomic, copy, readwrite) NSArray *completionWords;
 @property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
 @property (nonatomic, copy, readwrite) NSString *inlineCommentDelimiter;
@@ -154,14 +153,14 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// designated initializer
-- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(CELayoutManager *)layoutManager isPrinting:(BOOL)isPrinting
+- (instancetype)initWithStyleName:(NSString *)styleName layoutManager:(NSLayoutManager *)layoutManager isPrinting:(BOOL)isPrinting
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
         if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
             _isNone = YES;
-            _syntaxStyleName = NSLocalizedString(@"None", nil);
+            _styleName = NSLocalizedString(@"None", nil);
             
         } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             NSMutableDictionary *coloringDictionary = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
@@ -278,7 +277,7 @@ static CGFloat kPerCompoIncrement;
             _coloringQueue = dispatch_queue_create("com.aynimac.CotEditor.ColoringQueue", DISPATCH_QUEUE_CONCURRENT);
             
             // store as properties
-            _syntaxStyleName = styleName;
+            _styleName = styleName;
             _coloringDictionary = [coloringDictionary copy];
             
         } else {
@@ -812,17 +811,16 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 不可視文字表示時にカラーリング範囲配列を返す
-- (NSArray *)extractOtherInvisibleCharsFromString:(NSString *)string
+- (NSArray *)extractControlCharsFromString:(NSString *)string
 // ------------------------------------------------------
 {
     NSMutableArray *colorings = [NSMutableArray array];
-    
     NSScanner *scanner = [NSScanner scannerWithString:string];
-    NSString *controlStr;
 
     while (![scanner isAtEnd]) {
         [scanner scanUpToCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:nil];
         NSUInteger start = [scanner scanLocation];
+        NSString *controlStr;
         if ([scanner scanCharactersFromSet:[NSCharacterSet controlCharacterSet] intoString:&controlStr]) {
             NSRange range = NSMakeRange(start, [controlStr length]);
             
@@ -943,7 +941,7 @@ static CGFloat kPerCompoIncrement;
         }
 
         // 不可視文字の追加
-        [colorings addObjectsFromArray:[self extractOtherInvisibleCharsFromString:string]];
+        [colorings addObjectsFromArray:[self extractControlCharsFromString:string]];
         
     } @catch (NSException *exception) {
         // 何もしない
@@ -969,7 +967,7 @@ static CGFloat kPerCompoIncrement;
     
     // カラーリング不要なら不可視文字のカラーリングだけして戻る
     if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) || [self isNone]) {
-        [self applyColorings:[self extractOtherInvisibleCharsFromString:coloringString] range:coloringRange];
+        [self applyColorings:[self extractControlCharsFromString:coloringString] range:coloringRange];
         return;
     }
     
@@ -1030,10 +1028,10 @@ static CGFloat kPerCompoIncrement;
 - (void)applyColorings:(NSArray *)colorings range:(NSRange)coloringRange
 // ------------------------------------------------------
 {
-    CELayoutManager *layoutManager = [self layoutManager];
+    NSLayoutManager *layoutManager = [self layoutManager];
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
     BOOL isPrinting = [self isPrinting];
-    BOOL showInvisibles = [[self layoutManager] showOtherInvisibles];
+    BOOL showInvisibles = [layoutManager showsControlCharacters];
     
     // 現在あるカラーリングを削除
     if (isPrinting) {
