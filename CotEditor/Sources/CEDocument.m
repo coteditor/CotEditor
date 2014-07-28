@@ -369,7 +369,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self editor] syntaxStyleName]];
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
-    [printView setDocumentShowsInvisibles:[(CELayoutManager *)[[[self editor] textView] layoutManager] showInvisibles]];
+    [printView setDocumentShowsInvisibles:[[self editor] showInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showLineNum]];
     [printView setLineSpacing:[[[self editor] textView] lineSpacing]];
     
