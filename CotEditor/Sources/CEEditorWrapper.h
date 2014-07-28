@@ -1,6 +1,6 @@
 /*
 =================================================
-CEEditorView
+CEEditorWrapper
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -45,14 +45,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @class CEWindowController;
 
 
-@interface CEEditorView : NSView
+@interface CEEditorWrapper : NSResponder
 
 @property (nonatomic) BOOL showLineNum;
 @property (nonatomic) BOOL showNavigationBar;
 @property (nonatomic) BOOL wrapLines;
 @property (nonatomic) BOOL showPageGuide;
 @property (nonatomic) BOOL showInvisibles;
-
 @property (nonatomic) CETextView *textView;
 
 @property (nonatomic, readonly) BOOL canActivateShowInvisibles;
@@ -73,18 +72,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceTextViewAllStringTo:(NSString *)string;
 - (void)insertTextViewAfterSelectionStringTo:(NSString *)string;
 - (void)appendTextViewAfterAllStringTo:(NSString *)string;
+- (NSRange)selectedRange;
+- (void)setSelectedRange:(NSRange)charRange;
 
 - (NSFont *)font;
 - (void)setFont:(NSFont *)font;
-
-- (NSRange)selectedRange;
-- (void)setSelectedRange:(NSRange)charRange;
 
 - (void)markupRanges:(NSArray *)ranges;
 - (void)clearAllMarkup;
 
 - (BOOL)shouldUseAntialias;
 - (void)toggleShouldUseAntialias;
+
+- (void)setThemeWithName:(NSString *)themeName;
+- (CETheme *)theme;
 
 - (NSString *)syntaxStyleName;
 - (void)setSyntaxStyleName:(NSString *)inName recolorNow:(BOOL)recolorNow;

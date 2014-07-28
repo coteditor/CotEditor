@@ -14,7 +14,7 @@
 		25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
 		25859EC1076D92D60020F779 /* CEPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */; };
 		258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258700E4077BAD2200E541BB /* CESyntaxManager.m */; };
-		2588E9C007C47ACC0060021D /* CEEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorView.m */; };
+		2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
 		2588E9CE07C4851C0060021D /* Indicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* Indicator.xib */; };
 		258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
@@ -204,8 +204,8 @@
 		25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPreferencesWindowController.m; sourceTree = "<group>"; };
 		258700E3077BAD2200E541BB /* CESyntaxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxManager.h; sourceTree = "<group>"; };
 		258700E4077BAD2200E541BB /* CESyntaxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxManager.m; sourceTree = "<group>"; };
-		2588E9BD07C47ACC0060021D /* CEEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEditorView.h; sourceTree = "<group>"; };
-		2588E9BE07C47ACC0060021D /* CEEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEEditorView.m; sourceTree = "<group>"; };
+		2588E9BD07C47ACC0060021D /* CEEditorWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEditorWrapper.h; sourceTree = "<group>"; };
+		2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEEditorWrapper.m; sourceTree = "<group>"; };
 		2588E9CD07C4851C0060021D /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = en; path = en.lproj/Indicator.xib; sourceTree = "<group>"; };
 		258D708707D456DF0062A3E5 /* CETextSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextSelection.h; sourceTree = "<group>"; };
 		258D708807D456DF0062A3E5 /* CETextSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextSelection.m; sourceTree = "<group>"; };
@@ -747,7 +747,7 @@
 				2A15832D18E3A3E000601026 /* Preferences */,
 				2A42825318FCC22100386899 /* Document */,
 				2A42825418FCC23400386899 /* Window */,
-				2AD2861919856F3100C9342F /* Editor View Controllers */,
+				2AD2861919856F3100C9342F /* Editor Controllers */,
 				2A15832C18E3A29A00601026 /* Views */,
 				2A42825218FCC1C100386899 /* Text View */,
 				2A0E160B18E7240C00AAD872 /* Print */,
@@ -872,11 +872,11 @@
 			name = Documents;
 			sourceTree = "<group>";
 		};
-		2AD2861919856F3100C9342F /* Editor View Controllers */ = {
+		2AD2861919856F3100C9342F /* Editor Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2588E9BD07C47ACC0060021D /* CEEditorView.h */,
-				2588E9BE07C47ACC0060021D /* CEEditorView.m */,
+				2588E9BD07C47ACC0060021D /* CEEditorWrapper.h */,
+				2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */,
 				2A5411BE1983E5FA008B43DA /* CESplitViewController.h */,
 				2A5411BF1983E5FA008B43DA /* CESplitViewController.m */,
 				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
@@ -884,7 +884,7 @@
 				8CF02E1308B9B9F8004044EB /* CENavigationBarController.h */,
 				8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */,
 			);
-			name = "Editor View Controllers";
+			name = "Editor Controllers";
 			sourceTree = "<group>";
 		};
 		2AFFB72E18D8E87900118477 /* Panel Controllers */ = {
@@ -1149,7 +1149,7 @@
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
 				2A149DC51901885A00A9D6EF /* CEKeyBindingsController.m in Sources */,
 				8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */,
-				2588E9C007C47ACC0060021D /* CEEditorView.m in Sources */,
+				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
 				8CB0122E07CA0EFA00221EDC /* CEToolbarController.m in Sources */,
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				2A73F17D18EF573B00BFB5E5 /* CEByteCountTransformer.m in Sources */,

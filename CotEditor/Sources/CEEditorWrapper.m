@@ -1,6 +1,6 @@
 /*
 =================================================
-CEEditorView
+CEEditorWrapper
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -35,18 +35,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CEEditorView.h"
+#import "CEEditorWrapper.h"
 #import "CESplitViewController.h"
-#import "CEToolbarController.h"
 #import "CENavigationBarController.h"
 #import "CELineNumberView.h"
 #import "CESyntaxParser.h"
 #import "constants.h"
 
 
-@interface CEEditorView ()
+@interface CEEditorWrapper ()
 
 @property (nonatomic) NSTimer *coloringTimer;
+
 @property (nonatomic) IBOutlet CESplitViewController *splitViewController;
 
 
@@ -60,7 +60,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma -
 
-@implementation CEEditorView
+@implementation CEEditorWrapper
 
 static NSTimeInterval basicColoringDelay;
 static NSTimeInterval firstColoringDelay;
@@ -100,10 +100,10 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 初期化
-- (instancetype)initWithFrame:(NSRect)frameRect
+- (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect];
+    self = [super init];
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
@@ -123,13 +123,11 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     CESubSplitView *subSplitView = [[[self splitViewController] view] subviews][0];
-    [subSplitView setEditorView:self];
+    [subSplitView setEditorWrapper:self];
     [self setTextView:[subSplitView textView]];
     
     [self setupViewParamsInInit:YES];
-    // （不可視文字の表示／非表示のセットは全て生成が終ってから、CEWindowController > windowDidLoad で行う）
     [self setShowInvisibles:[self canActivateShowInvisibles]];
-    
 }
 
 
@@ -284,24 +282,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// フォントを返す
-- (NSFont *)font
-// ------------------------------------------------------
-{
-    return [[self textView] font];
-}
-
-
-// ------------------------------------------------------
-/// フォントをセット
-- (void)setFont:(NSFont *)inFont
-// ------------------------------------------------------
-{
-    [[self textView] setFont:inFont];
-}
-
-
-// ------------------------------------------------------
 /// 選択範囲を返す
 - (NSRange)selectedRange
 // ------------------------------------------------------
@@ -339,6 +319,24 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// フォントを返す
+- (NSFont *)font
+// ------------------------------------------------------
+{
+    return [[self textView] font];
+}
+
+
+// ------------------------------------------------------
+/// フォントをセット
+- (void)setFont:(NSFont *)font
+// ------------------------------------------------------
+{
+    [[self textView] setFont:font];
+}
+
+
+// ------------------------------------------------------
 /// 現在のエンコードにコンバートできない文字列をマークアップ
 - (void)markupRanges:(NSArray *)ranges
 // ------------------------------------------------------
@@ -346,7 +344,7 @@ static NSTimeInterval secondColoringDelay;
     NSColor *color = [[[self textView] theme] markupColor];
     
     // ハイライト
-    NSArray *layoutManagers = [self allLayoutManagers];
+    NSArray *layoutManagers = [[self splitViewController] layoutManagers];
     for (NSValue *rangeValue in ranges) {
         NSRange range = [rangeValue rangeValue];
         
@@ -363,7 +361,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)clearAllMarkup
 // ------------------------------------------------------
 {
-    NSArray *managers = [self allLayoutManagers];
+    NSArray *managers = [[self splitViewController] layoutManagers];
     
     for (NSLayoutManager *manager in managers) {
         [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
@@ -404,7 +402,6 @@ static NSTimeInterval secondColoringDelay;
     _wrapLines = wrapLines;
     
     [[self splitViewController] setWrapLines:wrapLines];
-    [self setNeedsDisplay:YES];
     [[[self windowController] toolbarController] toggleItemWithIdentifier:k_wrapLinesItemID setOn:wrapLines];
 }
 
@@ -417,6 +414,27 @@ static NSTimeInterval secondColoringDelay;
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
     
     return [manager useAntialias];
+}
+
+
+// ------------------------------------------------------
+/// テーマを適応する
+- (void)setThemeWithName:(NSString *)themeName
+// ------------------------------------------------------
+{
+    if ([themeName length] == 0) { return; }
+    
+    CETheme *theme = [CETheme themeWithName:themeName];
+    
+    [[self splitViewController] setTheme:theme];
+}
+
+
+// ------------------------------------------------------
+- (CETheme *)theme
+// ------------------------------------------------------
+{
+    return [[self textView] theme];
 }
 
 
@@ -727,12 +745,13 @@ static NSTimeInterval secondColoringDelay;
     CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:[currentSubSplitView frame]];
 
     [subSplitView replaceTextStorage:[[self textView] textStorage]];
-    [subSplitView setEditorView:self];
+    [subSplitView setEditorWrapper:self];
     // あらたなsubViewは、押された追加ボタンが属する（またはフォーカスのある）subSplitViewのすぐ下に挿入する
     [[[self splitViewController] view] addSubview:subSplitView positioned:NSWindowAbove relativeTo:currentSubSplitView];
     [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
     [self setupViewParamsInInit:NO];
     [[subSplitView textView] setFont:[[self textView] font]];
+    [[subSplitView textView] setTheme:[self theme]];
     [[subSplitView textView] setLineSpacing:[[self textView] lineSpacing]];
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[subSplitView textView] setSelectedRange:selectedRange];
@@ -745,7 +764,6 @@ static NSTimeInterval secondColoringDelay;
     [[subSplitView textView] centerSelectionInVisibleArea:self];
     [subSplitView setShowNavigationBar:[self showNavigationBar]];  // update navigation bar layout (おそらくAutolayoutならいらない)
     [[self splitViewController] updateCloseSubSplitViewButton];
-    
 }
 
 
@@ -825,6 +843,15 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// ウインドウを返す
+- (NSWindow *)window
+// ------------------------------------------------------
+{
+    return [[[self splitViewController] view] window];
+}
+
+
+// ------------------------------------------------------
 /// navigationBarを返す
 - (CENavigationBarController *)navigationBar
 // ------------------------------------------------------
@@ -839,21 +866,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
-}
-
-
-// ------------------------------------------------------
-/// 全layoutManagerを配列で返す
-- (NSArray *)allLayoutManagers
-// ------------------------------------------------------
-{
-    NSArray *subSplitViews = [[[self splitViewController] view] subviews];
-    NSMutableArray *managers = [NSMutableArray array];
-    
-    for (NSTextContainer *container in subSplitViews) {
-        [managers addObject:[[container textView] layoutManager]];
-    }
-    return managers;
 }
 
 

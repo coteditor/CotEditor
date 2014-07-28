@@ -92,7 +92,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSTextStorage *storage = (NSTextStorage *)[aNotification object];
 
-    [[[[self document] editorView] textView] replaceSelectedStringTo:[storage string] scroll:NO];
+    [[[[self document] editor] textView] replaceSelectedStringTo:[storage string] scroll:NO];
     [self cleanUpTextStorage:storage];
 }
 
@@ -117,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSTextStorage *)contents
 // ------------------------------------------------------
 {
-    NSString *string = [[[self document] editorView] substringWithSelectionForSave];
+    NSString *string = [[[self document] editor] substringWithSelectionForSave];
     NSTextStorage *storage = [[NSTextStorage alloc] initWithString:string];
 
     [storage setDelegate:self];
@@ -146,7 +146,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
     
-    [[[self document] editorView] replaceTextViewSelectedStringTo:string scroll:NO];
+    [[[self document] editor] replaceTextViewSelectedStringTo:string scroll:NO];
 }
 
 
@@ -155,7 +155,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)range
 // ------------------------------------------------------
 {
-    NSRange range = [[[self document] editorView] selectedRange];
+    NSRange range = [[[self document] editor] selectedRange];
 
     return @[@(range.location),
              @(range.length)];
@@ -180,7 +180,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSArray *)lineRange
 // ------------------------------------------------------
 {
-    NSRange selectedRange = [[[self document] editorView] selectedRange];
+    NSRange selectedRange = [[[self document] editor] selectedRange];
     NSString *string = [[self document] stringForSave];
     NSUInteger currentLine = 0, lastLine = 0, length = [string length];
 
@@ -236,7 +236,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)handleShiftRight:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editorView] textView] shiftRight:self];
+    [[[[self document] editor] textView] shiftRight:self];
 }
 
 
@@ -245,7 +245,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)handleShiftLeft:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editorView] textView] shiftLeft:self];
+    [[[[self document] editor] textView] shiftLeft:self];
 }
 
 
@@ -256,7 +256,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedLongValue];
-    CETextView *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editor] textView];
 
     switch (caseType) {
         case CELowerCase:
@@ -279,7 +279,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEWidthType widthType = [arguments[@"widthType"] unsignedLongValue];
-    CETextView *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editor] textView];
 
     switch (widthType) {
         case CEFullwidth:
@@ -299,7 +299,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedLongValue];
-    CETextView *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editor] textView];
     
     switch (changeKanaType) {
         case CEHiragana:
@@ -319,7 +319,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSDictionary *arguments = [command evaluatedArguments];
     CEUNFType UNFType = [arguments[@"unfType"] unsignedLongValue];
-    CETextView *textView = [[[self document] editorView] textView];
+    CETextView *textView = [[[self document] editor] textView];
     
     NSInteger typeCode;
     switch (UNFType) {

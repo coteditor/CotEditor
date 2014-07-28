@@ -86,7 +86,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setNewLineCharacter:[CEUtils invisibleNewLineCharacter:[defaults integerForKey:k_key_invisibleNewLine]]];
         [self setFullwidthSpaceCharacter:[CEUtils invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
 
-        // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEDocument から実行される）
+        // （setShowInvisibles: は CEEditorWrapper から実行される。プリント時は CEDocument から実行される）
         [self setShowSpace:[defaults boolForKey:k_key_showInvisibleSpace]];
         [self setShowTab:[defaults boolForKey:k_key_showInvisibleTab]];
         [self setShowNewLine:[defaults boolForKey:k_key_showInvisibleNewLine]];

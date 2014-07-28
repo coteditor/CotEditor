@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CETextView.h"
-#import "CEEditorView.h"
+#import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
 #import "CEKeyBindingManager.h"
@@ -192,8 +192,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
-    [(CESubSplitView *)[self delegate] setTextViewToEditorView:self];
-
+    [(CESubSplitView *)[self delegate] setTextViewToEditorWrapper:self];
+    
     return [super becomeFirstResponder];
 }
 
@@ -384,7 +384,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self stopCompletionTimer];
 
     // complete リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
-    // （フラグは CEEditorView > textDidChange: で評価される）
+    // （フラグは CESubSplitView > textDidChange: で評価される）
     if (isFinal && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
         NSString *inputChar = [event charactersIgnoringModifiers];
         unichar theUnichar = [inputChar characterAtIndex:0];
@@ -924,7 +924,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // ドロップによる編集で改行コードをLFに統一する
     // （その他の編集は、下記の通りの別の場所で置換している）
     // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditorView
+    //  * ファイルオープン = CEDocument > setStringToEditor
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextView > readSelectionFromPasteboard:type:
@@ -979,7 +979,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // ペースト、他からのドロップによる編集で改行コードをLFに統一する
         // （その他の編集は、下記の通りの別の場所で置換している）
         // # テキスト編集時の改行コードの置換場所
-        //  * ファイルオープン = CEDocument > setStringToEditorView
+        //  * ファイルオープン = CEDocument > setStringToEditor
         //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
         //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
         //  * ペースト = CETextView > readSelectionFromPasteboard:type:

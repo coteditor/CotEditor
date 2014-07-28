@@ -68,7 +68,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSTextStorage *storage = (NSTextStorage *)[notification object];
 
-    [[[self editorView] textView] replaceAllStringTo:[storage string]];
+    [[[self editor] textView] replaceAllStringTo:[storage string]];
     [self cleanUpTextStorage:storage];
 }
 
@@ -105,7 +105,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     if ([object isKindOfClass:[NSTextStorage class]]) {
-        [[[self editorView] textView] replaceAllStringTo:[object string]];
+        [[[self editor] textView] replaceAllStringTo:[object string]];
     }
 }
 
@@ -201,7 +201,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)coloringStyle
 // ------------------------------------------------------
 {
-    return [[self editorView] syntaxStyleName];
+    return [[self editor] syntaxStyleName];
 }
 
 
@@ -239,7 +239,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSNumber *)wrapLines
 // ------------------------------------------------------
 {
-    return @([[self editorView] wrapLines]);
+    return @([[self editor] wrapLines]);
 }
 
 
@@ -248,7 +248,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setWrapLines:(NSNumber *)wrapLines
 // ------------------------------------------------------
 {
-    [[self editorView] setWrapLines:[wrapLines boolValue]];
+    [[self editor] setWrapLines:[wrapLines boolValue]];
 }
 
 
@@ -257,7 +257,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSNumber *)lineSpacing
 // ------------------------------------------------------
 {
-    return @([[[self editorView] textView] lineSpacing]);
+    return @([[[self editor] textView] lineSpacing]);
 }
 
 
@@ -266,7 +266,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setLineSpacing:(NSNumber *)lineSpacing
 // ------------------------------------------------------
 {
-    [[[self editorView] textView] setLineSpacing:(CGFloat)[lineSpacing doubleValue]];
+    [[[self editor] textView] setLineSpacing:(CGFloat)[lineSpacing doubleValue]];
 }
 
 
@@ -318,7 +318,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else if (encoding == [self encoding]) {
         success = YES;
     } else if ([self stringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding xattr:NO]) {
-        [self setStringToEditorView];
+        [self setStringToEditor];
         // ダーティーフラグをクリア
         [self updateChangeCount:NSChangeCleared];
         // ツールバーアイテムの選択状態をセット
@@ -345,7 +345,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *wholeStr = [self stringForSave];
     NSInteger wholeLength = [wholeStr length];
     if (wholeLength == 0) { return @NO; }
-    NSRange selectionRange = [[self editorView] selectedRange];
+    NSRange selectionRange = [[self editor] selectedRange];
     NSRange targetRange;
 
     if (isBackwards) {
@@ -396,7 +396,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (isAll) {
         targetRange = NSMakeRange(0, wholeLength);
     } else {
-        selectionRange = [[self editorView] selectedRange];
+        selectionRange = [[self editor] selectedRange];
         if (isBackwards) {
             targetRange = NSMakeRange(0, selectionRange.location);
         } else {
@@ -424,8 +424,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                              withString:newString options:mask range:targetRange];
         }
         if (result > 0) {
-            [[[self editorView] textView] replaceAllStringTo:tmpStr];
-            [[[self editorView] textView] setSelectedRange:NSMakeRange(0,0)];
+            [[[self editor] textView] replaceAllStringTo:tmpStr];
+            [[[self editor] textView] setSelectedRange:NSMakeRange(0,0)];
         }
 
     } else {
@@ -449,7 +449,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)handleScroll:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSTextView *textView = [[self editorView] textView];
+    NSTextView *textView = [[self editor] textView];
     [textView scrollRangeToVisible:[textView selectedRange]];
 }
 
@@ -470,7 +470,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (NSEqualRanges(NSMakeRange(0, 0), range)) {
         return @"";
     }
-    return [[[[self editorView] textView] string] substringWithRange:range];
+    return [[[[self editor] textView] string] substringWithRange:range];
 }
 
 
@@ -488,7 +488,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             option:(unsigned)option withRegularExpression:(BOOL)isRegex
 // ------------------------------------------------------
 {
-    NSString *wholeStr = [[self editorView] string];
+    NSString *wholeStr = [[self editor] string];
     NSRange searchedRange;
 
     if (isRegex) {
@@ -497,7 +497,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         searchedRange = [wholeStr rangeOfString:searchString options:option range:range];
     }
     if (searchedRange.location != NSNotFound) {
-        [[self editorView] setSelectedRange:searchedRange];
+        [[self editor] setSelectedRange:searchedRange];
         return YES;
     }
     return NO;

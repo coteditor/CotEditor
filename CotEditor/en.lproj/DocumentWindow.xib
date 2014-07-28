@@ -7,7 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
-                <outlet property="editorView" destination="6" id="pnK-gZ-UaH"/>
+                <outlet property="editorWrapper" destination="Asc-bK-hKW" id="1Xo-9x-UxR"/>
                 <outlet property="infoNumberFormatter" destination="ZXE-Ki-WDP" id="3BB-um-DS8"/>
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
@@ -26,7 +26,7 @@
             <rect key="contentRect" x="7" y="567" width="507" height="413"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="400" height="200"/>
-            <view key="contentView" id="6" customClass="CEEditorView">
+            <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -103,9 +103,6 @@
                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="vUa-vZ-EE4"/>
                     <constraint firstItem="Ezm-P5-z5i" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="wbM-Gh-RXF"/>
                 </constraints>
-                <connections>
-                    <outlet property="splitViewController" destination="cfo-zY-w3h" id="zbF-Xh-Jye"/>
-                </connections>
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
@@ -1100,6 +1097,11 @@
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
             </connections>
         </viewController>
+        <customObject id="Asc-bK-hKW" customClass="CEEditorWrapper">
+            <connections>
+                <outlet property="splitViewController" destination="cfo-zY-w3h" id="ZU8-hM-dOd"/>
+            </connections>
+        </customObject>
         <viewController id="cfo-zY-w3h" customClass="CESplitViewController">
             <connections>
                 <outlet property="view" destination="Ezm-P5-z5i" id="UCd-p0-0fe"/>

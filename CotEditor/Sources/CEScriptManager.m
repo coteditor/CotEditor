@@ -390,7 +390,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 + (NSString *)documentStringWithInputType:(CEScriptInputType)inputType error:(BOOL *)hasError
 // ------------------------------------------------------
 {
-    CEEditorView *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editorView];
+    CEEditorWrapper *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editor];
     
     switch (inputType) {
         case CEInputSelectionType:
@@ -426,7 +426,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 + (void)setOutputToDocument:(NSString *)output outputType:(CEScriptOutputType)outputType
 // ------------------------------------------------------
 {
-    CEEditorView *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editorView];
+    CEEditorWrapper *editor = [[[NSDocumentController sharedDocumentController] currentDocument] editor];
     
     switch (outputType) {
         case CEReplaceSelectionType:

@@ -184,7 +184,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     BOOL success = [self readFromURL:url withEncoding:k_autoDetectEncodingMenuTag];
     
     if (success) {
-        [self setStringToEditorView];
+        [self setStringToEditor];
     }
     return success;
 }
@@ -363,15 +363,15 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     // プリントビュー生成
     CEPrintView *printView = [[CEPrintView alloc] init];
-    [printView setString:[[self editorView] string]];
-    [printView setTheme:[[[self editorView] textView] theme]];
+    [printView setString:[[self editor] string]];
+    [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
     [printView setFilePath:[[self fileURL] path]];
-    [printView setSyntaxName:[[self editorView] syntaxStyleName]];
+    [printView setSyntaxName:[[self editor] syntaxStyleName]];
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
-    [printView setDocumentShowsInvisibles:[(CELayoutManager *)[[[self editorView] textView] layoutManager] showInvisibles]];
-    [printView setDocumentShowsLineNum:[[self editorView] showLineNum]];
-    [printView setLineSpacing:[[[self editorView] textView] lineSpacing]];
+    [printView setDocumentShowsInvisibles:[(CELayoutManager *)[[[self editor] textView] layoutManager] showInvisibles]];
+    [printView setDocumentShowsLineNum:[[self editor] showLineNum]];
+    [printView setLineSpacing:[[[self editor] textView] lineSpacing]];
     
     // プリントに使用するフォント
     NSFont *font;
@@ -379,7 +379,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_printFontName]
                                size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_printFontSize]];
     } else {
-        font = [[self editorView] font];
+        font = [[self editor] font];
     }
     [printView setFont:font];
     
@@ -416,13 +416,13 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSString *)stringForSave
 // ------------------------------------------------------
 {
-    return [OGRegularExpression replaceNewlineCharactersInString:[[self editorView] string]
+    return [OGRegularExpression replaceNewlineCharactersInString:[[self editor] string]
                                                    withCharacter:[self lineEnding]];
 }
 
 // ------------------------------------------------------
-/// editorView に文字列をセット
-- (void)setStringToEditorView
+/// editor に文字列をセット
+- (void)setStringToEditor
 // ------------------------------------------------------
 {
     [self setSyntaxStyleWithFileName:[[self fileURL] lastPathComponent] coloring:NO];
@@ -430,7 +430,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // 表示する文字列内の改行コードをLFに統一する
     // （その他の編集は、下記の通りの別の場所で置換している）
     // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditorView
+    //  * ファイルオープン = CEDocument > setStringToEditor
     //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextView > readSelectionFromPasteboard:type:
@@ -446,17 +446,17 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         NSString *string = [OGRegularExpression replaceNewlineCharactersInString:[self initialString]
                                                                    withCharacter:OgreLfNewlineCharacter];
         
-        [[self editorView] setString:string]; // （editorView の setString 内でキャレットを先頭に移動させている）
+        [[self editor] setString:string]; // （editorWrapper の setString 内でキャレットを先頭に移動させている）
         [self setInitialString:nil];  // release
         
     } else {
-        [[self editorView] setString:@""];
+        [[self editor] setString:@""];
     }
     // ツールバーのエンコーディングメニュー、ステータスバー、ドロワーを更新
     [self updateEncodingInToolbarAndInfo];
     // カラーリングと行番号を更新
     // （大きいドキュメントの時はインジケータを表示させるため、ディレイをかけてまずウィンドウを表示させる）
-    [[self editorView] updateColoringAndOutlineMenuWithDelay];
+    [[self editor] updateColoringAndOutlineMenuWithDelay];
     
     if ([[self windowController] needsIncompatibleCharDrawerUpdate]) {
         [[self windowController] showIncompatibleCharList];
@@ -628,7 +628,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
              ([data length] != ([string length] * 2)))) {
                 
                 [self setInitialString:string];
-                // (_initialString はあとで開放 == "- (void)setStringToEditorView".)
+                // (_initialString はあとで開放 == "- (void)setStringToEditor".)
                 [self doSetEncoding:encoding updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
                 return YES;
             }
@@ -782,7 +782,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 {
     if ([name length] == 0) { return; }
     
-    [[self editorView] setSyntaxStyleName:name recolorNow:YES];
+    [[self editor] setSyntaxStyleName:name recolorNow:YES];
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:name];
 }
 
@@ -792,7 +792,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSRange)rangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextView *textView = [[self editorView] textView];
+    CETextView *textView = [[self editor] textView];
     NSUInteger wholeLength = [[textView string] length];
     NSRange range = NSMakeRange(0, 0);
     
@@ -816,22 +816,22 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// editorView 内部の textView で指定された部分を文字単位で選択
+/// editor 内部の textView で指定された部分を文字単位で選択
 - (void)setSelectedCharacterRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
     NSRange selectionRange = [self rangeInTextViewWithLocation:location length:length];
     
-    [[self editorView] setSelectedRange:selectionRange];
+    [[self editor] setSelectedRange:selectionRange];
 }
 
 
 // ------------------------------------------------------
-/// editorView 内部の textView で指定された部分を行単位で選択
+/// editor 内部の textView で指定された部分を行単位で選択
 - (void)setSelectedLineRangeInTextViewWithLocation:(NSInteger)location length:(NSInteger)length
 // ------------------------------------------------------
 {
-    CETextView *textView = [[self editorView] textView];
+    CETextView *textView = [[self editor] textView];
     NSUInteger wholeLength = [[textView string] length];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^"
                                                                            options:NSRegularExpressionAnchorsMatchLines
@@ -899,7 +899,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             break;
     }
     
-    NSTextView *textView = [[self editorView] textView];
+    NSTextView *textView = [[self editor] textView];
     [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
     [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
     [[[self windowController] window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
@@ -934,17 +934,17 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     {
         state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
     } else if ([menuItem action] == @selector(changeTheme:)) {
-        name = [[[[self editorView] textView] theme] name];
+        name = [[[self editor] theme] name];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
-        name = [[self editorView] syntaxStyleName];
+        name = [[self editor] syntaxStyleName];
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
     } else if ([menuItem action] == @selector(recoloringAllStringOfDocument:)) {
-        name = [[self editorView] syntaxStyleName];
+        name = [[self editor] syntaxStyleName];
         if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
@@ -967,7 +967,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     if ([item action] == @selector(recoloringAllStringOfDocument:)) {
-        NSString *name = [[self editorView] syntaxStyleName];
+        NSString *name = [[self editor] syntaxStyleName];
         if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
         }
@@ -1038,7 +1038,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)documentDidFinishOpen:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [self editorView]) {
+    if ([notification object] == [[self windowController] window]) {
         // 書き込み禁止アラートを表示
         [self showNotWritableAlert];
     }
@@ -1125,7 +1125,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     NSString *encodingName = [sender title];
 
     // 文字列がないまたは未保存の時は直ちに変換プロセスへ
-    if (([[[self editorView] string] length] < 1) || (![self fileURL])) {
+    if (([[[self editor] string] length] < 1) || (![self fileURL])) {
         result = NSAlertFirstButtonReturn;
     } else {
         // 変換するか再解釈するかの選択ダイアログを表示
@@ -1162,7 +1162,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             }
         }
         if ([self readFromURL:[self fileURL] withEncoding:encoding]) {
-            [self setStringToEditorView];
+            [self setStringToEditor];
             // アンドゥ履歴をクリア
             [[self undoManager] removeAllActions];
             [self updateChangeCount:NSChangeCleared];
@@ -1187,12 +1187,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (IBAction)changeTheme:(id)sender
 // ------------------------------------------------------
 {
-    CETheme *theme = [CETheme themeWithName:[sender title]];
-    
-    [[[self editorView] textView] setTheme:theme];
-    [[[self editorView] textView] setSelectedRanges:[[[self editorView] textView] selectedRanges]];  //  選択範囲の再描画
-    
-    [[self editorView] recolorAllString];
+    [[self editor] setThemeWithName:[sender title]];
 }
 
 
@@ -1217,7 +1212,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editorView] textView] insertText:string];
+        [[[self editor] textView] insertText:string];
     }
 }
 
@@ -1230,7 +1225,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
+        [[[self editor] textView] insertText:[NSString stringWithFormat:@"charset=\"%@\"", string]];
     }
 }
 
@@ -1243,7 +1238,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     NSString *string = [self currentIANACharSetName];
 
     if (string) {
-        [[[self editorView] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
+        [[[self editor] textView] insertText:[NSString stringWithFormat:@"encoding=\"%@\"", string]];
     }
 }
 
@@ -1278,7 +1273,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 
 // ------------------------------------------------------
-/// editorViewを通じてsyntaxインスタンスをセット
+/// editor を通じて syntax インスタンスをセット
 - (void)setSyntaxStyleWithFileName:(NSString *)fileName coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
@@ -1286,7 +1281,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:fileName];
     
-    [[self editorView] setSyntaxStyleName:styleName recolorNow:doColoring];
+    [[self editor] setSyntaxStyleName:styleName recolorNow:doColoring];
     
     // ツールバーのカラーリングポップアップの表示を更新、再カラーリング
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:styleName];
@@ -1310,7 +1305,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)applyLineEndingToView
 // ------------------------------------------------------
 {
-    [[self editorView] setLineEndingString:[self lineEndingString]];
+    [[self editor] setLineEndingString:[self lineEndingString]];
     [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
 }
 
@@ -1357,7 +1352,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         if ([data length] == 0) {
             success = YES;
             [self setInitialString:@""];
-            // (_initialString はあとで開放 == "- (void)setStringToEditorView".)
+            // (_initialString はあとで開放 == "- (void)setStringToEditor".)
         }
         if (newEncoding != NSProprietaryStringEncoding) {
             if ([data length] == 0) {

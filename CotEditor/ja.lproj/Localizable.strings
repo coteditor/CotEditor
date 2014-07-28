@@ -113,7 +113,7 @@ http://www.aynimac.com/
 "Text Style" = "テキストスタイル";
 
 
-/* CEEditorView */
+/* CEEditorWrapper */
 // menu items
 "Hide Line Numbers" = "行番号を隠す";
 "Show Line Numbers" = "行番号を表示";

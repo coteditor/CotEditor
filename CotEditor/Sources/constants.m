@@ -309,13 +309,13 @@ NSString *const k_issueTrackerURL = @"https://github.com/coteditor/CotEditor/iss
 
 
 
-#pragma mark CEEditorView
+#pragma mark CEEditorWrapper
 
 // ------------------------------------------------------
-// CEEditorView
+// CEEditorWrapper
 // ------------------------------------------------------
 
-// CEEditorView and subView's dict key
+// CEEditorWrapper and subView's dict key
 NSString *const k_outlineMenuItemRange = @"outlineMenuItemRange";
 NSString *const k_outlineMenuItemTitle = @"outlineMenuItemTitle";
 NSString *const k_outlineMenuItemSortKey = @"outlineMenuItemSortKey";
@@ -324,7 +324,7 @@ NSString *const k_outlineMenuItemFontItalic = @"outlineMenuItemFontItalic";
 NSString *const k_outlineMenuItemUnderlineMask = @"outlineMenuItemUnderlineMask";
 
 
-// CEEditorView and subView's constants
+// CEEditorWrapper and subView's constants
 CGFloat const k_defaultLineNumWidth = 32.0;
 CGFloat const k_lineNumPadding = 2.0;
 CGFloat const k_lineNumFontDescender = -2.1;

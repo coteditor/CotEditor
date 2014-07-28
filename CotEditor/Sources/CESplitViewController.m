@@ -91,6 +91,21 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// 全layoutManagerを配列で返す
+- (NSArray *)layoutManagers
+// ------------------------------------------------------
+{
+    NSMutableArray *managers = [NSMutableArray array];
+    
+    for (CESubSplitView *subview in [[self view] subviews]) {
+        [managers addObject:[[subview textView] layoutManager]];
+    }
+    
+    return [managers copy];
+}
+
+
+// ------------------------------------------------------
 /// 行番号表示の有無を設定
 - (void)setShowLineNum:(BOOL)showLineNum
 // ------------------------------------------------------
@@ -120,6 +135,7 @@
     for (CESubSplitView *subview in [[self view] subviews]) {
         [subview setWrapLines:wrapLines];
     }
+    [[self view] setNeedsDisplay:YES];
 }
 
 
@@ -181,6 +197,22 @@
 
 
 // ------------------------------------------------------
+/// テーマを設定
+- (void)setTheme:(CETheme *)theme
+// ------------------------------------------------------
+{
+    if (!theme) { return; }
+    
+    for (CESubSplitView *subview in [[self view] subviews]) {
+        CETextView *textView = [subview textView];
+        [textView setTheme:theme];
+        [subview recolorAllTextViewString];
+        [textView setSelectedRanges:[textView selectedRanges]];  //  選択範囲の再描画
+    }
+}
+
+
+// ------------------------------------------------------
 /// シンタックススタイルを設定
 - (void)setSyntaxWithName:(NSString *)syntaxName
 // ------------------------------------------------------
@@ -204,7 +236,7 @@
     
     if (![self finishedOpen]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
-                                                            object:[[self view] superview]]; // superView = CEEditorView
+                                                            object:[[self view] window]];
         [self setFinishedOpen:YES];
     }
 }
