@@ -488,6 +488,7 @@ static NSTimeInterval incompatibleCharInterval;
     [[self window] setOpaque:(sanitizedAlpha == 1.0)];
     [[self editor] setBackgroundAlpha:sanitizedAlpha];
     [[[self window] contentView] setNeedsDisplay:YES];
+    [[self window] invalidateShadow];
 }
 
 

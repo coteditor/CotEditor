@@ -101,6 +101,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
 
         // テーマの設定
+        _backgroundAlpha = 1.0;
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:k_key_defaultTheme]]];
         
         // set the values
@@ -114,7 +115,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([defaults boolForKey:k_key_layoutTextVertical]) {
             [self setLayoutOrientation:NSTextLayoutOrientationVertical];
         }
-        [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
         [self setFont:font];
         [self setMinSize:frameRect.size];
         [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -736,6 +736,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     [self setBackgroundColor:[[self backgroundColor] colorWithAlphaComponent:alpha]];
     [self setHighlightLineColor:[[self highlightLineColor] colorWithAlphaComponent:alpha]];
+    
+    if (floor(NSAppKitVersionNumber) > 1265) { // on Yosemite and later
+        [[self enclosingScrollView] setWantsLayer:YES];
+    } else if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_8) { // on Mountain Lion or Mavericks
+        [[self enclosingScrollView] setWantsLayer:(alpha == 1.0)];
+    }
     
     _backgroundAlpha = alpha;
 }
