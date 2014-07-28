@@ -1,6 +1,6 @@
 /*
 =================================================
-CESubSplitView
+CEEditorView
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -31,13 +31,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
-#import "CESubSplitView.h"
+#import "CEEditorView.h"
 #import "CELineNumberView.h"
 #import "CEThemeManager.h"
 #import "constants.h"
 
 
-@interface CESubSplitView ()
+@interface CEEditorView ()
 
 @property (nonatomic) NSScrollView *scrollView;
 @property (nonatomic) CELineNumberView *lineNumberView;
@@ -63,7 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma mark -
 
-@implementation CESubSplitView
+@implementation CEEditorView
 
 #pragma mark NSView Methods
 
@@ -119,7 +119,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                      options:0 metrics:nil views:views]];
 
         // TextStorage と LayoutManager を生成
-        [self setTextStorage:[[NSTextStorage alloc] init]];
+        [self setTextStorage:[[NSTextStorage alloc] initWithString:@" "]];
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [[self textStorage] addLayoutManager:layoutManager];
         [layoutManager setBackgroundLayoutEnabled:YES];
@@ -135,13 +135,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                              isPrinting:NO]];
 
         // TextView 生成
-        NSRect textFrame = NSZeroRect;
-        textFrame.size = [[self scrollView] contentSize]; // (frame will start at upper left.)
-        [self setTextView:[[CETextView alloc] initWithFrame:textFrame textContainer:container]];
+        [self setTextView:[[CETextView alloc] initWithFrame:NSZeroRect textContainer:container]];
         [[self textView] setDelegate:self];
         
         [[self lineNumberView] setTextView:[self textView]];
         [[self navigationBar] setTextView:[self textView]];
+        [[self scrollView] setDocumentView:[self textView]];
         
         // OgreKit 改造でポストするようにしたノーティフィケーションをキャッチ
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -164,8 +163,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                  selector:@selector(themeDidUpdate:)
                                                      name:CEThemeDidUpdateNotification
                                                    object:nil];
-        
-        [[self scrollView] setDocumentView:[self textView]];
 
         // slave view をセット
         [[self textView] setSlaveView:[self lineNumberView]]; // (the textview will also update slaveView.)
@@ -174,13 +171,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                  selector:@selector(updateLineNumber:)
                                                      name:NSViewBoundsDidChangeNotification
                                                    object:[[self scrollView] contentView]];
-
-        // ビューのパラメータをセット
-        [[self textView] setTextContainerInset:
-                NSMakeSize((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
-                           (CGFloat)([defaults doubleForKey:k_key_textContainerInsetHeightTop] +
-                                     [defaults doubleForKey:k_key_textContainerInsetHeightBottom]) / 2)];
-
     }
     return self;
 }
@@ -195,6 +185,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self stopUpdateOutlineMenuTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:[self lineNumberView]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self setTextView:nil];
 }
 
 
@@ -445,7 +436,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// テキストビュー分割削除ボタンの有効化／無効化を制御
-- (void)updateCloseSubSplitViewButton:(BOOL)isEnabled
+- (void)updateCloseSplitViewButton:(BOOL)isEnabled
 // ------------------------------------------------------
 {
     [[self navigationBar] setCloseSplitButtonEnabled:isEnabled];
@@ -513,8 +504,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // （その他の編集は、下記の通りの別の場所で置換している）
     // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextView > readSelectionFromPasteboard:type:
     //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
     //  * ドロップ（同一書類内） = CETextView > performDragOperation:

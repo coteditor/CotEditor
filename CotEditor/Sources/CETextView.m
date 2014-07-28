@@ -74,10 +74,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 初期化
-- (instancetype)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)inTextContainer
+- (instancetype)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
-    self = [super initWithFrame:frameRect textContainer:inTextContainer];
+    self = [super initWithFrame:frameRect textContainer:aTextContainer];
     if (self) {
         // このメソッドはSmultronのSMLTextViewを参考にしています。
         // This method is based on Smultron(SMLTextView) written by Peter Borg. Copyright (C) 2004 Peter Borg.
@@ -112,9 +112,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
         }
         if ([defaults boolForKey:k_key_layoutTextVertical]) {
-            dispatch_async(dispatch_get_current_queue(), ^{
-                [self setLayoutOrientation:NSTextLayoutOrientationVertical];
-            });
+            [self setLayoutOrientation:NSTextLayoutOrientationVertical];
         }
         [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
         [self setFont:font];
@@ -128,6 +126,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
         [self setAcceptsGlyphInfo:YES];
+        [self setTextContainerInset:NSMakeSize((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
+                                               (CGFloat)([defaults doubleForKey:k_key_textContainerInsetHeightTop] +
+                                                         [defaults doubleForKey:k_key_textContainerInsetHeightBottom]) / 2)];
         [self setLineSpacing:(CGFloat)[defaults doubleForKey:k_key_lineSpacing]];
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
@@ -192,7 +193,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
-    [(CESubSplitView *)[self delegate] setTextViewToEditorWrapper:self];
+    [(CEEditorView *)[self delegate] setTextViewToEditorWrapper:self];
     
     return [super becomeFirstResponder];
 }
@@ -384,7 +385,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self stopCompletionTimer];
 
     // complete リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
-    // （フラグは CESubSplitView > textDidChange: で評価される）
+    // （フラグは CEEditorView > textDidChange: で評価される）
     if (isFinal && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
         NSString *inputChar = [event charactersIgnoringModifiers];
         unichar theUnichar = [inputChar characterAtIndex:0];
@@ -536,7 +537,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
-    NSCharacterSet *charSet = [(CESubSplitView *)[self delegate] firstCompletionCharacterSet];
+    NSCharacterSet *charSet = [(CEEditorView *)[self delegate] firstCompletionCharacterSet];
 
     if (!charSet || [string length] == 0) { return range; }
 
@@ -572,7 +573,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self drawHighlightLineAdditionalRect];
 
     // ページガイド描画
-    if ([(CESubSplitView *)[self delegate] showPageGuide]) {
+    if ([(CEEditorView *)[self delegate] showPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
         
         if ((column < k_pageGuideColumnMin) || (column > k_pageGuideColumnMax)) {
@@ -642,7 +643,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     if (NSEqualRects(rect, NSZeroRect)) { return; }
     
-    NSRect convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //subsplitview
+    NSRect convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //editorView
     if ((convertedRect.origin.y >= 0) &&
         (convertedRect.origin.y < [[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightBottom]))
     {
@@ -675,7 +676,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // フォントのみをフォントパネルに渡す
     // -> super にやらせると、テキストカラーもフォントパネルに送り、フォントパネルがさらにカラーパネル（= カラーコードパネル）にそのテキストカラーを渡すので、
     // それを断つために自分で渡す
-    [[NSFontPanel sharedFontPanel] setPanelFont:[self font] isMultiple:NO];
+    [[NSFontManager sharedFontManager] setSelectedFont:[self font] isMultiple:NO];
 }
 
 
@@ -925,8 +926,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // （その他の編集は、下記の通りの別の場所で置換している）
     // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextView > readSelectionFromPasteboard:type:
     //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
     //  * ドロップ（同一書類内） = CETextView > performDragOperation:
@@ -980,8 +981,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         // （その他の編集は、下記の通りの別の場所で置換している）
         // # テキスト編集時の改行コードの置換場所
         //  * ファイルオープン = CEDocument > setStringToEditor
-        //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-        //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+        //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+        //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
         //  * ペースト = CETextView > readSelectionFromPasteboard:type:
         //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
         //  * ドロップ（同一書類内） = CETextView > performDragOperation:

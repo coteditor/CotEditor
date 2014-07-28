@@ -151,7 +151,7 @@
 		8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
 		8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */; };
-		8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */; };
+		8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CEEditorView.m */; };
 		8CE4859908CD617B004817E1 /* CEApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4859708CD617B004817E1 /* CEApplication.m */; };
 		8CE5D6C80AC80A31005F5FDB /* Pref_Print.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5D6C70AC80A31005F5FDB /* Pref_Print.tiff */; };
 		8CE68107090A1C6900D50390 /* Pref_Appearance.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68100090A1C6900D50390 /* Pref_Appearance.tiff */; };
@@ -435,8 +435,8 @@
 		8CC5044208EE829500A525A6 /* CEPrintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintView.h; sourceTree = "<group>"; };
 		8CC5044308EE829500A525A6 /* CEPrintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintView.m; sourceTree = "<group>"; };
 		8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultMenuKeyBindings.plist; path = KeyBindings/DefaultMenuKeyBindings.plist; sourceTree = "<group>"; };
-		8CD7A93909CBDDDC00739513 /* CESubSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESubSplitView.h; sourceTree = "<group>"; };
-		8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESubSplitView.m; sourceTree = "<group>"; };
+		8CD7A93909CBDDDC00739513 /* CEEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEditorView.h; sourceTree = "<group>"; };
+		8CD7A93A09CBDDDC00739513 /* CEEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEditorView.m; sourceTree = "<group>"; };
 		8CE4859608CD617B004817E1 /* CEApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEApplication.h; sourceTree = "<group>"; };
 		8CE4859708CD617B004817E1 /* CEApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEApplication.m; sourceTree = "<group>"; };
 		8CE5D6C70AC80A31005F5FDB /* Pref_Print.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Print.tiff; path = toolbarIcons/Pref_Print.tiff; sourceTree = "<group>"; };
@@ -879,8 +879,8 @@
 				2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */,
 				2A5411BE1983E5FA008B43DA /* CESplitViewController.h */,
 				2A5411BF1983E5FA008B43DA /* CESplitViewController.m */,
-				8CD7A93909CBDDDC00739513 /* CESubSplitView.h */,
-				8CD7A93A09CBDDDC00739513 /* CESubSplitView.m */,
+				8CD7A93909CBDDDC00739513 /* CEEditorView.h */,
+				8CD7A93A09CBDDDC00739513 /* CEEditorView.m */,
 				8CF02E1308B9B9F8004044EB /* CENavigationBarController.h */,
 				8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */,
 			);
@@ -1188,7 +1188,7 @@
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,
 				2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */,
-				8CD7A93C09CBDDDC00739513 /* CESubSplitView.m in Sources */,
+				8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */,
 				2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,

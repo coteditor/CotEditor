@@ -152,7 +152,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
     CGFloat crDistance;
     {
-        NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:0 effectiveRange:NULL];
+        NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:0 effectiveRange:NULL withoutAdditionalLayout:YES];
         crDistance = numRect.origin.y - NSHeight(numRect);
         numRect = [self convertRect:numRect fromView:[self textView]];
         crDistance = numRect.origin.y - crDistance;
@@ -212,7 +212,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
             NSRange range;
-            NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+            NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
             numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
             numRect.origin.y = crDistance - NSMaxY(numRect);
             
@@ -252,7 +252,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     // Draw the last "extra" line number.
-    NSRect numRect = [layoutManager extraLineFragmentRect];
+    NSRect numRect = [layoutManager extraLineFragmentUsedRect];
     if (!NSEqualSizes(numRect.size, NSZeroSize)) {
         numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
         numRect.origin.y = crDistance - NSMaxY(numRect);

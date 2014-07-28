@@ -32,7 +32,7 @@
  */
 
 #import "CESplitViewController.h"
-#import "CESubSplitView.h"
+#import "CEEditorView.h"
 #import "constants.h"
 
 
@@ -55,8 +55,7 @@
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
-    [self updateOpenSubSplitViewButtons];
-    [[[[self view] window] firstResponder] setNextResponder:self];
+    [self updateOpenSplitViewButtons];
 }
 
 
@@ -97,7 +96,7 @@
 {
     NSMutableArray *managers = [NSMutableArray array];
     
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [managers addObject:[[subview textView] layoutManager]];
     }
     
@@ -110,7 +109,7 @@
 - (void)setShowLineNum:(BOOL)showLineNum
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setShowLineNum:showLineNum];
     }
 }
@@ -121,7 +120,7 @@
 - (void)setShowNavigationBar:(BOOL)showNavigationBar
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setShowNavigationBar:showNavigationBar];
     }
 }
@@ -132,7 +131,7 @@
 - (void)setWrapLines:(BOOL)wrapLines
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setWrapLines:wrapLines];
     }
     [[self view] setNeedsDisplay:YES];
@@ -144,7 +143,7 @@
 - (void)setShowInvisibles:(BOOL)showInvisibles
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setShowInvisibles:showInvisibles];
     }
 }
@@ -155,7 +154,7 @@
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setAutoTabExpandEnabled:isEnabled];
     }
 }
@@ -166,7 +165,7 @@
 - (void)setUseAntialias:(BOOL)useAntialias
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setUseAntialias:useAntialias];
     }
 }
@@ -174,13 +173,13 @@
 
 // ------------------------------------------------------
 /// テキストビュー分割削除ボタンの有効／無効を更新
-- (void)updateCloseSubSplitViewButton
+- (void)updateCloseSplitViewButton
 // ------------------------------------------------------
 {
     BOOL isEnabled = ([[[self view] subviews] count] > 1);
     
-    for (CESubSplitView *subview in [[self view] subviews]) {
-        [subview updateCloseSubSplitViewButton:isEnabled];
+    for (CEEditorView *subview in [[self view] subviews]) {
+        [subview updateCloseSplitViewButton:isEnabled];
     }
 }
 
@@ -190,7 +189,7 @@
 - (void)moveAllCaretToBeginning
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setCaretToBeginning];
     }
 }
@@ -203,7 +202,7 @@
 {
     if (!theme) { return; }
     
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         CETextView *textView = [subview textView];
         [textView setTheme:theme];
         [subview recolorAllTextViewString];
@@ -219,7 +218,7 @@
 {
     if (!syntaxName) { return; }
     
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setSyntaxWithName:syntaxName];
     }
 }
@@ -230,7 +229,7 @@
 - (void)recolorAllTextView
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview recolorAllTextViewString];
     }
     
@@ -247,7 +246,7 @@
 - (void)updateAllOutlineMenu
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview updateOutlineMenu];
     }
 }
@@ -258,7 +257,7 @@
 - (void)setAllBackgroundColorWithAlpha:(CGFloat)alpha
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [subview setBackgroundColorAlpha:alpha];
     }
 }
@@ -274,7 +273,7 @@
 {
     [[self splitView] setVertical:![[self splitView] isVertical]];
     
-    [self updateOpenSubSplitViewButtons];
+    [self updateOpenSplitViewButtons];
 }
 
 
@@ -301,10 +300,10 @@
 
 // ------------------------------------------------------
 /// 現在フォーカスのある分割ビューを返す
-- (CESubSplitView *)currentSubview
+- (CEEditorView *)currentSubview
 // ------------------------------------------------------
 {
-    return (CESubSplitView *)[(NSTextView *)[[[self view] window] firstResponder] delegate];
+    return (CEEditorView *)[(NSTextView *)[[[self view] window] firstResponder] delegate];
 }
 
 
@@ -319,7 +318,7 @@
     
     NSArray *subviews = [[self view] subviews];
     NSInteger index = [subviews indexOfObject:[self currentSubview]];
-    CESubSplitView *nextSubview;
+    CEEditorView *nextSubview;
     
     if (onNext) {  // == Next
         index++;
@@ -341,10 +340,10 @@
 
 // ------------------------------------------------------
 /// テキストビュー分割ボタンの画像を更新
-- (void)updateOpenSubSplitViewButtons
+- (void)updateOpenSplitViewButtons
 // ------------------------------------------------------
 {
-    for (CESubSplitView *subview in [[self view] subviews]) {
+    for (CEEditorView *subview in [[self view] subviews]) {
         [[subview navigationBar] setSplitOrientationVertical:[[self splitView] isVertical]];
     }
 }

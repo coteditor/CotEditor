@@ -139,8 +139,6 @@ static NSTimeInterval incompatibleCharInterval;
     [self setAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     
-    [[self window] setNextResponder:[self editor]];
-    
     // ドキュメントオブジェクトに CEEditorWrapper インスタンスをセット
     [[self document] setEditor:[self editor]];
     // テキストを表示
