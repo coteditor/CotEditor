@@ -91,6 +91,21 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// 全layoutManagerを配列で返す
+- (NSArray *)layoutManagers
+// ------------------------------------------------------
+{
+    NSMutableArray *managers = [NSMutableArray array];
+    
+    for (CESubSplitView *subview in [[self view] subviews]) {
+        [managers addObject:[[subview textView] layoutManager]];
+    }
+    
+    return [managers copy];
+}
+
+
+// ------------------------------------------------------
 /// 行番号表示の有無を設定
 - (void)setShowLineNum:(BOOL)showLineNum
 // ------------------------------------------------------

@@ -36,6 +36,8 @@
 
 @interface CESplitViewController : NSViewController <NSSplitViewDelegate>
 
+- (NSArray *)layoutManagers;
+
 - (void)setShowLineNum:(BOOL)showLineNum;
 - (void)setShowNavigationBar:(BOOL)showNavigationBar;
 - (void)setWrapLines:(BOOL)wrapLines;

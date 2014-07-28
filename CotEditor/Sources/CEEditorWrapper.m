@@ -128,7 +128,6 @@ static NSTimeInterval secondColoringDelay;
     
     [self setupViewParamsInInit:YES];
     [self setShowInvisibles:[self canActivateShowInvisibles]];
-    
 }
 
 
@@ -283,24 +282,6 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// フォントを返す
-- (NSFont *)font
-// ------------------------------------------------------
-{
-    return [[self textView] font];
-}
-
-
-// ------------------------------------------------------
-/// フォントをセット
-- (void)setFont:(NSFont *)font
-// ------------------------------------------------------
-{
-    [[self textView] setFont:font];
-}
-
-
-// ------------------------------------------------------
 /// 選択範囲を返す
 - (NSRange)selectedRange
 // ------------------------------------------------------
@@ -338,6 +319,24 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// フォントを返す
+- (NSFont *)font
+// ------------------------------------------------------
+{
+    return [[self textView] font];
+}
+
+
+// ------------------------------------------------------
+/// フォントをセット
+- (void)setFont:(NSFont *)font
+// ------------------------------------------------------
+{
+    [[self textView] setFont:font];
+}
+
+
+// ------------------------------------------------------
 /// 現在のエンコードにコンバートできない文字列をマークアップ
 - (void)markupRanges:(NSArray *)ranges
 // ------------------------------------------------------
@@ -345,7 +344,7 @@ static NSTimeInterval secondColoringDelay;
     NSColor *color = [[[self textView] theme] markupColor];
     
     // ハイライト
-    NSArray *layoutManagers = [self allLayoutManagers];
+    NSArray *layoutManagers = [[self splitViewController] layoutManagers];
     for (NSValue *rangeValue in ranges) {
         NSRange range = [rangeValue rangeValue];
         
@@ -362,7 +361,7 @@ static NSTimeInterval secondColoringDelay;
 - (void)clearAllMarkup
 // ------------------------------------------------------
 {
-    NSArray *managers = [self allLayoutManagers];
+    NSArray *managers = [[self splitViewController] layoutManagers];
     
     for (NSLayoutManager *manager in managers) {
         [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
@@ -846,21 +845,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
-}
-
-
-// ------------------------------------------------------
-/// 全layoutManagerを配列で返す
-- (NSArray *)allLayoutManagers
-// ------------------------------------------------------
-{
-    NSArray *subSplitViews = [[[self splitViewController] view] subviews];
-    NSMutableArray *managers = [NSMutableArray array];
-    
-    for (NSTextContainer *container in subSplitViews) {
-        [managers addObject:[[container textView] layoutManager]];
-    }
-    return managers;
 }
 
 
