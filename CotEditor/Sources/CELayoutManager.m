@@ -229,7 +229,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
                 CGContextShowGlyphsAtPositions(context, &fullwidthSpaceGlyph, &point, 1);
 
-            } else if (showOtherInvisibles && ([self glyphAtIndex:glyphIndex] == NSControlGlyph)) {
+            } else if (showOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
                 if (!replaceFont) {  // delay creating font/glyph till they are really needed
                     replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];
                     replaceGlyph = [replaceFont glyphWithName:@"replacement"];
