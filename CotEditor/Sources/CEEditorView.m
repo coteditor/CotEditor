@@ -171,6 +171,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                  selector:@selector(updateLineNumber:)
                                                      name:NSViewBoundsDidChangeNotification
                                                    object:[[self scrollView] contentView]];
+        
+        // リサイズに現在行ハイライトを追従
+        if (_highlightsCurrentLine) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(highlightCurrentLine)
+                                                         name:NSViewFrameDidChangeNotification
+                                                       object:[[self scrollView] contentView]];
+        }
     }
     return self;
 }
