@@ -277,7 +277,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [self cacheInvisibleGlyphs];
     [self buildEncodingMenuItems];
     [self setupSupportDirectory];
     
@@ -718,37 +717,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     for (NSString *themeName in themeNames) {
         [menu addItemWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
     }
-}
-
-
-//------------------------------------------------------
-/// 不可視文字列表示時のタイムラグを短縮するため、キャッシュしておく
-- (void)cacheInvisibleGlyphs
-//------------------------------------------------------
-{
-    NSMutableString *chars = [NSMutableString string];
-
-    for (NSUInteger i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleSpaceCharList[i] length:1]];
-    }
-    for (NSUInteger i = 0; i < k_size_of_invisibleTabCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleTabCharList[i] length:1]];
-    }
-    for (NSUInteger i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleNewLineCharList[i] length:1]];
-    }
-    for (NSUInteger i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
-        [chars appendString:[NSString stringWithCharacters:&k_invisibleFullwidthSpaceCharList[i] length:1]];
-    }
-    if ([chars length] < 1) { return; }
-
-    NSTextStorage *storage = [[NSTextStorage alloc] initWithString:chars];
-    CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-    NSTextContainer *container = [[NSTextContainer alloc] init];
-
-    [layoutManager addTextContainer:container];
-    [storage addLayoutManager:layoutManager];
-    [layoutManager glyphRangeForTextContainer:container];
 }
 
 @end
