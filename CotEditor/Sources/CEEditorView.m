@@ -430,15 +430,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self outlineMenuTimer]) { return; }
     
-    __block typeof(self) blockSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if ([[blockSelf textView] updateOutlineMenuItemSelection]) {
-            [[blockSelf navigationBar] selectOutlineMenuItemWithRange:[[blockSelf textView] selectedRange]];
-        } else {
-            [[blockSelf textView] setUpdateOutlineMenuItemSelection:YES];
-            [[blockSelf navigationBar] updatePrevNextButtonEnabled];
-        }
-    });
+    if ([[self textView] updateOutlineMenuItemSelection]) {
+        [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
+    } else {
+        [[self textView] setUpdateOutlineMenuItemSelection:YES];
+        [[self navigationBar] updatePrevNextButtonEnabled];
+    }
 }
 
 
