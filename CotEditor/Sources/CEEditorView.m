@@ -46,7 +46,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSTimer *lineNumUpdateTimer;
 @property (nonatomic) NSTimer *outlineMenuTimer;
 
-@property (nonatomic) BOOL highlightCurrentLine;
+@property (nonatomic) BOOL highlightsCurrentLine;
 @property (nonatomic) NSInteger lastCursorLocation;
 
 
@@ -82,7 +82,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        _highlightCurrentLine = [defaults boolForKey:k_key_highlightCurrentLine];
+        _highlightsCurrentLine = [defaults boolForKey:k_key_highlightCurrentLine];
 
         // LineNumberView 生成
         [self setLineNumberView:[[CELineNumberView alloc] initWithFrame:NSZeroRect]];
@@ -623,7 +623,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // カレント行をハイライト
-    [self showHighlightCurrentLine];
+    [self highlightCurrentLine];
 
     // 文書情報更新
     [[[self window] windowController] setupInfoUpdateTimer];
@@ -805,79 +805,46 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// カレント行をハイライト表示
-- (void)showHighlightCurrentLine
+- (void)highlightCurrentLine
 // ------------------------------------------------------
 {
-    if (![self highlightCurrentLine]) { return; }
+    if (![self highlightsCurrentLine]) { return; }
     
-    // 最初に（表示前に） TextView にテキストをセットした際にカーソルが一度文書末に行き、
-    // boundingRectForGlyphRange:inTextContainer: がムダに実行されるのを避ける (2014-07 by 1024jp)
+    // 最初に（表示前に） TextView にテキストをセットした際にムダに演算が実行されるのを避ける (2014-07 by 1024jp)
     if (![[self window] isVisible]) { return; }
     
-    // IMでの仮名漢字変換中に背景色がカレント行ハイライト色でなくテキスト背景色になることがあるため、行の文字数の変化や追加描画矩形の
-    // 比較では、描画をパスできない。
-    // hasMarkedText を使っても、変換確定の直前直後の区別がつかないことがあるので、愚直に全工程を実行している。 2008.05.31.
-
-    CELayoutManager *layoutManager = (CELayoutManager *)[[self textView] layoutManager];
-    NSRange lineRange = [[self string] lineRangeForRange:[[self textView] selectedRange]];
-    NSUInteger length = [[self string] length];
-
-    // 最終行の場合は attributes だけでベタ塗りできないので追加矩形を描画
-    // (boundingRectForGlyphRange:inTextContainer: がとにかく重いので極力必要なときだけ実行する)
-    if (NSMaxRange(lineRange) == length) {
-        NSRect additionalRect;
-        CETextView *textView = [self textView];
-        
-        if (NSMaxRange([textView selectedRange]) == length && [layoutManager extraLineFragmentTextContainer]) {  // 最終行が空行の時
-            additionalRect = [layoutManager extraLineFragmentRect];
-            additionalRect.origin.x = [[textView textContainer] lineFragmentPadding];
-            additionalRect.origin.y += [textView textContainerOrigin].y;
-            additionalRect.size.width -= 2 * [[textView textContainer] lineFragmentPadding];
-            
-        } else {
-            // 文字背景色でハイライトされる矩形を取得
-            NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL];
-            NSRect attrsRect = [layoutManager boundingRectForGlyphRange:glyphRange
-                                                        inTextContainer:[textView textContainer]];
-            // 文字背景色を塗っても右側に生じる「空白」の矩形を得る
-            CGFloat additionalWidth = [[textView textContainer] containerSize].width
-                                    - attrsRect.size.width - attrsRect.origin.x
-                                    - [textView textContainerInset].width
-                                    - [[textView textContainer] lineFragmentPadding];
-            additionalRect = NSMakeRect(NSMaxX(attrsRect),
-                                        NSMinY(attrsRect) + [textView textContainerOrigin].y,
-                                        additionalWidth,
-                                        [layoutManager lineHeight]);
-        }
-        
-        // 追加描画矩形を描画する
-        if (!NSEqualRects([textView highlightLineAdditionalRect], additionalRect)) {
-            [textView setNeedsDisplayInRect:[textView highlightLineAdditionalRect]];
-            [textView setHighlightLineAdditionalRect:additionalRect];
-            [textView setNeedsDisplayInRect:additionalRect];
-        }
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
+    CETextView *textView = [self textView];
+    NSRect rect;
+    
+    // 選択行の矩形を得る
+    if ([textView selectedRange].location == [[self string] length] && [layoutManager extraLineFragmentTextContainer]) {  // 最終行
+        rect = [layoutManager extraLineFragmentRect];
         
     } else {
-        // 最終行でないときは過去の追加矩形の削除のみしてあとは attributes にまかせる
-        [[self textView] setNeedsDisplayInRect:[[self textView] highlightLineAdditionalRect]];
-        [[self textView] setHighlightLineAdditionalRect:NSZeroRect];
+        NSRange lineRange = [[self string] lineRangeForRange:[textView selectedRange]];
+        lineRange.length -= (lineRange.length > 0) ? 1 : 0;  // remove line ending
+        NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL];
+        
+        rect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:[textView textContainer]];
+        rect.size.width = [[textView textContainer] containerSize].width;
     }
-
-    // 古い範囲の文字背景色を削除し、新しい範囲にセット
-    // （文字列が削除されたときも実行されるので、範囲を検証しておかないと例外が発生する）
-    NSRange removeAttrsRange = NSMakeRange(0, [[self textStorage] length]);
     
-    // 検索パネルのハイライトや非互換文字表示で使っているlayoutManのaddTemporaryAttributesと衝突しないように、
-    // NSTextStorageの背景色を使っている。addTemporaryAttributesよりも後ろに描画されるので、
-    // これら検索パネルのハイライト／非互換文字表示／カレント行のハイライトが全て表示できる。
-    // ただし、テキストビュー分割時にアクティブでないものも含めて全てのテキストビューがハイライトされてしまう。
-    // これは、全テキストビューのtextStorageが共通であることに起因するので、構造を変更しない限り解決できない。2008.06.07.
-    [[self textStorage] beginEditing];
-    if (removeAttrsRange.length > 0) {
-        [[self textStorage] removeAttribute:NSBackgroundColorAttributeName range:removeAttrsRange];
+    // 周囲の空白の調整
+    CGFloat padding = [[textView textContainer] lineFragmentPadding];
+    rect.origin.x = padding;
+    rect.size.width -= 2 * padding;
+    rect = NSOffsetRect(rect, [textView textContainerOrigin].x, [textView textContainerOrigin].y);
+    
+    // ハイライト矩形を描画
+    if (!NSEqualRects([textView highlightLineRect], rect)) {
+        // clear previous highlihght
+        [textView setNeedsDisplayInRect:[textView highlightLineRect] avoidAdditionalLayout:YES];
+        
+        // draw highlight
+        [textView setHighlightLineRect:rect];
+        [textView setNeedsDisplayInRect:rect avoidAdditionalLayout:YES];
     }
-    [[self textStorage] addAttribute:NSBackgroundColorAttributeName value:[[self textView] highlightLineColor] range:lineRange];
-    [[self textStorage] endEditing];
 }
 
 @end

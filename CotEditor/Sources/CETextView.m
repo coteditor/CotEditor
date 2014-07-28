@@ -134,7 +134,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
         [self setUpdateOutlineMenuItemSelection:YES];
-        [self setHighlightLineAdditionalRect:NSZeroRect];
         
         [self applyTypingAttributes];
         
@@ -563,15 +562,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
+
 // ------------------------------------------------------
-/// ビュー内を描画
-- (void)drawRect:(NSRect)inRect
+/// ビュー内の背景を描画
+- (void)drawViewBackgroundInRect:(NSRect)rect
 // ------------------------------------------------------
 {
-    [super drawRect:inRect];
-
-    [self drawHighlightLineAdditionalRect];
-
+    [super drawViewBackgroundInRect:rect];
+    
+    // 現在行ハイライト描画
+    if (NSWidth([self highlightLineRect]) > 0) {
+        [[self highlightLineColor] set];
+        [NSBezierPath fillRect:[self highlightLineRect]];
+    }
+    
     // ページガイド描画
     if ([(CEEditorView *)[self delegate] showPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
@@ -592,6 +596,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
     }
+}
+
+
+// ------------------------------------------------------
+/// ビュー内を描画
+- (void)drawRect:(NSRect)dirtyRect
+// ------------------------------------------------------
+{
+    [super drawRect:dirtyRect];
     
     // テキストビューを透過させている時に影を更新描画する
     if ([[self backgroundColor] alphaComponent] < 1.0) {
@@ -702,18 +715,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                 userInfo:nil
                                                                  repeats:NO]];
     }
-}
-
-
-// ------------------------------------------------------
-/// ハイライト行追加表示
-- (void)drawHighlightLineAdditionalRect
-// ------------------------------------------------------
-{
-    if (NSWidth([self highlightLineAdditionalRect]) == 0) { return; }
-
-    [[self highlightLineColor] set];
-    [NSBezierPath fillRect:[self highlightLineAdditionalRect]];
 }
 
 

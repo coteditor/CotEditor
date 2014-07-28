@@ -51,7 +51,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL isSelfDrop;  // 自己内ドラッグ&ドロップなのか
 @property (nonatomic) BOOL isReadingFromPboard;  // ペーストまたはドロップ実行中なのか
 @property (nonatomic) CGFloat lineSpacing;
-@property (nonatomic) NSRect highlightLineAdditionalRect;  // ハイライト行で追加表示する矩形
+@property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
 @property (nonatomic) BOOL isAutoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
@@ -69,7 +69,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // Public method
 - (void)completeAfterDelay:(NSTimeInterval)delay;
-- (void)drawHighlightLineAdditionalRect;
 - (void)applyTypingAttributes;
 - (void)replaceSelectedStringTo:(NSString *)inString scroll:(BOOL)inBoolScroll;
 - (void)replaceAllStringTo:(NSString *)inString;
