@@ -447,7 +447,6 @@
 		8CE68104090A1C6900D50390 /* Pref_KeyBinding.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_KeyBinding.tiff; path = toolbarIcons/Pref_KeyBinding.tiff; sourceTree = "<group>"; };
 		8CE68105090A1C6900D50390 /* Pref_Format.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Format.tiff; path = toolbarIcons/Pref_Format.tiff; sourceTree = "<group>"; };
 		8CE68106090A1C6900D50390 /* Pref_Window.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Window.tiff; path = toolbarIcons/Pref_Window.tiff; sourceTree = "<group>"; };
-		8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEBUG_macro.h; sourceTree = "<group>"; };
 		8CEF66C00995E47F00C65A84 /* InvisibleChar_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = InvisibleChar_Hide.tiff; path = toolbarIcons/InvisibleChar_Hide.tiff; sourceTree = "<group>"; };
 		8CEF66C10995E47F00C65A84 /* InvisibleChar_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = InvisibleChar_Show.tiff; path = toolbarIcons/InvisibleChar_Show.tiff; sourceTree = "<group>"; };
 		8CEF66C40995E4A700C65A84 /* PageGuide_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PageGuide_Hide.tiff; path = toolbarIcons/PageGuide_Hide.tiff; sourceTree = "<group>"; };
@@ -676,7 +675,6 @@
 				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
 				2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */,
 				2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */,
-				8CEA5AC3086F9255002CDFAB /* DEBUG_macro.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
