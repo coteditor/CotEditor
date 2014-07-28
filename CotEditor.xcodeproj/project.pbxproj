@@ -86,6 +86,7 @@
 		2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
 		2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
+		2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8711671986DAEC009FA1C0 /* NSString+MD5.m */; };
 		2A8FFCEC19401528008F66BE /* CEAlphaColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FFCEB19401528008F66BE /* CEAlphaColorWell.m */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
 		2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
@@ -331,6 +332,8 @@
 		2A7846DD18FE0C0C006BDF00 /* CETheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETheme.m; sourceTree = "<group>"; };
 		2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
+		2A8711661986DAEC009FA1C0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		2A8711671986DAEC009FA1C0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		2A8FFCEA19401528008F66BE /* CEAlphaColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAlphaColorWell.h; sourceTree = "<group>"; };
 		2A8FFCEB19401528008F66BE /* CEAlphaColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEAlphaColorWell.m; sourceTree = "<group>"; };
 		2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+ScriptingSupport.h"; sourceTree = "<group>"; };
@@ -671,6 +674,8 @@
 				2AD5322919779FD000A925CA /* CELineHeightTransformer.m */,
 				2A8663DB18C9F6B600A6F9CC /* NSData+MD5.h */,
 				2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */,
+				2A8711661986DAEC009FA1C0 /* NSString+MD5.h */,
+				2A8711671986DAEC009FA1C0 /* NSString+MD5.m */,
 				2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */,
 				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
 				2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */,
@@ -1188,6 +1193,7 @@
 				2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */,
 				2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */,
+				2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */,
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,

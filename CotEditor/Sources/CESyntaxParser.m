@@ -36,6 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntaxManager.h"
 #import "CEIndicatorSheetController.h"
 #import "RegexKitLite.h"
+#import "NSString+MD5.h"
 #import "constants.h"
 
 
@@ -75,7 +76,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
 @property (atomic, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
 @property (atomic, copy) NSArray *cacheColorings;  // extracting results cache of the last whole string coloring
-@property (atomic) NSUInteger cacheHash;
+@property (atomic, copy) NSString *cacheHash;  // MD5 hash
 @property (atomic) dispatch_queue_t coloringQueue;
 
 @property (atomic, copy) NSString *coloringString;  // カラーリング対象文字列　extractAllSyntaxFromString: 冒頭でセットされる
@@ -300,7 +301,7 @@ static CGFloat kPerCompoIncrement;
     NSRange range = NSMakeRange(0, [wholeString length]);
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
-    if ([wholeString hash] == [self cacheHash]) {
+    if ([[wholeString MD5] isEqualToString:[self cacheHash]]) {
         [self applyColorings:[self cacheColorings] range:range];
     } else {
         [self colorString:wholeString range:range onMainThread:[self isPrinting]];
@@ -1009,7 +1010,7 @@ static CGFloat kPerCompoIncrement;
         // 全文を抽出した場合は抽出結果をキャッシュする
         if (([colorings count] > 0) && (coloringRange.length == [wholeString length])) {
             [blockSelf setCacheColorings:colorings];
-            [blockSelf setCacheHash:[wholeString hash]];
+            [blockSelf setCacheHash:[wholeString MD5]];
         }
     };
     
