@@ -73,10 +73,11 @@
                         <action selector="closeSplitTextView:" target="-1" id="5eI-4r-7d7"/>
                     </connections>
                 </button>
-                <popUpButton verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DpS-Kt-hzm">
+                <popUpButton horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DpS-Kt-hzm">
                     <rect key="frame" x="51" y="-1" width="300" height="19"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="c7e-CV-OBo"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="c7e-CV-OBo"/>
+                        <constraint firstAttribute="width" priority="251" constant="300" id="clQ-8t-N8n"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g73-Rx-Es7" customClass="CEOutlineMenuButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -114,6 +115,7 @@
                 <constraint firstItem="dmz-oV-5PB" firstAttribute="centerY" secondItem="aUE-uy-XLQ" secondAttribute="centerY" id="DnV-nM-v3e"/>
                 <constraint firstAttribute="bottom" secondItem="DpS-Kt-hzm" secondAttribute="bottom" priority="750" id="EG2-Ys-UNt"/>
                 <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="-1" id="EMn-Rp-qEZ"/>
+                <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BUj-TD-scp" secondAttribute="trailing" constant="-1" id="FKO-3T-8ge"/>
                 <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="DpS-Kt-hzm" secondAttribute="trailing" constant="-1" id="G17-hO-3OV"/>
                 <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="-1" id="Iaq-ix-Y1D"/>
                 <constraint firstAttribute="centerY" secondItem="dmz-oV-5PB" secondAttribute="centerY" id="Vba-Oy-CJO"/>

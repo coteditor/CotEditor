@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -73,10 +74,11 @@
                         <action selector="closeSplitTextView:" target="-1" id="5eI-4r-7d7"/>
                     </connections>
                 </button>
-                <popUpButton verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DpS-Kt-hzm">
+                <popUpButton horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DpS-Kt-hzm">
                     <rect key="frame" x="51" y="-1" width="300" height="19"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="c7e-CV-OBo"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="Vms-I5-laT"/>
+                        <constraint firstAttribute="width" priority="251" constant="300" id="c7e-CV-OBo"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g73-Rx-Es7" customClass="CEOutlineMenuButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -121,6 +123,7 @@
                 <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="-1" id="bK7-kZ-LYL"/>
                 <constraint firstItem="DpS-Kt-hzm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="-1" id="cJb-sP-hHA"/>
                 <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="-1" id="cQZ-8M-KVZ"/>
+                <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BUj-TD-scp" secondAttribute="trailing" constant="-1" id="jV0-Ts-LUi"/>
                 <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="-1" id="kQP-Ap-Eba"/>
                 <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" priority="750" id="mfh-Y4-05A"/>
                 <constraint firstItem="dmz-oV-5PB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="60" id="nDC-oP-cob"/>

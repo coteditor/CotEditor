@@ -39,6 +39,7 @@
 
 @interface CESplitViewController : NSViewController <NSSplitViewDelegate>
 
+- (NSSplitView *)splitView;
 - (NSArray *)layoutManagers;
 
 - (void)setShowLineNum:(BOOL)showLineNum;
