@@ -115,7 +115,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         if ([defaults boolForKey:k_key_layoutTextVertical]) {
             [self setLayoutOrientation:NSTextLayoutOrientationVertical];
         }
-        [self setBackgroundAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
         [self setFont:font];
         [self setMinSize:frameRect.size];
         [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
