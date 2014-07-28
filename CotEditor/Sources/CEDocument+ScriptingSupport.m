@@ -317,7 +317,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         success = NO;
     } else if (encoding == [self encoding]) {
         success = YES;
-    } else if ([self stringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding xattr:NO]) {
+    } else if ([self readStringFromData:[NSData dataWithContentsOfURL:[self fileURL]] encoding:encoding xattr:NO]) {
         [self setStringToEditor];
         // ダーティーフラグをクリア
         [self updateChangeCount:NSChangeCleared];

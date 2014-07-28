@@ -533,7 +533,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 //------------------------------------------------------
 /// データから指定エンコードで文字列を得る
-- (BOOL)stringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)checksXattr
+- (BOOL)readStringFromData:(NSData *)data encoding:(NSStringEncoding)encoding xattr:(BOOL)checksXattr
 //------------------------------------------------------
 {
     NSString *string = nil;
@@ -1365,7 +1365,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         }
     }
     if (!success) {
-        success = [self stringFromData:data encoding:newEncoding xattr:isEA];
+        success = [self readStringFromData:data encoding:newEncoding xattr:isEA];
     }
     if (success) {
         // 保持しているファイル情報／表示する文書情報を更新
