@@ -713,11 +713,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[[self window] windowController] setupInfoUpdateTimer];
+    
     // 全テキストを再カラーリング
     __block typeof(self) blockSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [blockSelf recolorAllTextViewString];
     });
+    
     // 行番号、アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
 }
