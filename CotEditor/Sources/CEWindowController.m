@@ -256,7 +256,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
     
-    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[self editor] string];
+    NSString *wholeString = ([[[self document] lineEndingString] length] == 2) ? [[self document] stringForSave] : [[[self editor] string] copy];
     NSString *selectedString = [[self editor] substringWithSelection] ? : @"";
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editor] selectedRange];
