@@ -30,7 +30,7 @@
  =================================================
  */
 
-@import Foundation;
+@import AppKit;
 
 
 // keys for theme dict

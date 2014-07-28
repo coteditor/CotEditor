@@ -36,6 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CETextView.h"
+#import "CELineNumberView.h"
 #import "CEEditorWrapper.h"
 #import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"

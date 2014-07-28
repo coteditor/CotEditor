@@ -43,6 +43,4 @@ typedef NS_ENUM(NSUInteger, CEKeyCatchMode) {
 
 @interface CEApplication : NSApplication
 
-@property (nonatomic) CEKeyCatchMode keyCatchMode;
-
 @end

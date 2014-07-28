@@ -853,10 +853,10 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="289" userLabel="OgreTextFinder" customClass="OgreTextFinder"/>
-        <customObject id="290" userLabel="App Delegate" customClass="CEAppDelegate"/>
-        <customObject id="329" userLabel="Document Controller" customClass="CEDocumentController"/>
-        <customObject id="432" userLabel="Font Manager" customClass="NSFontManager"/>
+        <customObject id="289" customClass="OgreTextFinder"/>
+        <customObject id="290" customClass="CEAppDelegate"/>
+        <customObject id="329" customClass="CEDocumentController"/>
+        <customObject id="432" customClass="NSFontManager"/>
         <customObject id="831" customClass="SUUpdater"/>
     </objects>
     <resources>

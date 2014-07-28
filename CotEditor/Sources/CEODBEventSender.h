@@ -30,7 +30,7 @@
  =================================================
  */
 
-@import Foundation;
+@import AppKit;
 
 
 @interface CEODBEventSender : NSObject

@@ -35,6 +35,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "constants.h"
 
 
+@interface CEApplication ()
+
+@property (nonatomic) CEKeyCatchMode keyCatchMode;
+
+@end
+
+
+
+
+#pragma -
+
 @implementation CEApplication
 
 #pragma mark NSApplication Methods
@@ -51,7 +62,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        [self setKeyCatchMode:CEKeyDownNoCatchMode];
+        _keyCatchMode = CEKeyDownNoCatchMode;
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(setKeyCatchModeWithNotification:)
                                                      name:CESetKeyCatchModeToCatchMenuShortcutNotification
@@ -79,33 +91,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (([self keyCatchMode] == CECatchMenuShortCutMode) && ([anEvent type] == NSKeyDown)) {
         NSString *charIgnoringMod = [anEvent charactersIgnoringModifiers];
         if ([charIgnoringMod length] > 0) {
-            unichar theChar = [charIgnoringMod characterAtIndex:0];
             NSUInteger modifierFlags = [anEvent modifierFlags];
             NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
 
             // Backspace または delete キーが押されていた時、是正する
             // （return 上の方にあるのが Backspace、テンキーとのあいだにある「delete」の刻印があるのが delete(forword)）
-            if (theChar == NSDeleteCharacter) {
-                unichar BSChar = NSBackspaceCharacter;
-                charIgnoringMod = [NSString stringWithCharacters:&BSChar length:1];
-            } else if (theChar == NSDeleteFunctionKey) {
-                unichar deleteForwardChar = NSDeleteCharacter;
-                charIgnoringMod = [NSString stringWithCharacters:&deleteForwardChar length:1];
+            switch ([charIgnoringMod characterAtIndex:0]) {
+                case NSDeleteCharacter:
+                    charIgnoringMod = [NSString stringWithFormat:@"%C", (unichar)NSBackspaceCharacter];
+                    break;
+                case NSDeleteFunctionKey:
+                    charIgnoringMod = [NSString stringWithFormat:@"%C", (unichar)NSDeleteCharacter];
+                    break;
             }
             // 不要なシフトを削除
             if ([ignoringShiftSet characterIsMember:[charIgnoringMod characterAtIndex:0]] &&
                 (modifierFlags & NSShiftKeyMask)) {
                 modifierFlags ^= NSShiftKeyMask;
             }
-            NSDictionary *userInfo = @{k_keyBindingModFlags: @(modifierFlags),
-                                       k_keyBindingChar: charIgnoringMod};
             [[NSNotificationCenter defaultCenter] postNotificationName:CECatchMenuShortcutNotification
                                                                 object:self
-                                                              userInfo:userInfo];
+                                                              userInfo:@{k_keyBindingModFlags: @(modifierFlags),
+                                                                         k_keyBindingChar: charIgnoringMod}];
             [self setKeyCatchMode:CEKeyDownNoCatchMode];
             return;
         }
     }
+    
     [super sendEvent:anEvent];
 }
 
@@ -123,7 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setKeyCatchModeWithNotification:(NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    NSInteger mode = [[aNotification userInfo][k_keyCatchMode] integerValue];
+    CEKeyCatchMode mode = [[aNotification userInfo][k_keyCatchMode] integerValue];
 
     [self setKeyCatchMode:mode];
 }

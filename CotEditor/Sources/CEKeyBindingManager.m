@@ -115,7 +115,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super init];
     if (self) {
-        [self setUnprintableKeyDict:[self unprintableKeyDictionary]];
+        _unprintableKeyDict = [self unprintableKeyDictionary];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addCatchedMenuShortcutString:)
                                                      name:CECatchMenuShortcutNotification

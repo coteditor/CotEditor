@@ -217,10 +217,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-#pragma mark Public Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// Public method
+// Superclass method
 //
 //=======================================================
 
@@ -232,6 +232,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
+
+#pragma mark Public Methods
+
+//=======================================================
+// Public method
+//
+//=======================================================
 
 //------------------------------------------------------
 /// エンコーディングメニューアイテムを生成
@@ -478,7 +486,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if (([menuItem action] == @selector(openLineSpacingPanel:)) ||
         ([menuItem action] == @selector(openUnicodeInputPanel:))) {
-        return ([[CEDocumentController sharedDocumentController] currentDocument] != nil);
+        return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
     return YES;
