@@ -431,8 +431,8 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // （その他の編集は、下記の通りの別の場所で置換している）
     // # テキスト編集時の改行コードの置換場所
     //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CESubSplitView > textView:shouldChangeTextInRange:replacementString:
+    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
     //  * ペースト = CETextView > readSelectionFromPasteboard:type:
     //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
     //  * ドロップ（同一書類内） = CETextView > performDragOperation:

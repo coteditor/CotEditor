@@ -47,7 +47,7 @@
 - (void)setShowInvisibles:(BOOL)showInvisibles;
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUseAntialias:(BOOL)useAntialias;
-- (void)updateCloseSubSplitViewButton;
+- (void)updateCloseSplitViewButton;
 
 - (void)moveAllCaretToBeginning;
 - (void)setTheme:(CETheme *)theme;

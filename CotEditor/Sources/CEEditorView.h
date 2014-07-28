@@ -1,6 +1,6 @@
 /*
 =================================================
-CESubSplitView
+CEEditorView
 (for CotEditor)
 
  Copyright (C) 2004-2007 nakamuxu.
@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntaxParser.h"
 
 
-@interface CESubSplitView : NSView <NSTextViewDelegate>
+@interface CEEditorView : NSView <NSTextViewDelegate>
 
 @property (nonatomic, weak) CEEditorWrapper *editorWrapper;
 
@@ -58,7 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setShowInvisibles:(BOOL)showInvisibles;
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUseAntialias:(BOOL)useAntialias;
-- (void)updateCloseSubSplitViewButton:(BOOL)isEnabled;
+- (void)updateCloseSplitViewButton:(BOOL)isEnabled;
 - (BOOL)showPageGuide;
 - (void)setCaretToBeginning;
 - (void)setSyntaxWithName:(NSString *)styleName;

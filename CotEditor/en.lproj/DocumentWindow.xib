@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
-                <outlet property="editorWrapper" destination="Asc-bK-hKW" id="1Xo-9x-UxR"/>
+                <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="infoNumberFormatter" destination="ZXE-Ki-WDP" id="3BB-um-DS8"/>
                 <outlet property="listController" destination="127" id="MCZ-Mu-qnF"/>
                 <outlet property="listErrorTextField" destination="150" id="0O5-Mn-dHK"/>
@@ -33,7 +34,7 @@
                     <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="Ezm-P5-z5i" customClass="CESplitView">
                         <rect key="frame" x="0.0" y="20" width="507" height="393"/>
                         <subviews>
-                            <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CESubSplitView">
+                            <customView fixedFrame="YES" id="xVz-uL-qne" customClass="CEEditorView">
                                 <rect key="frame" x="0.0" y="0.0" width="507" height="393"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </customView>
@@ -1090,6 +1091,11 @@
                 <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>
             </connections>
         </customObject>
+        <customObject id="Asc-bK-hKW" customClass="CEEditorWrapper">
+            <connections>
+                <outlet property="splitViewController" destination="cfo-zY-w3h" id="ZU8-hM-dOd"/>
+            </connections>
+        </customObject>
         <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">
             <connections>
                 <outlet property="decimalFormatter" destination="ZXE-Ki-WDP" id="DI4-1N-0dW"/>
@@ -1097,11 +1103,6 @@
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
             </connections>
         </viewController>
-        <customObject id="Asc-bK-hKW" customClass="CEEditorWrapper">
-            <connections>
-                <outlet property="splitViewController" destination="cfo-zY-w3h" id="ZU8-hM-dOd"/>
-            </connections>
-        </customObject>
         <viewController id="cfo-zY-w3h" customClass="CESplitViewController">
             <connections>
                 <outlet property="view" destination="Ezm-P5-z5i" id="UCd-p0-0fe"/>

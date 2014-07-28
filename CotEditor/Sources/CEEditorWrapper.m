@@ -122,9 +122,12 @@ static NSTimeInterval secondColoringDelay;
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    CESubSplitView *subSplitView = [[[self splitViewController] view] subviews][0];
-    [subSplitView setEditorWrapper:self];
-    [self setTextView:[subSplitView textView]];
+    [[self window] setNextResponder:self];
+    [self setNextResponder:[self splitViewController]];
+    
+    CEEditorView *editorView = [[[self splitViewController] view] subviews][0];
+    [editorView setEditorWrapper:self];
+    [self setTextView:[editorView textView]];
     
     [self setupViewParamsInInit:YES];
     [self setShowInvisibles:[self canActivateShowInvisibles]];
@@ -727,43 +730,43 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)openSplitTextView:(id)sender
 // ------------------------------------------------------
 {
-    CESubSplitView *currentSubSplitView;
+    CEEditorView *currentEditorView;
     
-    // 閉じるべき CESubSplitView を探す
+    // 呼び元の CEEditorView を探す
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
-        if ([view isKindOfClass:[CESubSplitView class]]) {
-            currentSubSplitView = (CESubSplitView *)view;
+        if ([view isKindOfClass:[CEEditorView class]]) {
+            currentEditorView = (CEEditorView *)view;
             break;
         }
         view = [view superview];
     }
     
-    if (!currentSubSplitView) { return; }
+    if (!currentEditorView) { return; }
     
-    NSRange selectedRange = [[currentSubSplitView textView] selectedRange];
-    CESubSplitView *subSplitView = [[CESubSplitView alloc] initWithFrame:[currentSubSplitView frame]];
+    NSRange selectedRange = [[currentEditorView textView] selectedRange];
+    CEEditorView *editorView = [[CEEditorView alloc] initWithFrame:[currentEditorView frame]];
 
-    [subSplitView replaceTextStorage:[[self textView] textStorage]];
-    [subSplitView setEditorWrapper:self];
-    // あらたなsubViewは、押された追加ボタンが属する（またはフォーカスのある）subSplitViewのすぐ下に挿入する
-    [[[self splitViewController] view] addSubview:subSplitView positioned:NSWindowAbove relativeTo:currentSubSplitView];
+    [editorView replaceTextStorage:[[self textView] textStorage]];
+    [editorView setEditorWrapper:self];
+    // 新たな subView は、押された追加ボタンが属する（またはフォーカスのある）editorView のすぐ下に挿入する
+    [[[self splitViewController] view] addSubview:editorView positioned:NSWindowAbove relativeTo:currentEditorView];
     [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
     [self setupViewParamsInInit:NO];
-    [[subSplitView textView] setFont:[[self textView] font]];
-    [[subSplitView textView] setTheme:[self theme]];
-    [[subSplitView textView] setLineSpacing:[[self textView] lineSpacing]];
+    [[editorView textView] setFont:[[self textView] font]];
+    [[editorView textView] setTheme:[self theme]];
+    [[editorView textView] setLineSpacing:[[self textView] lineSpacing]];
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
-    [[subSplitView textView] setSelectedRange:selectedRange];
+    [[editorView textView] setSelectedRange:selectedRange];
     [(NSSplitView *)[[self splitViewController] view] adjustSubviews];
-    [subSplitView setSyntaxWithName:[[self syntaxParser] styleName]];
-    [[subSplitView syntaxParser] colorAllString:[self string]];
+    [editorView setSyntaxWithName:[[self syntaxParser] styleName]];
+    [[editorView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];
-    [[self window] makeFirstResponder:[subSplitView textView]];
-    [[subSplitView textView] setLineEndingString:[[self document] lineEndingString]];
-    [[subSplitView textView] centerSelectionInVisibleArea:self];
-    [subSplitView setShowNavigationBar:[self showNavigationBar]];  // update navigation bar layout (おそらくAutolayoutならいらない)
-    [[self splitViewController] updateCloseSubSplitViewButton];
+    [[self window] makeFirstResponder:[editorView textView]];
+    [[editorView textView] setLineEndingString:[[self document] lineEndingString]];
+    [[editorView textView] centerSelectionInVisibleArea:self];
+    [editorView setShowNavigationBar:[self showNavigationBar]];  // update navigation bar layout (おそらくAutolayoutならいらない)
+    [[self splitViewController] updateCloseSplitViewButton];
 }
 
 
@@ -772,25 +775,25 @@ static NSTimeInterval secondColoringDelay;
 - (IBAction)closeSplitTextView:(id)sender
 // ------------------------------------------------------
 {
-    CESubSplitView *subSplitViewToClose;
+    CEEditorView *editorViewToClose;
     
-    // 閉じるべき CESubSplitView を探す
+    // 閉じるべき CEEditorView を探す
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
-        if ([view isKindOfClass:[CESubSplitView class]]) {
-            subSplitViewToClose = (CESubSplitView *)view;
+        if ([view isKindOfClass:[CEEditorView class]]) {
+            editorViewToClose = (CEEditorView *)view;
             break;
         }
         view = [view superview];
     }
     
-    if (!subSplitViewToClose) { return; }
+    if (!editorViewToClose) { return; }
     
     // フォーカスのあるテキストビューの場合はフォーカスを隣に移す
-    if ([[self window] firstResponder] == [subSplitViewToClose textView]) {
+    if ([[self window] firstResponder] == [editorViewToClose textView]) {
         NSArray *subViews = [[[self splitViewController] view] subviews];
         NSUInteger count = [subViews count];
-        NSUInteger deleteIndex = [subViews indexOfObject:subSplitViewToClose];
+        NSUInteger deleteIndex = [subViews indexOfObject:editorViewToClose];
         NSUInteger index = deleteIndex + 1;
         if (index >= count) {
             index = count - 2;
@@ -799,8 +802,8 @@ static NSTimeInterval secondColoringDelay;
     }
     
     // 閉じる
-    [subSplitViewToClose removeFromSuperview];
-    [[self splitViewController] updateCloseSubSplitViewButton];
+    [editorViewToClose removeFromSuperview];
+    [[self splitViewController] updateCloseSplitViewButton];
 }
 
 
@@ -856,7 +859,7 @@ static NSTimeInterval secondColoringDelay;
 - (CENavigationBarController *)navigationBar
 // ------------------------------------------------------
 {
-    return [(CESubSplitView *)[[self textView] delegate] navigationBar];
+    return [(CEEditorView *)[[self textView] delegate] navigationBar];
 }
 
 
@@ -865,7 +868,7 @@ static NSTimeInterval secondColoringDelay;
 - (CESyntaxParser *)syntaxParser
 // ------------------------------------------------------
 {
-    return [(CESubSplitView *)[[self textView] delegate] syntaxParser];
+    return [(CEEditorView *)[[self textView] delegate] syntaxParser];
 }
 
 
