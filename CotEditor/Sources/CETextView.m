@@ -134,7 +134,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
         [self setUpdateOutlineMenuItemSelection:YES];
-        [self setHighlightLineAdditionalRect:NSZeroRect];
         
         [self applyTypingAttributes];
         
@@ -572,9 +571,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super drawViewBackgroundInRect:rect];
     
     // 現在行ハイライト描画
-    if (NSWidth([self highlightLineAdditionalRect]) > 0) {
+    if (NSWidth([self highlightLineRect]) > 0) {
         [[self highlightLineColor] set];
-        [NSBezierPath fillRect:[self highlightLineAdditionalRect]];
+        [NSBezierPath fillRect:[self highlightLineRect]];
     }
     
     // ページガイド描画
