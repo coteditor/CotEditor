@@ -37,9 +37,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 =================================================
 */
 
+@import CoreText;
 #import "CELayoutManager.h"
 #import "CETextViewProtocol.h"
-#import "CEPrintView.h"
 #import "CEATSTypesetter.h"
 #import "CEUtils.h"
 #import "constants.h"
@@ -47,10 +47,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CELayoutManager ()
 
-@property (nonatomic, copy) NSString *spaceCharacter;
-@property (nonatomic, copy) NSString *tabCharacter;
-@property (nonatomic, copy, getter=theNewLineCharacter) NSString *newLineCharacter;  // newから始まるproperty名が使えないためgetterにtheを付けている
-@property (nonatomic, copy) NSString *fullwidthSpaceCharacter;
+@property (nonatomic) unichar spaceChar;
+@property (nonatomic) unichar tabChar;
+@property (nonatomic) unichar newLineChar;
+@property (nonatomic) unichar fullwidthSpaceChar;
 
 // readonly properties
 @property (nonatomic, readwrite) CGFloat textFontPointSize;
@@ -81,17 +81,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self = [super init]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [self setSpaceCharacter:[CEUtils invisibleSpaceCharacter:[defaults integerForKey:k_key_invisibleSpace]]];
-        [self setTabCharacter:[CEUtils invisibleTabCharacter:[defaults integerForKey:k_key_invisibleTab]]];
-        [self setNewLineCharacter:[CEUtils invisibleNewLineCharacter:[defaults integerForKey:k_key_invisibleNewLine]]];
-        [self setFullwidthSpaceCharacter:[CEUtils invisibleFullwidthSpaceCharacter:[defaults integerForKey:k_key_invisibleFullwidthSpace]]];
+        _spaceChar = [CEUtils invisibleSpaceChar:[defaults integerForKey:k_key_invisibleSpace]];
+        _tabChar = [CEUtils invisibleTabChar:[defaults integerForKey:k_key_invisibleTab]];
+        _newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:k_key_invisibleNewLine]];
+        _fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:k_key_invisibleFullwidthSpace]];
 
-        // （setShowInvisibles: は CEEditorWrapper から実行される。プリント時は CEDocument から実行される）
-        [self setShowSpace:[defaults boolForKey:k_key_showInvisibleSpace]];
-        [self setShowTab:[defaults boolForKey:k_key_showInvisibleTab]];
-        [self setShowNewLine:[defaults boolForKey:k_key_showInvisibleNewLine]];
-        [self setShowFullwidthSpace:[defaults boolForKey:k_key_showInvisibleFullwidthSpace]];
-        [self setShowOtherInvisibles:[defaults boolForKey:k_key_showOtherInvisibleChars]];
+        // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEPrintView から実行される）
+        _showSpace = [defaults boolForKey:k_key_showInvisibleSpace];
+        _showTab = [defaults boolForKey:k_key_showInvisibleTab];
+        _showNewLine = [defaults boolForKey:k_key_showInvisibleNewLine];
+        _showFullwidthSpace = [defaults boolForKey:k_key_showInvisibleFullwidthSpace];
+        _showOtherInvisibles = [defaults boolForKey:k_key_showOtherInvisibleChars];
+        
+        [self setShowsControlCharacters:_showOtherInvisibles];
         [self setTypesetter:[CEATSTypesetter sharedSystemTypesetter]];
     }
     return self;
@@ -160,70 +162,84 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     // （印刷中の判定は、このメソッド内では [NSGraphicsContext currentContextDrawingToScreen] が使えるが、
     // 他のメソッドでは真を返す時があるため、他にそろえて専用フラグで印刷中を確認するようにしている）
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSInteger invisibleCharPrintMenuIndex;
-
-    NSTextView<CETextViewProtocol> *textView = (NSTextView<CETextViewProtocol> *)[self firstTextView];
-    if ([self isPrinting] && [textView respondsToSelector:@selector(printPanelAccessoryController)]) {
-        invisibleCharPrintMenuIndex = [[textView performSelector:@selector(printPanelAccessoryController)] invisibleCharsMode];
-    } else {
-        invisibleCharPrintMenuIndex = [defaults integerForKey:k_key_printInvisibleCharIndex];
-    }
-
+    
     // スクリーン描画の時、アンチエイリアス制御
     if (![self isPrinting]) {
         [[NSGraphicsContext currentContext] setShouldAntialias:[self useAntialias]];
     }
-
-    if (((![self isPrinting] || (invisibleCharPrintMenuIndex == 1)) && [self showInvisibles]) ||
-        ([self isPrinting] && (invisibleCharPrintMenuIndex == 2)))
-    {
+    
+    // draw invisibles
+    if ([self showInvisibles]) {
+        NSTextView<CETextViewProtocol> *textView = (NSTextView<CETextViewProtocol> *)[self firstTextView];
         NSString *completeStr = [[self textStorage] string];
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         
         // フォントサイズは随時変更されるため、表示時に取得する
-        NSFont *font = [self isPrinting] ? [[self textStorage] font] : [self textFont];
+        NSFont *font = [self textFont];
         NSColor *color = [[textView theme] invisiblesColor];
-        NSDictionary *attributes = @{NSFontAttributeName: font,
-                                     NSForegroundColorAttributeName: color};
         
-        NSPoint inset;
-        if ([self isPrinting]) {
-            inset = [textView textContainerOrigin];
-        } else {
-            inset = NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
-                                (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop]);
-        }
+        // for other invisibles
+        NSFont *replaceFont;
+        NSGlyph replaceGlyph;
         
-        NSFont *replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[[self textFont] pointSize]];
-        NSGlyph glyph = [replaceFont glyphWithName:@"replacement"];
+        // prepare glyphs
+        CGGlyph spaceGlyph = [self glyphWithCharacter:[self spaceChar] font:font];
+        CGGlyph tabGlyph = [self glyphWithCharacter:[self tabChar] font:font];
+        CGGlyph newLineGlyph = [self glyphWithCharacter:[self newLineChar] font:font];
+        CGGlyph fullwidthSpaceGlyph = [self glyphWithCharacter:[self fullwidthSpaceChar] font:font];
+
+        // set graphics context
+        CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+        CGContextSaveGState(context);
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextSetFont(context, CTFontCopyGraphicsFont((CTFontRef)font, NULL));
+        CGContextSetFontSize(context, [font pointSize]);
         
+        // adjust drawing coordinate
+        NSPoint inset = [textView textContainerOrigin];
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
+        transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent((CTFontRef)font));
+        CGContextSetTextMatrix(context, transform);
+        
+        // store value to avoid accessing properties each time  (2014-07 by 1024jp)
+        BOOL showSpace = [self showSpace];
+        BOOL showTab = [self showTab];
+        BOOL showNewLine = [self showNewLine];
+        BOOL showFullwidthSpace = [self showFullwidthSpace];
+        BOOL showOtherInvisibles = [self showOtherInvisibles];
+        
+        // draw invisibles glyph by glyph
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeStr characterAtIndex:charIndex];
 
-            if ([self showSpace] && ((character == ' ') || (character == 0x00A0))) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [[self spaceCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
+            if (showSpace && ((character == ' ') || (character == 0x00A0))) {
+                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGContextShowGlyphsAtPositions(context, &spaceGlyph, &point, 1);
 
-            } else if ([self showTab] && (character == '\t')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [[self tabCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
+            } else if (showTab && (character == '\t')) {
+                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGContextShowGlyphsAtPositions(context, &tabGlyph, &point, 1);
+                
+            } else if (showNewLine && (character == '\n')) {
+                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGContextShowGlyphsAtPositions(context, &newLineGlyph, &point, 1);
 
-            } else if ([self showNewLine] && (character == '\n')) {
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [[self theNewLineCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
+            } else if (showFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
+                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGContextShowGlyphsAtPositions(context, &fullwidthSpaceGlyph, &point, 1);
 
-            } else if ([self showFullwidthSpace] && (character == 0x3000)) { // Fullwidth-space (JP)
-                NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-                [[self fullwidthSpaceCharacter] drawAtPoint:pointToDraw withAttributes:attributes];
-
-            } else if ([self showOtherInvisibles] && ([self glyphAtIndex:glyphIndex] == NSControlGlyph)) {
+            } else if (showOtherInvisibles && ([self glyphAtIndex:glyphIndex] == NSControlGlyph)) {
+                if (!replaceFont) {  // delay creating font/glyph till they are really needed
+                    replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];
+                    replaceGlyph = [replaceFont glyphWithName:@"replacement"];
+                }
                 NSUInteger charLength = CFStringIsSurrogateHighCharacter(character) ? 2 : 1;
                 NSRange charRange = NSMakeRange(charIndex, charLength);
                 NSString *baseStr = [completeStr substringWithRange:charRange];
-                NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:glyph forFont:replaceFont baseString:baseStr];
+                NSGlyphInfo *glyphInfo = [NSGlyphInfo glyphInfoWithGlyph:replaceGlyph forFont:replaceFont baseString:baseStr];
+                
                 if (glyphInfo) {
                     NSDictionary *replaceAttrs = @{NSGlyphInfoAttributeName: glyphInfo,
                                                    NSFontAttributeName: replaceFont,
@@ -235,6 +251,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
             }
         }
+        CGContextRestoreGState(context);
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
@@ -299,7 +316,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setTextFontPointSize:[textFont pointSize]];
         [self setTextFontGlyphY:[textFont pointSize]];
         // （textFontGlyphYは「複合フォントでも描画位置Y座標を固定」する時のみlocationForGlyphAtIndex:内で使われる。
-        // 本来の値は[inFont ascender]か？ 2009.03.28）
+        // 本来の値は[textFont ascender]か？ 2009.03.28）
 
         // [textFont pointSize]は通常、([textFont ascender] - [textFont descender])と一致する。例えばCourier 48ptだと、
         // ascender　=　36.187500, descender = -11.812500 となっている。 2009.03.28
@@ -334,16 +351,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //------------------------------------------------------
 /// グリフを描画する位置を返す
-- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex adjust:(NSPoint)adjust
+- (CGPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
-    NSRect glyphRect = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
+    NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL].origin;
+    
+    return CGPointMake(drawPoint.x, -glyphPoint.y);
+}
 
-    drawPoint.x += adjust.x;
-    drawPoint.y = glyphRect.origin.y + adjust.y;
 
-    return drawPoint;
+
+//------------------------------------------------------
+/// 文字とフォントから CGGlyph を生成して返す
+- (CGGlyph)glyphWithCharacter:(unichar)character font:(NSFont *)font
+//------------------------------------------------------
+{
+    CGGlyph glyph;
+    
+    CTFontGetGlyphsForCharacters((CTFontRef)font, &character, &glyph, 1);
+    
+    return glyph;
 }
 
 @end
