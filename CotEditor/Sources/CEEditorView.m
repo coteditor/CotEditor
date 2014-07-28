@@ -119,7 +119,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                      options:0 metrics:nil views:views]];
 
         // TextStorage と LayoutManager を生成
-        [self setTextStorage:[[NSTextStorage alloc] init]];
+        [self setTextStorage:[[NSTextStorage alloc] initWithString:@" "]];
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [[self textStorage] addLayoutManager:layoutManager];
         [layoutManager setBackgroundLayoutEnabled:YES];
@@ -135,9 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                              isPrinting:NO]];
 
         // TextView 生成
-        NSRect textFrame = NSZeroRect;
-        textFrame.size = [[self scrollView] contentSize]; // (frame will start at upper left.)
-        [self setTextView:[[CETextView alloc] initWithFrame:textFrame textContainer:container]];
+        [self setTextView:[[CETextView alloc] initWithFrame:NSZeroRect textContainer:container]];
         [[self textView] setDelegate:self];
         
         [[self lineNumberView] setTextView:[self textView]];
