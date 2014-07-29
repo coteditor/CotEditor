@@ -449,6 +449,7 @@ extern NSString *const k_showStatusBarItemID;
 extern NSString *const k_showInvisibleCharsItemID;
 extern NSString *const k_showPageGuideItemID;
 extern NSString *const k_wrapLinesItemID;
+extern NSString *const k_textOrientationItemID;
 extern NSString *const k_lineEndingsItemID;
 extern NSString *const k_fileEncodingsItemID;
 extern NSString *const k_syntaxItemID;

@@ -96,8 +96,6 @@ http://www.aynimac.com/
 "Inspect Character" = "文字情報を表示";
 
 // menu item title
-"Use Vertical Orientation" = "縦書きで表示";
-"Use Horizontal Orientation" = "横書きで表示";
 "Comment Selection" = "選択範囲をコメントアウト";
 "Uncomment Seletion" = "選択範囲をコメント解除";
 
@@ -127,6 +125,8 @@ http://www.aynimac.com/
 "Show Page Guide" = "ページガイドを表示";
 "Unwrap Lines" = "行を折り返さない";
 "Wrap Lines" = "行を折り返す";
+"Use Vertical Orientation" = "縦書きで表示";
+"Use Horizontal Orientation" = "横書きで表示";
 
 // show invisible char menu tooltip
 "Show or hide invisible characters in document" = "書類中の不可視文字を表示／隠す";

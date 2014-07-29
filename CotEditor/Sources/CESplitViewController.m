@@ -139,6 +139,18 @@
 
 
 // ------------------------------------------------------
+/// 横書き／縦書きを設定
+- (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation
+// ------------------------------------------------------
+{
+    NSTextLayoutOrientation orientation = isVerticalLayoutOrientation ? NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal;
+    for (CEEditorView *subview in [[self view] subviews]) {
+        [[subview textView] setLayoutOrientation:orientation];
+    }
+}
+
+
+// ------------------------------------------------------
 /// 不可視文字の表示／非表示を設定
 - (void)setShowInvisibles:(BOOL)showInvisibles
 // ------------------------------------------------------

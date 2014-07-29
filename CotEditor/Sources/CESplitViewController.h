@@ -45,6 +45,7 @@
 - (void)setShowLineNum:(BOOL)showLineNum;
 - (void)setShowNavigationBar:(BOOL)showNavigationBar;
 - (void)setWrapLines:(BOOL)wrapLines;
+- (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation;
 - (void)setShowInvisibles:(BOOL)showInvisibles;
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUseAntialias:(BOOL)useAntialias;

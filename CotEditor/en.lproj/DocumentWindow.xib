@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
+        <customObject id="-2" customClass="CEWindowController">
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
@@ -18,8 +18,8 @@
                 <outlet property="window" destination="5" id="31"/>
             </connections>
         </customObject>
-        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="-1" customClass="FirstResponder"/>
+        <customObject id="-3"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="document" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
@@ -245,6 +245,11 @@
                     <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="-1" image="WrapLines_On" id="oJm-2d-4Yl">
                         <connections>
                             <action selector="toggleWrapLines:" target="-1" id="eHS-X6-dd4"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="82F862DC-E426-431F-9876-D169C92CDC11" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="-1" image="VerticalOrientation_On" id="OJR-Lr-Joc">
+                        <connections>
+                            <action selector="toggleLayoutOrientation:" target="-1" id="7Tf-cM-6rK"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="CFB65E98-C6E9-477E-9BC5-8826E0A730E6" explicitItemIdentifier="editColorCodeItemID" label="Color Code" paletteLabel="Edit Color Code" toolTip="Open Color Code Editor and set selection as color code" tag="-1" image="EditColorCode" id="77o-kx-gNj">
@@ -1132,6 +1137,7 @@
         <image name="Shift_Left" width="64" height="64"/>
         <image name="Shift_Right" width="64" height="64"/>
         <image name="StatusArea_Show" width="64" height="64"/>
+        <image name="VerticalOrientation_On" width="64" height="64"/>
         <image name="WrapLines_On" width="64" height="64"/>
         <image name="biggerFont" width="64" height="64"/>
         <image name="getInfo" width="64" height="64"/>

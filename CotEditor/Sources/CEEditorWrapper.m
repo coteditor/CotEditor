@@ -410,6 +410,18 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// 横書き／縦書きをセット
+- (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation
+// ------------------------------------------------------
+{
+    _verticalLayoutOrientation = isVerticalLayoutOrientation;
+    
+    [[self splitViewController] setVerticalLayoutOrientation:isVerticalLayoutOrientation];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_textOrientationItemID setOn:isVerticalLayoutOrientation];
+}
+
+
+// ------------------------------------------------------
 /// アンチエイリアスでの描画の許可を得る
 - (BOOL)shouldUseAntialias
 // ------------------------------------------------------
@@ -591,6 +603,10 @@ static NSTimeInterval secondColoringDelay;
     } else if ([menuItem action] == @selector(toggleWrapLines:)) {
         title = [self wrapLines] ? @"Unwrap Lines" : @"Wrap Lines";
         
+    } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
+        NSString *title = [self isVerticalLayoutOrientation] ? @"Use Horizontal Orientation" :  @"Use Vertical Orientation";
+        [menuItem setTitle:NSLocalizedString(title, nil)];
+        
     } else if ([menuItem action] == @selector(toggleUseAntialias:)) {
         state = [self shouldUseAntialias] ? NSOnState : NSOffState;
         
@@ -661,6 +677,15 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self setWrapLines:![self wrapLines]];
+}
+
+
+// ------------------------------------------------------
+/// 横書き／縦書きを切り替える
+- (IBAction)toggleLayoutOrientation:(id)sender
+// ------------------------------------------------------
+{
+    [self setVerticalLayoutOrientation:![self isVerticalLayoutOrientation]];
 }
 
 
@@ -835,11 +860,13 @@ static NSTimeInterval secondColoringDelay;
         [self setShowLineNum:[defaults boolForKey:k_key_showLineNumbers]];
         [self setShowNavigationBar:[defaults boolForKey:k_key_showNavigationBar]];
         [self setWrapLines:[defaults boolForKey:k_key_wrapLines]];
+        [self setVerticalLayoutOrientation:[defaults boolForKey:k_key_layoutTextVertical]];
         [self setShowPageGuide:[defaults boolForKey:k_key_showPageGuide]];
     } else {
         [self setShowLineNum:[self showLineNum]];
         [self setShowNavigationBar:[self showNavigationBar]];
         [self setWrapLines:[self wrapLines]];
+        [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
         [self setShowPageGuide:[self showPageGuide]];
     }
 }

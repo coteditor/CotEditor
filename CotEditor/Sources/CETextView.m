@@ -113,9 +113,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
             [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
         }
-        if ([defaults boolForKey:k_key_layoutTextVertical]) {
-            [self setLayoutOrientation:NSTextLayoutOrientationVertical];
-        }
         [self setFont:font];
         [self setMinSize:frameRect.size];
         [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -1347,9 +1344,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [menuItem setState:(([self lineSpacing] == (CGFloat)[[menuItem title] doubleValue] - 1.0) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
-        NSString *title = ([self layoutOrientation] == NSTextLayoutOrientationHorizontal) ? @"Use Vertical Orientation" : @"Use Horizontal Orientation";
-        [menuItem setTitle:NSLocalizedString(title, nil)];
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {
         NSString *selection = [[self string] substringWithRange:[self selectedRange]];
         return ([selection numberOfComposedCharacters] == 1);
@@ -1685,19 +1679,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [self setSelectedRange:[[self string] lineRangeForRange:[self selectedRange]]];
-}
-
-
-// ------------------------------------------------------
-/// 縦書き／横書きを切り替え
-- (IBAction)toggleLayoutOrientation:(id)sender
-// ------------------------------------------------------
-{
-    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
-        [self setLayoutOrientation:NSTextLayoutOrientationHorizontal];
-    } else {
-        [self setLayoutOrientation:NSTextLayoutOrientationVertical];
-    }
 }
 
 

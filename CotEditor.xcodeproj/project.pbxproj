@@ -100,6 +100,8 @@
 		2AB432711912AF7200835004 /* CEGlyphPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CEGlyphPopoverController.m */; };
 		2AB432741915D6AA00835004 /* NSString+ComposedCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */; };
+		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
 		2AD2860F1985627700C9342F /* closeSplitTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2860B1985627700C9342F /* closeSplitTemplate.pdf */; };
 		2AD286101985627800C9342F /* downTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2860C1985627700C9342F /* downTemplate.pdf */; };
 		2AD286111985627800C9342F /* openSplitTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2AD2860D1985627700C9342F /* openSplitTemplate.pdf */; };
@@ -355,6 +357,8 @@
 		2AB4326F1912AF7200835004 /* CEGlyphPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGlyphPopoverController.h; sourceTree = "<group>"; };
 		2AB432701912AF7200835004 /* CEGlyphPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGlyphPopoverController.m; sourceTree = "<group>"; };
 		2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ComposedCharacter.m"; sourceTree = "<group>"; };
+		2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = VerticalOrientation_Off.tiff; path = toolbarIcons/VerticalOrientation_Off.tiff; sourceTree = "<group>"; };
+		2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = VerticalOrientation_On.tiff; path = toolbarIcons/VerticalOrientation_On.tiff; sourceTree = "<group>"; };
 		2AD2860B1985627700C9342F /* closeSplitTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = closeSplitTemplate.pdf; path = images/closeSplitTemplate.pdf; sourceTree = "<group>"; };
 		2AD2860C1985627700C9342F /* downTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = downTemplate.pdf; path = images/downTemplate.pdf; sourceTree = "<group>"; };
 		2AD2860D1985627700C9342F /* openSplitTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = openSplitTemplate.pdf; path = images/openSplitTemplate.pdf; sourceTree = "<group>"; };
@@ -915,6 +919,8 @@
 				8CA71BCC07D2A79100C146B0 /* biggerFont.tiff */,
 				2A45AB9B1960BDED0020E72B /* Comment.tiff */,
 				8CA71BCD07D2A79100C146B0 /* smallerFont.tiff */,
+				2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */,
+				2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */,
 				2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */,
 				8CEF66C00995E47F00C65A84 /* InvisibleChar_Hide.tiff */,
 				8CEF66C10995E47F00C65A84 /* InvisibleChar_Show.tiff */,
@@ -929,13 +935,13 @@
 				8C3E2D4F0808E203009894D1 /* Shift_Right.tiff */,
 				8C3E2D590808E210009894D1 /* StatusArea_Hide.tiff */,
 				8C3E2D5A0808E210009894D1 /* StatusArea_Show.tiff */,
+				2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */,
+				2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */,
 				8C3E2D5C0808E210009894D1 /* WrapLines_Off.tiff */,
 				8C3E2D5D0808E210009894D1 /* WrapLines_On.tiff */,
 				8CE68103090A1C6900D50390 /* Pref_General.tiff */,
 				8CE68106090A1C6900D50390 /* Pref_Window.tiff */,
 				8CE68100090A1C6900D50390 /* Pref_Appearance.tiff */,
-				2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */,
-				2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */,
 				8CE68102090A1C6900D50390 /* Pref_Edit.tiff */,
 				8CE68105090A1C6900D50390 /* Pref_Format.tiff */,
 				8CE68101090A1C6900D50390 /* Pref_FileDrop.tiff */,
@@ -1044,6 +1050,7 @@
 				8C3E2D610808E210009894D1 /* WrapLines_Off.tiff in Resources */,
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,
+				2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
 				8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */,
 				8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */,
@@ -1088,6 +1095,7 @@
 				2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */,
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A149DA819016ABB00A9D6EF /* FileDropPane.xib in Resources */,
+				2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */,
 				2A07231016D3CF4F00F49864 /* popUpButtonArrowTemplate.pdf in Resources */,
 				2A149DA919016ABB00A9D6EF /* FormatPane.xib in Resources */,
 				2A961C5618FC699E002076B6 /* Version History.rtf in Resources */,

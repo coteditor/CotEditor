@@ -52,6 +52,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL wrapLines;
 @property (nonatomic) BOOL showPageGuide;
 @property (nonatomic) BOOL showInvisibles;
+@property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic) CETextView *textView;
 
 @property (nonatomic, readonly) BOOL canActivateShowInvisibles;
@@ -100,6 +101,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)toggleShowLineNum:(id)sender;
 - (IBAction)toggleShowNavigationBar:(id)sender;
 - (IBAction)toggleWrapLines:(id)sender;
+- (IBAction)toggleLayoutOrientation:(id)sender;
 - (IBAction)toggleUseAntialias:(id)sender;
 - (IBAction)toggleShowInvisibleChars:(id)sender;
 - (IBAction)toggleShowPageGuide:(id)sender;

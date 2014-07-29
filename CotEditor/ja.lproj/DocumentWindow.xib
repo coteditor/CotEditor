@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEWindowController">
+        <customObject id="-2" customClass="CEWindowController">
             <connections>
                 <outlet property="drawer" destination="32" id="a7s-jX-e9O"/>
                 <outlet property="editor" destination="vT9-kp-fRw" id="KPl-ae-chL"/>
@@ -241,6 +241,11 @@
                     <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="行を折り返す" paletteLabel="行の折り返しを切替" toolTip="行の折り返しを切替" tag="-1" image="WrapLines_On" id="oJm-2d-4Yl">
                         <connections>
                             <action selector="toggleWrapLines:" target="-1" id="eHS-X6-dd4"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="27BA6DE6-B032-4E93-9567-4363D89183F6" explicitItemIdentifier="textOrientationItemID" label="縦書き／横書き" paletteLabel="縦書き／横書きを切替" toolTip="縦書き／横書きを切替" tag="-1" image="VerticalOrientation_On" id="ILs-cv-SQb">
+                        <connections>
+                            <action selector="toggleLayoutOrientation:" target="-1" id="rTW-T0-Jwc"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="CFB65E98-C6E9-477E-9BC5-8826E0A730E6" explicitItemIdentifier="editColorCodeItemID" label="カラーコード" paletteLabel="カラーコードを編集" toolTip="カラーコードエディタを開き、選択範囲をカラーコードとしてセット" tag="-1" image="EditColorCode" id="77o-kx-gNj">
@@ -1129,6 +1134,7 @@
         <image name="Shift_Left" width="64" height="64"/>
         <image name="Shift_Right" width="64" height="64"/>
         <image name="StatusArea_Show" width="64" height="64"/>
+        <image name="VerticalOrientation_On" width="128" height="128"/>
         <image name="WrapLines_On" width="64" height="64"/>
         <image name="biggerFont" width="64" height="64"/>
         <image name="getInfo" width="64" height="64"/>

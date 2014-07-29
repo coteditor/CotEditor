@@ -431,6 +431,7 @@ NSString *const k_showStatusBarItemID = @"showStatusAreaItemID";
 NSString *const k_showInvisibleCharsItemID = @"showInvisibleCharsItemID";
 NSString *const k_showPageGuideItemID = @"showPageGuideItemID";
 NSString *const k_wrapLinesItemID = @"wrapLinesItemID";
+NSString *const k_textOrientationItemID = @"textOrientationItemID";
 NSString *const k_lineEndingsItemID = @"lineEndingsItemID";
 NSString *const k_fileEncodingsItemID = @"fileEncodingsItemID";
 NSString *const k_syntaxItemID = @"syntaxColoringItemID";
