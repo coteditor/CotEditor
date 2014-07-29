@@ -180,13 +180,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     //文字幅を計算しておく 等幅扱い
     //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
-    CGSize advances[10];
-    CTFontGetAdvancesForGlyphs(font, kCTFontHorizontalOrientation, digitGlyphs, advances, 10);
-    CGFloat charWidth = advances[8].width;  // use '8' to get width
+    CGSize advance;
+    CTFontGetAdvancesForGlyphs(font, kCTFontHorizontalOrientation, &digitGlyphs[8], &advance, 1);  // use '8' to get width
+    CGFloat charWidth = advance.width;
     
     // adjust drawing origin
-    CGFloat inset = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightTop];
-    CGFloat diff = (masterFontSize - fontSize) / 2;
+    CGFloat inset = [[self textView] textContainerOrigin].y;
+    CGFloat diff = masterFontSize - fontSize;
     CGFloat ascent = CTFontGetAscent(font);
     CGContextSetTextMatrix(context, CGAffineTransformMakeTranslation(-k_lineNumPadding, - inset - diff - ascent));
     
@@ -230,7 +230,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     while ((currentWidth - k_lineNumPadding) < requiredWidth) {
                         currentWidth += charWidth;
                     }
-                    [self setWidth:currentWidth]; // set a wider width if needed.
+                    [self setThickness:currentWidth]; // set a wider width if needed.
                 }
                 
                 // get glyphs and positions
@@ -266,7 +266,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             while ((currentWidth - k_lineNumPadding) < requiredWidth) {
                 currentWidth += charWidth;
             }
-            [self setWidth:currentWidth]; // set a wider width if needed.
+            [self setThickness:currentWidth]; // set a wider width if needed.
         }
         
         // get glyphs and positions
@@ -334,7 +334,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _showLineNum = showLineNum;
         
         CGFloat width = showLineNum ? k_defaultLineNumWidth : 0.0;
-        [self setWidth:width];
+        [self setThickness:width];
     }
 }
 
@@ -367,10 +367,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// set view width.
-- (void)setWidth:(CGFloat)width
+- (void)setThickness:(CGFloat)thickness
 // ------------------------------------------------------
 {
-    [[self thicknessConstraint] setConstant:width];
+    [[self thicknessConstraint] setConstant:thickness];
 }
 
 

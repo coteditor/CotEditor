@@ -326,7 +326,7 @@ NSString *const k_outlineMenuItemUnderlineMask = @"outlineMenuItemUnderlineMask"
 
 // CEEditorWrapper and subView's constants
 CGFloat const k_defaultLineNumWidth = 32.0;
-CGFloat const k_lineNumPadding = 2.0;
+CGFloat const k_lineNumPadding = 3.0;
 CGFloat const k_lineNumFontDescender = -2.1;
 NSString *const k_navigationBarFontName = @"Helvetica";
 
