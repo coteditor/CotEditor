@@ -576,6 +576,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [[self highlightLineColor] set];
         [NSBezierPath fillRect:[self highlightLineRect]];
     }
+}
+
+
+// ------------------------------------------------------
+/// ビュー内を描画
+- (void)drawRect:(NSRect)dirtyRect
+// ------------------------------------------------------
+{
+    [super drawRect:dirtyRect];
     
     // ページガイド描画
     if ([(CEEditorView *)[self delegate] showPageGuide]) {
@@ -597,15 +606,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
     }
-}
-
-
-// ------------------------------------------------------
-/// ビュー内を描画
-- (void)drawRect:(NSRect)dirtyRect
-// ------------------------------------------------------
-{
-    [super drawRect:dirtyRect];
     
     // テキストビューを透過させている時に影を更新描画する
     if ([[self backgroundColor] alphaComponent] < 1.0) {
