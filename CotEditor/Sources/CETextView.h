@@ -40,22 +40,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CELayoutManager.h"
 
 
-@class CEEditorWrapper;
-
-
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
 
-@property (nonatomic) BOOL isReCompletion;  // 再度入力補完をするか
-@property (nonatomic) BOOL updateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
-@property (nonatomic) BOOL isSelfDrop;  // 自己内ドラッグ&ドロップなのか
-@property (nonatomic) BOOL isReadingFromPboard;  // ペーストまたはドロップ実行中なのか
+@property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか
+@property (nonatomic) BOOL needsUpdateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
 @property (nonatomic) CGFloat lineSpacing;
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
-@property (nonatomic) BOOL isAutoTabExpandEnabled;  // タブを自動的にスペースに展開するか
-@property (nonatomic) NSUInteger tabWidth;  // タブ幅
+@property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
 @property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
-
 @property (nonatomic, weak) NSView *slaveView;  // lineNumberView
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 @property (nonatomic) CGFloat backgroundAlpha;  // ビューの不透明度
@@ -63,7 +56,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) CETheme *theme;
 
 // readonly
-@property (nonatomic, readonly) NSColor *highlightLineColor;  // カレント行ハイライト色
+@property (nonatomic, readonly) BOOL isSelfDrop;  // 自己内ドラッグ&ドロップなのか
+@property (nonatomic, readonly) BOOL isReadingFromPboard;  // ペーストまたはドロップ実行中なのか
 
 
 // Public method
@@ -75,12 +69,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)appendAllString:(NSString *)inString;
 - (void)insertCustomTextWithPatternNum:(NSInteger)inPatternNum;
 - (void)resetFont:(id)sender;
-- (NSArray *)readablePasteboardTypes;
-- (NSArray *)pasteboardTypesForString;
-- (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)inDragInfo type:(NSString *)inType;
-- (BOOL)readSelectionFromPasteboard:(NSPasteboard *)inPboard type:(NSString *)inType;
-- (NSRange)selectionRangeForProposedRange:(NSRange)inProposedSelRange
-                              granularity:(NSSelectionGranularity)inGranularity;
 - (void)setNewLineSpacingAndUpdate:(CGFloat)inLineSpacing;
 - (void)doReplaceString:(NSString *)inString withRange:(NSRange)inRange 
            withSelected:(NSRange)inSelection withActionName:(NSString *)inActionName;

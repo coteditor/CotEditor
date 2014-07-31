@@ -38,6 +38,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "CESyntaxParser.h"
 
 
+@class CEEditorWrapper;
+
+
 @interface CEEditorView : NSView <NSTextViewDelegate>
 
 @property (nonatomic, weak) CEEditorWrapper *editorWrapper;

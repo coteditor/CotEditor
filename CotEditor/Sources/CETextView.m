@@ -36,13 +36,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "CETextView.h"
+#import "CEEditorView.h"
 #import "CELineNumberView.h"
-#import "CEEditorWrapper.h"
-#import "CESyntaxManager.h"
 #import "CEColorCodePanelController.h"
-#import "CEKeyBindingManager.h"
 #import "CEGlyphPopoverController.h"
+#import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
+#import "NSString+JapaneseTransform.h"
 #import "constants.h"
 
 
@@ -53,9 +53,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
 @property (nonatomic) NSTimer *completionTimer;
 
+@property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
+@property (nonatomic) NSUInteger tabWidth;  // タブ幅
+
 
 // readonly
-@property (nonatomic, readwrite) NSColor *highlightLineColor;  // カレント行ハイライト色
+@property (nonatomic, readwrite, getter=isSelfDrop) BOOL selfDrop;  // 自己内ドラッグ&ドロップなのか
+@property (nonatomic, readwrite, getter=isReadingFromPboard) BOOL readingFromPboard;  // ペーストまたはドロップ実行中なのか
 
 @end
 
@@ -106,7 +110,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setTheme:[CETheme themeWithName:[defaults stringForKey:k_key_defaultTheme]]];
         
         // set the values
-        [self setIsAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
+        [self setAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
@@ -131,7 +135,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self setInsertionRect:NSZeroRect];
         [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
                                                       (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
-        [self setUpdateOutlineMenuItemSelection:YES];
+        [self setNeedsUpdateOutlineMenuItemSelection:YES];
         
         [self applyTypingAttributes];
         
@@ -168,7 +172,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     id newValue = change[NSKeyValueChangeNewKey];
     
     if ([keyPath isEqualToString:k_key_autoExpandTab]) {
-        [self setIsAutoTabExpandEnabled:[newValue boolValue]];
+        [self setAutoTabExpandEnabled:[newValue boolValue]];
         
     } else if ([keyPath isEqualToString:k_key_smartInsertAndDelete]) {
         [self setSmartInsertDeleteEnabled:[newValue boolValue]];
@@ -349,6 +353,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             NSInteger location = selectedRange.location - lineRange.location;
             NSInteger length = (location + tabWidth) % tabWidth;
             NSInteger targetWidth = (length == 0) ? tabWidth : length;
+            
             if (selectedRange.location >= targetWidth) {
                 NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
                 NSString *target = [[self string] substringWithRange:targetRange];
@@ -371,8 +376,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // ------------------------------------------------------
 /// 補完リストの表示、選択候補の入力
-- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange 
-        movement:(NSInteger)movement isFinal:(BOOL)isFinal
+- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)isFinal
 // ------------------------------------------------------
 {
     NSEvent *event = [[self window] currentEvent];
@@ -395,7 +399,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
             if ((movement == NSIllegalTextMovement) &&
                 (theUnichar < 0xF700) && (theUnichar != NSDeleteCharacter)) { // 通常のキー入力の判断
-                [self setIsReCompletion:YES];
+                [self setNeedsRecompletion:YES];
             } else {
                 // 補完文字列に括弧が含まれていたら、括弧内だけを選択する準備をする
                 range = [word rangeOfString:@"\\(.*\\)" options:NSRegularExpressionSearch];
@@ -679,6 +683,391 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
+/// 読み取り可能なPasteboardタイプを返す
+- (NSArray *)readablePasteboardTypes
+// ------------------------------------------------------
+{
+    return [[super readablePasteboardTypes] arrayByAddingObject:NSFilenamesPboardType];
+}
+
+
+// ------------------------------------------------------
+/// ドラッグする文字列の改行コードを書類に設定されたものに置換する
+- (NSDraggingSession *)beginDraggingSessionWithItems:(NSArray *)items event:(NSEvent *)event source:(id<NSDraggingSource>)source
+// ------------------------------------------------------
+{
+    NSDraggingSession *session = [super beginDraggingSessionWithItems:items event:event source:source];
+    
+    [self replaceLineEndingToDocCharInPboard:[session draggingPasteboard]];
+    
+    return session;
+}
+
+
+// ------------------------------------------------------
+/// 領域内でオブジェクトがドラッグされている
+- (NSDragOperation)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type
+// ------------------------------------------------------
+{
+    if ([type isEqualToString:NSFilenamesPboardType]) {
+        NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
+        
+        for (NSDictionary *item in fileDropArray) {
+            NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+            NSArray *extensions = [item[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
+            
+            if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
+                NSString *string = [self string];
+                if ([string length] > 0) {
+                    // 挿入ポイントを自前で描画する
+                    CGFloat partialFraction;
+                    NSLayoutManager *layoutManager = [self layoutManager];
+                    NSUInteger glyphIndex = [layoutManager glyphIndexForPoint:[self convertPoint:[dragInfo draggingLocation] fromView:nil]
+                                                              inTextContainer:[self textContainer]
+                                               fractionOfDistanceThroughGlyph:&partialFraction];
+                    NSPoint glypthIndexPoint;
+                    if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
+                        NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
+                                                                    inTextContainer:[self textContainer]];
+                        glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
+                        glypthIndexPoint.x += NSWidth(glyphRect);
+                    } else {
+                        glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
+                    }
+                    NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
+                    NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
+                    if (!NSEqualRects([self insertionRect], insertionRect)) {
+                        // 古い自前挿入ポイントが描かれたままになることへの対応
+                        [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
+                    }
+                    [[self insertionPointColor] set];
+                    [self lockFocus];
+                    NSFrameRectWithWidth(insertionRect, 1.0);
+                    [self unlockFocus];
+                    [self setInsertionRect:insertionRect];
+                }
+                return NSDragOperationCopy;
+            }
+        }
+        return NSDragOperationNone;
+    }
+    
+    return [super dragOperationForDraggingInfo:dragInfo type:type];
+}
+
+
+// ------------------------------------------------------
+/// ドロップ実行（同じ書類からドロップされた文字列の改行コードをLFへ置換するためにオーバーライド）
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender
+// ------------------------------------------------------
+{
+    // ドロップによる編集で改行コードをLFに統一する
+    // （その他の編集は、下記の通りの別の場所で置換している）
+    // # テキスト編集時の改行コードの置換場所
+    //  * ファイルオープン = CEDocument > setStringToEditor
+    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
+    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+    
+    // まず、自己内ドラッグかどうかのフラグを立てる
+    [self setSelfDrop:([sender draggingSource] == self)];
+    
+    if ([self isSelfDrop]) {
+        // （自己内ドラッグの場合には、改行コード置換を readSelectionFromPasteboard:type: 内で実行すると
+        // アンドゥの登録で文字列範囲の計算が面倒なので、ここでPasteboardを書き換えてしまう）
+        NSPasteboard *pboard = [sender draggingPasteboard];
+        NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
+        if (pboardType) {
+            NSString *string = [pboard stringForType:pboardType];
+            if (string) {
+                OgreNewlineCharacter newlineChar = [OGRegularExpression newlineCharacterInString:string];
+                if ((newlineChar != OgreNonbreakingNewlineCharacter) &&
+                    (newlineChar != OgreLfNewlineCharacter)) {
+                    [pboard setString:[OGRegularExpression replaceNewlineCharactersInString:string
+                                                                              withCharacter:OgreLfNewlineCharacter]
+                              forType:pboardType];
+                }
+            }
+        }
+    }
+    
+    BOOL success = [super performDragOperation:sender];
+    [self setSelfDrop:NO];
+    
+    return success;
+}
+
+
+// ------------------------------------------------------
+/// ペーストまたはドロップされたアイテムに応じて挿入する文字列をNSPasteboardから読み込む
+- (BOOL)readSelectionFromPasteboard:(NSPasteboard *)pboard type:(NSString *)type
+// ------------------------------------------------------
+{
+    // （このメソッドは、performDragOperation: 内で呼ばれる）
+    
+    BOOL success = NO;
+    NSRange selectedRange, newRange;
+    
+    // 実行中フラグを立てる
+    [self setReadingFromPboard:YES];
+    
+    // ペーストされたか、他からテキストがドロップされた
+    if (![self isSelfDrop] && [type isEqualToString:NSStringPboardType]) {
+        // ペースト、他からのドロップによる編集で改行コードをLFに統一する
+        // （その他の編集は、下記の通りの別の場所で置換している）
+        // # テキスト編集時の改行コードの置換場所
+        //  * ファイルオープン = CEDocument > setStringToEditor
+        //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+        //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
+        //  * ペースト = CETextView > readSelectionFromPasteboard:type:
+        //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
+        //  * ドロップ（同一書類内） = CETextView > performDragOperation:
+        //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
+        
+        NSString *pboardStr = [pboard stringForType:NSStringPboardType];
+        if (pboardStr) {
+            OgreNewlineCharacter newlineChar = [OGRegularExpression newlineCharacterInString:pboardStr];
+            if ((newlineChar != OgreNonbreakingNewlineCharacter) &&
+                (newlineChar != OgreLfNewlineCharacter)) {
+                NSString *replacedStr = [OGRegularExpression replaceNewlineCharactersInString:pboardStr
+                                                                                withCharacter:OgreLfNewlineCharacter];
+                selectedRange = [self selectedRange];
+                newRange = NSMakeRange(selectedRange.location + [replacedStr length], 0);
+                // （Action名は自動で付けられる？ので、指定しない）
+                [self doReplaceString:replacedStr withRange:selectedRange withSelected:newRange withActionName:@""];
+                success = YES;
+            }
+        }
+        
+        // ファイルがドロップされた
+    } else if ([type isEqualToString:NSFilenamesPboardType]) {
+        NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
+        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+        NSURL *documentURL = [[[[self window] windowController] document] fileURL];
+        
+        for (NSString *path in files) {
+            NSURL *absoluteURL = [NSURL fileURLWithPath:path];
+            NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
+            NSString *stringToDrop = nil;
+            
+            selectedRange = [self selectedRange];
+            for (NSDictionary *definition in fileDropDefs) {
+                NSArray *extensions = [definition[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
+                pathExtension = [absoluteURL pathExtension];
+                pathExtensionLower = [pathExtension lowercaseString];
+                pathExtensionUpper = [pathExtension uppercaseString];
+                
+                if ([extensions containsObject:pathExtensionLower] ||
+                    [extensions containsObject:pathExtensionUpper])
+                {
+                    stringToDrop = definition[k_key_fileDropFormatString];
+                }
+            }
+            if ([stringToDrop length] > 0) {
+                NSString *relativePath;
+                if (documentURL && ![documentURL isEqual:absoluteURL]) {
+                    NSArray *docPathComponents = [documentURL pathComponents];
+                    NSArray *droppedPathComponents = [absoluteURL pathComponents];
+                    NSMutableArray *relativeComponents = [NSMutableArray array];
+                    NSUInteger sameCount = 0, count = 0;
+                    NSUInteger docCompnentsCount = [docPathComponents count];
+                    NSUInteger droppedCompnentsCount = [droppedPathComponents count];
+                    
+                    for (NSUInteger i = 0; i < docCompnentsCount; i++) {
+                        if (![docPathComponents[i] isEqualToString:droppedPathComponents[i]]) {
+                            sameCount = i;
+                            count = docCompnentsCount - sameCount - 1;
+                            break;
+                        }
+                    }
+                    for (NSUInteger i = count; i > 0; i--) {
+                        [relativeComponents addObject:@".."];
+                    }
+                    for (NSUInteger i = sameCount; i < droppedCompnentsCount; i++) {
+                        [relativeComponents addObject:droppedPathComponents[i]];
+                    }
+                    relativePath = [[NSURL fileURLWithPathComponents:relativeComponents] relativePath];
+                } else {
+                    relativePath = [absoluteURL path];
+                }
+                
+                NSString *fileName = [absoluteURL lastPathComponent];
+                NSString *fileNoSuffix = [fileName stringByDeletingPathExtension];
+                NSString *dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
+                
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
+                                                                       withString:[absoluteURL path]];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
+                                                                       withString:relativePath];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME>>>"
+                                                                       withString:fileName];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME-NOSUFFIX>>>"
+                                                                       withString:fileNoSuffix];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION>>>"
+                                                                       withString:pathExtension];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-LOWER>>>"
+                                                                       withString:pathExtensionLower];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-UPPER>>>"
+                                                                       withString:pathExtensionUpper];
+                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<DIRECTORY>>>"
+                                                                       withString:dirName];
+                
+                NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
+                if (imageRep) {
+                    // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
+                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
+                                                                           withString:[NSString stringWithFormat:@"%zd",
+                                                                                       [imageRep pixelsWide]]];
+                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
+                                                                           withString:[NSString stringWithFormat:@"%zd",
+                                                                                       [imageRep pixelsHigh]]];
+                }
+                // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
+                newRange = NSMakeRange(selectedRange.location, [stringToDrop length]);
+                // （Action名は自動で付けられる？ので、指定しない）
+                [self doReplaceString:stringToDrop withRange:selectedRange withSelected:newRange withActionName:@""];
+                // 挿入後、選択範囲を移動させておかないと複数オブジェクトをドロップされた時に重ね書きしてしまう
+                [self setSelectedRange:NSMakeRange(NSMaxRange(newRange), 0)];
+                success = YES;
+            }
+        }
+    }
+    if (!success) {
+        success = [super readSelectionFromPasteboard:pboard type:type];
+    }
+    [self setReadingFromPboard:NO];
+    
+    return success;
+}
+
+
+// ------------------------------------------------------
+/// マウスでのテキスト選択時の挙動を制御
+- (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange granularity:(NSSelectionGranularity)granularity
+// ------------------------------------------------------
+{
+    // このメソッドは、Smultron のものを使用させていただきました。(2006.09.09)
+    // This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
+    // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
+    // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
+    
+    if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {  // If it's not a double-click return unchanged
+        return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
+    }
+    
+    // do not continue custom process if selection contains multiple lines (for dragging event with double-click)
+    if ([[[[self string] substringWithRange:proposedSelRange] componentsSeparatedByString:@"\n"] count] > 1) {
+        return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
+    }
+    
+    NSString *completeString = [self string];
+    NSInteger lengthOfString = [completeString length];
+    if (lengthOfString == (NSInteger)proposedSelRange.location) { // To avoid crash if a double-click occurs after any text
+        return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
+    }
+    
+    NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
+    NSRange wordRange = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByWord];
+    
+    // 特定の文字を単語区切りとして扱う
+    if (wordRange.length > 1) {
+        NSString *word = [completeString substringWithRange:wordRange];
+        NSScanner *scanner = [NSScanner scannerWithString:word];
+        NSCharacterSet *breakCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@".:"];
+        
+        NSRange newWrodRange = wordRange;
+        while ([scanner scanUpToCharactersFromSet:breakCharacterSet intoString:nil]) {
+            NSUInteger breakLocation = [scanner scanLocation];
+            if (wordRange.location + breakLocation < location) {
+                newWrodRange.location = wordRange.location + breakLocation + 1;
+                newWrodRange.length = wordRange.length - (breakLocation + 1);
+            } else {
+                newWrodRange.length -= wordRange.length - breakLocation;
+                break;
+            }
+            [scanner scanCharactersFromSet:breakCharacterSet intoString:nil];
+        }
+        return newWrodRange;
+    }
+    
+    // ダブルクリックでの括弧内選択
+    unichar beginBrace, endBrace;
+    BOOL isEndBrace = NO;
+    switch ([completeString characterAtIndex:location]) {
+        case ')':
+            isEndBrace = YES;
+        case '(':
+            beginBrace = '(';
+            endBrace = ')';
+            break;
+            
+        case '}':
+            isEndBrace = YES;
+        case '{':
+            beginBrace = '{';
+            endBrace = '}';
+            break;
+            
+        case ']':
+            isEndBrace = YES;
+        case '[':
+            beginBrace = '[';
+            endBrace = ']';
+            break;
+            
+        case '>':
+            isEndBrace = YES;
+        case '<':
+            beginBrace = '<';
+            endBrace = '>';
+            break;
+            
+        default: {
+            return wordRange;
+        }
+    }
+    
+    NSInteger originalLocation = location;
+    NSUInteger skipMatchingBrace = 0;
+    
+    if (isEndBrace) {
+        while (location--) {
+            unichar characterToCheck = [completeString characterAtIndex:location];
+            if (characterToCheck == beginBrace) {
+                if (!skipMatchingBrace) {
+                    return NSMakeRange(location, originalLocation - location + 1);
+                } else {
+                    skipMatchingBrace--;
+                }
+            } else if (characterToCheck == endBrace) {
+                skipMatchingBrace++;
+            }
+        }
+    } else {
+        while (++location < lengthOfString) {
+            unichar characterToCheck = [completeString characterAtIndex:location];
+            if (characterToCheck == endBrace) {
+                if (!skipMatchingBrace) {
+                    return NSMakeRange(originalLocation, location - originalLocation + 1);
+                } else {
+                    skipMatchingBrace--;
+                }
+            } else if (characterToCheck == beginBrace) {
+                skipMatchingBrace++;
+            }
+        }
+    }
+    NSBeep();
+    
+    // If it has a found a "starting" brace but not found a match, a double-click should only select the "starting" brace and not what it usually would select at a double-click
+    return [super selectionRangeForProposedRange:NSMakeRange(proposedSelRange.location, 1) granularity:NSSelectByCharacter];
+}
+
+
+// ------------------------------------------------------
 /// フォントパネルを更新
 - (void)updateFontPanel
 // ------------------------------------------------------
@@ -841,397 +1230,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 読み取り可能なPasteboardタイプを返す
-- (NSArray *)readablePasteboardTypes
-// ------------------------------------------------------
-{
-    return [[super readablePasteboardTypes] arrayByAddingObject:NSFilenamesPboardType];
-}
-
-
-// ------------------------------------------------------
-/// 改行コード置換のためのPasteboardタイプ配列を返す
-- (NSArray *)pasteboardTypesForString
-// ------------------------------------------------------
-{
-    return @[NSPasteboardTypeString, @"public.utf8-plain-text"];
-}
-
-
-// ------------------------------------------------------
-/// ドラッグする文字列の改行コードを書類に設定されたものに置換する
-- (void)dragImage:(NSImage *)anImage at:(NSPoint)imageLoc offset:(NSSize)mouseOffset
-            event:(NSEvent *)theEvent pasteboard:(NSPasteboard *)pboard
-           source:(id)sourceObject slideBack:(BOOL)slideBack
-// ------------------------------------------------------
-{
-    [self replaceLineEndingToDocCharInPboard:pboard];
-    [super dragImage:anImage at:imageLoc offset:mouseOffset
-               event:theEvent pasteboard:pboard source:sourceObject slideBack:slideBack];
-}
-
-
-// ------------------------------------------------------
-/// 領域内でオブジェクトがドラッグされている
-- (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type
-// ------------------------------------------------------
-{
-    if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
-        for (NSDictionary *item in fileDropArray) {
-            NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            NSArray *extensions = [item[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
-            if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
-                NSString *string = [self string];
-                if ([string length] > 0) {
-                    // 挿入ポイントを自前で描画する
-                    CGFloat partialFraction;
-                    NSLayoutManager *layoutManager = [self layoutManager];
-                    NSUInteger glyphIndex = [layoutManager glyphIndexForPoint:[self convertPoint:[dragInfo draggingLocation] fromView: nil]
-                                                              inTextContainer:[self textContainer]
-                                               fractionOfDistanceThroughGlyph:&partialFraction];
-                    NSPoint glypthIndexPoint;
-                    if ((partialFraction > 0.5) && ([string characterAtIndex:glyphIndex] != '\n')) {
-                            NSRect glyphRect = [layoutManager boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)
-                                                                        inTextContainer:[self textContainer]];
-                            glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                            glypthIndexPoint.x += NSWidth(glyphRect);
-                    } else {
-                        glypthIndexPoint = [layoutManager locationForGlyphAtIndex:glyphIndex];
-                    }
-                    NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL];
-                    NSRect insertionRect = NSMakeRect(glypthIndexPoint.x, lineRect.origin.y, 1, NSHeight(lineRect));
-                    if (!NSEqualRects([self insertionRect], insertionRect)) {
-                        // 古い自前挿入ポイントが描かれたままになることへの対応
-                        [self setNeedsDisplayInRect:[self insertionRect] avoidAdditionalLayout:NO];
-                    }
-                    [[self insertionPointColor] set];
-                    [self lockFocus];
-                    NSFrameRectWithWidth(insertionRect, 1.0);
-                    [self unlockFocus];
-                    [self setInsertionRect:insertionRect];
-                }
-                return NSDragOperationCopy;
-            }
-        }
-        return NSDragOperationNone;
-    }
-    return [super dragOperationForDraggingInfo:dragInfo type:type];
-}
-
-
-// ------------------------------------------------------
-/// ドロップ実行（同じ書類からドロップされた文字列の改行コードをLFへ置換するためにオーバーライド）
-- (BOOL)performDragOperation:(id < NSDraggingInfo >)sender
-// ------------------------------------------------------
-{
-    // ドロップによる編集で改行コードをLFに統一する
-    // （その他の編集は、下記の通りの別の場所で置換している）
-    // # テキスト編集時の改行コードの置換場所
-    //  * ファイルオープン = CEDocument > setStringToEditor
-    //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-    //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-    //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-    //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
-
-    // まず、自己内ドラッグかどうかのフラグを立てる
-    [self setIsSelfDrop:([sender draggingSource] == self)];
-
-    if ([self isSelfDrop]) {
-        // （自己内ドラッグの場合には、改行コード置換を readSelectionFromPasteboard:type: 内で実行すると
-        // アンドゥの登録で文字列範囲の計算が面倒なので、ここでPasteboardを書き換えてしまう）
-        NSPasteboard *pboard = [sender draggingPasteboard];
-        NSString *pboardType = [pboard availableTypeFromArray:[self pasteboardTypesForString]];
-        if (pboardType) {
-            NSString *string = [pboard stringForType:pboardType];
-            if (string) {
-                OgreNewlineCharacter newlineChar = [OGRegularExpression newlineCharacterInString:string];
-                if ((newlineChar != OgreNonbreakingNewlineCharacter) &&
-                    (newlineChar != OgreLfNewlineCharacter)) {
-                    [pboard setString:[OGRegularExpression replaceNewlineCharactersInString:string
-                                                                              withCharacter:OgreLfNewlineCharacter]
-                              forType:pboardType];
-                }
-            }
-        }
-    }
-
-    BOOL success = [super performDragOperation:sender];
-    [self setIsSelfDrop:NO];
-
-    return success;
-}
-
-
-// ------------------------------------------------------
-/// ペーストまたはドロップされたアイテムに応じて挿入する文字列をNSPasteboardから読み込む
-- (BOOL)readSelectionFromPasteboard:(NSPasteboard *)pboard type:(NSString *)type
-// ------------------------------------------------------
-{
-    // （このメソッドは、performDragOperation: 内で呼ばれる）
-
-    BOOL success = NO;
-    NSRange selectedRange, newRange;
-
-    // 実行中フラグを立てる
-    [self setIsReadingFromPboard:YES];
-
-    // ペーストされたか、他からテキストがドロップされた
-    if (![self isSelfDrop] && [type isEqualToString:NSStringPboardType]) {
-        // ペースト、他からのドロップによる編集で改行コードをLFに統一する
-        // （その他の編集は、下記の通りの別の場所で置換している）
-        // # テキスト編集時の改行コードの置換場所
-        //  * ファイルオープン = CEDocument > setStringToEditor
-        //  * スクリプト = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //  * キー入力 = CEEditorView > textView:shouldChangeTextInRange:replacementString:
-        //  * ペースト = CETextView > readSelectionFromPasteboard:type:
-        //  * ドロップ（別書類または別アプリから） = CETextView > readSelectionFromPasteboard:type:
-        //  * ドロップ（同一書類内） = CETextView > performDragOperation:
-        //  * 検索パネルでの置換 = (OgreKit) OgreTextViewPlainAdapter > replaceCharactersInRange:withOGString:
-
-        NSString *pboardStr = [pboard stringForType:NSStringPboardType];
-        if (pboardStr) {
-            OgreNewlineCharacter newlineChar = [OGRegularExpression newlineCharacterInString:pboardStr];
-            if ((newlineChar != OgreNonbreakingNewlineCharacter) &&
-                (newlineChar != OgreLfNewlineCharacter)) {
-                NSString *replacedStr = [OGRegularExpression replaceNewlineCharactersInString:pboardStr
-                                                                                withCharacter:OgreLfNewlineCharacter];
-                selectedRange = [self selectedRange];
-                newRange = NSMakeRange(selectedRange.location + [replacedStr length], 0);
-                // （Action名は自動で付けられる？ので、指定しない）
-                [self doReplaceString:replacedStr withRange:selectedRange withSelected:newRange withActionName:@""];
-                success = YES;
-            }
-        }
-
-    // ファイルがドロップされた
-    } else if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
-        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-        NSURL *documentURL = [[[[self window] windowController] document] fileURL];
-
-        for (NSString *path in files) {
-            NSURL *absoluteURL = [NSURL fileURLWithPath:path];
-            NSString *pathExtension = nil, *pathExtensionLower = nil, *pathExtensionUpper = nil;
-            NSString *stringToDrop = nil;
-            
-            selectedRange = [self selectedRange];
-            for (NSDictionary *definition in fileDropDefs) {
-                NSArray *extensions = [definition[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
-                pathExtension = [absoluteURL pathExtension];
-                pathExtensionLower = [pathExtension lowercaseString];
-                pathExtensionUpper = [pathExtension uppercaseString];
-                
-                if ([extensions containsObject:pathExtensionLower] ||
-                    [extensions containsObject:pathExtensionUpper])
-                {
-                    stringToDrop = definition[k_key_fileDropFormatString];
-                }
-            }
-            if ([stringToDrop length] > 0) {
-                NSString *relativePath;
-                if (documentURL && ![documentURL isEqual:absoluteURL]) {
-                    NSArray *docPathComponents = [documentURL pathComponents];
-                    NSArray *droppedPathComponents = [absoluteURL pathComponents];
-                    NSMutableArray *relativeComponents = [NSMutableArray array];
-                    NSUInteger sameCount = 0, count = 0;
-                    NSUInteger docCompnentsCount = [docPathComponents count];
-                    NSUInteger droppedCompnentsCount = [droppedPathComponents count];
-
-                    for (NSUInteger i = 0; i < docCompnentsCount; i++) {
-                        if (![docPathComponents[i] isEqualToString:droppedPathComponents[i]]) {
-                            sameCount = i;
-                            count = docCompnentsCount - sameCount - 1;
-                            break;
-                        }
-                    }
-                    for (NSUInteger i = count; i > 0; i--) {
-                        [relativeComponents addObject:@".."];
-                    }
-                    for (NSUInteger i = sameCount; i < droppedCompnentsCount; i++) {
-                        [relativeComponents addObject:droppedPathComponents[i]];
-                    }
-                    relativePath = [[NSURL fileURLWithPathComponents:relativeComponents] relativePath];
-                } else {
-                    relativePath = [absoluteURL path];
-                }
-                
-                NSString *fileName = [absoluteURL lastPathComponent];
-                NSString *fileNoSuffix = [fileName stringByDeletingPathExtension];
-                NSString *dirName = [[absoluteURL URLByDeletingLastPathComponent] lastPathComponent];
-                
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<ABSOLUTE-PATH>>>"
-                                                                       withString:[absoluteURL path]];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<RELATIVE-PATH>>>"
-                                                                       withString:relativePath];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME>>>"
-                                                                       withString:fileName];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILENAME-NOSUFFIX>>>"
-                                                                       withString:fileNoSuffix];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION>>>"
-                                                                       withString:pathExtension];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-LOWER>>>"
-                                                                       withString:pathExtensionLower];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<FILEEXTENSION-UPPER>>>"
-                                                                       withString:pathExtensionUpper];
-                stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<DIRECTORY>>>"
-                                                                       withString:dirName];
-                
-                NSImageRep *imageRep = [NSImageRep imageRepWithContentsOfURL:absoluteURL];
-                if (imageRep) {
-                    // NSImage の size では dpi をも考慮されたサイズが返ってきてしまうので NSImageRep を使う
-                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEWIDTH>>>"
-                                                                           withString:[NSString stringWithFormat:@"%zd",
-                                                                                       [imageRep pixelsWide]]];
-                    stringToDrop = [stringToDrop stringByReplacingOccurrencesOfString:@"<<<IMAGEHEIGHT>>>"
-                                                                           withString:[NSString stringWithFormat:@"%zd",
-                                                                                       [imageRep pixelsHigh]]];
-                }
-                // （ファイルをドロップしたときは、挿入文字列全体を選択状態にする）
-                newRange = NSMakeRange(selectedRange.location, [stringToDrop length]);
-                // （Action名は自動で付けられる？ので、指定しない）
-                [self doReplaceString:stringToDrop withRange:selectedRange withSelected:newRange withActionName:@""];
-                // 挿入後、選択範囲を移動させておかないと複数オブジェクトをドロップされた時に重ね書きしてしまう
-                [self setSelectedRange:NSMakeRange(NSMaxRange(newRange), 0)];
-                success = YES;
-            }
-        }
-    }
-    if (!success) {
-        success = [super readSelectionFromPasteboard:pboard type:type];
-    }
-    [self setIsReadingFromPboard:NO];
-
-    return success;
-}
-
-
-// ------------------------------------------------------
-/// マウスでのテキスト選択時の挙動を制御
-- (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange granularity:(NSSelectionGranularity)granularity
-// ------------------------------------------------------
-{
-// このメソッドは、Smultron のものを使用させていただきました。(2006.09.09)
-// This method is based on Smultron.(written by Peter Borg – http://smultron.sourceforge.net)
-// Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
-// Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
-
-	if (granularity != NSSelectByWord || [[self string] length] == proposedSelRange.location) {  // If it's not a double-click return unchanged
-		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
-	}
-    
-    // do not continue custom process if selection contains multiple lines (for dragging event with double-click)
-    if ([[[[self string] substringWithRange:proposedSelRange] componentsSeparatedByString:@"\n"] count] > 1) {
-		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
-    }
-
-	NSString *completeString = [self string];
-	NSInteger lengthOfString = [completeString length];
-	if (lengthOfString == (NSInteger)proposedSelRange.location) { // To avoid crash if a double-click occurs after any text
-		return [super selectionRangeForProposedRange:proposedSelRange granularity:granularity];
-	}
-    
-	NSInteger location = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByCharacter].location;
-    NSRange wordRange = [super selectionRangeForProposedRange:proposedSelRange granularity:NSSelectByWord];
-    
-    // 特定の文字を単語区切りとして扱う
-    if (wordRange.length > 1) {
-        NSString *word = [completeString substringWithRange:wordRange];
-        NSScanner *scanner = [NSScanner scannerWithString:word];
-        NSCharacterSet *breakCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@".:"];
-        
-        NSRange newWrodRange = wordRange;
-        while ([scanner scanUpToCharactersFromSet:breakCharacterSet intoString:nil]) {
-            NSUInteger breakLocation = [scanner scanLocation];
-            if (wordRange.location + breakLocation < location) {
-                newWrodRange.location = wordRange.location + breakLocation + 1;
-                newWrodRange.length = wordRange.length - (breakLocation + 1);
-            } else {
-                newWrodRange.length -= wordRange.length - breakLocation;
-                break;
-            }
-            [scanner scanCharactersFromSet:breakCharacterSet intoString:nil];
-        }
-        return newWrodRange;
-    }
-    
-    // ダブルクリックでの括弧内選択
-    unichar beginBrace, endBrace;
-    BOOL isEndBrace = NO;
-    switch ([completeString characterAtIndex:location]) {
-        case ')':
-            isEndBrace = YES;
-        case '(':
-            beginBrace = '(';
-            endBrace = ')';
-            break;
-            
-        case '}':
-            isEndBrace = YES;
-        case '{':
-            beginBrace = '{';
-            endBrace = '}';
-            break;
-            
-        case ']':
-            isEndBrace = YES;
-        case '[':
-            beginBrace = '[';
-            endBrace = ']';
-            break;
-            
-        case '>':
-            isEndBrace = YES;
-        case '<':
-            beginBrace = '<';
-            endBrace = '>';
-            break;
-            
-        default: {
-            return wordRange;
-        }
-    }
-    
-	NSInteger originalLocation = location;
-	NSUInteger skipMatchingBrace = 0;
-    
-    if (isEndBrace) {
-        while (location--) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == beginBrace) {
-                if (!skipMatchingBrace) {
-                    return NSMakeRange(location, originalLocation - location + 1);
-                } else {
-                    skipMatchingBrace--;
-                }
-            } else if (characterToCheck == endBrace) {
-                skipMatchingBrace++;
-            }
-        }
-    } else {
-        while (++location < lengthOfString) {
-            unichar characterToCheck = [completeString characterAtIndex:location];
-            if (characterToCheck == endBrace) {
-                if (!skipMatchingBrace) {
-                    return NSMakeRange(originalLocation, location - originalLocation + 1);
-                } else {
-                    skipMatchingBrace--;
-                }
-            } else if (characterToCheck == beginBrace) {
-                skipMatchingBrace++;
-            }
-        }
-    }
-    NSBeep();
-
-	// If it has a found a "starting" brace but not found a match, a double-click should only select the "starting" brace and not what it usually would select at a double-click
-    return [super selectionRangeForProposedRange:NSMakeRange(proposedSelRange.location, 1) granularity:NSSelectByCharacter];
-}
-
-
-// ------------------------------------------------------
 /// 行間値をセットし、テキストと行番号を再描画
 - (void)setNewLineSpacingAndUpdate:(CGFloat)lineSpacing
 // ------------------------------------------------------
@@ -1257,7 +1255,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSString *curStr = [[self string] substringWithRange:range];
 
     // regist Undo
-    id document = [[[self window] windowController] document];
+    NSDocument *document = [[[self window] windowController] document];
     NSUndoManager *undoManager = [self undoManager];
     NSRange newRange = NSMakeRange(range.location, [string length]); // replaced range after method.
 
@@ -1511,6 +1509,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
              withSelected:NSMakeRange(newLocation, newLength) withActionName:NSLocalizedString(@"Shift Left", nil)];
 }
 
+
 // ------------------------------------------------------
 /// 選択範囲のコメントを切り替える
 - (IBAction)toggleComment:(id)sender
@@ -1753,7 +1752,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if (selectedRange.length == 0) { return; }
     
-    NSString *newStr = [self halfToFullwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
+    NSString *newStr =  [[[self string] substringWithRange:selectedRange] fullWidthRomanString];
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
@@ -1771,7 +1770,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if (selectedRange.length == 0) { return; }
     
-    NSString *newStr = [self fullToHalfwidthRomanStringFrom:[[self string] substringWithRange:selectedRange]];
+    NSString *newStr =  [[[self string] substringWithRange:selectedRange] halfWidthRomanString];
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
@@ -1789,7 +1788,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if (selectedRange.length == 0) { return; }
     
-    NSString *newStr = [self hiraganaToKatakanaStringFrom:[[self string] substringWithRange:selectedRange]];
+    NSString *newStr =  [[[self string] substringWithRange:selectedRange] katakanaString];
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
@@ -1807,7 +1806,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     if (selectedRange.length == 0) { return; }
     
-    NSString *newStr = [self katakanaToHiraganaStringFrom:[[self string] substringWithRange:selectedRange]];
+    NSString *newStr = [[[self string] substringWithRange:selectedRange] hiraganaString];
     if (newStr) {
         [self doInsertString:newStr withRange:selectedRange
                 withSelected:NSMakeRange(selectedRange.location, [newStr length])
@@ -1952,7 +1951,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (value) {
         NSRange range = [value rangeValue];
 
-        [self setUpdateOutlineMenuItemSelection:NO]; // 選択範囲変更後にメニュー選択項目が再選択されるオーバーヘッドを省く
+        [self setNeedsUpdateOutlineMenuItemSelection:NO]; // 選択範囲変更後にメニュー選択項目が再選択されるオーバーヘッドを省く
         [self setSelectedRange:range];
         [self centerSelectionInVisibleArea:self];
         [[self window] makeFirstResponder:self];
@@ -1992,7 +1991,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
-#pragma mark Private Mthods
+
+#pragma mark Private Methods
+
+//=======================================================
+// Private method
+//
+//=======================================================
 
 // ------------------------------------------------------
 /// 変更を監視するデフォルトキー
@@ -2047,89 +2052,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 半角Romanを全角Romanへ変換
-- (NSString *)halfToFullwidthRomanStringFrom:(NSString *)halfRoman
+/// 改行コード置換のためのPasteboardタイプ配列を返す
+- (NSArray *)pasteboardTypesForString
 // ------------------------------------------------------
 {
-    NSMutableString *fullRoman = [NSMutableString string];
-    NSCharacterSet *latinCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange((NSUInteger)'!', 94)];
-    NSUInteger count = [halfRoman length];
-
-    for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [halfRoman characterAtIndex:i];
-        if ([latinCharSet characterIsMember:theChar]) {
-            [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
-// 半角カナには未対応（2/21） *********************
-//        } else if ([hankakuKanaCharSet characterIsMember:theChar]) {
-//            [fullRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 65248)]];
-        } else {
-            [fullRoman appendString:[halfRoman substringWithRange:NSMakeRange(i, 1)]];
-        }
-    }
-    return fullRoman;
-}
-
-
-// ------------------------------------------------------
-/// 全角Romanを半角Romanへ変換
-- (NSString *)fullToHalfwidthRomanStringFrom:(NSString *)fullRoman
-// ------------------------------------------------------
-{
-    NSMutableString *halfRoman = [NSMutableString string];
-    NSCharacterSet *fullwidthCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(65281, 94)];
-    NSUInteger count = [fullRoman length];
-
-    for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [fullRoman characterAtIndex:i];
-        if ([fullwidthCharSet characterIsMember:theChar]) {
-            [halfRoman appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar - 65248)]];
-        } else {
-            [halfRoman appendString:[fullRoman substringWithRange:NSMakeRange(i, 1)]];
-        }
-    }
-    return halfRoman;
-}
-
-
-// ------------------------------------------------------
-/// ひらがなをカタカナへ変換
-- (NSString *)hiraganaToKatakanaStringFrom:(NSString *)hiragana
-// ------------------------------------------------------
-{
-    NSMutableString *katakana = [NSMutableString string];
-    NSCharacterSet *hiraganaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12353, 86)];
-    NSUInteger count = [hiragana length];
-
-    for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [hiragana characterAtIndex:i];
-        if ([hiraganaCharSet characterIsMember:theChar]) {
-            [katakana appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar + 96)]];
-        } else {
-            [katakana appendString:[hiragana substringWithRange:NSMakeRange(i, 1)]];
-        }
-    }
-    return katakana;
-}
-
-
-// ------------------------------------------------------
-/// カタカナをひらがなへ変換
-- (NSString *)katakanaToHiraganaStringFrom:(NSString *)katakana
-// ------------------------------------------------------
-{
-    NSMutableString *hiragana = [NSMutableString string];
-    NSCharacterSet *katakanaCharSet = [NSCharacterSet characterSetWithRange:NSMakeRange(12449, 86)];
-    NSUInteger count = [katakana length];
-
-    for (NSUInteger i = 0; i < count; i++) {
-        unichar theChar = [katakana characterAtIndex:i];
-        if ([katakanaCharSet characterIsMember:theChar]) {
-            [hiragana appendString:[NSString stringWithFormat:@"%C", (unichar)(theChar - 96)]];
-        } else {
-            [hiragana appendString:[katakana substringWithRange:NSMakeRange(i, 1)]];
-        }
-    }
-    return hiragana;
+    return @[NSPasteboardTypeString, (NSString *)kUTTypeUTF8PlainText];
 }
 
 

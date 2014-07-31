@@ -319,7 +319,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
-    [[self textView] setIsAutoTabExpandEnabled:isEnabled];
+    [[self textView] setAutoTabExpandEnabled:isEnabled];
 }
 
 
@@ -430,10 +430,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     if ([self outlineMenuTimer]) { return; }
     
-    if ([[self textView] updateOutlineMenuItemSelection]) {
+    if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
         [[self navigationBar] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
     } else {
-        [[self textView] setUpdateOutlineMenuItemSelection:YES];
+        [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
         [[self navigationBar] updatePrevNextButtonEnabled];
     }
 }
@@ -615,8 +615,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
-    if ([[self textView] isReCompletion]) {
-        [[self textView] setIsReCompletion:NO];
+    if ([[self textView] needsRecompletion]) {
+        [[self textView] setNeedsRecompletion:NO];
         [[self textView] completeAfterDelay:0.05];
     }
 }
