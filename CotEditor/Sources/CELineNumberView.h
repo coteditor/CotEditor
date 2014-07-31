@@ -9,13 +9,8 @@ CELineNumberView
 =================================================
 
 encoding="UTF-8"
-Created:2005.03.30
+Created on 2005-03-30 by nakamuxu
  
-------------
-This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
-JSDTextView is released as public domain.
-arranged by nakamuxu, Dec 2004.
-arranged by 1024jp, Mar 2014.
 -------------------------------------------------
 
 This program is free software; you can redistribute it and/or
@@ -41,8 +36,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CELineNumberView : NSView
 
-@property (nonatomic, unsafe_unretained) NSTextView *textView;  // should be weak, just because it is NSTextView.
-@property (nonatomic) BOOL showLineNum;
+@property (nonatomic, getter=isShown) BOOL shown;
+@property (nonatomic) NSTextView *textView;  // should be weak, just because it is NSTextView.
 @property (nonatomic) CGFloat backgroundAlpha;
 
 

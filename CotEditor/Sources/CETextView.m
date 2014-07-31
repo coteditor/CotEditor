@@ -504,7 +504,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     [self setFont:newFont];
     [self setNeedsDisplay:YES]; // 本来なくても再描画されるが、最下行以下のページガイドの描画が残るための措置(2009.02.14)
-    [[self slaveView] setNeedsDisplay:YES];
     [self updateLineNumberAndAdjustScroll];
 }
 
@@ -673,7 +672,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theOrientation != NSTextLayoutOrientationVertical) {
         shouldShowLineNum = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showLineNumbers];
     }
-    [(CELineNumberView *)[self slaveView] setShowLineNum:shouldShowLineNum];
+    [(CELineNumberView *)[self slaveView] setShown:shouldShowLineNum];
     
     [super setLayoutOrientation:theOrientation];
 }
@@ -837,7 +836,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_fontSize];
 
     [self setFont:[NSFont fontWithName:name size:size]];
-    [[self slaveView] setNeedsDisplay:YES];
     [self updateLineNumberAndAdjustScroll];
 }
 
@@ -2159,9 +2157,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    if ([(CELineNumberView *)[self slaveView] showLineNum]) {
-        [[self slaveView] setNeedsDisplay:YES];
-    }
+    [[self slaveView] setNeedsDisplay:YES];
+    
     // キャレット／選択範囲が見えるようにスクロール位置を調整
     [self scrollRangeToVisible:[self selectedRange]];
 }

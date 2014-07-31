@@ -9,15 +9,9 @@ CELineNumberView
 =================================================
 
 encoding="UTF-8"
-Created:2005.03.30
+Created on 2005-03-30 by nakamuxu
  
-------------
-This class is based on JSDTextView (written by James S. Derry – http://www.balthisar.com)
-JSDTextView is released as public domain.
-arranged by nakamuxu, Dec 2004.
-arranged by Hetima, Aug 2005.
-arranged by 1024jp, Mar 2014.
- -------------------------------------------------
+-------------------------------------------------
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -73,10 +67,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        [self setAutoresizingMask:NSViewHeightSizable];
-        [[self enclosingScrollView] setHasHorizontalScroller:NO];
-        [[self enclosingScrollView] setHasVerticalScroller:NO];
-        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:0] ? : [NSFont paletteFontOfSize:0];
         _fontName = [font fontName];
@@ -109,6 +99,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self setTextView:nil];
 }
 
 
@@ -117,8 +108,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    if (![self showLineNum] || ![self textView]) { return; }
-    
     // fill in the background
     NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
     [backgroundColor set];
@@ -129,38 +118,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect))
                               toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMinY(dirtyRect))];
     
-    // adjust rect so we won't later draw into the scrollbar area
-    if ([[self scrollView] hasHorizontalScroller]) {
-        CGFloat horizontalScrollAdj = NSHeight([[[self scrollView] horizontalScroller] frame]) / 2;
-        dirtyRect.origin.y += horizontalScrollAdj; // (shift the drawing frame reference up.)
-        dirtyRect.size.height -= horizontalScrollAdj; // (and shrink it the same distance.)
-    }
-    
-    // setup the variables we need for the loop
+    // get document data
     NSString *string = [[self textView] string];
+    NSLayoutManager *layoutManager = [[self textView] layoutManager];
     
     if ([string length] == 0) { return; }
-    
-    NSLayoutManager *layoutManager = [[self textView] layoutManager]; // get owner's layout manager.
-    
-    // setup drawing attributes for the font size
-    CGFloat masterFontSize = [[[self textView] font] pointSize];
-    CGFloat fontSize = round(0.9 * masterFontSize);
-    CTFontRef font = CTFontCreateWithName((CFStringRef)[self fontName], fontSize, nil);
-    CFAutorelease(font);
-    
-    //ループの中で convertRect:fromView: を呼ぶと重いみたいなので一回だけ呼んで差分を調べておく(hetima)
-    CGFloat crDistance;
-    {
-        NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:0 effectiveRange:NULL withoutAdditionalLayout:YES];
-        crDistance = numRect.origin.y - NSHeight(numRect);
-        numRect = [self convertRect:numRect fromView:[self textView]];
-        crDistance = numRect.origin.y - crDistance;
-    }
     
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
+    
+    // setup font
+    CGFloat masterFontSize = [[[self textView] font] pointSize];
+    CGFloat fontSize = round(0.9 * masterFontSize);
+    CTFontRef font = CTFontCreateWithName((CFStringRef)[self fontName], fontSize, nil);
+    CFAutorelease(font);
     
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGContextSetFont(context, cgFont);
@@ -168,79 +140,71 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGContextSetFillColorWithColor(context, [[self numberColor] CGColor]);
     CFRelease(cgFont);
     
-    // prepare '-' glyph (wrapped mark)
-    CGGlyph dashGlyph;
+    // prepare glyphs
+    CGGlyph wrappedMarkGlyph;
     unichar dash = '-';
-    CTFontGetGlyphsForCharacters(font, &dash, &dashGlyph, 1);
-    // prepare number glyphs
+    CTFontGetGlyphsForCharacters(font, &dash, &wrappedMarkGlyph, 1);
+    
     CGGlyph digitGlyphs[10];
-    unichar numbers[10];
-    [@"0123456789" getCharacters:numbers range:NSMakeRange(0, 10)];
+    unichar numbers[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     CTFontGetGlyphsForCharacters(font, numbers, digitGlyphs, 10);
     
-    //文字幅を計算しておく 等幅扱い
-    //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
+    // calc character width as monospaced font
     CGSize advance;
     CTFontGetAdvancesForGlyphs(font, kCTFontHorizontalOrientation, &digitGlyphs[8], &advance, 1);  // use '8' to get width
     CGFloat charWidth = advance.width;
     
-    // adjust drawing origin
-    CGFloat inset = [[self textView] textContainerOrigin].y;
+    // prepare frame width
+    CGFloat width = NSWidth([self frame]);
+    
+    // adjust drawing coordinate
+    NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
+    NSPoint inset = [[self textView] textContainerOrigin];
     CGFloat diff = masterFontSize - fontSize;
     CGFloat ascent = CTFontGetAscent(font);
-    CGContextSetTextMatrix(context, CGAffineTransformMakeTranslation(-k_lineNumPadding, - inset - diff - ascent));
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
+    transform = CGAffineTransformTranslate(transform, -k_lineNumPadding, -relativePoint.y - inset.y - diff - ascent);
+    CGContextSetTextMatrix(context, transform);
     
     // get glyph range which line number should be drawn
     NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:[[self textView] visibleRect]
                                                          inTextContainer:[[self textView] textContainer]];
-    // count line endings to find first line number to draw
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    NSUInteger startLineNum = [regex numberOfMatchesInString:string options:0
-                                                       range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:
-                                                                             visibleGlyphRange.location])] + 1;
     
     // counters
     NSUInteger glyphCount = visibleGlyphRange.location;
-    NSUInteger endGlyphIndex = NSMaxRange(visibleGlyphRange);
-    NSUInteger lineNum = startLineNum;
+    NSUInteger lineNum = 1;
     NSUInteger lastLineNum = 0;
     
-    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < endGlyphIndex; lineNum++) { // count "REAL" lines
+    // count lines until visible
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
+    lineNum += [regex numberOfMatchesInString:string options:0
+                                        range:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])];
+    
+    // draw visible line numbers
+    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNum++) { // count "real" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
                                                       actualCharacterRange:NULL]);
         
-        while (glyphCount < glyphIndex) { // handle "DRAWN" (wrapped) lines
+        while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
-            NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
-            numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
-            numRect.origin.y = crDistance - NSMaxY(numRect);
+            NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
+            CGFloat y = -NSMinY(lineRect);
             
             if (lastLineNum == lineNum) {  // wrapped line
-                CGPoint position = CGPointMake(NSWidth([self frame]) - charWidth, NSMaxY(numRect));
-                CGContextShowGlyphsAtPositions(context, &dashGlyph, &position, 1);  // draw wrapped mark
+                CGPoint position = CGPointMake(width - charWidth, y);
+                CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
                 
             } else {  // new line
-                int digit = (int)log10(lineNum) + 1;
-                
-                // adjust frame width
-                CGFloat currentWidth = NSWidth([self frame]);
-                CGFloat requiredWidth = charWidth * digit;
-                if ((currentWidth - k_lineNumPadding) < requiredWidth) {
-                    while ((currentWidth - k_lineNumPadding) < requiredWidth) {
-                        currentWidth += charWidth;
-                    }
-                    [self setThickness:currentWidth]; // set a wider width if needed.
-                }
+                NSUInteger digit = numberOfDigits(lineNum);
                 
                 // get glyphs and positions
                 CGGlyph glyphs[digit];
                 CGPoint positions[digit];
-                for (int i = 0; i < digit; i++) {
-                    int index = (lineNum % (int)pow(10, i + 1)) / pow(10, i);  // get number of desired digit
-                    
-                    glyphs[i] = digitGlyphs[index];
-                    positions[i] = CGPointMake(currentWidth - (i + 1) * charWidth, NSMaxY(numRect));
+                for (NSUInteger i = 0; i < digit; i++) {
+                    glyphs[i] = digitGlyphs[numberAt(i, lineNum)];
+                    positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
                 }
                 
                 CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
@@ -251,38 +215,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
     }
     
-    // Draw the last "extra" line number.
-    NSRect numRect = [layoutManager extraLineFragmentUsedRect];
-    if (!NSEqualSizes(numRect.size, NSZeroSize)) {
-        numRect.origin.x = dirtyRect.origin.x;  // don't care about x -- just force it into the rect
-        numRect.origin.y = crDistance - NSMaxY(numRect);
+    // draw the last "extra" line number
+    if ([layoutManager extraLineFragmentTextContainer]) {
+        NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
+        CGFloat y = -NSMinY(lineRect);
         
-        int digit = (int)log10(lineNum) + 1;
-        
-        // adjust frame width
-        CGFloat currentWidth = NSWidth([self frame]);
-        CGFloat requiredWidth = charWidth * digit;
-        if ((currentWidth - k_lineNumPadding) < requiredWidth) {
-            while ((currentWidth - k_lineNumPadding) < requiredWidth) {
-                currentWidth += charWidth;
-            }
-            [self setThickness:currentWidth]; // set a wider width if needed.
-        }
+        NSUInteger digit = numberOfDigits(lineNum);
         
         // get glyphs and positions
         CGGlyph glyphs[digit];
         CGPoint positions[digit];
-        for (int i = 0; i < digit; i++) {
-            int index = (lineNum % (int)pow(10, i + 1)) / pow(10, i);  // get number of desired digit
-            
-            glyphs[i] = digitGlyphs[index];
-            positions[i] = CGPointMake(currentWidth - (i + 1) * charWidth, NSMaxY(numRect));
+        for (NSUInteger i = 0; i < digit; i++) {
+            glyphs[i] = digitGlyphs[numberAt(i, lineNum)];
+            positions[i] = CGPointMake(width - (i + 1) * charWidth, y);
         }
         
         CGContextShowGlyphsAtPositions(context, glyphs, positions, digit);  // draw line number
     }
     
+    // adjust thickness
+    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * k_lineNumPadding, k_defaultLineNumWidth);
+    [self setThickness:requiredWidth];
+    
     CGContextRestoreGState(context);
+}
+
+
+// ------------------------------------------------------
+/// flip vertical coordinate
+- (BOOL)isFlipped
+// ------------------------------------------------------
+{
+    return YES;
 }
 
 
@@ -326,14 +290,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-/// set to show line numbers.
-- (void)setShowLineNum:(BOOL)showLineNum
+/// set line numbers visibility
+- (void)setShown:(BOOL)isShown
 // ------------------------------------------------------
 {
-    if (showLineNum != [self showLineNum]) {
-        _showLineNum = showLineNum;
+    if (isShown != [self isShown]) {
+        _shown = isShown;
         
-        CGFloat width = showLineNum ? k_defaultLineNumWidth : 0.0;
+        CGFloat width = isShown ? k_defaultLineNumWidth : 0.0;
         [self setThickness:width];
     }
 }
@@ -357,16 +321,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //=======================================================
 
 // ------------------------------------------------------
-/// return scroll view of the textView (not enclosing scroll view of self)
-- (NSScrollView *)scrollView
-// ------------------------------------------------------
-{
-    return [[self textView] enclosingScrollView];
-}
-
-
-// ------------------------------------------------------
-/// set view width.
+/// set view thickness
 - (void)setThickness:(CGFloat)thickness
 // ------------------------------------------------------
 {
@@ -398,5 +353,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                      abs(currentIndex - clickedIndex))];
     [textView setSelectedRange:range];
 }
+
+
+
+#pragma mark Private C Functions
+
+/// digits of input number
+unsigned int numberOfDigits(int number) { return (unsigned int)log10(number) + 1; }
+
+/// number at the desired place of input number
+unsigned int numberAt(int place, int number) { return (number % (int)pow(10, place + 1)) / pow(10, place); }
 
 @end
