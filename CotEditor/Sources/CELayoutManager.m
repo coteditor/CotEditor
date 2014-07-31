@@ -172,31 +172,32 @@
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         
         // フォントサイズは随時変更されるため、表示時に取得する
-        NSFont *font = [self textFont];
+        CGFloat fontSize = [self textFontPointSize];
+        CTFontRef font = (__bridge CTFontRef)[self textFont];
         NSColor *color = [[textView theme] invisiblesColor];
         
         // for other invisibles
         NSFont *replaceFont;
         NSGlyph replaceGlyph;
+
+        // set graphics context
+        CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+        CGContextSaveGState(context);
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextSetFont(context, CTFontCopyGraphicsFont(font, NULL));
+        CGContextSetFontSize(context, fontSize);
         
         // prepare glyphs
         CGGlyph spaceGlyph = [self glyphWithCharacter:[self spaceChar] font:font];
         CGGlyph tabGlyph = [self glyphWithCharacter:[self tabChar] font:font];
         CGGlyph newLineGlyph = [self glyphWithCharacter:[self newLineChar] font:font];
         CGGlyph fullwidthSpaceGlyph = [self glyphWithCharacter:[self fullwidthSpaceChar] font:font];
-
-        // set graphics context
-        CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
-        CGContextSaveGState(context);
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextSetFont(context, CTFontCopyGraphicsFont((CTFontRef)font, NULL));
-        CGContextSetFontSize(context, [font pointSize]);
         
         // adjust drawing coordinate
         NSPoint inset = [textView textContainerOrigin];
         CGAffineTransform transform = CGAffineTransformIdentity;
         transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-        transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent((CTFontRef)font));
+        transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent(font));
         CGContextSetTextMatrix(context, transform);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
@@ -229,7 +230,7 @@
 
             } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
                 if (!replaceFont) {  // delay creating font/glyph till they are really needed
-                    replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];
+                    replaceFont = [NSFont fontWithName:@"Lucida Grande" size:fontSize];
                     replaceGlyph = [replaceFont glyphWithName:@"replacement"];
                 }
                 NSUInteger charLength = CFStringIsSurrogateHighCharacter(character) ? 2 : 1;
@@ -361,12 +362,12 @@
 
 //------------------------------------------------------
 /// 文字とフォントから CGGlyph を生成して返す
-- (CGGlyph)glyphWithCharacter:(unichar)character font:(NSFont *)font
+- (CGGlyph)glyphWithCharacter:(unichar)character font:(CTFontRef)font
 //------------------------------------------------------
 {
     CGGlyph glyph;
     
-    CTFontGetGlyphsForCharacters((CTFontRef)font, &character, &glyph, 1);
+    CTFontGetGlyphsForCharacters(font, &character, &glyph, 1);
     
     return glyph;
 }
