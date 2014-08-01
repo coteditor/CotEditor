@@ -184,21 +184,20 @@
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         CGContextSaveGState(context);
         CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextSetFont(context, CTFontCopyGraphicsFont(font, NULL));
-        CGContextSetFontSize(context, fontSize);
-        
-        // prepare glyphs
-        CGGlyph spaceGlyph = [self glyphWithCharacter:[self spaceChar] font:font];
-        CGGlyph tabGlyph = [self glyphWithCharacter:[self tabChar] font:font];
-        CGGlyph newLineGlyph = [self glyphWithCharacter:[self newLineChar] font:font];
-        CGGlyph fullwidthSpaceGlyph = [self glyphWithCharacter:[self fullwidthSpaceChar] font:font];
+        CGMutablePathRef paths = CGPathCreateMutable();
         
         // adjust drawing coordinate
         NSPoint inset = [textView textContainerOrigin];
         CGAffineTransform transform = CGAffineTransformIdentity;
         transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
         transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent(font));
-        CGContextSetTextMatrix(context, transform);
+        CGContextConcatCTM(context, transform);
+        
+        // prepare glyphs
+        CGPathRef spaceGlyphPath = [self glyphPathWithCharacter:[self spaceChar] font:font];
+        CGPathRef tabGlyphPath = [self glyphPathWithCharacter:[self tabChar] font:font];
+        CGPathRef newLineGlyphPath = [self glyphPathWithCharacter:[self newLineChar] font:font];
+        CGPathRef fullWidthSpaceGlyphPath = [self glyphPathWithCharacter:[self fullwidthSpaceChar] font:font];
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
         BOOL showsSpace = [self showsSpace];
@@ -214,19 +213,23 @@
 
             if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &spaceGlyph, &point, 1);
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, spaceGlyphPath);
 
             } else if (showsTab && (character == '\t')) {
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &tabGlyph, &point, 1);
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, tabGlyphPath);
                 
             } else if (showsNewLine && (character == '\n')) {
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &newLineGlyph, &point, 1);
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, newLineGlyphPath);
 
             } else if (showsFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &fullwidthSpaceGlyph, &point, 1);
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, fullWidthSpaceGlyphPath);
 
             } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
                 if (!replaceFont) {  // delay creating font/glyph till they are really needed
@@ -249,6 +252,12 @@
                 }
             }
         }
+        
+        // draw invisible glyphs (excl. other invisibles)
+        CGContextAddPath(context, paths);
+        CGContextFillPath(context);
+        
+        // release
         CGContextRestoreGState(context);
     }
     
@@ -361,15 +370,15 @@
 
 
 //------------------------------------------------------
-/// 文字とフォントから CGGlyph を生成して返す
-- (CGGlyph)glyphWithCharacter:(unichar)character font:(CTFontRef)font
+/// 文字とフォントからアウトラインパスを生成して返す
+- (CGPathRef)glyphPathWithCharacter:(unichar)character font:(CTFontRef)font
 //------------------------------------------------------
 {
     CGGlyph glyph;
     
     CTFontGetGlyphsForCharacters(font, &character, &glyph, 1);
     
-    return glyph;
+    return CTFontCreatePathForGlyph(font, glyph, NULL);
 }
 
 @end
