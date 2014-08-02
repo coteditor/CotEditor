@@ -276,6 +276,19 @@
 
 
 
+#pragma mark Delegate
+
+// ------------------------------------------------------
+/// 分割位置を調整
+- (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
+// ------------------------------------------------------
+{
+    // 0.5pxの端数が出ないようにする
+    return floor(proposedPosition);
+}
+
+
+
 #pragma mark Action Messages
 
 // ------------------------------------------------------

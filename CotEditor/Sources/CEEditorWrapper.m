@@ -776,14 +776,12 @@ static NSTimeInterval secondColoringDelay;
     [editorView setEditorWrapper:self];
     // 新たな subView は、押された追加ボタンが属する（またはフォーカスのある）editorView のすぐ下に挿入する
     [[[self splitViewController] view] addSubview:editorView positioned:NSWindowAbove relativeTo:currentEditorView];
-    [[[self splitViewController] splitView] adjustSubviews];
     [self setupViewParamsInInit:NO];
     [[editorView textView] setFont:[[self textView] font]];
     [[editorView textView] setTheme:[self theme]];
     [[editorView textView] setLineSpacing:[[self textView] lineSpacing]];
     [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
     [[editorView textView] setSelectedRange:selectedRange];
-    [[[self splitViewController] splitView] adjustSubviews];
     [editorView setSyntaxWithName:[[self syntaxParser] styleName]];
     [[editorView syntaxParser] colorAllString:[self string]];
     [[self textView] centerSelectionInVisibleArea:self];

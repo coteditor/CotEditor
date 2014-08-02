@@ -113,10 +113,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [backgroundColor set];
     [NSBezierPath fillRect:dirtyRect];
     
-    // draw frame border (0.5px)
+    // draw frame border (1px)
     [[NSColor controlShadowColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect))
-                              toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMinY(dirtyRect))];
+    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
+                              toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
     
     // get document data
     NSString *string = [[self textView] string];
@@ -235,7 +235,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     // adjust thickness
     CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * k_lineNumPadding, k_defaultLineNumWidth);
-    [self setThickness:requiredWidth];
+    [self setThickness:ceil(requiredWidth)];
     
     CGContextRestoreGState(context);
 }
