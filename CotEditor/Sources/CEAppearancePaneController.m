@@ -44,7 +44,7 @@
 
 @property (nonatomic) NSArray *themeNames;
 @property (nonatomic) NSMutableDictionary *themeDict;
-@property (nonatomic) BOOL isBundled;
+@property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end
 
@@ -187,7 +187,7 @@
         }
         
         [self setThemeDict:themeDict];
-        [self setIsBundled:isBundled];
+        [self setBundled:isBundled];
     }
 }
 

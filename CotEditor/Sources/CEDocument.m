@@ -55,7 +55,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
 @property (atomic, copy) NSString *fileMD5;
 @property (atomic) BOOL showUpdateAlertWithBecomeKey;
-@property (atomic) BOOL isRevertingForExternalFileUpdate;
+@property (atomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *initialString;  // 初期表示文字列に表示する文字列;
 @property (nonatomic) CEODBEventSender *ODBEventSender;
@@ -66,7 +66,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (nonatomic, readwrite) NSStringEncoding encoding;
 @property (nonatomic, readwrite) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readwrite, copy) NSDictionary *fileAttributes;
-@property (nonatomic ,readwrite) BOOL isWritable;
+@property (nonatomic ,readwrite, getter=isWritable) BOOL writable;
 
 @end
 
@@ -116,7 +116,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew];
         _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
         _selection = [[CETextSelection alloc] initWithDocument:self];
-        _isWritable = YES;
+        _writable = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
@@ -162,7 +162,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     // 書き込み可能かをチェック
     NSNumber *isWritableNum = nil;
     [url getResourceValue:&isWritableNum forKey:NSURLIsWritableKey error:nil];
-    [self setIsWritable:[isWritableNum boolValue]];
+    [self setWritable:[isWritableNum boolValue]];
     
     NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
     
@@ -1739,7 +1739,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     // シートが表示中でなければ、表示
     if ([[self windowForSheet] attachedSheet] == nil) {
-        [self setIsRevertingForExternalFileUpdate:YES];
+        [self setRevertingForExternalFileUpdate:YES];
         [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
         [alert beginSheetModalForWindow:[self windowForSheet]
                           modalDelegate:self
@@ -1751,7 +1751,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         
         // 既にシートが出ている時はダイアログで表示
     } else {
-        [self setIsRevertingForExternalFileUpdate:YES];
+        [self setRevertingForExternalFileUpdate:YES];
         [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
         NSInteger result = [alert runModal]; // アラート表示
         [self alertForModByAnotherProcessDidEnd:alert returnCode:result contextInfo:NULL];
@@ -1771,7 +1771,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             [self updateChangeCount:NSChangeCleared];
         }
     }
-    [self setIsRevertingForExternalFileUpdate:YES];
+    [self setRevertingForExternalFileUpdate:YES];
     [self setShowUpdateAlertWithBecomeKey:NO];
 }
 

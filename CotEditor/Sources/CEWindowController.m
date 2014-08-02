@@ -42,7 +42,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEWindowController ()
 
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
-@property (nonatomic) BOOL recolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
+@property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
 
 @property (nonatomic) NSTimer *infoUpdateTimer;
 @property (nonatomic) NSTimer *incompatibleCharTimer;
@@ -520,7 +520,7 @@ static NSTimeInterval incompatibleCharInterval;
 
 // ------------------------------------------------------
 /// 文書への書き込み（ファイル上書き保存）が可能かどうかをセット
-- (void)setIsWritable:(BOOL)isWritable
+- (void)setWritable:(BOOL)isWritable
 // ------------------------------------------------------
 {
     if ([self statusBarController]) {
@@ -562,8 +562,8 @@ static NSTimeInterval incompatibleCharInterval;
     // シートを表示していなければ、各種更新実行
     if ([[self window] attachedSheet] == nil) {
         // フラグがたっていたら、改めてスタイル名を指定し直して再カラーリングを実行
-        if ([self recolorWithBecomeKey]) {
-            [self setRecolorWithBecomeKey:NO];
+        if ([self needsRecolorWithBecomeKey]) {
+            [self setNeedsRecolorWithBecomeKey:NO];
             [[self document] doSetSyntaxStyle:[[self editor] syntaxStyleName]];
         }
     }
@@ -735,7 +735,7 @@ static NSTimeInterval incompatibleCharInterval;
             [[self editor] setSyntaxStyleName:newName recolorNow:NO];
         }
         if (![newName isEqualToString:NSLocalizedString(@"None", nil)]) {
-            [self setRecolorWithBecomeKey:YES];
+            [self setNeedsRecolorWithBecomeKey:YES];
         }
     }
 }

@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, readonly) BOOL showStatusBar;
 
 // Public method
-- (void)setIsWritable:(BOOL)isWritable;
+- (void)setWritable:(BOOL)isWritable;
 - (BOOL)needsInfoDrawerUpdate;
 - (BOOL)needsIncompatibleCharDrawerUpdate;
 - (void)showIncompatibleCharList;

@@ -36,7 +36,7 @@
 @interface CEUnicodeInputPanelController () <NSTextFieldDelegate>
 
 @property (nonatomic, copy) NSString *unicode;
-@property (nonatomic) BOOL isValid;
+@property (nonatomic, getter=isValid) BOOL valid;
 
 @end
 
@@ -90,7 +90,7 @@ static const NSRegularExpression *unicodeRegex;
     NSTextCheckingResult *result = [unicodeRegex firstMatchInString:input options:0
                                                               range:NSMakeRange(0, [input length])];
     
-    [self setIsValid:(result != nil)];
+    [self setValid:(result != nil)];
 }
 
 

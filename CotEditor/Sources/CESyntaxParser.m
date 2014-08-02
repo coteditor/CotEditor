@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @interface CESyntaxParser ()
 
 @property (nonatomic) NSLayoutManager *layoutManager;
-@property (nonatomic) BOOL isPrinting;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic, getter=isPrinting) BOOL printing;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
@@ -89,7 +89,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
 @property (nonatomic, copy, readwrite) NSString *inlineCommentDelimiter;
 @property (nonatomic, copy, readwrite) NSDictionary *blockCommentDelimiters;
-@property (nonatomic, readwrite) BOOL isNone;
+@property (nonatomic, readwrite, getter=isNone) BOOL none;
 
 @end
 
@@ -159,7 +159,7 @@ static CGFloat kPerCompoIncrement;
     self = [super init];
     if (self) {
         if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-            _isNone = YES;
+            _none = YES;
             _styleName = NSLocalizedString(@"None", nil);
             
         } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
@@ -285,7 +285,7 @@ static CGFloat kPerCompoIncrement;
         }
         
         _layoutManager = layoutManager;
-        _isPrinting = isPrinting;
+        _printing = isPrinting;
     }
     return self;
 }

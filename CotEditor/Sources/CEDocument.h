@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (nonatomic, readonly) NSStringEncoding encoding;
 @property (nonatomic, readonly) OgreNewlineCharacter lineEnding;
 @property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
-@property (nonatomic, readonly) BOOL isWritable;
+@property (nonatomic, readonly, getter=isWritable) BOOL writable;
 
 
 // Public methods

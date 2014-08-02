@@ -42,7 +42,7 @@
 @property NSModalSession modalSession;
 
 // readonly
-@property (readwrite) BOOL isCancelled;
+@property (readwrite, getter=isCancelled) BOOL cancelled;
 
 @end
 
@@ -172,7 +172,7 @@
 - (IBAction)cancelColoring:(id)sender
 // ------------------------------------------------------
 {
-    [self setIsCancelled:YES];
+    [self setCancelled:YES];
 }
 
 @end

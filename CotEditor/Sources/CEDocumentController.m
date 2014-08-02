@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEDocumentController ()
 
-@property (nonatomic) BOOL isOpenHidden;
+@property (nonatomic) BOOL showsHiddenFiles;
 
 @property (nonatomic) IBOutlet NSView *openPanelAccessoryView;
 @property (nonatomic) IBOutlet NSPopUpButton *accessoryEncodingMenu;
@@ -90,7 +90,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [openPanel setAccessoryView:[self openPanelAccessoryView]];
 
     // 非表示ファイルも表示するとき
-    if ([self isOpenHidden]) {
+    if ([self showsHiddenFiles]) {
         [openPanel setTreatsFilePackagesAsDirectories:YES];
         [openPanel setShowsHiddenFiles:YES];
     } else {
@@ -114,7 +114,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openDocument:(id)sender
 // ------------------------------------------------------
 {
-    [self setIsOpenHidden:([sender tag] == k_openHiddenMenuItemTag)];
+    [self setShowsHiddenFiles:([sender tag] == k_openHiddenMenuItemTag)];
 
     [super openDocument:sender];
     // エンコーディングメニューの選択をリセット
@@ -127,7 +127,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)openHiddenDocument:(id)sender
 // ------------------------------------------------------
 {
-    [self setIsOpenHidden:([sender tag] == k_openHiddenMenuItemTag)];
+    [self setShowsHiddenFiles:([sender tag] == k_openHiddenMenuItemTag)];
 
     [super openDocument:sender];
 }
