@@ -676,7 +676,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (theOrientation != NSTextLayoutOrientationVertical) {
         shouldShowLineNum = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showLineNumbers];
     }
-    [(CELineNumberView *)[self slaveView] setShown:shouldShowLineNum];
+    [(CELineNumberView *)[self lineNumberView] setShown:shouldShowLineNum];
     
     [super setLayoutOrientation:theOrientation];
 }
@@ -2084,7 +2084,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // ------------------------------------------------------
 {
     // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    [[self slaveView] setNeedsDisplay:YES];
+    [[self lineNumberView] setNeedsDisplay:YES];
     
     // キャレット／選択範囲が見えるようにスクロール位置を調整
     [self scrollRangeToVisible:[self selectedRange]];

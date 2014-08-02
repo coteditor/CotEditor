@@ -165,7 +165,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                    object:nil];
 
         // slave view をセット
-        [[self textView] setSlaveView:[self lineNumberView]]; // (the textview will also update slaveView.)
+        [[self textView] setLineNumberView:[self lineNumberView]]; // (the textview will also update slaveView.)
         [[self textView] setPostsBoundsChangedNotifications:YES]; // observer = lineNumberView
         [[NSNotificationCenter defaultCenter] addObserver:[self lineNumberView]
                                                  selector:@selector(updateLineNumber:)
@@ -219,7 +219,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)replaceTextStorage:(NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
-    _textStorage = textStorage;
+    [self setTextStorage:textStorage];
     [[[self textView] layoutManager] replaceTextStorage:textStorage];
 }
 
@@ -610,7 +610,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // カラーリング実行
     [[self editorWrapper] setupColoringTimer];
 
-    // 行番号、アウトラインメニュー項目、非互換文字リスト更新
+    // アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
 
     // フラグが立っていたら、入力補完を再度実行する
@@ -711,7 +711,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
     [[[self window] windowController] setupInfoUpdateTimer];
     
-    // 行番号、アウトラインメニュー項目、非互換文字リスト更新
+    // アウトラインメニュー項目、非互換文字リスト更新
     [self updateInfo];
     
     // 全テキストを再カラーリング
@@ -726,6 +726,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // Private method
 //
 //=======================================================
+
+// ------------------------------------------------------
+// textStorage をセット
+- (void)setTextStorage:(NSTextStorage *)textStorage
+// ------------------------------------------------------
+{
+    // 行番号ビューのためにテキストの変更を監視する
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateLineNumber)
+                                                 name:NSTextStorageDidProcessEditingNotification
+                                               object:textStorage];
+    
+    _textStorage = textStorage;
+}
+
 
 // ------------------------------------------------------
 /// ラップする時にサイズを適正化する
@@ -772,8 +787,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // ------------------------------------------------------
-/// 行番号表示、アウトラインメニューなどを更新
-- (void)updateInfo
+/// 行番号表示を更新
+- (void)updateLineNumber
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -789,6 +804,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                                    userInfo:nil
                                                                     repeats:NO]];
     }
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニューなどを更新
+- (void)updateInfo
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     // アウトラインメニュー項目更新
     NSTimeInterval outlineMenuInterval = [defaults doubleForKey:k_key_outlineMenuInterval];
