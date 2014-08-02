@@ -53,9 +53,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) unichar fullwidthSpaceChar;
 
 // readonly properties
-@property (nonatomic, readwrite) CGFloat textFontPointSize;
-@property (nonatomic, readwrite) CGFloat defaultLineHeightForTextFont;
-@property (nonatomic, readwrite) CGFloat textFontGlyphY;
+@property (readwrite, nonatomic) CGFloat textFontPointSize;
+@property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
+@property (readwrite, nonatomic) CGFloat textFontGlyphY;
 
 @end
 

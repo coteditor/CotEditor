@@ -39,25 +39,25 @@
 @property (nonatomic, copy, readonly) NSString *name;
 
 // basic colors
-@property (nonatomic, readonly) NSColor *textColor;
-@property (nonatomic, readonly) NSColor *backgroundColor;
-@property (nonatomic, readonly) NSColor *invisiblesColor;
-@property (nonatomic, readonly) NSColor *selectionColor;
-@property (nonatomic, readonly) NSColor *insertionPointColor;
-@property (nonatomic, readonly) NSColor *lineHighLightColor;
-@property (nonatomic, readonly) NSColor *markupColor;
+@property (readonly, nonatomic) NSColor *textColor;
+@property (readonly, nonatomic) NSColor *backgroundColor;
+@property (readonly, nonatomic) NSColor *invisiblesColor;
+@property (readonly, nonatomic) NSColor *selectionColor;
+@property (readonly, nonatomic) NSColor *insertionPointColor;
+@property (readonly, nonatomic) NSColor *lineHighLightColor;
+@property (readonly, nonatomic) NSColor *markupColor;
 
 // syntax colors
-@property (nonatomic, readonly) NSColor *keywordsColor;
-@property (nonatomic, readonly) NSColor *commandsColor;
-@property (nonatomic, readonly) NSColor *typesColor;
-@property (nonatomic, readonly) NSColor *attributesColor;
-@property (nonatomic, readonly) NSColor *variablesColor;
-@property (nonatomic, readonly) NSColor *valuesColor;
-@property (nonatomic, readonly) NSColor *numbersColor;
-@property (nonatomic, readonly) NSColor *stringsColor;
-@property (nonatomic, readonly) NSColor *charactersColor;
-@property (nonatomic, readonly) NSColor *commentsColor;
+@property (readonly, nonatomic) NSColor *keywordsColor;
+@property (readonly, nonatomic) NSColor *commandsColor;
+@property (readonly, nonatomic) NSColor *typesColor;
+@property (readonly, nonatomic) NSColor *attributesColor;
+@property (readonly, nonatomic) NSColor *variablesColor;
+@property (readonly, nonatomic) NSColor *valuesColor;
+@property (readonly, nonatomic) NSColor *numbersColor;
+@property (readonly, nonatomic) NSColor *stringsColor;
+@property (readonly, nonatomic) NSColor *charactersColor;
+@property (readonly, nonatomic) NSColor *commentsColor;
 
 
 /// return CETheme instance initialized with theme name

@@ -56,8 +56,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) CETheme *theme;
 
 // readonly
-@property (nonatomic, readonly, getter=isSelfDrop) BOOL selfDrop;  // 自己内ドラッグ&ドロップなのか
-@property (nonatomic, readonly, getter=isReadingFromPboard) BOOL readingFromPboard;  // ペーストまたはドロップ実行中なのか
+@property (readonly, nonatomic, getter=isSelfDrop) BOOL selfDrop;  // 自己内ドラッグ&ドロップなのか
+@property (readonly, nonatomic, getter=isReadingFromPboard) BOOL readingFromPboard;  // ペーストまたはドロップ実行中なのか
 
 
 // Public method

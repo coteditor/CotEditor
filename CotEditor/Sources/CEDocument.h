@@ -53,12 +53,12 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 @property (nonatomic) CEEditorWrapper *editor;
 
 // readonly properties
-@property (nonatomic, readonly) CEWindowController *windowController;
-@property (nonatomic, readonly) CETextSelection *selection;
-@property (nonatomic, readonly) NSStringEncoding encoding;
-@property (nonatomic, readonly) OgreNewlineCharacter lineEnding;
-@property (nonatomic, readonly, copy) NSDictionary *fileAttributes;
-@property (nonatomic, readonly, getter=isWritable) BOOL writable;
+@property (readonly, nonatomic) CEWindowController *windowController;
+@property (readonly, nonatomic) CETextSelection *selection;
+@property (readonly, nonatomic) NSStringEncoding encoding;
+@property (readonly, nonatomic) OgreNewlineCharacter lineEnding;
+@property (readonly, nonatomic, copy) NSDictionary *fileAttributes;
+@property (readonly, nonatomic, getter=isWritable) BOOL writable;
 
 
 // Public methods

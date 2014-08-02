@@ -46,8 +46,8 @@ extern NSString *const CESyntaxDidUpdateNotification;
 
 // readonly
 /// 拡張子重複エラー辞書
-@property (nonatomic, copy, readonly) NSDictionary *extensionConflicts;
-@property (nonatomic, copy, readonly) NSDictionary *filenameConflicts;
+@property (readonly, nonatomic, copy) NSDictionary *extensionConflicts;
+@property (readonly, nonatomic, copy) NSDictionary *filenameConflicts;
 
 
 // class method

@@ -51,7 +51,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // readonly
-@property (nonatomic, readwrite) BOOL canActivateShowInvisibles;
+@property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
 
 @end
 

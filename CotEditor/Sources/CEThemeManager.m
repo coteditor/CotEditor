@@ -67,7 +67,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 @property (nonatomic, copy) NSArray *bundledThemeNames;
 
 // readonly
-@property (nonatomic, copy, readwrite) NSArray *themeNames;
+@property (readwrite, nonatomic, copy) NSArray *themeNames;
 
 @end
 

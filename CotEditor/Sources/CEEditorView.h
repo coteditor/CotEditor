@@ -46,9 +46,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, weak) CEEditorWrapper *editorWrapper;
 
 // readonly
-@property (nonatomic, readonly) CETextView *textView;
-@property (nonatomic, readonly) CENavigationBarController *navigationBar;
-@property (nonatomic, readonly) CESyntaxParser *syntaxParser;
+@property (readonly, nonatomic) CETextView *textView;
+@property (readonly, nonatomic) CENavigationBarController *navigationBar;
+@property (readonly, nonatomic) CESyntaxParser *syntaxParser;
 
 
 // Public method

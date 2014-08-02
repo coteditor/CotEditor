@@ -51,7 +51,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CEAppDelegate ()
 
 // readonly
-@property (nonatomic, copy, readwrite) NSArray *encodingMenuItems;
+@property (readwrite, nonatomic, copy) NSArray *encodingMenuItems;
 
 @end
 

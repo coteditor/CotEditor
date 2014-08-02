@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @interface CEAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, copy, readonly) NSArray *encodingMenuItems;
+@property (readonly, nonatomic, copy) NSArray *encodingMenuItems;
 
 
 // Public method

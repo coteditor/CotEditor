@@ -42,9 +42,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @property (nonatomic) CGFloat alpha;
 
-@property (nonatomic, readonly, weak) CEEditorWrapper *editor;
-@property (nonatomic, readonly, weak) CEToolbarController *toolbarController;
-@property (nonatomic, readonly) BOOL showStatusBar;
+@property (readonly, nonatomic, weak) CEEditorWrapper *editor;
+@property (readonly, nonatomic, weak) CEToolbarController *toolbarController;
+@property (readonly, nonatomic) BOOL showStatusBar;
 
 // Public method
 - (void)setWritable:(BOOL)isWritable;

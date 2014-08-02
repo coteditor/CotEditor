@@ -50,8 +50,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 // readonly
-@property (nonatomic, copy, readwrite) NSDictionary *extensionConflicts;
-@property (nonatomic, copy, readwrite) NSDictionary *filenameConflicts;
+@property (readwrite, nonatomic, copy) NSDictionary *extensionConflicts;
+@property (readwrite, nonatomic, copy) NSDictionary *filenameConflicts;
 
 @end
 

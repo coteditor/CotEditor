@@ -55,7 +55,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic) CETextView *textView;
 
-@property (nonatomic, readonly) BOOL canActivateShowInvisibles;
+@property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
 
 // Public method

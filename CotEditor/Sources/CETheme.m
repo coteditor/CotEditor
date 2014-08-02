@@ -41,25 +41,25 @@
 
 
 // basic colors
-@property (nonatomic, readwrite) NSColor *textColor;
-@property (nonatomic, readwrite) NSColor *backgroundColor;
-@property (nonatomic, readwrite) NSColor *invisiblesColor;
-@property (nonatomic, readwrite) NSColor *selectionColor;
-@property (nonatomic, readwrite) NSColor *insertionPointColor;
-@property (nonatomic, readwrite) NSColor *lineHighLightColor;
-@property (nonatomic, readwrite) NSColor *markupColor;
+@property (readwrite, nonatomic) NSColor *textColor;
+@property (readwrite, nonatomic) NSColor *backgroundColor;
+@property (readwrite, nonatomic) NSColor *invisiblesColor;
+@property (readwrite, nonatomic) NSColor *selectionColor;
+@property (readwrite, nonatomic) NSColor *insertionPointColor;
+@property (readwrite, nonatomic) NSColor *lineHighLightColor;
+@property (readwrite, nonatomic) NSColor *markupColor;
 
 // syntax colors
-@property (nonatomic, readwrite) NSColor *keywordsColor;
-@property (nonatomic, readwrite) NSColor *commandsColor;
-@property (nonatomic, readwrite) NSColor *typesColor;
-@property (nonatomic, readwrite) NSColor *attributesColor;
-@property (nonatomic, readwrite) NSColor *variablesColor;
-@property (nonatomic, readwrite) NSColor *valuesColor;
-@property (nonatomic, readwrite) NSColor *numbersColor;
-@property (nonatomic, readwrite) NSColor *stringsColor;
-@property (nonatomic, readwrite) NSColor *charactersColor;
-@property (nonatomic, readwrite) NSColor *commentsColor;
+@property (readwrite, nonatomic) NSColor *keywordsColor;
+@property (readwrite, nonatomic) NSColor *commandsColor;
+@property (readwrite, nonatomic) NSColor *typesColor;
+@property (readwrite, nonatomic) NSColor *attributesColor;
+@property (readwrite, nonatomic) NSColor *variablesColor;
+@property (readwrite, nonatomic) NSColor *valuesColor;
+@property (readwrite, nonatomic) NSColor *numbersColor;
+@property (readwrite, nonatomic) NSColor *stringsColor;
+@property (readwrite, nonatomic) NSColor *charactersColor;
+@property (readwrite, nonatomic) NSColor *commentsColor;
 
 
 // other options

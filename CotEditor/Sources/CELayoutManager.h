@@ -54,9 +54,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) BOOL isPrinting;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 @property (nonatomic) NSFont *textFont;
 
-@property (nonatomic, readonly) CGFloat textFontPointSize;
-@property (nonatomic, readonly) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高
-@property (nonatomic, readonly) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
+@property (readonly, nonatomic) CGFloat textFontPointSize;
+@property (readonly, nonatomic) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高
+@property (readonly, nonatomic) CGFloat textFontGlyphY;  // 表示フォントグリフのY位置を返す
 
 
 - (void)setValuesForTextFont:(NSFont *)font;

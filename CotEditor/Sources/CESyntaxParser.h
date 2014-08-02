@@ -37,12 +37,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface CESyntaxParser : NSObject
 
 // readonly
-@property (nonatomic, copy, readonly) NSString *styleName;
-@property (nonatomic, copy, readonly) NSArray *completionWords;  // 入力補完文字列配列
-@property (nonatomic, copy, readonly) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
-@property (nonatomic, copy, readonly) NSString *inlineCommentDelimiter;
-@property (nonatomic, copy, readonly) NSDictionary *blockCommentDelimiters;
-@property (nonatomic, readonly, getter=isNone) BOOL none;
+@property (readonly, nonatomic, copy) NSString *styleName;
+@property (readonly, nonatomic, copy) NSArray *completionWords;  // 入力補完文字列配列
+@property (readonly, nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
+@property (readonly, nonatomic, copy) NSString *inlineCommentDelimiter;
+@property (readonly, nonatomic, copy) NSDictionary *blockCommentDelimiters;
+@property (readonly, nonatomic, getter=isNone) BOOL none;
 
 
 /// designated initializer (return nil if no corresponded style dictionary can been found.)

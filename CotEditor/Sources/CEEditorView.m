@@ -51,9 +51,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 // readonly
-@property (nonatomic, readwrite) CETextView *textView;
-@property (nonatomic, readwrite) CENavigationBarController *navigationBar;
-@property (nonatomic, readwrite) CESyntaxParser *syntaxParser;
+@property (readwrite, nonatomic) CETextView *textView;
+@property (readwrite, nonatomic) CENavigationBarController *navigationBar;
+@property (readwrite, nonatomic) CESyntaxParser *syntaxParser;
 
 @end
 

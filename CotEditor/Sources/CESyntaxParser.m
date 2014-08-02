@@ -84,12 +84,12 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 
 
 // readonly
-@property (nonatomic, copy, readwrite) NSString *styleName;
-@property (nonatomic, copy, readwrite) NSArray *completionWords;
-@property (nonatomic, copy, readwrite) NSCharacterSet *firstCompletionCharacterSet;
-@property (nonatomic, copy, readwrite) NSString *inlineCommentDelimiter;
-@property (nonatomic, copy, readwrite) NSDictionary *blockCommentDelimiters;
-@property (nonatomic, readwrite, getter=isNone) BOOL none;
+@property (readwrite, nonatomic, copy) NSString *styleName;
+@property (readwrite, nonatomic, copy) NSArray *completionWords;
+@property (readwrite, nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;
+@property (readwrite, nonatomic, copy) NSString *inlineCommentDelimiter;
+@property (readwrite, nonatomic, copy) NSDictionary *blockCommentDelimiters;
+@property (readwrite, nonatomic, getter=isNone) BOOL none;
 
 @end
 

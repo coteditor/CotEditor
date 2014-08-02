@@ -38,7 +38,7 @@
 
 @interface CEPanelController : NSWindowController <NSWindowDelegate>
 
-@property (nonatomic, weak, readonly) CEWindowController *documentWindowController;
+@property (readonly, nonatomic, weak) CEWindowController *documentWindowController;
 
 
 + (instancetype)sharedController;

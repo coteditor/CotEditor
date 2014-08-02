@@ -61,12 +61,12 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (nonatomic) CEODBEventSender *ODBEventSender;
 
 // readonly
-@property (nonatomic, readwrite) CEWindowController *windowController;
-@property (nonatomic, readwrite) CETextSelection *selection;
-@property (nonatomic, readwrite) NSStringEncoding encoding;
-@property (nonatomic, readwrite) OgreNewlineCharacter lineEnding;
-@property (nonatomic, readwrite, copy) NSDictionary *fileAttributes;
-@property (nonatomic ,readwrite, getter=isWritable) BOOL writable;
+@property (readwrite, nonatomic) CEWindowController *windowController;
+@property (readwrite, nonatomic) CETextSelection *selection;
+@property (readwrite, nonatomic) NSStringEncoding encoding;
+@property (readwrite, nonatomic) OgreNewlineCharacter lineEnding;
+@property (readwrite, nonatomic, copy) NSDictionary *fileAttributes;
+@property (readwrite, nonatomic, getter=isWritable) BOOL writable;
 
 @end
 

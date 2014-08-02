@@ -78,8 +78,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (nonatomic) IBOutlet NSNumberFormatter *infoNumberFormatter;
 
 // readonly
-@property (nonatomic, readwrite, weak) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, readwrite, weak) IBOutlet CEEditorWrapper *editor;
+@property (readwrite, nonatomic, weak) IBOutlet CEToolbarController *toolbarController;
+@property (readwrite, nonatomic, weak) IBOutlet CEEditorWrapper *editor;
 
 @end
 

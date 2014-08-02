@@ -39,23 +39,23 @@
 @property (nonatomic) IBOutlet NSPopUpButton *themePopup;
 
 
-@property (nonatomic, readwrite) NSString *theme;
-@property (nonatomic, readwrite) CELineNumberPrintMode lineNumberMode;
-@property (nonatomic, readwrite) CEInvisibleCharsPrintMode invisibleCharsMode;
+@property (readwrite, nonatomic) NSString *theme;
+@property (readwrite, nonatomic) CELineNumberPrintMode lineNumberMode;
+@property (readwrite, nonatomic) CEInvisibleCharsPrintMode invisibleCharsMode;
 
-@property (nonatomic, readwrite) BOOL printsHeader;
-@property (nonatomic, readwrite) CEPrintInfoType headerOneInfoType;
-@property (nonatomic, readwrite) CEAlignmentType headerOneAlignmentType;
-@property (nonatomic, readwrite) CEPrintInfoType headerTwoInfoType;
-@property (nonatomic, readwrite) CEAlignmentType headerTwoAlignmentType;
-@property (nonatomic, readwrite) BOOL printsHeaderSeparator;
+@property (readwrite, nonatomic) BOOL printsHeader;
+@property (readwrite, nonatomic) CEPrintInfoType headerOneInfoType;
+@property (readwrite, nonatomic) CEAlignmentType headerOneAlignmentType;
+@property (readwrite, nonatomic) CEPrintInfoType headerTwoInfoType;
+@property (readwrite, nonatomic) CEAlignmentType headerTwoAlignmentType;
+@property (readwrite, nonatomic) BOOL printsHeaderSeparator;
 
-@property (nonatomic, readwrite) BOOL printsFooter;
-@property (nonatomic, readwrite) CEPrintInfoType footerOneInfoType;
-@property (nonatomic, readwrite) CEAlignmentType footerOneAlignmentType;
-@property (nonatomic, readwrite) CEPrintInfoType footerTwoInfoType;
-@property (nonatomic, readwrite) CEAlignmentType footerTwoAlignmentType;
-@property (nonatomic, readwrite) BOOL printsFooterSeparator;
+@property (readwrite, nonatomic) BOOL printsFooter;
+@property (readwrite, nonatomic) CEPrintInfoType footerOneInfoType;
+@property (readwrite, nonatomic) CEAlignmentType footerOneAlignmentType;
+@property (readwrite, nonatomic) CEPrintInfoType footerTwoInfoType;
+@property (readwrite, nonatomic) CEAlignmentType footerTwoAlignmentType;
+@property (readwrite, nonatomic) BOOL printsFooterSeparator;
 
 /// printInfoのマージンが更新されたことを知らせるフラグ
 @property (nonatomic) BOOL readyToDraw;

@@ -37,7 +37,7 @@
 
 @interface CEPanelController ()
 
-@property (nonatomic, weak, readwrite) CEWindowController *documentWindowController;
+@property (readwrite, nonatomic, weak) CEWindowController *documentWindowController;
 
 @end
 
