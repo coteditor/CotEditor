@@ -229,7 +229,6 @@ NSString *const k_SCKey_endComment = @"endDelimiter";
 NSString *const k_SCKey_bold = @"bold";
 NSString *const k_SCKey_underline = @"underline";
 NSString *const k_SCKey_italic = @"italic";
-NSString *const k_SCKey_numOfObjInArray = @"numOfObjInArray";
 NSString *const k_SCKey_keywordsArray = @"keywordsArray";
 NSString *const k_SCKey_commandsArray = @"commandsArray";
 NSString *const k_SCKey_typesArray = @"typesArray";

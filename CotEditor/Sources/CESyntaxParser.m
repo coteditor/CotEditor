@@ -69,6 +69,7 @@ typedef NS_ENUM(NSUInteger, QCArrayFormat) {
 @property (nonatomic) NSLayoutManager *layoutManager;
 @property (nonatomic, getter=isPrinting) BOOL printing;  // プリント中かどうかを返す（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 
+@property (nonatomic) BOOL hasSyntaxHighlighting;
 @property (atomic, copy) NSDictionary *coloringDictionary;
 @property (atomic, copy) NSDictionary *simpleWordsCharacterSets;
 @property (atomic, copy) NSDictionary *pairedQuoteTypes;  // dict for quote pair to extract with comment
@@ -162,6 +163,16 @@ static CGFloat kPerCompoIncrement;
         } else if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             NSMutableDictionary *coloringDictionary = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
             
+            // コメントデリミッタを設定
+            NSDictionary *delimiters = coloringDictionary[k_SCKey_commentDelimitersDict];
+            if ([delimiters[k_SCKey_inlineComment] length] > 0) {
+                _inlineCommentDelimiter = delimiters[k_SCKey_inlineComment];
+            }
+            if ([delimiters[k_SCKey_beginComment] length] > 0 && [delimiters[k_SCKey_endComment] length] > 0) {
+                _blockCommentDelimiters = @{@"begin": delimiters[k_SCKey_beginComment],
+                                            @"end": delimiters[k_SCKey_endComment]};
+            }
+            
             /// カラーリング辞書から補完文字列配列を生成
             {
                 NSMutableArray *completionWords = [NSMutableArray array];
@@ -233,11 +244,14 @@ static CGFloat kPerCompoIncrement;
             }
             
             // 引用符のカラーリングはコメントと一緒に別途 extractCommentsWithQuotesFromString: で行なうので選り分けておく
+            // そもそもカラーリング用の定義があるのかもここでチェック
             {
+                NSInteger count = 0;
                 NSMutableDictionary *quoteTypes = [NSMutableDictionary dictionary];
                 
                 for (NSString *key in kSyntaxDictKeys) {
                     NSMutableArray *wordDicts = [coloringDictionary[key] mutableCopy];
+                    count += [wordDicts count];
                     
                     for (NSDictionary *wordDict in coloringDictionary[key]) {
                         NSString *begin = wordDict[k_SCKey_beginString];
@@ -258,16 +272,9 @@ static CGFloat kPerCompoIncrement;
                     }
                 }
                 _pairedQuoteTypes = quoteTypes;
-            }
-            
-            // コメントデリミッタを設定
-            NSDictionary *delimiters = coloringDictionary[k_SCKey_commentDelimitersDict];
-            if ([delimiters[k_SCKey_inlineComment] length] > 0) {
-                _inlineCommentDelimiter = delimiters[k_SCKey_inlineComment];
-            }
-            if ([delimiters[k_SCKey_beginComment] length] > 0 && [delimiters[k_SCKey_endComment] length] > 0) {
-                _blockCommentDelimiters = @{@"begin": delimiters[k_SCKey_beginComment],
-                                            @"end": delimiters[k_SCKey_endComment]};
+                
+                /// シンタックスカラーリングが必要かをキャッシュ
+                _hasSyntaxHighlighting = ((count > 0) || _inlineCommentDelimiter || _blockCommentDelimiters);
             }
             
             // queue
@@ -963,7 +970,7 @@ static CGFloat kPerCompoIncrement;
     if ([coloringString length] == 0) { return; }
     
     // カラーリング不要なら不可視文字のカラーリングだけして戻る
-    if (([[self coloringDictionary][k_SCKey_numOfObjInArray] integerValue] == 0) || [self isNone]) {
+    if (![self hasSyntaxHighlighting]) {
         [self applyColorings:[self extractControlCharsFromString:coloringString] range:coloringRange];
         return;
     }

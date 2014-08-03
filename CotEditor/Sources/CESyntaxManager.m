@@ -171,12 +171,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                     [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
                 }
                 
-                NSUInteger count = 0;
-                for (NSString *key in syntaxDictKeys) {
-                    count += [(NSArray *)styleToReturn[key] count];
-                }
-                styleToReturn[k_SCKey_numOfObjInArray] = @(count);
-                
                 return styleToReturn;
             }
         }
@@ -387,7 +381,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     // sanitize
     [(NSMutableArray *)style[k_SCKey_extensions] removeObject:@{}];
     [(NSMutableArray *)style[k_SCKey_filenames] removeObject:@{}];
-    [style removeObjectForKey:k_SCKey_numOfObjInArray];
     
     // sort
     NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:k_SCKey_beginString
