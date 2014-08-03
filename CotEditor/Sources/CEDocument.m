@@ -51,7 +51,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 @property (nonatomic) CEPrintPanelAccessoryController *printPanelAccessoryController;
 
 @property (atomic, copy) NSString *fileMD5;
-@property (atomic) BOOL showUpdateAlertWithBecomeKey;
+@property (atomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (atomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
 @property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, copy) NSString *initialString;  // 初期表示文字列に表示する文字列;
@@ -366,8 +366,8 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self editor] syntaxStyleName]];
     [printView setPrintPanelAccessoryController:[self printPanelAccessoryController]];
-    [printView setDocumentShowsInvisibles:[[self editor] showInvisibles]];
-    [printView setDocumentShowsLineNum:[[self editor] showLineNum]];
+    [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
+    [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
     [printView setLineSpacing:[[[self editor] textView] lineSpacing]];
     
     // プリントに使用するフォント
@@ -1014,7 +1014,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     }
     
     // 書き込み通知を行う
-    [self setShowUpdateAlertWithBecomeKey:YES];
+    [self setNeedsShowUpdateAlertWithBecomeKey:YES];
     // アプリがアクティブならシート／ダイアログを表示し、そうでなければ設定を見てDockアイコンをジャンプ
     if ([NSApp isActive]) {
         [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
@@ -1714,7 +1714,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (void)showUpdatedByExternalProcessAlert
 // ------------------------------------------------------
 {
-    if (![self showUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
+    if (![self needsShowUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
     
     NSString *messageText, *informativeText, *defaultButton;
     if ([self isDocumentEdited]) {
@@ -1769,7 +1769,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
         }
     }
     [self setRevertingForExternalFileUpdate:YES];
-    [self setShowUpdateAlertWithBecomeKey:NO];
+    [self setNeedsShowUpdateAlertWithBecomeKey:NO];
 }
 
 

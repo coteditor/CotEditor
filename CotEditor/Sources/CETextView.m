@@ -585,7 +585,7 @@
     [super drawRect:dirtyRect];
     
     // ページガイド描画
-    if ([(CEEditorView *)[self delegate] showPageGuide]) {
+    if ([(CEEditorView *)[self delegate] showsPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
         
         if ((column < k_pageGuideColumnMin) || (column > k_pageGuideColumnMax)) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
@@ -315,17 +316,17 @@
                             <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
                             <menuItem title="Show Navigation Bar" id="681">
                                 <connections>
-                                    <action selector="toggleShowNavigationBar:" target="-1" id="682"/>
+                                    <action selector="toggleNavigationBar:" target="-1" id="g8m-wE-T55"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Line Numbers" id="323">
                                 <connections>
-                                    <action selector="toggleShowLineNum:" target="-1" id="326"/>
+                                    <action selector="toggleLineNumber:" target="-1" id="ncA-40-bKd"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Status Bar" id="325">
                                 <connections>
-                                    <action selector="toggleShowStatusBar:" target="-1" id="356"/>
+                                    <action selector="toggleStatusBar:" target="-1" id="h4S-Yd-wby"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="366">
@@ -333,12 +334,12 @@
                             </menuItem>
                             <menuItem title="Show Invisible Characters" id="788">
                                 <connections>
-                                    <action selector="toggleShowInvisibleChars:" target="-1" id="791"/>
+                                    <action selector="toggleInvisibleChars:" target="-1" id="mXA-a0-o4w"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Page Guide" id="749">
                                 <connections>
-                                    <action selector="toggleShowPageGuide:" target="-1" id="750"/>
+                                    <action selector="togglePageGuide:" target="-1" id="obH-4S-DZg"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="792">
@@ -429,7 +430,7 @@
                                         </menuItem>
                                         <menuItem title="Anti-aliasing" id="745">
                                             <connections>
-                                                <action selector="toggleUseAntialias:" target="-1" id="747"/>
+                                                <action selector="toggleAntialias:" target="-1" id="50s-UC-1x5"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -440,7 +441,7 @@
                             </menuItem>
                             <menuItem title="Wrap Lines" id="286">
                                 <connections>
-                                    <action selector="toggleWrapLines:" target="-1" id="288"/>
+                                    <action selector="toggleLineWrap:" target="-1" id="hSl-Yk-C3H"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">

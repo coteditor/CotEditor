@@ -58,6 +58,8 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
 - (void)setColoringStyle:(NSString *)styleName;
 - (CETextSelection *)selectionObject;
 - (void)setSelectionObject:(id)object;
+- (NSNumber *)wrapsLines;
+- (void)setWrapsLines:(NSNumber *)wrapsLines;
 - (NSNumber *)lineSpacing;
 - (void)setLineSpacing:(NSNumber *)lineSpacing;
 

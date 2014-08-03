@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
@@ -17,8 +18,8 @@
                 <outlet property="window" destination="5" id="31"/>
             </connections>
         </customObject>
-        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="-1" customClass="FirstResponder"/>
+        <customObject id="-3"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="document" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
@@ -52,7 +53,7 @@
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="lockedTemplate" id="2Vs-vL-w3p"/>
                                 <connections>
-                                    <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showReadOnly" id="Pmv-oP-XjF">
+                                    <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showsReadOnly" id="6vu-Ql-kQl">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
@@ -215,32 +216,32 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="DBAEC99C-61AB-42BC-8316-2C57F9799F9E" explicitItemIdentifier="showNavigationBarItemID" label="ナビゲーションバー" paletteLabel="ナビゲーションバーを表示／隠す" toolTip="ナビゲーションバーを表示／隠す" tag="-1" image="NaviBar_Show" id="KpZ-NH-xEh">
                         <connections>
-                            <action selector="toggleShowNavigationBar:" target="-1" id="00S-IM-5dn"/>
+                            <action selector="toggleNavigationBar:" target="-1" id="oG1-en-pdf"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="6ED57D08-75C6-4859-808D-2F7A1F7E0927" explicitItemIdentifier="showLineNumItemID" label="行番号" paletteLabel="行番号を表示／隠す" toolTip="テキストの行番号を表示／隠す" tag="-1" image="LineNumber_Show" id="kfX-UD-siE">
                         <connections>
-                            <action selector="toggleShowLineNum:" target="-1" id="e13-Sb-WE8"/>
+                            <action selector="toggleLineNumber:" target="-1" id="Jo2-dL-L2l"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="ステータスバー" paletteLabel="ステータスバーを表示／隠す" toolTip="ステータスバーを表示／隠す" tag="-1" image="StatusArea_Show" id="moq-h9-h7t">
                         <connections>
-                            <action selector="toggleShowStatusBar:" target="-1" id="gB6-bL-bdL"/>
+                            <action selector="toggleStatusBar:" target="-1" id="NIK-I8-L1Q"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="不可視文字" paletteLabel="不可視文字を表示／隠す" toolTip="テキスト中の不可視文字を表示／隠す" tag="-1" image="InvisibleChar_Show" id="KtS-FH-3Py">
                         <connections>
-                            <action selector="toggleShowInvisibleChars:" target="-1" id="Mgd-hE-h9k"/>
+                            <action selector="toggleInvisibleChars:" target="-1" id="AGs-mG-duq"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="08C1E5C8-B3B4-4DDB-86FE-816BAB5DF962" explicitItemIdentifier="showPageGuideItemID" label="ページガイド" paletteLabel="ページガイドを表示／隠す" toolTip="ページガイドを表示／隠す" tag="-1" image="PageGuide_Show" id="PES-f4-CAc">
                         <connections>
-                            <action selector="toggleShowPageGuide:" target="-1" id="Gqm-W9-WCb"/>
+                            <action selector="togglePageGuide:" target="-1" id="fea-wF-y7B"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="行を折り返す" paletteLabel="行の折り返しを切替" toolTip="行の折り返しを切替" tag="-1" image="WrapLines_On" id="oJm-2d-4Yl">
                         <connections>
-                            <action selector="toggleWrapLines:" target="-1" id="eHS-X6-dd4"/>
+                            <action selector="toggleLineWrap:" target="-1" id="Ng4-ZK-qzS"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="27BA6DE6-B032-4E93-9567-4363D89183F6" explicitItemIdentifier="textOrientationItemID" label="縦書き／横書き" paletteLabel="縦書き／横書きを切替" toolTip="縦書き／横書きを切替" tag="-1" image="VerticalOrientation_On" id="ILs-cv-SQb">
@@ -1134,7 +1135,7 @@
         <image name="Shift_Left" width="64" height="64"/>
         <image name="Shift_Right" width="64" height="64"/>
         <image name="StatusArea_Show" width="64" height="64"/>
-        <image name="VerticalOrientation_On" width="128" height="128"/>
+        <image name="VerticalOrientation_On" width="64" height="64"/>
         <image name="WrapLines_On" width="64" height="64"/>
         <image name="biggerFont" width="64" height="64"/>
         <image name="getInfo" width="64" height="64"/>

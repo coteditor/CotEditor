@@ -41,7 +41,7 @@
 
 @property (readonly, nonatomic, weak) CEEditorWrapper *editor;
 @property (readonly, nonatomic, weak) CEToolbarController *toolbarController;
-@property (readonly, nonatomic) BOOL showStatusBar;
+@property (readonly, nonatomic) BOOL showsStatusBar;
 
 // Public method
 - (void)setWritable:(BOOL)isWritable;
@@ -58,6 +58,6 @@
 - (IBAction)getInfo:(id)sender;
 - (IBAction)toggleIncompatibleCharList:(id)sender;
 - (IBAction)selectIncompatibleRange:(id)sender;
-- (IBAction)toggleShowStatusBar:(id)sender;
+- (IBAction)toggleStatusBar:(id)sender;
 
 @end

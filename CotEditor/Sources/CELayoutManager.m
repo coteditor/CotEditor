@@ -84,14 +84,14 @@
         _newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:k_key_invisibleNewLine]];
         _fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:k_key_invisibleFullwidthSpace]];
 
-        // （setShowInvisibles: は CEEditorView から実行される。プリント時は CEPrintView から実行される）
-        _showSpace = [defaults boolForKey:k_key_showInvisibleSpace];
-        _showTab = [defaults boolForKey:k_key_showInvisibleTab];
-        _showNewLine = [defaults boolForKey:k_key_showInvisibleNewLine];
-        _showFullwidthSpace = [defaults boolForKey:k_key_showInvisibleFullwidthSpace];
-        _showOtherInvisibles = [defaults boolForKey:k_key_showOtherInvisibleChars];
+        // （setShowsInvisibles: は CEEditorView から実行される。プリント時は CEPrintView から実行される）
+        _showsSpace = [defaults boolForKey:k_key_showInvisibleSpace];
+        _showsTab = [defaults boolForKey:k_key_showInvisibleTab];
+        _showsNewLine = [defaults boolForKey:k_key_showInvisibleNewLine];
+        _showsFullwidthSpace = [defaults boolForKey:k_key_showInvisibleFullwidthSpace];
+        _showsOtherInvisibles = [defaults boolForKey:k_key_showOtherInvisibleChars];
         
-        [self setShowsControlCharacters:_showOtherInvisibles];
+        [self setShowsControlCharacters:_showsOtherInvisibles];
         [self setTypesetter:[CEATSTypesetter sharedSystemTypesetter]];
     }
     return self;
@@ -104,7 +104,7 @@
         forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
 // ------------------------------------------------------
 {
-    if (![self isPrinting] && [self fixLineHeight]) {
+    if (![self isPrinting] && [self fixesLineHeight]) {
         // 複合フォントで行の高さがばらつくのを防止する
         // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
         // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
@@ -136,7 +136,7 @@
 - (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
 // ------------------------------------------------------
 {
-    if (![self isPrinting] && [self fixLineHeight]) {
+    if (![self isPrinting] && [self fixesLineHeight]) {
         // 複合フォントで描画位置Y座標が変わるのを防止する
         // （[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグで印刷中を確認）
         
@@ -162,11 +162,11 @@
     
     // スクリーン描画の時、アンチエイリアス制御
     if (![self isPrinting]) {
-        [[NSGraphicsContext currentContext] setShouldAntialias:[self useAntialias]];
+        [[NSGraphicsContext currentContext] setShouldAntialias:[self usesAntialias]];
     }
     
     // draw invisibles
-    if ([self showInvisibles]) {
+    if ([self showsInvisibles]) {
         NSTextView<CETextViewProtocol> *textView = (NSTextView<CETextViewProtocol> *)[self firstTextView];
         NSString *completeStr = [[self textStorage] string];
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
@@ -200,34 +200,34 @@
         CGContextSetTextMatrix(context, transform);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
-        BOOL showSpace = [self showSpace];
-        BOOL showTab = [self showTab];
-        BOOL showNewLine = [self showNewLine];
-        BOOL showFullwidthSpace = [self showFullwidthSpace];
-        BOOL showOtherInvisibles = [self showOtherInvisibles];
+        BOOL showsSpace = [self showsSpace];
+        BOOL showsTab = [self showsTab];
+        BOOL showsNewLine = [self showsNewLine];
+        BOOL showsFullwidthSpace = [self showsFullwidthSpace];
+        BOOL showsOtherInvisibles = [self showsOtherInvisibles];
         
         // draw invisibles glyph by glyph
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeStr characterAtIndex:charIndex];
 
-            if (showSpace && ((character == ' ') || (character == 0x00A0))) {
+            if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
                 CGContextShowGlyphsAtPositions(context, &spaceGlyph, &point, 1);
 
-            } else if (showTab && (character == '\t')) {
+            } else if (showsTab && (character == '\t')) {
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
                 CGContextShowGlyphsAtPositions(context, &tabGlyph, &point, 1);
                 
-            } else if (showNewLine && (character == '\n')) {
+            } else if (showsNewLine && (character == '\n')) {
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
                 CGContextShowGlyphsAtPositions(context, &newLineGlyph, &point, 1);
 
-            } else if (showFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
+            } else if (showsFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
                 CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
                 CGContextShowGlyphsAtPositions(context, &fullwidthSpaceGlyph, &point, 1);
 
-            } else if (showOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
+            } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
                 if (!replaceFont) {  // delay creating font/glyph till they are really needed
                     replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];
                     replaceGlyph = [replaceFont glyphWithName:@"replacement"];
@@ -265,27 +265,27 @@
 
 // ------------------------------------------------------
 /// 不可視文字を表示するかどうかを設定する
-- (void)setShowInvisibles:(BOOL)showInvisibles
+- (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
-    if (!showInvisibles) {
+    if (!showsInvisibles) {
         NSRange range = NSMakeRange(0, [[[self textStorage] string] length]);
         [[self textStorage] removeAttribute:NSGlyphInfoAttributeName range:range];
     }
-    if ([self showOtherInvisibles]) {
-        [self setShowsControlCharacters:showInvisibles];
+    if ([self showsOtherInvisibles]) {
+        [self setShowsControlCharacters:showsInvisibles];
     }
-    _showInvisibles = showInvisibles;
+    _showsInvisibles = showsInvisibles;
 }
 
 
 // ------------------------------------------------------
 /// その他の不可視文字を表示するかどうかを設定する
-- (void)setShowOtherInvisibles:(BOOL)showOtherInvisibles
+- (void)setShowsOtherInvisibles:(BOOL)showsOtherInvisibles
 // ------------------------------------------------------
 {
-    [self setShowsControlCharacters:showOtherInvisibles];
-    _showOtherInvisibles = showOtherInvisibles;
+    [self setShowsControlCharacters:showsOtherInvisibles];
+    _showsOtherInvisibles = showsOtherInvisibles;
 }
 
 

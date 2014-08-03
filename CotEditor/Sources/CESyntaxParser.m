@@ -1028,7 +1028,7 @@ static CGFloat kPerCompoIncrement;
     NSLayoutManager *layoutManager = [self layoutManager];
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
     BOOL isPrinting = [self isPrinting];
-    BOOL showInvisibles = [layoutManager showsControlCharacters];
+    BOOL showsInvisibles = [layoutManager showsControlCharacters];
     
     // 現在あるカラーリングを削除
     if (isPrinting) {
@@ -1044,7 +1044,7 @@ static CGFloat kPerCompoIncrement;
             NSColor *color;
             NSString *colorType = coloring[ColorKey];
             if ([colorType isEqualToString:InvisiblesType]) {
-                if (!showInvisibles) { continue; }
+                if (!showsInvisibles) { continue; }
                 
                 color = [theme invisiblesColor];
             } else if ([colorType isEqualToString:k_SCKey_keywordsArray]) {

@@ -40,16 +40,16 @@
 
 @interface CELayoutManager : NSLayoutManager
 
-@property (nonatomic) BOOL showInvisibles;
-@property (nonatomic) BOOL showSpace;
-@property (nonatomic) BOOL showTab;
-@property (nonatomic) BOOL showNewLine;
-@property (nonatomic) BOOL showFullwidthSpace;
-@property (nonatomic) BOOL showOtherInvisibles;
+@property (nonatomic) BOOL showsInvisibles;
+@property (nonatomic) BOOL showsSpace;
+@property (nonatomic) BOOL showsTab;
+@property (nonatomic) BOOL showsNewLine;
+@property (nonatomic) BOOL showsFullwidthSpace;
+@property (nonatomic) BOOL showsOtherInvisibles;
 
-@property (nonatomic) BOOL fixLineHeight;  // 行高を固定するか
-@property (nonatomic) BOOL useAntialias;  // アンチエイリアスを適用するかどうか
-@property (nonatomic) BOOL isPrinting;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic) BOOL fixesLineHeight;  // 行高を固定するか
+@property (nonatomic) BOOL usesAntialias;  // アンチエイリアスを適用するかどうか
+@property (nonatomic, getter=isPrinting) BOOL printing;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
 @property (nonatomic) NSFont *textFont;
 
 @property (readonly, nonatomic) CGFloat textFontPointSize;

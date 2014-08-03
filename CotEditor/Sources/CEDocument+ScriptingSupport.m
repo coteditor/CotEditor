@@ -233,19 +233,19 @@
 
 // ------------------------------------------------------
 /// ワードラップの状態を返す
-- (NSNumber *)wrapLines
+- (NSNumber *)wrapsLines
 // ------------------------------------------------------
 {
-    return @([[self editor] wrapLines]);
+    return @([[self editor] wrapsLines]);
 }
 
 
 // ------------------------------------------------------
 /// ワードラップを切り替える
-- (void)setWrapLines:(NSNumber *)wrapLines
+- (void)setWrapsLines:(NSNumber *)wrapsLines
 // ------------------------------------------------------
 {
-    [[self editor] setWrapLines:[wrapLines boolValue]];
+    [[self editor] setWrapsLines:[wrapsLines boolValue]];
 }
 
 

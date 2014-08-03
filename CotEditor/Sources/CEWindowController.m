@@ -144,8 +144,8 @@ static NSTimeInterval incompatibleCharInterval;
     [self updateFileAttributesInfo];
     
     // setup status bar
-    [[self statusBarController] setShowStatusBar:[defaults boolForKey:k_key_showStatusBar]];
-    [[self statusBarController] setShowReadOnly:![[self document] isWritable]];
+    [[self statusBarController] setShowsStatusBar:[defaults boolForKey:k_key_showStatusBar]];
+    [[self statusBarController] setShowsReadOnly:![[self document] isWritable]];
     
     // テキストビューへフォーカスを移動
     [[self window] makeFirstResponder:[[self editor] textView]];
@@ -192,8 +192,8 @@ static NSTimeInterval incompatibleCharInterval;
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if ([menuItem action] == @selector(toggleShowStatusBar:)) {
-        NSString *title = [self showStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
+    if ([menuItem action] == @selector(toggleStatusBar:)) {
+        NSString *title = [self showsStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
         [menuItem setTitle:NSLocalizedString(title, nil)];
     }
     
@@ -248,7 +248,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)updateEditorStatusInfo:(BOOL)needsUpdateDrawer
 // ------------------------------------------------------
 {
-    BOOL updatesStatusBar = [[self statusBarController] showStatusBar];
+    BOOL updatesStatusBar = [[self statusBarController] showsStatusBar];
     BOOL updatesDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
     if (!updatesStatusBar && !updatesDrawer) { return; }
@@ -385,7 +385,7 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)updateEncodingAndLineEndingsInfo:(BOOL)needsUpdateDrawer
 // ------------------------------------------------------
 {
-    BOOL shouldUpdateStatusBar = [[self statusBarController] showStatusBar];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] showsStatusBar];
     BOOL shouldUpdateDrawer = needsUpdateDrawer ? YES : [self needsInfoDrawerUpdate];
     
     if (!shouldUpdateStatusBar && !shouldUpdateDrawer) { return; }
@@ -491,22 +491,22 @@ static NSTimeInterval incompatibleCharInterval;
 
 // ------------------------------------------------------
 /// ステータスバーを表示するかどうかを返す
-- (BOOL)showStatusBar
+- (BOOL)showsStatusBar
 // ------------------------------------------------------
 {
-    return [[self statusBarController] showStatusBar];
+    return [[self statusBarController] showsStatusBar];
 }
 
 
 // ------------------------------------------------------
 /// ステータスバーを表示する／しないをセット
-- (void)setShowStatusBar:(BOOL)showStatusBar
+- (void)setShowsStatusBar:(BOOL)showsStatusBar
 // ------------------------------------------------------
 {
     if (![self statusBarController]) { return; }
     
-    [[self statusBarController] setShowStatusBar:showStatusBar];
-    [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showStatusBar];
+    [[self statusBarController] setShowsStatusBar:showsStatusBar];
+    [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showsStatusBar];
     [self updateEncodingAndLineEndingsInfo:NO];
     
     if (![self infoUpdateTimer]) {
@@ -521,7 +521,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     if ([self statusBarController]) {
-        [[self statusBarController] setShowReadOnly:!isWritable];
+        [[self statusBarController] setShowsReadOnly:!isWritable];
     }
 }
     
@@ -703,10 +703,10 @@ static NSTimeInterval incompatibleCharInterval;
 
 // ------------------------------------------------------
 /// ステータスバーの表示をトグルに切り替える
-- (IBAction)toggleShowStatusBar:(id)sender
+- (IBAction)toggleStatusBar:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowStatusBar:![self showStatusBar]];
+    [self setShowsStatusBar:![self showsStatusBar]];
 }
 
 

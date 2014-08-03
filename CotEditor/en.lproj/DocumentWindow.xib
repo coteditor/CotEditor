@@ -53,7 +53,7 @@
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="lockedTemplate" id="2Vs-vL-w3p"/>
                                 <connections>
-                                    <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showReadOnly" id="Pmv-oP-XjF">
+                                    <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showsReadOnly" id="1zI-EA-6Kx">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
@@ -219,32 +219,32 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="DBAEC99C-61AB-42BC-8316-2C57F9799F9E" explicitItemIdentifier="showNavigationBarItemID" label="Navigation Bar" paletteLabel="Show / Hide Navigation Bar" toolTip="Show or hide navigation bar of window" tag="-1" image="NaviBar_Show" id="KpZ-NH-xEh">
                         <connections>
-                            <action selector="toggleShowNavigationBar:" target="-1" id="00S-IM-5dn"/>
+                            <action selector="toggleNavigationBar:" target="-1" id="UsQ-17-wB6"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="6ED57D08-75C6-4859-808D-2F7A1F7E0927" explicitItemIdentifier="showLineNumItemID" label="Line Number" paletteLabel="Show / Hide Line Number" toolTip="Show or hide line number of text" tag="-1" image="LineNumber_Show" id="kfX-UD-siE">
                         <connections>
-                            <action selector="toggleShowLineNum:" target="-1" id="e13-Sb-WE8"/>
+                            <action selector="toggleLineNumber:" target="-1" id="c8k-WU-JRa"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="-1" image="StatusArea_Show" id="moq-h9-h7t">
                         <connections>
-                            <action selector="toggleShowStatusBar:" target="-1" id="gB6-bL-bdL"/>
+                            <action selector="toggleStatusBar:" target="-1" id="tS6-Q0-2LV"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="-1" image="InvisibleChar_Show" id="KtS-FH-3Py">
                         <connections>
-                            <action selector="toggleShowInvisibleChars:" target="-1" id="Mgd-hE-h9k"/>
+                            <action selector="toggleInvisibleChars:" target="-1" id="2l7-uU-Sgy"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="08C1E5C8-B3B4-4DDB-86FE-816BAB5DF962" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="-1" image="PageGuide_Show" id="PES-f4-CAc">
                         <connections>
-                            <action selector="toggleShowPageGuide:" target="-1" id="Gqm-W9-WCb"/>
+                            <action selector="togglePageGuide:" target="-1" id="rBw-il-Jhr"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="-1" image="WrapLines_On" id="oJm-2d-4Yl">
                         <connections>
-                            <action selector="toggleWrapLines:" target="-1" id="eHS-X6-dd4"/>
+                            <action selector="toggleLineWrap:" target="-1" id="K9r-do-Tyv"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="82F862DC-E426-431F-9876-D169C92CDC11" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="-1" image="VerticalOrientation_On" id="OJR-Lr-Joc">

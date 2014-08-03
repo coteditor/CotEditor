@@ -128,7 +128,7 @@ static NSTimeInterval secondColoringDelay;
     [self setTextView:[editorView textView]];
     
     [self setupViewParamsInInit:YES];
-    [self setShowInvisibles:[self canActivateShowInvisibles]];
+    [self setShowsInvisibles:[self canActivateShowInvisibles]];
 }
 
 
@@ -373,37 +373,37 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 行番号の表示をする／しないをセット
-- (void)setShowLineNum:(BOOL)showLineNum
+- (void)setShowsLineNum:(BOOL)showsLineNum
 // ------------------------------------------------------
 {
-    _showLineNum = showLineNum;
+    _showsLineNum = showsLineNum;
     
-    [[self splitViewController] setShowLineNum:showLineNum];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showLineNumItemID setOn:showLineNum];
+    [[self splitViewController] setShowsLineNum:showsLineNum];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showLineNumItemID setOn:showsLineNum];
 }
 
 
 // ------------------------------------------------------
 /// ナビバーを表示する／しないをセット
-- (void)setShowNavigationBar:(BOOL)showNavigationBar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
 // ------------------------------------------------------
 {
-    _showNavigationBar = showNavigationBar;
+    _showsNavigationBar = showsNavigationBar;
     
-    [[self splitViewController] setShowNavigationBar:showNavigationBar];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showNavigationBarItemID setOn:showNavigationBar];
+    [[self splitViewController] setShowsNavigationBar:showsNavigationBar];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showNavigationBarItemID setOn:showsNavigationBar];
 }
 
 
 // ------------------------------------------------------
 /// 行をラップする／しないをセット
-- (void)setWrapLines:(BOOL)wrapLines
+- (void)setWrapsLines:(BOOL)wrapsLines
 // ------------------------------------------------------
 {
-    _wrapLines = wrapLines;
+    _wrapsLines = wrapsLines;
     
-    [[self splitViewController] setWrapLines:wrapLines];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_wrapLinesItemID setOn:wrapLines];
+    [[self splitViewController] setWrapsLines:wrapsLines];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_wrapLinesItemID setOn:wrapsLines];
 }
 
 
@@ -421,12 +421,12 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// アンチエイリアスでの描画の許可を得る
-- (BOOL)shouldUseAntialias
+- (BOOL)usesAntialias
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
     
-    return [manager useAntialias];
+    return [manager usesAntialias];
 }
 
 
@@ -452,24 +452,13 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
-/// アンチエイリアス適用をトグルに切り替え
-- (void)toggleShouldUseAntialias
-// ------------------------------------------------------
-{
-    CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
-
-    [[self splitViewController] setUseAntialias:![manager useAntialias]];
-}
-
-
-// ------------------------------------------------------
 /// ページガイドを表示する／しないをセット
-- (void)setShowPageGuide:(BOOL)showPageGuide
+- (void)setShowsPageGuide:(BOOL)showsPageGuide
 // ------------------------------------------------------
 {
-    if (_showPageGuide != showPageGuide) {
-        _showPageGuide = showPageGuide;
-        [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showPageGuideItemID setOn:showPageGuide];
+    if (_showsPageGuide != showsPageGuide) {
+        _showsPageGuide = showsPageGuide;
+        [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showPageGuideItemID setOn:showsPageGuide];
     }
 }
 
@@ -494,7 +483,7 @@ static NSTimeInterval secondColoringDelay;
     
     if (recolorNow) {
         [self recolorAllString];
-        if ([self showNavigationBar]) {
+        if ([self showsNavigationBar]) {
             [[self splitViewController] updateAllOutlineMenu];
         }
     }
@@ -528,19 +517,19 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 不可視文字の表示／非表示を返す
-- (BOOL)showInvisibles
+- (BOOL)showsInvisibles
 // ------------------------------------------------------
 {
-    return [(CELayoutManager *)[[self textView] layoutManager] showInvisibles];
+    return [(CELayoutManager *)[[self textView] layoutManager] showsInvisibles];
 }
 
 
 // ------------------------------------------------------
 /// 不可視文字の表示／非表示を設定
-- (void)setShowInvisibles:(BOOL)showInvisibles
+- (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
-    [[self splitViewController] setShowInvisibles:showInvisibles];
+    [[self splitViewController] setShowsInvisibles:showsInvisibles];
 }
 
 
@@ -592,27 +581,27 @@ static NSTimeInterval secondColoringDelay;
     NSInteger state = NSOffState;
     NSString *title;
 
-    if ([menuItem action] == @selector(toggleShowLineNum:)) {
-        title = [self showLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
+    if ([menuItem action] == @selector(toggleLineNumber:)) {
+        title = [self showsLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
         
-    } else if ([menuItem action] == @selector(toggleShowNavigationBar:)) {
-        title = [self showNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
+    } else if ([menuItem action] == @selector(toggleNavigationBar:)) {
+        title = [self showsNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
         
-    } else if ([menuItem action] == @selector(toggleWrapLines:)) {
-        title = [self wrapLines] ? @"Unwrap Lines" : @"Wrap Lines";
+    } else if ([menuItem action] == @selector(toggleLineWrap:)) {
+        title = [self wrapsLines] ? @"Unwrap Lines" : @"Wrap Lines";
         
     } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
         NSString *title = [self isVerticalLayoutOrientation] ? @"Use Horizontal Orientation" :  @"Use Vertical Orientation";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
-    } else if ([menuItem action] == @selector(toggleUseAntialias:)) {
-        state = [self shouldUseAntialias] ? NSOnState : NSOffState;
+    } else if ([menuItem action] == @selector(toggleAntialias:)) {
+        state = [self usesAntialias] ? NSOnState : NSOffState;
         
-    } else if ([menuItem action] == @selector(toggleShowPageGuide:)) {
-        title = [self showPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
+    } else if ([menuItem action] == @selector(togglePageGuide:)) {
+        title = [self showsPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
         
-    } else if ([menuItem action] == @selector(toggleShowInvisibleChars:)) {
-        title = [self showInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
+    } else if ([menuItem action] == @selector(toggleInvisibleChars:)) {
+        title = [self showsInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
         if (![self canActivateShowInvisibles]) {
@@ -653,28 +642,28 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 行番号表示をトグルに切り替える
-- (IBAction)toggleShowLineNum:(id)sender
+- (IBAction)toggleLineNumber:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowLineNum:![self showLineNum]];
+    [self setShowsLineNum:![self showsLineNum]];
 }
 
 
 // ------------------------------------------------------
 /// ナビゲーションバーの表示をトグルに切り替える
-- (IBAction)toggleShowNavigationBar:(id)sender
+- (IBAction)toggleNavigationBar:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowNavigationBar:![self showNavigationBar]];
+    [self setShowsNavigationBar:![self showsNavigationBar]];
 }
 
 
 // ------------------------------------------------------
 /// ワードラップをトグルに切り替える
-- (IBAction)toggleWrapLines:(id)sender
+- (IBAction)toggleLineWrap:(id)sender
 // ------------------------------------------------------
 {
-    [self setWrapLines:![self wrapLines]];
+    [self setWrapsLines:![self wrapsLines]];
 }
 
 
@@ -689,22 +678,24 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// 文字にアンチエイリアスを使うかどうかをトグルに切り替える
-- (IBAction)toggleUseAntialias:(id)sender
+- (IBAction)toggleAntialias:(id)sender
 // ------------------------------------------------------
 {
-    [self toggleShouldUseAntialias];
+    CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
+    
+    [[self splitViewController] setUsesAntialias:![manager usesAntialias]];
 }
 
 
 // ------------------------------------------------------
 /// 不可視文字表示をトグルに切り替える
-- (IBAction)toggleShowInvisibleChars:(id)sender
+- (IBAction)toggleInvisibleChars:(id)sender
 // ------------------------------------------------------
 {
-    BOOL showInvisibles = [(CELayoutManager *)[[self textView] layoutManager] showInvisibles];
+    BOOL showsInvisibles = [(CELayoutManager *)[[self textView] layoutManager] showsInvisibles];
 
-    [[self splitViewController] setShowInvisibles:!showInvisibles];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showInvisibleCharsItemID setOn:!showInvisibles];
+    [[self splitViewController] setShowsInvisibles:!showsInvisibles];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showInvisibleCharsItemID setOn:!showsInvisibles];
 }
 
 
@@ -722,10 +713,10 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ページガイド表示をトグルに切り替える
-- (IBAction)toggleShowPageGuide:(id)sender
+- (IBAction)togglePageGuide:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowPageGuide:![self showPageGuide]];
+    [self setShowsPageGuide:![self showsPageGuide]];
     [[[self splitViewController] view] setNeedsDisplay:YES];
 }
 
@@ -778,7 +769,7 @@ static NSTimeInterval secondColoringDelay;
     [[editorView textView] setFont:[[self textView] font]];
     [[editorView textView] setTheme:[self theme]];
     [[editorView textView] setLineSpacing:[[self textView] lineSpacing]];
-    [self setShowInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showInvisibles]];
+    [self setShowsInvisibles:[(CELayoutManager *)[[self textView] layoutManager] showsInvisibles]];
     [[editorView textView] setSelectedRange:selectedRange];
     [editorView setSyntaxWithName:[[self syntaxParser] styleName]];
     [[editorView syntaxParser] colorAllString:[self string]];
@@ -786,7 +777,7 @@ static NSTimeInterval secondColoringDelay;
     [[self window] makeFirstResponder:[editorView textView]];
     [[editorView textView] setLineEndingString:[[self document] lineEndingString]];
     [[editorView textView] centerSelectionInVisibleArea:self];
-    [editorView setShowNavigationBar:[self showNavigationBar]];
+    [editorView setShowsNavigationBar:[self showsNavigationBar]];
     [[self splitViewController] updateCloseSplitViewButton];
 }
 
@@ -853,17 +844,17 @@ static NSTimeInterval secondColoringDelay;
     if (isInitial) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [self setShowLineNum:[defaults boolForKey:k_key_showLineNumbers]];
-        [self setShowNavigationBar:[defaults boolForKey:k_key_showNavigationBar]];
-        [self setWrapLines:[defaults boolForKey:k_key_wrapLines]];
+        [self setShowsLineNum:[defaults boolForKey:k_key_showLineNumbers]];
+        [self setShowsNavigationBar:[defaults boolForKey:k_key_showNavigationBar]];
+        [self setWrapsLines:[defaults boolForKey:k_key_wrapLines]];
         [self setVerticalLayoutOrientation:[defaults boolForKey:k_key_layoutTextVertical]];
-        [self setShowPageGuide:[defaults boolForKey:k_key_showPageGuide]];
+        [self setShowsPageGuide:[defaults boolForKey:k_key_showPageGuide]];
     } else {
-        [self setShowLineNum:[self showLineNum]];
-        [self setShowNavigationBar:[self showNavigationBar]];
-        [self setWrapLines:[self wrapLines]];
+        [self setShowsLineNum:[self showsLineNum]];
+        [self setShowsNavigationBar:[self showsNavigationBar]];
+        [self setWrapsLines:[self wrapsLines]];
         [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
-        [self setShowPageGuide:[self showPageGuide]];
+        [self setShowsPageGuide:[self showsPageGuide]];
     }
 }
 

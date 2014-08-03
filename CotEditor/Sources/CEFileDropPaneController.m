@@ -39,7 +39,7 @@
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropGlossaryTextView;  // on 10.8 NSTextView cannot be weak
 
-@property (nonatomic) BOOL doDeleteFileDrop;
+@property (nonatomic, getter=isDeletingFileDrop) BOOL deletingFileDrop;
 
 @end
 
@@ -91,7 +91,7 @@
         // 入力されていなければ行ごと削除
         if (!extension && !format) {
             // 削除実行フラグを偽に（編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るためのフラグ）
-            [self setDoDeleteFileDrop:NO];
+            [self setDeletingFileDrop:NO];
             [[self fileDropController] remove:self];
         } else {
             // フォーマットを整える
@@ -182,7 +182,7 @@
 // ------------------------------------------------------
 {
     // (編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るための)削除実施フラグをたてる
-    [self setDoDeleteFileDrop:YES];
+    [self setDeletingFileDrop:YES];
     // フォーカスを移し、値入力を確定
     [[sender window] makeFirstResponder:sender];
     // ディレイをかけて controlTextDidEndEditing: の自動編集を実行させる
@@ -236,7 +236,7 @@
 // ------------------------------------------------------
 {
     // フラグがたっていなければ（既に controlTextDidEndEditing: で自動削除されていれば）何もしない
-    if (![self doDeleteFileDrop]) { return; }
+    if (![self isDeletingFileDrop]) { return; }
     
     NSArray *selected = [[self fileDropController] selectedObjects];
     NSString *extension = selected[0][k_key_fileDropExtensions];
@@ -278,10 +278,10 @@
     
     if ([[self fileDropController] selectionIndex] == NSNotFound) { return; }
     
-    if ([self doDeleteFileDrop]) {
+    if ([self isDeletingFileDrop]) {
         [[self fileDropController] remove:self];
         [self writeBackFileDropArray];
-        [self setDoDeleteFileDrop:NO];
+        [self setDeletingFileDrop:NO];
     }
 }
 

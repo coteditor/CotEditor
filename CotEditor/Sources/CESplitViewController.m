@@ -103,33 +103,33 @@
 
 // ------------------------------------------------------
 /// 行番号表示の有無を設定
-- (void)setShowLineNum:(BOOL)showLineNum
+- (void)setShowsLineNum:(BOOL)showsLineNum
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setShowLineNum:showLineNum];
+        [subview setShowsLineNum:showsLineNum];
     }
 }
 
 
 // ------------------------------------------------------
 /// ナビゲーションバー描画の有無を設定
-- (void)setShowNavigationBar:(BOOL)showNavigationBar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setShowNavigationBar:showNavigationBar];
+        [subview setShowsNavigationBar:showsNavigationBar];
     }
 }
 
 
 // ------------------------------------------------------
 /// ラップする／しないを設定
-- (void)setWrapLines:(BOOL)wrapLines
+- (void)setWrapsLines:(BOOL)wrapsLines
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setWrapLines:wrapLines];
+        [subview setWrapsLines:wrapsLines];
     }
     [[self view] setNeedsDisplay:YES];
 }
@@ -149,11 +149,11 @@
 
 // ------------------------------------------------------
 /// 不可視文字の表示／非表示を設定
-- (void)setShowInvisibles:(BOOL)showInvisibles
+- (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setShowInvisibles:showInvisibles];
+        [subview setShowsInvisibles:showsInvisibles];
     }
 }
 
@@ -171,11 +171,11 @@
 
 // ------------------------------------------------------
 /// 文字にアンチエイリアスを使うかどうかを設定
-- (void)setUseAntialias:(BOOL)useAntialias
+- (void)setUsesAntialias:(BOOL)usesAntialias
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setUseAntialias:useAntialias];
+        [subview setUsesAntialias:usesAntialias];
     }
 }
 

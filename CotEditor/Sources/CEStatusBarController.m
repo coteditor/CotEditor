@@ -68,7 +68,7 @@ static const NSTimeInterval duration = 0.1;
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _showStatusBar = YES;
+        _showsStatusBar = YES;
         _byteCountTransformer = [[CEByteCountTransformer alloc] init];
     }
     return self;
@@ -166,12 +166,12 @@ static const NSTimeInterval duration = 0.1;
 
 // ------------------------------------------------------
 /// update visibility
-- (void)setShowStatusBar:(BOOL)showStatusBar
+- (void)setShowsStatusBar:(BOOL)showsStatusBar
 // ------------------------------------------------------
 {
-    _showStatusBar = showStatusBar;
+    _showsStatusBar = showsStatusBar;
     
-    CGFloat height = [self showStatusBar] ? defaultHeight : 0.0;
+    CGFloat height = [self showsStatusBar] ? defaultHeight : 0.0;
     
     // resize with animation
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {

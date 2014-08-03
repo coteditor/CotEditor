@@ -39,13 +39,13 @@
 - (NSSplitView *)splitView;
 - (NSArray *)layoutManagers;
 
-- (void)setShowLineNum:(BOOL)showLineNum;
-- (void)setShowNavigationBar:(BOOL)showNavigationBar;
-- (void)setWrapLines:(BOOL)wrapLines;
+- (void)setShowsLineNum:(BOOL)showsLineNum;
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar;
+- (void)setWrapsLines:(BOOL)wrapsLines;
 - (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation;
-- (void)setShowInvisibles:(BOOL)showInvisibles;
+- (void)setShowsInvisibles:(BOOL)showsInvisibles;
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
-- (void)setUseAntialias:(BOOL)useAntialias;
+- (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)updateCloseSplitViewButton;
 
 - (void)moveAllCaretToBeginning;

@@ -32,8 +32,8 @@
 
 @interface CEStatusBarController : NSViewController
 
-@property (nonatomic) BOOL showStatusBar;
-@property (nonatomic) BOOL showReadOnly;
+@property (nonatomic) BOOL showsStatusBar;
+@property (nonatomic) BOOL showsReadOnly;
 
 // editor status
 @property (nonatomic) NSInteger linesInfo;

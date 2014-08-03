@@ -72,7 +72,7 @@
 {
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
 
-    return ([manager isPrinting] || ![manager fixLineHeight]);
+    return ([manager isPrinting] || ![manager fixesLineHeight]);
 }
 
 
@@ -85,7 +85,7 @@
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[[self currentTextContainer] textView] lineSpacing];
     CGFloat fontSize;
 
-    if ([manager isPrinting] || ![manager fixLineHeight]) {
+    if ([manager isPrinting] || ![manager fixesLineHeight]) {
         // 印刷時または複合フォントでの行間固定をしないときは、システム既定値に、設定された行間を追加するだけ
         // （[NSGraphicsContext currentContextDrawingToScreen] が真を返す時があるため、専用フラグで印刷中を確認）
         CGFloat spacing = [super lineSpacingAfterGlyphAtIndex:glyphIndex withProposedLineFragmentRect:rect];

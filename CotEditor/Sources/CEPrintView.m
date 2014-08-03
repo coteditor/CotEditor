@@ -49,7 +49,7 @@
 @property (nonatomic) BOOL printsHeaderSeparator;
 @property (nonatomic) BOOL printsFooterSeparator;
 @property (nonatomic) BOOL printsLineNum;
-@property (nonatomic) BOOL readyToDrawPageNum;
+@property (nonatomic, getter=isReadyToDrawPageNum) BOOL readyToDrawPageNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, copy) NSDictionary *headerFooterAttrs;
 @property (nonatomic) CESyntaxParser *syntaxParser;
@@ -93,8 +93,8 @@
         
         // layoutManager を入れ替え
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
-        [layoutManager setFixLineHeight:NO];
-        [layoutManager setIsPrinting:YES];
+        [layoutManager setFixesLineHeight:NO];
+        [layoutManager setPrinting:YES];
         [[self textContainer] replaceLayoutManager:layoutManager];
     }
     return self;
@@ -130,7 +130,7 @@
     [self setupPrintWithBorderWidth:borderSize.width];
     
     // ページ番号の印字があるなら、準備する
-    if ([self readyToDrawPageNum]) {
+    if ([self isReadyToDrawPageNum]) {
         NSInteger pageNum = [[NSPrintOperation currentOperation] currentPage];
 
         pageString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd", pageNum]
@@ -318,7 +318,7 @@
 // ------------------------------------------------------
 {
     // layoutManagerにも設定する
-    [(CELayoutManager *)[self layoutManager] setShowOtherInvisibles:showsInvisibles];
+    [(CELayoutManager *)[self layoutManager] setShowsOtherInvisibles:showsInvisibles];
     
     _documentShowsInvisibles = showsInvisibles;
 }
@@ -362,19 +362,19 @@
     }
     
     // 不可視文字の扱いを取得
-    BOOL showInvisibles;
+    BOOL showsInvisibles;
     switch ([accessoryController invisibleCharsMode]) {
         case CENoInvisibleCharsPrint:
-            showInvisibles = NO;
+            showsInvisibles = NO;
             break;
         case CESameAsDocumentInvisibleCharsPrint:
-            showInvisibles = [self documentShowsInvisibles];
+            showsInvisibles = [self documentShowsInvisibles];
             break;
         case CEAllInvisibleCharsPrint:
-            showInvisibles = YES;
+            showsInvisibles = YES;
             break;
     }
-    [(CELayoutManager *)[self layoutManager] setShowInvisibles:showInvisibles];
+    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
     
     // カラーリングの設定

@@ -120,8 +120,8 @@
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [[self textStorage] addLayoutManager:layoutManager];
         [layoutManager setBackgroundLayoutEnabled:YES];
-        [layoutManager setUseAntialias:[defaults boolForKey:k_key_shouldAntialias]];
-        [layoutManager setFixLineHeight:[defaults boolForKey:k_key_fixLineHeight]];
+        [layoutManager setUsesAntialias:[defaults boolForKey:k_key_shouldAntialias]];
+        [layoutManager setFixesLineHeight:[defaults boolForKey:k_key_fixLineHeight]];
 
         // NSTextContainer と CESyntaxParser を生成
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -232,19 +232,19 @@
 
 // ------------------------------------------------------
 /// 行番号表示設定をセット
-- (void)setShowLineNum:(BOOL)showLineNum
+- (void)setShowsLineNum:(BOOL)showsLineNum
 // ------------------------------------------------------
 {
-    [[self lineNumberView] setShown:showLineNum];
+    [[self lineNumberView] setShown:showsLineNum];
 }
 
 
 // ------------------------------------------------------
 /// ナビゲーションバーを表示／非表示
-- (void)setShowNavigationBar:(BOOL)showNavigationBar
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
 // ------------------------------------------------------
 {
-    [[self navigationBar] setShowNavigationBar:showNavigationBar];
+    [[self navigationBar] setShowsNavigationBar:showsNavigationBar];
     if (![self outlineMenuTimer]) {
         [self updateOutlineMenu];
     }
@@ -253,7 +253,7 @@
 
 // ------------------------------------------------------
 /// ラップする／しないを切り替える
-- (void)setWrapLines:(BOOL)wrapLines
+- (void)setWrapsLines:(BOOL)wrapsLines
 // ------------------------------------------------------
 {
     NSTextView *textView = [self textView];
@@ -262,7 +262,7 @@
     // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
     [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
     
-    if (wrapLines) {
+    if (wrapsLines) {
         [[textView enclosingScrollView] setHasHorizontalScroller:NO];
         [textView setAutoresizingMask:NSViewWidthSizable];
         [self adjustTextFrameSize];
@@ -287,18 +287,18 @@
 
 // ------------------------------------------------------
 /// 不可視文字の表示／非表示を切り替える
-- (void)setShowInvisibles:(BOOL)showInvisibles
+- (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
     NSRange selectedRange;
     BOOL shouldReselect = NO;
 
-    if (showInvisibles) {
+    if (showsInvisibles) {
         shouldReselect = YES;
         selectedRange = [[self textView] selectedRange];
         [[self textView] setSelectedRange:NSMakeRange(0, 0)]; // （選択範囲をリセットしておき、あとで再選択）
     }
-    [(CELayoutManager *)[[self textView] layoutManager] setShowInvisibles:showInvisibles];
+    [(CELayoutManager *)[[self textView] layoutManager] setShowsInvisibles:showsInvisibles];
     [[self textView] setNeedsDisplay:YES];
     if (shouldReselect) {
         // （不可視文字が選択状態で表示／非表示を切り替えられた時、不可視文字の背景選択色を描画するための時間差での選択処理）
@@ -322,22 +322,22 @@
 
 // ------------------------------------------------------
 /// アンチエイリアス適用を切り替える
-- (void)setUseAntialias:(BOOL)useAntialias
+- (void)setUsesAntialias:(BOOL)usesAntialias
 // ------------------------------------------------------
 {
     CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
 
-    [manager setUseAntialias:useAntialias];
+    [manager setUsesAntialias:usesAntialias];
     [[self textView] setNeedsDisplay:YES];
 }
 
 
 // ------------------------------------------------------
 /// ページガイドの表示／非表示を返す
-- (BOOL)showPageGuide
+- (BOOL)showsPageGuide
 // ------------------------------------------------------
 {
-    return [[self editorWrapper] showPageGuide];
+    return [[self editorWrapper] showsPageGuide];
 }
 
 

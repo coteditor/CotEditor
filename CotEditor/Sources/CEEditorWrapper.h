@@ -45,11 +45,11 @@
 
 @interface CEEditorWrapper : NSResponder
 
-@property (nonatomic) BOOL showLineNum;
-@property (nonatomic) BOOL showNavigationBar;
-@property (nonatomic) BOOL wrapLines;
-@property (nonatomic) BOOL showPageGuide;
-@property (nonatomic) BOOL showInvisibles;
+@property (nonatomic) BOOL showsLineNum;
+@property (nonatomic) BOOL showsNavigationBar;
+@property (nonatomic) BOOL wrapsLines;
+@property (nonatomic) BOOL showsPageGuide;
+@property (nonatomic) BOOL showsInvisibles;
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 @property (nonatomic) CETextView *textView;
 
@@ -80,8 +80,7 @@
 - (void)markupRanges:(NSArray *)ranges;
 - (void)clearAllMarkup;
 
-- (BOOL)shouldUseAntialias;
-- (void)toggleShouldUseAntialias;
+- (BOOL)usesAntialias;
 
 - (void)setThemeWithName:(NSString *)themeName;
 - (CETheme *)theme;
@@ -96,13 +95,13 @@
 
 
 // Action Message
-- (IBAction)toggleShowLineNum:(id)sender;
-- (IBAction)toggleShowNavigationBar:(id)sender;
-- (IBAction)toggleWrapLines:(id)sender;
+- (IBAction)toggleLineNumber:(id)sender;
+- (IBAction)toggleNavigationBar:(id)sender;
+- (IBAction)toggleLineWrap:(id)sender;
 - (IBAction)toggleLayoutOrientation:(id)sender;
-- (IBAction)toggleUseAntialias:(id)sender;
-- (IBAction)toggleShowInvisibleChars:(id)sender;
-- (IBAction)toggleShowPageGuide:(id)sender;
+- (IBAction)toggleAntialias:(id)sender;
+- (IBAction)toggleInvisibleChars:(id)sender;
+- (IBAction)togglePageGuide:(id)sender;
 - (IBAction)toggleAutoTabExpand:(id)sender;
 - (IBAction)selectPrevItemOfOutlineMenu:(id)sender;
 - (IBAction)selectNextItemOfOutlineMenu:(id)sender;

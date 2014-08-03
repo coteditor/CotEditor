@@ -204,11 +204,11 @@
     CEEditorWrapper *editor = [[self windowController] editor];
     
     if ([identifier isEqualToString:k_showInvisibleCharsItemID]) {
-        [self toggleItem:item setOn:[editor showInvisibles]];
+        [self toggleItem:item setOn:[editor showsInvisibles]];
         
         // ツールバーアイテムを有効化できなければボタンを無効状態に
         if ([editor canActivateShowInvisibles]) {
-            [item setAction:@selector(toggleShowInvisibleChars:)];
+            [item setAction:@selector(toggleInvisibleChars:)];
             [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
         } else {
             [item setAction:nil];
@@ -219,19 +219,19 @@
         [self toggleItem:item setOn:[[editor textView] isAutoTabExpandEnabled]];
         
     } else if ([identifier isEqualToString:k_showNavigationBarItemID]) {
-        [self toggleItem:item setOn:[editor showNavigationBar]];
+        [self toggleItem:item setOn:[editor showsNavigationBar]];
         
     } else if ([identifier isEqualToString:k_showLineNumItemID]) {
-        [self toggleItem:item setOn:[editor showLineNum]];
+        [self toggleItem:item setOn:[editor showsLineNum]];
         
     } else if ([identifier isEqualToString:k_showStatusBarItemID]) {
-        [self toggleItem:item setOn:[[self windowController] showStatusBar]];
+        [self toggleItem:item setOn:[[self windowController] showsStatusBar]];
         
     } else if ([identifier isEqualToString:k_showPageGuideItemID]) {
-        [self toggleItem:item setOn:[editor showPageGuide]];
+        [self toggleItem:item setOn:[editor showsPageGuide]];
         
     } else if ([identifier isEqualToString:k_wrapLinesItemID]) {
-        [self toggleItem:item setOn:[editor wrapLines]];
+        [self toggleItem:item setOn:[editor wrapsLines]];
     }
 }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <objects>
@@ -315,17 +316,17 @@
                             <menuItem isSeparatorItem="YES" id="OPN-kh-B1v"/>
                             <menuItem title="ナビゲーションバーを表示" id="681">
                                 <connections>
-                                    <action selector="toggleShowNavigationBar:" target="-1" id="682"/>
+                                    <action selector="toggleNavigationBar:" target="-1" id="2Zk-5k-Hg9"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="行番号を表示" id="323">
                                 <connections>
-                                    <action selector="toggleShowLineNum:" target="-1" id="326"/>
+                                    <action selector="toggleLineNumber:" target="-1" id="zzZ-Wa-ntg"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="ステータスバーを表示" id="325">
                                 <connections>
-                                    <action selector="toggleShowStatusBar:" target="-1" id="356"/>
+                                    <action selector="toggleStatusBar:" target="-1" id="JSq-hd-LeO"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="366">
@@ -333,12 +334,12 @@
                             </menuItem>
                             <menuItem title="不可視文字を表示" id="788">
                                 <connections>
-                                    <action selector="toggleShowInvisibleChars:" target="-1" id="791"/>
+                                    <action selector="toggleInvisibleChars:" target="-1" id="fER-EK-1bq"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="ページガイドを表示" id="749">
                                 <connections>
-                                    <action selector="toggleShowPageGuide:" target="-1" id="750"/>
+                                    <action selector="togglePageGuide:" target="-1" id="axF-lw-AM8"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="792">
@@ -429,7 +430,7 @@
                                         </menuItem>
                                         <menuItem title="アンチエイリアス" id="745">
                                             <connections>
-                                                <action selector="toggleUseAntialias:" target="-1" id="747"/>
+                                                <action selector="toggleAntialias:" target="-1" id="atj-Xz-Hwc"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -440,7 +441,7 @@
                             </menuItem>
                             <menuItem title="行を折り返す" id="286">
                                 <connections>
-                                    <action selector="toggleWrapLines:" target="-1" id="288"/>
+                                    <action selector="toggleLineWrap:" target="-1" id="GSY-4g-IS0"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="縦書きに変更" id="oSU-ic-29H">

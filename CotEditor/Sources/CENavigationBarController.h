@@ -34,7 +34,7 @@
 @interface CENavigationBarController : NSViewController
 
 @property (nonatomic, unsafe_unretained) NSTextView *textView;
-@property (nonatomic) BOOL showNavigationBar;
+@property (nonatomic) BOOL showsNavigationBar;
 
 
 // Public method
