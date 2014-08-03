@@ -78,12 +78,7 @@ static const NSTimeInterval duration = 0.1;
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [[self prevButton] setHidden:YES];
-    [[self nextButton] setHidden:YES];
-    [[self closeSplitButton] setHidden:YES];
-    
     [[self outlineIndicator] setUsesThreadedAnimation:YES];
-    [[self outlineLoadingMessage] setHidden:YES];
 }
 
 
