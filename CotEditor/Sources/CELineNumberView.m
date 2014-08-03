@@ -129,7 +129,6 @@
     CGFloat masterFontSize = [[[self textView] font] pointSize];
     CGFloat fontSize = round(0.9 * masterFontSize);
     CTFontRef font = CTFontCreateWithName((CFStringRef)[self fontName], fontSize, nil);
-    CFAutorelease(font);
     
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGContextSetFont(context, cgFont);
@@ -163,6 +162,7 @@
     transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
     transform = CGAffineTransformTranslate(transform, -k_lineNumPadding, -relativePoint.y - inset.y - diff - ascent);
     CGContextSetTextMatrix(context, transform);
+    CFRelease(font);
     
     // get glyph range which line number should be drawn
     NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:[[self textView] visibleRect]
