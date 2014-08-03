@@ -599,7 +599,7 @@
         
         // （2ピクセル右に描画してるのは、調整）
         CGFloat x = floor(column + inset + linePadding) + 2.5;
-        [[[self textColor] colorWithAlphaComponent:0.2] set];
+        [[[[self theme] textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0)
                                   toPoint:NSMakePoint(x, length)];
     }
@@ -1108,7 +1108,7 @@
 {
     [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self paragraphStyle],
                                 NSFontAttributeName: [self font],
-                                NSForegroundColorAttributeName: [self textColor]}];
+                                NSForegroundColorAttributeName: [[self theme] textColor]}];
 }
 
 
