@@ -44,6 +44,7 @@
 - (void)setWrapsLines:(BOOL)wrapsLines;
 - (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation;
 - (void)setShowsInvisibles:(BOOL)showsInvisibles;
+- (void)setShowsPageGuide:(BOOL)showsPageGuide;
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)updateCloseSplitViewButton;

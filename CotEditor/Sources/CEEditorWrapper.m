@@ -457,10 +457,10 @@ static NSTimeInterval secondColoringDelay;
 - (void)setShowsPageGuide:(BOOL)showsPageGuide
 // ------------------------------------------------------
 {
-    if (_showsPageGuide != showsPageGuide) {
-        _showsPageGuide = showsPageGuide;
-        [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showPageGuideItemID setOn:showsPageGuide];
-    }
+    [[self splitViewController] setShowsPageGuide:showsPageGuide];
+    [[[self windowController] toolbarController] toggleItemWithIdentifier:k_showPageGuideItemID setOn:showsPageGuide];
+    
+    _showsPageGuide = showsPageGuide;
 }
 
 
@@ -718,7 +718,6 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [self setShowsPageGuide:![self showsPageGuide]];
-    [[[self splitViewController] view] setNeedsDisplay:YES];
 }
 
 

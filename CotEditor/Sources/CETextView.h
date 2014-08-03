@@ -40,6 +40,7 @@
 
 @interface CETextView : NSTextView <NSTextInputClient, CETextViewProtocol>
 
+@property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか
 @property (nonatomic) BOOL needsUpdateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
 @property (nonatomic) CGFloat lineSpacing;
@@ -47,6 +48,7 @@
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 @property (nonatomic, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
 @property (nonatomic, copy) NSDictionary *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
+@property (nonatomic, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 @property (nonatomic, weak) NSView *lineNumberView;  // lineNumberView
 @property (nonatomic, copy) NSString *lineEndingString;  // 行末文字
 @property (nonatomic) CGFloat backgroundAlpha;  // ビューの不透明度

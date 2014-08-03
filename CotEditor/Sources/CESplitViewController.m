@@ -159,12 +159,24 @@
 
 
 // ------------------------------------------------------
+/// ページガイドの表示／非表示を設定
+- (void)setShowsPageGuide:(BOOL)showsPageGuide
+// ------------------------------------------------------
+{
+    for (CEEditorView *subview in [[self view] subviews]) {
+        [[subview textView] setShowsPageGuide:showsPageGuide];
+        [[subview textView] setNeedsDisplay:YES];
+    }
+}
+
+
+// ------------------------------------------------------
 /// ソフトタブの有効／無効を設定
 - (void)setAutoTabExpandEnabled:(BOOL)isEnabled
 // ------------------------------------------------------
 {
     for (CEEditorView *subview in [[self view] subviews]) {
-        [subview setAutoTabExpandEnabled:isEnabled];
+        [[subview textView] setAutoTabExpandEnabled:isEnabled];
     }
 }
 

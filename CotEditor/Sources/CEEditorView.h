@@ -51,15 +51,12 @@
 // Public method
 - (NSString *)string;
 - (void)replaceTextStorage:(NSTextStorage *)textStorage;
-- (void)setTextViewToEditorWrapper:(CETextView *)textView;
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar;
 - (void)setWrapsLines:(BOOL)wrapsLines;
 - (void)setShowsInvisibles:(BOOL)showsInvisibles;
-- (void)setAutoTabExpandEnabled:(BOOL)isEnabled;
 - (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled;
-- (BOOL)showsPageGuide;
 - (void)setCaretToBeginning;
 - (void)setSyntaxWithName:(NSString *)styleName;
 - (void)recolorAllTextViewString;

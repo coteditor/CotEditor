@@ -222,15 +222,6 @@
 
 
 // ------------------------------------------------------
-/// テキストビューをエディタビューにセット
-- (void)setTextViewToEditorWrapper:(CETextView *)textView
-// ------------------------------------------------------
-{
-    [[self editorWrapper] setTextView:textView];
-}
-
-
-// ------------------------------------------------------
 /// 行番号表示設定をセット
 - (void)setShowsLineNum:(BOOL)showsLineNum
 // ------------------------------------------------------
@@ -306,15 +297,6 @@
 
 
 // ------------------------------------------------------
-/// ソフトタブの有効／無効を切り替える
-- (void)setAutoTabExpandEnabled:(BOOL)isEnabled
-// ------------------------------------------------------
-{
-    [[self textView] setAutoTabExpandEnabled:isEnabled];
-}
-
-
-// ------------------------------------------------------
 /// アンチエイリアス適用を切り替える
 - (void)setUsesAntialias:(BOOL)usesAntialias
 // ------------------------------------------------------
@@ -323,15 +305,6 @@
 
     [manager setUsesAntialias:usesAntialias];
     [[self textView] setNeedsDisplay:YES];
-}
-
-
-// ------------------------------------------------------
-/// ページガイドの表示／非表示を返す
-- (BOOL)showsPageGuide
-// ------------------------------------------------------
-{
-    return [[self editorWrapper] showsPageGuide];
 }
 
 
@@ -355,6 +328,7 @@
     
     [[self textView] setInlineCommentDelimiter:[[self syntaxParser] inlineCommentDelimiter]];
     [[self textView] setBlockCommentDelimiters:[[self syntaxParser] blockCommentDelimiters]];
+    [[self textView] setFirstCompletionCharacterSet:[[self syntaxParser] firstCompletionCharacterSet]];
 }
 
 

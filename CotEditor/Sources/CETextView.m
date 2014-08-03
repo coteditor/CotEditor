@@ -34,7 +34,6 @@
  */
 
 #import "CETextView.h"
-#import "CEEditorView.h"
 #import "CELineNumberView.h"
 #import "CEColorCodePanelController.h"
 #import "CEGlyphPopoverController.h"
@@ -192,7 +191,7 @@
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
-    [(CEEditorView *)[self delegate] setTextViewToEditorWrapper:self];
+    [[(CEWindowController *)[[self window] windowController] editor] setTextView:self];
     
     return [super becomeFirstResponder];
 }
@@ -535,7 +534,7 @@
 {
     NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
-    NSCharacterSet *charSet = [(CEEditorView *)[self delegate] firstCompletionCharacterSet];
+    NSCharacterSet *charSet = [self firstCompletionCharacterSet];
 
     if (!charSet || [string length] == 0) { return range; }
 
@@ -585,7 +584,7 @@
     [super drawRect:dirtyRect];
     
     // ページガイド描画
-    if ([(CEEditorView *)[self delegate] showsPageGuide]) {
+    if ([self showsPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
         
         if ((column < k_pageGuideColumnMin) || (column > k_pageGuideColumnMax)) {
