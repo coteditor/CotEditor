@@ -229,15 +229,13 @@
 
     // 行番号を印字
     if ([self printsLineNum]) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
         // 行番号の文字属性辞書生成
         CGFloat masterFontSize = [[self font] pointSize];
         CGFloat fontSize = round(0.9 * masterFontSize);
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:fontSize] ? : [NSFont userFixedPitchFontOfSize:fontSize];
+        NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_lineNumFontName] size:fontSize] ? :
+                       [NSFont userFixedPitchFontOfSize:fontSize];
         NSDictionary *attrs = @{NSFontAttributeName: font,
-                                NSForegroundColorAttributeName: [NSUnarchiver unarchiveObjectWithData:
-                                                                 [defaults dataForKey:k_key_lineNumFontColor]]};
+                                NSForegroundColorAttributeName: [NSColor textColor]};
         
         //文字幅を計算しておく 等幅扱い
         //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく(hetima)
