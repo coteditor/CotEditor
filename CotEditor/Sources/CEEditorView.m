@@ -124,7 +124,7 @@
         [layoutManager setFixesLineHeight:[defaults boolForKey:k_key_fixLineHeight]];
 
         // NSTextContainer と CESyntaxParser を生成
-        NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+        NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [layoutManager addTextContainer:container];
 
         [self setSyntaxParser:[[CESyntaxParser alloc] initWithStyleName:NSLocalizedString(@"None", @"")
@@ -263,7 +263,7 @@
     } else {
         [[textView enclosingScrollView] setHasHorizontalScroller:YES];
         [[textView textContainer] setWidthTracksTextView:NO];
-        [[textView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)]; // set the frame size
+        [[textView textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)]; // set the frame size
         [textView setAutoresizingMask:NSViewNotSizable]; // (don't let it autosize, though.)
         [textView setHorizontallyResizable:YES];
     }
@@ -715,7 +715,7 @@
     NSInteger newWidth = [[self scrollView] contentSize].width;
 
     newWidth -= (NSWidth([[self lineNumberView] frame]) + k_lineNumPadding * 2 );
-    [[[self textView] textContainer] setContainerSize:NSMakeSize(newWidth, FLT_MAX)];
+    [[[self textView] textContainer] setContainerSize:NSMakeSize(newWidth, CGFLOAT_MAX)];
 }
 
 

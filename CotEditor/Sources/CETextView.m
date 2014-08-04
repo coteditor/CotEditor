@@ -116,7 +116,7 @@
         }
         [self setFont:font];
         [self setMinSize:frameRect.size];
-        [self setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+        [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setAllowsDocumentBackgroundColorChange:NO];
         [self setAllowsUndo:YES];
         [self setRichText:NO];
