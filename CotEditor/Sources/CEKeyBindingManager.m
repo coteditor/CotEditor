@@ -678,22 +678,23 @@
 - (BOOL)prepareUserSettingDicrectory
 //------------------------------------------------------
 {
+    BOOL success = NO;
+    NSError *error = nil;
     NSURL *URL = [self userSettingDirecotryURL];
-    BOOL success;
+    NSNumber *isDirectory;
     
-    BOOL isDirectory;
-    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[URL path] isDirectory:&isDirectory];
-    
-    if (exists && isDirectory) {
-        return YES;
-        
-    } else if (!isDirectory) {
-        NSLog(@"Error! Key Bindings directory could not be found.");
-        return NO;
+    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
+        success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
+                                           withIntermediateDirectories:YES attributes:nil error:&error];
+    } else {
+        success = [isDirectory boolValue];
     }
     
-    return [[NSFileManager defaultManager] createDirectoryAtURL:URL
-                                    withIntermediateDirectories:YES attributes:nil error:nil];
+    if (!success) {
+        NSLog(@"failed to create a directory at \"%@\".", URL);
+    }
+    
+    return success;
 }
 
 

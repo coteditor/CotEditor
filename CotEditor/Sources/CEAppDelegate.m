@@ -636,24 +636,23 @@
 - (void)setupSupportDirectory
 //------------------------------------------------------
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *URL = [[fileManager URLForDirectory:NSApplicationSupportDirectory
-                                      inDomain:NSUserDomainMask
-                             appropriateForURL:nil
-                                        create:YES
-                                         error:nil]
+    NSURL *URL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                         inDomain:NSUserDomainMask
+                                                appropriateForURL:nil
+                                                           create:YES
+                                                            error:nil]
                   URLByAppendingPathComponent:@"CotEditor"];
-    BOOL isDirectory = NO;
-
-    if (![fileManager fileExistsAtPath:[URL path] isDirectory:&isDirectory]) {
-        BOOL success = [fileManager createDirectoryAtURL:URL
-                             withIntermediateDirectories:YES
-                                              attributes:nil
-                                                   error:nil];
+    
+    NSNumber *isDirectory;
+    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
+                                                withIntermediateDirectories:YES
+                                                                 attributes:nil
+                                                                      error:nil];
         if (!success) {
             NSLog(@"Failed to create support directory for CotEditor...");
         }
-    } else if (!isDirectory) {
+    } else if (![isDirectory boolValue]) {
         NSLog(@"\"%@\" is not dir.", URL);
     }
 }

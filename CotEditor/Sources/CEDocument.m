@@ -157,9 +157,9 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [self setODBEventSender:[[CEODBEventSender alloc] init]];
     
     // 書き込み可能かをチェック
-    NSNumber *isWritableNum = nil;
-    [url getResourceValue:&isWritableNum forKey:NSURLIsWritableKey error:nil];
-    [self setWritable:[isWritableNum boolValue]];
+    NSNumber *isWritable = nil;
+    [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
+    [self setWritable:[isWritable boolValue]];
     
     NSStringEncoding encoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
     
@@ -987,23 +987,17 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
-    __block NSDate *fileModificationDate;
-    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
-                                      error:nil byAccessor:^(NSURL *newURL)
-    {
-        NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
-        fileModificationDate = [fileAttrs fileModificationDate];
-    }];
+    NSDate *fileModificationDate;
+    [[self fileURL] getResourceValue:&fileModificationDate forKey:NSURLAttributeModificationDateKey error:nil];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
     // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
     __block NSString *MD5;
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         NSData *data = [NSData dataWithContentsOfURL:newURL];
-         MD5 = [data MD5];
+         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
      }];
     if ([MD5 isEqualToString:[self fileMD5]]) {
         // documentの保持しているfileModificationDateを書き換える (2014-03 by 1024jp)
@@ -1313,7 +1307,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // "authopen"コマンドを使って読み込む
-    NSString *convertedPath = @([[url path] UTF8String]);
+    NSString *convertedPath = @([url fileSystemRepresentation]);
     NSTask *task = [[NSTask alloc] init];
 
     [task setLaunchPath:@"/usr/libexec/authopen"];
@@ -1555,7 +1549,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     }
     
     // "authopen" コマンドを使って保存
-    NSString *convertedPath = @([[url path] UTF8String]);
+    NSString *convertedPath = @([url fileSystemRepresentation]);
     NSTask *task = [[NSTask alloc] init];
 
     [task setLaunchPath:@"/usr/libexec/authopen"];

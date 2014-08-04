@@ -187,15 +187,12 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSUInteger flags = [NSEvent modifierFlags];
     if (flags == NSAlternateKeyMask) {  // Optキーが押されていたら、スクリプトを開く
         BOOL success = YES;
-        if ([[self AppleScriptExtensions] containsObject:extension]) {
-            success = [[NSWorkspace sharedWorkspace] openURLs:@[URL]
-                                     withAppBundleIdentifier:@"com.apple.ScriptEditor2"
-                                                     options:0
-                              additionalEventParamDescriptor:nil
-                                           launchIdentifiers:NULL];
-        } else if ([[self scriptExtensions] containsObject:extension]) {
-            success = [[NSWorkspace sharedWorkspace] openFile:[URL path] withApplication:[[NSBundle mainBundle] bundlePath]];
-        }
+        NSString *identifier = [[self AppleScriptExtensions] containsObject:extension] ? @"com.apple.ScriptEditor2" : [[NSBundle mainBundle] bundleIdentifier];
+        success = [[NSWorkspace sharedWorkspace] openURLs:@[URL]
+                                  withAppBundleIdentifier:identifier
+                                                  options:0
+                           additionalEventParamDescriptor:nil
+                                        launchIdentifiers:NULL];
         
         // 開けなかったり選択できなければその旨を表示
         if (!success) {
@@ -216,7 +213,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     // Shell Script を実行
     } else if ([[self scriptExtensions] containsObject:extension]) {
         // 実行権限がない場合は警告して抜ける
-        if (![[NSFileManager defaultManager] isExecutableFileAtPath:[URL path]]) {
+        if (![URL checkResourceIsReachableAndReturnError:nil]) {
             [self showAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"Cannnot execute the script “%@”.\nShell script requires execute permission.\n\nCheck permission of the script file.", nil), URL]];
             return;
         }
