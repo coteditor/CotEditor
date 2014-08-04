@@ -62,7 +62,7 @@ http://www.aynimac.com/
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
 
-"Printed: %@" = "プリント：%@";
+"Printed on %@" = "プリント：%@";
 
 "Keep CotEditor's Edition" = "CotEditor の編集内容を保持";
 "Update" = "更新";

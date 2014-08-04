@@ -53,6 +53,7 @@
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, copy) NSDictionary *headerFooterAttrs;
 @property (nonatomic) CESyntaxParser *syntaxParser;
+@property (nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -85,8 +86,13 @@
         if (!headerFooterFont) {
             headerFooterFont = [NSFont systemFontOfSize:fontSize];
         }
-        [self setHeaderFooterAttrs:@{NSFontAttributeName: headerFooterFont,
-                                     NSForegroundColorAttributeName: [NSColor textColor]}];
+        _headerFooterAttrs = @{NSFontAttributeName: headerFooterFont,
+                               NSForegroundColorAttributeName: [NSColor textColor]};
+        
+        // 日時のフォーマットを生成、保持
+        NSString *dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_headerFooterDateFormat];
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:dateFormat];
         
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
         [[self textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
@@ -431,54 +437,47 @@
 - (NSAttributedString *)attributedStringFromPrintInfoType:(CEPrintInfoType)selectedTag maxWidth:(CGFloat)maxWidth
 // ------------------------------------------------------
 {
-    NSString *contentString;
-            
+    NSString *string;
+    
     switch (selectedTag) {
         case CEDocumentNamePrintInfo:
             if ([self filePath]) {
-                contentString = [self documentName];
+                string = [self documentName];
             }
             break;
-
+            
         case CESyntaxNamePrintInfo:
-            contentString = [self syntaxName];
+            string = [self syntaxName];
             break;
             
         case CEFilePathPrintInfo:
             if ([self filePath]) {
-                contentString = [self filePath];
+                string = [self filePath];
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_headerFooterPathAbbreviatingWithTilde]) {
-                    contentString = [contentString stringByAbbreviatingWithTildeInPath];
+                    string = [string stringByAbbreviatingWithTildeInPath];
                 }
             } else {
-                contentString = [self documentName];  // パスがない場合は書類名をプリント
+                string = [self documentName];  // パスがない場合は書類名をプリント
             }
             break;
-
-        case CEPrintDatePrintInfo: {
-            NSString *dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_headerFooterDateTimeFormat];
-            NSString *dateString = [[NSCalendarDate calendarDate] descriptionWithCalendarFormat:dateFormat];
-            if (dateString && ([dateString length] > 0)) {
-                contentString = [NSString stringWithFormat:NSLocalizedString(@"Printed: %@", nil), dateString];
-            }
+            
+        case CEPrintDatePrintInfo:
+            string = [NSString stringWithFormat:NSLocalizedString(@"Printed on %@", nil),
+                      [[self dateFormatter] stringFromDate:[NSDate date]]];
             break;
-        }
-
+            
         case CEPageNumberPrintInfo:
-            contentString = @"PAGENUM";
+            string = @"PAGENUM";
             [self setReadyToDrawPageNum:YES];
             break;
-
+            
         case CENoPrintInfo:
-            break;
+            return nil;
     }
     
-    NSAttributedString *attributedString = nil;
-    if (contentString) {
-        attributedString = [[NSAttributedString alloc] initWithString:contentString
-                                                           attributes:[self headerFooterAttrs]];
-    }
-
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:string
+                                                                           attributes:[self headerFooterAttrs]];
+    
     // 印字があふれる場合、中ほどを省略する
     if (([attributedString size].width > maxWidth) && ([attributedString length] > 0)) {
         NSMutableAttributedString *attrStr = [attributedString mutableCopy];

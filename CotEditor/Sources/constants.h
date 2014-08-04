@@ -182,7 +182,7 @@ extern NSString *const k_key_outlineMenuInterval;
 extern NSString *const k_key_outlineMenuMaxLength;
 extern NSString *const k_key_headerFooterFontName;
 extern NSString *const k_key_headerFooterFontSize;
-extern NSString *const k_key_headerFooterDateTimeFormat;
+extern NSString *const k_key_headerFooterDateFormat;
 extern NSString *const k_key_headerFooterPathAbbreviatingWithTilde;
 extern NSString *const k_key_textContainerInsetWidth;
 extern NSString *const k_key_textContainerInsetHeightTop;

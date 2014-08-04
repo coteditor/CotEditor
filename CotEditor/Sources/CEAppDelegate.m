@@ -185,7 +185,7 @@
                                k_key_outlineMenuMaxLength: @110U, 
                                k_key_headerFooterFontName: [[NSFont systemFontOfSize:[NSFont systemFontSize]] fontName], 
                                k_key_headerFooterFontSize: @10.0f, 
-                               k_key_headerFooterDateTimeFormat: @"%Y-%m-%d  %H:%M:%S", 
+                               k_key_headerFooterDateFormat: @"YYYY-MM-dd HH:mm",
                                k_key_headerFooterPathAbbreviatingWithTilde: @YES, 
                                k_key_textContainerInsetWidth: @0.0f, 
                                k_key_textContainerInsetHeightTop: @4.0f, 
