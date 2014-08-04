@@ -172,32 +172,32 @@
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         
         // フォントサイズは随時変更されるため、表示時に取得する
-        NSFont *font = [self textFont];
+        CGFloat fontSize = [self textFontPointSize];
+        CTFontRef font = (__bridge CTFontRef)[self textFont];
         NSColor *color = [[textView theme] invisiblesColor];
         
         // for other invisibles
         NSFont *replaceFont;
         NSGlyph replaceGlyph;
-        
-        // prepare glyphs
-        CGGlyph spaceGlyph = [self glyphWithCharacter:[self spaceChar] font:font];
-        CGGlyph tabGlyph = [self glyphWithCharacter:[self tabChar] font:font];
-        CGGlyph newLineGlyph = [self glyphWithCharacter:[self newLineChar] font:font];
-        CGGlyph fullwidthSpaceGlyph = [self glyphWithCharacter:[self fullwidthSpaceChar] font:font];
 
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         CGContextSaveGState(context);
         CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextSetFont(context, CTFontCopyGraphicsFont((CTFontRef)font, NULL));
-        CGContextSetFontSize(context, [font pointSize]);
+        CGMutablePathRef paths = CGPathCreateMutable();
         
         // adjust drawing coordinate
         NSPoint inset = [textView textContainerOrigin];
         CGAffineTransform transform = CGAffineTransformIdentity;
         transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-        transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent((CTFontRef)font));
-        CGContextSetTextMatrix(context, transform);
+        transform = CGAffineTransformTranslate(transform, inset.x, - inset.y - CTFontGetAscent(font));
+        CGContextConcatCTM(context, transform);
+        
+        // prepare glyphs
+        CGPathRef spaceGlyphPath = glyphPathWithCharacter([self spaceChar], font);
+        CGPathRef tabGlyphPath = glyphPathWithCharacter([self tabChar], font);
+        CGPathRef newLineGlyphPath = glyphPathWithCharacter([self newLineChar], font);
+        CGPathRef fullWidthSpaceGlyphPath = glyphPathWithCharacter([self fullwidthSpaceChar], font);
         
         // store value to avoid accessing properties each time  (2014-07 by 1024jp)
         BOOL showsSpace = [self showsSpace];
@@ -212,24 +212,28 @@
             unichar character = [completeStr characterAtIndex:charIndex];
 
             if (showsSpace && ((character == ' ') || (character == 0x00A0))) {
-                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &spaceGlyph, &point, 1);
+                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, spaceGlyphPath);
 
             } else if (showsTab && (character == '\t')) {
-                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &tabGlyph, &point, 1);
+                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, tabGlyphPath);
                 
             } else if (showsNewLine && (character == '\n')) {
-                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &newLineGlyph, &point, 1);
+                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, newLineGlyphPath);
 
             } else if (showsFullwidthSpace && (character == 0x3000)) { // Fullwidth-space (JP)
-                CGPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
-                CGContextShowGlyphsAtPositions(context, &fullwidthSpaceGlyph, &point, 1);
+                NSPoint point = [self pointToDrawGlyphAtIndex:glyphIndex];
+                CGAffineTransform translate = CGAffineTransformMakeTranslation(point.x, point.y);
+                CGPathAddPath(paths, &translate, fullWidthSpaceGlyphPath);
 
             } else if (showsOtherInvisibles && ([self glyphAtIndex:glyphIndex isValidIndex:NULL] == NSControlGlyph)) {
                 if (!replaceFont) {  // delay creating font/glyph till they are really needed
-                    replaceFont = [NSFont fontWithName:@"Lucida Grande" size:[font pointSize]];
+                    replaceFont = [NSFont fontWithName:@"Lucida Grande" size:fontSize];
                     replaceGlyph = [replaceFont glyphWithName:@"replacement"];
                 }
                 NSUInteger charLength = CFStringIsSurrogateHighCharacter(character) ? 2 : 1;
@@ -248,7 +252,18 @@
                 }
             }
         }
+        
+        // draw invisible glyphs (excl. other invisibles)
+        CGContextAddPath(context, paths);
+        CGContextFillPath(context);
+        
+        // release
         CGContextRestoreGState(context);
+        CGPathRelease(paths);
+        CGPathRelease(spaceGlyphPath);
+        CGPathRelease(tabGlyphPath);
+        CGPathRelease(newLineGlyphPath);
+        CGPathRelease(fullWidthSpaceGlyphPath);
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
@@ -348,27 +363,44 @@
 
 //------------------------------------------------------
 /// グリフを描画する位置を返す
-- (CGPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex
+- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex
 //------------------------------------------------------
 {
     NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
     NSPoint glyphPoint = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL].origin;
     
-    return CGPointMake(drawPoint.x, -glyphPoint.y);
+    return NSMakePoint(drawPoint.x, -glyphPoint.y);
 }
 
 
 
 //------------------------------------------------------
-/// 文字とフォントから CGGlyph を生成して返す
-- (CGGlyph)glyphWithCharacter:(unichar)character font:(NSFont *)font
+/// 文字とフォントからアウトラインパスを生成して返す
+CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font)
 //------------------------------------------------------
 {
+    CGFloat fontSize = CTFontGetSize(font);
     CGGlyph glyph;
     
-    CTFontGetGlyphsForCharacters((CTFontRef)font, &character, &glyph, 1);
+    if (CTFontGetGlyphsForCharacters(font, &character, &glyph, 1)) {
+        return CTFontCreatePathForGlyph(font, glyph, NULL);
+    }
     
-    return glyph;
+    // try fallback fonts in cases where user font doesn't support the input charactor
+    // - All invisible characters of choices can be covered with the following two fonts.
+    CGPathRef path = NULL;
+    NSArray *fallbackFontNames = @[@"LucidaGrande", @"HiraKakuProN-W3"];
+    
+    for (NSString *fontName in fallbackFontNames) {
+        CTFontRef fallbackFont = CTFontCreateWithName((CFStringRef)fontName, fontSize, 0);
+        if (CTFontGetGlyphsForCharacters(fallbackFont, &character, &glyph, 1)) {
+            path = CTFontCreatePathForGlyph(fallbackFont, glyph, NULL);
+            break;
+        }
+        CFRelease(fallbackFont);
+    }
+    
+    return path;
 }
 
 @end
