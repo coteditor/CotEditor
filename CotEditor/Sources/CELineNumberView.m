@@ -106,12 +106,12 @@
 // ------------------------------------------------------
 {
     // fill in the background
-    NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
+    NSColor *backgroundColor = [[NSColor controlColor] colorWithAlphaComponent:[self backgroundAlpha]];
     [backgroundColor set];
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (1px)
-    [[NSColor controlShadowColor] set];
+    [[NSColor gridColor] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
                               toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
     

@@ -50,7 +50,7 @@
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (only top)
-    [[NSColor controlShadowColor] set];
+    [[NSColor windowFrameColor] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self frame]), NSMaxY([self frame]) - 0.5)
                               toPoint:NSMakePoint(NSMaxX([self frame]), NSMaxY([self frame]) - 0.5)];
 }
