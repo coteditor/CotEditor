@@ -261,7 +261,7 @@
     
     [[CESyntaxManager sharedManager] saveStyle:[self style] name:styleName oldName:[self originalStyleName]];
     
-    [NSApp stopModal];
+    [self endSheetWithReturnCode:NSOKButton];
 }
 
 
@@ -270,7 +270,7 @@
 - (IBAction)cancelEdit:(id)sender
 // ------------------------------------------------------
 {
-    [NSApp stopModal];
+    [self endSheetWithReturnCode:NSCancelButton];
 }
 
 
@@ -312,6 +312,21 @@
              NSLocalizedString(@"File Mapping", nil),
              CESeparatorString,
              NSLocalizedString(@"Syntax Validation", nil)];
+}
+
+
+// ------------------------------------------------------
+/// シートを終わる
+- (void)endSheetWithReturnCode:(NSInteger)returnCode
+// ------------------------------------------------------
+{
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [[[self window] sheetParent] endSheet:[self window] returnCode:returnCode];
+    } else {
+        [NSApp stopModal];
+        [NSApp endSheet:[self window] returnCode:returnCode];
+    }
+    [self close];
 }
 
 

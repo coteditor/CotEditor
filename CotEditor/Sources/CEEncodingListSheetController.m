@@ -76,6 +76,8 @@
     [(CEAppDelegate *)[NSApp delegate] buildEncodingMenuItems];
     
     [NSApp stopModal];
+    [NSApp endSheet:[self window] returnCode:NSOKButton];
+    [self close];
 }
 
 
@@ -85,6 +87,8 @@
 // ------------------------------------------------------
 {
     [NSApp stopModal];
+    [NSApp endSheet:[self window] returnCode:NSCancelButton];
+    [self close];
 }
 
 @end

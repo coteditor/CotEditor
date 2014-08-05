@@ -928,8 +928,6 @@ static CGFloat kPerCompoIncrement;
                  [self rangesSimpleWords:simpleWordsDict
                          ignoreCaseWords:simpleICWordsDict
                                  charSet:[self simpleWordsCharacterSets][syntaxKey]]];
-                
-                [simpleWordsDict removeAllObjects];
             }
             // カラーとrangeのペアを格納
             for (NSValue *value in targetRanges) {

@@ -72,6 +72,8 @@
 // ------------------------------------------------------
 {
     [NSApp stopModal];
+    [NSApp endSheet:[self window]];
+    [self close];
 }
 
 

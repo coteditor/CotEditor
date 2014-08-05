@@ -163,11 +163,6 @@
     // シートを表示してモーダルループに入る(閉じる命令は CEEncodingListSheetController内 で)
     [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
-    
-    // シートを閉じる
-    [NSApp endSheet:sheet];
-    [[sheetController window] orderOut:self];
-    [[[self view] window] makeKeyAndOrderFront:self];
 }
 
 
@@ -183,19 +178,20 @@
         return;
     }
     
-    // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CESyntaxManagerのcloseSyntaxEditSheet: で)
+    // シートウィンドウを表示
+    // (閉じる命令は CESyntaxEditSheetController の endSheetWithReturnCode: で)
     NSWindow *sheet = [sheetController window];
     
-    [NSApp beginSheet:sheet
-       modalForWindow:[[self view] window]
-        modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    [NSApp runModalForWindow:sheet];
-    
-    // シートを閉じる
-    [NSApp endSheet:sheet];
-    [sheetController close];
-    [[[self view] window] makeKeyAndOrderFront:self];
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_8) { // on Mavericks or later
+        [[[self view] window] beginSheet:sheet completionHandler:^(NSModalResponse returnCode) {
+            [sheetController close];
+        }];
+        
+    } else {
+        // Mountain Lion 以下ではモーダルループに入る
+        [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+        [NSApp runModalForWindow:sheet];
+    }
 }
 
 
@@ -299,14 +295,9 @@
     NSWindow *sheet = [sheetController window];
     
     // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CESyntaxExtensionsSheetControllerのcloseSheet: で)
+    // (閉じる命令は CESyntaxMappingConflictsSheetController の closeSheet: で)
     [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
     [NSApp runModalForWindow:sheet];
-    
-    // シートを閉じる
-    [NSApp endSheet:sheet];
-    [sheetController close];
-    [[[self view] window] makeKeyAndOrderFront:self];
 }
 
 
