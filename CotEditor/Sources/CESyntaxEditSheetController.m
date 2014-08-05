@@ -255,7 +255,7 @@
         // 「構文要素チェック」を選択
         // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
         NSBeep();
-        [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:14] byExtendingSelection:NO];
+        [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:15] byExtendingSelection:NO];
         return;
     }
     
