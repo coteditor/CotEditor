@@ -847,9 +847,6 @@ static CGFloat kPerCompoIncrement;
     // カラーリング対象文字列を保持
     [self setColoringString:string];
     
-    NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-    
     @try {
         // Keywords > Commands > Types > Attributes > Variables > Values > Numbers > Strings > Characters > Comments
         for (NSString *syntaxKey in kSyntaxDictKeys) {
@@ -870,7 +867,10 @@ static CGFloat kPerCompoIncrement;
             
             CGFloat indicatorDelta = kPerCompoIncrement / [strDicts count];
             
+            NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
+            NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
             NSMutableArray *targetRanges = [[NSMutableArray alloc] initWithCapacity:10];
+            
             for (NSDictionary *strDict in strDicts) {
                 // キャンセルされたら現在実行中の抽出は破棄して戻る
                 if ([[self indicatorController] isCancelled]) { return nil; }
