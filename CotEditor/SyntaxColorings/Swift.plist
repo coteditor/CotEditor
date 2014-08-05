@@ -6,15 +6,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>@assignment</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>@auto_closure</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>@class_protocol</string>
+			<string>@autoclosure</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -160,6 +152,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>dynamic</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>dynamicType</string>
 		</dict>
 		<dict>
@@ -201,6 +197,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>in</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>infix</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -264,7 +264,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>postfix</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>precedence</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>prefix</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -410,6 +418,12 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>^([ \t]*)(override )?init[\t ]*\((.*)\)</string>
+			<key>keyString</key>
+			<string>$1$2init($3)</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>^([ \t]*)enum[ \t]+(\w+)</string>
 			<key>keyString</key>
 			<string>$1enum $2</string>
@@ -423,12 +437,6 @@
 			<true/>
 			<key>keyString</key>
 			<string>$1extension $2</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^([ \t]*)init[\t ]*\((.*)\)</string>
-			<key>keyString</key>
-			<string>$1init($2)</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -458,6 +466,10 @@
 	<string>Swift</string>
 	<key>typesArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>Any</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>AnyClass</string>
@@ -569,6 +581,22 @@
 		<dict>
 			<key>beginString</key>
 			<string>UInt8</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>UnsafeBufferPointer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>UnsafeMutableBufferPointer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>UnsafeMutablePointer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>UnsafePointer</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
