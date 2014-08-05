@@ -15,66 +15,6 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>!!binary</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!bool</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!float</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!int</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!map</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!merge</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!null</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!omap</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!pairs</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!seq</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!set</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!str</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!timestamp</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!value</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>!!yaml</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>%YAML [0-9.]+</string>
 			<key>regularExpression</key>
 			<true/>
@@ -116,7 +56,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=[\n\[\{,]|\A)[ \t]*[^-:\[\]\n]*(?=[\t ]*:[ \t\n])</string>
+			<string>(?&lt;=[-\n\[\{,]|\A)[ \t]*[^-:\[\]\n]*(?=[\t ]*:[ \t\n])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -180,7 +120,119 @@
 	</array>
 	<key>styleName</key>
 	<string>YAML</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>!!binary</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!bool</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!int</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!map</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!merge</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!null</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!omap</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!pairs</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!seq</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!set</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!str</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!timestamp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!value</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!yaml</string>
+		</dict>
+	</array>
 	<key>valuesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>false</string>
+			<key>ignoreCase</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>no</string>
+			<key>ignoreCase</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>null</string>
+			<key>ignoreCase</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>off</string>
+			<key>ignoreCase</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>on</string>
+			<key>ignoreCase</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>true</string>
+			<key>ignoreCase</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>yes</string>
+			<key>ignoreCase</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>~</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
@@ -193,38 +245,6 @@
 			<string>\*[^ \t\n]+\b</string>
 			<key>regularExpression</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>false</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>no</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>null</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>off</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>on</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>true</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>yes</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>~</string>
 		</dict>
 	</array>
 </dict>

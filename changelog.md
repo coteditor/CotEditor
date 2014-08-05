@@ -11,7 +11,7 @@ changelog
 - コメントアウト/コメント解除機能
 - シンタックスカラーリングに新しいキーワード “タイプ”, “属性”, “変数” を追加
     - この仕様変更にともない、以下のシンタックス定義のカラーリング定義を更新
-        - “C, C++, Objective-C”, “CoffeeScript”, “Dart”, “Java”, “JavaScript”, “Perl”, “PHP”, “Python”, “Ruby”, “Shell Script”, “XML”
+        - “C, C++, Objective-C”, “CoffeeScript”, “Dart”, “Java”, “JavaScript”, “Perl”, “PHP”, “Python”, “Ruby”, “Shell Script”, “XML”, “YAML”
 - シンタックス定義にファイル名の設定を追加
     - この仕様変更にともない、“Apache”, “Makefile”, “Shell Script” のシンタックス定義を更新
     - シンタックス編集シートでの表記を「拡張子」(Extensions) から「ファイル関連付け」(File Mapping) に変更
