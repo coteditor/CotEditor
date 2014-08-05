@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>attributesArray</key>
+	<array/>
 	<key>charactersArray</key>
 	<array>
 		<dict>
@@ -13,6 +15,10 @@
 	</array>
 	<key>commandsArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>%TAG</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>%YAML [0-9.]+</string>
@@ -56,7 +62,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=[-\n\[\{,]|\A)[ \t]*[^-:\[\]\n]*(?=[\t ]*:[ \t\n])</string>
+			<string>(?&lt;=[-\n\[\{,]|\A)[ \t]*[^-:\[\]\n ][^:\[\]\n ]*(?=[\t ]*:[ \t\n])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -65,7 +71,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=[-:]) +[0-9,.]+(?=[ \n\}\]])</string>
+			<string>(?&lt;=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \n\}\]])</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -122,6 +128,14 @@
 	<string>YAML</string>
 	<key>typesArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>!</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!!</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>!!binary</string>
@@ -182,9 +196,35 @@
 			<key>beginString</key>
 			<string>!!yaml</string>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>!&lt;</string>
+			<key>endString</key>
+			<string>&gt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!!)!\w+(!(\w+)?)?</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\btag:\S+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
 	</array>
 	<key>valuesArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;!!)null\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>false</string>
@@ -194,12 +234,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>no</string>
-			<key>ignoreCase</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>null</string>
 			<key>ignoreCase</key>
 			<true/>
 		</dict>
