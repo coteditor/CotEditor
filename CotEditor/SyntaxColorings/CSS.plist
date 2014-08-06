@@ -489,7 +489,12 @@
 	<key>completionsArray</key>
 	<array/>
 	<key>extensions</key>
-	<array/>
+	<array>
+		<dict>
+			<key>keyString</key>
+			<string>css</string>
+		</dict>
+	</array>
 	<key>filenames</key>
 	<array/>
 	<key>keywordsArray</key>
