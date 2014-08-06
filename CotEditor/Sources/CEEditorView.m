@@ -253,26 +253,21 @@
     // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
     [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
     
+    [[textView enclosingScrollView] setHasHorizontalScroller:!wrapsLines];
+    [[textView textContainer] setWidthTracksTextView:wrapsLines];
     if (wrapsLines) {
-        [[textView enclosingScrollView] setHasHorizontalScroller:NO];
-        [textView setAutoresizingMask:NSViewWidthSizable];
-        [self adjustTextFrameSize];
-        [[textView textContainer] setWidthTracksTextView:YES]; // (will follow the width of the textview.)
+        [[textView textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];  // reset container size
         [textView sizeToFit];
-        [textView setHorizontallyResizable:NO];
     } else {
-        [[textView enclosingScrollView] setHasHorizontalScroller:YES];
-        [[textView textContainer] setWidthTracksTextView:NO];
-        [[textView textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)]; // set the frame size
-        [textView setAutoresizingMask:NSViewNotSizable]; // (don't let it autosize, though.)
-        [textView setHorizontallyResizable:YES];
+        [[textView textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
     }
+    [textView setAutoresizingMask:(wrapsLines ? NSViewWidthSizable : NSViewNotSizable)];
+    [textView setHorizontallyResizable:!wrapsLines];
     
     // 縦書きモードの際は改めて縦書きにする
     if (isVertical) {
         [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
-
 }
 
 
@@ -704,18 +699,6 @@
                                                object:textStorage];
     
     _textStorage = textStorage;
-}
-
-
-// ------------------------------------------------------
-/// ラップする時にサイズを適正化する
-- (void)adjustTextFrameSize
-// ------------------------------------------------------
-{
-    NSInteger newWidth = [[self scrollView] contentSize].width;
-
-    newWidth -= (NSWidth([[self lineNumberView] frame]) + k_lineNumPadding * 2 );
-    [[[self textView] textContainer] setContainerSize:NSMakeSize(newWidth, CGFLOAT_MAX)];
 }
 
 

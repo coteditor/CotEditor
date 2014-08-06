@@ -667,12 +667,18 @@
 - (void)setLayoutOrientation:(NSTextLayoutOrientation)theOrientation
 // ------------------------------------------------------
 {
-    // 縦書きのときは強制的に行番号ビューを非表示
-    BOOL shouldShowLineNum = NO;
-    if (theOrientation != NSTextLayoutOrientationVertical) {
-        shouldShowLineNum = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showLineNumbers];
+    if (theOrientation != [self layoutOrientation]) {
+        BOOL isVertical = (theOrientation == NSTextLayoutOrientationVertical);
+        
+        // 折り返しを再セット
+        if ([[self textContainer] containerSize].width != CGFLOAT_MAX) {
+            [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
+        }
+        
+        // 縦書きのときは強制的に行番号ビューを非表示
+        BOOL showsLineNum = isVertical ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showLineNumbers];
+        [(CELineNumberView *)[self lineNumberView] setShown:showsLineNum];
     }
-    [(CELineNumberView *)[self lineNumberView] setShown:shouldShowLineNum];
     
     [super setLayoutOrientation:theOrientation];
 }
