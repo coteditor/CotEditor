@@ -106,7 +106,7 @@
 // ------------------------------------------------------
 {
     // fill in the background
-    NSColor *backgroundColor = [[NSColor controlColor] colorWithAlphaComponent:[self backgroundAlpha]];
+    NSColor *backgroundColor = [[NSColor controlHighlightColor] colorWithAlphaComponent:[self backgroundAlpha]];
     [backgroundColor set];
     [NSBezierPath fillRect:dirtyRect];
     
