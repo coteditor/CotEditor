@@ -331,6 +331,12 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
                          didEndSelector:@selector(alertForNotWritableDocCloseDidEnd:returnCode:contextInfo:)
                             contextInfo:(__bridge_retained void *)(contextInfoDict)];
     } else {
+        // Disable save dialog if content is empty
+        if ([self isDocumentEdited] &&
+            [[[self editor] string] length] == 0) {
+            [self updateChangeCount:NSChangeCleared];
+        }
+        
         [super canCloseDocumentWithDelegate:delegate shouldCloseSelector:shouldCloseSelector contextInfo:contextInfo];
     }
 }
