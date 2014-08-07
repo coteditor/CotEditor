@@ -437,8 +437,10 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     
     if ([self initialString]) {
         OgreNewlineCharacter lineEnding = [OGRegularExpression newlineCharacterInString:[self initialString]];
-        [self setLineEnding:lineEnding];
-        [self applyLineEndingToView]; // to update toolbar
+        if (lineEnding != OgreNonbreakingNewlineCharacter) {  // 改行コードが含まれないときはデフォルトのままにする
+            [self setLineEnding:lineEnding];
+            [self applyLineEndingToView]; // to update toolbar
+        }
         
         NSString *string = [OGRegularExpression replaceNewlineCharactersInString:[self initialString]
                                                                    withCharacter:OgreLfNewlineCharacter];
