@@ -165,6 +165,7 @@ NSString *const k_key_insertCustomText = @"insertCustomText";
 NSString *const k_key_colorCodeType = @"colorCodeType";
 
 // hidden settings
+NSString *const k_key_usesTextFontForInvisibles = @"usesTextFontForInvisibles";
 NSString *const k_key_lineNumFontName = @"lineNumFontName";
 NSString *const k_key_lineNumFontColor = @"lineNumFontColor";
 NSString *const k_key_basicColoringDelay = @"basicColoringDelay";
@@ -564,7 +565,7 @@ unichar     const k_invisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
 NSUInteger  const k_size_of_invisibleTabCharList = (sizeof(k_invisibleTabCharList) / sizeof(unichar));
 unichar     const k_invisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
 NSUInteger  const k_size_of_invisibleNewLineCharList = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar));
-unichar     const k_invisibleFullwidthSpaceCharList[] = {0x25A1, 0x22A0, 0x25A0, 0x2022};
+unichar     const k_invisibleFullwidthSpaceCharList[] = {0x25A2, 0x22A0, 0x25B3, 0x2573};
 NSUInteger  const k_size_of_invisibleFullwidthSpaceCharList = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar));
 
 NSUInteger const k_modifierKeysList[] = {

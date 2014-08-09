@@ -64,6 +64,24 @@
 
 @implementation CELayoutManager
 
+static BOOL usesTextFontForInvisibles;
+
+
+#pragma mark Superclass Class Methods
+
+// ------------------------------------------------------
+/// クラスの初期化
++ (void)initialize
+// ------------------------------------------------------
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        usesTextFontForInvisibles = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_usesTextFontForInvisibles];
+    });
+}
+
+
+
 #pragma mark NSLayoutManager Methods
 
 //=======================================================
@@ -382,8 +400,10 @@ CGPathRef glyphPathWithCharacter(unichar character, CTFontRef font)
     CGFloat fontSize = CTFontGetSize(font);
     CGGlyph glyph;
     
-    if (CTFontGetGlyphsForCharacters(font, &character, &glyph, 1)) {
-        return CTFontCreatePathForGlyph(font, glyph, NULL);
+    if (usesTextFontForInvisibles) {
+        if (CTFontGetGlyphsForCharacters(font, &character, &glyph, 1)) {
+            return CTFontCreatePathForGlyph(font, glyph, NULL);
+        }
     }
     
     // try fallback fonts in cases where user font doesn't support the input charactor

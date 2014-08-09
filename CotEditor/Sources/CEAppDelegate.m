@@ -172,6 +172,7 @@
                                k_key_colorCodeType:@1,
                                
                                /* -------- 以下、隠し設定 -------- */
+                               k_key_usesTextFontForInvisibles: @NO,
                                k_key_lineNumFontName: @"ArialNarrow",
                                k_key_lineNumFontColor: [NSArchiver archivedDataWithRootObject:[NSColor darkGrayColor]], 
                                k_key_basicColoringDelay: @0.001f, 
