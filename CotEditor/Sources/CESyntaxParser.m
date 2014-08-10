@@ -725,6 +725,13 @@ static CGFloat kPerCompoIncrement;
     NSMutableArray *positions = [NSMutableArray array];
     
     // コメント定義の位置配列を生成
+    if ([self blockCommentDelimiters]) {
+        [positions addObjectsFromArray:[self rangesBeginString:[self blockCommentDelimiters][@"begin"]
+                                                     endString:[self blockCommentDelimiters][@"end"]
+                                                    ignoreCase:NO
+                                                  returnFormat:QCDictFormat
+                                                      pairKind:QCBlockCommentKind]];
+    }
     if ([self inlineCommentDelimiter]) {
         NSString *beginString = [NSString stringWithFormat:@"%@.*",
                                  [NSRegularExpression escapedPatternForString:[self inlineCommentDelimiter]]];
@@ -732,13 +739,6 @@ static CGFloat kPerCompoIncrement;
                                                                 ignoreCase:NO
                                                               returnFormat:QCDictFormat
                                                                   pairKind:QCInlineCommentKind]];
-    }
-    if ([self blockCommentDelimiters]) {
-        [positions addObjectsFromArray:[self rangesBeginString:[self blockCommentDelimiters][@"begin"]
-                                                     endString:[self blockCommentDelimiters][@"end"]
-                                                    ignoreCase:NO
-                                                  returnFormat:QCDictFormat
-                                                      pairKind:QCBlockCommentKind]];
     }
     
     // クォート定義があれば位置配列を生成、マージ
