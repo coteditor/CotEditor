@@ -124,12 +124,12 @@
         _usesSystemSelectionColor = [themeDict[CEThemeUsesSystemSelectionColorKey] boolValue];
         
         // 文字カラーと背景カラーの中間色であるマークアップカラーを生成
-        CGFloat BG_R, BG_G, BG_B, FG_R, FG_G, FG_B;
-        [[_textColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&FG_R green:&FG_G blue:&FG_B alpha:nil];
-        [[_backgroundColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&BG_R green:&BG_G blue:&BG_B alpha:nil];
-        _markupColor = [NSColor colorWithCalibratedRed:((BG_R + FG_R) / 2)
-                                                 green:((BG_G + FG_G) / 2)
-                                                  blue:((BG_B + FG_B) / 2)
+        CGFloat bgR, bgG, bgB, fgR, fgG, fgB;
+        [[_textColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&fgR green:&fgG blue:&fgB alpha:nil];
+        [[_backgroundColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace] getRed:&bgR green:&bgG blue:&bgB alpha:nil];
+        _markupColor = [NSColor colorWithCalibratedRed:(bgR + fgR) / 2
+                                                 green:(bgG + fgG) / 2
+                                                  blue:(bgB + fgB) / 2
                                                  alpha:1.0];
         
     }
