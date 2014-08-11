@@ -27,6 +27,14 @@
 			<key>keyString</key>
 			<string>sql</string>
 		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>mysql</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>pgsql</string>
+		</dict>
 	</array>
 	<key>filenames</key>
 	<array/>
