@@ -3,17 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>charactersArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>@\w+</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-	</array>
+	<array/>
 	<key>commandsArray</key>
 	<array>
-		<dict/>
 		<dict>
 			<key>beginString</key>
 			<string>.class</string>
@@ -715,6 +707,12 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>\bclass\s</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>alias</string>
 			<key>regularExpression</key>
 			<false/>
@@ -734,6 +732,8 @@
 		<dict>
 			<key>beginString</key>
 			<string>begin</string>
+			<key>ignoreCase</key>
+			<false/>
 			<key>regularExpression</key>
 			<false/>
 		</dict>
@@ -746,12 +746,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>case</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>class</string>
 			<key>regularExpression</key>
 			<false/>
 		</dict>
@@ -800,12 +794,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>ensure</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>false</string>
 			<key>regularExpression</key>
 			<false/>
 		</dict>
@@ -883,12 +871,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>self</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>super</string>
 			<key>regularExpression</key>
 			<false/>
@@ -896,12 +878,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>then</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>true</string>
 			<key>regularExpression</key>
 			<false/>
 		</dict>
@@ -993,54 +969,46 @@
 			<string>"</string>
 			<key>endString</key>
 			<string>"</string>
+			<key>regularExpression</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>%!</string>
-			<key>endString</key>
-			<string>!</string>
+			<string>%[QqxrwWsiI]?([^\w]).*?\1</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>%Q!</string>
+			<string>%[QqxrwWsiI]?\(</string>
 			<key>endString</key>
-			<string>!</string>
+			<string>\)</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>%q!</string>
+			<string>%[QqxrwWsiI]?\&lt;</string>
 			<key>endString</key>
-			<string>!</string>
+			<string>\&gt;</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>%r!</string>
+			<string>%[QqxrwWsiI]?\[</string>
 			<key>endString</key>
-			<string>!</string>
+			<string>\]</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>%s!</string>
+			<string>%[QqxrwWsiI]?\{</string>
 			<key>endString</key>
-			<string>!</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>%w!</string>
-			<key>endString</key>
-			<string>!</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>%W!</string>
-			<key>endString</key>
-			<string>!</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>%x!</string>
-			<key>endString</key>
-			<string>!</string>
+			<string>\}</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1084,9 +1052,266 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>\b[A-Z]\w*</string>
+			<string>(?&lt;!\$)\b[A-Z]\w*</string>
 			<key>regularExpression</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__ENCODING__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__FILE__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__LINE__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>false</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>nil</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>true</string>
+		</dict>
+	</array>
+	<key>variablesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>$!</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$"</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$#</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$$</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$%</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$&amp;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$(</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$)</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$*</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$+</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$,</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-0</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-a</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-d</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-F</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-i</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-I</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-K</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-l</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-p</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-v</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-w</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$-W</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$/</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$:</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$&lt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$=</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$&gt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$?</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$@</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$[</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$\</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$\d+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$\w+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$]</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$_</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$`</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$DEBUG</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$FILENAME</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$KCODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$LOADED_FEATUR</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$stderr</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$stdin</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$stdout</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$VERBOSE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>${</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$|</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$}</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>$~</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>@@\w+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>@\w+</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\.</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>self</string>
 		</dict>
 	</array>
 </dict>
