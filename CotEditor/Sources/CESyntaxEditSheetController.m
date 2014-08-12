@@ -337,16 +337,11 @@
 - (void)editNewAddedRowOfTableView:(NSTableView *)tableView
 //------------------------------------------------------
 {
-    NSTableColumn *column = [tableView tableColumns][0];
     NSInteger row = [tableView selectedRow];
-    id cell = [column dataCellForRow:row];
-    if (cell == nil) { return; }
-    NSString *string = [cell stringValue];
+    NSTableCellView *cellView = [[tableView rowViewAtRow:row makeIfNecessary:NO] viewAtColumn:0];
     
-    if ([string isEqualToString:@""]) {
-        if ([[tableView window] makeFirstResponder:tableView]) {
-            [tableView editColumn:0 row:row withEvent:nil select:YES];
-        }
+    if ([[[cellView textField] stringValue] isEqualToString:@""]) {
+        [tableView editColumn:0 row:row withEvent:nil select:YES];
     }
 }
 
