@@ -56,10 +56,12 @@
 
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ウインドウをロードした直後
+- (void)windowDidLoad
 // ------------------------------------------------------
 {
+    [super windowDidLoad];
+    
     [[self dataSource] setupEncodingsToEdit];
 }
 

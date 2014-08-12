@@ -92,10 +92,12 @@
 
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ビューの読み込み
+- (void)loadView
 // ------------------------------------------------------
 {
+    [super loadView];
+    
     // Mavericks用の設定をMavericks以下では無効にする
     if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8) {
         [[self smartQuoteCheckButton] setEnabled:NO];

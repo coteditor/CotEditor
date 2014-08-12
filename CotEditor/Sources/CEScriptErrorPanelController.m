@@ -60,6 +60,8 @@
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
+    [super windowDidLoad];
+    
     [[self textView] setFont:[NSFont messageFontOfSize:11]];
 }
 

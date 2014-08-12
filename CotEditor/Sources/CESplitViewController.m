@@ -47,10 +47,12 @@
 @implementation CESplitViewController
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ビューの読み込み
+- (void)loadView
 // ------------------------------------------------------
 {
+    [super loadView];
+    
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
     [self updateOpenSplitViewButtons];
 }

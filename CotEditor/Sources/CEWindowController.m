@@ -126,6 +126,8 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
+    [super windowDidLoad];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:k_key_windowWidth],

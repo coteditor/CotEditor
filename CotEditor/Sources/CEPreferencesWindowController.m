@@ -123,10 +123,12 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ウインドウをロードした直後
+- (void)windowDidLoad
 // ------------------------------------------------------
 {
+    [super windowDidLoad];
+    
     // 最初のビューを選ぶ
     NSToolbarItem *leftmostItem = [[[self window] toolbar] items][0];
     [[[self window] toolbar] setSelectedItemIdentifier:[leftmostItem itemIdentifier]];

@@ -74,10 +74,12 @@ static const NSTimeInterval duration = 0.1;
 
 
 // ------------------------------------------------------
-/// awake from nib
-- (void)awakeFromNib
+/// view is loaded
+- (void)loadView
 // ------------------------------------------------------
 {
+    [super loadView];
+    
     [[self outlineIndicator] setUsesThreadedAnimation:YES];
 }
 
