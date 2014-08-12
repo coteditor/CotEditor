@@ -32,7 +32,7 @@
 #import "constants.h"
 
 
-@interface CEFileDropPaneController ()
+@interface CEFileDropPaneController () <NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
 @property (nonatomic) IBOutlet NSArrayController *fileDropController;
 @property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
@@ -50,18 +50,20 @@
 
 @implementation CEFileDropPaneController
 
-#pragma mark Protocol
+#pragma mark Superclass Methods
 
 //=======================================================
-// NSNibAwaking Protocol
+// Superclass method
 //
 //=======================================================
 
 // ------------------------------------------------------
-/// Nibファイル読み込み直後
-- (void)awakeFromNib
+/// ビューの読み込み
+- (void)loadView
 // ------------------------------------------------------
 {
+    [super loadView];
+    
     // 各種セットアップ
     [self setContentFileDropController];
     
@@ -84,7 +86,7 @@
 - (void)controlTextDidEndEditing:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    if ([notification object] == [self fileDropTableView]) {
+    if ([[notification object] isKindOfClass:[NSTextField class]]) {
         NSString *extension = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropExtensions];
         NSString *format = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropFormatString];
         

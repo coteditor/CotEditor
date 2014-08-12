@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFileDropPaneController">
@@ -16,7 +15,6 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="451" userLabel="File Drop Controller">
             <declaredKeys>
                 <string>extensions</string>
@@ -269,7 +267,7 @@ The parent directory name of the dropped file.
                         <rect key="frame" x="1" y="1" width="228" height="118"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="447">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="447">
                                 <rect key="frame" x="0.0" y="0.0" width="228" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -288,13 +286,42 @@ The parent directory name of the dropped file.
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        <connections>
-                                            <binding destination="451" name="value" keyPath="arrangedObjects.extensions" id="582"/>
-                                        </connections>
+                                        <prototypeCellViews>
+                                            <tableCellView id="tRa-Qn-JlJ">
+                                                <rect key="frame" x="1" y="1" width="225" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-1i-yK4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="225" height="17"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="png, jpg, gif" usesSingleLineMode="YES" id="KtI-bf-WxY">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="tRa-Qn-JlJ" name="value" keyPath="objectValue.extensions" id="YL8-Pe-7cS"/>
+                                                            <outlet property="delegate" destination="-2" id="FBb-KE-7i2"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="0QI-1i-yK4" secondAttribute="bottom" id="5iy-ct-X1e"/>
+                                                    <constraint firstItem="0QI-1i-yK4" firstAttribute="top" secondItem="tRa-Qn-JlJ" secondAttribute="top" id="pbr-E7-e2d"/>
+                                                    <constraint firstItem="0QI-1i-yK4" firstAttribute="leading" secondItem="tRa-Qn-JlJ" secondAttribute="leading" constant="2" id="rTE-NH-I5V"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0QI-1i-yK4" secondAttribute="trailing" constant="2" id="tJ4-KR-ceF"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="textField" destination="0QI-1i-yK4" id="dUs-Ej-R29"/>
+                                                </connections>
+                                            </tableCellView>
+                                        </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <outlet property="delegate" destination="-2" id="584"/>
+                                    <binding destination="451" name="content" keyPath="arrangedObjects" id="6BK-Yh-Bj9"/>
+                                    <binding destination="451" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="6BK-Yh-Bj9" id="vcl-5L-f3a"/>
+                                    <binding destination="451" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="vcl-5L-f3a" id="D3h-ot-bod"/>
+                                    <outlet property="delegate" destination="-2" id="UPQ-BA-5O2"/>
                                 </connections>
                             </tableView>
                         </subviews>

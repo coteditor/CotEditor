@@ -31,7 +31,7 @@
 @import Cocoa;
 
 
-@interface CEFileDropPaneController : NSViewController <NSTableViewDelegate, NSTextViewDelegate>
+@interface CEFileDropPaneController : NSViewController
 
 - (void)writeBackFileDropArray;
 
