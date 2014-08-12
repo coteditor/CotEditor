@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -146,7 +146,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginKeywords" width="188" minWidth="40" maxWidth="1000" id="455">
+                                                            <tableColumn identifier="beginKeywords" width="224" minWidth="40" maxWidth="1000" id="455">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -163,7 +163,7 @@
                                                                     <binding destination="35" name="value" keyPath="arrangedObjects.beginString" id="679"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endKeywords" width="154" minWidth="10" maxWidth="1000" id="642">
+                                                            <tableColumn identifier="endKeywords" width="112" minWidth="10" maxWidth="1000" id="642">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -180,7 +180,7 @@
                                                                     <binding destination="35" name="value" keyPath="arrangedObjects.endString" id="648"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="22.916999816894531" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="392">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="392">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -194,7 +194,7 @@
                                                                     <binding destination="35" name="value" keyPath="arrangedObjects.regularExpression" id="485"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="22.778999328613281" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="461">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="461">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -315,7 +315,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginCommands" width="188" minWidth="40" maxWidth="1000" id="409">
+                                                            <tableColumn identifier="beginCommands" width="224" minWidth="40" maxWidth="1000" id="409">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -332,7 +332,7 @@
                                                                     <binding destination="33" name="value" keyPath="arrangedObjects.beginString" id="644"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endCommands" width="154" minWidth="10" maxWidth="1000" id="643">
+                                                            <tableColumn identifier="endCommands" width="112" minWidth="10" maxWidth="1000" id="643">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -349,7 +349,7 @@
                                                                     <binding destination="33" name="value" keyPath="arrangedObjects.endString" id="645"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="422">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="422">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -363,7 +363,7 @@
                                                                     <binding destination="33" name="value" keyPath="arrangedObjects.regularExpression" id="494"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="23" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="475">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="475">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -458,7 +458,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginCommands" width="188" minWidth="40" maxWidth="1000" id="yNh-gE-oGU">
+                                                            <tableColumn identifier="beginCommands" width="224" minWidth="40" maxWidth="1000" id="yNh-gE-oGU">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -475,7 +475,7 @@
                                                                     <binding destination="Xf4-h5-a4r" name="value" keyPath="arrangedObjects.beginString" id="RJm-8f-DOD"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endCommands" width="154" minWidth="10" maxWidth="1000" id="ec1-L1-Dz2">
+                                                            <tableColumn identifier="endCommands" width="112" minWidth="10" maxWidth="1000" id="ec1-L1-Dz2">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -492,7 +492,7 @@
                                                                     <binding destination="Xf4-h5-a4r" name="value" keyPath="arrangedObjects.endString" id="dcB-6R-HTf"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="Tyt-DF-hm4">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="Tyt-DF-hm4">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -506,7 +506,7 @@
                                                                     <binding destination="Xf4-h5-a4r" name="value" keyPath="arrangedObjects.regularExpression" id="brh-zW-A8t"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="23" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="auZ-aj-crH">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="auZ-aj-crH">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -601,7 +601,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginCommands" width="188" minWidth="40" maxWidth="1000" id="YWq-bP-LX5">
+                                                            <tableColumn identifier="beginCommands" width="224" minWidth="40" maxWidth="1000" id="YWq-bP-LX5">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -618,7 +618,7 @@
                                                                     <binding destination="MjW-4d-32N" name="value" keyPath="arrangedObjects.beginString" id="bgS-wH-Jrb"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endCommands" width="154" minWidth="10" maxWidth="1000" id="77J-G1-FUm">
+                                                            <tableColumn identifier="endCommands" width="112" minWidth="10" maxWidth="1000" id="77J-G1-FUm">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -635,7 +635,7 @@
                                                                     <binding destination="MjW-4d-32N" name="value" keyPath="arrangedObjects.endString" id="UAj-xX-zTU"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="2mZ-ZV-f3N">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="2mZ-ZV-f3N">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -649,7 +649,7 @@
                                                                     <binding destination="MjW-4d-32N" name="value" keyPath="arrangedObjects.regularExpression" id="fox-Cz-R9l"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="23" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="Iak-EW-rOP">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="Iak-EW-rOP">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -744,7 +744,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginCommands" width="188" minWidth="40" maxWidth="1000" id="71S-7w-zYw">
+                                                            <tableColumn identifier="beginCommands" width="224" minWidth="40" maxWidth="1000" id="71S-7w-zYw">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -761,7 +761,7 @@
                                                                     <binding destination="5VS-Xp-FDy" name="value" keyPath="arrangedObjects.beginString" id="wYk-zx-dgH"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endCommands" width="154" minWidth="10" maxWidth="1000" id="Ffv-0S-caU">
+                                                            <tableColumn identifier="endCommands" width="112" minWidth="10" maxWidth="1000" id="Ffv-0S-caU">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -778,7 +778,7 @@
                                                                     <binding destination="5VS-Xp-FDy" name="value" keyPath="arrangedObjects.endString" id="vDy-H9-QmE"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="Xob-4Y-H4s">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="Xob-4Y-H4s">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -792,7 +792,7 @@
                                                                     <binding destination="5VS-Xp-FDy" name="value" keyPath="arrangedObjects.regularExpression" id="wsf-GW-h85"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="23" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="dqB-oW-WYf">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="dqB-oW-WYf">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -859,7 +859,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginValues" width="188" minWidth="40" maxWidth="1000" id="466">
+                                                            <tableColumn identifier="beginValues" width="224" minWidth="40" maxWidth="1000" id="466">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -876,7 +876,7 @@
                                                                     <binding destination="174" name="value" keyPath="arrangedObjects.beginString" id="650"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endValues" width="154.22021484375" minWidth="10" maxWidth="1000" id="649">
+                                                            <tableColumn identifier="endValues" width="112" minWidth="10" maxWidth="1000" id="649">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -893,7 +893,7 @@
                                                                     <binding destination="174" name="value" keyPath="arrangedObjects.endString" id="652"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="430">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="430">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -907,7 +907,7 @@
                                                                     <binding destination="174" name="value" keyPath="arrangedObjects.regularExpression" id="506"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="22.77978515625" minWidth="18.77978515625" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="381">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="381">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1000,7 +1000,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginNumbers" width="188" minWidth="40" maxWidth="1000" id="400">
+                                                            <tableColumn identifier="beginNumbers" width="224" minWidth="40" maxWidth="1000" id="400">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1017,7 +1017,7 @@
                                                                     <binding destination="236" name="value" keyPath="arrangedObjects.beginString" id="654"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endNumbers" width="154" minWidth="10" maxWidth="1000" id="653">
+                                                            <tableColumn identifier="endNumbers" width="112" minWidth="10" maxWidth="1000" id="653">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1034,7 +1034,7 @@
                                                                     <binding destination="236" name="value" keyPath="arrangedObjects.endString" id="656"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="435">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="435">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1048,7 +1048,7 @@
                                                                     <binding destination="236" name="value" keyPath="arrangedObjects.regularExpression" id="519"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="23" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="462">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="462">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1141,7 +1141,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginDoubleQuoted" width="188" minWidth="40" maxWidth="1000" id="458">
+                                                            <tableColumn identifier="beginDoubleQuoted" width="224" minWidth="40" maxWidth="1000" id="458">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1158,7 +1158,7 @@
                                                                     <binding destination="239" name="value" keyPath="arrangedObjects.beginString" id="658"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endDoubleQuoted" width="154" minWidth="10" maxWidth="1000" id="657">
+                                                            <tableColumn identifier="endDoubleQuoted" width="112" minWidth="10" maxWidth="1000" id="657">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1175,7 +1175,7 @@
                                                                     <binding destination="239" name="value" keyPath="arrangedObjects.endString" id="660"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="420">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="420">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1189,7 +1189,7 @@
                                                                     <binding destination="239" name="value" keyPath="arrangedObjects.regularExpression" id="531"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="23" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="404">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="404">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1282,7 +1282,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginSingleQuoted" width="188" minWidth="40" maxWidth="1000" id="401">
+                                                            <tableColumn identifier="beginSingleQuoted" width="224" minWidth="40" maxWidth="1000" id="401">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1299,7 +1299,7 @@
                                                                     <binding destination="242" name="value" keyPath="arrangedObjects.beginString" id="662"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endSingleQuoted" width="154" minWidth="10" maxWidth="1000" id="661">
+                                                            <tableColumn identifier="endSingleQuoted" width="112" minWidth="10" maxWidth="1000" id="661">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1316,7 +1316,7 @@
                                                                     <binding destination="242" name="value" keyPath="arrangedObjects.endString" id="664"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="464">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="464">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1330,7 +1330,7 @@
                                                                     <binding destination="242" name="value" keyPath="arrangedObjects.regularExpression" id="543"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="23" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="460">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="460">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1423,7 +1423,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="beginComments" width="188" minWidth="40" maxWidth="1000" id="447">
+                                                            <tableColumn identifier="beginComments" width="224" minWidth="40" maxWidth="1000" id="447">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Begin String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1440,7 +1440,7 @@
                                                                     <binding destination="34" name="value" keyPath="arrangedObjects.beginString" id="666"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn identifier="endComments" width="154.22100830078125" minWidth="10" maxWidth="1000" id="665">
+                                                            <tableColumn identifier="endComments" width="112" minWidth="10" maxWidth="1000" id="665">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="End String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1457,7 +1457,7 @@
                                                                     <binding destination="34" name="value" keyPath="arrangedObjects.endString" id="668"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="10" maxWidth="1000" headerToolTip="Regular expression" id="450">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Regular expression" id="450">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1471,7 +1471,7 @@
                                                                     <binding destination="34" name="value" keyPath="arrangedObjects.regularExpression" id="555"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="22.778999328613281" minWidth="18.778999328613281" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="396">
+                                                            <tableColumn editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="396">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1671,7 +1671,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="333" minWidth="40" maxWidth="1000" id="720">
+                                                            <tableColumn width="329" minWidth="40" maxWidth="1000" id="720">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="RE String">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1687,7 +1687,7 @@
                                                                     <binding destination="722" name="value" keyPath="arrangedObjects.beginString" id="724"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="23" minWidth="18.77978515625" maxWidth="1000" headerToolTip="Ignore Case (case-insensitive)" id="736">
+                                                            <tableColumn width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="736">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2084,7 +2084,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="441">
-                                            <rect key="frame" x="8" y="28" width="164.00000325838727" height="249"/>
+                                            <rect key="frame" x="8" y="28" width="164" height="245"/>
                                             <clipView key="contentView" id="VBZ-tv-K8t">
                                                 <rect key="frame" x="1" y="17" width="162" height="231"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2133,7 +2133,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-47-IFV">
-                                            <rect key="frame" x="180" y="28" width="229.9999967416127" height="125"/>
+                                            <rect key="frame" x="180" y="28" width="230" height="125"/>
                                             <clipView key="contentView" id="6Ia-4j-BJv">
                                                 <rect key="frame" x="1" y="17" width="228" height="107"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2170,7 +2170,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="fy6-cu-MSq">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="fy6-cu-MSq">
                                                 <rect key="frame" x="1" y="110" width="228" height="14"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -2242,7 +2242,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="arv-de-MwR">
-                                            <rect key="frame" x="178" y="161" width="233.9999967416127" height="42"/>
+                                            <rect key="frame" x="178" y="161" width="234" height="42"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Files that have exactly one of the following names are opened in this syntax style, even they don't have file extension." id="Sr3-Pj-HPi">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2275,7 +2275,7 @@
                                         <constraint firstItem="WBJ-Jm-maz" firstAttribute="top" secondItem="HWp-47-IFV" secondAttribute="bottom" constant="8" symbolic="YES" id="lcC-k8-BUN"/>
                                         <constraint firstItem="471" firstAttribute="leading" secondItem="441" secondAttribute="leading" id="oSh-VW-6ML"/>
                                         <constraint firstItem="676" firstAttribute="leading" secondItem="441" secondAttribute="leading" id="pF6-hJ-kkX"/>
-                                        <constraint firstItem="441" firstAttribute="top" secondItem="676" secondAttribute="bottom" constant="4" id="w6Z-2k-BVc"/>
+                                        <constraint firstItem="441" firstAttribute="top" secondItem="676" secondAttribute="bottom" constant="8" symbolic="YES" id="w6Z-2k-BVc"/>
                                         <constraint firstItem="471" firstAttribute="top" secondItem="441" secondAttribute="bottom" constant="8" symbolic="YES" id="wLa-cT-Y6w"/>
                                         <constraint firstItem="HWp-47-IFV" firstAttribute="leading" secondItem="wYp-ql-TvN" secondAttribute="leading" id="xjy-AS-R7z"/>
                                     </constraints>

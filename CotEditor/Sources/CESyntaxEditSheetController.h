@@ -33,8 +33,8 @@
 
 typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
     CESyntaxEdit,
-    CECopySyntaxEdit = -100,
-    CENewSyntaxEdit  = -200
+    CECopySyntaxEdit,
+    CENewSyntaxEdit
 };
 
 

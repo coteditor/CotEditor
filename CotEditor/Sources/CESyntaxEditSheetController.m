@@ -176,9 +176,11 @@
     //（ここですぐに開始しないのは、選択行のセルが持つ文字列をこの段階では取得できないため）
     if ((row + 1) == [tableView numberOfRows]) {
         [tableView scrollRowToVisible:row];
-        [self performSelectorOnMainThread:@selector(editNewAddedRowOfTableView:)
-                               withObject:tableView
-                            waitUntilDone:NO];
+        
+        __block typeof(self) blockSelf = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [blockSelf editNewAddedRowOfTableView:tableView];
+        });
     }
 }
 
@@ -366,7 +368,7 @@
         // NSArray を case insensitive に検索するブロック
         __block NSString *duplicatedStyleName;
         BOOL (^caseInsensitiveContains)() = ^(id obj, NSUInteger idx, BOOL *stop){
-            BOOL found = (BOOL)([obj caseInsensitiveCompare:styleName] == NSOrderedSame);
+            BOOL found = ([obj caseInsensitiveCompare:styleName] == NSOrderedSame);
             if (found) { duplicatedStyleName = obj; }
             return found;
         };
@@ -391,7 +393,7 @@
 
 // ------------------------------------------------------
 /// 構文チェックを実行しその結果をテキストビューに挿入（戻り値はエラー数）
-- (NSInteger)validate
+- (NSUInteger)validate
 // ------------------------------------------------------
 {
     NSArray *errorMessages = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
@@ -402,7 +404,7 @@
         
     } else {
         if ([errorMessages count] == 1) {
-            [resultMessage appendString:NSLocalizedString(@"One error was found!\n\n", nil)];
+            [resultMessage appendString:NSLocalizedString(@"An error was found!\n\n", nil)];
         } else {
             [resultMessage appendFormat:NSLocalizedString(@"%i errors were found!\n\n", nil), [errorMessages count]];
         }
