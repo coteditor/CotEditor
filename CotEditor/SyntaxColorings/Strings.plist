@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>charactersArray</key>
+	<array/>
+	<key>commandsArray</key>
+	<array/>
+	<key>commentDelimiters</key>
+	<dict>
+		<key>beginDelimiter</key>
+		<string>/*</string>
+		<key>endDelimiter</key>
+		<string>*/</string>
+	</dict>
+	<key>commentsArray</key>
+	<array/>
+	<key>completionsArray</key>
+	<array/>
+	<key>extensions</key>
+	<array>
+		<dict>
+			<key>keyString</key>
+			<string>strings</string>
+		</dict>
+	</array>
+	<key>keywordsArray</key>
+	<array/>
+	<key>numbersArray</key>
+	<array/>
+	<key>outlineMenuArray</key>
+	<array/>
+	<key>stringsArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>"</string>
+			<key>endString</key>
+			<string>"</string>
+		</dict>
+	</array>
+	<key>styleName</key>
+	<string>Strings</string>
+	<key>valuesArray</key>
+	<array/>
+</dict>
+</plist>
