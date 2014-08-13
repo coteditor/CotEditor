@@ -95,10 +95,6 @@
 			<key>regularExpression</key>
 			<false/>
 		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>'\''</string>
-		</dict>
 	</array>
 	<key>commandsArray</key>
 	<array>
@@ -516,7 +512,17 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>[ \t\f]0[xX][0-9a-fA-F]+[lL]*</string>
+			<string>\b0x[0-9a-f]+l?\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b\d+(\.\d+)?(e[-+]?\d+)?\b</string>
+			<key>ignoreCase</key>
+			<true/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
