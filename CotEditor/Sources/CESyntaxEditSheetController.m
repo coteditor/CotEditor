@@ -177,9 +177,10 @@
     if ((row + 1) == [tableView numberOfRows]) {
         [tableView scrollRowToVisible:row];
         
-        __block typeof(self) blockSelf = self;
+        __weak typeof(self) weakSelf = self;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [blockSelf editNewAddedRowOfTableView:tableView];
+            typeof(self) strongSelf = weakSelf;
+            [strongSelf editNewAddedRowOfTableView:tableView];
         });
     }
 }

@@ -307,10 +307,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
         if (success) {
             // 内部で持っているキャッシュ用データを更新
-            __block typeof(self) blockSelf = self;
+            __weak typeof(self) weakSelf = self;
             [self updateCacheWithCompletionHandler:^{
+                typeof(self) strongSelf = weakSelf;
                 [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                                    object:blockSelf
+                                                                    object:strongSelf
                                                                   userInfo:@{CEOldNameKey: styleName,
                                                                              CENewNameKey: NSLocalizedString(@"None", nil)}];
             }];
@@ -423,11 +424,13 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     }
     
     // 内部で持っているキャッシュ用データを更新
+    __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
+        typeof(self) strongSelf = weakSelf;
+        
         // notify
-        __block typeof(self) blockSelf = self;
         [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                            object:blockSelf
+                                                            object:strongSelf
                                                           userInfo:@{CEOldNameKey: oldName,
                                                                      CENewNameKey: name}];
     }];
@@ -621,14 +624,16 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (void)updateCacheWithCompletionHandler:(void (^)())completionHandler
 // ------------------------------------------------------
 {
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [blockSelf cacheStyles];
-        [blockSelf setupExtensionAndSyntaxTable];
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf cacheStyles];
+        [strongSelf setupExtensionAndSyntaxTable];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
             // Notificationを発行
-            [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxListDidUpdateNotification object:blockSelf];
+            [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxListDidUpdateNotification
+                                                                object:strongSelf];
             
             if (completionHandler) {
                 completionHandler();

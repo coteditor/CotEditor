@@ -268,11 +268,13 @@
 - (IBAction)addTheme:(id)sender
 //------------------------------------------------------
 {
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
+        typeof(self) strongSelf = weakSelf;
+        
         NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
         NSInteger row = [themeNames indexOfObject:themeName];
-        [[blockSelf themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+        [[strongSelf themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     }];
 }
 

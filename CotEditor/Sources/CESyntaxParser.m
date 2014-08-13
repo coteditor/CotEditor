@@ -982,23 +982,24 @@ static CGFloat kPerCompoIncrement;
         [[self indicatorController] beginSheetForWindow:documentWindow];
     }
     
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     dispatch_block_t colorBlock = ^{
-        NSArray *colorings = [blockSelf extractAllSyntaxFromString:coloringString];
+        typeof(self) strongSelf = weakSelf;
+        NSArray *colorings = [strongSelf extractAllSyntaxFromString:coloringString];
         
         dispatch_block_t mainThreadBlock = ^{
             if (colorings) {
                 // インジケータシートのメッセージを更新
-                [[blockSelf indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                [[strongSelf indicatorController] setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
                 
                 // カラーを適応する（ループ中に徐々に適応させると文字がチラ付くので、抽出が終わってから一気に適応する）
-                [blockSelf applyColorings:colorings range:coloringRange];
+                [strongSelf applyColorings:colorings range:coloringRange];
             }
             
             // インジーケータシートを片づける
-            if ([blockSelf indicatorController]) {
-                [[blockSelf indicatorController] endSheet];
-                [blockSelf setIndicatorController:nil];
+            if ([strongSelf indicatorController]) {
+                [[strongSelf indicatorController] endSheet];
+                [strongSelf setIndicatorController:nil];
             }
         };
         
@@ -1011,8 +1012,8 @@ static CGFloat kPerCompoIncrement;
         
         // 全文を抽出した場合は抽出結果をキャッシュする
         if (([colorings count] > 0) && (coloringRange.length == [wholeString length])) {
-            [blockSelf setCacheColorings:colorings];
-            [blockSelf setCacheHash:[wholeString MD5]];
+            [strongSelf setCacheColorings:colorings];
+            [strongSelf setCacheHash:[wholeString MD5]];
         }
     };
     

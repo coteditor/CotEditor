@@ -636,14 +636,15 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [task setCurrentDirectoryPath:NSHomeDirectory()];
     
     // Standard Error
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     [task setStandardError:[NSPipe pipe]];
     [[[task standardError] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        typeof(self) strongSelf = weakSelf;
         NSString *error = [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
         
         if ([error length] > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [blockSelf showScriptError:error];
+                [strongSelf showScriptError:error];
             });
         }
     }];
@@ -655,7 +656,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         
         if (output) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[blockSelf class] setOutputToDocument:output outputType:outputType];
+                [CEScriptManager setOutputToDocument:output outputType:outputType];
             });
         }
     }];

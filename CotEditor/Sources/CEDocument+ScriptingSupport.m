@@ -87,9 +87,10 @@
 
     [storage setDelegate:self];
     // 0.5秒後にデリゲートをやめる（放置するとクラッシュの原因になる）
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [blockSelf cleanUpTextStorage:storage];
+        typeof(self) strongSelf = weakSelf;
+        [strongSelf cleanUpTextStorage:storage];
     });
 
     return storage;

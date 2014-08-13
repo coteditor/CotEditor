@@ -197,10 +197,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:&error];
     
     if (success) {
-        __block typeof(self) blockSelf = self;
+        __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
+            typeof(self) strongSelf = weakSelf;
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                                object:blockSelf
+                                                                object:strongSelf
                                                               userInfo:@{CEOldNameKey: themeName,
                                                                          CENewNameKey: themeName}];
             if (completionHandler) {
@@ -238,10 +239,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
             [[NSUserDefaults standardUserDefaults] setObject:newThemeName forKey:k_key_defaultTheme];
         }
         
-        __block typeof(self) blockSelf = self;
+        __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
+            typeof(self) strongSelf = weakSelf;
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                                object:blockSelf
+                                                                object:strongSelf
                                                               userInfo:@{CEOldNameKey: themeName,
                                                                          CENewNameKey: newThemeName}];
         }];
@@ -264,13 +266,15 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     }
     
     if (success) {
-        __block typeof(self) blockSelf = self;
+        __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
+            typeof(self) strongSelf = weakSelf;
+            
             // 開いているウインドウのテーマをデフォルトに戻す
             NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                                object:blockSelf
+                                                                object:strongSelf
                                                               userInfo:@{CEOldNameKey: themeName,
                                                                          CENewNameKey: defaultThemeName}];
         }];
@@ -292,10 +296,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     BOOL success = [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserTheme:themeName] error:&error];
     
     if (success) {
-        __block typeof(self) blockSelf = self;
+        __weak typeof(self) weakSelf = self;
         [self updateCacheWithCompletionHandler:^{
+            typeof(self) strongSelf = weakSelf;
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
-                                                                object:blockSelf
+                                                                object:strongSelf
                                                               userInfo:@{CEOldNameKey: themeName,
                                                                          CENewNameKey: themeName}];
             
@@ -537,11 +542,12 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (void)updateCacheWithCompletionHandler:(void (^)())completionHandler
 //------------------------------------------------------
 {
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSURL *userDirURL = [blockSelf userThemeDirectoryURL];
+        typeof(self) strongSelf = weakSelf;
+        NSURL *userDirURL = [strongSelf userThemeDirectoryURL];
         
-        NSMutableArray *themeNames = [[blockSelf bundledThemeNames] mutableCopy];
+        NSMutableArray *themeNames = [[strongSelf bundledThemeNames] mutableCopy];
         
         // ユーザ定義用ディレクトリが存在する場合は読み込む
         if ([userDirURL checkResourceIsReachableAndReturnError:nil]) {
@@ -567,7 +573,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         
         // 定義をキャッシュする
         NSMutableDictionary *themes = [NSMutableDictionary dictionary];
-        for (NSString *name in [blockSelf themeNames]) {
+        for (NSString *name in [strongSelf themeNames]) {
             themes[name] = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
                                                                      options:NSPropertyListMutableContainersAndLeaves
                                                                       format:NULL
@@ -576,14 +582,15 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         [self setArchivedThemes:themes];
         
         // デフォルトテーマが見当たらないときはリセットする
-        if (![[blockSelf themeNames] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]]) {
+        if (![[strongSelf themeNames] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]]) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:k_key_defaultTheme];
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
             // Notificationを発行
             if (isListUpdated) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeListDidUpdateNotification object:blockSelf];
+                [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeListDidUpdateNotification
+                                                                    object:strongSelf];
             }
             
             if (completionHandler) {

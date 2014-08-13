@@ -412,9 +412,10 @@
         item[identifier] = object;
         // 他の値とダブっていたら、再び編集状態にする
         if (![self showDuplicateKeySpecCharsMessageWithKeySpecChars:object oldChars:[self currentKeySpecChars]]) {
-            __block typeof(self) blockSelf = self;
+            __weak typeof(self) weakSelf = self;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [blockSelf performEditOutlineViewSelectedKeyBindingKeyColumn];
+                typeof(self) strongSelf = weakSelf;
+                [strongSelf performEditOutlineViewSelectedKeyBindingKeyColumn];
             });
         }
     }

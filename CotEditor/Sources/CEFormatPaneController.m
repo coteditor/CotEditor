@@ -232,8 +232,10 @@
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowedFileTypes:@[@"plist"]];
     
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
+        typeof(self) strongSelf = weakSelf;
+        
         if (result == NSFileHandlingPanelCancelButton) return;
         
         NSURL *URL = [openPanel URLs][0];
@@ -242,8 +244,8 @@
         // 同名styleが既にあるときは、置換してもいいか確認
         if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
             // オープンパネルを閉じる
-            [openPanel orderOut:blockSelf];
-            [[[blockSelf view] window] makeKeyAndOrderFront:blockSelf];
+            [openPanel orderOut:strongSelf];
+            [[[strongSelf view] window] makeKeyAndOrderFront:strongSelf];
             
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
@@ -252,12 +254,12 @@
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
-            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self
+            [alert beginSheetModalForWindow:[[strongSelf view] window] modalDelegate:strongSelf
                              didEndSelector:@selector(secondarySheedlDidEnd:returnCode:contextInfo:)
                                 contextInfo:(__bridge_retained void *)(URL)];
         } else {
             // 重複するファイル名がないとき、インポート実行
-            [self doImport:URL withCurrentSheetWindow:openPanel];
+            [strongSelf doImport:URL withCurrentSheetWindow:openPanel];
         }
     }];
 }

@@ -371,12 +371,13 @@
     
     // 別スレッドでアウトラインを抽出して、メインスレッドで navigationBar に渡す
     NSString *wholeString = [[self string] copy];  // 解析中に参照元が変更されると困るのでコピーする
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *outlineMenuArray = [[blockSelf syntaxParser] outlineMenuArrayWithWholeString:wholeString];
+        typeof(self) strongSelf = weakSelf;
+        NSArray *outlineMenuArray = [[strongSelf syntaxParser] outlineMenuArrayWithWholeString:wholeString];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[blockSelf navigationBar] setOutlineMenuArray:outlineMenuArray];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [[strongSelf navigationBar] setOutlineMenuArray:outlineMenuArray];
             // （選択項目の更新も上記メソッド内で行われるので、updateOutlineMenuSelection は呼ぶ必要なし。 2008.05.16.）
         });
     });

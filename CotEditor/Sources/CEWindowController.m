@@ -260,10 +260,11 @@ static NSTimeInterval incompatibleCharInterval;
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editor] selectedRange];
     __block CEStatusBarController *statusBar = [self statusBarController];
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        typeof(self) strongSelf = weakSelf;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         BOOL countLineEnding = [defaults boolForKey:k_key_countLineEndingAsChar];
         NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
@@ -351,7 +352,7 @@ static NSTimeInterval incompatibleCharInterval;
         }
         
         // apply to UI
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
             if (updatesStatusBar) {
                 [statusBar setLinesInfo:numberOfLines];
                 [statusBar setSelectedLinesInfo:numberOfSelectedLines];
@@ -367,15 +368,15 @@ static NSTimeInterval incompatibleCharInterval;
                 [statusBar updateEditorStatus];
             }
             if (updatesDrawer) {
-                [blockSelf setLinesInfo:[blockSelf formatCount:numberOfLines selected:numberOfSelectedLines]];
-                [blockSelf setCharsInfo:[blockSelf formatCount:numberOfChars selected:numberOfSelectedChars]];
-                [blockSelf setLengthInfo:[blockSelf formatCount:length selected:selectedRange.length]];
-                [blockSelf setByteLengthInfo:[blockSelf formatCount:byteLength selected:selectedByteLength]];
-                [blockSelf setWordsInfo:[blockSelf formatCount:numberOfWords selected:numberOfSelectedWords]];
-                [blockSelf setLocationInfo:location];
-                [blockSelf setColumnInfo:column];
-                [blockSelf setLineInfo:currentLine];
-                [blockSelf setSingleCharInfo:singleCharInfo];
+                [strongSelf setLinesInfo:[strongSelf formatCount:numberOfLines selected:numberOfSelectedLines]];
+                [strongSelf setCharsInfo:[strongSelf formatCount:numberOfChars selected:numberOfSelectedChars]];
+                [strongSelf setLengthInfo:[strongSelf formatCount:length selected:selectedRange.length]];
+                [strongSelf setByteLengthInfo:[strongSelf formatCount:byteLength selected:selectedByteLength]];
+                [strongSelf setWordsInfo:[strongSelf formatCount:numberOfWords selected:numberOfSelectedWords]];
+                [strongSelf setLocationInfo:location];
+                [strongSelf setColumnInfo:column];
+                [strongSelf setLineInfo:currentLine];
+                [strongSelf setSingleCharInfo:singleCharInfo];
             }
         });
     });
