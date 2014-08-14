@@ -98,10 +98,6 @@
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>svg</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
 			<string>mml</string>
 		</dict>
 		<dict>

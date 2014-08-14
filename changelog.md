@@ -18,7 +18,7 @@ changelog
 - 縦にエディタを分割
 - 行番号をクリック／ドラッグして行を選択
 - 「編集」に「行を選択」コマンドを追加
-- “AppleScript”, “Go”, “Lua”, “CocoaPods”, “R”, “SQL”, “Strings”, “Swift” シンタックス定義を追加
+- “AppleScript”, “Go”, “Lua”, “CocoaPods”, “R”, “SQL”, “Strings”, “SVG”, “Swift” シンタックス定義を追加
 
 
 ### mod

@@ -800,6 +800,28 @@
 			<key>NSDocumentClass</key>
 			<string>CEDocument</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>svg</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>docSVG</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>image/svg+xml</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Scalable Vector Graphics</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.svg-image</string>
+			</array>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>CotEditor</string>
