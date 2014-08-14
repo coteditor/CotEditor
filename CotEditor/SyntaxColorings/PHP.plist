@@ -2,65 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>typesArray</key>
-	<array>
-		<dict>
-			<key>beginString</key>
-			<string>bool</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>boolean</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>callable</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>double</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>float</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>int</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>integer</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>mixed</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>null</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>number</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>object</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>resource</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>string</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>void</string>
-		</dict>
-	</array>
 	<key>charactersArray</key>
 	<array>
 		<dict>
@@ -27553,6 +27494,23 @@
 			<string>yield</string>
 		</dict>
 	</array>
+	<key>metadata</key>
+	<dict>
+		<key>author</key>
+		<string>kaz</string>
+		<key>description</key>
+		<string>Support PHP4 - PHP5.5.
+
+Maintained by 1024jp since 2013.</string>
+		<key>distributionURL</key>
+		<string>http://coteditor.github.io</string>
+		<key>lastModified</key>
+		<string>2014-08-15</string>
+		<key>license</key>
+		<string>Same as CotEditor</string>
+		<key>version</key>
+		<string>2.3</string>
+	</dict>
 	<key>numbersArray</key>
 	<array>
 		<dict>
@@ -27666,6 +27624,65 @@
 	</array>
 	<key>styleName</key>
 	<string>PHP</string>
+	<key>typesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>bool</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>boolean</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>callable</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>double</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>int</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>integer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mixed</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>null</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>number</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>object</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>resource</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>string</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>void</string>
+		</dict>
+	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>

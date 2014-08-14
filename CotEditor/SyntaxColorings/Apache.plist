@@ -7806,13 +7806,26 @@
 			<true/>
 		</dict>
 	</array>
+	<key>metadata</key>
+	<dict>
+		<key>author</key>
+		<string>1024jp</string>
+		<key>distributionURL</key>
+		<string>http://coteditor.github.io</string>
+		<key>lastModified</key>
+		<string>2014-08-15</string>
+		<key>license</key>
+		<string>Same as CotEditor</string>
+		<key>version</key>
+		<string>2.0</string>
+	</dict>
 	<key>numbersArray</key>
 	<array/>
 	<key>outlineMenuArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;Directory(?:Match)?[\t ]+&quot;?(.*?)&quot;?&gt;</string>
+			<string>^[\t ]*&lt;Directory(?:Match)?[\t ]+"?(.*?)"?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7820,7 +7833,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;Files(?:Match)?[\t ]+&quot;?(.*?)&quot;?&gt;</string>
+			<string>^[\t ]*&lt;Files(?:Match)?[\t ]+"?(.*?)"?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7828,7 +7841,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;Location(?:Match)[\t ]+&quot;?(.*?)&quot;?&gt;</string>
+			<string>^[\t ]*&lt;Location(?:Match)[\t ]+"?(.*?)"?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7836,7 +7849,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>^[\t ]*&lt;VirtualHost[\t ]+&quot;?(.*?)&quot;?&gt;</string>
+			<string>^[\t ]*&lt;VirtualHost[\t ]+"?(.*?)"?&gt;</string>
 			<key>ignoreCase</key>
 			<false/>
 			<key>keyString</key>
@@ -7847,15 +7860,15 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>&quot;</string>
+			<string>"</string>
 			<key>endString</key>
-			<string>&quot;</string>
+			<string>"</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&apos;</string>
+			<string>'</string>
 			<key>endString</key>
-			<string>&apos;</string>
+			<string>'</string>
 		</dict>
 	</array>
 	<key>styleName</key>

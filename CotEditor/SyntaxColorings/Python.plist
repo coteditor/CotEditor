@@ -1299,6 +1299,23 @@
 			<string>yield</string>
 		</dict>
 	</array>
+	<key>metadata</key>
+	<dict>
+		<key>author</key>
+		<string>nanasiya</string>
+		<key>description</key>
+		<string>Support both Python2 and Python3.
+
+Maintained by 1024jp since 2013.</string>
+		<key>distributionURL</key>
+		<string>http://coteditor.github.io</string>
+		<key>lastModified</key>
+		<string>2014-08-15</string>
+		<key>license</key>
+		<string>Same as CotEditor</string>
+		<key>version</key>
+		<string>2.1</string>
+	</dict>
 	<key>numbersArray</key>
 	<array>
 		<dict>

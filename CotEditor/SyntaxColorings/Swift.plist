@@ -204,10 +204,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>infix</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>init</string>
 		</dict>
 		<dict>
@@ -264,15 +260,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>postfix</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>precedence</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>prefix</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -355,6 +343,21 @@
 			<string>willSet</string>
 		</dict>
 	</array>
+	<key>metadata</key>
+	<dict>
+		<key>author</key>
+		<string>1024jp</string>
+		<key>description</key>
+		<string>Based on Swift beta5.</string>
+		<key>distributionURL</key>
+		<string>http://coteditor.github.io</string>
+		<key>lastModified</key>
+		<string>2014-08-15</string>
+		<key>license</key>
+		<string>Same as CotEditor</string>
+		<key>version</key>
+		<string>1.1</string>
+	</dict>
 	<key>numbersArray</key>
 	<array>
 		<dict>

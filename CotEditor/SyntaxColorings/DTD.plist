@@ -87,6 +87,19 @@
 			<true/>
 		</dict>
 	</array>
+	<key>metadata</key>
+	<dict>
+		<key>author</key>
+		<string>1024jp</string>
+		<key>distributionURL</key>
+		<string>http://coteditor.github.io</string>
+		<key>lastModified</key>
+		<string>2014-08-15</string>
+		<key>license</key>
+		<string>Same as CotEditor</string>
+		<key>version</key>
+		<string>1.0</string>
+	</dict>
 	<key>numbersArray</key>
 	<array/>
 	<key>outlineMenuArray</key>
