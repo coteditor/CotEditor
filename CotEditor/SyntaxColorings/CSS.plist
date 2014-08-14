@@ -1485,6 +1485,21 @@
 			<string>z-index</string>
 		</dict>
 	</array>
+	<key>metadata</key>
+	<dict>
+		<key>author</key>
+		<string>CotEditor Projcect</string>
+		<key>description</key>
+		<string>Support partly CSS3.</string>
+		<key>distributionURL</key>
+		<string>http://coteditor.github.io</string>
+		<key>lastModified</key>
+		<string>2014-08-15</string>
+		<key>license</key>
+		<string>Same as CotEditor</string>
+		<key>version</key>
+		<string>2.0</string>
+	</dict>
 	<key>numbersArray</key>
 	<array>
 		<dict>
