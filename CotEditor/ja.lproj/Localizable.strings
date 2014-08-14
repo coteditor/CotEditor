@@ -223,6 +223,7 @@ http://www.aynimac.com/
 "Outline Menu" = "アウトラインメニュー";
 "Completion List" = "入力補完リスト";
 "File Mapping" = "ファイル関連付け";
+"Style Info" = "スタイル情報";
 "Syntax Validation" = "シンタックスの検証";
 
 // syntax element check result (no error)

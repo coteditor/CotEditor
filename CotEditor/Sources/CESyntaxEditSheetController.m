@@ -34,12 +34,34 @@
 #import "constants.h"
 
 
+typedef NS_ENUM(NSUInteger, CETabIndex) {
+    KeywordsTab,
+    CommandsTab,
+    TypesTab,
+    AttributesTab,
+    VariablesTab,
+    ValuesTab,
+    NumbersTab,
+    StringsTab,
+    CharactersTab,
+    CommentsTab,
+    
+    OutlineTab     = 11,
+    CompletionTab  = 12,
+    FileMappingTab = 13,
+    
+    StyleInfoTab   = 15,
+    ValidationTab  = 16,
+};
+
+
 @interface CESyntaxEditSheetController ()
 
 @property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
 @property (nonatomic) BOOL isStyleNameValid;
+@property (nonatomic) BOOL isBundledStyle;
 
 @property (nonatomic, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, weak) IBOutlet NSTextField *styleNameField;
@@ -98,6 +120,7 @@
         [self setOriginalStyleName:name];
         [self setStyle:style];
         [self setIsStyleNameValid:YES];
+        [self setIsBundledStyle:[[CESyntaxManager sharedManager] isBundledStyle:styleName]];
     }
     
     return self;
@@ -258,7 +281,7 @@
         // 「構文要素チェック」を選択
         // （selectItemAtIndex: だとバインディングが実行されないので、メニューを取得して選択している）
         NSBeep();
-        [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:15] byExtendingSelection:NO];
+        [[self menuTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:ValidationTab] byExtendingSelection:NO];
         return;
     }
     
@@ -314,6 +337,7 @@
              NSLocalizedString(@"Completion List", nil),
              NSLocalizedString(@"File Mapping", nil),
              CESeparatorString,
+             NSLocalizedString(@"Style Info", nil),
              NSLocalizedString(@"Syntax Validation", nil)];
 }
 
