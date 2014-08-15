@@ -994,13 +994,18 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 // ------------------------------------------------------
 {
     // ファイルのmodificationDateがドキュメントのmodificationDateと同じ場合は無視
-    NSDate *fileModificationDate;
-    [[self fileURL] getResourceValue:&fileModificationDate forKey:NSURLAttributeModificationDateKey error:nil];
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
+    __block NSDate *fileModificationDate;
+    [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
+                                      error:nil byAccessor:^(NSURL *newURL)
+     {
+         NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         fileModificationDate = [fileAttrs fileModificationDate];
+     }];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
     // ファイルのMD5ハッシュが保持しているものと同じ場合は編集されていないと認識させた上で無視
     __block NSString *MD5;
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:self];
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
