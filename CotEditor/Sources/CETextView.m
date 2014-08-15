@@ -539,8 +539,8 @@
     if (!charSet || [string length] == 0) { return range; }
 
     // 入力補完文字列の先頭となりえない文字が出てくるまで補完文字列対象を広げる
-    NSInteger begin = range.location;
-    for (NSInteger i = range.location; i >= 0; i--) {
+    NSInteger begin = MIN(range.location, [string length] - 1);
+    for (NSInteger i = begin; i >= 0; i--) {
         if ([charSet characterIsMember:[string characterAtIndex:i]]) {
             begin = i;
         } else {
@@ -558,7 +558,6 @@
 {
     return [self textContainerOriginPoint];
 }
-
 
 
 // ------------------------------------------------------
