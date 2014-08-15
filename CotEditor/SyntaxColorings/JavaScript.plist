@@ -2,17 +2,1988 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>attributesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)altitude\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)arguments\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)background\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)border\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)button\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)buttons\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)char\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)code\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)current\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)data\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)download\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)heading\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)hidden\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)hight\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)id\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)latitude\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)link\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)locale\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)longitude\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)media\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)name\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)next\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)password\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)port\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)prefix\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)previous\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)profile\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)reason\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)rel\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)repeat\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)response\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)scripts\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)shape\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)sizes\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)speed\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)src\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)state\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)status\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)target\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)text\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)title\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)top\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)type\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)version\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)width\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)x\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>(?&lt;=\.)y\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__noSuchMethod__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__proto__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>accessKey</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>accessKeyLabel</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>accuracy</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>activeElement</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>align</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>aLink</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>alinkColor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>all</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>alt</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>altitudeAccuracy</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>altKey</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>anchors</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>applets</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>applicationCache</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>arity</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>async</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>attributes</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>baseURI</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>baseURIObject</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>bgColor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>body</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>bubbles</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>caller</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cancelable</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cancelBubble</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>changedTouches</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>charaterSet</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>charCode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>charset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>childElementCount</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>childNodes</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>children</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>classList</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>className</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clientHeight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clientLeft</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clientTop</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clientWidth</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clipboardData</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>closed</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>columnNumber</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>comatMode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>complete</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>conentEditable</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>console</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>constructor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>content</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>contentType</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>controllers</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cookie</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>coords</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>crossOrigin</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>crypto</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ctrlKey</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>currentScript</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>currentSrc</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>currentTarget</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>dataset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>dataTransfer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>defaultPrevented</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>defaultStatus</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>defaultView</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>defer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>description</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>designMode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>detail</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>devicePixelRatio</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>dialogArguments</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>dir</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>directories</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>disabled</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>displayName</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>doctype</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>document</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>documentElement</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>documentURI</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>documentURIObject</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>domain</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>domConfig</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>draggable</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>dropzone</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>embeds</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>entities</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>escape</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>event</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>eventPhase</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>execCommandShowHelp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>explicitOriginalTarget</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fgColor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fileName</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fileSize</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>firstChild</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>firstElementChild</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>force</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>forms</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>frameElement</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>frames</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fullScreen</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getBoxObjectFor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>globalStorage</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hash</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>head</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>history</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>host</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hostname</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>href</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hreflang</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hspace</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>htmlFor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>images</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>implementation</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>innerWidth</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>innterHeight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>innterHTML</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>inputEncoding</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>internalSubset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isComposing</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isContentEditable</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isElementContentWhitespace</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isMap</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isTrusted</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>itemId</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>itemProp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>itemRef</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>itemScope</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>itemType</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>itemValue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lang</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lastChild</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lastElementChild</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lastModified</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lastModifiedDate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lastStyleSheetSet</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>length</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lineNumber</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>linkColor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>links</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>loadOverlay</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>localName</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>localStorage</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>location</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>locationBar</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>longDesc</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lowSrc</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>menubar</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>message</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>messageManager</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>metaKey</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>movementX</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>movementY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozAnimationStartTime</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozFullScreen</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozFullScreenElement</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozFullScreenEnabled</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozInnerScreenX</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozInnerScreenY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozPaintCount</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozSyntheticDocument</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>name</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>namespaceURI</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>naturalHeight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>naturalWidth</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>navigator</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>nextElementSibling</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>nodePrincipal</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>nodeValue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>notations</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>number</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>offset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>offsetHeight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>offsetLeft</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>offsetNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>offsetParent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>offsetTop</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>offsetWidth</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onabort</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onafterprint</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onbeforeprint</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onbeforeunload</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onblur</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>oncancel</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>oncanplay</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>oncanplaythrough</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onchange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onclick</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onclose</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>oncontextmenu</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>oncuechange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondblclick</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondevicelight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondevicemotion</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondeviceorientation</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondeviceproximity</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondrag</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondragdrop</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondragend</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondragenter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondragexit</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondragleave</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondragover</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondragstart</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondrop</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ondurationchange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onemptied</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onended</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onerror</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onfocus</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onhashchange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>oninput</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>oninvalid</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onkeydown</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onkeypress</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onkeyup</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onload</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onloadeddata</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onloadedmetadata</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onloadend</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onloadstart</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmessage</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmousedown</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmouseenter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmouseleave</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmousemove</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmouseout</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmouseover</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmouseup</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmousewheel</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onmozbeforerepaint</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onoffline</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ononline</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onpaint</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onpause</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onplay</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onplaying</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onpopstate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onprogress</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onpropstate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onratechange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onreadystatechange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onreset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onresize</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onscroll</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onseeked</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onseeking</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onselect</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onshow</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onsort</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onstalled</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onsubmit</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onsuspend</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ontimeupdate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onunload</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onuserproximity</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onvolumechange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>onwaiting</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>opener</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>origin</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>originalTarget</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>outerHeight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>outerHTML</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>outerWidth</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ownerDocument</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ownerNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>pageX</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>pageXOffset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>pageY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>pageYOffset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>parent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>parentElement</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>parentNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>parentStyleSheet</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>password</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>pathname</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>performance</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>personalbar</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>pkcs11</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>plugins</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>pointerLockElement</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>popupNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>port</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>preferredStyleSheetSet</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>previousElementSibling</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>properties</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>protocol</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>prototype</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>publicId</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>queryCommandText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>radiusX</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>radiusY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>readyState</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>referrer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>relatedTarget</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>relList</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>responseText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>responseType</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>responseXML</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>returnValue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>rotationAngle</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>screen</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>screenX</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>screenY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollbars</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollHeight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollLeft</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollMaxX</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollMaxY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollTop</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollWidth</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollX</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>seletedStyleSheetSet</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>self</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>sessionStorage</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>shiftKey</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>sidebar</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>size</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>spellcheck</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>srcset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>stack</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>statusbar</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>statusText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>style</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>styleSheets</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>styleSheetsSet</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>supports</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>systemId</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>tabIndex</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>tabindex</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>tagName</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>targetTouches</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>textContent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>timeout</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>timeStamp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toolbar</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>tooltipNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>touches</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>translate</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>undoManager</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>undoScope</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>upload</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>URL</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>useMap</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>username</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vlink</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vlinkColor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vspace</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>wasClean</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>wholeText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>window</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>withCredentials</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>xmlEncoding</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>xmlStandalone</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>xmlVersion</string>
+		</dict>
+	</array>
 	<key>charactersArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>'</string>
-			<key>endString</key>
-			<string>'</string>
+			<string>/\S+/[gimy]*</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 	</array>
 	<key>commandsArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>\babord(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bafter(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\ball(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\banchor(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bbefore(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bbig(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bblink(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bbold(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bcatch(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bcount(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bdebug(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bdelete(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\berror(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bexception(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bfixed(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bfontcolor(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bfontsize(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bfor(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bfrom(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bgo(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bgroup(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bhint(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bhome(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\binfo(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bitalics(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bitem(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\blink(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\blog(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bmap(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bmatch(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bmatches(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bnext(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bof(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bprofile(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bsmall(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bstrike(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bsub(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bsup(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\bthen(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\btime(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\btimeEnd(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__defineGetter__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__defineSetter__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__lookupGetter__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__lookupSetter__</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>abs</string>
@@ -23,15 +1994,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>acosh</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>add</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>addEventListener</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>adoptNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>alert</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>allpy</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>anchor</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -39,7 +2018,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>apply</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>asin</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>asinh</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>assert</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -55,6 +2046,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>atanh</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>atob</string>
 		</dict>
 		<dict>
@@ -63,19 +2058,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>big</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>blink</string>
+			<string>bind</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>blur</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>bold</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -88,6 +2075,14 @@
 		<dict>
 			<key>beginString</key>
 			<string>captureEvents</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>caretPositionFromPoint</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cbrt</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -107,6 +2102,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>clearImmediate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>clearInterval</string>
 		</dict>
 		<dict>
@@ -115,7 +2114,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>click</string>
+			<string>clearWatch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cloneNode</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -123,7 +2126,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>compile</string>
+			<string>clz32</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>codePointAt</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>compareDocumentPosition</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -135,7 +2146,39 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>contains</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>cos</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cosh</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>create</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createAttribute</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createAttributeNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createCDATASection</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createComment</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createDocumentFragment</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -143,11 +2186,75 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>createElementNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createEntryReference</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createEvent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createExpression</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createNodeIterator</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createNSResolver</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createProcessingInstruction</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>createRange</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>createStyleSheet</string>
+			<string>createTextNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>createTreeWalker</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>decodeURI</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>decodeURIComponent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>defineProperties</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>defineProperty</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>depthFunc</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>depthMask</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>depthRange</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>detachShader</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -155,11 +2262,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>disableVertexAttribArray</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>dispatchEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>E</string>
+			<string>drawArrays</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>drawElements</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>dump</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -167,11 +2286,27 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>empty</string>
+			<string>enableStyleSheetsForSet</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>enableExternalCapture</string>
+			<string>enableVertexAttribArray</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>encodeURI</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>encodeURIComponent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>endsWith</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>entries</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -183,11 +2318,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>evaluate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>every</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>exec</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>execScript</string>
+			<string>execCommand</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>exitPointerLock</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -195,11 +2342,31 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>expml</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fill</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>filter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>find</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>fixed</string>
+			<string>findAll</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>findIndex</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>finish</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -207,15 +2374,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>focus</string>
+			<string>flush</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>fontcolor</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>fontsize</string>
+			<string>forEach</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -223,7 +2386,119 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>framebufferRenderbuffer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>framebufferTexture2D</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>freeze</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>fromCharCode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fromCodePoint</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>frontFace</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fround</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>generateMipmap</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>get</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getActiveAttrib</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getActiveUniform</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAdDataURL</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAllResponseHeaders</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAsBinary</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAsText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttachedShaders</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttention</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttentionWithCycleCount</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttribLocation</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttribute</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttributeNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttributeNodeNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getAttributeNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getBoundingClientRect</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getBufferParameter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getClientRects</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getComputedStyle</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getContext</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getCurrentPosition</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -235,7 +2510,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>getDefaulComputedStyle</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>getElementById</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getElementsByClassName</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -247,11 +2530,35 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>getElementsByTagNameNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getFeature</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getFramebufferAttachmentParameter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>getFullYear</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>getHours</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getInt16</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getInt8</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -263,7 +2570,47 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>getModifierState</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>getMonth</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getOwnPropertyDescriptor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getOwnPropertyNames</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getOwnPropertySymbols</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getParameter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getProgramInfoLog</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getProgramParameter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getPrototypeOf</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getRenderbufferParameter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getResponseHeader</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -275,11 +2622,47 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>getShaderInfoLog</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getShaderParameter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getShaderPrecisionFormat</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getShaderSource</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getTexParameter</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>getTime</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>getTimezoneOffset</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getUint16</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getUint8</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getUniform</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getUserData</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -315,7 +2698,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>getUTCYear</string>
+			<string>getVertexAttrib</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>getVertexAttribOffset</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -323,7 +2710,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>go</string>
+			<string>groupCollapsed</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>groupEnd</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -331,7 +2722,43 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>home</string>
+			<string>has</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hasAttribute</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hasAttributeNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hasChildNodes</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hasFocus</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hasOwnProperty</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>hypot</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>identifiedTouch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>importNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>imul</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -339,7 +2766,67 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>initEvent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>initKeyboardEvent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>insertAdjacentHTML</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>insertBefore</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>is</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isArray</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isBuffer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isDefaultNamespace</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isEnabled</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isEqualNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isExtensible</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>isFinite</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isFramebuffer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isFrozen</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isGenerator</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isInteger</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -347,15 +2834,51 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>italics</string>
+			<string>isProgram</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>item</string>
+			<string>isPrototypeOf</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>javaEnabled</string>
+			<string>isRenderbuffer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isSafeInteger</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isSameNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isSealed</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isShader</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isSupported</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>isTexture</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>join</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>keyFor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>keys</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -363,15 +2886,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>link</string>
+			<string>lineWidth</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>LN10</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>LN2</string>
+			<string>linkProgram</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -379,19 +2898,35 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>localeCompare</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>log</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>LOG10E</string>
+			<string>log10</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>LOG2E</string>
+			<string>log1p</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>match</string>
+			<string>log2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lookupNamespaceURI</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lookupPrefix</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>matchMedia</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -399,7 +2934,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>maximize</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>min</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>minimize</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -411,11 +2954,35 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>moveToAbsolute</string>
+			<string>mozRequestAnimationFrame</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>mozSetImageElement</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>normalize</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>normalizeDocument</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>now</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>open</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>openDialog</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>overrideMimeType</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -431,7 +2998,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>PI</string>
+			<string>pixelStorei</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>polygonOffset</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -439,11 +3010,27 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>postMessage</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>pow</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>preference</string>
+			<string>preventBubble</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>preventCapture</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>preventDefault</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>preventExtensions</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -451,7 +3038,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>profileEnd</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>prompt</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>propertyIsEnumerable</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -459,7 +3054,83 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>pushState</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>queryCommandEnabled</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>queryCommandIndeterm</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>queryCommandState</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>queryCommandSupported</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>queryCommandValue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>querySelector</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>querySelectorAll</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>quote</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>race</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>random</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>readAdBinaryString</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>readAsArrayBuffer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>readAsDataURL</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>readAsText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>readPixels</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>reduce</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>reduceRight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>reject</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>releaseCapture</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -467,7 +3138,43 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>releasePointerCapture</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>reload</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>remove</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>removeAttribute</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>removeAttributeNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>removeAttributeNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>removeChild</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>removeEventListener</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>renderbufferStorage</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>repeat</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -475,7 +3182,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>reset</string>
+			<string>replaceChild</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>replaceState</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>replaceWholeText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>requestFullscreen</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>requestPointerLock</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -484,6 +3207,14 @@
 		<dict>
 			<key>beginString</key>
 			<string>resizeTo</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>resolve</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>restore</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -499,6 +3230,14 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>sampleCoverage</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scissor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>scroll</string>
 		</dict>
 		<dict>
@@ -507,7 +3246,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>scrollByLines</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollByPages</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>scrollIntoView</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>scrollTo</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>seal</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -515,7 +3270,35 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>select</string>
+			<string>set</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setAttribute</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setAttributeNode</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setAttributeNodeNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setAttributeNS</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setCapture</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setContext</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setCursor</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -528,6 +3311,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>setHours</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setImmediates</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -547,6 +3334,22 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>setPointerCapture</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setPrototypeOf</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setRequestHeader</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>setResizable</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>setSeconds</string>
 		</dict>
 		<dict>
@@ -559,11 +3362,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>setUTCDate</string>
+			<string>setUserData</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>setUTCDay</string>
+			<string>setUTCDate</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -591,11 +3394,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>setUTCYear</string>
+			<string>setYear</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>setYear</string>
+			<string>shaderSource</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -603,15 +3406,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>showHelp</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>showModalDialog</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>showModelessDialog</string>
+			<string>sign</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -619,11 +3418,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>sinh</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>sizeToContent</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>slice</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>small</string>
+			<string>some</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -639,15 +3446,39 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>splitText</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>sqrt</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>SQRT1_2</string>
+			<string>startsWith</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>SQRT2</string>
+			<string>stencilFunc</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>stencilFuncSeparate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>stencilMask</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>stencilMaskSeparate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>stencilOp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>stencilOpSeparate</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -655,19 +3486,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>strike</string>
+			<string>stopImmediatePropagation</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>style</string>
+			<string>stopPropagation</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>sub</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>submit</string>
+			<string>stringify</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -679,7 +3506,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>sup</string>
+			<string>supportsContext</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -687,7 +3514,59 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>tanh</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>terminate</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>test</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>texImage2D</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>texParameterf</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>texParameteri</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>texSubImage2D</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toBlob</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toBlobHD</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toDataURL</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toDataURLHD</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toDateString</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toExponential</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toFixed</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -695,11 +3574,43 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>toISOString</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toJSON</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toLocaleDateString</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toLocaleFormat</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toLocaleLowerCase</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>toLocaleString</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>toLocaleTimeString</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toLocaleUpperCase</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>toLowerCase</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>toPrecision</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -711,6 +3622,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>toTimeString</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>toUpperCase</string>
 		</dict>
 		<dict>
@@ -719,7 +3634,27 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>toVarDate</string>
+			<string>trace</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>transferControlToProxy</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>trim</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>trimLeft</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>trimRight</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>trunc</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -727,7 +3662,83 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>uneval</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform1fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform1i</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform1iv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform2fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform2i</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform2iv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform3fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform3i</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform3iv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform4fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform4i</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniform4iv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniformMatrix2fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniformMatrix3fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>uniformMatrix4fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>unshift</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>unwatch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>updateCommands</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>useProgram</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -735,7 +3746,67 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>validateProgram</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>valueOf</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>values</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib1f</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib1fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib2f</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib2fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib3f</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib3fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib4f</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttrib4fv</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vertexAttribPointer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>viewport</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>warn</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>watch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>watchPosition</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -757,6 +3828,8 @@
 	</dict>
 	<key>commentsArray</key>
 	<array/>
+	<key>completionsArray</key>
+	<array/>
 	<key>extensions</key>
 	<array>
 		<dict>
@@ -764,6 +3837,8 @@
 			<string>js</string>
 		</dict>
 	</array>
+	<key>filenames</key>
+	<array/>
 	<key>keywordsArray</key>
 	<array>
 		<dict>
@@ -776,7 +3851,31 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>catch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>class</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>const</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>continue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>debugger</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>default</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>delete</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -784,7 +3883,27 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>each</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>else</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>enum</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>export</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>extends</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>finally</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -796,11 +3915,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>goto</string>
+			<string>if</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>if</string>
+			<string>implements</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>import</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -808,7 +3931,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>instanceof</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>interface</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>label</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>let</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -816,95 +3951,35 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>onabort</string>
+			<string>of</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>onblur</string>
+			<string>package</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>onchange</string>
+			<string>private</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>onclick</string>
+			<string>protected</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>ondblclick</string>
+			<string>public</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>ondragdrop</string>
+			<string>return</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>onerror</string>
+			<string>static</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>onfocus</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onkeyDown</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onkeypress</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onkeyup</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onload</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onmousedown</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onmousemove</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onmouseout</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onmouseover</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onmouseup</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onmove</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onreset</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onresize</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onselect</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onsubmit</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>onunload</string>
+			<string>super</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -912,7 +3987,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>throw</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>try</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>typeof</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>var</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>void</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -922,13 +4013,15 @@
 			<key>beginString</key>
 			<string>with</string>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>yield</string>
+		</dict>
 	</array>
 	<key>metadata</key>
 	<dict>
 		<key>author</key>
-		<string>nakamuxu</string>
-		<key>description</key>
-		<string>Maintained by CotEditor Project.</string>
+		<string>1024jp</string>
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
@@ -939,7 +4032,38 @@
 		<string>2.0</string>
 	</dict>
 	<key>numbersArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>\b0b[01]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0o[0-7]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0x[0-9a-f]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b\d+\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>outlineMenuArray</key>
 	<array>
 		<dict>
@@ -957,66 +4081,20 @@
 			<key>endString</key>
 			<string>"</string>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'</string>
+			<key>endString</key>
+			<string>'</string>
+		</dict>
 	</array>
 	<key>styleName</key>
 	<string>JavaScript</string>
-	<key>valuesArray</key>
+	<key>typesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>above</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>action</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>activeElement</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>alinkColor</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>all</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>altKey</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>anchors</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>appCodeName</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>applets</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>appMinorVersion</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>appName</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>appVersion</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>arguments</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>arity</string>
+			<string>AbstractWorker</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1024,23 +4102,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>availHeight</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>availWidth</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>background</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>below</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>bgColor</string>
+			<string>ArrayBuffer</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1048,103 +4110,47 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>border</string>
+			<string>CaretPosition</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>bottom</string>
+			<string>CDATASection</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>browserLanguage</string>
+			<string>ChildNode</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>bufferDepth</string>
+			<string>ClipboardEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>button</string>
+			<string>CloseEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>caller</string>
+			<string>Collator</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>cancelBubble</string>
+			<string>Comment</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>charset</string>
+			<string>Console</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>checked</string>
+			<string>Coordinates</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>childNodes</string>
+			<string>CSS</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>className</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>clientInformation</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>clientX</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>clientY</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>clip</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>closed</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>colorDepth</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>complete</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>constructor</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>cookie</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>cookieEnabled</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>cpuClass</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>ctrlKey</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>current</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>data</string>
+			<string>DataView</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1152,99 +4158,87 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>defaultCharset</string>
+			<string>DateTimeFormat</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>defaultChecked</string>
+			<string>Document</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>defaultStatus</string>
+			<string>DocumentFragment</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>defaultValue</string>
+			<string>DocumentType</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>description</string>
+			<string>DOMObject</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>dialogArguments</string>
+			<string>DOMParser</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>dialogHeight</string>
+			<string>DOMString</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>dialogLeft</string>
+			<string>DOMStringList</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>dialogTop</string>
+			<string>DragEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>dialogWidth</string>
+			<string>Element</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>document</string>
+			<string>Error</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>domain</string>
+			<string>EvalError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>elements</string>
+			<string>Event</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>embeds</string>
+			<string>EventListener</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>enabledPlugin</string>
+			<string>EventSource</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>encoding</string>
+			<string>Extensions</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>event</string>
+			<string>File</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>expando</string>
+			<string>FileList</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>false</string>
+			<string>FileReader</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>fgColor</string>
+			<string>Float32Array</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>filename</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>firstChild</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>forms</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>fromElement</string>
+			<string>Float64Array</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1252,155 +4246,115 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>global</string>
+			<string>Generator</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>hash</string>
+			<string>Geolocation</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>height</string>
+			<string>GlobalEventHandlers</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>history</string>
+			<string>History</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>host</string>
+			<string>HTMLAnchorElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>hostname</string>
+			<string>HTMLBaseElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>href</string>
+			<string>HTMLBodyElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>hspace</string>
+			<string>HTMLCanvasElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>id</string>
+			<string>HTMLDocument</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>ignoreCase</string>
+			<string>HTMLElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>Image</string>
+			<string>HTMLHeadElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>images</string>
+			<string>HTMLHtmlElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>index</string>
+			<string>HTMLImageElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>Infinity</string>
+			<string>HTMLParagraphElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>innerHeight</string>
+			<string>HTMLPreElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>innerHTML</string>
+			<string>HTMLScriptElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>innerText</string>
+			<string>HTMLTitleElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>innerWidth</string>
+			<string>HTMLUnknownElement</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>input</string>
+			<string>Int16Array</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>keyCode</string>
+			<string>Int32Array</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>lang</string>
+			<string>Int8Array</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>language</string>
+			<string>InternalError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>lastChild</string>
+			<string>Intl</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>lastIndex</string>
+			<string>Iterator</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>lastMatch</string>
+			<string>JSON</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>lastModified</string>
+			<string>KeyboardEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>lastParen</string>
+			<string>Location</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>layers</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>layerX</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>layerY</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>left</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>leftContext</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>length</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>linkColor</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>links</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>location</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>locationbar</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>lowsrc</string>
+			<string>Map</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1408,67 +4362,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>MAX_VALUE</string>
+			<string>MessageEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>menubar</string>
+			<string>MouseEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>method</string>
+			<string>Node</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>mimeTypes</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>MIN_VALUE</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>modifiers</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>moveAbove</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>moveBelow</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>multiline</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>name</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>NaN</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>navigator</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>NEGATIVE_INFINITY</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>next</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>nextSibling</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>null</string>
+			<string>NodeList</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1476,131 +4382,39 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>NumberFormat</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>Object</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>offscreenBuffering</string>
+			<string>ParallelArray</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>offsetX</string>
+			<string>ParentNode</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>offsetY</string>
+			<string>Promise</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>onLine</string>
+			<string>Proxy</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>opener</string>
+			<string>RangeError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>options</string>
+			<string>ReferenceError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>outerHeight</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>outerWidth</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>pageX</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>pageXOffset</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>pageY</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>pageYOffset</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>parent</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>parentElement</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>parentLayer</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>parentNode</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>parentWindow</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>pathname</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>personalbar</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>pixelDepth</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>platform</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>plugins</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>port</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>POSITIVE_INFINITY</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>previous</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>previousSibling</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>protocol</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>prototype</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>readyState</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>reason</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>referrer</string>
+			<string>Reflect</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1608,79 +4422,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>returnValue</string>
+			<string>Set</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>right</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>rightContext</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>screenX</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>screenY</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>scrollbars</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>search</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>selectedIndex</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>selection</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>self</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>shiftKey</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>siblingAbove</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>siblingBelow</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>source</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>src</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>srcElement</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>srcFilter</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>status</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>statusbar</string>
+			<string>StopIteration</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1688,51 +4434,59 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>suffixes</string>
+			<string>StyleSheet</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>systemLanguage</string>
+			<string>StyleSheetList</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>tagName</string>
+			<string>Symbol</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>target</string>
+			<string>SyntaxError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>text</string>
+			<string>Text</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>title</string>
+			<string>Touch</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>toolbar</string>
+			<string>TouchEvent</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>top</string>
+			<string>TouchList</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>true</string>
+			<string>TypeError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>type</string>
+			<string>Uint16Array</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>undefined</string>
+			<string>Uint32Array</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>updateInterval</string>
+			<string>Uint8Array</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Uint8ClampedArray</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>URIError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1740,63 +4494,222 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>userAgent</string>
+			<string>URLUtils</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>userLanguage</string>
+			<string>WeakMap</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>userProfile</string>
+			<string>WeakSet</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>value</string>
+			<string>Worker</string>
+		</dict>
+	</array>
+	<key>valuesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>ATTRIBUTE_NODE</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>visibility</string>
+			<string>CDATA_SECTION_NODE</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>visible</string>
+			<string>CLOSE_ABNORMAL</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>vlinkColor</string>
+			<string>CLOSE_GOING_AWAY</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>vspace</string>
+			<string>CLOSE_NO_STATUS</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>which</string>
+			<string>CLOSE_NORMAL</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>width</string>
+			<string>CLOSE_PROTOCOL_ERROR</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>Window</string>
+			<string>CLOSE_TOO_LARGE</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>x</string>
+			<string>CLOSE_UNSUPPORTED</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>y</string>
+			<string>COMMENT_NODE</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>zIndex</string>
+			<string>DOCUMENT_FRAGMENT_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DOCUMENT_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DOCUMENT_TYPE_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DOM_KEY_LOCATION_LEFT</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DOM_KEY_LOCATION_NUMPAD</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DOM_KEY_LOCATION_RIGHT</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DOM_KEY_LOCATION_STANDARD</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DOM_VK_*</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>DONE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>E</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ELEMENT_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>EMPTY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ENTITY_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ENTITY_REFERENCE_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>EPSILON</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>false</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Infinity</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LN10</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LN2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LOADING</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LOG10E</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LOG2E</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>MAX_SAFE_INTEGER</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>MAX_VALUE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>MIN_SAFE_INTEGER</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>MIN_VALUE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NaN</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NEGATIVE_INFINITY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NOTATION_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>null</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>PI</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>POSITIVE_INFINITY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>PROCESSING_INSTRUCTION_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SQRT1_2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SQRT2</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>TEXT_NODE</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>true</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>undefined</string>
 		</dict>
 	</array>
 	<key>variablesArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>arguments</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>this</string>
