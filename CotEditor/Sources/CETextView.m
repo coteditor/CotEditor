@@ -2183,9 +2183,19 @@
 {
     [self stopCompletionTimer];
     
-    if (![self hasMarkedText]) {  // do not perform completion if input is not specified (for Japanese input)
-        [self complete:self];
+    // abord if input is not specified (for Japanese input)
+    if ([self hasMarkedText]) { return; }
+    
+    // abord if the next character is alphanumeric
+    NSUInteger nextCharIndex = NSMaxRange([self selectedRange]);
+    if (nextCharIndex < [[self string] length]) {
+        unichar nextChar = [[self string] characterAtIndex:nextCharIndex];
+        if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:nextChar]) {
+            return;
+        }
     }
+    
+    [self complete:self];
 }
 
 
