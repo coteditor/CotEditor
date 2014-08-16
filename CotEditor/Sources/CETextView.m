@@ -49,6 +49,7 @@
 @property (nonatomic) NSPoint textContainerOriginPoint;
 @property (nonatomic) NSMutableParagraphStyle *paragraphStyle;
 @property (nonatomic) NSTimer *completionTimer;
+@property (nonatomic) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
@@ -373,41 +374,59 @@
 
 // ------------------------------------------------------
 /// 補完リストの表示、選択候補の入力
-- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)isFinal
+- (void)insertCompletion:(NSString *)word forPartialWordRange:(NSRange)charRange movement:(NSInteger)movement isFinal:(BOOL)flag
 // ------------------------------------------------------
 {
     NSEvent *event = [[self window] currentEvent];
-    NSRange range;
-    BOOL shouldReselect = NO;
+    BOOL didComplete = NO;
     
     [self stopCompletionTimer];
+    
+    // 補完の元になる文字列を保存する
+    if (![self particalCompletionWord]) {
+        [self setParticalCompletionWord:[[self string] substringWithRange:charRange]];
+    }
 
-    // complete リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
+    // 補完リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
     // （フラグは CEEditorView > textDidChange: で評価される）
-    if (isFinal && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
+    if (flag && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
         NSString *inputChar = [event charactersIgnoringModifiers];
         unichar theUnichar = [inputChar characterAtIndex:0];
 
         if ([inputChar isEqualToString:[event characters]]) { //キーバインディングの入力などを除外
             // アンダースコアが右矢印キーと判断されることの是正
-            if (([inputChar isEqualToString:@"_"]) && (movement == NSRightTextMovement) && isFinal) {
+            if (([inputChar isEqualToString:@"_"]) && (movement == NSRightTextMovement)) {
                 movement = NSIllegalTextMovement;
-                isFinal = NO;
+                flag = NO;
             }
             if ((movement == NSIllegalTextMovement) &&
                 (theUnichar < 0xF700) && (theUnichar != NSDeleteCharacter)) { // 通常のキー入力の判断
                 [self setNeedsRecompletion:YES];
-            } else {
-                // 補完文字列に括弧が含まれていたら、括弧内だけを選択する準備をする
-                range = [word rangeOfString:@"\\(.*\\)" options:NSRegularExpressionSearch];
-                shouldReselect = (range.location != NSNotFound);
             }
         }
     }
-    [super insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:isFinal];
-    if (shouldReselect) {
-        // 括弧内だけを選択
-        [self setSelectedRange:NSMakeRange(charRange.location + range.location + 1, range.length - 2)];
+    
+    if (flag) {
+        if ((movement == NSIllegalTextMovement) || (movement == NSRightTextMovement)) {  // キャンセル扱い
+            // 保存していた入力を復帰する（大文字／小文字が変更されている可能性があるため）
+            word = [self particalCompletionWord];
+        } else {
+            didComplete = YES;
+        }
+        
+        // 補完の元になる文字列をクリア
+        [self setParticalCompletionWord:nil];
+    }
+    
+    [super insertCompletion:word forPartialWordRange:charRange movement:movement isFinal:flag];
+    
+    if (didComplete) {
+        // 補完文字列に括弧が含まれていたら、括弧内だけを選択
+        NSRange rangeToSelect = [word rangeOfString:@"(?<=\\().*(?=\\))" options:NSRegularExpressionSearch];
+        if (rangeToSelect.location != NSNotFound) {
+            rangeToSelect.location += charRange.location;
+            [self setSelectedRange:rangeToSelect];
+        }
     }
 }
 
@@ -2185,7 +2204,10 @@
     // abord if input is not specified (for Japanese input)
     if ([self hasMarkedText]) { return; }
     
-    // abord if the next character is alphanumeric
+    // abord if selected
+    if ([self selectedRange].length > 0) { return; }
+    
+    // abord if caret is (probably) at the middle of a word
     NSUInteger nextCharIndex = NSMaxRange([self selectedRange]);
     if (nextCharIndex < [[self string] length]) {
         unichar nextChar = [[self string] characterAtIndex:nextCharIndex];
