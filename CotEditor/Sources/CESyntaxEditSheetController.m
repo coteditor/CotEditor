@@ -417,27 +417,24 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 // ------------------------------------------------------
 {
     NSArray *errorMessages = [[CESyntaxManager sharedManager] validateSyntax:[self style]];
-    
+    NSUInteger numberOfErrors = [errorMessages count];
     NSMutableString *resultMessage = [NSMutableString string];
-    if ([errorMessages count] == 0) {
-        [resultMessage setString:NSLocalizedString(@"No error was found.", nil)];
-        
+    
+    if (numberOfErrors == 0) {
+        [resultMessage appendString:NSLocalizedString(@"No error was found.", nil)];
+    } else if (numberOfErrors == 1) {
+        [resultMessage appendString:NSLocalizedString(@"An error was found!", nil)];
     } else {
-        if ([errorMessages count] == 1) {
-            [resultMessage appendString:NSLocalizedString(@"An error was found!\n\n", nil)];
-        } else {
-            [resultMessage appendFormat:NSLocalizedString(@"%i errors were found!\n\n", nil), [errorMessages count]];
-        }
-        
-        NSUInteger lineCount = 1;
-        for (NSString *message in errorMessages) {
-            [resultMessage appendFormat:@"%tu.  %@\n\n", lineCount, message];
-            lineCount++;
-        }
+        [resultMessage appendFormat:NSLocalizedString(@"%i errors were found!", nil), numberOfErrors];
     }
+    
+    for (NSString *message in errorMessages) {
+        [resultMessage appendFormat:@"\n\n%@", message];
+    }
+    
     [[self validationTextView] setString:resultMessage];
     
-    return [errorMessages count];
+    return numberOfErrors;
 }
 
 @end

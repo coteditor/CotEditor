@@ -227,11 +227,11 @@ http://www.aynimac.com/
 "Syntax Validation" = "シンタックスの検証";
 
 // syntax element check result (no error)
-"No error found." = "エラーはありませんでした。";
+"No error was found." = "エラーはありませんでした。";
 // syntax element check result (1 error found)
-"An error was found!\n\n" = "エラーがありました！\n\n";
+"An error was found!" = "エラーがありました！";
 // syntax element check result (2 or more errors found)
-"%i errors were found!\n\n" = "%i 個のエラーがありました！\n\n";
+"%i errors were found!" = "%i 個のエラーがありました！";
 
 
 /* CESyntaxManager */
