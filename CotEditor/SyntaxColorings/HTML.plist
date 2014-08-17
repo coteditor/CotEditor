@@ -1325,8 +1325,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>(?&lt;=\s)version(?=\b[^&lt;&gt;]*\?&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -1373,24 +1371,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>(?&lt;=\s)xml:lang(?=\b[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>(?&lt;=\s)xml:space(?=\b[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>(?&lt;=\s)xmlns(?=\b[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -1399,17 +1391,65 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;==)\s*'</string>
-			<key>endString</key>
-			<string>'</string>
+			<string>&amp;#[0-9]{1,10};</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&lt;?php</string>
-			<key>endString</key>
-			<string>?&gt;</string>
+			<string>&amp;#x[0-9a-f]{1,10};</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;amp;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;copy;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;gt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;hearts;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;infin;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;laquo;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;lt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;nbsp;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;quot;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;raquo;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;reg;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;yen;</string>
 		</dict>
 	</array>
 	<key>commandsArray</key>
@@ -4480,29 +4520,30 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
 		<string>2.1</string>
 	</dict>
 	<key>numbersArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>&lt;?php</string>
+			<key>endString</key>
+			<string>?&gt;</string>
+		</dict>
+	</array>
 	<key>outlineMenuArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
 			<string>&lt;(h1)[^&gt;]*&gt;(.*)&lt;/\1[^&gt;]*&gt;</string>
-			<key>bold</key>
-			<false/>
 			<key>ignoreCase</key>
 			<true/>
-			<key>italic</key>
-			<false/>
 			<key>keyString</key>
 			<string>$1: $2</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -4562,96 +4603,14 @@
 			<string>"</string>
 			<key>endString</key>
 			<string>"</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&amp;#[0-9]{1,10};</string>
+			<string>(?&lt;==)\s*'</string>
+			<key>endString</key>
+			<string>'</string>
 			<key>regularExpression</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;#x[0-9a-f]{1,10};</string>
-			<key>ignoreCase</key>
-			<true/>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;amp;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;copy;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;gt;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;hearts;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;infin;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;laquo;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;lt;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;nbsp;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;quot;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;raquo;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;reg;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;yen;</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>styleName</key>
@@ -4671,5 +4630,7 @@
 			<true/>
 		</dict>
 	</array>
+	<key>variablesArray</key>
+	<array/>
 </dict>
 </plist>

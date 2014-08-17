@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=\s)[[:alnum:]_\-.:]+(?=\s*=)</string>
+			<string>\s[[:alnum:]_\-.:]+\s*(?==)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -15,13 +15,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>%[^&amp;%"]+;(?=[^&lt;&gt;]*[\[&gt;])</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;!\w)'[^']*?'(?=[^&lt;&gt;]*&gt;)</string>
+			<string>&amp;\S+?;</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -181,7 +175,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -201,7 +195,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&amp;\S+?;</string>
+			<string>(?&lt;!\w)'[^']*?'(?=[^&lt;&gt;]*&gt;)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -224,12 +218,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>(?&lt;=&lt;/?)[[:alnum:]_\-.]+:(?=\w)</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>(?&lt;=\b)[[:alnum:]_\-.]+:(?=\w[^&lt;&gt;]*&gt;)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>

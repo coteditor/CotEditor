@@ -115,24 +115,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>\saccent-height\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\saccumulate\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sadditive\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -145,64 +139,48 @@
 		<dict>
 			<key>beginString</key>
 			<string>\salphabetic\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\samplitude\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sarabic-form\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sascent\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sattributeName\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sattributeType\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sazimuth\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sbaseFrequency\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -215,64 +193,48 @@
 		<dict>
 			<key>beginString</key>
 			<string>\sbaseProfile\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sbbox\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sbegin\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sbias\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sby\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\scalcMode\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\scap-height\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sclass\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -297,8 +259,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>\sclipPathUnits\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -335,16 +295,12 @@
 		<dict>
 			<key>beginString</key>
 			<string>\scontentScriptType\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\scontentStyleType\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -357,40 +313,30 @@
 		<dict>
 			<key>beginString</key>
 			<string>\scx\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\scy\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sd\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sdescent\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sdiffuseConstant\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -409,8 +355,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>\sdivisor\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -423,40 +367,30 @@
 		<dict>
 			<key>beginString</key>
 			<string>\sdur\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sdx\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sdy\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sedgeMode\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\selevation\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -475,24 +409,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>\send\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sexponent\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sexternalResourcesRequired\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -565,40 +493,30 @@
 		<dict>
 			<key>beginString</key>
 			<string>\sfont-stretch\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sfont-style\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sfont-variant\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sfont-weight\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\sformat\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -1759,11 +1677,57 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;==)\s*'</string>
-			<key>endString</key>
-			<string>'</string>
+			<string>&amp;#[0-9]+;</string>
 			<key>regularExpression</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;amp;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;copy;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;gt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;hearts;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;infin;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;laquo;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;lt;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;nbsp;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;quot;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;raquo;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;reg;</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&amp;yen;</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -2952,723 +2916,565 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?a\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?a\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?altGlyph\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?altGlyph\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?altGlyphDef\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?altGlyphDef\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?altGlyphItem\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?altGlyphItem\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?animate\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?animate\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?animateColor\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?animateColor\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?animateMotion\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?animateMotion\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?animateTransform\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?animateTransform\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?circle\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?circle\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?clipPath\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?clipPath\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?color-profile\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?color-profile\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?cursor\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?cursor\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?defs\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?defs\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?desc\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?desc\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?ellipse\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?ellipse\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feBlend\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feBlend\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feColorMatrix\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feColorMatrix\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feComponentTransfer\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feComponentTransfer\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feComposite\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feComposite\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feConvolveMatrix\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feConvolveMatrix\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feDiffuseLighting\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feDiffuseLighting\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feDisplacementMap\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feDisplacementMap\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feDistantLight\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feDistantLight\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feFlood\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feFlood\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feFuncA\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feFuncA\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feFuncB\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feFuncB\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feFuncG\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feFuncG\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feFuncR\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feFuncR\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feGaussianBlur\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feGaussianBlur\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feImage\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feImage\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feMerge\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feMerge\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feMergeNode\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feMergeNode\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feMorphology\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feMorphology\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feOffset\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feOffset\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?fePointLight\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?fePointLight\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feSpecularLighting\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feSpecularLighting\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feSpotLight\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feSpotLight\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feTile\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feTile\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?feTurbulence\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?feTurbulence\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?filter\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?filter\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?font-face-format\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?font-face-format\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?font-face-name\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?font-face-name\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?font-face-src\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?font-face-src\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?font-face-uri\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?font-face-uri\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?font-face\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?font-face\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?font\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?font\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?foreignObject\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?foreignObject\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?g\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?g\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?glyph\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?glyph\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?glyphRef\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?glyphRef\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?hkern\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?hkern\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?image\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?image\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?line\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?)(svg:)?line\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?linearGradient\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?linearGradient\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?marker\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?marker\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?mask\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?mask\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?metadata\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?metadata\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?missing-glyph\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?missing-glyph\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?mpath\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?mpath\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?path\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?path\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?pattern\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?pattern\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?polygon\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?polygon\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?polyline\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?polyline\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?radialGradient\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?radialGradient\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?rect\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?rect\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?script\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?script\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?set\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?set\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?stop\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?stop\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?style\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?style\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?svg\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?svg\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?switch\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?switch\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?symbol\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?symbol\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?text\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?text\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?textPath\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?textPath\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?title\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?title\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?tref\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?tref\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?tspan\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?tspan\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?use\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?use\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?view\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?view\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?)(svg:)?vkern\b(?=[^&lt;&gt;]*&gt;)</string>
-			<key>ignoreCase</key>
-			<false/>
+			<string>(?&lt;=&lt;/?)(svg:)?vkern\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)contributor\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)contributor\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)creator\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)creator\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)date\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)date\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)description\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)description\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)format\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)format\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)identifier\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)identifier\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)language\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)language\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)publisher\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)publisher\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)relation\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)relation\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)rights\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)rights\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)source\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)source\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)subject\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)subject\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)title\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)title\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=&lt;/?dc:)type\b(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;=&lt;/?dc:)type\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -3682,7 +3488,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -3720,88 +3526,14 @@
 			<string>"</string>
 			<key>endString</key>
 			<string>"</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>&amp;#[0-9]+;</string>
+			<string>(?&lt;==)\s*'</string>
+			<key>endString</key>
+			<string>'</string>
 			<key>regularExpression</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;amp;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;copy;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;gt;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;hearts;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;infin;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;laquo;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;lt;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;nbsp;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;quot;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;raquo;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;reg;</string>
-			<key>regularExpression</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>&amp;yen;</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>styleName</key>
