@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>attributesArray</key>
+	<array/>
 	<key>charactersArray</key>
 	<array>
 		<dict>
@@ -12,32 +14,14 @@
 			<key>regularExpression</key>
 			<false/>
 		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>'\''</string>
-		</dict>
 	</array>
 	<key>commandsArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>break</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>continue</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>goto</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>return</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>throw</string>
+			<string>(?&lt;=\.)[a-z$_][a-zA-Z0-9$_]*(?=\()</string>
+			<key>regularExpression</key>
+			<true/>
 		</dict>
 	</array>
 	<key>commentDelimiters</key>
@@ -66,6 +50,14 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>assert</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>break</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>case</string>
 		</dict>
 		<dict>
@@ -78,7 +70,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>const</string>
+			<string>continue</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -91,6 +83,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>else</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>enum</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -154,6 +150,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>return</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>static</string>
 		</dict>
 		<dict>
@@ -170,6 +170,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>throw</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>throws</string>
 		</dict>
 		<dict>
@@ -179,10 +183,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>try</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>void</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -212,7 +212,33 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>[ \t\f]0[xX][0-9a-fA-F]+[lL]*</string>
+			<string>\b((\d+\.\d*)|(\.\d+))(e[-+]?\d+)?([lfud]|ul)?\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0b[01_]+([lfud]|ul)?\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0x[0-9a-f_]+([lfud]|ul)?\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b[0-9_]+([lfud]|ul)?\b</string>
+			<key>ignoreCase</key>
+			<true/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -221,23 +247,25 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>^([[:blank:]]*)(private)\s*([^{]*)(?=\{)</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^([[:blank:]]*)(protected)\s*([^{]*)(?=\{)</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^([[:blank:]]*)(public)\s*([^{]*)(?=\{)</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>^[\t ]*(class)(.*)$</string>
-			<key>ignoreCase</key>
+			<string>^([\t ]*)(class)(.*?)(?=(\{|$))</string>
+			<key>bold</key>
 			<true/>
+			<key>ignoreCase</key>
+			<false/>
 			<key>keyString</key>
-			<string>$1 : $2</string>
+			<string>$1$2 : $3</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^([\t ]*)(private)[\t ]+(.*)(?=\{)</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^([\t ]*)(protected)[\t ]+(.*)(?=\{)</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>^([\t ]*)(public)[\t ]+(.*)(?=\{)</string>
 		</dict>
 	</array>
 	<key>stringsArray</key>
@@ -285,9 +313,23 @@
 			<key>beginString</key>
 			<string>short</string>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>String</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>void</string>
+		</dict>
 	</array>
 	<key>valuesArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>\b[A-Z][A-Z0-9_]+\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>false</string>
