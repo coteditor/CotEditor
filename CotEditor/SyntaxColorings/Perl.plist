@@ -16,7 +16,7 @@
 			<key>beginString</key>
 			<string>(?s)&lt;&lt;\s*'([0-9a-zA-Z_]+)'\s*;.+?\n\1\n</string>
 			<key>regularExpression</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -24,7 +24,7 @@
 			<key>endString</key>
 			<string>/</string>
 			<key>regularExpression</key>
-			<false/>
+			<true/>
 		</dict>
 	</array>
 	<key>commandsArray</key>
@@ -47,6 +47,14 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>AUTOLOAD</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>BEGIN</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>bind</string>
 		</dict>
 		<dict>
@@ -59,11 +67,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>break</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>caller</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>chdir</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>CHECK</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -127,11 +143,23 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>DESTROY</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>die</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>dump</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>each</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>END</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -179,10 +207,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>exp</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>fcntl</string>
 		</dict>
 		<dict>
@@ -196,6 +220,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>fork</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>format</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -327,11 +355,11 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>import</string>
+			<string>index</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>index</string>
+			<string>INIT</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -427,7 +455,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>no</string>
+			<string>not</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -491,7 +519,15 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>readline</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>readlink</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>readpipe</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -536,6 +572,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>rmdir</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>say</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -743,6 +783,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>UNITCHECK</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>unlink</string>
 		</dict>
 		<dict>
@@ -756,14 +800,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>untie</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>url_decode</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>url_encode</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -832,7 +868,31 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>__FILE__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__LINE__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>__PACKAGE__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>and</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>cmp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>continue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>CORE</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -848,6 +908,14 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>eq</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>exp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>for</string>
 		</dict>
 		<dict>
@@ -856,7 +924,39 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>ge</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>gt</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>if</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>le</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lock</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>lt</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>m</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ne</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>no</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -868,7 +968,35 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>q</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>qq</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>qr</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>qw</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>qx</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>s</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>sub</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>tr</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -881,6 +1009,14 @@
 		<dict>
 			<key>beginString</key>
 			<string>while</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>xor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>y</string>
 		</dict>
 	</array>
 	<key>metadata</key>
@@ -900,7 +1036,7 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;![0-9a-z_$])[0-9.][0-9._]*(e-?[0-9._]+)?\b</string>
+			<string>(?&lt;![0-9a-z_$])[0-9.][0-9._]*(e[-+][0-9._]+)?\b</string>
 			<key>ignoreCase</key>
 			<true/>
 			<key>regularExpression</key>
@@ -968,13 +1104,13 @@
 			<key>beginString</key>
 			<string>(?s)&lt;&lt;[ \t]*"?([0-9a-zA-Z_]+)"?[ \t]*;.+?\n\1\n</string>
 			<key>regularExpression</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>/[^\n/]*/[^\n/]*/</string>
+			<string>/[^\n/]*/[^\n/]*/[a-z]*</string>
 			<key>regularExpression</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1190,18 +1326,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>%INC</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>__FILE__</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>__LINE__</string>
-			<key>regularExpression</key>
-			<true/>
 		</dict>
 	</array>
 	<key>variablesArray</key>
