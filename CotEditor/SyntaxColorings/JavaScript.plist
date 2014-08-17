@@ -305,8 +305,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>accuracy</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1643,8 +1641,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>translate</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -4025,7 +4021,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>

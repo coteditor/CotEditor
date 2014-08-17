@@ -978,7 +978,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -1032,8 +1032,6 @@
 			<true/>
 			<key>keyString</key>
 			<string>$1</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1054,8 +1052,6 @@
 			<true/>
 			<key>keyString</key>
 			<string>data $1</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>

@@ -3936,10 +3936,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>function</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -3972,10 +3968,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>while</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>metadata</key>
@@ -3985,7 +3977,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -4114,8 +4106,6 @@
 			<string>FALSE</string>
 			<key>ignoreCase</key>
 			<true/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -4182,8 +4172,6 @@
 			<string>TRUE</string>
 			<key>ignoreCase</key>
 			<true/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>variablesArray</key>

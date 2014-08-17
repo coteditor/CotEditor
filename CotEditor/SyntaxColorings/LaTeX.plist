@@ -195,8 +195,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>[\\¥]date\{.*\}</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -221,8 +219,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>[\\¥]part\{.+\}</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -266,7 +262,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>

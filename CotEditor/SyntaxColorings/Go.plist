@@ -268,8 +268,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>[\t ]*func +\w+\(.*?\)</string>
-			<key>italic</key>
-			<false/>
 		</dict>
 	</array>
 	<key>stringsArray</key>

@@ -149,7 +149,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -179,8 +179,6 @@
 			<true/>
 			<key>keyString</key>
 			<string>    $1</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -189,20 +187,14 @@
 			<true/>
 			<key>keyString</key>
 			<string>$1</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>^#[\t ]?([^#][^\n]*?)#*$</string>
 			<key>bold</key>
 			<true/>
-			<key>ignoreCase</key>
-			<false/>
 			<key>keyString</key>
 			<string>$1</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -211,16 +203,12 @@
 			<true/>
 			<key>keyString</key>
 			<string>    $1</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>^#{3}[\t ]?([^#][^\n]*?)#*$</string>
 			<key>keyString</key>
 			<string>        $1</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -274,16 +262,12 @@
 		<dict>
 			<key>beginString</key>
 			<string>(?#HTML tag)(?&lt;!\\)&lt;/[a-zA-Z][a-zA-Z1-6]*&gt;</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>(?#HTML tag)(?&lt;!\\)&lt;[a-zA-Z][a-zA-Z1-6]*(\s[^&lt;&gt;]+)?&gt;</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>

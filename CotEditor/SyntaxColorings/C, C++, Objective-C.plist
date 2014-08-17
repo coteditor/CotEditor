@@ -92,8 +92,6 @@
 			<string>'</string>
 			<key>endString</key>
 			<string>'</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>commandsArray</key>
@@ -517,7 +515,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>

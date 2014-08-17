@@ -9,680 +9,454 @@
 		<dict>
 			<key>beginString</key>
 			<string>.class</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>__id__</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>__send__</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>abort</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>at_exit</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>attr</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>attr_accessor</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>attr_reader</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>attr_writer</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>autoload</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>autoload?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>binding</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>block_given?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>callcc</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>caller</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>catch</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>chomp</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>chomp!</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>chop</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>chop!</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>clone</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>display</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>dup</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>eql?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>equal?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>eval</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>exec</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>exit</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>exit!</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>extend</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>fail</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>fork</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>format</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>freeze</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>frozen?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>gets</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>global_variables</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>gsub</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>gsub!</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>hash</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>include</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>initialize</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>initialize_copy</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>inspect</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>instance_eval</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>instance_of?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>instance_variable_get</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>instance_variable_set</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>instance_variables</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>is_a?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>iterator?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>kind_of?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>lambda</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>load</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>local_variables</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>loop</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>method</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>method_missing</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>methods</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>nil?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>object_id</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>open</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>p</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>print</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>private</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>private_methods</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>proc</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>protected</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>protected_methods</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>public</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>public_methods</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>putc</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>puts</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>raise</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>rand</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>readline</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>readlines</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>remove_instance_variable</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>require</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>respond_to?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>scan</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>select</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>send</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>set_trace_func</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>singleton_method_added</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>singleton_method_removed</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>singleton_method_undefined</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>singleton_methods</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>sleep</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>spawn</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>split</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>sprintf</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>srand</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>sub</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>sub!</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>syscall</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>system</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>taint</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>tainted?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>test</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>throw</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>to_a</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>to_ary</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>to_hash</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>to_int</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>to_s</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>to_str</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>trace_var</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>trap</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>type</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>untaint</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>untrace_var</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>warn</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>commentDelimiters</key>
@@ -714,208 +488,138 @@
 		<dict>
 			<key>beginString</key>
 			<string>alias</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>and</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>BEGIN</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>begin</string>
-			<key>ignoreCase</key>
-			<false/>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>break</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>case</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>def</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>defined?</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>do</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>else</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>elsif</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>END</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>end</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>ensure</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>for</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>if</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>in</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>module</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>next</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>nil</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>not</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>or</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>redo</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>rescue</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>retry</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>return</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>super</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>then</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>undef</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>unless</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>until</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>when</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>while</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>yield</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 	</array>
 	<key>metadata</key>
@@ -927,7 +631,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -953,8 +657,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>(^[\t ]*class)[\t ]+(\w*)</string>
-			<key>bold</key>
-			<false/>
 			<key>keyString</key>
 			<string>$1 $2</string>
 			<key>underline</key>
@@ -984,8 +686,6 @@
 			<string>"</string>
 			<key>endString</key>
 			<string>"</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>

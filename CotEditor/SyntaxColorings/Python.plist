@@ -1271,8 +1271,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>print</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1310,7 +1308,7 @@ Maintained by 1024jp since 2013.</string>
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -1360,14 +1358,10 @@ Maintained by 1024jp since 2013.</string>
 			<true/>
 			<key>keyString</key>
 			<string>$1$2</string>
-			<key>underline</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>^([\t ]*)def[\t ]+(.+?):?[\t]*$</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>keyString</key>
 			<string>$1$2</string>
 		</dict>

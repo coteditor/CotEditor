@@ -181,7 +181,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -207,8 +207,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>^([\t ]*\w+): (.*)-&gt;</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>keyString</key>
 			<string>$1</string>
 		</dict>
@@ -229,8 +227,6 @@
 			<string>^class (.*)</string>
 			<key>bold</key>
 			<true/>
-			<key>ignoreCase</key>
-			<false/>
 			<key>keyString</key>
 			<string>$1</string>
 		</dict>

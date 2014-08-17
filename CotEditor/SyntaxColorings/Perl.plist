@@ -9,8 +9,6 @@
 			<string>'</string>
 			<key>endString</key>
 			<string>'</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -1026,7 +1024,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-17</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -1045,16 +1043,12 @@
 		<dict>
 			<key>beginString</key>
 			<string>\b0b[01_]+\b</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>\b0x[0-9a-fA-F_]+\b</string>
-			<key>ignoreCase</key>
-			<false/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -1097,8 +1091,6 @@
 			<string>"</string>
 			<key>endString</key>
 			<string>"</string>
-			<key>regularExpression</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>beginString</key>
