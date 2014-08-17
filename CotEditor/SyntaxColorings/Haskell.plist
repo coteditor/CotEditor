@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>attributesArray</key>
+	<array/>
 	<key>charactersArray</key>
 	<array>
 		<dict>
@@ -9,6 +11,156 @@
 			<string>'.'</string>
 			<key>regularExpression</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\\o[0-7]+'</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\\x[0-9a-fA-F]+'</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\^[A-Z@\[\]\^_]'</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\ACK'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\BEL'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\BS'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\CAN'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\CR'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\DC1'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\DC2'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\DC3'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\DC4'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\DEL'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\DLE'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\EM'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\ENQ'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\ESC'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\ETB'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\ETX'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\FF'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\FS'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\GS'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\HT'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\LF'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\NAK'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\NUL'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\RS'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\SHO'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\SI'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\SO'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\SP'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\STX'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\SUB'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\SYN'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\US'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>'\VT'</string>
 		</dict>
 	</array>
 	<key>commandsArray</key>
@@ -722,6 +874,10 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>_</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>case</string>
 		</dict>
 		<dict>
@@ -747,6 +903,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>else</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>foreign</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -828,13 +988,31 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=\W)-?\d+(\.\d+)*</string>
+			<string>\b0o[0-7]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;=\W)0[xX]([0-9a-fA-F])+</string>
+			<string>\b0x[0-9a-f]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b\d+\.\d+(e[-+]\d+)?\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b\d+\b</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
@@ -899,13 +1077,168 @@
 	</array>
 	<key>styleName</key>
 	<string>Haskell</string>
-	<key>valuesArray</key>
+	<key>typesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
 			<string>\b[A-Z][\w_\']*</string>
 			<key>regularExpression</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Bool</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Bounded</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Char</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Double</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Either</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Enum</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Eq</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Floating</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Fractional</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Functor</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Int</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Integer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Integral</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>IO</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>IOError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Maybe</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Monad</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>MonadPlus</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Num</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Ord</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Ordering</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Rational</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Read</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Real</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>RealFloat</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>RealFrac</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Show</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>String</string>
+		</dict>
+	</array>
+	<key>valuesArray</key>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>EQ</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>False</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>GT</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Just</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Left</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LT</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Nothing</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Right</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>True</string>
 		</dict>
 	</array>
 </dict>
