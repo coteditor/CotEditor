@@ -277,8 +277,13 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
     [super runModalSavePanelForSaveOperation:saveOperation delegate:delegate
                              didSaveSelector:didSaveSelector contextInfo:contextInfo];
     
-    // ファイル名に拡張子がない場合は追加する
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendExtensionAtSaving]) {
+    // ファイル名に拡張子がない場合は現在のシンタックスに対応したものを追加する
+    {
+        NSString *styleName = [[self editor] syntaxStyleName];
+        NSString *extension = [[CESyntaxManager sharedManager] defaultExensionWithStyleName:styleName];
+        
+        if (!extension) { return; }
+        
         NSSavePanel *savePanel = (NSSavePanel *)[[self windowForSheet] attachedSheet];
         NSString *fileName = [savePanel nameFieldStringValue];
         
@@ -292,11 +297,8 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             }
         }
         if (text) {
-            NSString *styleName = [[self editor] syntaxStyleName];
-            NSString *extension = [[CESyntaxManager sharedManager] defaultExensionWithStyleName:styleName];
-            
-            
             [text setString:[fileName stringByAppendingPathExtension:extension]];
+            
             // 拡張子をのぞいた部分を選択状態にする
             [text setSelectedRange:NSMakeRange(0, [[fileName stringByDeletingPathExtension] length])];
         }

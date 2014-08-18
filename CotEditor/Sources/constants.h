@@ -86,7 +86,6 @@ extern NSString *const k_key_showStatusBarFileSize;
 extern NSString *const k_key_countLineEndingAsChar;
 extern NSString *const k_key_syncFindPboard;
 extern NSString *const k_key_inlineContextualScriptMenu;
-extern NSString *const k_key_appendExtensionAtSaving;
 extern NSString *const k_key_showNavigationBar;
 extern NSString *const k_key_wrapLines;
 extern NSString *const k_key_defaultEncodingCode;
