@@ -94,7 +94,6 @@
                                k_key_countLineEndingAsChar: @YES,
                                k_key_syncFindPboard: @NO,
                                k_key_inlineContextualScriptMenu: @NO,
-                               k_key_appendExtensionAtSaving: @YES,
                                k_key_showNavigationBar: @YES,
                                k_key_wrapLines: @YES,
                                k_key_defaultLineEndCharCode: @0,

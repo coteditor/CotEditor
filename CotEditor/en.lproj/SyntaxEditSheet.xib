@@ -3151,6 +3151,7 @@
                                                             <binding destination="197" name="content" keyPath="arrangedObjects" id="oDz-PV-2aA"/>
                                                             <binding destination="197" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="oDz-PV-2aA" id="fMV-EB-m79"/>
                                                             <binding destination="197" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="fMV-EB-m79" id="U0u-zf-UiV"/>
+                                                            <outlet property="dataSource" destination="197" id="QFV-cQ-Kb0"/>
                                                             <outlet property="delegate" destination="-2" id="686"/>
                                                         </connections>
                                                     </tableView>
@@ -3887,7 +3888,7 @@ DQ
                 <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.completionsArray" id="bxK-T1-79n"/>
             </connections>
         </arrayController>
-        <arrayController clearsFilterPredicateOnInsertion="NO" id="197" userLabel="Extensions Controller">
+        <arrayController clearsFilterPredicateOnInsertion="NO" id="197" userLabel="Extensions Controller" customClass="CEDraggableArrayController">
             <declaredKeys>
                 <string>keyString</string>
             </declaredKeys>

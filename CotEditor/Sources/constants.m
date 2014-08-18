@@ -82,7 +82,6 @@ NSString *const k_key_showStatusBarFileSize = @"showStatusBarFileSize";
 NSString *const k_key_countLineEndingAsChar = @"countLineEndingAsChar";
 NSString *const k_key_syncFindPboard = @"syncFindPboard";
 NSString *const k_key_inlineContextualScriptMenu = @"inlineContextualScriptMenu";
-NSString *const k_key_appendExtensionAtSaving = @"appendExtensionAtSaving";
 NSString *const k_key_showNavigationBar = @"showNavigationBar";
 NSString *const k_key_wrapLines = @"wrapLines";
 NSString *const k_key_defaultEncodingCode = @"defaultEncoding";

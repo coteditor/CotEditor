@@ -54,6 +54,7 @@ extern NSString *const CESyntaxDidUpdateNotification;
 // public methods
 - (NSArray *)styleNames;
 - (NSString *)styleNameFromFileName:(NSString *)fileName;
+- (NSString *)defaultExensionWithStyleName:(NSString *)styleName;
 - (NSDictionary *)styleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName;
 - (NSDictionary *)emptyStyle;
