@@ -62,6 +62,7 @@
 		2A3FB2B218EDBB1400D9CB2C /* swapArrowTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A45AB9B1960BDED0020E72B /* Comment.tiff */; };
+		2A4DB13D19A265BA005A4F7C /* CEDraggableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */; };
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
 		2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411C8198549A7008B43DA /* CENavigationBarView.m */; };
@@ -293,6 +294,8 @@
 		2A3FB2B118EDBB1400D9CB2C /* swapArrowTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = swapArrowTemplate.pdf; path = images/swapArrowTemplate.pdf; sourceTree = "<group>"; };
 		2A45AB9B1960BDED0020E72B /* Comment.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Comment.tiff; path = toolbarIcons/Comment.tiff; sourceTree = "<group>"; };
 		2A47A70B18CC8A7C0076B49A /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
+		2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEDraggableArrayController.h; sourceTree = "<group>"; };
+		2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEDraggableArrayController.m; sourceTree = "<group>"; };
 		2A5411BE1983E5FA008B43DA /* CESplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESplitViewController.h; sourceTree = "<group>"; };
 		2A5411BF1983E5FA008B43DA /* CESplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESplitViewController.m; sourceTree = "<group>"; };
 		2A5411C219852C1C008B43DA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NavigationBar.xib; sourceTree = "<group>"; };
@@ -599,6 +602,8 @@
 				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
 				2A68F93618FB04F300673440 /* CEMenuItemCell.h */,
 				2A68F93718FB04F300673440 /* CEMenuItemCell.m */,
+				2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */,
+				2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */,
 			);
 			name = Sheets;
 			sourceTree = "<group>";
@@ -1142,6 +1147,7 @@
 				2A149DC51901885A00A9D6EF /* CEKeyBindingsController.m in Sources */,
 				8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */,
 				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
+				2A4DB13D19A265BA005A4F7C /* CEDraggableArrayController.m in Sources */,
 				8CB0122E07CA0EFA00221EDC /* CEToolbarController.m in Sources */,
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				2A73F17D18EF573B00BFB5E5 /* CEByteCountTransformer.m in Sources */,
