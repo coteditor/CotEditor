@@ -32,13 +32,17 @@
 #import "constants.h"
 
 
+// constants
+static NSString *const CERowsType = @"CERowsType";
+static NSInteger const k_lastRow = -1;
+
+
 @interface CEPrefEncodingDataSource ()
 
 @property (nonatomic) NSMutableArray *encodingsForTmp;
-@property (nonatomic, weak) NSIndexSet *draggedIndexes;  // ドラッグ中にのみ必要なオブジェクトなので、retainしない
 
 @property (nonatomic, weak) IBOutlet NSTableView *tableView;
-@property (nonatomic, weak) IBOutlet NSButton *delSeparatorButton;
+@property (nonatomic, weak) IBOutlet NSButton *deleteSeparatorButton;
 @property (nonatomic, weak) IBOutlet NSButton *revertButton;
 
 @end
@@ -131,14 +135,13 @@
 // ------------------------------------------------------
 {
     // ドラッグ受付タイプを登録
-    [tableView registerForDraggedTypes:@[k_dropMyselfPboardType]];
+    [tableView registerForDraggedTypes:@[CERowsType]];
     // すべての選択を解除して、改めてドラッグされる行を選択し直す
     [tableView deselectAll:self];
     [tableView selectRowIndexes:rowIndexes byExtendingSelection:YES];
     // ドラッグされる行の保持、Pasteboard の設定
-    [self setDraggedIndexes:rowIndexes];
-    [pboard declareTypes:@[k_dropMyselfPboardType] owner:nil];
-    [pboard setData:[NSData data] forType:k_dropMyselfPboardType];
+    [pboard declareTypes:@[CERowsType] owner:nil];
+    [pboard setPropertyList:[NSKeyedArchiver archivedDataWithRootObject:rowIndexes] forType:CERowsType];
 
     return YES;
 }
@@ -146,32 +149,32 @@
 
 // ------------------------------------------------------
 /// tableViewへドラッグアイテムが入ってきたときの判定
-- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)inOperation
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
 // ------------------------------------------------------
 {
-    if ([info draggingSource]) { // = Local dragging
-        BOOL isValid = (((row == k_lastRow) && (inOperation == NSTableViewDropOn)) ||
-                        ((row != k_lastRow) && (inOperation == NSTableViewDropAbove)));
+    if ([info draggingSource] == tableView) {  // = Local dragging
+        BOOL isValid = (((row == k_lastRow) && (operation == NSTableViewDropOn)) ||
+                        ((row != k_lastRow) && (operation == NSTableViewDropAbove)));
         
         return isValid ? NSDragOperationGeneric : NSDragOperationNone;
     }
+    
     return NSDragOperationNone;
 }
 
 
 // ------------------------------------------------------
 /// ドロップの許可、アイテムの移動挿入
-- (BOOL)tableView:(NSTableView *)tableView 
-        acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row
-        dropOperation:(NSTableViewDropOperation)operation
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 // ------------------------------------------------------
 {
+    NSIndexSet *originalRows = [NSKeyedUnarchiver unarchiveObjectWithData:[[info draggingPasteboard] propertyListForType:CERowsType]];
     NSMutableIndexSet *selectIndexSet = [NSMutableIndexSet indexSet];
     NSMutableArray *draggingArray = [NSMutableArray array];
     NSMutableArray *newArray = [[self encodingsForTmp] mutableCopy];
     __block NSInteger newRow = row;
 
-    [[self draggedIndexes] enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL *stop) {
+    [originalRows enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL *stop) {
         if (idx < [newArray count]) {
             [draggingArray addObject:[newArray[idx] copy]];
             [newArray removeObjectAtIndex:idx];
@@ -222,13 +225,13 @@
         NSUInteger i = 0;
         for (NSNumber *encodingNumber in [self encodingsForTmp]) {
             if ([selectedIndexes containsIndex:i] && ([encodingNumber unsignedLongValue] == kCFStringEncodingInvalidId)) {
-                [[self delSeparatorButton] setEnabled:YES];
+                [[self deleteSeparatorButton] setEnabled:YES];
                 return;
             }
             i++;
         }
     }
-    [[self delSeparatorButton] setEnabled:NO];
+    [[self deleteSeparatorButton] setEnabled:NO];
 }
 
 

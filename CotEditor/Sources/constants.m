@@ -392,10 +392,6 @@ NSString *const k_helpPrefAnchors[] = {
 // button
 NSInteger const k_okButtonTag = 100;
 
-// Encoding list edit
-NSString *const k_dropMyselfPboardType = @"dropMyself";
-NSInteger const k_lastRow = -1;
-
 
 
 #pragma mark Document Window

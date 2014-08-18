@@ -414,10 +414,6 @@ extern NSString *const k_helpPrefAnchors[];
 // button
 extern NSInteger const k_okButtonTag;
 
-// Encoding list edit
-extern NSString *const k_dropMyselfPboardType;
-extern NSInteger const k_lastRow;
-
 
 
 #pragma mark Document Window

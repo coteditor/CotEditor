@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListSheetController">
@@ -211,7 +211,7 @@ DQ
         </window>
         <customObject id="47" userLabel="Encoding Data Source" customClass="CEPrefEncodingDataSource">
             <connections>
-                <outlet property="delSeparatorButton" destination="55" id="hck-pj-wy1"/>
+                <outlet property="deleteSeparatorButton" destination="55" id="r2L-bk-2H6"/>
                 <outlet property="revertButton" destination="700" id="wWk-oz-yr2"/>
                 <outlet property="tableView" destination="39" id="nzf-UN-llV"/>
             </connections>
