@@ -46,15 +46,15 @@
 	<array>
 		<dict>
 			<key>keyString</key>
-			<string>mkd</string>
-		</dict>
-		<dict>
-			<key>keyString</key>
 			<string>md</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
 			<string>markdown</string>
+		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>mkd</string>
 		</dict>
 		<dict>
 			<key>keyString</key>

@@ -46,11 +46,11 @@
 	<array>
 		<dict>
 			<key>keyString</key>
-			<string>rst</string>
+			<string>rest</string>
 		</dict>
 		<dict>
 			<key>keyString</key>
-			<string>rest</string>
+			<string>rst</string>
 		</dict>
 	</array>
 	<key>keywordsArray</key>
