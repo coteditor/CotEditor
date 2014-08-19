@@ -842,7 +842,14 @@
 		<string>#</string>
 	</dict>
 	<key>commentsArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>=pod</string>
+			<key>endString</key>
+			<string>=cut</string>
+		</dict>
+	</array>
 	<key>extensions</key>
 	<array>
 		<dict>
