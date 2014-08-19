@@ -486,7 +486,10 @@
 }
 
 
+// ------------------------------------------------------
+/// テーマのリストを更新
 - (void)setupThemeList
+// ------------------------------------------------------
 {
     [self setThemeNames:[[CEThemeManager sharedManager] themeNames]];
     [[self themeTableView] reloadData];

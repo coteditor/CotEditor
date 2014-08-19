@@ -31,6 +31,6 @@
 @import Cocoa;
 
 
-@interface CEFormatPaneController : NSViewController <NSTableViewDelegate>
+@interface CEFormatPaneController : NSViewController
 
 @end

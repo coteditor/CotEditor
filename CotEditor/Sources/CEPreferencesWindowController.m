@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
     static id shared = nil;
     
     dispatch_once(&predicate, ^{
-        shared = [[self alloc] init];
+        shared = [[self alloc] initWithWindowNibName:@"PreferencesWindow"];
     });
     
     return shared;
@@ -103,10 +103,10 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 
 // ------------------------------------------------------
 /// 初期化
-- (instancetype)init
+- (instancetype)initWithWindowNibName:(NSString *)windowNibName
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"PreferencesWindow"];
+    self = [super initWithWindowNibName:windowNibName];
     if (self) {
         // 各ペインを読み込む
         [self setGeneralPaneController:[[NSViewController alloc] initWithNibName:@"GeneralPane" bundle:nil]];
@@ -152,9 +152,6 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 {
     // 編集中の設定値も保存
     [[self window] makeFirstResponder:[self window]];
-    
-    // FileDrop 配列コントローラの値を書き戻す
-    [[self fileDropPaneController] writeBackFileDropArray];
 }
 
 

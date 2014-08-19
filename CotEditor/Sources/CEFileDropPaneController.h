@@ -33,6 +33,4 @@
 
 @interface CEFileDropPaneController : NSViewController
 
-- (void)writeBackFileDropArray;
-
 @end

@@ -38,7 +38,7 @@
 #import "constants.h"
 
 
-@interface CEFormatPaneController ()
+@interface CEFormatPaneController () <NSTableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingMenuInNew;

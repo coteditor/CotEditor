@@ -33,6 +33,4 @@
 
 @interface CEPrintPaneController : NSViewController
 
-- (void)changeFont:(id)sender;
-
 @end
