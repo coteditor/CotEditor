@@ -39,7 +39,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="resetOutlineDataArrayToFactoryDefaults:" target="-2" id="138"/>
+                            <action selector="setToFactoryDefaults:" target="-2" id="HdE-cf-zJw"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="70">
@@ -55,7 +55,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeKeyBindingEditSheet:" target="-2" id="84"/>
+                            <action selector="closeSheet:" target="-2" id="yMR-Sr-QKg"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="68">
@@ -71,7 +71,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeKeyBindingEditSheet:" target="-2" id="91"/>
+                            <action selector="closeSheet:" target="-2" id="LG7-ak-rgR"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="64">
