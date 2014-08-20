@@ -28,12 +28,12 @@
  */
 
 #import "CEKeyBindingSheetController.h"
+#import "CEKeyBindingSheet.h"
 #import "CEKeyBindingManager.h"
-#import "CEApplication.h"
 #import "constants.h"
 
 
-@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
+@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (nonatomic) CEKeyBindingType keyBindingsMode;
 @property (nonatomic) NSMutableArray *outlineDataArray;
@@ -82,11 +82,6 @@
                 _duplicateKeyCheckArray = [_outlineDataArray mutableCopy];  // （システム標準のキーバインディングとの重複は、チェックしない）
                 break;
         }
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(addCatchedMenuShortcutString:)
-                                                     name:CEDidCatchMenuShortcutNotification
-                                                   object:NSApp];
     }
     return self;
 }
@@ -149,6 +144,11 @@
         }
             break;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addCatchedMenuShortcutString:)
+                                                 name:CEDidCatchMenuShortcutNotification
+                                               object:[self window]];
 }
 
 
@@ -229,7 +229,7 @@
             // （値が既にセットされている時は更新しない）
             [self setCurrentKeySpecChars:[theItem valueForKey:identifier]];
         }
-        [(CEApplication *)NSApp setKeyCatchMode:CECatchMenuShortCutMode];
+        [(CEKeyBindingSheet *)[self window] setKeyCatchMode:CECatchMenuShortCutMode];
         
         [[self deleteKeyButton] setEnabled:YES];
         
@@ -290,7 +290,7 @@
 // ------------------------------------------------------
 {
     // キー取得を停止
-    [(CEApplication *)NSApp setKeyCatchMode:CEKeyDownNoCatchMode];
+    [(CEKeyBindingSheet *)[self window] setKeyCatchMode:CEKeyDownNoCatchMode];
     
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if ([self keyBindingsMode] == CETextKeyBindingsType) {
@@ -394,7 +394,7 @@
     // フォーカスを移して入力中の値を確定
     [[sender window] makeFirstResponder:sender];
     // キー入力取得を停止
-    [(CEApplication *)NSApp setKeyCatchMode:CEKeyDownNoCatchMode];
+    [(CEKeyBindingSheet *)[self window] setKeyCatchMode:CEKeyDownNoCatchMode];
     
     if (sender == [self OKButton]) { // ok のときデータを保存、反映させる
         switch ([self keyBindingsMode]) {

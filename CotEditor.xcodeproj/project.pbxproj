@@ -67,6 +67,7 @@
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
 		2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411C8198549A7008B43DA /* CENavigationBarView.m */; };
 		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */; };
+		2A586A1F19A53CBC0053F5E3 /* CEKeyBindingSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1E19A53CBC0053F5E3 /* CEKeyBindingSheet.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */; };
@@ -158,7 +159,6 @@
 		8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		8CC6EBB108CED0F700508369 /* DefaultMenuKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */; };
 		8CD7A93C09CBDDDC00739513 /* CEEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CEEditorView.m */; };
-		8CE4859908CD617B004817E1 /* CEApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4859708CD617B004817E1 /* CEApplication.m */; };
 		8CE5D6C80AC80A31005F5FDB /* Pref_Print.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE5D6C70AC80A31005F5FDB /* Pref_Print.tiff */; };
 		8CE68107090A1C6900D50390 /* Pref_Appearance.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68100090A1C6900D50390 /* Pref_Appearance.tiff */; };
 		8CE68108090A1C6900D50390 /* Pref_FileDrop.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CE68101090A1C6900D50390 /* Pref_FileDrop.tiff */; };
@@ -304,6 +304,8 @@
 		2A5411C8198549A7008B43DA /* CENavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarView.m; sourceTree = "<group>"; };
 		2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingSheetController.h; sourceTree = "<group>"; };
 		2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingSheetController.m; sourceTree = "<group>"; };
+		2A586A1D19A53CBC0053F5E3 /* CEKeyBindingSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingSheet.h; sourceTree = "<group>"; };
+		2A586A1E19A53CBC0053F5E3 /* CEKeyBindingSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingSheet.m; sourceTree = "<group>"; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
 		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
 		2A5ABE78191861E3009265DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
@@ -449,8 +451,6 @@
 		8CC6EBB008CED0F700508369 /* DefaultMenuKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultMenuKeyBindings.plist; path = KeyBindings/DefaultMenuKeyBindings.plist; sourceTree = "<group>"; };
 		8CD7A93909CBDDDC00739513 /* CEEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEditorView.h; sourceTree = "<group>"; };
 		8CD7A93A09CBDDDC00739513 /* CEEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEditorView.m; sourceTree = "<group>"; };
-		8CE4859608CD617B004817E1 /* CEApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEApplication.h; sourceTree = "<group>"; };
-		8CE4859708CD617B004817E1 /* CEApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEApplication.m; sourceTree = "<group>"; };
 		8CE5D6C70AC80A31005F5FDB /* Pref_Print.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Print.tiff; path = toolbarIcons/Pref_Print.tiff; sourceTree = "<group>"; };
 		8CE68100090A1C6900D50390 /* Pref_Appearance.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_Appearance.tiff; path = toolbarIcons/Pref_Appearance.tiff; sourceTree = "<group>"; };
 		8CE68101090A1C6900D50390 /* Pref_FileDrop.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pref_FileDrop.tiff; path = toolbarIcons/Pref_FileDrop.tiff; sourceTree = "<group>"; };
@@ -605,6 +605,8 @@
 				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
 				2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */,
 				2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */,
+				2A586A1D19A53CBC0053F5E3 /* CEKeyBindingSheet.h */,
+				2A586A1E19A53CBC0053F5E3 /* CEKeyBindingSheet.m */,
 				2A68F93618FB04F300673440 /* CEMenuItemCell.h */,
 				2A68F93718FB04F300673440 /* CEMenuItemCell.m */,
 				2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */,
@@ -715,8 +717,6 @@
 		2A15832F18E3A4AB00601026 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				8CE4859608CD617B004817E1 /* CEApplication.h */,
-				8CE4859708CD617B004817E1 /* CEApplication.m */,
 				25859DB2076D65310020F779 /* CEAppDelegate.h */,
 				25859DB1076D65310020F779 /* CEAppDelegate.m */,
 			);
@@ -1187,8 +1187,8 @@
 				2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */,
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
 				2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */,
+				2A586A1F19A53CBC0053F5E3 /* CEKeyBindingSheet.m in Sources */,
 				8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */,
-				8CE4859908CD617B004817E1 /* CEApplication.m in Sources */,
 				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,

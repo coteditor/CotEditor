@@ -1,11 +1,11 @@
 /*
  ==============================================================================
- CEApplication
+ CEKeyBindingSheet
  
  CotEditor
  http://coteditor.github.io
  
- Created on 2005-09-06 by nakamuxu
+ Created on 2014-08-20 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -28,7 +28,7 @@
  ==============================================================================
  */
 
-#import "CEApplication.h"
+#import "CEKeyBindingSheet.h"
 
 
 // notification
@@ -38,28 +38,14 @@ NSString *const CEKeyBindingModifierFlagsKey = @"keyBindingModifierFlags";
 NSString *const CEKeyBindingCharsKey = @"keyBindingChar";
 
 
+@implementation CEKeyBindingSheet
 
-@implementation CEApplication
-
-#pragma mark NSApplication Methods
+#pragma mark Superclass Methods
 
 //=======================================================
-// NSApplication method
+// Superclass method
 //
 //=======================================================
-
-// ------------------------------------------------------
-/// 初期化
-- (instancetype)init
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        _keyCatchMode = CEKeyDownNoCatchMode;
-    }
-    return self;
-}
-
 
 // ------------------------------------------------------
 /// keyDownイベントをキャッチする
@@ -73,7 +59,7 @@ NSString *const CEKeyBindingCharsKey = @"keyBindingChar";
         if ([charsIgnoringModifiers length] > 0) {
             NSUInteger modifierFlags = [anEvent modifierFlags];
             NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
-
+            
             // Backspace または delete キーが押されていた時、是正する
             // （return 上の方にあるのが Backspace、テンキーとのあいだにある「delete」の刻印があるのが delete(forword)）
             switch ([charsIgnoringModifiers characterAtIndex:0]) {

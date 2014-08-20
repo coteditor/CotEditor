@@ -1,11 +1,11 @@
 /*
  ==============================================================================
- CEApplication
+ CEKeyBindingSheet
  
  CotEditor
  http://coteditor.github.io
  
- Created on 2005-09-06 by nakamuxu
+ Created on 2014-08-20 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -31,12 +31,6 @@
 @import Cocoa;
 
 
-/// key catch mode
-typedef NS_ENUM(NSUInteger, CEKeyCatchMode) {
-    CEKeyDownNoCatchMode,
-    CECatchMenuShortCutMode
-};
-
 // notification
 /// Posted when menu shortcut input is catched.
 extern NSString *const CEDidCatchMenuShortcutNotification;
@@ -44,8 +38,14 @@ extern NSString *const CEDidCatchMenuShortcutNotification;
 extern NSString *const CEKeyBindingModifierFlagsKey;
 extern NSString *const CEKeyBindingCharsKey;
 
+/// key catch mode
+typedef NS_ENUM(NSUInteger, CEKeyCatchMode) {
+    CEKeyDownNoCatchMode,
+    CECatchMenuShortCutMode
+};
 
-@interface CEApplication : NSApplication
+
+@interface CEKeyBindingSheet : NSWindow
 
 @property (nonatomic) CEKeyCatchMode keyCatchMode;
 

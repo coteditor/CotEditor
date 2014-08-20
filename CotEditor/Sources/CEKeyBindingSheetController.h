@@ -36,6 +36,9 @@ typedef NS_ENUM(NSUInteger, CEKeyBindingType) {
 };
 
 
+@class CEKeyBindingSheet;
+
+
 @interface CEKeyBindingSheetController : NSWindowController <NSWindowDelegate>
 
 - (instancetype)initWithMode:(CEKeyBindingType)mode;

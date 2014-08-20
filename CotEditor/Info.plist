@@ -852,7 +852,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>CEApplication</string>
+	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>http://coteditor.github.io/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
