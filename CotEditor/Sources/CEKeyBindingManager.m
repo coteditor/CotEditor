@@ -890,7 +890,7 @@
 
     NSMutableArray *textKeySpecCharArray = [NSMutableArray array];
 
-    for (id selector in [self textKeyBindingSelectorStrArray]) {
+    for (NSString *selector in [self textKeyBindingSelectorStrArray]) {
         if (([selector length] == 0) || ![selector isKindOfClass:[NSString class]]) { continue; }
         
         NSArray *keys;
@@ -1470,6 +1470,7 @@
     return @[@"modifyFont:",
              @"changeEncoding:",
              @"changeSyntaxStyle:",
+             @"changeTheme:",
              @"makeKeyAndOrderFront:",
              @"launchScript:",
              @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」
