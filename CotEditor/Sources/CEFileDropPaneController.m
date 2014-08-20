@@ -226,7 +226,6 @@
 - (void)writeBackFileDropArray
 // ------------------------------------------------------
 {
-    NSLog(@"hoge");
     [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:k_key_fileDropArray];
 }
 
