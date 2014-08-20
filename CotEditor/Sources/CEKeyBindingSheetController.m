@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEKeybindingsSheetController
+ CEKeyBindingSheetController
  
  CotEditor
  http://coteditor.github.io
@@ -33,26 +33,21 @@
 #import "constants.h"
 
 
-@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
+@interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate>
 
-@property (nonatomic) CEKeyBindingsType keyBindingsMode;
+@property (nonatomic) CEKeyBindingType keyBindingsMode;
 @property (nonatomic) NSMutableArray *outlineDataArray;
 @property (nonatomic, copy) NSString *currentKeySpecChars;
 @property (nonatomic) NSMutableArray *duplicateKeyCheckArray;
 
-@property (nonatomic, weak) IBOutlet NSOutlineView *menuOutlineView;
-@property (nonatomic, weak) IBOutlet NSTextField *menuDuplicateTextField;
-@property (nonatomic, weak) IBOutlet NSButton *menuEditKeyButton;
-@property (nonatomic, weak) IBOutlet NSButton *menuDeleteKeyButton;
-@property (nonatomic, weak) IBOutlet NSButton *menuFactoryDefaultsButton;
-@property (nonatomic, weak) IBOutlet NSButton *menuOkButton;
+@property (nonatomic, weak) IBOutlet NSOutlineView *outlineView;
+@property (nonatomic, weak) IBOutlet NSTextField *duplicateTextField;
+@property (nonatomic, weak) IBOutlet NSButton *editKeyButton;
+@property (nonatomic, weak) IBOutlet NSButton *deleteKeyButton;
+@property (nonatomic, weak) IBOutlet NSButton *factoryDefaultsButton;
+@property (nonatomic, weak) IBOutlet NSButton *OKButton;
 
-@property (nonatomic, weak) IBOutlet NSOutlineView *textOutlineView;
-@property (nonatomic, weak) IBOutlet  NSTextField *textDuplicateTextField;
-@property (nonatomic, weak) IBOutlet NSButton *textEditKeyButton;
-@property (nonatomic, weak) IBOutlet NSButton *textDeleteKeyButton;
-@property (nonatomic, weak) IBOutlet NSButton *textFactoryDefaultsButton;
-@property (nonatomic, weak) IBOutlet NSButton *textOkButton;
+// only in text key bindings edit sheet
 @property (nonatomic, strong) IBOutlet NSTextView *textInsertStringTextView;  // NSTextView cannot be weak on 10.8
 @property (nonatomic) IBOutlet NSArrayController *textInsertStringArrayController;
 
@@ -67,7 +62,7 @@
 
 // ------------------------------------------------------
 /// 初期化
-- (instancetype)initWithMode:(CEKeyBindingsType)mode
+- (instancetype)initWithMode:(CEKeyBindingType)mode
 // ------------------------------------------------------
 {
     NSString *nibName = (mode == CEMenuKeyBindingsType) ? @"MenuKeyBindingEditSheet" : @"TextKeyBindingEditSheet";
@@ -114,18 +109,20 @@
 {
     [super windowDidLoad];
     
-    // ダブルクリックでトグルに展開するようアクションを設定する
-    [[self menuOutlineView] setDoubleAction:@selector(doubleClickedOutlineViewRow:)];
-    [[self menuOutlineView] setTarget:self];
+    [[self duplicateTextField] setStringValue:@""];
+    [[self editKeyButton] setEnabled:NO];
     
     switch ([self keyBindingsMode]) {
         case CEMenuKeyBindingsType:
         {
             BOOL usesDefault = [[CEKeyBindingManager sharedManager] usesDefaultMenuKeyBindings];
-            [[self menuDuplicateTextField] setStringValue:@""];
-            [[self menuFactoryDefaultsButton] setEnabled:!usesDefault];
-            [[self menuOutlineView] reloadData];
-            [[self menuEditKeyButton] setEnabled:NO];
+            
+            // ダブルクリックでトグルに展開するようアクションを設定する
+            [[self outlineView] setDoubleAction:@selector(doubleClickedOutlineViewRow:)];
+            [[self outlineView] setTarget:self];
+            
+            [[self factoryDefaultsButton] setEnabled:!usesDefault];
+            [[self outlineView] reloadData];
             // 現在の設定がデフォルト設定ならばデフォルト値を入力する
             if (usesDefault) {
                 [self resetOutlineDataArrayToFactoryDefaults:nil];
@@ -139,10 +136,9 @@
             NSArray *factoryDefaults = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
             NSMutableArray *content = [NSMutableArray array];
             
-            [[self textDuplicateTextField] setStringValue:@""];
-            [[self textFactoryDefaultsButton] setEnabled:(![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]] ||
+            [[self factoryDefaultsButton] setEnabled:(![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]] ||
                                                           ![factoryDefaults isEqualToArray:insertTextArray])];
-            [[self textOutlineView] reloadData];
+            [[self outlineView] reloadData];
             for (NSString *object in insertTextArray) {
                 [content addObject:[@{k_key_insertCustomText: object} mutableCopy]];
             }
@@ -150,7 +146,6 @@
             [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
             [[self textInsertStringTextView] setEditable:NO];
             [[self textInsertStringTextView] setBackgroundColor:[NSColor controlHighlightColor]];
-            [[self textEditKeyButton] setEnabled:NO];
         }
             break;
     }
@@ -228,7 +223,6 @@
     NSString *identifier = [tableColumn identifier];
     
     if ([identifier isEqualToString:k_keyBindingKey] && !item[k_children]) {
-        
         id theItem = item ? : [self outlineDataArray];
         
         if (![self currentKeySpecChars]) {
@@ -237,14 +231,8 @@
         }
         [(CEApplication *)NSApp setKeyCatchMode:CECatchMenuShortCutMode];
         
-        switch ([self keyBindingsMode]) {
-            case CEMenuKeyBindingsType:
-                [[self menuDeleteKeyButton] setEnabled:YES];
-                break;
-            case CETextKeyBindingsType:
-                [[self textDeleteKeyButton] setEnabled:YES];
-                break;
-        }
+        [[self deleteKeyButton] setEnabled:YES];
+        
         return YES;
     }
     return NO;
@@ -253,8 +241,7 @@
 
 // ------------------------------------------------------
 /// データをセット
-- (void)outlineView:(NSOutlineView *)outlineView
-     setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+- (void)outlineView:(NSOutlineView *)outlineView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 // ------------------------------------------------------
 {
     NSString *identifier = [tableColumn identifier];
@@ -263,19 +250,10 @@
     if ([object isEqualToString:[self outlineView:outlineView objectValueForTableColumn:tableColumn byItem:item]]) {
         // データソースの値でなく表示値がそのまま入ってきているのは、選択状態になったあと何の編集もされなかった時
         if (([[NSApp currentEvent] type] == NSLeftMouseDown) &&
-            ([self keyBindingsMode] == CEMenuKeyBindingsType) &&
-            ([[[self menuDuplicateTextField] stringValue] length] > 0))
+            ([[[self duplicateTextField] stringValue] length] > 0))
         {
             item[identifier] = @"";
-            [[self menuDuplicateTextField] setStringValue:@""];
-            [self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
-            
-        } else if (([[NSApp currentEvent] type] == NSLeftMouseDown) &&
-                   ([self keyBindingsMode] == CETextKeyBindingsType) &&
-                   ([[[self textDuplicateTextField] stringValue] length] > 0))
-        {
-            item[identifier] = @"";
-            [[self textDuplicateTextField] setStringValue:@""];
+            [[self duplicateTextField] setStringValue:@""];
             [self showDuplicateKeySpecCharsMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
         }
         
@@ -291,14 +269,9 @@
             });
         }
     }
-    switch ([self keyBindingsMode]) {
-        case CEMenuKeyBindingsType:
-            [[self menuDeleteKeyButton] setEnabled:NO];
-            break;
-        case CETextKeyBindingsType:
-            [[self textDeleteKeyButton] setEnabled:NO];
-            break;
-    }
+    
+    [[self deleteKeyButton] setEnabled:NO];
+    
     [self setCurrentKeySpecChars:nil];
 }
 
@@ -308,7 +281,7 @@
 
 //=======================================================
 // Delegate method (NSOutlineView)
-//  <== menuOutlineView, textOutlineView
+//  <== outlineView
 //=======================================================
 
 // ------------------------------------------------------
@@ -316,18 +289,6 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
 // ------------------------------------------------------
 {
-    NSButton *editButton;
-    switch ([self keyBindingsMode]) {
-        case CEMenuKeyBindingsType:
-            editButton = [self menuEditKeyButton];
-            break;
-        case CETextKeyBindingsType:
-            editButton = [self textEditKeyButton];
-            break;
-        default:
-            return NO;
-    }
-    
     // キー取得を停止
     [(CEApplication *)NSApp setKeyCatchMode:CEKeyDownNoCatchMode];
     
@@ -343,7 +304,7 @@
     }
     
     // 編集ボタンを有効化／無効化
-    [editButton setEnabled:(!item[k_children])];
+    [[self editKeyButton] setEnabled:(!item[k_children])];
     
     return YES;
 }
@@ -371,23 +332,12 @@
 - (IBAction)deleteKeyBindingKey:(id)sender
 // ------------------------------------------------------
 {
-    NSOutlineView *outlineView;
-    
-    switch ([self keyBindingsMode]) {
-        case CEMenuKeyBindingsType:
-            outlineView = [self menuOutlineView];
-            break;
-        case CETextKeyBindingsType:
-            outlineView = [self textOutlineView];
-            break;
-    }
-    
-    NSText *fieldEditor = [[self window] fieldEditor:NO forObject:outlineView];
+    NSText *fieldEditor = [[self window] fieldEditor:NO forObject:[self outlineView]];
     
     [fieldEditor setString:@""];
     
     [[self window] endEditingFor:fieldEditor];
-    [[self window] makeFirstResponder:outlineView];
+    [[self window] makeFirstResponder:[self outlineView]];
 }
 
 
@@ -404,11 +354,10 @@
                 [self resetKeySpecCharsToFactoryDefaultsOfOutlineDataArray:tmpArray];
                 [self setOutlineDataArray:tmpArray];
                 [self setDuplicateKeyCheckArray:[[self duplicateKeyCheckArrayWithArray:[self outlineDataArray]] mutableCopy]];
-                [[self menuEditKeyButton] setEnabled:NO];
-                [[self menuOutlineView] deselectAll:nil];
-                [[self menuOutlineView] reloadData];
+                [[self editKeyButton] setEnabled:NO];
+                [[self outlineView] deselectAll:nil];
+                [[self outlineView] reloadData];
             }
-            [[self menuFactoryDefaultsButton] setEnabled:NO];
         }
             break;
             
@@ -421,19 +370,19 @@
                 NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
                 [contents addObject:dict];
             }
-            [[self textOutlineView] deselectAll:nil];
+            [[self outlineView] deselectAll:nil];
             [self setOutlineDataArray:[[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
             [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]];
             [[self textInsertStringArrayController] setContent:contents];
             [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
-            [[self textEditKeyButton] setEnabled:NO];
-            [[self textOutlineView] reloadData];
+            [[self editKeyButton] setEnabled:NO];
+            [[self outlineView] reloadData];
             [[self textInsertStringTextView] setEditable:NO];
             [[self textInsertStringTextView] setBackgroundColor:[NSColor controlHighlightColor]];
-            [[self textFactoryDefaultsButton] setEnabled:NO];
         }
             break;
     }
+    [[self factoryDefaultsButton] setEnabled:NO];
 }
 
 
@@ -447,7 +396,7 @@
     // キー入力取得を停止
     [(CEApplication *)NSApp setKeyCatchMode:CEKeyDownNoCatchMode];
     
-    if ([sender tag] == k_okButtonTag) { // ok のときデータを保存、反映させる
+    if (sender == [self OKButton]) { // ok のときデータを保存、反映させる
         switch ([self keyBindingsMode]) {
             case CEMenuKeyBindingsType:
                 [[CEKeyBindingManager sharedManager] saveMenuKeyBindings:[self outlineDataArray]];
@@ -501,29 +450,16 @@
 - (void)addCatchedMenuShortcutString:(NSNotification *)notification
 //------------------------------------------------------
 {
-    NSOutlineView *outlineView;
-    
-    switch ([self keyBindingsMode]) {
-        case CEMenuKeyBindingsType:
-            outlineView = [self menuOutlineView];
-            break;
-        case CETextKeyBindingsType:
-            outlineView = [self textOutlineView];
-            break;
-        default:
-            return;
-    }
-    
     NSDictionary *userInfo = [notification userInfo];
     NSUInteger modifierFlags = [userInfo[CEKeyBindingModifierFlagsKey] unsignedIntegerValue];
     NSString *charsIgnoringModifiers = userInfo[CEKeyBindingCharsKey];
     NSString *fieldString = [[CEKeyBindingManager sharedManager] keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
                                                                                  modifierFrags:modifierFlags];
-    NSText *fieldEditor = [[self window] fieldEditor:NO forObject:outlineView];
+    NSText *fieldEditor = [[self window] fieldEditor:NO forObject:[self outlineView]];
     
     [fieldEditor setString:fieldString];
     [[self window] endEditingFor:fieldEditor];
-    [[self window] makeFirstResponder:outlineView];
+    [[self window] makeFirstResponder:[self outlineView]];
 }
 
 
@@ -546,17 +482,10 @@
         readableKeyStr = [[CEKeyBindingManager sharedManager] readableKeyStringsFromKeySpecChars:keySpec];
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"“%@” has already been used. Edit it again.", nil),
                              readableKeyStr];
-        switch ([self keyBindingsMode]) {
-            case CEMenuKeyBindingsType:
-                [[self menuDuplicateTextField] setStringValue:message];
-                [[self menuOkButton] setEnabled:NO];
-                break;
-                
-            case CETextKeyBindingsType:
-                [[self textDuplicateTextField] setStringValue:message];
-                [[self textOkButton] setEnabled:NO];
-                break;
-        }
+        
+        [[self duplicateTextField] setStringValue:message];
+        [[self OKButton] setEnabled:NO];
+        
         NSBeep();
         showsMessage = NO;
         
@@ -582,37 +511,29 @@
         // モードとコマンドキーの有無が合致しなければメッセージ表示
         if (!accepts) {
             readableKeyStr = [[CEKeyBindingManager sharedManager] readableKeyStringsFromKeySpecChars:keySpec];
+            NSString *message;
             switch ([self keyBindingsMode]) {
                 case CEMenuKeyBindingsType:
-                    [[self menuDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                                   NSLocalizedString(@"“%@” does NOT include Command key. Edit it again.", nil), readableKeyStr]];
-                    [[self menuOkButton] setEnabled:NO];
+                    message = @"“%@” does NOT include Command key. Edit it again.";
                     break;
                     
                 case CETextKeyBindingsType:
-                    [[self textDuplicateTextField] setStringValue:[NSString stringWithFormat:
-                                                                   NSLocalizedString(@"“%@” includes Command key. Edit it again.", nil), readableKeyStr]];
-                    [[self textOkButton] setEnabled:NO];
+                    message = @"“%@” includes Command key. Edit it again.";
                     break;
             }
+            [[self duplicateTextField] setStringValue:[NSString stringWithFormat:NSLocalizedString(message, nil), readableKeyStr]];
+            [[self OKButton] setEnabled:NO];
             
             NSBeep();
             showsMessage = NO;
             
         } else {
-            // メッセージ消去
-            switch ([self keyBindingsMode]) {
-                case CEMenuKeyBindingsType:
-                    [[self menuDuplicateTextField] setStringValue:@""];
-                    [[self menuOkButton] setEnabled:YES];
-                    break;
-                    
-                case CETextKeyBindingsType:
-                    [[self textDuplicateTextField] setStringValue:@""];
-                    [[self textOkButton] setEnabled:YES];
-                    break;
-            }
             showsMessage = YES;
+            
+            // メッセージ消去
+            [[self duplicateTextField] setStringValue:@""];
+            [[self OKButton] setEnabled:YES];
+            
             // 重複チェック配列更新
             if (([oldSpec length] > 0) && ![keySpec isEqualToString:oldSpec]) {
                 [[self duplicateKeyCheckArray] removeObject:oldSpec];
@@ -632,36 +553,16 @@
 - (void)performEditOutlineViewSelectedKeyBindingKeyColumn
 //------------------------------------------------------
 {
-    NSOutlineView *outlineView = nil;
-    
-    switch ([self keyBindingsMode]) {
-        case CEMenuKeyBindingsType:
-            outlineView = [self menuOutlineView];
-            break;
-            
-        case CETextKeyBindingsType:
-            outlineView = [self textOutlineView];
-            break;
-    }
-    
-    NSInteger selectedRow = [outlineView selectedRow];
+    NSInteger selectedRow = [[self outlineView] selectedRow];
     
     if (selectedRow != -1) {
-        id item = [outlineView itemAtRow:selectedRow];
-        NSTableColumn *column = [outlineView tableColumnWithIdentifier:k_keyBindingKey];
+        id item = [[self outlineView] itemAtRow:selectedRow];
+        NSTableColumn *column = [[self outlineView] tableColumnWithIdentifier:k_keyBindingKey];
         
-        if ([self outlineView:outlineView shouldEditTableColumn:column item:item]) {
-            switch ([self keyBindingsMode]) {
-                case CEMenuKeyBindingsType:
-                    [[self menuDeleteKeyButton] setEnabled:YES];
-                    break;
-                    
-                case CETextKeyBindingsType:
-                    [[self textDeleteKeyButton] setEnabled:YES];
-                    break;
-            }
-            [outlineView editColumn:[outlineView columnWithIdentifier:k_keyBindingKey]
-                                row:selectedRow withEvent:nil select:YES];
+        if ([self outlineView:[self outlineView] shouldEditTableColumn:column item:item]) {
+            [[self deleteKeyButton] setEnabled:YES];
+            [[self outlineView] editColumn:[[self outlineView] columnWithIdentifier:k_keyBindingKey]
+                                       row:selectedRow withEvent:nil select:YES];
         }
     }
 }

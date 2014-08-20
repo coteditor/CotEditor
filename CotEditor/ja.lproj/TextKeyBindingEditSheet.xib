@@ -7,14 +7,14 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingSheetController">
             <connections>
-                <outlet property="textDeleteKeyButton" destination="65" id="18z-r2-lef"/>
-                <outlet property="textDuplicateTextField" destination="63" id="f4f-pl-fH6"/>
-                <outlet property="textEditKeyButton" destination="62" id="8tI-HR-zvl"/>
-                <outlet property="textFactoryDefaultsButton" destination="67" id="5nV-gG-fOr"/>
+                <outlet property="OKButton" destination="68" id="xxm-1t-B6P"/>
+                <outlet property="deleteKeyButton" destination="65" id="w6z-YF-SQW"/>
+                <outlet property="duplicateTextField" destination="63" id="YaF-uF-Hc9"/>
+                <outlet property="editKeyButton" destination="62" id="bKK-Bh-ezz"/>
+                <outlet property="factoryDefaultsButton" destination="67" id="aMY-xy-kPQ"/>
+                <outlet property="outlineView" destination="86" id="L3j-GL-5t8"/>
                 <outlet property="textInsertStringArrayController" destination="98" id="bqh-SH-gSn"/>
                 <outlet property="textInsertStringTextView" destination="57" id="Ros-9u-lI3"/>
-                <outlet property="textOkButton" destination="68" id="ZfH-LS-JOT"/>
-                <outlet property="textOutlineView" destination="86" id="nss-AO-B7i"/>
                 <outlet property="window" destination="54" id="yj7-Cw-3IP"/>
             </connections>
         </customObject>

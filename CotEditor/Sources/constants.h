@@ -422,9 +422,6 @@ extern NSString *const k_convertedChar;
 // Help anchors
 extern NSString *const k_helpPrefAnchors[];
 
-// button
-extern NSInteger const k_okButtonTag;
-
 
 
 #pragma mark Document Window

@@ -7,12 +7,12 @@
     <objects>
         <customObject id="-2" customClass="CEKeyBindingSheetController">
             <connections>
-                <outlet property="menuDeleteKeyButton" destination="35" id="aqT-DS-zXq"/>
-                <outlet property="menuDuplicateTextField" destination="25" id="WKS-sH-Zps"/>
-                <outlet property="menuEditKeyButton" destination="42" id="2o7-6U-KXq"/>
-                <outlet property="menuFactoryDefaultsButton" destination="11" id="9nW-bu-BhE"/>
-                <outlet property="menuOkButton" destination="13" id="Rcf-Xh-maP"/>
-                <outlet property="menuOutlineView" destination="8" id="JZC-Oq-zQa"/>
+                <outlet property="OKButton" destination="13" id="1yx-3j-qB2"/>
+                <outlet property="deleteKeyButton" destination="35" id="kwT-IT-sxG"/>
+                <outlet property="duplicateTextField" destination="25" id="Qh8-tD-bcd"/>
+                <outlet property="editKeyButton" destination="42" id="BAQ-OY-WGo"/>
+                <outlet property="factoryDefaultsButton" destination="11" id="ZQF-gB-prT"/>
+                <outlet property="outlineView" destination="8" id="87F-fg-biJ"/>
                 <outlet property="window" destination="5" id="9Kg-5f-OLV"/>
             </connections>
         </customObject>

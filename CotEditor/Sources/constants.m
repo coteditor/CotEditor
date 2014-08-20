@@ -366,9 +366,6 @@ NSString *const k_helpPrefAnchors[] = {
     @"pref_print"
 };
 
-// button
-NSInteger const k_okButtonTag = 100;
-
 
 
 #pragma mark Document Window
