@@ -46,7 +46,7 @@
 		2A149DBC1901803C00A9D6EF /* CEEditPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBB1901803C00A9D6EF /* CEEditPaneController.m */; };
 		2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */; };
 		2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */; };
-		2A149DC51901885A00A9D6EF /* CEKeyBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsController.m */; };
+		2A149DC51901885A00A9D6EF /* CEKeyBindingsPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */; };
 		2A149DD519032CC900A9D6EF /* CEUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEUtils.m */; };
 		2A149DD719033CBB00A9D6EF /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* constants.m */; };
 		2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
@@ -255,8 +255,8 @@
 		2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFormatPaneController.m; sourceTree = "<group>"; };
 		2A149DC01901884500A9D6EF /* CEFileDropPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFileDropPaneController.h; sourceTree = "<group>"; };
 		2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFileDropPaneController.m; sourceTree = "<group>"; };
-		2A149DC31901885A00A9D6EF /* CEKeyBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingsController.h; sourceTree = "<group>"; };
-		2A149DC41901885A00A9D6EF /* CEKeyBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingsController.m; sourceTree = "<group>"; };
+		2A149DC31901885A00A9D6EF /* CEKeyBindingsPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingsPaneController.h; sourceTree = "<group>"; };
+		2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingsPaneController.m; sourceTree = "<group>"; };
 		2A149DCA1902BEE800A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		2A149DCB1902C03000A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/GeneralPane.xib; sourceTree = "<group>"; };
 		2A149DCC1902C18F00A9D6EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/WindowPane.xib; sourceTree = "<group>"; };
@@ -584,8 +584,8 @@
 				2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */,
 				2A149DC01901884500A9D6EF /* CEFileDropPaneController.h */,
 				2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */,
-				2A149DC31901885A00A9D6EF /* CEKeyBindingsController.h */,
-				2A149DC41901885A00A9D6EF /* CEKeyBindingsController.m */,
+				2A149DC31901885A00A9D6EF /* CEKeyBindingsPaneController.h */,
+				2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */,
 				2A149DB71901788000A9D6EF /* CEPrintPaneController.h */,
 				2A149DB81901788000A9D6EF /* CEPrintPaneController.m */,
 			);
@@ -1149,7 +1149,7 @@
 				2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */,
 				2582260107794C2A00A0F8D3 /* CESyntaxParser.m in Sources */,
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
-				2A149DC51901885A00A9D6EF /* CEKeyBindingsController.m in Sources */,
+				2A149DC51901885A00A9D6EF /* CEKeyBindingsPaneController.m in Sources */,
 				8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */,
 				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
 				2A4DB13D19A265BA005A4F7C /* CEDraggableArrayController.m in Sources */,

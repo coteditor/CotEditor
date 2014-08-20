@@ -33,7 +33,7 @@
 #import "CEEditPaneController.h"
 #import "CEFormatPaneController.h"
 #import "CEFileDropPaneController.h"
-#import "CEKeyBindingsController.h"
+#import "CEKeyBindingsPaneController.h"
 #import "CEPrintPaneController.h"
 #import "constants.h"
 
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
 @property (nonatomic) CEEditPaneController *editPaneController;
 @property (nonatomic) CEFormatPaneController *formatPaneController;
 @property (nonatomic) CEFileDropPaneController *fileDropPaneController;
-@property (nonatomic) CEKeyBindingsController *keyBindingsPaneController;
+@property (nonatomic) CEKeyBindingsPaneController *keyBindingsPaneController;
 @property (nonatomic) CEPrintPaneController *printPaneController;
 
 @end
@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, CEPreferencesToolbarTag) {
         [self setEditPaneController:[[CEEditPaneController alloc] initWithNibName:@"EditPane" bundle:nil]];
         [self setFormatPaneController:[[CEFormatPaneController alloc] initWithNibName:@"FormatPane" bundle:nil]];
         [self setFileDropPaneController:[[CEFileDropPaneController alloc] initWithNibName:@"FileDropPane" bundle:nil]];
-        [self setKeyBindingsPaneController:[[CEKeyBindingsController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil]];
+        [self setKeyBindingsPaneController:[[CEKeyBindingsPaneController alloc] initWithNibName:@"KeyBindingsPane" bundle:nil]];
         [self setPrintPaneController:[[CEPrintPaneController alloc] initWithNibName:@"PrintPane" bundle:nil]];
     }
     return self;

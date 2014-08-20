@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEKeyBindingsController
+ CEKeyBindingsPaneController
  
  CotEditor
  http://coteditor.github.io
@@ -31,6 +31,6 @@
 @import Cocoa;
 
 
-@interface CEKeyBindingsController : NSViewController
+@interface CEKeyBindingsPaneController : NSViewController
 
 @end

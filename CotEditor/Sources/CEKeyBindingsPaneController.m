@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEKeyBindingsController
+ CEKeyBindingsPaneController
  
  CotEditor
  http://coteditor.github.io
@@ -28,11 +28,11 @@
  ==============================================================================
  */
 
-#import "CEKeyBindingsController.h"
+#import "CEKeyBindingsPaneController.h"
 #import "CEKeyBindingSheetController.h"
 
 
-@implementation CEKeyBindingsController
+@implementation CEKeyBindingsPaneController
 
 #pragma mark Action Messages
 
