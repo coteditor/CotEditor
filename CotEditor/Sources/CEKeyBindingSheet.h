@@ -1,11 +1,11 @@
 /*
  ==============================================================================
- CEKeyBindingManager
+ CEKeyBindingSheet
  
  CotEditor
  http://coteditor.github.io
  
- Created on 2005-09-01 by nakamuxu
+ Created on 2014-08-20 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -31,24 +31,22 @@
 @import Cocoa;
 
 
-@interface CEKeyBindingManager : NSObject
+// notification
+/// Posted when menu shortcut input is catched.
+extern NSString *const CEDidCatchMenuShortcutNotification;
+// userInfo keys
+extern NSString *const CEKeyBindingModifierFlagsKey;
+extern NSString *const CEKeyBindingCharsKey;
 
-// class method
-+ (instancetype)sharedManager;
+/// key catch mode
+typedef NS_ENUM(NSUInteger, CEKeyCatchMode) {
+    CEKeyDownNoCatchMode,
+    CECatchMenuShortCutMode
+};
 
-+ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
-+ (NSString *)printableKeyStringsFromKeySpecChars:(NSString *)string;
 
+@interface CEKeyBindingSheet : NSWindow
 
-// Public method
-- (void)setupAtLaunching;
-- (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
-
-- (BOOL)usesDefaultMenuKeyBindings;
-- (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
-- (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu;
-- (NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(NSString *)selectorString;
-- (BOOL)saveMenuKeyBindings:(NSArray *)outlineViewData;
-- (BOOL)saveTextKeyBindings:(NSArray *)outlineViewData texts:(NSArray *)texts;
+@property (nonatomic) CEKeyCatchMode keyCatchMode;
 
 @end

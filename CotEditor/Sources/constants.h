@@ -62,19 +62,10 @@ extern NSString *const k_printLocalizeTable;
 // Notification name
 extern NSString *const CEEncodingListDidUpdateNotification;
 extern NSString *const CEDocumentDidFinishOpenNotification;
-extern NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification;
-extern NSString *const CECatchMenuShortcutNotification;
 
 // General notification's userInfo keys
 extern NSString *const CEOldNameKey;
 extern NSString *const CENewNameKey;
-
-// userInfo keys for CESetKeyCatchModeToCatchMenuShortcutNotification
-extern NSString *const CEKeyCatchModeKey;
-
-// userInfo keys for CECatchMenuShortcutNotification
-extern NSString *const CEKeyBindingModFlagsKey;
-extern NSString *const CEKeyBindingCharKey;
 
 
 
@@ -431,9 +422,6 @@ extern NSString *const k_convertedChar;
 // Help anchors
 extern NSString *const k_helpPrefAnchors[];
 
-// button
-extern NSInteger const k_okButtonTag;
-
 
 
 #pragma mark Document Window
@@ -539,8 +527,8 @@ extern NSUInteger const k_size_of_modifierKeysList;
 extern unichar    const k_keySpecCharList[];
 extern NSUInteger const k_size_of_keySpecCharList;
 
-extern unichar    const k_readableKeyStringsList[];
-extern NSUInteger const k_size_of_readableKeyStringsList;
+extern unichar    const k_printableKeyStringsList[];
+extern NSUInteger const k_size_of_printableKeyStringsList;
 
 extern unichar    const k_unprintableKeyList[];
 extern NSUInteger const k_size_of_unprintableKeyList;

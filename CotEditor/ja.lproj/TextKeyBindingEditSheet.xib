@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingManager">
+        <customObject id="-2" userLabel="File's Owner" customClass="CEKeyBindingSheetController">
             <connections>
-                <outlet property="textDeleteKeyButton" destination="65" id="18z-r2-lef"/>
-                <outlet property="textDuplicateTextField" destination="63" id="f4f-pl-fH6"/>
-                <outlet property="textEditKeyButton" destination="62" id="8tI-HR-zvl"/>
-                <outlet property="textEditSheet" destination="54" id="uKF-sB-7Ri"/>
-                <outlet property="textFactoryDefaultsButton" destination="67" id="5nV-gG-fOr"/>
+                <outlet property="OKButton" destination="68" id="xxm-1t-B6P"/>
+                <outlet property="deleteKeyButton" destination="65" id="w6z-YF-SQW"/>
+                <outlet property="duplicateTextField" destination="63" id="YaF-uF-Hc9"/>
+                <outlet property="editKeyButton" destination="62" id="bKK-Bh-ezz"/>
+                <outlet property="factoryDefaultsButton" destination="67" id="aMY-xy-kPQ"/>
+                <outlet property="outlineView" destination="86" id="L3j-GL-5t8"/>
                 <outlet property="textInsertStringArrayController" destination="98" id="bqh-SH-gSn"/>
                 <outlet property="textInsertStringTextView" destination="57" id="Ros-9u-lI3"/>
-                <outlet property="textOkButton" destination="68" id="ZfH-LS-JOT"/>
-                <outlet property="textOutlineView" destination="86" id="nss-AO-B7i"/>
+                <outlet property="window" destination="54" id="yj7-Cw-3IP"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="テキストキーバインディング" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="54" userLabel="Edit Sheet">
+        <window title="テキストキーバインディング" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="54" userLabel="Edit Sheet" customClass="CEKeyBindingSheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="309" y="245" width="470" height="380"/>
@@ -39,7 +39,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="resetOutlineDataArrayToFactoryDefaults:" target="-2" id="138"/>
+                            <action selector="setToFactoryDefaults:" target="-2" id="csa-ie-61Y"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="70">
@@ -55,7 +55,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeKeyBindingEditSheet:" target="-2" id="84"/>
+                            <action selector="closeSheet:" target="-2" id="dkE-Fp-vAk"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="68">
@@ -71,7 +71,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="closeKeyBindingEditSheet:" target="-2" id="91"/>
+                            <action selector="closeSheet:" target="-2" id="MVn-N9-ZXm"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="64">
@@ -251,6 +251,9 @@ DQ
                     <constraint firstItem="64" firstAttribute="top" secondItem="55" secondAttribute="top" constant="20" symbolic="YES" id="vxi-w3-XoZ"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="vQ3-Kv-1Sb"/>
+            </connections>
         </window>
         <arrayController objectClassName="NSMutableString" id="98" userLabel="Insert String Array Controller">
             <declaredKeys>

@@ -57,19 +57,10 @@ NSString *const k_printLocalizeTable =  @"print";
 // Notification name
 NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 NSString *const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
-NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification = @"CESetKeyCatchModeToCatchMenuShortcutNotification";
-NSString *const CECatchMenuShortcutNotification = @"CECatchMenuShortcutNotification";
 
 // General notification's userInfo keys
 NSString *const CEOldNameKey = @"CEOldNameKey";
 NSString *const CENewNameKey = @"CENewNameKey";
-
-// userInfo keys for CESetKeyCatchModeToCatchMenuShortcutNotification
-NSString *const CEKeyCatchModeKey = @"keyCatchMode";
-
-// userInfo keys for CECatchMenuShortcutNotification
-NSString *const CEKeyBindingModFlagsKey = @"keyBindingModFlags";
-NSString *const CEKeyBindingCharKey = @"keyBindingChar";
 
 
 
@@ -375,9 +366,6 @@ NSString *const k_helpPrefAnchors[] = {
     @"pref_print"
 };
 
-// button
-NSInteger const k_okButtonTag = 100;
-
 
 
 #pragma mark Document Window
@@ -572,8 +560,8 @@ NSUInteger const k_size_of_modifierKeysList = (sizeof(k_modifierKeysList) / size
 unichar    const k_keySpecCharList[] = {0x005E, 0x007E, 0x0024, 0x0040}; // == "^~$@"
 NSUInteger const k_size_of_keySpecCharList = (sizeof(k_keySpecCharList) / sizeof(unichar));
 
-unichar    const k_readableKeyStringsList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
-NSUInteger const k_size_of_readableKeyStringsList = (sizeof(k_readableKeyStringsList) / sizeof(unichar));
+unichar    const k_printableKeyStringsList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
+NSUInteger const k_size_of_printableKeyStringsList = (sizeof(k_printableKeyStringsList) / sizeof(unichar));
 
 unichar const k_unprintableKeyList[] = {
     NSUpArrowFunctionKey,
