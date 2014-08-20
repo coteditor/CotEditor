@@ -209,7 +209,7 @@
     NSString *identifier = [tableColumn identifier];
     
     if ([identifier isEqualToString:k_keyBindingKey]) {
-        return [[CEKeyBindingManager sharedManager] readableKeyStringsFromKeySpecChars:[theItem valueForKey:identifier]];
+        return [CEKeyBindingManager printableKeyStringsFromKeySpecChars:[theItem valueForKey:identifier]];
     }
     return [theItem valueForKey:identifier];
 }
@@ -453,8 +453,8 @@
     NSDictionary *userInfo = [notification userInfo];
     NSUInteger modifierFlags = [userInfo[CEKeyBindingModifierFlagsKey] unsignedIntegerValue];
     NSString *charsIgnoringModifiers = userInfo[CEKeyBindingCharsKey];
-    NSString *fieldString = [[CEKeyBindingManager sharedManager] keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
-                                                                                 modifierFrags:modifierFlags];
+    NSString *fieldString = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
+                                                                 modifierFrags:modifierFlags];
     NSText *fieldEditor = [[self window] fieldEditor:NO forObject:[self outlineView]];
     
     [fieldEditor setString:fieldString];
@@ -472,16 +472,16 @@
     
     if (![self duplicateKeyCheckArray] || !keySpec) { return showsMessage; }
     
-    NSString *readableKeyStr;
+    NSString *printableKeyStr;
     
     // 他のキーバインディングと重複している時
     if (([keySpec length] > 0) && ![keySpec isEqualToString:oldSpec] &&
         [[self duplicateKeyCheckArray] containsObject:keySpec])
     {
         // メッセージ表示
-        readableKeyStr = [[CEKeyBindingManager sharedManager] readableKeyStringsFromKeySpecChars:keySpec];
+        printableKeyStr = [CEKeyBindingManager printableKeyStringsFromKeySpecChars:keySpec];
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"“%@” has already been used. Edit it again.", nil),
-                             readableKeyStr];
+                             printableKeyStr];
         
         [[self duplicateTextField] setStringValue:message];
         [[self OKButton] setEnabled:NO];
@@ -510,7 +510,7 @@
         
         // モードとコマンドキーの有無が合致しなければメッセージ表示
         if (!accepts) {
-            readableKeyStr = [[CEKeyBindingManager sharedManager] readableKeyStringsFromKeySpecChars:keySpec];
+            printableKeyStr = [CEKeyBindingManager printableKeyStringsFromKeySpecChars:keySpec];
             NSString *message;
             switch ([self keyBindingsMode]) {
                 case CEMenuKeyBindingsType:
@@ -521,7 +521,7 @@
                     message = @"“%@” includes Command key. Edit it again.";
                     break;
             }
-            [[self duplicateTextField] setStringValue:[NSString stringWithFormat:NSLocalizedString(message, nil), readableKeyStr]];
+            [[self duplicateTextField] setStringValue:[NSString stringWithFormat:NSLocalizedString(message, nil), printableKeyStr]];
             [[self OKButton] setEnabled:NO];
             
             NSBeep();
@@ -584,8 +584,8 @@
         NSString *keyEquivalent = [item keyEquivalent];
         if ([keyEquivalent length] > 0) {
             NSUInteger modifierFlags = [item keyEquivalentModifierMask];
-            NSString *keySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsFromKeyEquivalent:keyEquivalent
-                                                                                          modifierFrags:modifierFlags];
+            NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:keyEquivalent
+                                                                          modifierFrags:modifierFlags];
             if ([keySpecChars length] > 1) {
                 [duplicateKeyCheckArray addObject:keySpecChars];
             }

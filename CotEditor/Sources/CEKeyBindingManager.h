@@ -36,6 +36,9 @@
 // class method
 + (instancetype)sharedManager;
 
++ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
++ (NSString *)printableKeyStringsFromKeySpecChars:(NSString *)string;
+
 
 // Public method
 - (void)setupAtLaunching;
@@ -44,8 +47,6 @@
 - (BOOL)usesDefaultMenuKeyBindings;
 - (NSMutableArray *)textKeySpecCharArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
 - (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu;
-- (NSString *)readableKeyStringsFromKeySpecChars:(NSString *)string;
-- (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
 - (NSString *)keySpecCharsInDefaultDictionaryFromSelectorString:(NSString *)selectorString;
 - (BOOL)saveMenuKeyBindings:(NSArray *)outlineViewData;
 - (BOOL)saveTextKeyBindings:(NSArray *)outlineViewData texts:(NSArray *)texts;

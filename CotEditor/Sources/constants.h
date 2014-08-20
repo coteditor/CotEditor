@@ -527,8 +527,8 @@ extern NSUInteger const k_size_of_modifierKeysList;
 extern unichar    const k_keySpecCharList[];
 extern NSUInteger const k_size_of_keySpecCharList;
 
-extern unichar    const k_readableKeyStringsList[];
-extern NSUInteger const k_size_of_readableKeyStringsList;
+extern unichar    const k_printableKeyStringsList[];
+extern NSUInteger const k_size_of_printableKeyStringsList;
 
 extern unichar    const k_unprintableKeyList[];
 extern NSUInteger const k_size_of_unprintableKeyList;

@@ -38,7 +38,6 @@
 @property (nonatomic, copy) NSDictionary *defaultMenuKeyBindingDict;
 @property (nonatomic, copy) NSDictionary *menuKeyBindingDict;
 @property (nonatomic, copy) NSDictionary *textKeyBindingDict;
-@property (nonatomic, copy) NSDictionary *unprintableKeyDict;
 
 @end
 
@@ -49,12 +48,25 @@
 
 @implementation CEKeyBindingManager
 
+static NSDictionary *kUnprintableKeyTable;
+
+
 #pragma mark Class Methods
 
 //=======================================================
 // Class method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// initialize
++ (void)initialize
+// ------------------------------------------------------
+{
+    // set statics
+    kUnprintableKeyTable = [CEKeyBindingManager unprintableKeyDictionary];
+}
+
 
 // ------------------------------------------------------
 /// return singleton instance
@@ -72,24 +84,51 @@
 }
 
 
-
-#pragma mark Superclass Methods
-
-//=======================================================
-// Superclass method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// 初期化
-- (instancetype)init
-// ------------------------------------------------------
+//------------------------------------------------------
+/// キーバインディング定義文字列から表示用文字列を生成し、返す
++ (NSString *)printableKeyStringsFromKeySpecChars:(NSString *)string
+//------------------------------------------------------
 {
-    self = [super init];
-    if (self) {
-        _unprintableKeyDict = [self unprintableKeyDictionary];
+    NSInteger length = [string length];
+    
+    if (length < 2) { return @""; }
+    
+    NSString *keyEquivalent = [string substringFromIndex:(length - 1)];
+    NSString *keyStr = [CEKeyBindingManager printableKeyStringsFromKeyEquivalent:keyEquivalent];
+    BOOL drawsShift = (isupper([keyEquivalent characterAtIndex:0]) == 1);
+    NSString *modKeyStr = [CEKeyBindingManager printableKeyStringsFromModKeySpecChars:[string substringToIndex:(length - 1)]
+                                                                         withShiftKey:drawsShift];
+    
+    return [NSString stringWithFormat:@"%@%@", modKeyStr, keyStr];
+}
+
+
+//------------------------------------------------------
+/// メニューのキーボードショートカットからキーバインディング定義文字列を返す
++ (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
+//------------------------------------------------------
+{
+    if ([string length] < 1) { return @""; }
+    
+    NSMutableString *keySpecChars = [NSMutableString string];
+    unichar theChar = [string characterAtIndex:0];
+    BOOL isShiftPressed = NO;
+    
+    NSAssert(k_size_of_modifierKeysList == k_size_of_keySpecCharList,
+             @"internal data error! 'k_modifierKeysList' and 'k_keySpecCharList' size is different.");
+    
+    for (NSInteger i = 0; i < k_size_of_modifierKeysList; i++) {
+        if ((modifierFlags & k_modifierKeysList[i]) || ((i == 2) && (isupper(theChar) == 1))) {
+            // （メニューから定義値を取得した時、アルファベット+シフトの場合にシフトの定義が欠落するための回避処置）
+            [keySpecChars appendFormat:@"%C", k_keySpecCharList[i]];
+            if ((i == 2) && (isupper(theChar) == 1)) {
+                isShiftPressed = YES;
+            }
+        }
     }
-    return self;
+    [keySpecChars appendString:((isShiftPressed) ? [string uppercaseString] : string)];
+    
+    return keySpecChars;
 }
 
 
@@ -124,7 +163,7 @@
 - (NSString *)selectorStringWithKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
 // ------------------------------------------------------
 {
-    NSString *keySpecChars = [self keySpecCharsFromKeyEquivalent:string modifierFrags:modifierFlags];
+    NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:string modifierFrags:modifierFlags];
 
     return [self textKeyBindingDict][keySpecChars];
 }
@@ -148,7 +187,7 @@
     
     NSMutableArray *textKeySpecCharArray = [NSMutableArray array];
     
-    for (NSString *selector in [self textKeyBindingSelectorStrArray]) {
+    for (NSString *selector in [CEKeyBindingManager textKeyBindingSelectorStrArray]) {
         if (([selector length] == 0) || ![selector isKindOfClass:[NSString class]]) { continue; }
         
         NSArray *keys;
@@ -192,7 +231,7 @@
         } else {
             NSString *selectorString = NSStringFromSelector([item action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
-            if ([[self selectorStringsToIgnore] containsObject:selectorString] ||
+            if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] ||
                 ([item tag] == CEServicesMenuItemTag) ||
                 ([item tag] == CEWindowPanelsMenuItemTag) ||
                 ([item tag] == CEScriptMenuDirectoryTag))
@@ -204,7 +243,7 @@
             NSString *keySpecChars;
             if ([keyEquivalent length] > 0) {
                 NSUInteger modifierMask = [item keyEquivalentModifierMask];
-                keySpecChars = [self keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierMask];
+                keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierMask];
             } else {
                 keySpecChars = @"";
             }
@@ -215,54 +254,6 @@
         [outArray addObject:theDict];
     }
     return outArray;
-}
-
-
-//------------------------------------------------------
-/// キーバインディング定義文字列から表示用文字列を生成し、返す
-- (NSString *)readableKeyStringsFromKeySpecChars:(NSString *)string
-//------------------------------------------------------
-{
-    NSInteger length = [string length];
-    
-    if (length < 2) { return @""; }
-    
-    NSString *keyEquivalent = [string substringFromIndex:(length - 1)];
-    NSString *keyStr = [self readableKeyStringsFromKeyEquivalent:keyEquivalent];
-    BOOL drawsShift = (isupper([keyEquivalent characterAtIndex:0]) == 1);
-    NSString *modKeyStr = [self readableKeyStringsFromModKeySpecChars:[string substringToIndex:(length - 1)]
-                                                         withShiftKey:drawsShift];
-    
-    return [NSString stringWithFormat:@"%@%@", modKeyStr, keyStr];
-}
-
-
-//------------------------------------------------------
-/// メニューのキーボードショートカットからキーバインディング定義文字列を返す
-- (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags
-//------------------------------------------------------
-{
-    if ([string length] < 1) { return @""; }
-    
-    NSMutableString *keySpecChars = [NSMutableString string];
-    unichar theChar = [string characterAtIndex:0];
-    BOOL isShiftPressed = NO;
-    
-    NSAssert(k_size_of_modifierKeysList == k_size_of_keySpecCharList,
-             @"internal data error! 'k_modifierKeysList' and 'k_keySpecCharList' size is different.");
-    
-    for (NSInteger i = 0; i < k_size_of_modifierKeysList; i++) {
-        if ((modifierFlags & k_modifierKeysList[i]) || ((i == 2) && (isupper(theChar) == 1))) {
-            // （メニューから定義値を取得した時、アルファベット+シフトの場合にシフトの定義が欠落するための回避処置）
-            [keySpecChars appendFormat:@"%C", k_keySpecCharList[i]];
-            if ((i == 2) && (isupper(theChar) == 1)) {
-                isShiftPressed = YES;
-            }
-        }
-    }
-    [keySpecChars appendString:((isShiftPressed) ? [string uppercaseString] : string)];
-    
-    return keySpecChars;
 }
 
 
@@ -454,7 +445,7 @@
 {
     for (NSMenuItem *item in [menu itemArray]) {
         // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
-        if ([[self selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
+        if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
             ([item tag] == CEServicesMenuItemTag) ||
             ([item tag] == CEWindowPanelsMenuItemTag) ||
             ([item tag] == CEScriptMenuDirectoryTag))
@@ -518,7 +509,7 @@
         } else {
             NSString *selectorString = NSStringFromSelector([item action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
-            if ([[self selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
+            if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
                 ([item tag] == CEServicesMenuItemTag) ||
                 ([item tag] == CEWindowPanelsMenuItemTag) ||
                 ([item tag] == CEScriptMenuDirectoryTag)) {
@@ -545,52 +536,6 @@
             }
         }
     }
-}
-
-
-//------------------------------------------------------
-/// メニューのキーボードショートカットから表示用文字列を返す
-- (NSString *)readableKeyStringsFromKeyEquivalent:(NSString *)string
-//------------------------------------------------------
-{
-    if ([string length] < 1) { return @""; }
-
-    unichar theChar = [string characterAtIndex:0];
-    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:theChar]) {
-        return [string uppercaseString];
-    } else {
-        return [self visibleCharFromIgnoringModChar:string];
-    }
-}
-
-
-//------------------------------------------------------
-/// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
-- (NSString *)readableKeyStringsFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)isShiftPressed
-//------------------------------------------------------
-{
-    NSAssert(k_size_of_keySpecCharList == k_size_of_readableKeyStringsList,
-             @"internal data error! 'k_keySpecCharList' and 'k_readableKeyStringsList' size is different.");
-    
-    NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
-    NSMutableString *keyStrings = [NSMutableString string];
-
-    for (NSUInteger i = 0; i < k_size_of_keySpecCharList; i++) {
-        unichar theChar = k_keySpecCharList[i];
-        if ([modStringSet characterIsMember:theChar]) {
-            [keyStrings appendFormat:@"%C", k_readableKeyStringsList[i]];
-        }
-    }
-    return keyStrings;
-}
-
-
-//------------------------------------------------------
-/// キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
-- (NSString *)visibleCharFromIgnoringModChar:(NSString *)igunoresModChar
-//------------------------------------------------------
-{
-    return [self unprintableKeyDict][igunoresModChar] ? : igunoresModChar;
 }
 
 
@@ -631,63 +576,116 @@
 }
 
 
+
+#pragma mark Private Class Methods
+
+//=======================================================
+// Private method
+//
+//=======================================================
+
 //------------------------------------------------------
-/// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
-- (NSDictionary *)unprintableKeyDictionary
+/// メニューのキーボードショートカットから表示用文字列を返す
++ (NSString *)printableKeyStringsFromKeyEquivalent:(NSString *)string
 //------------------------------------------------------
 {
-// 下記の情報を参考にさせていただきました (2005.09.05)
-// http://www.cocoabuilder.com/archive/message/2004/3/19/102023
-    NSArray *visibleChars = @[[NSString stringWithFormat:@"%C", (unichar)0x2191], // "↑" NSUpArrowFunctionKey,
-                              [NSString stringWithFormat:@"%C", (unichar)0x2193], // "↓" NSDownArrowFunctionKey,
-                              [NSString stringWithFormat:@"%C", (unichar)0x2190], // "←" NSLeftArrowFunctionKey,
-                              [NSString stringWithFormat:@"%C", (unichar)0x2192], // "→" NSRightArrowFunctionKey, 
-                              @"F1", // NSF1FunctionKey, 
-                              @"F2", // NSF2FunctionKey, 
-                              @"F3", // NSF3FunctionKey, 
-                              @"F4", // NSF4FunctionKey,
-                              @"F5", // NSF5FunctionKey, 
-                              @"F6", // NSF6FunctionKey, 
-                              @"F7", // NSF7FunctionKey, 
-                              @"F8", // NSF8FunctionKey, 
-                              @"F9", // NSF9FunctionKey, 
-                              @"F10", // NSF10FunctionKey, 
-                              @"F11", // NSF11FunctionKey, 
-                              @"F12", // NSF12FunctionKey, 
-                              @"F13", // NSF13FunctionKey, 
-                              @"F14", // NSF14FunctionKey, 
-                              @"F15", // NSF15FunctionKey, 
-                              @"F16", // NSF16FunctionKey, 
-                              [NSString stringWithFormat:@"%C", (unichar)0x2326], // NSDeleteCharacter = "Delete forward"
-                              [NSString stringWithFormat:@"%C", (unichar)0x2196], // "↖" NSHomeFunctionKey, 
-                              [NSString stringWithFormat:@"%C", (unichar)0x2198], // "↘" NSEndFunctionKey, 
-                              [NSString stringWithFormat:@"%C", (unichar)0x21DE], // "⇞" NSPageUpFunctionKey, 
-                              [NSString stringWithFormat:@"%C", (unichar)0x21DF], // "⇟" NSPageDownFunctionKey, 
-                              [NSString stringWithFormat:@"%C", (unichar)0x2327], // "⌧" NSClearLineFunctionKey, 
-                              @"Help", // NSHelpFunctionKey, 
-                              @"Space", // "Space", 
-                              [NSString stringWithFormat:@"%C", (unichar)0x21E5], // "Tab"
-                              [NSString stringWithFormat:@"%C", (unichar)0x21A9], // "Return"
-                              [NSString stringWithFormat:@"%C", (unichar)0x232B], // "⌫" "Backspace"
-                              [NSString stringWithFormat:@"%C", (unichar)0x2305], // "Enter"
-                              [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
-                              [NSString stringWithFormat:@"%C", (unichar)0x238B]];
+    if ([string length] < 1) { return @""; }
+    
+    unichar theChar = [string characterAtIndex:0];
+    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:theChar]) {
+        return [string uppercaseString];
+    } else {
+        return [CEKeyBindingManager printableCharFromIgnoringModChar:string];
+    }
+}
 
-    NSAssert(k_size_of_unprintableKeyList == [visibleChars count],
-             @"Internal data error! Sizes of 'k_unprintableKeyList' and 'visibleChars' are different.");
+//------------------------------------------------------
+/// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
++ (NSString *)printableKeyStringsFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)isShiftPressed
+//------------------------------------------------------
+{
+    NSAssert(k_size_of_keySpecCharList == k_size_of_printableKeyStringsList,
+             @"internal data error! 'k_keySpecCharList' and 'k_printableKeyStringsList' size is different.");
+    
+    NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
+    NSMutableString *keyStrings = [NSMutableString string];
+    
+    for (NSUInteger i = 0; i < k_size_of_keySpecCharList; i++) {
+        unichar theChar = k_keySpecCharList[i];
+        if ([modStringSet characterIsMember:theChar]) {
+            [keyStrings appendFormat:@"%C", k_printableKeyStringsList[i]];
+        }
+    }
+    return keyStrings;
+}
+
+
+//------------------------------------------------------
+/// キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
++ (NSString *)printableCharFromIgnoringModChar:(NSString *)igunoresModChar
+//------------------------------------------------------
+{
+    return kUnprintableKeyTable[igunoresModChar] ? : igunoresModChar;
+}
+
+
+//------------------------------------------------------
+/// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
++ (NSDictionary *)unprintableKeyDictionary
+//------------------------------------------------------
+{
+    // 下記の情報を参考にさせていただきました (2005.09.05)
+    // http://www.cocoabuilder.com/archive/message/2004/3/19/102023
+    NSArray *printableChars = @[[NSString stringWithFormat:@"%C", (unichar)0x2191], // "↑" NSUpArrowFunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x2193], // "↓" NSDownArrowFunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x2190], // "←" NSLeftArrowFunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x2192], // "→" NSRightArrowFunctionKey,
+                                @"F1", // NSF1FunctionKey,
+                                @"F2", // NSF2FunctionKey,
+                                @"F3", // NSF3FunctionKey,
+                                @"F4", // NSF4FunctionKey,
+                                @"F5", // NSF5FunctionKey,
+                                @"F6", // NSF6FunctionKey,
+                                @"F7", // NSF7FunctionKey,
+                                @"F8", // NSF8FunctionKey,
+                                @"F9", // NSF9FunctionKey,
+                                @"F10", // NSF10FunctionKey,e
+                                @"F11", // NSF11FunctionKey,
+                                @"F12", // NSF12FunctionKey,
+                                @"F13", // NSF13FunctionKey,
+                                @"F14", // NSF14FunctionKey,
+                                @"F15", // NSF15FunctionKey,
+                                @"F16", // NSF16FunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x2326], // NSDeleteCharacter = "Delete forward"
+                                [NSString stringWithFormat:@"%C", (unichar)0x2196], // "↖" NSHomeFunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x2198], // "↘" NSEndFunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x21DE], // "⇞" NSPageUpFunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x21DF], // "⇟" NSPageDownFunctionKey,
+                                [NSString stringWithFormat:@"%C", (unichar)0x2327], // "⌧" NSClearLineFunctionKey,
+                                @"Help", // NSHelpFunctionKey,
+                                @"Space", // "Space",
+                                [NSString stringWithFormat:@"%C", (unichar)0x21E5], // "Tab"
+                                [NSString stringWithFormat:@"%C", (unichar)0x21A9], // "Return"
+                                [NSString stringWithFormat:@"%C", (unichar)0x232B], // "⌫" "Backspace"
+                                [NSString stringWithFormat:@"%C", (unichar)0x2305], // "Enter"
+                                [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
+                                [NSString stringWithFormat:@"%C", (unichar)0x238B]];
+    
+    NSAssert(k_size_of_unprintableKeyList == [printableChars count],
+             @"Internal data error! Sizes of 'k_unprintableKeyList' and 'printableChars' are different.");
     
     NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:k_size_of_unprintableKeyList];
     for (NSInteger i = 0; i < k_size_of_unprintableKeyList; i++) {
         [keys addObject:[NSString stringWithFormat:@"%C", k_unprintableKeyList[i]]];
     }
 
-    return [NSDictionary dictionaryWithObjects:visibleChars forKeys:keys];
+    return [NSDictionary dictionaryWithObjects:printableChars forKeys:keys];
 }
 
 
 //------------------------------------------------------
 /// 独自定義のセレクタ名配列を返す
-- (NSArray *)textKeyBindingSelectorStrArray
++ (NSArray *)textKeyBindingSelectorStrArray
 //------------------------------------------------------
 {
     return @[@"insertCustomText_00:",
@@ -726,7 +724,7 @@
 
 //------------------------------------------------------
 /// 変更しない項目のセレクタ名配列を返す
-- (NSArray *)selectorStringsToIgnore
++ (NSArray *)selectorStringsToIgnore
 //------------------------------------------------------
 {
     return @[@"modifyFont:",
