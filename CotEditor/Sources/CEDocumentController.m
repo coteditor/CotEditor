@@ -111,7 +111,7 @@
 - (IBAction)openDocument:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowsHiddenFiles:([sender tag] == k_openHiddenMenuItemTag)];
+    [self setShowsHiddenFiles:([sender tag] == CEOpenHiddenMenuItemTag)];
 
     [super openDocument:sender];
     // エンコーディングメニューの選択をリセット
@@ -124,7 +124,7 @@
 - (IBAction)openHiddenDocument:(id)sender
 // ------------------------------------------------------
 {
-    [self setShowsHiddenFiles:([sender tag] == k_openHiddenMenuItemTag)];
+    [self setShowsHiddenFiles:([sender tag] == CEOpenHiddenMenuItemTag)];
 
     [super openDocument:sender];
 }

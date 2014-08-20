@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 //------------------------------------------------------
 {
     // メニューデータの読み込みとメニュー構成
-    NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu];
+    NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu];
     [menu removeAllItems];
     NSMenuItem *menuItem;
 
@@ -137,7 +137,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [menuItem setTarget:self];
     [menuItem setAlternate:YES];
     [menuItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
-    [menuItem setTag:k_scriptMenuDirectoryTag];  // Alternate表示のための修飾キーをCotEditor menu key bindingsの対応外にする
+    [menuItem setTag:CEScriptMenuDirectoryTag];  // Alternate表示のための修飾キーをCotEditor menu key bindingsの対応外にする
     [menuItem setToolTip:NSLocalizedString(@"Copy bundled sample scripts to the scripts folder.", nil)];
     [menu addItem:menuItem];
     
@@ -154,7 +154,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (NSMenu *)contexualMenu
 //------------------------------------------------------
 {
-    return [[[[NSApp mainMenu] itemAtIndex:k_scriptMenuIndex] submenu] copy];
+    return [[[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu] copy];
 }
 
 
@@ -487,7 +487,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
             }
             NSMenu *subMenu = [[NSMenu alloc] initWithTitle:title];
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-            [item setTag:k_scriptMenuDirectoryTag];
+            [item setTag:CEScriptMenuDirectoryTag];
             [menu addItem:item];
             [item setSubmenu:subMenu];
             [self addChildFileItemTo:subMenu fromDir:URL];

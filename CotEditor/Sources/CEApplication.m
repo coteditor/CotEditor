@@ -108,8 +108,8 @@
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:CECatchMenuShortcutNotification
                                                                 object:self
-                                                              userInfo:@{k_keyBindingModFlags: @(modifierFlags),
-                                                                         k_keyBindingChar: charIgnoringMod}];
+                                                              userInfo:@{CEKeyBindingModFlagsKey: @(modifierFlags),
+                                                                         CEKeyBindingCharKey: charIgnoringMod}];
             [self setKeyCatchMode:CEKeyDownNoCatchMode];
             return;
         }
@@ -132,7 +132,7 @@
 - (void)setKeyCatchModeWithNotification:(NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    CEKeyCatchMode mode = [[aNotification userInfo][k_keyCatchMode] integerValue];
+    CEKeyCatchMode mode = [[aNotification userInfo][CEKeyCatchModeKey] unsignedIntegerValue];
 
     [self setKeyCatchMode:mode];
 }

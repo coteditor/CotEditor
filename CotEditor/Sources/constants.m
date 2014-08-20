@@ -46,15 +46,30 @@ NSString *const CEErrorDomain = @"com.aynimac.CotEditor.ErrorDomain";
 // Localized Strings Table
 NSString *const k_printLocalizeTable =  @"print";
 
+
+
+#pragma mark Notifications
+
+// ------------------------------------------------------
+// Notifications
+// ------------------------------------------------------
+
 // Notification name
 NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
-NSString *const CEDocumentDidFinishOpenNotification = @"documentDidFinishOpenNotification";
-NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification = @"setKeyCatchModeToCatchMenuShortcut";
-NSString *const CECatchMenuShortcutNotification = @"catchMenuShortcutNotification";
+NSString *const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
+NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification = @"CESetKeyCatchModeToCatchMenuShortcutNotification";
+NSString *const CECatchMenuShortcutNotification = @"CECatchMenuShortcutNotification";
 
-// Notification userInfo keys
+// General notification's userInfo keys
 NSString *const CEOldNameKey = @"CEOldNameKey";
 NSString *const CENewNameKey = @"CENewNameKey";
+
+// userInfo keys for CESetKeyCatchModeToCatchMenuShortcutNotification
+NSString *const CEKeyCatchModeKey = @"keyCatchMode";
+
+// userInfo keys for CECatchMenuShortcutNotification
+NSString *const CEKeyBindingModFlagsKey = @"keyBindingModFlags";
+NSString *const CEKeyBindingCharKey = @"keyBindingChar";
 
 
 
@@ -192,15 +207,13 @@ NSString *const k_key_coloringRangeBufferLength = @"coloringRangeBufferLength";
 
 
 
-#pragma mark Setting Values
-
 // ------------------------------------------------------
-// Setting Values
+// Setting thresholds
 // ------------------------------------------------------
 
-// Page guide column values
-NSUInteger const k_pageGuideColumnMin =    1;
-NSUInteger const k_pageGuideColumnMax = 1000;
+// Page guide column
+NSUInteger const k_minPageGuideColumn = 1;
+NSUInteger const k_maxPageGuideColumn = 1000;
 
 
 
@@ -211,7 +224,7 @@ NSUInteger const k_pageGuideColumnMax = 1000;
 // ------------------------------------------------------
 
 // syntax coloring
-NSUInteger const k_ESCheckLength = 16;
+NSUInteger const k_maxEscapesCheckLength = 16;
 NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 // syntax style
@@ -264,34 +277,8 @@ NSUInteger const k_size_of_allColoringArrays = sizeof(k_SCKey_allColoringArrays)
 // Main Menu
 // ------------------------------------------------------
 
-// Main Menu index and tag
-NSInteger const k_applicationMenuIndex = 0;
-NSInteger const k_fileMenuIndex = 1;
-NSInteger const k_editMenuIndex = 2;
-NSInteger const k_viewMenuIndex = 3;
-NSInteger const k_formatMenuIndex = 4;
-NSInteger const k_findMenuIndex = 5;
-NSInteger const k_utilityMenuIndex = 6;
-NSInteger const k_scriptMenuIndex = 8;
-NSInteger const k_newMenuItemTag = 100;
-NSInteger const k_openMenuItemTag = 101;
-NSInteger const k_openHiddenMenuItemTag = 102;
-NSInteger const k_openRecentMenuItemTag = 103;
-NSInteger const k_BSMenuItemTag = 209;
-NSInteger const k_fileEncodingMenuItemTag = 4001;
-NSInteger const k_syntaxMenuItemTag = 4002;
-NSInteger const k_themeMenuItemTag = 4003;
-NSInteger const k_servicesMenuItemTag = 999;
-NSInteger const k_windowPanelsMenuItemTag = 7999;
-NSInteger const k_scriptMenuDirectoryTag = 8999;
-
-// Contextual Menu tag
-NSInteger const k_noMenuItem = -1;
-NSInteger const k_utilityMenuTag = 600;
-NSInteger const k_scriptMenuTag = 800;
-
-// Help Document Menu tag and path
-NSString *const k_bundleDocumentTags[] = {
+// Help document file names table
+NSString *const k_bundledDocumentFileNames[] = {
     @"Version History",
     @"Acknowledgements",
     @"ScriptMenu Folder",
@@ -299,7 +286,7 @@ NSString *const k_bundleDocumentTags[] = {
     @"ShellScript"
 };
 
-// distribution web site
+// Online URLs
 NSString *const k_webSiteURL = @"http://coteditor.github.io";
 NSString *const k_issueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
 
@@ -311,16 +298,15 @@ NSString *const k_issueTrackerURL = @"https://github.com/coteditor/CotEditor/iss
 // CEEditorWrapper
 // ------------------------------------------------------
 
-// CEEditorWrapper and subView's dict key
-NSString *const k_outlineMenuItemRange = @"outlineMenuItemRange";
-NSString *const k_outlineMenuItemTitle = @"outlineMenuItemTitle";
-NSString *const k_outlineMenuItemSortKey = @"outlineMenuItemSortKey";
-NSString *const k_outlineMenuItemFontBold = @"outlineMenuItemFontBold";
-NSString *const k_outlineMenuItemFontItalic = @"outlineMenuItemFontItalic";
-NSString *const k_outlineMenuItemUnderlineMask = @"outlineMenuItemUnderlineMask";
+// Outline item dict keys
+NSString *const CEOutlineItemTitleKey = @"outlineItemTitle";
+NSString *const CEOutlineItemRangeKey = @"outlineItemRange";
+NSString *const CEOutlineItemSortKeyKey = @"outlineItemSortKey";
+NSString *const CEOutlineItemFontBoldKey = @"outlineItemFontBold";
+NSString *const CEOutlineItemFontItalicKey = @"outlineItemFontItalic";
+NSString *const CEOutlineItemUnderlineMaskKey = @"outlineItemUnderlineMask";
 
-
-// CEEditorWrapper and subView's constants
+// layout constants
 CGFloat const k_defaultLineNumWidth = 32.0;
 CGFloat const k_lineNumPadding = 3.0;
 CGFloat const k_lineNumFontDescender = -2.1;
@@ -438,11 +424,6 @@ NSString *const k_editColorCodeItemID = @"editColorCodeItemID";
 // KeyBindingManager
 // ------------------------------------------------------
 
-// info dictionary key
-NSString *const k_keyCatchMode = @"keyCatchMode";
-NSString *const k_keyBindingModFlags = @"keyBindingModFlags";
-NSString *const k_keyBindingChar = @"keyBindingChar";
-
 // outlineView data key, column identifier
 NSString *const k_title = @"title";
 NSString *const k_children = @"children";
@@ -463,7 +444,7 @@ NSInteger const k_autoDetectEncodingMenuTag = 0;
 // Max length to scan encding declaration
 NSUInteger const k_maxEncodingScanLength = 2000;
 
-
+// Encodings list
 CFStringEncodings const k_CFStringEncodingList[] = {
     kCFStringEncodingUTF8, // Unicode (UTF-8)
     kCFStringEncodingInvalidId, // ----------
@@ -529,7 +510,7 @@ CFStringEncodings const k_CFStringEncodingList[] = {
 };
 NSUInteger const k_size_of_CFStringEncodingList = sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings);
 
-// Encodings to convert Yen mark to back-slash
+// Encodings that need convert Yen mark to back-slash
 CFStringEncodings const k_CFStringEncodingInvalidYenList[] = {
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
     kCFStringEncodingEUC_JP,  // Japanese (EUC)
@@ -551,18 +532,35 @@ CFStringEncodings const k_CFStringEncodingInvalidYenList[] = {
 };
 NSUInteger const k_size_of_CFStringEncodingInvalidYenList = sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings);
 
-
+// Yen mark char
 unichar const k_yenMark = {0x00A5};
 
+
+
+// ------------------------------------------------------
+// Invisibles
+// ------------------------------------------------------
+
+// Substitutes for invisible characters
 unichar     const k_invisibleSpaceCharList[] = {0x00B7, 0x00B0, 0x02D0, 0x2423};
 NSUInteger  const k_size_of_invisibleSpaceCharList = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar));
+
 unichar     const k_invisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
 NSUInteger  const k_size_of_invisibleTabCharList = (sizeof(k_invisibleTabCharList) / sizeof(unichar));
+
 unichar     const k_invisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
 NSUInteger  const k_size_of_invisibleNewLineCharList = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar));
+
 unichar     const k_invisibleFullwidthSpaceCharList[] = {0x25A2, 0x22A0, 0x25B3, 0x2573};
 NSUInteger  const k_size_of_invisibleFullwidthSpaceCharList = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar));
 
+
+
+// ------------------------------------------------------
+// Keybindings
+// ------------------------------------------------------
+
+// Modifier keys and characters for keybindings
 NSUInteger const k_modifierKeysList[] = {
     NSControlKeyMask,
     NSAlternateKeyMask,
@@ -570,12 +568,14 @@ NSUInteger const k_modifierKeysList[] = {
     NSCommandKeyMask
 };
 NSUInteger const k_size_of_modifierKeysList = (sizeof(k_modifierKeysList) / sizeof(NSUInteger));
+
 unichar    const k_keySpecCharList[] = {0x005E, 0x007E, 0x0024, 0x0040}; // == "^~$@"
 NSUInteger const k_size_of_keySpecCharList = (sizeof(k_keySpecCharList) / sizeof(unichar));
+
 unichar    const k_readableKeyStringsList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
 NSUInteger const k_size_of_readableKeyStringsList = (sizeof(k_readableKeyStringsList) / sizeof(unichar));
 
-unichar const k_noPrintableKeyList[] = {
+unichar const k_unprintableKeyList[] = {
     NSUpArrowFunctionKey,
     NSDownArrowFunctionKey,
     NSLeftArrowFunctionKey,
@@ -596,7 +596,7 @@ unichar const k_noPrintableKeyList[] = {
     NSF14FunctionKey,
     NSF15FunctionKey,
     NSF16FunctionKey,
-    NSDeleteCharacter, // NSDeleteFunctionKey は使わない
+    NSDeleteCharacter, // do not use NSDeleteFunctionKey
     NSHomeFunctionKey,
     NSEndFunctionKey,
     NSPageUpFunctionKey,
@@ -611,4 +611,4 @@ unichar const k_noPrintableKeyList[] = {
     '\031', // = Backtab
     '\033', // = Escape
 };
-NSUInteger const k_size_of_noPrintableKeyList = sizeof(k_noPrintableKeyList) / sizeof(unichar);
+NSUInteger const k_size_of_unprintableKeyList = sizeof(k_unprintableKeyList) / sizeof(unichar);

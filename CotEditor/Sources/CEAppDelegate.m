@@ -363,7 +363,7 @@
     // アプリに内包する DefaultMenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
 
     // 「Select Outline item」「Goto」メニューを生成／追加
-    NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:k_findMenuIndex] submenu];
+    NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:CEFindMenuIndex] submenu];
     NSMenuItem *menuItem;
 
     [findMenu addItem:[NSMenuItem separatorItem]];
@@ -407,8 +407,8 @@
 // ------------------------------------------------------
 {
     NSMenu *menu = [[NSMenu alloc] init];
-    NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_newMenuItemTag] copy];
-    NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:k_fileMenuIndex] submenu] itemWithTag:k_openMenuItemTag] copy];
+    NSMenuItem *newItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CENewMenuItemTag] copy];
+    NSMenuItem *openItem = [[[[[NSApp mainMenu] itemAtIndex:CEFileMenuIndex] submenu] itemWithTag:CEOpenMenuItemTag] copy];
 
     [newItem setAction:@selector(newInDockMenu:)];
     [openItem setAction:@selector(openInDockMenu:)];
@@ -598,7 +598,7 @@
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------
 {
-    NSString *fileName = k_bundleDocumentTags[[sender tag]];
+    NSString *fileName = k_bundledDocumentFileNames[[sender tag]];
     NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"rtf"];
     
     [[NSWorkspace sharedWorkspace] openURL:URL];
@@ -663,7 +663,7 @@
 - (void)buildEncodingMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_fileEncodingMenuItemTag] submenu];
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEFileEncodingMenuItemTag] submenu];
     [menu removeAllItems];
     
     NSArray *items = [[NSArray alloc] initWithArray:[self encodingMenuItems] copyItems:YES];
@@ -680,7 +680,7 @@
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_syntaxMenuItemTag] submenu];
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CESyntaxMenuItemTag] submenu];
     [menu removeAllItems];
     
     // None を追加
@@ -714,7 +714,7 @@
 - (void)buildThemeMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:k_formatMenuIndex] submenu] itemWithTag:k_themeMenuItemTag] submenu];
+    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEThemeMenuItemTag] submenu];
     [menu removeAllItems];
     
     NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];

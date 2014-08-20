@@ -385,9 +385,9 @@ static CGFloat kPerCompoIncrement;
              
              // セパレータのとき
              if ([template isEqualToString:CESeparatorString]) {
-                 [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:range],
-                                               k_outlineMenuItemTitle: CESeparatorString,
-                                               k_outlineMenuItemSortKey: @(range.location)}];
+                 [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
+                                               CEOutlineItemTitleKey: CESeparatorString,
+                                               CEOutlineItemSortKeyKey: @(range.location)}];
                  return;
              }
              
@@ -437,26 +437,26 @@ static CGFloat kPerCompoIncrement;
              (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
              
              // 辞書生成
-             [outlineMenuDicts addObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:range],
-                                           k_outlineMenuItemTitle: title,
-                                           k_outlineMenuItemSortKey: @(range.location),
-                                           k_outlineMenuItemFontBold: @(isBold),
-                                           k_outlineMenuItemFontItalic: @(isItalic),
-                                           k_outlineMenuItemUnderlineMask: @(underlineMask)}];
+             [outlineMenuDicts addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
+                                           CEOutlineItemTitleKey: title,
+                                           CEOutlineItemSortKeyKey: @(range.location),
+                                           CEOutlineItemFontBoldKey: @(isBold),
+                                           CEOutlineItemFontItalicKey: @(isItalic),
+                                           CEOutlineItemUnderlineMaskKey: @(underlineMask)}];
          }];
     }
     
     if ([outlineMenuDicts count] > 0) {
         // 出現順にソート
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:k_outlineMenuItemSortKey
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:CEOutlineItemSortKeyKey
                                                                    ascending:YES
                                                                     selector:@selector(compare:)];
         [outlineMenuDicts sortUsingDescriptors:@[descriptor]];
         
         // 冒頭のアイテムを追加
-        [outlineMenuDicts insertObject:@{k_outlineMenuItemRange: [NSValue valueWithRange:NSMakeRange(0, 0)],
-                                         k_outlineMenuItemTitle: NSLocalizedString(@"<Outline Menu>", nil),
-                                         k_outlineMenuItemSortKey: @0U}
+        [outlineMenuDicts insertObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:NSMakeRange(0, 0)],
+                                         CEOutlineItemTitleKey: NSLocalizedString(@"<Outline Menu>", nil),
+                                         CEOutlineItemSortKeyKey: @0U}
                                atIndex:0];
     }
     
@@ -559,7 +559,7 @@ static CGFloat kPerCompoIncrement;
         start = [scanner scanLocation];
         if (start + beginLength < localLength) {
             [scanner setScanLocation:(start + beginLength)];
-            escapesCheckLength = (start < k_ESCheckLength) ? start : k_ESCheckLength;
+            escapesCheckLength = MIN(start, k_maxEscapesCheckLength);
             escapesCheckRange = NSMakeRange(start - escapesCheckLength, escapesCheckLength);
             escapesCheckStr = [string substringWithRange:escapesCheckRange];
             numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
@@ -580,7 +580,7 @@ static CGFloat kPerCompoIncrement;
             end = [scanner scanLocation] + endLength;
             if (end <= localLength) {
                 [scanner setScanLocation:end];
-                escapesCheckLength = ((end - endLength) < k_ESCheckLength) ? (end - endLength) : k_ESCheckLength;
+                escapesCheckLength = MIN((end - endLength), k_maxEscapesCheckLength);
                 escapesCheckRange = NSMakeRange(end - endLength - escapesCheckLength, escapesCheckLength);
                 escapesCheckStr = [string substringWithRange:escapesCheckRange];
                 numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];

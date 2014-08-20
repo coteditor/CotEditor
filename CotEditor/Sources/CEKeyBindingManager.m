@@ -364,7 +364,7 @@
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
                                                             object:self
-                                                          userInfo:@{k_keyCatchMode: @(CECatchMenuShortCutMode)}];
+                                                          userInfo:@{CEKeyCatchModeKey: @(CECatchMenuShortCutMode)}];
         switch ([self outlineMode]) {
             case CEMenuModeOutline:
                 [[self menuDeleteKeyButton] setEnabled:YES];
@@ -459,7 +459,7 @@
     // キー取得を停止
     [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
                                                         object:self
-                                                      userInfo:@{k_keyCatchMode: @(CEKeyDownNoCatchMode)}];
+                                                      userInfo:@{CEKeyCatchModeKey: @(CEKeyDownNoCatchMode)}];
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if ([self outlineMode] == CETextModeOutline) {
         BOOL isEnabled = [[item valueForKey:k_selectorString] hasPrefix:@"insertCustomText"];
@@ -583,7 +583,7 @@
     // キー入力取得を停止
     [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
                                                         object:self
-                                                      userInfo:@{k_keyCatchMode: @(CEKeyDownNoCatchMode)}];
+                                                      userInfo:@{CEKeyCatchModeKey: @(CEKeyDownNoCatchMode)}];
 
     if ([sender tag] == k_okButtonTag) { // ok のときデータを保存、反映させる
         [self saveOutlineViewData];
@@ -743,9 +743,9 @@
     for (NSMenuItem *item in [menu itemArray]) {
         // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
         if ([[self selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
-            ([item tag] == k_servicesMenuItemTag) ||
-            ([item tag] == k_windowPanelsMenuItemTag) ||
-            ([item tag] == k_scriptMenuDirectoryTag))
+            ([item tag] == CEServicesMenuItemTag) ||
+            ([item tag] == CEWindowPanelsMenuItemTag) ||
+            ([item tag] == CEScriptMenuDirectoryTag))
         {
             continue;
         }
@@ -798,18 +798,18 @@
 
     for (NSMenuItem *item in [menu itemArray]) {
         if (([item hasSubmenu]) &&
-            ([item tag] != k_servicesMenuItemTag) &&
-            ([item tag] != k_windowPanelsMenuItemTag) &&
-            ([item tag] != k_scriptMenuDirectoryTag))
+            ([item tag] != CEServicesMenuItemTag) &&
+            ([item tag] != CEWindowPanelsMenuItemTag) &&
+            ([item tag] != CEScriptMenuDirectoryTag))
         {
             [self resetKeyBindingWithDictionaryTo:[item submenu]];
         } else {
             NSString *selectorString = NSStringFromSelector([item action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
             if ([[self selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
-                ([item tag] == k_servicesMenuItemTag) ||
-                ([item tag] == k_windowPanelsMenuItemTag) ||
-                ([item tag] == k_scriptMenuDirectoryTag)) {
+                ([item tag] == CEServicesMenuItemTag) ||
+                ([item tag] == CEWindowPanelsMenuItemTag) ||
+                ([item tag] == CEScriptMenuDirectoryTag)) {
                 continue;
             }
             NSString *keySpecChars = [self keySpecCharsInDictionaryFromSelectorString:selectorString];
@@ -848,9 +848,9 @@
         
         NSMutableDictionary *theDict;
         if (([item hasSubmenu]) &&
-                   ([item tag] != k_servicesMenuItemTag) &&
-                   ([item tag] != k_windowPanelsMenuItemTag) &&
-                   ([item tag] != k_scriptMenuDirectoryTag))
+                   ([item tag] != CEServicesMenuItemTag) &&
+                   ([item tag] != CEWindowPanelsMenuItemTag) &&
+                   ([item tag] != CEScriptMenuDirectoryTag))
         {
             NSMutableArray *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
             theDict = [@{k_title: [item title],
@@ -860,9 +860,9 @@
             NSString *selectorString = NSStringFromSelector([item action]);
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
             if ([[self selectorStringsToIgnore] containsObject:selectorString] ||
-                ([item tag] == k_servicesMenuItemTag) ||
-                ([item tag] == k_windowPanelsMenuItemTag) ||
-                ([item tag] == k_scriptMenuDirectoryTag))
+                ([item tag] == CEServicesMenuItemTag) ||
+                ([item tag] == CEWindowPanelsMenuItemTag) ||
+                ([item tag] == CEScriptMenuDirectoryTag))
             {
                 continue;
             }
@@ -1035,9 +1035,9 @@
     }
     if (sheet && outlineView) {
         NSDictionary *userInfo = [notification userInfo];
-        NSUInteger modifierFlags = [[userInfo valueForKey:k_keyBindingModFlags] unsignedIntegerValue];
+        NSUInteger modifierFlags = [userInfo[CEKeyBindingModFlagsKey] unsignedIntegerValue];
         NSText *fieldEditor = [sheet fieldEditor:NO forObject:outlineView];
-        NSString *charIgnoringMod = [userInfo valueForKey:k_keyBindingChar];
+        NSString *charIgnoringMod = userInfo[CEKeyBindingCharKey];
         NSString *fieldString = [self keySpecCharsFromKeyEquivalent:charIgnoringMod modifierFrags:modifierFlags];
 
         [fieldEditor setString:fieldString];
@@ -1419,14 +1419,12 @@
                               [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
                               [NSString stringWithFormat:@"%C", (unichar)0x238B]];
 
-    if (k_size_of_noPrintableKeyList != [visibleChars count]) {
-        NSLog(@"internal data error! 'k_noPrintableKeyList' and 'visibleChars' size is different.");
-        return nil;
-    }
-    NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:k_size_of_noPrintableKeyList];
-
-    for (NSInteger i = 0; i < k_size_of_noPrintableKeyList; i++) {
-        [keys addObject:[NSString stringWithFormat:@"%C", k_noPrintableKeyList[i]]];
+    NSAssert(k_size_of_unprintableKeyList == [visibleChars count],
+             @"Internal data error! Sizes of 'k_unprintableKeyList' and 'visibleChars' are different.");
+    
+    NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:k_size_of_unprintableKeyList];
+    for (NSInteger i = 0; i < k_size_of_unprintableKeyList; i++) {
+        [keys addObject:[NSString stringWithFormat:@"%C", k_unprintableKeyList[i]]];
     }
 
     return [NSDictionary dictionaryWithObjects:visibleChars forKeys:keys];

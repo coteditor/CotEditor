@@ -135,18 +135,18 @@ static const NSTimeInterval duration = 0.1;
                                           size:[NSFont smallSystemFontSize]];
     
     for (NSDictionary *outlineItem in outlineItems) {
-        if ([outlineItem[k_outlineMenuItemTitle] isEqualToString:CESeparatorString]) {
+        if ([outlineItem[CEOutlineItemTitleKey] isEqualToString:CESeparatorString]) {
             [menu addItem:[NSMenuItem separatorItem]];
             
         } else {
             NSFontManager *fontManager = [NSFontManager sharedFontManager];
-            NSNumber *underlineMaskNumber = outlineItem[k_outlineMenuItemUnderlineMask];
-            NSFontTraitMask fontMask = [outlineItem[k_outlineMenuItemFontBold] boolValue] ? NSBoldFontMask : 0;
-            fontMask |= [outlineItem[k_outlineMenuItemFontItalic] boolValue] ? NSItalicFontMask : 0;
+            NSNumber *underlineMaskNumber = outlineItem[CEOutlineItemUnderlineMaskKey];
+            NSFontTraitMask fontMask = [outlineItem[CEOutlineItemFontBoldKey] boolValue] ? NSBoldFontMask : 0;
+            fontMask |= [outlineItem[CEOutlineItemFontItalicKey] boolValue] ? NSItalicFontMask : 0;
             NSFont *font = [fontManager convertFont:defaultFont toHaveTrait:fontMask];
             
             NSMutableAttributedString *title = [[NSMutableAttributedString alloc]
-                                                initWithString:outlineItem[k_outlineMenuItemTitle]
+                                                initWithString:outlineItem[CEOutlineItemTitleKey]
                                                 attributes:@{NSFontAttributeName: font}];
             if (underlineMaskNumber) {
                 [title addAttribute:NSUnderlineStyleAttributeName
@@ -158,7 +158,7 @@ static const NSTimeInterval duration = 0.1;
                                                        keyEquivalent:@""];
             [menuItem setTarget:[self textView]];
             [menuItem setAttributedTitle:title];
-            [menuItem setRepresentedObject:[outlineItem valueForKey:k_outlineMenuItemRange]];
+            [menuItem setRepresentedObject:[outlineItem valueForKey:CEOutlineItemRangeKey]];
             [menu addItem:menuItem];
         }
     }

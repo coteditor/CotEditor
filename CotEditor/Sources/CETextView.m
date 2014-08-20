@@ -43,6 +43,10 @@
 #import "constants.h"
 
 
+// constrain
+const NSInteger kNoMenuItem = -1;
+
+
 @interface CETextView ()
 
 @property (nonatomic) NSRect insertionRect;
@@ -441,7 +445,7 @@
                                                                action:@selector(selectAll:) keyEquivalent:@""];
     NSMenuItem *utilityMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Utility", nil)
                                                              action:nil keyEquivalent:@""];
-    NSMenu *utilityMenu = [[[[NSApp mainMenu] itemAtIndex:k_utilityMenuIndex] submenu] copy];
+    NSMenu *utilityMenu = [[[[NSApp mainMenu] itemAtIndex:CEUtilityMenuIndex] submenu] copy];
     NSMenuItem *ASMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
     NSMenu *ASSubMenu = [[CEScriptManager sharedManager] contexualMenu];
 
@@ -451,42 +455,42 @@
     // 連続してコンテキストメニューを表示させるとどんどんメニューアイテムが追加されてしまうので、
     // 既に追加されているかどうかをチェックしている
     if (selectAllMenuItem &&
-        ([outMenu indexOfItemWithTarget:nil andAction:@selector(selectAll:)] == k_noMenuItem)) {
+        ([outMenu indexOfItemWithTarget:nil andAction:@selector(selectAll:)] == kNoMenuItem)) {
         NSInteger pasteIndex = [outMenu indexOfItemWithTarget:nil andAction:@selector(paste:)];
-        if (pasteIndex != k_noMenuItem) {
+        if (pasteIndex != kNoMenuItem) {
             [outMenu insertItem:selectAllMenuItem atIndex:(pasteIndex + 1)];
         }
     }
     if ((utilityMenu || ASSubMenu) &&
-        ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem) &&
-        ([outMenu indexOfItemWithTag:k_scriptMenuTag] == k_noMenuItem)) {
+        ([outMenu indexOfItemWithTag:CEUtilityMenuItemTag] == kNoMenuItem) &&
+        ([outMenu indexOfItemWithTag:CEScriptMenuItemTag] == kNoMenuItem)) {
         [outMenu addItem:[NSMenuItem separatorItem]];
     }
-    if (utilityMenu && ([outMenu indexOfItemWithTag:k_utilityMenuTag] == k_noMenuItem)) {
-        [utilityMenuItem setTag:k_utilityMenuTag];
+    if (utilityMenu && ([outMenu indexOfItemWithTag:CEUtilityMenuItemTag] == kNoMenuItem)) {
+        [utilityMenuItem setTag:CEUtilityMenuItemTag];
         [utilityMenuItem setSubmenu:utilityMenu];
         [outMenu addItem:utilityMenuItem];
     }
     if (ASSubMenu) {
         NSMenuItem *delItem = nil;
-        while ((delItem = [outMenu itemWithTag:k_scriptMenuTag])) {
+        while ((delItem = [outMenu itemWithTag:CEScriptMenuItemTag])) {
             [outMenu removeItem:delItem];
         }
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_inlineContextualScriptMenu]) {
             for (NSUInteger i = 0; i < 2; i++) { // セパレータをふたつ追加
                 [outMenu addItem:[NSMenuItem separatorItem]];
-                [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:k_scriptMenuTag];
+                [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:CEScriptMenuItemTag];
             }
             NSMenuItem *addItem = nil;
             for (NSMenuItem *item in [ASSubMenu itemArray]) {
                 addItem = [item copy];
-                [addItem setTag:k_scriptMenuTag];
+                [addItem setTag:CEScriptMenuItemTag];
                 [outMenu addItem:addItem];
             }
         } else{
             [ASMenuItem setImage:[NSImage imageNamed:@"scriptMenuTemplate"]];
-            [ASMenuItem setTag:k_scriptMenuTag];
+            [ASMenuItem setTag:CEScriptMenuItemTag];
             [ASMenuItem setSubmenu:ASSubMenu];
             [outMenu addItem:ASMenuItem];
         }
@@ -605,7 +609,7 @@
     if ([self showsPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
         
-        if ((column < k_pageGuideColumnMin) || (column > k_pageGuideColumnMax)) {
+        if ((column < k_minPageGuideColumn) || (column > k_maxPageGuideColumn)) {
             return;
         }
         

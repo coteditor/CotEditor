@@ -37,7 +37,7 @@
 // General
 // ------------------------------------------------------
 
-// separator
+// Separator
 extern NSString *const CESeparatorString;
 
 // Error domain
@@ -51,15 +51,31 @@ typedef NS_ENUM(NSInteger, CEErrorCode) {
 // Localized Strings Table
 extern NSString *const k_printLocalizeTable;
 
+
+
+#pragma mark Notifications
+
+// ------------------------------------------------------
+// Notifications
+// ------------------------------------------------------
+
 // Notification name
 extern NSString *const CEEncodingListDidUpdateNotification;
 extern NSString *const CEDocumentDidFinishOpenNotification;
 extern NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification;
 extern NSString *const CECatchMenuShortcutNotification;
 
-// Notification userInfo keys
+// General notification's userInfo keys
 extern NSString *const CEOldNameKey;
 extern NSString *const CENewNameKey;
+
+// userInfo keys for CESetKeyCatchModeToCatchMenuShortcutNotification
+extern NSString *const CEKeyCatchModeKey;
+
+// userInfo keys for CECatchMenuShortcutNotification
+extern NSString *const CEKeyBindingModFlagsKey;
+extern NSString *const CEKeyBindingCharKey;
+
 
 
 #pragma mark User Defaults
@@ -162,12 +178,12 @@ extern NSString *const k_key_printLineNumIndex;
 extern NSString *const k_key_printInvisibleCharIndex;
 extern NSString *const k_key_printColorIndex;
 
-// settings that are not in preferences (環境設定にない設定項目)
+// settings that are not in preferences
 extern NSString *const k_key_insertCustomTextArray;
 extern NSString *const k_key_insertCustomText;
 extern NSString *const k_key_colorCodeType;
 
-// hidden settings（隠し設定の値は CEAppDelegate の initialize で設定している）
+// hidden settings
 extern NSString *const k_key_usesTextFontForInvisibles;
 extern NSString *const k_key_lineNumFontName;
 extern NSString *const k_key_lineNumFontColor;
@@ -239,15 +255,13 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 
 
 
-#pragma mark Setting Values
-
 // ------------------------------------------------------
-// Setting Values
+// Setting thresholds
 // ------------------------------------------------------
 
-// Page guide column values
-extern NSUInteger const k_pageGuideColumnMin;
-extern NSUInteger const k_pageGuideColumnMax;
+// Page guide column
+extern NSUInteger const k_minPageGuideColumn;
+extern NSUInteger const k_maxPageGuideColumn;
 
 
 
@@ -257,11 +271,11 @@ extern NSUInteger const k_pageGuideColumnMax;
 // Syntax
 // ------------------------------------------------------
 
-// syntax coloring
-extern NSUInteger const k_ESCheckLength;
+// syntax parsing
+extern NSUInteger const k_maxEscapesCheckLength;
 extern NSString  *const k_allAlphabetChars;
 
-// syntax style
+// syntax style keys
 extern NSString *const k_SCKey_styleName;
 extern NSString *const k_SCKey_extensions;
 extern NSString *const k_SCKey_filenames;
@@ -300,38 +314,44 @@ extern NSUInteger const k_size_of_allColoringArrays;
 // Main Menu
 // ------------------------------------------------------
 
-// Main Menu index and tag
-extern NSInteger const k_applicationMenuIndex;
-extern NSInteger const k_fileMenuIndex;
-extern NSInteger const k_editMenuIndex;
-extern NSInteger const k_viewMenuIndex;
-extern NSInteger const k_formatMenuIndex;
-extern NSInteger const k_findMenuIndex;
-extern NSInteger const k_utilityMenuIndex;
-extern NSInteger const k_scriptMenuIndex;
-extern NSInteger const k_newMenuItemTag;
-extern NSInteger const k_openMenuItemTag;
-extern NSInteger const k_openHiddenMenuItemTag;
-extern NSInteger const k_openRecentMenuItemTag;
-extern NSInteger const k_BSMenuItemTag;
-extern NSInteger const k_fileEncodingMenuItemTag;
-extern NSInteger const k_syntaxMenuItemTag;
-extern NSInteger const k_themeMenuItemTag;
-extern NSInteger const k_servicesMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
-extern NSInteger const k_windowPanelsMenuItemTag;  // Menu KeyBindings Setting でリストアップしないための定数
-extern NSInteger const k_scriptMenuDirectoryTag;  // Menu KeyBindings Setting でリストアップしないための定数
+// Main menu indexes
+typedef NS_ENUM(NSUInteger, CEMainMenuIndex) {
+    CEApplicationMenuIndex,
+    CEFileMenuIndex,
+    CEEditMenuIndex,
+    CEViewMenuIndex,
+    CEFormatMenuIndex,
+    CEFindMenuIndex,
+    CEUtilityMenuIndex,
+    CEWindowMenuIndex,
+    CEScriptMenuIndex,
+};
 
-// Contextual Menu tag
-extern NSInteger const k_noMenuItem;
-extern NSInteger const k_utilityMenuTag;
-extern NSInteger const k_scriptMenuTag;
+// Menu item tags
+typedef NS_ENUM(NSInteger, CEMenuItemTag) {
+    // in main menu
+    CENewMenuItemTag            =  100,
+    CEOpenMenuItemTag           =  101,
+    CEOpenHiddenMenuItemTag     =  102,
+    CEOpenRecentMenuItemTag     =  103,
+    CEInputBackSlashMenuItemTag =  209,
+    CEFileEncodingMenuItemTag   = 4001,
+    CESyntaxMenuItemTag         = 4002,
+    CEThemeMenuItemTag          = 4003,
+    CEServicesMenuItemTag       =  999,  // const not to list up in "Menu Key Bindings" Setting
+    CEWindowPanelsMenuItemTag   = 7999,  // const not to list up in "Menu Key Bindings" Setting
+    CEScriptMenuDirectoryTag    = 8999,  // const not to list up in "Menu Key Bindings" Setting
+    
+    // in contextual menu
+    CEUtilityMenuItemTag        =  600,
+    CEScriptMenuItemTag         =  800,
+};
 
-// Help Document Menu tag and path
-extern NSString *const k_bundleDocumentTags[];
+// Help document file names table
+extern NSString *const k_bundledDocumentFileNames[];
 
-// distribution web site
+// Online URLs
 extern NSString *const k_webSiteURL;
-// issue tracker site
 extern NSString *const k_issueTrackerURL;
 
 
@@ -342,15 +362,15 @@ extern NSString *const k_issueTrackerURL;
 // CEEditorWrapper
 // ------------------------------------------------------
 
-// CEEditorWrapper and subView's dict key
-extern NSString *const k_outlineMenuItemRange;
-extern NSString *const k_outlineMenuItemTitle;
-extern NSString *const k_outlineMenuItemSortKey;
-extern NSString *const k_outlineMenuItemFontBold;
-extern NSString *const k_outlineMenuItemFontItalic;
-extern NSString *const k_outlineMenuItemUnderlineMask;
+// Outline item dict keys
+extern NSString *const CEOutlineItemTitleKey;
+extern NSString *const CEOutlineItemRangeKey;
+extern NSString *const CEOutlineItemSortKeyKey;
+extern NSString *const CEOutlineItemFontBoldKey;
+extern NSString *const CEOutlineItemFontItalicKey;
+extern NSString *const CEOutlineItemUnderlineMaskKey;
 
-// CEEditorWrapper and subView's constants
+// layout constants
 extern CGFloat const k_defaultLineNumWidth;
 extern CGFloat const k_lineNumPadding;
 extern CGFloat const k_lineNumFontDescender;
@@ -375,9 +395,9 @@ extern CGFloat const k_defaultLineHeightMultiple;
 // Print
 // ------------------------------------------------------
 
-extern CGFloat const k_printTextHorizontalMargin;    // テキスト用の左右のマージン
-extern CGFloat const k_printHFHorizontalMargin;    // ヘッダ／フッタ用の左右のマージン
-extern CGFloat const k_printHFVerticalMargin;    // ヘッダ／フッタ用の上下のマージン
+extern CGFloat const k_printTextHorizontalMargin;  // left/light margin for text
+extern CGFloat const k_printHFHorizontalMargin;    // left/light margin for header/footer
+extern CGFloat const k_printHFVerticalMargin;      // top/bottom margin for header/footer
 extern CGFloat const k_headerFooterLineHeight;
 extern CGFloat const k_separatorPadding;
 extern CGFloat const k_noSeparatorPadding;
@@ -456,11 +476,6 @@ extern NSString *const k_editColorCodeItemID;
 // KeyBindingManager
 // ------------------------------------------------------
 
-// info dictionary key
-extern NSString *const k_keyCatchMode;
-extern NSString *const k_keyBindingModFlags;
-extern NSString *const k_keyBindingChar;
-
 // outlineView data key, column identifier
 extern NSString *const k_title;
 extern NSString *const k_children;
@@ -478,34 +493,54 @@ extern NSString *const k_selectorString;
 // Encoding menu
 extern NSInteger const k_autoDetectEncodingMenuTag;
 
-// Max length to scan encding declaration
+// Max length to scan encoding declaration
 extern NSUInteger        const k_maxEncodingScanLength;
 
+// Encodings list
 extern CFStringEncodings const k_CFStringEncodingList[];
 extern NSUInteger        const k_size_of_CFStringEncodingList;
 
-// Encodings to convert Yen mark to back-slash
+// Encodings that need convert Yen mark to back-slash
 extern CFStringEncodings const k_CFStringEncodingInvalidYenList[];
 extern NSUInteger        const k_size_of_CFStringEncodingInvalidYenList;
 
-
+// Yen mark char
 extern unichar const k_yenMark;
 
+
+
+// ------------------------------------------------------
+// Invisibles
+// ------------------------------------------------------
+
+// Substitutes for invisible characters
 extern unichar    const k_invisibleSpaceCharList[];
 extern NSUInteger const k_size_of_invisibleSpaceCharList;
+
 extern unichar    const k_invisibleTabCharList[];
 extern NSUInteger const k_size_of_invisibleTabCharList;
+
 extern unichar    const k_invisibleNewLineCharList[];
 extern NSUInteger const k_size_of_invisibleNewLineCharList;
+
 extern unichar    const k_invisibleFullwidthSpaceCharList[];
 extern NSUInteger const k_size_of_invisibleFullwidthSpaceCharList;
 
+
+
+// ------------------------------------------------------
+// Keybindings
+// ------------------------------------------------------
+
+// Modifier keys and characters for keybindings
 extern NSUInteger const k_modifierKeysList[];
 extern NSUInteger const k_size_of_modifierKeysList;
+
 extern unichar    const k_keySpecCharList[];
 extern NSUInteger const k_size_of_keySpecCharList;
+
 extern unichar    const k_readableKeyStringsList[];
 extern NSUInteger const k_size_of_readableKeyStringsList;
 
-extern unichar    const k_noPrintableKeyList[];
-extern NSUInteger const k_size_of_noPrintableKeyList;
+extern unichar    const k_unprintableKeyList[];
+extern NSUInteger const k_size_of_unprintableKeyList;
