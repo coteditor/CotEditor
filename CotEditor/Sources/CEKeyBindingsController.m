@@ -29,7 +29,7 @@
  */
 
 #import "CEKeyBindingsController.h"
-#import "CEKeyBindingManager.h"
+#import "CEKeyBindingSheetController.h"
 
 
 @implementation CEKeyBindingsController
@@ -47,12 +47,9 @@
 // ------------------------------------------------------
 {
     // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CEKeyBindingManager の closeKeyBindingEditSheet: で)
-    NSWindow *sheet = [[CEKeyBindingManager sharedManager] editSheetWindowOfMode:[sender tag]];
-    
-    if (!sheet || ![[CEKeyBindingManager sharedManager] setupOutlineDataOfMode:[sender tag]]) {
-        return;
-    }
+    // (閉じる命令は CEKeyBindingSheetController の closeKeyBindingEditSheet: で)
+    CEKeyBindingSheetController *sheetController = [[CEKeyBindingSheetController alloc] initWithMode:[sender tag]];
+    NSWindow *sheet = [sheetController window];
     
     [NSApp beginSheet:sheet
        modalForWindow:[[self view] window]

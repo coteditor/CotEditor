@@ -66,6 +66,7 @@
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
 		2A5411C319852C1C008B43DA /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* NavigationBar.xib */; };
 		2A5411C9198549A7008B43DA /* CENavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411C8198549A7008B43DA /* CENavigationBarView.m */; };
+		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */; };
@@ -301,6 +302,8 @@
 		2A5411C219852C1C008B43DA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NavigationBar.xib; sourceTree = "<group>"; };
 		2A5411C7198549A7008B43DA /* CENavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CENavigationBarView.h; sourceTree = "<group>"; };
 		2A5411C8198549A7008B43DA /* CENavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarView.m; sourceTree = "<group>"; };
+		2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingSheetController.h; sourceTree = "<group>"; };
+		2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingSheetController.m; sourceTree = "<group>"; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
 		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
 		2A5ABE78191861E3009265DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
@@ -600,6 +603,8 @@
 				2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m */,
 				2A15831818E368CE00601026 /* CEEncodingListSheetController.h */,
 				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
+				2A586A1419A4FA9D0053F5E3 /* CEKeyBindingSheetController.h */,
+				2A586A1519A4FA9D0053F5E3 /* CEKeyBindingSheetController.m */,
 				2A68F93618FB04F300673440 /* CEMenuItemCell.h */,
 				2A68F93718FB04F300673440 /* CEMenuItemCell.m */,
 				2A4DB13B19A265BA005A4F7C /* CEDraggableArrayController.h */,
@@ -1161,6 +1166,7 @@
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
 				2A15833518E3B83F00601026 /* CEScriptErrorPanelController.m in Sources */,
 				2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */,
+				2A586A1619A4FA9D0053F5E3 /* CEKeyBindingSheetController.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */,
 				2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */,
