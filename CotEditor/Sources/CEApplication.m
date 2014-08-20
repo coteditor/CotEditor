@@ -29,19 +29,15 @@
  */
 
 #import "CEApplication.h"
-#import "constants.h"
 
 
-@interface CEApplication ()
-
-@property (nonatomic) CEKeyCatchMode keyCatchMode;
-
-@end
-
-
+// notification
+NSString *const CEDidCatchMenuShortcutNotification = @"CEDidCatchMenuShortcutNotification";
+// userInfo keys
+NSString *const CEKeyBindingModifierFlagsKey = @"keyBindingModifierFlags";
+NSString *const CEKeyBindingCharsKey = @"keyBindingChar";
 
 
-#pragma -
 
 @implementation CEApplication
 
@@ -60,23 +56,8 @@
     self = [super init];
     if (self) {
         _keyCatchMode = CEKeyDownNoCatchMode;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(setKeyCatchModeWithNotification:)
-                                                     name:CESetKeyCatchModeToCatchMenuShortcutNotification
-                                                   object:nil];
     }
     return self;
-}
-
-
-// ------------------------------------------------------
-/// あとかたづけ
-- (void)dealloc
-// ------------------------------------------------------
-{
-    // ノーティフィケーションセンタから自身を排除
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -85,56 +66,40 @@
 - (void)sendEvent:(NSEvent *)anEvent
 // ------------------------------------------------------
 {
+    // キーバインディングの設定で入力したキーを捕まえる
     if (([self keyCatchMode] == CECatchMenuShortCutMode) && ([anEvent type] == NSKeyDown)) {
-        NSString *charIgnoringMod = [anEvent charactersIgnoringModifiers];
-        if ([charIgnoringMod length] > 0) {
+        NSString *charsIgnoringModifiers = [anEvent charactersIgnoringModifiers];
+        
+        if ([charsIgnoringModifiers length] > 0) {
             NSUInteger modifierFlags = [anEvent modifierFlags];
             NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
 
             // Backspace または delete キーが押されていた時、是正する
             // （return 上の方にあるのが Backspace、テンキーとのあいだにある「delete」の刻印があるのが delete(forword)）
-            switch ([charIgnoringMod characterAtIndex:0]) {
+            switch ([charsIgnoringModifiers characterAtIndex:0]) {
                 case NSDeleteCharacter:
-                    charIgnoringMod = [NSString stringWithFormat:@"%C", (unichar)NSBackspaceCharacter];
+                    charsIgnoringModifiers = [NSString stringWithFormat:@"%C", (unichar)NSBackspaceCharacter];
                     break;
                 case NSDeleteFunctionKey:
-                    charIgnoringMod = [NSString stringWithFormat:@"%C", (unichar)NSDeleteCharacter];
+                    charsIgnoringModifiers = [NSString stringWithFormat:@"%C", (unichar)NSDeleteCharacter];
                     break;
             }
             // 不要なシフトを削除
-            if ([ignoringShiftSet characterIsMember:[charIgnoringMod characterAtIndex:0]] &&
+            if ([ignoringShiftSet characterIsMember:[charsIgnoringModifiers characterAtIndex:0]] &&
                 (modifierFlags & NSShiftKeyMask)) {
                 modifierFlags ^= NSShiftKeyMask;
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:CECatchMenuShortcutNotification
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEDidCatchMenuShortcutNotification
                                                                 object:self
-                                                              userInfo:@{CEKeyBindingModFlagsKey: @(modifierFlags),
-                                                                         CEKeyBindingCharKey: charIgnoringMod}];
+                                                              userInfo:@{CEKeyBindingModifierFlagsKey: @(modifierFlags),
+                                                                         CEKeyBindingCharsKey: charsIgnoringModifiers}];
             [self setKeyCatchMode:CEKeyDownNoCatchMode];
             return;
         }
     }
     
     [super sendEvent:anEvent];
-}
-
-
-
-#pragma mark Private Methods
-
-//=======================================================
-// Private method
-//
-//=======================================================
-
-// ------------------------------------------------------
-/// ノーティフィケーションからキーキャッチモードを設定
-- (void)setKeyCatchModeWithNotification:(NSNotification *)aNotification
-// ------------------------------------------------------
-{
-    CEKeyCatchMode mode = [[aNotification userInfo][CEKeyCatchModeKey] unsignedIntegerValue];
-
-    [self setKeyCatchMode:mode];
 }
 
 @end

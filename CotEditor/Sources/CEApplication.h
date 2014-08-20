@@ -31,13 +31,22 @@
 @import Cocoa;
 
 
-// key catch mode
+/// key catch mode
 typedef NS_ENUM(NSUInteger, CEKeyCatchMode) {
     CEKeyDownNoCatchMode,
     CECatchMenuShortCutMode
 };
 
+// notification
+/// Posted when menu shortcut input is catched.
+extern NSString *const CEDidCatchMenuShortcutNotification;
+// userInfo keys
+extern NSString *const CEKeyBindingModifierFlagsKey;
+extern NSString *const CEKeyBindingCharsKey;
+
 
 @interface CEApplication : NSApplication
+
+@property (nonatomic) CEKeyCatchMode keyCatchMode;
 
 @end

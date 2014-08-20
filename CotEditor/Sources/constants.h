@@ -62,19 +62,10 @@ extern NSString *const k_printLocalizeTable;
 // Notification name
 extern NSString *const CEEncodingListDidUpdateNotification;
 extern NSString *const CEDocumentDidFinishOpenNotification;
-extern NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification;
-extern NSString *const CECatchMenuShortcutNotification;
 
 // General notification's userInfo keys
 extern NSString *const CEOldNameKey;
 extern NSString *const CENewNameKey;
-
-// userInfo keys for CESetKeyCatchModeToCatchMenuShortcutNotification
-extern NSString *const CEKeyCatchModeKey;
-
-// userInfo keys for CECatchMenuShortcutNotification
-extern NSString *const CEKeyBindingModFlagsKey;
-extern NSString *const CEKeyBindingCharKey;
 
 
 

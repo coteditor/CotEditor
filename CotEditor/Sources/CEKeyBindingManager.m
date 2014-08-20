@@ -116,7 +116,7 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addCatchedMenuShortcutString:)
-                                                     name:CECatchMenuShortcutNotification
+                                                     name:CEDidCatchMenuShortcutNotification
                                                    object:NSApp];
     }
     return self;
@@ -362,9 +362,8 @@
             // （値が既にセットされている時は更新しない）
             [self setCurrentKeySpecChars:[theItem valueForKey:identifier]];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
-                                                            object:self
-                                                          userInfo:@{CEKeyCatchModeKey: @(CECatchMenuShortCutMode)}];
+        [(CEApplication *)NSApp setKeyCatchMode:CECatchMenuShortCutMode];
+        
         switch ([self outlineMode]) {
             case CEMenuModeOutline:
                 [[self menuDeleteKeyButton] setEnabled:YES];
@@ -457,9 +456,8 @@
     }
 
     // キー取得を停止
-    [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
-                                                        object:self
-                                                      userInfo:@{CEKeyCatchModeKey: @(CEKeyDownNoCatchMode)}];
+    [(CEApplication *)NSApp setKeyCatchMode:CEKeyDownNoCatchMode];
+    
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if ([self outlineMode] == CETextModeOutline) {
         BOOL isEnabled = [[item valueForKey:k_selectorString] hasPrefix:@"insertCustomText"];
@@ -581,9 +579,7 @@
     // フォーカスを移して入力中の値を確定
     [[sender window] makeFirstResponder:sender];
     // キー入力取得を停止
-    [[NSNotificationCenter defaultCenter] postNotificationName:CESetKeyCatchModeToCatchMenuShortcutNotification
-                                                        object:self
-                                                      userInfo:@{CEKeyCatchModeKey: @(CEKeyDownNoCatchMode)}];
+    [(CEApplication *)NSApp setKeyCatchMode:CEKeyDownNoCatchMode];
 
     if ([sender tag] == k_okButtonTag) { // ok のときデータを保存、反映させる
         [self saveOutlineViewData];
@@ -960,11 +956,9 @@
     NSMutableString *keySpecChars = [NSMutableString string];
     unichar theChar = [string characterAtIndex:0];
     BOOL isShiftPressed = NO;
-
-    if (k_size_of_modifierKeysList != k_size_of_keySpecCharList) {
-        NSLog(@"internal data error! 'k_modifierKeysList' and 'k_keySpecCharList' size is different.");
-        return @"";
-    }
+    
+    NSAssert(k_size_of_modifierKeysList == k_size_of_keySpecCharList,
+             @"internal data error! 'k_modifierKeysList' and 'k_keySpecCharList' size is different.");
 
     for (NSInteger i = 0; i < k_size_of_modifierKeysList; i++) {
         if ((modifierFlags & k_modifierKeysList[i]) || ((i == 2) && (isupper(theChar) == 1))) {
@@ -986,10 +980,8 @@
 - (NSString *)readableKeyStringsFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)isShiftPressed
 //------------------------------------------------------
 {
-    if (k_size_of_keySpecCharList != k_size_of_readableKeyStringsList) {
-        NSLog(@"internal data error! 'k_keySpecCharList' and 'k_readableKeyStringsList' size is different.");
-        return @"";
-    }
+    NSAssert(k_size_of_keySpecCharList == k_size_of_readableKeyStringsList,
+             @"internal data error! 'k_keySpecCharList' and 'k_readableKeyStringsList' size is different.");
     
     NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
     NSMutableString *keyStrings = [NSMutableString string];
@@ -1035,10 +1027,10 @@
     }
     if (sheet && outlineView) {
         NSDictionary *userInfo = [notification userInfo];
-        NSUInteger modifierFlags = [userInfo[CEKeyBindingModFlagsKey] unsignedIntegerValue];
+        NSUInteger modifierFlags = [userInfo[CEKeyBindingModifierFlagsKey] unsignedIntegerValue];
+        NSString *charsIgnoringModifiers = userInfo[CEKeyBindingCharsKey];
+        NSString *fieldString = [self keySpecCharsFromKeyEquivalent:charsIgnoringModifiers modifierFrags:modifierFlags];
         NSText *fieldEditor = [sheet fieldEditor:NO forObject:outlineView];
-        NSString *charIgnoringMod = userInfo[CEKeyBindingCharKey];
-        NSString *fieldString = [self keySpecCharsFromKeyEquivalent:charIgnoringMod modifierFrags:modifierFlags];
 
         [fieldEditor setString:fieldString];
         [sheet endEditingFor:fieldEditor];

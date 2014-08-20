@@ -57,19 +57,10 @@ NSString *const k_printLocalizeTable =  @"print";
 // Notification name
 NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 NSString *const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
-NSString *const CESetKeyCatchModeToCatchMenuShortcutNotification = @"CESetKeyCatchModeToCatchMenuShortcutNotification";
-NSString *const CECatchMenuShortcutNotification = @"CECatchMenuShortcutNotification";
 
 // General notification's userInfo keys
 NSString *const CEOldNameKey = @"CEOldNameKey";
 NSString *const CENewNameKey = @"CENewNameKey";
-
-// userInfo keys for CESetKeyCatchModeToCatchMenuShortcutNotification
-NSString *const CEKeyCatchModeKey = @"keyCatchMode";
-
-// userInfo keys for CECatchMenuShortcutNotification
-NSString *const CEKeyBindingModFlagsKey = @"keyBindingModFlags";
-NSString *const CEKeyBindingCharKey = @"keyBindingChar";
 
 
 
