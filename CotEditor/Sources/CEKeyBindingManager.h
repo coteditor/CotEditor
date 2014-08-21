@@ -37,7 +37,7 @@
 + (instancetype)sharedManager;
 
 + (NSString *)keySpecCharsFromKeyEquivalent:(NSString *)string modifierFrags:(NSUInteger)modifierFlags;
-+ (NSString *)printableKeyStringsFromKeySpecChars:(NSString *)string;
++ (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string;
 
 
 // Public method

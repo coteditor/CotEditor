@@ -43,7 +43,7 @@
 #import "constants.h"
 
 
-// constrain
+// constant
 const NSInteger kNoMenuItem = -1;
 
 

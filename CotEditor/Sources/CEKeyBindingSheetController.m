@@ -209,7 +209,7 @@
     NSString *identifier = [tableColumn identifier];
     
     if ([identifier isEqualToString:k_keyBindingKey]) {
-        return [CEKeyBindingManager printableKeyStringsFromKeySpecChars:theItem[identifier]];
+        return [CEKeyBindingManager printableKeyStringFromKeySpecChars:theItem[identifier]];
     }
     return theItem[identifier];
 }
@@ -479,7 +479,7 @@
         [[self duplicateKeyCheckArray] containsObject:keySpec])
     {
         // メッセージ表示
-        printableKeyStr = [CEKeyBindingManager printableKeyStringsFromKeySpecChars:keySpec];
+        printableKeyStr = [CEKeyBindingManager printableKeyStringFromKeySpecChars:keySpec];
         NSString *message = [NSString stringWithFormat:NSLocalizedString(@"“%@” has already been used. Edit it again.", nil),
                              printableKeyStr];
         
@@ -510,7 +510,7 @@
         
         // モードとコマンドキーの有無が合致しなければメッセージ表示
         if (!accepts) {
-            printableKeyStr = [CEKeyBindingManager printableKeyStringsFromKeySpecChars:keySpec];
+            printableKeyStr = [CEKeyBindingManager printableKeyStringFromKeySpecChars:keySpec];
             NSString *message;
             switch ([self keyBindingsMode]) {
                 case CEMenuKeyBindingsType:

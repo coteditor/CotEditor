@@ -86,7 +86,7 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// キーバインディング定義文字列から表示用文字列を生成し、返す
-+ (NSString *)printableKeyStringsFromKeySpecChars:(NSString *)string
++ (NSString *)printableKeyStringFromKeySpecChars:(NSString *)string
 //------------------------------------------------------
 {
     NSInteger length = [string length];
@@ -126,7 +126,7 @@ static NSDictionary *kUnprintableKeyTable;
             }
         }
     }
-    [keySpecChars appendString:((isShiftPressed) ? [string uppercaseString] : string)];
+    [keySpecChars appendString:(isShiftPressed ? [string uppercaseString] : string)];
     
     return keySpecChars;
 }
@@ -188,7 +188,7 @@ static NSDictionary *kUnprintableKeyTable;
     NSMutableArray *textKeySpecCharArray = [NSMutableArray array];
     
     for (NSString *selector in [CEKeyBindingManager textKeyBindingSelectorStrArray]) {
-        if (([selector length] == 0) || ![selector isKindOfClass:[NSString class]]) { continue; }
+        if ([selector length] == 0) { continue; }
         
         NSArray *keys;
         if (usesFactoryDefaults) {
@@ -200,7 +200,7 @@ static NSDictionary *kUnprintableKeyTable;
         }
         NSString *key = ([keys count] > 0) ? keys[0] : @"";
         
-        [textKeySpecCharArray addObject:[@{k_title: selector, //*****
+        [textKeySpecCharArray addObject:[@{k_title: selector,
                                            k_keyBindingKey: key,
                                            k_selectorString: selector} mutableCopy]];
     }
@@ -213,23 +213,24 @@ static NSDictionary *kUnprintableKeyTable;
 - (NSMutableArray *)mainMenuArrayForOutlineData:(NSMenu *)menu
 //------------------------------------------------------
 {
-    NSMutableArray *outArray = [NSMutableArray array];
+    NSMutableArray *outlineDataArray = [NSMutableArray array];
     
     for (NSMenuItem *item in [menu itemArray]) {
         if ([item isSeparatorItem] || ([[item title] length] == 0)) { continue; }
         
-        NSMutableDictionary *theDict;
+        NSMutableDictionary *row;
         if (([item hasSubmenu]) &&
             ([item tag] != CEServicesMenuItemTag) &&
             ([item tag] != CEWindowPanelsMenuItemTag) &&
             ([item tag] != CEScriptMenuDirectoryTag))
         {
             NSMutableArray *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
-            theDict = [@{k_title: [item title],
-                         k_children: subArray} mutableCopy];
+            row = [@{k_title: [item title],
+                     k_children: subArray} mutableCopy];
             
         } else {
             NSString *selectorString = NSStringFromSelector([item action]);
+            
             // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などはリストアップしない
             if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] ||
                 ([item tag] == CEServicesMenuItemTag) ||
@@ -243,17 +244,18 @@ static NSDictionary *kUnprintableKeyTable;
             NSString *keySpecChars;
             if ([keyEquivalent length] > 0) {
                 NSUInteger modifierMask = [item keyEquivalentModifierMask];
-                keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierMask];
+                keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:keyEquivalent
+                                                                    modifierFrags:modifierMask];
             } else {
                 keySpecChars = @"";
             }
-            theDict = [@{k_title: [item title],
-                         k_keyBindingKey: keySpecChars,
-                         k_selectorString: selectorString} mutableCopy];
+            row = [@{k_title: [item title],
+                     k_keyBindingKey: keySpecChars,
+                     k_selectorString: selectorString} mutableCopy];
         }
-        [outArray addObject:theDict];
+        [outlineDataArray addObject:row];
     }
-    return outArray;
+    return outlineDataArray;
 }
 
 
@@ -264,10 +266,7 @@ static NSDictionary *kUnprintableKeyTable;
 {
     NSArray *keys = [[self defaultMenuKeyBindingDict] allKeysForObject:selectorString];
     
-    if ([keys count] > 0) {
-        return (NSString *)keys[0];
-    }
-    return @"";
+    return ([keys count] > 0) ? (NSString *)keys[0] : @"";
 }
 
 
@@ -425,7 +424,8 @@ static NSDictionary *kUnprintableKeyTable;
         NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
         
         if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
-            ![fileURL checkResourceIsReachableAndReturnError:nil]) {
+            ![fileURL checkResourceIsReachableAndReturnError:nil])
+        {
             if (![[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:fileURL error:nil]) {
                 NSLog(@"Error! Could not copy \"%@\" to \"%@\"...", sourceURL, fileURL);
                 return;
@@ -497,24 +497,26 @@ static NSDictionary *kUnprintableKeyTable;
 - (void)resetKeyBindingWithDictionaryTo:(NSMenu *)menu
 //------------------------------------------------------
 {
-// NSMenu の indexOfItemWithTarget:andAction: だと取得できないメニューアイテムがあるため、メニューをひとつずつなめる
-
+    BOOL isJapaneseResource = [[[NSBundle mainBundle] preferredLocalizations][0] isEqualToString:@"ja"];
+    NSString *yen = [NSString stringWithCharacters:&k_yenMark length:1];
+    
+    // NSMenu の indexOfItemWithTarget:andAction: だと取得できないメニューアイテムがあるため、メニューをひとつずつなめる
     for (NSMenuItem *item in [menu itemArray]) {
-        if (([item hasSubmenu]) &&
-            ([item tag] != CEServicesMenuItemTag) &&
-            ([item tag] != CEWindowPanelsMenuItemTag) &&
-            ([item tag] != CEScriptMenuDirectoryTag))
+        NSString *selectorString = NSStringFromSelector([item action]);
+        
+        // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
+        if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:selectorString] ||
+            ([item tag] == CEServicesMenuItemTag) ||
+            ([item tag] == CEWindowPanelsMenuItemTag) ||
+            ([item tag] == CEScriptMenuDirectoryTag))
         {
+            continue;
+        }
+        
+        if ([item hasSubmenu]) {
             [self resetKeyBindingWithDictionaryTo:[item submenu]];
+            
         } else {
-            NSString *selectorString = NSStringFromSelector([item action]);
-            // フォントサイズ変更、エンコーディングの各項目、カラーリングの各項目、などは変更しない
-            if ([[CEKeyBindingManager selectorStringsToIgnore] containsObject:NSStringFromSelector([item action])] ||
-                ([item tag] == CEServicesMenuItemTag) ||
-                ([item tag] == CEWindowPanelsMenuItemTag) ||
-                ([item tag] == CEScriptMenuDirectoryTag)) {
-                continue;
-            }
             NSString *keySpecChars = [self keySpecCharsInDictionaryFromSelectorString:selectorString];
             NSUInteger modifierMask = 0;
             NSString *keyEquivalent = [CEUtils keyEquivalentAndModifierMask:&modifierMask
@@ -525,9 +527,7 @@ static NSDictionary *kUnprintableKeyTable;
             if (([keySpecChars length] > 0) && (modifierMask & NSCommandKeyMask)) {
                 // 日本語リソースが使われたとき、Input BackSlash の keyEquivalent を変更する
                 // （半角円マークのままだと半角カナ「エ」に化けるため）
-                if ([keyEquivalent isEqualToString:[NSString stringWithCharacters:&k_yenMark length:1]] &&
-                    [[[NSBundle mainBundle] preferredLocalizations][0] isEqualToString:@"ja"])
-                {
+                if (isJapaneseResource && [keyEquivalent isEqualToString:yen]) {
                     [item setKeyEquivalent:@"\\"];
                 } else {
                     [item setKeyEquivalent:keyEquivalent];
@@ -552,8 +552,8 @@ static NSDictionary *kUnprintableKeyTable;
             NSDictionary *childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
             [keyBindingDict addEntriesFromDictionary:childDict];
         }
-        NSString *keySpecChars = [item valueForKey:k_keyBindingKey];
-        NSString *selectorStr = [item valueForKey:k_selectorString];
+        NSString *keySpecChars = item[k_keyBindingKey];
+        NSString *selectorStr = item[k_selectorString];
         if (([keySpecChars length] > 0) && ([selectorStr length] > 0)) {
             [keyBindingDict setValue:selectorStr forKey:keySpecChars];
         }
@@ -569,10 +569,7 @@ static NSDictionary *kUnprintableKeyTable;
 {
     NSArray *keys = [[self menuKeyBindingDict] allKeysForObject:selectorString];
     
-    if ([keys count] > 0) {
-        return (NSString *)keys[0];
-    }
-    return @"";
+    return ([keys count] > 0) ? keys[0] : @"";
 }
 
 
@@ -649,7 +646,7 @@ static NSDictionary *kUnprintableKeyTable;
                                 @"F7", // NSF7FunctionKey,
                                 @"F8", // NSF8FunctionKey,
                                 @"F9", // NSF9FunctionKey,
-                                @"F10", // NSF10FunctionKey,e
+                                @"F10", // NSF10FunctionKey,
                                 @"F11", // NSF11FunctionKey,
                                 @"F12", // NSF12FunctionKey,
                                 @"F13", // NSF13FunctionKey,
