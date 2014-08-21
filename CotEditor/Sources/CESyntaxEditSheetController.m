@@ -120,7 +120,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         [self setOriginalStyleName:name];
         [self setStyle:style];
         [self setIsStyleNameValid:YES];
-        [self setIsBundledStyle:[[CESyntaxManager sharedManager] isBundledStyle:styleName]];
+        [self setIsBundledStyle:[[CESyntaxManager sharedManager] isBundledStyle:name]];
     }
     
     return self;
