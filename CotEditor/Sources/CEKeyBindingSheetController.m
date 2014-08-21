@@ -37,8 +37,8 @@
 
 @property (nonatomic) CEKeyBindingType keyBindingsMode;
 @property (nonatomic) NSMutableArray *outlineDataArray;
-@property (nonatomic) NSMutableArray *duplicateKeyCheckArray;
-@property (nonatomic, copy) NSString *currentKeySpecChars;
+@property (nonatomic) NSMutableArray *usedKeySpecCharsList;  // for duplication check
+@property (nonatomic, copy) NSString *currentKeySpecChars;  // saved key spec chars setting for editing action
 
 @property (nonatomic, weak) IBOutlet NSOutlineView *outlineView;
 @property (nonatomic, weak) IBOutlet NSTextField *duplicateTextField;
@@ -74,12 +74,12 @@
         switch (mode) {
             case CEMenuKeyBindingsType:
                 _outlineDataArray = [[CEKeyBindingManager sharedManager] mainMenuArrayForOutlineData:[NSApp mainMenu]];
-                _duplicateKeyCheckArray = [self duplicateKeyCheckArrayWithMenu:[NSApp mainMenu]];
+                _usedKeySpecCharsList = [self keySpecCharsListFromMenu:[NSApp mainMenu]];
                 break;
                 
             case CETextKeyBindingsType:
                 _outlineDataArray = [[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:NO];
-                _duplicateKeyCheckArray = [_outlineDataArray mutableCopy];  // （システム標準のキーバインディングとの重複は、チェックしない）
+                _usedKeySpecCharsList = [_outlineDataArray mutableCopy];  // （システム標準のキーバインディングとの重複は、チェックしない）
                 break;
         }
     }
@@ -113,7 +113,7 @@
             BOOL usesDefault = [[CEKeyBindingManager sharedManager] usesDefaultMenuKeyBindings];
             
             // ダブルクリックでトグルに展開するようアクションを設定する
-            [[self outlineView] setDoubleAction:@selector(doubleClickedOutlineViewRow:)];
+            [[self outlineView] setDoubleAction:@selector(toggleOutlineItemExpand:)];
             [[self outlineView] setTarget:self];
             
             [[self factoryDefaultsButton] setEnabled:!usesDefault];
@@ -128,11 +128,11 @@
         case CETextKeyBindingsType:
         {
             NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:k_key_insertCustomTextArray];
-            NSArray *factoryDefaults = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
+            NSArray *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
             NSMutableArray *content = [NSMutableArray array];
             
-            [[self factoryDefaultsButton] setEnabled:(![[self outlineDataArray] isEqualToArray:[self duplicateKeyCheckArray]] ||
-                                                          ![factoryDefaults isEqualToArray:insertTextArray])];
+            [[self factoryDefaultsButton] setEnabled:(![[self outlineDataArray] isEqualToArray:[self usedKeySpecCharsList]] ||
+                                                      ![factoryDefault isEqualToArray:insertTextArray])];
             [[self outlineView] reloadData];
             for (NSString *object in insertTextArray) {
                 [content addObject:[@{k_key_insertCustomText: object} mutableCopy]];
@@ -165,12 +165,9 @@
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 // ------------------------------------------------------
 {
-    if (item) {
-        NSMutableArray *children = item[k_children];
-        return (children) ? [children count] : 0;
-    } else {
-        return [[self outlineDataArray] count];
-    }
+    NSArray *children = item ? item[k_children] : [self outlineDataArray];
+    
+    return [children count];
 }
 
 
@@ -179,11 +176,9 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 // ------------------------------------------------------
 {
-    if (item) {
-        return (item[k_children] != nil);
-    } else {
-        return YES;
-    }
+    NSArray *children = item ? item[k_children] : [self outlineDataArray];
+    
+    return (children);
 }
 
 
@@ -192,11 +187,9 @@
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 // ------------------------------------------------------
 {
-    if (item) {
-        return item[k_children][index];
-    } else {
-        return [self outlineDataArray][index];
-    }
+    NSArray *children = item ? item[k_children] : [self outlineDataArray];
+    
+    return children[index];
 }
 
 
@@ -205,13 +198,13 @@
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 // ------------------------------------------------------
 {
-    id theItem = item ? : [self outlineDataArray];
     NSString *identifier = [tableColumn identifier];
     
     if ([identifier isEqualToString:k_keyBindingKey]) {
-        return [CEKeyBindingManager printableKeyStringFromKeySpecChars:theItem[identifier]];
+        return [CEKeyBindingManager printableKeyStringFromKeySpecChars:item[identifier]];
     }
-    return theItem[identifier];
+    
+    return item[identifier];
 }
 
 
@@ -222,20 +215,19 @@
 {
     NSString *identifier = [tableColumn identifier];
     
-    if ([identifier isEqualToString:k_keyBindingKey] && !item[k_children]) {
-        id theItem = item ? : [self outlineDataArray];
-        
-        if (![self currentKeySpecChars]) {
-            // （値が既にセットされている時は更新しない）
-            [self setCurrentKeySpecChars:theItem[identifier]];
-        }
-        [(CEKeyBindingSheet *)[self window] setKeyCatchMode:CECatchMenuShortCutMode];
-        
-        [[self deleteKeyButton] setEnabled:YES];
-        
-        return YES;
+    if (![identifier isEqualToString:k_keyBindingKey] || item[k_children]) {
+        return NO;
     }
-    return NO;
+    
+    if (![self currentKeySpecChars]) {
+        // （値が既にセットされている時は更新しない）
+        [self setCurrentKeySpecChars:item[identifier]];
+    }
+    [(CEKeyBindingSheet *)[self window] setKeyCatchMode:CECatchMenuShortCutMode];
+    
+    [[self deleteKeyButton] setEnabled:YES];
+    
+    return YES;
 }
 
 
@@ -254,14 +246,14 @@
         {
             item[identifier] = @"";
             [[self duplicateTextField] setStringValue:@""];
-            [self showDuplicateKeySpecMessageWithKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
+            [self validateKeySpecChars:@"" oldChars:[self currentKeySpecChars]];
         }
         
     } else {
         // 現在の表示値と違っていたら、セット
         item[identifier] = object;
-        // 他の値とダブっていたら、再び編集状態にする
-        if (![self showDuplicateKeySpecMessageWithKeySpecChars:object oldChars:[self currentKeySpecChars]]) {
+        // 無効な値だったら再び編集状態にする
+        if (![self validateKeySpecChars:object oldChars:[self currentKeySpecChars]]) {
             __weak typeof(self) weakSelf = self;
             dispatch_async(dispatch_get_main_queue(), ^{
                 typeof(self) strongSelf = weakSelf;
@@ -335,7 +327,6 @@
     NSText *fieldEditor = [[self window] fieldEditor:NO forObject:[self outlineView]];
     
     [fieldEditor setString:@""];
-    
     [[self window] endEditingFor:fieldEditor];
     [[self window] makeFirstResponder:[self outlineView]];
 }
@@ -349,15 +340,8 @@
     switch ([self keyBindingsMode]) {
         case CEMenuKeyBindingsType:
         {
-            NSMutableArray *tmpArray = [[self outlineDataArray] mutableCopy];
-            if (tmpArray) {
-                [self resetKeySpecCharsToFactoryDefaults:tmpArray];
-                [self setOutlineDataArray:tmpArray];
-                [self setDuplicateKeyCheckArray:[[self duplicateKeyCheckArrayWithArray:[self outlineDataArray]] mutableCopy]];
-                [[self editKeyButton] setEnabled:NO];
-                [[self outlineView] deselectAll:nil];
-                [[self outlineView] reloadData];
-            }
+            [self resetKeySpecCharsToFactoryDefaults:[self outlineDataArray]];
+            [self setUsedKeySpecCharsList:[[self keySpecCharsListFromOutlineData:[self outlineDataArray]] mutableCopy]];
         }
             break;
             
@@ -367,22 +351,22 @@
             NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
             
             for (id object in defaultInsertTexts) {
-                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObject:object forKey:k_key_insertCustomText];
-                [contents addObject:dict];
+                [contents addObject:[@{k_key_insertCustomText: object} mutableCopy]];
             }
-            [[self outlineView] deselectAll:nil];
             [self setOutlineDataArray:[[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
-            [self setDuplicateKeyCheckArray:[[self outlineDataArray] mutableCopy]];
+            [self setUsedKeySpecCharsList:[[self outlineDataArray] mutableCopy]];
             [[self textInsertStringArrayController] setContent:contents];
             [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
-            [[self editKeyButton] setEnabled:NO];
-            [[self outlineView] reloadData];
             [[self textInsertStringTextView] setEditable:NO];
             [[self textInsertStringTextView] setBackgroundColor:[NSColor controlHighlightColor]];
         }
             break;
     }
+    
+    [[self editKeyButton] setEnabled:NO];
     [[self factoryDefaultsButton] setEnabled:NO];
+    [[self outlineView] deselectAll:nil];
+    [[self outlineView] reloadData];
 }
 
 
@@ -392,7 +376,7 @@
 // ------------------------------------------------------
 {
     // フォーカスを移して入力中の値を確定
-    [[sender window] makeFirstResponder:sender];
+    [[self window] makeFirstResponder:sender];
     // キー入力取得を停止
     [(CEKeyBindingSheet *)[self window] setKeyCatchMode:CEKeyDownNoCatchMode];
     
@@ -416,23 +400,20 @@
 
 //------------------------------------------------------
 /// アウトラインビューの行がダブルクリックされた
-- (IBAction)doubleClickedOutlineViewRow:(id)sender
+- (IBAction)toggleOutlineItemExpand:(id)sender
 // ------------------------------------------------------
 {
-    if (![sender isKindOfClass:[NSOutlineView class]]) { return; }
-    
-    NSOutlineView *outlineView = (NSOutlineView *)sender;
-    NSInteger selectedRow = [outlineView selectedRow];
+    NSInteger selectedRow = [[self outlineView] selectedRow];
     
     if (selectedRow == -1) { return; }
     
-    id item = [outlineView itemAtRow:selectedRow];
+    id item = [[self outlineView] itemAtRow:selectedRow];
     
     // ダブルクリックでトグルに展開する
-    if ([outlineView isExpandable:item]) {
-        [outlineView expandItem:item];
+    if ([[self outlineView] isExpandable:item]) {
+        [[self outlineView] expandItem:item];
     } else {
-        [outlineView collapseItem:item];
+        [[self outlineView] collapseItem:item];
     }
 }
 
@@ -465,86 +446,60 @@
 
 //------------------------------------------------------
 /// 重複などの警告メッセージを表示
-- (BOOL)showDuplicateKeySpecMessageWithKeySpecChars:(NSString *)keySpec oldChars:(NSString *)oldSpec
+- (BOOL)validateKeySpecChars:(NSString *)keySpec oldChars:(NSString *)oldSpec
 //------------------------------------------------------
 {
-    BOOL showsMessage = NO;
+    if (![self usedKeySpecCharsList] || !keySpec) { return NO; }
     
-    if (![self duplicateKeyCheckArray] || !keySpec) { return showsMessage; }
+    NSString *warning = nil;
     
-    NSString *printableKeyStr;
-    
-    // 他のキーバインディングと重複している時
-    if (([keySpec length] > 0) && ![keySpec isEqualToString:oldSpec] &&
-        [[self duplicateKeyCheckArray] containsObject:keySpec])
-    {
-        // メッセージ表示
-        printableKeyStr = [CEKeyBindingManager printableKeyStringFromKeySpecChars:keySpec];
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"“%@” has already been used. Edit it again.", nil),
-                             printableKeyStr];
+    if ([keySpec isEqualToString:@""]) {
+        // 空文字（入力なし = 削除された）の場合はスルー
         
-        [[self duplicateTextField] setStringValue:message];
+    } else if (![keySpec isEqualToString:oldSpec] && [[self usedKeySpecCharsList] containsObject:keySpec]) {
+        // 他のキーバインディングと重複している時
+        warning = @"“%@” has already been used. Edit it again.";
+        
+    } else {
+        // コマンドキーの存在チェック
+        NSUInteger cmdLocation = [keySpec rangeOfString:@"@"].location;
+        BOOL containsCmd = ((cmdLocation != NSNotFound) && (cmdLocation != ([keySpec length] - 1)));
+        
+        // モードとコマンドキーの有無が合致しなければメッセージ表示
+        if (([self keyBindingsMode] == CEMenuKeyBindingsType) && !containsCmd) {
+            warning = @"“%@” does NOT include Command key. Edit it again.";
+            
+        } else if (([self keyBindingsMode] == CETextKeyBindingsType) && containsCmd) {
+            warning = @"“%@” includes Command key. Edit it again.";
+        }
+    }
+    
+    // 警告がある場合は表示して抜ける
+    if (warning) {
+        NSString *printableKey = [CEKeyBindingManager printableKeyStringFromKeySpecChars:keySpec];
+        
+        [[self duplicateTextField] setStringValue:[NSString stringWithFormat:NSLocalizedString(warning, nil), printableKey]];
         [[self OKButton] setEnabled:NO];
         
         NSBeep();
-        showsMessage = NO;
-        
-    } else {
-        NSRange cmdRange = [keySpec rangeOfString:@"@"];
-        BOOL accepts = NO;
-        
-        // コマンドキーの存在チェック
-        if ([keySpec isEqualToString:@""]) { // 空文字（入力なし = 削除された）の場合はスルー
-            accepts = YES;
-        } else {
-            switch ([self keyBindingsMode]) {
-                case CEMenuKeyBindingsType:
-                    accepts = ((cmdRange.location != NSNotFound) && (cmdRange.location != ([keySpec length] - 1)));
-                    break;
-                    
-                case CETextKeyBindingsType:
-                    accepts = ((cmdRange.location == NSNotFound) || (cmdRange.location == ([keySpec length] - 1)));
-                    break;
-            }
+        return NO;
+    }
+    
+    // メッセージ消去
+    [[self duplicateTextField] setStringValue:@""];
+    [[self OKButton] setEnabled:YES];
+    
+    // 重複チェック配列更新
+    if (![keySpec isEqualToString:oldSpec]) {
+        if (([oldSpec length] > 0)) {
+            [[self usedKeySpecCharsList] removeObject:oldSpec];
         }
-        
-        // モードとコマンドキーの有無が合致しなければメッセージ表示
-        if (!accepts) {
-            printableKeyStr = [CEKeyBindingManager printableKeyStringFromKeySpecChars:keySpec];
-            NSString *message;
-            switch ([self keyBindingsMode]) {
-                case CEMenuKeyBindingsType:
-                    message = @"“%@” does NOT include Command key. Edit it again.";
-                    break;
-                    
-                case CETextKeyBindingsType:
-                    message = @"“%@” includes Command key. Edit it again.";
-                    break;
-            }
-            [[self duplicateTextField] setStringValue:[NSString stringWithFormat:NSLocalizedString(message, nil), printableKeyStr]];
-            [[self OKButton] setEnabled:NO];
-            
-            NSBeep();
-            showsMessage = NO;
-            
-        } else {
-            showsMessage = YES;
-            
-            // メッセージ消去
-            [[self duplicateTextField] setStringValue:@""];
-            [[self OKButton] setEnabled:YES];
-            
-            // 重複チェック配列更新
-            if (([oldSpec length] > 0) && ![keySpec isEqualToString:oldSpec]) {
-                [[self duplicateKeyCheckArray] removeObject:oldSpec];
-            }
-            // 重複チェック配列更新
-            if (([keySpec length] > 0) && ![keySpec isEqualToString:oldSpec]) {
-                [[self duplicateKeyCheckArray] addObject:keySpec];
-            }
+        if (([keySpec length] > 0)) {
+            [[self usedKeySpecCharsList] addObject:keySpec];
         }
     }
-    return showsMessage;
+
+    return YES;
 }
 
 
@@ -569,16 +524,16 @@
 
 
 //------------------------------------------------------
-/// 重複チェック配列を生成
-- (NSMutableArray *)duplicateKeyCheckArrayWithMenu:(NSMenu *)menu
+/// 重複チェック用配列を生成
+- (NSMutableArray *)keySpecCharsListFromMenu:(NSMenu *)menu
 //------------------------------------------------------
 {
-    NSMutableArray *duplicateKeyCheckArray = [NSMutableArray array];
+    NSMutableArray *keySpecCharsList = [NSMutableArray array];
     
     for (NSMenuItem *item in [menu itemArray]) {
         if ([item hasSubmenu]) {
-            NSArray *theTmpArray = [self duplicateKeyCheckArrayWithMenu:[item submenu]];
-            [duplicateKeyCheckArray addObjectsFromArray:theTmpArray];
+            NSArray *childList = [self keySpecCharsListFromMenu:[item submenu]];
+            [keySpecCharsList addObjectsFromArray:childList];
             continue;
         }
         NSString *keyEquivalent = [item keyEquivalent];
@@ -587,53 +542,49 @@
             NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:keyEquivalent
                                                                           modifierFrags:modifierFlags];
             if ([keySpecChars length] > 1) {
-                [duplicateKeyCheckArray addObject:keySpecChars];
+                [keySpecCharsList addObject:keySpecChars];
             }
         }
     }
-    return duplicateKeyCheckArray;
+    return keySpecCharsList;
 }
 
 
 //------------------------------------------------------
-/// 重複チェック配列を生成
-- (NSArray *)duplicateKeyCheckArrayWithArray:(NSArray *)array
+/// 重複チェック用配列を生成
+- (NSArray *)keySpecCharsListFromOutlineData:(NSArray *)outlineArray
 //------------------------------------------------------
 {
-    if (!array) { return nil; }
+    NSMutableArray *keySpecCharsList = [NSMutableArray array];
     
-    NSMutableArray *duplicateKeyCheckArray = [NSMutableArray array];
-    
-    for (id item in array) {
+    for (NSDictionary *item in outlineArray) {
         NSArray *children = item[k_children];
         if (children) {
-            NSArray *childrenArray = [self duplicateKeyCheckArrayWithArray:children];
-            [duplicateKeyCheckArray addObjectsFromArray:childrenArray];
+            NSArray *childList = [self keySpecCharsListFromOutlineData:children];
+            [keySpecCharsList addObjectsFromArray:childList];
         }
         NSString *keySpecChars = item[k_keyBindingKey];
-        if ([keySpecChars length] > 0) {
-            if (![duplicateKeyCheckArray containsObject:keySpecChars]) {
-                [duplicateKeyCheckArray addObject:keySpecChars];
-            }
+        if (([keySpecChars length] > 0) && ![keySpecCharsList containsObject:keySpecChars]) {
+            [keySpecCharsList addObject:keySpecChars];
         }
     }
-    return duplicateKeyCheckArray;
+    return keySpecCharsList;
 }
 
 
 //------------------------------------------------------
 /// 配列中のキーバインディング設定文字列をデフォルトに戻す
-- (void)resetKeySpecCharsToFactoryDefaults:(NSMutableArray *)dataArray
+- (void)resetKeySpecCharsToFactoryDefaults:(NSMutableArray *)outlineArray
 //------------------------------------------------------
 {
-    for (id item in dataArray) {
+    for (NSMutableDictionary *item in outlineArray) {
         NSMutableArray *children = item[k_children];
         if (children) {
             [self resetKeySpecCharsToFactoryDefaults:children];
         }
         NSString *selectorStr = item[k_selectorString];
         NSString *keySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsInDefaultDictionaryFromSelectorString:selectorStr];
-        [item setValue:keySpecChars forKey:k_keyBindingKey];
+        item[k_keyBindingKey] = keySpecChars;
     }
 }
 
