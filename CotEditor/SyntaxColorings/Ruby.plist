@@ -563,10 +563,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>nil</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>not</string>
 		</dict>
 		<dict>
@@ -631,7 +627,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-17</string>
+		<string>2014-08-23</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -641,15 +637,53 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>\b\d*[\d\.]\d+\b</string>
+			<string>\b0b[01_]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>\b\d+\b</string>
+			<string>\b0d[0-9_]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
 			<key>regularExpression</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0o[0-7_]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0x[0-9a-f_]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b[0-9][0-9_]*\.[0-9_]+([eE][0+][0-9_]+)?r?i?\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b[0-9][0-9_]*\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>`</string>
+			<key>endString</key>
+			<string>`</string>
 		</dict>
 	</array>
 	<key>outlineMenuArray</key>
@@ -737,6 +771,12 @@
 			<key>regularExpression</key>
 			<true/>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&lt;&lt;-?(["'`]?)(\w+)\1(?:.|\n)*?\n[\t ]*\2$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
 	</array>
 	<key>styleName</key>
 	<string>Ruby</string>
@@ -744,7 +784,29 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>\bErrno::[A-Z0-9]+\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ArgumentError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>Array</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>BasicObject</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Bignum</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Binding</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -752,7 +814,109 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>Complex</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Data</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Dir</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Encoding</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Encoding::CompatibilityError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Encoding::Converter</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Encoding::ConverterNotFoundError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Encoding::InvalidByteSequenceError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Encoding::UndefinedConversionError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>EncodingError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Enumerator</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Enumerator::Lazy</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>EOFError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Exception</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>FalseClass</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>fatal</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Fiber</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>FiberError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>File</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>File::Stat</string>
+			<key>regularExpression</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Fixnum</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>Float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>FloatDomainError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Hash</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>IndexError</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -760,7 +924,211 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>Interrupt</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>IO</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>IOError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>KeyError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LoadError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>LocalJumpError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>MatchData</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Math::DomainError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Method</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Module</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Mutex</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NameError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NilClass</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NoImplementedError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NoMemoryError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>NoMethodError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Numeric</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Object</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ObjectSpace::WeakMap</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Proc</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Process::Status</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Random</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Range</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>RangeError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Rational</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Regexp</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>RubyVM</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>RubyVM::InstructionSequence</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>RuntimeError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ScriptError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SecurityError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SignalException</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>StandardError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>StopInteration</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>String</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Struct</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Struct::Tms</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Symbol</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SyntaxError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SystemCallError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SystemExit</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>SystemStackError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Thread</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Thread::Backtrace::Location</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ThreadError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ThreadGroup</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Time</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>TracePoint</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>TrueClass</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>TypeError</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>UnboundMethod</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ZeroDivisionError</string>
 		</dict>
 	</array>
 	<key>valuesArray</key>
@@ -936,18 +1304,6 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>$\d+</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>$\w+</string>
-			<key>regularExpression</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
 			<string>$]</string>
 		</dict>
 		<dict>
@@ -1020,7 +1376,21 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>\$[a-z0-9_]+</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>\$\.</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$\d+</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
