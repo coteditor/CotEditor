@@ -6,6 +6,10 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>:branch</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>:debug</string>
 		</dict>
 		<dict>
@@ -22,6 +26,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>:file</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>:git</string>
 		</dict>
 		<dict>
@@ -35,6 +43,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>:ios</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>:local</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -62,11 +74,19 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>:svn</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>:tag</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>:test</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>:text</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -79,7 +99,47 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>gsub</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>new</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>open</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>puts</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>read</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>to_a</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>to_ary</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>to_hash</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>to_int</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>to_s</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>to_str</string>
 		</dict>
 	</array>
 	<key>commentDelimiters</key>
@@ -109,11 +169,47 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>alias</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>and</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>def</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>do</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>else</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>elsif</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>end</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>ensure</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>for</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>if</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>in</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -122,6 +218,18 @@
 		<dict>
 			<key>beginString</key>
 			<string>link_with</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>module</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>next</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>or</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -145,11 +253,51 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>redo</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>rescue</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>retry</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>return</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>super</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>target</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>unless</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>until</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>when</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>while</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>xcodeproj</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>yield</string>
 		</dict>
 	</array>
 	<key>metadata</key>
@@ -159,23 +307,67 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-15</string>
+		<string>2014-08-23</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
 		<string>1.0</string>
 	</dict>
 	<key>numbersArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>\b[0-9][0-9_]*\.[0-9_]+([eE][0+][0-9_]+)?r?i?\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b[0-9][0-9_]*\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>`</string>
+			<key>endString</key>
+			<string>`</string>
+		</dict>
+	</array>
 	<key>outlineMenuArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>(^[\t ]*def)[\t ]+([^\s(]*)</string>
+			<key>keyString</key>
+			<string>$1 $2</string>
+		</dict>
+	</array>
 	<key>stringsArray</key>
 	<array>
+		<dict>
+			<key>beginString</key>
+			<string>"</string>
+			<key>endString</key>
+			<string>"</string>
+		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>'</string>
 			<key>endString</key>
 			<string>'</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>&lt;&lt;-?(["'`]?)(\w+)\1(?:.|\n)*?\n[\t ]*\2$</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>`</string>
+			<key>endString</key>
+			<string>`</string>
 		</dict>
 	</array>
 	<key>styleName</key>
@@ -184,18 +376,50 @@
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>Array</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Class</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>File</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Float</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>Integer</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>Pod</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
 			<string>Spec</string>
 		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>String</string>
+		</dict>
 	</array>
 	<key>valuesArray</key>
 	<array>
 		<dict>
 			<key>beginString</key>
+			<string>__FILE__</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>false</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>nil</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -215,6 +439,18 @@
 			<string>(?&lt;=\.)osx\b</string>
 			<key>regularExpression</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\$[a-z0-9_]+</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>author</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -371,6 +607,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>summary</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>vendored_framework</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
