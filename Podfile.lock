@@ -1,10 +1,10 @@
 PODS:
-  - Sparkle (1.7.1)
+  - Sparkle (1.8.0)
 
 DEPENDENCIES:
   - Sparkle
 
 SPEC CHECKSUMS:
-  Sparkle: fde5ffeb7bf01db28925499ce2a75977763af58a
+  Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
 
 COCOAPODS: 0.33.1
