@@ -179,7 +179,7 @@ static CGFloat kPerCompoIncrement;
                 NSMutableString *firstCharsString = [NSMutableString string];
                 NSArray *completionDicts = coloringDictionary[k_SCKey_completionsArray];
                 
-                if (completionDicts) {
+                if ([completionDicts count] > 0) {
                     for (NSDictionary *dict in completionDicts) {
                         NSString *word = dict[k_SCKey_arrayKeyString];
                         [completionWords addObject:word];
@@ -192,7 +192,9 @@ static CGFloat kPerCompoIncrement;
                             for (NSDictionary *wordDict in coloringDictionary[key]) {
                                 NSString *begin = [wordDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:trimCharSet];
                                 NSString *end = [wordDict[k_SCKey_endString] stringByTrimmingCharactersInSet:trimCharSet];
-                                if (([begin length] > 0) && ([end length] == 0) && ![wordDict[k_SCKey_regularExpression] boolValue]) {
+                                BOOL isRegEx = [wordDict[k_SCKey_regularExpression] boolValue];
+                                
+                                if (([begin length] > 0) && ([end length] == 0) && !isRegEx) {
                                     [completionWords addObject:begin];
                                     [firstCharsString appendString:[begin substringToIndex:1]];
                                 }
@@ -207,8 +209,7 @@ static CGFloat kPerCompoIncrement;
                 
                 // firstCompletionCharacterSet を保持する
                 if ([firstCharsString length] > 0) {
-                    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:firstCharsString];
-                    _firstCompletionCharacterSet = charSet;
+                    _firstCompletionCharacterSet = [NSCharacterSet characterSetWithCharactersInString:firstCharsString];
                 }
             }
             
@@ -246,7 +247,7 @@ static CGFloat kPerCompoIncrement;
             // 引用符のカラーリングはコメントと一緒に別途 extractCommentsWithQuotesFromString: で行なうので選り分けておく
             // そもそもカラーリング用の定義があるのかもここでチェック
             {
-                NSInteger count = 0;
+                NSUInteger count = 0;
                 NSMutableDictionary *quoteTypes = [NSMutableDictionary dictionary];
                 
                 for (NSString *key in kSyntaxDictKeys) {
