@@ -111,7 +111,7 @@ static CGFloat kPerCompoIncrement;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
+        NSMutableArray *syntaxDictKeys = [NSMutableArray arrayWithCapacity:k_size_of_allColoringArrays];
         for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
             [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
         }
@@ -530,80 +530,70 @@ static CGFloat kPerCompoIncrement;
                   returnFormat:(QCArrayFormat)returnFormat pairKind:(NSString *)pairKind
 // ------------------------------------------------------
 {
-    if ([beginString length] < 1) { return nil; }
+    if ([beginString length] == 0) { return nil; }
     
-    NSMutableArray *ranges = [[NSMutableArray alloc] initWithCapacity:10];
+    NSMutableArray *ranges = [NSMutableArray array];
     NSString *string = [self coloringString];
-    NSString *escapesCheckStr = nil;
     NSUInteger localLength = [string length];
-    NSUInteger start = 0, numberOfEscapes = 0, end = 0;
-    NSUInteger escapesCheckLength;
     NSUInteger beginLength = [beginString length];
     NSUInteger endLength = [endString length];
-    QCStartEndType startEnd = QCNotUseStartEnd;
-    NSRange attrRange, escapesCheckRange;
     
     BOOL isComment = ([pairKind isEqualToString:QCInlineCommentKind] || [pairKind isEqualToString:QCBlockCommentKind]);
     QCStartEndType startType = isComment ? QCStart : QCNotUseStartEnd;
-    QCStartEndType endType   = isComment ? QCEnd : QCNotUseStartEnd;
+    QCStartEndType endType = isComment ? QCEnd : QCNotUseStartEnd;
     
     NSScanner *scanner = [NSScanner scannerWithString:string];
     [scanner setCharactersToBeSkipped:nil];
     [scanner setCaseSensitive:!ignoreCase];
 
     while (![scanner isAtEnd]) {
-        if ([[self indicatorController] isCancelled]) {
-            return nil;
-        }
+        if ([[self indicatorController] isCancelled]) { return nil; }
         
         [scanner scanUpToString:beginString intoString:nil];
-        start = [scanner scanLocation];
-        if (start + beginLength < localLength) {
-            [scanner setScanLocation:(start + beginLength)];
-            escapesCheckLength = MIN(start, k_maxEscapesCheckLength);
-            escapesCheckRange = NSMakeRange(start - escapesCheckLength, escapesCheckLength);
-            escapesCheckStr = [string substringWithRange:escapesCheckRange];
-            numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
-            if (numberOfEscapes % 2 == 1) {
-                continue;
-            }
-            if (returnFormat == QCDictFormat) {
-                [ranges addObject:@{QCPositionKey: @(start),
-                                    QCPairKindKey: pairKind,
-                                    QCStartEndKey: @(startType),
-                                    QCLengthKey: @(beginLength)}];
-            }
-        } else {
-            break;
+        NSUInteger startLocation = [scanner scanLocation];
+        
+        if (startLocation + beginLength >= localLength) { break; }
+        
+        [scanner setScanLocation:(startLocation + beginLength)];
+        NSUInteger escapesCheckLength = MIN(startLocation, k_maxEscapesCheckLength);
+        NSRange escapesCheckRange = NSMakeRange(startLocation - escapesCheckLength, escapesCheckLength);
+        NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
+        NSUInteger numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
+        
+        if (numberOfEscapes % 2 == 1) { continue; }
+        
+        if (returnFormat == QCDictFormat) {
+            [ranges addObject:@{QCPositionKey: @(startLocation),
+                                QCPairKindKey: pairKind,
+                                QCStartEndKey: @(startType),
+                                QCLengthKey: @(beginLength)}];
         }
+        
+        // find end string
         while (1) {
             [scanner scanUpToString:endString intoString:nil];
-            end = [scanner scanLocation] + endLength;
-            if (end <= localLength) {
-                [scanner setScanLocation:end];
-                escapesCheckLength = MIN((end - endLength), k_maxEscapesCheckLength);
-                escapesCheckRange = NSMakeRange(end - endLength - escapesCheckLength, escapesCheckLength);
-                escapesCheckStr = [string substringWithRange:escapesCheckRange];
-                numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
-                if (numberOfEscapes % 2 == 1) {
-                    continue;
-                } else {
-                    if (start < end) {
-                        if (returnFormat == QCRangeFormat) {
-                            attrRange = NSMakeRange(start, end - start);
-                            [ranges addObject:[NSValue valueWithRange:attrRange]];
-                        } else {
-                            [ranges addObject:@{QCPositionKey: @(end - endLength),
-                                                QCPairKindKey: pairKind,
-                                                QCStartEndKey: @(endType),
-                                                QCLengthKey: @(endLength)}];
-                        }
-                        break;
-                    }
-                }
+            NSUInteger endLocation = [scanner scanLocation] + endLength;
+            
+            if (endLocation > localLength) { break; }
+            
+            [scanner setScanLocation:endLocation];
+            NSUInteger escapesCheckLength = MIN((endLocation - endLength), k_maxEscapesCheckLength);
+            NSRange escapesCheckRange = NSMakeRange(endLocation - endLength - escapesCheckLength, escapesCheckLength);
+            NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
+            NSUInteger numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
+            
+            if (numberOfEscapes % 2 == 1) { continue; }
+            
+            if (returnFormat == QCDictFormat) {
+                [ranges addObject:@{QCPositionKey: @(endLocation - endLength),
+                                    QCPairKindKey: pairKind,
+                                    QCStartEndKey: @(endType),
+                                    QCLengthKey: @(endLength)}];
             } else {
-                break;
+                NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
+                [ranges addObject:[NSValue valueWithRange:range]];
             }
+            break;
         } // end-while (1)
     } // end-while (![scanner isAtEnd])
     
@@ -624,7 +614,7 @@ static CGFloat kPerCompoIncrement;
     
     BOOL isComment = ([pairKind isEqualToString:QCInlineCommentKind] || [pairKind isEqualToString:QCBlockCommentKind]);
     QCStartEndType startType = isComment ? QCStart : QCNotUseStartEnd;
-    QCStartEndType endType   = isComment ? QCEnd : QCNotUseStartEnd;
+    QCStartEndType endType = isComment ? QCEnd : QCNotUseStartEnd;
     
     [string enumerateStringsMatchedByRegex:regexStr
                                    options:options
@@ -749,7 +739,7 @@ static CGFloat kPerCompoIncrement;
     }
     
     // コメントもクォートもなければ、もどる
-    if ([positions count] < 1) { return nil; }
+    if ([positions count] == 0) { return nil; }
     
     NSUInteger maxLength = [string length];
     
@@ -757,57 +747,58 @@ static CGFloat kPerCompoIncrement;
     [positions sortUsingDescriptors:@[descriptor]];
     
     NSUInteger coloringCount = [positions count];
-    NSString *colorType;
-    NSUInteger i, index = 0;
-    NSUInteger start, end;
+    NSUInteger index = 0;
+    NSUInteger startLocation = 0, endLocation = 0;
     NSString *searchPairKind = nil;
     
     while (index < coloringCount) {
         NSDictionary *position = positions[index];
         if (!searchPairKind) {
-            if ([position[QCStartEndKey] unsignedIntegerValue] == QCEnd) {
-                index++;
-                continue;
+            if ([position[QCStartEndKey] unsignedIntegerValue] != QCEnd) {
+                searchPairKind = position[QCPairKindKey];
+                startLocation = [position[QCPositionKey] unsignedIntegerValue];
             }
-            searchPairKind = position[QCPairKindKey];
-            start = [position[QCPositionKey] unsignedIntegerValue];
             index++;
             continue;
         }
         
         if (searchPairKind == position[QCPairKindKey]) {
-            colorType = quoteTypes[searchPairKind] ? : k_SCKey_commentsArray;
+            NSString *colorType = quoteTypes[searchPairKind] ? : k_SCKey_commentsArray;
             
-            end = [position[QCPositionKey] unsignedIntegerValue] + [position[QCLengthKey] unsignedIntegerValue];
+            endLocation = [position[QCPositionKey] unsignedIntegerValue] + [position[QCLengthKey] unsignedIntegerValue];
             
             [colorings addObject:@{ColorKey: colorType,
-                                   RangeKey: [NSValue valueWithRange:NSMakeRange(start, end - start)]}];
+                                   RangeKey: [NSValue valueWithRange:NSMakeRange(startLocation,
+                                                                                 endLocation - startLocation)]}];
             
             searchPairKind = nil;
             index++;
-        } else {
-            // 「終わり」があるか調べる
-            BOOL hasEnd = NO;
-            for (i = (index + 1); i < coloringCount; i++) {
-                NSDictionary *checkPosition = positions[i];
-                if (searchPairKind == checkPosition[QCPairKindKey]) {
-                    QCStartEndType checkStartEnd = [checkPosition[QCStartEndKey] unsignedIntegerValue];
-                    if ((checkStartEnd == QCNotUseStartEnd) || (checkStartEnd == QCEnd)) {
-                        hasEnd = YES;
-                        break;
-                    }
-                }
-            }
-            // 「終わり」があればそこへジャンプ、なければ最後までカラーリングして、抜ける
-            if (hasEnd) {
+            continue;
+        }
+        
+        // 「終わり」があるか調べる
+        BOOL hasEnd = NO;
+        for (NSUInteger i = (index + 1); i < coloringCount; i++) {
+            NSDictionary *checkPosition = positions[i];
+            QCStartEndType checkStartEnd = [checkPosition[QCStartEndKey] unsignedIntegerValue];
+            
+            // 「終わり」があればそこへジャンプ
+            if (([checkPosition[QCPairKindKey] isEqualToString:searchPairKind]) &&
+                ((checkStartEnd == QCNotUseStartEnd) || (checkStartEnd == QCEnd)))
+            {
+                hasEnd = YES;
                 index = i;
-            } else {
-                colorType = quoteTypes[searchPairKind] ? : k_SCKey_commentsArray;
-                
-                [colorings addObject:@{ColorKey: colorType,
-                                       RangeKey: [NSValue valueWithRange:NSMakeRange(start, maxLength - start)]}];
                 break;
             }
+        }
+        // 「終わり」がなければ最後までカラーリングして、抜ける
+        if (!hasEnd) {
+            NSString *colorType = quoteTypes[searchPairKind] ? : k_SCKey_commentsArray;
+            
+            [colorings addObject:@{ColorKey: colorType,
+                                   RangeKey: [NSValue valueWithRange:NSMakeRange(startLocation,
+                                                                                 maxLength - startLocation)]}];
+            break;
         }
     }
     return colorings;
@@ -870,7 +861,7 @@ static CGFloat kPerCompoIncrement;
             
             NSMutableDictionary *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
             NSMutableDictionary *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
-            NSMutableArray *targetRanges = [[NSMutableArray alloc] initWithCapacity:10];
+            NSMutableArray *targetRanges = [NSMutableArray arrayWithCapacity:10];
             
             for (NSDictionary *strDict in strDicts) {
                 // キャンセルされたら現在実行中の抽出は破棄して戻る
