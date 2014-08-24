@@ -1,10 +1,18 @@
 PODS:
+  - OgreKit (2.1.7.1)
   - Sparkle (1.8.0)
 
 DEPENDENCIES:
+  - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `feature/cocoapods`)
   - Sparkle
 
+EXTERNAL SOURCES:
+  OgreKit:
+    :branch: feature/cocoapods
+    :git: https://github.com/coteditor/OgreKit.git
+
 SPEC CHECKSUMS:
+  OgreKit: 857f81299750168c977671d52311916131ec31dc
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
 
 COCOAPODS: 0.33.1
