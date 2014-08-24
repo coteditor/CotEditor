@@ -2220,6 +2220,15 @@ const NSInteger kNoMenuItem = -1;
         }
     }
     
+    // abord if previous character is blank
+    NSUInteger location = [self selectedRange].location;
+    if (location > 0) {
+        unichar prevChar = [[self string] characterAtIndex:location - 1];
+        if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:prevChar]) {
+            return;
+        }
+    }
+    
     [self complete:self];
 }
 
