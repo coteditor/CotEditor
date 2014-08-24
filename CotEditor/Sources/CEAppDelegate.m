@@ -360,7 +360,7 @@
 // ------------------------------------------------------
 {
     // （CEKeyBindingManagerによって、キーボードショートカット設定は上書きされる。
-    // アプリに内包する DefaultMenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
+    // アプリに内包する MenuKeyBindings.plist に、ショートカット設定を記述する必要がある。2007.05.19）
 
     // 「Select Outline item」「Goto」メニューを生成／追加
     NSMenu *findMenu = [[[NSApp mainMenu] itemAtIndex:CEFindMenuIndex] submenu];

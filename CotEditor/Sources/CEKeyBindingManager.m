@@ -142,7 +142,7 @@ static NSDictionary *kUnprintableKeyTable;
 - (void)setupAtLaunching
 // ------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"DefaultMenuKeyBindings" withExtension:@"plist"];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings" withExtension:@"plist"];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         [self setDefaultMenuKeyBindingDict:[NSDictionary dictionaryWithContentsOfURL:URL]];
@@ -189,7 +189,7 @@ static NSDictionary *kUnprintableKeyTable;
         
         NSArray *keys;
         if (usesFactoryDefaults) {
-            NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
+            NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings" withExtension:@"plist"];
             NSDictionary *defaultDict = [NSDictionary dictionaryWithContentsOfURL:sourceURL];
             keys = [defaultDict allKeysForObject:selector];
         } else {
@@ -418,7 +418,7 @@ static NSDictionary *kUnprintableKeyTable;
     NSURL *fileURL = [self textKeyBindingSettingFileURL];
     
     if ([self prepareUserSettingDicrectory]) {
-        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"DefaultTextKeyBindings" withExtension:@"plist"];
+        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings" withExtension:@"plist"];
         
         if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
             ![fileURL checkResourceIsReachableAndReturnError:nil])
