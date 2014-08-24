@@ -22,11 +22,19 @@ This project uses ARC currently.
 - Xcode 6
 
 
-### License
 
+How to Build
+-----------------------------
+0. Install [CocoaPods](http://cocoapods.org) if you don't have it.
+1. Move to the project root directory and run `pod install` on your terminal.
+2. Open CotEditor.xcworkspace on Xcode.
+3. build.
+
+
+
+License
+-----------------------------
 Copyright © 2005-2009 nakamuxu, Copyright © 2011, 2014 usami-k
 , Copyright © 2014 1024jp. All rights reserved.
 
-The source code is distributed under the terms of the GNU General Public License. See the bundled "LICENSE" for details.
-
-For frameworks and other external codes that CotEditor uses, see each individual file for their respective license.
+The source code is distributed under the terms of the GNU General Public License. See the bundled "[LICENSE](LICENSE)" for details.
