@@ -88,7 +88,6 @@
 		2A7846D718FDFAFB006BDF00 /* lockedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846D618FDFAFB006BDF00 /* lockedTemplate.pdf */; };
 		2A7846D918FDFBEB006BDF00 /* clearTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846D818FDFBEB006BDF00 /* clearTemplate.pdf */; };
 		2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
-		2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8711671986DAEC009FA1C0 /* NSString+MD5.m */; };
 		2A8FFCEC19401528008F66BE /* CEAlphaColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FFCEB19401528008F66BE /* CEAlphaColorWell.m */; };
@@ -130,7 +129,6 @@
 		8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */; };
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
 		8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */; };
-		8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
 		8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */; };
 		8C3E2D560808E203009894D1 /* Shift_Left.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D4E0808E203009894D1 /* Shift_Left.tiff */; };
@@ -185,7 +183,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +407,6 @@
 		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptSuite; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Script_CleanButton.tiff; path = toolbarIcons/Script_CleanButton.tiff; sourceTree = "<group>"; };
-		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = "<group>"; };
 		8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = LineNumber_Hide.tiff; path = toolbarIcons/LineNumber_Hide.tiff; sourceTree = "<group>"; };
 		8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = LineNumber_Show.tiff; path = toolbarIcons/LineNumber_Show.tiff; sourceTree = "<group>"; };
 		8C3E2D4E0808E203009894D1 /* Shift_Left.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Shift_Left.tiff; path = toolbarIcons/Shift_Left.tiff; sourceTree = "<group>"; };
@@ -474,7 +470,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */,
-				2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */,
 				792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -798,7 +793,6 @@
 			isa = PBXGroup;
 			children = (
 				8C8977240DCD8AD000DC32FF /* libicucore.dylib */,
-				8C3289EF07A21422001CA481 /* OgreKit.framework */,
 				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
 			);
 			name = Frameworks;
