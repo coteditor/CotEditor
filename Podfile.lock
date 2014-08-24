@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/coteditor/OgreKit.git
 
 SPEC CHECKSUMS:
-  OgreKit: 857f81299750168c977671d52311916131ec31dc
+  OgreKit: 72ec3dbd4b9a10b6051165cd4533b3d21f43e895
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
 
 COCOAPODS: 0.33.1
