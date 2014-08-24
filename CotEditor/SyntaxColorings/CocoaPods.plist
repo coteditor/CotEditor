@@ -10,6 +10,10 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>:commit</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>:debug</string>
 		</dict>
 		<dict>
@@ -35,6 +39,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>:head</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>:hg</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -67,6 +75,10 @@
 		<dict>
 			<key>beginString</key>
 			<string>:release</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>:revision</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -307,7 +319,7 @@
 		<key>distributionURL</key>
 		<string>http://coteditor.github.io</string>
 		<key>lastModified</key>
-		<string>2014-08-23</string>
+		<string>2014-08-24</string>
 		<key>license</key>
 		<string>Same as CotEditor</string>
 		<key>version</key>
@@ -362,12 +374,6 @@
 			<string>&lt;&lt;-?(["'`]?)(\w+)\1(?:.|\n)*?\n[\t ]*\2$</string>
 			<key>regularExpression</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>`</string>
-			<key>endString</key>
-			<string>`</string>
 		</dict>
 	</array>
 	<key>styleName</key>
@@ -442,6 +448,12 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
+			<string>(?&lt;=\.)platform\b</string>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
 			<string>\$[a-z0-9_]+</string>
 			<key>ignoreCase</key>
 			<true/>
@@ -455,6 +467,14 @@
 		<dict>
 			<key>beginString</key>
 			<string>authors</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clean_path</string>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>clean_paths</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
@@ -531,10 +551,6 @@
 		<dict>
 			<key>beginString</key>
 			<string>name</string>
-		</dict>
-		<dict>
-			<key>beginString</key>
-			<string>platform</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
