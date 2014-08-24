@@ -58,6 +58,6 @@
 /// 文字列からキーボードショートカット定義を読み取る
 + (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask
                                 fromString:(NSString *)string
-                       includingCommandKey:(BOOL)isIncludingCommandKey;
+                       includingCommandKey:(BOOL)needsIncludingCommandKey;
 
 @end

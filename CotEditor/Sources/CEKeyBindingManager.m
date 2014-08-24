@@ -96,8 +96,8 @@ static NSDictionary *kUnprintableKeyTable;
     NSString *keyEquivalent = [string substringFromIndex:(length - 1)];
     NSString *keyStr = [CEKeyBindingManager printableKeyStringsFromKeyEquivalent:keyEquivalent];
     BOOL drawsShift = (isupper([keyEquivalent characterAtIndex:0]) == 1);
-    NSString *modKeyStr = [CEKeyBindingManager printableKeyStringsFromModKeySpecChars:[string substringToIndex:(length - 1)]
-                                                                         withShiftKey:drawsShift];
+    NSString *modKeyStr = [CEKeyBindingManager printableKeyStringFromModKeySpecChars:[string substringToIndex:(length - 1)]
+                                                                        withShiftKey:drawsShift];
     
     return [NSString stringWithFormat:@"%@%@", modKeyStr, keyStr];
 }
@@ -114,14 +114,11 @@ static NSDictionary *kUnprintableKeyTable;
     unichar theChar = [string characterAtIndex:0];
     BOOL isShiftPressed = NO;
     
-    NSAssert(k_size_of_modifierKeysList == k_size_of_keySpecCharList,
-             @"internal data error! 'k_modifierKeysList' and 'k_keySpecCharList' size is different.");
-    
-    for (NSInteger i = 0; i < k_size_of_modifierKeysList; i++) {
-        if ((modifierFlags & k_modifierKeysList[i]) || ((i == 2) && (isupper(theChar) == 1))) {
+    for (NSInteger i = 0; i < k_size_of_modifierKeys; i++) {
+        if ((modifierFlags & k_modifierKeyMaskList[i]) || ((i == CEShiftKeyIndex) && (isupper(theChar) == 1))) {
             // （メニューから定義値を取得した時、アルファベット+シフトの場合にシフトの定義が欠落するための回避処置）
             [keySpecChars appendFormat:@"%C", k_keySpecCharList[i]];
-            if ((i == 2) && (isupper(theChar) == 1)) {
+            if ((i == CEShiftKeyIndex) && (isupper(theChar) == 1)) {
                 isShiftPressed = YES;
             }
         }
@@ -598,31 +595,29 @@ static NSDictionary *kUnprintableKeyTable;
 
 //------------------------------------------------------
 /// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
-+ (NSString *)printableKeyStringsFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)isShiftPressed
++ (NSString *)printableKeyStringFromModKeySpecChars:(NSString *)modString withShiftKey:(BOOL)drawsShiftKey
 //------------------------------------------------------
 {
-    NSAssert(k_size_of_keySpecCharList == k_size_of_printableKeyStringsList,
-             @"internal data error! 'k_keySpecCharList' and 'k_printableKeyStringsList' size is different.");
-    
     NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
     NSMutableString *keyStrings = [NSMutableString string];
     
-    for (NSUInteger i = 0; i < k_size_of_keySpecCharList; i++) {
+    for (NSUInteger i = 0; i < k_size_of_modifierKeys; i++) {
         unichar theChar = k_keySpecCharList[i];
-        if ([modStringSet characterIsMember:theChar]) {
-            [keyStrings appendFormat:@"%C", k_printableKeyStringsList[i]];
+        if ([modStringSet characterIsMember:theChar] || ((i == CEShiftKeyIndex) && drawsShiftKey)) {
+            [keyStrings appendFormat:@"%C", k_modifierKeySymbolCharList[i]];
         }
     }
+    
     return keyStrings;
 }
 
 
 //------------------------------------------------------
 /// キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
-+ (NSString *)printableCharFromIgnoringModChar:(NSString *)igunoresModChar
++ (NSString *)printableCharFromIgnoringModChar:(NSString *)modCharString
 //------------------------------------------------------
 {
-    return kUnprintableKeyTable[igunoresModChar] ? : igunoresModChar;
+    return kUnprintableKeyTable[modCharString] ? : modCharString;
 }
 
 
@@ -671,7 +666,7 @@ static NSDictionary *kUnprintableKeyTable;
     NSAssert(k_size_of_unprintableKeyList == [printableChars count],
              @"Internal data error! Sizes of 'k_unprintableKeyList' and 'printableChars' are different.");
     
-    NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:k_size_of_unprintableKeyList];
+    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:k_size_of_unprintableKeyList];
     for (NSInteger i = 0; i < k_size_of_unprintableKeyList; i++) {
         [keys addObject:[NSString stringWithFormat:@"%C", k_unprintableKeyList[i]]];
     }

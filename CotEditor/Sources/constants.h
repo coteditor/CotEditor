@@ -520,15 +520,21 @@ extern NSUInteger const k_size_of_invisibleFullwidthSpaceCharList;
 // Keybindings
 // ------------------------------------------------------
 
-// Modifier keys and characters for keybindings
-extern NSUInteger const k_modifierKeysList[];
-extern NSUInteger const k_size_of_modifierKeysList;
-
+// Modifier masks and characters for keybindings
+extern NSUInteger const k_modifierKeyMaskList[];
+extern unichar    const k_modifierKeySymbolCharList[];
 extern unichar    const k_keySpecCharList[];
-extern NSUInteger const k_size_of_keySpecCharList;
 
-extern unichar    const k_printableKeyStringsList[];
-extern NSUInteger const k_size_of_printableKeyStringsList;
+// size of k_modifierKeyMaskList, k_keySpecCharList and k_modifierKeySymbolCharList
+extern NSUInteger const k_size_of_modifierKeys;
+// indexes of k_modifierKeyMaskList, k_keySpecCharList and k_modifierKeySymbolCharList
+typedef NS_ENUM(NSUInteger, CEModifierKeyIndex) {
+    CEControlKeyIndex,
+    CEAlternateKeyIndex,
+    CEShiftKeyIndex,
+    CECommandKeyIndex,
+};
 
+// Unprintable key list
 extern unichar    const k_unprintableKeyList[];
 extern NSUInteger const k_size_of_unprintableKeyList;

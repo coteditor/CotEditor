@@ -531,16 +531,16 @@ unichar const k_yenMark = {0x00A5};
 
 // Substitutes for invisible characters
 unichar     const k_invisibleSpaceCharList[] = {0x00B7, 0x00B0, 0x02D0, 0x2423};
-NSUInteger  const k_size_of_invisibleSpaceCharList = (sizeof(k_invisibleSpaceCharList) / sizeof(unichar));
+NSUInteger  const k_size_of_invisibleSpaceCharList = sizeof(k_invisibleSpaceCharList) / sizeof(unichar);
 
 unichar     const k_invisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
-NSUInteger  const k_size_of_invisibleTabCharList = (sizeof(k_invisibleTabCharList) / sizeof(unichar));
+NSUInteger  const k_size_of_invisibleTabCharList = sizeof(k_invisibleTabCharList) / sizeof(unichar);
 
 unichar     const k_invisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
-NSUInteger  const k_size_of_invisibleNewLineCharList = (sizeof(k_invisibleNewLineCharList) / sizeof(unichar));
+NSUInteger  const k_size_of_invisibleNewLineCharList = sizeof(k_invisibleNewLineCharList) / sizeof(unichar);
 
 unichar     const k_invisibleFullwidthSpaceCharList[] = {0x25A2, 0x22A0, 0x25B3, 0x2573};
-NSUInteger  const k_size_of_invisibleFullwidthSpaceCharList = (sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar));
+NSUInteger  const k_size_of_invisibleFullwidthSpaceCharList = sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar);
 
 
 
@@ -548,21 +548,20 @@ NSUInteger  const k_size_of_invisibleFullwidthSpaceCharList = (sizeof(k_invisibl
 // Keybindings
 // ------------------------------------------------------
 
-// Modifier keys and characters for keybindings
-NSUInteger const k_modifierKeysList[] = {
+// Modifier keys and characters for keybinding
+NSUInteger const k_modifierKeyMaskList[] = {
     NSControlKeyMask,
     NSAlternateKeyMask,
     NSShiftKeyMask,
     NSCommandKeyMask
 };
-NSUInteger const k_size_of_modifierKeysList = (sizeof(k_modifierKeysList) / sizeof(NSUInteger));
+unichar const k_modifierKeySymbolCharList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
+unichar const k_keySpecCharList[]           = {0x005E, 0x007E, 0x0024, 0x0040};  // == "^~$@"
 
-unichar    const k_keySpecCharList[] = {0x005E, 0x007E, 0x0024, 0x0040}; // == "^~$@"
-NSUInteger const k_size_of_keySpecCharList = (sizeof(k_keySpecCharList) / sizeof(unichar));
+NSUInteger const k_size_of_modifierKeys = sizeof(k_modifierKeyMaskList) / sizeof(NSUInteger);
 
-unichar    const k_printableKeyStringsList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
-NSUInteger const k_size_of_printableKeyStringsList = (sizeof(k_printableKeyStringsList) / sizeof(unichar));
 
+// Unprintable key list
 unichar const k_unprintableKeyList[] = {
     NSUpArrowFunctionKey,
     NSDownArrowFunctionKey,

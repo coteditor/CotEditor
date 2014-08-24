@@ -46,7 +46,7 @@ static const NSArray *invalidYenEncodings;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:k_size_of_CFStringEncodingInvalidYenList];
+        NSMutableArray *encodings = [NSMutableArray arrayWithCapacity:k_size_of_CFStringEncodingInvalidYenList];
         for (NSUInteger i = 0; i < k_size_of_CFStringEncodingInvalidYenList; i++) {
             NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
             [encodings addObject:@(encoding)];
@@ -180,52 +180,44 @@ static const NSArray *invalidYenEncodings;
 + (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    return ([invalidYenEncodings containsObject:@(encoding)]);
+    return [invalidYenEncodings containsObject:@(encoding)];
 }
 
 
 // ------------------------------------------------------
 /// 文字列からキーボードショートカット定義を読み取る
-+ (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromString:(NSString *)string includingCommandKey:(BOOL)isIncludingCommandKey
++ (NSString *)keyEquivalentAndModifierMask:(NSUInteger *)modifierMask fromString:(NSString *)string includingCommandKey:(BOOL)needsIncludingCommandKey
 //------------------------------------------------------
 {
     *modifierMask = 0;
     NSUInteger length = [string length];
-    if ((string == nil) || (length < 2)) { return @""; }
+    
+    if (length < 2) { return @""; }
     
     NSString *key = [string substringFromIndex:(length - 1)];
-    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:[string substringToIndex:(length - 1)]];
+    NSCharacterSet *modCharSet = [NSCharacterSet characterSetWithCharactersInString:[string substringToIndex:(length - 1)]];
     
-    if (isIncludingCommandKey) { // === Cmd 必須のとき
-        if ([charSet characterIsMember:k_keySpecCharList[3]]) { // @
-            if ([charSet characterIsMember:k_keySpecCharList[0]]) { // ^
-                *modifierMask |= NSControlKeyMask;
-            }
-            if ([charSet characterIsMember:k_keySpecCharList[1]]) { // ~
-                *modifierMask |= NSAlternateKeyMask;
-            }
-            if (([charSet characterIsMember:k_keySpecCharList[2]]) ||
-                (isupper([key characterAtIndex:0]) == 1)) { // $
-                *modifierMask |= NSShiftKeyMask;
-            }
-            *modifierMask |= NSCommandKeyMask;
-        }
-    } else {
-        if ([charSet characterIsMember:k_keySpecCharList[0]]) {
-            *modifierMask |= NSControlKeyMask;
-        }
-        if ([charSet characterIsMember:k_keySpecCharList[1]]) {
-            *modifierMask |= NSAlternateKeyMask;
-        }
-        if ([charSet characterIsMember:k_keySpecCharList[2]]) {
-            *modifierMask |= NSShiftKeyMask;
-        }
-        if ([charSet characterIsMember:k_keySpecCharList[3]]) {
-            *modifierMask |= NSCommandKeyMask;
-        }
+    if ([modCharSet characterIsMember:k_keySpecCharList[CEControlKeyIndex]]) {
+        *modifierMask |= NSControlKeyMask;
+    }
+    if ([modCharSet characterIsMember:k_keySpecCharList[CEAlternateKeyIndex]]) {
+        *modifierMask |= NSAlternateKeyMask;
+    }
+    if (([modCharSet characterIsMember:k_keySpecCharList[CEShiftKeyIndex]]) ||  // $
+        (isupper([key characterAtIndex:0]) == 1))
+    {
+        *modifierMask |= NSShiftKeyMask;
+    }
+    if ([modCharSet characterIsMember:k_keySpecCharList[CECommandKeyIndex]]) {
+        *modifierMask |= NSCommandKeyMask;
     }
     
-    return (modifierMask != 0) ? key : @"";
+    if (needsIncludingCommandKey && !(*modifierMask & NSCommandKeyMask)) {
+        *modifierMask = 0;
+        return @"";
+    }
+    
+    return (*modifierMask != 0) ? key : @"";
 }
 
 @end
