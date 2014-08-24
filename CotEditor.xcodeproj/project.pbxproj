@@ -88,7 +88,6 @@
 		2A7846D718FDFAFB006BDF00 /* lockedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846D618FDFAFB006BDF00 /* lockedTemplate.pdf */; };
 		2A7846D918FDFBEB006BDF00 /* clearTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846D818FDFBEB006BDF00 /* clearTemplate.pdf */; };
 		2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
-		2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8711671986DAEC009FA1C0 /* NSString+MD5.m */; };
 		2A8FFCEC19401528008F66BE /* CEAlphaColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FFCEB19401528008F66BE /* CEAlphaColorWell.m */; };
@@ -121,8 +120,7 @@
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		6CA3B3E312E3B59B0019AB2E /* SampleScript in Resources */ = {isa = PBXBuildFile; fileRef = 6CA3B36012E3B59B0019AB2E /* SampleScript */; };
-		6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB074A11373A03B001D0243 /* Sparkle.framework */; };
-		6CB074B11373A0C3001D0243 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6CB074A11373A03B001D0243 /* Sparkle.framework */; };
+		792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* getInfo.tiff */; };
 		8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F52600871861C00ABD124 /* openScriptMenu.applescript */; };
 		8C0FE15A08D7FDAA00B2B71B /* DefaultTextKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C0FE15908D7FDAA00B2B71B /* DefaultTextKeyBindings.plist */; };
@@ -131,7 +129,6 @@
 		8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */; };
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
 		8C28CD7808110E4A00733DA7 /* Script_CleanButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */; };
-		8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3289EF07A21422001CA481 /* OgreKit.framework */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
 		8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */; };
 		8C3E2D560808E203009894D1 /* Shift_Left.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D4E0808E203009894D1 /* Shift_Left.tiff */; };
@@ -186,8 +183,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8C3289F207A2146B001CA481 /* OgreKit.framework in CopyFiles */,
-				6CB074B11373A0C3001D0243 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,13 +391,13 @@
 		2AFFB72B18D8CB7D00118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
 		2AFFB72C18D8DB6A00118477 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = changelog.md; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
+		69AF2D41A3644DBC83DBA617 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6C1E212112C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Indicator.xib; sourceTree = "<group>"; };
 		6C1E212212C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C1E212512C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		6CA3B36012E3B59B0019AB2E /* SampleScript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleScript; sourceTree = "<group>"; };
-		6CB074A11373A03B001D0243 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
 		8C0F52600871861C00ABD124 /* openScriptMenu.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = openScriptMenu.applescript; path = internalScript/openScriptMenu.applescript; sourceTree = "<group>"; };
 		8C0FE15908D7FDAA00B2B71B /* DefaultTextKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultTextKeyBindings.plist; path = KeyBindings/DefaultTextKeyBindings.plist; sourceTree = "<group>"; };
@@ -412,7 +407,6 @@
 		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptSuite; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C28CD7708110E4A00733DA7 /* Script_CleanButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Script_CleanButton.tiff; path = toolbarIcons/Script_CleanButton.tiff; sourceTree = "<group>"; };
-		8C3289EF07A21422001CA481 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = frameworks/OgreKit.framework; sourceTree = "<group>"; };
 		8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = LineNumber_Hide.tiff; path = toolbarIcons/LineNumber_Hide.tiff; sourceTree = "<group>"; };
 		8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = LineNumber_Show.tiff; path = toolbarIcons/LineNumber_Show.tiff; sourceTree = "<group>"; };
 		8C3E2D4E0808E203009894D1 /* Shift_Left.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Shift_Left.tiff; path = toolbarIcons/Shift_Left.tiff; sourceTree = "<group>"; };
@@ -467,6 +461,7 @@
 		8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarController.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3504B3BB02D4DBA8EA50C0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,8 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */,
-				2A789AD318EB0A750014C037 /* OgreKit.framework in Frameworks */,
-				6CB074A21373A03B001D0243 /* Sparkle.framework in Frameworks */,
+				792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +727,7 @@
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				69AF2D41A3644DBC83DBA617 /* Pods.xcconfig */,
 			);
 			name = CotEditor;
 			sourceTree = "<group>";
@@ -798,8 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				8C8977240DCD8AD000DC32FF /* libicucore.dylib */,
-				8C3289EF07A21422001CA481 /* OgreKit.framework */,
-				6CB074A11373A03B001D0243 /* Sparkle.framework */,
+				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -974,10 +968,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
+				360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				8C3996C0076ACBD100F6FF8D /* CopyFiles */,
+				81C5D4CFD0374B6D8F039D36 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1127,6 +1123,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		81C5D4CFD0374B6D8F039D36 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D15AC300486D014006FF6A4 /* Sources */ = {
@@ -1533,18 +1562,13 @@
 /* Begin XCBuildConfiguration section */
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69AF2D41A3644DBC83DBA617 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = appIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					.,
-					"$(SRCROOT)",
-					./CotEditor/,
-					"$(PROJECT_DIR)/frameworks",
-				);
 				GCC_DEBUGGING_SYMBOLS = full;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1552,7 +1576,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CotEditor/CotEditor_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "\"DEBUGGING\"";
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1565,18 +1588,13 @@
 		};
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69AF2D41A3644DBC83DBA617 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = appIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					.,
-					"$(SRCROOT)",
-					./CotEditor/,
-					"$(PROJECT_DIR)/frameworks",
-				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
