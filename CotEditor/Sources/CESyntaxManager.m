@@ -135,7 +135,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSMutableArray *styleNames = [NSMutableArray array];
     
     for (NSDictionary *style in [self styles]) {
-        [styleNames addObject:style[k_SCKey_styleName]];
+        [styleNames addObject:style[CESyntaxStyleNameKey]];
     }
     
     return styleNames;
@@ -161,9 +161,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSString *)defaultExensionWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    NSArray *extensions = [self styleWithStyleName:styleName][k_SCKey_extensions];
+    NSArray *extensions = [self styleWithStyleName:styleName][CESyntaxExtensionsKey];
     
-    return ([extensions count] > 0) ? (NSString *)extensions[0][k_SCKey_arrayKeyString] : nil;
+    return ([extensions count] > 0) ? (NSString *)extensions[0][CESyntaxKeyStringKey] : nil;
 }
 
 
@@ -174,12 +174,12 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 {
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
         for (NSDictionary *style in [self styles]) {
-            if ([style[k_SCKey_styleName] isEqualToString:styleName]) {
+            if ([style[CESyntaxStyleNameKey] isEqualToString:styleName]) {
                 NSMutableDictionary *styleToReturn = [style mutableCopy];
                 
-                NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringArrays];
-                for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
-                    [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+                NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringKeys];
+                for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
+                    [syntaxDictKeys addObject:k_allColoringKeys[i]];
                 }
                 
                 return styleToReturn;
@@ -391,23 +391,23 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     if ([name length] == 0) { return; }
     
     // sanitize
-    [(NSMutableArray *)style[k_SCKey_extensions] removeObject:@{}];
-    [(NSMutableArray *)style[k_SCKey_filenames] removeObject:@{}];
+    [(NSMutableArray *)style[CESyntaxExtensionsKey] removeObject:@{}];
+    [(NSMutableArray *)style[CESyntaxFileNamesKey] removeObject:@{}];
     
     // sort
-    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:k_SCKey_beginString
+    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:CESyntaxBeginStringKey
                                                            ascending:YES
                                                             selector:@selector(caseInsensitiveCompare:)],
-                             [NSSortDescriptor sortDescriptorWithKey:k_SCKey_arrayKeyString
+                             [NSSortDescriptor sortDescriptorWithKey:CESyntaxKeyStringKey
                                                            ascending:YES
                                                             selector:@selector(caseInsensitiveCompare:)]];
     
     NSMutableArray *syntaxDictKeys = [NSMutableArray array];
-    for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
-        [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+    for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
+        [syntaxDictKeys addObject:k_allColoringKeys[i]];
     }
-    [syntaxDictKeys addObjectsFromArray:@[k_SCKey_outlineMenuArray,
-                                          k_SCKey_completionsArray]];
+    [syntaxDictKeys addObjectsFromArray:@[CESyntaxOutlineMenuKey,
+                                          CESyntaxCompletionsKey]];
     
     for (NSString *key in syntaxDictKeys) {
         [style[key] sortUsingDescriptors:descriptors];
@@ -457,19 +457,19 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
-    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(k_size_of_allColoringArrays + 1)];
-    for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
-        [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(k_size_of_allColoringKeys + 1)];
+    for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
+        [syntaxDictKeys addObject:k_allColoringKeys[i]];
     }
-    [syntaxDictKeys addObject:k_SCKey_outlineMenuArray];
+    [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     
     for (NSString *key in syntaxDictKeys) {
         NSArray *array = style[key];
         NSString *arrayNameDeletingArray = [key substringToIndex:([key length] - 5)];
         
         for (NSDictionary *dict in array) {
-            NSString *beginStr = dict[k_SCKey_beginString];
-            NSString *endStr = dict[k_SCKey_endString];
+            NSString *beginStr = dict[CESyntaxBeginStringKey];
+            NSString *endStr = dict[CESyntaxEndStringKey];
             
             if ([tmpBeginStr isEqualToString:beginStr] &&
                 ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
@@ -477,7 +477,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                           @"%@ :(Begin string) > %@\n  >>> multiple registered.",
                                           arrayNameDeletingArray, beginStr]];
                 
-            } else if ([dict[k_SCKey_regularExpression] boolValue]) {
+            } else if ([dict[CESyntaxRegularExpressionKey] boolValue]) {
                 NSInteger capCount = [beginStr captureCountWithOptions:RKLNoOptions error:&error];
                 if (capCount == -1) { // エラーのとき
                     [errorMessages addObject:[NSString stringWithFormat:
@@ -501,7 +501,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                     }
                 }
                 
-            } else if ([key isEqualToString:k_SCKey_outlineMenuArray]) {
+            } else if ([key isEqualToString:CESyntaxOutlineMenuKey]) {
                 error = nil;
                 [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
                 if (error) {
@@ -515,8 +515,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     }
     
     // validate block comment delimiter pair
-    NSString *beginDelimiter = style[k_SCKey_commentDelimitersDict][k_SCKey_beginComment];
-    NSString *endDelimiter = style[k_SCKey_commentDelimitersDict][k_SCKey_endComment];
+    NSString *beginDelimiter = style[CESyntaxCommentDelimitersKey][CESyntaxBeginCommentKey];
+    NSString *endDelimiter = style[CESyntaxCommentDelimitersKey][CESyntaxEndCommentKey];
     if (([beginDelimiter length] >  0 && [endDelimiter length] == 0) ||
         ([beginDelimiter length] == 0 && [endDelimiter length] >  0))
     {
@@ -532,22 +532,23 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSDictionary *)emptyStyle
 //------------------------------------------------------
 {
-    return @{k_SCKey_styleName: [NSMutableString string],
-             k_SCKey_extensions: [NSMutableArray array],
-             k_SCKey_filenames: [NSMutableArray array],
-             k_SCKey_keywordsArray: [NSMutableArray array],
-             k_SCKey_commandsArray: [NSMutableArray array],
-             k_SCKey_typesArray: [NSMutableArray array],
-             k_SCKey_attributesArray: [NSMutableArray array],
-             k_SCKey_variablesArray: [NSMutableArray array],
-             k_SCKey_valuesArray: [NSMutableArray array],
-             k_SCKey_numbersArray: [NSMutableArray array],
-             k_SCKey_stringsArray: [NSMutableArray array],
-             k_SCKey_charactersArray: [NSMutableArray array],
-             k_SCKey_commentsArray: [NSMutableArray array],
-             k_SCKey_outlineMenuArray: [NSMutableArray array],
-             k_SCKey_completionsArray: [NSMutableArray array],
-             k_SCKey_commentDelimitersDict: [NSMutableDictionary dictionary]};
+    return @{CESyntaxStyleNameKey: [NSMutableString string],
+             CESyntaxMetadataKey: [NSMutableDictionary dictionary],
+             CESyntaxExtensionsKey: [NSMutableArray array],
+             CESyntaxFileNamesKey: [NSMutableArray array],
+             CESyntaxKeywordsKey: [NSMutableArray array],
+             CESyntaxCommandsKey: [NSMutableArray array],
+             CESyntaxTypesKey: [NSMutableArray array],
+             CESyntaxAttributesKey: [NSMutableArray array],
+             CESyntaxVariablesKey: [NSMutableArray array],
+             CESyntaxValuesKey: [NSMutableArray array],
+             CESyntaxNumbersKey: [NSMutableArray array],
+             CESyntaxStringsKey: [NSMutableArray array],
+             CESyntaxCharactersKey: [NSMutableArray array],
+             CESyntaxCommentsKey: [NSMutableArray array],
+             CESyntaxOutlineMenuKey: [NSMutableArray array],
+             CESyntaxCompletionsKey: [NSMutableArray array],
+             CESyntaxCommentDelimitersKey: [NSMutableDictionary dictionary]};
 }
 
 
@@ -691,8 +692,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             // URLが無効だった場合などに、dictがnilになる場合がある
             if (styleDict) {
                 styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
-                // k_SCKey_styleName をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
-                styleDict[k_SCKey_styleName] = styleName;
+                // CESyntaxStyleNameKey をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
+                styleDict[CESyntaxStyleNameKey] = styleName;
                 styles[[styleName lowercaseString]] = styleDict;
             }
         }
@@ -718,12 +719,12 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSString *addedName = nil;
 
     for (NSMutableDictionary *style in [self styles]) {
-        NSString *styleName = style[k_SCKey_styleName];
-        NSArray *extensionDicts = style[k_SCKey_extensions];
-        NSArray *filenameDicts = style[k_SCKey_filenames];
+        NSString *styleName = style[CESyntaxStyleNameKey];
+        NSArray *extensionDicts = style[CESyntaxExtensionsKey];
+        NSArray *filenameDicts = style[CESyntaxFileNamesKey];
         
         for (NSDictionary *dict in extensionDicts) {
-            NSString *extension = dict[k_SCKey_arrayKeyString];
+            NSString *extension = dict[CESyntaxKeyStringKey];
             
             if (!extension) { continue; }
             
@@ -736,14 +737,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 if (![errors containsObject:addedName]) {
                     [errors addObject:addedName];
                 }
-                [errors addObject:style[k_SCKey_styleName]];
+                [errors addObject:style[CESyntaxStyleNameKey]];
             } else {
                 [extensionTable setValue:styleName forKey:extension];
             }
         }
         
         for (NSDictionary *dict in filenameDicts) {
-            NSString *filename = dict[k_SCKey_arrayKeyString];
+            NSString *filename = dict[CESyntaxKeyStringKey];
             
             if (!filename) { continue; }
             
@@ -756,7 +757,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 if (![errors containsObject:addedName]) {
                     [errors addObject:addedName];
                 }
-                [errors addObject:style[k_SCKey_styleName]];
+                [errors addObject:style[CESyntaxStyleNameKey]];
             } else {
                 [filenameTable setValue:styleName forKey:filename];
             }

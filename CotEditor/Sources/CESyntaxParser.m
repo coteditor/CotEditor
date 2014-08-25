@@ -111,14 +111,14 @@ static CGFloat kPerCompoIncrement;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *syntaxDictKeys = [NSMutableArray arrayWithCapacity:k_size_of_allColoringArrays];
-        for (NSUInteger i = 0; i < k_size_of_allColoringArrays; i++) {
-            [syntaxDictKeys addObject:k_SCKey_allColoringArrays[i]];
+        NSMutableArray *syntaxDictKeys = [NSMutableArray arrayWithCapacity:k_size_of_allColoringKeys];
+        for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
+            [syntaxDictKeys addObject:k_allColoringKeys[i]];
         }
         kSyntaxDictKeys = [syntaxDictKeys copy];
         
         // カラーリングインジケータの上昇幅を決定する（+1 はコメント＋引用符抽出用）
-        kPerCompoIncrement = 98.0 / (k_size_of_allColoringArrays + 1);
+        kPerCompoIncrement = 98.0 / (k_size_of_allColoringKeys + 1);
     });
 }
 
@@ -164,24 +164,24 @@ static CGFloat kPerCompoIncrement;
             NSMutableDictionary *coloringDictionary = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
             
             // コメントデリミッタを設定
-            NSDictionary *delimiters = coloringDictionary[k_SCKey_commentDelimitersDict];
-            if ([delimiters[k_SCKey_inlineComment] length] > 0) {
-                _inlineCommentDelimiter = delimiters[k_SCKey_inlineComment];
+            NSDictionary *delimiters = coloringDictionary[CESyntaxCommentDelimitersKey];
+            if ([delimiters[CESyntaxInlineCommentKey] length] > 0) {
+                _inlineCommentDelimiter = delimiters[CESyntaxInlineCommentKey];
             }
-            if ([delimiters[k_SCKey_beginComment] length] > 0 && [delimiters[k_SCKey_endComment] length] > 0) {
-                _blockCommentDelimiters = @{@"begin": delimiters[k_SCKey_beginComment],
-                                            @"end": delimiters[k_SCKey_endComment]};
+            if ([delimiters[CESyntaxBeginCommentKey] length] > 0 && [delimiters[CESyntaxEndCommentKey] length] > 0) {
+                _blockCommentDelimiters = @{CEBeginDelimiterKey: delimiters[CESyntaxBeginCommentKey],
+                                            CEEndDelimiterKey: delimiters[CESyntaxEndCommentKey]};
             }
             
             /// カラーリング辞書から補完文字列配列を生成
             {
                 NSMutableArray *completionWords = [NSMutableArray array];
                 NSMutableString *firstCharsString = [NSMutableString string];
-                NSArray *completionDicts = coloringDictionary[k_SCKey_completionsArray];
+                NSArray *completionDicts = coloringDictionary[CESyntaxCompletionsKey];
                 
                 if ([completionDicts count] > 0) {
                     for (NSDictionary *dict in completionDicts) {
-                        NSString *word = dict[k_SCKey_arrayKeyString];
+                        NSString *word = dict[CESyntaxKeyStringKey];
                         [completionWords addObject:word];
                         [firstCharsString appendString:[word substringToIndex:1]];
                     }
@@ -190,9 +190,9 @@ static CGFloat kPerCompoIncrement;
                     for (NSString *key in kSyntaxDictKeys) {
                         @autoreleasepool {
                             for (NSDictionary *wordDict in coloringDictionary[key]) {
-                                NSString *begin = [wordDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:trimCharSet];
-                                NSString *end = [wordDict[k_SCKey_endString] stringByTrimmingCharactersInSet:trimCharSet];
-                                BOOL isRegEx = [wordDict[k_SCKey_regularExpression] boolValue];
+                                NSString *begin = [wordDict[CESyntaxBeginStringKey] stringByTrimmingCharactersInSet:trimCharSet];
+                                NSString *end = [wordDict[CESyntaxEndStringKey] stringByTrimmingCharactersInSet:trimCharSet];
+                                BOOL isRegEx = [wordDict[CESyntaxRegularExpressionKey] boolValue];
                                 
                                 if (([begin length] > 0) && ([end length] == 0) && !isRegEx) {
                                     [completionWords addObject:begin];
@@ -223,12 +223,12 @@ static CGFloat kPerCompoIncrement;
                         NSMutableCharacterSet *charSet = [NSMutableCharacterSet characterSetWithCharactersInString:k_allAlphabetChars];
                         
                         for (NSDictionary *wordDict in coloringDictionary[key]) {
-                            NSString *begin = [wordDict[k_SCKey_beginString] stringByTrimmingCharactersInSet:trimCharSet];
-                            NSString *end = [wordDict[k_SCKey_endString] stringByTrimmingCharactersInSet:trimCharSet];
-                            BOOL isRegex = [wordDict[k_SCKey_regularExpression] boolValue];
+                            NSString *begin = [wordDict[CESyntaxBeginStringKey] stringByTrimmingCharactersInSet:trimCharSet];
+                            NSString *end = [wordDict[CESyntaxEndStringKey] stringByTrimmingCharactersInSet:trimCharSet];
+                            BOOL isRegex = [wordDict[CESyntaxRegularExpressionKey] boolValue];
                             
                             if ([begin length] > 0 && [end length] == 0 && !isRegex) {
-                                if ([wordDict[k_SCKey_ignoreCase] boolValue]) {
+                                if ([wordDict[CESyntaxIgnoreCaseKey] boolValue]) {
                                     [charSet addCharactersInString:[begin uppercaseString]];
                                     [charSet addCharactersInString:[begin lowercaseString]];
                                 } else {
@@ -255,8 +255,8 @@ static CGFloat kPerCompoIncrement;
                     count += [wordDicts count];
                     
                     for (NSDictionary *wordDict in coloringDictionary[key]) {
-                        NSString *begin = wordDict[k_SCKey_beginString];
-                        NSString *end = wordDict[k_SCKey_endString];
+                        NSString *begin = wordDict[CESyntaxBeginStringKey];
+                        NSString *end = wordDict[CESyntaxEndStringKey];
                         
                         // 最初に出てきたクォートのみを把握
                         for (NSString *quote in @[@"'", @"\"", @"`"]) {
@@ -358,24 +358,24 @@ static CGFloat kPerCompoIncrement;
     __block NSMutableArray *outlineMenuDicts = [NSMutableArray array];
     
     NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_outlineMenuMaxLength];
-    NSArray *definitions = [self coloringDictionary][k_SCKey_outlineMenuArray];
+    NSArray *definitions = [self coloringDictionary][CESyntaxOutlineMenuKey];
     
     for (NSDictionary *definition in definitions) {
         NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
-        if ([definition[k_SCKey_ignoreCase] boolValue]) {
+        if ([definition[CESyntaxIgnoreCaseKey] boolValue]) {
             options |= NSRegularExpressionCaseInsensitive;
         }
 
         NSError *error = nil;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:definition[k_SCKey_beginString]
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:definition[CESyntaxBeginStringKey]
                                                                                options:options
                                                                                  error:&error];
         if (error) {
-            NSLog(@"ERROR in \"%s\" with regex pattern \"%@\"", __PRETTY_FUNCTION__, definition[k_SCKey_beginString]);
+            NSLog(@"ERROR in \"%s\" with regex pattern \"%@\"", __PRETTY_FUNCTION__, definition[CESyntaxBeginStringKey]);
             continue;  // do nothing
         }
         
-        NSString *template = definition[k_SCKey_arrayKeyString];
+        NSString *template = definition[CESyntaxKeyStringKey];
         
         [regex enumerateMatchesInString:wholeString
                                 options:0
@@ -430,11 +430,11 @@ static CGFloat kPerCompoIncrement;
              }
              
              // ボールド
-             BOOL isBold = [definition[k_SCKey_bold] boolValue];
+             BOOL isBold = [definition[CESyntaxBoldKey] boolValue];
              // イタリック
-             BOOL isItalic = [definition[k_SCKey_italic] boolValue];
+             BOOL isItalic = [definition[CESyntaxItalicKey] boolValue];
              // アンダーライン
-             NSUInteger underlineMask = [definition[k_SCKey_underline] boolValue] ?
+             NSUInteger underlineMask = [definition[CESyntaxUnderlineKey] boolValue] ?
              (NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick) : 0;
              
              // 辞書生成
@@ -717,8 +717,8 @@ static CGFloat kPerCompoIncrement;
     
     // コメント定義の位置配列を生成
     if ([self blockCommentDelimiters]) {
-        [positions addObjectsFromArray:[self rangesBeginString:[self blockCommentDelimiters][@"begin"]
-                                                     endString:[self blockCommentDelimiters][@"end"]
+        [positions addObjectsFromArray:[self rangesBeginString:[self blockCommentDelimiters][CEBeginDelimiterKey]
+                                                     endString:[self blockCommentDelimiters][CEEndDelimiterKey]
                                                     ignoreCase:NO
                                                   returnFormat:QCDictFormat
                                                       pairKind:QCBlockCommentKind]];
@@ -763,7 +763,7 @@ static CGFloat kPerCompoIncrement;
         }
         
         if (searchPairKind == position[QCPairKindKey]) {
-            NSString *colorType = quoteTypes[searchPairKind] ? : k_SCKey_commentsArray;
+            NSString *colorType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
             
             endLocation = [position[QCPositionKey] unsignedIntegerValue] + [position[QCLengthKey] unsignedIntegerValue];
             
@@ -793,7 +793,7 @@ static CGFloat kPerCompoIncrement;
         }
         // 「終わり」がなければ最後までカラーリングして、抜ける
         if (!hasEnd) {
-            NSString *colorType = quoteTypes[searchPairKind] ? : k_SCKey_commentsArray;
+            NSString *colorType = quoteTypes[searchPairKind] ? : CESyntaxCommentsKey;
             
             [colorings addObject:@{ColorKey: colorType,
                                    RangeKey: [NSValue valueWithRange:NSMakeRange(startLocation,
@@ -868,13 +868,13 @@ static CGFloat kPerCompoIncrement;
                 if ([[self indicatorController] isCancelled]) { return nil; }
                 
                 @autoreleasepool {
-                    NSString *beginStr = strDict[k_SCKey_beginString];
-                    NSString *endStr = strDict[k_SCKey_endString];
-                    BOOL ignoresCase = [strDict[k_SCKey_ignoreCase] boolValue];
+                    NSString *beginStr = strDict[CESyntaxBeginStringKey];
+                    NSString *endStr = strDict[CESyntaxEndStringKey];
+                    BOOL ignoresCase = [strDict[CESyntaxIgnoreCaseKey] boolValue];
                     
                     if ([beginStr length] == 0) { continue; }
                     
-                    if ([strDict[k_SCKey_regularExpression] boolValue]) {
+                    if ([strDict[CESyntaxRegularExpressionKey] boolValue]) {
                         if ([endStr length] > 0) {
                             [targetRanges addObjectsFromArray:
                              [self rangesRegularExpressionBeginString:beginStr
@@ -1045,25 +1045,25 @@ static CGFloat kPerCompoIncrement;
                 if (!showsInvisibles) { continue; }
                 
                 color = [theme invisiblesColor];
-            } else if ([colorType isEqualToString:k_SCKey_keywordsArray]) {
+            } else if ([colorType isEqualToString:CESyntaxKeywordsKey]) {
                 color = [theme keywordsColor];
-            } else if ([colorType isEqualToString:k_SCKey_commandsArray]) {
+            } else if ([colorType isEqualToString:CESyntaxCommandsKey]) {
                 color = [theme commandsColor];
-            } else if ([colorType isEqualToString:k_SCKey_typesArray]) {
+            } else if ([colorType isEqualToString:CESyntaxTypesKey]) {
                 color = [theme typesColor];
-            } else if ([colorType isEqualToString:k_SCKey_attributesArray]) {
+            } else if ([colorType isEqualToString:CESyntaxAttributesKey]) {
                 color = [theme attributesColor];
-            } else if ([colorType isEqualToString:k_SCKey_variablesArray]) {
+            } else if ([colorType isEqualToString:CESyntaxVariablesKey]) {
                 color = [theme variablesColor];
-            } else if ([colorType isEqualToString:k_SCKey_valuesArray]) {
+            } else if ([colorType isEqualToString:CESyntaxValuesKey]) {
                 color = [theme valuesColor];
-            } else if ([colorType isEqualToString:k_SCKey_numbersArray]) {
+            } else if ([colorType isEqualToString:CESyntaxNumbersKey]) {
                 color = [theme numbersColor];
-            } else if ([colorType isEqualToString:k_SCKey_stringsArray]) {
+            } else if ([colorType isEqualToString:CESyntaxStringsKey]) {
                 color = [theme stringsColor];
-            } else if ([colorType isEqualToString:k_SCKey_charactersArray]) {
+            } else if ([colorType isEqualToString:CESyntaxCharactersKey]) {
                 color = [theme charactersColor];
-            } else if ([colorType isEqualToString:k_SCKey_commentsArray]) {
+            } else if ([colorType isEqualToString:CESyntaxCommentsKey]) {
                 color = [theme commentsColor];
             } else {
                 color = [theme textColor];

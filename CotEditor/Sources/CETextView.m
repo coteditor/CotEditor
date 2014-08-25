@@ -1585,8 +1585,8 @@ const NSInteger kNoMenuItem = -1;
         addedChars = [newString length] - targetRange.length;
         
     } else if ([self blockCommentDelimiters]) {
-        beginDelimiter = [self blockCommentDelimiters][@"begin"];
-        endDelimiter = [self blockCommentDelimiters][@"end"];
+        beginDelimiter = [self blockCommentDelimiters][CEBeginDelimiterKey];
+        endDelimiter = [self blockCommentDelimiters][CEEndDelimiterKey];
         
         newString = [@[beginDelimiter, target, endDelimiter] componentsJoinedByString:spacer];
         addedChars = [beginDelimiter length] + [spacer length];
@@ -1637,8 +1637,8 @@ const NSInteger kNoMenuItem = -1;
     // block comment
     if ([self blockCommentDelimiters]) {
         if ([target length] > 0) {
-            beginDelimiter = [self blockCommentDelimiters][@"begin"];
-            endDelimiter = [self blockCommentDelimiters][@"end"];
+            beginDelimiter = [self blockCommentDelimiters][CEBeginDelimiterKey];
+            endDelimiter = [self blockCommentDelimiters][CEEndDelimiterKey];
             
             // remove comment delimiters
             if ([target hasPrefix:beginDelimiter] && [target hasSuffix:endDelimiter]) {
@@ -2176,8 +2176,8 @@ const NSInteger kNoMenuItem = -1;
     if ([target length] == 0) { return NO; }
     
     if ([self blockCommentDelimiters]) {
-        if ([target hasPrefix:[self blockCommentDelimiters][@"begin"]] &&
-            [target hasSuffix:[self blockCommentDelimiters][@"end"]]) {
+        if ([target hasPrefix:[self blockCommentDelimiters][CEBeginDelimiterKey]] &&
+            [target hasSuffix:[self blockCommentDelimiters][CEEndDelimiterKey]]) {
             return YES;
         }
     }

@@ -267,35 +267,43 @@ extern NSUInteger const k_maxEscapesCheckLength;
 extern NSString  *const k_allAlphabetChars;
 
 // syntax style keys
-extern NSString *const k_SCKey_styleName;
-extern NSString *const k_SCKey_extensions;
-extern NSString *const k_SCKey_filenames;
-extern NSString *const k_SCKey_ignoreCase;
-extern NSString *const k_SCKey_regularExpression;
-extern NSString *const k_SCKey_arrayKeyString;
-extern NSString *const k_SCKey_beginString;
-extern NSString *const k_SCKey_endString;
-extern NSString *const k_SCKey_inlineComment;
-extern NSString *const k_SCKey_beginComment;
-extern NSString *const k_SCKey_endComment;
-extern NSString *const k_SCKey_bold;
-extern NSString *const k_SCKey_underline;
-extern NSString *const k_SCKey_italic;
-extern NSString *const k_SCKey_keywordsArray;
-extern NSString *const k_SCKey_commandsArray;
-extern NSString *const k_SCKey_typesArray;
-extern NSString *const k_SCKey_attributesArray;
-extern NSString *const k_SCKey_variablesArray;
-extern NSString *const k_SCKey_valuesArray;
-extern NSString *const k_SCKey_numbersArray;
-extern NSString *const k_SCKey_stringsArray;
-extern NSString *const k_SCKey_charactersArray;
-extern NSString *const k_SCKey_commentsArray;
-extern NSString *const k_SCKey_commentDelimitersDict;
-extern NSString *const k_SCKey_outlineMenuArray;
-extern NSString *const k_SCKey_completionsArray;
-extern NSString *const k_SCKey_allColoringArrays[];
-extern NSUInteger const k_size_of_allColoringArrays;
+extern NSString *const CESyntaxStyleNameKey;
+extern NSString *const CESyntaxMetadataKey;
+extern NSString *const CESyntaxExtensionsKey;
+extern NSString *const CESyntaxFileNamesKey;
+extern NSString *const CESyntaxKeywordsKey;
+extern NSString *const CESyntaxCommandsKey;
+extern NSString *const CESyntaxTypesKey;
+extern NSString *const CESyntaxAttributesKey;
+extern NSString *const CESyntaxVariablesKey;
+extern NSString *const CESyntaxValuesKey;
+extern NSString *const CESyntaxNumbersKey;
+extern NSString *const CESyntaxStringsKey;
+extern NSString *const CESyntaxCharactersKey;
+extern NSString *const CESyntaxCommentsKey;
+extern NSString *const CESyntaxCommentDelimitersKey;
+extern NSString *const CESyntaxOutlineMenuKey;
+extern NSString *const CESyntaxCompletionsKey;
+extern NSString *const k_allColoringKeys[];
+extern NSUInteger const k_size_of_allColoringKeys;
+
+extern NSString *const CESyntaxKeyStringKey;
+extern NSString *const CESyntaxBeginStringKey;
+extern NSString *const CESyntaxEndStringKey;
+extern NSString *const CESyntaxIgnoreCaseKey;
+extern NSString *const CESyntaxRegularExpressionKey;
+
+extern NSString *const CESyntaxInlineCommentKey;
+extern NSString *const CESyntaxBeginCommentKey;
+extern NSString *const CESyntaxEndCommentKey;
+
+extern NSString *const CESyntaxBoldKey;
+extern NSString *const CESyntaxUnderlineKey;
+extern NSString *const CESyntaxItalicKey;
+
+// comment delimiter keys
+extern NSString *const CEBeginDelimiterKey;
+extern NSString *const CEEndDelimiterKey;
 
 
 

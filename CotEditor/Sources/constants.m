@@ -218,35 +218,25 @@ NSUInteger const k_maxPageGuideColumn = 1000;
 NSUInteger const k_maxEscapesCheckLength = 16;
 NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
-// syntax style
-NSString *const k_SCKey_styleName = @"styleName";
-NSString *const k_SCKey_extensions = @"extensions";
-NSString *const k_SCKey_filenames = @"filenames";
-NSString *const k_SCKey_ignoreCase = @"ignoreCase";
-NSString *const k_SCKey_regularExpression = @"regularExpression";
-NSString *const k_SCKey_arrayKeyString = @"keyString";
-NSString *const k_SCKey_beginString = @"beginString";
-NSString *const k_SCKey_endString = @"endString";
-NSString *const k_SCKey_inlineComment = @"inlineDelimiter";
-NSString *const k_SCKey_beginComment = @"beginDelimiter";
-NSString *const k_SCKey_endComment = @"endDelimiter";
-NSString *const k_SCKey_bold = @"bold";
-NSString *const k_SCKey_underline = @"underline";
-NSString *const k_SCKey_italic = @"italic";
-NSString *const k_SCKey_keywordsArray = @"keywordsArray";
-NSString *const k_SCKey_commandsArray = @"commandsArray";
-NSString *const k_SCKey_typesArray = @"typesArray";
-NSString *const k_SCKey_attributesArray = @"attributesArray";
-NSString *const k_SCKey_variablesArray = @"variablesArray";
-NSString *const k_SCKey_valuesArray = @"valuesArray";
-NSString *const k_SCKey_numbersArray = @"numbersArray";
-NSString *const k_SCKey_stringsArray = @"stringsArray";
-NSString *const k_SCKey_charactersArray = @"charactersArray";
-NSString *const k_SCKey_commentsArray = @"commentsArray";
-NSString *const k_SCKey_commentDelimitersDict = @"commentDelimiters";
-NSString *const k_SCKey_outlineMenuArray = @"outlineMenuArray";
-NSString *const k_SCKey_completionsArray = @"completionsArray";
-NSString *const k_SCKey_allColoringArrays[] = {
+// syntax style keys
+NSString *const CESyntaxStyleNameKey = @"styleName";
+NSString *const CESyntaxMetadataKey = @"metadata";
+NSString *const CESyntaxExtensionsKey = @"extensions";
+NSString *const CESyntaxFileNamesKey = @"filenames";
+NSString *const CESyntaxKeywordsKey = @"keywordsArray";
+NSString *const CESyntaxCommandsKey = @"commandsArray";
+NSString *const CESyntaxTypesKey = @"typesArray";
+NSString *const CESyntaxAttributesKey = @"attributesArray";
+NSString *const CESyntaxVariablesKey = @"variablesArray";
+NSString *const CESyntaxValuesKey = @"valuesArray";
+NSString *const CESyntaxNumbersKey = @"numbersArray";
+NSString *const CESyntaxStringsKey = @"stringsArray";
+NSString *const CESyntaxCharactersKey = @"charactersArray";
+NSString *const CESyntaxCommentsKey = @"commentsArray";
+NSString *const CESyntaxCommentDelimitersKey = @"commentDelimiters";
+NSString *const CESyntaxOutlineMenuKey = @"outlineMenuArray";
+NSString *const CESyntaxCompletionsKey = @"completionsArray";
+NSString *const k_allColoringKeys[] = {
     @"keywordsArray",
     @"commandsArray",
     @"typesArray",
@@ -258,7 +248,25 @@ NSString *const k_SCKey_allColoringArrays[] = {
     @"charactersArray",
     @"commentsArray"
 };
-NSUInteger const k_size_of_allColoringArrays = sizeof(k_SCKey_allColoringArrays)/sizeof(k_SCKey_allColoringArrays[0]);
+NSUInteger const k_size_of_allColoringKeys = sizeof(k_allColoringKeys)/sizeof(k_allColoringKeys[0]);
+
+NSString *const CESyntaxKeyStringKey = @"keyString";
+NSString *const CESyntaxBeginStringKey = @"beginString";
+NSString *const CESyntaxEndStringKey = @"endString";
+NSString *const CESyntaxIgnoreCaseKey = @"ignoreCase";
+NSString *const CESyntaxRegularExpressionKey = @"regularExpression";
+
+NSString *const CESyntaxInlineCommentKey = @"inlineDelimiter";
+NSString *const CESyntaxBeginCommentKey = @"beginDelimiter";
+NSString *const CESyntaxEndCommentKey = @"endDelimiter";
+
+NSString *const CESyntaxBoldKey = @"bold";
+NSString *const CESyntaxUnderlineKey = @"underline";
+NSString *const CESyntaxItalicKey = @"italic";
+
+// comment delimiter keys
+NSString *const CEBeginDelimiterKey = @"beginDelimiter";
+NSString *const CEEndDelimiterKey = @"endDelimiter";
 
 
 
