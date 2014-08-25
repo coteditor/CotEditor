@@ -44,7 +44,7 @@ NSString *const CESeparatorString = @"-";
 NSString *const CEErrorDomain = @"com.aynimac.CotEditor.ErrorDomain";
 
 // Localized Strings Table
-NSString *const k_printLocalizeTable =  @"print";
+NSString *const k_printLocalizeTable =  @"Print";
 
 
 

@@ -1,10 +1,14 @@
-/* 
-  print.strings
-  CotEditor
-
-  Created by 1024jp on 3/28/14.
-  Copyright (c) 2014 CotEditor Project. All rights reserved.
-*/
+/*
+ Print.strings
+ 
+ CotEditor
+ http://coteditor.github.io
+ 
+ Created on 2014-03-28 by 1024jp
+ encoding="UTF-8"
+ 
+ © 2014 CotEditor Project
+ */
 
 
 "Color" = "カラー";

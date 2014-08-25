@@ -55,7 +55,7 @@
 		2A15832418E383C300601026 /* CESizeSampleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15832318E383C300601026 /* CESizeSampleWindowController.m */; };
 		2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingEditSheet.xib */; };
 		2A15833518E3B83F00601026 /* CEScriptErrorPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */; };
-		2A1CFD0D18E5B64F00A5B664 /* print.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1CFD0B18E5B64F00A5B664 /* print.strings */; };
+		2A1CFD0D18E5B64F00A5B664 /* Print.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1CFD0B18E5B64F00A5B664 /* Print.strings */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
 		2A3FB2A418EC473A00D9CB2C /* SyntaxColorings in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
@@ -273,7 +273,7 @@
 		2A15832718E39B7400601026 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TextKeyBindingEditSheet.xib; sourceTree = "<group>"; };
 		2A15833318E3B83F00601026 /* CEScriptErrorPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEScriptErrorPanelController.h; sourceTree = "<group>"; };
 		2A15833418E3B83F00601026 /* CEScriptErrorPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEScriptErrorPanelController.m; sourceTree = "<group>"; };
-		2A1CFD0C18E5B64F00A5B664 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/print.strings; sourceTree = "<group>"; };
+		2A1CFD0C18E5B64F00A5B664 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Print.strings; sourceTree = "<group>"; };
 		2A294CD51926666B00DCB672 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/AppearancePane.xib; sourceTree = "<group>"; };
 		2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JapaneseTransform.h"; sourceTree = "<group>"; };
 		2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JapaneseTransform.m"; sourceTree = "<group>"; };
@@ -768,7 +768,7 @@
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
-				2A1CFD0B18E5B64F00A5B664 /* print.strings */,
+				2A1CFD0B18E5B64F00A5B664 /* Print.strings */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */,
 				8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */,
@@ -1105,7 +1105,7 @@
 				2A15832818E39B7400601026 /* TextKeyBindingEditSheet.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
 				2A07231516D3CF4F00F49864 /* rightAlignTemplate.pdf in Resources */,
-				2A1CFD0D18E5B64F00A5B664 /* print.strings in Resources */,
+				2A1CFD0D18E5B64F00A5B664 /* Print.strings in Resources */,
 				2AD2860F1985627700C9342F /* closeSplitTemplate.pdf in Resources */,
 				2A7846D918FDFBEB006BDF00 /* clearTemplate.pdf in Resources */,
 				2A07231716D3CF4F00F49864 /* opacityGuide.pdf in Resources */,
@@ -1378,12 +1378,12 @@
 			name = TextKeyBindingEditSheet.xib;
 			sourceTree = "<group>";
 		};
-		2A1CFD0B18E5B64F00A5B664 /* print.strings */ = {
+		2A1CFD0B18E5B64F00A5B664 /* Print.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2A1CFD0C18E5B64F00A5B664 /* ja */,
 			);
-			name = print.strings;
+			name = Print.strings;
 			sourceTree = "<group>";
 		};
 		2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */ = {

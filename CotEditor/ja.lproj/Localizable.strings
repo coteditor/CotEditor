@@ -1,12 +1,16 @@
 /*
-Localizable.strings
-(for CotEditor)
+ Localizable.strings
+ 
+ CotEditor
+ http://coteditor.github.io
+ 
+ Created on 2004-12-20 by nakamuxu
+ encoding="UTF-8"
+ 
+ © 2004-2007 nakamuxu
+ © 2014 CotEditor Project
+ */
 
-encoding="UTF-8"
-Created:2004.12.20
-written by nakamuxu.
-http://www.aynimac.com/
-*/
 
 /* CEAppDelegate */
 // File open accessory's menu item title.
