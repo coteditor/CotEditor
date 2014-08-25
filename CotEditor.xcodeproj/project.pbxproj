@@ -124,7 +124,6 @@
 		8C081B4B07D0A85A0060191A /* getInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* getInfo.tiff */; };
 		8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F52600871861C00ABD124 /* openScriptMenu.applescript */; };
 		8C0FE15A08D7FDAA00B2B71B /* TextKeyBindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C0FE15908D7FDAA00B2B71B /* TextKeyBindings.plist */; };
-		8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */; };
 		8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */; };
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
@@ -142,7 +141,6 @@
 		8C7400A408C6D93900683672 /* MenuKeyBindingEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingEditSheet.xib */; };
 		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
 		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
-		8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8977240DCD8AD000DC32FF /* libicucore.dylib */; };
 		8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CCCAF09D6803400A008E5 /* CESplitView.m */; };
 		8C98366708C0211D00746F92 /* IncompatibleChar.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C98366608C0211D00746F92 /* IncompatibleChar.tiff */; };
 		8C99DD5108BD561B001F618C /* NaviBar_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C99DD4F08BD561B001F618C /* NaviBar_Hide.tiff */; };
@@ -401,8 +399,6 @@
 		8C081B4A07D0A85A0060191A /* getInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = getInfo.tiff; path = toolbarIcons/getInfo.tiff; sourceTree = "<group>"; };
 		8C0F52600871861C00ABD124 /* openScriptMenu.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = openScriptMenu.applescript; path = internalScript/openScriptMenu.applescript; sourceTree = "<group>"; };
 		8C0FE15908D7FDAA00B2B71B /* TextKeyBindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TextKeyBindings.plist; path = KeyBindings/TextKeyBindings.plist; sourceTree = "<group>"; };
-		8C1305AD0DC4B71D00975AC6 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptTerminology; path = CotEditor.scriptTerminology; sourceTree = "<group>"; };
 		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.scriptSuite; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
@@ -424,7 +420,6 @@
 		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODBEditorSuite.h; sourceTree = "<group>"; };
 		8C83A48009485F27004E48A8 /* CEATSTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEATSTypesetter.h; sourceTree = "<group>"; };
 		8C83A48109485F27004E48A8 /* CEATSTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEATSTypesetter.m; sourceTree = "<group>"; };
-		8C8977240DCD8AD000DC32FF /* libicucore.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		8C8CCCAE09D6803400A008E5 /* CESplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CESplitView.h; sourceTree = "<group>"; };
 		8C8CCCAF09D6803400A008E5 /* CESplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CESplitView.m; sourceTree = "<group>"; };
 		8C98366608C0211D00746F92 /* IncompatibleChar.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = IncompatibleChar.tiff; path = toolbarIcons/IncompatibleChar.tiff; sourceTree = "<group>"; };
@@ -469,7 +464,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C89772B0DCD8B4000DC32FF /* libicucore.dylib in Frameworks */,
 				792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,7 +786,6 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8C8977240DCD8AD000DC32FF /* libicucore.dylib */,
 				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
 			);
 			name = Frameworks;
@@ -913,8 +906,6 @@
 			isa = PBXGroup;
 			children = (
 				8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */,
-				8C1305AD0DC4B71D00975AC6 /* RegexKitLite.h */,
-				8C1305AE0DC4B71D00975AC6 /* RegexKitLite.m */,
 			);
 			name = "Imported Sources";
 			path = CotEditor/ImportedSources;
@@ -1228,7 +1219,6 @@
 				8C8CCCB109D6803400A008E5 /* CESplitView.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,
-				8C1305AF0DC4B71D00975AC6 /* RegexKitLite.m in Sources */,
 				2A149DD519032CC900A9D6EF /* CEUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
