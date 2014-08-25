@@ -43,7 +43,7 @@ extern NSString *const CESeparatorString;
 // Error domain
 extern NSString *const CEErrorDomain;
 
-typedef NS_ENUM(NSInteger, CEErrorCode) {
+typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEInvalidNameError = 1000,
     CEThemeFileDuplicationError,
 };
