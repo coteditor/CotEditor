@@ -155,12 +155,13 @@
 
 
 /* CEStatusBarView */
-"Lines: %@" = "行数：%@";
-"Chars: %@" = "文字数：%@";
-"Words: %@" = "単語数：%@";
-"Location: %@" = "位置：%@";
-"Line: %@" = "行：%@";
-"Column: %@" = "列：%@";
+": " = "：";
+"Lines" = "行数";
+"Chars" = "文字数";
+"Words" = "単語数";
+"Location" = "位置";
+"Line" = "行";
+"Column" = "列";
 
 
 /* CESyntax */

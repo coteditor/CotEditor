@@ -32,8 +32,8 @@
 #import "constants.h"
 
 
-static const CGFloat defaultHeight = 20.0;
-static const NSTimeInterval duration = 0.1;
+static const CGFloat kDefaultHeight = 20.0;
+static const NSTimeInterval kDuration = 0.1;
 
 
 @interface CEStatusBarController ()
@@ -41,8 +41,9 @@ static const NSTimeInterval duration = 0.1;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 @property (nonatomic, weak) IBOutlet NSNumberFormatter *decimalFormatter;
 @property (nonatomic) CEByteCountTransformer *byteCountTransformer;
+@property (nonatomic) NSDictionary *labelAttributes;
 
-@property (nonatomic, copy) NSString *editorStatus;
+@property (nonatomic, copy) NSAttributedString *editorStatus;
 @property (nonatomic, copy) NSString *documentStatus;
 
 @end
@@ -70,6 +71,9 @@ static const NSTimeInterval duration = 0.1;
     if (self) {
         _showsStatusBar = YES;
         _byteCountTransformer = [[CEByteCountTransformer alloc] init];
+        
+        NSColor *labelColor = [NSColor colorWithCalibratedWhite:0.35 alpha:1.0];
+        _labelAttributes = @{NSForegroundColorAttributeName: labelColor};
     }
     return self;
 }
@@ -89,52 +93,42 @@ static const NSTimeInterval duration = 0.1;
 // ------------------------------------------------------
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableString *status = [NSMutableString string];
-    NSString *space = @"  ";
-    NSNumberFormatter *formatter = [self decimalFormatter];
+    NSMutableAttributedString *status = [[NSMutableAttributedString alloc] init];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarLinesKey]) {
-        [status appendFormat:NSLocalizedString(@"Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
-        
-        if ([self selectedLinesInfo] > 0) {
-            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedLinesInfo])]];
-        }
+        [status appendAttributedString:[self formattedStateWithLabel:@"Lines"
+                                                               value:[self linesInfo]
+                                                       selectedValue:[self selectedLinesInfo]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-        if ([status length] > 0) { [status appendString:space]; }
-        [status appendFormat:NSLocalizedString(@"Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
-        
-        if ([self selectedCharsInfo] > 0) {
-            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedCharsInfo])]];
-        }
+        [status appendAttributedString:[self formattedStateWithLabel:@"Chars"
+                                                               value:[self charsInfo]
+                                                       selectedValue:[self selectedCharsInfo]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
-        if ([status length] > 0) { [status appendString:space]; }
-        [status appendFormat:NSLocalizedString(@"Length: %@", nil), [formatter stringFromNumber:@([self lengthInfo])]];
-        
-        if ([self selectedLengthInfo] > 0) {
-            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedLengthInfo])]];
-        }
+        [status appendAttributedString:[self formattedStateWithLabel:@"Length"
+                                                               value:[self lengthInfo]
+                                                       selectedValue:[self selectedLengthInfo]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
-        if ([status length] > 0) { [status appendString:space]; }
-        [status appendFormat:NSLocalizedString(@"Words: %@", nil), [formatter stringFromNumber:@([self wordsInfo])]];
-        
-        if ([self selectedWordsInfo] > 0) {
-            [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedWordsInfo])]];
-        }
+        [status appendAttributedString:[self formattedStateWithLabel:@"Words"
+                                                               value:[self wordsInfo]
+                                                       selectedValue:[self selectedWordsInfo]]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
-        if ([status length] > 0) { [status appendString:space]; }
-        [status appendFormat:NSLocalizedString(@"Location: %@", nil), [formatter stringFromNumber:@([self locationInfo])]];
+        [status appendAttributedString:[self formattedStateWithLabel:@"Location"
+                                                               value:[self locationInfo]
+                                                       selectedValue:-1]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
-        if ([status length] > 0) { [status appendString:space]; }
-        [status appendFormat:NSLocalizedString(@"Line: %@", nil), [formatter stringFromNumber:@([self lineInfo])]];
+        [status appendAttributedString:[self formattedStateWithLabel:@"Line"
+                                                               value:[self lineInfo]
+                                                       selectedValue:-1]];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarColumnKey]) {
-        if ([status length] > 0) { [status appendString:space]; }
-        [status appendFormat:NSLocalizedString(@"Column: %@", nil), [formatter stringFromNumber:@([self columnInfo])]];
+        [status appendAttributedString:[self formattedStateWithLabel:@"Column"
+                                                               value:[self columnInfo]
+                                                       selectedValue:-1]];
     }
     
     [self setEditorStatus:status];
@@ -160,7 +154,7 @@ static const NSTimeInterval duration = 0.1;
                            [[self byteCountTransformer] transformedValue:@([self fileSizeInfo])] : @"-")];
     }
     
-    [self setDocumentStatus:[status componentsJoinedByString:@"  "]];
+    [self setDocumentStatus:[status componentsJoinedByString:@"   "]];
 }
 
 
@@ -171,13 +165,43 @@ static const NSTimeInterval duration = 0.1;
 {
     _showsStatusBar = showsStatusBar;
     
-    CGFloat height = [self showsStatusBar] ? defaultHeight : 0.0;
+    CGFloat height = [self showsStatusBar] ? kDefaultHeight : 0.0;
     
     // resize with animation
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:duration];
+        [context setDuration:kDuration];
         [[[self heightConstraint] animator] setConstant:height];
     } completionHandler:nil];
+}
+
+
+
+#pragma mark Private Methods
+
+//=======================================================
+// Private method
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// formatted state
+- (NSAttributedString *)formattedStateWithLabel:(NSString *)label value:(NSInteger)value selectedValue:(NSInteger)selectedValue
+// ------------------------------------------------------
+{
+    NSString *localizedLabel = [NSString stringWithFormat:@"%@%@",
+                                NSLocalizedString(label, nil), NSLocalizedString(@": ", nil)];
+    NSMutableString *string = [NSMutableString stringWithFormat:@"%@%@",
+                               localizedLabel, [[self decimalFormatter] stringFromNumber:@(value)]];
+    if (selectedValue > 0) {
+        [string appendFormat:@" (%@)", [[self decimalFormatter] stringFromNumber:@(selectedValue)]];
+    }
+    [string appendString:@"   "];  // buffer to the next state
+    
+    NSMutableAttributedString *state = [[NSMutableAttributedString alloc] initWithString:string];
+    
+    [state addAttributes:[self labelAttributes] range:NSMakeRange(0, [localizedLabel length])];
+    
+    return [state copy];
 }
 
 @end
