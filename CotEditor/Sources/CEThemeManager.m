@@ -652,7 +652,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
              CEThemeSelectionColorKey: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
              CEThemeUsesSystemSelectionColorKey: @YES,
              CEThemeInsertionPointColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:[NSColor colorWithWhite:0.94 alpha:1]],
+             CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedWhite:0.94 alpha:1.0]],
              CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeCommandsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
              CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
