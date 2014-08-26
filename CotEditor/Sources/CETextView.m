@@ -239,7 +239,7 @@ const NSInteger kNoMenuItem = -1;
         NSUInteger flags = [NSEvent modifierFlags];
         
         if (([event type] == NSKeyDown) && (flags == 0)) {
-            NSString *yen = [NSString stringWithCharacters:&k_yenMark length:1];
+            NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
             if ([aString isEqualToString:@"\\"]) {
                 [super insertText:yen replacementRange:replacementRange];
                 return;
@@ -609,7 +609,7 @@ const NSInteger kNoMenuItem = -1;
     if ([self showsPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPageGuideColumnKey];
         
-        if ((column < k_minPageGuideColumn) || (column > k_maxPageGuideColumn)) {
+        if ((column < kMinPageGuideColumn) || (column > kMaxPageGuideColumn)) {
             return;
         }
         
@@ -1932,7 +1932,7 @@ const NSInteger kNoMenuItem = -1;
 - (IBAction)inputYenMark:(id)sender
 // ------------------------------------------------------
 {
-    [super insertText:[NSString stringWithCharacters:&k_yenMark length:1]];
+    [super insertText:[NSString stringWithCharacters:&kYenMark length:1]];
 }
 
 

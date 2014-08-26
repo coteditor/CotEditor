@@ -177,9 +177,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             if ([style[CESyntaxStyleNameKey] isEqualToString:styleName]) {
                 NSMutableDictionary *styleToReturn = [style mutableCopy];
                 
-                NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:k_size_of_allColoringKeys];
-                for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
-                    [syntaxDictKeys addObject:k_allColoringKeys[i]];
+                NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:kSizeOfAllColoringKeys];
+                for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
+                    [syntaxDictKeys addObject:kAllColoringKeys[i]];
                 }
                 
                 return styleToReturn;
@@ -403,8 +403,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                                             selector:@selector(caseInsensitiveCompare:)]];
     
     NSMutableArray *syntaxDictKeys = [NSMutableArray array];
-    for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
-        [syntaxDictKeys addObject:k_allColoringKeys[i]];
+    for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
+        [syntaxDictKeys addObject:kAllColoringKeys[i]];
     }
     [syntaxDictKeys addObjectsFromArray:@[CESyntaxOutlineMenuKey,
                                           CESyntaxCompletionsKey]];
@@ -457,9 +457,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
-    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(k_size_of_allColoringKeys + 1)];
-    for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
-        [syntaxDictKeys addObject:k_allColoringKeys[i]];
+    NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:(kSizeOfAllColoringKeys + 1)];
+    for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
+        [syntaxDictKeys addObject:kAllColoringKeys[i]];
     }
     [syntaxDictKeys addObject:CESyntaxOutlineMenuKey];
     

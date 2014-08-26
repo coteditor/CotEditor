@@ -352,7 +352,7 @@
     
     NSMenuItem *autoDetectItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Auto-Detect", nil)
                                                             action:nil keyEquivalent:@""];
-    [autoDetectItem setTag:k_autoDetectEncodingMenuTag];
+    [autoDetectItem setTag:CEAutoDetectEncodingMenuItemTag];
     [[[self encodingMenuInOpen] menu] addItem:autoDetectItem];
     [[[self encodingMenuInOpen] menu] addItem:[NSMenuItem separatorItem]];
     
@@ -414,7 +414,7 @@
 // ------------------------------------------------------
 {
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
-        [[NSUserDefaults standardUserDefaults] setObject:@(k_autoDetectEncodingMenuTag)
+        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncodingMenuItemTag)
                                                   forKey:CEDefaultEncodingInOpenKey];
         // ファイルを開くエンコーディングをセット
         // （オープンダイアログのエンコーディングポップアップメニューが、デフォルトエンコーディング値の格納場所を兼ねている）

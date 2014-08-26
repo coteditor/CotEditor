@@ -131,7 +131,7 @@ static const NSTimeInterval duration = 0.1;
     }
     
     NSMenu *menu = [[self outlineMenu] menu];
-    NSFont *defaultFont = [NSFont fontWithName:k_navigationBarFontName
+    NSFont *defaultFont = [NSFont fontWithName:kNavigationBarFontName
                                           size:[NSFont smallSystemFontSize]];
     
     for (NSDictionary *outlineItem in outlineItems) {

@@ -49,7 +49,7 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
 };
 
 // Localized Strings Table
-extern NSString *const k_printLocalizeTable;
+extern NSString *const CEPrintLocalizeTable;
 
 
 
@@ -251,8 +251,8 @@ typedef NS_ENUM(NSUInteger, CEAlignmentType) {
 // ------------------------------------------------------
 
 // Page guide column
-extern NSUInteger const k_minPageGuideColumn;
-extern NSUInteger const k_maxPageGuideColumn;
+extern NSUInteger const kMinPageGuideColumn;
+extern NSUInteger const kMaxPageGuideColumn;
 
 
 
@@ -263,8 +263,8 @@ extern NSUInteger const k_maxPageGuideColumn;
 // ------------------------------------------------------
 
 // syntax parsing
-extern NSUInteger const k_maxEscapesCheckLength;
-extern NSString  *const k_allAlphabetChars;
+extern NSUInteger const kMaxEscapesCheckLength;
+extern NSString  *const kAllAlphabetChars;
 
 // syntax style keys
 extern NSString *const CESyntaxStyleNameKey;
@@ -284,8 +284,8 @@ extern NSString *const CESyntaxCommentsKey;
 extern NSString *const CESyntaxCommentDelimitersKey;
 extern NSString *const CESyntaxOutlineMenuKey;
 extern NSString *const CESyntaxCompletionsKey;
-extern NSString *const k_allColoringKeys[];
-extern NSUInteger const k_size_of_allColoringKeys;
+extern NSString *const kAllColoringKeys[];
+extern NSUInteger const kSizeOfAllColoringKeys;
 
 extern NSString *const CESyntaxKeyStringKey;
 extern NSString *const CESyntaxBeginStringKey;
@@ -347,11 +347,11 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
 };
 
 // Help document file names table
-extern NSString *const k_bundledDocumentFileNames[];
+extern NSString *const kBundledDocumentFileNames[];
 
 // Online URLs
-extern NSString *const k_webSiteURL;
-extern NSString *const k_issueTrackerURL;
+extern NSString *const kWebSiteURL;
+extern NSString *const kIssueTrackerURL;
 
 
 
@@ -370,10 +370,10 @@ extern NSString *const CEOutlineItemFontItalicKey;
 extern NSString *const CEOutlineItemUnderlineMaskKey;
 
 // layout constants
-extern CGFloat const k_defaultLineNumWidth;
-extern CGFloat const k_lineNumPadding;
-extern CGFloat const k_lineNumFontDescender;
-extern NSString *const k_navigationBarFontName;
+extern CGFloat const kDefaultLineNumWidth;
+extern CGFloat const kLineNumPadding;
+extern CGFloat const kLineNumFontDescender;
+extern NSString *const kNavigationBarFontName;
 
 
 
@@ -384,7 +384,7 @@ extern NSString *const k_navigationBarFontName;
 // ------------------------------------------------------
 
 // CEATSTypeSetter (Layouting)
-extern CGFloat const k_defaultLineHeightMultiple;
+extern CGFloat const kDefaultLineHeightMultiple;
 
 
 
@@ -394,12 +394,12 @@ extern CGFloat const k_defaultLineHeightMultiple;
 // Print
 // ------------------------------------------------------
 
-extern CGFloat const k_printTextHorizontalMargin;  // left/light margin for text
-extern CGFloat const k_printHFHorizontalMargin;    // left/light margin for header/footer
-extern CGFloat const k_printHFVerticalMargin;      // top/bottom margin for header/footer
-extern CGFloat const k_headerFooterLineHeight;
-extern CGFloat const k_separatorPadding;
-extern CGFloat const k_noSeparatorPadding;
+extern CGFloat const kPrintTextHorizontalMargin;  // left/light margin for text
+extern CGFloat const kPrintHFHorizontalMargin;    // left/light margin for header/footer
+extern CGFloat const kPrintHFVerticalMargin;      // top/bottom margin for header/footer
+extern CGFloat const kHeaderFooterLineHeight;
+extern CGFloat const kSeparatorPadding;
+extern CGFloat const kNoSeparatorPadding;
 
 
 
@@ -410,7 +410,7 @@ extern CGFloat const k_noSeparatorPadding;
 // ------------------------------------------------------
 
 // Help anchors
-extern NSString *const k_helpPrefAnchors[];
+extern NSString *const kHelpPrefAnchors[];
 
 
 
@@ -421,7 +421,7 @@ extern NSString *const k_helpPrefAnchors[];
 // ------------------------------------------------------
 
 // Line Endings
-extern NSString *const k_lineEndingNames[];
+extern NSString *const kLineEndingNames[];
 
 
 
@@ -432,21 +432,21 @@ extern NSString *const k_lineEndingNames[];
 // ------------------------------------------------------
 
 // Encoding menu
-extern NSInteger const k_autoDetectEncodingMenuTag;
+extern NSInteger const CEAutoDetectEncodingMenuItemTag;
 
 // Max length to scan encoding declaration
-extern NSUInteger        const k_maxEncodingScanLength;
+extern NSUInteger        const kMaxEncodingScanLength;
 
 // Encodings list
-extern CFStringEncodings const k_CFStringEncodingList[];
-extern NSUInteger        const k_size_of_CFStringEncodingList;
+extern CFStringEncodings const kCFStringEncodingList[];
+extern NSUInteger        const kSizeOfCFStringEncodingList;
 
 // Encodings that need convert Yen mark to back-slash
-extern CFStringEncodings const k_CFStringEncodingInvalidYenList[];
-extern NSUInteger        const k_size_of_CFStringEncodingInvalidYenList;
+extern CFStringEncodings const kCFStringEncodingInvalidYenList[];
+extern NSUInteger        const kSizeOfCFStringEncodingInvalidYenList;
 
 // Yen mark char
-extern unichar const k_yenMark;
+extern unichar const kYenMark;
 
 
 
@@ -455,17 +455,17 @@ extern unichar const k_yenMark;
 // ------------------------------------------------------
 
 // Substitutes for invisible characters
-extern unichar    const k_invisibleSpaceCharList[];
-extern NSUInteger const k_size_of_invisibleSpaceCharList;
+extern unichar    const kInvisibleSpaceCharList[];
+extern NSUInteger const kSizeOfInvisibleSpaceCharList;
 
-extern unichar    const k_invisibleTabCharList[];
-extern NSUInteger const k_size_of_invisibleTabCharList;
+extern unichar    const kInvisibleTabCharList[];
+extern NSUInteger const kSizeOfInvisibleTabCharList;
 
-extern unichar    const k_invisibleNewLineCharList[];
-extern NSUInteger const k_size_of_invisibleNewLineCharList;
+extern unichar    const kInvisibleNewLineCharList[];
+extern NSUInteger const kSizeOfInvisibleNewLineCharList;
 
-extern unichar    const k_invisibleFullwidthSpaceCharList[];
-extern NSUInteger const k_size_of_invisibleFullwidthSpaceCharList;
+extern unichar    const kInvisibleFullwidthSpaceCharList[];
+extern NSUInteger const kSizeOfInvisibleFullwidthSpaceCharList;
 
 
 
@@ -474,13 +474,13 @@ extern NSUInteger const k_size_of_invisibleFullwidthSpaceCharList;
 // ------------------------------------------------------
 
 // Modifier masks and characters for keybindings
-extern NSUInteger const k_modifierKeyMaskList[];
-extern unichar    const k_modifierKeySymbolCharList[];
-extern unichar    const k_keySpecCharList[];
+extern NSUInteger const kModifierKeyMaskList[];
+extern unichar    const kModifierKeySymbolCharList[];
+extern unichar    const kKeySpecCharList[];
 
-// size of k_modifierKeyMaskList, k_keySpecCharList and k_modifierKeySymbolCharList
-extern NSUInteger const k_size_of_modifierKeys;
-// indexes of k_modifierKeyMaskList, k_keySpecCharList and k_modifierKeySymbolCharList
+// size of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
+extern NSUInteger const kSizeOfModifierKeys;
+// indexes of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
 typedef NS_ENUM(NSUInteger, CEModifierKeyIndex) {
     CEControlKeyIndex,
     CEAlternateKeyIndex,
@@ -489,5 +489,5 @@ typedef NS_ENUM(NSUInteger, CEModifierKeyIndex) {
 };
 
 // Unprintable key list
-extern unichar    const k_unprintableKeyList[];
-extern NSUInteger const k_size_of_unprintableKeyList;
+extern unichar    const kUnprintableKeyList[];
+extern NSUInteger const kSizeOfUnprintableKeyList;

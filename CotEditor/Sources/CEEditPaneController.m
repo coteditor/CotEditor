@@ -66,23 +66,23 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // 不可視文字表示ポップアップ用の選択肢をセットする
-        NSMutableArray *spaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleSpaceCharList];
-        for (NSUInteger i = 0; i < k_size_of_invisibleSpaceCharList; i++) {
+        NSMutableArray *spaces = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleSpaceCharList];
+        for (NSUInteger i = 0; i < kSizeOfInvisibleSpaceCharList; i++) {
             [spaces addObject:[CEUtils invisibleSpaceCharacter:i]];
         }
         [self setInvisibleSpaces:spaces];
-        NSMutableArray *tabs = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleTabCharList];
-        for (NSUInteger i = 0; i < k_size_of_invisibleTabCharList; i++) {
+        NSMutableArray *tabs = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleTabCharList];
+        for (NSUInteger i = 0; i < kSizeOfInvisibleTabCharList; i++) {
             [tabs addObject:[CEUtils invisibleTabCharacter:i]];
         }
         [self setInvisibleTabs:tabs];
-        NSMutableArray *newLines = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleNewLineCharList];
-        for (NSUInteger i = 0; i < k_size_of_invisibleNewLineCharList; i++) {
+        NSMutableArray *newLines = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleNewLineCharList];
+        for (NSUInteger i = 0; i < kSizeOfInvisibleNewLineCharList; i++) {
             [newLines addObject:[CEUtils invisibleNewLineCharacter:i]];
         }
         [self setInvisibleNewLines:newLines];
-        NSMutableArray *fullWidthSpaces = [[NSMutableArray alloc] initWithCapacity:k_size_of_invisibleFullwidthSpaceCharList];
-        for (NSUInteger i = 0; i < k_size_of_invisibleFullwidthSpaceCharList; i++) {
+        NSMutableArray *fullWidthSpaces = [[NSMutableArray alloc] initWithCapacity:kSizeOfInvisibleFullwidthSpaceCharList];
+        for (NSUInteger i = 0; i < kSizeOfInvisibleFullwidthSpaceCharList; i++) {
             [fullWidthSpaces addObject:[CEUtils invisibleFullwidthSpaceCharacter:i]];
         }
         [self setInvisibleFullWidthSpaces:fullWidthSpaces];

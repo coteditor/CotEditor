@@ -280,8 +280,8 @@
 - (NSDictionary *)localizedSummaryItemWithName:(NSString *)name description:(NSString *)description
 // ------------------------------------------------------
 {
-    return @{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(name, k_printLocalizeTable, nil),
-             NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, k_printLocalizeTable, nil)};
+    return @{NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedStringFromTable(name, CEPrintLocalizeTable, nil),
+             NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedStringFromTable(description, CEPrintLocalizeTable, nil)};
 }
 
 
@@ -294,20 +294,20 @@
     CGFloat headerHeight = 0;
     if ([self printsHeader]) {
         if ([self headerOneInfoType] != CENoPrintInfo) {
-            headerHeight += k_headerFooterLineHeight;
+            headerHeight += kHeaderFooterLineHeight;
         }
         if ([self headerTwoInfoType] != CENoPrintInfo) {
-            headerHeight += k_headerFooterLineHeight;
+            headerHeight += kHeaderFooterLineHeight;
         }
     }
     // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
     if (headerHeight > 0) {
-        headerHeight += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultHeaderFooterFontSizeKey] - k_headerFooterLineHeight;
+        headerHeight += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultHeaderFooterFontSizeKey] - kHeaderFooterLineHeight;
         
-        headerHeight += [self printsHeaderSeparator] ? k_separatorPadding : k_noSeparatorPadding;
+        headerHeight += [self printsHeaderSeparator] ? kSeparatorPadding : kNoSeparatorPadding;
     } else {
         if ([self printsHeaderSeparator]) {
-            headerHeight += k_separatorPadding;
+            headerHeight += kSeparatorPadding;
         }
     }
     
@@ -315,20 +315,20 @@
     CGFloat footerHeight = 0;
     if ([self printsFooter]) {
         if ([self footerOneInfoType] != CENoPrintInfo) {
-            footerHeight += k_headerFooterLineHeight;
+            footerHeight += kHeaderFooterLineHeight;
         }
         if ([self footerTwoInfoType] != CENoPrintInfo) {
-            footerHeight += k_headerFooterLineHeight;
+            footerHeight += kHeaderFooterLineHeight;
         }
     }
     if ((footerHeight == 0) && [self printsFooterSeparator]) {
-        footerHeight += k_separatorPadding;
+        footerHeight += kSeparatorPadding;
     }
     
     // printView が flip しているので入れ替えている
     NSPrintInfo *printInfo = [self representedObject];
-    [printInfo setTopMargin:k_printHFVerticalMargin + footerHeight];
-    [printInfo setBottomMargin:k_printHFVerticalMargin + headerHeight];
+    [printInfo setTopMargin:kPrintHFVerticalMargin + footerHeight];
+    [printInfo setBottomMargin:kPrintHFVerticalMargin + headerHeight];
     
     // プレビューの更新を依頼
     [self setReadyToDraw:YES];

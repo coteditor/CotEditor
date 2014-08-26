@@ -72,9 +72,9 @@
 // ------------------------------------------------------
 {
     // Encoding list
-    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:k_size_of_CFStringEncodingList];
-    for (NSUInteger i = 0; i < k_size_of_CFStringEncodingList; i++) {
-        [encodings addObject:@(k_CFStringEncodingList[i])];
+    NSMutableArray *encodings = [[NSMutableArray alloc] initWithCapacity:kSizeOfCFStringEncodingList];
+    for (NSUInteger i = 0; i < kSizeOfCFStringEncodingList; i++) {
+        [encodings addObject:@(kCFStringEncodingList[i])];
     }
     
     NSDictionary *defaults = @{CEDefaultLayoutTextVerticalKey: @NO,
@@ -100,7 +100,7 @@
                                CEDefaultEncodingListKey: encodings,
                                CEDefaultFontNameKey: [[NSFont controlContentFontOfSize:[NSFont systemFontSize]] fontName],
                                CEDefaultFontSizeKey: @([NSFont systemFontSize]),
-                               CEDefaultEncodingInOpenKey: @(k_autoDetectEncodingMenuTag),
+                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncodingMenuItemTag),
                                CEDefaultEncodingInNewKey: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
                                CEDefaultReferToEncodingTagKey: @YES,
                                CEDefaultCreateNewAtStartupKey: @YES,
@@ -198,13 +198,12 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // 出荷時へのリセットが必要な項目に付いては NSUserDefaultsController に初期値をセットする
-    NSArray *resettableKeys = @[CEDefaultEncodingListKey,
-                                CEDefaultInsertCustomTextArrayKey,
-                                CEDefaultWindowWidthKey,
-                                CEDefaultWindowHeightKey];
-    NSDictionary *initialValuesDict = [defaults dictionaryWithValuesForKeys:resettableKeys];
-    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValuesDict];
-
+    NSDictionary *initialValues = [defaults dictionaryWithValuesForKeys:@[CEDefaultEncodingListKey,
+                                                                          CEDefaultInsertCustomTextArrayKey,
+                                                                          CEDefaultWindowWidthKey,
+                                                                          CEDefaultWindowHeightKey]];
+    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValues];
+    
     // transformer 登録
     [NSValueTransformer setValueTransformer:[[CEByteCountTransformer alloc] init]
                                     forName:@"CEByteCountTransformer"];
@@ -598,7 +597,7 @@
 - (IBAction)openBundledDocument:(id)sender
 // ------------------------------------------------------
 {
-    NSString *fileName = k_bundledDocumentFileNames[[sender tag]];
+    NSString *fileName = kBundledDocumentFileNames[[sender tag]];
     NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"rtf"];
     
     [[NSWorkspace sharedWorkspace] openURL:URL];
@@ -610,7 +609,7 @@
 - (IBAction)openWebSite:(id)sender
 // ------------------------------------------------------
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_webSiteURL]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kWebSiteURL]];
 }
 
 
@@ -619,7 +618,7 @@
 - (IBAction)reportBug:(id)sender
 // ------------------------------------------------------
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:k_issueTrackerURL]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kIssueTrackerURL]];
 }
 
 

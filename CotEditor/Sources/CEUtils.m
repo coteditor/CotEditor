@@ -46,9 +46,9 @@ static const NSArray *invalidYenEncodings;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *encodings = [NSMutableArray arrayWithCapacity:k_size_of_CFStringEncodingInvalidYenList];
-        for (NSUInteger i = 0; i < k_size_of_CFStringEncodingInvalidYenList; i++) {
-            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(k_CFStringEncodingInvalidYenList[i]);
+        NSMutableArray *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingInvalidYenList];
+        for (NSUInteger i = 0; i < kSizeOfCFStringEncodingInvalidYenList; i++) {
+            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingInvalidYenList[i]);
             [encodings addObject:@(encoding)];
         }
         
@@ -65,10 +65,10 @@ static const NSArray *invalidYenEncodings;
 + (unichar)invisibleSpaceChar:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = k_size_of_invisibleSpaceCharList - 1;
+    NSUInteger max = kSizeOfInvisibleSpaceCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     
-    return k_invisibleSpaceCharList[sanitizedIndex];
+    return kInvisibleSpaceCharList[sanitizedIndex];
 }
 
 
@@ -88,10 +88,10 @@ static const NSArray *invalidYenEncodings;
 + (unichar)invisibleTabChar:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = k_size_of_invisibleTabCharList - 1;
+    NSUInteger max = kSizeOfInvisibleTabCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     
-    return k_invisibleTabCharList[sanitizedIndex];
+    return kInvisibleTabCharList[sanitizedIndex];
 }
 
 
@@ -111,10 +111,10 @@ static const NSArray *invalidYenEncodings;
 + (unichar)invisibleNewLineChar:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = k_size_of_invisibleNewLineCharList - 1;
+    NSUInteger max = kSizeOfInvisibleNewLineCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     
-    return k_invisibleNewLineCharList[sanitizedIndex];
+    return kInvisibleNewLineCharList[sanitizedIndex];
 }
 
 
@@ -134,10 +134,10 @@ static const NSArray *invalidYenEncodings;
 + (unichar)invisibleFullwidthSpaceChar:(NSUInteger)index
 // ------------------------------------------------------
 {
-    NSUInteger max = k_size_of_invisibleFullwidthSpaceCharList - 1;
+    NSUInteger max = kSizeOfInvisibleFullwidthSpaceCharList - 1;
     NSUInteger sanitizedIndex = MIN(max, index);
     
-    return k_invisibleFullwidthSpaceCharList[sanitizedIndex];
+    return kInvisibleFullwidthSpaceCharList[sanitizedIndex];
 }
 
 
@@ -197,18 +197,18 @@ static const NSArray *invalidYenEncodings;
     NSString *key = [string substringFromIndex:(length - 1)];
     NSCharacterSet *modCharSet = [NSCharacterSet characterSetWithCharactersInString:[string substringToIndex:(length - 1)]];
     
-    if ([modCharSet characterIsMember:k_keySpecCharList[CEControlKeyIndex]]) {
+    if ([modCharSet characterIsMember:kKeySpecCharList[CEControlKeyIndex]]) {
         *modifierMask |= NSControlKeyMask;
     }
-    if ([modCharSet characterIsMember:k_keySpecCharList[CEAlternateKeyIndex]]) {
+    if ([modCharSet characterIsMember:kKeySpecCharList[CEAlternateKeyIndex]]) {
         *modifierMask |= NSAlternateKeyMask;
     }
-    if (([modCharSet characterIsMember:k_keySpecCharList[CEShiftKeyIndex]]) ||  // $
+    if (([modCharSet characterIsMember:kKeySpecCharList[CEShiftKeyIndex]]) ||  // $
         (isupper([key characterAtIndex:0]) == 1))
     {
         *modifierMask |= NSShiftKeyMask;
     }
-    if ([modCharSet characterIsMember:k_keySpecCharList[CECommandKeyIndex]]) {
+    if ([modCharSet characterIsMember:kKeySpecCharList[CECommandKeyIndex]]) {
         *modifierMask |= NSCommandKeyMask;
     }
     

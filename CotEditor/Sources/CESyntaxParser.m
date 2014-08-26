@@ -111,14 +111,14 @@ static CGFloat kPerCompoIncrement;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSMutableArray *syntaxDictKeys = [NSMutableArray arrayWithCapacity:k_size_of_allColoringKeys];
-        for (NSUInteger i = 0; i < k_size_of_allColoringKeys; i++) {
-            [syntaxDictKeys addObject:k_allColoringKeys[i]];
+        NSMutableArray *syntaxDictKeys = [NSMutableArray arrayWithCapacity:kSizeOfAllColoringKeys];
+        for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
+            [syntaxDictKeys addObject:kAllColoringKeys[i]];
         }
         kSyntaxDictKeys = [syntaxDictKeys copy];
         
         // カラーリングインジケータの上昇幅を決定する（+1 はコメント＋引用符抽出用）
-        kPerCompoIncrement = 98.0 / (k_size_of_allColoringKeys + 1);
+        kPerCompoIncrement = 98.0 / (kSizeOfAllColoringKeys + 1);
     });
 }
 
@@ -220,7 +220,7 @@ static CGFloat kPerCompoIncrement;
                 
                 for (NSString *key in kSyntaxDictKeys) {
                     @autoreleasepool {
-                        NSMutableCharacterSet *charSet = [NSMutableCharacterSet characterSetWithCharactersInString:k_allAlphabetChars];
+                        NSMutableCharacterSet *charSet = [NSMutableCharacterSet characterSetWithCharactersInString:kAllAlphabetChars];
                         
                         for (NSDictionary *wordDict in coloringDictionary[key]) {
                             NSString *begin = [wordDict[CESyntaxBeginStringKey] stringByTrimmingCharactersInSet:trimCharSet];
@@ -555,7 +555,7 @@ static CGFloat kPerCompoIncrement;
         if (startLocation + beginLength >= localLength) { break; }
         
         [scanner setScanLocation:(startLocation + beginLength)];
-        NSUInteger escapesCheckLength = MIN(startLocation, k_maxEscapesCheckLength);
+        NSUInteger escapesCheckLength = MIN(startLocation, kMaxEscapesCheckLength);
         NSRange escapesCheckRange = NSMakeRange(startLocation - escapesCheckLength, escapesCheckLength);
         NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
         NSUInteger numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
@@ -577,7 +577,7 @@ static CGFloat kPerCompoIncrement;
             if (endLocation > localLength) { break; }
             
             [scanner setScanLocation:endLocation];
-            NSUInteger escapesCheckLength = MIN((endLocation - endLength), k_maxEscapesCheckLength);
+            NSUInteger escapesCheckLength = MIN((endLocation - endLength), kMaxEscapesCheckLength);
             NSRange escapesCheckRange = NSMakeRange(endLocation - endLength - escapesCheckLength, escapesCheckLength);
             NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
             NSUInteger numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];

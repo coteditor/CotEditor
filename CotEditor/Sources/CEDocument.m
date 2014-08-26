@@ -184,7 +184,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         [[[self windowForSheet] attachedSheet] orderOut:self];
     }
     
-    BOOL success = [self readFromURL:url withEncoding:k_autoDetectEncodingMenuTag];
+    BOOL success = [self readFromURL:url withEncoding:CEAutoDetectEncodingMenuItemTag];
     
     if (success) {
         [self setStringToEditor];
@@ -402,10 +402,10 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [printInfo setHorizontalPagination:NSFitPagination];
     [printInfo setHorizontallyCentered:NO];
     [printInfo setVerticallyCentered:NO];
-    [printInfo setLeftMargin:k_printTextHorizontalMargin];
-    [printInfo setRightMargin:k_printTextHorizontalMargin];
-    [printInfo setTopMargin:k_printHFVerticalMargin];
-    [printInfo setBottomMargin:k_printHFVerticalMargin];
+    [printInfo setLeftMargin:kPrintTextHorizontalMargin];
+    [printInfo setRightMargin:kPrintTextHorizontalMargin];
+    [printInfo setTopMargin:kPrintHFVerticalMargin];
+    [printInfo setBottomMargin:kPrintHFVerticalMargin];
     
     // プリントオペレーション生成、設定、プリント実行
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
@@ -510,7 +510,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // 削除／変換される文字をリストアップ
-    NSString *yenMarkChar = [NSString stringWithCharacters:&k_yenMark length:1];
+    NSString *yenMarkChar = [NSString stringWithCharacters:&kYenMark length:1];
     
     for (NSUInteger i = 0; i < currentLength; i++) {
         unichar currentUnichar = [currentString characterAtIndex:i];
@@ -563,14 +563,14 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     // http://blogs.dion.ne.jp/fujidana/archives/4169016.html
     
     // ファイル拡張属性(com.apple.TextEncoding)を試す
-    if (checksXattr && (encoding != k_autoDetectEncodingMenuTag)) {
+    if (checksXattr && (encoding != CEAutoDetectEncodingMenuItemTag)) {
         string = [[NSString alloc] initWithData:data encoding:encoding];
         if (!string) {
-            encoding = k_autoDetectEncodingMenuTag;
+            encoding = CEAutoDetectEncodingMenuItemTag;
         }
     }
     
-    if (([data length] > 0) && (encoding == k_autoDetectEncodingMenuTag)) {
+    if (([data length] > 0) && (encoding == CEAutoDetectEncodingMenuItemTag)) {
         const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         // BOM付きUTF-8判定
         if (memchr([data bytes], *utf8Bom, 3) != NULL) {
@@ -599,7 +599,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         }
     }
     
-    if (!string && (encoding == k_autoDetectEncodingMenuTag)) {
+    if (!string && (encoding == CEAutoDetectEncodingMenuItemTag)) {
         NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey] copy];
         
         for (NSNumber *encodingNumber in encodings) {
@@ -633,7 +633,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         string = [[NSString alloc] initWithData:data encoding:encoding];
     }
     
-    if (string && (encoding != k_autoDetectEncodingMenuTag)) {
+    if (string && (encoding != CEAutoDetectEncodingMenuItemTag)) {
         // 10.3.9 で、一部のバイナリファイルを開いたときにクラッシュする問題への暫定対応。
         // 10.4+ ではスルー（2005.12.25）
         // ＞＞ しかし「すべて2バイト文字で4096文字以上あるユニコードでない文書」は開けない（2005.12.25）
@@ -783,7 +783,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView]; // 元の改行コード
     [[undoManager prepareWithInvocationTarget:self] updateChangeCount:NSChangeUndone]; // changeCountデクリメント
     [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", @""),
-                                k_lineEndingNames[lineEnding]]];
+                                kLineEndingNames[lineEnding]]];
 
     [self setLineEnding:lineEnding];
     [self applyLineEndingToView];
@@ -1361,7 +1361,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     BOOL success = NO;
     BOOL isEA = NO;
 
-    if (encoding == k_autoDetectEncodingMenuTag) {
+    if (encoding == CEAutoDetectEncodingMenuItemTag) {
         // ファイル拡張属性(com.apple.TextEncoding)からエンコーディング値を得る
         newEncoding = [self encodingFromComAppleTextEncodingAtURL:url];
         if ([data length] == 0) {
@@ -1405,7 +1405,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
     }
     
-    NSString *stringToScan = ([string length] > k_maxEncodingScanLength) ? [string substringToIndex:k_maxEncodingScanLength] : string;
+    NSString *stringToScan = ([string length] > kMaxEncodingScanLength) ? [string substringToIndex:kMaxEncodingScanLength] : string;
     NSScanner *scanner = [NSScanner scannerWithString:stringToScan];  // 文書前方のみスキャンする
     NSCharacterSet *stopSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\' </>\n\r"];
     NSString *scannedStr = nil;
@@ -1651,7 +1651,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     if (([string length] > 0) && [CEUtils isInvalidYenEncoding:encoding]) {
-        return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&k_yenMark length:1]
+        return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&kYenMark length:1]
                                                  withString:@"\\"];
     }
     return string;

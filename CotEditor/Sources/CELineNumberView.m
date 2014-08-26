@@ -160,7 +160,7 @@
     CGFloat ascent = CTFontGetAscent(font);
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-    transform = CGAffineTransformTranslate(transform, -k_lineNumPadding, -relativePoint.y - inset.y - diff - ascent);
+    transform = CGAffineTransformTranslate(transform, -kLineNumPadding, -relativePoint.y - inset.y - diff - ascent);
     CGContextSetTextMatrix(context, transform);
     CFRelease(font);
     
@@ -231,7 +231,7 @@
     }
     
     // adjust thickness
-    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * k_lineNumPadding, k_defaultLineNumWidth);
+    CGFloat requiredWidth = MAX(numberOfDigits(lineNum) * charWidth + 3 * kLineNumPadding, kDefaultLineNumWidth);
     [self setThickness:ceil(requiredWidth)];
     
     CGContextRestoreGState(context);
@@ -294,7 +294,7 @@
     if (isShown != [self isShown]) {
         _shown = isShown;
         
-        CGFloat width = isShown ? k_defaultLineNumWidth : 0.0;
+        CGFloat width = isShown ? kDefaultLineNumWidth : 0.0;
         [self setThickness:width];
     }
 }

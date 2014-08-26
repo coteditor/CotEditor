@@ -34,7 +34,7 @@
 
 // constants
 static NSString *const CERowsType = @"CERowsType";
-static NSInteger const k_lastRow = -1;
+static NSInteger const kLastRow = -1;
 
 
 @interface CEPrefEncodingDataSource ()
@@ -153,8 +153,8 @@ static NSInteger const k_lastRow = -1;
 // ------------------------------------------------------
 {
     if ([info draggingSource] == tableView) {  // = Local dragging
-        BOOL isValid = (((row == k_lastRow) && (operation == NSTableViewDropOn)) ||
-                        ((row != k_lastRow) && (operation == NSTableViewDropAbove)));
+        BOOL isValid = (((row == kLastRow) && (operation == NSTableViewDropOn)) ||
+                        ((row != kLastRow) && (operation == NSTableViewDropAbove)));
         
         return isValid ? NSDragOperationGeneric : NSDragOperationNone;
     }
@@ -186,7 +186,7 @@ static NSInteger const k_lastRow = -1;
     
     NSInteger count = [draggingArray count];
     for (NSUInteger i = 0; i < count; i++) {
-        if (row != k_lastRow) {
+        if (row != kLastRow) {
             [newArray insertObject:draggingArray[i] atIndex:newRow];
             [selectIndexSet addIndex:(newRow + i)];
         } else {

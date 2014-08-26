@@ -44,7 +44,7 @@ NSString *const CESeparatorString = @"-";
 NSString *const CEErrorDomain = @"com.aynimac.CotEditor.ErrorDomain";
 
 // Localized Strings Table
-NSString *const k_printLocalizeTable =  @"Print";
+NSString *const CEPrintLocalizeTable =  @"Print";
 
 
 
@@ -202,8 +202,8 @@ NSString *const CEFileDropFormatStringKey = @"formatString";
 // ------------------------------------------------------
 
 // Page guide column
-NSUInteger const k_minPageGuideColumn = 1;
-NSUInteger const k_maxPageGuideColumn = 1000;
+NSUInteger const kMinPageGuideColumn = 1;
+NSUInteger const kMaxPageGuideColumn = 1000;
 
 
 
@@ -214,8 +214,8 @@ NSUInteger const k_maxPageGuideColumn = 1000;
 // ------------------------------------------------------
 
 // syntax coloring
-NSUInteger const k_maxEscapesCheckLength = 16;
-NSString  *const k_allAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+NSUInteger const kMaxEscapesCheckLength = 16;
+NSString  *const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 // syntax style keys
 NSString *const CESyntaxStyleNameKey = @"styleName";
@@ -235,7 +235,7 @@ NSString *const CESyntaxCommentsKey = @"commentsArray";
 NSString *const CESyntaxCommentDelimitersKey = @"commentDelimiters";
 NSString *const CESyntaxOutlineMenuKey = @"outlineMenuArray";
 NSString *const CESyntaxCompletionsKey = @"completionsArray";
-NSString *const k_allColoringKeys[] = {
+NSString *const kAllColoringKeys[] = {
     @"keywordsArray",
     @"commandsArray",
     @"typesArray",
@@ -247,7 +247,7 @@ NSString *const k_allColoringKeys[] = {
     @"charactersArray",
     @"commentsArray"
 };
-NSUInteger const k_size_of_allColoringKeys = sizeof(k_allColoringKeys)/sizeof(k_allColoringKeys[0]);
+NSUInteger const kSizeOfAllColoringKeys = sizeof(kAllColoringKeys)/sizeof(kAllColoringKeys[0]);
 
 NSString *const CESyntaxKeyStringKey = @"keyString";
 NSString *const CESyntaxBeginStringKey = @"beginString";
@@ -276,7 +276,7 @@ NSString *const CEEndDelimiterKey = @"endDelimiter";
 // ------------------------------------------------------
 
 // Help document file names table
-NSString *const k_bundledDocumentFileNames[] = {
+NSString *const kBundledDocumentFileNames[] = {
     @"Version History",
     @"Acknowledgements",
     @"ScriptMenu Folder",
@@ -285,8 +285,8 @@ NSString *const k_bundledDocumentFileNames[] = {
 };
 
 // Online URLs
-NSString *const k_webSiteURL = @"http://coteditor.github.io";
-NSString *const k_issueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
+NSString *const kWebSiteURL = @"http://coteditor.github.io";
+NSString *const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
 
 
 
@@ -305,10 +305,10 @@ NSString *const CEOutlineItemFontItalicKey = @"outlineItemFontItalic";
 NSString *const CEOutlineItemUnderlineMaskKey = @"outlineItemUnderlineMask";
 
 // layout constants
-CGFloat const k_defaultLineNumWidth = 32.0;
-CGFloat const k_lineNumPadding = 3.0;
-CGFloat const k_lineNumFontDescender = -2.1;
-NSString *const k_navigationBarFontName = @"Helvetica";
+CGFloat const kDefaultLineNumWidth = 32.0;
+CGFloat const kLineNumPadding = 3.0;
+CGFloat const kLineNumFontDescender = -2.1;
+NSString *const kNavigationBarFontName = @"Helvetica";
 
 
 
@@ -319,7 +319,7 @@ NSString *const k_navigationBarFontName = @"Helvetica";
 // ------------------------------------------------------
 
 // CEATSTypeSetter (Layouting)
-CGFloat const k_defaultLineHeightMultiple = 1.19;
+CGFloat const kDefaultLineHeightMultiple = 1.19;
 
 
 
@@ -329,12 +329,12 @@ CGFloat const k_defaultLineHeightMultiple = 1.19;
 // Print
 // ------------------------------------------------------
 
-CGFloat const k_printTextHorizontalMargin = 8.0;
-CGFloat const k_printHFHorizontalMargin = 34.0;
-CGFloat const k_printHFVerticalMargin = 34.0;
-CGFloat const k_headerFooterLineHeight = 15.0;
-CGFloat const k_separatorPadding = 8.0;
-CGFloat const k_noSeparatorPadding = 18.0;
+CGFloat const kPrintTextHorizontalMargin = 8.0;
+CGFloat const kPrintHFHorizontalMargin = 34.0;
+CGFloat const kPrintHFVerticalMargin = 34.0;
+CGFloat const kHeaderFooterLineHeight = 15.0;
+CGFloat const kSeparatorPadding = 8.0;
+CGFloat const kNoSeparatorPadding = 18.0;
 
 
 
@@ -345,7 +345,7 @@ CGFloat const k_noSeparatorPadding = 18.0;
 // ------------------------------------------------------
 
 // Help anchors
-NSString *const k_helpPrefAnchors[] = {
+NSString *const kHelpPrefAnchors[] = {
     @"pref_general",
     @"pref_window",
     @"pref_appearance",
@@ -365,7 +365,7 @@ NSString *const k_helpPrefAnchors[] = {
 // ------------------------------------------------------
 
 // Line Endings
-NSString * const k_lineEndingNames[]=  {
+NSString * const kLineEndingNames[]=  {
     @"LF",
     @"CR",
     @"CR/LF"
@@ -380,13 +380,13 @@ NSString * const k_lineEndingNames[]=  {
 // ------------------------------------------------------
 
 // Encoding menu
-NSInteger const k_autoDetectEncodingMenuTag = 0;
+NSInteger const CEAutoDetectEncodingMenuItemTag = 0;
 
 // Max length to scan encding declaration
-NSUInteger const k_maxEncodingScanLength = 2000;
+NSUInteger const kMaxEncodingScanLength = 2000;
 
 // Encodings list
-CFStringEncodings const k_CFStringEncodingList[] = {
+CFStringEncodings const kCFStringEncodingList[] = {
     kCFStringEncodingUTF8, // Unicode (UTF-8)
     kCFStringEncodingInvalidId, // ----------
     
@@ -449,10 +449,10 @@ CFStringEncodings const k_CFStringEncodingList[] = {
     kCFStringEncodingUTF32BE, // Unicode (UTF-32BE)
     kCFStringEncodingUTF32LE, // Unicode (UTF-16LE)
 };
-NSUInteger const k_size_of_CFStringEncodingList = sizeof(k_CFStringEncodingList)/sizeof(CFStringEncodings);
+NSUInteger const kSizeOfCFStringEncodingList = sizeof(kCFStringEncodingList)/sizeof(CFStringEncodings);
 
 // Encodings that need convert Yen mark to back-slash
-CFStringEncodings const k_CFStringEncodingInvalidYenList[] = {
+CFStringEncodings const kCFStringEncodingInvalidYenList[] = {
     kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
     kCFStringEncodingEUC_JP,  // Japanese (EUC)
     kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
@@ -471,10 +471,10 @@ CFStringEncodings const k_CFStringEncodingInvalidYenList[] = {
     kCFStringEncodingDOSLatinUS, // Latin-US (DOS)
     kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
 };
-NSUInteger const k_size_of_CFStringEncodingInvalidYenList = sizeof(k_CFStringEncodingInvalidYenList)/sizeof(CFStringEncodings);
+NSUInteger const kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList)/sizeof(CFStringEncodings);
 
 // Yen mark char
-unichar const k_yenMark = {0x00A5};
+unichar const kYenMark = {0x00A5};
 
 
 
@@ -483,17 +483,17 @@ unichar const k_yenMark = {0x00A5};
 // ------------------------------------------------------
 
 // Substitutes for invisible characters
-unichar     const k_invisibleSpaceCharList[] = {0x00B7, 0x00B0, 0x02D0, 0x2423};
-NSUInteger  const k_size_of_invisibleSpaceCharList = sizeof(k_invisibleSpaceCharList) / sizeof(unichar);
+unichar     const kInvisibleSpaceCharList[] = {0x00B7, 0x00B0, 0x02D0, 0x2423};
+NSUInteger  const kSizeOfInvisibleSpaceCharList = sizeof(kInvisibleSpaceCharList) / sizeof(unichar);
 
-unichar     const k_invisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
-NSUInteger  const k_size_of_invisibleTabCharList = sizeof(k_invisibleTabCharList) / sizeof(unichar);
+unichar     const kInvisibleTabCharList[] = {0x00AC, 0x21E5, 0x2023, 0x25B9};
+NSUInteger  const kSizeOfInvisibleTabCharList = sizeof(kInvisibleTabCharList) / sizeof(unichar);
 
-unichar     const k_invisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
-NSUInteger  const k_size_of_invisibleNewLineCharList = sizeof(k_invisibleNewLineCharList) / sizeof(unichar);
+unichar     const kInvisibleNewLineCharList[] = {0x00B6, 0x21A9, 0x21B5, 0x23CE};
+NSUInteger  const kSizeOfInvisibleNewLineCharList = sizeof(kInvisibleNewLineCharList) / sizeof(unichar);
 
-unichar     const k_invisibleFullwidthSpaceCharList[] = {0x25A2, 0x22A0, 0x25B3, 0x2573};
-NSUInteger  const k_size_of_invisibleFullwidthSpaceCharList = sizeof(k_invisibleFullwidthSpaceCharList) / sizeof(unichar);
+unichar     const kInvisibleFullwidthSpaceCharList[] = {0x25A2, 0x22A0, 0x25B3, 0x2573};
+NSUInteger  const kSizeOfInvisibleFullwidthSpaceCharList = sizeof(kInvisibleFullwidthSpaceCharList) / sizeof(unichar);
 
 
 
@@ -502,20 +502,20 @@ NSUInteger  const k_size_of_invisibleFullwidthSpaceCharList = sizeof(k_invisible
 // ------------------------------------------------------
 
 // Modifier keys and characters for keybinding
-NSUInteger const k_modifierKeyMaskList[] = {
+NSUInteger const kModifierKeyMaskList[] = {
     NSControlKeyMask,
     NSAlternateKeyMask,
     NSShiftKeyMask,
     NSCommandKeyMask
 };
-unichar const k_modifierKeySymbolCharList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
-unichar const k_keySpecCharList[]           = {0x005E, 0x007E, 0x0024, 0x0040};  // == "^~$@"
+unichar const kModifierKeySymbolCharList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
+unichar const kKeySpecCharList[]           = {0x005E, 0x007E, 0x0024, 0x0040};  // == "^~$@"
 
-NSUInteger const k_size_of_modifierKeys = sizeof(k_modifierKeyMaskList) / sizeof(NSUInteger);
+NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / sizeof(NSUInteger);
 
 
 // Unprintable key list
-unichar const k_unprintableKeyList[] = {
+unichar const kUnprintableKeyList[] = {
     NSUpArrowFunctionKey,
     NSDownArrowFunctionKey,
     NSLeftArrowFunctionKey,
@@ -551,4 +551,4 @@ unichar const k_unprintableKeyList[] = {
     '\031', // = Backtab
     '\033', // = Escape
 };
-NSUInteger const k_size_of_unprintableKeyList = sizeof(k_unprintableKeyList) / sizeof(unichar);
+NSUInteger const kSizeOfUnprintableKeyList = sizeof(kUnprintableKeyList) / sizeof(unichar);

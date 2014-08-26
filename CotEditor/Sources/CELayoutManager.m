@@ -342,7 +342,7 @@ static BOOL usesTextFontForInvisibles;
 // ------------------------------------------------------
 {
     if (textFont) {
-        [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * k_defaultLineHeightMultiple];
+        [self setDefaultLineHeightForTextFont:[self defaultLineHeightForFont:textFont] * kDefaultLineHeightMultiple];
         [self setTextFontPointSize:[textFont pointSize]];
         [self setTextFontGlyphY:[textFont pointSize]];
         // （textFontGlyphYは「複合フォントでも描画位置Y座標を固定」する時のみlocationForGlyphAtIndex:内で使われる。

@@ -95,7 +95,7 @@
         [_dateFormatter setDateFormat:dateFormat];
         
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
-        [[self textContainer] setLineFragmentPadding:k_printHFHorizontalMargin];
+        [[self textContainer] setLineFragmentPadding:kPrintHFHorizontalMargin];
         
         // layoutManager を入れ替え
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
@@ -129,7 +129,7 @@
 {
     NSRect currentFrame = [self frame]; // 現在のフレームを退避
     NSAttributedString *pageString = nil;
-    NSPoint drawPoint = NSMakePoint(0.0, k_printHFVerticalMargin);
+    NSPoint drawPoint = NSMakePoint(0.0, kPrintHFVerticalMargin);
     CGFloat headerFooterLineFontSize = [[self headerFooterAttrs][NSFontAttributeName] pointSize];
 
     // プリントパネルでのカスタム設定を読み取り、保持
@@ -158,7 +158,7 @@
             drawPoint.x = [self xValueToDrawAttributedString:[self headerOneString]
                                                  borderWidth:borderSize.width alignment:[self headerOneAlignment]];
             [[self headerOneString] drawAtPoint:drawPoint];
-            drawPoint.y += k_headerFooterLineHeight;
+            drawPoint.y += kHeaderFooterLineHeight;
         }
         
         if ([self headerTwoString]) {
@@ -172,26 +172,26 @@
             
         } else {
             if ([self headerOneString]) {
-                drawPoint.y += headerFooterLineFontSize - k_headerFooterLineHeight;
+                drawPoint.y += headerFooterLineFontSize - kHeaderFooterLineHeight;
             }
         }
     }
     if ([self printsHeaderSeparator]) {
-        drawPoint.y += k_separatorPadding / 2;
+        drawPoint.y += kSeparatorPadding / 2;
         [[NSColor controlShadowColor] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, drawPoint.y)
-                                  toPoint:NSMakePoint(borderSize.width - k_printHFHorizontalMargin, drawPoint.y)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(kPrintHFHorizontalMargin, drawPoint.y)
+                                  toPoint:NSMakePoint(borderSize.width - kPrintHFHorizontalMargin, drawPoint.y)];
     }
 
-    // （drawPoint.y を borderSize.height - k_printHFVerticalMargin とすると1ページに満たない書類の印刷時に
+    // （drawPoint.y を borderSize.height - kPrintHFVerticalMargin とすると1ページに満たない書類の印刷時に
     // セパレータが印字されないので、フッタ全体を下げる。 2006.02.18）
-    drawPoint.y = borderSize.height - k_printHFVerticalMargin + k_separatorPadding;
+    drawPoint.y = borderSize.height - kPrintHFVerticalMargin + kSeparatorPadding;
     if ([self printsFooter]) {
         if ([self footerTwoString]) {
             if ([[[self footerTwoString] string] isEqualToString:@"PAGENUM"]) {
                 [self setFooterTwoString:pageString];
             }
-            drawPoint.y -= k_headerFooterLineHeight;
+            drawPoint.y -= kHeaderFooterLineHeight;
             drawPoint.x = [self xValueToDrawAttributedString:[self footerTwoString]
                                                  borderWidth:borderSize.width alignment:[self footerTwoAlignment]];
             [[self footerTwoString] drawAtPoint:drawPoint];
@@ -201,17 +201,17 @@
             if ([[[self footerOneString] string] isEqualToString:@"PAGENUM"]) {
                 [self setFooterOneString:pageString];
             }
-            drawPoint.y -= k_headerFooterLineHeight;
+            drawPoint.y -= kHeaderFooterLineHeight;
             drawPoint.x = [self xValueToDrawAttributedString:[self footerOneString]
                                                  borderWidth:borderSize.width alignment:[self footerOneAlignment]];
             [[self footerOneString] drawAtPoint:drawPoint];
         }
     }
     if ([self printsFooterSeparator]) {
-        drawPoint.y -= k_separatorPadding / 2;
+        drawPoint.y -= kSeparatorPadding / 2;
         [[NSColor controlShadowColor] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(k_printHFHorizontalMargin, drawPoint.y)
-                                  toPoint:NSMakePoint(borderSize.width - k_printHFHorizontalMargin, drawPoint.y)];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(kPrintHFHorizontalMargin, drawPoint.y)
+                                  toPoint:NSMakePoint(borderSize.width - kPrintHFHorizontalMargin, drawPoint.y)];
     }
     [self unlockFocus];
 
@@ -248,7 +248,7 @@
         NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
         
         // adjust values for line number drawing
-        CGFloat xAdj = [self textContainerOrigin].x + k_printHFHorizontalMargin - k_lineNumPadding;
+        CGFloat xAdj = [self textContainerOrigin].x + kPrintHFHorizontalMargin - kLineNumPadding;
         CGFloat yAdj = (fontSize - masterFontSize);
         
         // counters
@@ -343,7 +343,7 @@
 {
     CEPrintPanelAccessoryController *accessoryController = [self printPanelAccessoryController];
     NSAttributedString *attrString = nil;
-    CGFloat printWidth = borderWidth - k_printHFHorizontalMargin * 2;
+    CGFloat printWidth = borderWidth - kPrintHFHorizontalMargin * 2;
 
     // 行番号印字の有無をチェック
     switch ([accessoryController lineNumberMode]) {
@@ -360,7 +360,7 @@
 
     // 行番号表示の有無によってパディングを調整
     if ([self printsLineNum]) {
-        [self setXOffset:k_printTextHorizontalMargin];
+        [self setXOffset:kPrintTextHorizontalMargin];
     } else {
         [self setXOffset:0];
     }
@@ -503,13 +503,13 @@
 {
     switch (alignmentType) {
         case CEAlignLeft:
-            return k_printHFHorizontalMargin;
+            return kPrintHFHorizontalMargin;
             break;
         case CEAlignCenter:
             return (borderWidth - [attrString size].width) / 2;
             break;
         case CEAlignRight:
-            return (borderWidth - [attrString size].width) - k_printHFHorizontalMargin;
+            return (borderWidth - [attrString size].width) - kPrintHFHorizontalMargin;
             break;
     }
 }

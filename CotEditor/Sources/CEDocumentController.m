@@ -154,7 +154,7 @@
     [[self accessoryEncodingMenu] removeAllItems];
     
     [[self accessoryEncodingMenu] addItemWithTitle:NSLocalizedString(@"Auto-Detect", nil)];
-    [[[self accessoryEncodingMenu] itemAtIndex:0] setTag:k_autoDetectEncodingMenuTag];
+    [[[self accessoryEncodingMenu] itemAtIndex:0] setTag:CEAutoDetectEncodingMenuItemTag];
     [[[self accessoryEncodingMenu] menu] addItem:[NSMenuItem separatorItem]];
     
     for (NSMenuItem *item in items) {

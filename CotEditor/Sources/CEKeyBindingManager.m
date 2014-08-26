@@ -114,10 +114,10 @@ static NSDictionary *kUnprintableKeyTable;
     unichar theChar = [string characterAtIndex:0];
     BOOL isShiftPressed = NO;
     
-    for (NSInteger i = 0; i < k_size_of_modifierKeys; i++) {
-        if ((modifierFlags & k_modifierKeyMaskList[i]) || ((i == CEShiftKeyIndex) && (isupper(theChar) == 1))) {
+    for (NSInteger i = 0; i < kSizeOfModifierKeys; i++) {
+        if ((modifierFlags & kModifierKeyMaskList[i]) || ((i == CEShiftKeyIndex) && (isupper(theChar) == 1))) {
             // （メニューから定義値を取得した時、アルファベット+シフトの場合にシフトの定義が欠落するための回避処置）
-            [keySpecChars appendFormat:@"%C", k_keySpecCharList[i]];
+            [keySpecChars appendFormat:@"%C", kKeySpecCharList[i]];
             if ((i == CEShiftKeyIndex) && (isupper(theChar) == 1)) {
                 isShiftPressed = YES;
             }
@@ -495,7 +495,7 @@ static NSDictionary *kUnprintableKeyTable;
 //------------------------------------------------------
 {
     BOOL isJapaneseResource = [[[NSBundle mainBundle] preferredLocalizations][0] isEqualToString:@"ja"];
-    NSString *yen = [NSString stringWithCharacters:&k_yenMark length:1];
+    NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
     
     // NSMenu の indexOfItemWithTarget:andAction: だと取得できないメニューアイテムがあるため、メニューをひとつずつなめる
     for (NSMenuItem *item in [menu itemArray]) {
@@ -601,10 +601,10 @@ static NSDictionary *kUnprintableKeyTable;
     NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modString];
     NSMutableString *keyStrings = [NSMutableString string];
     
-    for (NSUInteger i = 0; i < k_size_of_modifierKeys; i++) {
-        unichar theChar = k_keySpecCharList[i];
+    for (NSUInteger i = 0; i < kSizeOfModifierKeys; i++) {
+        unichar theChar = kKeySpecCharList[i];
         if ([modStringSet characterIsMember:theChar] || ((i == CEShiftKeyIndex) && drawsShiftKey)) {
-            [keyStrings appendFormat:@"%C", k_modifierKeySymbolCharList[i]];
+            [keyStrings appendFormat:@"%C", kModifierKeySymbolCharList[i]];
         }
     }
     
@@ -663,12 +663,12 @@ static NSDictionary *kUnprintableKeyTable;
                                 [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "Backtab"
                                 [NSString stringWithFormat:@"%C", (unichar)0x238B]];
     
-    NSAssert(k_size_of_unprintableKeyList == [printableChars count],
-             @"Internal data error! Sizes of 'k_unprintableKeyList' and 'printableChars' are different.");
+    NSAssert(kSizeOfUnprintableKeyList == [printableChars count],
+             @"Internal data error! Sizes of 'kUnprintableKeyList' and 'printableChars' are different.");
     
-    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:k_size_of_unprintableKeyList];
-    for (NSInteger i = 0; i < k_size_of_unprintableKeyList; i++) {
-        [keys addObject:[NSString stringWithFormat:@"%C", k_unprintableKeyList[i]]];
+    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:kSizeOfUnprintableKeyList];
+    for (NSInteger i = 0; i < kSizeOfUnprintableKeyList; i++) {
+        [keys addObject:[NSString stringWithFormat:@"%C", kUnprintableKeyList[i]]];
     }
 
     return [NSDictionary dictionaryWithObjects:printableChars forKeys:keys];
