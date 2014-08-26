@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
 };
 
 
-@interface CESyntaxEditSheetController ()
+@interface CESyntaxEditSheetController () <NSTextFieldDelegate, NSTableViewDelegate>
 
 @property (nonatomic) NSMutableDictionary *style;  // スタイル定義（NSArrayControllerを通じて操作）
 @property (nonatomic) CESyntaxEditSheetMode mode;

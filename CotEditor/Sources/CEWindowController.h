@@ -35,7 +35,7 @@
 #import "CEToolbarController.h"
 
 
-@interface CEWindowController : NSWindowController <NSWindowDelegate, NSDrawerDelegate, NSTabViewDelegate, OgreTextFindDataSource>
+@interface CEWindowController : NSWindowController <NSWindowDelegate, OgreTextFindDataSource>
 
 @property (nonatomic) CGFloat alpha;
 

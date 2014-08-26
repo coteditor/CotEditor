@@ -30,7 +30,7 @@
 #import "CEPanelController.h"
 
 
-@interface CEColorCodePanelController : CEPanelController <NSWindowDelegate>
+@interface CEColorCodePanelController : CEPanelController
 
 - (void)setColorWithCode:(NSString *)colorCode;
 

@@ -41,7 +41,7 @@ static NSString *const InfoIdentifier = @"info";
 static NSString *const IncompatibleIdentifier = @"incompatibleChar";
 
 
-@interface CEWindowController ()
+@interface CEWindowController () <NSDrawerDelegate, NSTabViewDelegate>
 
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
 @property (nonatomic) BOOL needsRecolorWithBecomeKey; // ウィンドウがキーになったとき再カラーリングをするかどうかのフラグ
