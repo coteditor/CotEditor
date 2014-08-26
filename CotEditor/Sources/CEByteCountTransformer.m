@@ -30,6 +30,9 @@
 #import "CEByteCountTransformer.h"
 
 
+static const unichar kThinSpace = 0x2009;
+
+
 @implementation CEByteCountTransformer
 
 #pragma mark Class Methods
@@ -84,9 +87,9 @@
         factor++;
     }
     
-    NSString *format = (factor == 0 || size >= 10) ? @"%.0f %@" : @"%.1f %@";
+    NSString *format = (factor == 0 || size >= 10) ? @"%.0f%C%@" : @"%.1f%C%@";
     
-    return [NSString stringWithFormat:format, size, tokens[factor]];
+    return [NSString stringWithFormat:format, size, kThinSpace, tokens[factor]];
 }
 
 @end
