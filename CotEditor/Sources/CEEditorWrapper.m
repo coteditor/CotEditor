@@ -379,8 +379,8 @@ static NSTimeInterval secondColoringDelay;
     _showsLineNum = showsLineNum;
     
     [[self splitViewController] setShowsLineNum:showsLineNum];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:CEToolbarShowLineNumItemID
-                                                                    setOn:showsLineNum];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowLineNumItemTag
+                                                             setOn:showsLineNum];
 }
 
 
@@ -392,8 +392,8 @@ static NSTimeInterval secondColoringDelay;
     _showsNavigationBar = showsNavigationBar;
     
     [[self splitViewController] setShowsNavigationBar:showsNavigationBar];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:CEToolbarShowNavigationBarItemID
-                                                                    setOn:showsNavigationBar];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
+                                                             setOn:showsNavigationBar];
 }
 
 
@@ -405,8 +405,8 @@ static NSTimeInterval secondColoringDelay;
     _wrapsLines = wrapsLines;
     
     [[self splitViewController] setWrapsLines:wrapsLines];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:CEToolbarWrapLinesItemID
-                                                                    setOn:wrapsLines];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarWrapLinesItemTag
+                                                             setOn:wrapsLines];
 }
 
 
@@ -418,8 +418,8 @@ static NSTimeInterval secondColoringDelay;
     _verticalLayoutOrientation = isVerticalLayoutOrientation;
     
     [[self splitViewController] setVerticalLayoutOrientation:isVerticalLayoutOrientation];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:CEToolbarTextOrientationItemID
-                                                                    setOn:isVerticalLayoutOrientation];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarTextOrientationItemTag
+                                                             setOn:isVerticalLayoutOrientation];
 }
 
 
@@ -462,8 +462,8 @@ static NSTimeInterval secondColoringDelay;
 // ------------------------------------------------------
 {
     [[self splitViewController] setShowsPageGuide:showsPageGuide];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:CEToolbarShowPageGuideItemID
-                                                                    setOn:showsPageGuide];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowPageGuideItemTag
+                                                             setOn:showsPageGuide];
     
     _showsPageGuide = showsPageGuide;
 }
@@ -704,8 +704,8 @@ static NSTimeInterval secondColoringDelay;
     BOOL showsInvisibles = [(CELayoutManager *)[[self textView] layoutManager] showsInvisibles];
 
     [[self splitViewController] setShowsInvisibles:!showsInvisibles];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:CEToolbarShowInvisibleCharsItemID
-                                                                    setOn:!showsInvisibles];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowInvisibleCharsItemTag
+                                                             setOn:!showsInvisibles];
 }
 
 
@@ -717,8 +717,8 @@ static NSTimeInterval secondColoringDelay;
     BOOL isEnabled = ![[self textView] isAutoTabExpandEnabled];
     
     [[self splitViewController] setAutoTabExpandEnabled:isEnabled];
-    [[[self windowController] toolbarController] toggleItemWithIdentifier:CEToolbarAutoTabExpandItemID
-                                                                    setOn:isEnabled];
+    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarAutoTabExpandItemTag
+                                                             setOn:isEnabled];
 }
 
 

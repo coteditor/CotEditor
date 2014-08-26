@@ -70,13 +70,12 @@
 
 // ------------------------------------------------------
 /// トグルアイテムの状態を更新
-- (void)toggleItemWithIdentifier:(NSString *)identifer setOn:(BOOL)setOn
+- (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
     for (NSToolbarItem *item in [[self toolbar] items]) {
-        if ([[item itemIdentifier] isEqualToString:identifer]) {
+        if ([item tag] == tag) {
             [self toggleItem:item setOn:setOn];
-            break;
         }
     }
 }
@@ -200,38 +199,41 @@
 // ------------------------------------------------------
 {
     NSToolbarItem *item = [notification userInfo][@"item"];
-    NSString *identifier = [item itemIdentifier];
     CEEditorWrapper *editor = [[self windowController] editor];
     
-    if ([identifier isEqualToString:CEToolbarShowInvisibleCharsItemID]) {
-        [self toggleItem:item setOn:[editor showsInvisibles]];
-        
-        // ツールバーアイテムを有効化できなければボタンを無効状態に
-        if ([editor canActivateShowInvisibles]) {
-            [item setAction:@selector(toggleInvisibleChars:)];
-            [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
-        } else {
-            [item setAction:nil];
-            [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.", nil)];
-        }
-        
-    } else if ([identifier isEqualToString:CEToolbarAutoTabExpandItemID]) {
-        [self toggleItem:item setOn:[[editor textView] isAutoTabExpandEnabled]];
-        
-    } else if ([identifier isEqualToString:CEToolbarShowNavigationBarItemID]) {
-        [self toggleItem:item setOn:[editor showsNavigationBar]];
-        
-    } else if ([identifier isEqualToString:CEToolbarShowLineNumItemID]) {
-        [self toggleItem:item setOn:[editor showsLineNum]];
-        
-    } else if ([identifier isEqualToString:CEToolbarShowNavigationBarItemID]) {
-        [self toggleItem:item setOn:[[self windowController] showsStatusBar]];
-        
-    } else if ([identifier isEqualToString:CEToolbarShowPageGuideItemID]) {
-        [self toggleItem:item setOn:[editor showsPageGuide]];
-        
-    } else if ([identifier isEqualToString:CEToolbarWrapLinesItemID]) {
-        [self toggleItem:item setOn:[editor wrapsLines]];
+    switch ([item tag]) {
+        case CEToolbarShowInvisibleCharsItemTag:
+            [self toggleItem:item setOn:[editor showsInvisibles]];
+            
+            // ツールバーアイテムを有効化できなければボタンを無効状態に
+            if ([editor canActivateShowInvisibles]) {
+                [item setAction:@selector(toggleInvisibleChars:)];
+                [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
+            } else {
+                [item setAction:nil];
+                [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.", nil)];
+            }
+            break;
+        case CEToolbarAutoTabExpandItemTag:
+            [self toggleItem:item setOn:[[editor textView] isAutoTabExpandEnabled]];
+            break;
+        case CEToolbarShowNavigationBarItemTag:
+            [self toggleItem:item setOn:[editor showsNavigationBar]];
+            break;
+        case CEToolbarShowLineNumItemTag:
+            [self toggleItem:item setOn:[editor showsLineNum]];
+            break;
+        case CEToolbarShowStatusBarItemTag:
+            [self toggleItem:item setOn:[[self windowController] showsStatusBar]];
+            break;
+        case CEToolbarShowPageGuideItemTag:
+            [self toggleItem:item setOn:[editor showsPageGuide]];
+            break;
+        case CEToolbarWrapLinesItemTag:
+            [self toggleItem:item setOn:[editor wrapsLines]];
+            break;
+        default:
+            break;
     }
 }
 
@@ -249,36 +251,38 @@
 - (void)toggleItem:(NSToolbarItem *)item setOn:(BOOL)setOn
 // ------------------------------------------------------
 {
-    NSString *identifer = [item itemIdentifier];
     NSString *imageName;
-    if ([identifer isEqualToString:CEToolbarShowNavigationBarItemID]) {
-        imageName = setOn ? @"NaviBar_Show" : @"NaviBar_Hide";
-        
-    } else if ([identifer isEqualToString:CEToolbarShowLineNumItemID]) {
-        imageName = setOn ? @"LineNumber_Show" : @"LineNumber_Hide";
-        
-    } else if ([identifer isEqualToString:CEToolbarShowStatusBarItemID]) {
-        imageName = setOn ? @"StatusArea_Show" : @"StatusArea_Hide";
-        
-    } else if ([identifer isEqualToString:CEToolbarShowInvisibleCharsItemID]) {
-        imageName = setOn ? @"InvisibleChar_Show" : @"InvisibleChar_Hide";
-        
-    } else if ([identifer isEqualToString:CEToolbarShowPageGuideItemID]) {
-        imageName = setOn ? @"PageGuide_Show" : @"PageGuide_Hide";
-        
-    } else if ([identifer isEqualToString:CEToolbarWrapLinesItemID]) {
-        imageName = setOn ? @"WrapLines_On" : @"WrapLines_Off";
-        
-    } else if ([identifer isEqualToString:CEToolbarTextOrientationItemID]) {
-        imageName = setOn ? @"VerticalOrientation_On" : @"VerticalOrientation_Off";
-        
-    } else if ([identifer isEqualToString:CEToolbarAutoTabExpandItemID]) {
-        imageName = setOn ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
+    
+    switch ([item tag]) {
+        case CEToolbarShowNavigationBarItemTag:
+            imageName = setOn ? @"NaviBar_Show" : @"NaviBar_Hide";
+            break;
+        case CEToolbarShowLineNumItemTag:
+            imageName = setOn ? @"LineNumber_Show" : @"LineNumber_Hide";
+            break;
+        case CEToolbarShowStatusBarItemTag:
+            imageName = setOn ? @"StatusArea_Show" : @"StatusArea_Hide";
+            break;
+        case CEToolbarShowInvisibleCharsItemTag:
+            imageName = setOn ? @"InvisibleChar_Show" : @"InvisibleChar_Hide";
+            break;
+        case CEToolbarShowPageGuideItemTag:
+            imageName = setOn ? @"PageGuide_Show" : @"PageGuide_Hide";
+            break;
+        case CEToolbarWrapLinesItemTag:
+            imageName = setOn ? @"WrapLines_On" : @"WrapLines_Off";
+            break;
+        case CEToolbarTextOrientationItemTag:
+            imageName = setOn ? @"VerticalOrientation_On" : @"VerticalOrientation_Off";
+            break;
+        case CEToolbarAutoTabExpandItemTag:
+            imageName = setOn ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
+            break;
+        default:
+            return;
     }
     
-    if (imageName) {
-        [item setImage:[NSImage imageNamed:imageName]];
-    }
+    [item setImage:[NSImage imageNamed:imageName]];
 }
 
 @end

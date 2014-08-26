@@ -32,10 +32,37 @@
 #import "constants.h"
 
 
+// Toolbar item tag
+typedef NS_ENUM(NSInteger, CEToolbarItemTag) {
+    CEToolbarLineEndingsItemTag = 1,
+    CEToolbarFileEncodingsItemTag,
+    CEToolbarSyntaxItemTag,
+    CEToolbarGetInfoItemTag,
+    CEToolbarShowIncompatibleCharItemTag,
+    CEToolbarPrintItemTag,
+    CEToolbarFontItemTag,
+    CEToolbarBiggerFontItemTag,
+    CEToolbarSmallerFontItemTag,
+    CEToolbarShiftLeftItemTag,
+    CEToolbarShiftRightItemTag,
+    CEToolbarToggleCommentItemTag,
+    CEToolbarAutoTabExpandItemTag,
+    CEToolbarShowNavigationBarItemTag,
+    CEToolbarShowLineNumItemTag,
+    CEToolbarShowStatusBarItemTag,
+    CEToolbarShowInvisibleCharsItemTag,
+    CEToolbarShowPageGuideItemTag,
+    CEToolbarWrapLinesItemTag,
+    CEToolbarTextOrientationItemTag,
+    CEToolbarEditColorCodeItemTag,
+    CEToolbarSyntaxReColorAllItemTag,
+};
+
+
 @interface CEToolbarController : NSObject <NSToolbarDelegate>
 
 // Public method
-- (void)toggleItemWithIdentifier:(NSString *)identifer setOn:(BOOL)setOn;
+- (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn;
 - (void)buildEncodingPopupButton;
 - (void)setSelectedEncoding:(NSStringEncoding)encoding;
 - (void)setSelectedLineEnding:(CELineEnding)lineEnding;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEWindowController">
@@ -19,7 +19,7 @@
             </connections>
         </customObject>
         <customObject id="-1" customClass="FirstResponder"/>
-        <customObject id="-3"/>
+        <customObject id="-3" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="document" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
@@ -107,11 +107,11 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="CED05FB8-D6FA-4FDC-A1D9-8D33CCA40BE5" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="olV-v9-4mJ">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" id="fVR-to-zN3">
+                    <toolbarItem implicitItemIdentifier="D0855551-09F0-4844-BEEB-01E31A159043" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" tag="1" id="fVR-to-zN3">
                         <nil key="toolTip"/>
                         <size key="minSize" width="77" height="22"/>
                         <size key="maxSize" width="77" height="22"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" id="77">
+                        <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="77">
                             <rect key="frame" x="0.0" y="14" width="77" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="701">
@@ -139,11 +139,11 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="69A39582-7ACA-4B46-BD98-FA09B10CB92C" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" id="d2p-GT-YXm">
+                    <toolbarItem implicitItemIdentifier="69A39582-7ACA-4B46-BD98-FA09B10CB92C" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" tag="2" id="d2p-GT-YXm">
                         <nil key="toolTip"/>
                         <size key="minSize" width="140" height="22"/>
                         <size key="maxSize" width="140" height="22"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" id="90">
+                        <popUpButton key="view" verticalHuggingPriority="750" tag="2" id="90">
                             <rect key="frame" x="0.0" y="14" width="140" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="702">
@@ -157,11 +157,11 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" id="6gO-UF-7QW">
+                    <toolbarItem implicitItemIdentifier="B40F8010-88AA-4077-B6EF-D961FE4F873C" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" tag="3" id="6gO-UF-7QW">
                         <nil key="toolTip"/>
                         <size key="minSize" width="120" height="22"/>
                         <size key="maxSize" width="120" height="22"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" id="96">
+                        <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="96">
                             <rect key="frame" x="0.0" y="14" width="120" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="703">
@@ -175,89 +175,89 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="get Info" toolTip="Show document information" tag="-1" image="getInfo" id="ogy-SR-Vqr">
+                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="get Info" toolTip="Show document information" tag="4" image="getInfo" id="ogy-SR-Vqr">
                         <connections>
                             <action selector="getInfo:" target="-1" id="xp5-7V-kLd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="F23A039F-1579-4832-B183-00159B59C4E0" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="-1" image="IncompatibleChar" id="LV0-t3-0jM">
+                    <toolbarItem implicitItemIdentifier="F23A039F-1579-4832-B183-00159B59C4E0" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="5" image="IncompatibleChar" id="LV0-t3-0jM">
                         <connections>
                             <action selector="toggleIncompatibleCharList:" target="-1" id="kT9-cS-eHR"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="hDK-Ke-NcU"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="ozh-KV-skX"/>
-                    <toolbarItem implicitItemIdentifier="A7DA403B-9AC8-4DF1-B5AB-6426322C67D5" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="3" image="biggerFont" id="Ptr-aN-aSD">
+                    <toolbarItem implicitItemIdentifier="A7DA403B-9AC8-4DF1-B5AB-6426322C67D5" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="8" image="biggerFont" id="Ptr-aN-aSD">
                         <connections>
                             <action selector="modifyFont:" target="M21-bo-PEe" id="LYq-SM-GGd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="25E3B962-091E-4686-8218-7494D6E82F33" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="4" image="smallerFont" id="5nt-ud-Ewr">
+                    <toolbarItem implicitItemIdentifier="25E3B962-091E-4686-8218-7494D6E82F33" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="9" image="smallerFont" id="5nt-ud-Ewr">
                         <connections>
                             <action selector="modifyFont:" target="M21-bo-PEe" id="GU4-F5-6zt"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="FE7DD66B-21BE-4D6E-9916-1CC7AEC28433" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="-1" image="Shift_Left" id="77g-Yu-UgC">
+                    <toolbarItem implicitItemIdentifier="FE7DD66B-21BE-4D6E-9916-1CC7AEC28433" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="10" image="Shift_Left" id="77g-Yu-UgC">
                         <connections>
                             <action selector="shiftLeft:" target="-1" id="w1U-dF-3F9"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6E6B30D5-892F-4072-A2D2-3759E0AAF4A3" explicitItemIdentifier="shiftRightItemID" label="Shift Right" paletteLabel="Shift Right" toolTip="Shift lines to right" tag="-1" image="Shift_Right" id="fa9-a4-ZUv">
+                    <toolbarItem implicitItemIdentifier="6E6B30D5-892F-4072-A2D2-3759E0AAF4A3" explicitItemIdentifier="shiftRightItemID" label="Shift Right" paletteLabel="Shift Right" toolTip="Shift lines to right" tag="11" image="Shift_Right" id="fa9-a4-ZUv">
                         <connections>
                             <action selector="shiftRight:" target="-1" id="hhI-4y-I9e"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B2145AC0-57C3-4B25-97B4-983428C1C2EC" explicitItemIdentifier="toggleCommentItemID" label="Comment" paletteLabel="Toggle Comment" toolTip="Comment-out or uncomment selection" tag="-1" image="Comment" id="cIM-Hx-SKX">
+                    <toolbarItem implicitItemIdentifier="B2145AC0-57C3-4B25-97B4-983428C1C2EC" explicitItemIdentifier="toggleCommentItemID" label="Comment" paletteLabel="Toggle Comment" toolTip="Comment-out or uncomment selection" tag="12" image="Comment" id="cIM-Hx-SKX">
                         <connections>
                             <action selector="toggleComment:" target="-1" id="NOk-Gb-s42"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="41C8148D-0754-4566-894B-7622CA52F8E5" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Auto Tab Expand" toolTip="Toggle auto tab expand" tag="-1" image="AutoTabExpand_On" id="zry-bG-j2J">
+                    <toolbarItem implicitItemIdentifier="41C8148D-0754-4566-894B-7622CA52F8E5" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Auto Tab Expand" toolTip="Toggle auto tab expand" tag="13" image="AutoTabExpand_On" id="zry-bG-j2J">
                         <connections>
                             <action selector="toggleAutoTabExpand:" target="-1" id="FhV-mw-Thf"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="DBAEC99C-61AB-42BC-8316-2C57F9799F9E" explicitItemIdentifier="showNavigationBarItemID" label="Navigation Bar" paletteLabel="Show / Hide Navigation Bar" toolTip="Show or hide navigation bar of window" tag="-1" image="NaviBar_Show" id="KpZ-NH-xEh">
+                    <toolbarItem implicitItemIdentifier="DBAEC99C-61AB-42BC-8316-2C57F9799F9E" explicitItemIdentifier="showNavigationBarItemID" label="Navigation Bar" paletteLabel="Show / Hide Navigation Bar" toolTip="Show or hide navigation bar of window" tag="14" image="NaviBar_Show" id="KpZ-NH-xEh">
                         <connections>
                             <action selector="toggleNavigationBar:" target="-1" id="UsQ-17-wB6"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6ED57D08-75C6-4859-808D-2F7A1F7E0927" explicitItemIdentifier="showLineNumItemID" label="Line Number" paletteLabel="Show / Hide Line Number" toolTip="Show or hide line number of text" tag="-1" image="LineNumber_Show" id="kfX-UD-siE">
+                    <toolbarItem implicitItemIdentifier="6ED57D08-75C6-4859-808D-2F7A1F7E0927" explicitItemIdentifier="showLineNumItemID" label="Line Number" paletteLabel="Show / Hide Line Number" toolTip="Show or hide line number of text" tag="15" image="LineNumber_Show" id="kfX-UD-siE">
                         <connections>
                             <action selector="toggleLineNumber:" target="-1" id="c8k-WU-JRa"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="-1" image="StatusArea_Show" id="moq-h9-h7t">
+                    <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="16" image="StatusArea_Show" id="moq-h9-h7t">
                         <connections>
                             <action selector="toggleStatusBar:" target="-1" id="tS6-Q0-2LV"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="-1" image="InvisibleChar_Show" id="KtS-FH-3Py">
+                    <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChar_Show" id="KtS-FH-3Py">
                         <connections>
                             <action selector="toggleInvisibleChars:" target="-1" id="2l7-uU-Sgy"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="08C1E5C8-B3B4-4DDB-86FE-816BAB5DF962" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="-1" image="PageGuide_Show" id="PES-f4-CAc">
+                    <toolbarItem implicitItemIdentifier="08C1E5C8-B3B4-4DDB-86FE-816BAB5DF962" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_Show" id="PES-f4-CAc">
                         <connections>
                             <action selector="togglePageGuide:" target="-1" id="rBw-il-Jhr"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="-1" image="WrapLines_On" id="oJm-2d-4Yl">
+                    <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="19" image="WrapLines_On" id="oJm-2d-4Yl">
                         <connections>
                             <action selector="toggleLineWrap:" target="-1" id="K9r-do-Tyv"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="82F862DC-E426-431F-9876-D169C92CDC11" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="-1" image="VerticalOrientation_On" id="OJR-Lr-Joc">
+                    <toolbarItem implicitItemIdentifier="82F862DC-E426-431F-9876-D169C92CDC11" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="20" image="VerticalOrientation_On" id="OJR-Lr-Joc">
                         <connections>
                             <action selector="toggleLayoutOrientation:" target="-1" id="7Tf-cM-6rK"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="CFB65E98-C6E9-477E-9BC5-8826E0A730E6" explicitItemIdentifier="editColorCodeItemID" label="Color Code" paletteLabel="Edit Color Code" toolTip="Open Color Code Editor and set selection as color code" tag="-1" image="EditColorCode" id="77o-kx-gNj">
+                    <toolbarItem implicitItemIdentifier="CFB65E98-C6E9-477E-9BC5-8826E0A730E6" explicitItemIdentifier="editColorCodeItemID" label="Color Code" paletteLabel="Edit Color Code" toolTip="Open Color Code Editor and set selection as color code" tag="21" image="EditColorCode" id="77o-kx-gNj">
                         <connections>
                             <action selector="editColorCode:" target="-1" id="KTA-7D-1Fm"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E25FB2F6-4347-4578-AE54-5F31966F8977" explicitItemIdentifier="syntaxReColorAllItemID" label="Re-Color" paletteLabel="Re-Color All" toolTip="Do re-color whole document" tag="-1" image="RecolorAll" id="qhr-mN-25W">
+                    <toolbarItem implicitItemIdentifier="E25FB2F6-4347-4578-AE54-5F31966F8977" explicitItemIdentifier="syntaxReColorAllItemID" label="Re-Color" paletteLabel="Re-Color All" toolTip="Do re-color whole document" tag="22" image="RecolorAll" id="qhr-mN-25W">
                         <connections>
                             <action selector="recoloringAllStringOfDocument:" target="-1" id="c2G-mY-V9l"/>
                         </connections>

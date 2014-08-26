@@ -75,7 +75,7 @@ extern NSString *const CENewNameKey;
 // User Defaults Keys
 // ------------------------------------------------------
 
-// normal settings
+// general settings
 extern NSString *const CEDefaultLayoutTextVerticalKey;
 extern NSString *const CEDefaultSplitViewVerticalKey;
 extern NSString *const CEDefaultShowLineNumbersKey;
@@ -422,29 +422,6 @@ extern NSString *const k_helpPrefAnchors[];
 
 // Line Endings
 extern NSString *const k_lineEndingNames[];
-
-// Toolbar item identifier
-extern NSString *const CEToolbarDocWindowToolbarID;
-extern NSString *const CEToolbarGetInfoItemID;
-extern NSString *const CEToolbarShowIncompatibleCharItemID;
-extern NSString *const CEToolbarBiggerFontItemID;
-extern NSString *const CEToolbarSmallerFontItemID;
-extern NSString *const CEToolbarToggleCommentItemID;
-extern NSString *const CEToolbarShiftLeftItemID;
-extern NSString *const CEToolbarShiftRightItemID;
-extern NSString *const CEToolbarAutoTabExpandItemID;
-extern NSString *const CEToolbarShowNavigationBarItemID;
-extern NSString *const CEToolbarShowLineNumItemID;
-extern NSString *const CEToolbarShowStatusBarItemID;
-extern NSString *const CEToolbarShowInvisibleCharsItemID;
-extern NSString *const CEToolbarShowPageGuideItemID;
-extern NSString *const CEToolbarWrapLinesItemID;
-extern NSString *const CEToolbarTextOrientationItemID;
-extern NSString *const CEToolbarLineEndingsItemID;
-extern NSString *const CEToolbarFileEncodingsItemID;
-extern NSString *const CEToolbarSyntaxItemID;
-extern NSString *const CEToolbarSyntaxReColorAllItemID;
-extern NSString *const CEToolbarEditColorCodeItemID;
 
 
 

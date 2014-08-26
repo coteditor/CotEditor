@@ -514,8 +514,8 @@ static NSTimeInterval incompatibleCharInterval;
     if (![self statusBarController]) { return; }
     
     [[self statusBarController] setShowsStatusBar:showsStatusBar];
-    [[self toolbarController] toggleItemWithIdentifier:CEToolbarShowStatusBarItemID
-                                                 setOn:showsStatusBar];
+    [[self toolbarController] toggleItemWithTag:CEToolbarShowStatusBarItemTag
+                                          setOn:showsStatusBar];
     [self updateEncodingAndLineEndingsInfo:NO];
     
     if (![self infoUpdateTimer]) {
