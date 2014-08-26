@@ -33,6 +33,13 @@
 #import "constants.h"
 
 
+// outlineView data key, column identifier
+NSString *const CEKeyBindingTitleKey = @"title";
+NSString *const CEKeyBindingChildrenKey = @"children";
+NSString *const CEKeyBindingKeySpecCharsKey = @"keyBindingKey";
+NSString *const CEKeyBindingSelectorStringKey = @"selectorString";
+
+
 @interface CEKeyBindingSheetController () <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (nonatomic) CEKeyBindingType keyBindingsMode;
@@ -165,7 +172,7 @@
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 // ------------------------------------------------------
 {
-    NSArray *children = item ? item[k_children] : [self outlineDataArray];
+    NSArray *children = item ? item[CEKeyBindingChildrenKey] : [self outlineDataArray];
     
     return [children count];
 }
@@ -176,7 +183,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 // ------------------------------------------------------
 {
-    NSArray *children = item ? item[k_children] : [self outlineDataArray];
+    NSArray *children = item ? item[CEKeyBindingChildrenKey] : [self outlineDataArray];
     
     return (children);
 }
@@ -187,7 +194,7 @@
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 // ------------------------------------------------------
 {
-    NSArray *children = item ? item[k_children] : [self outlineDataArray];
+    NSArray *children = item ? item[CEKeyBindingChildrenKey] : [self outlineDataArray];
     
     return children[index];
 }
@@ -200,7 +207,7 @@
 {
     NSString *identifier = [tableColumn identifier];
     
-    if ([identifier isEqualToString:k_keyBindingKey]) {
+    if ([identifier isEqualToString:CEKeyBindingKeySpecCharsKey]) {
         return [CEKeyBindingManager printableKeyStringFromKeySpecChars:item[identifier]];
     }
     
@@ -215,7 +222,7 @@
 {
     NSString *identifier = [tableColumn identifier];
     
-    if (![identifier isEqualToString:k_keyBindingKey] || item[k_children]) {
+    if (![identifier isEqualToString:CEKeyBindingKeySpecCharsKey] || item[CEKeyBindingChildrenKey]) {
         return NO;
     }
     
@@ -286,7 +293,7 @@
     
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
     if ([self keyBindingsMode] == CETextKeyBindingsType) {
-        BOOL isEnabled = [item[k_selectorString] hasPrefix:@"insertCustomText"];
+        BOOL isEnabled = [item[CEKeyBindingSelectorStringKey] hasPrefix:@"insertCustomText"];
         NSUInteger index = [outlineView rowForItem:item];
         
         [[self textInsertStringArrayController] setSelectionIndex:index];
@@ -296,7 +303,7 @@
     }
     
     // 編集ボタンを有効化／無効化
-    [[self editKeyButton] setEnabled:(!item[k_children])];
+    [[self editKeyButton] setEnabled:(!item[CEKeyBindingChildrenKey])];
     
     return YES;
 }
@@ -513,11 +520,11 @@
     if (selectedRow == -1) { return; }
     
     id item = [[self outlineView] itemAtRow:selectedRow];
-    NSTableColumn *column = [[self outlineView] tableColumnWithIdentifier:k_keyBindingKey];
+    NSTableColumn *column = [[self outlineView] tableColumnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     
     if ([self outlineView:[self outlineView] shouldEditTableColumn:column item:item]) {
         [[self deleteKeyButton] setEnabled:YES];
-        [[self outlineView] editColumn:[[self outlineView] columnWithIdentifier:k_keyBindingKey]
+        [[self outlineView] editColumn:[[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey]
                                    row:selectedRow withEvent:nil select:YES];
     }
 }
@@ -558,12 +565,12 @@
     NSMutableArray *keySpecCharsList = [NSMutableArray array];
     
     for (NSDictionary *item in outlineArray) {
-        NSArray *children = item[k_children];
+        NSArray *children = item[CEKeyBindingChildrenKey];
         if (children) {
             NSArray *childList = [self keySpecCharsListFromOutlineData:children];
             [keySpecCharsList addObjectsFromArray:childList];
         }
-        NSString *keySpecChars = item[k_keyBindingKey];
+        NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
         if (([keySpecChars length] > 0) && ![keySpecCharsList containsObject:keySpecChars]) {
             [keySpecCharsList addObject:keySpecChars];
         }
@@ -578,13 +585,13 @@
 //------------------------------------------------------
 {
     for (NSMutableDictionary *item in outlineArray) {
-        NSMutableArray *children = item[k_children];
+        NSMutableArray *children = item[CEKeyBindingChildrenKey];
         if (children) {
             [self resetKeySpecCharsToFactoryDefaults:children];
         }
-        NSString *selectorStr = item[k_selectorString];
+        NSString *selectorStr = item[CEKeyBindingSelectorStringKey];
         NSString *keySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsInDefaultDictionaryFromSelectorString:selectorStr];
-        item[k_keyBindingKey] = keySpecChars;
+        item[CEKeyBindingKeySpecCharsKey] = keySpecChars;
     }
 }
 

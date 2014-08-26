@@ -197,9 +197,9 @@ static NSDictionary *kUnprintableKeyTable;
         }
         NSString *key = ([keys count] > 0) ? keys[0] : @"";
         
-        [textKeySpecCharArray addObject:[@{k_title: selector,
-                                           k_keyBindingKey: key,
-                                           k_selectorString: selector} mutableCopy]];
+        [textKeySpecCharArray addObject:[@{CEKeyBindingTitleKey: selector,
+                                           CEKeyBindingKeySpecCharsKey: key,
+                                           CEKeyBindingSelectorStringKey: selector} mutableCopy]];
     }
     return textKeySpecCharArray;
 }
@@ -222,8 +222,8 @@ static NSDictionary *kUnprintableKeyTable;
             ([item tag] != CEScriptMenuDirectoryTag))
         {
             NSMutableArray *subArray = [self mainMenuArrayForOutlineData:[item submenu]];
-            row = [@{k_title: [item title],
-                     k_children: subArray} mutableCopy];
+            row = [@{CEKeyBindingTitleKey: [item title],
+                     CEKeyBindingChildrenKey: subArray} mutableCopy];
             
         } else {
             NSString *selectorString = NSStringFromSelector([item action]);
@@ -246,9 +246,9 @@ static NSDictionary *kUnprintableKeyTable;
             } else {
                 keySpecChars = @"";
             }
-            row = [@{k_title: [item title],
-                     k_keyBindingKey: keySpecChars,
-                     k_selectorString: selectorString} mutableCopy];
+            row = [@{CEKeyBindingTitleKey: [item title],
+                     CEKeyBindingKeySpecCharsKey: keySpecChars,
+                     CEKeyBindingSelectorStringKey: selectorString} mutableCopy];
         }
         [outlineDataArray addObject:row];
     }
@@ -544,13 +544,13 @@ static NSDictionary *kUnprintableKeyTable;
     NSMutableDictionary *keyBindingDict = [NSMutableDictionary dictionary];
 
     for (id item in array) {
-        NSArray *children = item[k_children];
+        NSArray *children = item[CEKeyBindingChildrenKey];
         if (children) {
             NSDictionary *childDict = [self keyBindingDictionaryFromOutlineViewDataArray:children];
             [keyBindingDict addEntriesFromDictionary:childDict];
         }
-        NSString *keySpecChars = item[k_keyBindingKey];
-        NSString *selectorStr = item[k_selectorString];
+        NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
+        NSString *selectorStr = item[CEKeyBindingSelectorStringKey];
         if (([keySpecChars length] > 0) && ([selectorStr length] > 0)) {
             [keyBindingDict setValue:selectorStr forKey:keySpecChars];
         }

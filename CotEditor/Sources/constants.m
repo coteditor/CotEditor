@@ -373,20 +373,6 @@ NSString * const k_lineEndingNames[]=  {
 
 
 
-#pragma mark KeyBindingManager
-
-// ------------------------------------------------------
-// KeyBindingManager
-// ------------------------------------------------------
-
-// outlineView data key, column identifier
-NSString *const k_title = @"title";
-NSString *const k_children = @"children";
-NSString *const k_keyBindingKey = @"keyBindingKey";
-NSString *const k_selectorString = @"selectorString";
-
-
-
 #pragma mark Encodings
 
 // ------------------------------------------------------

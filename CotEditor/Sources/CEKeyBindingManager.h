@@ -31,6 +31,13 @@
 @import Cocoa;
 
 
+// outlineView data key, column identifier
+extern NSString *const CEKeyBindingTitleKey;
+extern NSString *const CEKeyBindingChildrenKey;
+extern NSString *const CEKeyBindingKeySpecCharsKey;
+extern NSString *const CEKeyBindingSelectorStringKey;
+
+
 @interface CEKeyBindingManager : NSObject
 
 // class method

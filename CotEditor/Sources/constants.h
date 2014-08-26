@@ -425,20 +425,6 @@ extern NSString *const k_lineEndingNames[];
 
 
 
-#pragma mark KeyBindingManager
-
-// ------------------------------------------------------
-// KeyBindingManager
-// ------------------------------------------------------
-
-// outlineView data key, column identifier
-extern NSString *const k_title;
-extern NSString *const k_children;
-extern NSString *const k_keyBindingKey;
-extern NSString *const k_selectorString;
-
-
-
 #pragma mark Encodings
 
 // ------------------------------------------------------
