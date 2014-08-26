@@ -403,24 +403,6 @@ extern CGFloat const k_noSeparatorPadding;
 
 
 
-#pragma mark CEWindowController
-
-// ------------------------------------------------------
-// CEWindowController
-// ------------------------------------------------------
-
-// Drawer identifier
-extern NSString *const k_infoIdentifier;
-extern NSString *const k_incompatibleIdentifier;
-
-// listController key
-extern NSString *const k_listLineNumber;
-extern NSString *const k_incompatibleRange;
-extern NSString *const k_incompatibleChar;
-extern NSString *const k_convertedChar;
-
-
-
 #pragma mark Preferences
 
 // ------------------------------------------------------
@@ -442,27 +424,27 @@ extern NSString *const k_helpPrefAnchors[];
 extern NSString *const k_lineEndingNames[];
 
 // Toolbar item identifier
-extern NSString *const k_docWindowToolbarID;
-extern NSString *const k_getInfoItemID;
-extern NSString *const k_showIncompatibleCharItemID;
-extern NSString *const k_biggerFontItemID;
-extern NSString *const k_smallerFontItemID;
-extern NSString *const k_toggleCommentItemID;
-extern NSString *const k_shiftLeftItemID;
-extern NSString *const k_shiftRightItemID;
-extern NSString *const k_autoTabExpandItemID;
-extern NSString *const k_showNavigationBarItemID;
-extern NSString *const k_showLineNumItemID;
-extern NSString *const k_showStatusBarItemID;
-extern NSString *const k_showInvisibleCharsItemID;
-extern NSString *const k_showPageGuideItemID;
-extern NSString *const k_wrapLinesItemID;
-extern NSString *const k_textOrientationItemID;
-extern NSString *const k_lineEndingsItemID;
-extern NSString *const k_fileEncodingsItemID;
-extern NSString *const k_syntaxItemID;
-extern NSString *const k_syntaxReColorAllItemID;
-extern NSString *const k_editColorCodeItemID;
+extern NSString *const CEToolbarDocWindowToolbarID;
+extern NSString *const CEToolbarGetInfoItemID;
+extern NSString *const CEToolbarShowIncompatibleCharItemID;
+extern NSString *const CEToolbarBiggerFontItemID;
+extern NSString *const CEToolbarSmallerFontItemID;
+extern NSString *const CEToolbarToggleCommentItemID;
+extern NSString *const CEToolbarShiftLeftItemID;
+extern NSString *const CEToolbarShiftRightItemID;
+extern NSString *const CEToolbarAutoTabExpandItemID;
+extern NSString *const CEToolbarShowNavigationBarItemID;
+extern NSString *const CEToolbarShowLineNumItemID;
+extern NSString *const CEToolbarShowStatusBarItemID;
+extern NSString *const CEToolbarShowInvisibleCharsItemID;
+extern NSString *const CEToolbarShowPageGuideItemID;
+extern NSString *const CEToolbarWrapLinesItemID;
+extern NSString *const CEToolbarTextOrientationItemID;
+extern NSString *const CEToolbarLineEndingsItemID;
+extern NSString *const CEToolbarFileEncodingsItemID;
+extern NSString *const CEToolbarSyntaxItemID;
+extern NSString *const CEToolbarSyntaxReColorAllItemID;
+extern NSString *const CEToolbarEditColorCodeItemID;
 
 
 

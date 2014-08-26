@@ -203,7 +203,7 @@
     NSString *identifier = [item itemIdentifier];
     CEEditorWrapper *editor = [[self windowController] editor];
     
-    if ([identifier isEqualToString:k_showInvisibleCharsItemID]) {
+    if ([identifier isEqualToString:CEToolbarShowInvisibleCharsItemID]) {
         [self toggleItem:item setOn:[editor showsInvisibles]];
         
         // ツールバーアイテムを有効化できなければボタンを無効状態に
@@ -215,22 +215,22 @@
             [item setToolTip:NSLocalizedString(@"To display invisible characters, set in Preferences and re-open the document.", nil)];
         }
         
-    } else if ([identifier isEqualToString:k_autoTabExpandItemID]) {
+    } else if ([identifier isEqualToString:CEToolbarAutoTabExpandItemID]) {
         [self toggleItem:item setOn:[[editor textView] isAutoTabExpandEnabled]];
         
-    } else if ([identifier isEqualToString:k_showNavigationBarItemID]) {
+    } else if ([identifier isEqualToString:CEToolbarShowNavigationBarItemID]) {
         [self toggleItem:item setOn:[editor showsNavigationBar]];
         
-    } else if ([identifier isEqualToString:k_showLineNumItemID]) {
+    } else if ([identifier isEqualToString:CEToolbarShowLineNumItemID]) {
         [self toggleItem:item setOn:[editor showsLineNum]];
         
-    } else if ([identifier isEqualToString:k_showStatusBarItemID]) {
+    } else if ([identifier isEqualToString:CEToolbarShowNavigationBarItemID]) {
         [self toggleItem:item setOn:[[self windowController] showsStatusBar]];
         
-    } else if ([identifier isEqualToString:k_showPageGuideItemID]) {
+    } else if ([identifier isEqualToString:CEToolbarShowPageGuideItemID]) {
         [self toggleItem:item setOn:[editor showsPageGuide]];
         
-    } else if ([identifier isEqualToString:k_wrapLinesItemID]) {
+    } else if ([identifier isEqualToString:CEToolbarWrapLinesItemID]) {
         [self toggleItem:item setOn:[editor wrapsLines]];
     }
 }
@@ -251,28 +251,28 @@
 {
     NSString *identifer = [item itemIdentifier];
     NSString *imageName;
-    if ([identifer isEqualToString:k_showNavigationBarItemID]) {
+    if ([identifer isEqualToString:CEToolbarShowNavigationBarItemID]) {
         imageName = setOn ? @"NaviBar_Show" : @"NaviBar_Hide";
         
-    } else if ([identifer isEqualToString:k_showLineNumItemID]) {
+    } else if ([identifer isEqualToString:CEToolbarShowLineNumItemID]) {
         imageName = setOn ? @"LineNumber_Show" : @"LineNumber_Hide";
         
-    } else if ([identifer isEqualToString:k_showStatusBarItemID]) {
+    } else if ([identifer isEqualToString:CEToolbarShowStatusBarItemID]) {
         imageName = setOn ? @"StatusArea_Show" : @"StatusArea_Hide";
         
-    } else if ([identifer isEqualToString:k_showInvisibleCharsItemID]) {
+    } else if ([identifer isEqualToString:CEToolbarShowInvisibleCharsItemID]) {
         imageName = setOn ? @"InvisibleChar_Show" : @"InvisibleChar_Hide";
         
-    } else if ([identifer isEqualToString:k_showPageGuideItemID]) {
+    } else if ([identifer isEqualToString:CEToolbarShowPageGuideItemID]) {
         imageName = setOn ? @"PageGuide_Show" : @"PageGuide_Hide";
         
-    } else if ([identifer isEqualToString:k_wrapLinesItemID]) {
+    } else if ([identifer isEqualToString:CEToolbarWrapLinesItemID]) {
         imageName = setOn ? @"WrapLines_On" : @"WrapLines_Off";
         
-    } else if ([identifer isEqualToString:k_textOrientationItemID]) {
+    } else if ([identifer isEqualToString:CEToolbarTextOrientationItemID]) {
         imageName = setOn ? @"VerticalOrientation_On" : @"VerticalOrientation_Off";
         
-    } else if ([identifer isEqualToString:k_autoTabExpandItemID]) {
+    } else if ([identifer isEqualToString:CEToolbarAutoTabExpandItemID]) {
         imageName = setOn ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
     }
     

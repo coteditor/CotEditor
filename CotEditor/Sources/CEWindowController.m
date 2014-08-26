@@ -36,6 +36,11 @@
 #import "constants.h"
 
 
+// Drawer identifier
+static NSString *const InfoIdentifier = @"info";
+static NSString *const IncompatibleIdentifier = @"incompatibleChar";
+
+
 @interface CEWindowController ()
 
 @property (nonatomic) NSUInteger tabViewSelectedIndex; // ドロワーのタブビューでのポップアップメニュー選択用バインディング変数(#削除不可)
@@ -216,7 +221,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:InfoIdentifier];
 
     return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
 }
@@ -228,7 +233,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:IncompatibleIdentifier];
 
     return (tabState && ((drawerState == NSDrawerOpenState) || (drawerState == NSDrawerOpeningState)));
 }
@@ -240,7 +245,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     [self updateIncompatibleCharList];
-    [[self tabView] selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
+    [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
     [[self drawer] open];
 }
 
@@ -509,7 +514,8 @@ static NSTimeInterval incompatibleCharInterval;
     if (![self statusBarController]) { return; }
     
     [[self statusBarController] setShowsStatusBar:showsStatusBar];
-    [[self toolbarController] toggleItemWithIdentifier:k_showStatusBarItemID setOn:showsStatusBar];
+    [[self toolbarController] toggleItemWithIdentifier:CEToolbarShowStatusBarItemID
+                                                 setOn:showsStatusBar];
     [self updateEncodingAndLineEndingsInfo:NO];
     
     if (![self infoUpdateTimer]) {
@@ -600,11 +606,11 @@ static NSTimeInterval incompatibleCharInterval;
 - (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
 // ------------------------------------------------------
 {
-    if ([[tabViewItem identifier] isEqualToString:k_infoIdentifier]) {
+    if ([[tabViewItem identifier] isEqualToString:InfoIdentifier]) {
         [self updateFileAttributesInfo];
         [self updateEditorStatusInfo:YES];
         [self updateEncodingAndLineEndingsInfo:YES];
-    } else if ([[tabViewItem identifier] isEqualToString:k_incompatibleIdentifier]) {
+    } else if ([[tabViewItem identifier] isEqualToString:IncompatibleIdentifier]) {
         [self updateIncompatibleCharList];
     }
 }
@@ -639,7 +645,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_infoIdentifier];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:InfoIdentifier];
 
     if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
         if (tabState) {
@@ -648,14 +654,14 @@ static NSTimeInterval incompatibleCharInterval;
             [self updateEditorStatusInfo:YES];
             [self updateEncodingAndLineEndingsInfo:YES];
         } else {
-            [[self tabView] selectTabViewItemWithIdentifier:k_infoIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:InfoIdentifier];
         }
         [[self drawer] open];
     } else {
         if (tabState) {
             [[self drawer] close];
         } else {
-            [[self tabView] selectTabViewItemWithIdentifier:k_infoIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:InfoIdentifier];
         }
     }
 }
@@ -667,20 +673,20 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     NSInteger drawerState = [[self drawer] state];
-    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:k_incompatibleIdentifier];
+    BOOL tabState = [[[[self tabView] selectedTabViewItem] identifier] isEqualToString:IncompatibleIdentifier];
 
     if ((drawerState == NSDrawerClosedState) || (drawerState == NSDrawerClosingState)) {
         if (tabState) {
             [self updateIncompatibleCharList];
         } else {
-            [[self tabView] selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
         }
         [[self drawer] open];
     } else {
         if (tabState) {
             [[self drawer] close];
         } else {
-            [[self tabView] selectTabViewItemWithIdentifier:k_incompatibleIdentifier];
+            [[self tabView] selectTabViewItemWithIdentifier:IncompatibleIdentifier];
         }
     }
 }
@@ -693,7 +699,7 @@ static NSTimeInterval incompatibleCharInterval;
 {
     if ([[[self listController] selectedObjects] count] == 0) { return; }
 
-    NSRange range = [[[self listController] selectedObjects][0][k_incompatibleRange] rangeValue];
+    NSRange range = [[[self listController] selectedObjects][0][CEIncompatibleRangeKey] rangeValue];
     
     [[self editor] setSelectedRange:range];
     [[self window] makeFirstResponder:[[self editor] textView]];
@@ -766,7 +772,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     NSMutableArray *ranges = [NSMutableArray array];
     for (NSDictionary *incompatible in contents) {
-        [ranges addObject:incompatible[k_incompatibleRange]];
+        [ranges addObject:incompatible[CEIncompatibleRangeKey]];
     }
     [[self editor] clearAllMarkup];
     [[self editor] markupRanges:ranges];

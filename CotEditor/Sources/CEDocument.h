@@ -39,6 +39,12 @@
 @class CEWindowController;
 
 
+// Incompatible chars listController key
+extern NSString *const CEIncompatibleLineNumberKey;
+extern NSString *const CEIncompatibleRangeKey;
+extern NSString *const CEIncompatibleCharKey;
+extern NSString *const CEIncompatibleConvertedCharKey;
+
 typedef NS_ENUM(NSUInteger, CEGoToType) {
     CEGoToLine,
     CEGoToCharacter

@@ -45,6 +45,12 @@
 // constants
 static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 
+// listController key
+NSString *const CEIncompatibleLineNumberKey = @"lineNumber";
+NSString *const CEIncompatibleRangeKey = @"incompatibleRange";
+NSString *const CEIncompatibleCharKey = @"incompatibleChar";
+NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
+
 
 @interface CEDocument ()
 
@@ -493,7 +499,7 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
 - (NSArray *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    NSMutableArray *uncompatibleChars = [NSMutableArray array];
+    NSMutableArray *incompatibleChars = [NSMutableArray array];
     NSString *currentString = [self stringForSave];
     NSUInteger currentLength = [currentString length];
     NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
@@ -531,13 +537,13 @@ static char const XATTR_ENCODING_KEY[] = "com.apple.TextEncoding";
             index = NSMaxRange([currentString lineRangeForRange:NSMakeRange(index, 0)]);
         }
         
-        [uncompatibleChars addObject:[@{k_listLineNumber: @(curLine),
-                                        k_incompatibleRange: [NSValue valueWithRange:charRange],
-                                        k_incompatibleChar: currentChar,
-                                        k_convertedChar: convertedChar} mutableCopy]];
+        [incompatibleChars addObject:[@{CEIncompatibleLineNumberKey: @(curLine),
+                                        CEIncompatibleRangeKey: [NSValue valueWithRange:charRange],
+                                        CEIncompatibleCharKey: currentChar,
+                                        CEIncompatibleConvertedCharKey: convertedChar} mutableCopy]];
     }
     
-    return uncompatibleChars;
+    return incompatibleChars;
 }
 
 

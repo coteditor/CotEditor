@@ -339,23 +339,6 @@ CGFloat const k_noSeparatorPadding = 18.0;
 
 
 
-#pragma mark CEWindowController
-
-// ------------------------------------------------------
-// CEWindowController
-// ------------------------------------------------------
-
-// Drawer identifier
-NSString *const k_infoIdentifier = @"info";
-NSString *const k_incompatibleIdentifier = @"incompatibleChar";
-// listController key
-NSString *const k_listLineNumber = @"lineNumber";
-NSString *const k_incompatibleRange = @"incompatibleRange";
-NSString *const k_incompatibleChar = @"incompatibleChar";
-NSString *const k_convertedChar = @"convertedChar";
-
-
-
 #pragma mark Preferences
 
 // ------------------------------------------------------
@@ -390,27 +373,27 @@ NSString * const k_lineEndingNames[]=  {
 };
 
 // Toolbar item identifier
-NSString *const k_docWindowToolbarID = @"docWindowToolbarID";
-NSString *const k_getInfoItemID = @"searchFieldItemID";
-NSString *const k_showIncompatibleCharItemID = @"showIncompatibleCharItemID";
-NSString *const k_biggerFontItemID = @"biggerFontItemID";
-NSString *const k_smallerFontItemID = @"smallerFontItemID";
-NSString *const k_toggleCommentItemID = @"toggleCommentItemID";
-NSString *const k_shiftLeftItemID = @"shiftLeftItemID";
-NSString *const k_shiftRightItemID = @"shiftRightItemID";
-NSString *const k_autoTabExpandItemID = @"autoTabExpandItemID";
-NSString *const k_showNavigationBarItemID = @"showNavigationBarItemID";
-NSString *const k_showLineNumItemID = @"showLineNumItemID";
-NSString *const k_showStatusBarItemID = @"showStatusAreaItemID";
-NSString *const k_showInvisibleCharsItemID = @"showInvisibleCharsItemID";
-NSString *const k_showPageGuideItemID = @"showPageGuideItemID";
-NSString *const k_wrapLinesItemID = @"wrapLinesItemID";
-NSString *const k_textOrientationItemID = @"textOrientationItemID";
-NSString *const k_lineEndingsItemID = @"lineEndingsItemID";
-NSString *const k_fileEncodingsItemID = @"fileEncodingsItemID";
-NSString *const k_syntaxItemID = @"syntaxColoringItemID";
-NSString *const k_syntaxReColorAllItemID = @"syntaxReColorAllItemID";
-NSString *const k_editColorCodeItemID = @"editColorCodeItemID";
+NSString *const CEToolbarDocWindowToolbarID = @"docWindowToolbarID";
+NSString *const CEToolbarGetInfoItemID = @"searchFieldItemID";
+NSString *const CEToolbarShowIncompatibleCharItemID = @"showIncompatibleCharItemID";
+NSString *const CEToolbarBiggerFontItemID = @"biggerFontItemID";
+NSString *const CEToolbarSmallerFontItemID = @"smallerFontItemID";
+NSString *const CEToolbarToggleCommentItemID = @"toggleCommentItemID";
+NSString *const CEToolbarShiftLeftItemID = @"shiftLeftItemID";
+NSString *const CEToolbarShiftRightItemID = @"shiftRightItemID";
+NSString *const CEToolbarAutoTabExpandItemID = @"autoTabExpandItemID";
+NSString *const CEToolbarShowNavigationBarItemID = @"showNavigationBarItemID";
+NSString *const CEToolbarShowLineNumItemID = @"showLineNumItemID";
+NSString *const CEToolbarShowStatusBarItemID = @"showStatusAreaItemID";
+NSString *const CEToolbarShowInvisibleCharsItemID = @"showInvisibleCharsItemID";
+NSString *const CEToolbarShowPageGuideItemID = @"showPageGuideItemID";
+NSString *const CEToolbarWrapLinesItemID = @"wrapLinesItemID";
+NSString *const CEToolbarTextOrientationItemID = @"textOrientationItemID";
+NSString *const CEToolbarLineEndingsItemID = @"lineEndingsItemID";
+NSString *const CEToolbarFileEncodingsItemID = @"fileEncodingsItemID";
+NSString *const CEToolbarSyntaxItemID = @"syntaxColoringItemID";
+NSString *const CEToolbarSyntaxReColorAllItemID = @"syntaxReColorAllItemID";
+NSString *const CEToolbarEditColorCodeItemID = @"editColorCodeItemID";
 
 
 
