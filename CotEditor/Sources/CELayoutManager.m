@@ -76,7 +76,7 @@ static BOOL usesTextFontForInvisibles;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        usesTextFontForInvisibles = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_usesTextFontForInvisibles];
+        usesTextFontForInvisibles = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultUsesTextFontForInvisiblesKey];
     });
 }
 
@@ -97,17 +97,17 @@ static BOOL usesTextFontForInvisibles;
     if (self = [super init]) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        _spaceChar = [CEUtils invisibleSpaceChar:[defaults integerForKey:k_key_invisibleSpace]];
-        _tabChar = [CEUtils invisibleTabChar:[defaults integerForKey:k_key_invisibleTab]];
-        _newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:k_key_invisibleNewLine]];
-        _fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:k_key_invisibleFullwidthSpace]];
+        _spaceChar = [CEUtils invisibleSpaceChar:[defaults integerForKey:CEDefaultInvisibleSpaceKey]];
+        _tabChar = [CEUtils invisibleTabChar:[defaults integerForKey:CEDefaultInvisibleTabKey]];
+        _newLineChar = [CEUtils invisibleNewLineChar:[defaults integerForKey:CEDefaultInvisibleNewLineKey]];
+        _fullwidthSpaceChar = [CEUtils invisibleFullwidthSpaceChar:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]];
 
         // （setShowsInvisibles: は CEEditorView から実行される。プリント時は CEPrintView から実行される）
-        _showsSpace = [defaults boolForKey:k_key_showInvisibleSpace];
-        _showsTab = [defaults boolForKey:k_key_showInvisibleTab];
-        _showsNewLine = [defaults boolForKey:k_key_showInvisibleNewLine];
-        _showsFullwidthSpace = [defaults boolForKey:k_key_showInvisibleFullwidthSpace];
-        _showsOtherInvisibles = [defaults boolForKey:k_key_showOtherInvisibleChars];
+        _showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
+        _showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
+        _showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
+        _showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
+        _showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
         
         [self setShowsControlCharacters:_showsOtherInvisibles];
         [self setTypesetter:[CEATSTypesetter sharedSystemTypesetter]];

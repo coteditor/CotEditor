@@ -93,8 +93,8 @@
 - (IBAction)showFonts:(id)sender
 //-------------------------------------------------------
 {
-    NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_printFontName]
-                                   size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_printFontSize]];
+    NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintFontNameKey]
+                                   size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPrintFontSizeKey]];
     
     [[[self view] window] makeFirstResponder:self];
     [[NSFontManager sharedFontManager] setSelectedFont:font isMultiple:NO];
@@ -112,8 +112,8 @@
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
     
-    [[NSUserDefaults standardUserDefaults] setObject:name forKey:k_key_printFontName];
-    [[NSUserDefaults standardUserDefaults] setFloat:size forKey:k_key_printFontSize];
+    [[NSUserDefaults standardUserDefaults] setObject:name forKey:CEDefaultPrintFontNameKey];
+    [[NSUserDefaults standardUserDefaults] setFloat:size forKey:CEDefaultPrintFontSizeKey];
     
     [self setFontFamilyNameAndSize];
 }
@@ -128,8 +128,8 @@
     NSUInteger index = [popup indexOfSelectedItem];
     
     NSString *theme = (index > 2) ? [popup titleOfSelectedItem] : nil;  // 白黒／書類と同じでは印刷用テーマを指定しない
-    [[NSUserDefaults standardUserDefaults] setObject:theme forKey:k_key_printTheme];
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:k_key_printColorIndex];
+    [[NSUserDefaults standardUserDefaults] setObject:theme forKey:CEDefaultPrintThemeKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:CEDefaultPrintColorIndexKey];
 }
 
 
@@ -141,8 +141,8 @@
 - (void)setFontFamilyNameAndSize
 //------------------------------------------------------
 {
-    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_printFontName];
-    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_printFontSize];
+    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintFontNameKey];
+    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPrintFontSizeKey];
     NSFont *font = [NSFont fontWithName:name size:size];
     NSString *localizedName = [font displayName];
     
@@ -155,8 +155,8 @@
 - (void)setupColorMenu
 //------------------------------------------------------
 {
-    NSUInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_printColorIndex];
-    NSString *themeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_printTheme];
+    NSUInteger index = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultPrintColorIndexKey];
+    NSString *themeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintThemeKey];
     NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
     
     [[self colorPopupButton] removeAllItems];

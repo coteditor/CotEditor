@@ -150,7 +150,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSString *styleName = [self filenameToStyleTable][fileName];
     
     styleName = styleName ? : [self extensionToStyleTable][[fileName pathExtension]];
-    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
+    styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
     
     return styleName;
 }

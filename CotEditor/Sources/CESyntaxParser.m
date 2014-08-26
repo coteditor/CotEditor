@@ -337,7 +337,7 @@ static CGFloat kPerCompoIncrement;
     end = MIN(NSMaxRange(effectiveRange), NSMaxRange(wholeRange));
     
     // 表示領域の前もある程度カラーリングの対象に含める
-    start -= MIN(start, [[NSUserDefaults standardUserDefaults] integerForKey:k_key_coloringRangeBufferLength]);
+    start -= MIN(start, [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey]);
     
     NSRange coloringRange = NSMakeRange(start, end - start);
     coloringRange = [wholeString lineRangeForRange:coloringRange];
@@ -357,7 +357,7 @@ static CGFloat kPerCompoIncrement;
     
     __block NSMutableArray *outlineMenuDicts = [NSMutableArray array];
     
-    NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_outlineMenuMaxLength];
+    NSUInteger menuTitleMaxLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultOutlineMenuMaxLengthKey];
     NSArray *definitions = [self coloringDictionary][CESyntaxOutlineMenuKey];
     
     for (NSDictionary *definition in definitions) {
@@ -966,8 +966,8 @@ static CGFloat kPerCompoIncrement;
     }
     
     // 規定の文字数以上の場合にはカラーリングインジケータシートを表示
-    // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
-    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
+    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
     if (![self isPrinting] && (indicatorThreshold > 0) && (coloringRange.length > indicatorThreshold)) {
         NSWindow *documentWindow = [[[self layoutManager] firstTextView] window];
         [self setIndicatorController:[[CEIndicatorSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)]];

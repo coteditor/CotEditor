@@ -68,8 +68,8 @@ static NSInteger const k_lastRow = -1;
 {
     id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
     NSDictionary *initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
-    NSMutableArray *encodings = [[values valueForKey:k_key_encodingList] mutableCopy];
-    BOOL shouldRevert = ![encodings isEqualToArray:initValues[k_key_encodingList]];
+    NSMutableArray *encodings = [[values valueForKey:CEDefaultEncodingListKey] mutableCopy];
+    BOOL shouldRevert = ![encodings isEqualToArray:initValues[CEDefaultEncodingListKey]];
 
     [self setEncodingsForTmp:encodings];
     [[self revertButton] setEnabled:shouldRevert]; // 出荷時に戻すボタンの有効化／無効化を制御
@@ -82,7 +82,7 @@ static NSInteger const k_lastRow = -1;
 - (void)writeEncodingsToUserDefaults
 // ------------------------------------------------------
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[self encodingsForTmp] forKey:k_key_encodingList];
+    [[NSUserDefaults standardUserDefaults] setObject:[self encodingsForTmp] forKey:CEDefaultEncodingListKey];
 }
 
 
@@ -249,7 +249,7 @@ static NSInteger const k_lastRow = -1;
 // ------------------------------------------------------
 {
     NSDictionary *initValues = [[NSUserDefaultsController sharedUserDefaultsController] initialValues];
-    NSMutableArray *encodings = [NSMutableArray arrayWithArray:initValues[k_key_encodingList]];
+    NSMutableArray *encodings = [NSMutableArray arrayWithArray:initValues[CEDefaultEncodingListKey]];
 
     [self setEncodingsForTmp:encodings];
     [[self tableView] reloadData];

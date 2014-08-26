@@ -85,30 +85,30 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         // （プリンタ専用フォント設定は含まない。プリンタ専用フォント設定変更は、プリンタダイアログでは実装しない 20060927）
-        [self setLineNumberMode:[defaults integerForKey:k_key_printLineNumIndex]];
-        [self setInvisibleCharsMode:[defaults integerForKey:k_key_printInvisibleCharIndex]];
-        [self setPrintsHeader:[defaults boolForKey:k_key_printHeader]];
-        [self setHeaderOneInfoType:[defaults integerForKey:k_key_headerOneStringIndex]];
-        [self setHeaderOneAlignmentType:[defaults integerForKey:k_key_headerOneAlignIndex]];
-        [self setHeaderTwoInfoType:[defaults integerForKey:k_key_headerTwoStringIndex]];
-        [self setHeaderTwoAlignmentType:[defaults integerForKey:k_key_headerTwoAlignIndex]];
-        [self setPrintsHeaderSeparator:[defaults boolForKey:k_key_printHeaderSeparator]];
-        [self setPrintsFooter:[defaults boolForKey:k_key_printFooter]];
-        [self setFooterOneInfoType:[defaults integerForKey:k_key_footerOneStringIndex]];
-        [self setFooterOneAlignmentType:[defaults integerForKey:k_key_footerOneAlignIndex]];
-        [self setFooterTwoInfoType:[defaults integerForKey:k_key_footerTwoStringIndex]];
-        [self setFooterTwoAlignmentType:[defaults integerForKey:k_key_footerTwoAlignIndex]];
-        [self setPrintsFooterSeparator:[defaults boolForKey:k_key_printFooterSeparator]];
+        [self setLineNumberMode:[defaults integerForKey:CEDefaultPrintLineNumIndexKey]];
+        [self setInvisibleCharsMode:[defaults integerForKey:CEDefaultPrintInvisibleCharIndexKey]];
+        [self setPrintsHeader:[defaults boolForKey:CEDefaultPrintHeaderKey]];
+        [self setHeaderOneInfoType:[defaults integerForKey:CEDefaultHeaderOneStringIndexKey]];
+        [self setHeaderOneAlignmentType:[defaults integerForKey:CEDefaultHeaderOneAlignIndexKey]];
+        [self setHeaderTwoInfoType:[defaults integerForKey:CEDefaultHeaderTwoStringIndexKey]];
+        [self setHeaderTwoAlignmentType:[defaults integerForKey:CEDefaultHeaderTwoAlignIndexKey]];
+        [self setPrintsHeaderSeparator:[defaults boolForKey:CEDefaultPrintHeaderSeparatorKey]];
+        [self setPrintsFooter:[defaults boolForKey:CEDefaultPrintFooterKey]];
+        [self setFooterOneInfoType:[defaults integerForKey:CEDefaultFooterOneStringIndexKey]];
+        [self setFooterOneAlignmentType:[defaults integerForKey:CEDefaultFooterOneAlignIndexKey]];
+        [self setFooterTwoInfoType:[defaults integerForKey:CEDefaultFooterTwoStringIndexKey]];
+        [self setFooterTwoAlignmentType:[defaults integerForKey:CEDefaultFooterTwoAlignIndexKey]];
+        [self setPrintsFooterSeparator:[defaults boolForKey:CEDefaultPrintFooterSeparatorKey]];
         
         // テーマを使用する場合はセットしておく
-        switch ([defaults integerForKey:k_key_printColorIndex]) {
+        switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
             case CEBlackColorPrint:
                 break;
             case CESameAsDocumentColorPrint:
-                [self setTheme:[defaults stringForKey:k_key_defaultTheme]];
+                [self setTheme:[defaults stringForKey:CEDefaultThemeKey]];
                 break;
             default:
-                [self setTheme:[defaults stringForKey:k_key_printTheme]];
+                [self setTheme:[defaults stringForKey:CEDefaultPrintThemeKey]];
         }
         
         // マージンに関わるキー値を監視する
@@ -302,7 +302,7 @@
     }
     // ヘッダと本文との距離をセパレータも勘案して決定する（フッタは本文との間が開くことが多いため、入れない）
     if (headerHeight > 0) {
-        headerHeight += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_headerFooterFontSize] - k_headerFooterLineHeight;
+        headerHeight += (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultHeaderFooterFontSizeKey] - k_headerFooterLineHeight;
         
         headerHeight += [self printsHeaderSeparator] ? k_separatorPadding : k_noSeparatorPadding;
     } else {

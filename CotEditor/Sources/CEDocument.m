@@ -116,8 +116,8 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (self) {
         [self setHasUndoManager:YES];
         
-        _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew];
-        _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_defaultLineEndCharCode];
+        _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
+        _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _writable = YES;
         
@@ -205,7 +205,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     NSData *data = [string dataUsingEncoding:[self encoding] allowLossyConversion:YES];
     
     // 必要であれば UTF-8 BOM 追加 (2008.12.13)
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_saveUTF8BOM] &&
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey] &&
         ([self encoding] == NSUTF8StringEncoding)) {
         const char utf8Bom[] = {0xef, 0xbb, 0xbf}; // UTF-8 BOM
         NSMutableData *mutableData = [NSMutableData dataWithBytes:utf8Bom length:3];
@@ -389,9 +389,9 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // プリントに使用するフォント
     NSFont *font;
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:k_key_setPrintFont] == 1) { // == プリンタ専用フォントで印字
-        font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_printFontName]
-                               size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_printFontSize]];
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultSetPrintFontKey] == 1) { // == プリンタ専用フォントで印字
+        font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintFontNameKey]
+                               size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPrintFontSizeKey]];
     } else {
         font = [[self editor] font];
     }
@@ -600,7 +600,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     if (!string && (encoding == k_autoDetectEncodingMenuTag)) {
-        NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList] copy];
+        NSArray *encodings = [[[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey] copy];
         
         for (NSNumber *encodingNumber in encodings) {
             encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntegerValue]);
@@ -1037,7 +1037,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([NSApp isActive]) {
         [self performSelectorOnMainThread:@selector(showUpdatedByExternalProcessAlert) withObject:nil waitUntilDone:NO];
         
-    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_notifyEditByAnother]) {
+    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
         [NSApp requestUserAttention:NSInformationalRequest];
     }
 }
@@ -1292,7 +1292,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)setSyntaxStyleWithFileName:(NSString *)fileName coloring:(BOOL)doColoring
 // ------------------------------------------------------
 {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_doColoring]) { return; }
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     
     NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:fileName];
     
@@ -1401,7 +1401,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
     NSStringEncoding encoding = NSProprietaryStringEncoding;
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_referToEncodingTag] || ([string length] < 9)) {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReferToEncodingTagKey] || ([string length] < 9)) {
         return encoding; // 参照しない設定になっているか、含まれている余地が無ければ中断
     }
     
@@ -1456,7 +1456,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
             // CFStringConvertEncodingToIANACharSetName() では kCFStringEncodingShiftJIS と
             // kCFStringEncodingShiftJIS_X0213 がそれぞれ「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせる
             // ための処理）
-            NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
+            NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
 
             for (NSNumber *encodingNumber in encodings) {
                 CFStringEncoding tmpCFEncoding = [encodingNumber unsignedLongValue];
@@ -1713,7 +1713,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     if ([self isWritable] || [self didAlertNotWritable]) { return; }
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_showAlertForNotWritable]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowAlertForNotWritableKey]) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
         [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];

@@ -81,9 +81,9 @@ static NSTimeInterval secondColoringDelay;
     dispatch_once(&onceToken, ^{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        basicColoringDelay = [defaults doubleForKey:k_key_basicColoringDelay];
-        firstColoringDelay = [defaults doubleForKey:k_key_firstColoringDelay];
-        secondColoringDelay = [defaults doubleForKey:k_key_secondColoringDelay];
+        basicColoringDelay = [defaults doubleForKey:CEDefaultBasicColoringDelayKey];
+        firstColoringDelay = [defaults doubleForKey:CEDefaultFirstColoringDelayKey];
+        secondColoringDelay = [defaults doubleForKey:CEDefaultSecondColoringDelayKey];
     });
 }
 
@@ -105,11 +105,11 @@ static NSTimeInterval secondColoringDelay;
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        _canActivateShowInvisibles = ([defaults boolForKey:k_key_showInvisibleSpace] ||
-                                      [defaults boolForKey:k_key_showInvisibleTab] ||
-                                      [defaults boolForKey:k_key_showInvisibleNewLine] ||
-                                      [defaults boolForKey:k_key_showInvisibleFullwidthSpace] ||
-                                      [defaults boolForKey:k_key_showOtherInvisibleChars]);
+        _canActivateShowInvisibles = ([defaults boolForKey:CEDefaultShowInvisibleSpaceKey] ||
+                                      [defaults boolForKey:CEDefaultShowInvisibleTabKey] ||
+                                      [defaults boolForKey:CEDefaultShowInvisibleNewLineKey] ||
+                                      [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey] ||
+                                      [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey]);
     }
     return self;
 }
@@ -546,7 +546,7 @@ static NSTimeInterval secondColoringDelay;
 {
     if ([[self syntaxParser] isNone]) { return; }
     
-    BOOL delay = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_delayColoring];
+    BOOL delay = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDelayColoringKey];
     
     if ([self coloringTimer]) {
         NSTimeInterval interval = delay ? secondColoringDelay : basicColoringDelay;
@@ -854,11 +854,11 @@ static NSTimeInterval secondColoringDelay;
     if (isInitial) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [self setShowsLineNum:[defaults boolForKey:k_key_showLineNumbers]];
-        [self setShowsNavigationBar:[defaults boolForKey:k_key_showNavigationBar]];
-        [self setWrapsLines:[defaults boolForKey:k_key_wrapLines]];
-        [self setVerticalLayoutOrientation:[defaults boolForKey:k_key_layoutTextVertical]];
-        [self setShowsPageGuide:[defaults boolForKey:k_key_showPageGuide]];
+        [self setShowsLineNum:[defaults boolForKey:CEDefaultShowLineNumbersKey]];
+        [self setShowsNavigationBar:[defaults boolForKey:CEDefaultShowNavigationBarKey]];
+        [self setWrapsLines:[defaults boolForKey:CEDefaultWrapLinesKey]];
+        [self setVerticalLayoutOrientation:[defaults boolForKey:CEDefaultLayoutTextVerticalKey]];
+        [self setShowsPageGuide:[defaults boolForKey:CEDefaultShowPageGuideKey]];
     } else {
         [self setShowsLineNum:[self showsLineNum]];
         [self setShowsNavigationBar:[self showsNavigationBar]];

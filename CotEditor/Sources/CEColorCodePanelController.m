@@ -115,7 +115,7 @@
     NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&codeType];
     
     if (color) {
-        [[NSUserDefaults standardUserDefaults] setInteger:codeType forKey:k_key_colorCodeType];
+        [[NSUserDefaults standardUserDefaults] setInteger:codeType forKey:CEDefaultColorCodeTypeKey];
         [(NSColorPanel *)[self window] setColor:color];
         return;
     }
@@ -209,7 +209,7 @@
 - (IBAction)updateCode:(id)sender
 // ------------------------------------------------------
 {
-    CEColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_colorCodeType];
+    CEColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
     NSString *code = [[[self color] colorUsingColorSpaceName:NSDeviceRGBColorSpace] colorCodeWithType:codeType];
     
     // 現在の Hex コードが大文字だったら大文字をキープ

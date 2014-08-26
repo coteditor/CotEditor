@@ -157,7 +157,7 @@ static const NSArray *invalidYenEncodings;
 + (NSStringEncoding)encodingFromName:(NSString *)encodingName
 // ------------------------------------------------------
 {
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_encodingList];
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
     NSStringEncoding encoding;
     BOOL isValid = NO;
     

@@ -80,7 +80,7 @@
     }
     
     // set as default
-    [[NSUserDefaults standardUserDefaults] setValue:@([self opacity]) forKey:k_key_windowAlpha];
+    [[NSUserDefaults standardUserDefaults] setValue:@([self opacity]) forKey:CEDefaultWindowAlphaKey];
 }
 
 

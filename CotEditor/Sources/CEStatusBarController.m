@@ -93,14 +93,14 @@ static const NSTimeInterval duration = 0.1;
     NSString *space = @"  ";
     NSNumberFormatter *formatter = [self decimalFormatter];
     
-    if ([defaults boolForKey:k_key_showStatusBarLines]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarLinesKey]) {
         [status appendFormat:NSLocalizedString(@"Lines: %@", nil), [formatter stringFromNumber:@([self linesInfo])]];
         
         if ([self selectedLinesInfo] > 0) {
             [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedLinesInfo])]];
         }
     }
-    if ([defaults boolForKey:k_key_showStatusBarChars]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
         if ([status length] > 0) { [status appendString:space]; }
         [status appendFormat:NSLocalizedString(@"Chars: %@", nil), [formatter stringFromNumber:@([self charsInfo])]];
         
@@ -108,7 +108,7 @@ static const NSTimeInterval duration = 0.1;
             [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedCharsInfo])]];
         }
     }
-    if ([defaults boolForKey:k_key_showStatusBarLength]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
         if ([status length] > 0) { [status appendString:space]; }
         [status appendFormat:NSLocalizedString(@"Length: %@", nil), [formatter stringFromNumber:@([self lengthInfo])]];
         
@@ -116,7 +116,7 @@ static const NSTimeInterval duration = 0.1;
             [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedLengthInfo])]];
         }
     }
-    if ([defaults boolForKey:k_key_showStatusBarWords]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
         if ([status length] > 0) { [status appendString:space]; }
         [status appendFormat:NSLocalizedString(@"Words: %@", nil), [formatter stringFromNumber:@([self wordsInfo])]];
         
@@ -124,15 +124,15 @@ static const NSTimeInterval duration = 0.1;
             [status appendFormat:@" (%@)", [formatter stringFromNumber:@([self selectedWordsInfo])]];
         }
     }
-    if ([defaults boolForKey:k_key_showStatusBarLocation]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
         if ([status length] > 0) { [status appendString:space]; }
         [status appendFormat:NSLocalizedString(@"Location: %@", nil), [formatter stringFromNumber:@([self locationInfo])]];
     }
-    if ([defaults boolForKey:k_key_showStatusBarLine]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
         if ([status length] > 0) { [status appendString:space]; }
         [status appendFormat:NSLocalizedString(@"Line: %@", nil), [formatter stringFromNumber:@([self lineInfo])]];
     }
-    if ([defaults boolForKey:k_key_showStatusBarColumn]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarColumnKey]) {
         if ([status length] > 0) { [status appendString:space]; }
         [status appendFormat:NSLocalizedString(@"Column: %@", nil), [formatter stringFromNumber:@([self columnInfo])]];
     }
@@ -149,13 +149,13 @@ static const NSTimeInterval duration = 0.1;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *status = [NSMutableArray array];
     
-    if ([defaults boolForKey:k_key_showStatusBarEncoding]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarEncodingKey]) {
         [status addObject:[self encodingInfo]];
     }
-    if ([defaults boolForKey:k_key_showStatusBarLineEndings]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarLineEndingsKey]) {
         [status addObject:[self lineEndingsInfo]];
     }
-    if ([defaults boolForKey:k_key_showStatusBarFileSize]) {
+    if ([defaults boolForKey:CEDefaultShowStatusBarFileSizeKey]) {
         [status addObject:([self fileSizeInfo] ?
                            [[self byteCountTransformer] transformedValue:@([self fileSizeInfo])] : @"-")];
     }

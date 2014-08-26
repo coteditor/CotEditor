@@ -92,10 +92,10 @@ const NSInteger kNoMenuItem = -1;
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        [self setTabWidth:[defaults integerForKey:k_key_tabWidth]];
+        [self setTabWidth:[defaults integerForKey:CEDefaultTabWidthKey]];
         
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_fontName]
-                                       size:(CGFloat)[defaults doubleForKey:k_key_fontSize]];
+        NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey]
+                                       size:(CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey]];
 
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         for (NSTextTab *textTabToBeRemoved in [paragraphStyle tabStops]) {
@@ -109,15 +109,15 @@ const NSInteger kNoMenuItem = -1;
 
         // テーマの設定
         _backgroundAlpha = 1.0;
-        [self setTheme:[CETheme themeWithName:[defaults stringForKey:k_key_defaultTheme]]];
+        [self setTheme:[CETheme themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set the values
-        [self setAutoTabExpandEnabled:[defaults boolForKey:k_key_autoExpandTab]];
-        [self setSmartInsertDeleteEnabled:[defaults boolForKey:k_key_smartInsertAndDelete]];
-        [self setContinuousSpellCheckingEnabled:[defaults boolForKey:k_key_checkSpellingAsType]];
+        [self setAutoTabExpandEnabled:[defaults boolForKey:CEDefaultAutoExpandTabKey]];
+        [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
+        [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-            [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
-            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:k_key_enableSmartQuotes]];
+            [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
+            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
         }
         [self setFont:font];
         [self setMinSize:frameRect.size];
@@ -130,13 +130,13 @@ const NSInteger kNoMenuItem = -1;
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
         [self setAcceptsGlyphInfo:YES];
-        [self setTextContainerInset:NSMakeSize((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
-                                               (CGFloat)([defaults doubleForKey:k_key_textContainerInsetHeightTop] +
-                                                         [defaults doubleForKey:k_key_textContainerInsetHeightBottom]) / 2)];
-        [self setLineSpacing:(CGFloat)[defaults doubleForKey:k_key_lineSpacing]];
+        [self setTextContainerInset:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
+                                               (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
+                                                         [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
+        [self setLineSpacing:(CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey]];
         [self setInsertionRect:NSZeroRect];
-        [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:k_key_textContainerInsetWidth],
-                                                      (CGFloat)[defaults doubleForKey:k_key_textContainerInsetHeightTop])];
+        [self setTextContainerOriginPoint:NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
+                                                      (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey])];
         [self setNeedsUpdateOutlineMenuItemSelection:YES];
         
         [self applyTypingAttributes];
@@ -173,16 +173,16 @@ const NSInteger kNoMenuItem = -1;
 {
     id newValue = change[NSKeyValueChangeNewKey];
     
-    if ([keyPath isEqualToString:k_key_autoExpandTab]) {
+    if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
         [self setAutoTabExpandEnabled:[newValue boolValue]];
         
-    } else if ([keyPath isEqualToString:k_key_smartInsertAndDelete]) {
+    } else if ([keyPath isEqualToString:CEDefaultSmartInsertAndDeleteKey]) {
         [self setSmartInsertDeleteEnabled:[newValue boolValue]];
         
-    } else if ([keyPath isEqualToString:k_key_checkSpellingAsType]) {
+    } else if ([keyPath isEqualToString:CEDefaultCheckSpellingAsTypeKey]) {
         [self setContinuousSpellCheckingEnabled:[newValue boolValue]];
         
-    } else if ([keyPath isEqualToString:k_key_enableSmartQuotes]) {
+    } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
             [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
             [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
@@ -234,7 +234,7 @@ const NSInteger kNoMenuItem = -1;
 - (void)insertText:(id)aString replacementRange:(NSRange)replacementRange
 // ------------------------------------------------------
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_swapYenAndBackSlashKey] && ([aString length] == 1)) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([aString length] == 1)) {
         NSEvent *event = [NSApp currentEvent];
         NSUInteger flags = [NSEvent modifierFlags];
         
@@ -253,8 +253,8 @@ const NSInteger kNoMenuItem = -1;
     [super insertText:aString replacementRange:replacementRange];
     
     // auto completion
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoComplete]) {
-        [self completeAfterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_autoCompletionDelay]];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoCompleteKey]) {
+        [self completeAfterDelay:[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutoCompletionDelayKey]];
     }
 }
 
@@ -291,7 +291,7 @@ const NSInteger kNoMenuItem = -1;
     BOOL shouldIncreaseIndentLevel = NO;
     BOOL shouldExpandBlock = NO;
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_autoIndent]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey]) {
         NSRange selectedRange = [self selectedRange];
         NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
         NSString *lineStr = [[self string] substringWithRange:
@@ -307,7 +307,7 @@ const NSInteger kNoMenuItem = -1;
         }
         
         // スマートインデント
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_enableSmartIndent]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
             unichar lastChar = NULL;
             unichar nextChar = NULL;
             if (selectedRange.location > 0) {
@@ -477,7 +477,7 @@ const NSInteger kNoMenuItem = -1;
             [outMenu removeItem:delItem];
         }
         
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_inlineContextualScriptMenu]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
             for (NSUInteger i = 0; i < 2; i++) { // セパレータをふたつ追加
                 [outMenu addItem:[NSMenuItem separatorItem]];
                 [[outMenu itemAtIndex:([outMenu numberOfItems] - 1)] setTag:CEScriptMenuItemTag];
@@ -607,7 +607,7 @@ const NSInteger kNoMenuItem = -1;
     
     // ページガイド描画
     if ([self showsPageGuide]) {
-        CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_pageGuideColumn];
+        CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPageGuideColumnKey];
         
         if ((column < k_minPageGuideColumn) || (column > k_maxPageGuideColumn)) {
             return;
@@ -677,7 +677,7 @@ const NSInteger kNoMenuItem = -1;
     
     NSRect convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //editorView
     if ((convertedRect.origin.y >= 0) &&
-        (convertedRect.origin.y < [[NSUserDefaults standardUserDefaults] doubleForKey:k_key_textContainerInsetHeightBottom]))
+        (convertedRect.origin.y < [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]))
     {
         [self scrollPoint:NSMakePoint(NSMinX(rect), NSMaxY(rect))];
     }
@@ -698,7 +698,7 @@ const NSInteger kNoMenuItem = -1;
         }
         
         // 縦書きのときは強制的に行番号ビューを非表示
-        BOOL showsLineNum = isVertical ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:k_key_showLineNumbers];
+        BOOL showsLineNum = isVertical ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowLineNumbersKey];
         [(CELineNumberView *)[self lineNumberView] setShown:showsLineNum];
     }
     
@@ -734,11 +734,11 @@ const NSInteger kNoMenuItem = -1;
 // ------------------------------------------------------
 {
     if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
+        NSArray *fileDropArray = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
         
         for (NSDictionary *item in fileDropArray) {
             NSArray *array = [[dragInfo draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-            NSArray *extensions = [item[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
+            NSArray *extensions = [item[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
             
             if ([self draggedItemsArray:array containsExtensionInExtensions:extensions]) {
                 NSString *string = [self string];
@@ -868,7 +868,7 @@ const NSInteger kNoMenuItem = -1;
         
         // ファイルがドロップされた
     } else if ([type isEqualToString:NSFilenamesPboardType]) {
-        NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
+        NSArray *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         NSURL *documentURL = [[[[self window] windowController] document] fileURL];
         
@@ -879,7 +879,7 @@ const NSInteger kNoMenuItem = -1;
             
             selectedRange = [self selectedRange];
             for (NSDictionary *definition in fileDropDefs) {
-                NSArray *extensions = [definition[k_key_fileDropExtensions] componentsSeparatedByString:@", "];
+                NSArray *extensions = [definition[CEFileDropExtensionsKey] componentsSeparatedByString:@", "];
                 pathExtension = [absoluteURL pathExtension];
                 pathExtensionLower = [pathExtension lowercaseString];
                 pathExtensionUpper = [pathExtension uppercaseString];
@@ -887,7 +887,7 @@ const NSInteger kNoMenuItem = -1;
                 if ([extensions containsObject:pathExtensionLower] ||
                     [extensions containsObject:pathExtensionUpper])
                 {
-                    stringToDrop = definition[k_key_fileDropFormatString];
+                    stringToDrop = definition[CEFileDropFormatStringKey];
                 }
             }
             if ([stringToDrop length] > 0) {
@@ -1226,7 +1226,7 @@ const NSInteger kNoMenuItem = -1;
 {
     if (patternNum < 0) { return; }
     
-    NSArray *texts = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_insertCustomTextArray];
+    NSArray *texts = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultInsertCustomTextArrayKey];
 
     if (patternNum < [texts count]) {
         NSString *string = texts[patternNum];
@@ -1245,8 +1245,8 @@ const NSInteger kNoMenuItem = -1;
 - (void)resetFont:(id)sender
 // ------------------------------------------------------
 {
-    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_fontName];
-    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_fontSize];
+    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
+    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
 
     [self setFont:[NSFont fontWithName:name size:size]];
     [self updateLineNumberAndAdjustScroll];
@@ -1556,7 +1556,7 @@ const NSInteger kNoMenuItem = -1;
     
     // determine comment out target
     NSRange targetRange;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_commentsAtLineHead]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCommentsAtLineHeadKey]) {
         targetRange = [[self string] lineRangeForRange:[self selectedRange]];
     } else {
         targetRange = [self selectedRange];
@@ -1568,7 +1568,7 @@ const NSInteger kNoMenuItem = -1;
     
     NSString *target = [[self string] substringWithRange:targetRange];
     NSString *beginDelimiter, *endDelimiter;
-    NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] ? @" " : @"";
+    NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAppendsCommentSpacerKey] ? @" " : @"";
     NSString *newString;
     NSRange selected;
     NSUInteger addedChars = 0;
@@ -1618,7 +1618,7 @@ const NSInteger kNoMenuItem = -1;
     
     // determine uncomment target
     NSRange targetRange;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_commentsAtLineHead]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCommentsAtLineHeadKey]) {
         targetRange = [[self string] lineRangeForRange:[self selectedRange]];
     } else {
         targetRange = [self selectedRange];
@@ -1630,7 +1630,7 @@ const NSInteger kNoMenuItem = -1;
     
     NSString *target = [[self string] substringWithRange:targetRange];
     NSString *beginDelimiter, *endDelimiter;
-    NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:k_key_appendsCommentSpacer] ? @" " : @"";
+    NSString *spacer = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAppendsCommentSpacerKey] ? @" " : @"";
     NSString *newString;
     NSUInteger removedChars = 0;
     
@@ -2028,10 +2028,10 @@ const NSInteger kNoMenuItem = -1;
 - (NSArray *)observedDefaultKeys
 // ------------------------------------------------------
 {
-    return @[k_key_autoExpandTab,
-             k_key_smartInsertAndDelete,
-             k_key_checkSpellingAsType,
-             k_key_enableSmartQuotes];
+    return @[CEDefaultAutoExpandTabKey,
+             CEDefaultSmartInsertAndDeleteKey,
+             CEDefaultCheckSpellingAsTypeKey,
+             CEDefaultEnableSmartQuotesKey];
 }
 
 
@@ -2161,7 +2161,7 @@ const NSInteger kNoMenuItem = -1;
     
     // determine comment out target
     NSRange targetRange;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_commentsAtLineHead]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultCommentsAtLineHeadKey]) {
         targetRange = [[self string] lineRangeForRange:[self selectedRange]];
     } else {
         targetRange = [self selectedRange];

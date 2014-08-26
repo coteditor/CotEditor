@@ -79,7 +79,7 @@
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        _highlightsCurrentLine = [defaults boolForKey:k_key_highlightCurrentLine];
+        _highlightsCurrentLine = [defaults boolForKey:CEDefaultHighlightCurrentLineKey];
 
         // LineNumberView 生成
         [self setLineNumberView:[[CELineNumberView alloc] initWithFrame:NSZeroRect]];
@@ -120,8 +120,8 @@
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [[self textStorage] addLayoutManager:layoutManager];
         [layoutManager setBackgroundLayoutEnabled:YES];
-        [layoutManager setUsesAntialias:[defaults boolForKey:k_key_shouldAntialias]];
-        [layoutManager setFixesLineHeight:[defaults boolForKey:k_key_fixLineHeight]];
+        [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
+        [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
 
         // NSTextContainer と CESyntaxParser を生成
         NSTextContainer *container = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
@@ -363,8 +363,8 @@
     [self stopUpdateOutlineMenuTimer];
     
     // 規定の文字数以上の場合にはインジケータを表示
-    // （ただし、k_key_showColoringIndicatorTextLength が「0」の時は表示しない）
-    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_showColoringIndicatorTextLength];
+    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
+    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
     if (indicatorThreshold > 0 && indicatorThreshold < [[self string] length]) {
         [[self navigationBar] showOutlineIndicator];
     }
@@ -516,7 +516,7 @@
 // ------------------------------------------------------
 {
     NSMutableOrderedSet *outWords = [NSMutableOrderedSet orderedSet];
-    NSUInteger addingMode = [[NSUserDefaults standardUserDefaults] integerForKey:k_key_completeAddStandardWords];
+    NSUInteger addingMode = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultCompletionWordsKey];
     NSString *partialWord = [[textView string] substringWithRange:charRange];
 
     //"ファイル中の語彙" を検索して outArray に入れる
@@ -603,7 +603,7 @@
 // Smultron  Copyright (c) 2004-2005 Peter Borg, All rights reserved.
 // Smultron is released under GNU General Public License, http://www.gnu.org/copyleft/gpl.html
 
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:k_key_highlightBraces]) { return; }
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightBracesKey]) { return; }
     
     NSString *string = [self string];
     NSInteger stringLength = [string length];
@@ -634,7 +634,7 @@
         braceChar = '[';
     } else if (theUnichar == '}') {
         braceChar = '{';
-    } else if ((theUnichar == '>') && [[NSUserDefaults standardUserDefaults] boolForKey:k_key_highlightLtGt]) {
+    } else if ((theUnichar == '>') && [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightLtGtKey]) {
         braceChar = '<';
     } else {
         return;
@@ -743,7 +743,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // 行番号更新
-    NSTimeInterval lineNumUpdateInterval = [defaults doubleForKey:k_key_lineNumUpdateInterval];
+    NSTimeInterval lineNumUpdateInterval = [defaults doubleForKey:CEDefaultLineNumUpdateIntervalKey];
     if ([self lineNumUpdateTimer]) {
         [[self lineNumUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:lineNumUpdateInterval]];
     } else {
@@ -764,7 +764,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     // アウトラインメニュー項目更新
-    NSTimeInterval outlineMenuInterval = [defaults doubleForKey:k_key_outlineMenuInterval];
+    NSTimeInterval outlineMenuInterval = [defaults doubleForKey:CEDefaultOutlineMenuIntervalKey];
     if ([self outlineMenuTimer]) {
         [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
     } else {

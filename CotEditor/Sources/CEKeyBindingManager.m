@@ -317,14 +317,14 @@ static NSDictionary *kUnprintableKeyTable;
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![texts isEqualToArray:[defaults arrayForKey:k_key_insertCustomTextArray]]) {
+    if (![texts isEqualToArray:[defaults arrayForKey:CEDefaultInsertCustomTextArrayKey]]) {
         NSMutableArray *defaultsArray = [NSMutableArray array];
         
         for (NSDictionary *dict in texts) {
-             NSString *insertText = dict[k_key_insertCustomText] ? : @"";
+             NSString *insertText = dict[CEDefaultInsertCustomTextKey] ? : @"";
             [defaultsArray addObject:insertText];
         }
-        [defaults setObject:defaultsArray forKey:k_key_insertCustomTextArray];
+        [defaults setObject:defaultsArray forKey:CEDefaultInsertCustomTextArrayKey];
     }
     
     return YES;

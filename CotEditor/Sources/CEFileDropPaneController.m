@@ -103,8 +103,8 @@
 {
     if (![[notification object] isKindOfClass:[NSTextField class]]) { return; }
     
-    NSString *extension = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropExtensions];
-    NSString *format = [[[self fileDropController] selection] valueForKeyPath:k_key_fileDropFormatString];
+    NSString *extension = [[[self fileDropController] selection] valueForKeyPath:CEFileDropExtensionsKey];
+    NSString *format = [[[self fileDropController] selection] valueForKeyPath:CEFileDropFormatStringKey];
     
     // 入力されていなければ行ごと削除
     if (!extension && !format) {
@@ -127,7 +127,7 @@
         NSString *newExtension = [newComponents componentsJoinedByString:@", "];
         // 有効な文字列が生成できたら、UserDefaults に書き戻し、直ちに反映させる
         if ([newExtension length] > 0) {
-            [[[self fileDropController] selection] setValue:newExtension forKey:k_key_fileDropExtensions];
+            [[[self fileDropController] selection] setValue:newExtension forKey:CEFileDropExtensionsKey];
         } else if (!format) {
             [[self fileDropController] remove:self];
         }
@@ -226,7 +226,7 @@
 - (void)writeBackFileDropArray
 // ------------------------------------------------------
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:k_key_fileDropArray];
+    [[NSUserDefaults standardUserDefaults] setObject:[[self fileDropController] content] forKey:CEDefaultFileDropArrayKey];
 }
 
 
@@ -239,7 +239,7 @@
     // 起動時に読み込み、変更完了／終了時に下記戻す処理を行う。
     // http://www.hmdt-web.net/bbs/bbs.cgi?bbsname=mkino&mode=res&no=203&oyano=203&line=0
     
-    NSArray *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:k_key_fileDropArray];
+    NSArray *settings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
     
     NSMutableArray *content = [NSMutableArray array];
     for (NSDictionary *dict in settings) {
@@ -259,7 +259,7 @@
     if (![self isDeletingFileDrop]) { return; }
     
     NSArray *selected = [[self fileDropController] selectedObjects];
-    NSString *extension = selected[0][k_key_fileDropExtensions];
+    NSString *extension = selected[0][CEFileDropExtensionsKey];
     if ([selected count] == 0) {
         return;
     } else if (!extension) {

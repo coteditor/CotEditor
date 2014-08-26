@@ -235,8 +235,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
                                                       toURL:[self URLForUserTheme:newThemeName] error:nil];
     
     if (success) {
-        if ([[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme] isEqualToString:themeName]) {
-            [[NSUserDefaults standardUserDefaults] setObject:newThemeName forKey:k_key_defaultTheme];
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey] isEqualToString:themeName]) {
+            [[NSUserDefaults standardUserDefaults] setObject:newThemeName forKey:CEDefaultThemeKey];
         }
         
         __weak typeof(self) weakSelf = self;
@@ -271,7 +271,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
             typeof(self) strongSelf = weakSelf;
             
             // 開いているウインドウのテーマをデフォルトに戻す
-            NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
+            NSString *defaultThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                                 object:strongSelf
@@ -582,8 +582,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         [self setArchivedThemes:themes];
         
         // デフォルトテーマが見当たらないときはリセットする
-        if (![[strongSelf themeNames] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]]) {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:k_key_defaultTheme];
+        if (![[strongSelf themeNames] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:CEDefaultThemeKey];
         }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -710,7 +710,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         NSString *themeName = NSLocalizedString(@"Customized Theme", nil);
         [self saveTheme:theme name:themeName completionHandler:nil];
         // カスタマイズされたテーマを選択
-        [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:k_key_defaultTheme];
+        [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:CEDefaultThemeKey];
     }
 }
 

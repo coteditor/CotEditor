@@ -135,7 +135,7 @@
 - (IBAction)setSelectAccessoryEncodingMenuToDefault:(id)sender
 // ------------------------------------------------------
 {
-    NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen];
+    NSStringEncoding defaultEncoding = (NSStringEncoding)[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey];
 
     [self setAccessorySelectedEncoding:defaultEncoding];
 }

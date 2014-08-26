@@ -53,7 +53,7 @@
 {
     [super loadView];
     
-    [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:k_key_splitViewVertical]];
+    [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSplitViewVerticalKey]];
     [self updateOpenSplitViewButtons];
 }
 

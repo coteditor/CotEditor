@@ -112,8 +112,8 @@ static NSTimeInterval incompatibleCharInterval;
     dispatch_once(&onceToken, ^{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        infoUpdateInterval = [defaults doubleForKey:k_key_infoUpdateInterval];
-        incompatibleCharInterval = [defaults doubleForKey:k_key_incompatibleCharInterval];
+        infoUpdateInterval = [defaults doubleForKey:CEDefaultInfoUpdateIntervalKey];
+        incompatibleCharInterval = [defaults doubleForKey:CEDefaultIncompatibleCharIntervalKey];
     });
 }
 
@@ -135,12 +135,12 @@ static NSTimeInterval incompatibleCharInterval;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:k_key_windowWidth],
-                             (CGFloat)[defaults doubleForKey:k_key_windowHeight]);
+    NSSize size = NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
+                             (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey]);
     [[self window] setContentSize:size];
     
     // 背景をセットアップ
-    [self setAlpha:(CGFloat)[defaults doubleForKey:k_key_windowAlpha]];
+    [self setAlpha:(CGFloat)[defaults doubleForKey:CEDefaultWindowAlphaKey]];
     [[self window] setBackgroundColor:[NSColor clearColor]]; // ウィンドウ背景色に透明色をセット
     
     // ドキュメントオブジェクトに CEEditorWrapper インスタンスをセット
@@ -151,7 +151,7 @@ static NSTimeInterval incompatibleCharInterval;
     [self updateFileAttributesInfo];
     
     // setup status bar
-    [[self statusBarController] setShowsStatusBar:[defaults boolForKey:k_key_showStatusBar]];
+    [[self statusBarController] setShowsStatusBar:[defaults boolForKey:CEDefaultShowStatusBarKey]];
     [[self statusBarController] setShowsReadOnly:![[self document] isWritable]];
     
     // テキストビューへフォーカスを移動
@@ -165,7 +165,7 @@ static NSTimeInterval incompatibleCharInterval;
     
     // observe opacity setting change
     [[NSUserDefaults standardUserDefaults] addObserver:self
-                                            forKeyPath:k_key_windowAlpha
+                                            forKeyPath:CEDefaultWindowAlphaKey
                                                options:NSKeyValueObservingOptionNew
                                                context:nil];
 }
@@ -177,7 +177,7 @@ static NSTimeInterval incompatibleCharInterval;
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:k_key_windowAlpha];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
     
     [self stopInfoUpdateTimer];
     [self stopIncompatibleCharTimer];
@@ -189,7 +189,7 @@ static NSTimeInterval incompatibleCharInterval;
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 // ------------------------------------------------------
 {
-    if ([keyPath isEqualToString:k_key_windowAlpha]) {
+    if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
         [self setAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
     }
 }
@@ -271,7 +271,7 @@ static NSTimeInterval incompatibleCharInterval;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) strongSelf = weakSelf;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        BOOL countLineEnding = [defaults boolForKey:k_key_countLineEndingAsChar];
+        BOOL countLineEnding = [defaults boolForKey:CEDefaultCountLineEndingAsCharKey];
         NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
         NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
         NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
@@ -296,7 +296,7 @@ static NSTimeInterval incompatibleCharInterval;
             }
             
             // 単語数カウント
-            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarWords]) {
+            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
                 NSSpellChecker *spellChecker = [NSSpellChecker sharedSpellChecker];
                 numberOfWords = [spellChecker countWordsInString:wholeString language:nil];
                 if (hasSelection) {
@@ -309,7 +309,7 @@ static NSTimeInterval incompatibleCharInterval;
             }
             
             // location カウント
-            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarLocation]) {
+            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
                 NSString *locString = [wholeString substringToIndex:selectedRange.location];
                 NSString *str = countLineEnding ? locString : [OGRegularExpression chomp:locString];
                 
@@ -317,7 +317,7 @@ static NSTimeInterval incompatibleCharInterval;
             }
             
             // 文字数カウント
-            if (updatesDrawer || [defaults boolForKey:k_key_showStatusBarChars]) {
+            if (updatesDrawer || [defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
                 NSString *str = countLineEnding ? wholeString : [OGRegularExpression chomp:wholeString];
                 numberOfChars = [str numberOfComposedCharacters];
                 if (hasSelection) {

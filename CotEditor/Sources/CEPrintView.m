@@ -81,8 +81,8 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         // ヘッダ／フッタの文字属性辞書生成、保持
-        CGFloat fontSize = (CGFloat)[defaults doubleForKey:k_key_headerFooterFontSize];
-        NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:k_key_headerFooterFontName] size:fontSize];
+        CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultHeaderFooterFontSizeKey];
+        NSFont *headerFooterFont = [NSFont fontWithName:[defaults stringForKey:CEDefaultHeaderFooterFontNameKey] size:fontSize];
         if (!headerFooterFont) {
             headerFooterFont = [NSFont systemFontOfSize:fontSize];
         }
@@ -90,7 +90,7 @@
                                NSForegroundColorAttributeName: [NSColor textColor]};
         
         // 日時のフォーマットを生成、保持
-        NSString *dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_headerFooterDateFormat];
+        NSString *dateFormat = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultHeaderFooterDateFormatKey];
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateFormat:dateFormat];
         
@@ -232,7 +232,7 @@
         // 行番号の文字属性辞書生成
         CGFloat masterFontSize = [[self font] pointSize];
         CGFloat fontSize = round(0.9 * masterFontSize);
-        NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_lineNumFontName] size:fontSize] ? :
+        NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey] size:fontSize] ? :
                        [NSFont userFixedPitchFontOfSize:fontSize];
         NSDictionary *attrs = @{NSFontAttributeName: font,
                                 NSForegroundColorAttributeName: [NSColor textColor]};
@@ -451,7 +451,7 @@
         case CEFilePathPrintInfo:
             if ([self filePath]) {
                 string = [self filePath];
-                if ([[NSUserDefaults standardUserDefaults] boolForKey:k_key_headerFooterPathAbbreviatingWithTilde]) {
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHeaderFooterPathAbbreviatingWithTildeKey]) {
                     string = [string stringByAbbreviatingWithTildeInPath];
                 }
             } else {

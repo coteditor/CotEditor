@@ -363,8 +363,8 @@
     
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
-    [[self encodingMenuInOpen] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInOpen]];
-    [[self encodingMenuInNew] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:k_key_encodingInNew]];
+    [[self encodingMenuInOpen] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey]];
+    [[self encodingMenuInNew] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey]];
 }
 
 
@@ -389,7 +389,7 @@
     // (デフォルトシンタックスカラーリングスタイル指定ポップアップメニューはバインディングを使っているが、
     // タグの選択がバインディングで行われた後にメニューが追加／削除されるため、結果的に選択がうまく動かない。
     // しかたないので、コードから選択している)
-    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultColoringStyleName];
+    NSString *selectedStyle = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
     selectedStyle = [styleNames containsObject:selectedStyle] ? selectedStyle : noneStyle;
     [[self syntaxStylesDefaultPopup] selectItemWithTitle:selectedStyle];
 }
@@ -415,7 +415,7 @@
 {
     if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
         [[NSUserDefaults standardUserDefaults] setObject:@(k_autoDetectEncodingMenuTag)
-                                                  forKey:k_key_encodingInOpen];
+                                                  forKey:CEDefaultEncodingInOpenKey];
         // ファイルを開くエンコーディングをセット
         // （オープンダイアログのエンコーディングポップアップメニューが、デフォルトエンコーディング値の格納場所を兼ねている）
         [[CEDocumentController sharedDocumentController] setSelectAccessoryEncodingMenuToDefault:self];

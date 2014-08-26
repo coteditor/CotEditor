@@ -85,7 +85,7 @@
     
     // デフォルトテーマを選択
     NSArray *themeNames = [[self themeNames] copy];
-    NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme]];
+    NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]];
     [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     [[self themeTableView] setAllowsEmptySelection:NO];
     
@@ -174,9 +174,9 @@
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeDict]) {
-            NSString *oldThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_defaultTheme];
+            NSString *oldThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey];
             
-            [[NSUserDefaults standardUserDefaults] setObject:[self selectedTheme] forKey:k_key_defaultTheme];
+            [[NSUserDefaults standardUserDefaults] setObject:[self selectedTheme] forKey:CEDefaultThemeKey];
             
             // 現在開いているウインドウのテーマも変更
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
@@ -238,8 +238,8 @@
 - (IBAction)showFonts:(id)sender
 //-------------------------------------------------------
 {
-    NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:k_key_fontName]
-                                   size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_fontSize]];
+    NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey]
+                                   size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey]];
     
     [[[self view] window] makeFirstResponder:self];
     [[NSFontManager sharedFontManager] setSelectedFont:font isMultiple:NO];
@@ -257,8 +257,8 @@
     NSString *name = [newFont fontName];
     CGFloat size = [newFont pointSize];
     
-    [[NSUserDefaults standardUserDefaults] setObject:name forKey:k_key_fontName];
-    [[NSUserDefaults standardUserDefaults] setFloat:size forKey:k_key_fontSize];
+    [[NSUserDefaults standardUserDefaults] setObject:name forKey:CEDefaultFontNameKey];
+    [[NSUserDefaults standardUserDefaults] setFloat:size forKey:CEDefaultFontSizeKey];
     [self setFontFamilyNameAndSize];
 }
 
@@ -410,8 +410,8 @@
 - (void)setFontFamilyNameAndSize
 //------------------------------------------------------
 {
-    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:k_key_fontName];
-    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:k_key_fontSize];
+    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
+    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
     NSFont *font = [NSFont fontWithName:name size:size];
     NSString *localizedName = [font displayName];
     

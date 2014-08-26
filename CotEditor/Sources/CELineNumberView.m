@@ -65,9 +65,9 @@
     self = [super initWithFrame:frameRect];
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:k_key_lineNumFontName] size:0] ? : [NSFont paletteFontOfSize:0];
+        NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultLineNumFontNameKey] size:0] ? : [NSFont paletteFontOfSize:0];
         _fontName = [font fontName];
-        _numberColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:k_key_lineNumFontColor]];
+        _numberColor = [NSUnarchiver unarchiveObjectWithData:[defaults dataForKey:CEDefaultLineNumFontColorKey]];
         _backgroundAlpha = 1.0;
         
         // set thickness constraint

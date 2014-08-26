@@ -127,15 +127,15 @@
             
         case CETextKeyBindingsType:
         {
-            NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:k_key_insertCustomTextArray];
-            NSArray *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
+            NSArray *insertTextArray = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
+            NSArray *factoryDefault = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
             NSMutableArray *content = [NSMutableArray array];
             
             [[self factoryDefaultsButton] setEnabled:(![[self outlineDataArray] isEqualToArray:[self usedKeySpecCharsList]] ||
                                                       ![factoryDefault isEqualToArray:insertTextArray])];
             [[self outlineView] reloadData];
             for (NSString *object in insertTextArray) {
-                [content addObject:[@{k_key_insertCustomText: object} mutableCopy]];
+                [content addObject:[@{CEDefaultInsertCustomTextKey: object} mutableCopy]];
             }
             [[self textInsertStringArrayController] setContent:content];
             [[self textInsertStringArrayController] setSelectionIndex:NSNotFound]; // 選択なし
@@ -348,10 +348,10 @@
         case CETextKeyBindingsType:
         {
             NSMutableArray *contents = [NSMutableArray array];
-            NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][k_key_insertCustomTextArray];
+            NSArray *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
             
             for (id object in defaultInsertTexts) {
-                [contents addObject:[@{k_key_insertCustomText: object} mutableCopy]];
+                [contents addObject:[@{CEDefaultInsertCustomTextKey: object} mutableCopy]];
             }
             [self setOutlineDataArray:[[CEKeyBindingManager sharedManager] textKeySpecCharArrayForOutlineDataWithFactoryDefaults:YES]];
             [self setUsedKeySpecCharsList:[[self outlineDataArray] mutableCopy]];
