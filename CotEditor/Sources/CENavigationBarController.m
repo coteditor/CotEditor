@@ -97,17 +97,15 @@ static const NSTimeInterval duration = 0.1;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar
 // ------------------------------------------------------
 {
-    if (showsNavigationBar != [self showsNavigationBar]) {
-        _showsNavigationBar = showsNavigationBar;
-        
-        CGFloat height = [self showsNavigationBar] ? defaultHeight : 0.0;
-        
-        // resize with animation
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-            [context setDuration:duration];
-            [[[self heightConstraint] animator] setConstant:height];
-        } completionHandler:nil];
-    }
+    _showsNavigationBar = showsNavigationBar;
+    
+    CGFloat height = [self showsNavigationBar] ? defaultHeight : 0.0;
+    
+    // resize with animation
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [context setDuration:duration];
+        [[[self heightConstraint] animator] setConstant:height];
+    } completionHandler:nil];
 }
 
 
