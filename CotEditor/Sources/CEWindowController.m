@@ -305,7 +305,8 @@ static NSTimeInterval incompatibleCharInterval;
                 }
             }
             if (hasSelection) {
-                numberOfSelectedLines = [[selectedString componentsSeparatedByString:@"\n"] count];
+                numberOfSelectedLines = [[[selectedString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]
+                                          componentsSeparatedByString:@"\n"] count];
             }
             
             // location カウント
