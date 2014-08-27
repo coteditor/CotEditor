@@ -181,7 +181,7 @@
 		25859DB2076D65310020F779 /* CEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAppDelegate.h; sourceTree = "<group>"; };
 		25859DEB076D75BC0020F779 /* CEWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowController.h; sourceTree = "<group>"; };
 		25859DEC076D75BC0020F779 /* CEWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWindowController.m; sourceTree = "<group>"; };
-		25859E90076D88ED0020F779 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constants.h; path = CotEditor/Sources/constants.h; sourceTree = SOURCE_ROOT; };
+		25859E90076D88ED0020F779 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constants.h; path = Sources/constants.h; sourceTree = SOURCE_ROOT; };
 		25859EA6076D8EE80020F779 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		25859EBE076D92D60020F779 /* CEPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPreferencesWindowController.h; sourceTree = "<group>"; };
 		25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPreferencesWindowController.m; sourceTree = "<group>"; };
@@ -359,9 +359,8 @@
 		2AFFB72018D7FC6000118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/GoToSheet.xib; sourceTree = "<group>"; };
 		2AFFB72918D8C7DE00118477 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
 		2AFFB72B18D8CB7D00118477 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
-		2AFFB72C18D8DB6A00118477 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = changelog.md; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* CotEditor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CotEditor_Prefix.pch; sourceTree = "<group>"; };
-		69AF2D41A3644DBC83DBA617 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		69AF2D41A3644DBC83DBA617 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6C1E212112C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = ja; path = ja.lproj/Indicator.xib; sourceTree = "<group>"; };
 		6C1E212212C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -664,7 +663,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
 			isa = PBXGroup;
 			children = (
-				2AFFB72C18D8DB6A00118477 /* changelog.md */,
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
 				8C7F74E8091C7344005C7598 /* Imported Sources */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
@@ -693,8 +691,7 @@
 				25859E90076D88ED0020F779 /* constants.h */,
 				2A149DD619033CBB00A9D6EF /* constants.m */,
 			);
-			name = Sources;
-			path = CotEditor/Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
@@ -704,7 +701,6 @@
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
-			path = CotEditor;
 			sourceTree = "<group>";
 		};
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
@@ -730,7 +726,6 @@
 				6CA3B36012E3B59B0019AB2E /* SampleScript */,
 			);
 			name = Resources;
-			path = CotEditor;
 			sourceTree = "<group>";
 		};
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
@@ -858,7 +853,7 @@
 				8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */,
 			);
 			name = "Imported Sources";
-			path = CotEditor/ImportedSources;
+			path = ImportedSources;
 			sourceTree = "<group>";
 		};
 		8CB0122007CA0CCD00221EDC /* Toolbar Icons */ = {
@@ -942,10 +937,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
 				en,
 				ja,
 			);
@@ -1079,7 +1070,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1178,7 +1169,6 @@
 				2A149DCA1902BEE800A9D6EF /* ja */,
 			);
 			name = PreferencesWindow.xib;
-			path = CotEditor;
 			sourceTree = SOURCE_ROOT;
 		};
 		2588E9CC07C4851C0060021D /* Indicator.xib */ = {
@@ -1501,11 +1491,11 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CotEditor/CotEditor_Prefix.pch;
+				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				INFOPLIST_FILE = CotEditor/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CotEditor;
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
@@ -1526,10 +1516,10 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CotEditor/CotEditor_Prefix.pch;
+				GCC_PREFIX_HEADER = CotEditor_Prefix.pch;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				INFOPLIST_FILE = CotEditor/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CotEditor;
 				SDKROOT = macosx;
 				VALID_ARCHS = "i386 x86_64";
