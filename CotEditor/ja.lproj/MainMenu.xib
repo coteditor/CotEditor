@@ -776,7 +776,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="スクリプト" image="scriptMenuTemplate" tag="800" id="617">
+                <menuItem title="スクリプト" image="ScriptMenuTemplate" tag="800" id="617">
                     <menu key="submenu" title="スクリプト" id="616">
                         <items>
                             <menuItem title="項目" id="618"/>
@@ -862,6 +862,6 @@
         <customObject id="836" customClass="SUUpdater"/>
     </objects>
     <resources>
-        <image name="scriptMenuTemplate" width="22" height="22"/>
+        <image name="ScriptMenuTemplate" width="22" height="22"/>
     </resources>
 </document>

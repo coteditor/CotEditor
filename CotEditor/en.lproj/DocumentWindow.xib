@@ -51,7 +51,7 @@
                         <subviews>
                             <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="lockedTemplate" id="2Vs-vL-w3p"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LockedTemplate" id="2Vs-vL-w3p"/>
                                 <connections>
                                     <binding destination="ZaC-Gi-qyq" name="hidden" keyPath="showsReadOnly" id="1zI-EA-6Kx">
                                         <dictionary key="options">
@@ -175,34 +175,34 @@
                             </popUpButtonCell>
                         </popUpButton>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="get Info" toolTip="Show document information" tag="4" image="getInfo" id="ogy-SR-Vqr">
+                    <toolbarItem implicitItemIdentifier="E6ABFF49-AA91-4122-802F-15AF6503F110" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="get Info" toolTip="Show document information" tag="4" image="GetInfo" id="ogy-SR-Vqr">
                         <connections>
                             <action selector="getInfo:" target="-1" id="xp5-7V-kLd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="F23A039F-1579-4832-B183-00159B59C4E0" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="5" image="IncompatibleChar" id="LV0-t3-0jM">
+                    <toolbarItem implicitItemIdentifier="F23A039F-1579-4832-B183-00159B59C4E0" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible chars for selected encoding" tag="5" image="IncompatibleChars" id="LV0-t3-0jM">
                         <connections>
                             <action selector="toggleIncompatibleCharList:" target="-1" id="kT9-cS-eHR"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="hDK-Ke-NcU"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="ozh-KV-skX"/>
-                    <toolbarItem implicitItemIdentifier="A7DA403B-9AC8-4DF1-B5AB-6426322C67D5" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="8" image="biggerFont" id="Ptr-aN-aSD">
+                    <toolbarItem implicitItemIdentifier="A7DA403B-9AC8-4DF1-B5AB-6426322C67D5" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="8" image="BiggerFont" id="Ptr-aN-aSD">
                         <connections>
                             <action selector="modifyFont:" target="M21-bo-PEe" id="LYq-SM-GGd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="25E3B962-091E-4686-8218-7494D6E82F33" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="9" image="smallerFont" id="5nt-ud-Ewr">
+                    <toolbarItem implicitItemIdentifier="25E3B962-091E-4686-8218-7494D6E82F33" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="9" image="SmallerFont" id="5nt-ud-Ewr">
                         <connections>
                             <action selector="modifyFont:" target="M21-bo-PEe" id="GU4-F5-6zt"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="FE7DD66B-21BE-4D6E-9916-1CC7AEC28433" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="10" image="Shift_Left" id="77g-Yu-UgC">
+                    <toolbarItem implicitItemIdentifier="FE7DD66B-21BE-4D6E-9916-1CC7AEC28433" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="10" image="ShiftLeft" id="77g-Yu-UgC">
                         <connections>
                             <action selector="shiftLeft:" target="-1" id="w1U-dF-3F9"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6E6B30D5-892F-4072-A2D2-3759E0AAF4A3" explicitItemIdentifier="shiftRightItemID" label="Shift Right" paletteLabel="Shift Right" toolTip="Shift lines to right" tag="11" image="Shift_Right" id="fa9-a4-ZUv">
+                    <toolbarItem implicitItemIdentifier="6E6B30D5-892F-4072-A2D2-3759E0AAF4A3" explicitItemIdentifier="shiftRightItemID" label="Shift Right" paletteLabel="Shift Right" toolTip="Shift lines to right" tag="11" image="ShiftRight" id="fa9-a4-ZUv">
                         <connections>
                             <action selector="shiftRight:" target="-1" id="hhI-4y-I9e"/>
                         </connections>
@@ -227,12 +227,12 @@
                             <action selector="toggleLineNumber:" target="-1" id="c8k-WU-JRa"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="16" image="StatusArea_Show" id="moq-h9-h7t">
+                    <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="16" image="StatusBar_Show" id="moq-h9-h7t">
                         <connections>
                             <action selector="toggleStatusBar:" target="-1" id="tS6-Q0-2LV"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChar_Show" id="KtS-FH-3Py">
+                    <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_Show" id="KtS-FH-3Py">
                         <connections>
                             <action selector="toggleInvisibleChars:" target="-1" id="2l7-uU-Sgy"/>
                         </connections>
@@ -1126,22 +1126,22 @@
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="24" height="24"/>
+        <image name="BiggerFont" width="64" height="64"/>
         <image name="Comment" width="64" height="64"/>
         <image name="EditColorCode" width="24" height="24"/>
-        <image name="IncompatibleChar" width="64" height="64"/>
-        <image name="InvisibleChar_Show" width="64" height="64"/>
+        <image name="GetInfo" width="64" height="64"/>
+        <image name="IncompatibleChars" width="64" height="64"/>
+        <image name="InvisibleChars_Show" width="64" height="64"/>
         <image name="LineNumber_Show" width="64" height="64"/>
+        <image name="LockedTemplate" width="16" height="16"/>
         <image name="NaviBar_Show" width="64" height="64"/>
         <image name="PageGuide_Show" width="64" height="64"/>
         <image name="RecolorAll" width="64" height="64"/>
-        <image name="Shift_Left" width="64" height="64"/>
-        <image name="Shift_Right" width="64" height="64"/>
-        <image name="StatusArea_Show" width="64" height="64"/>
+        <image name="ShiftLeft" width="64" height="64"/>
+        <image name="ShiftRight" width="64" height="64"/>
+        <image name="SmallerFont" width="64" height="64"/>
+        <image name="StatusBar_Show" width="64" height="64"/>
         <image name="VerticalOrientation_On" width="64" height="64"/>
         <image name="WrapLines_On" width="64" height="64"/>
-        <image name="biggerFont" width="64" height="64"/>
-        <image name="getInfo" width="64" height="64"/>
-        <image name="lockedTemplate" width="16" height="16"/>
-        <image name="smallerFont" width="64" height="64"/>
     </resources>
 </document>

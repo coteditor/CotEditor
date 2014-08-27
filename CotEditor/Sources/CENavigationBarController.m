@@ -266,7 +266,7 @@ static const NSTimeInterval duration = 0.1;
 - (void)setSplitOrientationVertical:(BOOL)isVertical
 // ------------------------------------------------------
 {
-    NSString *imageName = isVertical ? @"openSplitVerticalTemplate" : @"openSplitTemplate";
+    NSString *imageName = isVertical ? @"OpenSplitVerticalTemplate" : @"OpenSplitTemplate";
     
     [[self openSplitButton] setImage:[NSImage imageNamed:imageName]];
 }

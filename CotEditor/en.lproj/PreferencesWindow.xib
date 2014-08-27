@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPreferencesWindowController">
@@ -67,7 +67,7 @@
                             <action selector="switchView:" target="-2" id="3iJ-c9-Bvn"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="5FF81652-3417-4CD5-AC30-716BC2CFBD31" label="Key Bindings" paletteLabel="Key Bindings" tag="6" image="Pref_KeyBinding" selectable="YES" id="WSf-8J-dN6">
+                    <toolbarItem implicitItemIdentifier="5FF81652-3417-4CD5-AC30-716BC2CFBD31" label="Key Bindings" paletteLabel="Key Bindings" tag="6" image="Pref_KeyBindings" selectable="YES" id="WSf-8J-dN6">
                         <connections>
                             <action selector="switchView:" target="-2" id="W10-H6-x0x"/>
                         </connections>
@@ -101,7 +101,7 @@
         <image name="Pref_FileDrop" width="64" height="64"/>
         <image name="Pref_Format" width="64" height="64"/>
         <image name="Pref_General" width="64" height="64"/>
-        <image name="Pref_KeyBinding" width="64" height="64"/>
+        <image name="Pref_KeyBindings" width="64" height="64"/>
         <image name="Pref_Print" width="64" height="64"/>
         <image name="Pref_Window" width="64" height="64"/>
     </resources>

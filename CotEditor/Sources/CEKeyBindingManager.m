@@ -142,7 +142,9 @@ static NSDictionary *kUnprintableKeyTable;
 - (void)setupAtLaunching
 // ------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings" withExtension:@"plist"];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings"
+                                         withExtension:@"plist"
+                                          subdirectory:@"KeyBindings"];
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         [self setDefaultMenuKeyBindingDict:[NSDictionary dictionaryWithContentsOfURL:URL]];
@@ -418,7 +420,9 @@ static NSDictionary *kUnprintableKeyTable;
     NSURL *fileURL = [self textKeyBindingSettingFileURL];
     
     if ([self prepareUserSettingDicrectory]) {
-        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings" withExtension:@"plist"];
+        NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings"
+                                                   withExtension:@"plist"
+                                                    subdirectory:@"KeyBindings"];
         
         if ([sourceURL checkResourceIsReachableAndReturnError:nil] &&
             ![fileURL checkResourceIsReachableAndReturnError:nil])

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEScriptErrorPanelController">
@@ -64,7 +64,7 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="1C6AD1A5-EDE4-4B1D-A2C5-5EC0547B5D5A" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="fb4-be-4LF">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="AA498B98-0409-47B4-B333-650F18910743" label="Clean Log" paletteLabel="Clean Log" toolTip="Clean error log" tag="-1" image="Script_CleanButton" id="9N6-p4-mW2">
+                    <toolbarItem implicitItemIdentifier="AA498B98-0409-47B4-B333-650F18910743" label="Clean Log" paletteLabel="Clean Log" toolTip="Clean error log" tag="-1" image="Script_Clean" id="9N6-p4-mW2">
                         <connections>
                             <action selector="cleanScriptError:" target="-2" id="FQi-Ie-NhW"/>
                         </connections>
@@ -87,6 +87,6 @@
         </textFinder>
     </objects>
     <resources>
-        <image name="Script_CleanButton" width="32" height="32"/>
+        <image name="Script_Clean" width="32" height="32"/>
     </resources>
 </document>

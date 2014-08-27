@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -27,7 +26,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="YCW-yn-jru"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Previous Outline Item" bezelStyle="smallSquare" image="upTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
+                    <buttonCell key="cell" type="smallSquare" title="Previous Outline Item" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w3h-Kh-7X8">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -40,7 +39,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="1PN-qX-wNW"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Next Outline Item" bezelStyle="smallSquare" image="downTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
+                    <buttonCell key="cell" type="smallSquare" title="Next Outline Item" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptY-uK-2h3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -53,7 +52,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="e7y-hz-Kt5"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Split View" bezelStyle="smallSquare" image="openSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Snx-y4-0J6">
+                    <buttonCell key="cell" type="smallSquare" title="Split View" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="Snx-y4-0J6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -66,7 +65,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="17" id="5Tr-XS-blf"/>
                     </constraints>
-                    <buttonCell key="cell" type="smallSquare" title="Close Split View" bezelStyle="smallSquare" image="closeSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="naK-la-7Mj">
+                    <buttonCell key="cell" type="smallSquare" title="Close Split View" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="naK-la-7Mj">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -134,12 +133,12 @@
             <point key="canvasLocation" x="-112" y="44"/>
         </customView>
         <customObject id="-1" customClass="FirstResponder"/>
-        <customObject id="-3"/>
+        <customObject id="-3" customClass="NSObject"/>
     </objects>
     <resources>
-        <image name="closeSplitTemplate" width="15" height="15"/>
-        <image name="downTemplate" width="8" height="8"/>
-        <image name="openSplitTemplate" width="15" height="15"/>
-        <image name="upTemplate" width="20" height="15"/>
+        <image name="CloseSplitTemplate" width="15" height="15"/>
+        <image name="DownArrowTemplate" width="8" height="8"/>
+        <image name="OpenSplitTemplate" width="15" height="15"/>
+        <image name="UpArrowTemplate" width="20" height="15"/>
     </resources>
 </document>

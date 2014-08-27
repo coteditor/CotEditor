@@ -261,10 +261,10 @@
             imageName = setOn ? @"LineNumber_Show" : @"LineNumber_Hide";
             break;
         case CEToolbarShowStatusBarItemTag:
-            imageName = setOn ? @"StatusArea_Show" : @"StatusArea_Hide";
+            imageName = setOn ? @"StatusBar_Show" : @"StatusBar_Hide";
             break;
         case CEToolbarShowInvisibleCharsItemTag:
-            imageName = setOn ? @"InvisibleChar_Show" : @"InvisibleChar_Hide";
+            imageName = setOn ? @"InvisibleChars_Show" : @"InvisibleChars_Hide";
             break;
         case CEToolbarShowPageGuideItemTag:
             imageName = setOn ? @"PageGuide_Show" : @"PageGuide_Hide";

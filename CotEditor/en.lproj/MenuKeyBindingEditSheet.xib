@@ -155,7 +155,7 @@ You MUST include the Command key.</string>
                             <constraint firstAttribute="width" constant="23" id="7Ji-bh-tWP"/>
                             <constraint firstAttribute="height" constant="21" id="MgJ-CS-5dV"/>
                         </constraints>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="clearTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="146">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="ClearTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="146">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -169,7 +169,7 @@ You MUST include the Command key.</string>
                             <constraint firstAttribute="width" constant="23" id="48C-mB-XBj"/>
                             <constraint firstAttribute="height" constant="21" id="QCf-GI-YjM"/>
                         </constraints>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="editTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="147">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="EditTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="147">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -208,7 +208,7 @@ You MUST include the Command key.</string>
         </window>
     </objects>
     <resources>
-        <image name="clearTemplate" width="16" height="16"/>
-        <image name="editTemplate" width="16" height="16"/>
+        <image name="ClearTemplate" width="16" height="16"/>
+        <image name="EditTemplate" width="16" height="16"/>
     </resources>
 </document>

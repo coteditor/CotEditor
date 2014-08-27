@@ -46,7 +46,7 @@
     [super drawBezelWithFrame:cellFrame inView:controlView];
     
     // draw popup arrow image
-    NSImage *arrowImage = [NSImage imageNamed:@"popUpButtonArrowTemplate"];
+    NSImage *arrowImage = [NSImage imageNamed:@"PopUpButtonArrowTemplate"];
     [arrowImage drawAtPoint:NSMakePoint(NSMaxX(cellFrame) - [arrowImage size].width - 6, 3)
                    fromRect:cellFrame operation:NSCompositeSourceOver fraction:0.67];
     
