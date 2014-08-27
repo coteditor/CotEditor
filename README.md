@@ -1,7 +1,10 @@
 
 CotEditor
 =============================
+
 CotEditor is a lightweight plain-text editor for OS X.
+
+__Requitement__: OS X Lion or higher
 
 __Distribution Site__ : <http://coteditor.github.io>
 
@@ -13,8 +16,7 @@ About Source Code
 -----------------------------
 [![Build Status](https://travis-ci.org/coteditor/CotEditor.png)](https://travis-ci.org/coteditor/CotEditor)
 
-The source code is written in Objective-C (UTF-8).
-This project uses ARC currently.
+The source code is written in Cocoa and Objective-C with ARC enabled.
 
 
 ### Development Environment
@@ -34,7 +36,9 @@ How to Build
 
 License
 -----------------------------
-Copyright © 2005-2009 nakamuxu, Copyright © 2011, 2014 usami-k
-, Copyright © 2014 1024jp. All rights reserved.
+© 2005-2009 nakamuxu,
+© 2011, 2014 usami-k,
+© 2014 1024jp.
+All rights reserved.
 
 The source code is distributed under the terms of the GNU General Public License. See the bundled "[LICENSE](LICENSE)" for details.

@@ -1,7 +1,10 @@
 
 CotEditor
 =============================
+
 CotEditor は OS X で動く軽量なプレーンテキストエディタです。
+
+__システム条件__: OS X Lion 以降
 
 __配布ページ__ : <http://coteditor.github.io>
 
@@ -20,6 +23,7 @@ __配布ページ__ : <http://coteditor.github.io>
 - Xcode 6
 
 
+
 ビルド
 -----------------------------
 0. [CocoaPods](http://cocoapods.org) をインストールしておく
@@ -28,10 +32,13 @@ __配布ページ__ : <http://coteditor.github.io>
 3. ビルド
 
 
+
 ライセンス
 -----------------------------
-
-Copyright © 2005-2009 nakamuxu, Copyright © 2011, 2014 usami-k, Copyright © 2014 1024jp. All rights reserved.
+© 2005-2009 nakamuxu,
+© 2011, 2014 usami-k,
+© 2014 1024jp.
+All rights reserved.
 
 GPL ライセンスです。ライセンスに基づいた取り扱いをお願いします。
-ライセンスに関する詳細は、添付のドキュメント「LICENSE」をご覧ください。
+ライセンスに関する詳細は、添付のドキュメント「[LICENSE](LICENSE)」をご覧ください。
