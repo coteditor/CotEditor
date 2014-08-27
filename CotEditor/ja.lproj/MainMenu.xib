@@ -196,7 +196,8 @@
                                     <action selector="selectAll:" target="-1" id="179"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="行を選択" keyEquivalent="l" id="Cwp-ys-LJc">
+                            <menuItem title="行を選択" keyEquivalent="A" id="Cwp-ys-LJc">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
                                     <action selector="selectLines:" target="-1" id="MP0-H8-6bm"/>
                                 </connections>

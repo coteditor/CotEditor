@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>$@A</key>
+	<string>selectLines:</string>
 	<key>$@E</key>
 	<string>useSelectionForReplace:</string>
 	<key>$@F</key>
@@ -44,8 +46,6 @@
 	<string>toggleComment:</string>
 	<key>@a</key>
 	<string>selectAll:</string>
-	<key>@l</key>
-	<string>selectLines:</string>
 	<key>@c</key>
 	<string>copy:</string>
 	<key>@e</key>
@@ -60,6 +60,8 @@
 	<string>getInfo:</string>
 	<key>@j</key>
 	<string>jumpToSelection:</string>
+	<key>@l</key>
+	<string>gotoLocation:</string>
 	<key>@m</key>
 	<string>performMiniaturize:</string>
 	<key>@n</key>
