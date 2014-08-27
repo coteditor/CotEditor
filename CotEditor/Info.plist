@@ -430,6 +430,7 @@
 			<array>
 				<string>pl</string>
 				<string>cgi</string>
+				<string>pm</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>docPerl</string>

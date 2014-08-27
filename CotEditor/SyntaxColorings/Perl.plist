@@ -860,6 +860,10 @@
 			<key>keyString</key>
 			<string>cgi</string>
 		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>pm</string>
+		</dict>
 	</array>
 	<key>keywordsArray</key>
 	<array>
