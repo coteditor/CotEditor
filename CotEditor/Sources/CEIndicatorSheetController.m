@@ -152,7 +152,11 @@
 - (void)progressIndicator:(CGFloat)delta
 // ------------------------------------------------------
 {
-    [[self indicator] setDoubleValue:[[self indicator] doubleValue] + (double)delta];
+    // set always on main thread
+    NSProgressIndicator *indicator = [self indicator];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [indicator setDoubleValue:[indicator doubleValue] + (double)delta];
+    });
 }
 
 

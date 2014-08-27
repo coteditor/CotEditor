@@ -844,9 +844,12 @@ static CGFloat kPerCompoIncrement;
         for (NSString *syntaxKey in kSyntaxDictKeys) {
             // インジケータシートのメッセージを更新
             if ([self indicatorController]) {
-                [[self indicatorController] setInformativeText:
-                 [NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
-                  NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
+                CEIndicatorSheetController *indicatorController = [self indicatorController];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [indicatorController setInformativeText:
+                     [NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
+                      NSLocalizedString([syntaxKey stringByReplacingOccurrencesOfString:@"Array" withString:@""], nil)]];
+                });
             }
             
             NSArray *strDicts = [self coloringDictionary][syntaxKey];
