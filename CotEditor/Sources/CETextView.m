@@ -489,7 +489,7 @@ const NSInteger kNoMenuItem = -1;
                 [outMenu addItem:addItem];
             }
         } else{
-            [ASMenuItem setImage:[NSImage imageNamed:@"scriptMenuTemplate"]];
+            [ASMenuItem setImage:[NSImage imageNamed:@"ScriptMenuTemplate"]];
             [ASMenuItem setTag:CEScriptMenuItemTag];
             [ASMenuItem setSubmenu:ASSubMenu];
             [outMenu addItem:ASMenuItem];
