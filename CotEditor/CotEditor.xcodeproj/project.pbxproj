@@ -99,6 +99,7 @@
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
+		2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
@@ -346,6 +347,8 @@
 		2AD5322919779FD000A925CA /* CELineHeightTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHeightTransformer.m; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
+		2AEB8B7B19AF73980098D557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
+		2AEB8B7D19AF739F0098D557 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
 		2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarController.h; sourceTree = "<group>"; };
 		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
@@ -715,6 +718,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2A1CFD0B18E5B64F00A5B664 /* Print.strings */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
 				8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */,
 				8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */,
 				2A7572BE18B3BBAE00878F66 /* CotEditor.help */,
@@ -945,7 +949,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C28CD7808110E4A00733DA7 /* Script_Clean.tiff in Resources */,
 				2A9A144B18B67846001080D6 /* Icons.xcassets in Resources */,
 				2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */,
 				2A3FB2A418EC473A00D9CB2C /* SyntaxColorings in Resources */,
@@ -989,6 +992,7 @@
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				2A1CFD0D18E5B64F00A5B664 /* Print.strings in Resources */,
+				2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */,
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
@@ -1027,6 +1031,7 @@
 				8CE68108090A1C6900D50390 /* Pref_FileDrop.tiff in Resources */,
 				8CE6810B090A1C6900D50390 /* Pref_KeyBindings.tiff in Resources */,
 				8CE5D6C80AC80A31005F5FDB /* Pref_Print.tiff in Resources */,
+				8C28CD7808110E4A00733DA7 /* Script_Clean.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1416,6 +1421,15 @@
 				2AB4326D1912ADAC00835004 /* en */,
 			);
 			name = GlyphPopover.xib;
+			sourceTree = "<group>";
+		};
+		2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AEB8B7B19AF73980098D557 /* en */,
+				2AEB8B7D19AF739F0098D557 /* ja */,
+			);
+			name = FileDropGlossary.txt;
 			sourceTree = "<group>";
 		};
 		2AFFB70518D7BC9300118477 /* OpacityPanel.xib */ = {

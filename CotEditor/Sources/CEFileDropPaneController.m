@@ -37,7 +37,7 @@
 @property (nonatomic) IBOutlet NSArrayController *fileDropController;
 @property (nonatomic, weak) IBOutlet NSTableView *fileDropTableView;
 @property (nonatomic, strong) IBOutlet NSTextView *fileDropTextView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic, strong) IBOutlet NSTextView *fileDropGlossaryTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, strong) IBOutlet NSTextView *glossaryTextView;  // on 10.8 NSTextView cannot be weak
 
 @property (nonatomic, getter=isDeletingFileDrop) BOOL deletingFileDrop;
 
@@ -67,9 +67,10 @@
     // 各種セットアップ
     [self setContentFileDropController];
     
-    // （Nibファイルの用語説明部分は直接NSTextViewに記入していたが、AppleGlot3.4から読み取れなくなり、ローカライズ対象にできなくなってしまった。その回避処理として、Localizable.stringsファイルに書き込むこととしたために、文字列をセットする処理が必要になった。
-    // 2008.07.15.
-    [[self fileDropGlossaryTextView] setString:NSLocalizedString(@"<<<ABSOLUTE-PATH>>>\nThe dropped file's absolute path.\n\n<<<RELATIVE-PATH>>>\nThe relative path between the dropped file and the document.\n\n<<<FILENAME>>>\nThe dropped file's name with extension (if exists).\n\n<<<FILENAME-NOSUFFIX>>>\nThe dropped file's name without extension.\n\n<<<FILEEXTENSION>>>\nThe dropped file's extension.\n\n<<<FILEEXTENSION-LOWER>>>\nThe dropped file's extension (converted to lowercase).\n\n<<<FILEEXTENSION-UPPER>>>\nThe dropped file's extension (converted to uppercase).\n\n<<<DIRECTORY>>>\nThe parent directory name of the dropped file.\n\n<<<IMAGEWIDTH>>>\n(if the dropped file is Image) The image width.\n\n<<<IMAGEHEIGHT>>>\n(if the dropped file is Image) The image height.", nil)];
+    // 用語集をセット
+    NSURL *glossaryURL = [[NSBundle mainBundle] URLForResource:@"FileDropGlossary" withExtension:@"txt"];
+    NSString *glossary = [NSString stringWithContentsOfURL:glossaryURL encoding:NSUTF8StringEncoding error:nil];
+    [[self glossaryTextView] setString:glossary];
     
     // FileDrop 配列コントローラの値を確実に書き戻すためにウインドウクローズを監視
     [[NSNotificationCenter defaultCenter] addObserver:self
