@@ -11,7 +11,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="-3" userLabel="Application"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="748" userLabel="Key Bindings Pane">
             <rect key="frame" x="0.0" y="0.0" width="540" height="331"/>
@@ -33,9 +33,9 @@
                         <rect key="frame" x="2" y="2" width="502" height="122"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="720">
+                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="184" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="720">
                                 <rect key="frame" x="14" y="93" width="188" height="17"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Additional Text Key Bindings " id="3363">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Additional Text Key Bindings " usesSingleLineMode="YES" id="3363">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -54,9 +54,9 @@
                                     <action selector="openKeyBindingEditSheet:" target="-2" id="725"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="721">
+                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="165" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="721">
                                 <rect key="frame" x="14" y="67" width="169" height="14"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Key bindings for text handling." id="3364">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Key bindings for text handling." usesSingleLineMode="YES" id="3364">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -105,17 +105,17 @@
                                     <action selector="openKeyBindingEditSheet:" target="-2" id="723"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="715">
+                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="157" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="715">
                                 <rect key="frame" x="14" y="67" width="161" height="14"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Key bindings for menu items." id="3361">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Key bindings for menu items." usesSingleLineMode="YES" id="3361">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="713">
+                            <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="119" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="713">
                                 <rect key="frame" x="14" y="93" width="123" height="17"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Menu Key Bindings" id="3359">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Menu Key Bindings" usesSingleLineMode="YES" id="3359">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
