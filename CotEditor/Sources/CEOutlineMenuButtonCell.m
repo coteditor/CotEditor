@@ -40,19 +40,19 @@
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 // ------------------------------------------------------
 {
-    if (![self isEnabled]) { return; }
-    
     // draw background
     [super drawBezelWithFrame:cellFrame inView:controlView];
     
     // draw popup arrow image
     NSImage *arrowImage = [NSImage imageNamed:@"PopUpButtonArrowTemplate"];
-    [arrowImage drawAtPoint:NSMakePoint(NSMaxX(cellFrame) - [arrowImage size].width - 6, 3)
-                   fromRect:cellFrame operation:NSCompositeSourceOver fraction:0.67];
+    NSRect imageFrame = NSMakeRect(NSMaxX(cellFrame) - [arrowImage size].width - 4, NSMinY(cellFrame),
+                                   [arrowImage size].width, NSHeight(cellFrame));
+    [self drawImage:arrowImage withFrame:imageFrame inView:controlView];
     
     // shift content 1px
     cellFrame.origin.y += 1.0;
     
+    // draw text
     [super drawInteriorWithFrame:cellFrame inView:controlView];
 }
 
