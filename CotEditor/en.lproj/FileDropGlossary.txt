@@ -5,7 +5,7 @@ The dropped file's absolute path.
 The relative path between the dropped file and the document.
 
 <<<FILENAME>>>
-The dropped file's name with extension (if exists).
+The dropped file's name with extension (if exists.)
 
 <<<FILENAME-NOSUFFIX>>>
 The dropped file's name without extension.
@@ -14,16 +14,16 @@ The dropped file's name without extension.
 The dropped file's extension.
 
 <<<FILEEXTENSION-LOWER>>>
-The dropped file's extension (converted to lowercase).
+The dropped file's extension (converted to lowercase.)
 
 <<<FILEEXTENSION-UPPER>>>
-The dropped file's extension (converted to uppercase).
+The dropped file's extension (converted to uppercase.)
 
 <<<DIRECTORY>>>
 The parent directory name of the dropped file.
 
 <<<IMAGEWIDTH>>>
-(if the dropped file is Image) The image width.
+(If the dropped file is an image) The image width.
 
 <<<IMAGEHEIGHT>>>
-(if the dropped file is Image) The image height.
+(If the dropped file is an image) The image height.
