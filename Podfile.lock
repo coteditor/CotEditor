@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/coteditor/OgreKit.git
 
 SPEC CHECKSUMS:
-  OgreKit: 4c23914bc813e417227a3922b25fc0bc21f91919
+  OgreKit: 72ec3dbd4b9a10b6051165cd4533b3d21f43e895
   RegexKitLite: 761b4944f23cb8fe20697b2e47be0689fd832c09
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
 
