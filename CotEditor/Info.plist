@@ -842,6 +842,23 @@
 			<key>NSDocumentClass</key>
 			<string>CEDocument</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>lisp</string>
+				<string>lsp</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>docLisp</string>
+			<key>CFBundleTypeName</key>
+			<string>Lisp Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>CotEditor</string>
