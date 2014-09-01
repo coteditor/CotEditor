@@ -743,12 +743,10 @@ static CGFloat kPerCompoIncrement;
     }
     if ([self inlineCommentDelimiter]) {
         NSString *delimiter = [self inlineCommentDelimiter];
-        NSString *beginString = [NSString stringWithFormat:@"%@.*",
-                                 [NSRegularExpression escapedPatternForString:delimiter]];
-        NSArray *ranges = [self rangesOfRegularExpressionString:beginString
-                                                     ignoreCase:NO];
-        for (NSValue *value in ranges) {
-            NSRange range = [value rangeValue];
+        NSArray *ranges = [self rangesOfString:delimiter ignoreCase:NO];
+        for (NSValue *rangeValue in ranges) {
+            NSRange range = [rangeValue rangeValue];
+            NSRange lineRange = [string lineRangeForRange:range];
             
             [positions addObject:@{QCPairKindKey: QCInlineCommentKind,
                                    QCStartEndKey: @(QCStart),
@@ -756,8 +754,9 @@ static CGFloat kPerCompoIncrement;
                                    QCLengthKey: @([delimiter length])}];
             [positions addObject:@{QCPairKindKey: QCInlineCommentKind,
                                    QCStartEndKey: @(QCEnd),
-                                   QCLocationKey: @(NSMaxRange(range)),
+                                   QCLocationKey: @(NSMaxRange(lineRange)),
                                    QCLengthKey: @0U}];
+            
         }
         
     }
