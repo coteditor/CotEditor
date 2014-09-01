@@ -859,6 +859,20 @@
 			<key>NSDocumentClass</key>
 			<string>CEDocument</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>cs</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>C# Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>CotEditor</string>
