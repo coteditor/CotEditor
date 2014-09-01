@@ -51,9 +51,9 @@ static NSString *const QCInlineCommentKind = @"QCInlineCommentKind";  // for pai
 static NSString *const QCBlockCommentKind = @"QCBlockCommentKind";  // for pairKind
 
 typedef NS_ENUM(NSUInteger, QCStartEndType) {
+    QCEnd,
     QCStartEnd,
     QCStart,
-    QCEnd
 };
 
 
@@ -115,24 +115,6 @@ static CGFloat kPerCompoIncrement;
         // カラーリングインジケータの上昇幅を決定する（+1 はコメント＋引用符抽出用）
         kPerCompoIncrement = 98.0 / (kSizeOfAllColoringKeys + 1);
     });
-}
-
-
-// ------------------------------------------------------
-/// 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
-+ (NSUInteger)numberOfEscapeSequencesInString:(NSString *)string
-// ------------------------------------------------------
-{
-    NSUInteger count = 0;
-    
-    for (NSInteger i = [string length] - 1; i >= 0; i--) {
-        if ([string characterAtIndex:i] == '\\') {
-            count++;
-        } else {
-            break;
-        }
-    }
-    return count;
 }
 
 
@@ -461,7 +443,7 @@ static CGFloat kPerCompoIncrement;
 
 
 
-#pragma mark Private Mthods
+#pragma mark Private Methods
 
 //=======================================================
 // Private method
@@ -549,7 +531,7 @@ static CGFloat kPerCompoIncrement;
         NSUInteger escapesCheckLength = MIN(startLocation, kMaxEscapesCheckLength);
         NSRange escapesCheckRange = NSMakeRange(startLocation - escapesCheckLength, escapesCheckLength);
         NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
-        NSUInteger numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
+        NSUInteger numberOfEscapes = numberOfEscapeSequencesInString(escapesCheckStr);
         if (numberOfEscapes % 2 == 1) { continue; }
         
         NSRange range = NSMakeRange(startLocation, length);
@@ -589,7 +571,7 @@ static CGFloat kPerCompoIncrement;
         NSUInteger escapesCheckLength = MIN(startLocation, kMaxEscapesCheckLength);
         NSRange escapesCheckRange = NSMakeRange(startLocation - escapesCheckLength, escapesCheckLength);
         NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
-        NSUInteger numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
+        NSUInteger numberOfEscapes = numberOfEscapeSequencesInString(escapesCheckStr);
         
         if (numberOfEscapes % 2 == 1) { continue; }
         
@@ -604,7 +586,7 @@ static CGFloat kPerCompoIncrement;
             NSUInteger escapesCheckLength = MIN((endLocation - endLength), kMaxEscapesCheckLength);
             NSRange escapesCheckRange = NSMakeRange(endLocation - endLength - escapesCheckLength, escapesCheckLength);
             NSString *escapesCheckStr = [string substringWithRange:escapesCheckRange];
-            NSUInteger numberOfEscapes = [CESyntaxParser numberOfEscapeSequencesInString:escapesCheckStr];
+            NSUInteger numberOfEscapes = numberOfEscapeSequencesInString(escapesCheckStr);
             
             if (numberOfEscapes % 2 == 1) { continue; }
             
@@ -717,8 +699,7 @@ static CGFloat kPerCompoIncrement;
     // コメント定義の位置配列を生成
     if ([self blockCommentDelimiters]) {
         NSString *beginDelimiter = [self blockCommentDelimiters][CEBeginDelimiterKey];
-        NSArray *beginRanges = [self rangesOfString:beginDelimiter
-                                         ignoreCase:NO];
+        NSArray *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO];
         for (NSValue *rangeValue in beginRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -729,8 +710,7 @@ static CGFloat kPerCompoIncrement;
         }
         
         NSString *endDelimiter = [self blockCommentDelimiters][CEEndDelimiterKey];
-        NSArray *endRanges = [self rangesOfString:endDelimiter
-                                       ignoreCase:NO];
+        NSArray *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO];
         for (NSValue *rangeValue in endRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -778,8 +758,9 @@ static CGFloat kPerCompoIncrement;
     if ([positions count] == 0) { return nil; }
     
     // 出現順にソート
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:QCLocationKey ascending:YES];
-    [positions sortUsingDescriptors:@[descriptor]];
+    NSSortDescriptor *positionSort = [NSSortDescriptor sortDescriptorWithKey:QCLocationKey ascending:YES];
+    NSSortDescriptor *prioritySort = [NSSortDescriptor sortDescriptorWithKey:QCStartEndKey ascending:YES];
+    [positions sortUsingDescriptors:@[positionSort, prioritySort]];
     
     // カラーリング範囲を走査
     NSMutableArray *colorings = [NSMutableArray array];
@@ -1105,6 +1086,27 @@ static CGFloat kPerCompoIncrement;
             }
         }
     }
+}
+
+
+
+#pragma mark Private Functions
+
+// ------------------------------------------------------
+/// 与えられた文字列の末尾にエスケープシーケンス（バックスラッシュ）がいくつあるかを返す
+NSUInteger numberOfEscapeSequencesInString(NSString *string)
+// ------------------------------------------------------
+{
+    NSUInteger count = 0;
+    
+    for (NSInteger i = [string length] - 1; i >= 0; i--) {
+        if ([string characterAtIndex:i] == '\\') {
+            count++;
+        } else {
+            break;
+        }
+    }
+    return count;
 }
 
 @end
