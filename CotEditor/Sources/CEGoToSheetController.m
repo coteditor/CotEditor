@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEGoToPanelController
+ CEGoToSheetController
  
  CotEditor
  http://coteditor.github.io

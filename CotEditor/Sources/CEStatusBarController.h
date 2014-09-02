@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CEToolbarController
+ CEStatusBarController
  
  CotEditor
  http://coteditor.github.io
