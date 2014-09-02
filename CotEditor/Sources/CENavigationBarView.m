@@ -32,17 +32,19 @@
 
 @implementation CENavigationBarView
 
+#pragma mark Superclass Methods
+
 // ------------------------------------------------------
 /// draw background
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
     // fill in the background
-    [[NSColor controlColor] set];
+    [[NSColor windowBackgroundColor] set];
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (only bottom)
-    [[NSColor controlShadowColor] set];
+    [[NSColor windowFrameColor] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
                               toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
 }

@@ -33,15 +33,10 @@
 
 @implementation CEStatusBarView
 
-#pragma mark NSView Methods
-
-//=======================================================
-// NSView method
-//
-//=======================================================
+#pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 矩形を描画
+/// draw background
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {

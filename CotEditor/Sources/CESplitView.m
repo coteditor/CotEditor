@@ -35,11 +35,25 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// 分割方向によってデバイダーのスタイルを変える
+/// change divider style depending on its split otientation
 - (NSSplitViewDividerStyle)dividerStyle
 // ------------------------------------------------------
 {
     return [self isVertical] ? NSSplitViewDividerStyleThin : NSSplitViewDividerStylePaneSplitter;
+}
+
+
+// ------------------------------------------------------
+/// override divider color (for Yosemite)
+- (NSColor *)dividerColor
+// ------------------------------------------------------
+{
+    // on Yosemite
+    if (floor(NSAppKitVersionNumber) > 1265) {  // 1265 = NSAppKitVersionNumber10_9
+        return [NSColor windowFrameColor];
+    }
+    
+    return [super dividerColor];
 }
 
 @end

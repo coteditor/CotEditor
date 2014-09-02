@@ -37,7 +37,7 @@
 // ------------------------------------------------------
 /// Creates and returns an NSColor object using the given color code or nil.
 + (NSColor *)colorWithColorCode:(NSString *)colorCode
-                       codeType:(CEColorCodeType *)codeType;
+                       codeType:(CEColorCodeType *)codeType
 // ------------------------------------------------------
 {
     colorCode = [colorCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
