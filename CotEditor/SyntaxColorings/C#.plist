@@ -412,7 +412,32 @@ values: Literal</string>
 		<string>1.0</string>
 	</dict>
 	<key>numbersArray</key>
-	<array/>
+	<array>
+		<dict>
+			<key>beginString</key>
+			<string>\b(\d+\.?\d*|\.\d+)(e[-+]\d+)?[dfm]?\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b0x[0-9a-f]+\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>beginString</key>
+			<string>\b\d+[lu]{0,2}\b</string>
+			<key>ignoreCase</key>
+			<true/>
+			<key>regularExpression</key>
+			<true/>
+		</dict>
+	</array>
 	<key>outlineMenuArray</key>
 	<array>
 		<dict>
