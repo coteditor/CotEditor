@@ -864,6 +864,8 @@
 			<array>
 				<string>cs</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>docC#</string>
 			<key>CFBundleTypeName</key>
 			<string>C# Source</string>
 			<key>CFBundleTypeRole</key>
