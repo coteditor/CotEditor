@@ -64,7 +64,6 @@
 		2A586A1F19A53CBC0053F5E3 /* CEKeyBindingSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1E19A53CBC0053F5E3 /* CEKeyBindingSheet.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
-		2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */; };
 		2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
 		2A5B998718D61421009C2F4F /* CELineSpacingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B998518D61421009C2F4F /* CELineSpacingPanelController.m */; };
 		2A5B998918D61443009C2F4F /* LineSpacingPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B998B18D61443009C2F4F /* LineSpacingPanel.xib */; };
@@ -282,8 +281,6 @@
 		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
 		2A5ABE78191861E3009265DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
 		2A5ABE7A19189021009265DF /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
-		2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CEColorCode.h"; sourceTree = "<group>"; };
-		2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CEColorCode.m"; sourceTree = "<group>"; };
 		2A5B0AF319070EED00B6A51C /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ColorCodePanelAccessory.xib; sourceTree = "<group>"; };
 		2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = EditColorCode.tiff; sourceTree = "<group>"; };
 		2A5B998418D61421009C2F4F /* CELineSpacingPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineSpacingPanelController.h; sourceTree = "<group>"; };
@@ -613,8 +610,6 @@
 				2AB432731915D6AA00835004 /* NSString+ComposedCharacter.m */,
 				2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */,
 				2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */,
-				2A5B0AF01906E2CE00B6A51C /* NSColor+CEColorCode.h */,
-				2A5B0AF11906E2CE00B6A51C /* NSColor+CEColorCode.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1137,7 +1132,6 @@
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
 				2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */,
 				2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */,
-				2A5B0AF21906E2CE00B6A51C /* NSColor+CEColorCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

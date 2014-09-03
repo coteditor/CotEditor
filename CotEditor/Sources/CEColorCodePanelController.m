@@ -29,7 +29,7 @@
 
 #import "CEColorCodePanelController.h"
 #import "CEDocument.h"
-#import "NSColor+CEColorCode.h"
+#import "NSColor+WFColorCode.h"
 #import "constants.h"
 
 
@@ -111,7 +111,7 @@
         return;
     }
     
-    CEColorCodeType codeType;
+    WFColorCodeType codeType;
     NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&codeType];
     
     if (color) {
@@ -209,11 +209,11 @@
 - (IBAction)updateCode:(id)sender
 // ------------------------------------------------------
 {
-    CEColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
+    WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
     NSString *code = [[[self color] colorUsingColorSpaceName:NSDeviceRGBColorSpace] colorCodeWithType:codeType];
     
     // 現在の Hex コードが大文字だったら大文字をキープ
-    if ((codeType == CEColorCodeHex || codeType == CEColorCodeShortHex) &&
+    if ((codeType == WFColorCodeHex || codeType == WFColorCodeShortHex) &&
         [[self colorCode] rangeOfString:@"^#[0-9A-F]{1,6}$" options:NSRegularExpressionSearch].location != NSNotFound) {
         code = [code uppercaseString];
     }
