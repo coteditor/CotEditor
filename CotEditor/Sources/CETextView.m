@@ -289,6 +289,7 @@ const NSInteger kNoMenuItem = -1;
 {
     NSString *indent = @"";
     BOOL shouldIncreaseIndentLevel = NO;
+    BOOL shouldDecreaseIndentLevel = NO;
     BOOL shouldExpandBlock = NO;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoIndentKey]) {
@@ -318,9 +319,19 @@ const NSInteger kNoMenuItem = -1;
             }
             // `{}` の中で改行した場合はインデントを展開する
             shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
-            // 改行直前の文字が `:` の場合はインデントレベルを1つ下げる
-            shouldIncreaseIndentLevel = (lastChar == ':');
+            // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ下げる
+            shouldIncreaseIndentLevel = ((lastChar == ':') || (lastChar == '{'));
+            // 改行直前の文字が `}` の場合はインデントレベルを1つ上げる
+            shouldDecreaseIndentLevel = (lastChar == '}');
         }
+    }
+    
+    
+    if (([indent length] > 0) && shouldDecreaseIndentLevel) {
+        [self moveLeft:sender];
+        [self deleteBackward:sender];
+        [self moveRight:sender];
+        indent = [indent substringToIndex:[indent length] - [self tabWidth]];
     }
     
     [super insertNewline:sender];
