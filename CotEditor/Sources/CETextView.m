@@ -341,7 +341,6 @@ const NSInteger kNoMenuItem = -1;
         
         while (isSearching && precedingLocation--) {
             unichar characterToCheck = [completeString characterAtIndex:precedingLocation];
-            
             if (characterToCheck == beginBrace) {
                 if (!skipMatchingBrace) {
                     isSearching = NO;
@@ -354,27 +353,29 @@ const NSInteger kNoMenuItem = -1;
             }
         }
 
-        NSString *precedingIndent = @"";
-        NSRange precedingRange = NSMakeRange(precedingLocation, 0);
-        NSRange precedingLineRange = [completeString lineRangeForRange:precedingRange];
-        
-        NSString *lineStr = [completeString substringWithRange:
-                             NSMakeRange(precedingLineRange.location, precedingLineRange.length)];
-        NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
-        
-        // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
-        if ((indentRange.location != NSNotFound) &&
-            (NSMaxRange(precedingRange) < (precedingRange.location + NSMaxRange(indentRange))))
-        {
-            precedingIndent = [lineStr substringWithRange:indentRange];
-            desiredIndentLevel = [precedingIndent length] / tabWidth;
-        }
-        
-        if (desiredIndentLevel < currentIndentLevel) {
-            [self moveLeft:sender];
-            [self deleteBackward:sender];
-            [self moveRight:sender];
-            indent = [indent substringToIndex:indentLength - tabWidth];
+        if (precedingLocation > 0) {
+            NSString *precedingIndent = @"";
+            NSRange precedingRange = NSMakeRange(precedingLocation, 0);
+            NSRange precedingLineRange = [completeString lineRangeForRange:precedingRange];
+            
+            NSString *lineStr = [completeString substringWithRange:
+                                 NSMakeRange(precedingLineRange.location, precedingLineRange.length)];
+            NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
+            
+            // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
+            if ((indentRange.location != NSNotFound) &&
+                (NSMaxRange(precedingRange) < (precedingRange.location + NSMaxRange(indentRange))))
+            {
+                precedingIndent = [lineStr substringWithRange:indentRange];
+                desiredIndentLevel = [precedingIndent length] / tabWidth;
+            }
+            
+            if (desiredIndentLevel < currentIndentLevel) {
+                [self moveLeft:sender];
+                [self deleteBackward:sender];
+                [self moveRight:sender];
+                indent = [indent substringToIndex:indentLength - tabWidth];
+            }
         }
     }
     
