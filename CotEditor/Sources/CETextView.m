@@ -309,6 +309,10 @@ const NSInteger kNoMenuItem = -1;
         
         // スマートインデント
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
+            if (indentRange.location != NSNotFound) {
+                indent = [lineStr substringWithRange:indentRange];
+            }
+
             unichar lastChar = NULL;
             unichar nextChar = NULL;
             if (selectedRange.location > 0) {
@@ -357,7 +361,6 @@ const NSInteger kNoMenuItem = -1;
             NSString *precedingIndent = @"";
             NSRange precedingRange = NSMakeRange(precedingLocation, 0);
             NSRange precedingLineRange = [completeString lineRangeForRange:precedingRange];
-            
             NSString *lineStr = [completeString substringWithRange:
                                  NSMakeRange(precedingLineRange.location, precedingLineRange.length)];
             NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
