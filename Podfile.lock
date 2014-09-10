@@ -2,7 +2,7 @@ PODS:
   - OgreKit (2.1.7.1)
   - RegexKitLite (4.0)
   - Sparkle (1.8.0)
-  - WFColorCode (1.0)
+  - WFColorCode (1.1)
 
 DEPENDENCIES:
   - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `coteditor-mod`)
@@ -19,6 +19,6 @@ SPEC CHECKSUMS:
   OgreKit: 4c23914bc813e417227a3922b25fc0bc21f91919
   RegexKitLite: 761b4944f23cb8fe20697b2e47be0689fd832c09
   Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
-  WFColorCode: d68d427fda4408178c4d0f8e6c4ba5f73375b9ab
+  WFColorCode: 525a1ec1b6b61fe9dd8cb35e79354524be1256a8
 
 COCOAPODS: 0.33.1
