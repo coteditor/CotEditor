@@ -30,7 +30,7 @@ h1 {
 	margin: 1em 0;
 }
 h1:before {
-	content: url(../gfx/icon32.png);
+	content: url(../gfx/icon_32x32@2x.png);
 	-webkit-transform: scale(0.5);
 	display: inline-block;
 	width: 16px;
