@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6246" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEAppearancePaneController">
@@ -323,7 +323,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="XgP-0h-0xG" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="XgP-0h-0xG">
                                 <rect key="frame" x="109" y="246" width="44" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="Ro2-Nc-Eza"/>
@@ -338,7 +338,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="vic-ow-Jlg" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="vic-ow-Jlg">
                                 <rect key="frame" x="109" y="192" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -419,7 +419,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="sOH-9q-xJJ" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="sOH-9q-xJJ">
                                 <rect key="frame" x="267" y="98" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -430,7 +430,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I9s-Ey-FKS" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I9s-Ey-FKS">
                                 <rect key="frame" x="267" y="44" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -456,7 +456,7 @@
                                     </binding>
                                 </connections>
                             </textField>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Jas-a5-waY" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Jas-a5-waY">
                                 <rect key="frame" x="267" y="71" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -467,7 +467,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0QB-2s-52D" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0QB-2s-52D">
                                 <rect key="frame" x="267" y="17" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -478,7 +478,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="2wC-ep-5PI" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="2wC-ep-5PI">
                                 <rect key="frame" x="109" y="125" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -489,7 +489,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="YAB-g2-y0t" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="YAB-g2-y0t">
                                 <rect key="frame" x="109" y="98" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -500,7 +500,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="iSJ-uN-Hiy" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="iSJ-uN-Hiy">
                                 <rect key="frame" x="109" y="44" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -519,7 +519,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Rba-vC-wV9" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Rba-vC-wV9">
                                 <rect key="frame" x="109" y="71" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -530,7 +530,7 @@
                                     </binding>
                                 </connections>
                             </colorWell>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="ecY-Ip-Ysm" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="ecY-Ip-Ysm">
                                 <rect key="frame" x="109" y="17" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -549,7 +549,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="qRK-KS-4Gc" customClass="CEAlphaColorWell">
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="qRK-KS-4Gc">
                                 <rect key="frame" x="267" y="125" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
