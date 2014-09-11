@@ -323,9 +323,9 @@ const NSInteger kNoMenuItem = -1;
             }
             // `{}` の中で改行した場合はインデントを展開する
             shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
-            // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ下げる
+            // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ上げる
             shouldIncreaseIndentLevel = ((lastChar == ':') || (lastChar == '{'));
-            // 改行直前の文字が `}` の場合はインデントレベルを1つ上げる
+            // 改行直前の文字が `}` の場合はインデントレベルを1つ下げる
             shouldDecreaseIndentLevel = (lastChar == '}');
         }
     }
