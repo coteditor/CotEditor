@@ -354,7 +354,7 @@ const NSInteger kNoMenuItem = -1;
             }
         }
         
-        if (precedingLocation > 0) {
+        if (precedingLocation >= 0) {
             NSRange precedingRange = NSMakeRange(precedingLocation, 0);
             NSRange precedingLineRange = [completeString lineRangeForRange:precedingRange];
             NSString *lineStr = [completeString substringWithRange:
