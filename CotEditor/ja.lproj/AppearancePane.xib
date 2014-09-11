@@ -292,9 +292,9 @@
                                 <rect key="frame" x="109" y="219" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.insertionPointColor" id="rW5-sL-Seq">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.insertionPointColor" id="nJJ-Ej-dKl">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -331,9 +331,9 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.textColor" id="ail-Iv-P1U">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.textColor" id="13h-KF-1G6">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -342,9 +342,9 @@
                                 <rect key="frame" x="109" y="192" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.invisiblesColor" id="Tkt-ld-tC3">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.invisiblesColor" id="cWA-KD-wXi">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -353,9 +353,9 @@
                                 <rect key="frame" x="267" y="246" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.backgroundColor" id="mP3-fe-Xcx">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.backgroundColor" id="EDM-cf-Itf">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -364,9 +364,9 @@
                                 <rect key="frame" x="267" y="219" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.lineHighlightColor" id="awH-6i-g0A">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.lineHighlightColor" id="llC-jd-hD2">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -375,14 +375,14 @@
                                 <rect key="frame" x="267" y="192" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.selectionColor" id="Ccx-F3-Q7N">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="j1z-7v-bgy" name="enabled" keyPath="selection.usesSystemSelectionColor" id="oDF-dR-wlx">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.selectionColor" id="LSz-EK-pAK">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -423,9 +423,9 @@
                                 <rect key="frame" x="267" y="98" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.numbersColor" id="blf-1M-2EQ">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.numbersColor" id="cc8-Fm-EVe">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -434,9 +434,9 @@
                                 <rect key="frame" x="267" y="44" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.charactersColor" id="0sg-iR-ER2">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.charactersColor" id="e3d-BE-bua">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -460,9 +460,9 @@
                                 <rect key="frame" x="267" y="71" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.stringsColor" id="2yq-55-KND">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.stringsColor" id="ACn-TR-XgD">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -471,9 +471,9 @@
                                 <rect key="frame" x="267" y="17" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.commentsColor" id="iur-Lr-zsq">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.commentsColor" id="lKI-vQ-XR5">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -482,9 +482,9 @@
                                 <rect key="frame" x="109" y="125" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.keywordsColor" id="0NO-Ze-Mem">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.keywordsColor" id="Gdb-b8-7rG">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -493,9 +493,9 @@
                                 <rect key="frame" x="109" y="98" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.commandsColor" id="JWO-mu-8Dh">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.commandsColor" id="RK4-Mf-ZnH">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -504,9 +504,9 @@
                                 <rect key="frame" x="109" y="44" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.attributesColor" id="clk-1q-Nfy">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.attributesColor" id="Iij-e8-krm">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -523,9 +523,9 @@
                                 <rect key="frame" x="109" y="71" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.typesColor" id="bGB-t5-bM6">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.typesColor" id="REO-gg-Zws">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -534,9 +534,9 @@
                                 <rect key="frame" x="109" y="17" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.variablesColor" id="OvO-qT-ulM">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.variablesColor" id="w9v-hb-I7p">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -553,9 +553,9 @@
                                 <rect key="frame" x="267" y="125" width="44" height="23"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.valuesColor" id="W2X-FJ-qan">
+                                    <binding destination="j1z-7v-bgy" name="value" keyPath="selection.valuesColor" id="6fH-iX-Kle">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                                            <string key="NSValueTransformerName">CEHexColorTransformer</string>
                                         </dictionary>
                                     </binding>
                                 </connections>

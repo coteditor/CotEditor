@@ -34,6 +34,7 @@
 #import "CEScriptManager.h"
 #import "CEThemeManager.h"
 #import "CEPreferencesWindowController.h"
+#import "CEHexColorTransformer.h"
 #import "CEByteCountTransformer.h"
 #import "CELineHeightTransformer.h"
 #import "CEOpacityPanelController.h"
@@ -205,6 +206,8 @@
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValues];
     
     // transformer 登録
+    [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
+                                    forName:@"CEHexColorTransformer"];
     [NSValueTransformer setValueTransformer:[[CEByteCountTransformer alloc] init]
                                     forName:@"CEByteCountTransformer"];
     [NSValueTransformer setValueTransformer:[[CELineHeightTransformer alloc] init]
