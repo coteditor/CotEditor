@@ -301,18 +301,17 @@ const NSInteger kNoMenuItem = -1;
         NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
         
         // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
-        if ((indentRange.location != NSNotFound) &&
-            (NSMaxRange(selectedRange) < (selectedRange.location + NSMaxRange(indentRange))))
-        {
+        if (NSMaxRange(selectedRange) >= (selectedRange.location + NSMaxRange(indentRange))) {
+            [super insertNewline:sender];
+            return;
+        }
+            
+        if (indentRange.location != NSNotFound) {
             indent = [lineStr substringWithRange:indentRange];
         }
         
         // スマートインデント
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
-            if (indentRange.location != NSNotFound) {
-                indent = [lineStr substringWithRange:indentRange];
-            }
-
             unichar lastChar = NULL;
             unichar nextChar = NULL;
             if (selectedRange.location > 0) {
@@ -323,61 +322,53 @@ const NSInteger kNoMenuItem = -1;
             }
             // `{}` の中で改行した場合はインデントを展開する
             shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
-            // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ下げる
+            // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ上げる
             shouldIncreaseIndentLevel = ((lastChar == ':') || (lastChar == '{'));
-            // 改行直前の文字が `}` の場合はインデントレベルを1つ上げる
-            shouldDecreaseIndentLevel = (lastChar == '}');
+            // 改行直前の文字が `}` でそれ以外が空白の行の場合はインデントレベルを1つ下げる
+            shouldDecreaseIndentLevel = ((lastChar == '}') &&
+                                         ([lineStr rangeOfString:@"^[ \\t　]+$"
+                                                         options:NSRegularExpressionSearch
+                                                           range:NSMakeRange(0, [lineStr length] - 1)].location != NSNotFound));
         }
     }
     
-    if (([indent length] > 0) && shouldDecreaseIndentLevel) {
+    // インデントレベルを下げる必要があるかを改めて判定して必要であれば下げる
+    if (shouldDecreaseIndentLevel) {
         NSString *completeString = [self string];
-        NSRange selectedRange = [self selectedRange];
-        unichar beginBrace = '{';
-        unichar endBrace = '}';
-        NSInteger tabWidth = [self tabWidth];
-        NSUInteger indentLength = [indent length];
-        NSUInteger currentIndentLevel = indentLength / tabWidth;
-        NSInteger desiredIndentLevel = 0;
-        NSInteger precedingLocation = selectedRange.location - 1;
+        NSUInteger currentIndentLevel = [self indentLevelOfString:indent];
+        NSInteger precedingLocation = [self selectedRange].location - 1;
         NSUInteger skipMatchingBrace = 0;
         BOOL isSearching = YES;
         
         while (isSearching && precedingLocation--) {
             unichar characterToCheck = [completeString characterAtIndex:precedingLocation];
-            if (characterToCheck == beginBrace) {
+            if (characterToCheck == '{') {
                 if (!skipMatchingBrace) {
                     isSearching = NO;
                     break;
                 } else {
                     skipMatchingBrace--;
                 }
-            } else if (characterToCheck == endBrace) {
+            } else if (characterToCheck == '}') {
                 skipMatchingBrace++;
             }
         }
-
+        
         if (precedingLocation > 0) {
-            NSString *precedingIndent = @"";
             NSRange precedingRange = NSMakeRange(precedingLocation, 0);
             NSRange precedingLineRange = [completeString lineRangeForRange:precedingRange];
             NSString *lineStr = [completeString substringWithRange:
                                  NSMakeRange(precedingLineRange.location, precedingLineRange.length)];
-            NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
+            NSInteger desiredIndentLevel = [self indentLevelOfString:lineStr];
             
-            // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008.12.13
-            if ((indentRange.location != NSNotFound) &&
-                (NSMaxRange(precedingRange) < (precedingRange.location + NSMaxRange(indentRange))))
-            {
-                precedingIndent = [lineStr substringWithRange:indentRange];
-                desiredIndentLevel = [precedingIndent length] / tabWidth;
-            }
-            
-            if (desiredIndentLevel < currentIndentLevel) {
+            while (desiredIndentLevel < currentIndentLevel) {
                 [self moveLeft:sender];
                 [self deleteBackward:sender];
                 [self moveRight:sender];
-                indent = [indent substringToIndex:indentLength - tabWidth];
+                
+                NSUInteger inentWidth = ([indent characterAtIndex:[indent length] - 1] == ' ') ? [self tabWidth] : 1;
+                indent = [indent substringToIndex:[indent length] - inentWidth];
+                currentIndentLevel--;
             }
         }
     }
@@ -2299,6 +2290,22 @@ const NSInteger kNoMenuItem = -1;
 {
     [[self completionTimer] invalidate];
     [self setCompletionTimer:nil];
+}
+
+
+// ------------------------------------------------------
+/// インデントレベルを算出
+- (NSUInteger)indentLevelOfString:(NSString *)string
+// ------------------------------------------------------
+{
+    NSRange indentRange = [string rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
+    
+    if (indentRange.location == NSNotFound) { return 0; }
+    
+    NSString *indent = [string substringWithRange:indentRange];
+    NSUInteger numberOfTabChars = [[indent componentsSeparatedByString:@"\t"] count] - 1;
+    
+    return numberOfTabChars + (([indent length] - numberOfTabChars) / [self tabWidth]);
 }
 
 @end
