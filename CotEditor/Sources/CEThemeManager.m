@@ -727,26 +727,37 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)classicTheme
 //------------------------------------------------------
 {
-    WFColorCodeType type = WFColorCodeHex;
+    NSDictionary *colors = @{CEThemeTextColorKey: [NSColor textColor],
+                             CEThemeBackgroundColorKey: [NSColor textBackgroundColor],
+                             CEThemeInvisiblesColorKey: [NSColor grayColor],
+                             CEThemeSelectionColorKey: [NSColor selectedTextBackgroundColor],
+                             CEThemeUsesSystemSelectionColorKey: @YES,
+                             CEThemeInsertionPointColorKey: [NSColor textColor],
+                             CEThemeLineHighlightColorKey: [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0],
+                             CEThemeKeywordsColorKey: [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0],
+                             CEThemeCommandsColorKey: [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0],
+                             CEThemeTypesColorKey: [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0],
+                             CEThemeAttributesColorKey: [NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0],
+                             CEThemeVariablesColorKey: [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0],
+                             CEThemeValuesColorKey: [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0],
+                             CEThemeNumbersColorKey: [NSColor blueColor],
+                             CEThemeStringsColorKey: [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0],
+                             CEThemeCharactersColorKey: [NSColor blueColor],
+                             CEThemeCommentsColorKey: [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]
+                             };
     
-    return @{CEThemeTextColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeBackgroundColorKey: [[NSColor textBackgroundColor] colorCodeWithType:type],
-             CEThemeInvisiblesColorKey: [[NSColor grayColor] colorCodeWithType:type],
-             CEThemeSelectionColorKey: [[NSColor selectedTextBackgroundColor] colorCodeWithType:type],
-             CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeInsertionPointColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeLineHighlightColorKey: [[NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0] colorCodeWithType:type],
-             CEThemeKeywordsColorKey: [[NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0] colorCodeWithType:type],
-             CEThemeCommandsColorKey: [[NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0] colorCodeWithType:type],
-             CEThemeTypesColorKey: [[NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0] colorCodeWithType:type],
-             CEThemeAttributesColorKey: [[NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0] colorCodeWithType:type],
-             CEThemeVariablesColorKey: [[NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0] colorCodeWithType:type],
-             CEThemeValuesColorKey: [[NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0] colorCodeWithType:type],
-             CEThemeNumbersColorKey: [[NSColor blueColor] colorCodeWithType:type],
-             CEThemeStringsColorKey: [[NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0] colorCodeWithType:type],
-             CEThemeCharactersColorKey: [[NSColor blueColor] colorCodeWithType:type],
-             CEThemeCommentsColorKey: [[NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0] colorCodeWithType:type]
-             };
+    NSMutableDictionary *theme = [NSMutableDictionary dictionary];
+    
+    [colors enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([key isEqualToString:CEThemeUsesSystemSelectionColorKey]) {
+            theme[key] = obj;
+        } else {
+            theme[key] = [[(NSColor *) obj colorUsingColorSpaceName:NSCalibratedRGBColorSpace]
+                          colorCodeWithType:WFColorCodeHex];
+        }
+    }];
+    
+    return [theme copy];
 }
 
 
