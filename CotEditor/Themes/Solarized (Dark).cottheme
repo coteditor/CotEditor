@@ -3,86 +3,38 @@
 <plist version="1.0">
 <dict>
 	<key>attributesColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg9nY2D6D4+LiPoPFxEQ/AYY=
-	</data>
+	<string>#7F87CF</string>
 	<key>backgroundColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmAIOtrCw+g9nYWD4Bhg==
-	</data>
+	<string>#003946</string>
 	<key>charactersColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg93cXD+DychIPoO9vDw+AYY=
-	</data>
+	<string>#E5493D</string>
 	<key>commandsColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg8zLSz+Dl5aWPoOxsLA9AYY=
-	</data>
+	<string>#D7601B</string>
 	<key>commentsColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg7GwsD6D3dzcPoPr6uo+AYY=
-	</data>
+	<string>#6A8188</string>
 	<key>insertionPointColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg4SDAz+DlZQUP4OXlhY/AYY=
-	</data>
+	<string>#95A5A7</string>
 	<key>invisiblesColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg+Hg4DyD2dhYPoOFhIQ+AYY=
-	</data>
+	<string>#014654</string>
 	<key>keywordsColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg4aFBT+DmpkZPwABhg==
-	</data>
+	<string>#96A700</string>
 	<key>lineHighlightColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg+Hg4DyD2dhYPoOFhIQ+AYY=
-	</data>
+	<string>#014654</string>
 	<key>numbersColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg93cXD+DychIPoO9vDw+AYY=
-	</data>
+	<string>#E5493D</string>
 	<key>selectionColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg7GwsD6D3dzcPoPr6uo+AYY=
-	</data>
+	<string>#6A8188</string>
 	<key>stringsColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg6moKD6DoqEhP4OamRk/AYY=
-	</data>
+	<string>#2FAFA9</string>
 	<key>textColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg4SDAz+DlZQUP4OXlhY/AYY=
-	</data>
+	<string>#95A5A7</string>
 	<key>typesColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg5mYGD6DjIsLP4PT0lI/AYY=
-	</data>
+	<string>#2C9EDB</string>
 	<key>usesSystemSelectionColor</key>
 	<false/>
 	<key>valuesColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg9TTUz+D2dhYPoODggI/AYY=
-	</data>
+	<string>#DE5194</string>
 	<key>variablesColor</key>
-	<data>
-	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
-	ZmZmg7a1NT+DiokJPwABhg==
-	</data>
+	<string>#C39900</string>
 </dict>
 </plist>
