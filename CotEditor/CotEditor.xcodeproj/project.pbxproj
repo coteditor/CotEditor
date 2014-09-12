@@ -72,6 +72,8 @@
 		2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */; };
 		2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */; };
 		2A63122A19C25CF80088C5C6 /* CEHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */; };
+		2A63122E19C2D30C0088C5C6 /* CEThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */; };
+		2A63123119C2D3B60088C5C6 /* ThemeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A63122F19C2D3B60088C5C6 /* ThemeView.xib */; };
 		2A68F93518F9995500673440 /* CEThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93418F9995500673440 /* CEThemeManager.m */; };
 		2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93718FB04F300673440 /* CEMenuItemCell.m */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
@@ -295,6 +297,9 @@
 		2A607B0F1905F02F00F3A991 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorCodePanelAccessory.xib; sourceTree = "<group>"; };
 		2A63122819C25CF80088C5C6 /* CEHexColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEHexColorTransformer.h; sourceTree = "<group>"; };
 		2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEHexColorTransformer.m; sourceTree = "<group>"; };
+		2A63122C19C2D30C0088C5C6 /* CEThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEThemeViewController.h; sourceTree = "<group>"; };
+		2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeViewController.m; sourceTree = "<group>"; };
+		2A63123019C2D3B60088C5C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ThemeView.xib; sourceTree = "<group>"; };
 		2A68F93318F9995500673440 /* CEThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEThemeManager.h; sourceTree = "<group>"; };
 		2A68F93418F9995500673440 /* CEThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeManager.m; sourceTree = "<group>"; };
 		2A68F93618FB04F300673440 /* CEMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuItemCell.h; sourceTree = "<group>"; };
@@ -342,6 +347,7 @@
 		2AD5322919779FD000A925CA /* CELineHeightTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHeightTransformer.m; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
+		2AE4D72419C3BCAA004B2C71 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ThemeView.xib; sourceTree = "<group>"; };
 		2AEB8B7B19AF73980098D557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AEB8B7D19AF739F0098D557 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+ComposedCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ComposedCharacter.h"; sourceTree = "<group>"; };
@@ -474,6 +480,7 @@
 				2A149DAF19016AD800A9D6EF /* Panes */,
 				2A149DB019016DE200A9D6EF /* Sheets */,
 				2A15831F18E3814200601026 /* SizeSampleWindow.xib */,
+				2A63122F19C2D3B60088C5C6 /* ThemeView.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -640,6 +647,7 @@
 				25859EBF076D92D60020F779 /* CEPreferencesWindowController.m */,
 				2A149DC619018F9200A9D6EF /* Panes */,
 				2A149DC719019CC400A9D6EF /* Sheets */,
+				2A63122B19C2D2EA0088C5C6 /* Theme Edit */,
 				2A15832218E383C300601026 /* CESizeSampleWindowController.h */,
 				2A15832318E383C300601026 /* CESizeSampleWindowController.m */,
 			);
@@ -783,6 +791,15 @@
 				2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */,
 			);
 			name = Window;
+			sourceTree = "<group>";
+		};
+		2A63122B19C2D2EA0088C5C6 /* Theme Edit */ = {
+			isa = PBXGroup;
+			children = (
+				2A63122C19C2D30C0088C5C6 /* CEThemeViewController.h */,
+				2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */,
+			);
+			name = "Theme Edit";
 			sourceTree = "<group>";
 		};
 		2A961C4418FC6979002076B6 /* Documents */ = {
@@ -966,6 +983,7 @@
 				2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */,
 				2AB4326E1912ADAC00835004 /* GlyphPopover.xib in Resources */,
 				2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */,
+				2A63123119C2D3B60088C5C6 /* ThemeView.xib in Resources */,
 				2A149DAB19016ABB00A9D6EF /* KeyBindingsPane.xib in Resources */,
 				2A149DAA19016ABB00A9D6EF /* GeneralPane.xib in Resources */,
 				2A149DA719016ABB00A9D6EF /* EditPane.xib in Resources */,
@@ -1089,6 +1107,7 @@
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				2A73F17D18EF573B00BFB5E5 /* CEByteCountTransformer.m in Sources */,
 				8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */,
+				2A63122E19C2D30C0088C5C6 /* CEThemeViewController.m in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
 				2AACC9591942A82900E3FF63 /* CEIndicatorSheetController.m in Sources */,
 				2A149DB31901740600A9D6EF /* CEWindowPaneController.m in Sources */,
@@ -1358,6 +1377,15 @@
 				2A5B0AF319070EED00B6A51C /* ja */,
 			);
 			name = ColorCodePanelAccessory.xib;
+			sourceTree = "<group>";
+		};
+		2A63122F19C2D3B60088C5C6 /* ThemeView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A63123019C2D3B60088C5C6 /* en */,
+				2AE4D72419C3BCAA004B2C71 /* ja */,
+			);
+			name = ThemeView.xib;
 			sourceTree = "<group>";
 		};
 		2A961C4518FC699E002076B6 /* Acknowledgements.rtf */ = {
