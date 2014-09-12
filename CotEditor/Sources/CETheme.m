@@ -29,6 +29,7 @@
 
 #import "CETheme.h"
 #import "CEThemeManager.h"
+#import "NSColor+WFColorCode.h"
 
 
 @interface CETheme ()
@@ -98,7 +99,7 @@
         for (NSString *key in [themeDict allKeys]) {
             if ([key isEqualToString:CEThemeUsesSystemSelectionColorKey]) { continue; }
             
-            themeDict[key] = [NSUnarchiver unarchiveObjectWithData:themeDict[key]];
+            themeDict[key] = [NSColor colorWithColorCode:themeDict[key] codeType:nil];
         }
         
         // プロパティをセット
