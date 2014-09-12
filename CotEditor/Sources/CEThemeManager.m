@@ -28,6 +28,7 @@
  */
 
 #import "CEThemeManager.h"
+#import "NSColor+WFColorCode.h"
 #import "constants.h"
 
 
@@ -646,23 +647,25 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)plainTheme
 //------------------------------------------------------
 {
-    return @{CEThemeTextColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeBackgroundColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
-             CEThemeInvisiblesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
-             CEThemeSelectionColorKey: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
+    WFColorCodeType type = WFColorCodeHex;
+    
+    return @{CEThemeTextColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeBackgroundColorKey: [[NSColor textBackgroundColor] colorCodeWithType:type],
+             CEThemeInvisiblesColorKey: [[NSColor grayColor] colorCodeWithType:type],
+             CEThemeSelectionColorKey: [[NSColor selectedTextBackgroundColor] colorCodeWithType:type],
              CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeInsertionPointColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedWhite:0.94 alpha:1.0]],
-             CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeCommandsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeAttributesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeVariablesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeNumbersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeStringsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeCharactersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeCommentsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]]
+             CEThemeInsertionPointColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeLineHighlightColorKey: [[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] colorCodeWithType:type],
+             CEThemeKeywordsColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeCommandsColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeTypesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeAttributesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeVariablesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeValuesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeNumbersColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeStringsColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeCharactersColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeCommentsColorKey: [[NSColor textColor] colorCodeWithType:type]
              };
 }
 
@@ -696,9 +699,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         }
         NSColor *color = [NSUnarchiver unarchiveObjectWithData:oldData];
         
-        if (color && ![color isEqual:theme[modernKey]]) {
+        if (color) {
             isCustomized = YES;
-            theme[modernKey] = [NSArchiver archivedDataWithRootObject:color];
+            theme[modernKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace]
+                                colorCodeWithType:WFColorCodeHex];
             if ([classicKey isEqualToString:@"selectionColor"]) {
                 theme[CEThemeUsesSystemSelectionColorKey] = @NO;
             }
@@ -723,32 +727,25 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)classicTheme
 //------------------------------------------------------
 {
-    return @{CEThemeTextColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeBackgroundColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
-             CEThemeInvisiblesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
-             CEThemeSelectionColorKey: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
+    WFColorCodeType type = WFColorCodeHex;
+    
+    return @{CEThemeTextColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeBackgroundColorKey: [[NSColor textBackgroundColor] colorCodeWithType:type],
+             CEThemeInvisiblesColorKey: [[NSColor grayColor] colorCodeWithType:type],
+             CEThemeSelectionColorKey: [[NSColor selectedTextBackgroundColor] colorCodeWithType:type],
              CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeInsertionPointColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:
-                                          [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0]],
-             CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:
-                                       [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0]],
-             CEThemeCommandsColorKey: [NSArchiver archivedDataWithRootObject:
-                                       [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0]],
-             CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:
-                                    [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0]],
-             CEThemeAttributesColorKey: [NSArchiver archivedDataWithRootObject:
-                                         [NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0]],
-             CEThemeVariablesColorKey: [NSArchiver archivedDataWithRootObject:
-                                        [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0]],
-             CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:
-                                     [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0]],
-             CEThemeNumbersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-             CEThemeStringsColorKey: [NSArchiver archivedDataWithRootObject:
-                                      [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0]],
-             CEThemeCharactersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-             CEThemeCommentsColorKey: [NSArchiver archivedDataWithRootObject:
-                                       [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]]
+             CEThemeInsertionPointColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeLineHighlightColorKey: [[NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0] colorCodeWithType:type],
+             CEThemeKeywordsColorKey: [[NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0] colorCodeWithType:type],
+             CEThemeCommandsColorKey: [[NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0] colorCodeWithType:type],
+             CEThemeTypesColorKey: [[NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0] colorCodeWithType:type],
+             CEThemeAttributesColorKey: [[NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0] colorCodeWithType:type],
+             CEThemeVariablesColorKey: [[NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0] colorCodeWithType:type],
+             CEThemeValuesColorKey: [[NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0] colorCodeWithType:type],
+             CEThemeNumbersColorKey: [[NSColor blueColor] colorCodeWithType:type],
+             CEThemeStringsColorKey: [[NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0] colorCodeWithType:type],
+             CEThemeCharactersColorKey: [[NSColor blueColor] colorCodeWithType:type],
+             CEThemeCommentsColorKey: [[NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0] colorCodeWithType:type]
              };
 }
 
