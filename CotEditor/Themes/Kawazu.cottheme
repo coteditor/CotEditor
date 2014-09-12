@@ -1,40 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>attributesColor</key>
-	<string>#718129</string>
-	<key>backgroundColor</key>
-	<string>#FFFFFF</string>
-	<key>charactersColor</key>
-	<string>#7F3561</string>
-	<key>commandsColor</key>
-	<string>#62480C</string>
-	<key>commentsColor</key>
-	<string>#4D7551</string>
-	<key>insertionPointColor</key>
-	<string>#000000</string>
-	<key>invisiblesColor</key>
-	<string>#929292</string>
-	<key>keywordsColor</key>
-	<string>#244364</string>
-	<key>lineHighlightColor</key>
-	<string>#edf4ec</string>
-	<key>numbersColor</key>
-	<string>#327E8C</string>
-	<key>selectionColor</key>
-	<string>#dde6d9</string>
-	<key>stringsColor</key>
-	<string>#686868</string>
-	<key>textColor</key>
-	<string>#000000</string>
-	<key>typesColor</key>
-	<string>#843D2C</string>
-	<key>usesSystemSelectionColor</key>
-	<false/>
-	<key>valuesColor</key>
-	<string>#253384</string>
-	<key>variablesColor</key>
-	<string>#4F3081</string>
-</dict>
-</plist>
+{
+  "typesColor":"#843d2c",
+  "attributesColor":"#718129",
+  "keywordsColor":"#244364",
+  "numbersColor":"#327e8c",
+  "charactersColor":"#7f3561",
+  "backgroundColor":"#ffffff",
+  "stringsColor":"#686868",
+  "valuesColor":"#253384",
+  "usesSystemSelectionColor":false,
+  "textColor":"#000000",
+  "variablesColor":"#4f3081",
+  "commandsColor":"#62480c",
+  "selectionColor":"#dde6d9",
+  "commentsColor":"#4d7551",
+  "lineHighlightColor":"#edf4ec",
+  "insertionPointColor":"#000000",
+  "invisiblesColor":"#929292"
+}

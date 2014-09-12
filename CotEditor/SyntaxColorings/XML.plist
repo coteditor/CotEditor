@@ -154,10 +154,6 @@
 			<key>keyString</key>
 			<string>xmp</string>
 		</dict>
-		<dict>
-			<key>keyString</key>
-			<string>cottheme</string>
-		</dict>
 	</array>
 	<key>keywordsArray</key>
 	<array>
@@ -189,13 +185,13 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>"</string>
+			<string>&quot;</string>
 			<key>endString</key>
-			<string>"</string>
+			<string>&quot;</string>
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>(?&lt;!\w)'[^']*?'(?=[^&lt;&gt;]*&gt;)</string>
+			<string>(?&lt;!\w)&apos;[^&apos;]*?&apos;(?=[^&lt;&gt;]*&gt;)</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>

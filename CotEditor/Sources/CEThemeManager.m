@@ -188,14 +188,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 //------------------------------------------------------
 {
     NSError *error = nil;
-    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:theme
-                                                                   format:NSPropertyListXMLFormat_v1_0
-                                                                  options:0
-                                                                    error:&error];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:theme
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
     
     [self prepareUserThemeDirectory];
     
-    BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:&error];
+    BOOL success = [jsonData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:&error];
     
     if (success) {
         __weak typeof(self) weakSelf = self;
@@ -575,11 +575,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         // 定義をキャッシュする
         NSMutableDictionary *themes = [NSMutableDictionary dictionary];
         for (NSString *name in [strongSelf themeNames]) {
-            themes[name] = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
-                                                                     options:NSPropertyListMutableContainersAndLeaves
-                                                                      format:NULL
-                                                                       error:nil];
+            themes[name] = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
+                                                          options:NSJSONReadingMutableLeaves
+                                                             error:nil];
         }
+        
         [self setArchivedThemes:themes];
         
         // デフォルトテーマが見当たらないときはリセットする
