@@ -30,6 +30,7 @@
 
 #import "CEAppearancePaneController.h"
 #import "CEThemeManager.h"
+#import "NSColor+WFColorCode.h"
 #import "constants.h"
 
 
@@ -392,7 +393,8 @@
 // ------------------------------------------------------
 {
     if ([sender state] == NSOnState) {
-        [self themeDict][CEThemeSelectionColorKey] = [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]];
+        NSColor *color = [NSColor selectedTextBackgroundColor];
+        [self themeDict][CEThemeSelectionColorKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:WFColorCodeHex];
     }
 }
 
