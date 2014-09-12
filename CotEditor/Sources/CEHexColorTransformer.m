@@ -87,7 +87,7 @@
 {
     if (![value isKindOfClass:[NSColor class]]) { return @"#000000"; }
     
-    NSColor *color = [(NSColor *)value colorUsingColorSpaceName:NSDeviceColorSpaceName];
+    NSColor *color = [(NSColor *)value colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     
     return [color colorCodeWithType:WFColorCodeHex];
 }

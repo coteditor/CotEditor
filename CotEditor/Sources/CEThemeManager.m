@@ -71,7 +71,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 
-/// CotEditor 1.6 以前からの引き継ぎ作業用カテゴリ。引き継ぎが十分済んだら削除して良い。
+/// CotEditor 2.0 以前からの引き継ぎ作業用カテゴリ。引き継ぎが十分済んだら削除して良い。
 @interface CEThemeManager (Migration)
 
 - (void)migrateTheme;
@@ -122,7 +122,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 {
     self = [super init];
     if (self) {
-        // CotEditor 1.5までのカラーリング設定の引き継ぎ
+        // CotEditor 2.0 以前のカラーリング設定の引き継ぎ
         [self migrateTheme];
         
         // バンドルされているテーマの名前を読み込んでおく
