@@ -16,6 +16,10 @@
 			<key>keyString</key>
 			<string>json</string>
 		</dict>
+		<dict>
+			<key>keyString</key>
+			<string>cottheme</string>
+		</dict>
 	</array>
 	<key>keywordsArray</key>
 	<array/>
@@ -47,9 +51,9 @@
 	<array>
 		<dict>
 			<key>beginString</key>
-			<string>"</string>
+			<string>&quot;</string>
 			<key>endString</key>
-			<string>"</string>
+			<string>&quot;</string>
 		</dict>
 	</array>
 	<key>styleName</key>

@@ -915,7 +915,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>com.apple.property-list</string>
+				<string>public.json</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>CotEditor Theme</string>
@@ -931,7 +931,7 @@
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/xml</string>
+					<string>application/json</string>
 				</array>
 			</dict>
 		</dict>

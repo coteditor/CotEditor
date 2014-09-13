@@ -28,6 +28,7 @@
  */
 
 #import "CEThemeManager.h"
+#import "NSColor+WFColorCode.h"
 #import "constants.h"
 
 
@@ -70,7 +71,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 
-/// CotEditor 1.6 以前からの引き継ぎ作業用カテゴリ。引き継ぎが十分済んだら削除して良い。
+/// CotEditor 2.0 以前からの引き継ぎ作業用カテゴリ。引き継ぎが十分済んだら削除して良い。
 @interface CEThemeManager (Migration)
 
 - (void)migrateTheme;
@@ -121,7 +122,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 {
     self = [super init];
     if (self) {
-        // CotEditor 1.5までのカラーリング設定の引き継ぎ
+        // CotEditor 2.0 以前のカラーリング設定の引き継ぎ
         [self migrateTheme];
         
         // バンドルされているテーマの名前を読み込んでおく
@@ -187,14 +188,14 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 //------------------------------------------------------
 {
     NSError *error = nil;
-    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:theme
-                                                                   format:NSPropertyListXMLFormat_v1_0
-                                                                  options:0
-                                                                    error:&error];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:theme
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
     
     [self prepareUserThemeDirectory];
     
-    BOOL success = [plistData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:&error];
+    BOOL success = [jsonData writeToURL:[self URLForUserTheme:themeName] options:NSDataWritingAtomic error:&error];
     
     if (success) {
         __weak typeof(self) weakSelf = self;
@@ -574,11 +575,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         // 定義をキャッシュする
         NSMutableDictionary *themes = [NSMutableDictionary dictionary];
         for (NSString *name in [strongSelf themeNames]) {
-            themes[name] = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
-                                                                     options:NSPropertyListMutableContainersAndLeaves
-                                                                      format:NULL
-                                                                       error:nil];
+            themes[name] = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
+                                                          options:NSJSONReadingMutableLeaves
+                                                             error:nil];
         }
+        
         [self setArchivedThemes:themes];
         
         // デフォルトテーマが見当たらないときはリセットする
@@ -646,23 +647,25 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)plainTheme
 //------------------------------------------------------
 {
-    return @{CEThemeTextColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeBackgroundColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
-             CEThemeInvisiblesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
-             CEThemeSelectionColorKey: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
+    WFColorCodeType type = WFColorCodeHex;
+    
+    return @{CEThemeTextColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeBackgroundColorKey: [[NSColor textBackgroundColor] colorCodeWithType:type],
+             CEThemeInvisiblesColorKey: [[NSColor grayColor] colorCodeWithType:type],
+             CEThemeSelectionColorKey: [[NSColor selectedTextBackgroundColor] colorCodeWithType:type],
              CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeInsertionPointColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedWhite:0.94 alpha:1.0]],
-             CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeCommandsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeAttributesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeVariablesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeNumbersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeStringsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeCharactersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeCommentsColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]]
+             CEThemeInsertionPointColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeLineHighlightColorKey: [[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] colorCodeWithType:type],
+             CEThemeKeywordsColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeCommandsColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeTypesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeAttributesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeVariablesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeValuesColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeNumbersColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeStringsColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeCharactersColorKey: [[NSColor textColor] colorCodeWithType:type],
+             CEThemeCommentsColorKey: [[NSColor textColor] colorCodeWithType:type]
              };
 }
 
@@ -696,9 +699,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         }
         NSColor *color = [NSUnarchiver unarchiveObjectWithData:oldData];
         
-        if (color && ![color isEqual:theme[modernKey]]) {
+        if (color) {
             isCustomized = YES;
-            theme[modernKey] = [NSArchiver archivedDataWithRootObject:color];
+            theme[modernKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace]
+                                colorCodeWithType:WFColorCodeHex];
             if ([classicKey isEqualToString:@"selectionColor"]) {
                 theme[CEThemeUsesSystemSelectionColorKey] = @NO;
             }
@@ -723,33 +727,37 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)classicTheme
 //------------------------------------------------------
 {
-    return @{CEThemeTextColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeBackgroundColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textBackgroundColor]],
-             CEThemeInvisiblesColorKey: [NSArchiver archivedDataWithRootObject:[NSColor grayColor]],
-             CEThemeSelectionColorKey: [NSArchiver archivedDataWithRootObject:[NSColor selectedTextBackgroundColor]],
-             CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeInsertionPointColorKey: [NSArchiver archivedDataWithRootObject:[NSColor textColor]],
-             CEThemeLineHighlightColorKey: [NSArchiver archivedDataWithRootObject:
-                                          [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0]],
-             CEThemeKeywordsColorKey: [NSArchiver archivedDataWithRootObject:
-                                       [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0]],
-             CEThemeCommandsColorKey: [NSArchiver archivedDataWithRootObject:
-                                       [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0]],
-             CEThemeTypesColorKey: [NSArchiver archivedDataWithRootObject:
-                                    [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0]],
-             CEThemeAttributesColorKey: [NSArchiver archivedDataWithRootObject:
-                                         [NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0]],
-             CEThemeVariablesColorKey: [NSArchiver archivedDataWithRootObject:
-                                        [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0]],
-             CEThemeValuesColorKey: [NSArchiver archivedDataWithRootObject:
-                                     [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0]],
-             CEThemeNumbersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-             CEThemeStringsColorKey: [NSArchiver archivedDataWithRootObject:
-                                      [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0]],
-             CEThemeCharactersColorKey: [NSArchiver archivedDataWithRootObject:[NSColor blueColor]],
-             CEThemeCommentsColorKey: [NSArchiver archivedDataWithRootObject:
-                                       [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]]
-             };
+    NSDictionary *colors = @{CEThemeTextColorKey: [NSColor textColor],
+                             CEThemeBackgroundColorKey: [NSColor textBackgroundColor],
+                             CEThemeInvisiblesColorKey: [NSColor grayColor],
+                             CEThemeSelectionColorKey: [NSColor selectedTextBackgroundColor],
+                             CEThemeUsesSystemSelectionColorKey: @YES,
+                             CEThemeInsertionPointColorKey: [NSColor textColor],
+                             CEThemeLineHighlightColorKey: [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0],
+                             CEThemeKeywordsColorKey: [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0],
+                             CEThemeCommandsColorKey: [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0],
+                             CEThemeTypesColorKey: [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0],
+                             CEThemeAttributesColorKey: [NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0],
+                             CEThemeVariablesColorKey: [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0],
+                             CEThemeValuesColorKey: [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0],
+                             CEThemeNumbersColorKey: [NSColor blueColor],
+                             CEThemeStringsColorKey: [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0],
+                             CEThemeCharactersColorKey: [NSColor blueColor],
+                             CEThemeCommentsColorKey: [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]
+                             };
+    
+    NSMutableDictionary *theme = [NSMutableDictionary dictionary];
+    
+    [colors enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([key isEqualToString:CEThemeUsesSystemSelectionColorKey]) {
+            theme[key] = obj;
+        } else {
+            theme[key] = [[(NSColor *) obj colorUsingColorSpaceName:NSCalibratedRGBColorSpace]
+                          colorCodeWithType:WFColorCodeHex];
+        }
+    }];
+    
+    return [theme copy];
 }
 
 

@@ -29,6 +29,7 @@
 
 #import "CETheme.h"
 #import "CEThemeManager.h"
+#import "NSColor+WFColorCode.h"
 
 
 @interface CETheme ()
@@ -95,10 +96,8 @@
         NSMutableDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
         
         // カラーを解凍
-        for (NSString *key in [themeDict allKeys]) {
-            if ([key isEqualToString:CEThemeUsesSystemSelectionColorKey]) { continue; }
-            
-            themeDict[key] = [NSUnarchiver unarchiveObjectWithData:themeDict[key]];
+        for (NSString *key in [CETheme colorKeys]) {
+            themeDict[key] = [NSColor colorWithColorCode:themeDict[key] codeType:nil];
         }
         
         // プロパティをセット
@@ -147,6 +146,33 @@
         return [NSColor selectedTextBackgroundColor];
     }
     return _selectionColor;
+}
+
+
+
+#pragma mark Private Class Methods
+
+//------------------------------------------------------
+/// テーマファイルで色が格納されているキー
++ (NSArray *)colorKeys
+//------------------------------------------------------
+{
+    return @[CEThemeTextColorKey,
+             CEThemeBackgroundColorKey,
+             CEThemeInvisiblesColorKey,
+             CEThemeSelectionColorKey,
+             CEThemeInsertionPointColorKey,
+             CEThemeLineHighlightColorKey,
+             CEThemeKeywordsColorKey,
+             CEThemeCommandsColorKey,
+             CEThemeTypesColorKey,
+             CEThemeAttributesColorKey,
+             CEThemeVariablesColorKey,
+             CEThemeValuesColorKey,
+             CEThemeNumbersColorKey,
+             CEThemeStringsColorKey,
+             CEThemeCharactersColorKey,
+             CEThemeCommentsColorKey];
 }
 
 @end

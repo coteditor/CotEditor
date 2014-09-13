@@ -1,11 +1,11 @@
 /*
  ==============================================================================
- CELineHeightTransformer
+ CEColorHexTransformer
  
  CotEditor
  http://coteditor.github.io
  
- Created on 2014-07-14 by 1024jp
+ Created on 2014-09-12 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -27,10 +27,11 @@
  ==============================================================================
  */
 
-#import "CELineHeightTransformer.h"
+#import "CEHexColorTransformer.h"
+#import "NSColor+WFColorCode.h"
 
 
-@implementation CELineHeightTransformer
+@implementation CEHexColorTransformer
 
 #pragma mark Class Methods
 
@@ -44,7 +45,7 @@
 + (Class)transformedValueClass
 // ------------------------------------------------------
 {
-    return [NSNumber class];
+    return [NSString class];
 }
 
 
@@ -66,24 +67,29 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// From line spacing to line height (NSNumber -> NSNumber)
+/// From color code hex to NSColor (NSString -> NSColor)
 - (id)transformedValue:(id)value
 // ------------------------------------------------------
 {
     if (!value) { return nil; }
     
-    return @([value doubleValue] + 1.0);
+    WFColorCodeType type = nil;
+    NSColor *color = [NSColor colorWithColorCode:value codeType:&type];
+    
+    return (type == WFColorCodeHex) ? color : nil;
 }
 
 
 // ------------------------------------------------------
-/// From line height to line spacing (NSNumber -> NSNumber)
+/// From NSColor to hex color code string (NSColor -> NSString)
 - (id)reverseTransformedValue:(id)value
 // ------------------------------------------------------
 {
-    if (!value) { return nil; }
+    if (![value isKindOfClass:[NSColor class]]) { return @"#000000"; }
     
-    return @([value doubleValue] - 1.0);
+    NSColor *color = [(NSColor *)value colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+    
+    return [color colorCodeWithType:WFColorCodeHex];
 }
 
 @end
