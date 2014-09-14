@@ -76,7 +76,7 @@
     WFColorCodeType type = nil;
     NSColor *color = [NSColor colorWithColorCode:value codeType:&type];
     
-    return (type == WFColorCodeHex) ? color : nil;
+    return (type == WFColorCodeHex || type == WFColorCodeShortHex) ? color : nil;
 }
 
 

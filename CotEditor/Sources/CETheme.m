@@ -97,7 +97,13 @@
         
         // カラーを解凍
         for (NSString *key in [CETheme colorKeys]) {
-            themeDict[key] = [NSColor colorWithColorCode:themeDict[key] codeType:nil];
+            WFColorCodeType type = nil;
+            NSColor *color = [NSColor colorWithColorCode:themeDict[key] codeType:&type];
+            
+            if (!color || !(type == WFColorCodeHex || type == WFColorCodeShortHex)) {
+                color = [NSColor grayColor];  // color for invalid color code
+            }
+            themeDict[key] = color;
         }
         
         // プロパティをセット
