@@ -15,5 +15,11 @@
   "commentsColor":"#93a1a1",
   "lineHighlightColor":"#eee8d5",
   "insertionPointColor":"#657b83",
-  "invisiblesColor":"#eee8d5"
+  "invisiblesColor":"#eee8d5",
+  "metadata": {
+    "author":"1024jp",
+    "description": "based on Solarized <http://ethanschoonover.com/solarized> color scheme by Ethan Schoonover",
+    "distributionURL":"http://coteditor.github.io",
+    "lisence":"Same as CotEditor"
+  }
 }

@@ -15,5 +15,10 @@
   "commentsColor":"#b21717",
   "lineHighlightColor":"#f1f1f1",
   "insertionPointColor":"#000000",
-  "invisiblesColor":"#b9b9b9"
+  "invisiblesColor":"#b9b9b9",
+  "metadata": {
+    "author":"1024jp",
+    "distributionURL":"http://coteditor.github.io",
+    "lisence":"Same as CotEditor"
+  }
 }
