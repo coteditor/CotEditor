@@ -53,7 +53,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 初期化
+/// initialize
 - (instancetype)initWithCharacter:(NSString *)character
 // ------------------------------------------------------
 {
@@ -86,35 +86,39 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         }
         [self setUnicode:[unicodes componentsJoinedByString:@"  "]];
         
-        BOOL isLigature = ([unicodes count] > 1);
+        BOOL isComposedCharacter = ([unicodes count] > 1);
         
-        NSString *vsComment;
+        NSString *variationSelectorAdditional;
         if ([unicodes count] == 2) {
             unichar lastChar = [character characterAtIndex:(length - 1)];
-            if(lastChar == kEmojiSequenceChar){
-                vsComment = @"Emoji Style";
-                isLigature = NO;
-            }else if(lastChar == kTextSequenceChar){
-                vsComment = @"Text Style";
-                isLigature = NO;
-            }else if( ((lastChar >= 0x180B) && (lastChar <= 0x180D)) || ((lastChar >= 0xFE00) && (lastChar <= 0xFE0D)) ){
-                vsComment = @"Variant";
-                isLigature = NO;
-            }else{
+            if (lastChar == kEmojiSequenceChar) {
+                variationSelectorAdditional = @"Emoji Style";
+                isComposedCharacter = NO;
+            } else if (lastChar == kTextSequenceChar) {
+                variationSelectorAdditional = @"Text Style";
+                isComposedCharacter = NO;
+            } else if ((lastChar >= 0x180B && lastChar <= 0x180D) ||
+                       (lastChar >= 0xFE00 && lastChar <= 0xFE0D))
+            {
+                variationSelectorAdditional = @"Variant";
+                isComposedCharacter = NO;
+            } else {
                 unichar highSurrogate = [character characterAtIndex:(length - 2)];
                 unichar lowSurrogate = [character characterAtIndex:(length - 1)];
-                if(CFStringIsSurrogateHighCharacter(highSurrogate) && CFStringIsSurrogateLowCharacter(lowSurrogate)){
+                if (CFStringIsSurrogateHighCharacter(highSurrogate) &&
+                    CFStringIsSurrogateLowCharacter(lowSurrogate))
+                {
                     UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(highSurrogate, lowSurrogate);
-                    if(pair >= 0xE0100 && pair <= 0xE01EF){
-                        vsComment = @"Variant";
-                        isLigature = NO;
+                    if (pair >= 0xE0100 && pair <= 0xE01EF) {
+                        variationSelectorAdditional = @"Variant";
+                        isComposedCharacter = NO;
                     }
                 }
             }
         }
         
-        if (isLigature) {
-            // ligature message (ただし正確にはリガチャとは限らないので、letterとぼかしている)
+        if (isComposedCharacter) {
+            // number of characters message
             [self setUnicodeName:[NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), [unicodes count]]];
             
         } else {
@@ -127,9 +131,9 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
                                                                    range:NSMakeRange(0, [mutableUnicodeName length])];
             [self setUnicodeName:[mutableUnicodeName substringWithRange:[firstMatch rangeAtIndex:1]]];
             
-            if (vsComment) {
+            if (variationSelectorAdditional) {
                 [self setUnicodeName:[NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
-                                      NSLocalizedString(vsComment, nil)]];
+                                      NSLocalizedString(variationSelectorAdditional, nil)]];
             }
         }
     }
@@ -138,7 +142,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 
 
 // ------------------------------------------------------
-/// popover を表示
+/// show popover
 - (void)showPopoverRelativeToRect:(NSRect)positioningRect ofView:(NSView *)parentView
 // ------------------------------------------------------
 {
