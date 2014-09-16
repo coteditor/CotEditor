@@ -113,6 +113,7 @@
 "<a letter consisting of %d characters>" = "<%d字から成る文字>";
 "Emoji Style" = "絵文字スタイル";
 "Text Style" = "テキストスタイル";
+"Variant" = "異体字";
 
 
 /* CEEditorWrapper */
