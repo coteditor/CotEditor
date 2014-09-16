@@ -88,28 +88,34 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         
         BOOL isLigature = ([unicodes count] > 1);
         
-        // emoji variation check
-        NSString *emojiStyle;
+        NSString *vsComment;
         if ([unicodes count] == 2) {
-            switch ([character characterAtIndex:(length - 1)]) {
-                case kEmojiSequenceChar:
-                    emojiStyle = @"Emoji Style";
-                    isLigature = NO;
-                    break;
-                
-                case kTextSequenceChar:
-                    emojiStyle = @"Text Style";
-                    isLigature = NO;
-                    break;
-                    
-                default:
-                    break;
+            unichar lastChar = [character characterAtIndex:(length - 1)];
+            if(lastChar == kEmojiSequenceChar){
+                vsComment = @"Emoji Style";
+                isLigature = NO;
+            }else if(lastChar == kTextSequenceChar){
+                vsComment = @"Text Style";
+                isLigature = NO;
+            }else if( ((lastChar >= 0x180B) && (lastChar <= 0x180D)) || ((lastChar >= 0xFE00) && (lastChar <= 0xFE0D)) ){
+                vsComment = @"Variant";
+                isLigature = NO;
+            }else{
+                unichar highSurrogate = [character characterAtIndex:(length - 2)];
+                unichar lowSurrogate = [character characterAtIndex:(length - 1)];
+                if(CFStringIsSurrogateHighCharacter(highSurrogate) && CFStringIsSurrogateLowCharacter(lowSurrogate)){
+                    UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(highSurrogate, lowSurrogate);
+                    if(pair >= 0xE0100 && pair <= 0xE01EF){
+                        vsComment = @"Variant";
+                        isLigature = NO;
+                    }
+                }
             }
         }
         
         if (isLigature) {
             // ligature message (ただし正確にはリガチャとは限らないので、letterとぼかしている)
-            [self setUnicodeName:[NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), length]];
+            [self setUnicodeName:[NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), [unicodes count]]];
             
         } else {
             // unicode character name
@@ -121,9 +127,9 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
                                                                    range:NSMakeRange(0, [mutableUnicodeName length])];
             [self setUnicodeName:[mutableUnicodeName substringWithRange:[firstMatch rangeAtIndex:1]]];
             
-            if (emojiStyle) {
+            if (vsComment) {
                 [self setUnicodeName:[NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
-                                      NSLocalizedString(emojiStyle, nil)]];
+                                      NSLocalizedString(vsComment, nil)]];
             }
         }
     }
