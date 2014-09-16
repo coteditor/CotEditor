@@ -53,7 +53,7 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// initialize
+/// failable initialize
 - (instancetype)initWithCharacter:(NSString *)character
 // ------------------------------------------------------
 {
@@ -66,12 +66,11 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         NSUInteger length = [character length];
         
         // unicode hex
-        NSString *unicode;
-        NSString *substring;
         NSMutableArray *unicodes = [NSMutableArray array];
         for (NSUInteger i = 0; i < length; i++) {
             unichar theChar = [character characterAtIndex:i];
             unichar nextChar = (length > i + 1) ? [character characterAtIndex:i + 1] : 0;
+            NSString *unicode;
             
             if (CFStringIsSurrogateHighCharacter(theChar) && CFStringIsSurrogateLowCharacter(nextChar)) {
                 UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(theChar, nextChar);
@@ -86,22 +85,20 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
         }
         [self setUnicode:[unicodes componentsJoinedByString:@"  "]];
         
-        BOOL isComposedCharacter = ([unicodes count] > 1);
+        BOOL isMultipleChars = NO;
         
+        // check valiation selector
         NSString *variationSelectorAdditional;
         if ([unicodes count] == 2) {
             unichar lastChar = [character characterAtIndex:(length - 1)];
             if (lastChar == kEmojiSequenceChar) {
                 variationSelectorAdditional = @"Emoji Style";
-                isComposedCharacter = NO;
             } else if (lastChar == kTextSequenceChar) {
                 variationSelectorAdditional = @"Text Style";
-                isComposedCharacter = NO;
             } else if ((lastChar >= 0x180B && lastChar <= 0x180D) ||
                        (lastChar >= 0xFE00 && lastChar <= 0xFE0D))
             {
                 variationSelectorAdditional = @"Variant";
-                isComposedCharacter = NO;
             } else {
                 unichar highSurrogate = [character characterAtIndex:(length - 2)];
                 unichar lowSurrogate = [character characterAtIndex:(length - 1)];
@@ -111,25 +108,28 @@ static const unichar kEmojiSequenceChar = 0xFE0F;
                     UTF32Char pair = CFStringGetLongCharacterForSurrogatePair(highSurrogate, lowSurrogate);
                     if (pair >= 0xE0100 && pair <= 0xE01EF) {
                         variationSelectorAdditional = @"Variant";
-                        isComposedCharacter = NO;
+                    } else {
+                        isMultipleChars = YES;
                     }
                 }
             }
+        } else if ([unicodes count] > 2) {
+            isMultipleChars = YES;
         }
         
-        if (isComposedCharacter) {
+        if (isMultipleChars) {
             // number of characters message
             [self setUnicodeName:[NSString stringWithFormat:NSLocalizedString(@"<a letter consisting of %d characters>", nil), [unicodes count]]];
             
         } else {
             // unicode character name
-            NSMutableString *mutableUnicodeName = [character mutableCopy];
-            CFStringTransform((__bridge CFMutableStringRef)mutableUnicodeName, NULL, CFSTR("Any-Name"), NO);
+            NSMutableString *unicodeName = [character mutableCopy];
+            CFStringTransform((__bridge CFMutableStringRef)unicodeName, NULL, CFSTR("Any-Name"), NO);
             
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\{(.+?)\\}" options:0 error:nil];
-            NSTextCheckingResult *firstMatch = [regex firstMatchInString:mutableUnicodeName options:0
-                                                                   range:NSMakeRange(0, [mutableUnicodeName length])];
-            [self setUnicodeName:[mutableUnicodeName substringWithRange:[firstMatch rangeAtIndex:1]]];
+            NSTextCheckingResult *firstMatch = [regex firstMatchInString:unicodeName options:0
+                                                                   range:NSMakeRange(0, [unicodeName length])];
+            [self setUnicodeName:[unicodeName substringWithRange:[firstMatch rangeAtIndex:1]]];
             
             if (variationSelectorAdditional) {
                 [self setUnicodeName:[NSString stringWithFormat:@"%@ (%@)", [self unicodeName],
