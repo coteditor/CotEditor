@@ -1,0 +1,19 @@
+{
+  "typesColor":"#000000",
+  "attributesColor":"#000000",
+  "keywordsColor":"#000000",
+  "numbersColor":"#000000",
+  "charactersColor":"#000000",
+  "backgroundColor":"#ffffff",
+  "stringsColor":"#000000",
+  "valuesColor":"#000000",
+  "usesSystemSelectionColor":true,
+  "textColor":"#000000",
+  "variablesColor":"#000000",
+  "commandsColor":"#000000",
+  "selectionColor":"#a7caff",
+  "commentsColor":"#000000",
+  "lineHighlightColor":"#f6f6f6",
+  "insertionPointColor":"#000000",
+  "invisiblesColor":"#999999"
+}

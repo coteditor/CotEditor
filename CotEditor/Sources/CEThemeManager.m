@@ -129,6 +129,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"cottheme" subdirectory:@"Themes"];
         NSMutableArray *themeNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
+            if ([[URL lastPathComponent] hasPrefix:@"_"]) { continue; }
+            
             [themeNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
         }
         [self setBundledThemeNames:themeNames];
@@ -647,26 +649,11 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)plainTheme
 //------------------------------------------------------
 {
-    WFColorCodeType type = WFColorCodeHex;
-    
-    return @{CEThemeTextColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeBackgroundColorKey: [[NSColor textBackgroundColor] colorCodeWithType:type],
-             CEThemeInvisiblesColorKey: [[NSColor grayColor] colorCodeWithType:type],
-             CEThemeSelectionColorKey: [[NSColor selectedTextBackgroundColor] colorCodeWithType:type],
-             CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeInsertionPointColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeLineHighlightColorKey: [[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] colorCodeWithType:type],
-             CEThemeKeywordsColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeCommandsColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeTypesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeAttributesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeVariablesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeValuesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeNumbersColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeStringsColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeCharactersColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeCommentsColorKey: [[NSColor textColor] colorCodeWithType:type]
-             };
+    NSURL *URL = [self URLForBundledTheme:@"_Plain"];
+    NSData *data = [NSData dataWithContentsOfURL:URL];
+    return [NSJSONSerialization JSONObjectWithData:data
+                                           options:NSJSONReadingMutableContainers
+                                             error:nil];
 }
 
 @end
