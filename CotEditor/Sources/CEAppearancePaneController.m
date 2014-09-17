@@ -29,19 +29,19 @@
  */
 
 #import "CEAppearancePaneController.h"
+#import "CEThemeViewController.h"
 #import "CEThemeManager.h"
-#import "NSColor+WFColorCode.h"
 #import "constants.h"
 
 
-@interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource>
+@interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource, CEThemeViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet NSTextField *fontField;
+@property (nonatomic, weak) IBOutlet NSTableView *themeTableView;
+@property (nonatomic, weak) IBOutlet NSBox *box;
 
-@property (nonatomic) IBOutlet NSTableView *themeTableView;
-
+@property (nonatomic) CEThemeViewController *themeViewController;
 @property (nonatomic) NSArray *themeNames;
-@property (nonatomic) NSMutableDictionary *themeDict;
 @property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end
@@ -66,10 +66,6 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    for (NSString *key in [[self themeDict] allKeys]) {
-        [[self themeDict] removeObserver:self forKeyPath:key];
-    }
 }
 
 
@@ -95,17 +91,6 @@
                                              selector:@selector(setupThemeList)
                                                  name:CEThemeListDidUpdateNotification
                                                object:nil];
-}
-
-
-// ------------------------------------------------------
-/// テーマが変更された
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-// ------------------------------------------------------
-{
-    if (object == [self themeDict]) {
-        [[CEThemeManager sharedManager] saveTheme:[self themeDict] name:[self selectedTheme] completionHandler:nil];
-    }
 }
 
 
@@ -160,6 +145,24 @@
 
 
 //=======================================================
+// Delegate (CEThemeViewController)
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// テーマが編集された
+- (void)didUpdateTheme:(NSMutableDictionary *)theme
+// ------------------------------------------------------
+{
+    // finish current edit
+    [[[self view] window] makeFirstResponder:self];
+    
+    // save
+    [[CEThemeManager sharedManager] saveTheme:theme name:[self selectedTheme] completionHandler:nil];
+}
+
+
+//=======================================================
 // Delegate method (NSTableView)
 //  <== themeTableView
 //=======================================================
@@ -174,7 +177,7 @@
         NSMutableDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:&isBundled];
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
-        if ([self themeDict]) {
+        if ([self themeViewController]) {
             NSString *oldThemeName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey];
             
             [[NSUserDefaults standardUserDefaults] setObject:[self selectedTheme] forKey:CEDefaultThemeKey];
@@ -186,7 +189,11 @@
                                                                          CENewNameKey: [self selectedTheme]}];
         }
         
-        [self setThemeDict:themeDict];
+        [self setThemeViewController:[[CEThemeViewController alloc] init]];
+        [[self themeViewController] setDelegate:self];
+        [[self themeViewController] setRepresentedObject:themeDict];
+        [[self box] setContentView:[[self themeViewController] view]];
+        
         [self setBundled:isBundled];
     }
 }
@@ -381,21 +388,11 @@
     [[CEThemeManager sharedManager] restoreTheme:[self selectedTheme] completionHandler:^(NSError *error) {
         if (!error) {
             // 辞書をセットし直す
-            [self setThemeDict:[[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:nil]];
+            NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:[self selectedTheme] isBundled:nil];
+            
+            [[self themeViewController] setRepresentedObject:bundledTheme];
         }
     }];
-}
-
-
-// ------------------------------------------------------
-/// システムのハイライトカラーを適応する
-- (IBAction)applySystemSelectionColor:(id)sender
-// ------------------------------------------------------
-{
-    if ([sender state] == NSOnState) {
-        NSColor *color = [NSColor selectedTextBackgroundColor];
-        [self themeDict][CEThemeSelectionColorKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:WFColorCodeHex];
-    }
 }
 
 
@@ -418,21 +415,6 @@
     NSString *localizedName = [font displayName];
     
     [[self fontField] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
-}
-
-
-// ------------------------------------------------------
-/// テーマ辞書をセット
-- (void)setThemeDict:(NSMutableDictionary *)themeDict
-// ------------------------------------------------------
-{
-    // テーマ辞書の変更を監視
-    for (NSString *key in [themeDict allKeys]) {
-        [[self themeDict] removeObserver:self forKeyPath:key];
-        [themeDict addObserver:self forKeyPath:key options:0 context:NULL];
-    }
-    
-    _themeDict = themeDict;
 }
 
 

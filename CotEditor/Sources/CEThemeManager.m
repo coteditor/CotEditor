@@ -129,6 +129,8 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"cottheme" subdirectory:@"Themes"];
         NSMutableArray *themeNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
+            if ([[URL lastPathComponent] hasPrefix:@"_"]) { continue; }
+            
             [themeNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
         }
         [self setBundledThemeNames:themeNames];
@@ -539,6 +541,17 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 //------------------------------------------------------
+/// URLからテーマ辞書を返す
+- (NSMutableDictionary *)themeDictWithURL:(NSURL *)URL
+//------------------------------------------------------
+{
+    return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
+                                           options:NSJSONReadingMutableContainers
+                                             error:nil];
+}
+
+
+//------------------------------------------------------
 /// 内部で持っているキャッシュ用データを更新
 - (void)updateCacheWithCompletionHandler:(void (^)())completionHandler
 //------------------------------------------------------
@@ -575,9 +588,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         // 定義をキャッシュする
         NSMutableDictionary *themes = [NSMutableDictionary dictionary];
         for (NSString *name in [strongSelf themeNames]) {
-            themes[name] = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
-                                                          options:NSJSONReadingMutableLeaves
-                                                             error:nil];
+            themes[name] = [self themeDictWithURL:[self URLForUsedTheme:name]];
         }
         
         [self setArchivedThemes:themes];
@@ -647,26 +658,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)plainTheme
 //------------------------------------------------------
 {
-    WFColorCodeType type = WFColorCodeHex;
-    
-    return @{CEThemeTextColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeBackgroundColorKey: [[NSColor textBackgroundColor] colorCodeWithType:type],
-             CEThemeInvisiblesColorKey: [[NSColor grayColor] colorCodeWithType:type],
-             CEThemeSelectionColorKey: [[NSColor selectedTextBackgroundColor] colorCodeWithType:type],
-             CEThemeUsesSystemSelectionColorKey: @YES,
-             CEThemeInsertionPointColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeLineHighlightColorKey: [[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] colorCodeWithType:type],
-             CEThemeKeywordsColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeCommandsColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeTypesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeAttributesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeVariablesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeValuesColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeNumbersColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeStringsColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeCharactersColorKey: [[NSColor textColor] colorCodeWithType:type],
-             CEThemeCommentsColorKey: [[NSColor textColor] colorCodeWithType:type]
-             };
+    return [self themeDictWithURL:[self URLForBundledTheme:@"_Plain"]];
 }
 
 @end
@@ -724,40 +716,15 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// CotEditor 1.5までで使用されていたデフォルトテーマに新たなキーワードを加えたもの
-- (NSDictionary *)classicTheme
+- (NSMutableDictionary *)classicTheme
 //------------------------------------------------------
 {
-    NSDictionary *colors = @{CEThemeTextColorKey: [NSColor textColor],
-                             CEThemeBackgroundColorKey: [NSColor textBackgroundColor],
-                             CEThemeInvisiblesColorKey: [NSColor grayColor],
-                             CEThemeSelectionColorKey: [NSColor selectedTextBackgroundColor],
-                             CEThemeUsesSystemSelectionColorKey: @YES,
-                             CEThemeInsertionPointColorKey: [NSColor textColor],
-                             CEThemeLineHighlightColorKey: [NSColor colorWithCalibratedRed:0.843 green:0.953 blue:0.722 alpha:1.0],
-                             CEThemeKeywordsColorKey: [NSColor colorWithCalibratedRed:0.047 green:0.102 blue:0.494 alpha:1.0],
-                             CEThemeCommandsColorKey: [NSColor colorWithCalibratedRed:0.408 green:0.220 blue:0.129 alpha:1.0],
-                             CEThemeTypesColorKey: [NSColor colorWithCalibratedRed:0.05 green:0.553 blue:0.659 alpha:1.0],
-                             CEThemeAttributesColorKey: [NSColor colorWithCalibratedRed:0.078 green:0.3333 blue:0.659 alpha:1.0],
-                             CEThemeVariablesColorKey: [NSColor colorWithCalibratedRed:0.42 green:0.42 blue:0.474 alpha:1.0],
-                             CEThemeValuesColorKey: [NSColor colorWithCalibratedRed:0.463 green:0.059 blue:0.313 alpha:1.0],
-                             CEThemeNumbersColorKey: [NSColor blueColor],
-                             CEThemeStringsColorKey: [NSColor colorWithCalibratedRed:0.537 green:0.075 blue:0.08 alpha:1.0],
-                             CEThemeCharactersColorKey: [NSColor blueColor],
-                             CEThemeCommentsColorKey: [NSColor colorWithCalibratedRed:0.137 green:0.431 blue:0.145 alpha:1.0]
-                             };
+    NSMutableDictionary *theme = [self themeDictWithURL:[self URLForBundledTheme:@"Classic"]];
     
-    NSMutableDictionary *theme = [NSMutableDictionary dictionary];
+    theme[@"metadata"] = [@{@"description": NSLocalizedString(@"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x", nil)}
+                          mutableCopy];
     
-    [colors enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if ([key isEqualToString:CEThemeUsesSystemSelectionColorKey]) {
-            theme[key] = obj;
-        } else {
-            theme[key] = [[(NSColor *) obj colorUsingColorSpaceName:NSCalibratedRGBColorSpace]
-                          colorCodeWithType:WFColorCodeHex];
-        }
-    }];
-    
-    return [theme copy];
+    return theme;
 }
 
 

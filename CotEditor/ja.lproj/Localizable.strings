@@ -283,6 +283,8 @@
 "Theme name cannot begin with “.”." = "テーマ名を“.”から始めることはできません。";
 "Input another name." = "ほかの名前を入力してください。";
 
+"Auto-generated theme that is mgrated from user's coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
+
 
 /* CEWindowsController */
 "ON" = "ON";
