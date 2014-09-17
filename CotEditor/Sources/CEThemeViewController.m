@@ -30,7 +30,19 @@
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
 #import "NSColor+WFColorCode.h"
+#import "constants.h"
 
+
+@interface CEThemeViewController () <NSTextFieldDelegate>
+
+@property (nonatomic) IBOutlet NSPopover *popover;
+
+@end
+
+
+
+
+#pragma mark -
 
 @implementation CEThemeViewController
 
@@ -93,6 +105,19 @@
 
 
 
+#pragma mark Delegate
+
+// ------------------------------------------------------
+/// meta data was possible edited
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
+// ------------------------------------------------------
+{
+    [[self delegate] didUpdateTheme:[self representedObject]];
+    return YES;
+}
+
+
+
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -104,6 +129,32 @@
         NSColor *color = [NSColor selectedTextBackgroundColor];
         [self representedObject][CEThemeSelectionColorKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:WFColorCodeHex];
     }
+}
+
+
+// ------------------------------------------------------
+/// show medatada of theme file via popover
+- (IBAction)showMedatada:(id)sender
+// ------------------------------------------------------
+{
+    [[self popover] showRelativeToRect:[sender frame] ofView:[self view] preferredEdge:NSMaxYEdge];
+    [[sender window] makeFirstResponder:[sender window]];
+}
+
+
+// ------------------------------------------------------
+/// jump to theme's destribution URL
+- (IBAction)jumpToURL:(id)sender
+// ------------------------------------------------------
+{
+    NSURL *URL = [NSURL URLWithString:[self representedObject][@"metadata"][@"distributionURL"]];
+    
+    if (!URL) {
+        NSBeep();
+        return;
+    }
+    
+    [[NSWorkspace sharedWorkspace] openURL:URL];
 }
 
 @end

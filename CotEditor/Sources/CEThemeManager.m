@@ -576,7 +576,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         NSMutableDictionary *themes = [NSMutableDictionary dictionary];
         for (NSString *name in [strongSelf themeNames]) {
             themes[name] = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[self URLForUsedTheme:name]]
-                                                          options:NSJSONReadingMutableLeaves
+                                                          options:NSJSONReadingMutableContainers
                                                              error:nil];
         }
         

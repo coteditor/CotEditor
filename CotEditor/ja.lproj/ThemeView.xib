@@ -3,10 +3,12 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEThemeViewController">
             <connections>
+                <outlet property="popover" destination="9zn-2O-cFk" id="6NV-VZ-tAI"/>
                 <outlet property="view" destination="8Mv-NZ-wYH" id="BCv-jM-YWI"/>
             </connections>
         </customObject>
@@ -18,11 +20,11 @@
             </connections>
         </objectController>
         <customView id="8Mv-NZ-wYH" userLabel="Theme View">
-            <rect key="frame" x="0.0" y="0.0" width="332" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="332" height="310"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X1h-s1-vOe">
-                    <rect key="frame" x="22" y="131" width="82" height="17"/>
+                    <rect key="frame" x="22" y="141" width="82" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="キーワード：" id="IU8-bd-gBv">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -30,7 +32,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-Sx-bRs">
-                    <rect key="frame" x="61" y="50" width="43" height="17"/>
+                    <rect key="frame" x="61" y="60" width="43" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="属性：" id="RQL-fz-3aq">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -38,7 +40,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5M7-jw-5vd">
-                    <rect key="frame" x="61" y="23" width="43" height="17"/>
+                    <rect key="frame" x="61" y="33" width="43" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="変数：" id="ZIr-1E-qZJ">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -46,7 +48,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FHd-6m-dWf">
-                    <rect key="frame" x="35" y="104" width="69" height="17"/>
+                    <rect key="frame" x="35" y="114" width="69" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="コマンド：" id="81x-je-JUf">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -54,7 +56,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-GT-ZUL">
-                    <rect key="frame" x="219" y="104" width="43" height="17"/>
+                    <rect key="frame" x="219" y="114" width="43" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="数値：" id="3wF-uc-Tfq">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,7 +64,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8yb-9K-ShW">
-                    <rect key="frame" x="219" y="50" width="43" height="17"/>
+                    <rect key="frame" x="219" y="60" width="43" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字：" id="hbk-iX-4VK">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -70,7 +72,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-vs-wd8">
-                    <rect key="frame" x="193" y="23" width="69" height="17"/>
+                    <rect key="frame" x="193" y="33" width="69" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="コメント：" id="AIG-rr-79V">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +80,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8JO-9v-VnC">
-                    <rect key="frame" x="22" y="225" width="82" height="17"/>
+                    <rect key="frame" x="22" y="235" width="82" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="キャレット：" id="Ljk-ky-fQH">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -86,7 +88,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="lJB-fN-OKp">
-                    <rect key="frame" x="110" y="222" width="44" height="23"/>
+                    <rect key="frame" x="110" y="232" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.insertionPointColor" id="zhT-ry-76k">
@@ -97,7 +99,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eBT-dC-9hy">
-                    <rect key="frame" x="14" y="275" width="108" height="17"/>
+                    <rect key="frame" x="14" y="285" width="108" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="基本カラーリング" id="Bb9-qh-gwK">
                         <font key="font" size="13" name="AquaKana-Bold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -105,7 +107,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gao-00-mX9">
-                    <rect key="frame" x="22" y="198" width="82" height="17"/>
+                    <rect key="frame" x="22" y="208" width="82" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="不可視文字：" id="IGx-p1-FHi">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -113,7 +115,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-Gl-M0L">
-                    <rect key="frame" x="61" y="252" width="43" height="17"/>
+                    <rect key="frame" x="61" y="262" width="43" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字：" id="kvy-vf-yva">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -121,7 +123,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I5D-KF-7Az">
-                    <rect key="frame" x="110" y="249" width="44" height="23"/>
+                    <rect key="frame" x="110" y="259" width="44" height="23"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="0Pe-cc-8c0"/>
                         <constraint firstAttribute="height" constant="23" id="G8l-4b-vkT"/>
@@ -136,7 +138,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gjr-XD-Cv5">
-                    <rect key="frame" x="110" y="195" width="44" height="23"/>
+                    <rect key="frame" x="110" y="205" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.invisiblesColor" id="eUR-jY-1tk">
@@ -147,7 +149,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-u1-6ML">
-                    <rect key="frame" x="268" y="249" width="44" height="23"/>
+                    <rect key="frame" x="268" y="259" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.backgroundColor" id="0Bp-qV-TPs">
@@ -158,7 +160,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="u73-Ob-J8v">
-                    <rect key="frame" x="268" y="222" width="44" height="23"/>
+                    <rect key="frame" x="268" y="232" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlightColor" id="V74-PX-4Ia">
@@ -169,19 +171,23 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Y4q-YH-jrD">
-                    <rect key="frame" x="268" y="195" width="44" height="23"/>
+                    <rect key="frame" x="268" y="205" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
+                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.usesSystemSelectionColor" id="Dij-xq-4ME">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selectionColor" id="3m8-OB-pMB">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
                         </binding>
-                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.usesSystemSelectionColor" id="J9v-h6-vLd"/>
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-Zf-mza">
-                    <rect key="frame" x="219" y="252" width="43" height="17"/>
+                    <rect key="frame" x="219" y="262" width="43" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="背景：" id="tvj-DS-DVt">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -189,7 +195,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qx-kON">
-                    <rect key="frame" x="193" y="225" width="69" height="17"/>
+                    <rect key="frame" x="193" y="235" width="69" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="現在の行：" id="yMW-lO-ILw">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -197,7 +203,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f4v-zr-M1o">
-                    <rect key="frame" x="193" y="198" width="69" height="17"/>
+                    <rect key="frame" x="193" y="208" width="69" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="選択範囲：" id="PbY-c2-p4V">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -205,7 +211,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9VW-40-zzi">
-                    <rect key="frame" x="14" y="156" width="160" height="17"/>
+                    <rect key="frame" x="14" y="166" width="160" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="シンタックスカラーリング" id="F64-8o-JYC">
                         <font key="font" size="13" name="AquaKana-Bold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -213,7 +219,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="rn5-5c-jI6">
-                    <rect key="frame" x="268" y="101" width="44" height="23"/>
+                    <rect key="frame" x="268" y="111" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbersColor" id="tLy-dY-KDh">
@@ -224,7 +230,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i3Z-85-3qp">
-                    <rect key="frame" x="268" y="47" width="44" height="23"/>
+                    <rect key="frame" x="268" y="57" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.charactersColor" id="y0k-JF-Of2">
@@ -235,7 +241,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snC-SX-rEl">
-                    <rect key="frame" x="206" y="77" width="56" height="17"/>
+                    <rect key="frame" x="206" y="87" width="56" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="文字列：" id="n04-r3-95l">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -243,7 +249,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="joc-k5-xEa">
-                    <rect key="frame" x="268" y="74" width="44" height="23"/>
+                    <rect key="frame" x="268" y="84" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.stringsColor" id="iw4-9p-DwY">
@@ -254,7 +260,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="QGS-SR-oFV">
-                    <rect key="frame" x="268" y="20" width="44" height="23"/>
+                    <rect key="frame" x="268" y="30" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commentsColor" id="0MC-uP-e9z">
@@ -265,7 +271,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="w0B-KD-9pH">
-                    <rect key="frame" x="110" y="128" width="44" height="23"/>
+                    <rect key="frame" x="110" y="138" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.keywordsColor" id="Umr-F4-IP8">
@@ -276,7 +282,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I0Y-Yr-Tq6">
-                    <rect key="frame" x="110" y="101" width="44" height="23"/>
+                    <rect key="frame" x="110" y="111" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commandsColor" id="fqm-1s-A1s">
@@ -287,7 +293,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="O1G-QZ-X3X">
-                    <rect key="frame" x="110" y="47" width="44" height="23"/>
+                    <rect key="frame" x="110" y="57" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.attributesColor" id="vPc-FO-JkI">
@@ -298,7 +304,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44n-Y9-D7v">
-                    <rect key="frame" x="48" y="77" width="56" height="17"/>
+                    <rect key="frame" x="48" y="87" width="56" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="タイプ：" id="ILi-Jt-MUc">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -306,7 +312,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Op7-tR-smw">
-                    <rect key="frame" x="110" y="74" width="44" height="23"/>
+                    <rect key="frame" x="110" y="84" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.typesColor" id="UED-8u-a3D">
@@ -317,7 +323,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TVR-mt-U7J">
-                    <rect key="frame" x="110" y="20" width="44" height="23"/>
+                    <rect key="frame" x="110" y="30" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.variablesColor" id="bpB-TF-zyh">
@@ -328,7 +334,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="89v-hc-bub">
-                    <rect key="frame" x="232" y="131" width="30" height="17"/>
+                    <rect key="frame" x="232" y="141" width="30" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="値：" id="cVK-ET-QiD">
                         <font key="font" size="13" name="AquaKana"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -336,7 +342,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="vgC-hV-Bju">
-                    <rect key="frame" x="268" y="128" width="44" height="23"/>
+                    <rect key="frame" x="268" y="138" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.valuesColor" id="MsD-4U-kSw">
@@ -347,7 +353,7 @@
                     </connections>
                 </colorWell>
                 <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="38b-e6-B7J">
-                    <rect key="frame" x="182" y="175" width="132" height="18"/>
+                    <rect key="frame" x="182" y="185" width="132" height="18"/>
                     <buttonCell key="cell" type="check" title="システムカラーを使う" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="0ZP-Zp-oBu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" size="11" name="AquaKana"/>
@@ -355,6 +361,20 @@
                     <connections>
                         <action selector="applySystemSelectionColor:" target="-2" id="cmk-jZ-Veo"/>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.usesSystemSelectionColor" id="tSi-ok-bp6"/>
+                    </connections>
+                </button>
+                <button toolTip="テーマファイル情報を表示" translatesAutoresizingMaskIntoConstraints="NO" id="8zj-4c-Hg4">
+                    <rect key="frame" x="296" y="5" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Mxz-Mu-red"/>
+                        <constraint firstAttribute="height" constant="16" id="Vat-Hb-Ids"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="InfoTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="gbm-no-dvT">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showMedatada:" target="-2" id="l3Y-UD-WT7"/>
                     </connections>
                 </button>
             </subviews>
@@ -367,6 +387,7 @@
                 <constraint firstItem="BcY-Zf-mza" firstAttribute="centerY" secondItem="Mh4-u1-6ML" secondAttribute="centerY" id="1Om-Sj-lKU"/>
                 <constraint firstItem="2SR-Gl-M0L" firstAttribute="top" secondItem="eBT-dC-9hy" secondAttribute="bottom" constant="6" id="22F-B6-0fC"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="Mh4-u1-6ML" secondAttribute="width" id="2wu-X7-0d1"/>
+                <constraint firstAttribute="bottom" secondItem="8zj-4c-Hg4" secondAttribute="bottom" constant="5" id="3In-Xx-L7C"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="O1G-QZ-X3X" secondAttribute="height" id="3RU-yp-E2T"/>
                 <constraint firstItem="Y4q-YH-jrD" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="3cW-iW-jGG"/>
                 <constraint firstItem="vgC-hV-Bju" firstAttribute="leading" secondItem="89v-hc-bub" secondAttribute="trailing" constant="8" symbolic="YES" id="44j-qa-1z6"/>
@@ -428,6 +449,7 @@
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="O1G-QZ-X3X" secondAttribute="leading" id="dQy-rd-2CX"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="Mh4-u1-6ML" secondAttribute="height" id="dc2-UQ-jnw"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="Op7-tR-smw" secondAttribute="leading" id="eYD-aa-VEG"/>
+                <constraint firstAttribute="trailing" secondItem="8zj-4c-Hg4" secondAttribute="trailing" constant="20" symbolic="YES" id="eZK-wJ-h9o"/>
                 <constraint firstItem="5M7-jw-5vd" firstAttribute="centerY" secondItem="TVR-mt-U7J" secondAttribute="centerY" id="g3N-pN-BHP"/>
                 <constraint firstItem="lJB-fN-OKp" firstAttribute="centerY" secondItem="8JO-9v-VnC" secondAttribute="centerY" id="g3q-NG-j9B"/>
                 <constraint firstItem="u73-Ob-J8v" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="gMg-5d-zqr"/>
@@ -462,5 +484,166 @@
             </constraints>
             <point key="canvasLocation" x="147" y="488"/>
         </customView>
+        <viewController id="5ql-Tm-Fra" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="ppO-VP-NLx" id="Zu5-vX-Vcd"/>
+            </connections>
+        </viewController>
+        <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="294" placeholderIntrinsicHeight="81" id="ppO-VP-NLx" userLabel="Metadata View">
+            <rect key="frame" x="0.0" y="0.0" width="294" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k4d-pG-qBs">
+                    <rect key="frame" x="41" y="75" width="37" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="作者：" id="rwN-yN-R2d">
+                        <font key="font" size="11" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Jp-Su-oLN">
+                    <rect key="frame" x="41" y="58" width="37" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="URL：" id="yNX-Ny-4Pe">
+                        <font key="font" metaFont="smallSystemBold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WUy-8Y-3ep">
+                    <rect key="frame" x="8" y="41" width="70" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ライセンス：" id="1dw-ZR-kJT">
+                        <font key="font" size="11" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hGf-bl-psz">
+                    <rect key="frame" x="41" y="24" width="37" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="説明：" id="Zc1-EC-Gu8">
+                        <font key="font" size="11" name="AquaKana-Bold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b4k-a5-0eY">
+                    <rect key="frame" x="82" y="76" width="204" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="anonymous" placeholderString="" id="8qg-6N-HfV">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.author" id="bVN-59-XwT">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">なし</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fh5-NX-Gjh">
+                    <rect key="frame" x="82" y="58" width="182" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="http://coteditor.github.io" placeholderString="" id="5fK-WM-jnH">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.distributionURL" id="Fq6-R8-HXb">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">なし</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eId-LY-LfO">
+                    <rect key="frame" x="82" y="42" width="204" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="GPL2" placeholderString="" id="ABE-hR-FWl">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.lisence" id="kxO-GU-Je7">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">なし</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="751" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-Tm-kvp">
+                    <rect key="frame" x="82" y="10" width="204" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="GGh-kK-AS9"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Lv7-9b-A8C"/>
+                    </constraints>
+                    <textFieldCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="This is an example line." placeholderString="" id="kVP-H3-qGg">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.description" id="FM5-Id-98q">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">なし</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <button toolTip="URL にジャンプ" translatesAutoresizingMaskIntoConstraints="NO" id="qEX-vE-8ZT">
+                    <rect key="frame" x="270" y="58" width="14" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="12P-5f-f0p"/>
+                        <constraint firstAttribute="width" secondItem="qEX-vE-8ZT" secondAttribute="height" multiplier="1:1" id="MzX-OF-OpU"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="TJk-TV-NLj">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="jumpToURL:" target="-2" id="9L1-73-aef"/>
+                        <binding destination="h6Y-ET-p1K" name="hidden" keyPath="selection.metadata.distributionURL" id="SQ0-st-ves">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNil</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="gzO-Tm-kvp" firstAttribute="leading" secondItem="hGf-bl-psz" secondAttribute="trailing" constant="8" symbolic="YES" id="2N8-aw-hah"/>
+                <constraint firstAttribute="trailing" secondItem="b4k-a5-0eY" secondAttribute="trailing" constant="10" id="2aU-9L-cx5"/>
+                <constraint firstAttribute="bottom" secondItem="gzO-Tm-kvp" secondAttribute="bottom" constant="10" id="Bo7-iK-Gv5"/>
+                <constraint firstItem="0Jp-Su-oLN" firstAttribute="top" secondItem="k4d-pG-qBs" secondAttribute="bottom" constant="3" id="Djs-Bz-12u"/>
+                <constraint firstItem="eId-LY-LfO" firstAttribute="baseline" secondItem="WUy-8Y-3ep" secondAttribute="baseline" id="Iou-bu-nSU"/>
+                <constraint firstItem="WUy-8Y-3ep" firstAttribute="top" secondItem="0Jp-Su-oLN" secondAttribute="bottom" constant="3" id="JfE-9l-N8M"/>
+                <constraint firstItem="0Jp-Su-oLN" firstAttribute="bottom" secondItem="qEX-vE-8ZT" secondAttribute="bottom" id="Kn9-t0-IvC"/>
+                <constraint firstAttribute="trailing" secondItem="eId-LY-LfO" secondAttribute="trailing" constant="10" id="Ndt-LJ-W3t"/>
+                <constraint firstItem="eId-LY-LfO" firstAttribute="leading" secondItem="WUy-8Y-3ep" secondAttribute="trailing" constant="8" symbolic="YES" id="Ntj-eT-IDN"/>
+                <constraint firstItem="0Jp-Su-oLN" firstAttribute="baseline" secondItem="fh5-NX-Gjh" secondAttribute="baseline" id="Qw2-14-A4m"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="trailing" secondItem="k4d-pG-qBs" secondAttribute="trailing" id="Rzo-dy-MX1"/>
+                <constraint firstAttribute="trailing" secondItem="gzO-Tm-kvp" secondAttribute="trailing" constant="10" id="SnQ-xs-Y3j"/>
+                <constraint firstItem="b4k-a5-0eY" firstAttribute="leading" secondItem="k4d-pG-qBs" secondAttribute="trailing" constant="8" symbolic="YES" id="VkZ-A5-8Tl"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="trailing" secondItem="WUy-8Y-3ep" secondAttribute="trailing" id="XVZ-bV-SoJ"/>
+                <constraint firstItem="b4k-a5-0eY" firstAttribute="baseline" secondItem="k4d-pG-qBs" secondAttribute="baseline" id="aep-zm-7Jk"/>
+                <constraint firstItem="k4d-pG-qBs" firstAttribute="top" secondItem="ppO-VP-NLx" secondAttribute="top" constant="10" id="bsa-Ro-T6A"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="trailing" secondItem="0Jp-Su-oLN" secondAttribute="trailing" id="dfI-OO-SxJ"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="top" secondItem="WUy-8Y-3ep" secondAttribute="bottom" constant="3" id="fhw-Tf-V57"/>
+                <constraint firstItem="hGf-bl-psz" firstAttribute="top" secondItem="gzO-Tm-kvp" secondAttribute="top" id="jA1-GQ-snK"/>
+                <constraint firstItem="WUy-8Y-3ep" firstAttribute="leading" secondItem="ppO-VP-NLx" secondAttribute="leading" constant="10" id="mz7-X4-COp"/>
+                <constraint firstItem="qEX-vE-8ZT" firstAttribute="leading" secondItem="fh5-NX-Gjh" secondAttribute="trailing" constant="8" symbolic="YES" id="nXW-yE-1V4"/>
+                <constraint firstItem="fh5-NX-Gjh" firstAttribute="leading" secondItem="0Jp-Su-oLN" secondAttribute="trailing" constant="8" symbolic="YES" id="t4Y-EP-25v"/>
+                <constraint firstAttribute="trailing" secondItem="qEX-vE-8ZT" secondAttribute="trailing" constant="10" id="vPi-3f-TB9"/>
+            </constraints>
+            <point key="canvasLocation" x="143" y="230.5"/>
+        </customView>
+        <popover behavior="t" id="9zn-2O-cFk">
+            <connections>
+                <outlet property="contentViewController" destination="5ql-Tm-Fra" id="W8L-fM-iFW"/>
+            </connections>
+        </popover>
     </objects>
+    <resources>
+        <image name="InfoTemplate" width="16" height="16"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="10" height="10"/>
+    </resources>
 </document>

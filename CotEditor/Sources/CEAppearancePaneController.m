@@ -154,6 +154,10 @@
 - (void)didUpdateTheme:(NSMutableDictionary *)theme
 // ------------------------------------------------------
 {
+    // finish current edit
+    [[[self view] window] makeFirstResponder:self];
+    
+    // save
     [[CEThemeManager sharedManager] saveTheme:theme name:[self selectedTheme] completionHandler:nil];
 }
 
