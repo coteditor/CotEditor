@@ -58,7 +58,7 @@
 
 
 // ------------------------------------------------------
-/// clean up (end theme change observe)
+/// clean up (end theme change observation)
 - (void)dealloc
 // ------------------------------------------------------
 {
@@ -113,6 +113,7 @@
 // ------------------------------------------------------
 {
     [[self delegate] didUpdateTheme:[self representedObject]];
+    
     return YES;
 }
 
