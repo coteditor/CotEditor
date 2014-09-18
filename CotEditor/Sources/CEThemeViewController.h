@@ -42,5 +42,6 @@
 @interface CEThemeViewController : NSViewController
 
 @property (nonatomic, weak) id<CEThemeViewControllerDelegate> delegate;
+@property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end

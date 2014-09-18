@@ -192,6 +192,7 @@
         [self setThemeViewController:[[CEThemeViewController alloc] init]];
         [[self themeViewController] setDelegate:self];
         [[self themeViewController] setRepresentedObject:themeDict];
+        [[self themeViewController] setBundled:isBundled];
         [[self box] setContentView:[[self themeViewController] view]];
         
         [self setBundled:isBundled];

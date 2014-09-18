@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6246" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6246" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
@@ -174,14 +174,14 @@
                     <rect key="frame" x="268" y="205" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.usesSystemSelectionColor" id="5DH-n8-Vsf">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selectionColor" id="3m8-OB-pMB">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.usesSystemSelectionColor" id="5DH-n8-Vsf">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -538,6 +538,11 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="son-UD-yny">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.author" id="DhT-OS-46g">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
@@ -554,6 +559,11 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="6yq-SV-Tjg">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.distributionURL" id="Dj1-Xv-1RA">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
@@ -570,6 +580,11 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="hFg-IT-hrN">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.lisence" id="eT7-yW-dFJ">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
@@ -582,7 +597,7 @@
                     <rect key="frame" x="85" y="10" width="204" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="CXy-zY-h7y"/>
-                        <constraint firstAttribute="height" constant="28" id="hqK-Kv-Lq4"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="hqK-Kv-Lq4"/>
                     </constraints>
                     <textFieldCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="This is an example line." placeholderString="" id="9bc-pe-HlU">
                         <font key="font" metaFont="smallSystem"/>
@@ -590,6 +605,11 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="editable" keyPath="bundled" id="huM-gg-K23">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.description" id="Yhk-LP-wVW">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
