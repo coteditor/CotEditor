@@ -84,7 +84,7 @@
 		</dict>
 		<dict>
 			<key>beginString</key>
-			<string>:last-cihld</string>
+			<string>:last-child</string>
 			<key>regularExpression</key>
 			<true/>
 		</dict>
