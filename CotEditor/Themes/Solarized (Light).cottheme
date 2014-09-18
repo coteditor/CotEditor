@@ -18,8 +18,8 @@
   "invisiblesColor" : "#eee8d5",
   "metadata" : {
     "author" : "1024jp",
-    "description" : "based on Solarized <http://ethanschoonover.com/solarized> color scheme by Ethan Schoonover",
     "distributionURL" : "http://coteditor.github.io",
-    "lisence" : "Same as CotEditor"
+    "lisence" : "Same as CotEditor (GPL2)",
+    "description" : "CotEditor bundled theme, which is based on Solarized <http://ethanschoonover.com/solarized> color scheme by Ethan Schoonover."
   }
 }
