@@ -20,7 +20,7 @@ __配布ページ__ : <http://coteditor.github.io>
 
 ### 開発環境
 - OS X Mavericks
-- Xcode 6
+- Xcode 6.1
 
 
 
