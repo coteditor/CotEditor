@@ -29,7 +29,6 @@
 
 #import "CEEncodingListSheetController.h"
 #import "CEPrefEncodingDataSource.h"
-#import "CEAppDelegate.h"
 
 
 @interface CEEncodingListSheetController ()
@@ -75,7 +74,6 @@
 // ------------------------------------------------------
 {
     [[self dataSource] writeEncodingsToUserDefaults]; // エンコーディングを保存
-    [(CEAppDelegate *)[NSApp delegate] buildEncodingMenuItems];
     
     [NSApp stopModal];
     [NSApp endSheet:[self window] returnCode:NSOKButton];

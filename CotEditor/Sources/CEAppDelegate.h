@@ -36,8 +36,4 @@
 @property (readonly, nonatomic) NSURL *supportDirectoryURL;
 @property (readonly, nonatomic, copy) NSArray *encodingMenuItems;
 
-
-// Public method
-- (void)buildEncodingMenuItems;
-
 @end

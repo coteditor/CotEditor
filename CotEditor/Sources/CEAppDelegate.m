@@ -237,6 +237,11 @@
                                                                          create:NO
                                                                           error:nil]
                                 URLByAppendingPathComponent:@"CotEditor"];
+        
+        [[NSUserDefaults standardUserDefaults] addObserver:self
+                                                forKeyPath:CEDefaultEncodingListKey
+                                                   options:NSKeyValueObservingOptionNew
+                                                   context:NULL];
     }
     return self;
 }
@@ -248,45 +253,18 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultEncodingListKey];
 }
 
 
-
-#pragma mark Public Methods
-
-//=======================================================
-// Public method
-//
-//=======================================================
-
-//------------------------------------------------------
-/// エンコーディングメニューアイテムを生成
-- (void)buildEncodingMenuItems
-//------------------------------------------------------
+// ------------------------------------------------------
+/// 監視しているキー値が変更された
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+// ------------------------------------------------------
 {
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
-    
-    for (NSNumber *encodingNumber in encodings) {
-        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
-        NSMenuItem *item;
-        
-        if (cfEncoding == kCFStringEncodingInvalidId) {
-            item = [NSMenuItem separatorItem];
-        } else {
-            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-            NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
-            item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
-            [item setTag:encoding];
-        }
-        
-        [items addObject:item];
+    if ([keyPath isEqualToString:CEDefaultEncodingListKey]) {
+        [self buildEncodingMenuItems];
     }
-    
-    [self setEncodingMenuItems:items];
-    
-    // リストのできあがりを通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
 }
 
 
@@ -671,6 +649,37 @@
     } else if (![isDirectory boolValue]) {
         NSLog(@"\"%@\" is not dir.", URL);
     }
+}
+
+
+//------------------------------------------------------
+/// エンコーディングメニューアイテムを生成
+- (void)buildEncodingMenuItems
+//------------------------------------------------------
+{
+    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
+    
+    for (NSNumber *encodingNumber in encodings) {
+        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
+        NSMenuItem *item;
+        
+        if (cfEncoding == kCFStringEncodingInvalidId) {
+            item = [NSMenuItem separatorItem];
+        } else {
+            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+            NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
+            item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
+            [item setTag:encoding];
+        }
+        
+        [items addObject:item];
+    }
+    
+    [self setEncodingMenuItems:items];
+    
+    // リストのできあがりを通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
 }
 
 
