@@ -41,13 +41,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 @interface CESyntaxManager ()
 
-@property (nonatomic, copy) NSArray *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
+@property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic, copy) NSDictionary *filenameToStyleTable;
 
 
 // readonly
+@property (readwrite, nonatomic, copy) NSArray *styleNames;
 @property (readwrite, nonatomic, copy) NSDictionary *extensionConflicts;
 @property (readwrite, nonatomic, copy) NSDictionary *filenameConflicts;
 
@@ -129,21 +130,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //=======================================================
 
 // ------------------------------------------------------
-/// スタイル名配列を返す
-- (NSArray *)styleNames
-// ------------------------------------------------------
-{
-    NSMutableArray *styleNames = [NSMutableArray array];
-    
-    for (NSDictionary *style in [self styles]) {
-        [styleNames addObject:style[CESyntaxStyleNameKey]];
-    }
-    
-    return styleNames;
-}
-
-
-// ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す
 - (NSString *)styleNameFromFileName:(NSString *)fileName
 // ------------------------------------------------------
@@ -173,22 +159,13 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSDictionary *)styleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
+    NSDictionary *style;
+    
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        for (NSDictionary *style in [self styles]) {
-            if ([style[CESyntaxStyleNameKey] isEqualToString:styleName]) {
-                NSMutableDictionary *styleToReturn = [style mutableCopy];
-                
-                NSMutableArray *syntaxDictKeys = [[NSMutableArray alloc] initWithCapacity:kSizeOfAllColoringKeys];
-                for (NSUInteger i = 0; i < kSizeOfAllColoringKeys; i++) {
-                    [syntaxDictKeys addObject:kAllColoringKeys[i]];
-                }
-                
-                return styleToReturn;
-            }
-        }
+        style = [self styles][styleName];
     }
-    // 空のデータを返す
-    return [self emptyStyle];
+    
+    return style ? : [self emptyStyle];  // 存在しない場合は空のデータを返す
 }
 
 
@@ -197,7 +174,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSDictionary *)bundledStyleWithStyleName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    return [NSMutableDictionary dictionaryWithContentsOfURL:[self URLForBundledStyle:styleName]];
+    return [self styleDictWithURL:[self URLForBundledStyle:styleName]];
 }
 
 
@@ -627,6 +604,16 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
 }
 
+
+//------------------------------------------------------
+/// URLからテーマ辞書を返す
+- (NSMutableDictionary *)styleDictWithURL:(NSURL *)URL
+//------------------------------------------------------
+{
+    return [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+}
+
+
 // ------------------------------------------------------
 /// 内部で持っているキャッシュ用データを更新
 - (void)updateCacheWithCompletionHandler:(void (^)())completionHandler
@@ -657,22 +644,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-
-    // styleデータの読み込み
-    NSMutableDictionary *styles = [NSMutableDictionary dictionary];
-    NSMutableDictionary *styleDict;
-    NSString *styleName;
-    NSURL *URL;
+    NSMutableArray *styleNames = [[self bundledStyleNames] mutableCopy];
     
-    // バンドル版を読み込む
-    for (styleName in [self bundledStyleNames]) {
-        styleDict = [NSMutableDictionary dictionaryWithContentsOfURL:[self URLForBundledStyle:styleName]];
-        if (styleDict) {
-            styles[[styleName lowercaseString]] = styleDict;  // このキーは重複チェック＆ソート用なので小文字に揃えておく
-        }
-    }
-    
-    // ユーザ版を読み込む
+    // ユーザ定義用ディレクトリが存在する場合は読み込む
     if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
         NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager]
                                              enumeratorAtURL:dirURL
@@ -683,23 +657,34 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                                  NSLog(@"Error on seeking SyntaxStyle Files Directory.");
                                                  return YES;
                                              }];
+        NSURL *URL;
         while (URL = [enumerator nextObject]) {
-            styleDict = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
-            // URLが無効だった場合などに、dictがnilになる場合がある
-            if (styleDict) {
-                styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
-                // CESyntaxStyleNameKey をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
-                styleDict[CESyntaxStyleNameKey] = styleName;
-                styles[[styleName lowercaseString]] = styleDict;
+            NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
+            if (![styleNames containsObject:styleName]) {
+                [styleNames addObject:styleName];
             }
         }
     }
     
     // 定義をアルファベット順にソートする
-    NSArray *sortedKeys = [[styles allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-    NSArray *sortedStyles = [styles objectsForKeys:sortedKeys notFoundMarker:[NSNull null]];
+    [styleNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
     
-    [self setStyles:sortedStyles];
+    // 定義をキャッシュする
+    NSMutableDictionary *styles = [NSMutableDictionary dictionary];
+    for (NSString *styleName in styleNames) {
+        NSURL *URL = [self URLForUsedStyle:styleName];
+        NSMutableDictionary *style = [self styleDictWithURL:URL];
+        
+        // URLが無効だった場合などに、dictがnilになる場合がある
+        if (!style) { continue; }
+        
+        // CESyntaxStyleNameKey をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
+        style[CESyntaxStyleNameKey] = styleName;
+        styles[styleName] = style;
+    }
+    
+    [self setStyleNames:styleNames];
+    [self setStyles:styles];
 }
 
 
@@ -714,7 +699,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
 
-    for (NSMutableDictionary *style in [self styles]) {
+    for (NSMutableDictionary *style in [[self styles] allValues]) {
         NSString *styleName = style[CESyntaxStyleNameKey];
         NSArray *extensionDicts = style[CESyntaxExtensionsKey];
         NSArray *filenameDicts = style[CESyntaxFileNamesKey];
@@ -733,7 +718,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 if (![errors containsObject:addedName]) {
                     [errors addObject:addedName];
                 }
-                [errors addObject:style[CESyntaxStyleNameKey]];
+                [errors addObject:styleName];
             } else {
                 [extensionTable setValue:styleName forKey:extension];
             }
@@ -753,7 +738,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                 if (![errors containsObject:addedName]) {
                     [errors addObject:addedName];
                 }
-                [errors addObject:style[CESyntaxStyleNameKey]];
+                [errors addObject:styleName];
             } else {
                 [filenameTable setValue:styleName forKey:filename];
             }

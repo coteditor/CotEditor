@@ -42,6 +42,7 @@ extern NSString *const CESyntaxDidUpdateNotification;
 @interface CESyntaxManager : NSObject
 
 // readonly
+@property (readonly, nonatomic, copy) NSArray *styleNames;
 /// 拡張子重複エラー辞書
 @property (readonly, nonatomic, copy) NSDictionary *extensionConflicts;
 @property (readonly, nonatomic, copy) NSDictionary *filenameConflicts;
@@ -52,7 +53,6 @@ extern NSString *const CESyntaxDidUpdateNotification;
 
 
 // public methods
-- (NSArray *)styleNames;
 - (NSString *)styleNameFromFileName:(NSString *)fileName;
 - (NSString *)defaultExensionWithStyleName:(NSString *)styleName;
 - (NSDictionary *)styleWithStyleName:(NSString *)styleName;
