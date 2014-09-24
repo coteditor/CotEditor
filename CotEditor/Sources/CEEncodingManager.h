@@ -1,11 +1,11 @@
 /*
  ==============================================================================
- CEAppDelegate
+ CEEncodingManager
  
  CotEditor
  http://coteditor.github.io
  
- Created on 2004-12-13 by nakamuxu
+ Created on 2014-09-24 by 1024jp
  encoding="UTF-8"
  ------------------------------------------------------------------------------
  
@@ -31,8 +31,17 @@
 @import Cocoa;
 
 
-@interface CEAppDelegate : NSObject <NSApplicationDelegate>
+// notifications
+/// Posted when current encoding list menu items is ready to build
+extern NSString *const CEEncodingListDidUpdateNotification;
 
-@property (readonly, nonatomic) NSURL *supportDirectoryURL;
+
+@interface CEEncodingManager : NSObject
+
+@property (readonly, nonatomic, copy) NSArray *encodingMenuItems;
+
+
+// class method
++ (CEEncodingManager *)sharedManager;
 
 @end

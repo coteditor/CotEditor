@@ -29,7 +29,7 @@
  */
 
 #import "CEDocumentController.h"
-#import "CEAppDelegate.h"
+#import "CEEncodingManager.h"
 #import "constants.h"
 
 
@@ -149,7 +149,7 @@
 - (void)buildEncodingPopupButton:(NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSArray *items = [[NSArray alloc] initWithArray:[(CEAppDelegate *)[NSApp delegate] encodingMenuItems] copyItems:YES];
+    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
     
     [[self accessoryEncodingMenu] removeAllItems];
     

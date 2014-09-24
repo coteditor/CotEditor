@@ -55,7 +55,6 @@ NSString *const CEPrintLocalizeTable =  @"Print";
 // ------------------------------------------------------
 
 // Notification name
-NSString *const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 NSString *const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
 
 // General notification's userInfo keys

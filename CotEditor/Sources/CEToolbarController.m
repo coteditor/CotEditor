@@ -29,7 +29,7 @@
  */
 
 #import "CEToolbarController.h"
-#import "CEAppDelegate.h"
+#import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
 #import "CEWindowController.h"
 #import "constants.h"
@@ -86,7 +86,7 @@
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    NSArray *items = [[NSArray alloc] initWithArray:[(CEAppDelegate *)[NSApp delegate] encodingMenuItems] copyItems:YES];
+    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
     NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
     
     [[self encodingPopupButton] removeAllItems];

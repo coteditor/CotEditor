@@ -29,12 +29,12 @@
  */
 
 #import "CEFormatPaneController.h"
+#import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
 #import "CESyntaxMappingConflictsSheetController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "CEDocumentController.h"
-#import "CEAppDelegate.h"
 #import "constants.h"
 
 
@@ -345,7 +345,7 @@
 - (void)setupEncodingMenus
 // ------------------------------------------------------
 {
-    NSArray *menuItems = [(CEAppDelegate *)[NSApp delegate] encodingMenuItems];
+    NSArray *menuItems = [[CEEncodingManager sharedManager] encodingMenuItems];
     
     [[self encodingMenuInOpen] removeAllItems];
     [[self encodingMenuInNew] removeAllItems];

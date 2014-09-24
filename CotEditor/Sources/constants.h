@@ -60,7 +60,6 @@ extern NSString *const CEPrintLocalizeTable;
 // ------------------------------------------------------
 
 // Notification name
-extern NSString *const CEEncodingListDidUpdateNotification;
 extern NSString *const CEDocumentDidFinishOpenNotification;
 
 // General notification's userInfo keys

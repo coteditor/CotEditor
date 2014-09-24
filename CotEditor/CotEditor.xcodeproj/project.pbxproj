@@ -99,6 +99,7 @@
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
+		2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */; };
 		2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
@@ -335,6 +336,8 @@
 		2AD5322919779FD000A925CA /* CELineHeightTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHeightTransformer.m; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
 		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
+		2AE2E9D319D2CF00000D66A9 /* CEEncodingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEEncodingManager.h; sourceTree = "<group>"; };
+		2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEEncodingManager.m; sourceTree = "<group>"; };
 		2AE4D72419C3BCAA004B2C71 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ThemeView.xib; sourceTree = "<group>"; };
 		2AEB8B7B19AF73980098D557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AEB8B7D19AF739F0098D557 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
@@ -576,6 +579,8 @@
 		2A15832A18E3A1EC00601026 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2AE2E9D319D2CF00000D66A9 /* CEEncodingManager.h */,
+				2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */,
 				258700E3077BAD2200E541BB /* CESyntaxManager.h */,
 				258700E4077BAD2200E541BB /* CESyntaxManager.m */,
 				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
@@ -1119,6 +1124,7 @@
 				2A5D2B9118E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarController.m in Sources */,
 				2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */,
+				2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */,
 				2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */,
 				8C99DDFB08BD8940001F618C /* CEOutlineMenuButtonCell.m in Sources */,
 				2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */,

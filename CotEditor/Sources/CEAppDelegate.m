@@ -30,13 +30,14 @@
 
 #import "CEAppDelegate.h"
 #import "CESyntaxManager.h"
+#import "CEEncodingManager.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEThemeManager.h"
-#import "CEPreferencesWindowController.h"
 #import "CEHexColorTransformer.h"
 #import "CEByteCountTransformer.h"
 #import "CELineHeightTransformer.h"
+#import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
 #import "CELineSpacingPanelController.h"
 #import "CEGoToSheetController.h"
@@ -50,7 +51,6 @@
 
 // readonly
 @property (readwrite, nonatomic) NSURL *supportDirectoryURL;
-@property (readwrite, nonatomic, copy) NSArray *encodingMenuItems;
 
 @end
 
@@ -238,10 +238,7 @@
                                                                           error:nil]
                                 URLByAppendingPathComponent:@"CotEditor"];
         
-        [[NSUserDefaults standardUserDefaults] addObserver:self
-                                                forKeyPath:CEDefaultEncodingListKey
-                                                   options:NSKeyValueObservingOptionNew
-                                                   context:NULL];
+        [self setupSupportDirectory];
     }
     return self;
 }
@@ -253,18 +250,6 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultEncodingListKey];
-}
-
-
-// ------------------------------------------------------
-/// 監視しているキー値が変更された
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-// ------------------------------------------------------
-{
-    if ([keyPath isEqualToString:CEDefaultEncodingListKey]) {
-        [self buildEncodingMenuItems];
-    }
 }
 
 
@@ -281,9 +266,6 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    [self buildEncodingMenuItems];
-    [self setupSupportDirectory];
-    
     // build menus
     [self buildEncodingMenu];
     [self buildSyntaxMenu];
@@ -295,7 +277,6 @@
                                              selector:@selector(buildEncodingMenu)
                                                  name:CEEncodingListDidUpdateNotification
                                                object:nil];
-    
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildSyntaxMenu)
@@ -653,37 +634,6 @@
 
 
 //------------------------------------------------------
-/// エンコーディングメニューアイテムを生成
-- (void)buildEncodingMenuItems
-//------------------------------------------------------
-{
-    NSArray *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
-    
-    for (NSNumber *encodingNumber in encodings) {
-        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
-        NSMenuItem *item;
-        
-        if (cfEncoding == kCFStringEncodingInvalidId) {
-            item = [NSMenuItem separatorItem];
-        } else {
-            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-            NSString *menuTitle = [NSString localizedNameOfStringEncoding:encoding];
-            item = [[NSMenuItem alloc] initWithTitle:menuTitle action:NULL keyEquivalent:@""];
-            [item setTag:encoding];
-        }
-        
-        [items addObject:item];
-    }
-    
-    [self setEncodingMenuItems:items];
-    
-    // リストのできあがりを通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEEncodingListDidUpdateNotification object:self];
-}
-
-
-//------------------------------------------------------
 /// メインメニューのエンコーディングメニューアイテムを再構築
 - (void)buildEncodingMenu
 //------------------------------------------------------
@@ -691,7 +641,7 @@
     NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEFileEncodingMenuItemTag] submenu];
     [menu removeAllItems];
     
-    NSArray *items = [[NSArray alloc] initWithArray:[self encodingMenuItems] copyItems:YES];
+    NSArray *items = [[CEEncodingManager sharedManager] encodingMenuItems];
     for (NSMenuItem *item in items) {
         [item setAction:@selector(changeEncoding:)];
         [item setTarget:nil];
