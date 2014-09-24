@@ -49,6 +49,7 @@
 @interface CEAppDelegate ()
 
 // readonly
+@property (readwrite, nonatomic) NSURL *supportDirectoryURL;
 @property (readwrite, nonatomic, copy) NSArray *encodingMenuItems;
 
 @end
@@ -222,6 +223,24 @@
 // Superclass method
 //
 //=======================================================
+
+// ------------------------------------------------------
+/// 初期化
+- (instancetype)init
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        _supportDirectoryURL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                                       inDomain:NSUserDomainMask
+                                                              appropriateForURL:nil
+                                                                         create:NO
+                                                                          error:nil]
+                                URLByAppendingPathComponent:@"CotEditor"];
+    }
+    return self;
+}
+
 
 // ------------------------------------------------------
 /// あとかたづけ
@@ -638,14 +657,9 @@
 - (void)setupSupportDirectory
 //------------------------------------------------------
 {
-    NSURL *URL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                         inDomain:NSUserDomainMask
-                                                appropriateForURL:nil
-                                                           create:YES
-                                                            error:nil]
-                  URLByAppendingPathComponent:@"CotEditor"];
-    
+    NSURL *URL = [self supportDirectoryURL];
     NSNumber *isDirectory;
+    
     if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
         BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
                                                 withIntermediateDirectories:YES
@@ -661,7 +675,7 @@
 
 
 //------------------------------------------------------
-/// フォーマットのエンコーディングメニューアイテムを生成
+/// メインメニューのエンコーディングメニューアイテムを再構築
 - (void)buildEncodingMenu
 //------------------------------------------------------
 {
@@ -678,7 +692,7 @@
 
 
 //------------------------------------------------------
-/// シンタックスカラーリングメニューを生成
+/// メインメニューのシンタックスカラーリングメニューを再構築
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
@@ -712,7 +726,7 @@
 
 
 //------------------------------------------------------
-/// メインメニューのテーマメニューを再構築する
+/// メインメニューのテーマメニューを再構築
 - (void)buildThemeMenu
 //------------------------------------------------------
 {
@@ -721,7 +735,9 @@
     
     NSArray *themeNames = [[CEThemeManager sharedManager] themeNames];
     for (NSString *themeName in themeNames) {
-        [menu addItemWithTitle:themeName action:@selector(changeTheme:) keyEquivalent:@""];
+        [menu addItemWithTitle:themeName
+                        action:@selector(changeTheme:)
+                 keyEquivalent:@""];
     }
 }
 

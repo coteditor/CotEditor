@@ -29,6 +29,7 @@
  */
 
 #import "CESyntaxManager.h"
+#import "CEAppDelegate.h"
 #import "RegexKitLite.h"
 #import "constants.h"
 
@@ -565,12 +566,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSURL *)userStyleDirectoryURL
 //------------------------------------------------------
 {
-    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                   inDomain:NSUserDomainMask
-                                          appropriateForURL:nil
-                                                     create:NO
-                                                      error:nil]
-            URLByAppendingPathComponent:@"CotEditor/SyntaxColorings"];
+    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"SyntaxColorings"];
 }
 
 

@@ -28,6 +28,7 @@
  */
 
 #import "CEThemeManager.h"
+#import "CEAppDelegate.h"
 #import "NSColor+WFColorCode.h"
 #import "constants.h"
 
@@ -473,12 +474,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSURL *)userThemeDirectoryURL
 //------------------------------------------------------
 {
-    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                   inDomain:NSUserDomainMask
-                                          appropriateForURL:nil
-                                                     create:NO
-                                                      error:nil]
-            URLByAppendingPathComponent:@"CotEditor/Themes"];
+    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"Themes"];
 }
 
 

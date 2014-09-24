@@ -33,6 +33,7 @@
 
 @interface CEAppDelegate : NSObject <NSApplicationDelegate>
 
+@property (readonly, nonatomic) NSURL *supportDirectoryURL;
 @property (readonly, nonatomic, copy) NSArray *encodingMenuItems;
 
 

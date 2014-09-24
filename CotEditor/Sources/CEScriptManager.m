@@ -31,6 +31,7 @@
 #import "CEScriptManager.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEDocument.h"
+#import "CEAppDelegate.h"
 #import "CEUtils.h"
 #import "constants.h"
 
@@ -300,12 +301,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 + (NSURL *)scriptDirectoryURL
 //------------------------------------------------------
 {
-    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                   inDomain:NSUserDomainMask
-                                          appropriateForURL:nil
-                                                     create:YES
-                                                      error:nil]
-            URLByAppendingPathComponent:@"CotEditor/ScriptMenu"];
+    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"ScriptMenu"];
 }
 
 

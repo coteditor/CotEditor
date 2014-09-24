@@ -29,6 +29,7 @@
  */
 
 #import "CEKeyBindingManager.h"
+#import "CEAppDelegate.h"
 #import "CEUtils.h"
 #import "constants.h"
 
@@ -346,14 +347,9 @@ static NSDictionary *kUnprintableKeyTable;
 - (NSURL *)userSettingDirecotryURL
 //------------------------------------------------------
 {
-    return [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                   inDomain:NSUserDomainMask
-                                          appropriateForURL:nil
-                                                     create:NO
-                                                      error:nil]
-            URLByAppendingPathComponent:@"CotEditor/KeyBindings"];
-    
+    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"KeyBindings"];
 }
+
 
 //------------------------------------------------------
 /// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
