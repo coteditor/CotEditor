@@ -28,6 +28,7 @@
  ==============================================================================
  */
 
+#import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxManager.h"
 #import "CEAppDelegate.h"
 #import "RegexKitLite.h"
@@ -100,7 +101,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     self = [super init];
     if (self) {
         // バンドルされているstyle定義の名前を読み込んでおく
-        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"plist" subdirectory:@"SyntaxColorings"];
+        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"yaml" subdirectory:@"Syntaxes"];
         NSMutableArray *styleNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
             [styleNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
@@ -409,7 +410,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         }
     } else {
         // 保存
-        [style writeToURL:saveURL atomically:YES];
+        NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style
+                                                         options:kYAMLWriteOptionSingleDocument
+                                                           error:nil];
+        [yamlData writeToURL:saveURL atomically:YES];
     }
     
     // 内部で持っているキャッシュ用データを更新
@@ -543,7 +547,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSURL *)userStyleDirectoryURL
 //------------------------------------------------------
 {
-    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"SyntaxColorings"];
+    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"Syntaxes"];
 }
 
 
@@ -592,7 +596,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSURL *)URLForBundledStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"plist" subdirectory:@"SyntaxColorings"];
+    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
 }
 
 
@@ -601,7 +605,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSURL *)URLForUserStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
 }
 
 
@@ -610,7 +614,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSMutableDictionary *)styleDictWithURL:(NSURL *)URL
 //------------------------------------------------------
 {
-    return [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+    NSData *yamlData = [NSData dataWithContentsOfURL:URL];
+    
+    return [YAMLSerialization objectWithYAMLData:yamlData
+                                         options:kYAMLReadOptionMutableContainersAndLeaves | kYAMLReadOptionStringScalars
+                                           error:nil];
 }
 
 
