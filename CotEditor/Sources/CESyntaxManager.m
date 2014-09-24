@@ -617,7 +617,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSData *yamlData = [NSData dataWithContentsOfURL:URL];
     
     return [YAMLSerialization objectWithYAMLData:yamlData
-                                         options:kYAMLReadOptionMutableContainersAndLeaves | kYAMLReadOptionStringScalars
+                                         options:kYAMLReadOptionMutableContainersAndLeaves
                                            error:nil];
 }
 

@@ -9,5 +9,7 @@ pod 'OgreKit',
     :branch => 'coteditor-mod'
 pod 'Sparkle'
 pod 'RegexKitLite'
-pod 'YAML-Framework'
+pod 'YAML-Framework',
+    :git => 'https://github.com/1024jp/YAML.framework.git',
+    :branch => 'mod'
 pod 'WFColorCode'
