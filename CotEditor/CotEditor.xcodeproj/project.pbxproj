@@ -52,7 +52,7 @@
 		2A1CFD0D18E5B64F00A5B664 /* Print.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1CFD0B18E5B64F00A5B664 /* Print.strings */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
-		2A3FB2A418EC473A00D9CB2C /* SyntaxColorings in Resources */ = {isa = PBXBuildFile; fileRef = 2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */; };
+		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A45AB9B1960BDED0020E72B /* Comment.tiff */; };
@@ -252,7 +252,7 @@
 		2A37F4B5FDCFA73011CA2CEA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		2A37F4B7FDCFA73011CA2CEA /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2A3A758C19E77BF2001DAB88 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SyntaxEditSheet.xib; sourceTree = "<group>"; };
-		2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SyntaxColorings; sourceTree = "<group>"; };
+		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditSheetController.h; sourceTree = "<group>"; };
 		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
 		2A45AB9B1960BDED0020E72B /* Comment.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Comment.tiff; sourceTree = "<group>"; };
@@ -728,7 +728,7 @@
 				8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				2A9871A819AEABDB0081BADB /* KeyBindings */,
-				2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */,
+				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
 				6CA3B36012E3B59B0019AB2E /* SampleScript */,
 				259B181207E530DA00C5FD26 /* Internal Script */,
@@ -963,7 +963,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */,
-				2A3FB2A418EC473A00D9CB2C /* SyntaxColorings in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
 				6CA3B3E312E3B59B0019AB2E /* SampleScript in Resources */,
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
@@ -1010,6 +1009,7 @@
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
 				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
 				2A961C5618FC699E002076B6 /* Version History.rtf in Resources */,
+				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChars.tiff in Resources */,
 				8CA71BCE07D2A79100C146B0 /* BiggerFont.tiff in Resources */,

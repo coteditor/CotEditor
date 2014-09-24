@@ -1,0 +1,23 @@
+extensions:
+- keyString: "strings"
+outlineMenuArray: []
+completionsArray: []
+commandsArray: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.0"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+styleName: "Strings"
+charactersArray: []
+commentsArray: []
+valuesArray: []
+numbersArray: []
+stringsArray:
+- beginString: "\""
+  endString: "\""
+keywordsArray: []
+commentDelimiters:
+  endDelimiter: "*/"
+  beginDelimiter: "/*"

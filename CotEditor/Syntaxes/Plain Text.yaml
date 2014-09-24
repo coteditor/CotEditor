@@ -1,0 +1,16 @@
+commandsArray: []
+keywordsArray: []
+numbersArray: []
+commentsArray: []
+charactersArray: []
+stringsArray: []
+styleName: "Plain Text"
+metadata:
+  author: "nakamuxu"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+extensions:
+- keyString: "txt"
+valuesArray: []

@@ -1,0 +1,55 @@
+extensions:
+- keyString: "diff"
+- keyString: "patch"
+- keyString: "dif"
+outlineMenuArray:
+- beginString: "(.+)(?=\\n\\=+[\\t ]*$)"
+  bold: true
+- beginString: "^@@(.+)@@"
+  keyString: "    $0"
+- beginString: "^[0-9,adc]+$"
+  keyString: "    $0"
+completionsArray: []
+commandsArray:
+- beginString: "^diff -.+"
+  regularExpression: true
+- beginString: "^index .+"
+  regularExpression: true
+- beginString: "^Index: .+(\\n ?=+)?"
+  regularExpression: true
+styleName: "Diff"
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+charactersArray:
+- beginString: "^! .*"
+  regularExpression: true
+- beginString: "^!$"
+  regularExpression: true
+commentsArray:
+- beginString: "^[*]{3} .*"
+  regularExpression: true
+- beginString: "^[-+]{3} .*"
+  regularExpression: true
+- beginString: "^\\*+"
+  regularExpression: true
+valuesArray:
+- beginString: "^< .*"
+  regularExpression: true
+- beginString: "^\\+.*"
+  regularExpression: true
+numbersArray:
+- beginString: "^@@ "
+  endString: " @@"
+  regularExpression: true
+- beginString: "^[0-9,adc]+$"
+  regularExpression: true
+stringsArray: []
+keywordsArray:
+- beginString: "^-.*"
+  regularExpression: true
+- beginString: "^> .*"
+  regularExpression: true
