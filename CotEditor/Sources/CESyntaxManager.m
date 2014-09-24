@@ -57,6 +57,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 
+@interface CESyntaxManager (Migration)
+
+- (void)migrateStyles;
+
+@end
+
+
+
 
 #pragma mark -
 
@@ -107,6 +115,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             [styleNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
         }
         [self setBundledStyleNames:styleNames];
+        
+        // migration from 1.x to 2.0
+        [self migrateStyles];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -756,6 +767,53 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     [self setExtensionConflicts:extensionConflicts];
     [self setFilenameToStyleTable:filenameTable];
     [self setFilenameConflicts:filenameConflicts];
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CESyntaxManager (Migration)
+
+// ------------------------------------------------------
+/// CotEditor 1.x から CotEdito 2.0 への移行
+- (void)migrateStyles
+// ------------------------------------------------------
+{
+    NSURL *oldDirURL = [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"SyntaxColorings"];
+    
+    // 移行の必要性チェック
+    if (![oldDirURL checkResourceIsReachableAndReturnError:nil] ||
+        [[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil])
+    {
+        return;
+    }
+    
+    [self prepareUserStyleDirectory];
+    
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:oldDirURL
+                                                             includingPropertiesForKeys:nil
+                                                                                options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                           errorHandler:^BOOL(NSURL *url, NSError *error)
+                                         {
+                                             NSLog(@"%@", [error description]);
+                                             return YES;
+                                         }];
+    NSURL *URL;
+    while (URL = [enumerator nextObject]) {
+        if (![[URL pathExtension] isEqualToString:@"plist"]) { continue; }
+        
+        NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+        
+        if (style) {
+            NSString *styleName = [[URL URLByDeletingPathExtension] lastPathComponent];
+            NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style options:kYAMLWriteOptionSingleDocument error:nil];
+            [yamlData writeToURL:[self URLForUserStyle:styleName] atomically:YES];
+        }
+    }
 }
 
 @end
