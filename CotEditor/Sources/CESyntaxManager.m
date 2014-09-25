@@ -60,6 +60,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 @interface CESyntaxManager (Migration)
 
 - (void)migrateStyles;
+- (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL;
 
 @end
 
@@ -228,6 +229,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (BOOL)importStyleFromURL:(NSURL *)fileURL
 //------------------------------------------------------
 {
+    if ([[fileURL pathExtension] isEqualToString:@"plist"]) {
+        return [self importLegacyStyleFromURL:fileURL];
+    }
+    
     NSURL *destURL = [[self userStyleDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
     
     // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
@@ -814,6 +819,33 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             [yamlData writeToURL:[self URLForUserStyle:styleName] atomically:YES];
         }
     }
+}
+
+
+// ------------------------------------------------------
+/// plist 形式のシンタックス定義を YAML 形式に変換してユーザ領域に保存
+- (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL
+// ------------------------------------------------------
+{
+    if (![[fileURL pathExtension] isEqualToString:@"plist"]) { return NO; }
+
+    __block BOOL success = NO;
+    NSString *styleName = [[fileURL URLByDeletingPathExtension] lastPathComponent];
+    NSURL *destURL = [self URLForUserStyle:styleName];
+    
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+    [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges
+                           writingItemAtURL:destURL options:NULL
+                                      error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+     {
+         NSDictionary *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
+         NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style
+                                                          options:kYAMLWriteOptionSingleDocument
+                                                            error:nil];
+         success = [yamlData writeToURL:destURL atomically:YES];
+     }];
+    
+    return success;
 }
 
 @end
