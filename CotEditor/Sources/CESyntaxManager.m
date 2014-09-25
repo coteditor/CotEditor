@@ -42,7 +42,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 @interface CESyntaxManager ()
 
-@property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
+@property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (values are NSMutableDictonary)
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic, copy) NSDictionary *filenameToStyleTable;
