@@ -17,12 +17,14 @@ metadata:
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
 charactersArray:
-- beginString: "(?#code)(?<!\\\\)``(?![ \\t`])(?:(?!\\n\\n)(?:.|\\n))+?(?<![\\\\\\t ])``"
+- beginString: "(?#code)(?<!\\\\)``(?![ \\t`])(?:(?!\\n\\n)(?:.|\\n))+?(?<![\\\\\\t
+    ])``"
   regularExpression: true
-- beginString: "(?#codeblock)(?<!^[\\t ]{0,4}\\.\\. [a-z]{1,10} ?)::\\n[\\t ]*(?:\\n(?:[\\t ]*\\n)?([\\t ]+)[^\\n]*)(?:\\n(?:[\\t ]*\\n)?\\1[^\\n]*)*"
+- beginString: "(?#codeblock)(?<!^[\\t ]{0,4}\\.\\. [a-z]{1,10} ?)::\\n[\\t ]*(?:\\n(?:[\\t
+    ]*\\n)?([\\t ]+)[^\\n]*)(?:\\n(?:[\\t ]*\\n)?\\1[^\\n]*)*"
   ignoreCase: true
   regularExpression: true
-- beginString: "(?#option lists)^(--?|\/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}"
+- beginString: "(?#option lists)^(--?|/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}"
   ignoreCase: true
   regularExpression: true
 commentsArray:
@@ -42,9 +44,9 @@ valuesArray:
   regularExpression: true
 - beginString: "(?#single word link)\\b[^-=_ \\t\\n](?:\\w|\\d|[-=])*_(?!_)\\b"
   regularExpression: true
-- beginString: "(?#url link with bracket)(?:https?|ftp):\\\/\\\/[-_.!~*\\'a-zA-Z0-9;\\\/?:\\@&=+\\$,%#]+\\([-_.!~*\\'a-zA-Z0-9;\\\/?:\\@&=+\\$,%#]+\\)"
+- beginString: "(?#url link with bracket)(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\([-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\)"
   regularExpression: true
-- beginString: "(?#url link)(?:https?|ftp):\\\/\\\/[-_.!~*\\'a-zA-Z0-9;\\\/?:\\@&=+\\$,%#]+"
+- beginString: "(?#url link)(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+"
   regularExpression: true
 typesArray:
 - beginString: "^([-=`:.'\"~^_*+#]{3,})\\n.+\\n\\1$"
@@ -77,10 +79,12 @@ keywordsArray:
 - beginString: "(?#directive)^[\\t ]*\\.\\. [a-z]+ ?::"
   ignoreCase: true
   regularExpression: true
-- beginString: "(?#dt)\\n\\n([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w[^\\n]*\\n\\1[\\t ]+(?=\\w)"
+- beginString: "(?#dt)\\n\\n([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w[^\\n]*\\n\\1[\\t
+    ]+(?=\\w)"
   ignoreCase: true
   regularExpression: true
-- beginString: "(?#em)(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?:(?!\\n\\n)(?:[^*]|\\n))*?(?<![\\\\ \\t\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+- beginString: "(?#em)(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?:(?!\\n\\n)(?:[^*]|\\n))*?(?<![\\\\
+    \\t\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
   regularExpression: true
 - beginString: "(?#field list)^[\\t ]*:[^\\n:]+?: "
   regularExpression: true
@@ -88,13 +92,15 @@ keywordsArray:
   regularExpression: true
 - beginString: "(?#hr)\\n\\n[-=`:.'\"~^_*+#]{4,}\\n\\n"
   regularExpression: true
-- beginString: "(?#interpreted text)(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\n\\t`](?:(?!\\n\\n)(?:[^`]|\\n))*?[^\\\\ \\n\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
+- beginString: "(?#interpreted text)(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\n\\t`](?:(?!\\n\\n)(?:[^`]|\\n))*?[^\\\\
+    \\n\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
   ignoreCase: true
   regularExpression: true
 - beginString: "(?#ol li)^[ \\t]*\\(?(?:[#a-z]|[ivxlxcdm]+|\\d+)[.)][ \\t]"
   ignoreCase: true
   regularExpression: true
-- beginString: "(?#strong)(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?![ \\t])(?:(?!\\n\\n|\\*)(?:.|\\n))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+- beginString: "(?#strong)(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?![
+    \\t])(?:(?!\\n\\n|\\*)(?:.|\\n))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
   regularExpression: true
 - beginString: "(?#ul li)^[ \\t]*[-*+•‣⁃][ \\t]"
   regularExpression: true
