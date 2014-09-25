@@ -12,15 +12,15 @@ DEPENDENCIES:
   - RegexKitLite
   - Sparkle
   - WFColorCode
-  - YAML-Framework (from `https://github.com/1024jp/YAML.framework.git`, branch `mod`)
+  - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch `coteditor-mod`)
 
 EXTERNAL SOURCES:
   OgreKit:
     :branch: coteditor-mod
     :git: https://github.com/coteditor/OgreKit.git
   YAML-Framework:
-    :branch: mod
-    :git: https://github.com/1024jp/YAML.framework.git
+    :branch: coteditor-mod
+    :git: https://github.com/coteditor/YAML.framework.git
 
 SPEC CHECKSUMS:
   LibYAML: d447960375d9114187bfddba6e6c24d69bff11f8
