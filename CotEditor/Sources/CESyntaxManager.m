@@ -113,7 +113,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"yaml" subdirectory:@"Syntaxes"];
         NSMutableArray *styleNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
-            [styleNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
+            [styleNames addObject:[self styleNameFromURL:URL]];
         }
         [self setBundledStyleNames:styleNames];
         
@@ -248,12 +248,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                       error:&error
                                  byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSFileManager *fileManager = [[NSFileManager alloc] init];
-         
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [fileManager removeItemAtURL:newWritingURL error:nil];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:nil];
          }
-         success = [fileManager copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
      }];
     
     if (error) {
@@ -284,12 +282,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                       error:&error
                                  byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSFileManager *fileManager = [[NSFileManager alloc] init];
-         
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [fileManager removeItemAtURL:newWritingURL error:nil];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:nil];
          }
-         success = [fileManager copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
      }];
     
     if (error) {
@@ -559,6 +555,15 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //=======================================================
 
 //------------------------------------------------------
+/// スタイルファイルの URL からスタイル名を返す
+- (NSString *)styleNameFromURL:(NSURL *)fileURL
+//------------------------------------------------------
+{
+    return [[fileURL lastPathComponent] stringByDeletingPathExtension];
+}
+
+
+//------------------------------------------------------
 /// Application Support内のstyleデータファイル保存ディレクトリ
 - (NSURL *)userStyleDirectoryURL
 //------------------------------------------------------
@@ -668,34 +673,30 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-    NSMutableArray *styleNames = [[self bundledStyleNames] mutableCopy];
+    NSMutableOrderedSet *styleNameSet = [NSMutableOrderedSet orderedSetWithArray:[self bundledStyleNames]];
     
     // ユーザ定義用ディレクトリが存在する場合は読み込む
     if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
-        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager]
-                                             enumeratorAtURL:dirURL
-                                             includingPropertiesForKeys:nil
-                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                             errorHandler:^BOOL(NSURL *url, NSError *error)
-                                             {
-                                                 NSLog(@"Error on seeking SyntaxStyle Files Directory.");
-                                                 return YES;
-                                             }];
-        NSURL *URL;
-        while (URL = [enumerator nextObject]) {
-            NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
-            if (![styleNames containsObject:styleName]) {
-                [styleNames addObject:styleName];
-            }
+        NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dirURL
+                                                      includingPropertiesForKeys:nil
+                                                                         options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                           error:nil];
+        for (NSURL *URL in URLs) {
+            if (![@[@"yaml", @"yml"] containsObject:[URL pathExtension]]) { continue; }
+            
+            NSString *styleName = [self styleNameFromURL:URL];
+            [styleNameSet addObject:styleName];
         }
     }
     
     // 定義をアルファベット順にソートする
-    [styleNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
+    [styleNameSet sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
+        return [name1 caseInsensitiveCompare:name2];
+    }];
     
     // 定義をキャッシュする
     NSMutableDictionary *styles = [NSMutableDictionary dictionary];
-    for (NSString *styleName in styleNames) {
+    for (NSString *styleName in styleNameSet) {
         NSURL *URL = [self URLForUsedStyle:styleName];
         NSMutableDictionary *style = [self styleDictWithURL:URL];
         
@@ -707,7 +708,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         styles[styleName] = style;
     }
     
-    [self setStyleNames:styleNames];
+    [self setStyleNames:[styleNameSet array]];
     [self setStyles:styles];
 }
 
@@ -799,22 +800,18 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     
     [self prepareUserStyleDirectory];
     
-    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:oldDirURL
-                                                             includingPropertiesForKeys:nil
-                                                                                options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                           errorHandler:^BOOL(NSURL *url, NSError *error)
-                                         {
-                                             NSLog(@"%@", [error description]);
-                                             return YES;
-                                         }];
-    NSURL *URL;
-    while (URL = [enumerator nextObject]) {
+    NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:oldDirURL
+                                                  includingPropertiesForKeys:nil
+                                                                     options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                       error:nil];
+    
+    for (NSURL *URL in URLs) {
         if (![[URL pathExtension] isEqualToString:@"plist"]) { continue; }
         
         NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
         
         if (style) {
-            NSString *styleName = [[URL URLByDeletingPathExtension] lastPathComponent];
+            NSString *styleName = [self styleNameFromURL:URL];
             NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style options:kYAMLWriteOptionSingleDocument error:nil];
             [yamlData writeToURL:[self URLForUserStyle:styleName] atomically:YES];
         }
@@ -830,7 +827,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     if (![[fileURL pathExtension] isEqualToString:@"plist"]) { return NO; }
 
     __block BOOL success = NO;
-    NSString *styleName = [[fileURL URLByDeletingPathExtension] lastPathComponent];
+    NSString *styleName = [self styleNameFromURL:fileURL];
     NSURL *destURL = [self URLForUserStyle:styleName];
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
