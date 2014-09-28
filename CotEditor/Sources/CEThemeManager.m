@@ -33,6 +33,9 @@
 #import "constants.h"
 
 
+// extension for theme file
+NSString *const CEThemeExtension = @"cottheme";
+
 // keys for theme dict
 NSString *const CEThemeTextColorKey = @"textColor";
 NSString *const CEThemeBackgroundColorKey = @"backgroundColor";
@@ -127,12 +130,12 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         [self migrateTheme];
         
         // バンドルされているテーマの名前を読み込んでおく
-        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"cottheme" subdirectory:@"Themes"];
+        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:CEThemeExtension subdirectory:@"Themes"];
         NSMutableArray *themeNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
             if ([[URL lastPathComponent] hasPrefix:@"_"]) { continue; }
             
-            [themeNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
+            [themeNames addObject:[self themeNameFromURL:URL]];
         }
         [self setBundledThemeNames:themeNames];
         
@@ -328,7 +331,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 //------------------------------------------------------
 {
     __block BOOL success = NO;
-    NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
+    NSString *themeName = [self themeNameFromURL:URL];
     
     // 上書きをしない場合は重複をチェックする
     if (!doReplace) {
@@ -470,6 +473,15 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 //=======================================================
 
 //------------------------------------------------------
+/// テーマファイルの URL からスタイル名を返す
+- (NSString *)themeNameFromURL:(NSURL *)fileURL
+//------------------------------------------------------
+{
+    return [[fileURL lastPathComponent] stringByDeletingPathExtension];
+}
+
+
+//------------------------------------------------------
 /// Application Support内のテーマファイル保存ディレクトリ
 - (NSURL *)userThemeDirectoryURL
 //------------------------------------------------------
@@ -523,7 +535,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSURL *)URLForUserTheme:(NSString *)themeName
 //------------------------------------------------------
 {
-    return [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:@"cottheme"];
+    return [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
 }
 
 
@@ -532,7 +544,7 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSURL *)URLForBundledTheme:(NSString *)themeName
 //------------------------------------------------------
 {
-    return [[NSBundle mainBundle] URLForResource:themeName withExtension:@"cottheme" subdirectory:@"Themes"];
+    return [[NSBundle mainBundle] URLForResource:themeName withExtension:CEThemeExtension subdirectory:@"Themes"];
 }
 
 
@@ -557,40 +569,36 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         typeof(self) strongSelf = weakSelf;
         NSURL *userDirURL = [strongSelf userThemeDirectoryURL];
         
-        NSMutableArray *themeNames = [[strongSelf bundledThemeNames] mutableCopy];
+        NSMutableOrderedSet *themeNameSet = [NSMutableOrderedSet orderedSetWithArray:[strongSelf bundledThemeNames]];
         
         // ユーザ定義用ディレクトリが存在する場合は読み込む
         if ([userDirURL checkResourceIsReachableAndReturnError:nil]) {
-            NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtURL:userDirURL
-                                                                     includingPropertiesForKeys:nil
-                                                                                        options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                                                                   errorHandler:^BOOL(NSURL *url, NSError *error)
-                                                 {
-                                                     NSLog(@"%@", [error description]);
-                                                     return YES;
-                                                 }];
-            NSURL *URL;
-            while (URL = [enumerator nextObject]) {
-                NSString *name = [[URL lastPathComponent] stringByDeletingPathExtension];
-                if (![themeNames containsObject:name]) {
-                    [themeNames addObject:name];
-                }
+            NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:userDirURL
+                                                          includingPropertiesForKeys:nil
+                                                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                               error:nil];
+            
+            for (NSURL *URL in URLs) {
+                if (![[URL pathExtension] isEqualToString:CEThemeExtension]) { continue; }
+                
+                NSString *name = [strongSelf themeNameFromURL:URL];
+                [themeNameSet addObject:name];
             }
         }
         
-        BOOL isListUpdated = ![themeNames isEqualToArray:[self themeNames]];
-        [self setThemeNames:themeNames];
+        BOOL isListUpdated = ![[themeNameSet array] isEqualToArray:[self themeNames]];
+        [self setThemeNames:[themeNameSet array]];
         
         // 定義をキャッシュする
         NSMutableDictionary *themes = [NSMutableDictionary dictionary];
-        for (NSString *name in [strongSelf themeNames]) {
+        for (NSString *name in themeNameSet) {
             themes[name] = [self themeDictWithURL:[self URLForUsedTheme:name]];
         }
         
         [self setArchivedThemes:themes];
         
         // デフォルトテーマが見当たらないときはリセットする
-        if (![[strongSelf themeNames] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]]) {
+        if (![themeNameSet containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]]) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:CEDefaultThemeKey];
         }
         

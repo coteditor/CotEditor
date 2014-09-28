@@ -406,7 +406,7 @@
 // ------------------------------------------------------
 {
     // テーマファイルの場合はインストール処理をする
-    if ([[filename pathExtension] isEqualToString:@"cottheme"]) {
+    if ([[filename pathExtension] isEqualToString:CEThemeExtension]) {
         NSURL *URL = [NSURL fileURLWithPath:filename];
         NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
         NSAlert *alert;

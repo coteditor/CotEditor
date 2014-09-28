@@ -30,6 +30,9 @@
 @import AppKit;
 
 
+// extension for theme file
+extern NSString *const CEThemeExtension;
+
 // keys for theme dict
 extern NSString *const CEThemeTextColorKey;
 extern NSString *const CEThemeBackgroundColorKey;

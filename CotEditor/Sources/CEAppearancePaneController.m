@@ -327,7 +327,7 @@
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
     [savePanel setNameFieldStringValue:selectedThemeName];
-    [savePanel setAllowedFileTypes:@[@"cottheme"]];
+    [savePanel setAllowedFileTypes:@[CEThemeExtension]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
@@ -347,7 +347,7 @@
     [openPanel setResolvesAliases:YES];
     [openPanel setAllowsMultipleSelection:NO];
     [openPanel setCanChooseDirectories:NO];
-    [openPanel setAllowedFileTypes:@[@"cottheme"]];
+    [openPanel setAllowedFileTypes:@[CEThemeExtension]];
     
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
