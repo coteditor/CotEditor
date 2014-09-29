@@ -657,7 +657,9 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         }
     }];
     
+    // Standard Input
     if ([input length] > 0) {
+        [task setStandardInput:[NSPipe pipe]];
         [[[task standardInput] fileHandleForWriting] writeData:[input dataUsingEncoding:NSUTF8StringEncoding]];
         [[[task standardInput] fileHandleForWriting] closeFile];
     }
