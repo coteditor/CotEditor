@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEWindowController">
@@ -25,7 +25,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="10" y="280" width="500" height="420"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="420"/>
@@ -1019,7 +1019,10 @@
                                     </scrollView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="150">
                                         <rect key="frame" x="3" y="437" width="204" height="28"/>
-                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="非互換文字をリストアップできませんでした。" id="698">
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="ueg-uS-jeD"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="非互換文字をリストアップできませんでした。" id="698">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" red="0.78431373999999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1124,20 +1127,20 @@
     </objects>
     <resources>
         <image name="AutoTabExpand_On" width="24" height="24"/>
-        <image name="BiggerFont" width="64" height="64"/>
-        <image name="Comment" width="64" height="64"/>
+        <image name="BiggerFont" width="24" height="24"/>
+        <image name="Comment" width="24" height="24"/>
         <image name="EditColorCode" width="24" height="24"/>
-        <image name="GetInfo" width="64" height="64"/>
-        <image name="IncompatibleChars" width="64" height="64"/>
+        <image name="GetInfo" width="24" height="24"/>
+        <image name="IncompatibleChars" width="24" height="24"/>
         <image name="InvisibleChars_Show" width="64" height="64"/>
         <image name="LineNumber_Show" width="64" height="64"/>
         <image name="LockedTemplate" width="16" height="16"/>
         <image name="NaviBar_Show" width="64" height="64"/>
         <image name="PageGuide_Show" width="64" height="64"/>
-        <image name="RecolorAll" width="64" height="64"/>
-        <image name="ShiftLeft" width="64" height="64"/>
-        <image name="ShiftRight" width="64" height="64"/>
-        <image name="SmallerFont" width="64" height="64"/>
+        <image name="RecolorAll" width="24" height="24"/>
+        <image name="ShiftLeft" width="24" height="24"/>
+        <image name="ShiftRight" width="24" height="24"/>
+        <image name="SmallerFont" width="24" height="24"/>
         <image name="StatusBar_Show" width="64" height="64"/>
         <image name="VerticalOrientation_On" width="64" height="64"/>
         <image name="WrapLines_On" width="64" height="64"/>
