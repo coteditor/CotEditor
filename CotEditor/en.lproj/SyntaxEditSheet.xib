@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.9"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -21,7 +21,7 @@
         <window title="Syntax" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="6" userLabel="Edit Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="20" y="120" width="620" height="450"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="5">
                 <rect key="frame" x="0.0" y="0.0" width="620" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -3094,7 +3094,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="441">
-                                            <rect key="frame" x="8" y="28" width="164" height="255"/>
+                                            <rect key="frame" x="8" y="28" width="164.00000162919363" height="255"/>
                                             <clipView key="contentView" id="VBZ-tv-K8t">
                                                 <rect key="frame" x="1" y="17" width="162" height="231"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3171,7 +3171,7 @@
                                             </tableHeaderView>
                                         </scrollView>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-47-IFV">
-                                            <rect key="frame" x="180" y="28" width="230" height="135"/>
+                                            <rect key="frame" x="180" y="28" width="229.9999983708064" height="135"/>
                                             <clipView key="contentView" id="6Ia-4j-BJv">
                                                 <rect key="frame" x="1" y="17" width="228" height="107"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3235,7 +3235,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="fy6-cu-MSq">
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="fy6-cu-MSq">
                                                 <rect key="frame" x="1" y="110" width="228" height="14"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -3307,7 +3307,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" placeholderIntrinsicWidth="230" placeholderIntrinsicHeight="42" translatesAutoresizingMaskIntoConstraints="NO" id="arv-de-MwR">
-                                            <rect key="frame" x="178" y="171" width="234" height="42"/>
+                                            <rect key="frame" x="178" y="171" width="233.9999983708064" height="42"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Files that have exactly one of the following names are opened in this syntax style, even they don't have file extension." id="Sr3-Pj-HPi">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3626,13 +3626,13 @@
                         </connections>
                     </tabView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="670">
-                        <rect key="frame" x="15" y="17" width="159" height="28"/>
+                        <rect key="frame" x="14" y="13" width="152" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="149" id="aO4-2a-wIr"/>
+                            <constraint firstAttribute="width" constant="140" id="aO4-2a-wIr"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Set to Factory Defaults" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="1020">
+                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1020">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="setToFactoryDefaults:" target="-2" id="672"/>
@@ -3691,7 +3691,7 @@ DQ
                     <constraint firstItem="215" firstAttribute="leading" secondItem="393" secondAttribute="leading" id="9vd-fc-vop"/>
                     <constraint firstItem="670" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="D0J-in-juQ"/>
                     <constraint firstItem="215" firstAttribute="leading" secondItem="214" secondAttribute="trailing" constant="8" symbolic="YES" id="LF7-g9-pIo"/>
-                    <constraint firstItem="92" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="670" secondAttribute="trailing" constant="8" symbolic="YES" id="MbY-uK-mYr"/>
+                    <constraint firstItem="92" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="670" secondAttribute="trailing" constant="12" symbolic="YES" id="MbY-uK-mYr"/>
                     <constraint firstItem="393" firstAttribute="leading" secondItem="WT6-a5-cVO" secondAttribute="trailing" constant="8" symbolic="YES" id="Ptq-34-kAN"/>
                     <constraint firstAttribute="trailing" secondItem="91" secondAttribute="trailing" constant="20" symbolic="YES" id="QBI-uN-8ER"/>
                     <constraint firstItem="215" firstAttribute="centerY" secondItem="WE1-JL-ncy" secondAttribute="centerY" id="Qbv-b8-kdh"/>

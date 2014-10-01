@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEKeyBindingSheetController">
@@ -87,13 +87,13 @@
                         </tableHeaderView>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="11">
-                        <rect key="frame" x="15" y="17" width="160" height="28"/>
+                        <rect key="frame" x="14" y="13" width="152" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="wbL-0W-iPk"/>
+                            <constraint firstAttribute="width" constant="140" id="wbL-0W-iPk"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Set to Factory Defaults" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="140">
+                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="140">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="setToFactoryDefaults:" target="-2" id="xkY-4j-W8y"/>
@@ -196,7 +196,7 @@ You MUST include the Command key.</string>
                     <constraint firstItem="11" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="WsA-e7-lva"/>
                     <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="20" symbolic="YES" id="XRg-OY-A5y"/>
                     <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" constant="20" symbolic="YES" id="Yqe-ls-2wl"/>
-                    <constraint firstItem="11" firstAttribute="top" secondItem="42" secondAttribute="bottom" constant="20" id="anL-PV-hhR"/>
+                    <constraint firstItem="11" firstAttribute="top" secondItem="42" secondAttribute="bottom" constant="20" symbolic="YES" id="anL-PV-hhR"/>
                     <constraint firstItem="25" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="8" symbolic="YES" id="pDV-Fz-vBy"/>
                     <constraint firstItem="35" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="8" symbolic="YES" id="x1d-lS-V5A"/>
                     <constraint firstItem="15" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="z4S-qY-zgV"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListSheetController">
@@ -166,11 +166,11 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="700">
-                        <rect key="frame" x="15" y="14" width="170" height="28"/>
+                        <rect key="frame" x="15" y="17" width="130" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="160" id="Rqp-J1-4Qc"/>
+                            <constraint firstAttribute="width" constant="120" id="Rqp-J1-4Qc"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="出荷時のデフォルトに戻す" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3396">
+                        <buttonCell key="cell" type="push" title="デフォルトに戻す" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3396">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
@@ -188,9 +188,9 @@ DQ
                     <constraint firstItem="43" firstAttribute="leading" secondItem="42" secondAttribute="trailing" constant="12" symbolic="YES" id="6EB-Sc-jC9"/>
                     <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="20" symbolic="YES" id="7ao-Gk-S8B"/>
                     <constraint firstItem="54" firstAttribute="leading" secondItem="38" secondAttribute="trailing" constant="8" symbolic="YES" id="8nX-ho-0wW"/>
+                    <constraint firstItem="42" firstAttribute="top" secondItem="700" secondAttribute="top" id="EQa-sT-jRY"/>
                     <constraint firstItem="62" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="F8d-xT-wcD"/>
                     <constraint firstItem="42" firstAttribute="top" secondItem="38" secondAttribute="bottom" constant="20" symbolic="YES" id="GlI-Md-bzK"/>
-                    <constraint firstAttribute="bottom" secondItem="700" secondAttribute="bottom" constant="20" symbolic="YES" id="IWv-wW-ksp"/>
                     <constraint firstItem="56" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="J98-aR-gdw"/>
                     <constraint firstItem="54" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="LzJ-7I-MxY"/>
                     <constraint firstItem="62" firstAttribute="top" secondItem="37" secondAttribute="top" constant="20" symbolic="YES" id="N7H-D8-BSH"/>
