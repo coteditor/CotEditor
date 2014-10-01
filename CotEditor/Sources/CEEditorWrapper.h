@@ -81,6 +81,7 @@
 - (void)clearAllMarkup;
 
 - (BOOL)usesAntialias;
+- (BOOL)isAutoTabExpandEnabled;
 
 - (void)setThemeWithName:(NSString *)themeName;
 - (CETheme *)theme;

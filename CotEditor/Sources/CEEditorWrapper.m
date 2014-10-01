@@ -440,6 +440,21 @@ static NSTimeInterval secondColoringDelay;
 
 
 // ------------------------------------------------------
+/// ソフトタブの有効／無効を返す
+- (BOOL)isAutoTabExpandEnabled
+// ------------------------------------------------------
+{
+    CETextView *textView = [self textView];
+    
+    if (textView) {
+        return [textView isAutoTabExpandEnabled];
+    } else {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoExpandTabKey];
+    }
+}
+
+
+// ------------------------------------------------------
 /// テーマを適応する
 - (void)setThemeWithName:(NSString *)themeName
 // ------------------------------------------------------

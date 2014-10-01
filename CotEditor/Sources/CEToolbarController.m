@@ -215,7 +215,7 @@
             }
             break;
         case CEToolbarAutoTabExpandItemTag:
-            [self toggleItem:item setOn:[[editor textView] isAutoTabExpandEnabled]];
+            [self toggleItem:item setOn:[editor isAutoTabExpandEnabled]];
             break;
         case CEToolbarShowNavigationBarItemTag:
             [self toggleItem:item setOn:[editor showsNavigationBar]];
