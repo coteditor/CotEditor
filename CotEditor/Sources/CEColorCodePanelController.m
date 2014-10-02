@@ -210,7 +210,7 @@
 // ------------------------------------------------------
 {
     WFColorCodeType codeType = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColorCodeTypeKey];
-    NSString *code = [[[self color] colorUsingColorSpaceName:NSDeviceRGBColorSpace] colorCodeWithType:codeType];
+    NSString *code = [[[self color] colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:codeType];
     
     // 現在の Hex コードが大文字だったら大文字をキープ
     if ((codeType == WFColorCodeHex || codeType == WFColorCodeShortHex) &&
