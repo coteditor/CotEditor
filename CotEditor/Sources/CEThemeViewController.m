@@ -148,7 +148,7 @@
 - (IBAction)jumpToURL:(id)sender
 // ------------------------------------------------------
 {
-    NSURL *URL = [NSURL URLWithString:[self representedObject][@"metadata"][@"distributionURL"]];
+    NSURL *URL = [NSURL URLWithString:[self representedObject][CEMetadataKey][CEDistributionURLKey]];
     
     if (!URL) {
         NSBeep();

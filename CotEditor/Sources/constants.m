@@ -43,8 +43,15 @@ NSString *const CESeparatorString = @"-";
 // Error domain
 NSString *const CEErrorDomain = @"com.aynimac.CotEditor.ErrorDomain";
 
-// Localized Strings Table
+// Localized strings table
 NSString *const CEPrintLocalizeTable =  @"Print";
+
+// Metadata dict keys for themes and syntax styles
+NSString *const CEMetadataKey = @"metadata";
+NSString *const CEAuthorKey = @"author";
+NSString *const CEDistributionURLKey = @"distributionURL";
+NSString *const CELisenceKey = @"lisence";
+NSString *const CEDescriptionKey = @"description";
 
 
 

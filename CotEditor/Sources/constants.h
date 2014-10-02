@@ -48,8 +48,15 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEThemeFileDuplicationError,
 };
 
-// Localized Strings Table
+// Localized strings table
 extern NSString *const CEPrintLocalizeTable;
+
+// Metadata dict keys
+extern NSString *const CEMetadataKey;
+extern NSString *const CEAuthorKey;
+extern NSString *const CEDistributionURLKey;
+extern NSString *const CELisenceKey;
+extern NSString *const CEDescriptionKey;
 
 
 
