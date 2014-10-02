@@ -1,9 +1,9 @@
 {
   "typesColor" : "#b07e00",
-  "attributesColor" : "#678c00",
+  "attributesColor" : "#577c03",
   "keywordsColor" : "#005493",
-  "numbersColor" : "#7830a8",
-  "charactersColor" : "#0092c5",
+  "numbersColor" : "#631a95",
+  "charactersColor" : "#0e6fa3",
   "backgroundColor" : "#ffffff",
   "stringsColor" : "#5a676c",
   "valuesColor" : "#177368",
@@ -12,8 +12,8 @@
   "variablesColor" : "#a63777",
   "commandsColor" : "#bf4a26",
   "selectionColor" : "#a7caff",
-  "commentsColor" : "#b21717",
-  "lineHighlightColor" : "#f1f1f1",
+  "commentsColor" : "#991a22",
+  "lineHighlightColor" : "#f0f0f0",
   "insertionPointColor" : "#000000",
   "invisiblesColor" : "#b9b9b9",
   "metadata" : {
