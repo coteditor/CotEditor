@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6246" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -484,6 +484,23 @@
             </constraints>
             <point key="canvasLocation" x="147" y="488"/>
         </customView>
+        <objectController automaticallyPreparesContent="YES" id="wY5-iL-QUk" userLabel="Metadata Controller">
+            <declaredKeys>
+                <string>author</string>
+                <string>distributionURL</string>
+                <string>lisence</string>
+                <string>description</string>
+            </declaredKeys>
+            <connections>
+                <binding destination="h6Y-ET-p1K" name="contentObject" keyPath="selection.metadata" id="bUe-9i-VSo">
+                    <dictionary key="options">
+                        <bool key="NSDeletesObjectsOnRemove" value="YES"/>
+                        <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </objectController>
         <viewController id="POc-g4-lFD" userLabel="Popover View Controller">
             <connections>
                 <outlet property="view" destination="GMD-yH-IA7" id="upn-Vg-vid"/>
@@ -492,6 +509,7 @@
         <popover behavior="t" id="3ZW-ti-l9p">
             <connections>
                 <outlet property="contentViewController" destination="POc-g4-lFD" id="vPy-E0-Nqa"/>
+                <outlet property="delegate" destination="-2" id="4Bc-SO-Nhk"/>
             </connections>
         </popover>
         <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="297" placeholderIntrinsicHeight="82" id="GMD-yH-IA7" userLabel="Metadata View">
@@ -543,7 +561,7 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.author" id="DhT-OS-46g">
+                        <binding destination="wY5-iL-QUk" name="value" keyPath="selection.author" id="foD-bl-J2t">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
                             </dictionary>
@@ -564,7 +582,7 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.distributionURL" id="Dj1-Xv-1RA">
+                        <binding destination="wY5-iL-QUk" name="value" keyPath="selection.distributionURL" id="Gnv-l4-9O7">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
                             </dictionary>
@@ -585,7 +603,7 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.lisence" id="eT7-yW-dFJ">
+                        <binding destination="wY5-iL-QUk" name="value" keyPath="selection.lisence" id="cAy-4O-QOs">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
                             </dictionary>
@@ -610,7 +628,7 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.metadata.description" id="Yhk-LP-wVW">
+                        <binding destination="wY5-iL-QUk" name="value" keyPath="selection.description" id="RvY-QR-fg6">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">Not defined</string>
                             </dictionary>
@@ -630,7 +648,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="jumpToURL:" target="-2" id="QkT-4s-rak"/>
-                        <binding destination="h6Y-ET-p1K" name="hidden" keyPath="selection.metadata.distributionURL" id="cgg-eL-CsB">
+                        <binding destination="wY5-iL-QUk" name="hidden" keyPath="selection.distributionURL" id="N0F-63-mSd">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSIsNil</string>
                             </dictionary>

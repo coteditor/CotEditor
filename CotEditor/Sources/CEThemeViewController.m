@@ -33,7 +33,9 @@
 #import "constants.h"
 
 
-@interface CEThemeViewController () <NSTextFieldDelegate>
+@interface CEThemeViewController () <NSPopoverDelegate, NSTextFieldDelegate>
+
+@property (nonatomic, getter=isMetadataEdited) BOOL metadataEdited;
 
 @property (nonatomic) IBOutlet NSPopover *popover;
 
@@ -62,9 +64,11 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    NSDictionary *theme = [self representedObject];
+    NSMutableDictionary *theme = [self representedObject];
     
     for (NSString *key in [theme allKeys]) {
+        if ([key isEqualToString:CEMetadataKey]) { continue; }
+        
         [theme removeObserver:self forKeyPath:key];
     }
 }
@@ -79,6 +83,8 @@
     if ([self representedObject]) {
         NSDictionary *currentTheme = [self representedObject];
         for (NSString *key in [currentTheme allKeys]) {
+            if ([key isEqualToString:CEMetadataKey]) { continue; }
+            
             [currentTheme removeObserver:self forKeyPath:key];
         }
     }
@@ -86,6 +92,8 @@
     // observe input theme
     NSDictionary *theme = representedObject;
     for (NSString *key in [theme allKeys]) {
+        if ([key isEqualToString:CEMetadataKey]) { continue; }
+        
         [theme addObserver:self forKeyPath:key options:0 context:NULL];
     }
     
@@ -109,12 +117,22 @@
 
 // ------------------------------------------------------
 /// meta data was possible edited
-- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
+- (void)controlTextDidChange:(NSNotification *)obj
 // ------------------------------------------------------
 {
-    [[self delegate] didUpdateTheme:[self representedObject]];
-    
-    return YES;
+    [self setMetadataEdited:YES];
+}
+
+
+// ------------------------------------------------------
+/// popover closed
+- (void)popoverDidClose:(NSNotification *)notification
+// ------------------------------------------------------
+{
+    if ([self isMetadataEdited]) {
+        [[self delegate] didUpdateTheme:[self representedObject]];
+        [self setMetadataEdited:NO];
+    }
 }
 
 
