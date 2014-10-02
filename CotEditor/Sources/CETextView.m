@@ -345,6 +345,7 @@ const NSInteger kNoMenuItem = -1;
             if (characterToCheck == '{') {
                 if (!skipMatchingBrace) {
                     isSearching = NO;
+                    #pragma unused(isSearching)  // `isSearching` is in fact used in condition for while
                     break;
                 } else {
                     skipMatchingBrace--;
