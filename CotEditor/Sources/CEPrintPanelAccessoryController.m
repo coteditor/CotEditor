@@ -103,6 +103,7 @@
         // テーマを使用する場合はセットしておく
         switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
             case CEBlackColorPrint:
+                [self setTheme:NSLocalizedString(@"Black and White", nil)];
                 break;
             case CESameAsDocumentColorPrint:
                 [self setTheme:[defaults stringForKey:CEDefaultThemeKey]];
