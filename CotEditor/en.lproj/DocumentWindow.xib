@@ -187,12 +187,12 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="hDK-Ke-NcU"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="ozh-KV-skX"/>
-                    <toolbarItem implicitItemIdentifier="A7DA403B-9AC8-4DF1-B5AB-6426322C67D5" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="8" image="BiggerFont" id="Ptr-aN-aSD">
+                    <toolbarItem implicitItemIdentifier="A7DA403B-9AC8-4DF1-B5AB-6426322C67D5" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="3" image="BiggerFont" id="Ptr-aN-aSD">
                         <connections>
                             <action selector="modifyFont:" target="M21-bo-PEe" id="LYq-SM-GGd"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="25E3B962-091E-4686-8218-7494D6E82F33" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="9" image="SmallerFont" id="5nt-ud-Ewr">
+                    <toolbarItem implicitItemIdentifier="25E3B962-091E-4686-8218-7494D6E82F33" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="4" image="SmallerFont" id="5nt-ud-Ewr">
                         <connections>
                             <action selector="modifyFont:" target="M21-bo-PEe" id="GU4-F5-6zt"/>
                         </connections>
