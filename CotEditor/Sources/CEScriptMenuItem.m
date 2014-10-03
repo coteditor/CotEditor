@@ -46,7 +46,7 @@
             
             // observe menu bar theme change on Yosemite
             [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                                selector:@selector(didInterfaceThemeChanged:)
+                                                                selector:@selector(updateIcon)
                                                                     name:@"AppleInterfaceThemeChangedNotification"
                                                                   object:nil];
         }
@@ -57,15 +57,6 @@
 
 
 #pragma mark Private Methods
-
-// ------------------------------------------------------
-// system interface theme is changed (Yosemite)
-- (void)didInterfaceThemeChanged:(NSNotification *)notification
-// ------------------------------------------------------
-{
-    [self updateIcon];
-}
-
 
 // ------------------------------------------------------
 /// update script icon (for Yosemite's dark mode)
