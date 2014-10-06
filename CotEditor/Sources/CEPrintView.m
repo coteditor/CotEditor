@@ -382,7 +382,7 @@
     
     
     // カラーリングの設定
-    if ([[accessoryController theme] isEqualToString:NSLocalizedString(@"Black and White", nil)]) {
+    if ([[accessoryController theme] isEqualToString:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable,  nil)]) {
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
         

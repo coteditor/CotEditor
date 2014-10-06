@@ -199,6 +199,9 @@
 "Do you want to replace it?\nReplaced theme cannot be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
 
 
+// Print Pane
+"Theme" = "テーマ";
+
 // Pref Format tab
 // encoding menu alert sheet
 "Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";

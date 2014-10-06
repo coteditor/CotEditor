@@ -162,8 +162,8 @@
     [[self colorPopupButton] removeAllItems];
     
     // setup popup menu
-    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
-    [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Same as Document", nil)];
+    [[self colorPopupButton] addItemWithTitle:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable, nil)];
+    [[self colorPopupButton] addItemWithTitle:NSLocalizedStringFromTable(@"Same as Document's Setting", CEPrintLocalizeTable, nil)];
     [[[self colorPopupButton] menu] addItem:[NSMenuItem separatorItem]];
     [[self colorPopupButton] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
     [[[self colorPopupButton] lastItem] setAction:nil];

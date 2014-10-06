@@ -103,7 +103,7 @@
         // テーマを使用する場合はセットしておく
         switch ([defaults integerForKey:CEDefaultPrintColorIndexKey]) {
             case CEBlackColorPrint:
-                [self setTheme:NSLocalizedString(@"Black and White", nil)];
+                [self setTheme:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable, nil)];
                 break;
             case CESameAsDocumentColorPrint:
                 [self setTheme:[defaults stringForKey:CEDefaultThemeKey]];
@@ -404,7 +404,7 @@
 {
     [[self themePopup] removeAllItems];
     
-    [[self themePopup] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
+    [[self themePopup] addItemWithTitle:NSLocalizedStringFromTable(@"Black and White", CEPrintLocalizeTable, nil)];
     
     [[[self themePopup] menu] addItem:[NSMenuItem separatorItem]];
     
