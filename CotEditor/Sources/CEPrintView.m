@@ -435,7 +435,7 @@
 - (NSAttributedString *)attributedStringFromPrintInfoType:(CEPrintInfoType)selectedTag maxWidth:(CGFloat)maxWidth
 // ------------------------------------------------------
 {
-    NSString *string;
+    NSString *string = @"";
     
     switch (selectedTag) {
         case CEDocumentNamePrintInfo:
