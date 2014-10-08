@@ -1,49 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="garbled character, encoding"/>
-<link rel="start" href="../CotEditorHelp.html"/>
-<link rel="index" href="../xpgs/xall.html"/>
-<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
-<title>Characters aren't displayed correctly</title>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="garbled character, encoding"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
+	<title>Characters aren't displayed correctly</title>
 </head>
-<body>
 
-<div id="contents">
+<body>
 <h1>Characters aren't displayed correctly</h1>
+
 <p>Characters can be garbled if CotEditor fails to detect the file's encoding correctly. In such cases, change the character encoding as described below:</p>
 <ol>
-<li>Choose Format &gt; File Encoding, and select an encoding from the list.</li>
-<li>When a dialog appears, click Reinterpret.</li>
+	<li>Choose Format &gt; File Encoding, and select an encoding from the list.</li>
+	<li>When a dialog appears, click Reinterpret.</li>
 </ol>
 <p><img src="../gfx/wind_encoding.png" alt="" width="488" height="182"/></p>
 <p>The behavior of each button in this dialog is as follows:</p>
 <dl>
-<dt>Reinterpret</dt>
-<dd>Reopens the file with the new encoding.</dd>
-<dt>Convert</dt>
-<dd>Converts the text from the current encoding to the new one.</dd>
-<dt>Cancel</dt>
-<dd>Cancels the operation. The document is left unmodified.</dd>
+	<dt>Reinterpret</dt>
+	<dd>Reopens the file with the new encoding.</dd>
+	<dt>Convert</dt>
+	<dd>Converts the text from the current encoding to the new one.</dd>
+	<dt>Cancel</dt>
+	<dd>Cancels the operation. The document is left unmodified.</dd>
 </dl>
-</li>
 <ul>
-<li>You can also use the &ldquo;File Encoding&rdquo; toolbar item to change the character encoding.</li>
-<li>Changing the priority of auto-detection may help to reduce the occurrences of garbled characters.<br />
-=&gt; <a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding auto-detection</a></li>
-<li>If you select &ldquo;Refer to encoding declaration&rdquo; in the Format preferences pane, in-document encoding declarations such as &ldquo;charset=&rdquo; or &ldquo;encoding=&rdquo; or &ldquo;@charset&rdquo; will take precedence when CotEditor auto-detects the character encoding.<br />
-=&gt; <a href="../pgs/about_autodetect_charset.html">Using encoding declarations (charset=, encoding=, @charset) for auto-detection</a></li>
+	<li>You can also use the &ldquo;File Encoding&rdquo; toolbar item to change the character encoding.</li>
+	<li>Changing the priority of auto-detection may help to reduce the occurrences of garbled characters.<br />
+	=&gt; <a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding auto-detection</a></li>
+	<li>If you select &ldquo;Refer to encoding declaration&rdquo; in the Format preferences pane, in-document encoding declarations such as &ldquo;charset=&rdquo; or &ldquo;encoding=&rdquo; or &ldquo;@charset&rdquo; will take precedence when CotEditor auto-detects the character encoding.<br />
+	=&gt; <a href="../pgs/about_autodetect_charset.html">Using encoding declarations (charset=, encoding=, @charset) for auto-detection</a></li>
 </ul>
 
-<h2 id="P0">See also</h2>
-<ul class="rel_items">
-  <li><a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding auto-detection</a></li>
-  <li><a href="../pgs/about_autodetect_charset.html">Using encoding declarations (charset=, encoding=, @charset) for auto-detection</a></li>
-  <li><a href="../pgs/about_shiftjis.html">What is the difference between the four kinds of Shift JIS?</a></li>
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding auto-detection</a></li>
+	<li><a href="../pgs/about_autodetect_charset.html">Using encoding declarations (charset=, encoding=, @charset) for auto-detection</a></li>
+	<li><a href="../pgs/about_shiftjis.html">What is the difference between the four kinds of Shift JIS?</a></li>
 </ul>
-</div>
+</section>
 
 </body>
 </html>

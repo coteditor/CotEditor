@@ -3,18 +3,21 @@
  */
  
 body {
-	margin: 0 0 1em 0;
-	padding: 0;
-	font-family: 'Lucida Grande';
-	font-size: 9pt;
+	margin: 0;
+	padding: 1.5em;
+	font-family: 'Helvetica Neue';
 	line-height: 130%;
+	font-size: 9pt;
 }
 
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-#contents {
-	margin: 1.5em 1.5em 0 1.5em;
+a {
+	text-decoration: none;
+}
+a:link {
+	color: hsl(206,50%,50%);
+}
+a:hover {
+	text-decoration: underline;
 }
 
 hr {
@@ -27,7 +30,7 @@ code {
 
 h1 {
 	font-size: 130%;
-	margin: 1em 0;
+	margin: 0 0 1em;
 }
 h1:before {
 	content: url(../gfx/icon_32x32@2x.png);
@@ -50,12 +53,14 @@ h3 {
 	line-height: 110%;
 }
 
-ol, ul, pre {
+ol,
+ul,
+pre {
 	padding: 0.6em 2.5em 0.2em;
 	margin: 0.4em 0;
-	border: 1px solid #ccc;
-	border-radius: 1px;
-	background-color: #e6edff;
+	border: 1px solid hsl(213,33%,80%);
+	border-radius: 3px;
+	background-color: hsl(213,80%,96%);
 	clear: both;
 }
 
@@ -67,13 +72,17 @@ li {
 	margin-bottom: 0.5em;
 }
 
-ul ul, ul ol {
+ul ul,
+ul ol {
 	padding: 0 3em;
 	margin: 0.5em 0;
 	border: none;
 }
 
-ul + ul, ol + ol, ul + ol, ol + ul {
+ul + ul,
+ol + ol,
+ul + ol,
+ol + ul {
 	margin-top: 1em;
 }
 
@@ -82,20 +91,19 @@ ul.topicbox {
 	border: 1px dotted #999;
 }
 
-ul.rel_items {
+#cf ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 	border: none;
 	background-color: white;
-	font-size: 90%;
 }
 
 p.point {
 	padding: 1em 2em 1em 1.5em;
 	margin: auto -1%;
-	border: 1px solid #ccc;
-	background-color: #e6edff;
+	border: 1px solid hsl(213,33%,80%);
+	background-color: hsl(213,80%,96%);
 }
 
 em {
@@ -115,10 +123,6 @@ p#relbar {
 img.snapshot {
 	float: left;
 	margin: 0 1em 1em 0;
-}
-
-img#h1icon {
-	margin: 0 8px -8px 0;
 }
 
 dt {
@@ -154,14 +158,15 @@ table thead tr:last-child > * {
 	border-bottom: 1px solid #888;
 }
 
-th, td {
+th,
+td {
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	margin: 0;
 	padding: 3px 0.5em;
 }
 th {
-	background-color: #e6edff;
+	background-color: hsl(213,80%,96%);
 	font-weight: normal;
 	white-space: nowrap;
 }
@@ -171,6 +176,7 @@ tbody th:first-child {
 	border-right: 1px solid #ccc;
 }
 
-tt, pre {
+tt,
+pre {
 	font-family: 'Courier', 'Courier New', monospace;
 }
