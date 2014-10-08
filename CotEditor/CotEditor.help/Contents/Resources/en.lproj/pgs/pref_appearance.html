@@ -1,93 +1,95 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="Appearance preferences, Appearance, appearance"/>
-<link rel="start" href="../CotEditorHelp.html"/>
-<link rel="index" href="../xpgs/xall.html"/>
-<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
-<title>Appearance preferences</title>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="Appearance preferences, Appearance, appearance"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
+	<title>Appearance preferences</title>
 </head>
-<body>
 
-<div id="contents">
+<body>
 <h1>Appearance preferences</h1>
+
 <p>The Appearance preferences let you set the appearance of documents, including font, line height and the colors.</p>
 
 <dl>
-  <dt>Font</dt>
-  <dd>You can set the font type and size for the text view.</dd>
-  <dd><dl>
-    <dt>Anti-aliasing</dt>
-    <dd>With this option selected, CotEditor displays text anti-aliased.</dd>
-  </dl></dd>
-  
-  <dt>Line height</dt>
-  <dd>You can adjust line height with a value indicating the number of lines. The range you can set is from 1.0 to 10.0 (lines).</dd>
-  <dd><dl>
-    <dt>Fix line height with composite font</dt>
-    <dd>With this option turned on, CotEditor forces the line height to be fixed regardless of the font you use or the character you input.<br />
-  The line height gets larger than when this option is off.</dd>
-  </dl></dd>
-  
-  <dt>Current line</dt>
-  <dd>You can set the appearance of current line in the text view.</dd>
-  <dd><dl>
-    <dt>Change background color</dt>
-  <dd>With this option turned on, the line in which caret exists will be highlighted with another background color.  The “Current Line” color in the selected theme will be used for this highlight.</dd>
-  </dl></dd>
-
-  <dt>Theme</dt>
-  <dd>You can manage the coloring themes for the text view.  See <a href="howto_customize_theme.html">About theme</a> for about theme customization.</dd>
-  
-  <dd><dl>
-    <dt>Theme list</dt>
-    <dd>Select your default theme for the text view.</dd>
-    
-    <dt>New (+ icon)</dt>
-    <dd>Create a new theme.</dd>
-    
-    <dt>Delete (- icon)</dt>
-    <dd>Remove the selected theme. You cannot remove theme that are bundled with CotEditor.</dd>
-    
-    <dt>Other Actions (gear icon)</dt>
-    <dd><dl>
-      <dt>Duplicate “Theme Name”</dt>
-      <dd>Duplicate the selected theme in order to make your own one.</dd>
-      
-      <dt>Restore “Theme Name”</dt>
-      <dd>Restore the selected theme to default. This action is available only for bundled themes.</dd>
-      
-      <dt>Export “Theme Name”…</dt>
-      <dd>Export the theme file made from the selected theme. You can use this exported file to use it on another computer. To use the exported file, do Import.</dd>
-      
-      <dt>Import…</dt>
-      <dd>This allows you to use a theme created on another computer. After selecting Import, choose the theme file to install.</dd>
-    </dl></dd>
-  
-  <dt>Theme edit view</dt>
-  <dd>You can edit the selected theme.</dd>
-  <dd><dl>
-    <dt>Basic Coloring</dt>
-    <dd>The configurations for basic coloring other than syntax coloring. Included are the color of text, cursor, invisibles, backgorund, current line, and selection.  If “Use sytem color” check box for “Selection” is turned on, the user setting in the System Preferences &gt; General &gt; Highlight Color is used for the selection highlighting.</dd>
-  
-    <dt>Syntax Coloring</dt>
-    <dd>You can set the colors for syntax highlighting.<br />
-        The code elements colors are: Keywords, Commands, Types, Attributes, Variables, Values, Numbers, Strings, Characters, Comments.<br />
-        &quot;Enable syntax coloring&quot; in the <a href="../pgs/pref_format.html">Format preferences</a> should be checked to apply these colors.</dd>
-    </dl></dd>
-  </dl></dd>
-  <dd><dl>
+	<dt>Font</dt>
+	<dd>You can set the font type and size for the text view.</dd>
+	<dd><dl>
+		<dt>Anti-aliasing</dt>
+		<dd>With this option selected, CotEditor displays text anti-aliased.</dd>
+	</dl></dd>
+	
+	<dt>Line height</dt>
+	<dd>You can adjust line height with a value indicating the number of lines. The range you can set is from 1.0 to 10.0 (lines).</dd>
+	<dd><dl>
+		<dt>Fix line height with composite font</dt>
+		<dd>With this option turned on, CotEditor forces the line height to be fixed regardless of the font you use or the character you input.<br />
+		The line height gets larger than when this option is off.</dd>
+	</dl></dd>
+	
+	<dt>Current line</dt>
+	<dd>You can set the appearance of current line in the text view.</dd>
+	<dd><dl>
+		<dt>Change background color</dt>
+		<dd>With this option turned on, the line in which caret exists will be highlighted with another background color.  The “Current Line” color in the selected theme will be used for this highlight.</dd>
+	</dl></dd>
+	
+	<dt>Theme</dt>
+	<dd>You can manage the coloring themes for the text view.  See <a href="howto_customize_theme.html">About theme</a> for about theme customization.</dd>
+	
+	<dd><dl>
+		<dt>Theme list</dt>
+		<dd>Select your default theme for the text view.</dd>
+		
+		<dt>New (+ icon)</dt>
+		<dd>Create a new theme.</dd>
+		
+		<dt>Delete (- icon)</dt>
+		<dd>Remove the selected theme. You cannot remove theme that are bundled with CotEditor.</dd>
+		
+		<dt>Other Actions (gear icon)</dt>
+		<dd><dl>
+			<dt>Duplicate “Theme Name”</dt>
+			<dd>Duplicate the selected theme in order to make your own one.</dd>
+			
+			<dt>Restore “Theme Name”</dt>
+			<dd>Restore the selected theme to default. This action is available only for bundled themes.</dd>
+			
+			<dt>Export “Theme Name”…</dt>
+			<dd>Export the theme file made from the selected theme. You can use this exported file to use it on another computer. To use the exported file, do Import.</dd>
+			
+			<dt>Import…</dt>
+			<dd>This allows you to use a theme created on another computer. After selecting Import, choose the theme file to install.</dd>
+		</dl></dd>
+		
+		<dt>Theme edit view</dt>
+		<dd>You can edit the selected theme.</dd>
+		<dd><dl>
+			<dt>Basic Coloring</dt>
+			<dd>The configurations for basic coloring other than syntax coloring. Included are the color of text, cursor, invisibles, backgorund, current line, and selection.  If “Use sytem color” check box for “Selection” is turned on, the user setting in the System Preferences &gt; General &gt; Highlight Color is used for the selection highlighting.</dd>
+			
+			<dt>Syntax Coloring</dt>
+			<dd>You can set the colors for syntax highlighting.<br />
+			The code elements colors are: Keywords, Commands, Types, Attributes, Variables, Values, Numbers, Strings, Characters, Comments.<br />
+			&quot;Enable syntax coloring&quot; in the <a href="../pgs/pref_format.html">Format preferences</a> should be checked to apply these colors.</dd>
+		</dl></dd>
+	</dl></dd>
 </dl>
 
-<h2 id="P0">See also</h2>
-<ul class="rel_items">
-  <li><a href="../pgs/pref_format.html">Format preferences</a></li>
-  <li><a href="../pgs/howto_customize_theme.html">About themes</a></li>
-  <li><a href="../xpgs/xpreferences.html">preferences</a></li>
-</ul>
-</div>
+
+<section id="cf">
+	<h2>See also</h2>
+	<ul>
+		<li><a href="../pgs/pref_format.html">Format preferences</a></li>
+		<li><a href="../pgs/howto_customize_theme.html">About themes</a></li>
+		<li><a href="../xpgs/xpreferences.html">preferences</a></li>
+	</ul>
+</section>
 
 </body>
 </html>

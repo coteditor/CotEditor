@@ -1,105 +1,108 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="Edit preferences, edit, edit style"/>
-<link rel="start" href="../CotEditorHelp.html"/>
-<link rel="index" href="../xpgs/xall.html"/>
-<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
-<title>Edit preferences</title>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="Edit preferences, edit, edit style"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
+	<title>Edit preferences</title>
 </head>
-<body>
 
-<div id="contents">
+<body>
 <h1>Edit preferences</h1>
+
 <p>The Edit preferences let you set the behavior of text view while text editing and its display.</p>
 
 <dl>
-  <dt>Behavior</dt>
-  <dd></dd>
-  <dd><dl>
-    <dt>Enable smart insert and delete</dt>
-    <dd>When this option turned on, when you paste or drag a word in between other words, a halfwidth space will be automatically added between the words to maintain that boundary. Meanwhile, any extra spaces will be automatically removed when you cut/delete a word. (This function only has meaning when you edit in English.)</dd>
-    
-    <dt>Enable smart quotes and dashes</dt>
-    <dd>When this option turned on, inserted quote (&quot;) will be automatically substituted with matched quote (“ or ”).  With dash, it behaves also the same.</dd>
-    
-    <dt>Drag selected text immediately</dt>
-    <dd>In order to drag selected text, you need to hold the mouse button pressed more than 0.3 seconds before starting dragging, but with this option turned on, you can reduce the waiting time and start dragging immediately. (This is an experimental implementation.)</dd>
-    
-    <dt>Swap “¥” and “\” keys</dt>
-    <dd>When this option turned on, you can input a backslash (\) using the key binding for the Yen sign (¥), and vice versa.</dd>
-  
-    <dt>Highlight matching braces “( )” “[ ]” “{ }”</dt>
-    <dd>When this option turned on, CotEditor briefly highlights the corresponding opening brace when you write a closing brace.</dd>
-    <dd><dl>
-      <dt>Highlight &quot;&lt; &gt;&quot;</dt>
-      <dd>If this is on, highlighting will apply to angle brackets &ldquo;&lt; &gt;&rdquo; as well.</dd>
-    </dl></dd>
-  </dl></dd>
-
-
-  
-  <dt>Indentation</dt>
-  <dd>You can set the indentation behavior in the text view.</dd>
-  <dd><dl>
-    <dt>Auto indent</dt>
-    <dd>When this option is turned on, CotEditor automatically indents each line you create by hitting the <kbd>Return</kbd>/<kbd>Enter</kbd> key. The new line will begin at the same indentation point as the previous line.</dd>
-    
-    <dt>Expand tabs to spaces</dt>
-    <dd>When this option turned on, CotEditor automatically converts tab characters to spaces as you type.</dd>
-    <dd><dl>
-      <dt>Indent width:</dt>
-      <dd>You can specify the number of spaces to which a tab character is expanded.</dd>
-    </dl></dd>
-  </dl></dd>
-  
-  <dt>Comment</dt>
-  <dd>You can set the comment-out/uncomment behavior in the text view.</dd>
-  <dd><dl>
-    <dt>Append a space to comment delimiter</dt>
-    <dd>When this option turned on, a single space character will be appended between comment delimiters and commented out strings.</dd>
-    <dt>Always from line head</dt>
-    <dd>When this option turned on, the selected lines will be commented out always from line head.</dd>
-  </dl></dd>
-  
-  <dt>Line wrapping</dt>
-  <dd>You can set the line wrapping behavior in the text view.</dd>
-  <dd><dl>
-    <dt>Soft wrap lines</dt>
-    <dd>When this option is turned on, CotEditor soft-wraps long lines so that you can view them within the window width. Otherwise, CotEditor shows horizontal scroll bar without wrapping text.</dd>
-  </dl></dd>
-  
-  <dt>Show Invisibles</dt>
-  <dd>You can transform invisible characters &mdash; space, tab, line ending, control character &mdash; into alternative symbols in order to make them viewable. Select the symbol you wish to use from the drop-down menu.<br />
-The default font you set in the Appearance pane applies to these symbols as well.</dd>
-
-  <dt>Completion</dt>
-  <dd>You can set the completion behavior in the text view.</dd>
-  <dd><dl>
-    <dt>Auto complete</dt>
-    <dd>When this option is turned on, completion list will be automatically shown if words to complete exist.</dd>
-    <dt>Completion list includes words in:</dt>
-    <dd>Here, you can change the range of possible completions that appear in the completion list.</dd>
-    <dd><dl>
-      <dt>Document only</dt>
-      <dd>The list shows only the words appear in your document.</dd>
-      <dt>Syntax Style only</dt>
-      <dd>The list shows only the words defined by your syntax style (in the case you've not specified any completions, the words generated by the syntax coloring rule appear).</dd>
-      <dt>Document + Syntax Style</dt>
-      <dd>In addition to the in-document words, the words defined by your syntax style appear in the list.</dd>
-      <dt>Document + Syntax Style + Standard Words</dt>
-      <dd>In addition to all of the above, the list shows standard words as well.</dd>
-    </dl></dd>
-  </dl></dd>
+	<dt>Behavior</dt>
+	<dd></dd>
+	<dd><dl>
+		<dt>Enable smart insert and delete</dt>
+		<dd>When this option turned on, when you paste or drag a word in between other words, a halfwidth space will be automatically added between the words to maintain that boundary. Meanwhile, any extra spaces will be automatically removed when you cut/delete a word. (This function only has meaning when you edit in English.)</dd>
+		
+		<dt>Enable smart quotes and dashes</dt>
+		<dd>When this option turned on, inserted quote (&quot;) will be automatically substituted with matched quote (“ or ”).  With dash, it behaves also the same.</dd>
+		
+		<dt>Drag selected text immediately</dt>
+		<dd>In order to drag selected text, you need to hold the mouse button pressed more than 0.3 seconds before starting dragging, but with this option turned on, you can reduce the waiting time and start dragging immediately. (This is an experimental implementation.)</dd>
+		
+		<dt>Swap “¥” and “\” keys</dt>
+		<dd>When this option turned on, you can input a backslash (\) using the key binding for the Yen sign (¥), and vice versa.</dd>
+		
+		<dt>Highlight matching braces “( )” “[ ]” “{ }”</dt>
+		<dd>When this option turned on, CotEditor briefly highlights the corresponding opening brace when you write a closing brace.</dd>
+		<dd><dl>
+			<dt>Highlight &quot;&lt; &gt;&quot;</dt>
+			<dd>If this is on, highlighting will apply to angle brackets &ldquo;&lt; &gt;&rdquo; as well.</dd>
+		</dl></dd>
+	</dl></dd>
+	
+	
+	
+	<dt>Indentation</dt>
+	<dd>You can set the indentation behavior in the text view.</dd>
+	<dd><dl>
+		<dt>Auto indent</dt>
+		<dd>When this option is turned on, CotEditor automatically indents each line you create by hitting the <kbd>Return</kbd>/<kbd>Enter</kbd> key. The new line will begin at the same indentation point as the previous line.</dd>
+		
+		<dt>Expand tabs to spaces</dt>
+		<dd>When this option turned on, CotEditor automatically converts tab characters to spaces as you type.</dd>
+		<dd><dl>
+			<dt>Indent width:</dt>
+			<dd>You can specify the number of spaces to which a tab character is expanded.</dd>
+		</dl></dd>
+	</dl></dd>
+	
+	<dt>Comment</dt>
+	<dd>You can set the comment-out/uncomment behavior in the text view.</dd>
+	<dd><dl>
+		<dt>Append a space to comment delimiter</dt>
+		<dd>When this option turned on, a single space character will be appended between comment delimiters and commented out strings.</dd>
+		<dt>Always from line head</dt>
+		<dd>When this option turned on, the selected lines will be commented out always from line head.</dd>
+	</dl></dd>
+	
+	<dt>Line wrapping</dt>
+	<dd>You can set the line wrapping behavior in the text view.</dd>
+	<dd><dl>
+		<dt>Soft wrap lines</dt>
+		<dd>When this option is turned on, CotEditor soft-wraps long lines so that you can view them within the window width. Otherwise, CotEditor shows horizontal scroll bar without wrapping text.</dd>
+	</dl></dd>
+	
+	<dt>Show Invisibles</dt>
+	<dd>You can transform invisible characters &mdash; space, tab, line ending, control character &mdash; into alternative symbols in order to make them viewable. Select the symbol you wish to use from the drop-down menu.<br />
+	The default font you set in the Appearance pane applies to these symbols as well.</dd>
+	
+	<dt>Completion</dt>
+	<dd>You can set the completion behavior in the text view.</dd>
+	<dd><dl>
+		<dt>Auto complete</dt>
+		<dd>When this option is turned on, completion list will be automatically shown if words to complete exist.</dd>
+		<dt>Completion list includes words in:</dt>
+		<dd>Here, you can change the range of possible completions that appear in the completion list.</dd>
+		<dd><dl>
+			<dt>Document only</dt>
+			<dd>The list shows only the words appear in your document.</dd>
+			<dt>Syntax Style only</dt>
+			<dd>The list shows only the words defined by your syntax style (in the case you've not specified any completions, the words generated by the syntax coloring rule appear).</dd>
+			<dt>Document + Syntax Style</dt>
+			<dd>In addition to the in-document words, the words defined by your syntax style appear in the list.</dd>
+			<dt>Document + Syntax Style + Standard Words</dt>
+			<dd>In addition to all of the above, the list shows standard words as well.</dd>
+		</dl></dd>
+	</dl></dd>
 </dl>
 
-<h2 id="P0">See also</h2>
-<ul class="rel_items">
-  <li><a href="../xpgs/xpreferences.html">preferences</a></li>
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../xpgs/xpreferences.html">preferences</a></li>
 </ul>
-</div>
+</section>
 
 </body>
 </html>

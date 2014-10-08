@@ -1,48 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="Outline Menu"/>
-<link rel="start" href="../CotEditorHelp.html"/>
-<link rel="index" href="../xpgs/xall.html"/>
-<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
-<title>Outline Menu settings</title>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="Outline Menu"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
+	<title>Outline Menu settings</title>
 </head>
-<body>
 
-<div id="contents">
+<body>
 <h1>Outline Menu settings</h1>
+
 <p>The settings for customizing Outline Menu are as follows:</p>
 
 <table>
-  <tr><th>RE string</th><td>The in-document strings matched by the regular expressions you set here will appear in the drop-down menu. This setting is required in order to search the items to be listed (RE stands for Regular Expression).</td></tr>
-  <tr><th>IC</th><td>If this is selected, case will be ignored during the search. For example, the expression &ldquo;abc&rdquo; matches &ldquo;ABC&rdquo; or &ldquo;abc&rdquo; or &ldquo;Abc&rdquo; in your document (IC stands for Ignore Case).</td></tr>
-  <tr><th>Menu Title Pattern</td><td>Here, you can format the titles of the Outline Menu items. Both the &ldquo;RE string&rdquo; setting and the setting here determine how the corresponding item is titled in the menu.</td></tr>
+	<tr><th>RE string</th><td>The in-document strings matched by the regular expressions you set here will appear in the drop-down menu. This setting is required in order to search the items to be listed (RE stands for Regular Expression).</td></tr>
+	<tr><th>IC</th><td>If this is selected, case will be ignored during the search. For example, the expression &ldquo;abc&rdquo; matches &ldquo;ABC&rdquo; or &ldquo;abc&rdquo; or &ldquo;Abc&rdquo; in your document (IC stands for Ignore Case).</td></tr>
+	<tr><th>Menu Title Pattern</td><td>Here, you can format the titles of the Outline Menu items. Both the &ldquo;RE string&rdquo; setting and the setting here determine how the corresponding item is titled in the menu.</td></tr>
 </table>
 
 <p>The meta characters you can use in Menu Title Pattern are as follows:</p>
 
 <table>
-  <tr><th>(blank)</th><td>The whole string matched by your regular expression.</td></tr>
-  <tr><th><code>$0</code></th><td>The whole string matched by your regular expression.</td></tr>
-  <tr><th><code>$1</code> ... <code>$9</code></th><td>The string matched by the first through ninth parenthesized subexpression in your regular expression.</td></tr>
-  <tr><th><code>$LN</code></th><td>The line number of a line which contains the first character of the string matched by your regular expression.</td></tr>
-  <tr><th><code>-</code></th><td>A separator of the menu
-(invalid when other letters than &ldquo;-&rdquo; are included).</td></tr>
+	<tr><th>(blank)</th><td>The whole string matched by your regular expression.</td></tr>
+	<tr><th><code>$0</code></th><td>The whole string matched by your regular expression.</td></tr>
+	<tr><th><code>$1</code> ... <code>$9</code></th><td>The string matched by the first through ninth parenthesized subexpression in your regular expression.</td></tr>
+	<tr><th><code>$LN</code></th><td>The line number of a line which contains the first character of the string matched by your regular expression.</td></tr>
+	<tr><th><code>-</code></th><td>A separator of the menu
+	(invalid when other letters than &ldquo;-&rdquo; are included).</td></tr>
 </table>
 
 <ul>
-  <li>To show a meta character such as &ldquo;$0&rdquo; in the menu, you need to put a backslash (&#x005C;) in front of it. You won't see that backslash (&#x005C;) in the menu.</li>
+	<li>To show a meta character such as &ldquo;$0&rdquo; in the menu, you need to put a backslash (&#x005C;) in front of it. You won't see that backslash (&#x005C;) in the menu.</li>
 </ul>
 
-<h2 id="P0">See also</h2>
-<ul class="rel_items">
-  <li><a href="../pgs/howto_customize_syntaxstyle.html">About syntax styles</a></li>
-  <li><a href="../pgs/about_syntaxstyle.html">Customizing syntax coloring rules</a></li>
-  <li><a href="../pgs/about_regex.html">Regular Expression Syntax</a></li>
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/howto_customize_syntaxstyle.html">About syntax styles</a></li>
+	<li><a href="../pgs/about_syntaxstyle.html">Customizing syntax coloring rules</a></li>
+	<li><a href="../pgs/about_regex.html">Regular Expression Syntax</a></li>
 </ul>
-</div>
+</section>
 
 </body>
 </html>
