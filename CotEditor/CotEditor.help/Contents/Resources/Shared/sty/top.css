@@ -5,7 +5,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family: 'Lucida Grande';
+	font-family: 'Helvetica Neue';
 }
 
 a { text-decoration: none; }
@@ -24,16 +24,16 @@ div {
 #rightbox {
 	width: 220px;
 	padding-left: 30px;
-	border-left: 1px solid #999;
+	border-left: 1px solid hsl(0,0%,85%);
 }
 
 img {
-	margin: 20px 0;
+	margin: 10px 0;
 }
 
 h1 {
-	font-size: 16pt;
-	font-weight: normal;
+	font-size: 18pt;
+	font-weight: 200;
 }
 
 address {
