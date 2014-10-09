@@ -279,7 +279,7 @@
             <point key="canvasLocation" x="245.5" y="177.5"/>
         </window>
         <drawer trailingOffset="15" id="32">
-            <size key="contentSize" width="200" height="381"/>
+            <size key="contentSize" width="220" height="380"/>
             <size key="minContentSize" width="200" height="50"/>
             <size key="maxContentSize" width="600" height="400"/>
             <connections>
@@ -289,26 +289,26 @@
             </connections>
         </drawer>
         <customView id="34" userLabel="Drawer View">
-            <rect key="frame" x="0.0" y="0.0" width="230" height="580"/>
+            <rect key="frame" x="0.0" y="0.0" width="220" height="580"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tabView allowsTruncatedLabels="NO" type="noTabsBezelBorder" translatesAutoresizingMaskIntoConstraints="NO" id="115">
-                    <rect key="frame" x="0.0" y="41" width="230" height="521"/>
+                    <rect key="frame" x="0.0" y="41" width="220" height="521"/>
                     <font key="font" metaFont="message"/>
                     <tabViewItems>
                         <tabViewItem identifier="info" id="116">
                             <view key="view" id="118">
-                                <rect key="frame" x="10" y="7" width="210" height="501"/>
+                                <rect key="frame" x="10" y="7" width="200" height="501"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="411">
-                                        <rect key="frame" x="0.0" y="15" width="210" height="486"/>
+                                        <rect key="frame" x="0.0" y="15" width="200" height="486"/>
                                         <clipView key="contentView" autoresizesSubviews="NO" drawsBackground="NO" copiesOnScroll="NO" id="xGI-c5-td8">
                                             <rect key="frame" x="0.0" y="0.0" width="210" height="486"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="108">
-                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="481"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="481"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="55" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="59">
                                                             <rect key="frame" x="42" y="457" width="59" height="14"/>
@@ -498,7 +498,7 @@
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                                                            <rect key="frame" x="20" y="256" width="170" height="5"/>
+                                                            <rect key="frame" x="20" y="256" width="160" height="5"/>
                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
@@ -542,7 +542,7 @@
                                                             </connections>
                                                         </textField>
                                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="511">
-                                                            <rect key="frame" x="20" y="181" width="170" height="5"/>
+                                                            <rect key="frame" x="20" y="181" width="160" height="5"/>
                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
@@ -1047,7 +1047,7 @@
                     </connections>
                 </tabView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="140">
-                    <rect key="frame" x="131" y="3" width="100" height="32"/>
+                    <rect key="frame" x="121" y="3" width="100" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="88" id="Qry-t0-YZK"/>
                     </constraints>
@@ -1060,7 +1060,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="142">
-                    <rect key="frame" x="18" y="546" width="195" height="26"/>
+                    <rect key="frame" x="18" y="546" width="185" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="700">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -1087,6 +1087,7 @@
                 <constraint firstItem="140" firstAttribute="top" secondItem="115" secondAttribute="bottom" constant="14" id="x4h-Jw-6T2"/>
                 <constraint firstItem="142" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="20" symbolic="YES" id="z1f-RB-gge"/>
             </constraints>
+            <point key="canvasLocation" x="-167" y="211"/>
         </customView>
         <customObject id="71" customClass="CEToolbarController">
             <connections>
@@ -1132,17 +1133,17 @@
         <image name="EditColorCode" width="24" height="24"/>
         <image name="GetInfo" width="24" height="24"/>
         <image name="IncompatibleChars" width="24" height="24"/>
-        <image name="InvisibleChars_Show" width="64" height="64"/>
-        <image name="LineNumber_Show" width="64" height="64"/>
+        <image name="InvisibleChars_Show" width="24" height="24"/>
+        <image name="LineNumber_Show" width="24" height="24"/>
         <image name="LockedTemplate" width="16" height="16"/>
-        <image name="NaviBar_Show" width="64" height="64"/>
-        <image name="PageGuide_Show" width="64" height="64"/>
+        <image name="NaviBar_Show" width="24" height="24"/>
+        <image name="PageGuide_Show" width="24" height="24"/>
         <image name="RecolorAll" width="24" height="24"/>
         <image name="ShiftLeft" width="24" height="24"/>
         <image name="ShiftRight" width="24" height="24"/>
         <image name="SmallerFont" width="24" height="24"/>
-        <image name="StatusBar_Show" width="64" height="64"/>
-        <image name="VerticalOrientation_On" width="64" height="64"/>
-        <image name="WrapLines_On" width="64" height="64"/>
+        <image name="StatusBar_Show" width="24" height="24"/>
+        <image name="VerticalOrientation_On" width="24" height="24"/>
+        <image name="WrapLines_On" width="24" height="24"/>
     </resources>
 </document>
