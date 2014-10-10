@@ -80,6 +80,7 @@
 		2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
 		2A712CA318EFB716001FEC33 /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
 		2A73F17D18EF573B00BFB5E5 /* CEByteCountTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A73F17C18EF573B00BFB5E5 /* CEByteCountTransformer.m */; };
+		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
 		2A8663DD18C9F6B700A6F9CC /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8663DC18C9F6B700A6F9CC /* NSData+MD5.m */; };
 		2A8711681986DAEC009FA1C0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8711671986DAEC009FA1C0 /* NSString+MD5.m */; };
@@ -113,8 +114,6 @@
 		792E1BB17A7E4930ADAFB01E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
 		8C0F52610871861C00ABD124 /* openScriptMenu.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F52600871861C00ABD124 /* openScriptMenu.applescript */; };
-		8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */; };
-		8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */; };
 		8C28CD2E081101A300733DA7 /* ScriptErrorPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ScriptErrorPanel.xib */; };
 		8C3E2D500808E203009894D1 /* LineNumber_Hide.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */; };
 		8C3E2D510808E203009894D1 /* LineNumber_Show.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */; };
@@ -289,6 +288,7 @@
 		2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_On.tiff; sourceTree = "<group>"; };
 		2A73F17B18EF573B00BFB5E5 /* CEByteCountTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEByteCountTransformer.h; sourceTree = "<group>"; };
 		2A73F17C18EF573B00BFB5E5 /* CEByteCountTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEByteCountTransformer.m; sourceTree = "<group>"; };
+		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A7846DC18FE0C0C006BDF00 /* CETheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETheme.h; sourceTree = "<group>"; };
 		2A7846DD18FE0C0C006BDF00 /* CETheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETheme.m; sourceTree = "<group>"; };
@@ -357,8 +357,6 @@
 		76D1C081C503B0E9585E1BD6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* GetInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = GetInfo.tiff; sourceTree = "<group>"; };
 		8C0F52600871861C00ABD124 /* openScriptMenu.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = openScriptMenu.applescript; sourceTree = "<group>"; };
-		8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */ = {isa = PBXFileReference; explicitFileType = text.plist.scriptTerminology; fileEncoding = 4; path = CotEditor.scriptTerminology; sourceTree = "<group>"; };
-		8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */ = {isa = PBXFileReference; explicitFileType = text.plist.scriptSuite; fileEncoding = 4; path = CotEditor.scriptSuite; sourceTree = "<group>"; };
 		8C28CD2D081101A300733DA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScriptErrorPanel.xib; sourceTree = "<group>"; };
 		8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Hide.tiff; sourceTree = "<group>"; };
 		8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Show.tiff; sourceTree = "<group>"; };
@@ -706,8 +704,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2A1CFD0B18E5B64F00A5B664 /* Print.strings */,
 				2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */,
-				8C2790FF07D18AC300103A53 /* CotEditor.scriptSuite */,
-				8C2790FB07D18A6700103A53 /* CotEditor.scriptTerminology */,
+				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				2A9871A819AEABDB0081BADB /* KeyBindings */,
 				2A3FB2A318EC473A00D9CB2C /* SyntaxColorings */,
@@ -940,8 +937,7 @@
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
 				6CA3B3E312E3B59B0019AB2E /* SampleScript in Resources */,
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
-				8C2790FC07D18A6700103A53 /* CotEditor.scriptTerminology in Resources */,
-				8C27910007D18AC300103A53 /* CotEditor.scriptSuite in Resources */,
+				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2585914D080F503A0038F387 /* openDictionary.applescript in Resources */,

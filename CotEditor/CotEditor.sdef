@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<dictionary title="Dictionary" xmlns:xi="http://www.w3.org/2003/XInclude">
+	<xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
+	
+	<suite name="CotEditor suite" code="cEd1" description="CotEditor specific classes.">
+		<enumeration name="saveable file format" code="savf">
+			<enumerator name="Text Document" code="text" description="The plain text.">
+				<cocoa string-value="public.text"/>
+			</enumerator>
+		</enumeration>
+		
+		<enumeration name="line ending char" code="lend">
+			<cocoa name="CELineEndingChar"/>
+			<enumerator name="CR" code="leCR" description="Mac (CR)">
+				<cocoa name="CELineEndingCR"/>
+			</enumerator>
+			<enumerator name="CRLF" code="leCL" description="Win (CR/LF)">
+				<cocoa name="CELineEndingCRLF"/>
+			</enumerator>
+			<enumerator name="LF" code="leLF" description="Unix (LF)">
+				<cocoa name="CELineEndingLF"/>
+			</enumerator>
+		</enumeration>
+		
+		<enumeration name="change case type" code="cCct">
+			<cocoa name="CEChangeCaseType"/>
+			<enumerator name="capitalized" code="cCcp" description="">
+				<cocoa name="CECapitalized"/>
+			</enumerator>
+			<enumerator name="lower" code="cClw" description="">
+				<cocoa name="CELowerCase"/>
+			</enumerator>
+			<enumerator name="upper" code="cCup" description="">
+				<cocoa name="CEUpperCase"/>
+			</enumerator>
+		</enumeration>
+		
+		<enumeration name="change kana type" code="cKtp">
+			<cocoa name="CEChangeKanaType"/>
+			<enumerator name="hiragana" code="cHgn" description="">
+				<cocoa name="CEHiragana"/>
+			</enumerator>
+			<enumerator name="katakana" code="cKkn" description="">
+				<cocoa name="CEKatakana"/>
+			</enumerator>
+		</enumeration>
+		
+		<enumeration name="UNF type" code="uNtp">
+			<cocoa name="CEUNFType"/>
+			<enumerator name="NFC" code="cNfc" description="">
+				<cocoa name="CENFC"/>
+			</enumerator>
+			<enumerator name="NFD" code="cNfd" description="">
+				<cocoa name="CENFD"/>
+			</enumerator>
+			<enumerator name="NFKC" code="cNkc" description="">
+				<cocoa name="CENFKC"/>
+			</enumerator>
+			<enumerator name="NFKD" code="cNkd" description="">
+				<cocoa name="CENFKD"/>
+			</enumerator>
+		</enumeration>
+		
+		<enumeration name="change width type" code="rWct">
+			<cocoa name="CEChangeWidthType"/>
+			<enumerator name="full" code="rWfl" description="">
+				<cocoa name="CEFullwidth"/>
+			</enumerator>
+			<enumerator name="half" code="rWhf" description="">
+				<cocoa name="CEHalfwidth"/>
+			</enumerator>
+		</enumeration>
+		
+		
+		<class name="document" code="docu" description="A CotEditor document." inherits="document">
+			<cocoa class="CEDocument"/>
+			<contents name="text" code="ctxt" description="The text of the document." type="attribute run" access="rw">
+				<cocoa key="textStorage"/>
+			</contents>
+			<property name="coloring style" code="cclr" description="The syntax coloring style name of the document." type="text" access="rw">
+				<cocoa key="coloringStyle"/>
+			</property>
+			<property name="contents" code="PCnt" description="The contents of the document." type="attribute run" access="rw"/>
+			<property name="encoding" code="fenc" description="The encoding name of the document." type="text" access="r">
+				<cocoa key="encodingName"/>
+			</property>
+			<property name="IANA charset" code="iacs" description="The IANA charset name of the document." type="text" access="r">
+				<cocoa key="IANACharSetName"/>
+			</property>
+			<property name="length" code="slen" description="The number of characters of the document." type="integer" access="r"/>
+			<property name="line ending" code="lend" description="The line ending code of the document." type="line ending char" access="rw">
+				<cocoa key="lineEndingChar"/>
+			</property>
+			<property name="line spacing" code="lSpc" description="The spacing between text lines. (from '0.0' to '10.0')" type="real" access="rw">
+				<cocoa key="lineSpacing"/>
+			</property>
+			<property name="selection" code="sele" description="The current selection." type="selection-object" access="rw">
+				<cocoa key="selectionObject"/>
+			</property>
+			<property name="wrap lines" code="wRln" description="Wrap lines or not." type="boolean" access="rw">
+				<cocoa key="wrapsLines"/>
+			</property>
+			<responds-to command="convert">
+				<cocoa method="handleConvert:"/>
+			</responds-to>
+			<responds-to command="find">
+				<cocoa method="handleFind:"/>
+			</responds-to>
+			<responds-to command="reinterpret">
+				<cocoa method="handleReinterpret:"/>
+			</responds-to>
+			<responds-to command="replace">
+				<cocoa method="handleReplace:"/>
+			</responds-to>
+			<responds-to command="scroll to caret">
+				<cocoa method="handleScroll:"/>
+			</responds-to>
+			<responds-to command="string">
+				<cocoa method="handleString:"/>
+			</responds-to>
+		</class>
+		
+		<class name="selection-object" code="tSel" description="A way to refer to the state of the current selection." inherits="item"><!-- FIXME: code `tsel` is used in AppleScript Editor -->
+			<cocoa class="CETextSelection"/>
+			<contents code="PCnt" description="The contents of the selection." type="attribute run" name="contents" access="rw"/>
+			<property name="line range" code="lRng" description="The range of lines of the selection. The format is &quot;{location, length}&quot;." access="rw">
+				<cocoa key="lineRange"/>
+				<type type="integer" list="yes"/>
+			</property>
+			<property name="range" code="prng" description="The range of characters in the selection. The format is &quot;{location, length}&quot;." access="rw">
+				<type type="integer" list="yes"/>
+			</property>
+			<responds-to command="change case">
+				<cocoa method="handleChangeCase:"/>
+			</responds-to>
+			<responds-to command="change kana">
+				<cocoa method="handleChangeKana:"/>
+			</responds-to>
+			<responds-to command="change roman width">
+				<cocoa method="handleChangeWidthRoman:"/>
+			</responds-to>
+			<responds-to command="shift left">
+				<cocoa method="handleShiftLeft:"/>
+			</responds-to>
+			<responds-to command="shift right">
+				<cocoa method="handleShiftRight:"/>
+			</responds-to>
+			<responds-to command="unicode normalization">
+				<cocoa method="handleUnicodeNomalization:"/>
+			</responds-to>
+		</class>
+		
+		<class name="window" code="cwin" description="A CotEditor window." inherits="window">
+			<cocoa class="NSWindow"/>
+			<property name="view opacity" code="copc" description="The opacity of the text view. (from &apos;0.2&apos; to &apos;1.0&apos;)" type="real" access="rw">
+				<cocoa key="viewOpacity"/>
+			</property>
+		</class>
+		
+		
+		<command name="change case" code="cEd1CGcs" description="Change the case of the selection.">
+			<direct-parameter description="The selection to change case." type="selection-object"/>
+			<parameter name="to" code="cStp" description="The case type to change." type="change case type">
+				<cocoa key="caseType"/>
+			</parameter>
+		</command>
+		
+		<command name="change kana" code="cEd1CKth" description="Change Japanese &quot;Kana&quot; mode of the selection.">
+			<direct-parameter description="the selection to change Japanese character mode" type="selection-object"/>
+			<parameter name="to" code="cHrg" description="The Japanese character mode to change." type="change kana type">
+				<cocoa key="kanaType"/>
+			</parameter>
+		</command>
+		
+		<command name="change roman width" code="cEd1GWrm" description="Change to / from full width or half width Japanese roman text.">
+			<direct-parameter description="The selection to change width." type="selection-object"/>
+			<parameter name="to" code="rWtp" description="The text width to change." type="change width type">
+				<cocoa key="widthType"/>
+			</parameter>
+		</command>
+		
+		<command name="convert" code="cEd1CVrt" description="Convert the document string to new encoding.">
+			<parameter name="lossy" code="lOsy" description="Allows lossy conversion?" type="boolean">
+				<cocoa key="lossy"/>
+			</parameter>
+			<parameter name="to" code="nEcd" description="The new encoding." type="text">
+				<cocoa key="newEncoding"/>
+			</parameter>
+			<result type="boolean"/>
+		</command>
+		
+		<command name="find" code="cEd1SRch" description="Search string.">
+			<parameter name="for" code="tRgt" description="The string for search." type="text">
+				<cocoa key="targetString"/>
+			</parameter>
+			<parameter name="backwards" code="bKwd" description="Search backwards. Can not use with RE. Default is false." type="boolean" optional="yes">
+				<cocoa key="backwardsSearch"/>
+			</parameter>
+			<parameter name="ignore case" code="iGcs" description="Search with ignore case (case insensitive). Default is false." type="boolean" optional="yes">
+				<cocoa key="ignoreCase"/>
+			</parameter>
+			<parameter name="RE" code="rEex" description="Search string as regular expression. Default is false." type="boolean" optional="yes">
+				<cocoa key="regularExpression"/>
+			</parameter>
+			<parameter name="wrap" code="wRsc" description="Wrap search the document. Default is false." type="boolean" optional="yes">
+				<cocoa key="wrapSearch"/>
+			</parameter>
+			<result type="boolean"/>
+		</command>
+		
+		<command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document string as new encoding.">
+			<parameter name="as" code="rEcd" description="The new encoding." type="text">
+				<cocoa key="newEncoding"/>
+			</parameter>
+			<result type="boolean"/>
+		</command>
+		
+		<command name="replace" code="cEd1RPlc" description="Replace string.">
+			<parameter name="for" code="tRgt" description="The string for replace." type="text">
+				<cocoa key="targetString"/>
+			</parameter>
+			<parameter name="to" code="nWst" description="The new string." type="text">
+				<cocoa key="newString"/>
+			</parameter>
+			<parameter name="all" code="aLl " description="Replace all of the references." type="boolean" optional="yes">
+				<cocoa key="all"/>
+			</parameter>
+			<parameter name="backwards" code="bKwd" description="Replace backwards. Can not use with RE. Default is false." type="boolean" optional="yes">
+				<cocoa key="backwardsSearch"/>
+			</parameter>
+			<parameter name="ignore case" code="iGcs" description="Replace with ignore case (case insensitive). Default is false." type="boolean" optional="yes">
+				<cocoa key="ignoreCase"/>
+			</parameter>
+			<parameter name="RE" code="rEex" description="Replace string as rregular expression. Default is false." type="boolean" optional="yes">
+				<cocoa key="regularExpression"/>
+			</parameter>
+			<parameter name="wrap" code="wRsc" description="Wrap search the document. Default is false." type="boolean" optional="yes">
+				<cocoa key="wrapSearch"/>
+			</parameter>
+			<result type="integer"/>
+		</command>
+		
+		<command name="scroll to caret" code="cEd1SCrl" description="Scroll document to caret or selected text.">
+			<cocoa name="Scroll"/>
+		</command>
+		
+		<command name="shift left" code="cEd1SLef" description="Shift selected lines to Left.">
+			<direct-parameter description="The selection in line to shift." type="selection-object"/>
+		</command>
+		
+		<command name="shift right" code="cEd1SRit" description="Shift selected lines to Right.">
+			<direct-parameter description="The selection in line to shift." type="selection-object"/>
+		</command>
+		
+		<command name="string" code="cEd1STrg" description="The string in the range.">
+			<parameter name="in" code="rAng" description="The range of the document. The format is &quot;{location, length}&quot;.">
+				<cocoa key="range"/>
+				<type type="integer" list="yes"/>
+			</parameter>
+			<result type="text"/>
+		</command>
+		
+		<command name="unicode normalization" code="cEd1UNml" description="Normalize Unicode.">
+			<cocoa name="UnicodeNomalization"/>
+			<direct-parameter description="The selection to normalize." type="selection-object"/>
+			<parameter name="to" code="uNft" description="The normalized forms of Unicode text." type="UNF type">
+				<cocoa key="unfType"/>
+			</parameter>
+		</command>
+	</suite>
+	
+	<!-- imported standard Text Suite -->
+	<suite name="Text Suite" code="????" description="Common text classes for all applications.">
+		<value-type name="RGB color" code="cRGB">
+			<cocoa class="NSColor"/>
+		</value-type>
+		
+		<class name="rich text" plural="rich text" code="ctxt" description="Rich (styled) text.">
+			<cocoa class="NSTextStorage"/>
+			<type type="text"/>
+			<property name="color" code="colr" type="RGB color" description="The color of the text's first character.">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" type="text" description="The name of the font of the text's first character.">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" type="integer" description="The size in points of the text's first character.">
+				<cocoa key="fontSize"/>
+			</property>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+		</class>
+		
+		<class name="character" code="cha " description="One of some text's characters.">
+			<cocoa class="NSTextStorage"/>
+			<type type="text"/>
+			<property name="color" code="colr" type="RGB color" description="Its color.">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" type="text" description="The name of its font.">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" type="integer" description="Its size, in points.">
+				<cocoa key="fontSize"/>
+			</property>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+		</class>
+		
+		<class name="paragraph" code="cpar" description="One of some text's paragraphs.">
+			<cocoa class="NSTextStorage"/>
+			<type type="text"/>
+			<property name="color" code="colr" type="RGB color" description="The color of the paragraph's first character.">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" type="text" description="The name of the font of the paragraph's first character.">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" type="integer" description="The size in points of the paragraph's first character.">
+				<cocoa key="fontSize"/>
+			</property>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+		</class>
+		
+		<class name="word" code="cwor" description="One of some text's words.">
+			<cocoa class="NSTextStorage"/>
+			<type type="text"/>
+			<property name="color" code="colr" type="RGB color" description="The color of the word's first character.">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" type="text" description="The name of the font of the word's first character.">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" type="integer" description="The size in points of the word's first character.">
+				<cocoa key="fontSize"/>
+			</property>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+		</class>
+		
+		<class name="attribute run" code="catr" description="A chunk of text that all has the same attributes.">
+			<cocoa class="NSTextStorage"/>
+			<type type="text"/>
+			<property name="color" code="colr" type="RGB color" description="Its color.">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" type="text" description="The name of its font.">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" type="integer" description="Its size, in points.">
+				<cocoa key="fontSize"/>
+			</property>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+		</class>
+		
+		<class name="attachment" code="atts" inherits="rich text" description="A file embedded in text. This is just for use when embedding a file using the make command.">
+			<cocoa class="NSAttachmentTextStorage"/>
+			<property name="file name" code="atfn" type="text" description="The path to the embedded file.">
+				<cocoa key="filename"/>
+			</property>
+		</class>
+	</suite>
+</dictionary>

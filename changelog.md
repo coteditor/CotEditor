@@ -117,6 +117,7 @@ changelog
 - デフォルト表示を縦書きにする隠し設定 `layoutTextVertical` を追加
 - 隠し設定であるナビゲーションバーのフォント設定を廃止
 - ドキュメントの更新
+- AppleScript 定義ファイルを sdef 形式に移行
 - Sparkle framework を 1.8.0 に更新
 
 
