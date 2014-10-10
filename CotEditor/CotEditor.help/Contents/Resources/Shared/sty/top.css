@@ -1,12 +1,12 @@
 /*
- * CotEditor Help Style Sheet for CotEditor.html
+ * CotEditor Help Style Sheet for CotEditorHelp.html
  */
  
 body {
+	font: 10pt/1.5 'Helvetica Neue', sans-serif;
+	color: hsla(0,0%,0%,0.8);
 	margin: 0;
 	padding: 1.5em;
-	font-family: 'Helvetica Neue';
-	line-height: 130%;
 }
 
 a {
@@ -25,32 +25,26 @@ section {
 section#leftbox {
 	width: 190px;
 	text-align: center;
-	padding: 20px 0;
+	padding: 28px 0;
 }
 section#rightbox {
-	width: 220px;
+	width: 260px;
 	padding-left: 30px;
 	margin-left: 20px;
 	border-left: 1px solid hsl(0,0%,85%);
 }
 
 #leftbox h1 {
-	font-size: 18pt;
+	font-size: 180%;
 	font-weight: 200;
 	margin: 0.5em 0;
 }
 
-#leftbox a[rel="external"] {
-	font-size: 10pt;
-	font-style: normal;
-}
-
 dt {
-	font-size: 11pt;
+	font-size: 120%;
 	font-weight: normal;
 	margin-top: 1em;
 }
 dd {
-	font-size: 9pt;
 	margin-left: 0;
 }

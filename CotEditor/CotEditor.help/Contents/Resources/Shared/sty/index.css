@@ -1,24 +1,20 @@
 /*
- * CotEditor Help Standard Style Sheet for index page
+ * CotEditor Help Additional Style Sheet for Index Pages
  */
  
 h1:before {
 	display: none;
 }
- 
-section {
-	margin: 1em 0;
-}
 
-section ul {
-	margin: 0;
+ul {
+	margin: 1em 0;
 	padding: 0;
 	background: none;
 	border: none;
 	list-style-type: none;
 }
 
-section li {
+li {
 	border-bottom: 1px solid hsl(0,0%,80%);
 	padding: 2px 0;
 }

@@ -7,13 +7,13 @@
 	min-height: 180px;
 	border: solid 1px hsl(0,0%,80%);
 	margin-bottom: 1.5em;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 .topic_box h2 {
 	margin: 0;
 	padding: 3px;
-	background-color: hsl(206,40%,92%);
+	background-color: hsl(206,25%,92%);
 }
 .topic_box p {
 	margin-top: 0.5em;

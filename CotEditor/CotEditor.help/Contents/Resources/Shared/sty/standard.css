@@ -3,11 +3,10 @@
  */
  
 body {
+	font: 10pt/1.5 'Helvetica Neue', sans-serif;
+	color: hsla(0,0%,0%,0.8);
 	margin: 0;
 	padding: 1.5em;
-	font-family: 'Helvetica Neue';
-	line-height: 130%;
-	font-size: 9pt;
 }
 
 a {
@@ -29,8 +28,9 @@ code {
 }
 
 h1 {
-	font-size: 130%;
-	margin: 0 0 1em;
+	font-size: 140%;
+	font-weight: 500;
+	margin: 0 0 1.5em;
 }
 h1:before {
 	content: url(../gfx/icon_32x32@2x.png);
@@ -38,19 +38,19 @@ h1:before {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
-	vertical-align:9px;
-	margin-right:26px;
+	vertical-align: 10px;
+	margin-right: 26px;
 }
 h2 {
 	font-size: 110%;
-	line-height: 110%;
+	line-height: 1.1;
 	margin-top: 1.5em;
 	margin-bottom: 0.5em;
 	clear: both;
 }
 h3 {
 	font-size: 100%;
-	line-height: 110%;
+	line-height: 1.1;
 }
 
 ol,
@@ -58,9 +58,9 @@ ul,
 pre {
 	padding: 0.6em 2.5em 0.2em;
 	margin: 0.4em 0;
-	border: 1px solid hsl(213,33%,80%);
+	border: 1px solid hsl(213,25%,80%);
+	background-color: hsl(213,25%,96%);
 	border-radius: 3px;
-	background-color: hsl(213,80%,96%);
 	clear: both;
 }
 
@@ -91,6 +91,13 @@ ul.topicbox {
 	border: 1px dotted #999;
 }
 
+#cf {
+	margin-top: 3em;
+}
+#cf h2 {
+	font-size: 100%;
+	text-transform: uppercase;
+}
 #cf ul {
 	list-style-type: none;
 	padding: 0;
@@ -102,8 +109,8 @@ ul.topicbox {
 p.point {
 	padding: 1em 2em 1em 1.5em;
 	margin: auto -1%;
-	border: 1px solid hsl(213,33%,80%);
-	background-color: hsl(213,80%,96%);
+	border: 1px solid hsl(213,25%,80%);
+	background-color: hsl(213,25%,96%);
 }
 
 em {
@@ -166,7 +173,7 @@ td {
 	padding: 3px 0.5em;
 }
 th {
-	background-color: hsl(213,80%,96%);
+	background-color: hsl(213,25%,96%);
 	font-weight: normal;
 	white-space: nowrap;
 }

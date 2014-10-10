@@ -7,7 +7,7 @@
 	<meta name="keywords" content="Script Menu, script"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
-	<link rel="stylesheet" href="../../Shared/sty/standard.css" type="text/css"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>Working with UNIX scripts</title>
 </head>
 
@@ -24,7 +24,7 @@
 
 <h2>Passing text data to a script</h2>
 
-<p>To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write &ldquo;<code>%%%{CotEditorXInput=xxxx}%%%</code>&rdquo; inside. Replace &ldquo;<code>xxxx</code>&rdquo; with one of the parameters below.</p>
+<p>To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXInput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
 	<tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
@@ -33,14 +33,14 @@
 </table>
 
 <ul style="margin-top: 1em;">
-	<li>With no parameters, CotEditor passes nothing just like when you put &ldquo;None.&rdquo;</li>
+	<li>With no parameters, CotEditor passes nothing just like when you put “None.”</li>
 	<li>A script should capture CotEditor's text data on STDIN (standard in).</li>
 	<li>CotEditor passes text data with UTF-8 encoding.</li>
 </ul>
 
 <h2>Receiving output data from a script</h2>
 
-<p>To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write &ldquo;<code>%%%{CotEditorXOutput=xxxx}%%%</code>&rdquo; inside. Replace &ldquo;<code>xxxx</code>&rdquo; with one of the parameters below.</p>
+<p>To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
 	<tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
@@ -52,7 +52,7 @@
 </table>
 
 <ul style="margin-top: 1em;">
-	<li>With no parameters, CotEditor does nothing just like when you put &ldquo;Discard.&rdquo;</li>
+	<li>With no parameters, CotEditor does nothing just like when you put “Discard.”</li>
 	<li>A script should output the text data for CotEditor on STDOUT (standard out).</li>
 	<li>The character encoding of the text that CotEditor receives must be UTF-8.</li>
 </ul>
