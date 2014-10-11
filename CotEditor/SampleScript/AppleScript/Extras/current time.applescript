@@ -1,5 +1,5 @@
 (*
-‰º‹L‚Ìî•ñ‚ğQl‚É‚³‚¹‚Ä‚¢‚½‚¾‚«‚Ü‚µ‚½ (2005.10.09)
+ä¸‹è¨˜ã®æƒ…å ±ã‚’å‚è€ƒã«ã•ã›ã¦ã„ãŸã ãã¾ã—ãŸ (2005.10.09)
 http://www001.upp.so-net.ne.jp/hanaden/osa/samples.html#_Smart_Quote
 *)
 tell application "CotEditor"
