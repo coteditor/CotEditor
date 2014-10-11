@@ -114,11 +114,8 @@
 - (NSScriptObjectSpecifier *)objectSpecifier
 // ------------------------------------------------------
 {
-    NSScriptObjectSpecifier *containerSpecifier = [[self document] objectSpecifier];
-    
-    return [[NSIndexSpecifier alloc] initWithContainerClassDescription:[containerSpecifier keyClassDescription]
-                                                    containerSpecifier:containerSpecifier
-                                                                   key:@"text selection"];
+    return [[NSNameSpecifier alloc] initWithContainerSpecifier:[[self document] objectSpecifier]
+                                                           key:@"text selection"];
 }
 
 
