@@ -102,7 +102,7 @@
 			<property name="wrap lines" code="wRln" description="Wrap lines or not." type="boolean" access="rw">
 				<cocoa key="wrapsLines"/>
 			</property>
-			<!-- deprecated --><property name="path" code="ppth" type="text" description="The document&apos;s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead."/>
+			<!-- deprecated --><property name="path" code="ppth" type="text" hidden="yes" description="The document&apos;s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead."/>
 			<responds-to command="convert">
 				<cocoa method="handleConvert:"/>
 			</responds-to>
@@ -270,6 +270,7 @@
 			</parameter>
 		</command>
 	</suite>
+	
 	
 	<!-- imported standard Text Suite -->
 	<suite name="Text Suite" code="????" description="Common text classes for all applications.">
