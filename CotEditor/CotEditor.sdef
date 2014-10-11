@@ -102,6 +102,7 @@
 			<property name="wrap lines" code="wRln" description="Wrap lines or not." type="boolean" access="rw">
 				<cocoa key="wrapsLines"/>
 			</property>
+			<!-- deprecated --><property name="path" code="ppth" type="text" description="The document&apos;s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead."/>
 			<responds-to command="convert">
 				<cocoa method="handleConvert:"/>
 			</responds-to>
@@ -122,7 +123,7 @@
 			</responds-to>
 		</class>
 		
-		<class name="text selection" plural="text selections" code="cSel" description="A way to refer to the state of the current selection.">
+		<class name="text selection" plural="text selections" code="tSel" description="A way to refer to the state of the current selection.">
 			<cocoa class="CETextSelection"/>
 			<contents code="PCnt" description="The contents of the selection." type="attribute run" name="contents" access="rw"/>
 			<property name="line range" code="lRng" description="The range of lines of the selection. The format is &quot;{location, length}&quot;." access="rw">

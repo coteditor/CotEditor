@@ -62,5 +62,6 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
 - (void)setWrapsLines:(NSNumber *)wrapsLines;
 - (NSNumber *)lineSpacing;
 - (void)setLineSpacing:(NSNumber *)lineSpacing;
+- (NSString *)path;
 
 @end
