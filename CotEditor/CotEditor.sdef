@@ -96,7 +96,7 @@
 			<property name="line spacing" code="lSpc" description="The spacing between text lines. (from '0.0' to '10.0')" type="real" access="rw">
 				<cocoa key="lineSpacing"/>
 			</property>
-			<property name="selection" code="sele" description="The current selection." type="selection-object" access="rw">
+			<property name="selection" code="sele" description="The current selection." type="text selection" access="rw">
 				<cocoa key="selectionObject"/>
 			</property>
 			<property name="wrap lines" code="wRln" description="Wrap lines or not." type="boolean" access="rw">
@@ -122,14 +122,14 @@
 			</responds-to>
 		</class>
 		
-		<class name="selection-object" code="tSel" description="A way to refer to the state of the current selection." inherits="item"><!-- FIXME: code `tsel` is used in AppleScript Editor -->
+		<class name="text selection" plural="text selections" code="cSel" description="A way to refer to the state of the current selection.">
 			<cocoa class="CETextSelection"/>
 			<contents code="PCnt" description="The contents of the selection." type="attribute run" name="contents" access="rw"/>
 			<property name="line range" code="lRng" description="The range of lines of the selection. The format is &quot;{location, length}&quot;." access="rw">
 				<cocoa key="lineRange"/>
 				<type type="integer" list="yes"/>
 			</property>
-			<property name="range" code="prng" description="The range of characters in the selection. The format is &quot;{location, length}&quot;." access="rw">
+			<property name="range" code="cRng" description="The range of characters in the selection. The format is &quot;{location, length}&quot;." access="rw">
 				<type type="integer" list="yes"/>
 			</property>
 			<responds-to command="change case">
@@ -161,21 +161,21 @@
 		
 		
 		<command name="change case" code="cEd1CGcs" description="Change the case of the selection.">
-			<direct-parameter description="The selection to change case." type="selection-object"/>
+			<direct-parameter description="The selection to change case." type="text selection"/>
 			<parameter name="to" code="cStp" description="The case type to change." type="change case type">
 				<cocoa key="caseType"/>
 			</parameter>
 		</command>
 		
 		<command name="change kana" code="cEd1CKth" description="Change Japanese &quot;Kana&quot; mode of the selection.">
-			<direct-parameter description="the selection to change Japanese character mode" type="selection-object"/>
+			<direct-parameter description="the selection to change Japanese character mode" type="text selection"/>
 			<parameter name="to" code="cHrg" description="The Japanese character mode to change." type="change kana type">
 				<cocoa key="kanaType"/>
 			</parameter>
 		</command>
 		
 		<command name="change roman width" code="cEd1GWrm" description="Change to / from full width or half width Japanese roman text.">
-			<direct-parameter description="The selection to change width." type="selection-object"/>
+			<direct-parameter description="The selection to change width." type="text selection"/>
 			<parameter name="to" code="rWtp" description="The text width to change." type="change width type">
 				<cocoa key="widthType"/>
 			</parameter>
@@ -247,11 +247,11 @@
 		</command>
 		
 		<command name="shift left" code="cEd1SLef" description="Shift selected lines to Left.">
-			<direct-parameter description="The selection in line to shift." type="selection-object"/>
+			<direct-parameter description="The selection in line to shift." type="text selection"/>
 		</command>
 		
 		<command name="shift right" code="cEd1SRit" description="Shift selected lines to Right.">
-			<direct-parameter description="The selection in line to shift." type="selection-object"/>
+			<direct-parameter description="The selection in line to shift." type="text selection"/>
 		</command>
 		
 		<command name="string" code="cEd1STrg" description="The string in the range.">
@@ -264,7 +264,7 @@
 		
 		<command name="unicode normalization" code="cEd1UNml" description="Normalize Unicode.">
 			<cocoa name="UnicodeNomalization"/>
-			<direct-parameter description="The selection to normalize." type="selection-object"/>
+			<direct-parameter description="The selection to normalize." type="text selection"/>
 			<parameter name="to" code="uNft" description="The normalized forms of Unicode text." type="UNF type">
 				<cocoa key="unfType"/>
 			</parameter>

@@ -102,6 +102,27 @@
 
 @implementation CETextSelection (ScriptingSupport)
 
+#pragma mark Superclass Methods
+
+//=======================================================
+// Superclass methods
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// sdef 内で定義されている名前を返す
+- (NSScriptObjectSpecifier *)objectSpecifier
+// ------------------------------------------------------
+{
+    NSScriptObjectSpecifier *containerSpecifier = [[self document] objectSpecifier];
+    
+    return [[NSIndexSpecifier alloc] initWithContainerClassDescription:[containerSpecifier keyClassDescription]
+                                                    containerSpecifier:containerSpecifier
+                                                                   key:@"text selection"];
+}
+
+
+
 #pragma mark AppleScript Accessors
 
 //=======================================================
