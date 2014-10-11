@@ -102,24 +102,27 @@
 			<property name="wrap lines" code="wRln" description="Wrap lines or not." type="boolean" access="rw">
 				<cocoa key="wrapsLines"/>
 			</property>
-			<!-- deprecated --><property name="path" code="ppth" type="text" hidden="yes" description="The document&apos;s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead."/>
+			<property name="path" code="ppth" type="text" hidden="yes" description="The document&apos;s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead.">
+				<!-- this property is deprecated -->
+				<cocoa key="fileName"/>
+			</property>
 			<responds-to command="convert">
-				<cocoa method="handleConvert:"/>
+				<cocoa method="handleConvertScriptCommand:"/>
 			</responds-to>
 			<responds-to command="find">
-				<cocoa method="handleFind:"/>
+				<cocoa method="handleFindScriptCommand:"/>
 			</responds-to>
 			<responds-to command="reinterpret">
-				<cocoa method="handleReinterpret:"/>
+				<cocoa method="handleReinterpretScriptCommand:"/>
 			</responds-to>
 			<responds-to command="replace">
-				<cocoa method="handleReplace:"/>
+				<cocoa method="handleReplaceScriptCommand:"/>
 			</responds-to>
 			<responds-to command="scroll to caret">
-				<cocoa method="handleScroll:"/>
+				<cocoa method="handleScrollScriptCommand:"/>
 			</responds-to>
 			<responds-to command="string">
-				<cocoa method="handleString:"/>
+				<cocoa method="handleStringScriptCommand:"/>
 			</responds-to>
 		</class>
 		
@@ -134,22 +137,22 @@
 				<type type="integer" list="yes"/>
 			</property>
 			<responds-to command="change case">
-				<cocoa method="handleChangeCase:"/>
+				<cocoa method="handleChangeCaseScriptCommand:"/>
 			</responds-to>
 			<responds-to command="change kana">
-				<cocoa method="handleChangeKana:"/>
+				<cocoa method="handleChangeKanaScriptCommand:"/>
 			</responds-to>
 			<responds-to command="change roman width">
-				<cocoa method="handleChangeWidthRoman:"/>
+				<cocoa method="handleChangeWidthRomanScriptCommand:"/>
 			</responds-to>
 			<responds-to command="shift left">
-				<cocoa method="handleShiftLeft:"/>
+				<cocoa method="handleShiftLeftScriptCommand:"/>
 			</responds-to>
 			<responds-to command="shift right">
-				<cocoa method="handleShiftRight:"/>
+				<cocoa method="handleShiftRightScriptCommand:"/>
 			</responds-to>
 			<responds-to command="normalize unicode">
-				<cocoa method="handleNormalizeUnicode:"/>
+				<cocoa method="handleNormalizeUnicodeScriptCommand:"/>
 			</responds-to>
 		</class>
 		

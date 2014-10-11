@@ -268,19 +268,6 @@
 }
 
 
-// ------------------------------------------------------
-/// ファイルパスを返す
-- (NSString *)path
-// ------------------------------------------------------
-{
-    // CotEditor 1.x（scriptSuite+scriptTerminology時代）系の後方互換性確保のためのプロパティ。
-    // 本来 sdef 以降は `path` ではなく `file` 使う必要がある。 
-    // マニュアル上では not recommended としてあるので将来的には取り除く可能性が大きい。
-    
-    return [[self fileURL] path];
-}
-
-
 
 #pragma mark AppleScript Handlers
 
@@ -291,7 +278,7 @@
 
 // ------------------------------------------------------
 /// エンコーディングを変更し、テキストをコンバートする
-- (NSNumber *)handleConvert:(NSScriptCommand *)command
+- (NSNumber *)handleConvertScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -317,7 +304,7 @@
 
 // ------------------------------------------------------
 /// エンコーディングを変更し、テキストを再解釈する
-- (NSNumber *)handleReinterpret:(NSScriptCommand *)command
+- (NSNumber *)handleReinterpretScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -344,10 +331,10 @@
 
 // ------------------------------------------------------
 /// 検索
-- (NSNumber *)handleFind:(NSScriptCommand *)inCommand
+- (NSNumber *)handleFindScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    NSDictionary *arguments = [inCommand evaluatedArguments];
+    NSDictionary *arguments = [command evaluatedArguments];
     NSString *searchStr = arguments[@"targetString"];
     if ([searchStr length] == 0) { return @NO; }
     BOOL isRegex = [arguments[@"regularExpression"] boolValue];
@@ -386,7 +373,7 @@
 
 // ------------------------------------------------------
 /// 置換
-- (NSNumber *)handleReplace:(NSScriptCommand *)command
+- (NSNumber *)handleReplaceScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
@@ -458,7 +445,7 @@
 
 // ------------------------------------------------------
 /// スクロール実行
-- (void)handleScroll:(NSScriptCommand *)command
+- (void)handleScrollScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSTextView *textView = [[self editor] textView];
@@ -468,7 +455,7 @@
 
 // ------------------------------------------------------
 /// 指定された範囲の文字列を返す
-- (NSString *)handleString:(NSScriptCommand *)command
+- (NSString *)handleStringScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];

@@ -34,7 +34,7 @@
 
 @interface CEDocument (ScriptingSupport) <NSTextStorageDelegate>
 
-// AppleScript Enum
+// AppleScript enum
 typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
     CEOSALineEndingLF = 'leLF',
     CEOSALineEndingCR = 'leCR',
@@ -62,6 +62,13 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
 - (void)setWrapsLines:(NSNumber *)wrapsLines;
 - (NSNumber *)lineSpacing;
 - (void)setLineSpacing:(NSNumber *)lineSpacing;
-- (NSString *)path;
+
+// AppleScript handler
+- (NSNumber *)handleConvertScriptCommand:(NSScriptCommand *)command;
+- (NSNumber *)handleReinterpretScriptCommand:(NSScriptCommand *)command;
+- (NSNumber *)handleFindScriptCommand:(NSScriptCommand *)command;
+- (NSNumber *)handleReplaceScriptCommand:(NSScriptCommand *)command;
+- (void)handleScrollScriptCommand:(NSScriptCommand *)command;
+- (NSString *)handleStringScriptCommand:(NSScriptCommand *)command;
 
 @end
