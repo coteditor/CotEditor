@@ -189,7 +189,7 @@
 			<parameter name="to" code="nEcd" description="The new encoding." type="text">
 				<cocoa key="newEncoding"/>
 			</parameter>
-			<result type="boolean"/>
+			<result type="boolean" description="Did the convertion succeed?"/>
 		</command>
 		
 		<command name="find" code="cEd1SRch" description="Search string.">
@@ -208,14 +208,14 @@
 			<parameter name="wrap" code="wRsc" description="Wrap search the document. Default is false." type="boolean" optional="yes">
 				<cocoa key="wrapSearch"/>
 			</parameter>
-			<result type="boolean"/>
+			<result type="boolean" description="Did the string found?"/>
 		</command>
 		
 		<command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document string as new encoding.">
 			<parameter name="as" code="rEcd" description="The new encoding." type="text">
 				<cocoa key="newEncoding"/>
 			</parameter>
-			<result type="boolean"/>
+			<result type="boolean" description="Did the reinterpretation succeed?"/>
 		</command>
 		
 		<command name="replace" code="cEd1RPlc" description="Replace string.">
@@ -240,18 +240,18 @@
 			<parameter name="wrap" code="wRsc" description="Wrap search the document. Default is false." type="boolean" optional="yes">
 				<cocoa key="wrapSearch"/>
 			</parameter>
-			<result type="integer"/>
+			<result type="integer" description="The number of replaced strings."/>
 		</command>
 		
 		<command name="scroll to caret" code="cEd1SCrl" description="Scroll document to caret or selected text.">
 			<cocoa name="Scroll"/>
 		</command>
 		
-		<command name="shift left" code="cEd1SLef" description="Shift selected lines to Left.">
+		<command name="shift left" code="cEd1SLef" description="Shift selected lines to left.">
 			<direct-parameter description="The selection in line to shift." type="text selection"/>
 		</command>
 		
-		<command name="shift right" code="cEd1SRit" description="Shift selected lines to Right.">
+		<command name="shift right" code="cEd1SRit" description="Shift selected lines to right.">
 			<direct-parameter description="The selection in line to shift." type="text selection"/>
 		</command>
 		
