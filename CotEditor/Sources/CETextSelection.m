@@ -330,7 +330,7 @@
 
 // ------------------------------------------------------
 /// Unicode 正規化
-- (void)handleUnicodeNomalization:(NSScriptCommand *)command
+- (void)handleNormalizeUnicode:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];

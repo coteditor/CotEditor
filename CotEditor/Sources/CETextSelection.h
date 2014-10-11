@@ -83,5 +83,6 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 - (void)handleChangeCase:(NSScriptCommand *)command;
 - (void)handleChangeWidthRoman:(NSScriptCommand *)command;
 - (void)handleChangeKana:(NSScriptCommand *)command;
+- (void)handleNormalizeUnicode:(NSScriptCommand *)command;
 
 @end

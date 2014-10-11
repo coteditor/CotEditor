@@ -148,8 +148,8 @@
 			<responds-to command="shift right">
 				<cocoa method="handleShiftRight:"/>
 			</responds-to>
-			<responds-to command="unicode normalization">
-				<cocoa method="handleUnicodeNomalization:"/>
+			<responds-to command="normalize unicode">
+				<cocoa method="handleNormalizeUnicode:"/>
 			</responds-to>
 		</class>
 		
@@ -263,8 +263,7 @@
 			<result type="text"/>
 		</command>
 		
-		<command name="unicode normalization" code="cEd1UNml" description="Normalize Unicode.">
-			<cocoa name="UnicodeNomalization"/>
+		<command name="normalize unicode" code="cEd1UNml" description="Normalize Unicode.">
 			<direct-parameter description="The selection to normalize." type="text selection"/>
 			<parameter name="to" code="uNft" description="The normalized forms of Unicode text." type="UNF type">
 				<cocoa key="unfType"/>
