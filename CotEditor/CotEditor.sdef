@@ -6,15 +6,15 @@
 	
 	<suite name="CotEditor suite" code="cEd1" description="CotEditor specific classes.">
 		<enumeration name="saveable file format" code="savf">
-			<enumerator name="Text Document" code="text" description="The plain text.">
+			<enumerator name="Text" code="TXT " description="The plain text.">
 				<cocoa string-value="public.text"/>
 			</enumerator>
 		</enumeration>
 		
-		<enumeration name="line ending char" code="lend">
-			<enumerator name="CR" code="leCR" description="Mac (CR)"/>
-			<enumerator name="CRLF" code="leCL" description="Win (CR/LF)"/>
-			<enumerator name="LF" code="leLF" description="Unix (LF)"/>
+        <enumeration name="line ending character" code="lend">
+            <enumerator name="LF" code="leLF" description="OS X / Unix (LF)"/>
+			<enumerator name="CR" code="leCR" description="Classic Mac OS (CR)"/>
+			<enumerator name="CRLF" code="leCL" description="Windows (CR/LF)"/>
 		</enumeration>
 		
 		<enumeration name="case type" code="cCct">
@@ -43,10 +43,10 @@
 		
 		<class name="document" code="docu" description="A CotEditor document." inherits="document">
 			<cocoa class="CEDocument"/>
-			<contents name="text" code="ctxt" description="The text of the document." type="attribute run" access="rw">
+			<contents name="text" code="ctxt" description="The whole text of the document." type="attribute run" access="rw">
 				<cocoa key="textStorage"/>
 			</contents>
-			<property name="coloring style" code="cclr" description="The syntax coloring style name of the document." type="text" access="rw">
+			<property name="coloring style" code="cclr" description="The current syntax style name." type="text" access="rw">
 				<cocoa key="coloringStyle"/>
 			</property>
 			<property name="contents" code="PCnt" description="The contents of the document." type="attribute run" access="rw"/>
@@ -56,8 +56,8 @@
 			<property name="IANA charset" code="iacs" description="The IANA charset name of the document." type="text" access="r">
 				<cocoa key="IANACharSetName"/>
 			</property>
-			<property name="length" code="slen" description="The number of characters of the document." type="integer" access="r"/>
-			<property name="line ending" code="lend" description="The line ending code of the document." type="line ending char" access="rw">
+			<property name="length" code="slen" description="The number of characters in the document." type="integer" access="r"/>
+			<property name="line ending" code="lend" description="The line ending type of the document." type="line ending character" access="rw">
 				<cocoa key="lineEndingChar"/>
 			</property>
 			<property name="line spacing" code="lSpc" description="The spacing between text lines. (from '0.0' to '10.0')" type="real" access="rw">
@@ -66,10 +66,10 @@
 			<property name="selection" code="sele" description="The current selection." type="text selection" access="rw">
 				<cocoa key="selectionObject"/>
 			</property>
-			<property name="wrap lines" code="wRln" description="Wrap lines or not." type="boolean" access="rw">
+			<property name="wrap lines" code="wRln" description="Are lines wrapped?" type="boolean" access="rw">
 				<cocoa key="wrapsLines"/>
 			</property>
-			<property name="path" code="ppth" type="text" hidden="yes" description="The document&apos;s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead.">
+			<property name="path" code="ppth" type="text" hidden="yes" description="The document's path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead.">
 				<!-- this property is deprecated -->
 				<cocoa key="fileName"/>
 			</property>
@@ -125,7 +125,7 @@
 		
 		<class name="window" code="cwin" description="A CotEditor window." inherits="window">
 			<cocoa class="NSWindow"/>
-			<property name="view opacity" code="copc" description="The opacity of the text view. (from &apos;0.2&apos; to &apos;1.0&apos;)" type="real" access="rw">
+			<property name="view opacity" code="copc" description="The opacity of the text view. (from '0.2' to '1.0')" type="real" access="rw">
 				<cocoa key="viewOpacity"/>
 			</property>
 		</class>
@@ -145,14 +145,14 @@
 			</parameter>
 		</command>
 		
-		<command name="change roman width" code="cEd1GWrm" description="Change to / from full width or half width Japanese roman text.">
+		<command name="change roman width" code="cEd1GWrm" description="Change width of Japanese roman charactors in the selection.">
 			<direct-parameter description="The selection to change width." type="text selection"/>
 			<parameter name="to" code="rWtp" description="The text width to change." type="character width type">
 				<cocoa key="widthType"/>
 			</parameter>
 		</command>
 		
-		<command name="convert" code="cEd1CVrt" description="Convert the document string to new encoding.">
+		<command name="convert" code="cEd1CVrt" description="Convert the document text to new encoding.">
 			<parameter name="lossy" code="lOsy" description="Allows lossy conversion?" type="boolean">
 				<cocoa key="lossy"/>
 			</parameter>
@@ -162,55 +162,55 @@
 			<result type="boolean" description="Did the convertion succeed?"/>
 		</command>
 		
-		<command name="find" code="cEd1SRch" description="Search string.">
-			<parameter name="for" code="tRgt" description="The string for search." type="text">
+		<command name="find" code="cEd1SRch" description="Search text.">
+			<parameter name="for" code="tRgt" description="The text to search." type="text">
 				<cocoa key="targetString"/>
 			</parameter>
-			<parameter name="backwards" code="bKwd" description="Search backwards. Can not use with RE. Default is false." type="boolean" optional="yes">
+			<parameter name="backwards" code="bKwd" description="Should the search be performed backwards? Can not use with RE." type="boolean" optional="yes">
 				<cocoa key="backwardsSearch"/>
 			</parameter>
-			<parameter name="ignore case" code="iGcs" description="Search with ignore case (case insensitive). Default is false." type="boolean" optional="yes">
+			<parameter name="ignore case" code="iGcs" description="Should case be ignored (case insensitive) on search?" type="boolean" optional="yes">
 				<cocoa key="ignoreCase"/>
 			</parameter>
-			<parameter name="RE" code="rEex" description="Search string as regular expression. Default is false." type="boolean" optional="yes">
+			<parameter name="RE" code="rEex" description="Is the search text regular expression?" type="boolean" optional="yes">
 				<cocoa key="regularExpression"/>
 			</parameter>
-			<parameter name="wrap" code="wRsc" description="Wrap search the document. Default is false." type="boolean" optional="yes">
+			<parameter name="wrap" code="wRsc" description="Should the search wrapped?" type="boolean" optional="yes">
 				<cocoa key="wrapSearch"/>
 			</parameter>
-			<result type="boolean" description="Did the string found?"/>
+			<result type="boolean" description="Did the text found?"/>
 		</command>
 		
-		<command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document string as new encoding.">
+		<command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document text as new encoding.">
 			<parameter name="as" code="rEcd" description="The new encoding." type="text">
 				<cocoa key="newEncoding"/>
 			</parameter>
 			<result type="boolean" description="Did the reinterpretation succeed?"/>
 		</command>
 		
-		<command name="replace" code="cEd1RPlc" description="Replace string.">
-			<parameter name="for" code="tRgt" description="The string for replace." type="text">
+		<command name="replace" code="cEd1RPlc" description="Replace text.">
+			<parameter name="for" code="tRgt" description="The text to be replaced." type="text">
 				<cocoa key="targetString"/>
 			</parameter>
-			<parameter name="to" code="nWst" description="The new string." type="text">
+			<parameter name="to" code="nWst" description="The new text." type="text">
 				<cocoa key="newString"/>
 			</parameter>
-			<parameter name="all" code="aLl " description="Replace all of the references." type="boolean" optional="yes">
+			<parameter name="all" code="aLl " description="Should all of the references be replaced?" type="boolean" optional="yes">
 				<cocoa key="all"/>
 			</parameter>
-			<parameter name="backwards" code="bKwd" description="Replace backwards. Can not use with RE. Default is false." type="boolean" optional="yes">
+			<parameter name="backwards" code="bKwd" description="Should the replacement be performed backwards? Can not use with RE." type="boolean" optional="yes">
 				<cocoa key="backwardsSearch"/>
 			</parameter>
-			<parameter name="ignore case" code="iGcs" description="Replace with ignore case (case insensitive). Default is false." type="boolean" optional="yes">
+			<parameter name="ignore case" code="iGcs" description="Should case be ignored (case insensitive) on search?" type="boolean" optional="yes">
 				<cocoa key="ignoreCase"/>
 			</parameter>
-			<parameter name="RE" code="rEex" description="Replace string as rregular expression. Default is false." type="boolean" optional="yes">
+			<parameter name="RE" code="rEex" description="Is the search text regular expression?" type="boolean" optional="yes">
 				<cocoa key="regularExpression"/>
 			</parameter>
-			<parameter name="wrap" code="wRsc" description="Wrap search the document. Default is false." type="boolean" optional="yes">
+			<parameter name="wrap" code="wRsc" description="Should the search wrapped?" type="boolean" optional="yes">
 				<cocoa key="wrapSearch"/>
 			</parameter>
-			<result type="integer" description="The number of replaced strings."/>
+			<result type="integer" description="The number of replaced texts."/>
 		</command>
 		
 		<command name="scroll to caret" code="cEd1SCrl" description="Scroll document to caret or selected text.">
@@ -218,15 +218,15 @@
 		</command>
 		
 		<command name="shift left" code="cEd1SLef" description="Shift selected lines to left.">
-			<direct-parameter description="The selection in line to shift." type="text selection"/>
+			<direct-parameter description="The selection to shift." type="text selection"/>
 		</command>
 		
 		<command name="shift right" code="cEd1SRit" description="Shift selected lines to right.">
-			<direct-parameter description="The selection in line to shift." type="text selection"/>
+			<direct-parameter description="The selection to shift." type="text selection"/>
 		</command>
 		
-		<command name="string" code="cEd1STrg" description="The string in the range.">
-			<parameter name="in" code="rAng" description="The range of the document. The format is &quot;{location, length}&quot;.">
+		<command name="string" code="cEd1STrg" description="Get text in desired range.">
+			<parameter name="in" code="rAng" description="The range in the document. The format is &quot;{location, length}&quot;.">
 				<cocoa key="range"/>
 				<type type="integer" list="yes"/>
 			</parameter>
