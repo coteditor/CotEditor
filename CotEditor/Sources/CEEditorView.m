@@ -256,7 +256,7 @@
     [[textView enclosingScrollView] setHasHorizontalScroller:!wrapsLines];
     [[textView textContainer] setWidthTracksTextView:wrapsLines];
     if (wrapsLines) {
-        [[textView textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];  // reset container size
+        [[textView textContainer] setContainerSize:NSMakeSize(1, CGFLOAT_MAX)];  // reset container size
         [textView sizeToFit];
     } else {
         [[textView textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
