@@ -17,7 +17,6 @@ commandsArray:
   regularExpression: true
 - beginString: "^Index: .+(\\n ?=+)?"
   regularExpression: true
-styleName: "Diff"
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"

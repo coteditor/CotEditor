@@ -526,8 +526,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSDictionary *)emptyStyle
 //------------------------------------------------------
 {
-    return @{CESyntaxStyleNameKey: [NSMutableString string],
-             CESyntaxMetadataKey: [NSMutableDictionary dictionary],
+    return @{CESyntaxMetadataKey: [NSMutableDictionary dictionary],
              CESyntaxExtensionsKey: [NSMutableArray array],
              CESyntaxFileNamesKey: [NSMutableArray array],
              CESyntaxKeywordsKey: [NSMutableArray array],
@@ -703,8 +702,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         // URLが無効だった場合などに、dictがnilになる場合がある
         if (!style) { continue; }
         
-        // CESyntaxStyleNameKey をファイル名にそろえておく(Finderで移動／リネームされたときへの対応)
-        style[CESyntaxStyleNameKey] = styleName;
         styles[styleName] = style;
     }
     
@@ -724,8 +721,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     NSMutableDictionary *filenameConflicts = [NSMutableDictionary dictionary];
     NSString *addedName = nil;
 
-    for (NSMutableDictionary *style in [[self styles] allValues]) {
-        NSString *styleName = style[CESyntaxStyleNameKey];
+    for (NSString *styleName in [[self styles] allKeys]) {
+        NSMutableDictionary *style = [self styles][styleName];
         NSArray *extensionDicts = style[CESyntaxExtensionsKey];
         NSArray *filenameDicts = style[CESyntaxFileNamesKey];
         
@@ -812,6 +809,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         
         if (style) {
             NSString *styleName = [self styleNameFromURL:URL];
+            [style removeObjectForKey:@"styleName"];  // remove lagacy "styleName" key
             NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style options:kYAMLWriteOptionSingleDocument error:nil];
             [yamlData writeToURL:[self URLForUserStyle:styleName] atomically:YES];
         }

@@ -22,7 +22,6 @@ metadata:
   description: "general Lisp syntax style for common Lisp and other Lisp dialects"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "Lisp"
 charactersArray:
 - beginString: "#'"
   regularExpression: true

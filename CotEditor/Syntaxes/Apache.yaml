@@ -2581,7 +2581,6 @@ metadata:
   version: "2.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "Apache"
 charactersArray: []
 commentsArray: []
 valuesArray:

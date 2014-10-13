@@ -9,7 +9,6 @@ outlineMenuArray:
   bold: true
 completionsArray: []
 commandsArray: []
-styleName: "reStructuredText"
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"

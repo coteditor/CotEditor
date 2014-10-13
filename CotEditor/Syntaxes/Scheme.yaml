@@ -333,7 +333,6 @@ metadata:
   description: "support R5RS and R6RS"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "Scheme"
 charactersArray:
 - beginString: "#\\"
 - beginString: "#\\\\.(?=[[:space:]()\\[\\]\";#])"

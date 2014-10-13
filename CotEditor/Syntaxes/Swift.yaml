@@ -46,7 +46,6 @@ metadata:
   description: "Based on Swift beta5."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "Swift"
 charactersArray:
 - beginString: "'"
   endString: "'"

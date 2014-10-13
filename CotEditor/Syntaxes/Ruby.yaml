@@ -124,7 +124,6 @@ commandsArray:
 - beginString: "untaint"
 - beginString: "untrace_var"
 - beginString: "warn"
-styleName: "Ruby"
 metadata:
   author: "Y.Tokutomi"
   distributionURL: "http://coteditor.github.io"

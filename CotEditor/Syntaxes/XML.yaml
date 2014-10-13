@@ -41,7 +41,6 @@ metadata:
   version: "1.2"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "XML"
 charactersArray:
 - beginString: "&\\S+?;"
   regularExpression: true

@@ -217,7 +217,6 @@ commandsArray:
 - beginString: "wantarray"
 - beginString: "warn"
 - beginString: "write"
-styleName: "Perl"
 metadata:
   distributionURL: "http://coteditor.github.io"
   version: "2.0"

@@ -865,7 +865,6 @@ metadata:
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "SVG"
 charactersArray:
 - beginString: "&#[0-9]+;"
   regularExpression: true

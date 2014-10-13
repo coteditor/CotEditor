@@ -86,7 +86,6 @@ metadata:
     Access\nvalues: Literal"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "C#"
 charactersArray:
 - beginString: "'"
   endString: "'"

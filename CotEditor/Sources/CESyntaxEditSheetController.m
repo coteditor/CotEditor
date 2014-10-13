@@ -100,8 +100,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
         switch (mode) {
             case CECopySyntaxEdit:
                 style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
-                name = [[CESyntaxManager sharedManager] copiedStyleName:style[CESyntaxStyleNameKey]];
-                style[CESyntaxStyleNameKey] = name;
+                name = [[CESyntaxManager sharedManager] copiedStyleName:styleName];
                 break;
                 
             case CENewSyntaxEdit:
@@ -111,7 +110,7 @@ typedef NS_ENUM(NSUInteger, CETabIndex) {
                 
             case CESyntaxEdit:
                 style = [[[CESyntaxManager sharedManager] styleWithStyleName:styleName] mutableCopy];
-                name = style[CESyntaxStyleNameKey];
+                name = styleName;
                 break;
         }
         if (!name) { return nil; }

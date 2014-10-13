@@ -85,7 +85,6 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "C, C++, Objective-C"
 charactersArray:
 - beginString: "'"
   endString: "'"
