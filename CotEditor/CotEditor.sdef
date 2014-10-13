@@ -153,6 +153,7 @@
 		</command>
 		
 		<command name="convert" code="cEd1CVrt" description="Convert the document text to new encoding.">
+			<direct-parameter type="document" description="The document to convert encoding."/>
 			<parameter name="lossy" code="lOsy" description="Allows lossy conversion?" type="boolean">
 				<cocoa key="lossy"/>
 			</parameter>
@@ -163,6 +164,7 @@
 		</command>
 		
 		<command name="find" code="cEd1SRch" description="Search text.">
+			<direct-parameter type="document" description="The document to search text."/>
 			<parameter name="for" code="tRgt" description="The text to search." type="text">
 				<cocoa key="targetString"/>
 			</parameter>
@@ -182,6 +184,7 @@
 		</command>
 		
 		<command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document text as new encoding.">
+			<direct-parameter type="document" description="The document to reinterpret encoding."/>
 			<parameter name="as" code="rEcd" description="The new encoding." type="text">
 				<cocoa key="newEncoding"/>
 			</parameter>
@@ -189,6 +192,7 @@
 		</command>
 		
 		<command name="replace" code="cEd1RPlc" description="Replace text.">
+			<direct-parameter type="document" description="The document to replace text."/>
 			<parameter name="for" code="tRgt" description="The text to be replaced." type="text">
 				<cocoa key="targetString"/>
 			</parameter>
@@ -214,7 +218,7 @@
 		</command>
 		
 		<command name="scroll to caret" code="cEd1SCrl" description="Scroll document to caret or selected text.">
-			<cocoa name="Scroll"/>
+			<direct-parameter type="document" description="The document to scroll its caret."/>
 		</command>
 		
 		<command name="shift left" code="cEd1SLef" description="Shift selected lines to left.">
@@ -226,6 +230,7 @@
 		</command>
 		
 		<command name="string" code="cEd1STrg" description="Get text in desired range.">
+			<direct-parameter type="document" description="The document to get string."/>
 			<parameter name="in" code="rAng" description="The range in the document. The format is &quot;{location, length}&quot;.">
 				<cocoa key="range"/>
 				<type type="integer" list="yes"/>
