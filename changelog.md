@@ -90,7 +90,8 @@ changelog
     - エスケープ文字を追加
 - “DTD” (文書型定義) シンタックス定義 を “XML” シンタックス定義から分離
     - これにより、“XML” シンタックス定義のカラーリングパフォーマンスを改善
-- AppleScript コマンドの定義ファイルを sdef 形式に移行
+- AppleScript 対応に関する変更：
+    - AppleScript コマンドの定義ファイルを sdef 形式に移行
     - コマンド `unicode normalization` を `normalize unicode` に変更
     - `selection` オブジェクトの `range` プロパティのための内部コードを変更
         - これにともない、selection の操作が含まれかつ __コンパイルされている__ AppleScript (.scpt) は、修正が必要となります。詳しくはヘルプメニュー内の「AppleScript でのスクリプト作成」をご覧下さい。
