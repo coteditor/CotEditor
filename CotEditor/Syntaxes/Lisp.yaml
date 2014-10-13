@@ -1,0 +1,80 @@
+extensions:
+- keyString: "lisp"
+- keyString: "lsp"
+- keyString: "el"
+- keyString: "clj"
+- keyString: "edn"
+filenames: []
+completionsArray: []
+outlineMenuArray:
+- beginString: "([\\t ]*)\\(defmacro\\S+(\\S+)"
+  keyString: "$1macro: $2"
+- beginString: "([\\t ]*)\\(defun\\S+(\\S+)"
+  keyString: "$1$2"
+commandsArray: []
+attributesArray:
+- beginString: "#?:[^[:space:],)]+"
+  regularExpression: true
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.0"
+  description: "general Lisp syntax style for common Lisp and other Lisp dialects"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+styleName: "Lisp"
+charactersArray:
+- beginString: "#'"
+  regularExpression: true
+- beginString: "#\\"
+- beginString: "#\\\\[^[:space:],)]+"
+  regularExpression: true
+- beginString: "#\\backspace"
+  ignoreCase: true
+- beginString: "#\\linefeed"
+  ignoreCase: true
+- beginString: "#\\newline"
+  ignoreCase: true
+- beginString: "#\\page"
+  ignoreCase: true
+- beginString: "#\\return"
+  ignoreCase: true
+- beginString: "#\\rubout"
+  ignoreCase: true
+- beginString: "#\\tab"
+  ignoreCase: true
+commentsArray: []
+valuesArray:
+- beginString: "f"
+  ignoreCase: true
+- beginString: "nil"
+  ignoreCase: true
+- beginString: "pi"
+  ignoreCase: true
+- beginString: "t"
+  ignoreCase: true
+typesArray: []
+numbersArray:
+- beginString: "#b[01][01_]*\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "#o[0-7][0-7_]*\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "#x[0-9a-f][0-9a-f_]*\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "(\\b|[-+])[0-9][0-9./_]*([ed][-+]?\\d+)?\\b"
+  ignoreCase: true
+  regularExpression: true
+stringsArray:
+- beginString: "\""
+  endString: "\""
+keywordsArray:
+- beginString: "(?<=\\()[^[:space:],)]+"
+  regularExpression: true
+variablesArray: []
+commentDelimiters:
+  endDelimiter: "|#"
+  beginDelimiter: "#|"
+  inlineDelimiter: ";"

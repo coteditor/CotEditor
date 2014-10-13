@@ -1,0 +1,118 @@
+extensions:
+- keyString: "md"
+- keyString: "markdown"
+- keyString: "mkd"
+- keyString: "mdown"
+- keyString: "mkdn"
+outlineMenuArray:
+- beginString: "(.+)(?=\\n\\-+[\\t ]*$)"
+  keyString: "    $1"
+  bold: true
+- beginString: "(.+)(?=\\n\\=+[\\t ]*$)"
+  keyString: "$1"
+  bold: true
+- beginString: "^#[\\t ]?([^#][^\\n]*?)#*$"
+  keyString: "$1"
+  bold: true
+- beginString: "^#{2}[\\t ]?([^#][^\\n]*?)#*$"
+  keyString: "    $1"
+  bold: true
+- beginString: "^#{3}[\\t ]?([^#][^\\n]*?)#*$"
+  keyString: "        $1"
+- beginString: "^#{4}[\\t ]?([^#][^\\n]*?)#*$"
+  keyString: "            $1"
+- beginString: "^#{5}[\\t ]?([^#][^\\n]*?)#*$"
+  keyString: "                $1"
+- beginString: "^#{6}[\\t ]?([^#][^\\n]*?)#*$"
+  keyString: "                    $1"
+completionsArray: []
+commandsArray: []
+metadata:
+  author: "1024jp"
+  distributionURL: "http://coteditor.github.io"
+  version: "1.1"
+  license: "Same as CotEditor"
+  lastModified: "2014-09-24"
+styleName: "Markdown"
+charactersArray:
+- beginString: "(?#[extra] codeblock)^[~]{3,}[{[:space:]](?!~~~)(?:.|\\n)*?\\n[\\t
+    ]*[~]{3,}[\\t ]*$"
+  regularExpression: true
+- beginString: "(?#[github] codeblock)^```[^`](?!```)(?:.|\\n)*?\\n[\\t ]*```"
+  regularExpression: true
+- beginString: "(?#code)(?<![\\\\`])`(?:\\n[^\\n]|[^\\n])*?(?<!\\\\)`"
+  regularExpression: true
+- beginString: "(?#code)(?<!\\\\)``(?:\\n[^\\n]|[^\\n])*?(?<!\\\\)``"
+  regularExpression: true
+commentsArray: []
+valuesArray:
+- beginString: "(?#[extra] a footnote)(?<!(^[ ]{0,3}|\\\\))\\[\\^[a-zA-Z0-9]+\\]"
+  regularExpression: true
+- beginString: "(?#a)(?<!\\\\)\\[[^\\[\\]]*?(?!<\\\\)\\](?=\\()"
+  regularExpression: true
+- beginString: "(?#a)(?<!\\\\)\\[[^\\[\\]]*?(?!<\\\\)\\][ ]?(?=\\[)"
+  regularExpression: true
+- beginString: "(?#a)<(https?|ftp)(:\\/\\/[-_.!~*\\'()a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+)>"
+  regularExpression: true
+- beginString: "(?#a)<(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+>"
+  regularExpression: true
+typesArray:
+- beginString: "(?#h1).+\\n\\=+[\\t ]*$"
+  regularExpression: true
+- beginString: "(?#h1-6)^#{1,6}[ \\t]?"
+  endString: "$"
+  regularExpression: true
+- beginString: "(?#h2).+\\n\\-+[\\t ]*$"
+  regularExpression: true
+numbersArray:
+- beginString: "(?#img)(?<!\\\\)!\\[.*?(?<!\\\\)\\](?=\\()"
+  regularExpression: true
+- beginString: "(?#img)(?<!\\\\)!\\[.*?(?<!\\\\)\\][ ]?(?=\\[)"
+  regularExpression: true
+stringsArray:
+- beginString: "(?#[extra] abbr)^[ ]{0,3}\\*\\[[^\\^].*(?<!\\\\)\\]:\\s"
+  endString: "(\\n[ \\t]*\\n)|\\z"
+  regularExpression: true
+- beginString: "(?#a href)(?<=\\]) ?(?<!\\\\)\\[.*?(?<!\\\\)\\]"
+  regularExpression: true
+- beginString: "(?#a href)(?<=])\\(.*?\\)"
+  regularExpression: true
+- beginString: "(?#a href)^[ ]{0,3}\\[[^\\^].*(?<!\\\\)\\]:[ \\t]+"
+  endString: "(\\n[ \\t]*\\n)|\\z"
+  regularExpression: true
+- beginString: "(?#HTML tag)(?<!\\\\)</[a-zA-Z][a-zA-Z1-6]*>"
+  regularExpression: true
+- beginString: "(?#HTML tag)(?<!\\\\)<[a-zA-Z][a-zA-Z1-6]*(\\s[^<>]+)?>"
+  regularExpression: true
+keywordsArray:
+- beginString: "(?#[extra] dt)\\n[^: \\t][^\\n]*(?=([\\t ]*\\n)?\\n[\\t ]*:[\\t
+    ])"
+  regularExpression: true
+- beginString: "(?#[extra] footnote)^[ ]{0,3}\\[\\^[a-zA-Z0-9]*\\]:\\s"
+  regularExpression: true
+- beginString: "(?#blockquote)^([ ]{4}|\\t)?>[\\t ]"
+  endString: "(\\n[ \\t]*\\n)|\\z"
+  regularExpression: true
+- beginString: "(?#em)(?<![\\\\*])\\*[^ \\t*](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])\\*"
+  regularExpression: true
+- beginString: "(?#em)(?<![\\\\_])_[^ \\t_](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])_"
+  regularExpression: true
+- beginString: "(?#hr)\\n[\\t ]*\\n(?:\\- *){3,}$"
+  regularExpression: true
+- beginString: "(?#hr)^(?:\\* *){3,}$"
+  regularExpression: true
+- beginString: "(?#hr)^(?:\\_ *){3,}$"
+  regularExpression: true
+- beginString: "(?#li)^[ \\t]*[\\*\\-\\+][ \\t]"
+  regularExpression: true
+- beginString: "(?#li)^[ \\t]*\\d+\\.[ \\t]"
+  regularExpression: true
+- beginString: "(?#strong)(?<!\\\\)\\*\\*(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t
+    ])\\*\\*"
+  regularExpression: true
+- beginString: "(?#strong)(?<!\\\\)__(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t
+    ])__"
+  regularExpression: true
+commentDelimiters:
+  endDelimiter: "-->"
+  beginDelimiter: "<!--"

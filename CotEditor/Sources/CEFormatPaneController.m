@@ -230,7 +230,7 @@
     [openPanel setResolvesAliases:YES];
     [openPanel setAllowsMultipleSelection:NO];
     [openPanel setCanChooseDirectories:NO];
-    [openPanel setAllowedFileTypes:@[@"plist"]];
+    [openPanel setAllowedFileTypes:@[@"yaml", @"plist"]];
     
     __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
@@ -280,7 +280,7 @@
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
     [savePanel setNameFieldStringValue:selectedStyle];
-    [savePanel setAllowedFileTypes:@[@"plist"]];
+    [savePanel setAllowedFileTypes:@[@"yaml"]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {

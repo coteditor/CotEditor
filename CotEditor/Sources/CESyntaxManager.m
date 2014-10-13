@@ -28,6 +28,7 @@
  ==============================================================================
  */
 
+#import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxManager.h"
 #import "CEAppDelegate.h"
 #import "RegexKitLite.h"
@@ -41,7 +42,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 @interface CESyntaxManager ()
 
-@property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (array of NSMutableDictonary)
+@property (nonatomic, copy) NSDictionary *styles;  // 全てのカラーリング定義 (values are NSMutableDictonary)
 @property (nonatomic, copy) NSArray *bundledStyleNames;  // バンドルされているシンタックススタイル名の配列
 @property (nonatomic, copy) NSDictionary *extensionToStyleTable;  // 拡張子<->styleファイルの変換テーブル辞書(key = 拡張子)
 @property (nonatomic, copy) NSDictionary *filenameToStyleTable;
@@ -51,6 +52,15 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 @property (readwrite, nonatomic, copy) NSArray *styleNames;
 @property (readwrite, nonatomic, copy) NSDictionary *extensionConflicts;
 @property (readwrite, nonatomic, copy) NSDictionary *filenameConflicts;
+
+@end
+
+
+
+@interface CESyntaxManager (Migration)
+
+- (void)migrateStyles;
+- (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL;
 
 @end
 
@@ -100,12 +110,15 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     self = [super init];
     if (self) {
         // バンドルされているstyle定義の名前を読み込んでおく
-        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"plist" subdirectory:@"SyntaxColorings"];
+        NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"yaml" subdirectory:@"Syntaxes"];
         NSMutableArray *styleNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
-            [styleNames addObject:[[URL lastPathComponent] stringByDeletingPathExtension]];
+            [styleNames addObject:[self styleNameFromURL:URL]];
         }
         [self setBundledStyleNames:styleNames];
+        
+        // migration from 1.x to 2.0
+        [self migrateStyles];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -216,6 +229,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (BOOL)importStyleFromURL:(NSURL *)fileURL
 //------------------------------------------------------
 {
+    if ([[fileURL pathExtension] isEqualToString:@"plist"]) {
+        return [self importLegacyStyleFromURL:fileURL];
+    }
+    
     NSURL *destURL = [[self userStyleDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
     
     // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
@@ -231,12 +248,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                       error:&error
                                  byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSFileManager *fileManager = [[NSFileManager alloc] init];
-         
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [fileManager removeItemAtURL:newWritingURL error:nil];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:nil];
          }
-         success = [fileManager copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
      }];
     
     if (error) {
@@ -267,12 +282,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                       error:&error
                                  byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSFileManager *fileManager = [[NSFileManager alloc] init];
-         
          if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [fileManager removeItemAtURL:newWritingURL error:nil];
+             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:nil];
          }
-         success = [fileManager copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
+         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
      }];
     
     if (error) {
@@ -409,7 +422,10 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         }
     } else {
         // 保存
-        [style writeToURL:saveURL atomically:YES];
+        NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style
+                                                         options:kYAMLWriteOptionSingleDocument
+                                                           error:nil];
+        [yamlData writeToURL:saveURL atomically:YES];
     }
     
     // 内部で持っているキャッシュ用データを更新
@@ -539,11 +555,20 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //=======================================================
 
 //------------------------------------------------------
+/// スタイルファイルの URL からスタイル名を返す
+- (NSString *)styleNameFromURL:(NSURL *)fileURL
+//------------------------------------------------------
+{
+    return [[fileURL lastPathComponent] stringByDeletingPathExtension];
+}
+
+
+//------------------------------------------------------
 /// Application Support内のstyleデータファイル保存ディレクトリ
 - (NSURL *)userStyleDirectoryURL
 //------------------------------------------------------
 {
-    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"SyntaxColorings"];
+    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"Syntaxes"];
 }
 
 
@@ -592,7 +617,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSURL *)URLForBundledStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"plist" subdirectory:@"SyntaxColorings"];
+    return [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
 }
 
 
@@ -601,7 +626,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSURL *)URLForUserStyle:(NSString *)styleName
 //------------------------------------------------------
 {
-    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"plist"];
+    return [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
 }
 
 
@@ -610,7 +635,11 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 - (NSMutableDictionary *)styleDictWithURL:(NSURL *)URL
 //------------------------------------------------------
 {
-    return [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+    NSData *yamlData = [NSData dataWithContentsOfURL:URL];
+    
+    return [YAMLSerialization objectWithYAMLData:yamlData
+                                         options:kYAMLReadOptionMutableContainersAndLeaves
+                                           error:nil];
 }
 
 
@@ -644,34 +673,30 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 //------------------------------------------------------
 {
     NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
-    NSMutableArray *styleNames = [[self bundledStyleNames] mutableCopy];
+    NSMutableOrderedSet *styleNameSet = [NSMutableOrderedSet orderedSetWithArray:[self bundledStyleNames]];
     
     // ユーザ定義用ディレクトリが存在する場合は読み込む
     if ([dirURL checkResourceIsReachableAndReturnError:nil]) {
-        NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager]
-                                             enumeratorAtURL:dirURL
-                                             includingPropertiesForKeys:nil
-                                             options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
-                                             errorHandler:^BOOL(NSURL *url, NSError *error)
-                                             {
-                                                 NSLog(@"Error on seeking SyntaxStyle Files Directory.");
-                                                 return YES;
-                                             }];
-        NSURL *URL;
-        while (URL = [enumerator nextObject]) {
-            NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
-            if (![styleNames containsObject:styleName]) {
-                [styleNames addObject:styleName];
-            }
+        NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:dirURL
+                                                      includingPropertiesForKeys:nil
+                                                                         options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                           error:nil];
+        for (NSURL *URL in URLs) {
+            if (![@[@"yaml", @"yml"] containsObject:[URL pathExtension]]) { continue; }
+            
+            NSString *styleName = [self styleNameFromURL:URL];
+            [styleNameSet addObject:styleName];
         }
     }
     
     // 定義をアルファベット順にソートする
-    [styleNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
+    [styleNameSet sortUsingComparator:^NSComparisonResult(NSString *name1, NSString *name2) {
+        return [name1 caseInsensitiveCompare:name2];
+    }];
     
     // 定義をキャッシュする
     NSMutableDictionary *styles = [NSMutableDictionary dictionary];
-    for (NSString *styleName in styleNames) {
+    for (NSString *styleName in styleNameSet) {
         NSURL *URL = [self URLForUsedStyle:styleName];
         NSMutableDictionary *style = [self styleDictWithURL:URL];
         
@@ -683,7 +708,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         styles[styleName] = style;
     }
     
-    [self setStyleNames:styleNames];
+    [self setStyleNames:[styleNameSet array]];
     [self setStyles:styles];
 }
 
@@ -748,6 +773,76 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     [self setExtensionConflicts:extensionConflicts];
     [self setFilenameToStyleTable:filenameTable];
     [self setFilenameConflicts:filenameConflicts];
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CESyntaxManager (Migration)
+
+// ------------------------------------------------------
+/// CotEditor 1.x から CotEdito 2.0 への移行
+- (void)migrateStyles
+// ------------------------------------------------------
+{
+    NSURL *oldDirURL = [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"SyntaxColorings"];
+    
+    // 移行の必要性チェック
+    if (![oldDirURL checkResourceIsReachableAndReturnError:nil] ||
+        [[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil])
+    {
+        return;
+    }
+    
+    [self prepareUserStyleDirectory];
+    
+    NSArray *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:oldDirURL
+                                                  includingPropertiesForKeys:nil
+                                                                     options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
+                                                                       error:nil];
+    
+    for (NSURL *URL in URLs) {
+        if (![[URL pathExtension] isEqualToString:@"plist"]) { continue; }
+        
+        NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
+        
+        if (style) {
+            NSString *styleName = [self styleNameFromURL:URL];
+            NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style options:kYAMLWriteOptionSingleDocument error:nil];
+            [yamlData writeToURL:[self URLForUserStyle:styleName] atomically:YES];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// plist 形式のシンタックス定義を YAML 形式に変換してユーザ領域に保存
+- (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL
+// ------------------------------------------------------
+{
+    if (![[fileURL pathExtension] isEqualToString:@"plist"]) { return NO; }
+
+    __block BOOL success = NO;
+    NSString *styleName = [self styleNameFromURL:fileURL];
+    NSURL *destURL = [self URLForUserStyle:styleName];
+    
+    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+    [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges
+                           writingItemAtURL:destURL options:NULL
+                                      error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
+     {
+         NSDictionary *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
+         NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style
+                                                          options:kYAMLWriteOptionSingleDocument
+                                                            error:nil];
+         success = [yamlData writeToURL:destURL atomically:YES];
+     }];
+    
+    return success;
 }
 
 @end
