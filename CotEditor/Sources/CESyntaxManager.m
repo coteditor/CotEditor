@@ -809,6 +809,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
         
         if (style) {
             NSString *styleName = [self styleNameFromURL:URL];
+            [style removeObjectForKey:@"styleName"];  // remove lagacy "styleName" key
             NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style options:kYAMLWriteOptionSingleDocument error:nil];
             [yamlData writeToURL:[self URLForUserStyle:styleName] atomically:YES];
         }
