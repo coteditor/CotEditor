@@ -89,9 +89,9 @@ changelog
     - これにより、“XML” シンタックス定義のカラーリングパフォーマンスを改善
 - AppleScript コマンドの定義ファイルを sdef 形式に移行
     - コマンド `unicode normalization` を `normalize unicode` に変更
-    - `selection` オブジェクトの `range` プロパティのための同一性確認キー (FourCharCode for code key) を変更
-    - これにともない、selection の操作が含まれる __コンパイルされている__ AppleScript (.scpt) 場合は、該当部分の書き変えが必要となります。元来 `range` であった部分が `«class prng»` のような文字列に書き変わっているはずなので、再度 `range` に書き戻してください。プレーンテキストタイプのスクリプト (.applescript) の場合はこの操作は必要ありません。
-    - AppleScript に関わるドキュメントの更新 (この AppleScript の仕様変更について詳しくは、Help メニュー内の「AppleScript でのスクリプト作成」および「AppleScript 辞書」をご覧下さい。)
+    - `selection` オブジェクトの `range` プロパティのための内部コードを変更
+        - これにともない、selection の操作が含まれかつ __コンパイルされている__ AppleScript (.scpt) は、修正が必要となります。詳しくはヘルプメニュー内の「AppleScript でのスクリプト作成」をご覧下さい。
+    - AppleScript に関わるドキュメントの更新
 - ステータスバーおよび情報ドロワーの文字数カウントを composed character 単位に変更
     - 従来の文字数カウントは愚直にUTF-16 (= OS Xでの文字列内部表現) での length を表示するのに対して、新しいカウント法は表示される文字単位でカウントを行なう（例えば、絵文字などのサロゲートペアは文字数:1, 文字長:2となる）
     - 過去の「文字数」については「文字長」という名前に改名し「文字数」とは別に項目を設けた
