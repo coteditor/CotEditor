@@ -80,7 +80,6 @@ metadata:
   description: "Support partly CSS3."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "CSS"
 charactersArray:
 - beginString: "attr(?=\\()"
   regularExpression: true

@@ -4,7 +4,6 @@ extensions:
 outlineMenuArray: []
 completionsArray: []
 commandsArray: []
-styleName: "JSON"
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"

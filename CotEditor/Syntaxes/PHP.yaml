@@ -5646,7 +5646,6 @@ metadata:
   description: "Support PHP4 - PHP5.5.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "PHP"
 charactersArray:
 - beginString: "'"
   endString: "'"

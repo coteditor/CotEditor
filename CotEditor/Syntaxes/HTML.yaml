@@ -1117,7 +1117,6 @@ metadata:
   version: "2.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "HTML"
 charactersArray:
 - beginString: "&#[0-9]{1,10};"
   regularExpression: true

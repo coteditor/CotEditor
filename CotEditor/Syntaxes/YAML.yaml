@@ -24,7 +24,6 @@ metadata:
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-styleName: "YAML"
 charactersArray:
 - beginString: "\\b\\d{4}-\\d{2}-\\d{2}( \\d{2}:\\d{2}:\\d{2}( [-+]\\d{2}:\\d{2})?)?\\b"
   regularExpression: true

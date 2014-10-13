@@ -14,7 +14,6 @@ outlineMenuArray:
   bold: true
   italic: true
 completionsArray: []
-styleName: "Scala"
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"

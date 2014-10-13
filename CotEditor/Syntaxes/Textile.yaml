@@ -17,7 +17,6 @@ outlineMenuArray:
   keyString: "                    $2"
 completionsArray: []
 commandsArray: []
-styleName: "Textile"
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
