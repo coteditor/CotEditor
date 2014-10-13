@@ -7,7 +7,7 @@
     <suite name="CotEditor suite" code="cEd1" description="CotEditor specific classes.">
         <enumeration name="saveable file format" code="savf">
             <enumerator name="Text" code="TXT " description="The plain text.">
-                <cocoa string-value="public.text"/>
+                <cocoa string-value="public.data"/>
             </enumerator>
         </enumeration>
         
