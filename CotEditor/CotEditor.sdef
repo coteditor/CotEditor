@@ -60,7 +60,7 @@
             <property name="line ending" code="lend" type="line ending character" access="rw" description="The line ending type of the document.">
                 <cocoa key="lineEndingChar"/>
             </property>
-            <property name="line spacing" code="lSpc" type="real" access="rw" description="The spacing between text lines. (from '0.0' to '10.0')">
+            <property name="line spacing" code="lSpc" type="real" access="rw" description="The spacing between text lines. (from ‘0.0’ to ‘10.0’)">
                 <cocoa key="lineSpacing"/>
             </property>
             <property name="selection" code="sele" type="text selection" access="rw" description="The current selection.">
@@ -69,7 +69,7 @@
             <property name="wrap lines" code="wRln" type="boolean" access="rw" description="Are lines wrapped?">
                 <cocoa key="wrapsLines"/>
             </property>
-            <property name="path" code="ppth" type="text" hidden="yes" description="The document's path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use 'file' property instead.">
+            <property name="path" code="ppth" type="text" hidden="yes" description="The document’s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use ‘file’ property instead.">
                 <!-- this property is deprecated -->
                 <cocoa key="fileName"/>
             </property>
@@ -125,7 +125,7 @@
         
         <class name="window" code="cwin" inherits="window" description="A CotEditor window.">
             <cocoa class="NSWindow"/>
-            <property name="view opacity" code="copc" type="real" access="rw" description="The opacity of the text view. (from '0.2' to '1.0')">
+            <property name="view opacity" code="copc" type="real" access="rw" description="The opacity of the text view. (from ‘0.2’ to ‘1.0’)">
                 <cocoa key="viewOpacity"/>
             </property>
         </class>
@@ -256,13 +256,13 @@
         <class name="rich text" plural="rich text" code="ctxt" description="Rich (styled) text.">
             <cocoa class="NSTextStorage"/>
             <type type="text"/>
-            <property name="color" code="colr" type="RGB color" description="The color of the text's first character.">
+            <property name="color" code="colr" type="RGB color" description="The color of the text’s first character.">
                 <cocoa key="foregroundColor"/>
             </property>
-            <property name="font" code="font" type="text" description="The name of the font of the text's first character.">
+            <property name="font" code="font" type="text" description="The name of the font of the text’s first character.">
                 <cocoa key="fontName"/>
             </property>
-            <property name="size" code="ptsz" type="integer" description="The size in points of the text's first character.">
+            <property name="size" code="ptsz" type="integer" description="The size in points of the text’s first character.">
                 <cocoa key="fontSize"/>
             </property>
             <element type="character"/>
@@ -272,7 +272,7 @@
             <element type="attachment"/>
         </class>
         
-        <class name="character" code="cha " description="One of some text's characters.">
+        <class name="character" code="cha " description="One of some text’s characters.">
             <cocoa class="NSTextStorage"/>
             <type type="text"/>
             <property name="color" code="colr" type="RGB color" description="Its color.">
@@ -291,16 +291,16 @@
             <element type="attachment"/>
         </class>
         
-        <class name="paragraph" code="cpar" description="One of some text's paragraphs.">
+        <class name="paragraph" code="cpar" description="One of some text’s paragraphs.">
             <cocoa class="NSTextStorage"/>
             <type type="text"/>
-            <property name="color" code="colr" type="RGB color" description="The color of the paragraph's first character.">
+            <property name="color" code="colr" type="RGB color" description="The color of the paragraph’s first character.">
                 <cocoa key="foregroundColor"/>
             </property>
-            <property name="font" code="font" type="text" description="The name of the font of the paragraph's first character.">
+            <property name="font" code="font" type="text" description="The name of the font of the paragraph’s first character.">
                 <cocoa key="fontName"/>
             </property>
-            <property name="size" code="ptsz" type="integer" description="The size in points of the paragraph's first character.">
+            <property name="size" code="ptsz" type="integer" description="The size in points of the paragraph’s first character.">
                 <cocoa key="fontSize"/>
             </property>
             <element type="character"/>
@@ -310,16 +310,16 @@
             <element type="attachment"/>
         </class>
         
-        <class name="word" code="cwor" description="One of some text's words.">
+        <class name="word" code="cwor" description="One of some text’s words.">
             <cocoa class="NSTextStorage"/>
             <type type="text"/>
-            <property name="color" code="colr" type="RGB color" description="The color of the word's first character.">
+            <property name="color" code="colr" type="RGB color" description="The color of the word’s first character.">
                 <cocoa key="foregroundColor"/>
             </property>
-            <property name="font" code="font" type="text" description="The name of the font of the word's first character.">
+            <property name="font" code="font" type="text" description="The name of the font of the word’s first character.">
                 <cocoa key="fontName"/>
             </property>
-            <property name="size" code="ptsz" type="integer" description="The size in points of the word's first character.">
+            <property name="size" code="ptsz" type="integer" description="The size in points of the word’s first character.">
                 <cocoa key="fontSize"/>
             </property>
             <element type="character"/>
