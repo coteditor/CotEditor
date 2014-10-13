@@ -933,6 +933,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */,
+				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
 				6CA3B3E312E3B59B0019AB2E /* SampleScript in Resources */,
 				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
@@ -978,7 +979,6 @@
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
 				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
 				2A961C5618FC699E002076B6 /* Version History.rtf in Resources */,
-				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChars.tiff in Resources */,
 				8CA71BCE07D2A79100C146B0 /* BiggerFont.tiff in Resources */,
