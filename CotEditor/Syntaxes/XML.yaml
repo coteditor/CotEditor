@@ -24,6 +24,7 @@ extensions:
 - keyString: "plist"
 - keyString: "xib"
 - keyString: "xmp"
+- keyString: "sdef"
 outlineMenuArray: []
 completionsArray: []
 commandsArray:
