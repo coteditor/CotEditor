@@ -273,7 +273,6 @@ extern NSUInteger const kMaxEscapesCheckLength;
 extern NSString  *const kAllAlphabetChars;
 
 // syntax style keys
-extern NSString *const CESyntaxStyleNameKey;
 extern NSString *const CESyntaxMetadataKey;
 extern NSString *const CESyntaxExtensionsKey;
 extern NSString *const CESyntaxFileNamesKey;

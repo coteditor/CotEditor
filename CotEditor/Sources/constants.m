@@ -224,7 +224,6 @@ NSUInteger const kMaxEscapesCheckLength = 16;
 NSString  *const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 // syntax style keys
-NSString *const CESyntaxStyleNameKey = @"styleName";
 NSString *const CESyntaxMetadataKey = @"metadata";
 NSString *const CESyntaxExtensionsKey = @"extensions";
 NSString *const CESyntaxFileNamesKey = @"filenames";
