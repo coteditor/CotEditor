@@ -8,7 +8,7 @@ __Requirement__: OS X Lion or higher
 
 __Distribution Site__ : <http://coteditor.github.io>
 
-![screenshot](http://coteditor.github.io/img/screenshot.png)
+![screenshot](screenshot.png)
 
 
 
