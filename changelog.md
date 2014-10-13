@@ -87,6 +87,11 @@ changelog
     - エスケープ文字を追加
 - “DTD” (文書型定義) シンタックス定義 を “XML” シンタックス定義から分離
     - これにより、“XML” シンタックス定義のカラーリングパフォーマンスを改善
+- AppleScript コマンドの定義ファイルを sdef 形式に移行
+    - コマンド `unicode normalization` を `normalize unicode` に変更
+    - `selection` オブジェクトの `range` プロパティのための同一性確認キー (FourCharCode for code key) を変更
+    - これにともない、selection の操作が含まれる __コンパイルされている__ AppleScript (.scpt) 場合は、該当部分の書き変えが必要となります。元来 `range` であった部分が `«class prng»` のような文字列に書き変わっているはずなので、再度 `range` に書き戻してください。プレーンテキストタイプのスクリプト (.applescript) の場合はこの操作は必要ありません。
+    - AppleScript に関わるドキュメントの更新 (この AppleScript の仕様変更について詳しくは、Help メニュー内の「AppleScript でのスクリプト作成」および「AppleScript 辞書」をご覧下さい。)
 - ステータスバーおよび情報ドロワーの文字数カウントを composed character 単位に変更
     - 従来の文字数カウントは愚直にUTF-16 (= OS Xでの文字列内部表現) での length を表示するのに対して、新しいカウント法は表示される文字単位でカウントを行なう（例えば、絵文字などのサロゲートペアは文字数:1, 文字長:2となる）
     - 過去の「文字数」については「文字長」という名前に改名し「文字数」とは別に項目を設けた
@@ -117,8 +122,6 @@ changelog
 - デフォルト表示を縦書きにする隠し設定 `layoutTextVertical` を追加
 - 隠し設定であるナビゲーションバーのフォント設定を廃止
 - ドキュメントの更新
-- AppleScript 定義ファイルを sdef 形式に移行
-    - コマンド `unicode normalization` を `normalize unicode` に変更
 - Sparkle framework を 1.8.0 に更新
 
 

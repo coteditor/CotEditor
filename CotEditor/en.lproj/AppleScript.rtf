@@ -18,22 +18,69 @@
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 \cf0 \ul \ulc0 \
 Unicode normalizaation\ulnone \
-The command \'93
+The command `
 \f1 unicode normalization
-\f0 \'94 on CotEditor 1.x was renamed on 2.0 to \'93
+\f0 ` on CotEditor 1.x was renamed on 2.0 to`
 \f1 normalize unicode
-\f0 \'94. The function and parameters are the same as before.\
+\f0 `. The function and parameters are the same as before.\
 Please note that, \ul there is no backward
 \f2  compatibility\ulnone  with this changing.\
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
 
-\f0 \cf0 \
-- - - - - - - - - - - - - - - - - - - - -\
-\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\f0 \ul \
+Discontinuation of `
+\f1 path`
+\f0  property
+\f2 \ulnone \
 
-\b \cf0 The terminology change on CotEditor 1.5:
-\b0 \
+\f0 The `
+\f1 path
+\f0 ` property of document object is discontinued on the modern AppleScript\'92s Standard Suite for a long time. Since CotEditor adopted it on version 2.0, this property is also deprecated on CotEditor.  Use new `
+\f1 file
+\f0 ` property instead.  While `
+\f1 path
+\f0 ` property returns a text object, `
+\f1 file
+\f0 ` property returns a file object.\
+For backwards compatibility, CotEditor 2.0 added a hidden `
+\f1 path
+\f0 ` property to document object uniquely, however do not use it if you create new scripts and we also recommend to migrate your previous scripts to use `
+\f1 file
+\f0 ` property. Because this `
+\f1 path
+\f0 ` property can be removed some day in the future without announce.\
 \ul \
+Update of internal code for `
+\f1 range`
+\f0  property\ulnone \
+The internal code for `
+\f1 range
+\f0 ` property of text selection object to identify itself has been changed on CotEditor 2.0.  The key for the range property is still `
+\f1 range
+\f0 `, so you don\'92t need to care about this if you write a new script. However 
+\b compiled
+\b0  AppleScripts (.scpt) which were written previously might need some update for this change.\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+
+\b \cf0 How to fix
+\b0 :\
+	Open your .scpt files on AppleScript Editor (or Script Editor), the words that was `
+\f1 range
+\f0 ` previously might be changed to  
+\f1 \'abclass prng\'bb
+\f0  or something like that. Overwrite them with `
+\f1 range
+\f0 ` again. And save them.\
+\
+This issue doesn\'92t occur with plain-text AppleScript (.applescript). \
+\
+\
+- - - - - - - - - - - - - - - - - - - - -\
+
+\b The terminology change on CotEditor 1.5:
+\b0 \
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802
+\cf0 \ul \
 Window Transparency\ulnone \
 According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The 
 \b document
@@ -66,7 +113,7 @@ On CotEditor 1.5, it is formally removed.  Specify the target as below (example 
 
 \f3 \cf2 tell application "CotEditor"\
 	contents of selection 
-\f4\b \cf2 \ul \ulc2 of front document
+\f4\b \ul \ulc2 of front document
 \f3\b0 \ulnone \
 end tell
 \f0 \cf2 \
