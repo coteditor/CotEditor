@@ -21,7 +21,7 @@ changelog
 - エディタを縦に分割するオプション
 - 行番号をクリック／ドラッグして行を選択
 - 「編集」に「行を選択」コマンドを追加
-- “AppleScript”, “C#”, “Go”, “Lisp”, “Lua”, “CocoaPods”, “R”, “Scheme”, “SQL”, “Strings”, “SVG”, “Swift” シンタックス定義を追加
+- “AppleScript”, “C#”, “Go”, “Lisp”, “Lua”, “R”, “Scheme”, “SQL”, “SVG”, “Swift” シンタックス定義を追加
 - 自動補完機能を追加（実験的実装, デフォルトはオフ）
 
 
