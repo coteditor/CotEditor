@@ -78,10 +78,11 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 - (void)setLineRange:(NSArray *)RangeArray;
 
 // AppleScript handler
-- (void)handleShiftRight:(NSScriptCommand *)command;
-- (void)handleShiftLeft:(NSScriptCommand *)command;
-- (void)handleChangeCase:(NSScriptCommand *)command;
-- (void)handleChangeWidthRoman:(NSScriptCommand *)command;
-- (void)handleChangeKana:(NSScriptCommand *)command;
+- (void)handleShiftRightScriptCommand:(NSScriptCommand *)command;
+- (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command;
+- (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command;
+- (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command;
+- (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command;
+- (void)handleNormalizeUnicodeScriptCommand:(NSScriptCommand *)command;
 
 @end

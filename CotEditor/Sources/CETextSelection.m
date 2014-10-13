@@ -102,6 +102,24 @@
 
 @implementation CETextSelection (ScriptingSupport)
 
+#pragma mark Superclass Methods
+
+//=======================================================
+// Superclass methods
+//
+//=======================================================
+
+// ------------------------------------------------------
+/// sdef 内で定義されている名前を返す
+- (NSScriptObjectSpecifier *)objectSpecifier
+// ------------------------------------------------------
+{
+    return [[NSNameSpecifier alloc] initWithContainerSpecifier:[[self document] objectSpecifier]
+                                                           key:@"text selection"];
+}
+
+
+
 #pragma mark AppleScript Accessors
 
 //=======================================================
@@ -231,7 +249,7 @@
 
 // ------------------------------------------------------
 /// 選択範囲を右にシフト
-- (void)handleShiftRight:(NSScriptCommand *)command
+- (void)handleShiftRightScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     [[[[self document] editor] textView] shiftRight:self];
@@ -240,7 +258,7 @@
 
 // ------------------------------------------------------
 /// 選択範囲を左にシフト
-- (void)handleShiftLeft:(NSScriptCommand *)command
+- (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     [[[[self document] editor] textView] shiftLeft:self];
@@ -249,11 +267,11 @@
 
 // ------------------------------------------------------
 /// 文字列を大文字／小文字／キャピタライズにコンバートし、結果を返す
-- (void)handleChangeCase:(NSScriptCommand *)command
+- (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CECaseType caseType = [arguments[@"caseType"] unsignedLongValue];
+    CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] textView];
 
     switch (caseType) {
@@ -272,11 +290,11 @@
 
 // ------------------------------------------------------
 /// 半角／全角Romanを切り替える
-- (void)handleChangeWidthRoman:(NSScriptCommand *)command
+- (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEWidthType widthType = [arguments[@"widthType"] unsignedLongValue];
+    CEWidthType widthType = [arguments[@"widthType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] textView];
 
     switch (widthType) {
@@ -292,11 +310,11 @@
 
 // ------------------------------------------------------
 /// ひらがな／カタカナを切り替える
-- (void)handleChangeKana:(NSScriptCommand *)command
+- (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedLongValue];
+    CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] textView];
     
     switch (changeKanaType) {
@@ -312,11 +330,11 @@
 
 // ------------------------------------------------------
 /// Unicode 正規化
-- (void)handleUnicodeNomalization:(NSScriptCommand *)command
+- (void)handleNormalizeUnicodeScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
     NSDictionary *arguments = [command evaluatedArguments];
-    CEUNFType UNFType = [arguments[@"unfType"] unsignedLongValue];
+    CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
     CETextView *textView = [[[self document] editor] textView];
     
     NSInteger typeCode;

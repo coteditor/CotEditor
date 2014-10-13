@@ -1,13 +1,16 @@
 (*
-Å‘O–Ê‚ÌƒEƒBƒ“ƒhƒE‚Ìs“ª^s––‚Ì‹ó”’‚ğíœ‚·‚éƒXƒNƒŠƒvƒgB
+æœ€å‰é¢ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡Œé ­ï¼è¡Œæœ«ã®ç©ºç™½ã‚’å‰Šé™¤ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€‚
 *)
 (* written by nakamuxu. 2008.01.05 *)
+(* modified by 1024jp. 2014-10-11 *)
 --
 --
 --
 tell application "CotEditor"
 	if exists front document then
-		replace front document for "^ +" to "" with RE and all
-		replace front document for " +$" to "" with RE and all
+		tell front document
+			replace for "^ +" to "" with RE and all
+			replace for " +$" to "" with RE and all
+		end tell
 	end if
 end tell

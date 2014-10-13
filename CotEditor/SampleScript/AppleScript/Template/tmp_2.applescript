@@ -1,6 +1,6 @@
 (*
-�őO�ʂ̃E�B���h�E�̑I��͈͂� property newStr  �ɐݒ肳�ꂽ������Œu��������X�N���v�g�B
-���̗�ł́A�uTEMPLATE�v�ɒu�����܂��B������́A�uTEMPLATE�v�̒���ɃL�����b�g���ړ����܂��B
+最前面のウィンドウの選択範囲を property newStr  に設定された文字列で置き換えるスクリプト。
+この例では、「TEMPLATE」に置換します。処理後は、「TEMPLATE」の直後にキャレットを移動します。
 *)
 (* written by nakamuxu. 2005.04.14 *)
 --

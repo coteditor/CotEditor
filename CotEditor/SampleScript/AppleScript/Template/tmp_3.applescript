@@ -1,7 +1,7 @@
 (*
-�őO�ʂ̃E�B���h�E�̑I��͈͂� property beginStr �� endStr  �ɐݒ肳�ꂽ������ň͂ރX�N���v�g�B
-���̗�ł́A�u<h1>�v�Ɓu</h1>�v�ň݂͂܂��B������́A�I��͈͂��������ꍇ�ɂ́u</h1>�v�̒���ɁA�Ȃ������ꍇ�͑O�ɁA�L�����b�g���ړ����܂��B
-property preMargin ��0 �ȊO�̐��l������ƁA�����O�̑I��͈͂̊J�n�ʒu���� preMargin �������A�L�����b�g�������I�Ɉړ��ł��܂��B
+最前面のウィンドウの選択範囲を property beginStr と endStr  に設定された文字列で囲むスクリプト。
+この例では、「<h1>」と「</h1>」で囲みます。処理後は、選択範囲があった場合には「</h1>」の直後に、なかった場合は前に、キャレットを移動します。
+property preMargin に0 以外の数値を入れると、処理前の選択範囲の開始位置から preMargin 文字分、キャレットを強制的に移動できます。
 *)
 (* written by nakamuxu. 2005.04.14 *)
 --
