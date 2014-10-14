@@ -959,7 +959,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (name && [[menuItem title] isEqualToString:name]) {
             state = NSOnState;
         }
-    } else if ([menuItem action] == @selector(recoloringAllStringOfDocument:)) {
+    } else if ([menuItem action] == @selector(recolorAll:)) {
         name = [[self editor] syntaxStyleName];
         if (name && [name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;
@@ -982,7 +982,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 -(BOOL)validateToolbarItem:(NSToolbarItem *)item
 // ------------------------------------------------------
 {
-    if ([item action] == @selector(recoloringAllStringOfDocument:)) {
+    if ([item action] == @selector(recolorAll:)) {
         NSString *name = [[self editor] syntaxStyleName];
         if ([name isEqualToString:NSLocalizedString(@"None", @"")]) {
             return NO;

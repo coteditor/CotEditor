@@ -851,7 +851,7 @@ static NSTimeInterval secondColoringDelay;
 
 // ------------------------------------------------------
 /// ドキュメント全体を再カラーリング
-- (IBAction)recoloringAllStringOfDocument:(id)sender
+- (IBAction)recolorAll:(id)sender
 // ------------------------------------------------------
 {
     [self recolorAllString];

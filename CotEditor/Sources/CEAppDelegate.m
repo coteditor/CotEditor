@@ -689,7 +689,7 @@
     
     // 全文字列を再カラーリングするメニューを追加
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
-                                                  action:@selector(recoloringAllStringOfDocument:)
+                                                  action:@selector(recolorAll:)
                                            keyEquivalent:@"r"];
     [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:item];

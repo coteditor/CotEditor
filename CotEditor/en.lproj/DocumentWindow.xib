@@ -259,7 +259,7 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="E25FB2F6-4347-4578-AE54-5F31966F8977" explicitItemIdentifier="syntaxReColorAllItemID" label="Re-Color" paletteLabel="Re-Color All" toolTip="Do re-color whole document" tag="22" image="RecolorAll" id="qhr-mN-25W">
                         <connections>
-                            <action selector="recoloringAllStringOfDocument:" target="-1" id="c2G-mY-V9l"/>
+                            <action selector="recolorAll:" target="-1" id="T2Z-1P-oTR"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="BcE-NT-y75"/>

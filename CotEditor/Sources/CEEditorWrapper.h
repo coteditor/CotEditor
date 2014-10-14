@@ -108,6 +108,6 @@
 - (IBAction)selectNextItemOfOutlineMenu:(id)sender;
 - (IBAction)openSplitTextView:(id)sender;
 - (IBAction)closeSplitTextView:(id)sender;
-- (IBAction)recoloringAllStringOfDocument:(id)sender;
+- (IBAction)recolorAll:(id)sender;
 
 @end
