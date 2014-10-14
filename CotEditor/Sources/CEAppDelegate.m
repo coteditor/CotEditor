@@ -732,6 +732,8 @@
     // migrate coloring setting
     BOOL didThemeMigrated = [[CEThemeManager sharedManager] migrateTheme];
     
+    // reset menu keybindings setting
+    BOOL didResetKeyBindings = [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
 }
 
 @end

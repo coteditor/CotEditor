@@ -731,3 +731,33 @@ static NSDictionary *kUnprintableKeyTable;
 }
 
 @end
+
+
+
+
+#pragma mark -
+
+@implementation CEKeyBindingManager (Migration)
+
+//------------------------------------------------------
+/// ユーザのメニューキーバインディング設定をいったん削除する
+- (BOOL)resetMenuKeyBindings
+//------------------------------------------------------
+{
+    // 以前の CotEditor ではユーザがカスタムをしているしていないに関わらずメニューキーバインディングの設定が
+    // ユーザ領域に作成されていたため最初にインストールしたバージョン以降でデフォルトのショートカットやメソッド名が
+    // 変更された場合にそれに追従できなかった。
+    // その負のサイクルを断ち切るために、過去の設定ファイルを一旦削除をする。
+    
+    BOOL success = NO;
+    NSURL *URL = [self menuKeyBindingSettingFileURL];
+    
+    if ([URL checkResourceIsReachableAndReturnError:nil]) {
+        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
+        [[CEKeyBindingManager sharedManager] setupAtLaunching];
+    }
+    
+    return success;
+}
+
+@end
