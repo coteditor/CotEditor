@@ -1,6 +1,6 @@
 extensions:
 - keyString: "rb"
-outlineMenuArray:
+outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"
   underline: true
@@ -10,7 +10,7 @@ outlineMenuArray:
 - beginString: "(^[\\t ]*module)[\\t ]+(\\w*)"
   keyString: "$1 $2"
   bold: true
-commandsArray:
+commands:
 - beginString: ".class"
 - beginString: "__id__"
 - beginString: "__send__"
@@ -131,9 +131,9 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "(?<!\\$)\\b[A-Z]\\w*"
   regularExpression: true
 - beginString: "__ENCODING__"
@@ -142,7 +142,7 @@ valuesArray:
 - beginString: "false"
 - beginString: "nil"
 - beginString: "true"
-typesArray:
+types:
 - beginString: "\\bErrno::[A-Z0-9]+\\b"
   regularExpression: true
 - beginString: "ArgumentError"
@@ -229,7 +229,7 @@ typesArray:
 - beginString: "TypeError"
 - beginString: "UnboundMethod"
 - beginString: "ZeroDivisionError"
-numbersArray:
+numbers:
 - beginString: "\\b0b[01_]+\\b"
   ignoreCase: true
   regularExpression: true
@@ -248,7 +248,7 @@ numbersArray:
   regularExpression: true
 - beginString: "`"
   endString: "`"
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "%[QqxrwWsiI]?([^\\w]).*?\\1"
@@ -271,7 +271,7 @@ stringsArray:
   regularExpression: true
 - beginString: "<<-?([\"'`]?)(\\w+)\\1(?:.|\\n)*?\\n[\\t ]*\\2$"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "\\bclass\\s"
   regularExpression: true
 - beginString: "alias"
@@ -307,7 +307,7 @@ keywordsArray:
 - beginString: "when"
 - beginString: "while"
 - beginString: "yield"
-variablesArray:
+variables:
 - beginString: "$!"
 - beginString: "$\""
 - beginString: "$#"

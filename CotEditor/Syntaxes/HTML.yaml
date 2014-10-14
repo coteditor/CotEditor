@@ -2,7 +2,7 @@ extensions:
 - keyString: "html"
 - keyString: "htm"
 - keyString: "shtml"
-outlineMenuArray:
+outlineMenu:
 - beginString: "<(h1)[^>]*>(.*)</\\1[^>]*>"
   ignoreCase: true
   keyString: "$1: $2"
@@ -25,7 +25,7 @@ outlineMenuArray:
   ignoreCase: true
   keyString: "$1: $2"
   bold: true
-completionsArray:
+completions:
 - keyString: "&amp;"
 - keyString: "&gt;"
 - keyString: "&lt;"
@@ -385,7 +385,7 @@ completionsArray:
 - keyString: "vspace"
 - keyString: "wbr"
 - keyString: "wrap"
-commandsArray:
+commands:
 - beginString: "(?<=<)!DOCTYPE\\s"
   ignoreCase: true
   regularExpression: true
@@ -593,7 +593,7 @@ commandsArray:
 - beginString: "(?<=\\s)onwaiting(?=\\b[^<>]*>)"
   ignoreCase: true
   regularExpression: true
-attributesArray:
+attributes:
 - beginString: "(?<=\\s)abbr(?=\\b[^<>]*>)"
   ignoreCase: true
   regularExpression: true
@@ -1117,7 +1117,7 @@ metadata:
   version: "2.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "&#[0-9]{1,10};"
   regularExpression: true
 - beginString: "&#x[0-9a-f]{1,10};"
@@ -1135,22 +1135,22 @@ charactersArray:
 - beginString: "&raquo;"
 - beginString: "&reg;"
 - beginString: "&yen;"
-commentsArray: []
-typesArray:
+comments: []
+types:
 - beginString: "(?<=<)\\?(\\w|[\\-.:])+"
   regularExpression: true
 - beginString: "\\?(?=>)"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "<?php"
   endString: "?>"
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "(?<==)\\s*'"
   endString: "'"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?<=<!DOCTYPE)\\s+html(?=>)"
   ignoreCase: true
   regularExpression: true
@@ -1541,7 +1541,7 @@ keywordsArray:
 - beginString: "(?<=</?)wbr\\b"
   ignoreCase: true
   regularExpression: true
-variablesArray: []
+variables: []
 commentDelimiters:
   endDelimiter: "-->"
   beginDelimiter: "<!--"

@@ -2,7 +2,7 @@ extensions:
 - keyString: "pl"
 - keyString: "cgi"
 - keyString: "pm"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^([\\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\\{"
   ignoreCase: true
   keyString: "$1$2 $3 {}"
@@ -14,7 +14,7 @@ outlineMenuArray:
   ignoreCase: true
   keyString: "$1 $2"
   italic: true
-commandsArray:
+commands:
 - beginString: "abs"
 - beginString: "accept"
 - beginString: "alarm"
@@ -223,7 +223,7 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
 - beginString: "(?s)<<\\s*'([0-9a-zA-Z_]+)'\\s*;.+?\\n\\1\\n"
@@ -231,10 +231,10 @@ charactersArray:
 - beginString: "\\bq/"
   endString: "/"
   regularExpression: true
-commentsArray:
+comments:
 - beginString: "=pod"
   endString: "=cut"
-valuesArray:
+values:
 - beginString: "$ACCUMULATOR"
 - beginString: "$ARGV"
 - beginString: "$BASETIME"
@@ -286,7 +286,7 @@ valuesArray:
 - beginString: "$UID"
 - beginString: "$WARNING"
 - beginString: "%INC"
-variablesArray:
+variables:
 - beginString: "(?<!\\$)\\$,"
   regularExpression: true
 - beginString: "(?<!\\$)\\$;"
@@ -371,7 +371,7 @@ variablesArray:
   regularExpression: true
 - beginString: "\\$~"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "(?<![0-9a-z_$])[0-9.][0-9._]*(e[-+][0-9._]+)?\\b"
   ignoreCase: true
   regularExpression: true
@@ -379,7 +379,7 @@ numbersArray:
   regularExpression: true
 - beginString: "\\b0x[0-9a-fA-F_]+\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\n\\1\\n"
@@ -388,7 +388,7 @@ stringsArray:
   regularExpression: true
 - beginString: "qq/"
   endString: "/"
-keywordsArray:
+keywords:
 - beginString: "__DATA__"
 - beginString: "__END__"
 - beginString: "__FILE__"

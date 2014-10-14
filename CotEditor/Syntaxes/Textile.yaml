@@ -1,6 +1,6 @@
 extensions:
 - keyString: "textile"
-outlineMenuArray:
+outlineMenu:
 - keyString: "$2"
   beginString: "^h1([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
   bold: true
@@ -15,34 +15,34 @@ outlineMenuArray:
   keyString: "                $2"
 - beginString: "^h6([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
   keyString: "                    $2"
-completionsArray: []
-commandsArray: []
+completions: []
+commands: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "<pre(\\s[^<>]*)?>"
   endString: "</pre>"
   regularExpression: true
 - beginString: "@[^\\n]*@"
   regularExpression: true
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "\\[\\d+\\]"
   regularExpression: true
 - beginString: "\\s\"[^\\n]*?\"(?>:)"
   regularExpression: true
-typesArray:
+types:
 - beginString: "^h[1-6]([\\[{()=>]\\S*)?\\.[\\t ]"
   endString: "$"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "![<>]?\\S*!"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "(?<=!):\\S*"
   regularExpression: true
 - beginString: "(?<=\"):\\S*"
@@ -54,7 +54,7 @@ stringsArray:
 - beginString: "^\\[\\S+\\]\\S"
   endString: "$"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?#bold)(?<![\\\\*])\\*[^ \\t*](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])\\*"
   regularExpression: true
 - beginString: "(?#italic)(?<![\\_])_[^ \\t*](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])_"

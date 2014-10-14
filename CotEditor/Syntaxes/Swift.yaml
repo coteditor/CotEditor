@@ -1,6 +1,6 @@
 extensions:
 - keyString: "swift"
-outlineMenuArray:
+outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
   bold: true
@@ -25,8 +25,8 @@ outlineMenuArray:
   italic: true
 - beginString: "^([ \\t]*)struct[ \\t]+(\\w+)"
   keyString: "$1struct $2"
-completionsArray: []
-attributesArray:
+completions: []
+attributes:
 - beginString: "@autoclosure"
 - beginString: "@exported"
 - beginString: "@IBAction"
@@ -46,17 +46,17 @@ metadata:
   description: "Based on Swift beta5."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
 - beginString: "\\bU+[0-9a-fA-F]{4,5}\\b"
   regularExpression: true
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "false"
 - beginString: "nil"
 - beginString: "true"
-typesArray:
+types:
 - beginString: "Any"
 - beginString: "AnyClass"
 - beginString: "AnyObject"
@@ -91,7 +91,7 @@ typesArray:
 - beginString: "UnsafeMutablePointer"
 - beginString: "UnsafePointer"
 - beginString: "Void"
-numbersArray:
+numbers:
 - beginString: "(?<![0-9a-z_])[-+]?([0-9][0-9._]*|\\.[0-9][0-9_]*)(e-?[0-9._]+)?\\b"
   ignoreCase: true
   regularExpression: true
@@ -101,10 +101,10 @@ numbersArray:
   regularExpression: true
 - beginString: "\\b0x[0-9a-fA-F][0-9a-fA-F_]*([pP]-?[0-9a-fA-F_]+)?\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "_"
 - beginString: "__COLUMN__"
 - beginString: "__FILE__"
@@ -168,7 +168,7 @@ keywordsArray:
 - beginString: "where"
 - beginString: "while"
 - beginString: "willSet"
-variablesArray:
+variables:
 - beginString: "$\\d\\b"
   regularExpression: true
 - beginString: "newValue"

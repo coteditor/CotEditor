@@ -4,7 +4,7 @@ extensions:
 - keyString: "mkd"
 - keyString: "mdown"
 - keyString: "mkdn"
-outlineMenuArray:
+outlineMenu:
 - beginString: "(.+)(?=\\n\\-+[\\t ]*$)"
   keyString: "    $1"
   bold: true
@@ -25,15 +25,15 @@ outlineMenuArray:
   keyString: "                $1"
 - beginString: "^#{6}[\\t ]?([^#][^\\n]*?)#*$"
   keyString: "                    $1"
-completionsArray: []
-commandsArray: []
+completions: []
+commands: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "(?#[extra] codeblock)^[~]{3,}[{[:space:]](?!~~~)(?:.|\\n)*?\\n[\\t
     ]*[~]{3,}[\\t ]*$"
   regularExpression: true
@@ -43,8 +43,8 @@ charactersArray:
   regularExpression: true
 - beginString: "(?#code)(?<!\\\\)``(?:\\n[^\\n]|[^\\n])*?(?<!\\\\)``"
   regularExpression: true
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "(?#[extra] a footnote)(?<!(^[ ]{0,3}|\\\\))\\[\\^[a-zA-Z0-9]+\\]"
   regularExpression: true
 - beginString: "(?#a)(?<!\\\\)\\[[^\\[\\]]*?(?!<\\\\)\\](?=\\()"
@@ -55,7 +55,7 @@ valuesArray:
   regularExpression: true
 - beginString: "(?#a)<(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+>"
   regularExpression: true
-typesArray:
+types:
 - beginString: "(?#h1).+\\n\\=+[\\t ]*$"
   regularExpression: true
 - beginString: "(?#h1-6)^#{1,6}[ \\t]?"
@@ -63,12 +63,12 @@ typesArray:
   regularExpression: true
 - beginString: "(?#h2).+\\n\\-+[\\t ]*$"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "(?#img)(?<!\\\\)!\\[.*?(?<!\\\\)\\](?=\\()"
   regularExpression: true
 - beginString: "(?#img)(?<!\\\\)!\\[.*?(?<!\\\\)\\][ ]?(?=\\[)"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "(?#[extra] abbr)^[ ]{0,3}\\*\\[[^\\^].*(?<!\\\\)\\]:\\s"
   endString: "(\\n[ \\t]*\\n)|\\z"
   regularExpression: true
@@ -83,7 +83,7 @@ stringsArray:
   regularExpression: true
 - beginString: "(?#HTML tag)(?<!\\\\)<[a-zA-Z][a-zA-Z1-6]*(\\s[^<>]+)?>"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?#[extra] dt)\\n[^: \\t][^\\n]*(?=([\\t ]*\\n)?\\n[\\t ]*:[\\t
     ])"
   regularExpression: true

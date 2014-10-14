@@ -1,6 +1,6 @@
 extensions:
 - keyString: "svg"
-outlineMenuArray:
+outlineMenu:
 - beginString: " id=\"(.+?)\""
   ignoreCase: true
   keyString: "#$1"
@@ -9,7 +9,7 @@ outlineMenuArray:
   ignoreCase: true
   keyString: "$1"
   bold: true
-completionsArray:
+completions:
 - keyString: "accent-height"
 - keyString: "accumulate"
 - keyString: "additive"
@@ -294,14 +294,14 @@ completionsArray:
 - keyString: "yChannelSelector"
 - keyString: "z"
 - keyString: "zoomAndPan"
-commandsArray:
+commands:
 - beginString: "(?<=<)\\?xml"
   regularExpression: true
 - beginString: "(?<=<)\\?xml-stylesheet"
   regularExpression: true
 - beginString: "\\?(?=>)"
   regularExpression: true
-attributesArray:
+attributes:
 - beginString: "(?<=xlink:)actuate\\b(?=[^<>]*>)"
   regularExpression: true
 - beginString: "(?<=xlink:)arcrole\\b(?=[^<>]*>)"
@@ -865,7 +865,7 @@ metadata:
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "&#[0-9]+;"
   regularExpression: true
 - beginString: "&amp;"
@@ -882,22 +882,22 @@ charactersArray:
 - beginString: "&yen;"
 - beginString: "<![CDATA["
   endString: "]]>"
-commentsArray: []
-typesArray:
+comments: []
+types:
 - beginString: "(?<=<)!DOCTYPE"
   endString: "\""
   regularExpression: true
 - beginString: "(?<=<)!ENTITY"
   endString: "\""
   regularExpression: true
-numbersArray: []
-stringsArray:
+numbers: []
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "(?<==)\\s*'"
   endString: "'"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?<=</?)(svg:)?a\\b"
   regularExpression: true
 - beginString: "(?<=</?)(svg:)?altGlyph\\b"
@@ -1086,7 +1086,7 @@ keywordsArray:
   regularExpression: true
 - beginString: "(?<=</?dc:)type\\b"
   regularExpression: true
-variablesArray:
+variables:
 - beginString: "cc:(?=[a-zA-Z])"
   regularExpression: true
 - beginString: "dc:(?=[a-zA-Z])"

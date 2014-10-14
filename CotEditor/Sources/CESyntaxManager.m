@@ -805,14 +805,7 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
     for (NSURL *URL in URLs) {
         if (![[URL pathExtension] isEqualToString:@"plist"]) { continue; }
         
-        NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:URL];
-        
-        if (style) {
-            NSString *styleName = [self styleNameFromURL:URL];
-            [style removeObjectForKey:@"styleName"];  // remove lagacy "styleName" key
-            NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style options:kYAMLWriteOptionSingleDocument error:nil];
-            [yamlData writeToURL:[self URLForUserStyle:styleName] atomically:YES];
-        }
+        [self importLegacyStyleFromURL:URL];
     }
 }
 
@@ -834,8 +827,20 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                       error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:fileURL];
-         [style removeObjectForKey:@"styleName"];  // remove lagacy "styleName" key
-         NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style
+         NSMutableDictionary *newStyle = [NSMutableDictionary dictionary];
+         
+         // format migration
+         for (NSString *key in [style allKeys]) {
+             // remove lagacy "styleName" key
+             if ([key isEqualToString:@"styleName"]) {
+                 continue;
+             }
+             // remove all `Array` suffix from dict keys
+             NSString *newKey = [key stringByReplacingOccurrencesOfString:@"Array" withString:@""];
+             newStyle[newKey] = style[key];
+         }
+         
+         NSData *yamlData = [YAMLSerialization YAMLDataWithObject:newStyle
                                                           options:kYAMLWriteOptionSingleDocument
                                                             error:nil];
          success = [yamlData writeToURL:destURL atomically:YES];

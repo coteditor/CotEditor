@@ -1,10 +1,10 @@
 extensions:
 - keyString: "r"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function"
   keyString: "function: $1"
-completionsArray: []
-commandsArray:
+completions: []
+commands:
 - beginString: "abbreviate"
 - beginString: "abs"
 - beginString: "acos"
@@ -984,9 +984,9 @@ metadata:
   version: "1.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "F"
   ignoreCase: true
 - beginString: "FALSE"
@@ -1009,7 +1009,7 @@ valuesArray:
   ignoreCase: true
 - beginString: "TRUE"
   ignoreCase: true
-typesArray:
+types:
 - beginString: "array"
 - beginString: "category"
 - beginString: "character"
@@ -1024,7 +1024,7 @@ typesArray:
 - beginString: "numeric"
 - beginString: "rType"
 - beginString: "vector"
-numbersArray:
+numbers:
 - beginString: "\\b((\\d\\.?\\d*)|(\\.\\d+))(e[-+]?\\d+)?(i|l|ul|u|f|ll|ull)?\\b"
   ignoreCase: true
   regularExpression: true
@@ -1033,12 +1033,12 @@ numbersArray:
   regularExpression: true
 - beginString: "\\b0b[01]+\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'"
   endString: "'"
-keywordsArray:
+keywords:
 - beginString: "break"
 - beginString: "else"
 - beginString: "expr"
@@ -1052,6 +1052,6 @@ keywordsArray:
 - beginString: "return"
 - beginString: "switch"
 - beginString: "while"
-variablesArray: []
+variables: []
 commentDelimiters:
   inlineDelimiter: "#"

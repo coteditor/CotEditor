@@ -1,9 +1,9 @@
 extensions:
 - keyString: "erb"
 - keyString: "rhtml"
-outlineMenuArray: []
-completionsArray: []
-commandsArray:
+outlineMenu: []
+completions: []
+commands:
 - beginString: "<%"
   endString: "%>"
 metadata:
@@ -13,14 +13,14 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray: []
-numbersArray: []
-stringsArray:
+characters: []
+comments: []
+values: []
+numbers: []
+strings:
 - beginString: "<%="
   endString: "%>"
-keywordsArray: []
+keywords: []
 commentDelimiters:
   endDelimiter: "%>"
   beginDelimiter: "<%#"

@@ -5,7 +5,7 @@ extensions:
 - keyString: "php5"
 - keyString: "phps"
 - keyString: "phtml"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])"
   keyString: "   $3: $4"
 - beginString: "^([\\t ]*)(abstract (public|protected|private)[\\t ]+function)\\s*([^{;]*)(?=[{;])"
@@ -26,7 +26,7 @@ outlineMenuArray:
 - beginString: "^[\\t ]*(trait)[\\t ]+(.*)\\{"
   keyString: "$1: $2"
   italic: true
-completionsArray:
+completions:
 - keyString: "$_COOKIE[]"
 - keyString: "$_ENV[]"
 - keyString: "$_FILES[]"
@@ -3240,7 +3240,7 @@ completionsArray:
 - keyString: "ZLIB_ENCODING_GZIP"
 - keyString: "ZLIB_ENCODING_RAW"
 - keyString: "zlib_get_coding_type(void)"
-commandsArray:
+commands:
 - beginString: "__call"
 - beginString: "__callStatic"
 - beginString: "__clone"
@@ -5646,13 +5646,13 @@ metadata:
   description: "Support PHP4 - PHP5.5.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
-commentsArray:
+comments:
 - beginString: "#[^\\n]*?(?=$|\\?>)"
   regularExpression: true
-valuesArray:
+values:
 - beginString: "__CLASS__"
 - beginString: "__DIR__"
 - beginString: "__FILE__"
@@ -6104,7 +6104,7 @@ valuesArray:
 - beginString: "ZLIB_ENCODING_DEFLATE"
 - beginString: "ZLIB_ENCODING_GZIP"
 - beginString: "ZLIB_ENCODING_RAW"
-typesArray:
+types:
 - beginString: "bool"
 - beginString: "boolean"
 - beginString: "callable"
@@ -6119,7 +6119,7 @@ typesArray:
 - beginString: "resource"
 - beginString: "string"
 - beginString: "void"
-numbersArray:
+numbers:
 - beginString: "\\b-?0b[01]+\\b"
   regularExpression: true
 - beginString: "\\b-?0x[0-9a-f]+\\b"
@@ -6127,10 +6127,10 @@ numbersArray:
   regularExpression: true
 - beginString: "\\b-?\\d*\\.?\\d+\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "<?php"
 - beginString: "?>"
 - beginString: "abstract"
@@ -6191,7 +6191,7 @@ keywordsArray:
 - beginString: "while"
 - beginString: "xor"
 - beginString: "yield"
-variablesArray:
+variables:
 - beginString: "&?\\$[a-zA-Z_\xA5x7f-\xA5xff][a-zA-Z0-9_\xA5x7f-\xA5x"
   regularExpression: true
 - beginString: "(?<=->)\\s*[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*+(?!\\s*\\()"

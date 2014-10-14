@@ -1,13 +1,13 @@
 extensions:
 - keyString: "py"
 - keyString: "pyw"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
   bold: true
 - beginString: "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
-commandsArray:
+commands:
 - beginString: "__abs__"
 - beginString: "__add__"
 - beginString: "__and__"
@@ -289,7 +289,7 @@ commandsArray:
 - beginString: "xreadlines"
 - beginString: "zfill"
 - beginString: "zip"
-attributesArray:
+attributes:
 - beginString: "@(?:\\w|\\.)+"
 - beginString: "@abstractmethod"
 - beginString: "@classmethod"
@@ -303,9 +303,9 @@ metadata:
     2013."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "__all__"
 - beginString: "__bases__"
 - beginString: "__cached__"
@@ -342,10 +342,10 @@ valuesArray:
 - beginString: "real"
 - beginString: "softspace"
 - beginString: "True"
-variablesArray:
+variables:
 - beginString: "cls"
 - beginString: "self"
-numbersArray:
+numbers:
 - beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
   ignoreCase: true
   regularExpression: true
@@ -358,7 +358,7 @@ numbersArray:
 - beginString: "\\b0x[0-9a-f]+l?"
   ignoreCase: true
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "\"\"\""
@@ -372,7 +372,7 @@ stringsArray:
   regularExpression: true
 - beginString: "`"
   endString: "`"
-keywordsArray:
+keywords:
 - beginString: "and"
 - beginString: "as"
 - beginString: "assert"

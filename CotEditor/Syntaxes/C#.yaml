@@ -1,8 +1,8 @@
 extensions:
 - keyString: "cs"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "#define\\W(.*)$"
   italic: true
 - beginString: "#elif\\W(.*)$"
@@ -26,7 +26,7 @@ outlineMenuArray:
   keyString: "$1 $2($3)"
 - beginString: "namespace\\W(.*)$"
   bold: true
-commandsArray:
+commands:
 - beginString: "ascending"
 - beginString: "by"
 - beginString: "descending"
@@ -40,7 +40,7 @@ commandsArray:
 - beginString: "orderby"
 - beginString: "select"
 - beginString: "where"
-attributesArray:
+attributes:
 - beginString: "abstract"
 - beginString: "add"
 - beginString: "alias"
@@ -86,15 +86,15 @@ metadata:
     Access\nvalues: Literal"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "false"
 - beginString: "null"
 - beginString: "true"
-typesArray:
+types:
 - beginString: "bool"
 - beginString: "byte"
 - beginString: "char"
@@ -118,7 +118,7 @@ typesArray:
 - beginString: "ushort"
 - beginString: "var"
 - beginString: "void"
-numbersArray:
+numbers:
 - beginString: "\\b(\\d+\\.?\\d*|\\.\\d+)(e[-+]\\d+)?[dfm]?\\b"
   ignoreCase: true
   regularExpression: true
@@ -128,10 +128,10 @@ numbersArray:
 - beginString: "\\b\\d+[lu]{0,2}\\b"
   ignoreCase: true
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "#define"
 - beginString: "#elif"
 - beginString: "#else"
@@ -170,7 +170,7 @@ keywordsArray:
 - beginString: "using"
 - beginString: "while"
 - beginString: "yield"
-variablesArray:
+variables:
 - beginString: "base"
 - beginString: "this"
 commentDelimiters:

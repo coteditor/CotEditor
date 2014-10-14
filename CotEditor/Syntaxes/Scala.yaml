@@ -1,6 +1,6 @@
 extensions:
 - keyString: "scala"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^([\\t ]*)(?:(final|protected|private|override)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
   keyString: "$1$4"
 - beginString: "^([\\t ]*)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
@@ -13,22 +13,22 @@ outlineMenuArray:
   keyString: "$1$3 $4"
   bold: true
   italic: true
-completionsArray: []
+completions: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "false"
 - beginString: "null"
 - beginString: "true"
-typesArray:
+types:
 - beginString: "Array"
 - beginString: "Boolean"
 - beginString: "Byte"
@@ -40,7 +40,7 @@ typesArray:
 - beginString: "Short"
 - beginString: "String"
 - beginString: "Unit"
-numbersArray:
+numbers:
 - beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[fd]?"
   ignoreCase: true
   regularExpression: true
@@ -50,12 +50,12 @@ numbersArray:
 - beginString: "\\b\\d+l?\\b"
   ignoreCase: true
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "\"\"\""
   endString: "\"\"\""
-keywordsArray:
+keywords:
 - beginString: "#"
 - beginString: ":"
 - beginString: "<%"
@@ -104,7 +104,7 @@ keywordsArray:
 - beginString: "while"
 - beginString: "with"
 - beginString: "yield"
-variablesArray:
+variables:
 - beginString: "super(?=\\.)"
   regularExpression: true
 - beginString: "this(?=\\.)"

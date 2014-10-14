@@ -1,21 +1,21 @@
 extensions:
 - keyString: "rest"
 - keyString: "rst"
-outlineMenuArray:
+outlineMenu:
 - beginString: "(?<![-=`:.'\"~^_*+#]{2}\\n)^(.+)(?=\\n([-=`:.'\"~^_*+#])\\2{2,}$)"
   keyString: "$1"
 - beginString: "(?<=[-=`:.'\"~^_*+#]{3}\\n)(.+)(?=\\n([-=`:.'\"~^_*+#])\\2{2,}+$)"
   keyString: "$1"
   bold: true
-completionsArray: []
-commandsArray: []
+completions: []
+commands: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "(?#code)(?<!\\\\)``(?![ \\t`])(?:(?!\\n\\n)(?:.|\\n))+?(?<![\\\\\\t
     ])``"
   regularExpression: true
@@ -26,11 +26,11 @@ charactersArray:
 - beginString: "(?#option lists)^(--?|/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}"
   ignoreCase: true
   regularExpression: true
-commentsArray:
+comments:
 - beginString: "^(?:\\t| {1,4})?\\.\\.\\s(?![_\\[|]|[a-z]+?::)(?:(?!\\n\\n)(.|\\n))*"
   ignoreCase: true
   regularExpression: true
-valuesArray:
+values:
 - beginString: "(?#foot link)\\s\\[#[^\\]]*?\\]_\\b"
   regularExpression: true
 - beginString: "(?#foot link)\\s\\[\\*\\]_\\b"
@@ -47,12 +47,12 @@ valuesArray:
   regularExpression: true
 - beginString: "(?#url link)(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+"
   regularExpression: true
-typesArray:
+types:
 - beginString: "^([-=`:.'\"~^_*+#]{3,})\\n.+\\n\\1$"
   regularExpression: true
 - beginString: "^.+\\n([-=`:.'\"~^_*+#])\\1{2,}$"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "(?#image)^[\\t ]*\\.\\. (?:\\|[^|\\n]+?\\| )?image ?::\\s.*$"
   regularExpression: true
 - beginString: "(?#role)(?<=\\w`):[a-z]+?:"
@@ -65,14 +65,14 @@ numbersArray:
   regularExpression: true
 - beginString: "(?#table)^\\n\\+[-+]{3,}\\+\\n(?:(?!\\n\\n)(?:.|\\n))+\\+[-+]{3,}\\+(?=$\\n)"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "(?#url) <\\S+>(?=`_)"
   regularExpression: true
 - beginString: "(?#url)^[\\t ]*\\.\\. _\\S.*(?:\\n[\\t ]+\\S*)?$"
   regularExpression: true
 - beginString: "(?#url)^[\\t ]*__ .\\S+$"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?#cite)\\[\\w[^\\]]*?\\]_"
   regularExpression: true
 - beginString: "(?#directive)^[\\t ]*\\.\\. [a-z]+ ?::"

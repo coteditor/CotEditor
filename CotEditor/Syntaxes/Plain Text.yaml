@@ -1,9 +1,9 @@
-commandsArray: []
-keywordsArray: []
-numbersArray: []
-commentsArray: []
-charactersArray: []
-stringsArray: []
+commands: []
+keywords: []
+numbers: []
+comments: []
+characters: []
+strings: []
 metadata:
   author: "nakamuxu"
   distributionURL: "http://coteditor.github.io"
@@ -12,4 +12,4 @@ metadata:
   lastModified: "2014-09-24"
 extensions:
 - keyString: "txt"
-valuesArray: []
+values: []

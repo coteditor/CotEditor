@@ -1,14 +1,14 @@
 extensions:
 - keyString: "applescript"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))"
   keyString: "$1on $2"
 - beginString: "^([\\t ]*)script[\\t ]+(\\S+)"
   keyString: "$1script $2"
   bold: true
-commandsArray:
+commands:
 - beginString: "\\b(abort|begin|end) transaction\\b"
   regularExpression: true
 - beginString: "\\b(closing|moving) folder window for\\b"
@@ -150,16 +150,16 @@ commandsArray:
 - beginString: "unembed"
 - beginString: "update"
 - beginString: "write"
-attributesArray: []
+attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "(?<=\\&)\\s+return"
   regularExpression: true
 - beginString: "\\bcurrent application\\b"
@@ -185,7 +185,7 @@ valuesArray:
 - beginString: "true"
 - beginString: "version"
 - beginString: "warning"
-typesArray:
+types:
 - beginString: "alias"
 - beginString: "application"
 - beginString: "applications"
@@ -209,13 +209,13 @@ typesArray:
 - beginString: "windows"
 - beginString: "word"
 - beginString: "words"
-numbersArray:
+numbers:
 - beginString: "\\b\\d+(\\.\\d*)?\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "&"
 - beginString: "(?<=')s\\s"
   regularExpression: true
@@ -339,7 +339,7 @@ keywordsArray:
 - beginString: "÷"
 - beginString: "≤"
 - beginString: "≥"
-variablesArray:
+variables:
 - beginString: "it"
 - beginString: "me"
 commentDelimiters:

@@ -6,12 +6,12 @@ filenames:
 - keyString: ".bashrc"
 - keyString: ".zshrc"
 - keyString: ".zshenv"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^(#.+)$"
   keyString: "$1"
 - beginString: "^([\\t ]*)(.*)\\(\\)[\\n\\t ]*\\{"
   keyString: "$1$2 ()"
-commandsArray:
+commands:
 - beginString: "cd"
 - beginString: "cp"
 - beginString: "df"
@@ -49,14 +49,14 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "false"
 - beginString: "true"
-variablesArray:
+variables:
 - beginString: "$!"
 - beginString: "$#"
 - beginString: "$$"
@@ -66,13 +66,13 @@ variablesArray:
 - beginString: "$@"
 - beginString: "\\$\\{?[0-9]+\\}?"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "`"
   endString: "`"
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "break"
 - beginString: "case"
 - beginString: "continue"

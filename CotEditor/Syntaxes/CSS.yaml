@@ -1,11 +1,11 @@
 extensions:
 - keyString: "css"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "\\@(media|page)\\b(.+)(?=($|\\{))"
   keyString: "@$1 $2"
-commandsArray:
+commands:
 - beginString: "@charset"
 - beginString: "@counter-style"
 - beginString: "@font-face"
@@ -17,7 +17,7 @@ commandsArray:
 - beginString: "@page"
 - beginString: "@phonetic-alphabet"
 - beginString: "@supports"
-attributesArray:
+attributes:
 - beginString: "::?after"
   regularExpression: true
 - beginString: "::?before"
@@ -80,7 +80,7 @@ metadata:
   description: "Support partly CSS3."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "attr(?=\\()"
   regularExpression: true
 - beginString: "blur(?=\\()"
@@ -167,8 +167,8 @@ charactersArray:
   regularExpression: true
 - beginString: "url(?=\\()"
   regularExpression: true
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "(?<![\\-a-z#.])bottom(?!\\s*:)"
   regularExpression: true
 - beginString: "(?<![\\-a-z#.])left(?!\\s*:)"
@@ -622,9 +622,9 @@ valuesArray:
 - beginString: "xx-small"
 - beginString: "yellow"
 - beginString: "yellowgreen"
-typesArray:
+types:
 - beginString: "!important"
-numbersArray:
+numbers:
 - beginString: "#[0-9a-f]{3}(?=[ \\n\\t\\);,])"
   ignoreCase: true
   regularExpression: true
@@ -633,14 +633,14 @@ numbersArray:
   regularExpression: true
 - beginString: "(?<![a-zA-Z0-9\\._])\\-?(?:[0-9\\.]+)?[0-9]*(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx)?(?!\\w)"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'"
   endString: "'"
 - beginString: "(?<=url\\()\\S+(?=\\))"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "-(webkit|moz|ms|o)-[-a-z]+(?=\\s*:)"
   regularExpression: true
 - beginString: "\\bbottom(?=\\s*:)"
@@ -889,7 +889,7 @@ keywordsArray:
 - beginString: "word-wrap"
 - beginString: "writing-mode"
 - beginString: "z-index"
-variablesArray:
+variables:
 - beginString: "#[[:alnum:]_-]+"
   regularExpression: true
 - beginString: "\\.-?[_a-z][_a-z0-9-]*"

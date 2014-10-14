@@ -3,26 +3,26 @@ extensions:
 - keyString: "mysql"
 - keyString: "pgsql"
 filenames: []
-completionsArray: []
-outlineMenuArray: []
-commandsArray: []
-attributesArray: []
+completions: []
+outlineMenu: []
+commands: []
+attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "false"
   ignoreCase: true
 - beginString: "null"
   ignoreCase: true
 - beginString: "true"
   ignoreCase: true
-typesArray:
+types:
 - beginString: "array"
   ignoreCase: true
 - beginString: "bigint"
@@ -99,7 +99,7 @@ typesArray:
   ignoreCase: true
 - beginString: "year"
   ignoreCase: true
-numbersArray:
+numbers:
 - beginString: "\\b\\d+\\b"
   regularExpression: true
 - beginString: "\\d*\\.\\d+(e[-+?\\d+])?"
@@ -108,12 +108,12 @@ numbersArray:
   regularExpression: true
 - beginString: "\\d+e[-+]?\\d+"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "'"
   endString: "'"
 - beginString: "b'"
   ignoreCase: true
-keywordsArray:
+keywords:
 - beginString: "add"
   ignoreCase: true
 - beginString: "all"
@@ -528,7 +528,7 @@ keywordsArray:
   ignoreCase: true
 - beginString: "without"
   ignoreCase: true
-variablesArray:
+variables:
 - beginString: "\""
   endString: "\""
 - beginString: "`"

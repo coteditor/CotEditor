@@ -1,14 +1,14 @@
 extensions:
 - keyString: "dart"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{"
   keyString: "$1$2 $3"
 - beginString: "^([\\t ]*)class (.+)\\s\\{"
   keyString: "$1class $2"
   bold: true
-completionsArray: []
-commandsArray: []
-attributesArray:
+completions: []
+commands: []
+attributes:
 - beginString: "@\\w+"
   regularExpression: true
 metadata:
@@ -17,23 +17,23 @@ metadata:
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "false"
 - beginString: "null"
 - beginString: "true"
-variablesArray:
+variables:
 - beginString: "super"
 - beginString: "this"
-numbersArray:
+numbers:
 - beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
   ignoreCase: true
   regularExpression: true
 - beginString: "\\b-?(0x)[0-9a-f]+\\b"
   ignoreCase: true
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'"
@@ -42,7 +42,7 @@ stringsArray:
   endString: "\""
 - beginString: "@'"
   endString: "'"
-keywordsArray:
+keywords:
 - beginString: "abstract"
 - beginString: "as"
 - beginString: "assert"

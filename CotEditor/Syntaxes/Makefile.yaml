@@ -2,9 +2,9 @@ extensions: []
 filenames:
 - keyString: "Makefile"
 - keyString: "makefile"
-completionsArray: []
-outlineMenuArray: []
-commandsArray:
+completions: []
+outlineMenu: []
+commands:
 - beginString: "AR"
 - beginString: "AS"
 - beginString: "CC"
@@ -31,10 +31,10 @@ metadata:
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray: []
-variablesArray:
+characters: []
+comments: []
+values: []
+variables:
 - beginString: "$%"
 - beginString: "$("
   endString: ")"
@@ -48,11 +48,11 @@ variablesArray:
   endString: "}"
 - beginString: "^[-\\w]+(?= +[?:+]?= )"
   regularExpression: true
-numbersArray: []
-stringsArray:
+numbers: []
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "^[^ ]+(?= *:[^=])"
   regularExpression: true
 - beginString: "do"

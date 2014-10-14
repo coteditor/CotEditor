@@ -1,7 +1,7 @@
 extensions:
 - keyString: "hs"
 - keyString: "lhs"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^[\\t ]*([a-z][\\w_']*\\s*.+?)(?=\\s*=)"
 - beginString: "^[\\t ]*([a-z][\\w_']*\\s*::.+?$)"
   keyString: "$1"
@@ -20,8 +20,8 @@ outlineMenuArray:
     ]*"
   keyString: "type $1$2"
   bold: true
-completionsArray: []
-commandsArray:
+completions: []
+commands:
 - beginString: "abs"
 - beginString: "acos"
 - beginString: "acosh"
@@ -192,7 +192,7 @@ commandsArray:
 - beginString: "zip3"
 - beginString: "zipWith"
 - beginString: "zipWith3"
-attributesArray: []
+attributes: []
 metadata:
   author: "konn"
   distributionURL: "http://coteditor.github.io"
@@ -200,7 +200,7 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'.'"
   regularExpression: true
 - beginString: "'\\\\o[0-7]+'"
@@ -242,8 +242,8 @@ charactersArray:
 - beginString: "'\\SYN'"
 - beginString: "'\\US'"
 - beginString: "'\\VT'"
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "EQ"
 - beginString: "False"
 - beginString: "GT"
@@ -253,7 +253,7 @@ valuesArray:
 - beginString: "Nothing"
 - beginString: "Right"
 - beginString: "True"
-typesArray:
+types:
 - beginString: "\\b[A-Z][\\w_\\']*"
   regularExpression: true
 - beginString: "Bool"
@@ -285,7 +285,7 @@ typesArray:
 - beginString: "RealFrac"
 - beginString: "Show"
 - beginString: "String"
-numbersArray:
+numbers:
 - beginString: "\\b0o[0-7]+\\b"
   ignoreCase: true
   regularExpression: true
@@ -297,10 +297,10 @@ numbersArray:
   regularExpression: true
 - beginString: "\\b\\d+\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "_"
 - beginString: "case"
 - beginString: "class"
