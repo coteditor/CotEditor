@@ -1,21 +1,53 @@
 {
-  "textColor" : "#000000",
-  "insertionPointColor" : "#000000",
-  "invisiblesColor" : "#cbcbcb",
-  "backgroundColor" : "#ffffff",
-  "lineHighlightColor" : "#ebebeb",
-  "selectionColor" : "#a7caff",
-  "usesSystemSelectionColor" : true,
-  "keywordsColor" : "#515151",
-  "commandsColor" : "#797979",
-  "typesColor" : "#797979",
-  "attributesColor" : "#797979",
-  "variablesColor" : "#797979",
-  "valuesColor" : "#797979",
-  "numbersColor" : "#797979",
-  "stringsColor" : "#797979",
-  "charactersColor" : "#797979",
-  "commentsColor" : "#929292",
+  "text" : {
+    "color" : "#000000"
+  },
+  "insertionPoint" : {
+    "color" : "#000000"
+  },
+  "invisibles" : {
+    "color" : "#cbcbcb"
+  },
+  "background" : {
+    "color" : "#ffffff"
+  },
+  "lineHighlight" : {
+    "color" : "#ebebeb"
+  },
+  "selection" : {
+    "color" : "#a7caff",
+    "usesSystemSetting" : true
+  },
+  "keywords" : {
+    "color" : "#515151"
+  },
+  "commands" : {
+    "color" : "#797979"
+  },
+  "types" : {
+    "color" : "#797979"
+  },
+  "attributes" : {
+    "color" : "#797979"
+  },
+  "variables" : {
+    "color" : "#797979"
+  },
+  "values" : {
+    "color" : "#797979"
+  },
+  "numbers" : {
+    "color" : "#797979"
+  },
+  "strings" : {
+    "color" : "#797979"
+  },
+  "characters" : {
+    "color" : "#797979"
+  },
+  "comments" : {
+    "color" : "#929292"
+  },
   "metadata" : {
     "author" : "1024jp",
     "distributionURL" : "http://coteditor.github.io",
