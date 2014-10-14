@@ -394,13 +394,14 @@
     // CotEditor 1.x系からの移行
     // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     if (!lastVersion) {
         if ([self hasSetting]) {
             [self migrateToVersion2];
         }
-        
-        // store current version
-        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    }
+    // store current version
+    if (!lastVersion || [lastVersion isEqualToString:@"2.0.0-alpha"]) {
         [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
     }
 }
