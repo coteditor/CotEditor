@@ -833,7 +833,8 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                            writingItemAtURL:destURL options:NULL
                                       error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSDictionary *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
+         NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:fileURL];
+         [style removeObjectForKey:@"styleName"];  // remove lagacy "styleName" key
          NSData *yamlData = [YAMLSerialization YAMLDataWithObject:style
                                                           options:kYAMLWriteOptionSingleDocument
                                                             error:nil];
