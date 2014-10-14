@@ -82,6 +82,7 @@ extern NSString *const CENewNameKey;
 // ------------------------------------------------------
 
 // general settings
+extern NSString *const CEDefaultLastVersionKey;
 extern NSString *const CEDefaultLayoutTextVerticalKey;
 extern NSString *const CEDefaultSplitViewVerticalKey;
 extern NSString *const CEDefaultShowLineNumbersKey;

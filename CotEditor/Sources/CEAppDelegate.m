@@ -49,6 +49,9 @@
 
 @interface CEAppDelegate ()
 
+@property (nonatomic) BOOL hasSetting;  // for migration check
+
+
 // readonly
 @property (readwrite, nonatomic) NSURL *supportDirectoryURL;
 
@@ -58,7 +61,7 @@
 
 @interface CEAppDelegate (Migration)
 
-- (void)migrate;
+- (void)migrateToVersion2;
 
 @end
 
@@ -388,8 +391,18 @@
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
     
     
-    // CotEditor 1.x系からの移行 TODO: Check whether migration is needed.
-//    [self migrate];
+    // CotEditor 1.x系からの移行
+    // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    if (!lastVersion) {
+        if ([self hasSetting]) {
+            [self migrateToVersion2];
+        }
+        
+        // store current version
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+        [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
+    }
 }
 
 
@@ -630,7 +643,6 @@
 {
     NSURL *URL = [self supportDirectoryURL];
     NSNumber *isDirectory;
-    
     if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
         BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
                                                 withIntermediateDirectories:YES
@@ -641,6 +653,8 @@
         }
     } else if (![isDirectory boolValue]) {
         NSLog(@"\"%@\" is not dir.", URL);
+    } else {
+        [self setHasSetting:YES];
     }
 }
 
@@ -723,14 +737,14 @@
 
 //------------------------------------------------------
 /// perform migration from CotEditor 1.x to 2.0
-- (void)migrate
+- (void)migrateToVersion2
 //------------------------------------------------------
 {
     // migrate syntax styles to modern style
-    BOOL didSyntaxMigrated = [[CESyntaxManager sharedManager] migrateStyles];
+    BOOL didMigrateSyntax = [[CESyntaxManager sharedManager] migrateStyles];
     
     // migrate coloring setting
-    BOOL didThemeMigrated = [[CEThemeManager sharedManager] migrateTheme];
+    BOOL didMigrateTheme = [[CEThemeManager sharedManager] migrateTheme];
     
     // reset menu keybindings setting
     BOOL didResetKeyBindings = [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
