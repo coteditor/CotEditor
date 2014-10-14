@@ -34,25 +34,26 @@
 extern NSString *const CEThemeExtension;
 
 // keys for theme dict
-extern NSString *const CEThemeTextColorKey;
-extern NSString *const CEThemeBackgroundColorKey;
-extern NSString *const CEThemeInvisiblesColorKey;
-extern NSString *const CEThemeSelectionColorKey;
-extern NSString *const CEThemeInsertionPointColorKey;
-extern NSString *const CEThemeLineHighlightColorKey;
+extern NSString *const CEThemeTextKey;
+extern NSString *const CEThemeBackgroundKey;
+extern NSString *const CEThemeInvisiblesKey;
+extern NSString *const CEThemeSelectionKey;
+extern NSString *const CEThemeInsertionPointKey;
+extern NSString *const CEThemeLineHighlightKey;
 
-extern NSString *const CEThemeKeywordsColorKey;
-extern NSString *const CEThemeCommandsColorKey;
-extern NSString *const CEThemeTypesColorKey;
-extern NSString *const CEThemeAttributesColorKey;
-extern NSString *const CEThemeVariablesColorKey;
-extern NSString *const CEThemeValuesColorKey;
-extern NSString *const CEThemeNumbersColorKey;
-extern NSString *const CEThemeStringsColorKey;
-extern NSString *const CEThemeCharactersColorKey;
-extern NSString *const CEThemeCommentsColorKey;
+extern NSString *const CEThemeKeywordsKey;
+extern NSString *const CEThemeCommandsKey;
+extern NSString *const CEThemeTypesKey;
+extern NSString *const CEThemeAttributesKey;
+extern NSString *const CEThemeVariablesKey;
+extern NSString *const CEThemeValuesKey;
+extern NSString *const CEThemeNumbersKey;
+extern NSString *const CEThemeStringsKey;
+extern NSString *const CEThemeCharactersKey;
+extern NSString *const CEThemeCommentsKey;
 
-extern NSString *const CEThemeUsesSystemSelectionColorKey;
+extern NSString *const CEThemeColorKey;
+extern NSString *const CEThemeUsesSystemSettingKey;
 
 
 // notifications

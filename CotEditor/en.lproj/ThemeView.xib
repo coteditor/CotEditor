@@ -91,7 +91,7 @@
                     <rect key="frame" x="110" y="232" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.insertionPointColor" id="zhT-ry-76k">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.insertionPoint.color" id="EQT-og-ZSx">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -130,7 +130,7 @@
                     </constraints>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.textColor" id="nTh-FS-6D2">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.text.color" id="QyH-kf-cu1">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -141,7 +141,7 @@
                     <rect key="frame" x="110" y="205" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.invisiblesColor" id="BA0-lU-cbP">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.invisibles.color" id="XkT-T3-v4u">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -152,7 +152,7 @@
                     <rect key="frame" x="268" y="259" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.backgroundColor" id="Owv-3f-B2u">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.background.color" id="VOW-gT-kig">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -163,7 +163,7 @@
                     <rect key="frame" x="268" y="232" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlightColor" id="V74-PX-4Ia">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlight.color" id="ICi-MS-957">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -174,14 +174,14 @@
                     <rect key="frame" x="268" y="205" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selectionColor" id="3m8-OB-pMB">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.usesSystemSelectionColor" id="5DH-n8-Vsf">
+                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.selection.usesSystemSetting" id="LiX-Z7-p1X">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="j0D-XA-Nos">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -222,7 +222,7 @@
                     <rect key="frame" x="268" y="111" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbersColor" id="tLy-dY-KDh">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbers.color" id="llu-6g-zfy">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -233,7 +233,7 @@
                     <rect key="frame" x="268" y="57" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.charactersColor" id="y0k-JF-Of2">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.characters.color" id="Q1I-qE-gnE">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -252,7 +252,7 @@
                     <rect key="frame" x="268" y="84" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.stringsColor" id="iw4-9p-DwY">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.strings.color" id="jhb-EJ-SsH">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -263,7 +263,7 @@
                     <rect key="frame" x="268" y="30" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commentsColor" id="0MC-uP-e9z">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.comments.color" id="K0W-hU-8xJ">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -274,7 +274,7 @@
                     <rect key="frame" x="110" y="138" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.keywordsColor" id="Umr-F4-IP8">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.keywords.color" id="UBj-Aj-Cb2">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -285,7 +285,7 @@
                     <rect key="frame" x="110" y="111" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commandsColor" id="fqm-1s-A1s">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commands.color" id="Hff-x0-bdf">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -296,7 +296,7 @@
                     <rect key="frame" x="110" y="57" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.attributesColor" id="vPc-FO-JkI">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.attributes.color" id="72O-BS-CDL">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -315,7 +315,7 @@
                     <rect key="frame" x="110" y="84" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.typesColor" id="UED-8u-a3D">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.types.color" id="C0V-b8-VBw">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -326,7 +326,7 @@
                     <rect key="frame" x="110" y="30" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.variablesColor" id="bpB-TF-zyh">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.variables.color" id="8GM-ew-ISU">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -345,7 +345,7 @@
                     <rect key="frame" x="268" y="138" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.valuesColor" id="MsD-4U-kSw">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.values.color" id="Y8q-JG-2Ug">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">CEHexColorTransformer</string>
                             </dictionary>
@@ -360,7 +360,7 @@
                     </buttonCell>
                     <connections>
                         <action selector="applySystemSelectionColor:" target="-2" id="cmk-jZ-Veo"/>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.usesSystemSelectionColor" id="tSi-ok-bp6"/>
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.usesSystemSetting" id="CUx-0r-KsU"/>
                     </connections>
                 </button>
                 <button toolTip="Show theme file info" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-bx-K4A">

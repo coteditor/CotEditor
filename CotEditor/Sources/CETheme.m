@@ -93,40 +93,42 @@
 {
     self = [super init];
     if (self) {
-        NSMutableDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
+        NSDictionary *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
+        NSMutableDictionary *colorDict = [NSMutableDictionary dictionary];
         
         // カラーを解凍
         for (NSString *key in [CETheme colorKeys]) {
+            NSString *colorCode = themeDict[key][CEThemeColorKey];
             WFColorCodeType type = nil;
-            NSColor *color = [NSColor colorWithColorCode:themeDict[key] codeType:&type];
+            NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&type];
             
             if (!color || !(type == WFColorCodeHex || type == WFColorCodeShortHex)) {
                 color = [NSColor grayColor];  // color for invalid color code
             }
-            themeDict[key] = color;
+            colorDict[key] = color;
         }
         
         // プロパティをセット
         _name = themeName;
         
-        _textColor = themeDict[CEThemeTextColorKey];
-        _backgroundColor = themeDict[CEThemeBackgroundColorKey];
-        _invisiblesColor = themeDict[CEThemeInvisiblesColorKey];
-        _selectionColor = themeDict[CEThemeSelectionColorKey];
-        _insertionPointColor = themeDict[CEThemeInsertionPointColorKey];
-        _lineHighLightColor = themeDict[CEThemeLineHighlightColorKey];
-        _keywordsColor = themeDict[CEThemeKeywordsColorKey];
-        _commandsColor = themeDict[CEThemeCommandsColorKey];
-        _typesColor = themeDict[CEThemeTypesColorKey];
-        _attributesColor = themeDict[CEThemeAttributesColorKey];
-        _variablesColor = themeDict[CEThemeVariablesColorKey];
-        _valuesColor = themeDict[CEThemeValuesColorKey];
-        _numbersColor = themeDict[CEThemeNumbersColorKey];
-        _stringsColor = themeDict[CEThemeStringsColorKey];
-        _charactersColor = themeDict[CEThemeCharactersColorKey];
-        _commentsColor = themeDict[CEThemeCommentsColorKey];
+        _textColor = colorDict[CEThemeTextKey];
+        _backgroundColor = colorDict[CEThemeBackgroundKey];
+        _invisiblesColor = colorDict[CEThemeInvisiblesKey];
+        _selectionColor = colorDict[CEThemeSelectionKey];
+        _insertionPointColor = colorDict[CEThemeInsertionPointKey];
+        _lineHighLightColor = colorDict[CEThemeLineHighlightKey];
+        _keywordsColor = colorDict[CEThemeKeywordsKey];
+        _commandsColor = colorDict[CEThemeCommandsKey];
+        _typesColor = colorDict[CEThemeTypesKey];
+        _attributesColor = colorDict[CEThemeAttributesKey];
+        _variablesColor = colorDict[CEThemeVariablesKey];
+        _valuesColor = colorDict[CEThemeValuesKey];
+        _numbersColor = colorDict[CEThemeNumbersKey];
+        _stringsColor = colorDict[CEThemeStringsKey];
+        _charactersColor = colorDict[CEThemeCharactersKey];
+        _commentsColor = colorDict[CEThemeCommentsKey];
         
-        _usesSystemSelectionColor = [themeDict[CEThemeUsesSystemSelectionColorKey] boolValue];
+        _usesSystemSelectionColor = [themeDict[CEThemeSelectionKey][CEThemeUsesSystemSettingKey] boolValue];
         
         // 文字カラーと背景カラーの中間色であるマークアップカラーを生成
         CGFloat bgR, bgG, bgB, fgR, fgG, fgB;
@@ -163,22 +165,22 @@
 + (NSArray *)colorKeys
 //------------------------------------------------------
 {
-    return @[CEThemeTextColorKey,
-             CEThemeBackgroundColorKey,
-             CEThemeInvisiblesColorKey,
-             CEThemeSelectionColorKey,
-             CEThemeInsertionPointColorKey,
-             CEThemeLineHighlightColorKey,
-             CEThemeKeywordsColorKey,
-             CEThemeCommandsColorKey,
-             CEThemeTypesColorKey,
-             CEThemeAttributesColorKey,
-             CEThemeVariablesColorKey,
-             CEThemeValuesColorKey,
-             CEThemeNumbersColorKey,
-             CEThemeStringsColorKey,
-             CEThemeCharactersColorKey,
-             CEThemeCommentsColorKey];
+    return @[CEThemeTextKey,
+             CEThemeBackgroundKey,
+             CEThemeInvisiblesKey,
+             CEThemeSelectionKey,
+             CEThemeInsertionPointKey,
+             CEThemeLineHighlightKey,
+             CEThemeKeywordsKey,
+             CEThemeCommandsKey,
+             CEThemeTypesKey,
+             CEThemeAttributesKey,
+             CEThemeVariablesKey,
+             CEThemeValuesKey,
+             CEThemeNumbersKey,
+             CEThemeStringsKey,
+             CEThemeCharactersKey,
+             CEThemeCommentsKey];
 }
 
 @end

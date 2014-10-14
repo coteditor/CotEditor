@@ -64,13 +64,7 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    NSMutableDictionary *theme = [self representedObject];
-    
-    for (NSString *key in [theme allKeys]) {
-        if ([key isEqualToString:CEMetadataKey]) { continue; }
-        
-        [theme removeObserver:self forKeyPath:key];
-    }
+    [self endObservingTheme];
 }
 
 
@@ -80,22 +74,11 @@
 // ------------------------------------------------------
 {
     // remove current observing (in case when the theme is restored)
-    if ([self representedObject]) {
-        NSDictionary *currentTheme = [self representedObject];
-        for (NSString *key in [currentTheme allKeys]) {
-            if ([key isEqualToString:CEMetadataKey]) { continue; }
-            
-            [currentTheme removeObserver:self forKeyPath:key];
-        }
-    }
+    [self endObservingTheme];
     
     // observe input theme
     NSDictionary *theme = representedObject;
-    for (NSString *key in [theme allKeys]) {
-        if ([key isEqualToString:CEMetadataKey]) { continue; }
-        
-        [theme addObserver:self forKeyPath:key options:0 context:NULL];
-    }
+    [self observeTheme:theme];
     
     [super setRepresentedObject:theme];
 }
@@ -146,7 +129,7 @@
 {
     if ([sender state] == NSOnState) {
         NSColor *color = [NSColor selectedTextBackgroundColor];
-        [self representedObject][CEThemeSelectionColorKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:WFColorCodeHex];
+        [self representedObject][CEThemeSelectionKey][CEThemeColorKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace] colorCodeWithType:WFColorCodeHex];
     }
 }
 
@@ -174,6 +157,47 @@
     }
     
     [[NSWorkspace sharedWorkspace] openURL:URL];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// start observing theme change
+- (void)observeTheme:(NSDictionary *)theme
+// ------------------------------------------------------
+{
+    for (NSString *key in [theme allKeys]) {
+        if ([key isEqualToString:CEMetadataKey]) { continue; }
+        
+        for (NSString *subKey in [theme[key] allKeys]) {
+            NSString *keyPath = [NSString stringWithFormat:@"%@.%@", key, subKey];
+            
+            [theme addObserver:self forKeyPath:keyPath options:0 context:NULL];
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// end observing current theme
+- (void)endObservingTheme
+// ------------------------------------------------------
+{
+    NSDictionary *theme = [self representedObject];
+    
+    if (!theme) { return; }
+    
+    for (NSString *key in [theme allKeys]) {
+        if ([key isEqualToString:CEMetadataKey]) { continue; }
+        
+        for (NSString *subKey in [theme[key] allKeys]) {
+            NSString *keyPath = [NSString stringWithFormat:@"%@.%@", key, subKey];
+            
+            [theme removeObserver:self forKeyPath:keyPath];
+        }
+    }
 }
 
 @end
