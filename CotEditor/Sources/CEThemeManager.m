@@ -76,15 +76,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 
 
-/// CotEditor 2.0 以前からの引き継ぎ作業用カテゴリ。引き継ぎが十分済んだら削除して良い。
-@interface CEThemeManager (Migration)
-
-- (void)migrateTheme;
-
-@end
-
-
-
 #pragma mark -
 
 @implementation CEThemeManager
@@ -127,9 +118,6 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 {
     self = [super init];
     if (self) {
-        // CotEditor 2.0 以前のカラーリング設定の引き継ぎ
-        [self migrateTheme];
-        
         // バンドルされているテーマの名前を読み込んでおく
         NSArray *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:CEThemeExtension subdirectory:@"Themes"];
         NSMutableArray *themeNames = [NSMutableArray array];
@@ -677,12 +665,15 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 
 //------------------------------------------------------
 /// CotEditor 1.5以前から CotEdito 1.6 への移行
-- (void)migrateTheme
+- (BOOL)migrateTheme
 //------------------------------------------------------
 {
-    // テーマディレクトリがある場合は移行済み
-    if ([[self userThemeDirectoryURL] checkResourceIsReachableAndReturnError:nil]) {
-        return;
+    BOOL success = NO;
+    NSString *themeName = NSLocalizedString(@"Customized Theme", nil);
+    
+    // カスタムテーマファイルがある場合は移行処理の必要なし（上書きを避けるため）
+    if ([[self URLForUserTheme:themeName] checkResourceIsReachableAndReturnError:nil]) {
+        return NO;
     }
     
     // UserDefaultsからデフォルトから変更されているテーマカラーを探す
@@ -708,11 +699,21 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
     
     // カスタマイズされたカラー設定があった場合は移行テーマを生成する
     if (isCustomized) {
-        NSString *themeName = NSLocalizedString(@"Customized Theme", nil);
         [self saveTheme:theme name:themeName completionHandler:nil];
+        
         // カスタマイズされたテーマを選択
         [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:CEDefaultThemeKey];
+        
+        success = YES;
     }
+    
+    if (success) {
+        [self updateCacheWithCompletionHandler:^{
+            // do nothing
+        }];
+    }
+    
+    return success;
 }
 
 

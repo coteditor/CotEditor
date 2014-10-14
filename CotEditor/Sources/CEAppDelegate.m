@@ -56,6 +56,14 @@
 
 
 
+@interface CEAppDelegate (Migration)
+
+- (void)migrate;
+
+@end
+
+
+
 
 #pragma mark -
 
@@ -378,6 +386,10 @@
     
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
+    
+    
+    // CotEditor 1.x系からの移行 TODO: Check whether migration is needed.
+//    [self migrate];
 }
 
 
@@ -698,6 +710,28 @@
                         action:@selector(changeTheme:)
                  keyEquivalent:@""];
     }
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEAppDelegate (Migration)
+
+//------------------------------------------------------
+/// perform migration from CotEditor 1.x to 2.0
+- (void)migrate
+//------------------------------------------------------
+{
+    // migrate syntax styles to modern style
+    BOOL didSyntaxMigrated = [[CESyntaxManager sharedManager] migrateStyles];
+    
+    // migrate coloring setting
+    BOOL didThemeMigrated = [[CEThemeManager sharedManager] migrateTheme];
+    
 }
 
 @end
