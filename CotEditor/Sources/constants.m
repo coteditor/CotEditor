@@ -227,30 +227,30 @@ NSString  *const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNO
 NSString *const CESyntaxMetadataKey = @"metadata";
 NSString *const CESyntaxExtensionsKey = @"extensions";
 NSString *const CESyntaxFileNamesKey = @"filenames";
-NSString *const CESyntaxKeywordsKey = @"keywordsArray";
-NSString *const CESyntaxCommandsKey = @"commandsArray";
-NSString *const CESyntaxTypesKey = @"typesArray";
-NSString *const CESyntaxAttributesKey = @"attributesArray";
-NSString *const CESyntaxVariablesKey = @"variablesArray";
-NSString *const CESyntaxValuesKey = @"valuesArray";
-NSString *const CESyntaxNumbersKey = @"numbersArray";
-NSString *const CESyntaxStringsKey = @"stringsArray";
-NSString *const CESyntaxCharactersKey = @"charactersArray";
-NSString *const CESyntaxCommentsKey = @"commentsArray";
+NSString *const CESyntaxKeywordsKey = @"keywords";
+NSString *const CESyntaxCommandsKey = @"commands";
+NSString *const CESyntaxTypesKey = @"types";
+NSString *const CESyntaxAttributesKey = @"attributes";
+NSString *const CESyntaxVariablesKey = @"variables";
+NSString *const CESyntaxValuesKey = @"values";
+NSString *const CESyntaxNumbersKey = @"numbers";
+NSString *const CESyntaxStringsKey = @"strings";
+NSString *const CESyntaxCharactersKey = @"characters";
+NSString *const CESyntaxCommentsKey = @"comments";
 NSString *const CESyntaxCommentDelimitersKey = @"commentDelimiters";
-NSString *const CESyntaxOutlineMenuKey = @"outlineMenuArray";
-NSString *const CESyntaxCompletionsKey = @"completionsArray";
+NSString *const CESyntaxOutlineMenuKey = @"outlineMenu";
+NSString *const CESyntaxCompletionsKey = @"completions";
 NSString *const kAllColoringKeys[] = {
-    @"keywordsArray",
-    @"commandsArray",
-    @"typesArray",
-    @"attributesArray",
-    @"variablesArray",
-    @"valuesArray",
-    @"numbersArray",
-    @"stringsArray",
-    @"charactersArray",
-    @"commentsArray"
+    @"keywords",
+    @"commands",
+    @"types",
+    @"attributes",
+    @"variables",
+    @"values",
+    @"numbers",
+    @"strings",
+    @"characters",
+    @"comments"
 };
 NSUInteger const kSizeOfAllColoringKeys = sizeof(kAllColoringKeys)/sizeof(kAllColoringKeys[0]);
 

@@ -3752,7 +3752,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.keywordsArray" id="KsQ-T0-bXX"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.keywords" id="KsQ-T0-bXX"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="33" userLabel="Commands Controller">
@@ -3763,7 +3763,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.commandsArray" id="8fD-dq-8fk"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.commands" id="8fD-dq-8fk"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="Xf4-h5-a4r" userLabel="Types Controller">
@@ -3774,7 +3774,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.typesArray" id="hvS-Tw-2QF"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.types" id="hvS-Tw-2QF"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="MjW-4d-32N" userLabel="Attributes Controller">
@@ -3785,7 +3785,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.attributesArray" id="7qx-WS-h9G"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.attributes" id="7qx-WS-h9G"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="5VS-Xp-FDy" userLabel="Variables Controller">
@@ -3796,7 +3796,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.variablesArray" id="e4P-8U-I10"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.variables" id="e4P-8U-I10"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="174" userLabel="Values Controller">
@@ -3807,7 +3807,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.valuesArray" id="jZk-k4-U8O"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.values" id="jZk-k4-U8O"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="236" userLabel="Numbers Controller">
@@ -3818,7 +3818,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.numbersArray" id="loG-ax-rYm"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.numbers" id="loG-ax-rYm"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="239" userLabel="Strings Controller">
@@ -3829,7 +3829,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.stringsArray" id="t9Z-zl-Fz1"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.strings" id="t9Z-zl-Fz1"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="242" userLabel="Characters Controller">
@@ -3840,7 +3840,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.charactersArray" id="x0Z-sq-CqY"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.characters" id="x0Z-sq-CqY"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="34" userLabel="Comments Controller">
@@ -3851,7 +3851,7 @@ DQ
                 <string>endString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.commentsArray" id="Nec-eA-HUh"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.comments" id="Nec-eA-HUh"/>
             </connections>
         </arrayController>
         <objectController automaticallyPreparesContent="YES" id="mqD-Eg-bhK" userLabel="Comment Delimiters Controller">
@@ -3880,7 +3880,7 @@ DQ
                 <string>italic</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.outlineMenuArray" id="vet-hu-eK4"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.outlineMenu" id="vet-hu-eK4"/>
             </connections>
         </arrayController>
         <arrayController id="777" userLabel="Completions Controller">
@@ -3888,7 +3888,7 @@ DQ
                 <string>keyString</string>
             </declaredKeys>
             <connections>
-                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.completionsArray" id="bxK-T1-79n"/>
+                <binding destination="qhW-MU-UWm" name="contentArray" keyPath="selection.completions" id="bxK-T1-79n"/>
             </connections>
         </arrayController>
         <arrayController clearsFilterPredicateOnInsertion="NO" id="197" userLabel="Extensions Controller" customClass="CEDraggableArrayController">
