@@ -70,3 +70,14 @@ extern NSString *const CESyntaxDidUpdateNotification;
 - (NSArray *)validateSyntax:(NSDictionary *)style;
 
 @end
+
+
+
+// Category for migration from CotEditor 1.x to 2.0. (2014-10)
+// It can be removed when the most of users have been already migrated in the future.
+@interface CESyntaxManager (Migration)
+
+- (BOOL)migrateStyles;
+- (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL;
+
+@end

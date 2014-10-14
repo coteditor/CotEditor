@@ -59,3 +59,13 @@ extern NSString *const CEKeyBindingSelectorStringKey;
 - (BOOL)saveTextKeyBindings:(NSArray *)outlineViewData texts:(NSArray *)texts;
 
 @end
+
+
+
+// Category for migration from CotEditor 1.x to 2.0. (2014-10)
+// It can be removed when the most of users have been already migrated in the future.
+@interface CEKeyBindingManager (Migration)
+
+- (BOOL)resetMenuKeyBindings;
+
+@end

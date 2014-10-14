@@ -103,7 +103,7 @@
 	<key>~@i</key>
 	<string>showSelectionInfo:</string>
 	<key>~@r</key>
-	<string>recoloringAllStringOfDocument:</string>
+	<string>recolorAll:</string>
 	<key>~@</key>
 	<string>selectPrevItemOfOutlineMenu:</string>
 	<key>~@</key>

@@ -49,8 +49,19 @@
 
 @interface CEAppDelegate ()
 
+@property (nonatomic) BOOL hasSetting;  // for migration check
+
+
 // readonly
 @property (readwrite, nonatomic) NSURL *supportDirectoryURL;
+
+@end
+
+
+
+@interface CEAppDelegate (Migration)
+
+- (void)migrateToVersion2;
 
 @end
 
@@ -378,6 +389,20 @@
     
     // KeyBindingManagerをセットアップ
     [[CEKeyBindingManager sharedManager] setupAtLaunching];
+    
+    
+    // CotEditor 1.x系からの移行
+    // 本来ならば semantic versioning で比較をするべきだが、2.0 への移行はひとまず lastVersion の有無のみで判断を行なう
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
+    if (!lastVersion) {
+        if ([self hasSetting]) {
+            [self migrateToVersion2];
+        }
+        
+        // store current version
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+        [[NSUserDefaults standardUserDefaults] setObject:version forKey:CEDefaultLastVersionKey];
+    }
 }
 
 
@@ -618,7 +643,6 @@
 {
     NSURL *URL = [self supportDirectoryURL];
     NSNumber *isDirectory;
-    
     if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
         BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
                                                 withIntermediateDirectories:YES
@@ -629,6 +653,8 @@
         }
     } else if (![isDirectory boolValue]) {
         NSLog(@"\"%@\" is not dir.", URL);
+    } else {
+        [self setHasSetting:YES];
     }
 }
 
@@ -677,7 +703,7 @@
     
     // 全文字列を再カラーリングするメニューを追加
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
-                                                  action:@selector(recoloringAllStringOfDocument:)
+                                                  action:@selector(recolorAll:)
                                            keyEquivalent:@"r"];
     [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
     [menu addItem:item];
@@ -698,6 +724,30 @@
                         action:@selector(changeTheme:)
                  keyEquivalent:@""];
     }
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEAppDelegate (Migration)
+
+//------------------------------------------------------
+/// perform migration from CotEditor 1.x to 2.0
+- (void)migrateToVersion2
+//------------------------------------------------------
+{
+    // migrate syntax styles to modern style
+    BOOL didMigrateSyntax = [[CESyntaxManager sharedManager] migrateStyles];
+    
+    // migrate coloring setting
+    BOOL didMigrateTheme = [[CEThemeManager sharedManager] migrateTheme];
+    
+    // reset menu keybindings setting
+    BOOL didResetKeyBindings = [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
 }
 
 @end

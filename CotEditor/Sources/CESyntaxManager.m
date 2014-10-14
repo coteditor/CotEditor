@@ -57,15 +57,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 
 
-@interface CESyntaxManager (Migration)
-
-- (void)migrateStyles;
-- (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL;
-
-@end
-
-
-
 
 #pragma mark -
 
@@ -116,9 +107,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
             [styleNames addObject:[self styleNameFromURL:URL]];
         }
         [self setBundledStyleNames:styleNames];
-        
-        // migration from 1.x to 2.0
-        [self migrateStyles];
         
         // cache user styles asynchronously but wait until the process will be done
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -783,16 +771,17 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
 
 // ------------------------------------------------------
 /// CotEditor 1.x から CotEdito 2.0 への移行
-- (void)migrateStyles
+- (BOOL)migrateStyles
 // ------------------------------------------------------
 {
+    BOOL success = NO;
     NSURL *oldDirURL = [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"SyntaxColorings"];
     
     // 移行の必要性チェック
     if (![oldDirURL checkResourceIsReachableAndReturnError:nil] ||
         [[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil])
     {
-        return;
+        return NO;
     }
     
     [self prepareUserStyleDirectory];
@@ -803,8 +792,18 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                                                        error:nil];
     
     for (NSURL *URL in URLs) {
-        [self importLegacyStyleFromURL:URL];
+        if ([self importLegacyStyleFromURL:URL]) {
+            success = YES;
+        }
     }
+    
+    if (success) {
+        [self updateCacheWithCompletionHandler:^{
+            // do nothing
+        }];
+    }
+    
+    return success;
 }
 
 

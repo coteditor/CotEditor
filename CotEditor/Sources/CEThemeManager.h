@@ -89,3 +89,13 @@ extern NSString *const CEThemeDidUpdateNotification;
 - (BOOL)createUntitledThemeWithCompletionHandler:(void (^)(NSString *themeName, NSError *error))completionHandler;
 
 @end
+
+
+
+// Category for migration from CotEditor 1.x to 2.0. (2014-10)
+// It can be removed when the most of users have been already migrated in the future.
+@interface CEThemeManager (Migration)
+
+- (BOOL)migrateTheme;
+
+@end

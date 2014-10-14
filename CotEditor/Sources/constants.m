@@ -77,6 +77,7 @@ NSString *const CENewNameKey = @"CENewNameKey";
 // ------------------------------------------------------
 
 // general settings
+NSString *const CEDefaultLastVersionKey = @"lastVersion";
 NSString *const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
 NSString *const CEDefaultSplitViewVerticalKey = @"splitViewVertical";
 NSString *const CEDefaultShowLineNumbersKey = @"showLineNumbers";
