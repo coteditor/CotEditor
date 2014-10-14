@@ -803,8 +803,6 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                                                        error:nil];
     
     for (NSURL *URL in URLs) {
-        if (![[URL pathExtension] isEqualToString:@"plist"]) { continue; }
-        
         [self importLegacyStyleFromURL:URL];
     }
 }
@@ -826,15 +824,14 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                            writingItemAtURL:destURL options:NULL
                                       error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSMutableDictionary *style = [NSMutableDictionary dictionaryWithContentsOfURL:fileURL];
+         NSDictionary *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
          NSMutableDictionary *newStyle = [NSMutableDictionary dictionary];
          
          // format migration
-         for (NSString *key in [style allKeys]) {
+         for (NSString *key in style) {
              // remove lagacy "styleName" key
-             if ([key isEqualToString:@"styleName"]) {
-                 continue;
-             }
+             if ([key isEqualToString:@"styleName"]) { continue; }
+             
              // remove all `Array` suffix from dict keys
              NSString *newKey = [key stringByReplacingOccurrencesOfString:@"Array" withString:@""];
              newStyle[newKey] = style[key];

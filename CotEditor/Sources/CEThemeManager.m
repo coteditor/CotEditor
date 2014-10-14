@@ -37,25 +37,26 @@
 NSString *const CEThemeExtension = @"cottheme";
 
 // keys for theme dict
-NSString *const CEThemeTextColorKey = @"textColor";
-NSString *const CEThemeBackgroundColorKey = @"backgroundColor";
-NSString *const CEThemeInvisiblesColorKey = @"invisiblesColor";
-NSString *const CEThemeSelectionColorKey = @"selectionColor";
-NSString *const CEThemeInsertionPointColorKey = @"insertionPointColor";
-NSString *const CEThemeLineHighlightColorKey = @"lineHighlightColor";
+NSString *const CEThemeTextKey = @"text";
+NSString *const CEThemeBackgroundKey = @"background";
+NSString *const CEThemeInvisiblesKey = @"invisibles";
+NSString *const CEThemeSelectionKey = @"selection";
+NSString *const CEThemeInsertionPointKey = @"insertionPoint";
+NSString *const CEThemeLineHighlightKey = @"lineHighlight";
 
-NSString *const CEThemeKeywordsColorKey = @"keywordsColor";
-NSString *const CEThemeCommandsColorKey = @"commandsColor";
-NSString *const CEThemeTypesColorKey = @"typesColor";
-NSString *const CEThemeAttributesColorKey = @"attributesColor";
-NSString *const CEThemeVariablesColorKey = @"variablesColor";
-NSString *const CEThemeValuesColorKey = @"valuesColor";
-NSString *const CEThemeNumbersColorKey = @"numbersColor";
-NSString *const CEThemeStringsColorKey = @"stringsColor";
-NSString *const CEThemeCharactersColorKey = @"charactersColor";
-NSString *const CEThemeCommentsColorKey = @"commentsColor";
+NSString *const CEThemeKeywordsKey = @"keywords";
+NSString *const CEThemeCommandsKey = @"commands";
+NSString *const CEThemeTypesKey = @"types";
+NSString *const CEThemeAttributesKey = @"attributes";
+NSString *const CEThemeVariablesKey = @"variables";
+NSString *const CEThemeValuesKey = @"values";
+NSString *const CEThemeNumbersKey = @"numbers";
+NSString *const CEThemeStringsKey = @"strings";
+NSString *const CEThemeCharactersKey = @"characters";
+NSString *const CEThemeCommentsKey = @"comments";
 
-NSString *const CEThemeUsesSystemSelectionColorKey = @"usesSystemSelectionColor";
+NSString *const CEThemeColorKey = @"color";
+NSString *const CEThemeUsesSystemSettingKey = @"usesSystemSetting";
 
 // notifications
 NSString *const CEThemeListDidUpdateNotification = @"CEThemeListDidUpdateNotification";
@@ -697,10 +698,10 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
         
         if (color) {
             isCustomized = YES;
-            theme[modernKey] = [[color colorUsingColorSpaceName:NSCalibratedRGBColorSpace]
-                                colorCodeWithType:WFColorCodeHex];
+            color = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+            theme[modernKey][CEThemeColorKey] = [color colorCodeWithType:WFColorCodeHex];
             if ([classicKey isEqualToString:@"selectionColor"]) {
-                theme[CEThemeUsesSystemSelectionColorKey] = @NO;
+                theme[CEThemeSelectionKey][CEThemeUsesSystemSettingKey] = @NO;
             }
         }
     }
@@ -737,19 +738,19 @@ NSString *const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotification";
 - (NSDictionary *)classicThemeKeyTable
 //------------------------------------------------------
 {
-    return @{@"textColor": CEThemeTextColorKey,
-             @"backgroundColor": CEThemeBackgroundColorKey,
-             @"invisibleCharactersColor": CEThemeInvisiblesColorKey,
-             @"selectionColor": CEThemeSelectionColorKey,
-             @"insertionPointColor": CEThemeInsertionPointColorKey,
-             @"highlightLineColor": CEThemeLineHighlightColorKey,
-             @"keywordsColor": CEThemeKeywordsColorKey,
-             @"commandsColor": CEThemeCommandsColorKey,
-             @"valuesColor": CEThemeValuesColorKey,
-             @"numbersColor": CEThemeNumbersColorKey,
-             @"stringsColor": CEThemeStringsColorKey,
-             @"charactersColor": CEThemeCharactersColorKey,
-             @"commentsColor": CEThemeCommentsColorKey,
+    return @{@"textColor": CEThemeTextKey,
+             @"backgroundColor": CEThemeBackgroundKey,
+             @"invisibleCharactersColor": CEThemeInvisiblesKey,
+             @"selectionColor": CEThemeSelectionKey,
+             @"insertionPointColor": CEThemeInsertionPointKey,
+             @"highlightLineColor": CEThemeLineHighlightKey,
+             @"keywordsColor": CEThemeKeywordsKey,
+             @"commandsColor": CEThemeCommandsKey,
+             @"valuesColor": CEThemeValuesKey,
+             @"numbersColor": CEThemeNumbersKey,
+             @"stringsColor": CEThemeStringsKey,
+             @"charactersColor": CEThemeCharactersKey,
+             @"commentsColor": CEThemeCommentsKey,
              };
 }
 
