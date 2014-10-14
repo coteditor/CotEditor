@@ -1,8 +1,8 @@
 extensions:
 - keyString: "go"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "([\\t ]*)type[\\t ]+(\\w+)[\\t ]+interface"
   keyString: "$1interface $2"
   italic: true
@@ -10,7 +10,7 @@ outlineMenuArray:
   keyString: "$1struct $2"
   bold: true
 - beginString: "[\\t ]*func +\\w+\\(.*?\\)"
-commandsArray:
+commands:
 - beginString: "append"
 - beginString: "cap"
 - beginString: "close"
@@ -26,23 +26,23 @@ commandsArray:
 - beginString: "println"
 - beginString: "real"
 - beginString: "recover"
-attributesArray: []
+attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "false"
 - beginString: "iota"
 - beginString: "nil"
 - beginString: "true"
-typesArray:
+types:
 - beginString: "bool"
 - beginString: "byte"
 - beginString: "chan"
@@ -67,7 +67,7 @@ typesArray:
 - beginString: "uint64"
 - beginString: "uint8"
 - beginString: "uintptr"
-numbersArray:
+numbers:
 - beginString: "0[xX][0-9a-fA-F]+"
   regularExpression: true
 - beginString: "\\.d+([eE][-+]?\\d+)?i?"
@@ -78,12 +78,12 @@ numbersArray:
   regularExpression: true
 - beginString: "\\d+\\.\\d*([eE][-+]?\\d+)?i?"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "`"
   endString: "`"
-keywordsArray:
+keywords:
 - beginString: "break"
 - beginString: "case"
 - beginString: "chan"
@@ -109,7 +109,7 @@ keywordsArray:
 - beginString: "switch"
 - beginString: "type"
 - beginString: "var"
-variablesArray: []
+variables: []
 commentDelimiters:
   endDelimiter: "*/"
   beginDelimiter: "/*"

@@ -1,13 +1,13 @@
 extensions:
 - keyString: "dtd"
-outlineMenuArray: []
-completionsArray: []
-commandsArray:
+outlineMenu: []
+completions: []
+commands:
 - beginString: "(?<=<)\\?[[:alnum:]_\\-.:]+"
   regularExpression: true
 - beginString: "\\?(?=>)"
   regularExpression: true
-attributesArray:
+attributes:
 - beginString: "(?<=\\s)[[:alnum:]_\\-.:]+(?=\\s*=)"
   regularExpression: true
 metadata:
@@ -16,17 +16,17 @@ metadata:
   version: "1.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "%[^&%\"]+;(?=[^<>]*[\\[>])"
   regularExpression: true
 - beginString: "&\\S+?;"
   regularExpression: true
 - beginString: "<![CDATA["
   endString: "]]>"
-commentsArray:
+comments:
 - beginString: "(?#for SGML DTD)--(?:-[^-]|[^-])*--(?=[^<>]*>)"
   regularExpression: true
-valuesArray:
+values:
 - beginString: "(?#for SGML DTD)(?<=\\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^<>]*>)"
   regularExpression: true
 - beginString: "(?<=[(|])#PCDATA(?=\\b)"
@@ -53,23 +53,23 @@ valuesArray:
   regularExpression: true
 - beginString: "(?<=\\s)NOTATION(?=[^<>]*>)"
   regularExpression: true
-typesArray:
+types:
 - beginString: "(?<=<)![A-Z]*"
   regularExpression: true
-numbersArray: []
-stringsArray:
+numbers: []
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "(?<!\\w)'[^']*?'(?=[^<>]*>)"
   regularExpression: true
 - beginString: "(?<=NDATA)\\s+[[:alnum:]_\\-.]+(?=\\s*>)"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\n\\t />])"
   regularExpression: true
 - beginString: "(?<=[\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\n\\t )|,]?[^<>\\[]*[>\\[])"
   regularExpression: true
-variablesArray:
+variables:
 - beginString: "(?#for SGML DTD)(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)"
   regularExpression: true
 - beginString: "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)"

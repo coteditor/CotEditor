@@ -1,15 +1,15 @@
 extensions:
 - keyString: "yaml"
 - keyString: "yml"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^  ([^ ].*?):"
   keyString: "    $1:"
 - beginString: "^([^ ].*?):"
   keyString: "$1:"
 - beginString: "^---"
   keyString: "-"
-completionsArray: []
-commandsArray:
+completions: []
+commands:
 - beginString: "%TAG"
 - beginString: "%YAML [0-9.]+"
   regularExpression: true
@@ -17,18 +17,18 @@ commandsArray:
   regularExpression: true
 - beginString: "^\\.\\.\\.$"
   regularExpression: true
-attributesArray: []
+attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "\\b\\d{4}-\\d{2}-\\d{2}( \\d{2}:\\d{2}:\\d{2}( [-+]\\d{2}:\\d{2})?)?\\b"
   regularExpression: true
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "(?<!!)null\\b"
   ignoreCase: true
   regularExpression: true
@@ -45,7 +45,7 @@ valuesArray:
 - beginString: "yes"
   ignoreCase: true
 - beginString: "~"
-typesArray:
+types:
 - beginString: "!"
 - beginString: "!!"
 - beginString: "!!binary"
@@ -69,22 +69,22 @@ typesArray:
   regularExpression: true
 - beginString: "\\btag:\\S+"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\n\\}\\]])"
   regularExpression: true
 - beginString: ".inf"
 - beginString: "0x[0-9a-fA-F]+"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'[^\\n]*?'"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?<=[-\\n\\[\\{,]|\\A)[ \\t]*[^-:\\[\\]\\n ][^:\\[\\]\\n ]*(?=[\\t
     ]*:[ \\t\\n])"
   regularExpression: true
-variablesArray:
+variables:
 - beginString: "&[^ \\t\\n]+\\b"
   regularExpression: true
 - beginString: "\\*[^ \\t\\n]+\\b"

@@ -1,11 +1,11 @@
 extensions:
 - keyString: "lua"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "([\\t ]*)(function +.+\\(.*?\\))"
   keyString: "$1$2"
-commandsArray:
+commands:
 - beginString: "(?<=bit32\\.)arshift"
   regularExpression: true
 - beginString: "(?<=bit32\\.)band"
@@ -271,16 +271,16 @@ commandsArray:
 - beginString: "tostring"
 - beginString: "type"
 - beginString: "xpcall"
-attributesArray: []
+attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "(?<=math\\.)huge"
   regularExpression: true
 - beginString: "(?<=math\\.)pi"
@@ -290,18 +290,18 @@ valuesArray:
 - beginString: "false"
 - beginString: "nil"
 - beginString: "true"
-typesArray: []
-numbersArray:
+types: []
+numbers:
 - beginString: "0[xX][0-9a-fA-F]+"
   regularExpression: true
 - beginString: "\\d+(\\.\\d+)?([eE][-+]?\\d+)?"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'"
   endString: "'"
-keywordsArray:
+keywords:
 - beginString: "and"
 - beginString: "break"
 - beginString: "do"
@@ -321,7 +321,7 @@ keywordsArray:
 - beginString: "then"
 - beginString: "until"
 - beginString: "while"
-variablesArray:
+variables:
 - beginString: "self"
 commentDelimiters:
   endDelimiter: "]]"

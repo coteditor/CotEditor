@@ -1,16 +1,16 @@
 extensions:
 - keyString: "java"
-outlineMenuArray:
+outlineMenu:
 - keyString: "$1$2 : $3"
   beginString: "^([\\t ]*)(class)(.*?)(?=(\\{|$))"
   bold: true
 - beginString: "^([\\t ]*)(private)[\\t ]+(.*)(?=\\{)"
 - beginString: "^([\\t ]*)(protected)[\\t ]+(.*)(?=\\{)"
 - beginString: "^([\\t ]*)(public)[\\t ]+(.*)(?=\\{)"
-commandsArray:
+commands:
 - beginString: "(?<=\\.)[a-z$_][a-zA-Z0-9$_]*(?=\\()"
   regularExpression: true
-attributesArray:
+attributes:
 - beginString: "@[A-Z][a-zA-Z]+\\b"
   regularExpression: true
 - beginString: "@After"
@@ -33,18 +33,18 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "\\b[A-Z][A-Z0-9_]+\\b"
   regularExpression: true
 - beginString: "false"
 - beginString: "NaN"
 - beginString: "null"
 - beginString: "true"
-typesArray:
+types:
 - beginString: "boolean"
 - beginString: "byte"
 - beginString: "char"
@@ -55,7 +55,7 @@ typesArray:
 - beginString: "short"
 - beginString: "String"
 - beginString: "void"
-numbersArray:
+numbers:
 - beginString: "\\b((\\d+\\.\\d*)|(\\.\\d+))(e[-+]?\\d+)?([lfud]|ul)?\\b"
   ignoreCase: true
   regularExpression: true
@@ -68,10 +68,10 @@ numbersArray:
 - beginString: "\\b[0-9_]+([lfud]|ul)?\\b"
   ignoreCase: true
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "abstract"
 - beginString: "assert"
 - beginString: "break"
@@ -109,7 +109,7 @@ keywordsArray:
 - beginString: "try"
 - beginString: "volatile"
 - beginString: "while"
-variablesArray:
+variables:
 - beginString: "super"
 - beginString: "this"
 commentDelimiters:

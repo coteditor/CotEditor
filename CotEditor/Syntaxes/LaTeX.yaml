@@ -3,7 +3,7 @@ extensions:
 - keyString: "TEX"
 - keyString: "sty"
 - keyString: "cls"
-outlineMenuArray:
+outlineMenu:
 - beginString: "[\\\\\xA5]chapter\\*?\\{(.*)\\"
   keyString: "$1"
 - beginString: "[\\\\\xA5]part\\*?\\{(.*)\\"
@@ -15,7 +15,7 @@ outlineMenuArray:
   keyString: "        $1"
 - beginString: "[\\\\\xA5]subsubsection\\*?\\{(.*)\\"
   keyString: "            $1"
-completionsArray:
+completions:
 - keyString: "begin"
 - keyString: "chapter"
 - keyString: "end"
@@ -23,7 +23,7 @@ completionsArray:
 - keyString: "section"
 - keyString: "subsection"
 - keyString: "subsubsection"
-commandsArray:
+commands:
 - beginString: "[\\\\\xA5]caption\\{.+\\"
   regularExpression: true
 - beginString: "[\\\\\xA5]centerin"
@@ -67,19 +67,19 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "[\\\\\xA5](La)?TeXe"
   regularExpression: true
 - beginString: "\\$([^$\\n]+)\\$"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "[\\\\\xA5]frac\\{[^}]+\\}\\{[^}]"
   endString: "\\}"
   regularExpression: true
-stringsArray: []
-keywordsArray:
+strings: []
+keywords:
 - beginString: "[\\\\\xA5]author\\{.*\\"
   regularExpression: true
 - beginString: "[\\\\\xA5]begin\\{.*\\"

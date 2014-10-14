@@ -2,15 +2,15 @@ extensions:
 - keyString: "diff"
 - keyString: "patch"
 - keyString: "dif"
-outlineMenuArray:
+outlineMenu:
 - beginString: "(.+)(?=\\n\\=+[\\t ]*$)"
   bold: true
 - beginString: "^@@(.+)@@"
   keyString: "    $0"
 - beginString: "^[0-9,adc]+$"
   keyString: "    $0"
-completionsArray: []
-commandsArray:
+completions: []
+commands:
 - beginString: "^diff -.+"
   regularExpression: true
 - beginString: "^index .+"
@@ -23,31 +23,31 @@ metadata:
   version: "1.1"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "^! .*"
   regularExpression: true
 - beginString: "^!$"
   regularExpression: true
-commentsArray:
+comments:
 - beginString: "^[*]{3} .*"
   regularExpression: true
 - beginString: "^[-+]{3} .*"
   regularExpression: true
 - beginString: "^\\*+"
   regularExpression: true
-valuesArray:
+values:
 - beginString: "^< .*"
   regularExpression: true
 - beginString: "^\\+.*"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "^@@ "
   endString: " @@"
   regularExpression: true
 - beginString: "^[0-9,adc]+$"
   regularExpression: true
-stringsArray: []
-keywordsArray:
+strings: []
+keywords:
 - beginString: "^-.*"
   regularExpression: true
 - beginString: "^> .*"

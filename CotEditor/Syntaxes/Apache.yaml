@@ -2,7 +2,7 @@ extensions:
 - keyString: "conf"
 filenames:
 - keyString: ".htaccess"
-completionsArray:
+completions:
 - keyString: "AcceptFilter"
 - keyString: "AcceptMutex"
 - keyString: "AcceptPathInfo"
@@ -618,7 +618,7 @@ completionsArray:
 - keyString: "xml2EncAlias"
 - keyString: "xml2EncDefault"
 - keyString: "xml2StartParse"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^[\\t ]*<Directory(?:Match)?[\\t ]+\"?(.*?)\"?>"
   keyString: "Directory:  $1"
 - beginString: "^[\\t ]*<Files(?:Match)?[\\t ]+\"?(.*?)\"?>"
@@ -627,7 +627,7 @@ outlineMenuArray:
   keyString: "Location:  $1"
 - beginString: "^[\\t ]*<VirtualHost[\\t ]+\"?(.*?)\"?>"
   keyString: "VirtualHost:  $1"
-commandsArray:
+commands:
 - beginString: "^\\s*AcceptFilter\\s"
   ignoreCase: true
   regularExpression: true
@@ -2581,9 +2581,9 @@ metadata:
   version: "2.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray: []
-valuesArray:
+characters: []
+comments: []
+values:
 - beginString: "add"
   ignoreCase: true
 - beginString: "all"
@@ -2630,13 +2630,13 @@ valuesArray:
   ignoreCase: true
 - beginString: "unset"
   ignoreCase: true
-numbersArray: []
-stringsArray:
+numbers: []
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'"
   endString: "'"
-keywordsArray:
+keywords:
 - beginString: "(?<=</?)AuthnProviderAlias\\b"
   regularExpression: true
 - beginString: "(?<=</?)AuthzProviderAlias\\b"

@@ -1,11 +1,11 @@
 extensions:
 - keyString: "js"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "^([\\t ]*)(function)([^{]*)\\{"
   keyString: "$1$2 : $3"
-commandsArray:
+commands:
 - beginString: "\\babord(?=\\()"
   regularExpression: true
 - beginString: "\\bafter(?=\\()"
@@ -550,7 +550,7 @@ commandsArray:
 - beginString: "watchPosition"
 - beginString: "write"
 - beginString: "writeln"
-attributesArray:
+attributes:
 - beginString: "(?<=\\.)altitude\\b"
   regularExpression: true
 - beginString: "(?<=\\.)arguments\\b"
@@ -1006,11 +1006,11 @@ metadata:
   version: "2.0"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "/\\S+/[gimy]*"
   regularExpression: true
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "ATTRIBUTE_NODE"
 - beginString: "CDATA_SECTION_NODE"
 - beginString: "CLOSE_ABNORMAL"
@@ -1059,7 +1059,7 @@ valuesArray:
 - beginString: "TEXT_NODE"
 - beginString: "true"
 - beginString: "undefined"
-typesArray:
+types:
 - beginString: "AbstractWorker"
 - beginString: "Array"
 - beginString: "ArrayBuffer"
@@ -1164,7 +1164,7 @@ typesArray:
 - beginString: "WeakMap"
 - beginString: "WeakSet"
 - beginString: "Worker"
-numbersArray:
+numbers:
 - beginString: "\\b0b[01]+\\b"
   ignoreCase: true
   regularExpression: true
@@ -1176,12 +1176,12 @@ numbersArray:
   regularExpression: true
 - beginString: "\\b\\d+\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'"
   endString: "'"
-keywordsArray:
+keywords:
 - beginString: "break"
 - beginString: "case"
 - beginString: "catch"
@@ -1226,7 +1226,7 @@ keywordsArray:
 - beginString: "while"
 - beginString: "with"
 - beginString: "yield"
-variablesArray:
+variables:
 - beginString: "arguments"
 - beginString: "this"
 commentDelimiters:

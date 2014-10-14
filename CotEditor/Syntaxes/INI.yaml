@@ -1,33 +1,33 @@
 extensions:
 - keyString: "ini"
-outlineMenuArray:
+outlineMenu:
 - beginString: "^\\[(.+)\\]"
   keyString: "$1"
   bold: true
-completionsArray: []
-commandsArray: []
+completions: []
+commands: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
   version: "1.2"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray: []
-commentsArray:
+characters: []
+comments:
 - beginString: ";.*"
   regularExpression: true
-valuesArray:
+values:
 - beginString: "^\\w[^=]*(?=[=:])"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "(?<![0-9a-z$])[0-9.][0-9.]*(e-?[0-9.]+)?\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "'"
   endString: "'"
-keywordsArray:
+keywords:
 - beginString: "^\\["
   endString: "\\]"
   regularExpression: true

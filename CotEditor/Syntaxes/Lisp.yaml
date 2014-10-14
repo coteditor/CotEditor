@@ -5,14 +5,14 @@ extensions:
 - keyString: "clj"
 - keyString: "edn"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "([\\t ]*)\\(defmacro\\S+(\\S+)"
   keyString: "$1macro: $2"
 - beginString: "([\\t ]*)\\(defun\\S+(\\S+)"
   keyString: "$1$2"
-commandsArray: []
-attributesArray:
+commands: []
+attributes:
 - beginString: "#?:[^[:space:],)]+"
   regularExpression: true
 metadata:
@@ -22,7 +22,7 @@ metadata:
   description: "general Lisp syntax style for common Lisp and other Lisp dialects"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "#'"
   regularExpression: true
 - beginString: "#\\"
@@ -42,8 +42,8 @@ charactersArray:
   ignoreCase: true
 - beginString: "#\\tab"
   ignoreCase: true
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "f"
   ignoreCase: true
 - beginString: "nil"
@@ -52,8 +52,8 @@ valuesArray:
   ignoreCase: true
 - beginString: "t"
   ignoreCase: true
-typesArray: []
-numbersArray:
+types: []
+numbers:
 - beginString: "#b[01][01_]*\\b"
   ignoreCase: true
   regularExpression: true
@@ -66,13 +66,13 @@ numbersArray:
 - beginString: "(\\b|[-+])[0-9][0-9./_]*([ed][-+]?\\d+)?\\b"
   ignoreCase: true
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "(?<=\\()[^[:space:],)]+"
   regularExpression: true
-variablesArray: []
+variables: []
 commentDelimiters:
   endDelimiter: "|#"
   beginDelimiter: "#|"

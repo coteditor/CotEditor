@@ -5,7 +5,7 @@ extensions:
 - keyString: "mm"
 - keyString: "cpp"
 - keyString: "cc"
-outlineMenuArray:
+outlineMenu:
 - beginString: "#define\\W(.*)$"
   italic: true
 - beginString: "#endif\\W(.*)$"
@@ -33,7 +33,7 @@ outlineMenuArray:
   keyString: "$1 $2($3)"
 - beginString: "^[\\t ]*([+-])([^)]*?\\))([^{]*)\\{"
   keyString: "$1 $3"
-commandsArray:
+commands:
 - beginString: "and"
 - beginString: "and_eq"
 - beginString: "bitand"
@@ -57,7 +57,7 @@ commandsArray:
 - beginString: "typeid"
 - beginString: "xor"
 - beginString: "xor_eq"
-attributesArray:
+attributes:
 - beginString: "@autoreleasepool"
 - beginString: "@catch"
 - beginString: "@class"
@@ -85,11 +85,11 @@ metadata:
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "'"
   endString: "'"
-commentsArray: []
-valuesArray:
+comments: []
+values:
 - beginString: "false"
 - beginString: "nil"
 - beginString: "Nil"
@@ -97,23 +97,23 @@ valuesArray:
 - beginString: "NULL"
 - beginString: "true"
 - beginString: "YES"
-variablesArray:
+variables:
 - beginString: "self"
 - beginString: "super"
 - beginString: "this"
-numbersArray:
+numbers:
 - beginString: "\\b0x[0-9a-f]+l?\\b"
   ignoreCase: true
   regularExpression: true
 - beginString: "\\b\\d+(\\.\\d+)?(e[-+]?\\d+)?\\b"
   ignoreCase: true
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "@\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "#define"
 - beginString: "#elif"
 - beginString: "#else"

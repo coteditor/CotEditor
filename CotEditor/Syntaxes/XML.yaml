@@ -25,14 +25,14 @@ extensions:
 - keyString: "xib"
 - keyString: "xmp"
 - keyString: "sdef"
-outlineMenuArray: []
-completionsArray: []
-commandsArray:
+outlineMenu: []
+completions: []
+commands:
 - beginString: "(?<=<)\\?[[:alnum:]_\\-.:]+"
   regularExpression: true
 - beginString: "\\?(?=>)"
   regularExpression: true
-attributesArray:
+attributes:
 - beginString: "\\s[[:alnum:]_\\-.:]+\\s*(?==)"
   regularExpression: true
 metadata:
@@ -41,26 +41,26 @@ metadata:
   version: "1.2"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "&\\S+?;"
   regularExpression: true
 - beginString: "<![CDATA["
   endString: "]]>"
-commentsArray: []
-valuesArray: []
-typesArray:
+comments: []
+values: []
+types:
 - beginString: "(?<=<)![A-Z]*"
   regularExpression: true
-numbersArray: []
-stringsArray:
+numbers: []
+strings:
 - beginString: "\""
   endString: "\""
 - beginString: "(?<!\\w)'[^']*?'(?=[^<>]*>)"
   regularExpression: true
-keywordsArray:
+keywords:
 - beginString: "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\n\\t />])"
   regularExpression: true
-variablesArray:
+variables:
 - beginString: "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)"
   regularExpression: true
 - beginString: "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)"

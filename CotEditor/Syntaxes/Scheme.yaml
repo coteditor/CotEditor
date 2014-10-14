@@ -2,8 +2,8 @@ extensions:
 - keyString: "scm"
 - keyString: "ss"
 filenames: []
-completionsArray: []
-outlineMenuArray:
+completions: []
+outlineMenu:
 - beginString: "^([\\t ]*)\\(define-library[[:space:]\\(\\[]+(\\S+)"
   keyString: "$1library: $2"
   bold: true
@@ -14,7 +14,7 @@ outlineMenuArray:
   italic: true
 - beginString: "^([\\t ]*)\\(define[[:space:]\\(\\[]+(\\S+)"
   keyString: "$1$2"
-commandsArray:
+commands:
 - beginString: "*"
 - beginString: "+"
 - beginString: "-"
@@ -325,7 +325,7 @@ commandsArray:
 - beginString: "write-string"
 - beginString: "write-u8"
 - beginString: "zero?"
-attributesArray: []
+attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.github.io"
@@ -333,7 +333,7 @@ metadata:
   description: "support R5RS and R6RS"
   license: "Same as CotEditor"
   lastModified: "2014-09-24"
-charactersArray:
+characters:
 - beginString: "#\\"
 - beginString: "#\\\\.(?=[[:space:]()\\[\\]\";#])"
   regularExpression: true
@@ -351,12 +351,12 @@ charactersArray:
 - beginString: "#\\space"
 - beginString: "#\\tab"
 - beginString: "#\\vtab"
-commentsArray:
+comments:
 - beginString: "#;("
   endString: ")"
 - beginString: "#;["
   endString: "]"
-valuesArray:
+values:
 - beginString: "#("
   endString: ")"
 - beginString: "#f"
@@ -390,12 +390,12 @@ valuesArray:
 - beginString: "unix"
 - beginString: "windows"
 - beginString: "x86-64"
-typesArray:
+types:
 - beginString: "#!fold-case"
 - beginString: "#!no-fold-case"
 - beginString: "#\\!\\S+"
   regularExpression: true
-numbersArray:
+numbers:
 - beginString: "#[0-9a-f]+\\b"
   ignoreCase: true
   regularExpression: true
@@ -409,10 +409,10 @@ numbersArray:
   regularExpression: true
 - beginString: "\\b\\.[0-9]+\\b"
   regularExpression: true
-stringsArray:
+strings:
 - beginString: "\""
   endString: "\""
-keywordsArray:
+keywords:
 - beginString: "=>"
 - beginString: "and"
 - beginString: "begin"
@@ -464,7 +464,7 @@ keywordsArray:
 - beginString: "unquote"
 - beginString: "unquote-splicing"
 - beginString: "when"
-variablesArray: []
+variables: []
 commentDelimiters:
   endDelimiter: "|#"
   beginDelimiter: "#|"
