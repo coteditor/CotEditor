@@ -742,13 +742,13 @@
 //------------------------------------------------------
 {
     // migrate syntax styles to modern style
-    BOOL didMigrateSyntax = [[CESyntaxManager sharedManager] migrateStyles];
+    [[CESyntaxManager sharedManager] migrateStyles];
     
     // migrate coloring setting
-    BOOL didMigrateTheme = [[CEThemeManager sharedManager] migrateTheme];
+    [[CEThemeManager sharedManager] migrateTheme];
     
     // reset menu keybindings setting
-    BOOL didResetKeyBindings = [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
+    [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
 }
 
 @end
