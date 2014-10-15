@@ -38,7 +38,7 @@
 @interface CEToolbarController ()
 
 @property (nonatomic, weak) IBOutlet NSToolbar *toolbar;
-@property (nonatomic, weak) IBOutlet CEWindowController *windowController;
+@property (nonatomic, unsafe_unretained) IBOutlet CEWindowController *windowController;  // Cannot be weak on Lion
 @property (nonatomic, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
@@ -64,6 +64,7 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
+    _windowController = nil;  // for Lion
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
