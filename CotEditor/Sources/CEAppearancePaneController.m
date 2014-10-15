@@ -274,7 +274,7 @@
 - (IBAction)addTheme:(id)sender
 //------------------------------------------------------
 {
-    __weak typeof(self) weakSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
     [[CEThemeManager sharedManager] createUntitledThemeWithCompletionHandler:^(NSString *themeName, NSError *error) {
         typeof(self) strongSelf = weakSelf;
         

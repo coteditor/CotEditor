@@ -188,7 +188,7 @@
     [[self fileDropController] add:self];
     
     // ディレイをかけて fileDropController からのバインディングによる行追加を先に実行させる
-    __weak typeof(self) weakSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
     dispatch_async(dispatch_get_main_queue(), ^{
         typeof(self) strongSelf = weakSelf;
         [strongSelf editNewAddedRowOfFileDropTableView];
@@ -206,7 +206,7 @@
     // フォーカスを移し、値入力を確定
     [[sender window] makeFirstResponder:sender];
     // ディレイをかけて controlTextDidEndEditing: の自動編集を実行させる
-    __weak typeof(self) weakSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
     dispatch_async(dispatch_get_main_queue(), ^{
         typeof(self) strongSelf = weakSelf;
         [strongSelf doDeleteFileDropSetting];

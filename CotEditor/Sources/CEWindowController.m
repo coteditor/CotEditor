@@ -265,7 +265,7 @@ static NSTimeInterval incompatibleCharInterval;
     NSStringEncoding encoding = [[self document] encoding];
     __block NSRange selectedRange = [[self editor] selectedRange];
     __block CEStatusBarController *statusBar = [self statusBarController];
-    __weak typeof(self) weakSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;  // cannot be weak on Lion
     
     // 別スレッドで情報を計算し、メインスレッドで drawer と statusBar に渡す
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
