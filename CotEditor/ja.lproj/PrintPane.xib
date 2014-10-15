@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPrintPaneController">
@@ -125,7 +125,7 @@
                     </connections>
                 </button>
                 <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1011">
-                    <rect key="frame" x="140" y="402" width="183" height="54"/>
+                    <rect key="frame" x="140" y="402" width="260" height="54"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     <size key="cellSize" width="183" height="26"/>
                     <size key="intercellSpacing" width="4" height="2"/>
@@ -499,6 +499,7 @@
                 <constraint firstItem="899" firstAttribute="top" secondItem="900" secondAttribute="bottom" constant="10" id="kc0-66-1BV"/>
                 <constraint firstItem="944" firstAttribute="top" secondItem="1350" secondAttribute="bottom" constant="12" id="oVC-mV-ghN"/>
                 <constraint firstItem="900" firstAttribute="centerY" secondItem="oVS-uF-Ue4" secondAttribute="centerY" id="q7v-vR-DnD"/>
+                <constraint firstItem="1008" firstAttribute="leading" secondItem="1011" secondAttribute="trailing" constant="8" symbolic="YES" id="tML-zt-Oa5"/>
                 <constraint firstItem="1350" firstAttribute="top" secondItem="1011" secondAttribute="bottom" constant="20" id="v2Y-Xc-0RJ"/>
                 <constraint firstItem="891" firstAttribute="baseline" secondItem="890" secondAttribute="baseline" id="vAH-GM-F9p"/>
                 <constraint firstItem="1356" firstAttribute="centerY" secondItem="1350" secondAttribute="centerY" id="wTy-cc-mpN"/>
