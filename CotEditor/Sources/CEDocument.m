@@ -1331,7 +1331,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     // "authopen"コマンドを使って読み込む
-    NSString *convertedPath = @([url fileSystemRepresentation]);
+    NSString *convertedPath = @([[url path] UTF8String]);
     NSTask *task = [[NSTask alloc] init];
 
     [task setLaunchPath:@"/usr/libexec/authopen"];
@@ -1489,7 +1489,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // get xattr data
     NSMutableData* data = nil;
-    const char *path = [url fileSystemRepresentation];
+    const char *path = [[url path] UTF8String];
     ssize_t bufferSize = getxattr(path, XATTR_ENCODING_KEY, NULL, 0, 0, XATTR_NOFOLLOW);
     if (bufferSize > 0) {
         data = [NSMutableData dataWithLength:bufferSize];
@@ -1573,7 +1573,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // "authopen" コマンドを使って保存
-    NSString *convertedPath = @([url fileSystemRepresentation]);
+    NSString *convertedPath = @([[url path] UTF8String]);
     NSTask *task = [[NSTask alloc] init];
 
     [task setLaunchPath:@"/usr/libexec/authopen"];
@@ -1600,7 +1600,7 @@ NSString *const CEIncompatibleConvertedCharKey = @"convertedChar";
                                  (unsigned int)CFStringConvertNSStringEncodingToEncoding([self encoding])]
                                 dataUsingEncoding:NSUTF8StringEncoding];
         if (encodingData) {
-            setxattr([url fileSystemRepresentation], XATTR_ENCODING_KEY,
+            setxattr([[url path] UTF8String], XATTR_ENCODING_KEY,
                      [encodingData bytes], [encodingData length], 0, XATTR_NOFOLLOW);
         }
     }
