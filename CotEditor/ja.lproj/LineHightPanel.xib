@@ -63,9 +63,9 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="21" translatesAutoresizingMaskIntoConstraints="NO" id="xfT-8b-5Y4">
-                        <rect key="frame" x="42" y="13" width="92" height="32"/>
+                        <rect key="frame" x="34" y="13" width="100" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="1cw-xA-OL0"/>
+                            <constraint firstAttribute="width" constant="88" id="1cw-xA-OL0"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="キャンセル" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0fI-Qj-jW1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
