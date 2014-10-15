@@ -30,6 +30,13 @@
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
+// Migration from 1.x
+"Restorering menu key bindings settings…" = "メニューキーバインド設定をリセット中…";
+"Migrating coloring settings…" = "カラーリング設定を移行中…";
+"Migrating user syntax styles…" = "ユーザシンタックス定義を移行中…";
+"Migration finished." = "設定の移行が終了しました。";
+"Close" = "閉じる";
+
 
 /* CEDocument */
 // Undo/Redo Action name

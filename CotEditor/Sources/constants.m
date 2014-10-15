@@ -65,7 +65,8 @@ NSString *const kHelpAnchors[] = {
     @"pref_filedrop",
     @"pref_keybindings",
     @"pref_print",
-    @"whats_new"
+    @"whats_new",
+    @"specification_changes"
 };
 
 #pragma mark Notifications

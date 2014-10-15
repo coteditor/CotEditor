@@ -83,7 +83,7 @@ extern NSString *const CESyntaxValidationMessageKey;
 // It can be removed when the most of users have been already migrated in the future.
 @interface CESyntaxManager (Migration)
 
-- (BOOL)migrateStyles;
+- (void)migrateStylesWithCompletionHandler:(void (^)(BOOL success))completionHandler;
 - (BOOL)importLegacyStyleFromURL:(NSURL *)fileURL;
 
 @end

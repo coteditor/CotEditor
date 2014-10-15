@@ -784,7 +784,7 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// CotEditor 1.x から CotEdito 2.0 への移行
-- (BOOL)migrateStyles
+- (void)migrateStylesWithCompletionHandler:(void (^)(BOOL success))completionHandler;
 // ------------------------------------------------------
 {
     BOOL success = NO;
@@ -794,7 +794,8 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     if (![oldDirURL checkResourceIsReachableAndReturnError:nil] ||
         [[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil])
     {
-        return NO;
+        completionHandler(NO);
+        return;
     }
     
     [self prepareUserStyleDirectory];
@@ -812,11 +813,11 @@ NSString *const CESyntaxValidationMessageKey = @"MessageKey";
     
     if (success) {
         [self updateCacheWithCompletionHandler:^{
-            // do nothing
+            completionHandler(YES);
         }];
+    } else {
+        completionHandler(NO);
     }
-    
-    return success;
 }
 
 

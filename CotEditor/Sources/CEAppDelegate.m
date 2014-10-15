@@ -44,6 +44,7 @@
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
 #import "CEUnicodeInputPanelController.h"
+#import "CEMigrationWindowController.h"
 #import "SWFSemanticVersion.h"
 #import "constants.h"
 
@@ -51,6 +52,7 @@
 @interface CEAppDelegate ()
 
 @property (nonatomic) BOOL hasSetting;  // for migration check
+@property (nonatomic) CEMigrationWindowController *migrationWindowController;
 
 
 // readonly
@@ -772,14 +774,31 @@ static NSString *const kMigrationFlagKey = @"isMigratedToNewBundleIdentifier";
 - (void)migrateToVersion2
 //------------------------------------------------------
 {
-    // migrate syntax styles to modern style
-    [[CESyntaxManager sharedManager] migrateStyles];
-    
-    // migrate coloring setting
-    [[CEThemeManager sharedManager] migrateTheme];
+    // show migration window
+    CEMigrationWindowController *windowController = [[CEMigrationWindowController alloc] init];
+    [self setMigrationWindowController:windowController];
+    [windowController showWindow:self];
     
     // reset menu keybindings setting
+    [windowController setInformative:@"Restorering menu key bindings settings…"];
     [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
+    [windowController progressIndicator];
+    [windowController setDidResetKeyBindings:YES];
+    
+    // migrate coloring setting
+    [windowController setInformative:@"Migrating coloring settings…"];
+    BOOL didMigrate = [[CEThemeManager sharedManager] migrateTheme];
+    [windowController progressIndicator];
+    [windowController setDidMigrateTheme:didMigrate];
+    
+    // migrate syntax styles to modern style
+    [windowController setInformative:@"Migrating user syntax styles…"];
+    [[CESyntaxManager sharedManager] migrateStylesWithCompletionHandler:^(BOOL success) {
+        [windowController setDidMigrateSyntaxStyles:success];
+        
+        [windowController setInformative:@"Migration finished."];
+        [windowController setMigrationFinished:YES];
+    }];
 }
 
 
