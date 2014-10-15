@@ -39,7 +39,7 @@
 #import "CELineHeightTransformer.h"
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
-#import "CELineSpacingPanelController.h"
+#import "CELineHightPanelController.h"
 #import "CEGoToSheetController.h"
 #import "CEColorCodePanelController.h"
 #import "CEScriptErrorPanelController.h"
@@ -487,8 +487,8 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (([menuItem action] == @selector(openLineSpacingPanel:)) ||
-        ([menuItem action] == @selector(openUnicodeInputPanel:))) {
+    if (([menuItem action] == @selector(showLineHeightPanel:)) ||
+        ([menuItem action] == @selector(showUnicodeInputPanel:))) {
         return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
@@ -506,10 +506,55 @@
 
 // ------------------------------------------------------
 /// 環境設定ウィンドウを開く
-- (IBAction)openPrefWindow:(id)sender
+- (IBAction)showPreferences:(id)sender
 // ------------------------------------------------------
 {
     [[CEPreferencesWindowController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// Scriptエラーウィンドウを表示
+- (IBAction)showScriptErrorPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEScriptErrorPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// カラーコードウィンドウを表示
+- (IBAction)showHexColorCodeEditor:(id)sender
+// ------------------------------------------------------
+{
+    [[CEColorCodePanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// 不透明度パネルを開く
+- (IBAction)showOpacityPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEOpacityPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// 行高設定パネルを開く
+- (IBAction)showLineHeightPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CELineHightPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// Unicode 入力パネルを開く
+- (IBAction)showUnicodeInputPanel:(id)sender
+// ------------------------------------------------------
+{
+    [[CEUnicodeInputPanelController sharedController] showWindow:self];
 }
 
 
@@ -525,57 +570,12 @@
 
 
 // ------------------------------------------------------
-/// Scriptエラーウィンドウを表示
-- (IBAction)openScriptErrorWindow:(id)sender
-// ------------------------------------------------------
-{
-    [[CEScriptErrorPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// カラーコードウィンドウを表示
-- (IBAction)openHexColorCodeEditor:(id)sender
-// ------------------------------------------------------
-{
-    [[CEColorCodePanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// 不透明度パネルを開く
-- (IBAction)openOpacityPanel:(id)sender
-// ------------------------------------------------------
-{
-    [[CEOpacityPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// 行間設定パネルを開く
-- (IBAction)openLineSpacingPanel:(id)sender
-// ------------------------------------------------------
-{
-    [[CELineSpacingPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
 /// Go Toパネルを開く
 - (IBAction)gotoLocation:(id)sender
 // ------------------------------------------------------
 {
     CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
     [sheetController beginSheetForDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
-}
-
-
-// ------------------------------------------------------
-/// Unicode 入力パネルを開く
-- (IBAction)openUnicodeInputPanel:(id)sender
-// ------------------------------------------------------
-{
-    [[CEUnicodeInputPanelController sharedController] showWindow:self];
 }
 
 

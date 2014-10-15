@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
@@ -34,7 +33,7 @@
                             </menuItem>
                             <menuItem title="Preferences…" keyEquivalent="," id="129">
                                 <connections>
-                                    <action selector="openPrefWindow:" target="290" id="6u3-7x-oXn"/>
+                                    <action selector="showPreferences:" target="290" id="pRe-na-Fij"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">
@@ -218,7 +217,7 @@
                             <menuItem title="Input Char in Unicode Hex…" id="tWx-pj-3PL">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="openUnicodeInputPanel:" target="290" id="S5h-bp-QnD"/>
+                                    <action selector="showUnicodeInputPanel:" target="290" id="tnB-r1-Tfo"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="660">
@@ -379,7 +378,7 @@
                             </menuItem>
                             <menuItem title="Set View's Opacity…" keyEquivalent="T" id="367">
                                 <connections>
-                                    <action selector="openOpacityPanel:" target="290" id="fLb-68-BsZ"/>
+                                    <action selector="showOpacityPanel:" target="290" id="vZR-68-5AC"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="611">
@@ -537,7 +536,7 @@
                                         </menuItem>
                                         <menuItem title="Custom…" id="772">
                                             <connections>
-                                                <action selector="openLineSpacingPanel:" target="290" id="QKf-LD-jaO"/>
+                                                <action selector="showLineHeightPanel:" target="290" id="gc4-61-vez"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -757,17 +756,17 @@
                                     <items>
                                         <menuItem title="Window Opacity Panel" keyEquivalent="1" id="655">
                                             <connections>
-                                                <action selector="openOpacityPanel:" target="290" id="fZ3-6h-0om"/>
+                                                <action selector="showOpacityPanel:" target="290" id="G8h-8R-17R"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Color Code Panel" tag="2" keyEquivalent="2" id="651">
                                             <connections>
-                                                <action selector="openHexColorCodeEditor:" target="290" id="652"/>
+                                                <action selector="showHexColorCodeEditor:" target="290" id="yVn-uY-7Wr"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Script Error Panel" keyEquivalent="3" id="653">
                                             <connections>
-                                                <action selector="openScriptErrorWindow:" target="290" id="654"/>
+                                                <action selector="showScriptErrorPanel:" target="290" id="kzJ-oH-Hzd"/>
                                             </connections>
                                         </menuItem>
                                     </items>

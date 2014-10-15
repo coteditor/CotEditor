@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CELineSpacingPanelController
+ CELineHightPanelController
  
  CotEditor
  http://coteditor.github.io
@@ -30,6 +30,6 @@
 #import "CEPanelController.h"
 
 
-@interface CELineSpacingPanelController : CEPanelController
+@interface CELineHightPanelController : CEPanelController
 
 @end

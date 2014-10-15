@@ -21,7 +21,7 @@
 	<key>$@S</key>
 	<string>saveDocumentAs:</string>
 	<key>$@T</key>
-	<string>openOpacityPanel:</string>
+	<string>showOpacityPanel:</string>
 	<key>$@Z</key>
 	<string>redo:</string>
 	<key>@&quot;</key>
@@ -29,7 +29,7 @@
 	<key>@&apos;</key>
 	<string>closeSplitTextView:</string>
 	<key>@,</key>
-	<string>openPrefWindow:</string>
+	<string>showPreferences:</string>
 	<key>@:</key>
 	<string>showGuessPanel:</string>
 	<key>@;</key>

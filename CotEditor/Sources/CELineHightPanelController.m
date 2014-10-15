@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- CELineSpacingPanelController
+ CELineHightPanelController
  
  CotEditor
  http://coteditor.github.io
@@ -27,10 +27,10 @@
  ==============================================================================
  */
 
-#import "CELineSpacingPanelController.h"
+#import "CELineHightPanelController.h"
 
 
-@interface CELineSpacingPanelController ()
+@interface CELineHightPanelController ()
 
 @property (nonatomic) CGFloat lineSpacing;
 
@@ -41,7 +41,7 @@
 
 #pragma mark -
 
-@implementation CELineSpacingPanelController
+@implementation CELineHightPanelController
 
 #pragma mark Superclass Methods
 
@@ -50,7 +50,7 @@
 - (instancetype)init
 // ------------------------------------------------------
 {
-    self = [super initWithWindowNibName:@"LineSpacingPanel"];
+    self = [super initWithWindowNibName:@"LineHightPanel"];
     
     return self;
 }
