@@ -39,6 +39,7 @@
 #import "CELayoutManager.h"
 #import "CETextViewProtocol.h"
 #import "CEATSTypesetter.h"
+#import "NSColor+CECGColorSupport.h"
 #import "CEUtils.h"
 #import "constants.h"
 
@@ -198,10 +199,18 @@ static BOOL usesTextFontForInvisibles;
         NSFont *replaceFont;
         NSGlyph replaceGlyph;
 
+        // create CGColor from NSColor
+        CGColorRef cgColor;
+        if (NSAppKitVersionNumber < NSAppKitVersionNumber10_8) {  // on lion
+            cgColor = [color CECGColor];
+        } else {
+            cgColor = [color CGColor];
+        }
+        
         // set graphics context
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         CGContextSaveGState(context);
-        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextSetFillColorWithColor(context, cgColor);
         CGMutablePathRef paths = CGPathCreateMutable();
         
         // adjust drawing coordinate

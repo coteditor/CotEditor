@@ -30,6 +30,7 @@
 
 @import CoreText;
 #import "CELineNumberView.h"
+#import "NSColor+CECGColorSupport.h"
 #import "constants.h"
 
 
@@ -130,10 +131,18 @@
     CGFloat fontSize = round(0.9 * masterFontSize);
     CTFontRef font = CTFontCreateWithName((CFStringRef)[self fontName], fontSize, nil);
     
+    // create CGColor from NSColor
+    CGColorRef cgColor;
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_8) {  // on lion
+        cgColor = [[self numberColor] CECGColor];
+    } else {
+        cgColor = [[self numberColor] CGColor];
+    }
+    
     CGFontRef cgFont = CTFontCopyGraphicsFont(font, NULL);
     CGContextSetFont(context, cgFont);
     CGContextSetFontSize(context, fontSize);
-    CGContextSetFillColorWithColor(context, [[self numberColor] CGColor]);
+    CGContextSetFillColorWithColor(context, cgColor);
     CFRelease(cgFont);
     
     // prepare glyphs
