@@ -33,7 +33,7 @@
 
 @interface CENavigationBarController : NSViewController
 
-@property (nonatomic, unsafe_unretained) NSTextView *textView;
+@property (nonatomic, strong) NSTextView *textView;  // NSTextView cannot be weak
 @property (nonatomic) BOOL showsNavigationBar;
 
 

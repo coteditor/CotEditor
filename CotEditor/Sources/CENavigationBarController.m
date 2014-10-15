@@ -84,6 +84,14 @@ static const NSTimeInterval duration = 0.1;
 }
 
 
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    _textView = nil;
+}
+
 
 #pragma mark Public Methods
 

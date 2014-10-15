@@ -64,6 +64,7 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
+    _delegate = nil;
     [self endObservingTheme];
 }
 

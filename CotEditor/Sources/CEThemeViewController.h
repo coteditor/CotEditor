@@ -41,7 +41,7 @@
 
 @interface CEThemeViewController : NSViewController
 
-@property (nonatomic, weak) id<CEThemeViewControllerDelegate> delegate;
+@property (nonatomic, strong) id<CEThemeViewControllerDelegate> delegate;  // cannot be weak on Lion
 @property (nonatomic, getter=isBundled) BOOL bundled;
 
 @end
