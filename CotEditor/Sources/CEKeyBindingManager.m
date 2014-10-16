@@ -34,6 +34,13 @@
 #import "constants.h"
 
 
+// outlineView data key, column identifier
+NSString *const CEKeyBindingTitleKey = @"title";
+NSString *const CEKeyBindingChildrenKey = @"children";
+NSString *const CEKeyBindingKeySpecCharsKey = @"keyBindingKey";
+NSString *const CEKeyBindingSelectorStringKey = @"selectorString";
+
+
 @interface CEKeyBindingManager ()
 
 @property (nonatomic, copy) NSDictionary *defaultMenuKeyBindingDict;
