@@ -824,6 +824,9 @@ NSString *const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification"
                                       error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          NSDictionary *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
+         
+         if (!style) { return; }
+         
          NSMutableDictionary *newStyle = [NSMutableDictionary dictionary];
          
          // format migration
