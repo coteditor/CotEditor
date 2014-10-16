@@ -14,8 +14,6 @@
 	<string>highlight:</string>
 	<key>$@I</key>
 	<string>toggleIncompatibleCharList:</string>
-	<key>$@O</key>
-	<string>openHiddenDocument:</string>
 	<key>$@P</key>
 	<string>runPageLayout:</string>
 	<key>$@S</key>

@@ -239,6 +239,9 @@ static NSDictionary *kUnprintableKeyTable;
             {
                 continue;
             }
+            if ([item isAlternate]) {
+                continue;
+            }
             
             NSString *keyEquivalent = [item keyEquivalent];
             NSString *keySpecChars;
@@ -447,6 +450,9 @@ static NSDictionary *kUnprintableKeyTable;
             ([item tag] == CEWindowPanelsMenuItemTag) ||
             ([item tag] == CEScriptMenuDirectoryTag))
         {
+            continue;
+        }
+        if ([item isAlternate]) {  // 隠しメニューは変更しない
             continue;
         }
         [item setKeyEquivalent:@""];
